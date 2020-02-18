@@ -1,0 +1,29 @@
+@import '../../app.scss';
+
+.recruit-condition-box{
+  position: relative;
+  width: 100%;
+  background-color: white;
+  border-bottom: 1px solid $bordercolor;
+  @include flex();
+  .recruit-condition-item{
+    position: relative;
+    flex: 1;
+    padding: 0 10px;
+    @include flex();
+    .recruit-condition-content{
+      position: relative;
+      padding-right: 50px;
+      font-size: 30px;
+      line-height: 80px;
+      .recruit-condition-select{
+        position: absolute;
+        display: block;
+        width: 24px;
+        height: 22px;
+        top: 30px;
+        right: 15px;
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+<block wx:if="{{$taroCompReady}}">
+    <view class="resume-list-container">
+        <view class="resume-list-item">
+            <view class="resume-list-header">
+                <image class="resume-list-user" src="http://cdn.yupao.com/newyupao/images/user.png"></image>
+                <view class="resume-list-userinfo">
+                    <view class="resume-list-userinfo-detail"><text class="resume-userinfo-name">阿鑫</text><text class="resume-userinfo-sex">男</text><text class="resume-userinfo-age">60</text>
+                    </view><text class="resume-list-type">个人</text>
+                    <view class="resume-otherinfo"><text>汉族</text><text>15年以上</text>
+                    </view>
+                </view>
+            </view>
+            <view class="resume-list-works"><text>任劳任怨</text><text>任劳任怨</text><text>任劳任怨</text>
+            </view>
+            <view class="resume-list-content overwords">这个是我的找活内容</view>
+            <view class="resume-list-footer">
+                <image class="resume-list-loc" src="{{IMGCDNURL + 'lpy/biaoqian.png'}}"></image>
+                <view class="resume-list-loctxt overwords">四川省成都市金牛阳光大道</view><text class="resume-list-time">高级工</text>
+            </view>
+        </view>
+    </view>
+</block>

@@ -1,0 +1,122 @@
+view, input, text, image, textarea {
+  box-sizing: border-box; }
+
+page {
+  background-color: #f7f6f9; }
+
+.overwords {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis; }
+
+.clearfix:after {
+  content: "";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+  font-size: 0; }
+
+.clearfix {
+  zoom: 1; }
+
+.resume-list-container {
+  position: relative;
+  width: 100%; }
+  .resume-list-container .resume-list-item {
+    position: relative;
+    width: 100%;
+    padding: 10rpx 20rpx 0;
+    background-color: white;
+    margin-top: 15rpx; }
+    .resume-list-container .resume-list-item .resume-list-header {
+      position: relative;
+      padding-left: 120rpx;
+      line-height: 50rpx; }
+      .resume-list-container .resume-list-item .resume-list-header .resume-list-user {
+        position: absolute;
+        width: 100%;
+        display: block;
+        width: 100rpx;
+        height: 100rpx;
+        left: 0; }
+      .resume-list-container .resume-list-item .resume-list-header .resume-list-userinfo {
+        position: relative; }
+        .resume-list-container .resume-list-item .resume-list-header .resume-list-userinfo .resume-list-userinfo-detail .resume-userinfo-name, .resume-list-container .resume-list-item .resume-list-header .resume-list-userinfo .resume-list-userinfo-detail .resume-userinfo-sex {
+          display: inline-block;
+          font-size: 30rpx;
+          margin-right: 15rpx; }
+        .resume-list-container .resume-list-item .resume-list-header .resume-list-userinfo .resume-list-userinfo-detail .resume-userinfo-age {
+          position: relative;
+          color: #FB8732; }
+      .resume-list-container .resume-list-item .resume-list-header .resume-otherinfo {
+        position: relative; }
+        .resume-list-container .resume-list-item .resume-list-header .resume-otherinfo text {
+          font-size: 28rpx;
+          margin-right: 15rpx; }
+          .resume-list-container .resume-list-item .resume-list-header .resume-otherinfo text:nth-last-child(1) {
+            margin-right: 0; }
+      .resume-list-container .resume-list-item .resume-list-header .resume-list-type {
+        position: absolute;
+        right: 20rpx;
+        font-size: 28rpx;
+        line-height: 50rpx;
+        bottom: 0; }
+      .resume-list-container .resume-list-item .resume-list-header .resume-list-tags {
+        position: relative; }
+        .resume-list-container .resume-list-item .resume-list-header .resume-list-tags text {
+          border-radius: 5rpx;
+          color: #0099ff;
+          border: 1rpx solid #0099ff;
+          font-size: 26rpx;
+          padding: 0 10rpx;
+          margin-right: 15rpx;
+          line-height: 45rpx; }
+          .resume-list-container .resume-list-item .resume-list-header .resume-list-tags text:nth-last-child(1) {
+            margin-right: 0; }
+    .resume-list-container .resume-list-item .resume-list-works {
+      position: relative;
+      margin-top: 15rpx; }
+      .resume-list-container .resume-list-item .resume-list-works text {
+        position: relative;
+        display: inline-block;
+        background-color: #eeedef;
+        color: #2a2a2a;
+        padding: 10rpx;
+        font-size: 26rpx;
+        margin-right: 15rpx;
+        border-radius: 5rpx; }
+        .resume-list-container .resume-list-item .resume-list-works text:nth-last-child(1) {
+          margin-right: 0; }
+    .resume-list-container .resume-list-item .resume-list-content {
+      position: relative;
+      color: #555;
+      line-height: 70rpx;
+      font-size: 28rpx;
+      border-bottom: 1rpx dashed #dcdcdc; }
+    .resume-list-container .resume-list-item .resume-list-footer {
+      position: relative;
+      padding: 10rpx 0; }
+      .resume-list-container .resume-list-item .resume-list-footer .resume-list-loc {
+        position: absolute;
+        display: block;
+        width: 20rpx;
+        height: 30rpx;
+        left: 0;
+        top: 25rpx; }
+      .resume-list-container .resume-list-item .resume-list-footer .resume-list-loctxt {
+        position: relative;
+        padding-left: 35rpx;
+        padding-right: 300rpx;
+        font-size: 28rpx;
+        line-height: 60rpx; }
+      .resume-list-container .resume-list-item .resume-list-footer .resume-list-time {
+        position: absolute;
+        display: inline-block;
+        right: 0;
+        top: 10rpx;
+        line-height: 60rpx;
+        font-size: 26rpx;
+        color: #7f7e7e; }
+

@@ -1,0 +1,9 @@
+<block wx:if="{{$taroCompReady}}">
+    <view class="recruit-condition-box">
+        <view class="recruit-condition-item" wx:key="id" wx:for="{{data}}" wx:for-item="item" wx:for-index="_anonIdx2">
+            <view class="recruit-condition-content overwords">{{item.text}}
+                <image class="recruit-condition-select" src="{{IMGCDNURL + 'select.png'}}"></image>
+            </view>
+        </view>
+    </view>
+</block>

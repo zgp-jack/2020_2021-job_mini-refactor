@@ -1,0 +1,49 @@
+@import '../../app.scss';
+
+@keyframes scaleToorigin {
+  0%{
+    transform: scale(1);
+  }
+  50%{
+    transform: scale(0.96);
+  }
+  100%{
+    transform: scale(1);
+  }
+}
+
+.common-footer-tabbar{
+  position: fixed;
+  width: 100%;
+  height: 120px;
+  z-index: 100;
+  background-color: white;
+  box-shadow: #e7e6e4 0 0 10px;
+  left: 0;
+  bottom: 0;
+  @include flex;
+  .common-footer-tabbar-list{
+    flex:1;
+    position: relative;
+    @include flex(column);
+    padding: 10rpx 0;
+    transition: 0.3s;
+    .commmon-footer-tabbar-img{
+      width: 50px;
+      height: 50px;
+    }
+    .commmon-footer-tabbar-text{
+      font-size:28px;
+      color: #333;
+      display: block;
+      margin-top:10rpx;
+      line-height: 30px;
+    }
+  }
+  .common-footer-tabbar-list-active{
+    animation: scaleToorigin 0.5s ease-in-out;
+    .commmon-footer-tabbar-text{
+      color:$color;
+    }
+  }
+}

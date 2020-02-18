@@ -1,0 +1,12 @@
+<block wx:if="{{$taroCompReady}}">
+    <view class="recruit-container">
+        <view class="recruit-fiexd-header">
+            <search compid="{{$compid__6}}"></search>
+            <condition compid="{{$compid__7}}"></condition>
+        </view>
+        <scroll-view class="recruit-lists-container">
+            <wechat-notice></wechat-notice>
+            <resume-list></resume-list>
+        </scroll-view>
+    </view>
+</block>

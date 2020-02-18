@@ -1,0 +1,17 @@
+@import '../../../app.scss';
+
+.home-swipernewsbox{
+  position: relative;
+  width: 100%;
+  height: 80px;
+  overflow: hidden;
+  .home-swipernews-item{
+    position: relative;
+    height: 100%;
+    font-size: 28px;
+    .home-swipernews-text{
+      line-height: 80px;
+      color: $color;
+    }
+  }
+}

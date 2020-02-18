@@ -1,0 +1,88 @@
+view, input, text, image, textarea {
+  box-sizing: border-box; }
+
+page {
+  background-color: #f7f6f9; }
+
+.overwords {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis; }
+
+.clearfix:after {
+  content: "";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+  font-size: 0; }
+
+.clearfix {
+  zoom: 1; }
+
+.usedlist-container {
+  position: relative;
+  width: 100%; }
+  .usedlist-container .usedlist-item {
+    position: relative;
+    width: 100%;
+    background-color: white;
+    margin-top: 15rpx; }
+    .usedlist-container .usedlist-item .usedlist-item-header {
+      position: relative;
+      width: 100%;
+      padding-right: 250rpx;
+      padding-left: 20rpx;
+      border-bottom: 1rpx dashed #dcdcdc; }
+      .usedlist-container .usedlist-item .usedlist-item-header .usedlist-item-title {
+        position: relative;
+        font-size: 28rpx;
+        line-height: 80rpx; }
+      .usedlist-container .usedlist-item .usedlist-item-header .usedlist-item-time {
+        position: absolute;
+        display: inline-block;
+        right: 20rpx;
+        top: 0;
+        line-height: 80rpx;
+        font-size: 26rpx;
+        color: #828586; }
+    .usedlist-container .usedlist-item .usedlist-item-body {
+      position: relative;
+      width: 100%;
+      padding-left: 150rpx; }
+      .usedlist-container .usedlist-item .usedlist-item-body .usedlist-item-user {
+        position: absolute;
+        display: block;
+        width: 135rpx;
+        height: 135rpx;
+        top: 20rpx;
+        left: 20rpx;
+        border-radius: 50%; }
+      .usedlist-container .usedlist-item .usedlist-item-body .usedlist-item-content {
+        position: relative;
+        width: 100%;
+        padding: 20rpx;
+        height: 180rpx;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        align-items: flex-start; }
+        .usedlist-container .usedlist-item .usedlist-item-body .usedlist-item-content .usedlist-content-item {
+          flex: 1;
+          position: relative; }
+          .usedlist-container .usedlist-item .usedlist-item-body .usedlist-item-content .usedlist-content-item .usedlist-content-item-img {
+            position: absolute;
+            width: 36rpx;
+            height: 36rpx;
+            display: block;
+            left: 0;
+            top: 2rpx; }
+          .usedlist-container .usedlist-item .usedlist-item-body .usedlist-item-content .usedlist-content-item .usedlist-content-info {
+            padding-left: 50rpx;
+            position: relative;
+            font-size: 28rpx; }
+            .usedlist-container .usedlist-item .usedlist-item-body .usedlist-item-content .usedlist-content-item .usedlist-content-info .usedlist-content-status {
+              color: #ff0000; }
+

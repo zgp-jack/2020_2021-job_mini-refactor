@@ -1,0 +1,48 @@
+@import '../../app.scss';
+
+.wechatinfo-container{
+  position: relative;
+  width: 100%;
+  padding:10px 20px;
+  background-color: white;
+  @include shadow();
+  .wechat-container{
+    position: relative;
+    font-size: 28px;
+    line-height: 50px;
+    .wechat-addgroup{
+      position: relative;
+      color:#f86e09;
+    }
+    .wechat-text{
+      color: $color;
+    }
+    .wechat-btn{
+      background-color: $color;
+      color: white;
+      padding: 4px 15px;
+      font-size: 26px;
+      border-radius: 5px;
+      margin: 0 10px;
+    }
+  }
+  .notice-container{
+    position: relative;
+    margin-top:10px;
+    border-top: 1px dashed $color;
+    height: 80px;
+    padding-left: 150px;
+    .notice-tips{
+      position: absolute;
+      line-height: 60px;
+      left:0;
+      top:10px;
+      font-size: 28px;
+      color: #f86e09;
+    }
+    .notice-lists{
+      position: relative;
+      width: 100%;
+    }
+  }
+}

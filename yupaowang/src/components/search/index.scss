@@ -1,0 +1,29 @@
+@import '../../app.scss';
+
+.search-header-box{
+  position: relative;
+  width: 100%;
+  background-color: $color;
+  height: 100px;
+  padding:15px 20px;
+  padding-right: 100px;
+  .search-input{
+    position: relative;
+    width: 100%;
+    background-color: white;
+    border-radius: 8px;
+    height: 70px;
+    line-height: 70px;
+    padding: 0 15px;
+    font-size: 28px;
+  }
+  .search-btn{
+    position: absolute;
+    right: 0;
+    top: 15px;
+    line-height: 70px;
+    padding: 0 20px;
+    color: white;
+    font-size: 28px;
+  }
+}
