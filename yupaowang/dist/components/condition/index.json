@@ -1,1 +1,1 @@
-{"component":true,"usingComponents":{}}
+{"component":true,"usingComponents":{"at-drawer":"../../npm/taro-ui/dist/weapp/components/drawer/index"}}

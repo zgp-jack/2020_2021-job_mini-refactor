@@ -67,7 +67,7 @@ var WechatNotice = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (WechatNotice.__proto__ || Object.getPrototypeOf(WechatNotice)).apply(this, arguments));
 
-    _this.$usedState = ["$compid__5"];
+    _this.$usedState = ["$compid__6"];
     _this.customComponents = ["SwiperNews"];
     return _this;
   }
@@ -87,16 +87,16 @@ var WechatNotice = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__5"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__6"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__5 = _genCompid2[0],
-          $compid__5 = _genCompid2[1];
+          $prevCompid__6 = _genCompid2[0],
+          $compid__6 = _genCompid2[1];
 
       _taroWeapp.propsManager.set({
         "data": SWIPER_NEWS
-      }, $compid__5, $prevCompid__5);
+      }, $compid__6, $prevCompid__6);
       Object.assign(this.__state, {
-        $compid__5: $compid__5
+        $compid__6: $compid__6
       });
       return this.__state;
     }
@@ -113,4 +113,4 @@ Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/
 
 /***/ })
 
-},[["./src/components/wechat/index.tsx","runtime","vendors"]]]);
+},[["./src/components/wechat/index.tsx","runtime","taro","vendors"]]]);

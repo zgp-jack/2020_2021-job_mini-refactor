@@ -4,7 +4,7 @@
             <home></home>
         </block>
         <block wx:if="{{tabKey === RECRUIT}}">
-            <recruit></recruit>
+            <recruit compid="{{$compid__0}}"></recruit>
         </block>
         <block wx:if="{{tabKey === RESUME}}">
             <resume></resume>

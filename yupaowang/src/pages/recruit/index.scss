@@ -1,15 +1,23 @@
 @import '../../app.scss';
 
+$height: 180px;
+
 .recruit-container{
   position: relative;
   width: 100%;
-  padding-top: 195px;
-  padding-bottom: $paddingbottom;
   .recruit-fiexd-header{
     position: fixed;
-    z-index: 5;
+    z-index: 500;
     width: 100%;
     left: 0;
     top: 0;
+  }
+  .recruit-lists-container{
+    position: fixed;
+    width: 100%;
+    left: 0;
+    top:$height;
+    height: calc(100% - 180px);
+    z-index: 3;
   }
 }

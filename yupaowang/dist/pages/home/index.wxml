@@ -8,13 +8,13 @@
             </view>
             <image class="home-header-app" src="{{IMGCDNURL + 'loadapp.png'}}"></image>
         </view>
-        <swiper-component compid="{{$compid__0}}"></swiper-component>
+        <swiper-component compid="{{$compid__1}}"></swiper-component>
         <projects></projects>
         <fastfun></fastfun>
         <view class="home-information-container">
             <image class="home-infomation-img" src="{{IMGCDNURL + 'notice.png'}}"></image>
             <view class="home-infomation-news">
-                <swiper-news compid="{{$compid__1}}"></swiper-news>
+                <swiper-news compid="{{$compid__2}}"></swiper-news>
             </view>
         </view>
         <view class="home-all-lists">

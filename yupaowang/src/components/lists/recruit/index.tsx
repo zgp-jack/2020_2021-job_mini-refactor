@@ -16,6 +16,7 @@ export default function RecruitList({ data }: PROPS){
         <Block>
           {item.map((d) => (
             <View className='recruit-list-item'>
+              {d.top && <Image className='list-toprecruit-img' src={IMGCDNURL + 'newlist-jobzd.png'} />}
               {d.is_end == 2 && <Image className='recruit-findend-img' src={IMGCDNURL + 'newlist-jobfindend.png'} /> }
               <View className='recruit-list-header'>
                 <View className='recruit-list-title overwords'>{ d.title }</View>
@@ -26,7 +27,7 @@ export default function RecruitList({ data }: PROPS){
                 <View className='recruit-list-body-content'>
                   <View className='recruit-body-header'>
                     <Text className='recruit-list-username'>{ d.user_name }</Text>
-                    <Image className='recruit-list-finding' src={IMGCDNURL + 'newlist-jobfinding.png'} />
+                    {d.is_end !== 2 && <Image className='recruit-list-finding' src={IMGCDNURL + 'newlist-jobfinding.png'} />}
                   </View>
                   <View className='recruit-list-words'>
                     <View className='recruit-words-text'>{ d.detail }</View>

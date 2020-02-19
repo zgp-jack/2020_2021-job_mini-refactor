@@ -114,7 +114,7 @@ var Tabbar = function (_Taro$Component) {
           'common-footer-tabbar-list': true,
           'common-footer-tabbar-list-active': item.$original.id === tabbar.key
         });
-        var _$indexKey = "bzzzz" + __index0;
+        var _$indexKey = "czzzz" + __index0;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return dispatch((0, _tabbar.changeTabbar)(item.$original.id));
         };
@@ -156,4 +156,4 @@ Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/
 
 /***/ })
 
-},[["./src/components/tabbar/index.tsx","runtime","vendors"]]]);
+},[["./src/components/tabbar/index.tsx","runtime","taro","vendors"]]]);

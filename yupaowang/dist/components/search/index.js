@@ -93,4 +93,4 @@ Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/
 
 /***/ })
 
-},[["./src/components/search/index.tsx","runtime","vendors"]]]);
+},[["./src/components/search/index.tsx","runtime","taro","vendors"]]]);

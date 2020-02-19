@@ -27,3 +27,20 @@
     }
   }
 }
+
+.common-drawer-item{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  .drawer-full-lists{
+    position: relative;
+    width: 100%;
+    .drawer-list-item{
+      position: relative;
+      line-height: 90px;
+      padding: 0 20px;
+      font-size: 28px;
+      border-bottom: 1px solid $bordercolor;
+    }
+  }
+}

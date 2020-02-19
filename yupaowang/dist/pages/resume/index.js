@@ -42,7 +42,7 @@ var Recruit = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (Recruit.__proto__ || Object.getPrototypeOf(Recruit)).apply(this, arguments));
 
-    _this.$usedState = ["$compid__6", "$compid__7"];
+    _this.$usedState = ["$compid__18", "$compid__19"];
     _this.customComponents = ["Search", "Condition", "WechatNotice", "ResumeList"];
     return _this;
   }
@@ -62,27 +62,27 @@ var Recruit = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__6"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__18"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__6 = _genCompid2[0],
-          $compid__6 = _genCompid2[1];
+          $prevCompid__18 = _genCompid2[0],
+          $compid__18 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__7"),
+      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__19"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__7 = _genCompid4[0],
-          $compid__7 = _genCompid4[1];
+          $prevCompid__19 = _genCompid4[0],
+          $compid__19 = _genCompid4[1];
 
       var DEFAULT_CONDITION = [{ id: 'area', text: '全国' }, { id: 'work', text: '选择工种' }, { id: 'type', text: '队伍' }, { id: 'filter', text: '推荐' }];
       _taroWeapp.propsManager.set({
         "placeholder": "\u627E\u5DE5\u4EBA\uFF0C\u627E\u961F\u4F0D\uFF0C\u627E\u73ED\u7EC4",
         "value": ""
-      }, $compid__6, $prevCompid__6);
+      }, $compid__18, $prevCompid__18);
       _taroWeapp.propsManager.set({
         "data": DEFAULT_CONDITION
-      }, $compid__7, $prevCompid__7);
+      }, $compid__19, $prevCompid__19);
       Object.assign(this.__state, {
-        $compid__6: $compid__6,
-        $compid__7: $compid__7
+        $compid__18: $compid__18,
+        $compid__19: $compid__19
       });
       return this.__state;
     }
@@ -99,4 +99,4 @@ Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/
 
 /***/ })
 
-},[["./src/pages/resume/index.tsx","runtime","vendors"]]]);
+},[["./src/pages/resume/index.tsx","runtime","taro","vendors","common"]]]);

@@ -1,9 +1,26 @@
 <block wx:if="{{$taroCompReady}}">
-    <view class="recruit-condition-box">
-        <view class="recruit-condition-item" wx:key="id" wx:for="{{data}}" wx:for-item="item" wx:for-index="_anonIdx2">
-            <view class="recruit-condition-content overwords">{{item.text}}
-                <image class="recruit-condition-select" src="{{IMGCDNURL + 'select.png'}}"></image>
-            </view>
+    <block>
+        <view class="recruit-condition-box">
+            <block wx:if="{{data}}">
+                <view class="recruit-condition-item" wx:key="id" bindtap="anonymousFunc0" wx:for="{{loopArray12}}" wx:for-item="item" wx:for-index="__index0" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">
+                    <view class="recruit-condition-content overwords">{{item.$original.text}}
+                        <image class="recruit-condition-select" src="{{IMGCDNURL + 'select.png'}}"></image>
+                    </view>
+                </view>
+            </block>
         </view>
-    </view>
+        <at-drawer compid="{{$compid__26}}">
+            <view class="common-drawer-item">
+                <view class="drawer-full-lists">
+                    <view class="drawer-list-item overwords">全国</view>
+                    <view class="drawer-list-item">全国</view>
+                    <view class="drawer-list-item">全国</view>
+                    <view class="drawer-list-item">全国</view>
+                    <view class="drawer-list-item">全国</view>
+                    <view class="drawer-list-item">全国</view>
+                    <view class="drawer-list-item">全国</view>
+                </view>
+            </view>
+        </at-drawer>
+    </block>
 </block>

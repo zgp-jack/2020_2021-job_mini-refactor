@@ -55,7 +55,7 @@ var Home = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (Home.__proto__ || Object.getPrototypeOf(Home)).apply(this, arguments));
 
-    _this.$usedState = ["$compid__0", "$compid__1", "IMGCDNURL"];
+    _this.$usedState = ["$compid__1", "$compid__2", "IMGCDNURL"];
     _this.customComponents = ["SwiperComponent", "Projects", "Fastfun", "SwiperNews", "RecruitList", "ResumeList", "UsedList", "About"];
     return _this;
   }
@@ -75,15 +75,15 @@ var Home = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__0"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__1"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__0 = _genCompid2[0],
-          $compid__0 = _genCompid2[1];
+          $prevCompid__1 = _genCompid2[0],
+          $compid__1 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__1"),
+      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__2"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__1 = _genCompid4[0],
-          $compid__1 = _genCompid4[1];
+          $prevCompid__2 = _genCompid4[0],
+          $compid__2 = _genCompid4[1];
       // * 轮播图的基本参数配置
 
 
@@ -112,13 +112,13 @@ var Home = function (_Taro$Component) {
       };
       _taroWeapp.propsManager.set({
         "data": SWIPER_PROPS
-      }, $compid__0, $prevCompid__0);
+      }, $compid__1, $prevCompid__1);
       _taroWeapp.propsManager.set({
         "data": SWIPER_NEWS
-      }, $compid__1, $prevCompid__1);
+      }, $compid__2, $prevCompid__2);
       Object.assign(this.__state, {
-        $compid__0: $compid__0,
         $compid__1: $compid__1,
+        $compid__2: $compid__2,
         IMGCDNURL: _index.IMGCDNURL
       });
       return this.__state;
@@ -136,4 +136,4 @@ Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/
 
 /***/ })
 
-},[["./src/pages/home/index.tsx","runtime","vendors"]]]);
+},[["./src/pages/home/index.tsx","runtime","taro","vendors","common"]]]);
