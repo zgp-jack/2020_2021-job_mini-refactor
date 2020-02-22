@@ -1,7 +1,7 @@
 import Taro from '@tarojs/taro'
 import * as api from '../api'
 import { TOKEN } from '../../config'
-import { Result, RecruitList } from './index.d'
+import { ResumeResult, RecruitList } from './index.d'
 import Msg from '../msg'
 
 interface ContentType {
@@ -81,4 +81,34 @@ export function getRecruitList(data): Promise<RecruitList[]> {
     url: api.GetRecruitlist,
     data: data
   })
+}
+
+// 获取找活列表
+export function getResumeList(data): Promise<ResumeResult>{
+  return doRequestAction({
+    url: api.GetResumelist,
+    data: data
+  })
+}
+
+// 获取微信号以及公告
+export function getWechatNotice(){
+  return doRequestAction({
+    url: api.GetWechatNotice,
+    method: 'POST',
+    loading: false
+  })
+}
+
+// 获取列表页筛选条件
+export function getListFilterData(){
+  return doRequestAction({
+    url: api.GetListFilterData,
+    loading: false
+  })
+}
+
+// tabbar未读消息统计
+export function getTabbarMsg(){
+  return
 }

@@ -9,11 +9,7 @@ import { SearchType } from './index.d'
 import { RecruitList as RecruitListType } from '../../utils/request/index.d'
 import './index.scss'
 
-interface PROPS {
-   pulldown: number
-}
-
-export default function Recruit({ pulldown }: PROPS){
+export default function Recruit(){
 
   // * 配置筛选条件
   const DEFAULT_CONDITION = [
@@ -39,26 +35,23 @@ export default function Recruit({ pulldown }: PROPS){
   // * 请求列表数据
   useEffect(()=>{
     getRecruitList(searchData).then(res=>{
-      setLists([...lists, [...res]])
-      if(refresh){
-        Taro.hideNavigationBarLoading()
-        Taro.stopPullDownRefresh()
-        setRefresh(false)
-      }
+      Taro.hideNavigationBarLoading()
+      if (searchData.page === 1) setLists([[...res]])
+      else setLists([...lists, [...res]])
+      if (refresh) setRefresh(false)
     })
   }, [searchData])
 
-  // * 监听下拉刷新
-  useEffect(() => {
-    if(!pulldown) return
-    setSearchData({...searchData, page: 1})
-    setRefresh(true)
-    Taro.showNavigationBarLoading()
-  }, [pulldown])
-
   // * 触底加载下一页
   const getNextPageData = ()=> {
+    Taro.showNavigationBarLoading()
     setSearchData({...searchData, page: searchData.page + 1})
+  }
+
+  // * 监听下拉刷新
+  const pullDownAction = ()=> {
+    setRefresh(true)
+    setSearchData({ ...searchData, page: 1 })
   }
 
   return (
@@ -68,8 +61,11 @@ export default function Recruit({ pulldown }: PROPS){
         <Condition data={ DEFAULT_CONDITION }  />
       </View>
       <ScrollView 
-        className='recruit-lists-container' 
+        className='recruit-lists-containerbox' 
         scrollY
+        refresherEnabled
+        refresherTriggered={ refresh }
+        onRefresherRefresh={() => pullDownAction()}
         lowerThreshold={200} 
         onScrollToLower={()=>getNextPageData()}
       >

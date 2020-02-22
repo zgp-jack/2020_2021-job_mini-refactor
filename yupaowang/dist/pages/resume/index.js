@@ -1,5 +1,16 @@
 (wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["pages/resume/index"],{
 
+/***/ "./src/pages/resume/index.scss":
+/*!*************************************!*\
+  !*** ./src/pages/resume/index.scss ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
 /***/ "./src/pages/resume/index.tsx":
 /*!************************************!*\
   !*** ./src/pages/resume/index.tsx ***!
@@ -14,6 +25,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -24,9 +37,13 @@ var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@
 
 var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
 
-__webpack_require__(/*! ../recruit/index.scss */ "./src/pages/recruit/index.scss");
+var _index = __webpack_require__(/*! ../../utils/request/index */ "./src/utils/request/index.ts");
+
+__webpack_require__(/*! ./index.scss */ "./src/pages/resume/index.scss");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -42,7 +59,7 @@ var Recruit = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (Recruit.__proto__ || Object.getPrototypeOf(Recruit)).apply(this, arguments));
 
-    _this.$usedState = ["$compid__18", "$compid__19"];
+    _this.$usedState = ["anonymousState__temp", "$compid__75", "$compid__76", "$compid__77", "refresh"];
     _this.customComponents = ["Search", "Condition", "WechatNotice", "ResumeList"];
     return _this;
   }
@@ -62,36 +79,117 @@ var Recruit = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__18"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__75"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__18 = _genCompid2[0],
-          $compid__18 = _genCompid2[1];
+          $prevCompid__75 = _genCompid2[0],
+          $compid__75 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__19"),
+      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__76"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__19 = _genCompid4[0],
-          $compid__19 = _genCompid4[1];
+          $prevCompid__76 = _genCompid4[0],
+          $compid__76 = _genCompid4[1];
+
+      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__77"),
+          _genCompid6 = _slicedToArray(_genCompid5, 2),
+          $prevCompid__77 = _genCompid6[0],
+          $compid__77 = _genCompid6[1];
+      // * 筛选数据
+
 
       var DEFAULT_CONDITION = [{ id: 'area', text: '全国' }, { id: 'work', text: '选择工种' }, { id: 'type', text: '队伍' }, { id: 'filter', text: '推荐' }];
+      // * 标记是否是在刷新状态
+
+      var _useState = (0, _taroWeapp.useState)(false),
+          _useState2 = _slicedToArray(_useState, 2),
+          refresh = _useState2[0],
+          setRefresh = _useState2[1];
+      // * 定义列表数组
+
+
+      var _useState3 = (0, _taroWeapp.useState)([]),
+          _useState4 = _slicedToArray(_useState3, 2),
+          lists = _useState4[0],
+          setLists = _useState4[1];
+      // * 定义data
+
+
+      var _useState5 = (0, _taroWeapp.useState)({
+        page: 1,
+        occupations: '',
+        province: '',
+        keywords: '',
+        sort: 'newest',
+        location: ''
+      }),
+          _useState6 = _slicedToArray(_useState5, 2),
+          searchData = _useState6[0],
+          setSearchData = _useState6[1];
+      // * 请求列表数据
+
+
+      (0, _taroWeapp.useEffect)(function () {
+        (0, _index.getResumeList)(searchData).then(function (res) {
+          _taroWeapp2.default.hideNavigationBarLoading();
+          if (searchData.page === 1) {
+            setLists([[].concat(_toConsumableArray(res.errmsg))]);
+          } else setLists([].concat(_toConsumableArray(lists), [[].concat(_toConsumableArray(res.errmsg))]));
+          if (refresh) {
+            setRefresh(false);
+          }
+        });
+      }, [searchData]);
+      // * 监听下拉刷新
+      // * 监听下拉刷新
+      var pullDownAction = function pullDownAction() {
+        setRefresh(true);
+        setSearchData(_extends({}, searchData, { page: 1 }));
+      };
+      // * 触底加载下一页
+      var getNextPageData = function getNextPageData() {
+        setSearchData(_extends({}, searchData, { page: searchData.page + 1 }));
+      };
+      this.anonymousFunc0 = function () {
+        return pullDownAction();
+      };
+      this.anonymousFunc1 = function () {
+        return getNextPageData();
+      };
+      var anonymousState__temp = (0, _taroWeapp.internal_inline_style)({ height: '8px' });
       _taroWeapp.propsManager.set({
         "placeholder": "\u627E\u5DE5\u4EBA\uFF0C\u627E\u961F\u4F0D\uFF0C\u627E\u73ED\u7EC4",
         "value": ""
-      }, $compid__18, $prevCompid__18);
+      }, $compid__75, $prevCompid__75);
       _taroWeapp.propsManager.set({
         "data": DEFAULT_CONDITION
-      }, $compid__19, $prevCompid__19);
+      }, $compid__76, $prevCompid__76);
+      _taroWeapp.propsManager.set({
+        "data": lists
+      }, $compid__77, $prevCompid__77);
       Object.assign(this.__state, {
-        $compid__18: $compid__18,
-        $compid__19: $compid__19
+        anonymousState__temp: anonymousState__temp,
+        $compid__75: $compid__75,
+        $compid__76: $compid__76,
+        $compid__77: $compid__77,
+        refresh: refresh
       });
       return this.__state;
+    }
+  }, {
+    key: "anonymousFunc0",
+    value: function anonymousFunc0(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc1",
+    value: function anonymousFunc1(e) {
+      ;
     }
   }]);
 
   return Recruit;
 }(_taroWeapp2.default.Component);
 
-Recruit.$$events = [];
+Recruit.$$events = ["anonymousFunc0", "anonymousFunc1"];
 Recruit.$$componentPath = "pages/resume/index";
 exports.default = Recruit;
 

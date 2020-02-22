@@ -33,7 +33,8 @@ var IndexTabbarConfig = (_IndexTabbarConfig = {
   enablePullDownRefresh: true
 }), _defineProperty(_IndexTabbarConfig, _tabbar.MEMBER, {
   navigationBarTitleText: '会员',
-  enablePullDownRefresh: true
+  enablePullDownRefresh: true,
+  navigationBarBackgroundColor: '#2179f6'
 }), _IndexTabbarConfig);
 exports.default = IndexTabbarConfig;
 
@@ -76,11 +77,13 @@ var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
 
 var _tabbar = __webpack_require__(/*! ../../constants/tabbar */ "./src/constants/tabbar.ts");
 
-var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/redux/index.js");
-
 var _index = __webpack_require__(/*! ../../config/pages/index */ "./src/config/pages/index.ts");
 
 var _index2 = _interopRequireDefault(_index);
+
+var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/redux/index.js");
+
+var _tabbar2 = __webpack_require__(/*! ../../actions/tabbar */ "./src/actions/tabbar.ts");
 
 __webpack_require__(/*! ./index.scss */ "./src/pages/index/index.scss");
 
@@ -108,7 +111,7 @@ var Index = function (_Taro$Component) {
       backgroundTextStyle: "dark"
     };
 
-    _this.$usedState = ["$compid__0", "tabKey", "HOME", "RECRUIT", "RESUME", "MEMBER"];
+    _this.$usedState = ["tabKey", "HOME", "RECRUIT", "RESUME", "MEMBER"];
     _this.customComponents = ["Home", "Recruit", "Resume", "Member", "Tabbar"];
     return _this;
   }
@@ -127,13 +130,11 @@ var Index = function (_Taro$Component) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__0"),
-          _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__0 = _genCompid2[0],
-          $compid__0 = _genCompid2[1];
+      var dispatch = (0, _redux.useDispatch)();
+      // 初始化页面参数
+      var router = (0, _taroWeapp.useRouter)();
+      var type = router.params.type;
       // 获取当前tabbar高亮值
-
 
       var tabKey = (0, _redux.useSelector)(function (state) {
         return state.tabbar.key;
@@ -150,15 +151,27 @@ var Index = function (_Taro$Component) {
       (0, _taroWeapp.usePullDownRefresh)(function () {
         setPulldown(pulldown + 1);
       });
+      // 初始化底部显示页面
+      (0, _taroWeapp.useEffect)(function () {
+        if ((0, _tabbar.typeInTabbar)(type)) {
+          dispatch((0, _tabbar2.changeTabbar)(type));
+        } else {
+          dispatch((0, _tabbar2.changeTabbar)(_tabbar.RECRUIT));
+        }
+      }, [type]);
       // 初始化页面配置信息
       (0, _taroWeapp.useEffect)(function () {
-        _taroWeapp2.default.setNavigationBarTitle({ title: _index2.default[tabKey].navigationBarTitleText });
+        if (!tabKey) {
+          return;
+        }
+        var data = _index2.default[tabKey];
+        _taroWeapp2.default.setNavigationBarTitle({ title: data.navigationBarTitleText });
+        _taroWeapp2.default.setNavigationBarColor({
+          backgroundColor: data.navigationBarBackgroundColor || '#0099ff',
+          frontColor: '#ffffff'
+        });
       }, [tabKey]);
-      tabKey === _tabbar.RECRUIT && _taroWeapp.propsManager.set({
-        "pulldown": pulldown
-      }, $compid__0, $prevCompid__0);
       Object.assign(this.__state, {
-        $compid__0: $compid__0,
         tabKey: tabKey,
         HOME: _tabbar.HOME,
         RECRUIT: _tabbar.RECRUIT,

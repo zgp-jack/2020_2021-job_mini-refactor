@@ -33,8 +33,12 @@
   width: 100%;
   height: 100%;
   .drawer-full-lists{
-    position: relative;
+    position: fixed;
     width: 100%;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background-color: white;
     .drawer-list-item{
       position: relative;
       line-height: 90px;
@@ -42,5 +46,14 @@
       font-size: 28px;
       border-bottom: 1px solid $bordercolor;
     }
+    .drawer-list-item-active{
+      color: $color;
+    }
+  }
+  .drawer-half-lists{
+    width: 50%;
+    left: 50%;
+    border-left:1px solid  $bordercolor;
+    z-index: 5;
   }
 }

@@ -53,7 +53,7 @@ var ResumeList = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (ResumeList.__proto__ || Object.getPrototypeOf(ResumeList)).apply(this, arguments));
 
-    _this.$usedState = ["IMGCDNURL"];
+    _this.$usedState = ["data", "IMGCDNURL"];
     _this.customComponents = [];
     return _this;
   }
@@ -72,7 +72,10 @@ var ResumeList = function (_Taro$Component) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
+      var data = this.__props.data;
+
       Object.assign(this.__state, {
+        data: data,
         IMGCDNURL: _index.IMGCDNURL
       });
       return this.__state;

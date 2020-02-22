@@ -4,8 +4,8 @@ import { DEFAULT_PROPS, Props, NormalProps } from '../index'
 import './index.scss'
 
 export interface SwiperNewsItem {
-  url: string,
-  text: string
+  id: string,
+  title: string
 }
 
 export default function SwiperNews({ data }: NormalProps<SwiperNewsItem>){
@@ -19,7 +19,7 @@ export default function SwiperNews({ data }: NormalProps<SwiperNewsItem>){
       autoplay={swiper.autoplay}>
       {swiper.lists.map((item, index) => (
         <SwiperItem className='home-swipernews-item' key={index}>
-          <View className='home-swipernews-text overwords'>{ item.text }</View>
+          <View className='home-swipernews-text overwords'>{ item.title }</View>
         </SwiperItem>
       ))}
     </Swiper>

@@ -1,5 +1,16 @@
 (wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["pages/recruit/index"],{
 
+/***/ "./src/pages/recruit/index.scss":
+/*!**************************************!*\
+  !*** ./src/pages/recruit/index.scss ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
 /***/ "./src/pages/recruit/index.tsx":
 /*!*************************************!*\
   !*** ./src/pages/recruit/index.tsx ***!
@@ -48,7 +59,7 @@ var Recruit = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (Recruit.__proto__ || Object.getPrototypeOf(Recruit)).apply(this, arguments));
 
-    _this.$usedState = ["anonymousState__temp", "$compid__20", "$compid__21", "$compid__22", "pulldown"];
+    _this.$usedState = ["anonymousState__temp", "$compid__72", "$compid__73", "$compid__74", "refresh"];
     _this.customComponents = ["Search", "Condition", "WechatNotice", "RecruitList"];
     return _this;
   }
@@ -68,23 +79,22 @@ var Recruit = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__20"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__72"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__20 = _genCompid2[0],
-          $compid__20 = _genCompid2[1];
+          $prevCompid__72 = _genCompid2[0],
+          $compid__72 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__21"),
+      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__73"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__21 = _genCompid4[0],
-          $compid__21 = _genCompid4[1];
+          $prevCompid__73 = _genCompid4[0],
+          $compid__73 = _genCompid4[1];
 
-      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__22"),
+      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__74"),
           _genCompid6 = _slicedToArray(_genCompid5, 2),
-          $prevCompid__22 = _genCompid6[0],
-          $compid__22 = _genCompid6[1];
-
-      var pulldown = this.__props.pulldown;
+          $prevCompid__74 = _genCompid6[0],
+          $compid__74 = _genCompid6[1];
       // * 配置筛选条件
+
 
       var DEFAULT_CONDITION = [{ id: 'area', text: '全国' }, { id: 'work', text: '选择工种' }, { id: 'filter', text: '最新' }];
       // * 标记是否是在刷新状态
@@ -120,46 +130,48 @@ var Recruit = function (_Taro$Component) {
 
       (0, _taroWeapp.useEffect)(function () {
         (0, _index.getRecruitList)(searchData).then(function (res) {
-          setLists([].concat(_toConsumableArray(lists), [[].concat(_toConsumableArray(res))]));
+          _taroWeapp2.default.hideNavigationBarLoading();
+          if (searchData.page === 1) {
+            setLists([[].concat(_toConsumableArray(res))]);
+          } else setLists([].concat(_toConsumableArray(lists), [[].concat(_toConsumableArray(res))]));
           if (refresh) {
-            _taroWeapp2.default.hideNavigationBarLoading();
-            _taroWeapp2.default.stopPullDownRefresh();
             setRefresh(false);
           }
         });
       }, [searchData]);
-      // * 监听下拉刷新
-      (0, _taroWeapp.useEffect)(function () {
-        if (!pulldown) {
-          return;
-        }
-        setSearchData(_extends({}, searchData, { page: 1 }));
-        setRefresh(true);
-        _taroWeapp2.default.showNavigationBarLoading();
-      }, [pulldown]);
       // * 触底加载下一页
       var getNextPageData = function getNextPageData() {
+        _taroWeapp2.default.showNavigationBarLoading();
         setSearchData(_extends({}, searchData, { page: searchData.page + 1 }));
       };
+      // * 监听下拉刷新
+      var pullDownAction = function pullDownAction() {
+        setRefresh(true);
+        setSearchData(_extends({}, searchData, { page: 1 }));
+      };
       this.anonymousFunc0 = function () {
+        return pullDownAction();
+      };
+      this.anonymousFunc1 = function () {
         return getNextPageData();
       };
       var anonymousState__temp = (0, _taroWeapp.internal_inline_style)({ height: '8px' });
       _taroWeapp.propsManager.set({
         "placeholder": "\u627E\u6D3B\u3001\u627E\u5DE5\u4F5C",
         "value": ""
-      }, $compid__20, $prevCompid__20);
+      }, $compid__72, $prevCompid__72);
       _taroWeapp.propsManager.set({
         "data": DEFAULT_CONDITION
-      }, $compid__21, $prevCompid__21);
+      }, $compid__73, $prevCompid__73);
       _taroWeapp.propsManager.set({
         "data": lists
-      }, $compid__22, $prevCompid__22);
+      }, $compid__74, $prevCompid__74);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
-        $compid__20: $compid__20,
-        $compid__21: $compid__21,
-        $compid__22: $compid__22
+        $compid__72: $compid__72,
+        $compid__73: $compid__73,
+        $compid__74: $compid__74,
+        refresh: refresh
       });
       return this.__state;
     }
@@ -168,161 +180,21 @@ var Recruit = function (_Taro$Component) {
     value: function anonymousFunc0(e) {
       ;
     }
+  }, {
+    key: "anonymousFunc1",
+    value: function anonymousFunc1(e) {
+      ;
+    }
   }]);
 
   return Recruit;
 }(_taroWeapp2.default.Component);
 
-Recruit.$$events = ["anonymousFunc0"];
+Recruit.$$events = ["anonymousFunc0", "anonymousFunc1"];
 Recruit.$$componentPath = "pages/recruit/index";
 exports.default = Recruit;
 
 Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(Recruit));
-
-/***/ }),
-
-/***/ "./src/utils/api/index.ts":
-/*!********************************!*\
-  !*** ./src/utils/api/index.ts ***!
-  \********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.GetRecruitlist = undefined;
-
-var _index = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
-
-// 获取招工列表
-var GetRecruitlist = exports.GetRecruitlist = _index.REQUESTURL + 'job/list-new/';
-
-/***/ }),
-
-/***/ "./src/utils/msg/index.ts":
-/*!********************************!*\
-  !*** ./src/utils/msg/index.ts ***!
-  \********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = Msg;
-function Msg(msg) {
-  var duration = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1500;
-
-  Taro.showToast({
-    title: msg,
-    icon: 'none',
-    duration: duration
-  });
-}
-
-/***/ }),
-
-/***/ "./src/utils/request/index.ts":
-/*!************************************!*\
-  !*** ./src/utils/request/index.ts ***!
-  \************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-exports.doRequestAction = doRequestAction;
-exports.getRecruitList = getRecruitList;
-
-var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
-
-var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
-
-var _index = __webpack_require__(/*! ../api/index */ "./src/utils/api/index.ts");
-
-var api = _interopRequireWildcard(_index);
-
-var _index2 = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
-
-var _index3 = __webpack_require__(/*! ../msg/index */ "./src/utils/msg/index.ts");
-
-var _index4 = _interopRequireDefault(_index3);
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function requestShowToast(show) {
-  if (show) {
-    setTimeout(function () {
-      (0, _index4.default)('网络错误，请求失败');
-    }, 200);
-  }
-}
-var defaultRequestData = {
-  url: '',
-  method: 'GET',
-  header: { 'content-type': 'application/json' },
-  data: {},
-  loading: true,
-  title: '数据加载中...',
-  failToast: true
-};
-function doRequestAction(reqData) {
-  var req = _extends({}, defaultRequestData, reqData);
-  if (req.loading) {
-    _taroWeapp2.default.showLoading({
-      title: req.title
-    });
-  }
-  return new Promise(function (resolve, reject) {
-    _taroWeapp2.default.request({
-      url: /^http(s?):\/\//.test(req.url) ? req.url : req.url,
-      method: req.method,
-      header: req.header,
-      data: _extends({}, req.data, { wechat_token: _index2.TOKEN }),
-      success: function success(res) {
-        //console.log(res)
-        if (res.statusCode === 200) {
-          resolve(res.data);
-        } else {
-          requestShowToast(req.failToast);
-          reject(res);
-        }
-      },
-      fail: function fail(e) {
-        // todo requestShowToast(req.failToast)
-        reject(e);
-      },
-      complete: function complete() {
-        if (req.loading) {
-          _taroWeapp2.default.hideLoading();
-        }
-      }
-    });
-  });
-}
-// 获取招工列表
-function getRecruitList(data) {
-  return doRequestAction({
-    url: api.GetRecruitlist,
-    data: data
-  });
-}
 
 /***/ })
 

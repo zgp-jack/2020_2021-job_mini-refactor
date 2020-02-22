@@ -1270,10 +1270,15 @@ var _tabbar = __webpack_require__(/*! ./tabbar */ "./src/reducers/tabbar.ts");
 
 var _tabbar2 = _interopRequireDefault(_tabbar);
 
+var _wechat_notice = __webpack_require__(/*! ./wechat_notice */ "./src/reducers/wechat_notice.ts");
+
+var _wechat_notice2 = _interopRequireDefault(_wechat_notice);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = (0, _redux.combineReducers)({
-  tabbar: _tabbar2.default
+  tabbar: _tabbar2.default,
+  WechatNotice: _wechat_notice2.default
 });
 
 /***/ }),
@@ -1317,7 +1322,7 @@ var DEFAULT_MENUS = {
     activeImg: 'http://cdn.yupao.com/newyupao/images/footer-member-active.png',
     id: _tabbar.MEMBER
   }],
-  key: _tabbar.RECRUIT
+  key: ''
 };
 function tabbar() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : DEFAULT_MENUS;
@@ -1338,6 +1343,55 @@ function tabbar() {
       return newMenus;
     case _tabbar.MEMBER:
       return newMenus;
+    default:
+      return state;
+  }
+}
+
+/***/ }),
+
+/***/ "./src/reducers/wechat_notice.ts":
+/*!***************************************!*\
+  !*** ./src/reducers/wechat_notice.ts ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+exports.default = WechatNotice;
+
+var _index = __webpack_require__(/*! ../config/index */ "./src/config/index.ts");
+
+var _wechat_notice = __webpack_require__(/*! ../constants/wechat_notice */ "./src/constants/wechat_notice.ts");
+
+var _wechat_notice2 = _interopRequireDefault(_wechat_notice);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var DEFAULT_STATE = {
+  notice: [],
+  phone: _index.SERVERPHONE,
+  wechat: {
+    number: '',
+    outTime: 600
+  },
+  success: false
+};
+function WechatNotice() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : DEFAULT_STATE;
+  var action = arguments[1];
+
+  switch (action.type) {
+    case _wechat_notice2.default:
+      return _extends({}, state, action.data);
     default:
       return state;
   }

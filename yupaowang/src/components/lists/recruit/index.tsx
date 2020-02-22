@@ -7,7 +7,7 @@ import { RecruitList } from '../../../utils/request/index.d'
 interface PROPS {
   data: RecruitList[][]
 }
-//小程序的
+
 export default function RecruitList({ data }: PROPS){
   
   return (

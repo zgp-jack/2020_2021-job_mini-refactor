@@ -11148,7 +11148,7 @@ page {
     width: 100%;
     left: 0;
     top: 0; }
-  .recruit-container .recruit-lists-container {
+  .recruit-container .recruit-lists-containerbox {
     position: fixed;
     width: 100%;
     left: 0;

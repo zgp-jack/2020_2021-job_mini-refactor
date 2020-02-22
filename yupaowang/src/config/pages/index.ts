@@ -2,7 +2,8 @@ import { HOME, RECRUIT, RESUME, MEMBER } from '../../constants/tabbar'
 
 interface TabbarItem {
   navigationBarTitleText: string,
-  enablePullDownRefresh: boolean
+  enablePullDownRefresh: boolean,
+  navigationBarBackgroundColor?: string
 }
 
 interface IndexTabbarConfig {
@@ -27,7 +28,8 @@ const IndexTabbarConfig: IndexTabbarConfig = {
   },
   [MEMBER]: {
     navigationBarTitleText: '会员',
-    enablePullDownRefresh: true
+    enablePullDownRefresh: true,
+    navigationBarBackgroundColor:'#2179f6'
   },
 }
 

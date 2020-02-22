@@ -1,5 +1,28 @@
 (wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["components/wechat/index"],{
 
+/***/ "./src/actions/wechat_notice.ts":
+/*!**************************************!*\
+  !*** ./src/actions/wechat_notice.ts ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = changeWechatNotice;
+function changeWechatNotice(action) {
+  return {
+    type: action.type,
+    data: action.data
+  };
+}
+
+/***/ }),
+
 /***/ "./src/components/wechat/index.scss":
 /*!******************************************!*\
   !*** ./src/components/wechat/index.scss ***!
@@ -25,6 +48,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -34,6 +59,18 @@ var _get = function get(object, property, receiver) { if (object === null) objec
 var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
 var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
+
+var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/redux/index.js");
+
+var _wechat_notice = __webpack_require__(/*! ../../actions/wechat_notice */ "./src/actions/wechat_notice.ts");
+
+var _wechat_notice2 = _interopRequireDefault(_wechat_notice);
+
+var _wechat_notice3 = __webpack_require__(/*! ../../constants/wechat_notice */ "./src/constants/wechat_notice.ts");
+
+var _wechat_notice4 = _interopRequireDefault(_wechat_notice3);
+
+var _index = __webpack_require__(/*! ../../utils/request/index */ "./src/utils/request/index.ts");
 
 __webpack_require__(/*! ./index.scss */ "./src/components/wechat/index.scss");
 
@@ -45,20 +82,6 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var SWIPER_NEWS = {
-  vertical: true,
-  lists: [{
-    url: '',
-    text: '这个是我的公告内容你要看看嘛'
-  }, {
-    url: '',
-    text: '公告内容你要看看嘛dfsd的说法地方'
-  }, {
-    url: '',
-    text: '看看嘛这个是我的公告内容你要'
-  }]
-};
-
 var WechatNotice = function (_Taro$Component) {
   _inherits(WechatNotice, _Taro$Component);
 
@@ -67,7 +90,7 @@ var WechatNotice = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (WechatNotice.__proto__ || Object.getPrototypeOf(WechatNotice)).apply(this, arguments));
 
-    _this.$usedState = ["$compid__6"];
+    _this.$usedState = ["$compid__35", "wechatNoticeData"];
     _this.customComponents = ["SwiperNews"];
     return _this;
   }
@@ -87,16 +110,45 @@ var WechatNotice = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__6"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__35"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__6 = _genCompid2[0],
-          $compid__6 = _genCompid2[1];
+          $prevCompid__35 = _genCompid2[0],
+          $compid__35 = _genCompid2[1];
 
+      var _useState = (0, _taroWeapp.useState)({
+        vertical: true,
+        lists: []
+      }),
+          _useState2 = _slicedToArray(_useState, 2),
+          swiperNews = _useState2[0],
+          setSwiperNews = _useState2[1];
+
+      var dispatch = (0, _redux.useDispatch)();
+      var wechatNoticeData = (0, _redux.useSelector)(function (state) {
+        return state.WechatNotice;
+      });
+      // 获取微信号与公告列表
+      (0, _taroWeapp.useEffect)(function () {
+        if (wechatNoticeData.success) {
+          setSwiperNews(_extends({}, swiperNews, { lists: wechatNoticeData.notice }));
+          return;
+        }
+        (0, _index.getWechatNotice)().then(function (res) {
+          res[_wechat_notice4.default] = _wechat_notice4.default;
+          var action = {
+            type: _wechat_notice4.default,
+            data: res
+          };
+          setSwiperNews(_extends({}, swiperNews, { lists: res.notice }));
+          dispatch((0, _wechat_notice2.default)(action));
+        });
+      }, []);
       _taroWeapp.propsManager.set({
-        "data": SWIPER_NEWS
-      }, $compid__6, $prevCompid__6);
+        "data": swiperNews
+      }, $compid__35, $prevCompid__35);
       Object.assign(this.__state, {
-        $compid__6: $compid__6
+        $compid__35: $compid__35,
+        wechatNoticeData: wechatNoticeData
       });
       return this.__state;
     }
@@ -113,4 +165,4 @@ Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/
 
 /***/ })
 
-},[["./src/components/wechat/index.tsx","runtime","taro","vendors"]]]);
+},[["./src/components/wechat/index.tsx","runtime","taro","vendors","common"]]]);

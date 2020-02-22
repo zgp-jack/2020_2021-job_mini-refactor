@@ -1,5 +1,16 @@
 (wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["pages/member/index"],{
 
+/***/ "./src/pages/member/index.scss":
+/*!*************************************!*\
+  !*** ./src/pages/member/index.scss ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
 /***/ "./src/pages/member/index.tsx":
 /*!************************************!*\
   !*** ./src/pages/member/index.tsx ***!
@@ -22,6 +33,10 @@ var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@
 
 var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
 
+__webpack_require__(/*! ./index.scss */ "./src/pages/member/index.scss");
+
+var _index = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -38,7 +53,7 @@ var Member = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (Member.__proto__ || Object.getPrototypeOf(Member)).apply(this, arguments));
 
-    _this.$usedState = [];
+    _this.$usedState = ["IMGCDNURL"];
     _this.customComponents = [];
     return _this;
   }
@@ -57,7 +72,9 @@ var Member = function (_Taro$Component) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      Object.assign(this.__state, {});
+      Object.assign(this.__state, {
+        IMGCDNURL: _index.IMGCDNURL
+      });
       return this.__state;
     }
   }]);
@@ -73,4 +90,4 @@ Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/
 
 /***/ })
 
-},[["./src/pages/member/index.tsx","runtime","taro","vendors"]]]);
+},[["./src/pages/member/index.tsx","runtime","taro","vendors","common"]]]);

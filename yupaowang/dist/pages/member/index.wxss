@@ -11139,58 +11139,154 @@ page {
 .clearfix {
   zoom: 1; }
 
-.recruit-condition-box {
+.member-container {
   position: relative;
   width: 100%;
-  background-color: white;
-  border-bottom: 1rpx solid #dcdcdc;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center; }
-  .recruit-condition-box .recruit-condition-item {
+  padding-bottom: 150rpx; }
+  .member-container .member-header-box {
     position: relative;
-    flex: 1;
-    padding: 0 10rpx;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center; }
-    .recruit-condition-box .recruit-condition-item .recruit-condition-content {
-      position: relative;
-      padding-right: 50rpx;
-      font-size: 30rpx;
-      line-height: 80rpx; }
-      .recruit-condition-box .recruit-condition-item .recruit-condition-content .recruit-condition-select {
-        position: absolute;
-        display: block;
-        width: 24rpx;
-        height: 22rpx;
-        top: 30rpx;
-        right: 15rpx; }
-
-.common-drawer-item {
-  position: relative;
-  width: 100%;
-  height: 100%; }
-  .common-drawer-item .drawer-full-lists {
-    position: fixed;
     width: 100%;
-    left: 0;
-    top: 0;
-    height: 100%;
-    background-color: white; }
-    .common-drawer-item .drawer-full-lists .drawer-list-item {
+    height: 380rpx;
+    background-image: url(http://cdn.yupao.com/miniprogram/images/new-ucenter.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%; }
+    .member-container .member-header-box .member-header-title {
       position: relative;
-      line-height: 90rpx;
-      padding: 0 20rpx;
-      font-size: 28rpx;
-      border-bottom: 1rpx solid #dcdcdc; }
-    .common-drawer-item .drawer-full-lists .drawer-list-item-active {
-      color: #0099ff; }
-  .common-drawer-item .drawer-half-lists {
-    width: 50%;
-    left: 50%;
-    border-left: 1rpx solid #dcdcdc;
-    z-index: 5; }
+      line-height: 110rpx;
+      text-align: center;
+      font-size: 34rpx;
+      color: #ffffff; }
+    .member-container .member-header-box .member-userinfobox {
+      position: absolute;
+      width: 100%;
+      left: 0;
+      top: 110rpx;
+      padding: 0 20rpx; }
+    .member-container .member-header-box .member-userinfo {
+      position: relative;
+      width: 100%;
+      height: 315rpx;
+      background-color: white;
+      box-shadow: 0 0 5rpx #e7e6e4;
+      border-radius: 10rpx;
+      padding: 0 20rpx; }
+      .member-container .member-header-box .member-userinfo .member-userinfo-content {
+        position: relative;
+        height: 165rpx;
+        border-bottom: 1rpx solid #dcdcdc;
+        padding: 20rpx 0;
+        padding-left: 150rpx;
+        font-size: 30rpx;
+        font-weight: bold;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        align-items: flex-start; }
+        .member-container .member-header-box .member-userinfo .member-userinfo-content .member-userinfo-avatar {
+          position: absolute;
+          width: 120rpx;
+          height: 120rpx;
+          left: 0;
+          top: 20rpx;
+          border-radius: 50%; }
+        .member-container .member-header-box .member-userinfo .member-userinfo-content .member-username {
+          position: relative; }
+          .member-container .member-header-box .member-userinfo .member-userinfo-content .member-username .member-username-text {
+            position: relative;
+            display: inline-block; }
+          .member-container .member-header-box .member-userinfo .member-userinfo-content .member-username .member-realnameimg {
+            position: absolute;
+            display: inline-block;
+            width: 90rpx;
+            height: 30rpx;
+            top: 7rpx;
+            right: -100rpx;
+            vertical-align: middle; }
+        .member-container .member-header-box .member-userinfo .member-userinfo-content .member-usernum {
+          position: relative;
+          margin-top: 10rpx; }
+          .member-container .member-header-box .member-userinfo .member-userinfo-content .member-usernum text {
+            color: #0099ff; }
+        .member-container .member-header-box .member-userinfo .member-userinfo-content .member-editinfo {
+          position: absolute;
+          right: 20rpx;
+          bottom: 35rpx;
+          border: 1rpx solid #d3d4d5;
+          font-size: 26rpx;
+          color: #656666;
+          padding: 5rpx 10rpx;
+          border-radius: 8rpx;
+          font-weight: normal; }
+    .member-container .member-header-box .member-user-integral {
+      position: relative;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center; }
+      .member-container .member-header-box .member-user-integral .member-integral-item {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
+        flex: 1;
+        height: 150rpx; }
+        .member-container .member-header-box .member-user-integral .member-integral-item .member-integral-num {
+          color: #0099ff;
+          font-size: 32rpx; }
+        .member-container .member-header-box .member-user-integral .member-integral-item .member-integral-text {
+          color: #666564;
+          font-size: 30rpx;
+          margin-top: 5rpx; }
+  .member-container .member-body-container {
+    position: relative;
+    margin-top: 60rpx;
+    padding: 0 20rpx; }
+    .member-container .member-body-container .member-list-container {
+      position: relative;
+      border-radius: 10rpx;
+      background-color: white;
+      margin-bottom: 15rpx;
+      box-shadow: 0 0 5rpx #e7e6e4; }
+      .member-container .member-body-container .member-list-container .member-list-item {
+        position: relative;
+        padding-left: 80rpx;
+        padding-right: 20rpx;
+        line-height: 90rpx; }
+        .member-container .member-body-container .member-list-container .member-list-item .member-list-icon {
+          position: absolute;
+          display: block;
+          width: 40rpx;
+          height: 40rpx;
+          left: 20rpx;
+          top: 23rpx; }
+        .member-container .member-body-container .member-list-container .member-list-item .member-list-title {
+          position: relative;
+          font-size: 28rpx;
+          color: #282A34;
+          width: 100%;
+          display: block;
+          border-bottom: 1rpx solid #e6e6e6; }
+        .member-container .member-body-container .member-list-container .member-list-item:nth-last-child(1) .member-list-title {
+          border-bottom: none; }
+        .member-container .member-body-container .member-list-container .member-list-item::after {
+          position: absolute;
+          content: '';
+          width: 15rpx;
+          height: 15rpx;
+          border-top: 1rpx #dcdcdc solid;
+          border-right: 1rpx #dcdcdc solid;
+          -webkit-transform: rotate(45deg);
+                  transform: rotate(45deg);
+          right: 30rpx;
+          top: 39rpx; }
+        .member-container .member-body-container .member-list-container .member-list-item .member-list-tips {
+          position: absolute;
+          right: 50rpx;
+          top: 0;
+          display: inline-block;
+          font-size: 24rpx;
+          color: #b4b2b2; }
 

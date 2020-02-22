@@ -9,7 +9,7 @@ export interface Menu {
 
 export interface DEFAULT_MENUS_TYPE {
   list: Menu[],
-  key: 'home' | 'recruit' | 'resume' | 'member'
+  key: 'home' | 'recruit' | 'resume' | 'member' | ''
 }
 
 const DEFAULT_MENUS: DEFAULT_MENUS_TYPE = {
@@ -39,9 +39,8 @@ const DEFAULT_MENUS: DEFAULT_MENUS_TYPE = {
       id: MEMBER
     }
   ],
-  key: RECRUIT
+  key: ''
 }
-
 
 interface ACTION {
   type: 'home' | 'recruit' | 'resume' | 'member'

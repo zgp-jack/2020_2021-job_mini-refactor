@@ -11146,7 +11146,7 @@ page {
   .resume-list-container .resume-list-item {
     position: relative;
     width: 100%;
-    padding: 10rpx 20rpx 0;
+    padding: 20rpx 20rpx 0;
     background-color: white;
     margin-top: 15rpx; }
     .resume-list-container .resume-list-item .resume-list-header {
@@ -11159,6 +11159,7 @@ page {
         display: block;
         width: 100rpx;
         height: 100rpx;
+        border-radius: 50%;
         left: 0; }
       .resume-list-container .resume-list-item .resume-list-header .resume-list-userinfo {
         position: relative; }
@@ -11205,7 +11206,8 @@ page {
         padding: 10rpx;
         font-size: 26rpx;
         margin-right: 15rpx;
-        border-radius: 5rpx; }
+        border-radius: 5rpx;
+        margin-bottom: 10rpx; }
         .resume-list-container .resume-list-item .resume-list-works text:nth-last-child(1) {
           margin-right: 0; }
     .resume-list-container .resume-list-item .resume-list-content {
@@ -11213,6 +11215,7 @@ page {
       color: #555;
       line-height: 70rpx;
       font-size: 28rpx;
+      margin-top: -10rpx;
       border-bottom: 1rpx dashed #dcdcdc; }
     .resume-list-container .resume-list-item .resume-list-footer {
       position: relative;
