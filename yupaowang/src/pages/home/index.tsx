@@ -1,8 +1,8 @@
-import Taro from '@tarojs/taro'
+import Taro, { useState, useEffect } from '@tarojs/taro'
 import { View, Text, Image } from '@tarojs/components'
 import { IProps } from '../../components/swiper/index'
-import SwiperComponent, { SwiperLists } from '../../components/swiper/index/index'
-import SwiperNews, { SwiperNewsItem } from '../../components/swiper/news'
+import SwiperComponent from '../../components/swiper/index/index'
+import SwiperNews from '../../components/swiper/news'
 import Projects from '../../components/index/projects/index'
 import './index.scss'
 import Fastfun from '../../components/index/fastfun'
@@ -11,41 +11,57 @@ import RecruitList from '../../components/lists/recruit'
 import ResumeList from '../../components/lists/resume'
 import UsedList from '../../components/lists/used'
 import About from '../../components/index/about'
+import { getBannerNotice, getAllListItem } from '../../utils/request'
+import { BannerNoticeBanner, BannerNoticeNotice, RecruitList as RecruitListArr, ResumeList as ResumeListArr, FleamarketList } from '../../utils/request/index.d'
+
+export interface FilterData {
+  area: string,
+  location: string
+}
+
+interface AllLists {
+  recruit: RecruitListArr[][],
+  resume: ResumeListArr[][],
+  fleamarket: FleamarketList[][]
+}
 
 export default function Home(){
 
+  // * 获取列表数据的data
+  const [filterData, setFilterData] = useState<FilterData>({
+    area: '',
+    location: ''
+  })
   // * 轮播图的基本参数配置
-  const SWIPER_PROPS: IProps<SwiperLists> = {
-    classname: 'index-swiper-container',
-    lists: [
-      {
-        img: 'http://cdn.yupao.com/images/content/20190128/154866949945mKQD.png',
-        url: ''
-      },
-      {
-        img: 'http://cdn.yupao.com/images/content/20180313/1520912555TyFS9d.jpg',
-        url: ''
-      }
-    ]
-  }
-
-  const SWIPER_NEWS: IProps<SwiperNewsItem> = {
+  const [swiper, setSwiper] = useState<IProps<BannerNoticeBanner>>({
+    lists: []
+  })
+  // * 公告列表
+  const [notice, setNotice] = useState<IProps<BannerNoticeNotice>>({
     vertical: true,
-    lists: [
-      {
-        url: '',
-        text: '这个是我的公告内容你要看看嘛'
-      },
-      {
-        url: '',
-        text: '公告内容你要看看嘛dfsd的说法地方'
-      },
-      {
-        url: '',
-        text: '看看嘛这个是我的公告内容你要'
-      },
-    ]
-  }
+    lists: []
+  })
+  // * 数据列表
+  const [lists, setLists] = useState<AllLists>({
+    recruit: [],
+    resume: [],
+    fleamarket: []
+  })
+
+  // 请求轮播数据
+  useEffect(()=>{
+    getBannerNotice().then(res=>{
+      setNotice({ ...notice, lists: [...res.notice] })
+      setSwiper({ ...swiper, lists: [...res.banner] })
+    })
+  },[])
+
+  // 请求列表数据
+  useEffect(()=>{
+    getAllListItem(filterData).then(res=>{
+      setLists({ ...lists, recruit:[[...res.job.lists]],resume: [[...res.resume.lists]], fleamarket: [[...res.fleamarket.lists]]})
+    })
+  },[filterData])
 
   return (
     <View className='home-container'>
@@ -60,7 +76,7 @@ export default function Home(){
         <Image className='home-header-app' src={ IMGCDNURL + 'loadapp.png' }></Image>
       </View>
       {/* // ? 轮播图  */}
-      <SwiperComponent data={ SWIPER_PROPS } />
+      <SwiperComponent data={ swiper } />
       {/* // ? 项目列表  */}
       <Projects />
       {/* // ? 快捷菜单  */}
@@ -69,7 +85,7 @@ export default function Home(){
       <View className='home-information-container'>
         <Image className='home-infomation-img' src={ IMGCDNURL + 'notice.png' } />
         <View className='home-infomation-news'>
-          <SwiperNews data={SWIPER_NEWS} />
+          <SwiperNews data={ notice } />
         </View>
       </View>
       {/* // ? 列表组件  */}
@@ -80,7 +96,7 @@ export default function Home(){
             <Text className='home-lists-item-title'>最新招工信息</Text>
             <Text className='home-lists-item-more'>更多</Text>
           </View>
-          <RecruitList />
+          <RecruitList data={ lists.recruit } bottom={ false } />
         </View>
         {/* // ? 找活列表  */}
         <View className='home-lists-item'>
@@ -88,7 +104,7 @@ export default function Home(){
             <Text className='home-lists-item-title'>最新找活信息</Text>
             <Text className='home-lists-item-more'>更多</Text>
           </View>
-          <ResumeList />
+          <ResumeList data={ lists.resume } bottom={ false } />
         </View>
         {/* // ? 二手列表  */}
         <View className='home-lists-item'>
@@ -96,7 +112,7 @@ export default function Home(){
             <Text className='home-lists-item-title'>最新二手交易信息</Text>
             <Text className='home-lists-item-more'>更多</Text>
           </View>
-          <UsedList />
+          <UsedList data={ lists.fleamarket } bottom={ false } />
         </View>
       </View>
 

@@ -85,7 +85,7 @@ const FastBarConfig: FastBarItem[] = [
   },
   {
     appid: '',
-    url: '/pages/used/used',
+    url: '/pages/used/index',
     opentype: 'navigate',
     target: '',
     img: IMGCDNURL + 'es.png',

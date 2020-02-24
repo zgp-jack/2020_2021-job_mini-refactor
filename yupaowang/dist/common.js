@@ -135,14 +135,20 @@ exports.default = SUCCESS;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.GetTabbarMsg = exports.GetListFilterData = exports.GetWechatNotice = exports.GetResumelist = exports.GetRecruitlist = undefined;
+exports.GetTabbarMsg = exports.GetListFilterData = exports.GetWechatNotice = exports.GetFleamarketlist = exports.GetResumelist = exports.GetRecruitlist = exports.GetAllListItem = exports.GetBannerNotice = undefined;
 
 var _index = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
 
+// 获取首页banner以及公告
+var GetBannerNotice = exports.GetBannerNotice = _index.REQUESTURL + 'index/index-banner-carousel/';
+// 获取首页列表数据
+var GetAllListItem = exports.GetAllListItem = _index.REQUESTURL + 'index/new-index-msg/';
 // 获取招工列表
 var GetRecruitlist = exports.GetRecruitlist = _index.REQUESTURL + 'job/list-new/';
 // 获取找活列表
 var GetResumelist = exports.GetResumelist = _index.REQUESTURL + 'resumes/index/';
+// 获取二手交易列表
+var GetFleamarketlist = exports.GetFleamarketlist = _index.REQUESTURL + 'index/info-list/';
 // 获取微信号与公告列表
 var GetWechatNotice = exports.GetWechatNotice = _index.REQUESTURL + 'index/less-search-data/';
 // 获取列表页筛选条件
@@ -195,8 +201,11 @@ Object.defineProperty(exports, "__esModule", {
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 exports.doRequestAction = doRequestAction;
+exports.getBannerNotice = getBannerNotice;
+exports.getAllListItem = getAllListItem;
 exports.getRecruitList = getRecruitList;
 exports.getResumeList = getResumeList;
+exports.getFleamarketList = getFleamarketList;
 exports.getWechatNotice = getWechatNotice;
 exports.getListFilterData = getListFilterData;
 exports.getTabbarMsg = getTabbarMsg;
@@ -269,6 +278,20 @@ function doRequestAction(reqData) {
     });
   });
 }
+// 获取首页banner以及公告
+function getBannerNotice() {
+  return doRequestAction({
+    url: api.GetBannerNotice,
+    loading: false
+  });
+}
+// 获取首页列表数据
+function getAllListItem(data) {
+  return doRequestAction({
+    url: api.GetAllListItem,
+    data: data
+  });
+}
 // 获取招工列表
 function getRecruitList(data) {
   return doRequestAction({
@@ -280,6 +303,13 @@ function getRecruitList(data) {
 function getResumeList(data) {
   return doRequestAction({
     url: api.GetResumelist,
+    data: data
+  });
+}
+// 获取二手交易列表
+function getFleamarketList(data) {
+  return doRequestAction({
+    url: api.GetFleamarketlist,
     data: data
   });
 }

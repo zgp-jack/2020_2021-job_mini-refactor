@@ -111,7 +111,7 @@ var Index = function (_Taro$Component) {
       backgroundTextStyle: "dark"
     };
 
-    _this.$usedState = ["tabKey", "HOME", "RECRUIT", "RESUME", "MEMBER"];
+    _this.$usedState = ["$compid__86", "tabKey", "HOME", "RECRUIT", "RESUME", "MEMBER"];
     _this.customComponents = ["Home", "Recruit", "Resume", "Member", "Tabbar"];
     return _this;
   }
@@ -130,6 +130,12 @@ var Index = function (_Taro$Component) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
+
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__86"),
+          _genCompid2 = _slicedToArray(_genCompid, 2),
+          $prevCompid__86 = _genCompid2[0],
+          $compid__86 = _genCompid2[1];
+
       var dispatch = (0, _redux.useDispatch)();
       // 初始化页面参数
       var router = (0, _taroWeapp.useRouter)();
@@ -171,7 +177,11 @@ var Index = function (_Taro$Component) {
           frontColor: '#ffffff'
         });
       }, [tabKey]);
+      _taroWeapp.propsManager.set({
+        "isredirect": false
+      }, $compid__86, $prevCompid__86);
       Object.assign(this.__state, {
+        $compid__86: $compid__86,
         tabKey: tabKey,
         HOME: _tabbar.HOME,
         RECRUIT: _tabbar.RECRUIT,

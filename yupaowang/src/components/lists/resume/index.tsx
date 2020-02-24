@@ -5,12 +5,13 @@ import { ResumeList } from '../../../utils/request/index.d'
 import './index.scss'
 
 interface PROPS {
-  data: ResumeList[][]
+  data: ResumeList[][],
+  bottom?: boolean
 }
 
-export default function ResumeList({ data }: PROPS){
+export default function ResumeList({ data, bottom = true }: PROPS){
   return (
-    <View className='resume-list-container' style={ false ? 'padding-bottom:0' : '' }>
+    <View className='resume-list-container' style={ bottom ? '' : 'padding-bottom:0' }>
       {data.map((item)=>(
         <Block>
           {item.map((d)=>(

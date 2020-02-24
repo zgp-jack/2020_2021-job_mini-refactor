@@ -1,8 +1,13 @@
 import Taro from '@tarojs/taro'
 import * as api from '../api'
 import { TOKEN } from '../../config'
-import { ResumeResult, RecruitList } from './index.d'
+import { ResumeResult, RecruitList, BannerNotice, HomeLists } from './index.d'
 import Msg from '../msg'
+import { SearchType as RecruitSearchType } from '../../pages/recruit/index.d'
+import { SearchType as ResumeSearchType } from '../../pages/resume/index.d'
+import { SearchType as FleamarketSearchType } from '../../pages/used/index'
+import { FilterData } from '../../pages/home'
+
 
 interface ContentType {
   'content-type': string
@@ -75,8 +80,24 @@ export function doRequestAction(reqData: Request): Promise<any> {
   })
 }
 
+// 获取首页banner以及公告
+export function getBannerNotice(): Promise<BannerNotice> {
+  return doRequestAction({
+    url: api.GetBannerNotice,
+    loading: false
+  })
+}
+
+// 获取首页列表数据
+export function getAllListItem(data: FilterData): Promise<HomeLists> {
+  return doRequestAction({
+    url: api.GetAllListItem,
+    data: data
+  })
+}
+
 // 获取招工列表
-export function getRecruitList(data): Promise<RecruitList[]> {
+export function getRecruitList(data: RecruitSearchType): Promise<RecruitList[]> {
   return doRequestAction({
     url: api.GetRecruitlist,
     data: data
@@ -84,9 +105,17 @@ export function getRecruitList(data): Promise<RecruitList[]> {
 }
 
 // 获取找活列表
-export function getResumeList(data): Promise<ResumeResult>{
+export function getResumeList(data: ResumeSearchType): Promise<ResumeResult>{
   return doRequestAction({
     url: api.GetResumelist,
+    data: data
+  })
+}
+
+// 获取二手交易列表
+export function getFleamarketList(data: FleamarketSearchType): Promise<any>{
+  return doRequestAction({
+    url: api.GetFleamarketlist,
     data: data
   })
 }

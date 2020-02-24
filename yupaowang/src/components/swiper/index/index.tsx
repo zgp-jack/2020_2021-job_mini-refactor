@@ -2,24 +2,20 @@ import Taro from '@tarojs/taro'
 import { Swiper, Image, SwiperItem } from '@tarojs/components'
 import { DEFAULT_PROPS, Props, NormalProps } from '../index'
 import './index.scss'
+import { BannerNoticeBanner } from '../../../utils/request/index.d'
 
-export interface SwiperLists {
-  img: string,
-  url: string
-}
-
-export default function SwiperComponent({ data }: NormalProps<SwiperLists>) {
-  const swiper: Props<SwiperLists> = { ...DEFAULT_PROPS, ...data }
+export default function SwiperComponent({ data }: NormalProps<BannerNoticeBanner>) {
+  const swiper: Props<BannerNoticeBanner> = { ...DEFAULT_PROPS, ...data }
   return (
     <Swiper
-      className={swiper.classname}
+      className='index-swiper-container'
       vertical={swiper.vertical}
       circular={swiper.circular}
       indicatorDots={swiper.indicatorDots}
       autoplay={swiper.autoplay}>
       {swiper.lists.map((item, index)=>(
         <SwiperItem className='index-swiper-item' key={index}>
-          <Image className='index-swiper-img' src={item.img} />
+          <Image className='index-swiper-img' src={ item.banner } />
         </SwiperItem>
       ))}
     </Swiper>

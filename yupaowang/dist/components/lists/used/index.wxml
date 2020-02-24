@@ -1,27 +1,29 @@
 <block wx:if="{{$taroCompReady}}">
-    <view class="usedlist-container">
-        <view class="usedlist-item">
-            <view class="usedlist-item-header">
-                <view class="usedlist-item-title overwords">四川成都回收旧电器</view><text class="usedlist-item-time">2020-02-15 16:42</text>
-            </view>
-            <view class="usedlist-item-body">
-                <image class="usedlist-item-user" src="http://cdn.yupao.com/newyupao/images/user.png"></image>
-                <view class="usedlist-item-content">
-                    <view class="usedlist-content-item">
-                        <image class="usedlist-content-item-img" src="{{IMGCDNURL + 'infoman.png'}}"></image>
-                        <view class="usedlist-content-info">联系人：先生</view>
-                    </view>
-                    <view class="usedlist-content-item">
-                        <image class="usedlist-content-item-img" src="{{IMGCDNURL + 'posi.png'}}"></image>
-                        <view class="usedlist-content-info">四川成都</view>
-                    </view>
-                    <view class="usedlist-content-item">
-                        <image class="usedlist-content-item-img" src="{{IMGCDNURL + 'status.png'}}"></image>
-                        <view class="usedlist-content-info">交易状态：<text class="usedlist-content-status">未成交</text>
+    <view class="usedlist-container" style="{{anonymousState__temp}}">
+        <block wx:for="{{data}}" wx:for-item="item" wx:for-index="_anonIdx4">
+            <view class="usedlist-item" wx:for="{{item}}" wx:for-item="d" wx:for-index="_anonIdx2">
+                <view class="usedlist-item-header">
+                    <view class="usedlist-item-title overwords">{{d.title}}</view><text class="usedlist-item-time">{{d.time}}</text>
+                </view>
+                <view class="usedlist-item-body">
+                    <image class="usedlist-item-user" src="{{d.image}}"></image>
+                    <view class="usedlist-item-content">
+                        <view class="usedlist-content-item">
+                            <image class="usedlist-content-item-img" src="{{IMGCDNURL + 'infoman.png'}}"></image>
+                            <view class="usedlist-content-info">联系人：{{d.user_name}}</view>
+                        </view>
+                        <view class="usedlist-content-item">
+                            <image class="usedlist-content-item-img" src="{{IMGCDNURL + 'posi.png'}}"></image>
+                            <view class="usedlist-content-info">{{d.show_address}}</view>
+                        </view>
+                        <view class="usedlist-content-item">
+                            <image class="usedlist-content-item-img" src="{{IMGCDNURL + 'status.png'}}"></image>
+                            <view class="usedlist-content-info">交易状态：<text class="usedlist-content-status">{{d.state_arr.state}}</text>
+                            </view>
                         </view>
                     </view>
                 </view>
             </view>
-        </view>
+        </block>
     </view>
 </block>

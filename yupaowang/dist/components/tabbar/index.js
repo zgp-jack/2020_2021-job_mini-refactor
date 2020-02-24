@@ -59,7 +59,7 @@ var Tabbar = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (Tabbar.__proto__ || Object.getPrototypeOf(Tabbar)).apply(this, arguments));
 
-    _this.$usedState = ["tabbar", "loopArray9"];
+    _this.$usedState = ["tabbar", "loopArray28", "isredirect"];
     _this.anonymousFunc0Map = {};
     _this.customComponents = [];
     return _this;
@@ -81,11 +81,20 @@ var Tabbar = function (_Taro$Component) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
+      var _props$isredirect = this.__props.isredirect,
+          isredirect = _props$isredirect === undefined ? true : _props$isredirect;
+
       var tabbar = (0, _redux.useSelector)(function (state) {
         return state.tabbar;
       });
       var dispatch = (0, _redux.useDispatch)();
-      var loopArray9 = tabbar.list.map(function (item, __index0) {
+      // * 判断跳转还是切换tabbar
+      var changeTabbarAction = function changeTabbarAction(item) {
+        if (isredirect) {
+          _taroWeapp2.default.reLaunch({ url: '/pages/index/index?type=' + item.id });
+        } else dispatch((0, _tabbar.changeTabbar)(item.id));
+      };
+      var loopArray28 = tabbar.list.map(function (item, __index0) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
@@ -93,9 +102,9 @@ var Tabbar = function (_Taro$Component) {
           'common-footer-tabbar-list': true,
           'common-footer-tabbar-list-active': item.$original.id === tabbar.key
         });
-        var _$indexKey = "ezzzz" + __index0;
+        var _$indexKey = "jzzzz" + __index0;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
-          return dispatch((0, _tabbar.changeTabbar)(item.$original.id));
+          return changeTabbarAction(item.$original);
         };
         return {
           $loopState__temp2: $loopState__temp2,
@@ -105,7 +114,7 @@ var Tabbar = function (_Taro$Component) {
       });
       Object.assign(this.__state, {
         tabbar: tabbar,
-        loopArray9: loopArray9
+        loopArray28: loopArray28
       });
       return this.__state;
     }

@@ -7,6 +7,52 @@ interface RecruitState {
   state: string
 }
 
+// 首页banner notice
+export interface BannerNotice {
+  address: BannerNoticeAddress,
+  banner: BannerNoticeBanner[],
+  notice: BannerNoticeNotice[]
+}
+
+interface BannerNoticeAddress {
+  id: string,
+  letter: string,
+  name: string,
+  pid: string
+}
+
+export interface BannerNoticeBanner {
+  banner: string,
+  small_url: string
+}
+
+export interface BannerNoticeNotice {
+  id: string,
+  title: string
+}
+
+// 首页列表数据
+export interface HomeLists {
+  fleamarket: FleamarketItem,
+  job: RecruitItem,
+  resume: ResumeItem
+}
+
+export interface FleamarketItem {
+  lists: FleamarketList[],
+  title: string
+}
+
+export interface RecruitItem {
+  lists: RecruitList[],
+  title: string
+}
+
+export interface ResumeItem {
+  lists: ResumeList[],
+  title: string
+}
+
 // 招工列表数据
 export interface RecruitList {
   id: number,
@@ -47,6 +93,28 @@ export interface ResumeList {
   show_address: string,
   tags: string[],
   prof_degree: string
+}
+
+// 二手列表数据
+export interface FleamarketList {
+  city_id: string,
+  id: string,
+  image: string,
+  is_check: string,
+  is_end: string,
+  province_id: string,
+  show_address: string,
+  time: string,
+  title: string,
+  user_name: string,
+  state_arr: FleamarketStateArr
+}
+
+interface FleamarketStateArr {
+  is_today: number,
+  label: string,
+  state: string,
+  today_text: string
 }
 
 export interface ResumeResult {

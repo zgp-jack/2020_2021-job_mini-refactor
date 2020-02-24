@@ -1,5 +1,5 @@
 <block wx:if="{{$taroCompReady}}">
-    <view class="resume-list-container" style="">
+    <view class="resume-list-container" style="{{anonymousState__temp}}">
         <block wx:for="{{data}}" wx:for-item="item" wx:for-index="_anonIdx6">
             <view class="resume-list-item" wx:for="{{item}}" wx:for-item="d" wx:for-index="_anonIdx4">
                 <view class="resume-list-header">

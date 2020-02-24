@@ -5,13 +5,14 @@ import './index.scss'
 import { RecruitList } from '../../../utils/request/index.d'
 
 interface PROPS {
-  data: RecruitList[][]
+  data: RecruitList[][],
+  bottom?: boolean
 }
 
-export default function RecruitList({ data }: PROPS){
-  
+export default function RecruitList({ data, bottom = true }: PROPS){
+
   return (
-    <View className='recruit-lists-container'>
+    <View className='recruit-lists-container' style={ bottom ? '' : 'padding-bottom:0' }>
       {data.map((item)=>(
         <Block>
           {item.map((d) => (

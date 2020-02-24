@@ -11141,7 +11141,8 @@ page {
 
 .usedlist-container {
   position: relative;
-  width: 100%; }
+  width: 100%;
+  padding-bottom: 150rpx; }
   .usedlist-container .usedlist-item {
     position: relative;
     width: 100%;

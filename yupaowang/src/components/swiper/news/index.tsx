@@ -1,15 +1,11 @@
 import Taro from '@tarojs/taro'
 import { Swiper, SwiperItem, View } from '@tarojs/components'
 import { DEFAULT_PROPS, Props, NormalProps } from '../index'
+import { BannerNoticeNotice } from '../../../utils/request/index.d'
 import './index.scss'
 
-export interface SwiperNewsItem {
-  id: string,
-  title: string
-}
-
-export default function SwiperNews({ data }: NormalProps<SwiperNewsItem>){
-  const swiper: Props<SwiperNewsItem> = { ...DEFAULT_PROPS, ...data }
+export default function SwiperNews({ data }: NormalProps<BannerNoticeNotice>){
+  const swiper: Props<BannerNoticeNotice> = { ...DEFAULT_PROPS, ...data }
   return (
     <Swiper
       className='home-swipernewsbox'

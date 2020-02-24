@@ -53,7 +53,7 @@ var UsedList = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (UsedList.__proto__ || Object.getPrototypeOf(UsedList)).apply(this, arguments));
 
-    _this.$usedState = ["IMGCDNURL"];
+    _this.$usedState = ["anonymousState__temp", "data", "IMGCDNURL", "bottom"];
     _this.customComponents = [];
     return _this;
   }
@@ -72,7 +72,15 @@ var UsedList = function (_Taro$Component) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
+      var _props = this.__props,
+          data = _props.data,
+          _props$bottom = _props.bottom,
+          bottom = _props$bottom === undefined ? true : _props$bottom;
+
+      var anonymousState__temp = (0, _taroWeapp.internal_inline_style)(bottom ? '' : 'padding-bottom:0');
       Object.assign(this.__state, {
+        anonymousState__temp: anonymousState__temp,
+        data: data,
         IMGCDNURL: _index.IMGCDNURL
       });
       return this.__state;
