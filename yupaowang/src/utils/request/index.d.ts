@@ -7,6 +7,34 @@ interface RecruitState {
   state: string
 }
 
+// sessionkey
+export interface SessionKey {
+  openid: string,
+  session_key: string,
+  unionid: string
+}
+
+// 获取用户信息
+export interface InitUserInfo {
+  errcode: string,
+  errmsg: string,
+  data: InitUserInfoData
+}
+
+export interface InitUserInfoData {
+  id: number,
+  headimgurl: string,
+  nickname: string,
+  username: string,
+  uuid: string,
+  sign: InitUserInfoSign
+}
+
+interface InitUserInfoSign {
+  token: string,
+  time: number
+}
+
 // 首页banner notice
 export interface BannerNotice {
   address: BannerNoticeAddress,

@@ -3,26 +3,11 @@
         <view class="member-header-box">
             <view class="member-header-title">会员中心</view>
             <view class="member-userinfobox">
-                <view class="member-userinfo">
-                    <view class="member-userinfo-content">
-                        <image class="member-userinfo-avatar" src="http://cdn.yupao.com/miniprogram/images/user.png"></image>
-                        <view class="member-username">
-                            <view class="member-username-text">张某某
-                                <image class="member-realnameimg" src="http://cdn.yupao.com/miniprogram/images/newresume-infolist-ysm.png"></image>
-                            </view>
-                        </view>
-                        <view class="member-usernum">会员编号：<text>369</text>
-                        </view>
-                        <view class="member-editinfo">修改资料</view>
+                <view class="member-userinfo member-userinfo-null" bindtap="anonymousFunc0">
+                    <view class="member-toauth">
+                        <image class="member-user-nullimg" src="{{IMGCDNURL + 'userauth-userinfo-null.png'}}"></image><text class="member-user-login">登录/注册</text>
                     </view>
-                    <view class="member-user-integral">
-                        <view class="member-integral-item"><text class="member-integral-num">23</text><text class="member-integral-text">退还积分</text>
-                        </view>
-                        <view class="member-integral-item"><text class="member-integral-num">23233</text><text class="member-integral-text">积分</text>
-                        </view>
-                        <view class="member-integral-item"><text class="member-integral-num">23</text><text class="member-integral-text">临时积分</text>
-                        </view>
-                    </view>
+                    <view class="member-login-tips">点击上方登录/注册按钮可以前往登录页面，登录成功后可解锁小程序全部功能，方便您能更便捷的招工找活。</view>
                 </view>
             </view>
         </view>

@@ -11218,6 +11218,41 @@ page {
           padding: 5rpx 10rpx;
           border-radius: 8rpx;
           font-weight: normal; }
+    .member-container .member-header-box .member-userinfo-null {
+      padding: 0; }
+      .member-container .member-header-box .member-userinfo-null .member-toauth {
+        position: relative;
+        width: 100%;
+        padding: 0 27rpx;
+        padding-left: 160rpx;
+        height: 175rpx; }
+        .member-container .member-header-box .member-userinfo-null .member-toauth .member-user-nullimg {
+          display: block;
+          position: absolute;
+          width: 100rpx;
+          height: 100rpx;
+          left: 30rpx;
+          top: 40rpx; }
+        .member-container .member-header-box .member-userinfo-null .member-toauth .member-user-login {
+          position: relative;
+          display: block;
+          line-height: 175rpx;
+          letter-spacing: 2rpx;
+          font-size: 30rpx;
+          font-weight: bold; }
+      .member-container .member-header-box .member-userinfo-null .member-login-tips {
+        position: relative;
+        border-top: 1rpx dashed #dcdcdc;
+        font-size: 26rpx;
+        line-height: 50rpx;
+        color: #666;
+        width: 100%;
+        height: 140rpx;
+        padding: 0 20rpx;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center; }
     .member-container .member-header-box .member-user-integral {
       position: relative;
       display: flex;

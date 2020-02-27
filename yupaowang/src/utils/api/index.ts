@@ -1,5 +1,9 @@
 import { REQUESTURL } from '../../config'
 
+// 获取用户session_key
+export const GetUserSessionKey: string = REQUESTURL + 'user/user-info/'
+// session_key获取用户信息
+export const GetUserInfo: string = REQUESTURL + 'user/make-user/'
 // 获取首页banner以及公告
 export const GetBannerNotice: string = REQUESTURL + 'index/index-banner-carousel/'
 // 获取首页列表数据

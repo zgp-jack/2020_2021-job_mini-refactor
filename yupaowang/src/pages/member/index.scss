@@ -87,6 +87,43 @@
         }
       }
     }
+    .member-userinfo-null{
+      padding: 0;
+      .member-toauth{
+        position: relative;
+        width: 100%;
+        padding: 0 27px;
+        padding-left: 160px;
+        height: 175px;
+        .member-user-nullimg{
+          display: block;
+          position: absolute;
+          width: 100px;
+          height: 100px;
+          left: 30px;
+          top: 40px;
+        }
+        .member-user-login{
+          position: relative;
+          display: block;
+          line-height: 175px;
+          letter-spacing: 2px;
+          font-size: 30px;
+          font-weight: bold;
+        }
+      }
+      .member-login-tips{
+        position: relative;
+        border-top: 1px dashed #dcdcdc;
+        font-size: 26px;
+        line-height: 50px;
+        color: #666;
+        width: 100%;
+        height: 140px;
+        padding: 0 20px;
+        @include flex();
+      }
+    }
     .member-user-integral{
       position: relative;
       @include flex();

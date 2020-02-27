@@ -1,0 +1,5 @@
+<block wx:if="{{$taroCompReady}}">
+    <block>
+        <auth></auth>
+    </block>
+</block>

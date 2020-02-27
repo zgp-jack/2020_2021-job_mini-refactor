@@ -59,7 +59,7 @@ var Recruit = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (Recruit.__proto__ || Object.getPrototypeOf(Recruit)).apply(this, arguments));
 
-    _this.$usedState = ["anonymousState__temp", "$compid__2", "$compid__3", "$compid__4", "refresh"];
+    _this.$usedState = ["anonymousState__temp", "$compid__6", "$compid__7", "$compid__8", "refresh"];
     _this.customComponents = ["Search", "Condition", "WechatNotice", "RecruitList"];
     return _this;
   }
@@ -79,20 +79,20 @@ var Recruit = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__2"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__6"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__2 = _genCompid2[0],
-          $compid__2 = _genCompid2[1];
+          $prevCompid__6 = _genCompid2[0],
+          $compid__6 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__3"),
+      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__7"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__3 = _genCompid4[0],
-          $compid__3 = _genCompid4[1];
+          $prevCompid__7 = _genCompid4[0],
+          $compid__7 = _genCompid4[1];
 
-      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__4"),
+      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__8"),
           _genCompid6 = _slicedToArray(_genCompid5, 2),
-          $prevCompid__4 = _genCompid6[0],
-          $compid__4 = _genCompid6[1];
+          $prevCompid__8 = _genCompid6[0],
+          $compid__8 = _genCompid6[1];
       // * 配置筛选条件
 
 
@@ -159,18 +159,18 @@ var Recruit = function (_Taro$Component) {
       _taroWeapp.propsManager.set({
         "placeholder": "\u627E\u6D3B\u3001\u627E\u5DE5\u4F5C",
         "value": ""
-      }, $compid__2, $prevCompid__2);
+      }, $compid__6, $prevCompid__6);
       _taroWeapp.propsManager.set({
         "data": DEFAULT_CONDITION
-      }, $compid__3, $prevCompid__3);
+      }, $compid__7, $prevCompid__7);
       _taroWeapp.propsManager.set({
         "data": lists
-      }, $compid__4, $prevCompid__4);
+      }, $compid__8, $prevCompid__8);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
-        $compid__2: $compid__2,
-        $compid__3: $compid__3,
-        $compid__4: $compid__4,
+        $compid__6: $compid__6,
+        $compid__7: $compid__7,
+        $compid__8: $compid__8,
         refresh: refresh
       });
       return this.__state;

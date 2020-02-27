@@ -1,14 +1,23 @@
 import Taro from '@tarojs/taro'
 import { View, Image, Text } from '@tarojs/components'
 import './index.scss'
-import { IMGCDNURL } from '../../config'
+import { IMGCDNURL, AUTHPATH } from '../../config'
 
 export default function Member(){
+
+  const userAuthLogin = ()=> {
+    Taro.navigateTo({
+      url: AUTHPATH
+    })
+  }
+
   return (
     <View className='member-container'>
       <View className='member-header-box'>
         <View className='member-header-title'>会员中心</View>
         <View className='member-userinfobox'>
+          {/* 检测用户登录状态 */}
+          { false ? 
           <View className='member-userinfo'>
             <View className='member-userinfo-content'>
               <Image className='member-userinfo-avatar' src='http://cdn.yupao.com/miniprogram/images/user.png' />
@@ -36,6 +45,15 @@ export default function Member(){
               </View>
             </View>
           </View>
+          :
+          <View className='member-userinfo member-userinfo-null' onClick={()=>userAuthLogin()}>
+            <View className='member-toauth'>
+              <Image className='member-user-nullimg' src={IMGCDNURL + 'userauth-userinfo-null.png' } />
+              <Text className='member-user-login'>登录/注册</Text>
+            </View>
+            <View className='member-login-tips'>点击上方登录/注册按钮可以前往登录页面，登录成功后可解锁小程序全部功能，方便您能更便捷的招工找活。</View>
+          </View>
+          }
         </View>
       </View>
       <View className='member-body-container'>

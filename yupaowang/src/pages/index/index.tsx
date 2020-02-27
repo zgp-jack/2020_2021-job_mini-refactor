@@ -54,7 +54,7 @@ export default function Index(){
       {tabKey === RECRUIT && <Recruit />}
       {tabKey === RESUME && <Resume />}
       {tabKey === MEMBER && <Member /> }
-      <Tabbar isredirect={ false } />
+      <Tabbar isredirect={false} />
     </View>
   )
 }

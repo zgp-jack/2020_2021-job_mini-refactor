@@ -1,20 +1,9 @@
-(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["pages/member/index"],{
+(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["pages/userauth/index"],{
 
-/***/ "./src/pages/member/index.scss":
-/*!*************************************!*\
-  !*** ./src/pages/member/index.scss ***!
-  \*************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
-
-/***/ }),
-
-/***/ "./src/pages/member/index.tsx":
-/*!************************************!*\
-  !*** ./src/pages/member/index.tsx ***!
-  \************************************/
+/***/ "./src/pages/userauth/index.tsx":
+/*!**************************************!*\
+  !*** ./src/pages/userauth/index.tsx ***!
+  \**************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -33,10 +22,6 @@ var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@
 
 var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
 
-__webpack_require__(/*! ./index.scss */ "./src/pages/member/index.scss");
-
-var _index = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -45,62 +30,55 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Member = function (_Taro$Component) {
-  _inherits(Member, _Taro$Component);
+var UserAuth = function (_Taro$Component) {
+  _inherits(UserAuth, _Taro$Component);
 
-  function Member() {
-    _classCallCheck(this, Member);
+  function UserAuth() {
+    _classCallCheck(this, UserAuth);
 
-    var _this = _possibleConstructorReturn(this, (Member.__proto__ || Object.getPrototypeOf(Member)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (UserAuth.__proto__ || Object.getPrototypeOf(UserAuth)).apply(this, arguments));
 
-    _this.$usedState = ["IMGCDNURL"];
-    _this.customComponents = [];
+    _this.config = {
+      navigationBarTitleText: '用户授权',
+      navigationBarBackgroundColor: '#0099ff',
+      navigationBarTextStyle: 'white',
+      backgroundTextStyle: "dark"
+    };
+
+    _this.$usedState = [];
+    _this.customComponents = ["Auth"];
     return _this;
   }
 
-  _createClass(Member, [{
-    key: "_constructor",
+  _createClass(UserAuth, [{
+    key: '_constructor',
     value: function _constructor(props) {
-      _get(Member.prototype.__proto__ || Object.getPrototypeOf(Member.prototype), "_constructor", this).call(this, props);
+      _get(UserAuth.prototype.__proto__ || Object.getPrototypeOf(UserAuth.prototype), '_constructor', this).call(this, props);
       this.$$refs = new _taroWeapp2.default.RefsArray();
     }
   }, {
-    key: "_createData",
+    key: '_createData',
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var userAuthLogin = function userAuthLogin() {
-        _taroWeapp2.default.navigateTo({
-          url: _index.AUTHPATH
-        });
-      };
-      this.anonymousFunc0 = function () {
-        return userAuthLogin();
-      };
-      Object.assign(this.__state, {
-        IMGCDNURL: _index.IMGCDNURL
-      });
+      Object.assign(this.__state, {});
       return this.__state;
-    }
-  }, {
-    key: "anonymousFunc0",
-    value: function anonymousFunc0(e) {
-      ;
     }
   }]);
 
-  return Member;
+  return UserAuth;
 }(_taroWeapp2.default.Component);
 
-Member.$$events = ["anonymousFunc0"];
-Member.$$componentPath = "pages/member/index";
-exports.default = Member;
+UserAuth.$$events = [];
+UserAuth.$$componentPath = "pages/userauth/index";
+UserAuth.config = { navigationBarTitleText: '用户授权', navigationBarBackgroundColor: '#0099ff', navigationBarTextStyle: 'white', backgroundTextStyle: "dark" };
+exports.default = UserAuth;
 
-Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(Member));
+Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(UserAuth, true));
 
 /***/ })
 
-},[["./src/pages/member/index.tsx","runtime","taro","vendors","common"]]]);
+},[["./src/pages/userauth/index.tsx","runtime","taro","vendors"]]]);

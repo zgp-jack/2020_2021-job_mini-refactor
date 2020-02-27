@@ -61,7 +61,7 @@ var Home = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (Home.__proto__ || Object.getPrototypeOf(Home)).apply(this, arguments));
 
-    _this.$usedState = ["$compid__69", "$compid__70", "$compid__71", "$compid__72", "$compid__73", "IMGCDNURL"];
+    _this.$usedState = ["$compid__1", "$compid__2", "$compid__3", "$compid__4", "$compid__5", "IMGCDNURL"];
     _this.customComponents = ["SwiperComponent", "Projects", "Fastfun", "SwiperNews", "RecruitList", "ResumeList", "UsedList", "About"];
     return _this;
   }
@@ -81,30 +81,30 @@ var Home = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__69"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__1"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__69 = _genCompid2[0],
-          $compid__69 = _genCompid2[1];
+          $prevCompid__1 = _genCompid2[0],
+          $compid__1 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__70"),
+      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__2"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__70 = _genCompid4[0],
-          $compid__70 = _genCompid4[1];
+          $prevCompid__2 = _genCompid4[0],
+          $compid__2 = _genCompid4[1];
 
-      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__71"),
+      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__3"),
           _genCompid6 = _slicedToArray(_genCompid5, 2),
-          $prevCompid__71 = _genCompid6[0],
-          $compid__71 = _genCompid6[1];
+          $prevCompid__3 = _genCompid6[0],
+          $compid__3 = _genCompid6[1];
 
-      var _genCompid7 = (0, _taroWeapp.genCompid)(__prefix + "$compid__72"),
+      var _genCompid7 = (0, _taroWeapp.genCompid)(__prefix + "$compid__4"),
           _genCompid8 = _slicedToArray(_genCompid7, 2),
-          $prevCompid__72 = _genCompid8[0],
-          $compid__72 = _genCompid8[1];
+          $prevCompid__4 = _genCompid8[0],
+          $compid__4 = _genCompid8[1];
 
-      var _genCompid9 = (0, _taroWeapp.genCompid)(__prefix + "$compid__73"),
+      var _genCompid9 = (0, _taroWeapp.genCompid)(__prefix + "$compid__5"),
           _genCompid10 = _slicedToArray(_genCompid9, 2),
-          $prevCompid__73 = _genCompid10[0],
-          $compid__73 = _genCompid10[1];
+          $prevCompid__5 = _genCompid10[0],
+          $compid__5 = _genCompid10[1];
       // * 获取列表数据的data
 
 
@@ -162,28 +162,28 @@ var Home = function (_Taro$Component) {
       }, [filterData]);
       _taroWeapp.propsManager.set({
         "data": swiper
-      }, $compid__69, $prevCompid__69);
+      }, $compid__1, $prevCompid__1);
       _taroWeapp.propsManager.set({
         "data": notice
-      }, $compid__70, $prevCompid__70);
+      }, $compid__2, $prevCompid__2);
       _taroWeapp.propsManager.set({
         "data": lists.recruit,
         "bottom": false
-      }, $compid__71, $prevCompid__71);
+      }, $compid__3, $prevCompid__3);
       _taroWeapp.propsManager.set({
         "data": lists.resume,
         "bottom": false
-      }, $compid__72, $prevCompid__72);
+      }, $compid__4, $prevCompid__4);
       _taroWeapp.propsManager.set({
         "data": lists.fleamarket,
         "bottom": false
-      }, $compid__73, $prevCompid__73);
+      }, $compid__5, $prevCompid__5);
       Object.assign(this.__state, {
-        $compid__69: $compid__69,
-        $compid__70: $compid__70,
-        $compid__71: $compid__71,
-        $compid__72: $compid__72,
-        $compid__73: $compid__73,
+        $compid__1: $compid__1,
+        $compid__2: $compid__2,
+        $compid__3: $compid__3,
+        $compid__4: $compid__4,
+        $compid__5: $compid__5,
         IMGCDNURL: _index.IMGCDNURL
       });
       return this.__state;

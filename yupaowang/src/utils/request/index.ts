@@ -1,11 +1,12 @@
 import Taro from '@tarojs/taro'
 import * as api from '../api'
 import { TOKEN } from '../../config'
-import { ResumeResult, RecruitList, BannerNotice, HomeLists } from './index.d'
+import { ResumeResult, RecruitList, BannerNotice, HomeLists, SessionKey, InitUserInfo } from './index.d'
 import Msg from '../msg'
 import { SearchType as RecruitSearchType } from '../../pages/recruit/index.d'
 import { SearchType as ResumeSearchType } from '../../pages/resume/index.d'
 import { SearchType as FleamarketSearchType } from '../../pages/used/index'
+import { AuthData } from '../../components/auth'
 import { FilterData } from '../../pages/home'
 
 
@@ -45,6 +46,7 @@ const defaultRequestData: RequestBase = {
   failToast: true
 }
 
+// 全局通用请求方法
 export function doRequestAction(reqData: Request): Promise<any> {
   let req: RequestBase = { ...defaultRequestData, ...reqData }
   if (req.loading) {
@@ -77,6 +79,24 @@ export function doRequestAction(reqData: Request): Promise<any> {
         }
       }
     })
+  })
+}
+
+// 用户授权-获取session_key
+export function getUserSessionKey(code: string): Promise<SessionKey>{
+  return doRequestAction({
+    url: api.GetUserSessionKey,
+    data: {
+      code: code
+    }
+  })
+}
+
+// session_key换取userinfo
+export function GetUserInfo(data: AuthData): Promise<InitUserInfo>{
+  return doRequestAction({
+    url: api.GetUserInfo,
+    data: data
   })
 }
 

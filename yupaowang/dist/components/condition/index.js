@@ -63,7 +63,7 @@ var Condition = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (Condition.__proto__ || Object.getPrototypeOf(Condition)).apply(this, arguments));
 
-    _this.$usedState = ["anonymousState__temp", "loopArray6", "loopArray7", "$compid__5", "data", "IMGCDNURL", "AREAS", "childAreaList", "scrollTop"];
+    _this.$usedState = ["anonymousState__temp", "loopArray7", "loopArray8", "$compid__9", "data", "IMGCDNURL", "AREAS", "childAreaList", "scrollTop"];
     _this.anonymousFunc0Map = {};
     _this.anonymousFunc2Map = {};
     _this.customComponents = ["AtDrawer"];
@@ -87,10 +87,10 @@ var Condition = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__5"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__9"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__5 = _genCompid2[0],
-          $compid__5 = _genCompid2[1];
+          $prevCompid__9 = _genCompid2[0],
+          $compid__9 = _genCompid2[1];
 
       var data = this.__props.data;
       // * 当前展开项id
@@ -150,7 +150,7 @@ var Condition = function (_Taro$Component) {
       this.anonymousFunc3 = function (e) {
         return onScrollAction(e);
       };
-      var loopArray6 = data ? data.map(function (item, __index0) {
+      var loopArray7 = data ? data.map(function (item, __index0) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
@@ -163,7 +163,7 @@ var Condition = function (_Taro$Component) {
           $original: item.$original
         };
       }) : [];
-      var loopArray7 = _area2.default.map(function (item, index) {
+      var loopArray8 = _area2.default.map(function (item, index) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
@@ -185,12 +185,12 @@ var Condition = function (_Taro$Component) {
         "show": anonymousState__temp,
         "mask": true,
         "onClose": this.anonymousFunc1
-      }, $compid__5, $prevCompid__5);
+      }, $compid__9, $prevCompid__9);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
-        loopArray6: loopArray6,
         loopArray7: loopArray7,
-        $compid__5: $compid__5,
+        loopArray8: loopArray8,
+        $compid__9: $compid__9,
         data: data,
         IMGCDNURL: _index.IMGCDNURL,
         AREAS: _area2.default,

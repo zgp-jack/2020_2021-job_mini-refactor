@@ -75,7 +75,9 @@ var VERSION = exports.VERSION = '3.0.0';
 // * 高德地区key
 var MAPKEY = exports.MAPKEY = '20f12aae660c04de86f993d3eff590a0';
 // * 小程序token 
-var TOKEN = exports.TOKEN = 'gdjz';
+var TOKEN = exports.TOKEN = 'jizhao';
+// * 授权登录页面
+var AUTHPATH = exports.AUTHPATH = '/pages/userauth/index';
 
 /***/ }),
 
@@ -135,10 +137,14 @@ exports.default = SUCCESS;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.GetTabbarMsg = exports.GetListFilterData = exports.GetWechatNotice = exports.GetFleamarketlist = exports.GetResumelist = exports.GetRecruitlist = exports.GetAllListItem = exports.GetBannerNotice = undefined;
+exports.GetTabbarMsg = exports.GetListFilterData = exports.GetWechatNotice = exports.GetFleamarketlist = exports.GetResumelist = exports.GetRecruitlist = exports.GetAllListItem = exports.GetBannerNotice = exports.GetUserInfo = exports.GetUserSessionKey = undefined;
 
 var _index = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
 
+// 获取用户session_key
+var GetUserSessionKey = exports.GetUserSessionKey = _index.REQUESTURL + 'user/user-info/';
+// session_key获取用户信息
+var GetUserInfo = exports.GetUserInfo = _index.REQUESTURL + 'user/make-user/';
 // 获取首页banner以及公告
 var GetBannerNotice = exports.GetBannerNotice = _index.REQUESTURL + 'index/index-banner-carousel/';
 // 获取首页列表数据
@@ -172,13 +178,29 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = Msg;
+exports.errMsg = errMsg;
+
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
+
+var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function Msg(msg) {
   var duration = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1500;
 
-  Taro.showToast({
+  _taroWeapp2.default.showToast({
     title: msg,
     icon: 'none',
     duration: duration
+  });
+}
+function errMsg() {
+  var msg = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+
+  _taroWeapp2.default.atMessage({
+    'message': msg,
+    'type': 'error'
   });
 }
 
@@ -201,6 +223,8 @@ Object.defineProperty(exports, "__esModule", {
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 exports.doRequestAction = doRequestAction;
+exports.getUserSessionKey = getUserSessionKey;
+exports.GetUserInfo = GetUserInfo;
 exports.getBannerNotice = getBannerNotice;
 exports.getAllListItem = getAllListItem;
 exports.getRecruitList = getRecruitList;
@@ -244,6 +268,7 @@ var defaultRequestData = {
   title: '数据加载中...',
   failToast: true
 };
+// 全局通用请求方法
 function doRequestAction(reqData) {
   var req = _extends({}, defaultRequestData, reqData);
   if (req.loading) {
@@ -276,6 +301,22 @@ function doRequestAction(reqData) {
         }
       }
     });
+  });
+}
+// 用户授权-获取session_key
+function getUserSessionKey(code) {
+  return doRequestAction({
+    url: api.GetUserSessionKey,
+    data: {
+      code: code
+    }
+  });
+}
+// session_key换取userinfo
+function GetUserInfo(data) {
+  return doRequestAction({
+    url: api.GetUserInfo,
+    data: data
   });
 }
 // 获取首页banner以及公告

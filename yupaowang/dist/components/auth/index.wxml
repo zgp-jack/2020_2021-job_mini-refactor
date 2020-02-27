@@ -1,0 +1,9 @@
+<block wx:if="{{$taroCompReady}}">
+    <view class="user-auth-container">
+        <image class="user-auth-img" src="{{IMGCDNURL + 'userauth-topicon.png'}}"></image>
+        <view class="user-auth-title">登录鱼泡网</view><text class="user-auth-tips">招工 找活抢先一步，用的安心 赚的开心。</text>
+        <button class="user-btn user-auth-submit" open-type="getUserInfo" bindtap="anonymousFunc0">微信授权登录</button>
+        <button class="user-btn user-auth-return" bindtap="anonymousFunc1">返回上一页</button>
+        <button class="user-btn user-auth-return" bindtap="anonymousFunc2">取消授权</button>
+    </view>
+</block>
