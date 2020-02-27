@@ -1170,6 +1170,10 @@ var _index = __webpack_require__(/*! ./store/index */ "./src/store/index.ts");
 
 var _index2 = _interopRequireDefault(_index);
 
+var _store = __webpack_require__(/*! ./config/store */ "./src/config/store.ts");
+
+var _user = __webpack_require__(/*! ./actions/user */ "./src/actions/user.tsx");
+
 __webpack_require__(/*! ./app.scss */ "./src/app.scss");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -1215,7 +1219,13 @@ var _App = function (_BaseComponent) {
 
   _createClass(_App, [{
     key: "componentDidMount",
-    value: function componentDidMount() {}
+    value: function componentDidMount() {
+      var userInfo = _taroWeapp2.default.getStorageSync(_store.UserInfo);
+      var dispatch = (0, _redux.useDispatch)();
+      if (userInfo) {
+        dispatch((0, _user.setUserInfo)(userInfo));
+      }
+    }
   }, {
     key: "componentDidShow",
     value: function componentDidShow() {}
@@ -1274,11 +1284,16 @@ var _wechat_notice = __webpack_require__(/*! ./wechat_notice */ "./src/reducers/
 
 var _wechat_notice2 = _interopRequireDefault(_wechat_notice);
 
+var _user = __webpack_require__(/*! ./user */ "./src/reducers/user.tsx");
+
+var _user2 = _interopRequireDefault(_user);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = (0, _redux.combineReducers)({
   tabbar: _tabbar2.default,
-  WechatNotice: _wechat_notice2.default
+  WechatNotice: _wechat_notice2.default,
+  User: _user2.default
 });
 
 /***/ }),
@@ -1343,6 +1358,49 @@ function tabbar() {
       return newMenus;
     case _tabbar.MEMBER:
       return newMenus;
+    default:
+      return state;
+  }
+}
+
+/***/ }),
+
+/***/ "./src/reducers/user.tsx":
+/*!*******************************!*\
+  !*** ./src/reducers/user.tsx ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+exports.default = User;
+
+var _user = __webpack_require__(/*! ../constants/user */ "./src/constants/user.tsx");
+
+var DEFAULT_STATE = {
+  userId: 0,
+  uuid: '',
+  tokenTime: 0,
+  token: '',
+  login: false
+};
+function User() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : DEFAULT_STATE;
+  var action = arguments[1];
+
+  switch (action.type) {
+    case _user.SET:
+      return _extends({}, state, action.data);
+    case _user.GET:
+      return state;
     default:
       return state;
   }

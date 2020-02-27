@@ -1,10 +1,15 @@
 import Taro from '@tarojs/taro'
 import { View, Image, Text } from '@tarojs/components'
+import { useSelector } from '@tarojs/redux'
 import './index.scss'
 import { IMGCDNURL, AUTHPATH } from '../../config'
 
 export default function Member(){
 
+  // 获取用户信息
+  const login = useSelector<any, boolean>(state => state.User['login'])
+
+  // 跳转用户授权
   const userAuthLogin = ()=> {
     Taro.navigateTo({
       url: AUTHPATH
@@ -17,7 +22,7 @@ export default function Member(){
         <View className='member-header-title'>会员中心</View>
         <View className='member-userinfobox'>
           {/* 检测用户登录状态 */}
-          { false ? 
+          {login ? 
           <View className='member-userinfo'>
             <View className='member-userinfo-content'>
               <Image className='member-userinfo-avatar' src='http://cdn.yupao.com/miniprogram/images/user.png' />

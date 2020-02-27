@@ -1,7 +1,9 @@
-import Taro, { Component, Config } from '@tarojs/taro'
-import { Provider } from '@tarojs/redux'
+import Taro, { Config, Component } from '@tarojs/taro'
+import { Provider, useDispatch } from '@tarojs/redux'
 import Index from './pages/index'
 import configStore from './store'
+import { UserInfo } from './config/store'
+import { setUserInfo } from '../src/actions/user'
 import './app.scss'
 
 const store = configStore()
@@ -32,7 +34,11 @@ class App extends Component {
     ] 
   }
 
-  componentDidMount () {}
+  componentDidMount () {
+    const userInfo = Taro.getStorageSync(UserInfo)
+    const dispatch = useDispatch()
+    if (userInfo) dispatch(setUserInfo(userInfo))
+  }
 
   componentDidShow () {}
 

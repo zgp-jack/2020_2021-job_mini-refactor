@@ -1,37 +1,5 @@
 (wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["components/auth/index"],{
 
-/***/ "./src/actions/user.tsx":
-/*!******************************!*\
-  !*** ./src/actions/user.tsx ***!
-  \******************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.setUserInfo = setUserInfo;
-exports.getUserInfo = getUserInfo;
-
-var _user = __webpack_require__(/*! ../constants/user */ "./src/constants/user.tsx");
-
-function setUserInfo(user) {
-  return {
-    type: _user.SET,
-    data: user
-  };
-}
-function getUserInfo() {
-  return {
-    type: _user.GET
-  };
-}
-
-/***/ }),
-
 /***/ "./src/components/auth/index.scss":
 /*!****************************************!*\
   !*** ./src/components/auth/index.scss ***!
@@ -69,11 +37,13 @@ var _index = __webpack_require__(/*! ../../config/index */ "./src/config/index.t
 
 var _index2 = __webpack_require__(/*! ../../utils/request/index */ "./src/utils/request/index.ts");
 
+var _index3 = __webpack_require__(/*! ../../utils/msg/index */ "./src/utils/msg/index.ts");
+
 var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/redux/index.js");
 
 var _user = __webpack_require__(/*! ../../actions/user */ "./src/actions/user.tsx");
 
-var _index3 = __webpack_require__(/*! ../../utils/msg/index */ "./src/utils/msg/index.ts");
+var _store = __webpack_require__(/*! ../../config/store */ "./src/config/store.ts");
 
 __webpack_require__(/*! ./index.scss */ "./src/components/auth/index.scss");
 
@@ -94,7 +64,7 @@ var Auth = function (_Taro$Component) {
     var _this = _possibleConstructorReturn(this, (Auth.__proto__ || Object.getPrototypeOf(Auth)).apply(this, arguments));
 
     _this.$usedState = ["IMGCDNURL"];
-    _this.customComponents = [];
+    _this.customComponents = ["AtMessage"];
     return _this;
   }
 
@@ -178,7 +148,9 @@ var Auth = function (_Taro$Component) {
                   uuid: res.data.uuid,
                   login: true
                 };
+                _taroWeapp2.default.setStorageSync(_store.UserInfo, user);
                 dispatch((0, _user.setUserInfo)(user));
+                pageBack();
               } else {
                 (0, _index3.errMsg)(res.errmsg);
               }
@@ -225,24 +197,6 @@ Auth.$$componentPath = "components/auth/index";
 exports.default = Auth;
 
 Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(Auth));
-
-/***/ }),
-
-/***/ "./src/constants/user.tsx":
-/*!********************************!*\
-  !*** ./src/constants/user.tsx ***!
-  \********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var GET = exports.GET = 'get';
-var SET = exports.SET = 'set';
 
 /***/ })
 

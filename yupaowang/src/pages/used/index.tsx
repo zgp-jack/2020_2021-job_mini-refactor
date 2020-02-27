@@ -82,7 +82,7 @@ export default function Fleamarket() {
           <UsedList data={ lists } />
         </ScrollView>
       </View>
-      <Tabbar />
+      <Tabbar/>
     </Block>
   )
 }

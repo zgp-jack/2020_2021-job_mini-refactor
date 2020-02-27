@@ -7,18 +7,21 @@ import { changeTabbar } from '../../actions/tabbar'
 import './index.scss'
 
 interface PROPS {
-  isredirect?: boolean
+  notredirect?: boolean
 }
 
-export default function Tabbar({ isredirect = true }: PROPS) {
+export default function Tabbar({ notredirect }: PROPS) {
 
+  console.log(notredirect)
   const tabbar: DEFAULT_MENUS_TYPE = useSelector<any, DEFAULT_MENUS_TYPE>(state => state.tabbar)
   const dispatch = useDispatch()
 
   // * 判断跳转还是切换tabbar
   const changeTabbarAction = (item: Menu)=> {
-    if (isredirect) Taro.reLaunch({ url: '/pages/index/index?type=' + item.id})
-    else dispatch(changeTabbar(item.id))
+    if (notredirect)
+      dispatch(changeTabbar(item.id))
+    else 
+      Taro.reLaunch({ url: '/pages/index/index?type=' + item.id })
   }
 
   return (

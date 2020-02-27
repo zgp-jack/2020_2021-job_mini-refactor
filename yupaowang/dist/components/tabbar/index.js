@@ -59,7 +59,7 @@ var Tabbar = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (Tabbar.__proto__ || Object.getPrototypeOf(Tabbar)).apply(this, arguments));
 
-    _this.$usedState = ["tabbar", "loopArray11", "isredirect"];
+    _this.$usedState = ["tabbar", "loopArray12", "notredirect"];
     _this.anonymousFunc0Map = {};
     _this.customComponents = [];
     return _this;
@@ -81,20 +81,20 @@ var Tabbar = function (_Taro$Component) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var _props$isredirect = this.__props.isredirect,
-          isredirect = _props$isredirect === undefined ? true : _props$isredirect;
+      var notredirect = this.__props.notredirect;
 
+      console.log(notredirect);
       var tabbar = (0, _redux.useSelector)(function (state) {
         return state.tabbar;
       });
       var dispatch = (0, _redux.useDispatch)();
       // * 判断跳转还是切换tabbar
       var changeTabbarAction = function changeTabbarAction(item) {
-        if (isredirect) {
-          _taroWeapp2.default.reLaunch({ url: '/pages/index/index?type=' + item.id });
-        } else dispatch((0, _tabbar.changeTabbar)(item.id));
+        if (notredirect) {
+          dispatch((0, _tabbar.changeTabbar)(item.id));
+        } else _taroWeapp2.default.reLaunch({ url: '/pages/index/index?type=' + item.id });
       };
-      var loopArray11 = tabbar.list.map(function (item, __index0) {
+      var loopArray12 = tabbar.list.map(function (item, __index0) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
@@ -102,7 +102,7 @@ var Tabbar = function (_Taro$Component) {
           'common-footer-tabbar-list': true,
           'common-footer-tabbar-list-active': item.$original.id === tabbar.key
         });
-        var _$indexKey = "ezzzz" + __index0;
+        var _$indexKey = "fzzzz" + __index0;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return changeTabbarAction(item.$original);
         };
@@ -114,7 +114,7 @@ var Tabbar = function (_Taro$Component) {
       });
       Object.assign(this.__state, {
         tabbar: tabbar,
-        loopArray11: loopArray11
+        loopArray12: loopArray12
       });
       return this.__state;
     }

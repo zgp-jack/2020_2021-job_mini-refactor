@@ -33,6 +33,8 @@ var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@
 
 var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
 
+var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/redux/index.js");
+
 __webpack_require__(/*! ./index.scss */ "./src/pages/member/index.scss");
 
 var _index = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
@@ -53,25 +55,30 @@ var Member = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (Member.__proto__ || Object.getPrototypeOf(Member)).apply(this, arguments));
 
-    _this.$usedState = ["IMGCDNURL"];
+    _this.$usedState = ["login", "IMGCDNURL"];
     _this.customComponents = [];
     return _this;
   }
 
   _createClass(Member, [{
-    key: "_constructor",
+    key: '_constructor',
     value: function _constructor(props) {
-      _get(Member.prototype.__proto__ || Object.getPrototypeOf(Member.prototype), "_constructor", this).call(this, props);
+      _get(Member.prototype.__proto__ || Object.getPrototypeOf(Member.prototype), '_constructor', this).call(this, props);
       this.$$refs = new _taroWeapp2.default.RefsArray();
     }
   }, {
-    key: "_createData",
+    key: '_createData',
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
+      // 获取用户信息
+      var login = (0, _redux.useSelector)(function (state) {
+        return state.User['login'];
+      });
+      // 跳转用户授权
       var userAuthLogin = function userAuthLogin() {
         _taroWeapp2.default.navigateTo({
           url: _index.AUTHPATH
@@ -81,12 +88,13 @@ var Member = function (_Taro$Component) {
         return userAuthLogin();
       };
       Object.assign(this.__state, {
+        login: login,
         IMGCDNURL: _index.IMGCDNURL
       });
       return this.__state;
     }
   }, {
-    key: "anonymousFunc0",
+    key: 'anonymousFunc0',
     value: function anonymousFunc0(e) {
       ;
     }

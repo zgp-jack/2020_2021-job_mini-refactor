@@ -21,6 +21,38 @@ var changeTabbar = exports.changeTabbar = function changeTabbar(val) {
 
 /***/ }),
 
+/***/ "./src/actions/user.tsx":
+/*!******************************!*\
+  !*** ./src/actions/user.tsx ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.setUserInfo = setUserInfo;
+exports.getUserInfo = getUserInfo;
+
+var _user = __webpack_require__(/*! ../constants/user */ "./src/constants/user.tsx");
+
+function setUserInfo(user) {
+  return {
+    type: _user.SET,
+    data: user
+  };
+}
+function getUserInfo() {
+  return {
+    type: _user.GET
+  };
+}
+
+/***/ }),
+
 /***/ "./src/components/swiper/index.ts":
 /*!****************************************!*\
   !*** ./src/components/swiper/index.ts ***!
@@ -81,6 +113,25 @@ var AUTHPATH = exports.AUTHPATH = '/pages/userauth/index';
 
 /***/ }),
 
+/***/ "./src/config/store.ts":
+/*!*****************************!*\
+  !*** ./src/config/store.ts ***!
+  \*****************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+// * 本文件为小程序内部缓存声明文件
+// 用户信息
+var UserInfo = exports.UserInfo = 'userInfo';
+
+/***/ }),
+
 /***/ "./src/constants/tabbar.ts":
 /*!*********************************!*\
   !*** ./src/constants/tabbar.ts ***!
@@ -103,6 +154,24 @@ var types = [HOME, RECRUIT, RESUME, MEMBER];
 function typeInTabbar(val) {
   return types.includes(val);
 }
+
+/***/ }),
+
+/***/ "./src/constants/user.tsx":
+/*!********************************!*\
+  !*** ./src/constants/user.tsx ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var GET = exports.GET = 'get';
+var SET = exports.SET = 'set';
 
 /***/ }),
 
@@ -179,6 +248,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = Msg;
 exports.errMsg = errMsg;
+exports.warnMsg = warnMsg;
+exports.successMsg = successMsg;
 
 var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
@@ -201,6 +272,22 @@ function errMsg() {
   _taroWeapp2.default.atMessage({
     'message': msg,
     'type': 'error'
+  });
+}
+function warnMsg() {
+  var msg = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+
+  _taroWeapp2.default.atMessage({
+    'message': msg,
+    'type': 'warning'
+  });
+}
+function successMsg() {
+  var msg = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+
+  _taroWeapp2.default.atMessage({
+    'message': msg,
+    'type': 'success'
   });
 }
 

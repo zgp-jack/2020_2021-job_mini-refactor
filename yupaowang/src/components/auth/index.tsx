@@ -1,11 +1,13 @@
 import Taro from '@tarojs/taro'
-import { View, Text, Image, Button } from '@tarojs/components'
+import { AtMessage } from 'taro-ui'
+import { View, Text, Image, Button, Block } from '@tarojs/components'
 import { IMGCDNURL, SERVERPHONE } from '../../config'
 import { getUserSessionKey, GetUserInfo } from '../../utils/request'
 import { User } from '../../reducers/user'
+import { errMsg } from '../../utils/msg'
 import { useDispatch } from '@tarojs/redux'
 import { setUserInfo } from '../../actions/user'
-import { errMsg } from '../../utils/msg'
+import { UserInfo } from '../../config/store'
 import './index.scss'
 
 export interface AuthData {
@@ -89,7 +91,9 @@ export default function Auth(){
               uuid: res.data.uuid,
               login: true
             }
+            Taro.setStorageSync(UserInfo,user)
             dispatch(setUserInfo(user))
+            pageBack()
           }else{
             errMsg(res.errmsg)
           }
@@ -99,13 +103,16 @@ export default function Auth(){
   }
 
   return (
-    <View className='user-auth-container'>
-      <Image className='user-auth-img' src={ IMGCDNURL + 'userauth-topicon.png' } />
-      <View className='user-auth-title'>登录鱼泡网</View>
-      <Text className='user-auth-tips'>招工 找活抢先一步，用的安心 赚的开心。</Text>
-      <Button className='user-btn user-auth-submit' openType='getUserInfo' onClick={() => userAuthAction()}>微信授权登录</Button>
-      <Button className='user-btn user-auth-return' onClick={() => pageBack()}>返回上一页</Button>
-      <Button className='user-btn user-auth-return' onClick={() => cancelAuth()}>取消授权</Button>
-    </View>
+    <Block>
+      <AtMessage />
+      <View className='user-auth-container'>
+        <Image className='user-auth-img' src={ IMGCDNURL + 'userauth-topicon.png' } />
+        <View className='user-auth-title'>登录鱼泡网</View>
+        <Text className='user-auth-tips'>招工 找活抢先一步，用的安心 赚的开心。</Text>
+        <Button className='user-btn user-auth-submit' openType='getUserInfo' onClick={() => userAuthAction()}>微信授权登录</Button>
+        <Button className='user-btn user-auth-return' onClick={() => pageBack()}>返回上一页</Button>
+        <Button className='user-btn user-auth-return' onClick={() => cancelAuth()}>取消授权</Button>
+      </View>
+    </Block>
   )
 }

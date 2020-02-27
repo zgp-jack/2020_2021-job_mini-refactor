@@ -14,3 +14,17 @@ export function errMsg(msg: string = ''){
     'type': 'error',
   })
 }
+
+export function warnMsg(msg: string = '') {
+  Taro.atMessage({
+    'message': msg,
+    'type': 'warning',
+  })
+}
+
+export function successMsg(msg: string = '') {
+  Taro.atMessage({
+    'message': msg,
+    'type': 'success',
+  })
+}
