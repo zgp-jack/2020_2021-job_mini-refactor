@@ -1,0 +1,53 @@
+@import '../../app.scss';
+
+.uploads-imgs-lists{
+  position: relative;
+  .uploads-img-item{
+    position: relative;
+    width: 33.333%;
+    height: 180px;
+    padding: 20px;
+    float: left;
+    margin-bottom: 15px;
+    .uploads-img-imgbox{
+      position: relative;
+      display: block;
+      width: 100%;
+      height: 100%;
+      border-radius: 5px;
+      .uploads-item-img{
+        position: relative;
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+    }
+    .uploads-img-imgbox-active{
+      border: 1px solid #dcdcdc;
+      &::after{
+        position: absolute;
+        content: '';
+        width: 50px;
+        height: 2px;
+        left: 50%;
+        top: 50%;
+        margin-left: -25px;
+        margin-top: -1px;
+        z-index: 1;
+        background: #dcdcdc;
+      }
+      &::before{
+        position: absolute;
+        content: '';
+        width: 2px;
+        height: 50px;
+        left: 50%;
+        top: 50%;
+        margin-left: -1px;
+        margin-top: -25px;
+        z-index: 1;
+        background: #dcdcdc;
+      }
+    }
+  }
+}

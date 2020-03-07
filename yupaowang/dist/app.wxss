@@ -1,3 +1,4 @@
+@import "./common.wxss";
 @charset "UTF-8";
 /**
  * Taro UI - Default variables

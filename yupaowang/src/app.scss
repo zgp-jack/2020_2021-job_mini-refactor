@@ -60,3 +60,11 @@ $shadowcolor: #e7e6e4;
 @mixin shadow($px:5px) {
   box-shadow: 0 0 $px $shadowcolor;
 }
+
+@mixin text-justify{
+  content: '.';
+  width: 100%;
+  display: inline-block;
+  overflow: hidden;
+  height: 0;
+}

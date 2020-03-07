@@ -1,5 +1,37 @@
 (wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["components/auth/index"],{
 
+/***/ "./src/actions/user.tsx":
+/*!******************************!*\
+  !*** ./src/actions/user.tsx ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.setUserInfo = setUserInfo;
+exports.getUserInfo = getUserInfo;
+
+var _user = __webpack_require__(/*! ../constants/user */ "./src/constants/user.tsx");
+
+function setUserInfo(user) {
+  return {
+    type: _user.SET,
+    data: user
+  };
+}
+function getUserInfo() {
+  return {
+    type: _user.GET
+  };
+}
+
+/***/ }),
+
 /***/ "./src/components/auth/index.scss":
 /*!****************************************!*\
   !*** ./src/components/auth/index.scss ***!
@@ -63,7 +95,7 @@ var Auth = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (Auth.__proto__ || Object.getPrototypeOf(Auth)).apply(this, arguments));
 
-    _this.$usedState = ["IMGCDNURL"];
+    _this.$usedState = ["IMGCDNURL", "page"];
     _this.customComponents = ["AtMessage"];
     return _this;
   }
@@ -82,6 +114,9 @@ var Auth = function (_Taro$Component) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
+      var _props$page = this.__props.page,
+          page = _props$page === undefined ? true : _props$page;
+
       var dispatch = (0, _redux.useDispatch)();
       // 返回上一页
       var pageBack = function pageBack() {
@@ -168,7 +203,8 @@ var Auth = function (_Taro$Component) {
         return cancelAuth();
       };
       Object.assign(this.__state, {
-        IMGCDNURL: _index.IMGCDNURL
+        IMGCDNURL: _index.IMGCDNURL,
+        page: page
       });
       return this.__state;
     }

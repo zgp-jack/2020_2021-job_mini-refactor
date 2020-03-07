@@ -1,0 +1,83 @@
+@import '../../app.scss';
+
+.integral-container{
+  position: relative;
+  width: 100%;
+  .integral-title{
+    position: relative;
+    padding: 20px;
+    background-color: white;
+    font-size: 30px;
+    color: #333;
+    text-align: center;
+  }
+  .integral-title-active{
+    font-weight: bold;
+    color: $color;
+  }
+  .integral-content{
+    position: relative;
+    padding-left: 80px;
+    padding-right: 20px;
+    .integral-list{
+      position: relative;
+      background-color: white;
+      height: 200px;
+      margin-top: 15px;
+      border-radius: 5px;
+      @include shadow(10px);
+      .integral-list-time{
+        position: absolute;
+        width: 120px;
+        height: 120px;
+        background-color: $color;
+        padding: 10px 0;
+        border-radius: 5px;
+        color: white;
+        left: -60px;
+        top: 40px;
+        line-height: 50px;
+        text-align: center;
+        .integral-time-year{
+          font-size: 26px;
+          display: block;
+        }
+        .integral-time-day{
+          font-size: 28px;
+          display: block;
+        }
+      }
+      .integral-list-item{
+        position: relative;
+        padding: 10px;
+        padding-left: 80px;
+        padding-right: 20px;
+        position: relative;
+        display: block;
+        line-height: 60px;
+        color: #333;
+        .integral-list-title{
+          font-size: 32px;
+        }
+        .integral-list-words{
+          font-size: 30px;
+        }
+        .integral-item-time{
+          font-size: 30px;
+          text{
+            float: right;
+            font-size: 30px;
+            color: #fd4040;
+          }
+        }
+      }
+    }
+  }
+  .integral-notmore{
+    position: relative;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 26px;
+    color: #333;
+  }
+}

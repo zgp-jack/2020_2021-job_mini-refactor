@@ -1,23 +1,30 @@
 import Taro from '@tarojs/taro'
 import * as api from '../api'
 import { TOKEN } from '../../config'
-import { ResumeResult, RecruitList, BannerNotice, HomeLists, SessionKey, InitUserInfo } from './index.d'
+import * as Inter from './index.d'
 import Msg from '../msg'
 import { SearchType as RecruitSearchType } from '../../pages/recruit/index.d'
 import { SearchType as ResumeSearchType } from '../../pages/resume/index.d'
-import { SearchType as FleamarketSearchType } from '../../pages/used/index'
+import { SearchType as FleamarketSearchType } from '../../pages/used/lists/index'
 import { AuthData } from '../../components/auth'
 import { FilterData } from '../../pages/home'
+import { UserInfo } from '../../config/store'
+import { User } from '../../reducers/user'
+import { IntegralData } from '../../pages/integral/config'
+import { InitRecruitView } from '../../pages/recruit/publish'
 
-
-interface ContentType {
-  'content-type': string
+interface RequestHeader {
+  'content-type'?: string
+  mid?: number,
+  token?: string,
+  time?: number,
+  uuid?: string
 }
 
 interface RequestBase {
   url: string,
   method: 'GET' | 'POST',
-  header: ContentType,
+  header: RequestHeader,
   data: any,
   failToast: boolean,
   loading: boolean,
@@ -28,7 +35,8 @@ type Request = {
   [K in keyof RequestBase]?: RequestBase[K]
 }
 
-function requestShowToast(show: boolean) {
+// 请求失败提示信息
+function requestShowToast(show: boolean):void {
   if (show) {
     setTimeout(() => {
       Msg('网络错误，请求失败')
@@ -36,10 +44,26 @@ function requestShowToast(show: boolean) {
   }
 }
 
+// 获取header请求头信息
+function getRequestHeaderInfo(): RequestHeader{
+  const userInfo: User = Taro.getStorageSync(UserInfo)
+  const requestHeader: RequestHeader = userInfo ? {
+    'content-type': 'application/x-www-form-urlencoded',
+    mid: userInfo.userId,
+    token: userInfo.token,
+    time: userInfo.tokenTime,
+    uuid: userInfo.uuid
+    } : {
+      'content-type': 'application/x-www-form-urlencoded',
+    }
+  return requestHeader
+}
+
+// 配置默认请求参数
 const defaultRequestData: RequestBase = {
   url: '',
   method: 'GET',
-  header: { 'content-type': 'application/json' },
+  header: getRequestHeaderInfo(),
   data: {},
   loading: true,
   title: '数据加载中...',
@@ -54,12 +78,19 @@ export function doRequestAction(reqData: Request): Promise<any> {
       title: req.title
     })
   }
+  let data = { ...req.data, wechat_token: TOKEN }
+  let userInfo: User = Taro.getStorageSync(UserInfo)
+  if(req.method === 'POST' && userInfo){
+    data.userId = userInfo.userId
+    data.token = userInfo.token
+    data.tokenTime = userInfo.tokenTime
+  }
   return new Promise((resolve, reject) => {
     Taro.request({
       url: /^http(s?):\/\//.test(req.url) ? req.url :req.url,
       method: req.method,
       header: req.header,
-      data: { ...req.data, wechat_token: TOKEN },
+      data: data,
       success: (res) => {
         //console.log(res)
         if (res.statusCode === 200) {
@@ -83,7 +114,7 @@ export function doRequestAction(reqData: Request): Promise<any> {
 }
 
 // 用户授权-获取session_key
-export function getUserSessionKey(code: string): Promise<SessionKey>{
+export function getUserSessionKey(code: string): Promise<Inter.SessionKey>{
   return doRequestAction({
     url: api.GetUserSessionKey,
     data: {
@@ -93,7 +124,7 @@ export function getUserSessionKey(code: string): Promise<SessionKey>{
 }
 
 // session_key换取userinfo
-export function GetUserInfo(data: AuthData): Promise<InitUserInfo>{
+export function GetUserInfo(data: AuthData): Promise<Inter.InitUserInfo>{
   return doRequestAction({
     url: api.GetUserInfo,
     data: data
@@ -101,7 +132,7 @@ export function GetUserInfo(data: AuthData): Promise<InitUserInfo>{
 }
 
 // 获取首页banner以及公告
-export function getBannerNotice(): Promise<BannerNotice> {
+export function getBannerNotice(): Promise<Inter.BannerNotice> {
   return doRequestAction({
     url: api.GetBannerNotice,
     loading: false
@@ -109,7 +140,7 @@ export function getBannerNotice(): Promise<BannerNotice> {
 }
 
 // 获取首页列表数据
-export function getAllListItem(data: FilterData): Promise<HomeLists> {
+export function getAllListItem(data: FilterData): Promise<Inter.HomeLists> {
   return doRequestAction({
     url: api.GetAllListItem,
     data: data
@@ -117,7 +148,7 @@ export function getAllListItem(data: FilterData): Promise<HomeLists> {
 }
 
 // 获取招工列表
-export function getRecruitList(data: RecruitSearchType): Promise<RecruitList[]> {
+export function getRecruitList(data: RecruitSearchType): Promise<Inter.RecruitList[]> {
   return doRequestAction({
     url: api.GetRecruitlist,
     data: data
@@ -125,7 +156,7 @@ export function getRecruitList(data: RecruitSearchType): Promise<RecruitList[]> 
 }
 
 // 获取找活列表
-export function getResumeList(data: ResumeSearchType): Promise<ResumeResult>{
+export function getResumeList(data: ResumeSearchType): Promise<Inter.ResumeResult>{
   return doRequestAction({
     url: api.GetResumelist,
     data: data
@@ -160,4 +191,22 @@ export function getListFilterData(){
 // tabbar未读消息统计
 export function getTabbarMsg(){
   return
+}
+
+// 获取积分记录分页数据
+export function getIntegralList<T>(data: IntegralData): Promise<Inter.IntegralList<T>> {
+  return doRequestAction({
+    url: api.GetIntegralList,
+    data: data,
+    method: 'POST'
+  })
+} 
+
+// 初始化发布招工信息视图
+export function getPublishRecruitView(data: InitRecruitView): Promise<any>{
+  return doRequestAction({
+    url: api.GetPublisRecruitView,
+    data: data,
+    method: 'POST'
+  })
 }

@@ -1,9 +1,7 @@
 import Taro, { Config, Component } from '@tarojs/taro'
-import { Provider, useDispatch } from '@tarojs/redux'
+import { Provider } from '@tarojs/redux'
 import Index from './pages/index'
 import configStore from './store'
-import { UserInfo } from './config/store'
-import { setUserInfo } from '../src/actions/user'
 import './app.scss'
 
 const store = configStore()
@@ -12,15 +10,20 @@ class App extends Component {
 
   config: Config = {
     pages: [
-      'pages/index/index',
-      'pages/used/index',
-      'pages/userauth/index'
+      'pages/index/index', //首页
+      'pages/used/lists/index', //二手交易
+      'pages/integral/source/index', //积分来源记录
+      'pages/integral/temp/index', //积分临时记录
+      'pages/integral/official/index', //积分正式记录
+      'pages/integral/expend/index', //积分消耗记录
+      'pages/userauth/index', //用户授权
+      'pages/recruit/publish/index', //发布招工信息
     ],
     window: {
       backgroundTextStyle: 'light',
-      navigationBarBackgroundColor: '#fff',
+      navigationBarBackgroundColor: '#0099ff',
       navigationBarTitleText: 'WeChat',
-      navigationBarTextStyle: 'black'
+      navigationBarTextStyle: 'white'
     },
     navigateToMiniProgramAppIdList: [
       'wxca0eab5cd5fe6a7c', //装修招工
@@ -31,24 +34,20 @@ class App extends Component {
       'wx7cea45b9ebdf87ac', //在建项目
       'wx3faf62a5edbb1513', //工具商城
       'wxbac40ffffdee0573'  //招标采购
-    ] 
+    ]
   }
 
-  componentDidMount () {
-    const userInfo = Taro.getStorageSync(UserInfo)
-    const dispatch = useDispatch()
-    if (userInfo) dispatch(setUserInfo(userInfo))
-  }
+  componentDidMount() { }
 
-  componentDidShow () {}
+  componentDidShow() { }
 
-  componentDidHide () {}
+  componentDidHide() { }
 
-  componentDidCatchError () {}
+  componentDidCatchError() { }
 
   // 在 App 类中的 render() 函数没有实际作用
   // 请勿修改此函数
-  render () {
+  render() {
     return (
       <Provider store={store} >
         <Index />

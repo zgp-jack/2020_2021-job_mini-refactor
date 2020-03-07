@@ -20,3 +20,7 @@ export const GetWechatNotice: string = REQUESTURL + 'index/less-search-data/'
 export const GetListFilterData: string = REQUESTURL + 'index/index-search-tree/'
 // 获取tabbar未读消息
 export const GetTabbarMsg: string = REQUESTURL + 'member/original-message/'
+// 获取积分记录分页数据
+export const GetIntegralList: string = REQUESTURL + 'integral/integral-record/'
+// 初始化发布招工视图
+export const GetPublisRecruitView: string = REQUESTURL + 'publish/new-job/'

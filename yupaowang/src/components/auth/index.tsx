@@ -18,7 +18,11 @@ export interface AuthData {
   source: string
 }
 
-export default function Auth(){
+interface PROPS {
+  page?: boolean //是否跳转到页面授权
+}
+
+export default function Auth({ page = true }: PROPS){
 
   const dispatch = useDispatch()
 
@@ -110,9 +114,12 @@ export default function Auth(){
         <View className='user-auth-title'>登录鱼泡网</View>
         <Text className='user-auth-tips'>招工 找活抢先一步，用的安心 赚的开心。</Text>
         <Button className='user-btn user-auth-submit' openType='getUserInfo' onClick={() => userAuthAction()}>微信授权登录</Button>
+        {page ? 
         <Button className='user-btn user-auth-return' onClick={() => pageBack()}>返回上一页</Button>
+        :
         <Button className='user-btn user-auth-return' onClick={() => cancelAuth()}>取消授权</Button>
-      </View>
+        }
+        </View>
     </Block>
   )
 }

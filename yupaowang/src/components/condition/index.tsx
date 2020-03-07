@@ -16,6 +16,8 @@ interface ConditionProps {
 
 export default function Condition({ data }: ConditionProps ){
 
+  console.log(data)
+
   // * 当前展开项id
   const [current, setCurrent] = useState<string>('')
   // * 当前城市选择父级索引

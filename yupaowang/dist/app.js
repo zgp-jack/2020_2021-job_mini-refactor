@@ -1170,10 +1170,6 @@ var _index = __webpack_require__(/*! ./store/index */ "./src/store/index.ts");
 
 var _index2 = _interopRequireDefault(_index);
 
-var _store = __webpack_require__(/*! ./config/store */ "./src/config/store.ts");
-
-var _user = __webpack_require__(/*! ./actions/user */ "./src/actions/user.tsx");
-
 __webpack_require__(/*! ./app.scss */ "./src/app.scss");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -1204,12 +1200,12 @@ var _App = function (_BaseComponent) {
     var _this = _possibleConstructorReturn(this, (_App.__proto__ || Object.getPrototypeOf(_App)).apply(this, arguments));
 
     _this.config = {
-      pages: ['pages/index/index', 'pages/used/index', 'pages/userauth/index'],
+      pages: ['pages/index/index', 'pages/used/lists/index', 'pages/integral/source/index', 'pages/integral/temp/index', 'pages/integral/official/index', 'pages/integral/expend/index', 'pages/userauth/index', 'pages/recruit/publish/index'],
       window: {
         backgroundTextStyle: 'light',
-        navigationBarBackgroundColor: '#fff',
+        navigationBarBackgroundColor: '#0099ff',
         navigationBarTitleText: 'WeChat',
-        navigationBarTextStyle: 'black'
+        navigationBarTextStyle: 'white'
       },
       navigateToMiniProgramAppIdList: ['wxca0eab5cd5fe6a7c', 'wxd348efa56021e8d0', 'wxbfab0a324f27b966', 'wx33194c327f50b99d', 'wx0ae31bf0edad4390', 'wx7cea45b9ebdf87ac', 'wx3faf62a5edbb1513', 'wxbac40ffffdee0573' //招标采购
       ]
@@ -1219,13 +1215,7 @@ var _App = function (_BaseComponent) {
 
   _createClass(_App, [{
     key: "componentDidMount",
-    value: function componentDidMount() {
-      var userInfo = _taroWeapp2.default.getStorageSync(_store.UserInfo);
-      var dispatch = (0, _redux.useDispatch)();
-      if (userInfo) {
-        dispatch((0, _user.setUserInfo)(userInfo));
-      }
-    }
+    value: function componentDidMount() {}
   }, {
     key: "componentDidShow",
     value: function componentDidShow() {}
@@ -1383,9 +1373,18 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 exports.default = User;
 
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
+
+var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
+
+var _store = __webpack_require__(/*! ../config/store */ "./src/config/store.ts");
+
 var _user = __webpack_require__(/*! ../constants/user */ "./src/constants/user.tsx");
 
-var DEFAULT_STATE = {
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var userInfo = _taroWeapp2.default.getStorageSync(_store.UserInfo);
+var DEFAULT_STATE = userInfo ? userInfo : {
   userId: 0,
   uuid: '',
   tokenTime: 0,

@@ -149,3 +149,34 @@ export interface ResumeResult {
   errcode: string,
   errmsg: ResumeList[]
 }
+
+// 积分记录数据
+export interface IntegralList<T> {
+  list: T[],
+  pageSize: number
+}
+
+// 消耗积分记录
+export interface IntegralExpendItem {
+  His: string,
+  day: string,
+  expend_integral_string: string,
+  headerText: string,
+  id: string,
+  source: string,
+  target_id: string,
+  title: string,
+  year_month: string
+}
+
+// 积分来源记录
+export interface IntegralSourceItem {
+  His: string,
+  day: string,
+  ext: string,
+  id: string,
+  integral: string,
+  source_integral_string: string,
+  source_title: string,
+  year_month: string
+}

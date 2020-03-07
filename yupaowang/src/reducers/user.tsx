@@ -1,3 +1,5 @@
+import Taro from '@tarojs/taro'
+import { UserInfo } from '../config/store'
 import { GET, SET } from '../constants/user'
 
 export interface User {
@@ -13,7 +15,9 @@ interface ActionType {
   data: User
 }
 
-const DEFAULT_STATE: User = {
+const userInfo = Taro.getStorageSync(UserInfo)
+
+const DEFAULT_STATE: User = userInfo ? userInfo : {
   userId: 0,
   uuid: '',
   tokenTime: 0,

@@ -93,6 +93,8 @@ var Condition = function (_Taro$Component) {
           $compid__9 = _genCompid2[1];
 
       var data = this.__props.data;
+
+      console.log(data);
       // * 当前展开项id
 
       var _useState = (0, _taroWeapp.useState)(''),

@@ -21,38 +21,6 @@ var changeTabbar = exports.changeTabbar = function changeTabbar(val) {
 
 /***/ }),
 
-/***/ "./src/actions/user.tsx":
-/*!******************************!*\
-  !*** ./src/actions/user.tsx ***!
-  \******************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.setUserInfo = setUserInfo;
-exports.getUserInfo = getUserInfo;
-
-var _user = __webpack_require__(/*! ../constants/user */ "./src/constants/user.tsx");
-
-function setUserInfo(user) {
-  return {
-    type: _user.SET,
-    data: user
-  };
-}
-function getUserInfo() {
-  return {
-    type: _user.GET
-  };
-}
-
-/***/ }),
-
 /***/ "./src/components/swiper/index.ts":
 /*!****************************************!*\
   !*** ./src/components/swiper/index.ts ***!
@@ -96,6 +64,8 @@ Object.defineProperty(exports, "__esModule", {
 // ? 全局不动配置项 只做导出不做修改
 // * 全局请求接口域名
 var REQUESTURL = exports.REQUESTURL = 'https://newyupaomini.54xiaoshuo.com/';
+// * 默认上传图片
+var UPLOADIMGURL = exports.UPLOADIMGURL = "https://newyupaomini.54xiaoshuo.com/index/upload/";
 // * 阿里云CDN图片域名
 var IMGCDNURL = exports.IMGCDNURL = 'http://cdn.yupao.com/miniprogram/images/';
 // * 公司默认客服电话
@@ -110,6 +80,8 @@ var MAPKEY = exports.MAPKEY = '20f12aae660c04de86f993d3eff590a0';
 var TOKEN = exports.TOKEN = 'jizhao';
 // * 授权登录页面
 var AUTHPATH = exports.AUTHPATH = '/pages/userauth/index';
+// * page-title-global
+var PAGETITLE = exports.PAGETITLE = '鱼泡网-';
 
 /***/ }),
 
@@ -193,6 +165,17 @@ exports.default = SUCCESS;
 
 /***/ }),
 
+/***/ "./src/pages/integral/index.scss":
+/*!***************************************!*\
+  !*** ./src/pages/integral/index.scss ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
 /***/ "./src/utils/api/index.ts":
 /*!********************************!*\
   !*** ./src/utils/api/index.ts ***!
@@ -206,7 +189,7 @@ exports.default = SUCCESS;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.GetTabbarMsg = exports.GetListFilterData = exports.GetWechatNotice = exports.GetFleamarketlist = exports.GetResumelist = exports.GetRecruitlist = exports.GetAllListItem = exports.GetBannerNotice = exports.GetUserInfo = exports.GetUserSessionKey = undefined;
+exports.GetPublisRecruitView = exports.GetIntegralList = exports.GetTabbarMsg = exports.GetListFilterData = exports.GetWechatNotice = exports.GetFleamarketlist = exports.GetResumelist = exports.GetRecruitlist = exports.GetAllListItem = exports.GetBannerNotice = exports.GetUserInfo = exports.GetUserSessionKey = undefined;
 
 var _index = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
 
@@ -230,6 +213,10 @@ var GetWechatNotice = exports.GetWechatNotice = _index.REQUESTURL + 'index/less-
 var GetListFilterData = exports.GetListFilterData = _index.REQUESTURL + 'index/index-search-tree/';
 // 获取tabbar未读消息
 var GetTabbarMsg = exports.GetTabbarMsg = _index.REQUESTURL + 'member/original-message/';
+// 获取积分记录分页数据
+var GetIntegralList = exports.GetIntegralList = _index.REQUESTURL + 'integral/integral-record/';
+// 初始化发布招工视图
+var GetPublisRecruitView = exports.GetPublisRecruitView = _index.REQUESTURL + 'publish/new-job/';
 
 /***/ }),
 
@@ -320,6 +307,8 @@ exports.getFleamarketList = getFleamarketList;
 exports.getWechatNotice = getWechatNotice;
 exports.getListFilterData = getListFilterData;
 exports.getTabbarMsg = getTabbarMsg;
+exports.getIntegralList = getIntegralList;
+exports.getPublishRecruitView = getPublishRecruitView;
 
 var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
@@ -335,10 +324,13 @@ var _index3 = __webpack_require__(/*! ../msg/index */ "./src/utils/msg/index.ts"
 
 var _index4 = _interopRequireDefault(_index3);
 
+var _store = __webpack_require__(/*! ../../config/store */ "./src/config/store.ts");
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+// 请求失败提示信息
 function requestShowToast(show) {
   if (show) {
     setTimeout(function () {
@@ -346,10 +338,25 @@ function requestShowToast(show) {
     }, 200);
   }
 }
+// 获取header请求头信息
+function getRequestHeaderInfo() {
+  var userInfo = _taroWeapp2.default.getStorageSync(_store.UserInfo);
+  var requestHeader = userInfo ? {
+    'content-type': 'application/x-www-form-urlencoded',
+    mid: userInfo.userId,
+    token: userInfo.token,
+    time: userInfo.tokenTime,
+    uuid: userInfo.uuid
+  } : {
+    'content-type': 'application/x-www-form-urlencoded'
+  };
+  return requestHeader;
+}
+// 配置默认请求参数
 var defaultRequestData = {
   url: '',
   method: 'GET',
-  header: { 'content-type': 'application/json' },
+  header: getRequestHeaderInfo(),
   data: {},
   loading: true,
   title: '数据加载中...',
@@ -363,12 +370,19 @@ function doRequestAction(reqData) {
       title: req.title
     });
   }
+  var data = _extends({}, req.data, { wechat_token: _index2.TOKEN });
+  var userInfo = _taroWeapp2.default.getStorageSync(_store.UserInfo);
+  if (req.method === 'POST' && userInfo) {
+    data.userId = userInfo.userId;
+    data.token = userInfo.token;
+    data.tokenTime = userInfo.tokenTime;
+  }
   return new Promise(function (resolve, reject) {
     _taroWeapp2.default.request({
       url: /^http(s?):\/\//.test(req.url) ? req.url : req.url,
       method: req.method,
       header: req.header,
-      data: _extends({}, req.data, { wechat_token: _index2.TOKEN }),
+      data: data,
       success: function success(res) {
         //console.log(res)
         if (res.statusCode === 200) {
@@ -459,6 +473,22 @@ function getListFilterData() {
 // tabbar未读消息统计
 function getTabbarMsg() {
   return;
+}
+// 获取积分记录分页数据
+function getIntegralList(data) {
+  return doRequestAction({
+    url: api.GetIntegralList,
+    data: data,
+    method: 'POST'
+  });
+}
+// 初始化发布招工信息视图
+function getPublishRecruitView(data) {
+  return doRequestAction({
+    url: api.GetPublisRecruitView,
+    data: data,
+    method: 'POST'
+  });
 }
 
 /***/ })

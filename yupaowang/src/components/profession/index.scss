@@ -1,0 +1,85 @@
+@import '../../app.scss';
+
+.profession-container{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 100;
+  background: rgba(0,0,0,0.4);
+  .profession-content{
+    position: relative;
+    display: block;
+    width: 80%;
+    height: 80%;
+    background-color: white;
+    padding: 100px 20px;
+    margin:  10% auto;
+    .profession-header{
+      position: absolute;
+      height: 100px;
+      background-color: #f3f3f3;
+      line-height: 100px;
+      text-align: center;
+      font-size: 30px;
+      font-weight: bold;
+      left: 0;
+      top: 0;
+      z-index: 5;
+      width: 100%;
+    }
+    .profession-body{
+      position: relative;
+      width: 100%;
+      height: 100%;
+      padding: 20px 0;
+      .profession-list-item{
+        position: relative;
+        margin-bottom: 20px;
+        .profession-list-title{
+          position: relative;
+          font-size: 34px;
+          font-weight: bold;
+          line-height: 80px;
+        }
+        .profession-list-content{
+          position: relative;
+          .prosession-item{
+            position: relative;
+            width: 100%;
+            padding-right: 150px;
+            font-size: 34px;
+            line-height: 95px;
+            border-bottom: 1px solid #f1f1f1;
+            .icon-checked{
+              position: absolute;
+              right: 20px;
+              top: 0;
+              line-height: 95px;
+              color: #d9d9d9;
+            }
+            .icon-checked-active{
+              font-weight: bold;
+              color: $color;
+            }
+          }
+        }
+      }
+    }
+    .profession-footer{
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      z-index: 5;
+      line-height: 100px;
+      background-color: white;
+      border-top: 1px solid #dcdcdc;
+      width: 100%;
+      text-align: center;
+      font-weight: bold;
+      letter-spacing: 15px;
+      @include shadow();
+    }
+  }
+}
