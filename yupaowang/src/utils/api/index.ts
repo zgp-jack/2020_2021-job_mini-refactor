@@ -24,3 +24,5 @@ export const GetTabbarMsg: string = REQUESTURL + 'member/original-message/'
 export const GetIntegralList: string = REQUESTURL + 'integral/integral-record/'
 // 初始化发布招工视图
 export const GetPublisRecruitView: string = REQUESTURL + 'publish/new-job/'
+// 获取城市数据
+export const GetAllAreas: string = REQUESTURL + 'index/index-area/'

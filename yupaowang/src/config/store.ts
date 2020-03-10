@@ -2,3 +2,7 @@
 
 // 用户信息
 export const UserInfo: string = 'userInfo'
+// 城市数据
+export const Areas: string = 'areaData'
+// 历史选择城市
+export const HistoryCities: string = 'historyCities'

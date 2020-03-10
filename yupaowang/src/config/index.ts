@@ -20,3 +20,5 @@ export const TOKEN: string = 'jizhao'
 export const  AUTHPATH: string = '/pages/userauth/index'
 // * page-title-global
 export const PAGETITLE: string = '鱼泡网-'
+// * 最大缓存历史城市数量
+export const MAXCACHECITYNUM: number = 3

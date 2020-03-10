@@ -1,0 +1,29 @@
+<block wx:if="{{$taroCompReady}}">
+    <view class="citiesbox">
+        <view class="city-header">
+            <view class="city-header-input">
+                <input placeholder="请输入城市名" />
+                <image class="city-header-clear" src="{{IMGCDNURL + 'clear-input.png'}}"></image>
+            </view><text class="city-header-close">取消</text>
+        </view>
+        <view class="city-area-tips">当前选择城市：北京</view>
+        <view class="city-area-container">
+            <view class="city-area-item">
+                <view class="city-area-title">当前定位城市/最近访问</view>
+                <view class="city-area-content clearfix">
+                    <view class="city-item">
+                        <view class="city-item-posi">
+                            <image class="city-item-img" src="{{IMGCDNURL + 'gps-posi.png'}}"></image>测试测</view>
+                    </view>
+                </view>
+            </view>
+            <view class="city-area-item" wx:key="$loopState__temp2" wx:for="{{loopArray19}}" wx:for-item="item" wx:for-index="index">
+                <view class="city-area-title">{{item.$original[0].city}}</view>
+                <view class="city-area-content clearfix">
+                    <view class="city-item" wx:key="$loopState__temp4" wx:for="{{item.$anonymousCallee__6}}" wx:for-item="d" wx:for-index="key"><text class="city-item-text overwords">{{d.$original.city}}</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</block>

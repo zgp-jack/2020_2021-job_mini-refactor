@@ -1,9 +1,9 @@
-(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["components/imageview/index"],{
+(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["pages/map/index/index"],{
 
-/***/ "./src/components/imageview/index.scss":
-/*!*********************************************!*\
-  !*** ./src/components/imageview/index.scss ***!
-  \*********************************************/
+/***/ "./src/pages/map/index/index.scss":
+/*!****************************************!*\
+  !*** ./src/pages/map/index/index.scss ***!
+  \****************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -11,10 +11,10 @@
 
 /***/ }),
 
-/***/ "./src/components/imageview/index.tsx":
-/*!********************************************!*\
-  !*** ./src/components/imageview/index.tsx ***!
-  \********************************************/
+/***/ "./src/pages/map/index/index.tsx":
+/*!***************************************!*\
+  !*** ./src/pages/map/index/index.tsx ***!
+  \***************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -25,6 +25,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
@@ -33,7 +35,9 @@ var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@
 
 var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
 
-__webpack_require__(/*! ./index.scss */ "./src/components/imageview/index.scss");
+var _index = __webpack_require__(/*! ../../../config/index */ "./src/config/index.ts");
+
+__webpack_require__(/*! ./index.scss */ "./src/pages/map/index/index.scss");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -43,93 +47,61 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var ImageView = function (_Taro$Component) {
-  _inherits(ImageView, _Taro$Component);
+var MapComponent = function (_Taro$Component) {
+  _inherits(MapComponent, _Taro$Component);
 
-  function ImageView() {
-    _classCallCheck(this, ImageView);
+  function MapComponent() {
+    _classCallCheck(this, MapComponent);
 
-    var _this = _possibleConstructorReturn(this, (ImageView.__proto__ || Object.getPrototypeOf(ImageView)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (MapComponent.__proto__ || Object.getPrototypeOf(MapComponent)).apply(this, arguments));
 
-    _this.$usedState = ["loopArray18", "images", "max", "userUploadImg"];
-    _this.anonymousFunc0Map = {};
-    _this.customComponents = [];
+    _this.$usedState = ["$compid__25", "IMGCDNURL", "data"];
+    _this.customComponents = ["Cities"];
     return _this;
   }
 
-  _createClass(ImageView, [{
+  _createClass(MapComponent, [{
     key: "_constructor",
     value: function _constructor(props) {
-      _get(ImageView.prototype.__proto__ || Object.getPrototypeOf(ImageView.prototype), "_constructor", this).call(this, props);
+      _get(MapComponent.prototype.__proto__ || Object.getPrototypeOf(MapComponent.prototype), "_constructor", this).call(this, props);
       this.$$refs = new _taroWeapp2.default.RefsArray();
     }
   }, {
     key: "_createData",
     value: function _createData() {
-      var _this2 = this;
-
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var _props = this.__props,
-          images = _props.images,
-          userUploadImg = _props.userUploadImg,
-          max = _props.max;
 
-      this.anonymousFunc1 = function () {
-        return userUploadImg && userUploadImg(-1);
-      };
-      var loopArray18 = images ? images.map(function (item, index) {
-        item = {
-          $original: (0, _taroWeapp.internal_get_original)(item)
-        };
-        var _$indexKey = "gzzzz" + index;
-        _this2.anonymousFunc0Map[_$indexKey] = function () {
-          return userUploadImg && userUploadImg(index);
-        };
-        return {
-          _$indexKey: _$indexKey,
-          $original: item.$original
-        };
-      }) : [];
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__25"),
+          _genCompid2 = _slicedToArray(_genCompid, 2),
+          $prevCompid__25 = _genCompid2[0],
+          $compid__25 = _genCompid2[1];
+
+      var data = this.__props.data;
+
+      _taroWeapp.propsManager.set({
+        "data": data
+      }, $compid__25, $prevCompid__25);
       Object.assign(this.__state, {
-        loopArray18: loopArray18,
-        images: images,
-        max: max
+        $compid__25: $compid__25,
+        IMGCDNURL: _index.IMGCDNURL
       });
       return this.__state;
     }
-  }, {
-    key: "anonymousFunc0",
-    value: function anonymousFunc0(_$indexKey) {
-      var _anonymousFunc0Map;
-
-      ;
-
-      for (var _len = arguments.length, e = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-        e[_key - 1] = arguments[_key];
-      }
-
-      return this.anonymousFunc0Map[_$indexKey] && (_anonymousFunc0Map = this.anonymousFunc0Map)[_$indexKey].apply(_anonymousFunc0Map, e);
-    }
-  }, {
-    key: "anonymousFunc1",
-    value: function anonymousFunc1(e) {
-      ;
-    }
   }]);
 
-  return ImageView;
+  return MapComponent;
 }(_taroWeapp2.default.Component);
 
-ImageView.$$events = ["anonymousFunc0", "anonymousFunc1"];
-ImageView.$$componentPath = "components/imageview/index";
-exports.default = ImageView;
+MapComponent.$$events = [];
+MapComponent.$$componentPath = "pages/map/index/index";
+exports.default = MapComponent;
 
-Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(ImageView));
+Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(MapComponent));
 
 /***/ })
 
-},[["./src/components/imageview/index.tsx","runtime","taro","vendors"]]]);
+},[["./src/pages/map/index/index.tsx","runtime","taro","vendors","common"]]]);

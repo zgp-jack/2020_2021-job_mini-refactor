@@ -177,7 +177,7 @@ var PublishRecruit = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (PublishRecruit.__proto__ || Object.getPrototypeOf(PublishRecruit)).apply(this, arguments));
 
-    _this.$usedState = ["model", "$compid__30", "$compid__31", "$compid__32", "showProfession", "showUpload"];
+    _this.$usedState = ["model", "$compid__18", "$compid__19", "$compid__20", "showProfession", "showUpload"];
     _this.customComponents = ["Profession", "WordsTotal", "ImageView"];
     return _this;
   }
@@ -197,20 +197,20 @@ var PublishRecruit = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__30"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__18"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__30 = _genCompid2[0],
-          $compid__30 = _genCompid2[1];
+          $prevCompid__18 = _genCompid2[0],
+          $compid__18 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__31"),
+      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__19"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__31 = _genCompid4[0],
-          $compid__31 = _genCompid4[1];
+          $prevCompid__19 = _genCompid4[0],
+          $compid__19 = _genCompid4[1];
 
-      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__32"),
+      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__20"),
           _genCompid6 = _slicedToArray(_genCompid5, 2),
-          $prevCompid__32 = _genCompid6[0],
-          $compid__32 = _genCompid6[1];
+          $prevCompid__20 = _genCompid6[0],
+          $compid__20 = _genCompid6[1];
       // 获取路由参数
 
 
@@ -320,20 +320,20 @@ var PublishRecruit = function (_Taro$Component) {
         "data": model && model.classifyTree,
         "onClickItem": this.anonymousFunc0,
         "num": 3
-      }, $compid__30, $prevCompid__30);
+      }, $compid__18, $prevCompid__18);
       _taroWeapp.propsManager.set({
         "num": 0
-      }, $compid__31, $prevCompid__31);
+      }, $compid__19, $prevCompid__19);
       showUpload && model && _taroWeapp.propsManager.set({
         "images": model.view_images,
         "max": model.maxImageCount,
         "userUploadImg": userUploadImg
-      }, $compid__32, $prevCompid__32);
+      }, $compid__20, $prevCompid__20);
       Object.assign(this.__state, {
         model: model,
-        $compid__30: $compid__30,
-        $compid__31: $compid__31,
-        $compid__32: $compid__32,
+        $compid__18: $compid__18,
+        $compid__19: $compid__19,
+        $compid__20: $compid__20,
         showProfession: showProfession,
         showUpload: showUpload
       });

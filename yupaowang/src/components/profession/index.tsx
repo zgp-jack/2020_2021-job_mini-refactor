@@ -27,7 +27,7 @@ export default function Profession({ data, title = '选择工种', footerTitle =
                 <View className='profession-list-content'>
                   {item.children.map((d,k)=>(
                     <View className='prosession-item overwords' onClick={() => onClickItem(i,k,d.id)}>
-                      {d.name}
+                      { d.name }
                       <Text className={classnames({
                         'at-icon': true,
                         'at-icon-check': true,

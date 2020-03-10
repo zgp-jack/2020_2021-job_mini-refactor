@@ -1,0 +1,26 @@
+<block wx:if="{{$taroCompReady}}">
+    <block>
+        <view class="mapinfo-header">
+            <view class="mapinfo-header-area">四川</view>
+            <view class="mapinfo-header-inputbox">
+                <input class="mapinfo-header-input" placeholder="请输入您的详细地址" /><text class="at-icon at-icon-close mapinfo-header-clear"></text>
+            </view><text class="mapinfo-header-close">取消</text>
+        </view>
+        <view class="mapinfo-container">
+            <view class="location-lists">
+                <view class="location-list-item">
+                    <view class="location-list-header overwords">北京市天安门广场<text>3.2km</text>
+                    </view>
+                    <view class="location-list-content">这里有很多很多的介绍文字</view>
+                </view>
+            </view>
+            <view class="location-nodata">
+                <image class="location-nodata-img" src="{{IMGCDNURL + 'nodata.png'}}"></image>
+                <view class="location-nodata-text">暂无数据</view>
+            </view>
+        </view>
+        <view class="mapinfo-citys">
+            <cities compid="{{$compid__25}}"></cities>
+        </view>
+    </block>
+</block>

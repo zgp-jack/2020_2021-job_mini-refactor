@@ -82,6 +82,8 @@ var TOKEN = exports.TOKEN = 'jizhao';
 var AUTHPATH = exports.AUTHPATH = '/pages/userauth/index';
 // * page-title-global
 var PAGETITLE = exports.PAGETITLE = '鱼泡网-';
+// * 最大缓存历史城市数量
+var MAXCACHECITYNUM = exports.MAXCACHECITYNUM = 3;
 
 /***/ }),
 
@@ -101,6 +103,10 @@ Object.defineProperty(exports, "__esModule", {
 // * 本文件为小程序内部缓存声明文件
 // 用户信息
 var UserInfo = exports.UserInfo = 'userInfo';
+// 城市数据
+var Areas = exports.Areas = 'areaData';
+// 历史选择城市
+var HistoryCities = exports.HistoryCities = 'historyCities';
 
 /***/ }),
 
@@ -189,7 +195,7 @@ exports.default = SUCCESS;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.GetPublisRecruitView = exports.GetIntegralList = exports.GetTabbarMsg = exports.GetListFilterData = exports.GetWechatNotice = exports.GetFleamarketlist = exports.GetResumelist = exports.GetRecruitlist = exports.GetAllListItem = exports.GetBannerNotice = exports.GetUserInfo = exports.GetUserSessionKey = undefined;
+exports.GetAllAreas = exports.GetPublisRecruitView = exports.GetIntegralList = exports.GetTabbarMsg = exports.GetListFilterData = exports.GetWechatNotice = exports.GetFleamarketlist = exports.GetResumelist = exports.GetRecruitlist = exports.GetAllListItem = exports.GetBannerNotice = exports.GetUserInfo = exports.GetUserSessionKey = undefined;
 
 var _index = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
 
@@ -217,6 +223,8 @@ var GetTabbarMsg = exports.GetTabbarMsg = _index.REQUESTURL + 'member/original-m
 var GetIntegralList = exports.GetIntegralList = _index.REQUESTURL + 'integral/integral-record/';
 // 初始化发布招工视图
 var GetPublisRecruitView = exports.GetPublisRecruitView = _index.REQUESTURL + 'publish/new-job/';
+// 获取城市数据
+var GetAllAreas = exports.GetAllAreas = _index.REQUESTURL + 'index/index-area/';
 
 /***/ }),
 
@@ -309,6 +317,9 @@ exports.getListFilterData = getListFilterData;
 exports.getTabbarMsg = getTabbarMsg;
 exports.getIntegralList = getIntegralList;
 exports.getPublishRecruitView = getPublishRecruitView;
+exports.getAllAreas = getAllAreas;
+exports.getHotAreas = getHotAreas;
+exports.checkAdcodeValid = checkAdcodeValid;
 
 var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
@@ -490,6 +501,19 @@ function getPublishRecruitView(data) {
     method: 'POST'
   });
 }
+// 获取城市数据
+function getAllAreas() {
+  var loading = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+
+  return doRequestAction({
+    url: api.GetAllAreas,
+    loading: loading
+  });
+}
+// 获取热门城市
+function getHotAreas() {}
+// 检验adcode是否有效
+function checkAdcodeValid(adcode) {}
 
 /***/ })
 

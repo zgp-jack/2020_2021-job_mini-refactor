@@ -1200,7 +1200,7 @@ var _App = function (_BaseComponent) {
     var _this = _possibleConstructorReturn(this, (_App.__proto__ || Object.getPrototypeOf(_App)).apply(this, arguments));
 
     _this.config = {
-      pages: ['pages/index/index', 'pages/used/lists/index', 'pages/integral/source/index', 'pages/integral/temp/index', 'pages/integral/official/index', 'pages/integral/expend/index', 'pages/userauth/index', 'pages/recruit/publish/index'],
+      pages: ['pages/index/index', 'pages/used/lists/index', 'pages/integral/source/index', 'pages/integral/temp/index', 'pages/integral/official/index', 'pages/integral/expend/index', 'pages/userauth/index', 'pages/recruit/publish/index', 'pages/map/recruit/index'],
       window: {
         backgroundTextStyle: 'light',
         navigationBarBackgroundColor: '#0099ff',

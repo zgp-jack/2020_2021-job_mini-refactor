@@ -1,9 +1,9 @@
-(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["components/imageview/index"],{
+(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["components/citys/index"],{
 
-/***/ "./src/components/imageview/index.scss":
-/*!*********************************************!*\
-  !*** ./src/components/imageview/index.scss ***!
-  \*********************************************/
+/***/ "./src/components/citys/index.scss":
+/*!*****************************************!*\
+  !*** ./src/components/citys/index.scss ***!
+  \*****************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -11,10 +11,10 @@
 
 /***/ }),
 
-/***/ "./src/components/imageview/index.tsx":
-/*!********************************************!*\
-  !*** ./src/components/imageview/index.tsx ***!
-  \********************************************/
+/***/ "./src/components/citys/index.tsx":
+/*!****************************************!*\
+  !*** ./src/components/citys/index.tsx ***!
+  \****************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -33,7 +33,9 @@ var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@
 
 var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
 
-__webpack_require__(/*! ./index.scss */ "./src/components/imageview/index.scss");
+__webpack_require__(/*! ./index.scss */ "./src/components/citys/index.scss");
+
+var _index = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -43,93 +45,78 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var ImageView = function (_Taro$Component) {
-  _inherits(ImageView, _Taro$Component);
+var Cities = function (_Taro$Component) {
+  _inherits(Cities, _Taro$Component);
 
-  function ImageView() {
-    _classCallCheck(this, ImageView);
+  function Cities() {
+    _classCallCheck(this, Cities);
 
-    var _this = _possibleConstructorReturn(this, (ImageView.__proto__ || Object.getPrototypeOf(ImageView)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (Cities.__proto__ || Object.getPrototypeOf(Cities)).apply(this, arguments));
 
-    _this.$usedState = ["loopArray18", "images", "max", "userUploadImg"];
-    _this.anonymousFunc0Map = {};
+    _this.$usedState = ["loopArray19", "IMGCDNURL", "data", "hot"];
     _this.customComponents = [];
     return _this;
   }
 
-  _createClass(ImageView, [{
+  _createClass(Cities, [{
     key: "_constructor",
     value: function _constructor(props) {
-      _get(ImageView.prototype.__proto__ || Object.getPrototypeOf(ImageView.prototype), "_constructor", this).call(this, props);
+      _get(Cities.prototype.__proto__ || Object.getPrototypeOf(Cities.prototype), "_constructor", this).call(this, props);
       this.$$refs = new _taroWeapp2.default.RefsArray();
     }
   }, {
     key: "_createData",
     value: function _createData() {
-      var _this2 = this;
-
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
       var _props = this.__props,
-          images = _props.images,
-          userUploadImg = _props.userUploadImg,
-          max = _props.max;
+          _props$data = _props.data,
+          data = _props$data === undefined ? [] : _props$data,
+          _props$hot = _props.hot,
+          hot = _props$hot === undefined ? false : _props$hot;
 
-      this.anonymousFunc1 = function () {
-        return userUploadImg && userUploadImg(-1);
-      };
-      var loopArray18 = images ? images.map(function (item, index) {
+      var loopArray19 = data.map(function (item, index) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
-        var _$indexKey = "gzzzz" + index;
-        _this2.anonymousFunc0Map[_$indexKey] = function () {
-          return userUploadImg && userUploadImg(index);
-        };
+        var $loopState__temp2 = index + item.$original[0].id;
+        var $anonymousCallee__6 = item.$original.map(function (d, key) {
+          d = {
+            $original: (0, _taroWeapp.internal_get_original)(d)
+          };
+          var $loopState__temp4 = key + d.$original.id;
+          return {
+            $loopState__temp4: $loopState__temp4,
+            $original: d.$original
+          };
+        });
         return {
-          _$indexKey: _$indexKey,
+          $loopState__temp2: $loopState__temp2,
+          $anonymousCallee__6: $anonymousCallee__6,
           $original: item.$original
         };
-      }) : [];
+      });
       Object.assign(this.__state, {
-        loopArray18: loopArray18,
-        images: images,
-        max: max
+        loopArray19: loopArray19,
+        IMGCDNURL: _index.IMGCDNURL,
+        data: data
       });
       return this.__state;
     }
-  }, {
-    key: "anonymousFunc0",
-    value: function anonymousFunc0(_$indexKey) {
-      var _anonymousFunc0Map;
-
-      ;
-
-      for (var _len = arguments.length, e = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-        e[_key - 1] = arguments[_key];
-      }
-
-      return this.anonymousFunc0Map[_$indexKey] && (_anonymousFunc0Map = this.anonymousFunc0Map)[_$indexKey].apply(_anonymousFunc0Map, e);
-    }
-  }, {
-    key: "anonymousFunc1",
-    value: function anonymousFunc1(e) {
-      ;
-    }
   }]);
 
-  return ImageView;
+  return Cities;
 }(_taroWeapp2.default.Component);
 
-ImageView.$$events = ["anonymousFunc0", "anonymousFunc1"];
-ImageView.$$componentPath = "components/imageview/index";
-exports.default = ImageView;
+Cities.$$events = [];
+Cities.$$componentPath = "components/citys/index";
+exports.default = Cities;
 
-Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(ImageView));
+Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(Cities));
 
 /***/ })
 
-},[["./src/components/imageview/index.tsx","runtime","taro","vendors"]]]);
+},[["./src/components/citys/index.tsx","runtime","taro","vendors","common"]]]);

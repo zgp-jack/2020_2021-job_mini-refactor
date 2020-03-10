@@ -1,0 +1,131 @@
+@import '../../app.scss';
+
+.citiesbox{
+  position: relative;
+  width: 100%;
+  .city-header{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    line-height: 100px;
+    background: $color;
+    color: white;
+    font-size: 28px;
+    text-align: center;
+    letter-spacing: 4px;
+    z-index: 10;
+    padding: 0 20px;
+    padding-right: 120px;
+    .city-header-input{
+      position: relative;
+      input{
+        position: relative;
+        width: 100%;
+        left: 0;
+        top: 15px;
+        height: 70px;
+        line-height: 70px;
+        background: white;
+        border-radius: 5px;
+        font-size: 28px;
+        text-align: left;
+        padding: 0 20px;
+        box-sizing: border-box;
+        padding-right: 80px;
+        color: #333;
+      }
+      .city-header-clear{
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        right: 20px;
+        top: 27px;
+        z-index: 5;
+      }
+    }
+    .city-header-close{
+      position: absolute;
+      height: 100px;
+      right: 27px;
+      top: 0;
+      line-height: 100px;
+      font-size: 28px;
+      color: white;
+    }
+  }
+  .city-area-tips{
+    position: absolute;
+    top: 100px;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background: white;
+    padding: 0 20px;
+    font-size: 28px;
+    color: #333;
+    line-height: 100px;
+    letter-spacing: 2px;
+    font-weight: 800;
+    @include shadow();
+  }
+  .city-area-container{
+    position: relative;
+    width: 100%;
+    padding: 0 20px;
+    padding-top: 200px;
+    .city-area-item{
+      position: relative;
+      width: 100%;
+      .city-area-title{
+        position: relative;
+        width: 100%;
+        height: 80px;
+        line-height: 80px;
+        font-size: 28px;
+      }
+      .city-area-content{
+        position: relative;
+        .city-item{
+          position: relative;
+          width: 33.33333%;
+          float: left;
+          padding: 10px;
+          margin-bottom: 10px;
+          .city-item-text{
+            display: block;
+            width: 100%;
+            background: white;
+            color: #333;
+            text-align: center;
+            padding: 0 10px;
+            border-radius: 5px;
+            line-height: 80px;
+            font-size: 28px;
+          }
+        }
+        .city-item-posi{
+          display: block;
+          width: 100%;
+          background: white;
+          color: #333;
+          text-align: center;
+          padding: 0 10px;
+          border-radius: 5px;
+          line-height: 80px;
+          font-size: 28px;
+          .city-item-img{
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            margin-right: 5px;
+            vertical-align: middle;
+            margin-top: -3px;
+          }
+        }
+      }
+    }
+
+  }
+}

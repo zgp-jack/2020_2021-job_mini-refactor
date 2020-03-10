@@ -18,6 +18,7 @@ class App extends Component {
       'pages/integral/expend/index', //积分消耗记录
       'pages/userauth/index', //用户授权
       'pages/recruit/publish/index', //发布招工信息
+      'pages/map/recruit/index', //发布招工地图
     ],
     window: {
       backgroundTextStyle: 'light',

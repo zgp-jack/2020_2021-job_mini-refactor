@@ -1,7 +1,7 @@
 <block wx:if="{{$taroCompReady}}">
     <view class="uploads-imgs-lists clearfix">
         <block wx:if="{{images}}">
-            <view class="uploads-img-item" bindtap="anonymousFunc0" wx:for="{{loopArray20}}" wx:for-item="item" wx:for-index="index" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">
+            <view class="uploads-img-item" bindtap="anonymousFunc0" wx:for="{{loopArray18}}" wx:for-item="item" wx:for-index="index" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">
                 <view class="uploads-img-imgbox">
                     <image class="uploads-item-img" src="{{item.$original.httpurl}}"></image>
                 </view>

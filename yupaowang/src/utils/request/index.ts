@@ -210,3 +210,21 @@ export function getPublishRecruitView(data: InitRecruitView): Promise<any>{
     method: 'POST'
   })
 }
+
+// 获取城市数据
+export function getAllAreas(loading: boolean = true): Promise<Inter.AllAreasDataItem[][]>{
+  return doRequestAction({
+    url: api.GetAllAreas,
+    loading: loading
+  })
+}
+
+// 获取热门城市
+export function getHotAreas(){
+
+}
+
+// 检验adcode是否有效
+export function checkAdcodeValid(adcode: string){
+  
+}

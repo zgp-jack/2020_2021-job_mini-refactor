@@ -1,0 +1,5 @@
+<block wx:if="{{$taroCompReady}}">
+    <view>
+        <map-component compid="{{$compid__22}}"></map-component>
+    </view>
+</block>

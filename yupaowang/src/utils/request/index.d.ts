@@ -180,3 +180,11 @@ export interface IntegralSourceItem {
   source_title: string,
   year_month: string
 }
+
+// 获取全部城市数据
+export interface AllAreasDataItem {
+  id: string,
+  pid: string,
+  city: string,
+  ad_name: string
+}
