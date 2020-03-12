@@ -2,7 +2,7 @@
     <view class="citiesbox">
         <view class="city-header">
             <view class="city-header-input">
-                <input placeholder="请输入城市名" />
+                <input placeholder="请输入城市名" bindinput="anonymousFunc0" />
                 <image class="city-header-clear" src="{{IMGCDNURL + 'clear-input.png'}}"></image>
             </view><text class="city-header-close">取消</text>
         </view>
@@ -17,13 +17,18 @@
                     </view>
                 </view>
             </view>
-            <view class="city-area-item" wx:key="$loopState__temp2" wx:for="{{loopArray19}}" wx:for-item="item" wx:for-index="index">
+            <view class="city-area-item" wx:key="$loopState__temp2" wx:for="{{loopArray21}}" wx:for-item="item" wx:for-index="index">
                 <view class="city-area-title">{{item.$original[0].city}}</view>
                 <view class="city-area-content clearfix">
-                    <view class="city-item" wx:key="$loopState__temp4" wx:for="{{item.$anonymousCallee__6}}" wx:for-item="d" wx:for-index="key"><text class="city-item-text overwords">{{d.$original.city}}</text>
+                    <view class="city-item" wx:key="$loopState__temp4" bindtap="anonymousFunc1" wx:for="{{item.$anonymousCallee__7}}" wx:for-item="d" wx:for-index="key" data-e-tap-so="this" data-e-tap-a-a="{{d._$indexKey}}"><text class="city-item-text overwords">{{d.$original.city}}</text>
                     </view>
                 </view>
             </view>
         </view>
+        <block wx:if="{{showInputCityList}}">
+            <view class="inputlist">
+                <view class="input-list-item" bindtap="anonymousFunc2" wx:key="id" wx:for="{{loopArray22}}" wx:for-item="item" wx:for-index="__index2" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey2}}">{{item.$original.city_name}}</view>
+            </view>
+        </block>
     </view>
 </block>

@@ -186,5 +186,9 @@ export interface AllAreasDataItem {
   id: string,
   pid: string,
   city: string,
-  ad_name: string
+  ad_name: string,
+}
+
+export interface AllAreasInputDataItem extends AllAreasDataItem {
+  city_name: string
 }

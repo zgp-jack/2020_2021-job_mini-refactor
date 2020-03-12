@@ -1,10 +1,10 @@
 <block wx:if="{{$taroCompReady}}">
     <block>
         <view class="mapinfo-header">
-            <view class="mapinfo-header-area">四川</view>
+            <view class="mapinfo-header-area" bindtap="anonymousFunc0">四川</view>
             <view class="mapinfo-header-inputbox">
                 <input class="mapinfo-header-input" placeholder="请输入您的详细地址" /><text class="at-icon at-icon-close mapinfo-header-clear"></text>
-            </view><text class="mapinfo-header-close">取消</text>
+            </view><text class="mapinfo-header-close" bindtap="anonymousFunc1">取消</text>
         </view>
         <view class="mapinfo-container">
             <view class="location-lists">
@@ -19,8 +19,10 @@
                 <view class="location-nodata-text">暂无数据</view>
             </view>
         </view>
-        <view class="mapinfo-citys">
-            <cities compid="{{$compid__25}}"></cities>
-        </view>
+        <block wx:if="{{showCityList}}">
+            <view class="mapinfo-citys">
+                <cities compid="{{$compid__23}}"></cities>
+            </view>
+        </block>
     </block>
 </block>

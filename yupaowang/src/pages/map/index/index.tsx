@@ -6,19 +6,22 @@ import { IPROPS } from '../../../components/citys'
 import './index.scss'
 
 interface PROPS extends IPROPS{
-  
+  showCityList: boolean,
+  showCityListInfo: (b:boolean)=> void
 }
 
-export default function MapComponent({ data }: PROPS){
+
+export default function MapComponent({ data, showCityList = false, showCityListInfo }: PROPS){
+
   return (
     <Block>
       <View className='mapinfo-header'>
-        <View className='mapinfo-header-area'>四川</View>
+        <View className='mapinfo-header-area' onClick={()=>showCityListInfo(true)}>四川</View>
         <View className='mapinfo-header-inputbox'>
           <Input className='mapinfo-header-input' placeholder='请输入您的详细地址' />
           <Text className='at-icon at-icon-close mapinfo-header-clear'></Text>
         </View>
-        <Text className='mapinfo-header-close'>取消</Text>
+        <Text className='mapinfo-header-close' onClick={() => showCityListInfo(false)}>取消</Text>
       </View>
       <View className='mapinfo-container'>
         <View className='location-lists'>
@@ -35,9 +38,13 @@ export default function MapComponent({ data }: PROPS){
           <View className='location-nodata-text'>暂无数据</View> 
         </View>
       </View>
+      
+      {/* 展示城市数据 */}
+      {showCityList&&
       <View className='mapinfo-citys'>
         <Cities data={ data } />
       </View>
+      }
     </Block>
   )
 }

@@ -55,7 +55,7 @@ var MapComponent = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (MapComponent.__proto__ || Object.getPrototypeOf(MapComponent)).apply(this, arguments));
 
-    _this.$usedState = ["$compid__25", "IMGCDNURL", "data"];
+    _this.$usedState = ["$compid__23", "IMGCDNURL", "showCityList", "data", "showCityListInfo"];
     _this.customComponents = ["Cities"];
     return _this;
   }
@@ -75,28 +75,49 @@ var MapComponent = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__25"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__23"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__25 = _genCompid2[0],
-          $compid__25 = _genCompid2[1];
+          $prevCompid__23 = _genCompid2[0],
+          $compid__23 = _genCompid2[1];
 
-      var data = this.__props.data;
+      var _props = this.__props,
+          data = _props.data,
+          _props$showCityList = _props.showCityList,
+          showCityList = _props$showCityList === undefined ? false : _props$showCityList,
+          showCityListInfo = _props.showCityListInfo;
 
-      _taroWeapp.propsManager.set({
+      this.anonymousFunc0 = function () {
+        return showCityListInfo(true);
+      };
+      this.anonymousFunc1 = function () {
+        return showCityListInfo(false);
+      };
+      showCityList && _taroWeapp.propsManager.set({
         "data": data
-      }, $compid__25, $prevCompid__25);
+      }, $compid__23, $prevCompid__23);
       Object.assign(this.__state, {
-        $compid__25: $compid__25,
-        IMGCDNURL: _index.IMGCDNURL
+        $compid__23: $compid__23,
+        IMGCDNURL: _index.IMGCDNURL,
+        showCityList: showCityList
       });
       return this.__state;
+    }
+  }, {
+    key: "anonymousFunc0",
+    value: function anonymousFunc0(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc1",
+    value: function anonymousFunc1(e) {
+      ;
     }
   }]);
 
   return MapComponent;
 }(_taroWeapp2.default.Component);
 
-MapComponent.$$events = [];
+MapComponent.$$events = ["anonymousFunc0", "anonymousFunc1"];
 MapComponent.$$componentPath = "pages/map/index/index";
 exports.default = MapComponent;
 

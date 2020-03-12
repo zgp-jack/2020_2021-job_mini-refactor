@@ -9,6 +9,15 @@ export default function RecruitMap(){
 
   // 城市数据
   const [areas, setAreas] = useState<AllAreasDataItem[][]>([])
+  //是否显示input城市列表
+  const [showInputCityList, setShowInputCityList] = useState<boolean>(false)
+  // 是否显示城市数据
+  const [showCityList, setShowCityList] = useState<boolean>(false)
+
+  const showCityListInfo = (b: boolean)=> {
+    console.log(b)
+    setShowCityList(b)
+  }
 
   // 获取成熟数据
   useEffect(()=>{
@@ -23,7 +32,12 @@ export default function RecruitMap(){
 
   return (
     <View>
-      <MapComponent data={ areas } />
+      <MapComponent 
+        data={ areas } 
+        showInputCityList={ showInputCityList }
+        showCityList={ showCityList }
+        showCityListInfo={ showCityListInfo } 
+      />
     </View>
   )
 }

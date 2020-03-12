@@ -1,5 +1,5 @@
 <block wx:if="{{$taroCompReady}}">
     <view>
-        <map-component compid="{{$compid__22}}"></map-component>
+        <map-component compid="{{$compid__25}}"></map-component>
     </view>
 </block>

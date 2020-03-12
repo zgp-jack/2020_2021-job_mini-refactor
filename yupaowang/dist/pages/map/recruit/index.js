@@ -44,7 +44,7 @@ var RecruitMap = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (RecruitMap.__proto__ || Object.getPrototypeOf(RecruitMap)).apply(this, arguments));
 
-    _this.$usedState = ["$compid__22"];
+    _this.$usedState = ["$compid__25"];
     _this.customComponents = ["MapComponent"];
     return _this;
   }
@@ -64,10 +64,10 @@ var RecruitMap = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__22"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__25"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__22 = _genCompid2[0],
-          $compid__22 = _genCompid2[1];
+          $prevCompid__25 = _genCompid2[0],
+          $compid__25 = _genCompid2[1];
       // 城市数据
 
 
@@ -75,9 +75,26 @@ var RecruitMap = function (_Taro$Component) {
           _useState2 = _slicedToArray(_useState, 2),
           areas = _useState2[0],
           setAreas = _useState2[1];
+      //是否显示input城市列表
+
+
+      var _useState3 = (0, _taroWeapp.useState)(false),
+          _useState4 = _slicedToArray(_useState3, 2),
+          showInputCityList = _useState4[0],
+          setShowInputCityList = _useState4[1];
+      // 是否显示城市数据
+
+
+      var _useState5 = (0, _taroWeapp.useState)(false),
+          _useState6 = _slicedToArray(_useState5, 2),
+          showCityList = _useState6[0],
+          setShowCityList = _useState6[1];
+
+      var showCityListInfo = function showCityListInfo(b) {
+        console.log(b);
+        setShowCityList(b);
+      };
       // 获取成熟数据
-
-
       (0, _taroWeapp.useEffect)(function () {
         var areas = _taroWeapp2.default.getStorageSync(_store.Areas);
         if (areas) {
@@ -89,10 +106,13 @@ var RecruitMap = function (_Taro$Component) {
         });
       }, []);
       _taroWeapp.propsManager.set({
-        "data": areas
-      }, $compid__22, $prevCompid__22);
+        "data": areas,
+        "showInputCityList": showInputCityList,
+        "showCityList": showCityList,
+        "showCityListInfo": showCityListInfo
+      }, $compid__25, $prevCompid__25);
       Object.assign(this.__state, {
-        $compid__22: $compid__22
+        $compid__25: $compid__25
       });
       return this.__state;
     }
