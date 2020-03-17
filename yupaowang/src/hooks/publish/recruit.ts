@@ -36,7 +36,7 @@ export default function usePublishViewInfo(InitParams: InitRecruitView){
         title: res.model.title || '',
         address: res.model.address || '',
         detail: res.model.detail || '',
-        infoId: res.model.id,
+        infoId: res.model.id || InitParams.infoId,
         type: res.type,
         user_mobile: res.model.user_mobile || res.memberInfo.tel || '',
         code: '',
@@ -78,7 +78,7 @@ export default function usePublishViewInfo(InitParams: InitRecruitView){
         title: data.model.address,
         location: data.model.location,
         info: '',
-        adcode: ''
+        adcode: data.model.adcode || ''
       })
     }else{
       let userLastPublishArea: UserLastPublishRecruitArea = Taro.getStorageSync(UserLastPublishArea)

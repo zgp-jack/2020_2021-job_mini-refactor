@@ -12,3 +12,5 @@ export const UserLocationCity: string = 'userLocationCity'
 export const UserListChooseCity: string = 'userListChooseCity'
 // 最后发布招工地点
 export const UserLastPublishArea: string = 'userLastPublishArea'
+// 用户发布 选择地址 历史记录
+export const UserPublishAreaHistory: string = 'userPublishAreaHistory'

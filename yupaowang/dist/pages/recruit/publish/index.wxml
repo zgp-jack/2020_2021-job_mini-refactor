@@ -28,7 +28,7 @@
                             </block>
                         </view>
                         <view class="publish-list-item" bindtap="anonymousFunc3"><text class="pulish-list-title">详细地址</text>
-                            <input class="publish-list-input" type="text" disabled="{{true}}" placeholder="请输入详细地址" />
+                            <input class="publish-list-input" type="text" disabled="{{true}}" placeholder="请输入详细地址" value="{{model && model.address}}" />
                         </view>
                         <view class="publish-list-item"><text class="pulish-list-title">联系人</text>
                             <input class="publish-list-input" type="text" placeholder="请输入联系人" value="{{model && model.user_name}}" bindinput="anonymousFunc4" />
@@ -37,12 +37,12 @@
                             <input class="publish-list-input" type="text" placeholder="请输入联系电话" value="{{model && model.user_mobile}}" bindinput="anonymousFunc5" />
                         </view>
                         <view class="publish-list-textarea"><text class="publish-textarea-title">招工详情</text>
-                            <textarea class="publish-textarea" value="{{model ? model.detail : ''}}" placeholder="请输入招工详情" bindinput="anonymousFunc6"></textarea>
+                            <textarea class="publish-textarea" value="{{model && model.detail || ''}}" focus="{{textFocus}}" bindtap="anonymousFunc6" bindfocus="anonymousFunc7" placeholder="请输入招工详情" bindinput="anonymousFunc8"></textarea>
                             <words-total compid="{{$compid__19}}"></words-total>
                         </view>
                     </view>
                     <view class="publish-recruit-card">
-                        <view class="publish-upload-header" bindtap="anonymousFunc7">
+                        <view class="publish-upload-header" bindtap="anonymousFunc9">
                             <view class="publish-upload-title">
                                 <view class="publish-upload-red"><text>上传图片</text>
                                     <view class="publish-upload-wbg"><text class="publish-upload-ibg"></text>
@@ -55,7 +55,7 @@
                             <image-view compid="{{$compid__20}}"></image-view>
                         </block>
                     </view>
-                    <view class="publish-recruit-btn" bindtap="anonymousFunc8">确认发布</view>
+                    <view class="publish-recruit-btn" bindtap="anonymousFunc10">确认发布</view>
                 </form>
             </view>
         </block>

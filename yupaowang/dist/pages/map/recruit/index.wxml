@@ -1,5 +1,5 @@
 <block wx:if="{{$taroCompReady}}">
-    <view>
-        <map-component compid="{{$compid__24}}"></map-component>
+    <view class="publishrecruit-container">
+        <map-component compid="{{$compid__21}}"></map-component>
     </view>
 </block>

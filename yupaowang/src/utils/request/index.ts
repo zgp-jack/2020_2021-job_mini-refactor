@@ -225,6 +225,12 @@ export function getHotAreas(){
 }
 
 // 检验adcode是否有效
-export function checkAdcodeValid(adcode: string){
-  
+export function checkAdcodeValid(adcode: string): Promise<Inter.CheckAdcodeValid>{
+  return doRequestAction({
+    url: api.CheckAdcodeValid,
+    method: 'POST',
+    data: {
+      adcode: adcode
+    }
+  })
 }

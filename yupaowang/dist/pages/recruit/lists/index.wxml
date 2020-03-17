@@ -9,6 +9,6 @@
             <wechat-notice></wechat-notice>
             <recruit-list compid="{{$compid__8}}"></recruit-list>
         </scroll-view>
-        <view class="publish-list-btn">发布招工</view>
+        <view class="publish-list-btn" bindtap="anonymousFunc2">发布招工</view>
     </view>
 </block>

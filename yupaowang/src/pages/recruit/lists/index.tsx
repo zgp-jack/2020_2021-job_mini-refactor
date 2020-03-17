@@ -113,6 +113,11 @@ export default function Recruit(){
     setSearchData({ ...searchData, page: 1 })
   }
 
+  // * 发布招工
+  const userPublishRecruit = ()=> {
+    Taro.navigateTo({url: '/pages/recruit/publish/index'})
+  }
+
   return (
     <View className='recruit-container'>
       <View className='recruit-fiexd-header'>
@@ -132,7 +137,7 @@ export default function Recruit(){
         <WechatNotice />
         <RecruitList data={lists} />
       </ScrollView>
-      <View className='publish-list-btn'>发布招工</View>
+      <View className='publish-list-btn' onClick={() => userPublishRecruit()}>发布招工</View>
     </View>
   )
 }
