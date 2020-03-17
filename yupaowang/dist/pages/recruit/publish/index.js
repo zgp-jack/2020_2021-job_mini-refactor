@@ -1,1 +1,0 @@
-(wx.webpackJsonp=wx.webpackJsonp||[]).push([[36],[],[[48,0,1,2,3]]]);

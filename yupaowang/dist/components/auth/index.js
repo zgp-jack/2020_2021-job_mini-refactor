@@ -1,1 +1,239 @@
-(wx.webpackJsonp=wx.webpackJsonp||[]).push([[5],{"102":function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{"value":!0});var o=function(e,t,n){return t&&defineProperties(e.prototype,t),n&&defineProperties(e,n),e};function defineProperties(e,t){for(var n=0;n<t.length;n++){var o=t[n];o.enumerable=o.enumerable||!1,o.configurable=!0,"value"in o&&(o.writable=!0),Object.defineProperty(e,o.key,o)}}var i=function _interopRequireDefault(e){return e&&e.__esModule?e:{"default":e}}(n(0)),a=n(1),f=n(2),p=n(8),l=n(6),y=n(103),d=n(3);n(104);var u=(function _inherits(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{"constructor":{"value":e,"enumerable":!1,"writable":!0,"configurable":!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}(Auth,i.default.Component),o(Auth,[{"key":"_constructor","value":function _constructor(e){(function get(e,t,n){null===e&&(e=Function.prototype);var o=Object.getOwnPropertyDescriptor(e,t);if(void 0===o){var u=Object.getPrototypeOf(e);return null===u?void 0:get(u,t,n)}if("value"in o)return o.value;var s=o.get;return void 0!==s?s.call(n):void 0})(Auth.prototype.__proto__||Object.getPrototypeOf(Auth.prototype),"_constructor",this).call(this,e),this.$$refs=new i.default.RefsArray}},{"key":"_createData","value":function _createData(e,t,n){function Q(){i.default.navigateBack({"delta":1})}this.__state=e||this.state||{},this.__props=t||this.props||{},this.$prefix;var o=this.__props.page,u=void 0===o||o,s=(0,l.useDispatch)(),r=function decodeSessionKey(t){i.default.getSetting({"success":function success(e){e.authSetting["scope.scope.userInfo"]?c(t):i.default.getUserInfo({"success":function success(){c(t)},"fail":function fail(){i.default.openSetting()}})}})},c=function doAuthRequest(u){i.default.getUserInfo({"success":function success(e){var t=e.encryptedData,n=e.iv,o={"session_key":u,"encryptedData":t,"iv":n,"refId":0,"source":""};(0,f.GetUserInfo)(o).then(function(e){if("ok"===e.errcode){var t={"userId":e.data.id,"token":e.data.sign.token,"tokenTime":e.data.sign.time,"uuid":e.data.uuid,"login":!0};i.default.setStorageSync(d.UserInfo,t),s((0,y.setUserInfo)(t)),Q()}else(0,p.errMsg)(e.errmsg)})}})};return this.anonymousFunc0=function(){return function userAuthAction(){i.default.login({"success":function success(e){e.code?(0,f.getUserSessionKey)(e.code).then(function(e){var t=e.session_key;r(t)}):((0,p.errMsg)("授权失败，客服电话"+a.SERVERPHONE),console.log("session_key-error"))}})}()},this.anonymousFunc1=function(){return Q()},this.anonymousFunc2=function(){},Object.assign(this.__state,{"IMGCDNURL":a.IMGCDNURL,"page":u}),this.__state}},{"key":"anonymousFunc0","value":function anonymousFunc0(){}},{"key":"anonymousFunc1","value":function anonymousFunc1(){}},{"key":"anonymousFunc2","value":function anonymousFunc2(){}}]),Auth);function Auth(){!function _classCallCheck(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,Auth);var e=function _possibleConstructorReturn(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}(this,(Auth.__proto__||Object.getPrototypeOf(Auth)).apply(this,arguments));return e.$usedState=["IMGCDNURL","page"],e.customComponents=["AtMessage"],e}u.$$events=["anonymousFunc0","anonymousFunc1","anonymousFunc2"],u.$$componentPath="components/auth/index",t.default=u,Component(n(0).default.createComponent(u))},"103":function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{"value":!0}),t.setUserInfo=function setUserInfo(e){return{"type":o.SET,"data":e}},t.getUserInfo=function getUserInfo(){return{"type":o.GET}};var o=n(17)},"104":function(e,t,n){}},[[102,0,1,2,3]]]);
+(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["components/auth/index"],{
+
+/***/ "./src/actions/user.tsx":
+/*!******************************!*\
+  !*** ./src/actions/user.tsx ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.setUserInfo = setUserInfo;
+exports.getUserInfo = getUserInfo;
+
+var _user = __webpack_require__(/*! ../constants/user */ "./src/constants/user.tsx");
+
+function setUserInfo(user) {
+  return {
+    type: _user.SET,
+    data: user
+  };
+}
+function getUserInfo() {
+  return {
+    type: _user.GET
+  };
+}
+
+/***/ }),
+
+/***/ "./src/components/auth/index.scss":
+/*!****************************************!*\
+  !*** ./src/components/auth/index.scss ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
+/***/ "./src/components/auth/index.tsx":
+/*!***************************************!*\
+  !*** ./src/components/auth/index.tsx ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
+
+var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
+
+var _index = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
+
+var _index2 = __webpack_require__(/*! ../../utils/request/index */ "./src/utils/request/index.ts");
+
+var _index3 = __webpack_require__(/*! ../../utils/msg/index */ "./src/utils/msg/index.ts");
+
+var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/redux/index.js");
+
+var _user = __webpack_require__(/*! ../../actions/user */ "./src/actions/user.tsx");
+
+var _store = __webpack_require__(/*! ../../config/store */ "./src/config/store.ts");
+
+__webpack_require__(/*! ./index.scss */ "./src/components/auth/index.scss");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Auth = function (_Taro$Component) {
+  _inherits(Auth, _Taro$Component);
+
+  function Auth() {
+    _classCallCheck(this, Auth);
+
+    var _this = _possibleConstructorReturn(this, (Auth.__proto__ || Object.getPrototypeOf(Auth)).apply(this, arguments));
+
+    _this.$usedState = ["IMGCDNURL", "page"];
+    _this.customComponents = ["AtMessage"];
+    return _this;
+  }
+
+  _createClass(Auth, [{
+    key: "_constructor",
+    value: function _constructor(props) {
+      _get(Auth.prototype.__proto__ || Object.getPrototypeOf(Auth.prototype), "_constructor", this).call(this, props);
+      this.$$refs = new _taroWeapp2.default.RefsArray();
+    }
+  }, {
+    key: "_createData",
+    value: function _createData() {
+      this.__state = arguments[0] || this.state || {};
+      this.__props = arguments[1] || this.props || {};
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
+      ;
+      var _props$page = this.__props.page,
+          page = _props$page === undefined ? true : _props$page;
+
+      var dispatch = (0, _redux.useDispatch)();
+      // 返回上一页
+      var pageBack = function pageBack() {
+        _taroWeapp2.default.navigateBack({
+          delta: 1
+        });
+      };
+      // 取消授权
+      var cancelAuth = function cancelAuth() {};
+      // 用户确认授权
+      var userAuthAction = function userAuthAction() {
+        _taroWeapp2.default.login({
+          success: function success(res) {
+            if (res.code) {
+              (0, _index2.getUserSessionKey)(res.code).then(function (res) {
+                var sessionKey = res.session_key;
+                decodeSessionKey(sessionKey);
+              });
+            } else {
+              (0, _index3.errMsg)("\u6388\u6743\u5931\u8D25\uFF0C\u5BA2\u670D\u7535\u8BDD" + _index.SERVERPHONE);
+              console.log('session_key-error');
+            }
+          }
+        });
+      };
+      // 解密sessionkey
+      var decodeSessionKey = function decodeSessionKey(key) {
+        _taroWeapp2.default.getSetting({
+          success: function success(res) {
+            if (!res.authSetting['scope.scope.userInfo']) {
+              _taroWeapp2.default.getUserInfo({
+                success: function success() {
+                  doAuthRequest(key);
+                },
+                fail: function fail() {
+                  _taroWeapp2.default.openSetting();
+                }
+              });
+            } else {
+              doAuthRequest(key);
+            }
+          }
+        });
+      };
+      // 发起授权请求
+      var doAuthRequest = function doAuthRequest(key) {
+        _taroWeapp2.default.getUserInfo({
+          success: function success(res) {
+            var encryptedData = res.encryptedData;
+            var iv = res.iv;
+            var data = {
+              session_key: key,
+              encryptedData: encryptedData,
+              iv: iv,
+              refId: 0,
+              source: ''
+            };
+            (0, _index2.GetUserInfo)(data).then(function (res) {
+              if (res.errcode === 'ok') {
+                var user = {
+                  userId: res.data.id,
+                  token: res.data.sign.token,
+                  tokenTime: res.data.sign.time,
+                  uuid: res.data.uuid,
+                  login: true
+                };
+                _taroWeapp2.default.setStorageSync(_store.UserInfo, user);
+                dispatch((0, _user.setUserInfo)(user));
+                pageBack();
+              } else {
+                (0, _index3.errMsg)(res.errmsg);
+              }
+            });
+          }
+        });
+      };
+      this.anonymousFunc0 = function () {
+        return userAuthAction();
+      };
+      this.anonymousFunc1 = function () {
+        return pageBack();
+      };
+      this.anonymousFunc2 = function () {
+        return cancelAuth();
+      };
+      Object.assign(this.__state, {
+        IMGCDNURL: _index.IMGCDNURL,
+        page: page
+      });
+      return this.__state;
+    }
+  }, {
+    key: "anonymousFunc0",
+    value: function anonymousFunc0(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc1",
+    value: function anonymousFunc1(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc2",
+    value: function anonymousFunc2(e) {
+      ;
+    }
+  }]);
+
+  return Auth;
+}(_taroWeapp2.default.Component);
+
+Auth.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2"];
+Auth.$$componentPath = "components/auth/index";
+exports.default = Auth;
+
+Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(Auth));
+
+/***/ })
+
+},[["./src/components/auth/index.tsx","runtime","vendors"]]]);
