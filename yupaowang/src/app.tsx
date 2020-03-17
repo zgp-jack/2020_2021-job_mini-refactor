@@ -35,7 +35,12 @@ class App extends Component {
       'wx7cea45b9ebdf87ac', //在建项目
       'wx3faf62a5edbb1513', //工具商城
       'wxbac40ffffdee0573'  //招标采购
-    ]
+    ],
+    "permission": {
+      "scope.userLocation": {
+        "desc": "获取您的位置将会为您推荐该地区最新信息"
+      }
+    }
   }
 
   componentDidMount() { }

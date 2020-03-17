@@ -11147,6 +11147,7 @@ page {
   padding-right: 100rpx;
   display: table;
   width: 100%;
+  z-index: 20;
   box-shadow: 0 0 5rpx #e7e6e4; }
   .mapinfo-header .mapinfo-header-area {
     position: relative;

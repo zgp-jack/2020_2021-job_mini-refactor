@@ -43,6 +43,8 @@ var _area = __webpack_require__(/*! ../../models/area */ "./src/models/area.ts")
 
 var _area2 = _interopRequireDefault(_area);
 
+var _index2 = __webpack_require__(/*! ../../utils/helper/index */ "./src/utils/helper/index.ts");
+
 __webpack_require__(/*! ./index.scss */ "./src/components/citys/index.scss");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -61,9 +63,10 @@ var Cities = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (Cities.__proto__ || Object.getPrototypeOf(Cities)).apply(this, arguments));
 
-    _this.$usedState = ["loopArray21", "loopArray22", "IMGCDNURL", "data", "showInputCityList", "inputCity", "hot", "parent"];
-    _this.anonymousFunc1Map = {};
-    _this.anonymousFunc2Map = {};
+    _this.$usedState = ["loopArray25", "loopArray26", "loopArray27", "text", "IMGCDNURL", "userLoc", "recentlyCities", "data", "show", "inputCity", "area", "parent", "userTapCityBtn", "userChangeCity"];
+    _this.anonymousFunc4Map = {};
+    _this.anonymousFunc5Map = {};
+    _this.anonymousFunc6Map = {};
     _this.customComponents = [];
     return _this;
   }
@@ -87,24 +90,42 @@ var Cities = function (_Taro$Component) {
       var _props = this.__props,
           _props$data = _props.data,
           data = _props$data === undefined ? [] : _props$data,
-          _props$hot = _props.hot,
-          hot = _props$hot === undefined ? false : _props$hot,
-          onUserTapCity = _props.onUserTapCity,
           _props$parent = _props.parent,
           parent = _props$parent === undefined ? false : _props$parent,
-          onUserTapInputCity = _props.onUserTapInputCity,
-          _props$showInputCityL = _props.showInputCityList,
-          showInputCityList = _props$showInputCityL === undefined ? false : _props$showInputCityL;
+          userTapCityBtn = _props.userTapCityBtn,
+          userChangeCity = _props.userChangeCity,
+          area = _props.area,
+          userLoc = _props.userLoc;
+      // 最近访问城市数据
 
       var _useState = (0, _taroWeapp.useState)([]),
           _useState2 = _slicedToArray(_useState, 2),
-          inputCity = _useState2[0],
-          setInputCity = _useState2[1];
+          recentlyCities = _useState2[0],
+          setRecentlyCities = _useState2[1];
+      // 是否显示input过滤城市
 
-      var _useState3 = (0, _taroWeapp.useState)([]),
+
+      var _useState3 = (0, _taroWeapp.useState)(false),
           _useState4 = _slicedToArray(_useState3, 2),
-          saveAreaData = _useState4[0],
-          setSaveAreaData = _useState4[1];
+          show = _useState4[0],
+          setShow = _useState4[1];
+      // 输入框内容
+
+
+      var _useState5 = (0, _taroWeapp.useState)(''),
+          _useState6 = _slicedToArray(_useState5, 2),
+          text = _useState6[0],
+          setText = _useState6[1];
+
+      var _useState7 = (0, _taroWeapp.useState)([]),
+          _useState8 = _slicedToArray(_useState7, 2),
+          inputCity = _useState8[0],
+          setInputCity = _useState8[1];
+
+      var _useState9 = (0, _taroWeapp.useState)([]),
+          _useState10 = _slicedToArray(_useState9, 2),
+          saveAreaData = _useState10[0],
+          setSaveAreaData = _useState10[1];
       // 用户点击城市
 
 
@@ -125,19 +146,36 @@ var Cities = function (_Taro$Component) {
         }
         // 储存最新的用户点击历史城市数据
         _taroWeapp2.default.setStorageSync(_store.HistoryCities, historyCities);
-        onUserTapCity && _this2.__props.onUserTapCity();
+        userChangeCity && userChangeCity(city.city);
+        userTapCityBtn(false);
+        //userRecentlyCities()
       };
       // 用户点击搜索数据
       var userTapInputCity = function userTapInputCity(item) {
+        setShow(false);
         delete item['city_name'];
         userTapCity(item);
-        onUserTapInputCity && _this2.__props.onUserTapInputCity();
+      };
+      // 用户最新选择城市
+      var userRecentlyCities = function userRecentlyCities() {
+        var historyCities = _taroWeapp2.default.getStorageSync(_store.HistoryCities);
+        if (historyCities) {
+          if (userLoc.id) {
+            historyCities.splice(_index.MAXCACHECITYNUM - 1);
+            setRecentlyCities(historyCities);
+            return;
+          }
+        }
+        setRecentlyCities(historyCities);
       };
       // 初始化城市数据
       (0, _taroWeapp.useEffect)(function () {
+        // 初始化用户定位城市
+        userRecentlyCities();
+        var copyArr = (0, _index2.objDeepCopy)(_area2.default);
         var areaObj = [];
-        _area2.default.shift();
-        _area2.default.map(function (item) {
+        copyArr.shift();
+        copyArr.map(function (item) {
           var child = item.has_children;
           if (child) {
             var childData = item.children;
@@ -172,60 +210,99 @@ var Cities = function (_Taro$Component) {
       }, []);
       var userEnterCity = function userEnterCity(e) {
         var val = e.detail.value;
+        setText(val);
         var newData = saveAreaData.filter(function (item) {
           return item.city_name.indexOf(val) !== -1;
         });
         setInputCity(newData);
       };
-      this.anonymousFunc0 = function (e) {
+      // 输入框获取焦点
+      var onInputFocus = function onInputFocus() {
+        setShow(true);
+      };
+      // 用户清空输入框内容
+      var userClearContent = function userClearContent() {
+        setText('');
+        setShow(false);
+      };
+      this.anonymousFunc0 = function () {
+        return onInputFocus();
+      };
+      this.anonymousFunc1 = function (e) {
         return userEnterCity(e);
       };
-      var loopArray21 = data.map(function (item, index) {
+      this.anonymousFunc2 = function () {
+        return userClearContent();
+      };
+      this.anonymousFunc3 = function () {
+        return userTapCityBtn(false);
+      };
+      var loopArray25 = recentlyCities.map(function (item, __index4) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
-        var $loopState__temp2 = index + item.$original[0].id;
-        var $anonymousCallee__7 = item.$original.map(function (d, key) {
+        var $loopState__temp2 = 'rec' + item.$original.id;
+        var _$indexKey = "bdzzz" + __index4;
+        _this2.anonymousFunc4Map[_$indexKey] = function () {
+          return userTapCity(item.$original);
+        };
+        return {
+          $loopState__temp2: $loopState__temp2,
+          _$indexKey: _$indexKey,
+          $original: item.$original
+        };
+      });
+      var loopArray26 = data.map(function (item, index) {
+        item = {
+          $original: (0, _taroWeapp.internal_get_original)(item)
+        };
+        var $loopState__temp4 = index + item.$original[0].id;
+        var $anonymousCallee__8 = item.$original.map(function (d, key) {
           d = {
             $original: (0, _taroWeapp.internal_get_original)(d)
           };
-          var $loopState__temp4 = key + d.$original.id;
-          var _$indexKey = "jzzzz" + index + "-" + key;
-          _this2.anonymousFunc1Map[_$indexKey] = function () {
+          var $loopState__temp6 = key + d.$original.id;
+          var _$indexKey2 = "bezzz" + index + "-" + key;
+          _this2.anonymousFunc5Map[_$indexKey2] = function () {
             return userTapCity(d.$original);
           };
           return {
-            $loopState__temp4: $loopState__temp4,
-            _$indexKey: _$indexKey,
+            $loopState__temp6: $loopState__temp6,
+            _$indexKey2: _$indexKey2,
             $original: d.$original
           };
         });
         return {
-          $loopState__temp2: $loopState__temp2,
-          $anonymousCallee__7: $anonymousCallee__7,
+          $loopState__temp4: $loopState__temp4,
+          $anonymousCallee__8: $anonymousCallee__8,
           $original: item.$original
         };
       });
-      var loopArray22 = showInputCityList ? inputCity.map(function (item, __index2) {
+      var loopArray27 = show ? inputCity.map(function (item, __index6) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
-        var _$indexKey2 = "bazzz" + __index2;
-        _this2.anonymousFunc2Map[_$indexKey2] = function () {
+        var _$indexKey3 = "bfzzz" + __index6;
+        _this2.anonymousFunc6Map[_$indexKey3] = function () {
           return userTapInputCity(item.$original);
         };
         return {
-          _$indexKey2: _$indexKey2,
+          _$indexKey3: _$indexKey3,
           $original: item.$original
         };
       }) : [];
       Object.assign(this.__state, {
-        loopArray21: loopArray21,
-        loopArray22: loopArray22,
+        loopArray25: loopArray25,
+        loopArray26: loopArray26,
+        loopArray27: loopArray27,
+        text: text,
         IMGCDNURL: _index.IMGCDNURL,
+        userLoc: userLoc,
+        recentlyCities: recentlyCities,
         data: data,
-        showInputCityList: showInputCityList,
-        inputCity: inputCity
+        show: show,
+        inputCity: inputCity,
+        area: area
       });
       return this.__state;
     }
@@ -236,8 +313,23 @@ var Cities = function (_Taro$Component) {
     }
   }, {
     key: "anonymousFunc1",
-    value: function anonymousFunc1(_$indexKey) {
-      var _anonymousFunc1Map;
+    value: function anonymousFunc1(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc2",
+    value: function anonymousFunc2(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc3",
+    value: function anonymousFunc3(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc4",
+    value: function anonymousFunc4(_$indexKey) {
+      var _anonymousFunc4Map;
 
       ;
 
@@ -245,12 +337,12 @@ var Cities = function (_Taro$Component) {
         e[_key - 1] = arguments[_key];
       }
 
-      return this.anonymousFunc1Map[_$indexKey] && (_anonymousFunc1Map = this.anonymousFunc1Map)[_$indexKey].apply(_anonymousFunc1Map, e);
+      return this.anonymousFunc4Map[_$indexKey] && (_anonymousFunc4Map = this.anonymousFunc4Map)[_$indexKey].apply(_anonymousFunc4Map, e);
     }
   }, {
-    key: "anonymousFunc2",
-    value: function anonymousFunc2(_$indexKey2) {
-      var _anonymousFunc2Map;
+    key: "anonymousFunc5",
+    value: function anonymousFunc5(_$indexKey2) {
+      var _anonymousFunc5Map;
 
       ;
 
@@ -258,14 +350,27 @@ var Cities = function (_Taro$Component) {
         e[_key2 - 1] = arguments[_key2];
       }
 
-      return this.anonymousFunc2Map[_$indexKey2] && (_anonymousFunc2Map = this.anonymousFunc2Map)[_$indexKey2].apply(_anonymousFunc2Map, e);
+      return this.anonymousFunc5Map[_$indexKey2] && (_anonymousFunc5Map = this.anonymousFunc5Map)[_$indexKey2].apply(_anonymousFunc5Map, e);
+    }
+  }, {
+    key: "anonymousFunc6",
+    value: function anonymousFunc6(_$indexKey3) {
+      var _anonymousFunc6Map;
+
+      ;
+
+      for (var _len3 = arguments.length, e = Array(_len3 > 1 ? _len3 - 1 : 0), _key3 = 1; _key3 < _len3; _key3++) {
+        e[_key3 - 1] = arguments[_key3];
+      }
+
+      return this.anonymousFunc6Map[_$indexKey3] && (_anonymousFunc6Map = this.anonymousFunc6Map)[_$indexKey3].apply(_anonymousFunc6Map, e);
     }
   }]);
 
   return Cities;
 }(_taroWeapp2.default.Component);
 
-Cities.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2"];
+Cities.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6"];
 Cities.$$componentPath = "components/citys/index";
 exports.default = Cities;
 

@@ -39,6 +39,12 @@ var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
 
 var _index = __webpack_require__(/*! ../../../utils/request/index */ "./src/utils/request/index.ts");
 
+var _area = __webpack_require__(/*! ../../../models/area */ "./src/models/area.ts");
+
+var _store = __webpack_require__(/*! ../../../config/store */ "./src/config/store.ts");
+
+var _index2 = __webpack_require__(/*! ../../../utils/helper/index */ "./src/utils/helper/index.ts");
+
 __webpack_require__(/*! ./index.scss */ "./src/pages/recruit/lists/index.scss");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -50,6 +56,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+// import { MAPKEY } from '../../../config'
+
+// import AMapWX from '../../../utils/source/amap-wx'
+
 
 var Recruit = function (_Taro$Component) {
   _inherits(Recruit, _Taro$Component);
@@ -93,42 +103,88 @@ var Recruit = function (_Taro$Component) {
           _genCompid6 = _slicedToArray(_genCompid5, 2),
           $prevCompid__8 = _genCompid6[0],
           $compid__8 = _genCompid6[1];
+      // * 获取选择城市缓存
+
+
+      var userListChooseCity = _taroWeapp2.default.getStorageSync(_store.UserListChooseCity);
       // * 配置筛选条件
 
-
-      var DEFAULT_CONDITION = [{ id: 'area', text: '全国' }, { id: 'work', text: '选择工种' }, { id: 'filter', text: '最新' }];
+      var _useState = (0, _taroWeapp.useState)([{ id: 'area', text: userListChooseCity ? userListChooseCity.name : '全国' }, { id: 'work', text: '选择工种' }, { id: 'filter', text: '最新' }]),
+          _useState2 = _slicedToArray(_useState, 2),
+          condition = _useState2[0],
+          setCondition = _useState2[1];
       // * 标记是否是在刷新状态
 
-      var _useState = (0, _taroWeapp.useState)(false),
-          _useState2 = _slicedToArray(_useState, 2),
-          refresh = _useState2[0],
-          setRefresh = _useState2[1];
+
+      var _useState3 = (0, _taroWeapp.useState)(false),
+          _useState4 = _slicedToArray(_useState3, 2),
+          refresh = _useState4[0],
+          setRefresh = _useState4[1];
       // * 定义列表数组
 
 
-      var _useState3 = (0, _taroWeapp.useState)([]),
-          _useState4 = _slicedToArray(_useState3, 2),
-          lists = _useState4[0],
-          setLists = _useState4[1];
+      var _useState5 = (0, _taroWeapp.useState)([]),
+          _useState6 = _slicedToArray(_useState5, 2),
+          lists = _useState6[0],
+          setLists = _useState6[1];
       // * 定义data
 
 
-      var _useState5 = (0, _taroWeapp.useState)({
+      var _useState7 = (0, _taroWeapp.useState)({
         page: 1,
         list_type: 'job',
-        area_id: '',
+        area_id: userListChooseCity ? userListChooseCity.id : '',
         classify_id: '',
         keywords: '',
         joblisttype: 'newest',
         token: ''
       }),
-          _useState6 = _slicedToArray(_useState5, 2),
-          searchData = _useState6[0],
-          setSearchData = _useState6[1];
-      // * 请求列表数据
+          _useState8 = _slicedToArray(_useState7, 2),
+          searchData = _useState8[0],
+          setSearchData = _useState8[1];
+      // 更改某一项操作条件
 
 
-      (0, _taroWeapp.useEffect)(function () {
+      var editConditionAction = function editConditionAction(type, text) {
+        var data = JSON.parse(JSON.stringify(condition));
+        var i = data.findIndex(function (item) {
+          return item.id === type;
+        });
+        var item = _extends({}, data[i], { text: text });
+        data[i] = item;
+        setCondition(data);
+      };
+      // 用户定位之后重新设置搜索条件
+      var resetLocationSearch = function resetLocationSearch(data) {
+        var city = (0, _area.getCityInfo)(data);
+        _taroWeapp2.default.setStorageSync(_store.UserListChooseCity, city); //第一次默认选中
+        setLists([]);
+        editConditionAction('area', city.name);
+        setSearchData(_extends({}, searchData, { page: 1, area_id: city.id }));
+      };
+      // 用户获取定位
+      var getUserLocation = function getUserLocation() {
+        // 使用用户选择的城市
+        if (userListChooseCity) {
+          setSearchData(_extends({}, searchData, { page: 1, area_id: userListChooseCity.id }));
+        } else {
+          var userLocationCity = _taroWeapp2.default.getStorageSync(_store.UserLocationCity);
+          if (userLocationCity) {
+            resetLocationSearch(userLocationCity);
+            return;
+          }
+          (0, _index2.userAuthLoction)().then(function (gpsLocation) {
+            resetLocationSearch(gpsLocation);
+          }).catch(function () {
+            // 拒绝授权默认全国
+            _taroWeapp2.default.setStorageSync(_store.UserListChooseCity, _area.AREACHINA);
+            setLists([]);
+            setSearchData(_extends({}, searchData, { page: 1, area_id: _area.AREACHINA.id }));
+          });
+        }
+      };
+      // 请求列表方法
+      var getRecruitListAction = function getRecruitListAction() {
         (0, _index.getRecruitList)(searchData).then(function (res) {
           _taroWeapp2.default.hideNavigationBarLoading();
           if (searchData.page === 1) {
@@ -138,6 +194,13 @@ var Recruit = function (_Taro$Component) {
             setRefresh(false);
           }
         });
+      };
+      // * 请求列表数据
+      (0, _taroWeapp.useEffect)(function () {
+        getRecruitListAction();
+        if (!searchData.area_id) {
+          getUserLocation();
+        }
       }, [searchData]);
       // * 触底加载下一页
       var getNextPageData = function getNextPageData() {
@@ -161,7 +224,7 @@ var Recruit = function (_Taro$Component) {
         "value": ""
       }, $compid__6, $prevCompid__6);
       _taroWeapp.propsManager.set({
-        "data": DEFAULT_CONDITION
+        "data": condition
       }, $compid__7, $prevCompid__7);
       _taroWeapp.propsManager.set({
         "data": lists

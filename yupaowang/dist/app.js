@@ -1208,7 +1208,12 @@ var _App = function (_BaseComponent) {
         navigationBarTextStyle: 'white'
       },
       navigateToMiniProgramAppIdList: ['wxca0eab5cd5fe6a7c', 'wxd348efa56021e8d0', 'wxbfab0a324f27b966', 'wx33194c327f50b99d', 'wx0ae31bf0edad4390', 'wx7cea45b9ebdf87ac', 'wx3faf62a5edbb1513', 'wxbac40ffffdee0573' //招标采购
-      ]
+      ],
+      "permission": {
+        "scope.userLocation": {
+          "desc": "获取您的位置将会为您推荐该地区最新信息"
+        }
+      }
     };
     return _this;
   }

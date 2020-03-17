@@ -1,7 +1,10 @@
-import { useState, useEffect } from '@tarojs/taro'
-import { RecruitModelInfo, RecruitPublishInfo } from '../../pages/recruit/index.d'
+import Taro, { useState, useEffect } from '@tarojs/taro'
+import { RecruitModelInfo, RecruitPublishInfo, UserLastPublishRecruitArea } from '../../pages/recruit/index.d'
 import { getPublishRecruitView } from '../../utils/request'
 import { InitRecruitView } from '../../pages/recruit/publish'
+import { UserLastPublishArea, UserLocationCity } from '../../config/store'
+import { UserLocationPromiss, AREABEIJING } from '../../models/area'
+import { userAuthLoction } from '../../utils/helper'
 
 export default function usePublishViewInfo(InitParams: InitRecruitView){
 
@@ -11,6 +14,15 @@ export default function usePublishViewInfo(InitParams: InitRecruitView){
   const [showUpload, setShowUpload] = useState<boolean>(false)
   // 是否显示工种选择
   const [showProfession, setShowProssion] = useState<boolean>(false)
+  // 当前显示城市
+  const [area, setArea] = useState<string>(AREABEIJING.name)
+  // 选择详细地址信息
+  const [areaInfo, setAreaInfo] = useState<UserLastPublishRecruitArea>({
+    title: '',
+    adcode:'',
+    location: '',
+    info: ''
+  })
 
   // 初始化招工信息
   useEffect(() => {
@@ -37,15 +49,51 @@ export default function usePublishViewInfo(InitParams: InitRecruitView){
         county_id: res.model.county_id || ''
       }
       setModel(InitViewInfo)
+      initUserAreaInfo(res)
+      setAreaInfo({ ...areaInfo, title: InitViewInfo.address })
       if (res.view_image.length) setShowUpload(true)
     })
   }, [])
+
+  function initUserAreaInfo(data: any){
+    //  设置地区名字
+    if (InitParams.infoId){
+      setArea(data.default_search_name.name)
+    }else{
+      let userLoctionCity: UserLocationPromiss = Taro.getStorageSync(UserLocationCity)
+      if(userLoctionCity){
+        setArea(userLoctionCity.city)
+      }else{
+        userAuthLoction().then(res=>{
+          setArea(res.city)
+        }).then(()=>{
+          setArea(AREABEIJING.name)
+        })
+      }
+    }
+
+    // 设置发布地址
+    if(InitParams.infoId){
+      setAreaInfo({
+        title: data.model.address,
+        location: data.model.location,
+        info: '',
+        adcode: ''
+      })
+    }else{
+      let userLastPublishArea: UserLastPublishRecruitArea = Taro.getStorageSync(UserLastPublishArea)
+      if (userLastPublishArea) {
+        setAreaInfo(userLastPublishArea)
+      }
+    }
+    
+  }
 
   function getPublishRecruitInfo(){
     if (!model) return
     const data: RecruitPublishInfo = {
       title: model.title,
-      address: model.address,
+      address: areaInfo.title + '@@@@@' + areaInfo.info,
       detail: model.detail,
       infoId: model.infoId,
       type: model.type,
@@ -70,6 +118,10 @@ export default function usePublishViewInfo(InitParams: InitRecruitView){
     setShowUpload,
     showProfession,
     setShowProssion,
-    getPublishRecruitInfo
+    getPublishRecruitInfo,
+    area,
+    setArea,
+    areaInfo,
+    setAreaInfo
   }
 }

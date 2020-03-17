@@ -37,6 +37,12 @@ var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
 
 var _index = __webpack_require__(/*! ../../../config/index */ "./src/config/index.ts");
 
+var _store = __webpack_require__(/*! ../../../config/store */ "./src/config/store.ts");
+
+var _area = __webpack_require__(/*! ../../../models/area */ "./src/models/area.ts");
+
+var _index2 = __webpack_require__(/*! ../../recruit/publish/index */ "./src/pages/recruit/publish/index.tsx");
+
 __webpack_require__(/*! ./index.scss */ "./src/pages/map/index/index.scss");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -55,7 +61,7 @@ var MapComponent = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (MapComponent.__proto__ || Object.getPrototypeOf(MapComponent)).apply(this, arguments));
 
-    _this.$usedState = ["$compid__23", "IMGCDNURL", "showCityList", "data", "showCityListInfo"];
+    _this.$usedState = ["$compid__22", "smAreaText", "IMGCDNURL", "showCity", "area", "data"];
     _this.customComponents = ["Cities"];
     return _this;
   }
@@ -75,30 +81,104 @@ var MapComponent = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__23"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__22"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__23 = _genCompid2[0],
-          $compid__23 = _genCompid2[1];
+          $prevCompid__22 = _genCompid2[0],
+          $compid__22 = _genCompid2[1];
 
-      var _props = this.__props,
-          data = _props.data,
-          _props$showCityList = _props.showCityList,
-          showCityList = _props$showCityList === undefined ? false : _props$showCityList,
-          showCityListInfo = _props.showCityListInfo;
+      var data = this.__props.data;
+      // 用户定位城市
 
+      var _useState = (0, _taroWeapp.useState)({
+        id: '',
+        pid: '',
+        city: '',
+        ad_name: ''
+      }),
+          _useState2 = _slicedToArray(_useState, 2),
+          userLoc = _useState2[0],
+          setUserLoc = _useState2[1];
+      // 初始化用户定位信息
+
+
+      var initUserLocationCity = function initUserLocationCity() {
+        var userLoc = _taroWeapp2.default.getStorageSync(_store.UserLocationCity);
+        if (userLoc) {
+          var _data = (0, _area.getCityInfo)(userLoc, 1);
+          var userLocData = {
+            id: _data.id,
+            pid: _data.pid,
+            ad_name: _data.ad_name,
+            city: _data.name
+          };
+          setArea(_data.name);
+          setUserLoc(userLocData);
+        }
+      };
+      (0, _taroWeapp.useEffect)(function () {
+        initUserLocationCity();
+      });
+      // 使用发布招工hook处理数据
+
+      var _useContext = (0, _taroWeapp.useContext)(_index2.context),
+          area = _useContext.area,
+          setArea = _useContext.setArea;
+      // 用户切换城市
+
+
+      var userChangeCity = function userChangeCity(city) {
+        setArea(city);
+      };
+      // 是否显示城市
+
+      var _useState3 = (0, _taroWeapp.useState)(false),
+          _useState4 = _slicedToArray(_useState3, 2),
+          showCity = _useState4[0],
+          setShowCity = _useState4[1];
+      // 详细地址的输入框
+
+
+      var _useState5 = (0, _taroWeapp.useState)(''),
+          _useState6 = _slicedToArray(_useState5, 2),
+          smAreaText = _useState6[0],
+          setSmAreaText = _useState6[1];
+      // 用户点击取消 返回上一页
+
+
+      var userCloseMap = function userCloseMap() {
+        _taroWeapp2.default.navigateBack();
+      };
+      // 用户点击城市选择
+      var userTapCityBtn = function userTapCityBtn(b) {
+        setShowCity(b);
+      };
+      // 用户输入小地区名字
+      var userEnterPosition = function userEnterPosition(e) {
+        var value = e.detail.value;
+        setSmAreaText(value);
+      };
       this.anonymousFunc0 = function () {
-        return showCityListInfo(true);
+        return userTapCityBtn(true);
       };
-      this.anonymousFunc1 = function () {
-        return showCityListInfo(false);
+      this.anonymousFunc1 = function (e) {
+        return userEnterPosition(e);
       };
-      showCityList && _taroWeapp.propsManager.set({
-        "data": data
-      }, $compid__23, $prevCompid__23);
+      this.anonymousFunc2 = function () {
+        return userCloseMap();
+      };
+      showCity && _taroWeapp.propsManager.set({
+        "data": data,
+        "area": area,
+        "userLoc": userLoc,
+        "userChangeCity": userChangeCity,
+        "userTapCityBtn": userTapCityBtn
+      }, $compid__22, $prevCompid__22);
       Object.assign(this.__state, {
-        $compid__23: $compid__23,
+        $compid__22: $compid__22,
+        smAreaText: smAreaText,
         IMGCDNURL: _index.IMGCDNURL,
-        showCityList: showCityList
+        showCity: showCity,
+        area: area
       });
       return this.__state;
     }
@@ -112,12 +192,17 @@ var MapComponent = function (_Taro$Component) {
     value: function anonymousFunc1(e) {
       ;
     }
+  }, {
+    key: "anonymousFunc2",
+    value: function anonymousFunc2(e) {
+      ;
+    }
   }]);
 
   return MapComponent;
 }(_taroWeapp2.default.Component);
 
-MapComponent.$$events = ["anonymousFunc0", "anonymousFunc1"];
+MapComponent.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2"];
 MapComponent.$$componentPath = "pages/map/index/index";
 exports.default = MapComponent;
 

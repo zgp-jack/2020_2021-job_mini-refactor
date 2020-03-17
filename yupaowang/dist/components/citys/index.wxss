@@ -11272,3 +11272,21 @@ page {
       color: #333;
       padding: 0 20rpx; }
 
+.notsearchdata {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+  .notsearchdata .notimg {
+    position: relative;
+    display: block;
+    width: 300rpx;
+    height: 300rpx; }
+  .notsearchdata .nottext {
+    position: relative;
+    display: block;
+    font-size: 28rpx;
+    margin-top: 50rpx;
+    color: #333; }
+

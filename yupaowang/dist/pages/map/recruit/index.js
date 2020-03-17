@@ -28,6 +28,10 @@ var _store = __webpack_require__(/*! ../../../config/store */ "./src/config/stor
 
 var _index = __webpack_require__(/*! ../../../utils/request/index */ "./src/utils/request/index.ts");
 
+var _index2 = __webpack_require__(/*! ../../../utils/helper/index */ "./src/utils/helper/index.ts");
+
+var _index3 = __webpack_require__(/*! ../../recruit/publish/index */ "./src/pages/recruit/publish/index.tsx");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -44,7 +48,7 @@ var RecruitMap = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (RecruitMap.__proto__ || Object.getPrototypeOf(RecruitMap)).apply(this, arguments));
 
-    _this.$usedState = ["$compid__25"];
+    _this.$usedState = ["$compid__24"];
     _this.customComponents = ["MapComponent"];
     return _this;
   }
@@ -64,10 +68,13 @@ var RecruitMap = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__25"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__24"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__25 = _genCompid2[0],
-          $compid__25 = _genCompid2[1];
+          $prevCompid__24 = _genCompid2[0],
+          $compid__24 = _genCompid2[1];
+
+      var _useContext = (0, _taroWeapp.useContext)(_index3.context),
+          area = _useContext.area;
       // 城市数据
 
 
@@ -75,25 +82,20 @@ var RecruitMap = function (_Taro$Component) {
           _useState2 = _slicedToArray(_useState, 2),
           areas = _useState2[0],
           setAreas = _useState2[1];
-      //是否显示input城市列表
+      // 获取城市ad_name
 
 
-      var _useState3 = (0, _taroWeapp.useState)(false),
+      var _useState3 = (0, _taroWeapp.useState)(area),
           _useState4 = _slicedToArray(_useState3, 2),
-          showInputCityList = _useState4[0],
-          setShowInputCityList = _useState4[1];
-      // 是否显示城市数据
+          areaName = _useState4[0],
+          setAreaName = _useState4[1];
+      // 获取关键词地区列表
 
 
-      var _useState5 = (0, _taroWeapp.useState)(false),
-          _useState6 = _slicedToArray(_useState5, 2),
-          showCityList = _useState6[0],
-          setShowCityList = _useState6[1];
-
-      var showCityListInfo = function showCityListInfo(b) {
-        console.log(b);
-        setShowCityList(b);
-      };
+      (0, _taroWeapp.useEffect)(function () {
+        var lists = (0, _index2.getAmapPoiList)(areaName);
+        console.log(lists);
+      }, [areaName]);
       // 获取成熟数据
       (0, _taroWeapp.useEffect)(function () {
         var areas = _taroWeapp2.default.getStorageSync(_store.Areas);
@@ -106,13 +108,10 @@ var RecruitMap = function (_Taro$Component) {
         });
       }, []);
       _taroWeapp.propsManager.set({
-        "data": areas,
-        "showInputCityList": showInputCityList,
-        "showCityList": showCityList,
-        "showCityListInfo": showCityListInfo
-      }, $compid__25, $prevCompid__25);
+        "data": areas
+      }, $compid__24, $prevCompid__24);
       Object.assign(this.__state, {
-        $compid__25: $compid__25
+        $compid__24: $compid__24
       });
       return this.__state;
     }

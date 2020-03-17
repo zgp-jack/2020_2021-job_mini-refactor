@@ -8,6 +8,7 @@
   padding-right: 100px;
   display: table;
   width: 100%;
+  z-index: 20;
   @include shadow();
   .mapinfo-header-area{
     position: relative;

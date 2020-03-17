@@ -22,11 +22,11 @@ export default function Profession({ data, title = '选择工种', footerTitle =
         <ScrollView scrollY className='profession-body'>
           {
             data && data.map((item,i)=>(
-              <View className='profession-list-item'>
+              <View className='profession-list-item' key={ item.id }>
                 <View className='profession-list-title'>{ item.name }</View>
                 <View className='profession-list-content'>
                   {item.children.map((d,k)=>(
-                    <View className='prosession-item overwords' onClick={() => onClickItem(i,k,d.id)}>
+                    <View className='prosession-item overwords' onClick={() => onClickItem(i,k,d.id)} key={ d.id }>
                       { d.name }
                       <Text className={classnames({
                         'at-icon': true,

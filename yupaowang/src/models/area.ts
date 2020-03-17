@@ -1,4 +1,4 @@
-const AREAS = [
+const AREAS: ParentItems[] = [
   {
     "id": "1",
     "pid": "0",
@@ -2601,13 +2601,81 @@ export interface ChildItems {
 
 export interface ParentItems {
   id: string,
+  pid: string,
   name: string,
   ad_name: string,
   has_children: number,
-  children: ChildItems | []
+  children: ChildItems[] | []
 }
 
+// 用户定位返回信息
+export interface UserLocationPromiss {
+  province: string,
+  city: string,
+  adcode: string,
+  citycode: string
+}
 
+// * 默认全国数据
+export const AREACHINA: ParentItems = AREAS[0]
+// * 默认北京数据
+export const AREABEIJING: ParentItems = AREAS[1]
+// * 定位返回省份信息 0返回省份 1返回城市 
+export function getCityInfo(data: UserLocationPromiss, current = 0): ChildItems{
+  let len: number = AREAS.length
+  let flag: boolean = false
+  if(!current){
+    let items: ParentItems[] = AREAS.filter(item => data.province.indexOf(item.name) !== -1)
+    if (items.length) {
+      return items[0]
+    } else{
+      //根据城市名称查找
+      for(let i:number = 0;i < len; i++){
+        let item = AREAS[i]
+        if (item.has_children) {
+          let itemArea: ChildItems[] = item.children
+          let dlen: number = itemArea.length
+          for(let k: number = 0; k < dlen; k++){
+            let d: ChildItems = itemArea[k]
+            if (data.city.indexOf(d.name) !== -1) {
+              let province: ChildItems = {
+                id: item.id,
+                pid: item.pid,
+                ad_name: item.ad_name,
+                name: item.name
+              }
+              flag = true
+              return province
+              break
+            }
+          }
+          if(flag) break
+        }
+      }
+    }
+  }else{
+    let items: ParentItems[] = AREAS.filter(item => data.city.indexOf(item.name) !== -1)
+    if(items.length) return items[0]
+    for(let i: number = 0; i < len; i++){
+      let item = AREAS[i]
+      if (item.has_children) {
+        let itemArea: ChildItems[] = item.children
+        let dlen: number = itemArea.length
+        for(let k: number = 0; k < dlen; k++){
+          let d: ChildItems = itemArea[k]
+          if (data.city.indexOf(d.name) !== -1) {
+            flag = true
+            return d
+            break
+          }
+        }
+        if (flag) break
+      }
+    }
+  }
+  // 查询不到内容 直接返回全国/北京
+  return current ? AREABEIJING : AREACHINA
+}
 
 
 export default AREAS

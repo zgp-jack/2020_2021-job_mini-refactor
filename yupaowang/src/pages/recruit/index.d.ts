@@ -40,7 +40,14 @@ export interface RecruitModelInfo extends RecruitBaseInfo {
   placeholder: string,
   maxImageCount: number,
   maxClassifyCount: number,
-  view_images: RecruitImageModel[],
+  view_images: RecruitImageModel[]
+}
+
+export interface DefaultSearchName {
+  id: string
+  letter: string
+  name: string
+  pid:  string
 }
 
 export interface RecruitPublishInfo extends RecruitBaseInfo {
@@ -50,4 +57,12 @@ export interface RecruitPublishInfo extends RecruitBaseInfo {
 export interface RecruitImageModel {
   url: string,
   httpurl: string
+}
+
+// 发布招工 最后发布地区
+export interface UserLastPublishRecruitArea {
+  location: string,
+  adcode: string,
+  title: string,
+  info: string
 }

@@ -1,23 +1,25 @@
-import Taro, { useEffect, useState } from '@tarojs/taro'
+import Taro, { useEffect, useState, useContext } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import MapComponent from '../index'
 import { Areas } from '../../../config/store'
 import { getAllAreas } from '../../../utils/request'
 import { AllAreasDataItem } from '../../../utils/request/index.d'
+import { getAmapPoiList } from '../../../utils/helper'
+import { context } from '../../recruit/publish'
 
 export default function RecruitMap(){
 
+  const { area } = useContext(context)
   // 城市数据
   const [areas, setAreas] = useState<AllAreasDataItem[][]>([])
-  //是否显示input城市列表
-  const [showInputCityList, setShowInputCityList] = useState<boolean>(false)
-  // 是否显示城市数据
-  const [showCityList, setShowCityList] = useState<boolean>(false)
+  // 获取城市ad_name
+  const [areaName, setAreaName] = useState<string>(area)
 
-  const showCityListInfo = (b: boolean)=> {
-    console.log(b)
-    setShowCityList(b)
-  }
+  // 获取关键词地区列表
+  useEffect(()=>{
+    let lists = getAmapPoiList(areaName)
+    console.log(lists)
+  },[areaName])
 
   // 获取成熟数据
   useEffect(()=>{
@@ -28,15 +30,13 @@ export default function RecruitMap(){
       Taro.setStorageSync(Areas, res)
       setAreas(res)
     })
+    
   },[])
 
   return (
     <View>
       <MapComponent 
-        data={ areas } 
-        showInputCityList={ showInputCityList }
-        showCityList={ showCityList }
-        showCityListInfo={ showCityListInfo } 
+        data={ areas }
       />
     </View>
   )
