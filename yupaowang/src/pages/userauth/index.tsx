@@ -5,7 +5,7 @@ import Auth from '../../components/auth'
 export default function UserAuth(){
   return (
     <Block>
-      <Auth />
+      <Auth page={ true } />
     </Block>
   )
 }

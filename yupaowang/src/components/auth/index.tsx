@@ -20,9 +20,11 @@ export interface AuthData {
 
 interface PROPS {
   page?: boolean //是否跳转到页面授权
+  callback?: () => void,
+  userCancelAuth?: () => void
 }
 
-export default function Auth({ page = true }: PROPS){
+export default function Auth({ page = false, callback, userCancelAuth }: PROPS){
 
   const dispatch = useDispatch()
 
@@ -34,7 +36,9 @@ export default function Auth({ page = true }: PROPS){
   }
 
   // 取消授权
-  const cancelAuth = ()=> {}
+  const cancelAuth = ()=> {
+    userCancelAuth&&userCancelAuth()
+  }
 
   // 用户确认授权
   const userAuthAction = ()=> {
@@ -46,8 +50,10 @@ export default function Auth({ page = true }: PROPS){
             decodeSessionKey(sessionKey)
           })
         }else{
-          errMsg(`授权失败，客服电话${SERVERPHONE}`)
-          console.log('session_key-error')
+          Taro.atMessage({
+            'message': `授权失败，客服电话${SERVERPHONE}`,
+            'type': 'error',
+          })
         }
       }
     })
@@ -97,9 +103,14 @@ export default function Auth({ page = true }: PROPS){
             }
             Taro.setStorageSync(UserInfo,user)
             dispatch(setUserInfo(user))
-            pageBack()
+            callback&&callback()
+            if(page) pageBack()
           }else{
-            errMsg(res.errmsg)
+            Taro.atMessage({
+              'message': res.errmsg,
+              'type': 'error',
+            })
+            
           }
         })
       }
@@ -119,7 +130,7 @@ export default function Auth({ page = true }: PROPS){
         :
         <Button className='user-btn user-auth-return' onClick={() => cancelAuth()}>取消授权</Button>
         }
-        </View>
+      </View>
     </Block>
   )
 }

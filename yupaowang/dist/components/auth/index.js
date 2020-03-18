@@ -69,8 +69,6 @@ var _index = __webpack_require__(/*! ../../config/index */ "./src/config/index.t
 
 var _index2 = __webpack_require__(/*! ../../utils/request/index */ "./src/utils/request/index.ts");
 
-var _index3 = __webpack_require__(/*! ../../utils/msg/index */ "./src/utils/msg/index.ts");
-
 var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/redux/index.js");
 
 var _user = __webpack_require__(/*! ../../actions/user */ "./src/actions/user.tsx");
@@ -95,7 +93,7 @@ var Auth = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (Auth.__proto__ || Object.getPrototypeOf(Auth)).apply(this, arguments));
 
-    _this.$usedState = ["IMGCDNURL", "page"];
+    _this.$usedState = ["IMGCDNURL", "page", "callback", "userCancelAuth"];
     _this.customComponents = ["AtMessage"];
     return _this;
   }
@@ -114,8 +112,11 @@ var Auth = function (_Taro$Component) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var _props$page = this.__props.page,
-          page = _props$page === undefined ? true : _props$page;
+      var _props = this.__props,
+          _props$page = _props.page,
+          page = _props$page === undefined ? false : _props$page,
+          callback = _props.callback,
+          userCancelAuth = _props.userCancelAuth;
 
       var dispatch = (0, _redux.useDispatch)();
       // 返回上一页
@@ -125,7 +126,9 @@ var Auth = function (_Taro$Component) {
         });
       };
       // 取消授权
-      var cancelAuth = function cancelAuth() {};
+      var cancelAuth = function cancelAuth() {
+        userCancelAuth && userCancelAuth();
+      };
       // 用户确认授权
       var userAuthAction = function userAuthAction() {
         _taroWeapp2.default.login({
@@ -136,8 +139,10 @@ var Auth = function (_Taro$Component) {
                 decodeSessionKey(sessionKey);
               });
             } else {
-              (0, _index3.errMsg)("\u6388\u6743\u5931\u8D25\uFF0C\u5BA2\u670D\u7535\u8BDD" + _index.SERVERPHONE);
-              console.log('session_key-error');
+              _taroWeapp2.default.atMessage({
+                'message': "\u6388\u6743\u5931\u8D25\uFF0C\u5BA2\u670D\u7535\u8BDD" + _index.SERVERPHONE,
+                'type': 'error'
+              });
             }
           }
         });
@@ -185,9 +190,15 @@ var Auth = function (_Taro$Component) {
                 };
                 _taroWeapp2.default.setStorageSync(_store.UserInfo, user);
                 dispatch((0, _user.setUserInfo)(user));
-                pageBack();
+                callback && callback();
+                if (page) {
+                  pageBack();
+                }
               } else {
-                (0, _index3.errMsg)(res.errmsg);
+                _taroWeapp2.default.atMessage({
+                  'message': res.errmsg,
+                  'type': 'error'
+                });
               }
             });
           }
