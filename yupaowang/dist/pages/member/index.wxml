@@ -13,7 +13,7 @@
                                         <image class="member-realnameimg" src="http://cdn.yupao.com/miniprogram/images/newresume-infolist-ysm.png"></image>
                                     </view>
                                 </view>
-                                <view class="member-usernum">会员编号：<text>369</text>
+                                <view class="member-usernum">会员编号：<text class="member-id">369</text>
                                 </view>
                                 <view class="member-editinfo">修改资料</view>
                             </view>

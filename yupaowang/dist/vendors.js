@@ -10210,6 +10210,182 @@ exports.default = SUCCESS;
 
 /***/ }),
 
+/***/ "./src/hooks/publish/recruit.ts":
+/*!**************************************!*\
+  !*** ./src/hooks/publish/recruit.ts ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+exports.default = usePublishViewInfo;
+
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
+
+var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
+
+var _index = __webpack_require__(/*! ../../utils/request/index */ "./src/utils/request/index.ts");
+
+var _store = __webpack_require__(/*! ../../config/store */ "./src/config/store.ts");
+
+var _area = __webpack_require__(/*! ../../models/area */ "./src/models/area.ts");
+
+var _index2 = __webpack_require__(/*! ../../utils/helper/index */ "./src/utils/helper/index.ts");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function usePublishViewInfo(InitParams) {
+  // 视图显示信息
+  var _useState = (0, _taroWeapp.useState)(),
+      _useState2 = _slicedToArray(_useState, 2),
+      model = _useState2[0],
+      setModel = _useState2[1];
+  // 是否展开图片上传
+
+
+  var _useState3 = (0, _taroWeapp.useState)(false),
+      _useState4 = _slicedToArray(_useState3, 2),
+      showUpload = _useState4[0],
+      setShowUpload = _useState4[1];
+  // 是否显示工种选择
+
+
+  var _useState5 = (0, _taroWeapp.useState)(false),
+      _useState6 = _slicedToArray(_useState5, 2),
+      showProfession = _useState6[0],
+      setShowProssion = _useState6[1];
+  // 当前显示城市
+
+
+  var _useState7 = (0, _taroWeapp.useState)(_area.AREABEIJING.name),
+      _useState8 = _slicedToArray(_useState7, 2),
+      area = _useState8[0],
+      setArea = _useState8[1];
+  // 选择详细地址信息
+
+
+  var _useState9 = (0, _taroWeapp.useState)({
+    title: '',
+    adcode: '',
+    location: '',
+    info: ''
+  }),
+      _useState10 = _slicedToArray(_useState9, 2),
+      areaInfo = _useState10[0],
+      setAreaInfo = _useState10[1];
+  // 初始化招工信息
+
+
+  (0, _taroWeapp.useEffect)(function () {
+    (0, _index.getPublishRecruitView)(InitParams).then(function (res) {
+      var InitViewInfo = {
+        placeholder: res.placeholder,
+        classifies: res.selectedClassifies,
+        maxImageCount: res.typeTextArr.maxImageCount,
+        maxClassifyCount: res.typeTextArr.maxClassifyCount,
+        classifyTree: res.classifyTree,
+        title: res.model.title || '',
+        address: res.model.address || '',
+        detail: res.model.detail || '',
+        infoId: res.model.id || InitParams.infoId,
+        type: res.type,
+        user_mobile: res.model.user_mobile || res.memberInfo.tel || '',
+        code: '',
+        user_name: res.model.user_name,
+        view_images: res.view_image,
+        province_id: res.model.province_id || '',
+        city_id: res.model.city_id || '',
+        location: res.model.location || '',
+        adcode: '',
+        county_id: res.model.county_id || ''
+      };
+      setModel(InitViewInfo);
+      initUserAreaInfo(res);
+      setAreaInfo(_extends({}, areaInfo, { title: InitViewInfo.address }));
+      if (res.view_image.length) setShowUpload(true);
+    });
+  }, []);
+  function initUserAreaInfo(data) {
+    //  设置地区名字
+    if (InitParams.infoId) {
+      setArea(data.default_search_name.name);
+    } else {
+      var userLoctionCity = _taroWeapp2.default.getStorageSync(_store.UserLocationCity);
+      if (userLoctionCity) {
+        setArea(userLoctionCity.city);
+      } else {
+        (0, _index2.userAuthLoction)().then(function (res) {
+          setArea(res.city);
+        }).then(function () {
+          setArea(_area.AREABEIJING.name);
+        });
+      }
+    }
+    // 设置发布地址
+    if (InitParams.infoId) {
+      setAreaInfo({
+        title: data.model.address,
+        location: data.model.location,
+        info: '',
+        adcode: data.model.adcode || ''
+      });
+    } else {
+      var userLastPublishArea = _taroWeapp2.default.getStorageSync(_store.UserLastPublishArea);
+      if (userLastPublishArea) {
+        setAreaInfo(userLastPublishArea);
+      }
+    }
+  }
+  function getPublishRecruitInfo() {
+    if (!model) return;
+    var data = {
+      title: model.title,
+      address: areaInfo.title + '@@@@@' + areaInfo.info,
+      detail: model.detail,
+      infoId: model.infoId,
+      type: model.type,
+      user_mobile: model.user_mobile,
+      code: model.code,
+      user_name: model.user_name,
+      province_id: model.province_id,
+      city_id: model.city_id,
+      location: model.location,
+      adcode: model.adcode,
+      county_id: model.county_id,
+      classifies: model.classifies,
+      images: model.view_images.map(function (item) {
+        return item.url;
+      })
+    };
+    return data;
+  }
+  return {
+    model: model,
+    setModel: setModel,
+    showUpload: showUpload,
+    setShowUpload: setShowUpload,
+    showProfession: showProfession,
+    setShowProssion: setShowProssion,
+    getPublishRecruitInfo: getPublishRecruitInfo,
+    area: area,
+    setArea: setArea,
+    areaInfo: areaInfo,
+    setAreaInfo: setAreaInfo
+  };
+}
+
+/***/ }),
+
 /***/ "./src/models/area.ts":
 /*!****************************!*\
   !*** ./src/models/area.ts ***!
@@ -12445,6 +12621,359 @@ exports.default = AREAS;
 
 /***/ }),
 
+/***/ "./src/pages/recruit/publish/index.scss":
+/*!**********************************************!*\
+  !*** ./src/pages/recruit/publish/index.scss ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
+/***/ "./src/pages/recruit/publish/index.tsx":
+/*!*********************************************!*\
+  !*** ./src/pages/recruit/publish/index.tsx ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.context = undefined;
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
+
+var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
+
+var _recruit = __webpack_require__(/*! ../../../hooks/publish/recruit */ "./src/hooks/publish/recruit.ts");
+
+var _recruit2 = _interopRequireDefault(_recruit);
+
+var _index = __webpack_require__(/*! ../../../utils/upload/index */ "./src/utils/upload/index.tsx");
+
+var _index2 = _interopRequireDefault(_index);
+
+var _index3 = __webpack_require__(/*! ../../../utils/msg/index */ "./src/utils/msg/index.ts");
+
+var _index4 = _interopRequireDefault(_index3);
+
+__webpack_require__(/*! ./index.scss */ "./src/pages/recruit/publish/index.scss");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var context = exports.context = (0, _taroWeapp.createContext)({});
+
+var PublishRecruit = function (_Taro$Component) {
+  _inherits(PublishRecruit, _Taro$Component);
+
+  function PublishRecruit() {
+    _classCallCheck(this, PublishRecruit);
+
+    var _this = _possibleConstructorReturn(this, (PublishRecruit.__proto__ || Object.getPrototypeOf(PublishRecruit)).apply(this, arguments));
+
+    _this.$usedState = ["model", "$compid__15", "$compid__16", "$compid__17", "showProfession", "textFocus", "showUpload"];
+    _this.customComponents = ["Profession", "WordsTotal", "ImageView"];
+    return _this;
+  }
+
+  _createClass(PublishRecruit, [{
+    key: "_constructor",
+    value: function _constructor(props) {
+      _get(PublishRecruit.prototype.__proto__ || Object.getPrototypeOf(PublishRecruit.prototype), "_constructor", this).call(this, props);
+      this.$$refs = new _taroWeapp2.default.RefsArray();
+    }
+  }, {
+    key: "_createData",
+    value: function _createData() {
+      this.__state = arguments[0] || this.state || {};
+      this.__props = arguments[1] || this.props || {};
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
+      ;
+
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__15"),
+          _genCompid2 = _slicedToArray(_genCompid, 2),
+          $prevCompid__15 = _genCompid2[0],
+          $compid__15 = _genCompid2[1];
+
+      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__16"),
+          _genCompid4 = _slicedToArray(_genCompid3, 2),
+          $prevCompid__16 = _genCompid4[0],
+          $compid__16 = _genCompid4[1];
+
+      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__17"),
+          _genCompid6 = _slicedToArray(_genCompid5, 2),
+          $prevCompid__17 = _genCompid6[0],
+          $compid__17 = _genCompid6[1];
+      // 获取路由参数
+
+
+      var router = (0, _taroWeapp.useRouter)();
+      var id = router.params.id || '';
+      var type = 'job';
+      var InitParams = { type: type, infoId: id };
+      // 初始化当前信息
+
+      var _usePublishViewInfo = (0, _recruit2.default)(InitParams),
+          model = _usePublishViewInfo.model,
+          setModel = _usePublishViewInfo.setModel,
+          showUpload = _usePublishViewInfo.showUpload,
+          setShowUpload = _usePublishViewInfo.setShowUpload,
+          showProfession = _usePublishViewInfo.showProfession,
+          setShowProssion = _usePublishViewInfo.setShowProssion,
+          area = _usePublishViewInfo.area,
+          _setArea = _usePublishViewInfo.setArea,
+          _setAreaInfo = _usePublishViewInfo.setAreaInfo,
+          getPublishRecruitInfo = _usePublishViewInfo.getPublishRecruitInfo;
+      // textarea焦点
+
+
+      var _useState = (0, _taroWeapp.useState)(false),
+          _useState2 = _slicedToArray(_useState, 2),
+          textFocus = _useState2[0],
+          setTextFocus = _useState2[1];
+
+      var userClickTextArea = function userClickTextArea(b) {
+        setTextFocus(b);
+      };
+      // 需要传递的值
+      var value = {
+        area: area,
+        setArea: function setArea(city) {
+          return _setArea(city);
+        },
+        setAreaInfo: function setAreaInfo(item) {
+          return _setAreaInfo(item);
+        },
+        setPublishArea: function setPublishArea(val) {
+          if (!model) {
+            return;
+          }
+          setModel(_extends({}, model, { address: val }));
+        }
+      };
+      // 切换图片上传显示隐藏
+      var changeShowUpload = function changeShowUpload() {
+        setShowUpload(!showUpload);
+      };
+      var showProfessionAction = function showProfessionAction() {
+        setShowProssion(true);
+      };
+      var closeProfession = function closeProfession() {
+        setShowProssion(false);
+      };
+      // 用户填写表单
+      var userEnterFrom = function userEnterFrom(e, key) {
+        var value = e.detail.value;
+        var state = JSON.parse(JSON.stringify(model));
+        state[key] = value;
+        setModel(state);
+      };
+      // 用户发布招工信息
+      var userPublishRecruit = function userPublishRecruit() {
+        var data = getPublishRecruitInfo();
+        console.log(data);
+      };
+      // 选择地址
+      var userChooseArea = function userChooseArea() {
+        if (!model) {
+          return;
+        }
+        var url = '/pages/map/recruit/index';
+        _taroWeapp2.default.navigateTo({
+          url: url
+        });
+      };
+      // 点击工种
+      var userClickProfession = function userClickProfession(i, k, id) {
+        if (!model) {
+          return;
+        }
+        var works = JSON.parse(JSON.stringify(model.classifyTree));
+        var check = works[i].children[k].is_check;
+        if (!check) {
+          var max = model.maxClassifyCount;
+          var num = model.classifies.length;
+          if (num >= max) {
+            (0, _index4.default)('工种最多可以选择' + max + '个');
+            return;
+          }
+        }
+        works[i].children[k].is_check = !check;
+        var classifyArr = JSON.parse(JSON.stringify(model.classifies));
+        var newArr = check ? classifyArr.filter(function (item) {
+          return item !== id;
+        }) : [].concat(_toConsumableArray(classifyArr), [id]);
+        setModel(_extends({}, model, { classifyTree: works, classifies: newArr }));
+      };
+      // 用户上传图片
+      var userUploadImg = function userUploadImg() {
+        var i = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : -1;
+
+        (0, _index2.default)().then(function (res) {
+          var imageItem = {
+            url: res.url,
+            httpurl: res.httpurl
+          };
+          if (model) {
+            if (i === -1) {
+              setModel(_extends({}, model, { view_images: [].concat(_toConsumableArray(model.view_images), [imageItem]) }));
+            } else {
+              model.view_images[i] = imageItem;
+              setModel(_extends({}, model));
+            }
+          }
+        });
+      };
+      context.Provider(value);
+      this.anonymousFunc0 = function (i, k, id) {
+        return userClickProfession(i, k, id);
+      };
+      this.anonymousFunc1 = function (e) {
+        return userEnterFrom(e, 'title');
+      };
+      this.anonymousFunc2 = function () {
+        return showProfessionAction();
+      };
+      this.anonymousFunc3 = function () {
+        return userChooseArea();
+      };
+      this.anonymousFunc4 = function (e) {
+        return userEnterFrom(e, 'user_name');
+      };
+      this.anonymousFunc5 = function (e) {
+        return userEnterFrom(e, 'user_mobile');
+      };
+      this.anonymousFunc6 = function () {
+        return userClickTextArea(true);
+      };
+      this.anonymousFunc7 = function () {
+        return userClickTextArea(false);
+      };
+      this.anonymousFunc8 = function (e) {
+        return userEnterFrom(e, 'detail');
+      };
+      this.anonymousFunc9 = function () {
+        return changeShowUpload();
+      };
+      this.anonymousFunc10 = function () {
+        return userPublishRecruit();
+      };
+      showProfession && _taroWeapp.propsManager.set({
+        "closeProfession": closeProfession,
+        "data": model && model.classifyTree,
+        "onClickItem": this.anonymousFunc0,
+        "num": 3
+      }, $compid__15, $prevCompid__15);
+      _taroWeapp.propsManager.set({
+        "num": 0
+      }, $compid__16, $prevCompid__16);
+      showUpload && model && _taroWeapp.propsManager.set({
+        "images": model.view_images,
+        "max": model.maxImageCount,
+        "userUploadImg": userUploadImg
+      }, $compid__17, $prevCompid__17);
+      Object.assign(this.__state, {
+        model: model,
+        $compid__15: $compid__15,
+        $compid__16: $compid__16,
+        $compid__17: $compid__17,
+        showProfession: showProfession,
+        textFocus: textFocus,
+        showUpload: showUpload
+      });
+      return this.__state;
+    }
+  }, {
+    key: "anonymousFunc0",
+    value: function anonymousFunc0(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc1",
+    value: function anonymousFunc1(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc2",
+    value: function anonymousFunc2(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc3",
+    value: function anonymousFunc3(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc4",
+    value: function anonymousFunc4(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc5",
+    value: function anonymousFunc5(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc6",
+    value: function anonymousFunc6(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc7",
+    value: function anonymousFunc7(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc8",
+    value: function anonymousFunc8(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc9",
+    value: function anonymousFunc9(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc10",
+    value: function anonymousFunc10(e) {
+      ;
+    }
+  }]);
+
+  return PublishRecruit;
+}(_taroWeapp2.default.Component);
+
+PublishRecruit.$$events = ["anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6", "anonymousFunc7", "anonymousFunc8", "anonymousFunc9", "anonymousFunc10"];
+PublishRecruit.$$componentPath = "pages/recruit/publish/index";
+exports.default = PublishRecruit;
+
+Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(PublishRecruit, true));
+
+/***/ }),
+
 /***/ "./src/utils/api/index.ts":
 /*!********************************!*\
   !*** ./src/utils/api/index.ts ***!
@@ -12490,6 +13019,87 @@ var GetPublisRecruitView = exports.GetPublisRecruitView = _index.REQUESTURL + 'p
 var GetAllAreas = exports.GetAllAreas = _index.REQUESTURL + 'index/index-area/';
 // 检测adcode是否合法
 var CheckAdcodeValid = exports.CheckAdcodeValid = _index.REQUESTURL + 'publish/checking-adcode/';
+
+/***/ }),
+
+/***/ "./src/utils/helper/index.ts":
+/*!***********************************!*\
+  !*** ./src/utils/helper/index.ts ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+exports.objDeepCopy = objDeepCopy;
+exports.userAuthLoction = userAuthLoction;
+exports.getAmapPoiList = getAmapPoiList;
+
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
+
+var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
+
+var _index = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
+
+var _amapWx = __webpack_require__(/*! ../source/amap-wx */ "./src/utils/source/amap-wx.js");
+
+var _amapWx2 = _interopRequireDefault(_amapWx);
+
+var _store = __webpack_require__(/*! ../../config/store */ "./src/config/store.ts");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// 对象拷贝
+function objDeepCopy(source) {
+  var sourceCopy = source instanceof Array ? [] : {};
+  for (var item in source) {
+    sourceCopy[item] = _typeof(source[item]) === 'object' ? objDeepCopy(source[item]) : source[item];
+  }
+  return sourceCopy;
+}
+// 获取用户定位
+function userAuthLoction() {
+  return new Promise(function (resolve, reject) {
+    var GDMAP = new _amapWx2.default.AMapWX({ key: _index.MAPKEY });
+    GDMAP.getRegeo({
+      success: function success(data) {
+        var gpsLocation = {
+          province: data[0].regeocodeData.addressComponent.province,
+          city: data[0].regeocodeData.addressComponent.city,
+          adcode: data[0].regeocodeData.addressComponent.adcode,
+          citycode: data[0].regeocodeData.addressComponent.citycode
+        };
+        _taroWeapp2.default.setStorageSync(_store.UserLocationCity, gpsLocation); //定位信息
+        resolve(gpsLocation);
+      },
+      fail: function fail() {
+        reject();
+      }
+    });
+  });
+}
+// 请求高德api获取附近地点
+function getAmapPoiList(val) {
+  return new Promise(function (resolve, reject) {
+    var GDMAP = new _amapWx2.default.AMapWX({ key: _index.MAPKEY });
+    GDMAP.getInputtips({
+      keywords: val,
+      success: function success(data) {
+        if (data) resolve(data.tips);else reject();
+      },
+      fail: function fail() {
+        reject();
+      }
+    });
+  });
+}
 
 /***/ }),
 
@@ -12804,6 +13414,226 @@ function checkAdcodeValid(adcode) {
     method: 'POST',
     data: {
       adcode: adcode
+    }
+  });
+}
+
+/***/ }),
+
+/***/ "./src/utils/source/amap-wx.js":
+/*!*************************************!*\
+  !*** ./src/utils/source/amap-wx.js ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+function AMapWX(a) {
+  this.key = a.key, this.requestConfig = { key: a.key, s: "rsx", platform: "WXJS", appname: a.key, sdkversion: "1.2.0", logversion: "2.0" };
+}AMapWX.prototype.getWxLocation = function (a, b) {
+  wx.getLocation({ type: "gcj02", success: function success(a) {
+      var c = a.longitude + "," + a.latitude;wx.setStorage({ key: "userLocation", data: c }), b(c);
+    }, fail: function fail(c) {
+      wx.getStorage({ key: "userLocation", success: function success(a) {
+          a.data && b(a.data);
+        } }), a.fail({ errCode: "0", errMsg: c.errMsg || "" });
+    } });
+}, AMapWX.prototype.getRegeo = function (a) {
+  function c(c) {
+    var d = b.requestConfig;wx.request({ url: "https://restapi.amap.com/v3/geocode/regeo", data: { key: b.key, location: c, extensions: "all", s: d.s, platform: d.platform, appname: b.key, sdkversion: d.sdkversion, logversion: d.logversion }, method: "GET", header: { "content-type": "application/json" }, success: function success(b) {
+        var d, e, f, g, h, i, j, k, l;b.data.status && "1" == b.data.status ? (d = b.data.regeocode, e = d.addressComponent, f = [], g = "", d && d.roads[0] && d.roads[0].name && (g = d.roads[0].name + "附近"), h = c.split(",")[0], i = c.split(",")[1], d.pois && d.pois[0] && (g = d.pois[0].name + "附近", j = d.pois[0].location, j && (h = parseFloat(j.split(",")[0]), i = parseFloat(j.split(",")[1]))), e.provice && f.push(e.provice), e.city && f.push(e.city), e.district && f.push(e.district), e.streetNumber && e.streetNumber.street && e.streetNumber.number ? (f.push(e.streetNumber.street), f.push(e.streetNumber.number)) : (k = "", d && d.roads[0] && d.roads[0].name && (k = d.roads[0].name), f.push(k)), f = f.join(""), l = [{ iconPath: a.iconPath, width: a.iconWidth, height: a.iconHeight, name: f, desc: g, longitude: h, latitude: i, id: 0, regeocodeData: d }], a.success(l)) : a.fail({ errCode: b.data.infocode, errMsg: b.data.info });
+      }, fail: function fail(b) {
+        a.fail({ errCode: "0", errMsg: b.errMsg || "" });
+      } });
+  }var b = this;a.location ? c(a.location) : b.getWxLocation(a, function (a) {
+    c(a);
+  });
+}, AMapWX.prototype.getWeather = function (a) {
+  function d(d) {
+    var e = "base";a.type && "forecast" == a.type && (e = "all"), wx.request({ url: "https://restapi.amap.com/v3/weather/weatherInfo", data: { key: b.key, city: d, extensions: e, s: c.s, platform: c.platform, appname: b.key, sdkversion: c.sdkversion, logversion: c.logversion }, method: "GET", header: { "content-type": "application/json" }, success: function success(b) {
+        function c(a) {
+          var b = { city: { text: "城市", data: a.city }, weather: { text: "天气", data: a.weather }, temperature: { text: "温度", data: a.temperature }, winddirection: { text: "风向", data: a.winddirection + "风" }, windpower: { text: "风力", data: a.windpower + "级" }, humidity: { text: "湿度", data: a.humidity + "%" } };return b;
+        }var d, e;b.data.status && "1" == b.data.status ? b.data.lives ? (d = b.data.lives, d && d.length > 0 && (d = d[0], e = c(d), e["liveData"] = d, a.success(e))) : b.data.forecasts && b.data.forecasts[0] && a.success({ forecast: b.data.forecasts[0] }) : a.fail({ errCode: b.data.infocode, errMsg: b.data.info });
+      }, fail: function fail(b) {
+        a.fail({ errCode: "0", errMsg: b.errMsg || "" });
+      } });
+  }function e(e) {
+    wx.request({ url: "https://restapi.amap.com/v3/geocode/regeo", data: { key: b.key, location: e, extensions: "all", s: c.s, platform: c.platform, appname: b.key, sdkversion: c.sdkversion, logversion: c.logversion }, method: "GET", header: { "content-type": "application/json" }, success: function success(b) {
+        var c, e;b.data.status && "1" == b.data.status ? (e = b.data.regeocode, e.addressComponent ? c = e.addressComponent.adcode : e.aois && e.aois.length > 0 && (c = e.aois[0].adcode), d(c)) : a.fail({ errCode: b.data.infocode, errMsg: b.data.info });
+      }, fail: function fail(b) {
+        a.fail({ errCode: "0", errMsg: b.errMsg || "" });
+      } });
+  }var b = this,
+      c = b.requestConfig;a.city ? d(a.city) : b.getWxLocation(a, function (a) {
+    e(a);
+  });
+}, AMapWX.prototype.getPoiAround = function (a) {
+  function d(d) {
+    var e = { key: b.key, location: d, s: c.s, platform: c.platform, appname: b.key, sdkversion: c.sdkversion, logversion: c.logversion };a.querytypes && (e["types"] = a.querytypes), a.querykeywords && (e["keywords"] = a.querykeywords), wx.request({ url: "https://restapi.amap.com/v3/place/around", data: e, method: "GET", header: { "content-type": "application/json" }, success: function success(b) {
+        var c, d, e, f;if (b.data.status && "1" == b.data.status) {
+          if (b = b.data, b && b.pois) {
+            for (c = [], d = 0; d < b.pois.length; d++) {
+              e = 0 == d ? a.iconPathSelected : a.iconPath, c.push({ latitude: parseFloat(b.pois[d].location.split(",")[1]), longitude: parseFloat(b.pois[d].location.split(",")[0]), iconPath: e, width: 22, height: 32, id: d, name: b.pois[d].name, address: b.pois[d].address });
+            }f = { markers: c, poisData: b.pois }, a.success(f);
+          }
+        } else a.fail({ errCode: b.data.infocode, errMsg: b.data.info });
+      }, fail: function fail(b) {
+        a.fail({ errCode: "0", errMsg: b.errMsg || "" });
+      } });
+  }var b = this,
+      c = b.requestConfig;a.location ? d(a.location) : b.getWxLocation(a, function (a) {
+    d(a);
+  });
+}, AMapWX.prototype.getStaticmap = function (a) {
+  function f(b) {
+    c.push("location=" + b), a.zoom && c.push("zoom=" + a.zoom), a.size && c.push("size=" + a.size), a.scale && c.push("scale=" + a.scale), a.markers && c.push("markers=" + a.markers), a.labels && c.push("labels=" + a.labels), a.paths && c.push("paths=" + a.paths), a.traffic && c.push("traffic=" + a.traffic);var e = d + c.join("&");a.success({ url: e });
+  }var e,
+      b = this,
+      c = [],
+      d = "https://restapi.amap.com/v3/staticmap?";c.push("key=" + b.key), e = b.requestConfig, c.push("s=" + e.s), c.push("platform=" + e.platform), c.push("appname=" + e.appname), c.push("sdkversion=" + e.sdkversion), c.push("logversion=" + e.logversion), a.location ? f(a.location) : b.getWxLocation(a, function (a) {
+    f(a);
+  });
+}, AMapWX.prototype.getInputtips = function (a) {
+  var b = this,
+      c = b.requestConfig,
+      d = { key: b.key, s: c.s, platform: c.platform, appname: b.key, sdkversion: c.sdkversion, logversion: c.logversion };a.location && (d["location"] = a.location), a.keywords && (d["keywords"] = a.keywords), a.type && (d["type"] = a.type), a.city && (d["city"] = a.city), a.citylimit && (d["citylimit"] = a.citylimit), wx.request({ url: "https://restapi.amap.com/v3/assistant/inputtips", data: d, method: "GET", header: { "content-type": "application/json" }, success: function success(b) {
+      b && b.data && b.data.tips && a.success({ tips: b.data.tips });
+    }, fail: function fail(b) {
+      a.fail({ errCode: "0", errMsg: b.errMsg || "" });
+    } });
+}, AMapWX.prototype.getDrivingRoute = function (a) {
+  var b = this,
+      c = b.requestConfig,
+      d = { key: b.key, s: c.s, platform: c.platform, appname: b.key, sdkversion: c.sdkversion, logversion: c.logversion };a.origin && (d["origin"] = a.origin), a.destination && (d["destination"] = a.destination), a.strategy && (d["strategy"] = a.strategy), a.waypoints && (d["waypoints"] = a.waypoints), a.avoidpolygons && (d["avoidpolygons"] = a.avoidpolygons), a.avoidroad && (d["avoidroad"] = a.avoidroad), wx.request({ url: "https://restapi.amap.com/v3/direction/driving", data: d, method: "GET", header: { "content-type": "application/json" }, success: function success(b) {
+      b && b.data && b.data.route && a.success({ paths: b.data.route.paths, taxi_cost: b.data.route.taxi_cost || "" });
+    }, fail: function fail(b) {
+      a.fail({ errCode: "0", errMsg: b.errMsg || "" });
+    } });
+}, AMapWX.prototype.getWalkingRoute = function (a) {
+  var b = this,
+      c = b.requestConfig,
+      d = { key: b.key, s: c.s, platform: c.platform, appname: b.key, sdkversion: c.sdkversion, logversion: c.logversion };a.origin && (d["origin"] = a.origin), a.destination && (d["destination"] = a.destination), wx.request({ url: "https://restapi.amap.com/v3/direction/walking", data: d, method: "GET", header: { "content-type": "application/json" }, success: function success(b) {
+      b && b.data && b.data.route && a.success({ paths: b.data.route.paths });
+    }, fail: function fail(b) {
+      a.fail({ errCode: "0", errMsg: b.errMsg || "" });
+    } });
+}, AMapWX.prototype.getTransitRoute = function (a) {
+  var b = this,
+      c = b.requestConfig,
+      d = { key: b.key, s: c.s, platform: c.platform, appname: b.key, sdkversion: c.sdkversion, logversion: c.logversion };a.origin && (d["origin"] = a.origin), a.destination && (d["destination"] = a.destination), a.strategy && (d["strategy"] = a.strategy), a.city && (d["city"] = a.city), a.cityd && (d["cityd"] = a.cityd), wx.request({ url: "https://restapi.amap.com/v3/direction/transit/integrated", data: d, method: "GET", header: { "content-type": "application/json" }, success: function success(b) {
+      if (b && b.data && b.data.route) {
+        var c = b.data.route;a.success({ distance: c.distance || "", taxi_cost: c.taxi_cost || "", transits: c.transits });
+      }
+    }, fail: function fail(b) {
+      a.fail({ errCode: "0", errMsg: b.errMsg || "" });
+    } });
+}, AMapWX.prototype.getRidingRoute = function (a) {
+  var b = this,
+      c = b.requestConfig,
+      d = { key: b.key, s: c.s, platform: c.platform, appname: b.key, sdkversion: c.sdkversion, logversion: c.logversion };a.origin && (d["origin"] = a.origin), a.destination && (d["destination"] = a.destination), wx.request({ url: "https://restapi.amap.com/v4/direction/bicycling", data: d, method: "GET", header: { "content-type": "application/json" }, success: function success(b) {
+      b && b.data && b.data.data && a.success({ paths: b.data.data.paths });
+    }, fail: function fail(b) {
+      a.fail({ errCode: "0", errMsg: b.errMsg || "" });
+    } });
+}, module.exports.AMapWX = AMapWX;
+
+/***/ }),
+
+/***/ "./src/utils/upload/index.tsx":
+/*!************************************!*\
+  !*** ./src/utils/upload/index.tsx ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = UploadImgAction;
+exports.CameraAndAlbum = CameraAndAlbum;
+
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
+
+var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
+
+var _store = __webpack_require__(/*! ../../config/store */ "./src/config/store.ts");
+
+var _index = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function UploadImgAction() {
+  var url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _index.UPLOADIMGURL;
+
+  return new Promise(function (resolve) {
+    _taroWeapp2.default.chooseImage({
+      count: 1,
+      sizeType: ['compressed'],
+      sourceType: ['album', 'camera'],
+      success: function success(res) {
+        AppUploadImg(resolve, res, url);
+      }
+    });
+  });
+}
+function CameraAndAlbum() {
+  var url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _index.UPLOADIMGURL;
+
+  return new Promise(function (resolve) {
+    _taroWeapp2.default.showActionSheet({
+      itemList: ['拍照', '从相册中选择']
+    }).then(function (res) {
+      var index = res.tapIndex;
+      _taroWeapp2.default.chooseImage({
+        count: 1,
+        sizeType: ['compressed'],
+        sourceType: index === 0 ? ['camera'] : ['album'],
+        success: function success(res) {
+          AppUploadImg(resolve, res, url);
+        }
+      });
+    });
+  });
+}
+function AppUploadImg(resolve, res) {
+  var url = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : _index.UPLOADIMGURL;
+
+  var userInfo = _taroWeapp2.default.getStorageSync(_store.UserInfo);
+  _taroWeapp2.default.showLoading({ title: '图片上传中' });
+  _taroWeapp2.default.uploadFile({
+    url: url,
+    filePath: res.tempFilePaths[0],
+    header: {
+      userid: userInfo ? userInfo.userId : ''
+    },
+    name: 'file',
+    success: function success(response) {
+      var mydata = JSON.parse(response.data);
+      // let resData = { local: response, remote: mydata}
+      _taroWeapp2.default.showToast({
+        title: mydata.errmsg,
+        icon: "none",
+        duration: 2000
+      });
+      if (mydata.errcode == "ok") {
+        resolve(mydata);
+      }
+    },
+
+    fail: function fail() {
+      _taroWeapp2.default.showToast({
+        title: "网络错误，上传失败！",
+        icon: "none",
+        duration: 2000
+      });
+    },
+    complete: function complete() {
+      _taroWeapp2.default.hideLoading();
     }
   });
 }

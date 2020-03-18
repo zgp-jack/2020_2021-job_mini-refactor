@@ -1,0 +1,63 @@
+<block wx:if="{{$taroCompReady}}">
+    <block>
+        <block>
+            <block wx:if="{{showProfession}}">
+                <profession compid="{{$compid__15}}"></profession>
+            </block>
+            <view class="publish-recruit-container">
+                <form>
+                    <view class="publish-recruit-card">
+                        <view class="publish-list-item"><text class="pulish-list-title">标题</text>
+                            <input class="publish-list-input" type="text" placeholder="请输入标题（3-30个字" value="{{model && model.title}}" bindinput="anonymousFunc1" />
+                        </view>
+                        <view class="publish-list-item" bindtap="anonymousFunc2"><text class="pulish-list-title">所属工种</text>
+                            <block>
+                                <block wx:if="{{model && model.classifies.length}}">
+                                    <view class="publish-list-input">
+                                        <block wx:key="id" wx:for="{{model.classifyTree}}" wx:for-item="item" wx:for-index="_anonIdx4">
+                                            <block wx:key="id" wx:for="{{item.children}}" wx:for-item="data" wx:for-index="_anonIdx2">
+                                                <block wx:if="{{data.is_check}}"><text class="publish-input-list">{{data.name}}</text>
+                                                </block>
+                                            </block>
+                                        </block>
+                                    </view>
+                                </block>
+                                <block wx:else>
+                                    <input class="publish-list-input" disabled="{{true}}" type="text" placeholder="请选择所属工种" />
+                                </block>
+                            </block>
+                        </view>
+                        <view class="publish-list-item" bindtap="anonymousFunc3"><text class="pulish-list-title">详细地址</text>
+                            <input class="publish-list-input" type="text" disabled="{{true}}" placeholder="请输入详细地址" value="{{model && model.address}}" />
+                        </view>
+                        <view class="publish-list-item"><text class="pulish-list-title">联系人</text>
+                            <input class="publish-list-input" type="text" placeholder="请输入联系人" value="{{model && model.user_name}}" bindinput="anonymousFunc4" />
+                        </view>
+                        <view class="publish-list-item"><text class="pulish-list-title">联系电话</text>
+                            <input class="publish-list-input" type="text" placeholder="请输入联系电话" value="{{model && model.user_mobile}}" bindinput="anonymousFunc5" />
+                        </view>
+                        <view class="publish-list-textarea"><text class="publish-textarea-title">招工详情</text>
+                            <textarea class="publish-textarea" value="{{model && model.detail || ''}}" focus="{{textFocus}}" bindtap="anonymousFunc6" bindfocus="anonymousFunc7" placeholder="请输入招工详情" bindinput="anonymousFunc8"></textarea>
+                            <words-total compid="{{$compid__16}}"></words-total>
+                        </view>
+                    </view>
+                    <view class="publish-recruit-card">
+                        <view class="publish-upload-header" bindtap="anonymousFunc9">
+                            <view class="publish-upload-title">
+                                <view class="publish-upload-red"><text>上传图片</text>
+                                    <view class="publish-upload-wbg"><text class="publish-upload-ibg"></text>
+                                    </view>
+                                </view><text class="publish-upload-smtips">(可以不上传)</text>
+                            </view>
+                            <view class="publish-upload-tips">可上传工地现场照片、工程图纸、承包合同等</view>
+                        </view>
+                        <block wx:if="{{showUpload && model}}">
+                            <image-view compid="{{$compid__17}}"></image-view>
+                        </block>
+                    </view>
+                    <view class="publish-recruit-btn" bindtap="anonymousFunc10">确认发布</view>
+                </form>
+            </view>
+        </block>
+    </block>
+</block>

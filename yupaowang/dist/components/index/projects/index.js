@@ -156,7 +156,7 @@ var Projects = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (Projects.__proto__ || Object.getPrototypeOf(Projects)).apply(this, arguments));
 
-    _this.$usedState = ["loopArray5", "FastBarConfig"];
+    _this.$usedState = ["loopArray1", "FastBarConfig"];
     _this.anonymousFunc0Map = {};
     _this.customComponents = [];
     return _this;
@@ -189,7 +189,7 @@ var Projects = function (_Taro$Component) {
           _taroWeapp2.default.navigateTo({ url: item.url });
         }
       };
-      var loopArray5 = _config2.default.map(function (item, index) {
+      var loopArray1 = _config2.default.map(function (item, index) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
@@ -205,7 +205,7 @@ var Projects = function (_Taro$Component) {
         };
       });
       Object.assign(this.__state, {
-        loopArray5: loopArray5,
+        loopArray1: loopArray1,
         FastBarConfig: _config2.default
       });
       return this.__state;

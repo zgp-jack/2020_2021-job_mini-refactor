@@ -11123,20 +11123,3 @@ view, input, text, image, textarea {
 page {
   background-color: #f7f6f9; }
 
-.overwords {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis; }
-
-.clearfix:after {
-  content: "";
-  display: block;
-  clear: both;
-  visibility: hidden;
-  line-height: 0;
-  height: 0;
-  font-size: 0; }
-
-.clearfix {
-  zoom: 1; }
-

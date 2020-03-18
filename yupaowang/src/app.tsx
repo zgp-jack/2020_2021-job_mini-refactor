@@ -12,21 +12,13 @@ class App extends Component {
     pages: [
       'pages/index/index', //首页
       'pages/userauth/index', //用户授权
-      // "pages/recruit/publish/index",
-      // "pages/used/lists/index",
-      // "pages/pages/map/recruit/index",
-    ],
-    subPackages: [
-      // 其他分包
-      {
-        "root": "pages/integral/",
-        "pages": [
-          "source/index",
-          "temp/index",
-          "official/index",
-          "expend/index"
-        ]
-      },      
+      "pages/recruit/publish/index", //发布招工
+      "pages/used/lists/index", //二手交易列表
+      "pages/map/recruit/index", //发布招工地图
+      "pages/integral/source/index", //积分来源记录
+      "pages/integral/temp/index", //临时积分记录
+      "pages/integral/official/index", //正式积分记录
+      "pages/integral/expend/index", //积分消耗记录
     ],
     window: {
       backgroundTextStyle: 'light',

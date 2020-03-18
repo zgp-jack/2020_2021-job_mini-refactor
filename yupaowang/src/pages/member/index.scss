@@ -1,4 +1,4 @@
-@import '../../app.scss';
+@import '../../common.scss';
 
 .member-container{
   position: relative;
@@ -70,7 +70,7 @@
         .member-usernum{
           position: relative;
           margin-top: 10px;
-          text{
+          .member-id{
             color: $color;
           }
         }
