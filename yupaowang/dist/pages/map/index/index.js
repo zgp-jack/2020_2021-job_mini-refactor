@@ -61,7 +61,7 @@ var MapComponent = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (MapComponent.__proto__ || Object.getPrototypeOf(MapComponent)).apply(this, arguments));
 
-    _this.$usedState = ["$compid__22", "smAreaText", "IMGCDNURL", "showCity", "area", "data"];
+    _this.$usedState = ["$compid__23", "smAreaText", "IMGCDNURL", "showCity", "area", "data"];
     _this.customComponents = ["Cities"];
     return _this;
   }
@@ -81,10 +81,10 @@ var MapComponent = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__22"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__23"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__22 = _genCompid2[0],
-          $compid__22 = _genCompid2[1];
+          $prevCompid__23 = _genCompid2[0],
+          $compid__23 = _genCompid2[1];
 
       var data = this.__props.data;
       // 用户定位城市
@@ -172,9 +172,9 @@ var MapComponent = function (_Taro$Component) {
         "userLoc": userLoc,
         "userChangeCity": userChangeCity,
         "userTapCityBtn": userTapCityBtn
-      }, $compid__22, $prevCompid__22);
+      }, $compid__23, $prevCompid__23);
       Object.assign(this.__state, {
-        $compid__22: $compid__22,
+        $compid__23: $compid__23,
         smAreaText: smAreaText,
         IMGCDNURL: _index.IMGCDNURL,
         showCity: showCity,
@@ -210,4 +210,4 @@ Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/
 
 /***/ })
 
-},[["./src/pages/map/index/index.tsx","runtime","taro","vendors","common"]]]);
+},[["./src/pages/map/index/index.tsx","runtime","vendors","common"]]]);

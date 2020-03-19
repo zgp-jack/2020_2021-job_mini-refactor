@@ -55,7 +55,7 @@ var Profession = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (Profession.__proto__ || Object.getPrototypeOf(Profession)).apply(this, arguments));
 
-    _this.$usedState = ["loopArray17", "data", "title", "footerTitle", "closeProfession", "onClickItem"];
+    _this.$usedState = ["loopArray21", "data", "title", "footerTitle", "closeProfession", "onClickItem"];
     _this.anonymousFunc0Map = {};
     _this.customComponents = [];
     return _this;
@@ -89,15 +89,15 @@ var Profession = function (_Taro$Component) {
       this.anonymousFunc1 = function () {
         return closeProfession();
       };
-      var loopArray17 = data ? data.map(function (item, i) {
+      var loopArray21 = data ? data.map(function (item, i) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
-        var $anonymousCallee__5 = data ? item.$original.children.map(function (d, k) {
+        var $anonymousCallee__6 = data ? item.$original.children.map(function (d, k) {
           d = {
             $original: (0, _taroWeapp.internal_get_original)(d)
           };
-          var _$indexKey = 'fzzzz' + i + '-' + k;
+          var _$indexKey = 'izzzz' + i + '-' + k;
           _this2.anonymousFunc0Map[_$indexKey] = function () {
             return _this2.__props.onClickItem(i, k, d.$original.id);
           };
@@ -114,12 +114,12 @@ var Profession = function (_Taro$Component) {
           };
         }) : [];
         return {
-          $anonymousCallee__5: $anonymousCallee__5,
+          $anonymousCallee__6: $anonymousCallee__6,
           $original: item.$original
         };
       }) : [];
       Object.assign(this.__state, {
-        loopArray17: loopArray17,
+        loopArray21: loopArray21,
         data: data,
         title: title,
         footerTitle: footerTitle
@@ -157,4 +157,4 @@ Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/
 
 /***/ })
 
-},[["./src/components/profession/index.tsx","runtime","taro","vendors"]]]);
+},[["./src/components/profession/index.tsx","runtime","vendors"]]]);

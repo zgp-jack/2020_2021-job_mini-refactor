@@ -51,7 +51,7 @@ var ImageView = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (ImageView.__proto__ || Object.getPrototypeOf(ImageView)).apply(this, arguments));
 
-    _this.$usedState = ["loopArray18", "images", "max", "userUploadImg"];
+    _this.$usedState = ["loopArray4", "images", "max", "userUploadImg"];
     _this.anonymousFunc0Map = {};
     _this.customComponents = [];
     return _this;
@@ -81,11 +81,11 @@ var ImageView = function (_Taro$Component) {
       this.anonymousFunc1 = function () {
         return userUploadImg && userUploadImg(-1);
       };
-      var loopArray18 = images ? images.map(function (item, index) {
+      var loopArray4 = images ? images.map(function (item, index) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
-        var _$indexKey = "gzzzz" + index;
+        var _$indexKey = "czzzz" + index;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return userUploadImg && userUploadImg(index);
         };
@@ -95,7 +95,7 @@ var ImageView = function (_Taro$Component) {
         };
       }) : [];
       Object.assign(this.__state, {
-        loopArray18: loopArray18,
+        loopArray4: loopArray4,
         images: images,
         max: max
       });
@@ -132,4 +132,4 @@ Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/
 
 /***/ })
 
-},[["./src/components/imageview/index.tsx","runtime","taro","vendors"]]]);
+},[["./src/components/imageview/index.tsx","runtime","vendors"]]]);

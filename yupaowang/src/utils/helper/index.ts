@@ -3,6 +3,7 @@ import { MAPKEY } from '../../config'
 import AMapWX from '../../utils/source/amap-wx'
 import { UserLocationPromiss } from '../../models/area'
 import { UserLocationCity } from '../../config/store'
+import { InputPoiList, InputPoiListTips } from './index.d'
 
 // 对象拷贝
 export function objDeepCopy(source: any):any {
@@ -37,13 +38,13 @@ export function userAuthLoction(): Promise<UserLocationPromiss>{
 }
 
 // 请求高德api获取附近地点
-export function getAmapPoiList(val: string) {
+export function getAmapPoiList(val: string): Promise<InputPoiListTips[]> {
   return new Promise((resolve, reject)=>{
     const GDMAP = new AMapWX.AMapWX({ key: MAPKEY })
     GDMAP.getInputtips({
       keywords: val,
-      success:(data: any)=> {
-        if(data) resolve(data)
+      success: (data: InputPoiList)=> {
+        if(data) resolve(data.tips)
         else reject()
       },
       fail: ()=> {

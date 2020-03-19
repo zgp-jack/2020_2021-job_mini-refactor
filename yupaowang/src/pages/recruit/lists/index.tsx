@@ -7,10 +7,8 @@ import RecruitList from '../../../components/lists/recruit'
 import { getRecruitList } from '../../../utils/request'
 import { SearchType } from '../index.d'
 import { RecruitList as RecruitListType } from '../../../utils/request/index.d'
-// import { MAPKEY } from '../../../config'
 import { UserLocationPromiss, ChildItems, AREACHINA, getCityInfo } from '../../../models/area'
 import { UserListChooseCity, UserLocationCity } from '../../../config/store'
-// import AMapWX from '../../../utils/source/amap-wx'
 import { userAuthLoction } from '../../../utils/helper'
 import './index.scss'
 
@@ -113,6 +111,11 @@ export default function Recruit(){
     setSearchData({ ...searchData, page: 1 })
   }
 
+  // * 发布招工
+  const userPublishRecruit = ()=> {
+    Taro.navigateTo({url: '/pages/recruit/publish/index'})
+  }
+
   return (
     <View className='recruit-container'>
       <View className='recruit-fiexd-header'>
@@ -132,7 +135,7 @@ export default function Recruit(){
         <WechatNotice />
         <RecruitList data={lists} />
       </ScrollView>
-      <View className='publish-list-btn'>发布招工</View>
+      <View className='publish-list-btn' onClick={() => userPublishRecruit()}>发布招工</View>
     </View>
   )
 }

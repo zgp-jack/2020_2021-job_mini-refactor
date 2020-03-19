@@ -98,4 +98,4 @@ Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/
 
 /***/ })
 
-},[["./src/components/wordstotal/index.tsx","runtime","taro","vendors"]]]);
+},[["./src/components/wordstotal/index.tsx","runtime","vendors"]]]);

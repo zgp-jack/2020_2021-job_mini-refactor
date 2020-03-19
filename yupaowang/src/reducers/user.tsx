@@ -30,6 +30,10 @@ export default function User(state: User = DEFAULT_STATE, action: ActionType ){
     case SET:
       return { ...state, ...action.data}
     case GET:
+      if (!state.login){
+        let userInfo = Taro.getStorageSync(UserInfo)
+        if(userInfo) return userInfo
+      }
       return state
     default:
       return state

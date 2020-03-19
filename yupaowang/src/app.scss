@@ -3,68 +3,10 @@
 view,input,text,image,textarea{
   box-sizing: border-box;
 }
+
+button::after{
+  border: none;
+}
 page{
   background-color: #f7f6f9;
-}
-
-// 主题色
-$color: #0099ff;
-// 主页底部内边距
-$paddingbottom : 150px;
-// tabbar高度
-$tabbarheight: 120px;
-// 边框颜色
-$bordercolor: #dcdcdc;
-// 阴影颜色
-$shadowcolor: #e7e6e4;
-
-// 文字超出显示省略号
-.overwords{
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
-// 文字多行溢出
-@mixin textrow($row: 2) {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: $row;
-  -webkit-box-orient: vertical;
-  word-break: break-all; 
-} 
-
-// 清除浮动
-.clearfix:after{
-  content: "";   
-  display: block;  
-  clear: both;  
-  visibility: hidden;
-  line-height: 0;  
-  height: 0;     
-  font-size:0; 
-}
-.clearfix{
-  zoom: 1;
-}
-
-// 弹性布局
-@mixin flex($direction:row) {
-  display: flex;
-  flex-direction: $direction;
-  justify-content: center;
-  align-items: center;
-}
-
-@mixin shadow($px:5px) {
-  box-shadow: 0 0 $px $shadowcolor;
-}
-
-@mixin text-justify{
-  content: '.';
-  width: 100%;
-  display: inline-block;
-  overflow: hidden;
-  height: 0;
 }

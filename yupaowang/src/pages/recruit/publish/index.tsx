@@ -1,4 +1,4 @@
-import Taro, { useRouter, RouterInfo, createContext } from '@tarojs/taro'
+import Taro, { useRouter, RouterInfo, createContext, useState } from '@tarojs/taro'
 import { View, Text, Form, Input, Textarea, Block } from '@tarojs/components'
 import { ProfessionRecruitData } from '../../../components/profession/index.d'
 import WordsTotal from '../../../components/wordstotal'
@@ -20,7 +20,8 @@ export interface InitRecruitView {
 export interface Injected {
   area: string,
   setArea: (city: string)=>void,
-  setAreaInfo: (item: UserLastPublishRecruitArea)=>void
+  setAreaInfo: (item: UserLastPublishRecruitArea)=>void,
+  setPublishArea: (val: string)=> void
 }
 
 export const context = createContext<Injected>({} as Injected);
@@ -34,13 +35,22 @@ export default function PublishRecruit() {
   const InitParams: InitRecruitView = { type: type,infoId: id }
   
   // 初始化当前信息
-  const { model, setModel, showUpload, setShowUpload, showProfession, setShowProssion, area, setArea, setAreaInfo } = usePublishViewInfo(InitParams)
+  const { model, setModel, showUpload, setShowUpload, showProfession, setShowProssion, area, setArea, setAreaInfo, getPublishRecruitInfo } = usePublishViewInfo(InitParams)
+  // textarea焦点
+  const [textFocus, setTextFocus] = useState<boolean>(false)
+  const userClickTextArea = (b: boolean)=> {
+    setTextFocus(b)
+  }
 
   // 需要传递的值
   const value: Injected = {
     area: area,
     setArea: (city: string)=>setArea(city),
-    setAreaInfo: (item: UserLastPublishRecruitArea) => setAreaInfo(item)
+    setAreaInfo: (item: UserLastPublishRecruitArea) => setAreaInfo(item),
+    setPublishArea: (val: string) => {
+      if(!model) return
+      setModel({ ...model, address: val })
+    }
   }
 
   // 切换图片上传显示隐藏
@@ -66,7 +76,8 @@ export default function PublishRecruit() {
 
   // 用户发布招工信息
   const userPublishRecruit = ()=> {
-    console.log(model)
+    let data = getPublishRecruitInfo()
+    console.log(data)
   }
 
   // 选择地址
@@ -159,7 +170,7 @@ export default function PublishRecruit() {
               </View>
               <View className='publish-list-item' onClick={()=>userChooseArea()}>
                 <Text className='pulish-list-title'>详细地址</Text>
-                <Input className='publish-list-input' type='text' disabled placeholder='请输入详细地址' />
+                <Input className='publish-list-input' type='text' disabled placeholder='请输入详细地址' value={ model&&model.address } />
               </View>
               <View className='publish-list-item'>
                 <Text className='pulish-list-title'>联系人</Text>
@@ -184,8 +195,11 @@ export default function PublishRecruit() {
               <View className='publish-list-textarea'>
                 <Text className='publish-textarea-title'>招工详情</Text>
                 <Textarea 
-                  className='publish-textarea' 
-                  value={ model ? model.detail : '' } 
+                  className='publish-textarea'
+                  value={ model&&model.detail||'' } 
+                  focus={ textFocus }
+                  onClick={() => userClickTextArea(true)} 
+                  onFocus={() => userClickTextArea(false)}
                   placeholder='请输入招工详情'
                   onInput={(e)=>userEnterFrom(e,'detail')}
                 ></Textarea>

@@ -32,7 +32,7 @@ export default function Member(){
                 <Image className='member-realnameimg' src='http://cdn.yupao.com/miniprogram/images/newresume-infolist-ysm.png' />
                 </View>
               </View>
-              <View className='member-usernum'>会员编号：<Text>369</Text></View>
+              <View className='member-usernum'>会员编号：<Text className='member-id'>369</Text></View>
               <View className='member-editinfo'>修改资料</View>
             </View>
             <View className='member-user-integral'>

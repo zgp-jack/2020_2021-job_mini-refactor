@@ -26,11 +26,11 @@ export default function ResumeList({ data, bottom = true }: PROPS){
                   </View>
                   <Text className='resume-list-type'>{ d.type }</Text>
                   <View className='resume-otherinfo'>
-                    <Text>{ d.nation }</Text>
-                    <Text>{ d.experience }</Text>
+                    <Text className='resume-otherinfo-text'>{ d.nation }</Text>
+                    <Text className='resume-otherinfo-text'>{ d.experience }</Text>
                   </View>
                   {/* <View className='resume-list-tags'>
-              <Text>任劳任怨</Text>
+              <Text className='resume-list-tags-item'>任劳任怨</Text>
               <Text>任劳任怨</Text>
               <Text>任劳任怨</Text>
             </View> */}
@@ -38,7 +38,7 @@ export default function ResumeList({ data, bottom = true }: PROPS){
               </View>
               <View className='resume-list-works'>
                 {d.occupations.map((i)=>(
-                  <Text>{ i }</Text>
+                  <Text className='resume-list-words-text'>{ i }</Text>
                 ))}
               </View>
                 <View className='resume-list-content overwords'>{ d.introduce }</View>

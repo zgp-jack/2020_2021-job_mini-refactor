@@ -1,5 +1,16 @@
 (wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["pages/map/recruit/index"],{
 
+/***/ "./src/pages/map/recruit/index.scss":
+/*!******************************************!*\
+  !*** ./src/pages/map/recruit/index.scss ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
 /***/ "./src/pages/map/recruit/index.tsx":
 /*!*****************************************!*\
   !*** ./src/pages/map/recruit/index.tsx ***!
@@ -28,9 +39,7 @@ var _store = __webpack_require__(/*! ../../../config/store */ "./src/config/stor
 
 var _index = __webpack_require__(/*! ../../../utils/request/index */ "./src/utils/request/index.ts");
 
-var _index2 = __webpack_require__(/*! ../../../utils/helper/index */ "./src/utils/helper/index.ts");
-
-var _index3 = __webpack_require__(/*! ../../recruit/publish/index */ "./src/pages/recruit/publish/index.tsx");
+__webpack_require__(/*! ./index.scss */ "./src/pages/map/recruit/index.scss");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -48,7 +57,7 @@ var RecruitMap = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (RecruitMap.__proto__ || Object.getPrototypeOf(RecruitMap)).apply(this, arguments));
 
-    _this.$usedState = ["$compid__24"];
+    _this.$usedState = ["$compid__22"];
     _this.customComponents = ["MapComponent"];
     return _this;
   }
@@ -68,13 +77,10 @@ var RecruitMap = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__24"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__22"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__24 = _genCompid2[0],
-          $compid__24 = _genCompid2[1];
-
-      var _useContext = (0, _taroWeapp.useContext)(_index3.context),
-          area = _useContext.area;
+          $prevCompid__22 = _genCompid2[0],
+          $compid__22 = _genCompid2[1];
       // 城市数据
 
 
@@ -82,21 +88,9 @@ var RecruitMap = function (_Taro$Component) {
           _useState2 = _slicedToArray(_useState, 2),
           areas = _useState2[0],
           setAreas = _useState2[1];
-      // 获取城市ad_name
+      // 获取城市数据
 
 
-      var _useState3 = (0, _taroWeapp.useState)(area),
-          _useState4 = _slicedToArray(_useState3, 2),
-          areaName = _useState4[0],
-          setAreaName = _useState4[1];
-      // 获取关键词地区列表
-
-
-      (0, _taroWeapp.useEffect)(function () {
-        var lists = (0, _index2.getAmapPoiList)(areaName);
-        console.log(lists);
-      }, [areaName]);
-      // 获取成熟数据
       (0, _taroWeapp.useEffect)(function () {
         var areas = _taroWeapp2.default.getStorageSync(_store.Areas);
         if (areas) {
@@ -109,9 +103,9 @@ var RecruitMap = function (_Taro$Component) {
       }, []);
       _taroWeapp.propsManager.set({
         "data": areas
-      }, $compid__24, $prevCompid__24);
+      }, $compid__22, $prevCompid__22);
       Object.assign(this.__state, {
-        $compid__24: $compid__24
+        $compid__22: $compid__22
       });
       return this.__state;
     }
@@ -128,4 +122,4 @@ Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/
 
 /***/ })
 
-},[["./src/pages/map/recruit/index.tsx","runtime","taro","vendors","common"]]]);
+},[["./src/pages/map/recruit/index.tsx","runtime","vendors"]]]);

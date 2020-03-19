@@ -1403,6 +1403,10 @@ function User() {
     case _user.SET:
       return _extends({}, state, action.data);
     case _user.GET:
+      if (!state.login) {
+        var _userInfo = _taroWeapp2.default.getStorageSync(_store.UserInfo);
+        if (_userInfo) return _userInfo;
+      }
       return state;
     default:
       return state;

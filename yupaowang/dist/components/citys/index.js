@@ -63,7 +63,7 @@ var Cities = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (Cities.__proto__ || Object.getPrototypeOf(Cities)).apply(this, arguments));
 
-    _this.$usedState = ["loopArray25", "loopArray26", "loopArray27", "text", "IMGCDNURL", "userLoc", "recentlyCities", "data", "show", "inputCity", "area", "parent", "userTapCityBtn", "userChangeCity"];
+    _this.$usedState = ["loopArray22", "loopArray23", "loopArray24", "text", "IMGCDNURL", "userLoc", "recentlyCities", "data", "show", "inputCity", "area", "parent", "userTapCityBtn", "userChangeCity"];
     _this.anonymousFunc4Map = {};
     _this.anonymousFunc5Map = {};
     _this.anonymousFunc6Map = {};
@@ -237,12 +237,12 @@ var Cities = function (_Taro$Component) {
       this.anonymousFunc3 = function () {
         return userTapCityBtn(false);
       };
-      var loopArray25 = recentlyCities.map(function (item, __index4) {
+      var loopArray22 = recentlyCities.map(function (item, __index4) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
         var $loopState__temp2 = 'rec' + item.$original.id;
-        var _$indexKey = "bdzzz" + __index4;
+        var _$indexKey = "jzzzz" + __index4;
         _this2.anonymousFunc4Map[_$indexKey] = function () {
           return userTapCity(item.$original);
         };
@@ -252,17 +252,17 @@ var Cities = function (_Taro$Component) {
           $original: item.$original
         };
       });
-      var loopArray26 = data.map(function (item, index) {
+      var loopArray23 = data.map(function (item, index) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
         var $loopState__temp4 = index + item.$original[0].id;
-        var $anonymousCallee__8 = item.$original.map(function (d, key) {
+        var $anonymousCallee__7 = item.$original.map(function (d, key) {
           d = {
             $original: (0, _taroWeapp.internal_get_original)(d)
           };
           var $loopState__temp6 = key + d.$original.id;
-          var _$indexKey2 = "bezzz" + index + "-" + key;
+          var _$indexKey2 = "bazzz" + index + "-" + key;
           _this2.anonymousFunc5Map[_$indexKey2] = function () {
             return userTapCity(d.$original);
           };
@@ -274,15 +274,15 @@ var Cities = function (_Taro$Component) {
         });
         return {
           $loopState__temp4: $loopState__temp4,
-          $anonymousCallee__8: $anonymousCallee__8,
+          $anonymousCallee__7: $anonymousCallee__7,
           $original: item.$original
         };
       });
-      var loopArray27 = show ? inputCity.map(function (item, __index6) {
+      var loopArray24 = show ? inputCity.map(function (item, __index6) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
-        var _$indexKey3 = "bfzzz" + __index6;
+        var _$indexKey3 = "bbzzz" + __index6;
         _this2.anonymousFunc6Map[_$indexKey3] = function () {
           return userTapInputCity(item.$original);
         };
@@ -292,9 +292,9 @@ var Cities = function (_Taro$Component) {
         };
       }) : [];
       Object.assign(this.__state, {
-        loopArray25: loopArray25,
-        loopArray26: loopArray26,
-        loopArray27: loopArray27,
+        loopArray22: loopArray22,
+        loopArray23: loopArray23,
+        loopArray24: loopArray24,
         text: text,
         IMGCDNURL: _index.IMGCDNURL,
         userLoc: userLoc,
@@ -378,4 +378,4 @@ Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/
 
 /***/ })
 
-},[["./src/components/citys/index.tsx","runtime","taro","vendors","common"]]]);
+},[["./src/components/citys/index.tsx","runtime","vendors","common"]]]);

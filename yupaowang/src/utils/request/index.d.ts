@@ -192,3 +192,16 @@ export interface AllAreasDataItem {
 export interface AllAreasInputDataItem extends AllAreasDataItem {
   city_name: string
 }
+
+// 检测adcode是否合法
+export interface CheckAdcodeValid {
+  errcode: string,
+  errmsg: string
+}
+
+// 获取用户邀请链接
+export interface GetUserInviteLink {
+  errcode: string,
+  errmsg: string,
+  link: string
+}

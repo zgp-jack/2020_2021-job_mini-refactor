@@ -7,11 +7,11 @@
                     <view class="resume-list-userinfo">
                         <view class="resume-list-userinfo-detail"><text class="resume-userinfo-name">{{d.username}}</text><text class="resume-userinfo-sex">男</text><text class="resume-userinfo-age">{{d.birthday}}岁</text>
                         </view><text class="resume-list-type">{{d.type}}</text>
-                        <view class="resume-otherinfo"><text>{{d.nation}}</text><text>{{d.experience}}</text>
+                        <view class="resume-otherinfo"><text class="resume-otherinfo-text">{{d.nation}}</text><text class="resume-otherinfo-text">{{d.experience}}</text>
                         </view>
                     </view>
                 </view>
-                <view class="resume-list-works"><text wx:for="{{d.occupations}}" wx:for-item="i" wx:for-index="_anonIdx2">{{i}}</text>
+                <view class="resume-list-works"><text class="resume-list-words-text" wx:for="{{d.occupations}}" wx:for-item="i" wx:for-index="_anonIdx2">{{i}}</text>
                 </view>
                 <view class="resume-list-content overwords">{{d.introduce}}</view>
                 <view class="resume-list-footer">

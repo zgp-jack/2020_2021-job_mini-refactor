@@ -71,6 +71,8 @@ var _index2 = __webpack_require__(/*! ../../utils/request/index */ "./src/utils/
 
 var _index3 = __webpack_require__(/*! ../../utils/msg/index */ "./src/utils/msg/index.ts");
 
+var _index4 = _interopRequireDefault(_index3);
+
 var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/redux/index.js");
 
 var _user = __webpack_require__(/*! ../../actions/user */ "./src/actions/user.tsx");
@@ -95,7 +97,7 @@ var Auth = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (Auth.__proto__ || Object.getPrototypeOf(Auth)).apply(this, arguments));
 
-    _this.$usedState = ["IMGCDNURL", "page"];
+    _this.$usedState = ["login", "page", "IMGCDNURL", "callback", "userCancelAuth"];
     _this.customComponents = ["AtMessage"];
     return _this;
   }
@@ -114,10 +116,16 @@ var Auth = function (_Taro$Component) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var _props$page = this.__props.page,
-          page = _props$page === undefined ? true : _props$page;
+      var _props = this.__props,
+          _props$page = _props.page,
+          page = _props$page === undefined ? false : _props$page,
+          callback = _props.callback,
+          userCancelAuth = _props.userCancelAuth;
 
       var dispatch = (0, _redux.useDispatch)();
+      var login = (0, _redux.useSelector)(function (state) {
+        return state.User['login'];
+      });
       // 返回上一页
       var pageBack = function pageBack() {
         _taroWeapp2.default.navigateBack({
@@ -125,28 +133,33 @@ var Auth = function (_Taro$Component) {
         });
       };
       // 取消授权
-      var cancelAuth = function cancelAuth() {};
+      var cancelAuth = function cancelAuth() {
+        userCancelAuth && userCancelAuth();
+      };
       // 用户确认授权
-      var userAuthAction = function userAuthAction() {
-        _taroWeapp2.default.login({
-          success: function success(res) {
-            if (res.code) {
-              (0, _index2.getUserSessionKey)(res.code).then(function (res) {
-                var sessionKey = res.session_key;
-                decodeSessionKey(sessionKey);
-              });
-            } else {
-              (0, _index3.errMsg)("\u6388\u6743\u5931\u8D25\uFF0C\u5BA2\u670D\u7535\u8BDD" + _index.SERVERPHONE);
-              console.log('session_key-error');
+      var userAuthAction = function userAuthAction(e) {
+        if (e.detail.userInfo) {
+          _taroWeapp2.default.login({
+            success: function success(res) {
+              if (res.code) {
+                (0, _index2.getUserSessionKey)(res.code).then(function (res) {
+                  var sessionKey = res.session_key;
+                  decodeSessionKey(sessionKey);
+                });
+              } else {
+                (0, _index4.default)("\u6388\u6743\u5931\u8D25\uFF0C\u5BA2\u670D\u7535\u8BDD" + _index.SERVERPHONE);
+              }
             }
-          }
-        });
+          });
+        } else {
+          (0, _index3.errMsg)('您取消了授权');
+        }
       };
       // 解密sessionkey
       var decodeSessionKey = function decodeSessionKey(key) {
         _taroWeapp2.default.getSetting({
           success: function success(res) {
-            if (!res.authSetting['scope.scope.userInfo']) {
+            if (!res.authSetting['scope.userInfo']) {
               _taroWeapp2.default.getUserInfo({
                 success: function success() {
                   doAuthRequest(key);
@@ -185,7 +198,10 @@ var Auth = function (_Taro$Component) {
                 };
                 _taroWeapp2.default.setStorageSync(_store.UserInfo, user);
                 dispatch((0, _user.setUserInfo)(user));
-                pageBack();
+                callback && callback();
+                if (page) {
+                  pageBack();
+                }
               } else {
                 (0, _index3.errMsg)(res.errmsg);
               }
@@ -193,8 +209,8 @@ var Auth = function (_Taro$Component) {
           }
         });
       };
-      this.anonymousFunc0 = function () {
-        return userAuthAction();
+      this.anonymousFunc0 = function (e) {
+        return userAuthAction(e);
       };
       this.anonymousFunc1 = function () {
         return pageBack();
@@ -203,8 +219,9 @@ var Auth = function (_Taro$Component) {
         return cancelAuth();
       };
       Object.assign(this.__state, {
-        IMGCDNURL: _index.IMGCDNURL,
-        page: page
+        login: login,
+        page: page,
+        IMGCDNURL: _index.IMGCDNURL
       });
       return this.__state;
     }
@@ -236,4 +253,4 @@ Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/
 
 /***/ })
 
-},[["./src/components/auth/index.tsx","runtime","taro","vendors","common"]]]);
+},[["./src/components/auth/index.tsx","runtime","vendors","common"]]]);

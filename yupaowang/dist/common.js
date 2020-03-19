@@ -63,9 +63,10 @@ Object.defineProperty(exports, "__esModule", {
 });
 // ? 全局不动配置项 只做导出不做修改
 // * 全局请求接口域名
-var REQUESTURL = exports.REQUESTURL = 'https://newyupaomini.54xiaoshuo.com/';
+var REQUESTURL = exports.REQUESTURL = 'https://miniapi.zhaogong.vrtbbs.com/'; //测试站
+// export const REQUESTURL: string = 'https://newyupaomini.54xiaoshuo.com/'   //正式站
 // * 默认上传图片
-var UPLOADIMGURL = exports.UPLOADIMGURL = "https://newyupaomini.54xiaoshuo.com/index/upload/";
+var UPLOADIMGURL = exports.UPLOADIMGURL = "https://miniapi.zhaogong.vrtbbs.com/index/upload/";
 // * 阿里云CDN图片域名
 var IMGCDNURL = exports.IMGCDNURL = 'http://cdn.yupao.com/miniprogram/images/';
 // * 公司默认客服电话
@@ -84,6 +85,8 @@ var AUTHPATH = exports.AUTHPATH = '/pages/userauth/index';
 var PAGETITLE = exports.PAGETITLE = '鱼泡网-';
 // * 最大缓存历史城市数量
 var MAXCACHECITYNUM = exports.MAXCACHECITYNUM = 3;
+// * 用户发布 选择地址 历史记录 最大数量
+var UserPublishAreaHistoryMaxNum = exports.UserPublishAreaHistoryMaxNum = 10;
 
 /***/ }),
 
@@ -113,6 +116,8 @@ var UserLocationCity = exports.UserLocationCity = 'userLocationCity';
 var UserListChooseCity = exports.UserListChooseCity = 'userListChooseCity';
 // 最后发布招工地点
 var UserLastPublishArea = exports.UserLastPublishArea = 'userLastPublishArea';
+// 用户发布 选择地址 历史记录
+var UserPublishAreaHistory = exports.UserPublishAreaHistory = 'userPublishAreaHistory';
 
 /***/ }),
 
@@ -264,7 +269,7 @@ function usePublishViewInfo(InitParams) {
         title: res.model.title || '',
         address: res.model.address || '',
         detail: res.model.detail || '',
-        infoId: res.model.id,
+        infoId: res.model.id || InitParams.infoId,
         type: res.type,
         user_mobile: res.model.user_mobile || res.memberInfo.tel || '',
         code: '',
@@ -304,7 +309,7 @@ function usePublishViewInfo(InitParams) {
         title: data.model.address,
         location: data.model.location,
         info: '',
-        adcode: ''
+        adcode: data.model.adcode || ''
       });
     } else {
       var userLastPublishArea = _taroWeapp2.default.getStorageSync(_store.UserLastPublishArea);
@@ -2920,7 +2925,7 @@ Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.GetAllAreas = exports.GetPublisRecruitView = exports.GetIntegralList = exports.GetTabbarMsg = exports.GetListFilterData = exports.GetWechatNotice = exports.GetFleamarketlist = exports.GetResumelist = exports.GetRecruitlist = exports.GetAllListItem = exports.GetBannerNotice = exports.GetUserInfo = exports.GetUserSessionKey = undefined;
+exports.GetUserInviteLink = exports.CheckAdcodeValid = exports.GetAllAreas = exports.GetPublisRecruitView = exports.GetIntegralList = exports.GetTabbarMsg = exports.GetListFilterData = exports.GetWechatNotice = exports.GetFleamarketlist = exports.GetResumelist = exports.GetRecruitlist = exports.GetAllListItem = exports.GetBannerNotice = exports.GetUserInfo = exports.GetUserSessionKey = undefined;
 
 var _index = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
 
@@ -2950,6 +2955,10 @@ var GetIntegralList = exports.GetIntegralList = _index.REQUESTURL + 'integral/in
 var GetPublisRecruitView = exports.GetPublisRecruitView = _index.REQUESTURL + 'publish/new-job/';
 // 获取城市数据
 var GetAllAreas = exports.GetAllAreas = _index.REQUESTURL + 'index/index-area/';
+// 检测adcode是否合法
+var CheckAdcodeValid = exports.CheckAdcodeValid = _index.REQUESTURL + 'publish/checking-adcode/';
+// 获取用户邀请链接
+var GetUserInviteLink = exports.GetUserInviteLink = _index.REQUESTURL + 'index/invite-friends/';
 
 /***/ }),
 
@@ -3023,7 +3032,7 @@ function getAmapPoiList(val) {
     GDMAP.getInputtips({
       keywords: val,
       success: function success(data) {
-        if (data) resolve(data);else reject();
+        if (data) resolve(data.tips);else reject();
       },
       fail: function fail() {
         reject();
@@ -3047,6 +3056,7 @@ function getAmapPoiList(val) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.ShowActionModel = undefined;
 exports.default = Msg;
 exports.errMsg = errMsg;
 exports.warnMsg = warnMsg;
@@ -3067,6 +3077,25 @@ function Msg(msg) {
     duration: duration
   });
 }
+function ShowActionModel(_ref) {
+  var _ref$title = _ref.title,
+      title = _ref$title === undefined ? '温馨提示' : _ref$title,
+      _ref$confirmText = _ref.confirmText,
+      confirmText = _ref$confirmText === undefined ? '确定' : _ref$confirmText,
+      msg = _ref.msg,
+      _success = _ref.success;
+
+  _taroWeapp2.default.showModal({
+    title: title,
+    content: msg,
+    showCancel: false,
+    confirmText: confirmText,
+    success: function success() {
+      _success && _success();
+    }
+  });
+}
+exports.ShowActionModel = ShowActionModel;
 function errMsg() {
   var msg = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
 
@@ -3126,6 +3155,7 @@ exports.getPublishRecruitView = getPublishRecruitView;
 exports.getAllAreas = getAllAreas;
 exports.getHotAreas = getHotAreas;
 exports.checkAdcodeValid = checkAdcodeValid;
+exports.getUserInviteLink = getUserInviteLink;
 
 var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
@@ -3157,8 +3187,9 @@ function requestShowToast(show) {
 }
 // 获取header请求头信息
 function getRequestHeaderInfo() {
+  // 获取用户信息
   var userInfo = _taroWeapp2.default.getStorageSync(_store.UserInfo);
-  var requestHeader = userInfo ? {
+  var requestHeader = userInfo.login ? {
     'content-type': 'application/x-www-form-urlencoded',
     mid: userInfo.userId,
     token: userInfo.token,
@@ -3188,8 +3219,9 @@ function doRequestAction(reqData) {
     });
   }
   var data = _extends({}, req.data, { wechat_token: _index2.TOKEN });
+  // 获取用户信息
   var userInfo = _taroWeapp2.default.getStorageSync(_store.UserInfo);
-  if (req.method === 'POST' && userInfo) {
+  if (req.method === 'POST' && userInfo.login) {
     data.userId = userInfo.userId;
     data.token = userInfo.token;
     data.tokenTime = userInfo.tokenTime;
@@ -3211,6 +3243,7 @@ function doRequestAction(reqData) {
       },
       fail: function fail(e) {
         // todo requestShowToast(req.failToast)
+        requestShowToast(req.failToast);
         reject(e);
       },
       complete: function complete() {
@@ -3319,7 +3352,23 @@ function getAllAreas() {
 // 获取热门城市
 function getHotAreas() {}
 // 检验adcode是否有效
-function checkAdcodeValid(adcode) {}
+function checkAdcodeValid(adcode) {
+  return doRequestAction({
+    url: api.CheckAdcodeValid,
+    method: 'POST',
+    data: {
+      adcode: adcode
+    }
+  });
+}
+// 获取用户邀请链接
+function getUserInviteLink() {
+  return doRequestAction({
+    url: api.GetUserInviteLink,
+    method: 'POST',
+    failToast: true
+  });
+}
 
 /***/ }),
 

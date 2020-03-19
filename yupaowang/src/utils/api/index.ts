@@ -26,3 +26,7 @@ export const GetIntegralList: string = REQUESTURL + 'integral/integral-record/'
 export const GetPublisRecruitView: string = REQUESTURL + 'publish/new-job/'
 // 获取城市数据
 export const GetAllAreas: string = REQUESTURL + 'index/index-area/'
+// 检测adcode是否合法
+export const CheckAdcodeValid: string = REQUESTURL + 'publish/checking-adcode/'
+// 获取用户邀请链接
+export const GetUserInviteLink: string = REQUESTURL + 'index/invite-friends/'

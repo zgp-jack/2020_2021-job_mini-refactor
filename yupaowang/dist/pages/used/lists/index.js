@@ -67,7 +67,7 @@ var Fleamarket = function (_Taro$Component) {
       backgroundTextStyle: "dark"
     };
 
-    _this.$usedState = ["anonymousState__temp", "$compid__15", "$compid__16", "$compid__17", "refresh"];
+    _this.$usedState = ["anonymousState__temp", "$compid__16", "$compid__17", "$compid__18", "refresh"];
     _this.customComponents = ["Search", "Condition", "WechatNotice", "UsedList", "Tabbar"];
     return _this;
   }
@@ -87,20 +87,20 @@ var Fleamarket = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__15"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__16"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__15 = _genCompid2[0],
-          $compid__15 = _genCompid2[1];
+          $prevCompid__16 = _genCompid2[0],
+          $compid__16 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__16"),
+      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__17"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__16 = _genCompid4[0],
-          $compid__16 = _genCompid4[1];
+          $prevCompid__17 = _genCompid4[0],
+          $compid__17 = _genCompid4[1];
 
-      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__17"),
+      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__18"),
           _genCompid6 = _slicedToArray(_genCompid5, 2),
-          $prevCompid__17 = _genCompid6[0],
-          $compid__17 = _genCompid6[1];
+          $prevCompid__18 = _genCompid6[0],
+          $compid__18 = _genCompid6[1];
       // * 配置筛选条件
 
 
@@ -166,18 +166,18 @@ var Fleamarket = function (_Taro$Component) {
       _taroWeapp.propsManager.set({
         "placeholder": "\u8DF3\u86A4\u5E02\u573A",
         "value": ""
-      }, $compid__15, $prevCompid__15);
-      _taroWeapp.propsManager.set({
-        "data": DEFAULT_CONDITION
       }, $compid__16, $prevCompid__16);
       _taroWeapp.propsManager.set({
-        "data": lists
+        "data": DEFAULT_CONDITION
       }, $compid__17, $prevCompid__17);
+      _taroWeapp.propsManager.set({
+        "data": lists
+      }, $compid__18, $prevCompid__18);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
-        $compid__15: $compid__15,
         $compid__16: $compid__16,
         $compid__17: $compid__17,
+        $compid__18: $compid__18,
         refresh: refresh
       });
       return this.__state;
@@ -206,4 +206,4 @@ Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/
 
 /***/ })
 
-},[["./src/pages/used/lists/index.tsx","runtime","taro","vendors","common"]]]);
+},[["./src/pages/used/lists/index.tsx","runtime","vendors","common"]]]);

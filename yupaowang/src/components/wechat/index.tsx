@@ -5,13 +5,14 @@ import changeWechatNotice from '../../actions/wechat_notice'
 import SUCCESS from '../../constants/wechat_notice'
 import { WechatNoticeType } from '../../reducers/wechat_notice'
 import { getWechatNotice } from '../../utils/request'
-import SwiperNews, { SwiperNewsItem } from '../../components/swiper/news'
+import { BannerNoticeNotice } from '../../utils/request/index.d'
+import SwiperNews from '../../components/swiper/news'
 import { IProps } from '../../components/swiper/index'
 import './index.scss'
 
 export default function WechatNotice(){
 
-  const [swiperNews, setSwiperNews] = useState<IProps<SwiperNewsItem>>({
+  const [swiperNews, setSwiperNews] = useState<IProps<BannerNoticeNotice>>({
     vertical: true,
     lists: []
   })

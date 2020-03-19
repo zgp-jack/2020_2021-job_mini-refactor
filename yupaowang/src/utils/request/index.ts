@@ -8,10 +8,10 @@ import { SearchType as ResumeSearchType } from '../../pages/resume/index.d'
 import { SearchType as FleamarketSearchType } from '../../pages/used/lists/index'
 import { AuthData } from '../../components/auth'
 import { FilterData } from '../../pages/home'
-import { UserInfo } from '../../config/store'
 import { User } from '../../reducers/user'
 import { IntegralData } from '../../pages/integral/config'
 import { InitRecruitView } from '../../pages/recruit/publish'
+import { UserInfo } from '../../config/store'
 
 interface RequestHeader {
   'content-type'?: string
@@ -46,8 +46,9 @@ function requestShowToast(show: boolean):void {
 
 // 获取header请求头信息
 function getRequestHeaderInfo(): RequestHeader{
-  const userInfo: User = Taro.getStorageSync(UserInfo)
-  const requestHeader: RequestHeader = userInfo ? {
+  // 获取用户信息
+  let userInfo: User = Taro.getStorageSync(UserInfo)
+  const requestHeader: RequestHeader = userInfo.login ? {
     'content-type': 'application/x-www-form-urlencoded',
     mid: userInfo.userId,
     token: userInfo.token,
@@ -79,8 +80,9 @@ export function doRequestAction(reqData: Request): Promise<any> {
     })
   }
   let data = { ...req.data, wechat_token: TOKEN }
+  // 获取用户信息
   let userInfo: User = Taro.getStorageSync(UserInfo)
-  if(req.method === 'POST' && userInfo){
+  if(req.method === 'POST' && userInfo.login){
     data.userId = userInfo.userId
     data.token = userInfo.token
     data.tokenTime = userInfo.tokenTime
@@ -102,6 +104,7 @@ export function doRequestAction(reqData: Request): Promise<any> {
       },
       fail: (e) => {
       // todo requestShowToast(req.failToast)
+        requestShowToast(req.failToast)
         reject(e)
       },
       complete: function () {
@@ -225,6 +228,21 @@ export function getHotAreas(){
 }
 
 // 检验adcode是否有效
-export function checkAdcodeValid(adcode: string){
-  
+export function checkAdcodeValid(adcode: string): Promise<Inter.CheckAdcodeValid>{
+  return doRequestAction({
+    url: api.CheckAdcodeValid,
+    method: 'POST',
+    data: {
+      adcode: adcode
+    }
+  })
+}
+
+// 获取用户邀请链接
+export function getUserInviteLink(): Promise<Inter.GetUserInviteLink>{
+  return doRequestAction({
+    url: api.GetUserInviteLink,
+    method: 'POST',
+    failToast: true
+  })
 }
