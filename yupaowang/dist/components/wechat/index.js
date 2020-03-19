@@ -90,7 +90,8 @@ var WechatNotice = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (WechatNotice.__proto__ || Object.getPrototypeOf(WechatNotice)).apply(this, arguments));
 
-    _this.$usedState = ["$compid__11", "wechatNoticeData"];
+    _this.$usedState = ["wechatPhone", "loopArray1", "$compid__0", "wechatNoticeData"];
+    _this.anonymousFunc0Map = {};
     _this.customComponents = ["SwiperNews"];
     return _this;
   }
@@ -104,16 +105,18 @@ var WechatNotice = function (_Taro$Component) {
   }, {
     key: '_createData',
     value: function _createData() {
+      var _this2 = this;
+
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__11"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__0"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__11 = _genCompid2[0],
-          $compid__11 = _genCompid2[1];
+          $prevCompid__0 = _genCompid2[0],
+          $compid__0 = _genCompid2[1];
 
       var _useState = (0, _taroWeapp.useState)({
         vertical: true,
@@ -123,6 +126,13 @@ var WechatNotice = function (_Taro$Component) {
           swiperNews = _useState2[0],
           setSwiperNews = _useState2[1];
 
+      var _useState3 = (0, _taroWeapp.useState)({
+        lists: []
+      }),
+          _useState4 = _slicedToArray(_useState3, 2),
+          wechatPhone = _useState4[0],
+          setwechatPhone = _useState4[1];
+
       var dispatch = (0, _redux.useDispatch)();
       var wechatNoticeData = (0, _redux.useSelector)(function (state) {
         return state.WechatNotice;
@@ -131,6 +141,7 @@ var WechatNotice = function (_Taro$Component) {
       (0, _taroWeapp.useEffect)(function () {
         if (wechatNoticeData.success) {
           setSwiperNews(_extends({}, swiperNews, { lists: wechatNoticeData.notice }));
+          setwechatPhone(_extends({}, wechatPhone.lists, { lists: wechatNoticeData.join_group_config }));
           return;
         }
         (0, _index.getWechatNotice)().then(function (res) {
@@ -140,24 +151,70 @@ var WechatNotice = function (_Taro$Component) {
             data: res
           };
           setSwiperNews(_extends({}, swiperNews, { lists: res.notice }));
+          setwechatPhone(_extends({}, wechatPhone, { lists: res.join_group_config }));
           dispatch((0, _wechat_notice2.default)(action));
         });
       }, []);
+      var doPhoneCons = function doPhoneCons() {
+        _taroWeapp2.default.makePhoneCall({
+          phoneNumber: wechatNoticeData.phone
+        }).catch(function () {});
+      };
+      var doWechatCons = function doWechatCons() {
+        _taroWeapp2.default.setClipboardData({
+          data: wechatNoticeData.wechat.number,
+          success: function success() {
+            _taroWeapp2.default.getClipboardData({
+              success: function success() {}
+            });
+          }
+        });
+      };
+      var loopArray1 = wechatPhone.lists.map(function (item, __index0) {
+        item = {
+          $original: (0, _taroWeapp.internal_get_original)(item)
+        };
+        var $loopState__temp2 = (0, _taroWeapp.internal_inline_style)({ color: item.$original.color });
+        var _$indexKey = "azzzz" + __index0;
+        _this2.anonymousFunc0Map[_$indexKey] = function () {
+          item.$original.action.type == "call" ? doPhoneCons() : item.$original.action.type == "copy" ? doWechatCons() : "";
+        };
+        return {
+          $loopState__temp2: $loopState__temp2,
+          _$indexKey: _$indexKey,
+          $original: item.$original
+        };
+      });
       _taroWeapp.propsManager.set({
         "data": swiperNews
-      }, $compid__11, $prevCompid__11);
+      }, $compid__0, $prevCompid__0);
       Object.assign(this.__state, {
-        $compid__11: $compid__11,
+        wechatPhone: wechatPhone,
+        loopArray1: loopArray1,
+        $compid__0: $compid__0,
         wechatNoticeData: wechatNoticeData
       });
       return this.__state;
+    }
+  }, {
+    key: 'anonymousFunc0',
+    value: function anonymousFunc0(_$indexKey) {
+      var _anonymousFunc0Map;
+
+      ;
+
+      for (var _len = arguments.length, e = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+        e[_key - 1] = arguments[_key];
+      }
+
+      return this.anonymousFunc0Map[_$indexKey] && (_anonymousFunc0Map = this.anonymousFunc0Map)[_$indexKey].apply(_anonymousFunc0Map, e);
     }
   }]);
 
   return WechatNotice;
 }(_taroWeapp2.default.Component);
 
-WechatNotice.$$events = [];
+WechatNotice.$$events = ["anonymousFunc0"];
 WechatNotice.$$componentPath = "components/wechat/index";
 exports.default = WechatNotice;
 
@@ -165,4 +222,4 @@ Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/
 
 /***/ })
 
-},[["./src/components/wechat/index.tsx","runtime","taro","vendors","common"]]]);
+},[["./src/components/wechat/index.tsx","runtime","vendors","common"]]]);

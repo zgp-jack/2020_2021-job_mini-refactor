@@ -1,7 +1,6 @@
 require("./runtime");
 require("./common");
 require("./vendors");
-require("./taro");
 
 (wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["app"],{
 
@@ -1200,7 +1199,7 @@ var _App = function (_BaseComponent) {
     var _this = _possibleConstructorReturn(this, (_App.__proto__ || Object.getPrototypeOf(_App)).apply(this, arguments));
 
     _this.config = {
-      pages: ['pages/index/index', 'pages/used/lists/index', 'pages/integral/source/index', 'pages/integral/temp/index', 'pages/integral/official/index', 'pages/integral/expend/index', 'pages/userauth/index', 'pages/recruit/publish/index', 'pages/map/recruit/index'],
+      pages: ['pages/feedback/index', 'pages/helper/index', 'pages/leavemessage/index', 'pages/index/index', 'pages/used/lists/index', 'pages/integral/source/index', 'pages/integral/temp/index', 'pages/integral/official/index', 'pages/integral/expend/index', 'pages/userauth/index', 'pages/recruit/publish/index', 'pages/map/recruit/index'],
       window: {
         backgroundTextStyle: 'light',
         navigationBarBackgroundColor: '#0099ff',
@@ -1498,4 +1497,4 @@ function configStore() {
 
 /***/ })
 
-},[["./src/app.tsx","runtime","taro","vendors","common"]]]);;
+},[["./src/app.tsx","runtime","vendors","common"]]]);;
