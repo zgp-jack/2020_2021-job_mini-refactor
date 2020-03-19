@@ -53,3 +53,8 @@ export function getAmapPoiList(val: string): Promise<InputPoiListTips[]> {
     })
   })
 }
+
+// 页面跳转
+export function userJumpPage(url: string):void {
+  Taro.navigateTo({url: url})
+}

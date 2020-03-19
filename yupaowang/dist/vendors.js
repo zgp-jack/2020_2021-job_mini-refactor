@@ -13043,6 +13043,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 exports.objDeepCopy = objDeepCopy;
 exports.userAuthLoction = userAuthLoction;
 exports.getAmapPoiList = getAmapPoiList;
+exports.userJumpPage = userJumpPage;
 
 var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
@@ -13101,6 +13102,10 @@ function getAmapPoiList(val) {
       }
     });
   });
+}
+// 页面跳转
+function userJumpPage(url) {
+  _taroWeapp2.default.navigateTo({ url: url });
 }
 
 /***/ }),

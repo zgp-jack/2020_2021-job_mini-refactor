@@ -1,0 +1,87 @@
+@import '../../common.scss';
+
+.getintegral-container{
+  position: relative;
+  width: 100%;
+  padding: 20px;
+  .getintegral-header{
+    position: relative;
+    padding: 20px;
+    background-color: white;
+    line-height: 50px;
+    color: #7f7e7e;
+    font-size: 28px;
+    @include shadow();
+    .getintegral-notice{
+      position: relative;
+      display: inline-block;
+      color: #f86e09;
+    }
+    .getintegral-tel{
+      color: $color;
+    }
+    .getintegral-tel-copy{
+      background-color: $color;
+      color: white;
+      padding: 0 10px;
+      border-radius: 8px;
+      display: inline-block;
+      justify-content: center;
+      margin-left: $margin;
+      font-size: 26px;
+    }
+  }
+  .getintegral-body{
+    padding:0 20px;
+    margin-top: $margin;
+    @include shadow();
+    border-radius: 5px;
+    background-color: white;
+    .getintegral-title{
+      position: relative;
+      line-height: 100px;
+      font-size: 28px;
+      padding-left: 30px;
+      &::before{
+        position: absolute;
+        content: '';
+        width: 10px;
+        height: 10px;
+        background-color: $color;
+        border-radius: 50%;
+        left: 10px;
+        top: 50%;
+        margin-top: -5px;
+      }
+    }
+    .getintegral-item{
+      position: relative;
+      padding: 30px 220px 30px 0;
+      border-top: 1px solid #dcdcdc;
+      .getintegral-item-title{
+        color: #333;
+        font-size: 30px;
+      }
+      .getintegral-item-content{
+        position: relative;
+        margin-top: 10px;
+        font-size: 26px;
+        color: #b4b4b4;
+        line-height: 40px;
+      }
+      .getintegral-item-btn{
+        position: absolute;
+        background-color: $color;
+        color: white;
+        right: 0;
+        top: 40px;
+        width: 180px;
+        height: 70px;
+        line-height: 70px;
+        font-size: 28px;
+        text-align: center;
+        border-radius: 10px;
+      }
+    }
+  }
+}

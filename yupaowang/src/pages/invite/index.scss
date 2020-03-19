@@ -3,6 +3,21 @@
 .invite-container{
   position: relative;
   width: 100%;
+  .invite-item-icon::before,.invite-item-icon::after{
+    position: absolute;
+    width: 8px;
+    content: '';
+    height: 30px;
+    background-color: $color;
+    border-radius: 10px;
+    top: -2px;
+  }
+  .invite-item-icon::before{
+    left: 50px;
+  }
+  .invite-item-icon::after{
+    right: 50px;
+  }
   .invite-item{
     position: relative;
     width: 100%;

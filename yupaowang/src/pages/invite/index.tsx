@@ -39,7 +39,7 @@ export default function Invite() {
     <View>
       <Auth />
       <View className='invite-container'>
-        <View className='invite-item'>
+        <View className='invite-item invite-item-icon'>
           <View className='invite-header'>
             <Image className='invite-img' src={ IMGCDNURL +'invite-way1.png' } />
             <View className='invite-text'>点击右上角三个点，或点击下方(点击分享)按钮，分享鱼泡网到微信建筑群、焊工群、微信好友，工友点击你分享的链接来到鱼泡网。</View>
