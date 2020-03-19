@@ -70,7 +70,7 @@ var _App = function (_BaseComponent) {
     var _this = _possibleConstructorReturn(this, (_App.__proto__ || Object.getPrototypeOf(_App)).apply(this, arguments));
 
     _this.config = {
-      pages: ['pages/index/index', 'pages/userauth/index', "pages/recruit/publish/index", "pages/used/lists/index", "pages/map/recruit/index", "pages/integral/source/index", "pages/integral/temp/index", "pages/integral/official/index", "pages/integral/expend/index"],
+      pages: ['pages/index/index', 'pages/userauth/index', "pages/recruit/publish/index", "pages/used/lists/index", "pages/map/recruit/index", "pages/invite/index", "pages/integral/source/index", "pages/integral/temp/index", "pages/integral/official/index", "pages/integral/expend/index"],
       window: {
         backgroundTextStyle: 'light',
         navigationBarBackgroundColor: '#0099ff',
@@ -274,6 +274,10 @@ function User() {
     case _user.SET:
       return _extends({}, state, action.data);
     case _user.GET:
+      if (!state.login) {
+        var _userInfo = _taroWeapp2.default.getStorageSync(_store.UserInfo);
+        if (_userInfo) return _userInfo;
+      }
       return state;
     default:
       return state;

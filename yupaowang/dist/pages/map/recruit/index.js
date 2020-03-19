@@ -57,7 +57,7 @@ var RecruitMap = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (RecruitMap.__proto__ || Object.getPrototypeOf(RecruitMap)).apply(this, arguments));
 
-    _this.$usedState = ["$compid__21"];
+    _this.$usedState = ["$compid__22"];
     _this.customComponents = ["MapComponent"];
     return _this;
   }
@@ -77,10 +77,10 @@ var RecruitMap = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__21"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__22"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__21 = _genCompid2[0],
-          $compid__21 = _genCompid2[1];
+          $prevCompid__22 = _genCompid2[0],
+          $compid__22 = _genCompid2[1];
       // 城市数据
 
 
@@ -103,9 +103,9 @@ var RecruitMap = function (_Taro$Component) {
       }, []);
       _taroWeapp.propsManager.set({
         "data": areas
-      }, $compid__21, $prevCompid__21);
+      }, $compid__22, $prevCompid__22);
       Object.assign(this.__state, {
-        $compid__21: $compid__21
+        $compid__22: $compid__22
       });
       return this.__state;
     }

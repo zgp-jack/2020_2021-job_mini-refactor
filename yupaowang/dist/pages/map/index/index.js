@@ -69,7 +69,7 @@ var MapComponent = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (MapComponent.__proto__ || Object.getPrototypeOf(MapComponent)).apply(this, arguments));
 
-    _this.$usedState = ["loopArray15", "loopArray16", "$compid__22", "smAreaText", "showHistory", "histroyList", "lists", "IMGCDNURL", "showCity", "area", "data"];
+    _this.$usedState = ["loopArray15", "loopArray16", "$compid__23", "smAreaText", "showHistory", "histroyList", "lists", "IMGCDNURL", "showCity", "area", "data"];
     _this.anonymousFunc4Map = {};
     _this.anonymousFunc5Map = {};
     _this.customComponents = ["Cities"];
@@ -93,10 +93,10 @@ var MapComponent = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__22"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__23"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__22 = _genCompid2[0],
-          $compid__22 = _genCompid2[1];
+          $prevCompid__23 = _genCompid2[0],
+          $compid__23 = _genCompid2[1];
 
       var data = this.__props.data;
       // 用户定位城市
@@ -294,11 +294,11 @@ var MapComponent = function (_Taro$Component) {
         "userLoc": userLoc,
         "userChangeCity": userChangeCity,
         "userTapCityBtn": userTapCityBtn
-      }, $compid__22, $prevCompid__22);
+      }, $compid__23, $prevCompid__23);
       Object.assign(this.__state, {
         loopArray15: loopArray15,
         loopArray16: loopArray16,
-        $compid__22: $compid__22,
+        $compid__23: $compid__23,
         smAreaText: smAreaText,
         showHistory: showHistory,
         histroyList: histroyList,

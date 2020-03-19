@@ -11120,6 +11120,9 @@
 view, input, text, image, textarea {
   box-sizing: border-box; }
 
+button::after {
+  border: none; }
+
 page {
   background-color: #f7f6f9; }
 

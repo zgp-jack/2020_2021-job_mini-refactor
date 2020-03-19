@@ -12693,7 +12693,7 @@ var PublishRecruit = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (PublishRecruit.__proto__ || Object.getPrototypeOf(PublishRecruit)).apply(this, arguments));
 
-    _this.$usedState = ["model", "$compid__15", "$compid__16", "$compid__17", "showProfession", "textFocus", "showUpload"];
+    _this.$usedState = ["model", "$compid__16", "$compid__17", "$compid__18", "showProfession", "textFocus", "showUpload"];
     _this.customComponents = ["Profession", "WordsTotal", "ImageView"];
     return _this;
   }
@@ -12713,20 +12713,20 @@ var PublishRecruit = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__15"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__16"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__15 = _genCompid2[0],
-          $compid__15 = _genCompid2[1];
+          $prevCompid__16 = _genCompid2[0],
+          $compid__16 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__16"),
+      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__17"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__16 = _genCompid4[0],
-          $compid__16 = _genCompid4[1];
+          $prevCompid__17 = _genCompid4[0],
+          $compid__17 = _genCompid4[1];
 
-      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__17"),
+      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__18"),
           _genCompid6 = _slicedToArray(_genCompid5, 2),
-          $prevCompid__17 = _genCompid6[0],
-          $compid__17 = _genCompid6[1];
+          $prevCompid__18 = _genCompid6[0],
+          $compid__18 = _genCompid6[1];
       // 获取路由参数
 
 
@@ -12886,20 +12886,20 @@ var PublishRecruit = function (_Taro$Component) {
         "data": model && model.classifyTree,
         "onClickItem": this.anonymousFunc0,
         "num": 3
-      }, $compid__15, $prevCompid__15);
+      }, $compid__16, $prevCompid__16);
       _taroWeapp.propsManager.set({
         "num": 0
-      }, $compid__16, $prevCompid__16);
+      }, $compid__17, $prevCompid__17);
       showUpload && model && _taroWeapp.propsManager.set({
         "images": model.view_images,
         "max": model.maxImageCount,
         "userUploadImg": userUploadImg
-      }, $compid__17, $prevCompid__17);
+      }, $compid__18, $prevCompid__18);
       Object.assign(this.__state, {
         model: model,
-        $compid__15: $compid__15,
         $compid__16: $compid__16,
         $compid__17: $compid__17,
+        $compid__18: $compid__18,
         showProfession: showProfession,
         textFocus: textFocus,
         showUpload: showUpload
@@ -12987,7 +12987,7 @@ Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.CheckAdcodeValid = exports.GetAllAreas = exports.GetPublisRecruitView = exports.GetIntegralList = exports.GetTabbarMsg = exports.GetListFilterData = exports.GetWechatNotice = exports.GetFleamarketlist = exports.GetResumelist = exports.GetRecruitlist = exports.GetAllListItem = exports.GetBannerNotice = exports.GetUserInfo = exports.GetUserSessionKey = undefined;
+exports.GetUserInviteLink = exports.CheckAdcodeValid = exports.GetAllAreas = exports.GetPublisRecruitView = exports.GetIntegralList = exports.GetTabbarMsg = exports.GetListFilterData = exports.GetWechatNotice = exports.GetFleamarketlist = exports.GetResumelist = exports.GetRecruitlist = exports.GetAllListItem = exports.GetBannerNotice = exports.GetUserInfo = exports.GetUserSessionKey = undefined;
 
 var _index = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
 
@@ -13019,6 +13019,8 @@ var GetPublisRecruitView = exports.GetPublisRecruitView = _index.REQUESTURL + 'p
 var GetAllAreas = exports.GetAllAreas = _index.REQUESTURL + 'index/index-area/';
 // 检测adcode是否合法
 var CheckAdcodeValid = exports.CheckAdcodeValid = _index.REQUESTURL + 'publish/checking-adcode/';
+// 获取用户邀请链接
+var GetUserInviteLink = exports.GetUserInviteLink = _index.REQUESTURL + 'index/invite-friends/';
 
 /***/ }),
 
@@ -13215,6 +13217,7 @@ exports.getPublishRecruitView = getPublishRecruitView;
 exports.getAllAreas = getAllAreas;
 exports.getHotAreas = getHotAreas;
 exports.checkAdcodeValid = checkAdcodeValid;
+exports.getUserInviteLink = getUserInviteLink;
 
 var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
@@ -13246,8 +13249,9 @@ function requestShowToast(show) {
 }
 // 获取header请求头信息
 function getRequestHeaderInfo() {
+  // 获取用户信息
   var userInfo = _taroWeapp2.default.getStorageSync(_store.UserInfo);
-  var requestHeader = userInfo ? {
+  var requestHeader = userInfo.login ? {
     'content-type': 'application/x-www-form-urlencoded',
     mid: userInfo.userId,
     token: userInfo.token,
@@ -13277,8 +13281,9 @@ function doRequestAction(reqData) {
     });
   }
   var data = _extends({}, req.data, { wechat_token: _index2.TOKEN });
+  // 获取用户信息
   var userInfo = _taroWeapp2.default.getStorageSync(_store.UserInfo);
-  if (req.method === 'POST' && userInfo) {
+  if (req.method === 'POST' && userInfo.login) {
     data.userId = userInfo.userId;
     data.token = userInfo.token;
     data.tokenTime = userInfo.tokenTime;
@@ -13300,6 +13305,7 @@ function doRequestAction(reqData) {
       },
       fail: function fail(e) {
         // todo requestShowToast(req.failToast)
+        requestShowToast(req.failToast);
         reject(e);
       },
       complete: function complete() {
@@ -13415,6 +13421,14 @@ function checkAdcodeValid(adcode) {
     data: {
       adcode: adcode
     }
+  });
+}
+// 获取用户邀请链接
+function getUserInviteLink() {
+  return doRequestAction({
+    url: api.GetUserInviteLink,
+    method: 'POST',
+    failToast: true
   });
 }
 

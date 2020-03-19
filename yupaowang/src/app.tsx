@@ -15,6 +15,7 @@ class App extends Component {
       "pages/recruit/publish/index", //发布招工
       "pages/used/lists/index", //二手交易列表
       "pages/map/recruit/index", //发布招工地图
+      "pages/invite/index", //邀请好友
       "pages/integral/source/index", //积分来源记录
       "pages/integral/temp/index", //临时积分记录
       "pages/integral/official/index", //正式积分记录
