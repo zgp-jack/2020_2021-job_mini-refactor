@@ -1,1 +1,135 @@
-(wx.webpackJsonp=wx.webpackJsonp||[]).push([[6],{"115":function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{"value":!0});var o=function(e,t,n){return t&&defineProperties(e.prototype,t),n&&defineProperties(e,n),e};function defineProperties(e,t){for(var n=0;n<t.length;n++){var o=t[n];o.enumerable=o.enumerable||!1,o.configurable=!0,"value"in o&&(o.writable=!0),Object.defineProperty(e,o.key,o)}}var c=n(0),r=function _interopRequireDefault(e){return e&&e.__esModule?e:{"default":e}}(c);n(116);var a=(function _inherits(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{"constructor":{"value":e,"enumerable":!1,"writable":!0,"configurable":!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}(ImageView,r.default.Component),o(ImageView,[{"key":"_constructor","value":function _constructor(e){(function get(e,t,n){null===e&&(e=Function.prototype);var o=Object.getOwnPropertyDescriptor(e,t);if(void 0===o){var r=Object.getPrototypeOf(e);return null===r?void 0:get(r,t,n)}if("value"in o)return o.value;var a=o.get;return void 0!==a?a.call(n):void 0})(ImageView.prototype.__proto__||Object.getPrototypeOf(ImageView.prototype),"_constructor",this).call(this,e),this.$$refs=new r.default.RefsArray}},{"key":"_createData","value":function _createData(e,t,n){var o=this;this.__state=e||this.state||{},this.__props=t||this.props||{},this.$prefix;var r=this.__props,a=r.images,i=r.userUploadImg,u=r.max;this.anonymousFunc1=function(){return i&&i(-1)};var s=a?a.map(function(e,t){e={"$original":(0,c.internal_get_original)(e)};var n="gzzzz"+t;return o.anonymousFunc0Map[n]=function(){return i&&i(t)},{"_$indexKey":n,"$original":e.$original}}):[];return Object.assign(this.__state,{"loopArray14":s,"images":a,"max":u}),this.__state}},{"key":"anonymousFunc0","value":function anonymousFunc0(e){for(var t,n=arguments.length,o=Array(1<n?n-1:0),r=1;r<n;r++)o[r-1]=arguments[r];return this.anonymousFunc0Map[e]&&(t=this.anonymousFunc0Map)[e].apply(t,o)}},{"key":"anonymousFunc1","value":function anonymousFunc1(){}}]),ImageView);function ImageView(){!function _classCallCheck(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,ImageView);var e=function _possibleConstructorReturn(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}(this,(ImageView.__proto__||Object.getPrototypeOf(ImageView)).apply(this,arguments));return e.$usedState=["loopArray14","images","max","userUploadImg"],e.anonymousFunc0Map={},e.customComponents=[],e}a.$$events=["anonymousFunc0","anonymousFunc1"],a.$$componentPath="components/imageview/index",t.default=a,Component(n(0).default.createComponent(a))},"116":function(e,t,n){}},[[115,0,1]]]);
+(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["components/imageview/index"],{
+
+/***/ "./src/components/imageview/index.scss":
+/*!*********************************************!*\
+  !*** ./src/components/imageview/index.scss ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
+/***/ "./src/components/imageview/index.tsx":
+/*!********************************************!*\
+  !*** ./src/components/imageview/index.tsx ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
+
+var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
+
+__webpack_require__(/*! ./index.scss */ "./src/components/imageview/index.scss");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var ImageView = function (_Taro$Component) {
+  _inherits(ImageView, _Taro$Component);
+
+  function ImageView() {
+    _classCallCheck(this, ImageView);
+
+    var _this = _possibleConstructorReturn(this, (ImageView.__proto__ || Object.getPrototypeOf(ImageView)).apply(this, arguments));
+
+    _this.$usedState = ["loopArray14", "images", "max", "userUploadImg"];
+    _this.anonymousFunc0Map = {};
+    _this.customComponents = [];
+    return _this;
+  }
+
+  _createClass(ImageView, [{
+    key: "_constructor",
+    value: function _constructor(props) {
+      _get(ImageView.prototype.__proto__ || Object.getPrototypeOf(ImageView.prototype), "_constructor", this).call(this, props);
+      this.$$refs = new _taroWeapp2.default.RefsArray();
+    }
+  }, {
+    key: "_createData",
+    value: function _createData() {
+      var _this2 = this;
+
+      this.__state = arguments[0] || this.state || {};
+      this.__props = arguments[1] || this.props || {};
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
+      ;
+      var _props = this.__props,
+          images = _props.images,
+          userUploadImg = _props.userUploadImg,
+          max = _props.max;
+
+      this.anonymousFunc1 = function () {
+        return userUploadImg && userUploadImg(-1);
+      };
+      var loopArray14 = images ? images.map(function (item, index) {
+        item = {
+          $original: (0, _taroWeapp.internal_get_original)(item)
+        };
+        var _$indexKey = "gzzzz" + index;
+        _this2.anonymousFunc0Map[_$indexKey] = function () {
+          return userUploadImg && userUploadImg(index);
+        };
+        return {
+          _$indexKey: _$indexKey,
+          $original: item.$original
+        };
+      }) : [];
+      Object.assign(this.__state, {
+        loopArray14: loopArray14,
+        images: images,
+        max: max
+      });
+      return this.__state;
+    }
+  }, {
+    key: "anonymousFunc0",
+    value: function anonymousFunc0(_$indexKey) {
+      var _anonymousFunc0Map;
+
+      ;
+
+      for (var _len = arguments.length, e = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+        e[_key - 1] = arguments[_key];
+      }
+
+      return this.anonymousFunc0Map[_$indexKey] && (_anonymousFunc0Map = this.anonymousFunc0Map)[_$indexKey].apply(_anonymousFunc0Map, e);
+    }
+  }, {
+    key: "anonymousFunc1",
+    value: function anonymousFunc1(e) {
+      ;
+    }
+  }]);
+
+  return ImageView;
+}(_taroWeapp2.default.Component);
+
+ImageView.$$events = ["anonymousFunc0", "anonymousFunc1"];
+ImageView.$$componentPath = "components/imageview/index";
+exports.default = ImageView;
+
+Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(ImageView));
+
+/***/ })
+
+},[["./src/components/imageview/index.tsx","runtime","vendors"]]]);

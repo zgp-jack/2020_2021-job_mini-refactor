@@ -1,1 +1,168 @@
-.overwords{overflow:hidden;white-space:nowrap;text-overflow:ellipsis}.clearfix:after{content:"";display:block;clear:both;visibility:hidden;line-height:0;height:0;font-size:0}.clearfix{zoom:1}.citiesbox{width:100%;height:100%;overflow-y:scroll}.citiesbox .city-area-tips,.citiesbox .city-header{position:fixed;left:0;z-index:10;width:100%;height:100rpx;font-size:28rpx;line-height:100rpx}.citiesbox .city-header{top:0;background:#09f;color:#fff;text-align:center;letter-spacing:4rpx;padding:0 120rpx 0 20rpx}.citiesbox,.citiesbox .city-header .city-header-input{position:relative}.citiesbox .city-header .city-header-input input{position:relative;width:100%;left:0;top:15rpx;height:70rpx;line-height:70rpx;background:#fff;border-radius:5rpx;font-size:28rpx;text-align:left;box-sizing:border-box;padding:0 80rpx 0 20rpx;color:#333}.citiesbox .city-header .city-header-input .city-header-clear{position:absolute;width:40rpx;height:40rpx;right:20rpx;top:27rpx;z-index:5}.citiesbox .city-header .city-header-close{position:absolute;height:100rpx;right:27rpx;top:0;line-height:100rpx;font-size:28rpx;color:#fff}.citiesbox .city-area-tips{top:100rpx;background:#fff;padding:0 20rpx;color:#333;letter-spacing:2rpx;font-weight:800;box-shadow:0 0 5rpx #e7e6e4}.citiesbox .city-area-container{position:relative;width:100%;padding:200rpx 20rpx 0}.citiesbox .city-area-container .city-area-item{position:relative;width:100%}.citiesbox .city-area-container .city-area-item .city-area-title{position:relative;width:100%;height:80rpx;line-height:80rpx;font-size:28rpx}.citiesbox .city-area-container .city-area-item .city-area-content,.notsearchdata{position:relative}.citiesbox .city-area-container .city-area-item .city-area-content .city-item{position:relative;width:33.33333%;float:left;padding:10rpx;margin-bottom:10rpx}.citiesbox .city-area-container .city-area-item .city-area-content .city-item .city-item-text,.citiesbox .city-area-container .city-area-item .city-area-content .city-item-posi{display:block;width:100%;background:#fff;color:#333;text-align:center;padding:0 10rpx;border-radius:5rpx;line-height:80rpx;font-size:28rpx}.citiesbox .city-area-container .city-area-item .city-area-content .city-item-posi .city-item-img{display:inline-block;width:30rpx;height:30rpx;margin-right:5rpx;vertical-align:middle;margin-top:-3rpx}.citiesbox .inputlist{position:fixed;width:100%;height:calc(100% - 100rpx);background-color:#fff;z-index:20;left:0;top:100rpx;overflow-y:scroll}.citiesbox .inputlist .input-list-item{position:relative;border-bottom:1rpx solid #dcdcdc;line-height:90rpx;font-size:28rpx;color:#333;padding:0 20rpx}.notsearchdata{display:flex;flex-direction:column;justify-content:center;align-items:center}.notsearchdata .notimg{position:relative;display:block;width:300rpx;height:300rpx}.notsearchdata .nottext{position:relative;display:block;font-size:28rpx;margin-top:50rpx;color:#333}
+.overwords {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis; }
+
+.clearfix:after {
+  content: "";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+  font-size: 0; }
+
+.clearfix {
+  zoom: 1; }
+
+.citiesbox {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll; }
+  .citiesbox .city-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100rpx;
+    line-height: 100rpx;
+    background: #0099ff;
+    color: white;
+    font-size: 28rpx;
+    text-align: center;
+    letter-spacing: 4rpx;
+    z-index: 10;
+    padding: 0 20rpx;
+    padding-right: 120rpx; }
+    .citiesbox .city-header .city-header-input {
+      position: relative; }
+      .citiesbox .city-header .city-header-input input {
+        position: relative;
+        width: 100%;
+        left: 0;
+        top: 15rpx;
+        height: 70rpx;
+        line-height: 70rpx;
+        background: white;
+        border-radius: 5rpx;
+        font-size: 28rpx;
+        text-align: left;
+        padding: 0 20rpx;
+        box-sizing: border-box;
+        padding-right: 80rpx;
+        color: #333; }
+      .citiesbox .city-header .city-header-input .city-header-clear {
+        position: absolute;
+        width: 40rpx;
+        height: 40rpx;
+        right: 20rpx;
+        top: 27rpx;
+        z-index: 5; }
+    .citiesbox .city-header .city-header-close {
+      position: absolute;
+      height: 100rpx;
+      right: 27rpx;
+      top: 0;
+      line-height: 100rpx;
+      font-size: 28rpx;
+      color: white; }
+  .citiesbox .city-area-tips {
+    position: fixed;
+    top: 100rpx;
+    left: 0;
+    z-index: 10;
+    width: 100%;
+    height: 100rpx;
+    background: white;
+    padding: 0 20rpx;
+    font-size: 28rpx;
+    color: #333;
+    line-height: 100rpx;
+    letter-spacing: 2rpx;
+    font-weight: 800;
+    box-shadow: 0 0 5rpx #e7e6e4; }
+  .citiesbox .city-area-container {
+    position: relative;
+    width: 100%;
+    padding: 0 20rpx;
+    padding-top: 200rpx; }
+    .citiesbox .city-area-container .city-area-item {
+      position: relative;
+      width: 100%; }
+      .citiesbox .city-area-container .city-area-item .city-area-title {
+        position: relative;
+        width: 100%;
+        height: 80rpx;
+        line-height: 80rpx;
+        font-size: 28rpx; }
+      .citiesbox .city-area-container .city-area-item .city-area-content {
+        position: relative; }
+        .citiesbox .city-area-container .city-area-item .city-area-content .city-item {
+          position: relative;
+          width: 33.33333%;
+          float: left;
+          padding: 10rpx;
+          margin-bottom: 10rpx; }
+          .citiesbox .city-area-container .city-area-item .city-area-content .city-item .city-item-text {
+            display: block;
+            width: 100%;
+            background: white;
+            color: #333;
+            text-align: center;
+            padding: 0 10rpx;
+            border-radius: 5rpx;
+            line-height: 80rpx;
+            font-size: 28rpx; }
+        .citiesbox .city-area-container .city-area-item .city-area-content .city-item-posi {
+          display: block;
+          width: 100%;
+          background: white;
+          color: #333;
+          text-align: center;
+          padding: 0 10rpx;
+          border-radius: 5rpx;
+          line-height: 80rpx;
+          font-size: 28rpx; }
+          .citiesbox .city-area-container .city-area-item .city-area-content .city-item-posi .city-item-img {
+            display: inline-block;
+            width: 30rpx;
+            height: 30rpx;
+            margin-right: 5rpx;
+            vertical-align: middle;
+            margin-top: -3rpx; }
+  .citiesbox .inputlist {
+    position: fixed;
+    width: 100%;
+    height: calc(100% - 100rpx);
+    background-color: white;
+    z-index: 20;
+    left: 0;
+    top: 100rpx;
+    overflow-y: scroll; }
+    .citiesbox .inputlist .input-list-item {
+      position: relative;
+      border-bottom: 1rpx solid #dcdcdc;
+      line-height: 90rpx;
+      font-size: 28rpx;
+      color: #333;
+      padding: 0 20rpx; }
+
+.notsearchdata {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+  .notsearchdata .notimg {
+    position: relative;
+    display: block;
+    width: 300rpx;
+    height: 300rpx; }
+  .notsearchdata .nottext {
+    position: relative;
+    display: block;
+    font-size: 28rpx;
+    margin-top: 50rpx;
+    color: #333; }
+

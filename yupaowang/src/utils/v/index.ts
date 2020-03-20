@@ -2,13 +2,13 @@ import Taro from '@tarojs/taro'
 
 // 是否是电话号码
 export function isPhone(tel: string): boolean {
-  let reg = /^1[0-9]{10}&/
+  let reg = /^1[0-9]{10}$/
   return reg.test(tel)
 }
 
 // 是否是数字
 export function isNumber(num: any): boolean {
-  let reg = /^[0-9]+&/
+  let reg = /^[0-9]+$/
   return reg.test(num)
 }
 
@@ -47,10 +47,8 @@ export function isRequire(val: string): boolean {
 
 // 内容必须有汉字 且不少于 min 字
 export function isVaildVal(val: string, min: number = 15): boolean {
-  let reg = /[\\u4E00-\\u9FFF]+/g
-  let bool: boolean = reg.test(val) ? (val.length >= min ? true : false) : false
-  reg.lastIndex = 0
-  return bool
+  let reg = new RegExp("[\\u4E00-\\u9FFF]+");
+  return reg.test(val) && val.length >= min
 }
 
 // 检测是否是身份证
