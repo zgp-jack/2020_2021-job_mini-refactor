@@ -1,100 +1,16 @@
 {
-	"projectname": "%E9%B1%BC%E6%B3%A1%E7%BD%91",
-	"description": "yupaowang",
-	"appid": "wx456feacb0e86162f",
-	"setting": {
-		"urlCheck": true,
-		"es6": true,
-		"enhance": true,
-		"postcss": false,
-		"preloadBackgroundData": false,
-		"minified": true,
-		"newFeature": true,
-		"coverView": true,
-		"nodeModules": true,
-		"autoAudits": false,
-		"showShadowRootInWxmlPanel": true,
-		"scopeDataCheck": false,
-		"uglifyFileName": true,
-		"checkInvalidKey": true,
-		"checkSiteMap": true,
-		"uploadWithSourceMap": true,
-		"babelSetting": {
-			"ignore": [],
-			"disablePlugins": [],
-			"outputPath": ""
-		},
-		"bundle": true
-	},
-	"compileType": "miniprogram",
-	"simulatorType": "wechat",
-	"simulatorPluginLibVersion": {},
-	"libVersion": "2.10.1",
-	"condition": {
-		"search": {
-			"current": -1,
-			"list": []
-		},
-		"conversation": {
-			"current": -1,
-			"list": []
-		},
-		"plugin": {
-			"current": -1,
-			"list": []
-		},
-		"game": {
-			"list": []
-		},
-		"gamePlugin": {
-			"current": -1,
-			"list": []
-		},
-		"miniprogram": {
-			"current": -1,
-			"list": [
-				{
-					"id": -1,
-					"name": "二手交易列表",
-					"pathName": "pages/used/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 1,
-					"name": "积分记录",
-					"pathName": "pages/integral/source/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "发布招工",
-					"pathName": "pages/recruit/publish/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "选择地图位置",
-					"pathName": "pages/map/recruit/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "邀请好友",
-					"pathName": "pages/invite/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "获取积分",
-					"pathName": "pages/getintegral/index",
-					"scene": null
-				}
-			]
-		}
-	}
+  "miniprogramRoot": "./",
+  "projectname": "%E9%B1%BC%E6%B3%A1%E7%BD%91",
+  "description": "yupaowang",
+  "appid": "wx456feacb0e86162f",
+  "setting": {
+    "urlCheck": true,
+    "es6": false,
+    "postcss": false,
+    "minified": false
+  },
+  "compileType": "miniprogram",
+  "simulatorType": "wechat",
+  "simulatorPluginLibVersion": {},
+  "condition": {}
 }
