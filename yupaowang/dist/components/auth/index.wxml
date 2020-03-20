@@ -1,6 +1,6 @@
 <block wx:if="{{$taroCompReady}}">
     <block>
-        <block wx:if="{{!login && !page}}">
+        <block wx:if="{{!login && !page || page}}">
             <view>
                 <at-message></at-message>
                 <view class="user-auth-container">

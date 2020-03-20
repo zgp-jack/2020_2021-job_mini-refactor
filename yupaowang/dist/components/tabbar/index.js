@@ -59,7 +59,7 @@ var Tabbar = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (Tabbar.__proto__ || Object.getPrototypeOf(Tabbar)).apply(this, arguments));
 
-    _this.$usedState = ["tabbar", "loopArray15", "notredirect"];
+    _this.$usedState = ["tabbar", "loopArray11", "notredirect"];
     _this.anonymousFunc0Map = {};
     _this.customComponents = [];
     return _this;
@@ -94,7 +94,7 @@ var Tabbar = function (_Taro$Component) {
           dispatch((0, _tabbar.changeTabbar)(item.id));
         } else _taroWeapp2.default.reLaunch({ url: '/pages/index/index?type=' + item.id });
       };
-      var loopArray15 = tabbar.list.map(function (item, __index0) {
+      var loopArray11 = tabbar.list.map(function (item, __index0) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
@@ -102,7 +102,7 @@ var Tabbar = function (_Taro$Component) {
           'common-footer-tabbar-list': true,
           'common-footer-tabbar-list-active': item.$original.id === tabbar.key
         });
-        var _$indexKey = "hzzzz" + __index0;
+        var _$indexKey = "ezzzz" + __index0;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return changeTabbarAction(item.$original);
         };
@@ -114,7 +114,7 @@ var Tabbar = function (_Taro$Component) {
       });
       Object.assign(this.__state, {
         tabbar: tabbar,
-        loopArray15: loopArray15
+        loopArray11: loopArray11
       });
       return this.__state;
     }

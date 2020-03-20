@@ -2665,7 +2665,7 @@ var PublishRecruit = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (PublishRecruit.__proto__ || Object.getPrototypeOf(PublishRecruit)).apply(this, arguments));
 
-    _this.$usedState = ["model", "$compid__17", "$compid__18", "$compid__19", "showProfession", "textFocus", "showUpload"];
+    _this.$usedState = ["model", "$compid__16", "$compid__17", "$compid__18", "showProfession", "textFocus", "showUpload"];
     _this.customComponents = ["Profession", "WordsTotal", "ImageView"];
     return _this;
   }
@@ -2685,20 +2685,20 @@ var PublishRecruit = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__17"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__16"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__17 = _genCompid2[0],
-          $compid__17 = _genCompid2[1];
+          $prevCompid__16 = _genCompid2[0],
+          $compid__16 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__18"),
+      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__17"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__18 = _genCompid4[0],
-          $compid__18 = _genCompid4[1];
+          $prevCompid__17 = _genCompid4[0],
+          $compid__17 = _genCompid4[1];
 
-      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__19"),
+      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__18"),
           _genCompid6 = _slicedToArray(_genCompid5, 2),
-          $prevCompid__19 = _genCompid6[0],
-          $compid__19 = _genCompid6[1];
+          $prevCompid__18 = _genCompid6[0],
+          $compid__18 = _genCompid6[1];
       // 获取路由参数
 
 
@@ -2858,20 +2858,20 @@ var PublishRecruit = function (_Taro$Component) {
         "data": model && model.classifyTree,
         "onClickItem": this.anonymousFunc0,
         "num": 3
-      }, $compid__17, $prevCompid__17);
+      }, $compid__16, $prevCompid__16);
       _taroWeapp.propsManager.set({
         "num": 0
-      }, $compid__18, $prevCompid__18);
+      }, $compid__17, $prevCompid__17);
       showUpload && model && _taroWeapp.propsManager.set({
         "images": model.view_images,
         "max": model.maxImageCount,
         "userUploadImg": userUploadImg
-      }, $compid__19, $prevCompid__19);
+      }, $compid__18, $prevCompid__18);
       Object.assign(this.__state, {
         model: model,
+        $compid__16: $compid__16,
         $compid__17: $compid__17,
         $compid__18: $compid__18,
-        $compid__19: $compid__19,
         showProfession: showProfession,
         textFocus: textFocus,
         showUpload: showUpload
@@ -3015,6 +3015,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 exports.objDeepCopy = objDeepCopy;
 exports.userAuthLoction = userAuthLoction;
 exports.getAmapPoiList = getAmapPoiList;
+exports.userJumpPage = userJumpPage;
 
 var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
@@ -3074,6 +3075,10 @@ function getAmapPoiList(val) {
     });
   });
 }
+// 页面跳转
+function userJumpPage(url) {
+  _taroWeapp2.default.navigateTo({ url: url });
+}
 
 /***/ }),
 
@@ -3090,8 +3095,8 @@ function getAmapPoiList(val) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.ShowActionModel = undefined;
 exports.default = Msg;
+exports.ShowActionModel = ShowActionModel;
 exports.errMsg = errMsg;
 exports.warnMsg = warnMsg;
 exports.successMsg = successMsg;
@@ -3111,17 +3116,18 @@ function Msg(msg) {
     duration: duration
   });
 }
-function ShowActionModel(_ref) {
-  var _ref$title = _ref.title,
-      title = _ref$title === undefined ? '温馨提示' : _ref$title,
-      _ref$confirmText = _ref.confirmText,
-      confirmText = _ref$confirmText === undefined ? '确定' : _ref$confirmText,
-      msg = _ref.msg,
-      _success = _ref.success;
+function ShowActionModel(data) {
+  var falg = typeof data === 'string';
+  var _data$title = data.title,
+      title = _data$title === undefined ? '温馨提示' : _data$title,
+      _data$confirmText = data.confirmText,
+      confirmText = _data$confirmText === undefined ? '确定' : _data$confirmText,
+      msg = data.msg,
+      _success = data.success;
 
   _taroWeapp2.default.showModal({
     title: title,
-    content: msg,
+    content: falg ? data : msg,
     showCancel: false,
     confirmText: confirmText,
     success: function success() {
@@ -3129,7 +3135,6 @@ function ShowActionModel(_ref) {
     }
   });
 }
-exports.ShowActionModel = ShowActionModel;
 function errMsg() {
   var msg = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
 
