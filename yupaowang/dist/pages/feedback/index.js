@@ -37,7 +37,13 @@ var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@
 
 var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
 
+var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/redux/index.js");
+
 var _index2 = __webpack_require__(/*! ../../utils/request/index */ "./src/utils/request/index.ts");
+
+var _index3 = __webpack_require__(/*! ../../utils/msg/index */ "./src/utils/msg/index.ts");
+
+var _index4 = _interopRequireDefault(_index3);
 
 __webpack_require__(/*! ./index.scss */ "./src/pages/feedback/index.scss");
 
@@ -68,7 +74,7 @@ var Feedback = function (_Taro$Component) {
     };
 
     _this.$usedState = ["anonymousState__temp", "searchData"];
-    _this.customComponents = ["WechatNotice"];
+    _this.customComponents = ["Auth", "WechatNotice"];
     return _this;
   }
 
@@ -86,6 +92,9 @@ var Feedback = function (_Taro$Component) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
+      var login = (0, _redux.useSelector)(function (state) {
+        return state.User.login;
+      });
 
       var _useState = (0, _taroWeapp.useState)({ phone: '', username: '' }),
           _useState2 = _slicedToArray(_useState, 2),
@@ -111,30 +120,25 @@ var Feedback = function (_Taro$Component) {
         if (!showToasts) {
           return;
         }
-        var userInt = {
+        if (!login) {
+          return;
+        }
+        var Inituser = {
           page: page
         };
-        // let userInfo: User = Taro.getStorageSync(UserInfo)
-        // if(!userInfo){
-        //   return
-        // }
-        (0, _index2.getFeedbackList)(userInt).then(function (res) {
+        (0, _index2.getFeedbackList)(Inituser).then(function (res) {
           console.log('res', res);
           _taroWeapp2.default.hideNavigationBarLoading();
-          if (res.data.length == 0) {
-            _taroWeapp2.default.showToast({
-              title: '没有更多数据了',
-              icon: 'none',
-              duration: 2000
-            });
+          if (res.data.length === 0) {
+            (0, _index4.default)('没有更多数据了', 2000);
             setshowToasts(false);
           }
           if (page === 1) {
             setSearchData({ list: res.data });
-            setshowDetail({ phone: res.memberInfo.phone, username: res.memberInfo.username });
+            setshowDetail({ phone: res.memberInfo.phone || '', username: res.memberInfo.username || '' });
           } else setSearchData({ list: [].concat(_toConsumableArray(searchData.list), _toConsumableArray(res.data)) });
         });
-      }, [page]);
+      }, [page, login]);
       var getNextPageData = function getNextPageData() {
         if (!showToasts) {
           return;
@@ -142,12 +146,6 @@ var Feedback = function (_Taro$Component) {
         setPage(page + 1);
       };
       var jumpDetail = function jumpDetail() {
-        if (!showDetail.username) {
-          showDetail.username = "";
-        }
-        if (!showDetail.phone) {
-          showDetail.phone = "";
-        }
         _taroWeapp2.default.navigateTo({
           url: _index.Leavemessage + ("?username=" + showDetail.username + "&phone=" + showDetail.phone)
         });

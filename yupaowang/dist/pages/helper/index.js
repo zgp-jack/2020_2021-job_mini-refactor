@@ -67,7 +67,7 @@ var Helper = function (_Taro$Component) {
       backgroundTextStyle: 'dark'
     };
 
-    _this.$usedState = ["helplist", "loopArray25", "IMGCDNURL", "open"];
+    _this.$usedState = ["helplist", "loopArray3", "IMGCDNURL", "open"];
     _this.anonymousFunc1Map = {};
     _this.customComponents = [];
     return _this;
@@ -149,11 +149,11 @@ var Helper = function (_Taro$Component) {
       this.anonymousFunc0 = function () {
         return getNextPageData();
       };
-      var loopArray25 = helplist.listCons.map(function (item, index) {
+      var loopArray3 = helplist.listCons.map(function (item, index) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
-        var _$indexKey = "bczzz" + index;
+        var _$indexKey = "bzzzz" + index;
         _this2.anonymousFunc1Map[_$indexKey] = function () {
           handleClick(index);
         };
@@ -164,7 +164,7 @@ var Helper = function (_Taro$Component) {
       });
       Object.assign(this.__state, {
         helplist: helplist,
-        loopArray25: loopArray25,
+        loopArray3: loopArray3,
         IMGCDNURL: _index.IMGCDNURL,
         open: open
       });

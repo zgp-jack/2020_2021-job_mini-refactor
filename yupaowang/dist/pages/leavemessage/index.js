@@ -45,6 +45,10 @@ var _index3 = _interopRequireDefault(_index2);
 
 __webpack_require__(/*! ./index.scss */ "./src/pages/leavemessage/index.scss");
 
+var _index4 = __webpack_require__(/*! ../../utils/msg/index */ "./src/utils/msg/index.ts");
+
+var _index5 = _interopRequireDefault(_index4);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -69,8 +73,8 @@ var Leavemessage = function (_Taro$Component) {
       backgroundTextStyle: 'dark'
     };
 
-    _this.$usedState = ["$compid__24", "showNameAndPhone", "phone", "buttonAble", "showNums", "buttonContent"];
-    _this.customComponents = ["WechatNotice", "ImageView"];
+    _this.$usedState = ["$compid__52", "$compid__53", "showNameAndPhone", "phone", "buttonAble", "buttonContent"];
+    _this.customComponents = ["WechatNotice", "WordsTotal", "ImageView"];
     return _this;
   }
 
@@ -89,57 +93,59 @@ var Leavemessage = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__24"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__52"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__24 = _genCompid2[0],
-          $compid__24 = _genCompid2[1];
+          $prevCompid__52 = _genCompid2[0],
+          $compid__52 = _genCompid2[1];
+
+      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__53"),
+          _genCompid4 = _slicedToArray(_genCompid3, 2),
+          $prevCompid__53 = _genCompid4[0],
+          $compid__53 = _genCompid4[1];
 
       var _useState = (0, _taroWeapp.useState)(0),
           _useState2 = _slicedToArray(_useState, 2),
           showNums = _useState2[0],
           setshowNums = _useState2[1];
 
-      var _useState3 = (0, _taroWeapp.useState)(""),
-          _useState4 = _slicedToArray(_useState3, 2),
-          showContent = _useState4[0],
-          setshowContent = _useState4[1];
-
-      var _useState5 = (0, _taroWeapp.useState)({
+      var _useState3 = (0, _taroWeapp.useState)({
         username: "",
-        phone: "",
-        code: ""
+        tel: "",
+        code: "",
+        content: ""
       }),
+          _useState4 = _slicedToArray(_useState3, 2),
+          showNameAndPhone = _useState4[0],
+          setshowNameAndPhone = _useState4[1];
+
+      var _useState5 = (0, _taroWeapp.useState)(false),
           _useState6 = _slicedToArray(_useState5, 2),
-          showNameAndPhone = _useState6[0],
-          setshowNameAndPhone = _useState6[1];
+          buttonAble = _useState6[0],
+          setbuttonAble = _useState6[1];
 
-      var _useState7 = (0, _taroWeapp.useState)(false),
+      var _useState7 = (0, _taroWeapp.useState)("获取验证码"),
           _useState8 = _slicedToArray(_useState7, 2),
-          buttonAble = _useState8[0],
-          setbuttonAble = _useState8[1];
+          buttonContent = _useState8[0],
+          setbuttonContent = _useState8[1];
 
-      var _useState9 = (0, _taroWeapp.useState)("获取验证码"),
+      var _useState9 = (0, _taroWeapp.useState)({ images: [] }),
           _useState10 = _slicedToArray(_useState9, 2),
-          buttonContent = _useState10[0],
-          setbuttonContent = _useState10[1];
-
-      var _useState11 = (0, _taroWeapp.useState)({ images: [] }),
-          _useState12 = _slicedToArray(_useState11, 2),
-          showImages = _useState12[0],
-          setshowImages = _useState12[1];
+          showImages = _useState10[0],
+          setshowImages = _useState10[1];
 
       var router = (0, _taroWeapp.useRouter)();
       var _router$params = router.params,
           phone = _router$params.phone,
           username = _router$params.username;
 
-      var reg = new RegExp("[\\u4E00-\\u9FFF]+", "g");
+      var reg = new RegExp("[\\u4E00-\\u9FFF]+");
       var maximage = 9;
       (0, _taroWeapp.useEffect)(function () {
         var peopleProperty = {
           username: username,
-          phone: phone,
-          code: ""
+          tel: phone,
+          code: "",
+          content: ""
         };
         setshowNameAndPhone(_extends({}, showNameAndPhone, peopleProperty));
       }, []);
@@ -162,90 +168,55 @@ var Leavemessage = function (_Taro$Component) {
           }
         });
       };
-      var getNumber = function getNumber(e) {
-        setshowNums(e.detail.value.length);
-        setshowContent(e.detail.value);
-      };
       var getNameandPhone = function getNameandPhone(e, property) {
         var nameAndPhone = JSON.parse(JSON.stringify(showNameAndPhone));
         nameAndPhone[property] = e.detail.value;
         console.log(nameAndPhone);
         setshowNameAndPhone(_extends({}, showNameAndPhone, nameAndPhone));
+        if (property == "content") {
+          setshowNums(e.detail.value.length);
+        }
       };
       var getCommit = function getCommit() {
-        if (showContent.length < 15 || !reg.test(showContent)) {
-          _taroWeapp2.default.showModal({
-            title: '温馨提示',
-            content: '输入内容不少于15个字且必须包含文字！',
-            showCancel: false
-          });
+        if (showNameAndPhone.content.length < 15 || !reg.test(showNameAndPhone.content)) {
+          (0, _index5.default)('输入内容不少于15个字且必须包含文字！');
           return;
         }
         if (showNameAndPhone.username == "" || !reg.test(showNameAndPhone.username)) {
-          _taroWeapp2.default.showModal({
-            title: '温馨提示',
-            content: '请正确输入联系人且必须包含汉字！',
-            showCancel: false
-          });
+          (0, _index5.default)('请正确输入联系人且必须包含汉字！');
           return;
         }
-        if (showNameAndPhone.phone == '' && showNameAndPhone.phone.length != 11) {
-          _taroWeapp2.default.showModal({
-            title: '温馨提示',
-            content: '请输入正确的手机号！',
-            showCancel: false
-          });
+        if (showNameAndPhone.tel == '' || showNameAndPhone.tel.length != 11) {
+          (0, _index5.default)('请输入正确的手机号！');
           return;
         }
-        var imglist = [];
-        showImages.images.map(function (item, index) {
-          imglist.push(item[index].url);
+        var imglist = showImages.images.map(function (item) {
+          return item.url;
         });
-        var showCommit = {
-          images: imglist,
-          content: showContent,
-          username: showNameAndPhone.username,
-          tel: showNameAndPhone.phone
-        };
+        var showCommit = _extends({
+          images: imglist
+        }, showNameAndPhone);
         (0, _index.getCommitCons)(showCommit).then(function (res) {
-          _taroWeapp2.default.showModal({
-            title: '温馨提示',
-            content: res.errmsg,
-            showCancel: false
-          }).then(function (res) {
-            if (res.confirm) {
+          (0, _index4.ShowActionModel)({ msg: res.errmsg, success: function success() {
               _taroWeapp2.default.navigateBack({ delta: 1 });
-            }
-          });
+            } });
         });
       };
       var getCode = function getCode() {
-        if (showNameAndPhone.phone == '' && showNameAndPhone.phone.length != 11) {
-          _taroWeapp2.default.showModal({
-            title: '温馨提示',
-            content: '请输入正确的手机号！',
-            showCancel: false
-          });
+        if (showNameAndPhone.tel == '' || showNameAndPhone.tel.length != 11) {
+          (0, _index5.default)('请输入正确的手机号！');
           return;
         }
         var codeContent = {
           sendType: "have",
-          tel: showNameAndPhone.phone
+          tel: showNameAndPhone.tel
         };
         setbuttonAble(true);
         (0, _index.getVerifyCode)(codeContent).then(function (res) {
           if (res.errcode == "ok") {
-            _taroWeapp2.default.showToast({
-              title: res.errmsg,
-              icon: 'none',
-              duration: 2000
-            });
+            (0, _index5.default)(res.errmsg);
             validateBtn(res.refresh);
-          } else _taroWeapp2.default.showToast({
-            title: res.errmsg,
-            icon: 'none',
-            duration: 2000
-          });
+          } else (0, _index5.default)(res.errmsg);
         });
       };
       var validateBtn = function validateBtn(refresh) {
@@ -262,13 +233,13 @@ var Leavemessage = function (_Taro$Component) {
         }, 1000);
       };
       this.anonymousFunc0 = function (e) {
-        getNumber(e);
+        getNameandPhone(e, "content");
       };
       this.anonymousFunc1 = function (e) {
         getNameandPhone(e, "username");
       };
       this.anonymousFunc2 = function (e) {
-        getNameandPhone(e, 'phone');
+        getNameandPhone(e, 'tel');
       };
       this.anonymousFunc3 = function (e) {
         getNameandPhone(e, 'code');
@@ -280,16 +251,19 @@ var Leavemessage = function (_Taro$Component) {
         return getCommit();
       };
       _taroWeapp.propsManager.set({
+        "num": showNums
+      }, $compid__52, $prevCompid__52);
+      _taroWeapp.propsManager.set({
         "images": showImages.images,
         "userUploadImg": userUploadImg,
         "max": maximage
-      }, $compid__24, $prevCompid__24);
+      }, $compid__53, $prevCompid__53);
       Object.assign(this.__state, {
-        $compid__24: $compid__24,
+        $compid__52: $compid__52,
+        $compid__53: $compid__53,
         showNameAndPhone: showNameAndPhone,
         phone: phone,
         buttonAble: buttonAble,
-        showNums: showNums,
         buttonContent: buttonContent
       });
       return this.__state;

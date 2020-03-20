@@ -2665,7 +2665,7 @@ var PublishRecruit = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (PublishRecruit.__proto__ || Object.getPrototypeOf(PublishRecruit)).apply(this, arguments));
 
-    _this.$usedState = ["model", "$compid__19", "$compid__20", "$compid__21", "showProfession", "showUpload"];
+    _this.$usedState = ["model", "$compid__17", "$compid__18", "$compid__19", "showProfession", "textFocus", "showUpload"];
     _this.customComponents = ["Profession", "WordsTotal", "ImageView"];
     return _this;
   }
@@ -2685,20 +2685,20 @@ var PublishRecruit = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__19"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__17"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__19 = _genCompid2[0],
-          $compid__19 = _genCompid2[1];
+          $prevCompid__17 = _genCompid2[0],
+          $compid__17 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__20"),
+      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__18"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__20 = _genCompid4[0],
-          $compid__20 = _genCompid4[1];
+          $prevCompid__18 = _genCompid4[0],
+          $compid__18 = _genCompid4[1];
 
-      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__21"),
+      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__19"),
           _genCompid6 = _slicedToArray(_genCompid5, 2),
-          $prevCompid__21 = _genCompid6[0],
-          $compid__21 = _genCompid6[1];
+          $prevCompid__19 = _genCompid6[0],
+          $compid__19 = _genCompid6[1];
       // 获取路由参数
 
 
@@ -2717,10 +2717,20 @@ var PublishRecruit = function (_Taro$Component) {
           setShowProssion = _usePublishViewInfo.setShowProssion,
           area = _usePublishViewInfo.area,
           _setArea = _usePublishViewInfo.setArea,
-          _setAreaInfo = _usePublishViewInfo.setAreaInfo;
+          _setAreaInfo = _usePublishViewInfo.setAreaInfo,
+          getPublishRecruitInfo = _usePublishViewInfo.getPublishRecruitInfo;
+      // textarea焦点
+
+
+      var _useState = (0, _taroWeapp.useState)(false),
+          _useState2 = _slicedToArray(_useState, 2),
+          textFocus = _useState2[0],
+          setTextFocus = _useState2[1];
+
+      var userClickTextArea = function userClickTextArea(b) {
+        setTextFocus(b);
+      };
       // 需要传递的值
-
-
       var value = {
         area: area,
         setArea: function setArea(city) {
@@ -2728,6 +2738,12 @@ var PublishRecruit = function (_Taro$Component) {
         },
         setAreaInfo: function setAreaInfo(item) {
           return _setAreaInfo(item);
+        },
+        setPublishArea: function setPublishArea(val) {
+          if (!model) {
+            return;
+          }
+          setModel(_extends({}, model, { address: val }));
         }
       };
       // 切换图片上传显示隐藏
@@ -2749,7 +2765,8 @@ var PublishRecruit = function (_Taro$Component) {
       };
       // 用户发布招工信息
       var userPublishRecruit = function userPublishRecruit() {
-        console.log(model);
+        var data = getPublishRecruitInfo();
+        console.log(data);
       };
       // 选择地址
       var userChooseArea = function userChooseArea() {
@@ -2821,13 +2838,19 @@ var PublishRecruit = function (_Taro$Component) {
       this.anonymousFunc5 = function (e) {
         return userEnterFrom(e, 'user_mobile');
       };
-      this.anonymousFunc6 = function (e) {
-        return userEnterFrom(e, 'detail');
+      this.anonymousFunc6 = function () {
+        return userClickTextArea(true);
       };
       this.anonymousFunc7 = function () {
+        return userClickTextArea(false);
+      };
+      this.anonymousFunc8 = function (e) {
+        return userEnterFrom(e, 'detail');
+      };
+      this.anonymousFunc9 = function () {
         return changeShowUpload();
       };
-      this.anonymousFunc8 = function () {
+      this.anonymousFunc10 = function () {
         return userPublishRecruit();
       };
       showProfession && _taroWeapp.propsManager.set({
@@ -2835,21 +2858,22 @@ var PublishRecruit = function (_Taro$Component) {
         "data": model && model.classifyTree,
         "onClickItem": this.anonymousFunc0,
         "num": 3
-      }, $compid__19, $prevCompid__19);
+      }, $compid__17, $prevCompid__17);
       _taroWeapp.propsManager.set({
         "num": 0
-      }, $compid__20, $prevCompid__20);
+      }, $compid__18, $prevCompid__18);
       showUpload && model && _taroWeapp.propsManager.set({
         "images": model.view_images,
         "max": model.maxImageCount,
         "userUploadImg": userUploadImg
-      }, $compid__21, $prevCompid__21);
+      }, $compid__19, $prevCompid__19);
       Object.assign(this.__state, {
         model: model,
+        $compid__17: $compid__17,
+        $compid__18: $compid__18,
         $compid__19: $compid__19,
-        $compid__20: $compid__20,
-        $compid__21: $compid__21,
         showProfession: showProfession,
+        textFocus: textFocus,
         showUpload: showUpload
       });
       return this.__state;
@@ -2899,12 +2923,22 @@ var PublishRecruit = function (_Taro$Component) {
     value: function anonymousFunc8(e) {
       ;
     }
+  }, {
+    key: "anonymousFunc9",
+    value: function anonymousFunc9(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc10",
+    value: function anonymousFunc10(e) {
+      ;
+    }
   }]);
 
   return PublishRecruit;
 }(_taroWeapp2.default.Component);
 
-PublishRecruit.$$events = ["anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6", "anonymousFunc7", "anonymousFunc8"];
+PublishRecruit.$$events = ["anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6", "anonymousFunc7", "anonymousFunc8", "anonymousFunc9", "anonymousFunc10"];
 PublishRecruit.$$componentPath = "pages/recruit/publish/index";
 exports.default = PublishRecruit;
 
