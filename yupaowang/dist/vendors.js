@@ -13123,8 +13123,8 @@ function userJumpPage(url) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.ShowActionModel = undefined;
 exports.default = Msg;
+exports.ShowActionModel = ShowActionModel;
 exports.errMsg = errMsg;
 exports.warnMsg = warnMsg;
 exports.successMsg = successMsg;
@@ -13144,17 +13144,18 @@ function Msg(msg) {
     duration: duration
   });
 }
-function ShowActionModel(_ref) {
-  var _ref$title = _ref.title,
-      title = _ref$title === undefined ? '温馨提示' : _ref$title,
-      _ref$confirmText = _ref.confirmText,
-      confirmText = _ref$confirmText === undefined ? '确定' : _ref$confirmText,
-      msg = _ref.msg,
-      _success = _ref.success;
+function ShowActionModel(data) {
+  var falg = typeof data === 'string';
+  var _data$title = data.title,
+      title = _data$title === undefined ? '温馨提示' : _data$title,
+      _data$confirmText = data.confirmText,
+      confirmText = _data$confirmText === undefined ? '确定' : _data$confirmText,
+      msg = data.msg,
+      _success = data.success;
 
   _taroWeapp2.default.showModal({
     title: title,
-    content: msg,
+    content: falg ? data : msg,
     showCancel: false,
     confirmText: confirmText,
     success: function success() {
@@ -13162,7 +13163,6 @@ function ShowActionModel(_ref) {
     }
   });
 }
-exports.ShowActionModel = ShowActionModel;
 function errMsg() {
   var msg = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
 

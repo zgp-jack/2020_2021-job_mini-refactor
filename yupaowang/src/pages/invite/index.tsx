@@ -1,4 +1,4 @@
-import Taro, { useEffect, useState, showActionSheet } from '@tarojs/taro'
+import Taro, { useEffect, useState } from '@tarojs/taro'
 import { View, Button, Image, Input } from '@tarojs/components'
 import { IMGCDNURL } from '../../config'
 import { useSelector } from '@tarojs/redux'
