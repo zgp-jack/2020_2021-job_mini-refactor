@@ -13145,7 +13145,6 @@ function Msg(msg) {
   });
 }
 function ShowActionModel(data) {
-  var falg = typeof data === 'string';
   var _data$title = data.title,
       title = _data$title === undefined ? '温馨提示' : _data$title,
       _data$confirmText = data.confirmText,
@@ -13155,7 +13154,7 @@ function ShowActionModel(data) {
 
   _taroWeapp2.default.showModal({
     title: title,
-    content: falg ? data : msg,
+    content: typeof data === 'string' ? data : msg,
     showCancel: false,
     confirmText: confirmText,
     success: function success() {
