@@ -1,6 +1,8 @@
+import Taro from '@tarojs/taro'
+
 // 是否是电话号码
 export function isPhone(tel: string): boolean {
-  let reg = /^1[0-9]{11}&/
+  let reg = /^1[0-9]{10}&/
   return reg.test(tel)
 }
 
@@ -46,7 +48,9 @@ export function isRequire(val: string): boolean {
 // 内容必须有汉字 且不少于 min 字
 export function isVaildVal(val: string, min: number = 15): boolean {
   let reg = /[\\u4E00-\\u9FFF]+/g
-  return reg.test(val) && val.length >= min
+  let bool: boolean = reg.test(val) ? (val.length >= min ? true : false) : false
+  reg.lastIndex = 0
+  return bool
 }
 
 // 检测是否是身份证
@@ -61,4 +65,10 @@ export function isType(data: any, type: string): boolean {
   if (!type) return reg
   if (reg == type) return true
   return false
+}
+
+// 检测是否是ios客户端
+export function isIos(): boolean {
+  let system = Taro.getSystemInfoSync()
+  return system.platform === 'ios'
 }
