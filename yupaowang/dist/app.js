@@ -70,7 +70,11 @@ var _App = function (_BaseComponent) {
     var _this = _possibleConstructorReturn(this, (_App.__proto__ || Object.getPrototypeOf(_App)).apply(this, arguments));
 
     _this.config = {
-      pages: ['pages/index/index', 'pages/userauth/index', "pages/recruit/publish/index", "pages/used/lists/index", "pages/map/recruit/index", "pages/invite/index", "pages/getintegral/index", "pages/integral/source/index", "pages/integral/temp/index", "pages/integral/official/index", "pages/integral/expend/index", "pages/recharge/index"],
+      pages: ['pages/index/index', 'pages/userauth/index', "pages/recruit/publish/index", "pages/used/lists/index", "pages/map/recruit/index", "pages/used/publish/index", "pages/used/info/index", "pages/invite/index", "pages/getintegral/index", "pages/integral/source/index", "pages/integral/temp/index", "pages/integral/official/index", "pages/integral/expend/index", "pages/recharge/index"],
+      subPackages: [{
+        root: 'subpackage/pages/',
+        pages: ['checkauth/index']
+      }],
       window: {
         backgroundTextStyle: 'light',
         navigationBarBackgroundColor: '#0099ff',
@@ -200,7 +204,8 @@ var DEFAULT_MENUS = {
     title: '会员',
     defaultImg: 'http://cdn.yupao.com/newyupao/images/footer-member.png',
     activeImg: 'http://cdn.yupao.com/newyupao/images/footer-member-active.png',
-    id: _tabbar.MEMBER
+    id: _tabbar.MEMBER,
+    msg: true
   }],
   key: ''
 };

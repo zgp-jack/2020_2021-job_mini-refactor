@@ -1,13 +1,18 @@
-import Taro from '@tarojs/taro'
+import Taro, { useState, useEffect } from '@tarojs/taro'
 import { View, Image, Text } from '@tarojs/components'
 import { useSelector } from '@tarojs/redux'
+import { getMemberInfo } from '../../utils/request'
+import { MemberInfo } from '../../utils/request/index.d'
 import './index.scss'
 import { IMGCDNURL, AUTHPATH } from '../../config'
+import { ShowActionModal } from '../../utils/msg'
 
 export default function Member(){
 
   // 获取用户信息
   const login = useSelector<any, boolean>(state => state.User['login'])
+  // member信息
+  const [model, setModel] = useState<MemberInfo>()
 
   // 跳转用户授权
   const userAuthLogin = ()=> {
@@ -16,37 +21,49 @@ export default function Member(){
     })
   }
 
+  // 初始化用户信息
+  const initMemberInfo = ()=> {
+    if(!login) return
+    getMemberInfo().then(data=>{
+      if(data.errcode == 'ok') setModel(data)
+      else ShowActionModal(data.errmsg)
+    })
+  }
+
+  useEffect(()=>{
+    initMemberInfo()
+  },[login])
+
   return (
     <View className='member-container'>
       <View className='member-header-box'>
         <View className='member-header-title'>会员中心</View>
         <View className='member-userinfobox'>
           {/* 检测用户登录状态 */}
-          {login ? 
+          {login && model ? 
           <View className='member-userinfo'>
             <View className='member-userinfo-content'>
               <Image className='member-userinfo-avatar' src='http://cdn.yupao.com/miniprogram/images/user.png' />
               <View className='member-username'>
                 <View className='member-username-text'>
-                张某某
+                { model.member.username }
+                { model.is_checking == 2 && model.member.is_check == '2' &&
                 <Image className='member-realnameimg' src='http://cdn.yupao.com/miniprogram/images/newresume-infolist-ysm.png' />
+                }
                 </View>
               </View>
-              <View className='member-usernum'>会员编号：<Text className='member-id'>369</Text></View>
+              <View className='member-usernum'>会员编号：<Text className='member-id'>{ model.member.id }</Text></View>
               <View className='member-editinfo'>修改资料</View>
             </View>
             <View className='member-user-integral'>
               <View className='member-integral-item'>
-                <Text className='member-integral-num'>23</Text>
-                <Text className='member-integral-text'>退还积分</Text>
-              </View>
-              <View className='member-integral-item'>
-                <Text className='member-integral-num'>23233</Text>
+                <Text className='member-integral-num'>{ model.member.integral }</Text>
                 <Text className='member-integral-text'>积分</Text>
               </View>
               <View className='member-integral-item'>
-                <Text className='member-integral-num'>23</Text>
+                <Text className='member-integral-num'>{ model.member.temporary_integral }</Text>
                 <Text className='member-integral-text'>临时积分</Text>
+                <Text className='member-integral-tips'>详情</Text>
               </View>
             </View>
           </View>
@@ -71,7 +88,7 @@ export default function Member(){
           <View className='member-list-item'>
             <Image className='member-list-icon' src={ IMGCDNURL + 'lpy/ucenter/newcenter-resume.png'} />
             <Text className='member-list-title'>我的找活名片</Text>
-            <Text className='member-list-tips'>去添加</Text>
+            <Text className='member-list-tips'>{model && model.member.resume_status.resume_tips_string }</Text>
           </View>
           <View className='member-list-item'>
             <Image className='member-list-icon' src={ IMGCDNURL + 'lpy/ucenter/newcenter-used.png'} />

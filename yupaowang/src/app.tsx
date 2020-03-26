@@ -15,6 +15,8 @@ class App extends Component {
       "pages/recruit/publish/index", //发布招工
       "pages/used/lists/index", //二手交易列表
       "pages/map/recruit/index", //发布招工地图
+      "pages/used/publish/index", //发布二手交易
+      "pages/used/info/index", //二手交易详情
       "pages/invite/index", //邀请好友
       "pages/getintegral/index", //获取积分
       "pages/integral/source/index", //积分来源记录
@@ -22,6 +24,14 @@ class App extends Component {
       "pages/integral/official/index", //正式积分记录
       "pages/integral/expend/index", //积分消耗记录
       "pages/recharge/index", //用户充值页面
+    ],
+    subPackages: [
+      {
+        root: 'subpackage/pages/',
+        pages: [
+          'checkauth/index'
+        ]
+      }
     ],
     window: {
       backgroundTextStyle: 'light',

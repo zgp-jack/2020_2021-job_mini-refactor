@@ -245,7 +245,7 @@ var MapComponent = function (_Taro$Component) {
             });
             setPublishArea(item.name);
             _taroWeapp2.default.navigateBack();
-          } else (0, _index5.ShowActionModel)({ msg: res.errmsg });
+          } else (0, _index5.ShowActionModal)({ msg: res.errmsg });
         }).catch(function () {
           (0, _index6.default)("网络错误，请求失败！");
         });
@@ -266,7 +266,7 @@ var MapComponent = function (_Taro$Component) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
-        var _$indexKey = "hzzzz" + index;
+        var _$indexKey = "izzzz" + index;
         _this2.anonymousFunc4Map[_$indexKey] = function () {
           return userClickAreaItem(item.$original);
         };
@@ -279,7 +279,7 @@ var MapComponent = function (_Taro$Component) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
-        var _$indexKey2 = "izzzz" + index;
+        var _$indexKey2 = "jzzzz" + index;
         _this2.anonymousFunc5Map[_$indexKey2] = function () {
           return userClickAreaItem(item.$original);
         };

@@ -11,7 +11,7 @@ import { context } from '../../recruit/publish'
 import { checkAdcodeValid } from '../../../utils/request'
 import { AllAreasDataItem } from '../../../utils/request/index.d'
 import './index.scss'
-import Msg, { ShowActionModel } from '../../../utils/msg'
+import Msg, { ShowActionModal } from '../../../utils/msg'
 
 interface PROPS extends IPROPS{
   
@@ -140,7 +140,7 @@ export default function MapComponent({ data }: PROPS){
         setPublishArea(item.name)
         Taro.navigateBack()
       }
-      else ShowActionModel({ msg: res.errmsg })
+      else ShowActionModal({ msg: res.errmsg })
     }).catch(()=>{
       Msg("网络错误，请求失败！")
     })

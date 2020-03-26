@@ -58,3 +58,8 @@ export function getAmapPoiList(val: string): Promise<InputPoiListTips[]> {
 export function userJumpPage(url: string):void {
   Taro.navigateTo({url: url})
 }
+
+// 数字四舍五入并向下取2位小数
+export function getPointNumber(p: number, n: number): number {
+  return Math.floor((p / n) * 100) / 100;
+}

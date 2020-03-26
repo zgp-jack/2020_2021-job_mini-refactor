@@ -50,6 +50,23 @@
         }
       }
     }
+    .publish-list-item-code{
+      .publish-list-input{
+        padding-right: 300px;
+      }
+      .publish-code-btn{
+        position: absolute;
+        line-height: 70px;
+        border-radius: 10px;
+        background-color: $color;
+        color: white;
+        font-size: 28px;
+        text-align: center;
+        right: 0;
+        top: 20px;
+        width: 250px;
+      }
+    }
     .publish-list-textarea{
       position: relative;
       padding-top: 25px;

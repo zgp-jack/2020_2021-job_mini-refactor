@@ -156,7 +156,7 @@ var Condition = function (_Taro$Component) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
-        var _$indexKey = "bzzzz" + __index0;
+        var _$indexKey = "czzzz" + __index0;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return conditionItemClick(item.$original.id);
         };
@@ -173,7 +173,7 @@ var Condition = function (_Taro$Component) {
           'drawer-list-item overwords': true,
           'drawer-list-item-active': index === areaIndex
         });
-        var _$indexKey2 = "czzzz" + index;
+        var _$indexKey2 = "dzzzz" + index;
         _this2.anonymousFunc2Map[_$indexKey2] = function () {
           return changeAreaIndex(index);
         };

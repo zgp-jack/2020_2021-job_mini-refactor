@@ -1,40 +1,136 @@
 import Taro, { useEffect, useState } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
+import { SERVERPHONE } from '../../config'
+import { getRechargeList, getRechargeOpenid, getRechargeOrder } from '../../utils/request'
+import { GetRechargeListType } from '../../utils/request/index.d'
+import { ShowActionModal, errMsg } from '../../utils/msg'
+import { useDispatch } from '@tarojs/redux'
+// import { changeTabbar } from '../../actions/tabbar'
+import classnames from 'classnames'
+import { AtMessage } from 'taro-ui'
+import { MEMBER } from '../../constants/tabbar'
+import { getPointNumber } from '../../utils/helper'
 import './index.scss'
 
+export interface CreateOrder {
+  openid: string,
+  priceType: string
+}
+
 export default function Recharge(){
-  // 当前选择下标
-  //const [] 
+
+  const dispatch = useDispatch()
+  // 积分列表数据与用户当前积分数量
+  const [lists, setLists] = useState<GetRechargeListType[]>([])
+  const [integral, setIntegral] = useState<number>(0)
+  const [current, setCurrent] = useState<number>(0)
+  const [price, setPrice] = useState<number>(0)
+  // 初始化积分充值选项
+  useEffect(()=>{
+    getRechargeList().then(res=>{
+      if(res.errcode == 'ok'){
+        setLists(res.list)
+        setIntegral(parseInt(res.user.integral))
+        let i = res.list.findIndex(item=>item.default == '1')
+        setCurrent(i)
+        let price = getPointNumber(res.list[i].price, res.list[i].integral)
+        setPrice(price)
+      }else{
+        ShowActionModal({
+          msg: res.errmsg,
+          success: ()=> {
+            Taro.navigateBack()
+          }
+        })
+      }
+    })
+  },[])
+
+  // 用户选择充值项
+  const userChooseItem = (i: number)=> {
+    setCurrent(i)
+    let price = getPointNumber(lists[i].price,lists[i].integral)
+    setPrice(price)
+    let newLists = JSON.parse(JSON.stringify(lists))
+    newLists.map((d: GetRechargeListType, index: number)=>{
+      d.default = (index == i) ? '1' : '0'
+    })
+    setLists(newLists)
+  }
+
+  // 用户充值
+  const userRechargeAction = ()=> {
+    let rechargeIntegral: number = lists[current].integral
+    Taro.login({
+      success:(res) => {
+        getRechargeOpenid(res.code).then(openidData => {
+          let data: CreateOrder = {
+            priceType: lists[current].id,
+            openid: openidData.openid
+          }
+          getRechargeOrder(data).then(orderData => {
+            Taro.requestPayment({ ...orderData.payData }).then(() => {
+              let afterIntegral: number = integral + rechargeIntegral
+              setIntegral(afterIntegral)
+              Taro.showModal({
+                title: '恭喜您',
+                content: `您已成功充值${rechargeIntegral}个积分`,
+                cancelText: '会员中心',
+                confirmText: '继续充值',
+                success: (res) => {
+                  if(res.cancel) {
+                    // dispatch(changeTabbar(MEMBER))
+                    Taro.reLaunch({ url: '/pages/index/index?type=' + MEMBER })
+                  }
+                }
+              })
+            }).catch(() => {
+              errMsg(`用户取消充值`)
+            })
+          }).catch(() => {
+            errMsg(`网络异常，充值失败，客服电话${SERVERPHONE}`)
+          })
+        }).catch(() => {
+          ShowActionModal(`充值失败，请联系客服电话${SERVERPHONE}`)
+        })
+      }
+    })
+  }
+
   return (
     <View className='recharge-container'>
+      <AtMessage />
       <View className='recharge-header'>
         <View className='recharge-info-item'>
-          剩余积分：<Text className='recharge-info-text'>1</Text>
+          剩余积分：<Text className='recharge-info-text'>{ integral }</Text>
         </View>
         <View className='recharge-info-item'>
-          充值金额：<Text className='recharge-info-text'>2元</Text>
+          充值金额：<Text className='recharge-info-text'>{lists[current].price }元</Text>
         </View>
         <View className='recharge-info-item'>
-          积分价格：<Text className='recharge-info-text'>0.05元/个</Text>
+          积分价格：<Text className='recharge-info-text'>{ price }元/个</Text>
         </View>
         <View className='recharge-info-item'>
-          充值积分：<Text className='recharge-info-text'>40积分（可查看40个电话号码）</Text>
+          充值积分：<Text className='recharge-info-text'>{lists[current].integral}积分（可查看{lists[current].integral }个电话号码）</Text>
         </View>
       </View>
       <View className='recharge-body'>
         <View className='recharge-title'>请选择充值金额</View>
         <View className='recharge-content clearfix'>
-          {[1, 2, 3, 4, 5, 6].map((item, index)=> (
-            <View className='recharge-list' key={ index }>
-              <View className='recharge-list-box'>
-                <View className='recharge-money'>{ item }元</View>
-                <View className='recharge-num'>20积分</View>
+          {lists.map((item, index)=> (
+            <View className='recharge-list' key={item.id} onClick={() => userChooseItem(index)}>
+              <View className={classnames({
+                'recharge-list-box': true,
+                'recharge-list-box-active': index === current
+              })}>
+                <View className='recharge-money'>{ item.price }元</View>
+                <View className='recharge-num'>{ item.integral }积分</View>
               </View>
             </View>
           ))}
         </View>
       </View>
-      <View className='recharge-btn'>充值</View>
+      <View className='recharge-btn' onClick={() => userRechargeAction()}>充值</View>
     </View>
   )
 }

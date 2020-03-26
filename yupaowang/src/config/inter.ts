@@ -19,3 +19,10 @@ export interface EInputDetail {
   keyCode: number,
   value: string
 }
+
+// 获取用户openid
+export interface UserOpenid {
+  openid: string,
+  session_key: string,
+  unionid: string
+}

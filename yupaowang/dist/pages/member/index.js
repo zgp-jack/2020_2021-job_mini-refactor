@@ -25,6 +25,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
@@ -35,9 +37,13 @@ var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
 
 var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/redux/index.js");
 
+var _index = __webpack_require__(/*! ../../utils/request/index */ "./src/utils/request/index.ts");
+
 __webpack_require__(/*! ./index.scss */ "./src/pages/member/index.scss");
 
-var _index = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
+var _index2 = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
+
+var _index3 = __webpack_require__(/*! ../../utils/msg/index */ "./src/utils/msg/index.ts");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -55,19 +61,19 @@ var Member = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (Member.__proto__ || Object.getPrototypeOf(Member)).apply(this, arguments));
 
-    _this.$usedState = ["login", "IMGCDNURL"];
+    _this.$usedState = ["login", "model", "IMGCDNURL"];
     _this.customComponents = [];
     return _this;
   }
 
   _createClass(Member, [{
-    key: '_constructor',
+    key: "_constructor",
     value: function _constructor(props) {
-      _get(Member.prototype.__proto__ || Object.getPrototypeOf(Member.prototype), '_constructor', this).call(this, props);
+      _get(Member.prototype.__proto__ || Object.getPrototypeOf(Member.prototype), "_constructor", this).call(this, props);
       this.$$refs = new _taroWeapp2.default.RefsArray();
     }
   }, {
-    key: '_createData',
+    key: "_createData",
     value: function _createData() {
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
@@ -78,23 +84,46 @@ var Member = function (_Taro$Component) {
       var login = (0, _redux.useSelector)(function (state) {
         return state.User['login'];
       });
+      // member信息
+
+      var _useState = (0, _taroWeapp.useState)(),
+          _useState2 = _slicedToArray(_useState, 2),
+          model = _useState2[0],
+          setModel = _useState2[1];
       // 跳转用户授权
+
+
       var userAuthLogin = function userAuthLogin() {
         _taroWeapp2.default.navigateTo({
-          url: _index.AUTHPATH
+          url: _index2.AUTHPATH
         });
       };
+      // 初始化用户信息
+      var initMemberInfo = function initMemberInfo() {
+        if (!login) {
+          return;
+        }
+        (0, _index.getMemberInfo)().then(function (data) {
+          if (data.errcode == 'ok') {
+            setModel(data);
+          } else (0, _index3.ShowActionModal)(data.errmsg);
+        });
+      };
+      (0, _taroWeapp.useEffect)(function () {
+        initMemberInfo();
+      }, [login]);
       this.anonymousFunc0 = function () {
         return userAuthLogin();
       };
       Object.assign(this.__state, {
         login: login,
-        IMGCDNURL: _index.IMGCDNURL
+        model: model,
+        IMGCDNURL: _index2.IMGCDNURL
       });
       return this.__state;
     }
   }, {
-    key: 'anonymousFunc0',
+    key: "anonymousFunc0",
     value: function anonymousFunc0(e) {
       ;
     }

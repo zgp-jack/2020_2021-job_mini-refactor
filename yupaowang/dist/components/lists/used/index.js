@@ -53,7 +53,8 @@ var UsedList = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (UsedList.__proto__ || Object.getPrototypeOf(UsedList)).apply(this, arguments));
 
-    _this.$usedState = ["anonymousState__temp", "data", "IMGCDNURL", "bottom"];
+    _this.$usedState = ["anonymousState__temp", "loopArray6", "data", "IMGCDNURL", "bottom"];
+    _this.anonymousFunc0Map = {};
     _this.customComponents = [];
     return _this;
   }
@@ -67,30 +68,75 @@ var UsedList = function (_Taro$Component) {
   }, {
     key: "_createData",
     value: function _createData() {
+      var _this2 = this;
+
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
       var _props = this.__props,
-          data = _props.data,
+          _props$data = _props.data,
+          data = _props$data === undefined ? [] : _props$data,
           _props$bottom = _props.bottom,
           bottom = _props$bottom === undefined ? true : _props$bottom;
+      // 用户查看二手交易详情
 
+      var userLookUsedInfo = function userLookUsedInfo(id) {
+        _taroWeapp2.default.navigateTo({
+          url: '/pages/used/info/index?id=' + id
+        });
+      };
       var anonymousState__temp = (0, _taroWeapp.internal_inline_style)(bottom ? '' : 'padding-bottom:0');
+      var loopArray6 = data.length ? data.map(function (item, __index1) {
+        item = {
+          $original: (0, _taroWeapp.internal_get_original)(item)
+        };
+        var $anonymousCallee__3 = data.length ? item.$original.map(function (d, __index0) {
+          d = {
+            $original: (0, _taroWeapp.internal_get_original)(d)
+          };
+          var _$indexKey = "bzzzz" + __index1 + "-" + __index0;
+          _this2.anonymousFunc0Map[_$indexKey] = function () {
+            return userLookUsedInfo(d.$original.id);
+          };
+          return {
+            _$indexKey: _$indexKey,
+            $original: d.$original
+          };
+        }) : [];
+        return {
+          $anonymousCallee__3: $anonymousCallee__3,
+          $original: item.$original
+        };
+      }) : [];
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
+        loopArray6: loopArray6,
         data: data,
         IMGCDNURL: _index.IMGCDNURL
       });
       return this.__state;
+    }
+  }, {
+    key: "anonymousFunc0",
+    value: function anonymousFunc0(_$indexKey) {
+      var _anonymousFunc0Map;
+
+      ;
+
+      for (var _len = arguments.length, e = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+        e[_key - 1] = arguments[_key];
+      }
+
+      return this.anonymousFunc0Map[_$indexKey] && (_anonymousFunc0Map = this.anonymousFunc0Map)[_$indexKey].apply(_anonymousFunc0Map, e);
     }
   }]);
 
   return UsedList;
 }(_taroWeapp2.default.Component);
 
-UsedList.$$events = [];
+UsedList.$$events = ["anonymousFunc0"];
 UsedList.$$componentPath = "components/lists/used/index";
 exports.default = UsedList;
 

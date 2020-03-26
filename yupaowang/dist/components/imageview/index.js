@@ -85,7 +85,7 @@ var ImageView = function (_Taro$Component) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
-        var _$indexKey = "gzzzz" + index;
+        var _$indexKey = "hzzzz" + index;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return userUploadImg && userUploadImg(index);
         };

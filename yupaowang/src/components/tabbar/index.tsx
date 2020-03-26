@@ -1,8 +1,11 @@
-import Taro from '@tarojs/taro'
+import Taro, { useEffect } from '@tarojs/taro'
 import { View, Text, Image } from '@tarojs/components'
 import classnames from 'classnames'
+import { getMemberMsgNumber } from '../../utils/request'
+import { isIos } from '../../utils/v'
 import { useSelector, useDispatch } from '@tarojs/redux'
 import { DEFAULT_MENUS_TYPE, Menu } from '../../reducers/tabbar'
+import { getMsg, setMsg } from '../../actions/msg'
 import { changeTabbar } from '../../actions/tabbar'
 import './index.scss'
 
@@ -11,9 +14,8 @@ interface PROPS {
 }
 
 export default function Tabbar({ notredirect }: PROPS) {
-
-  console.log(notredirect)
   const tabbar: DEFAULT_MENUS_TYPE = useSelector<any, DEFAULT_MENUS_TYPE>(state => state.tabbar)
+  const login: boolean = useSelector<any, boolean>(state => state.User['login'])
   const dispatch = useDispatch()
 
   // * 判断跳转还是切换tabbar
@@ -23,6 +25,13 @@ export default function Tabbar({ notredirect }: PROPS) {
     else 
       Taro.reLaunch({ url: '/pages/index/index?type=' + item.id })
   }
+
+  useEffect(()=>{
+    if(!login || !tabbar) return
+    getMemberMsgNumber(isIos()).then(data=>{
+      if(data.errcode == 'ok') dispatch(setMsg(data.data))
+    })
+  }, [login, tabbar])
 
   return (
     <View className='common-footer-tabbar'>

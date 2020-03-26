@@ -1,5 +1,10 @@
 export interface Result {
+  errcode: string,
+  errmsg: string
+}
 
+export interface ResultData<T> extends Result {
+  data: T
 }
 
 interface RecruitState {
@@ -204,4 +209,142 @@ export interface GetUserInviteLink {
   errcode: string,
   errmsg: string,
   link: string
+}
+
+// 获取积分充值选项
+export interface GetRechargeList {
+  errcode: string,
+  errmsg: string,
+  list: GetRechargeListType[],
+  user: GetRechargeListUser
+}
+
+export interface GetRechargeListType {
+  id: string,
+  default: string,
+  integral: number,
+  present_integral: string,
+  price: number
+}
+
+export interface GetRechargeListUser {
+  id: string,
+  integral: string,
+  tel: string
+}
+
+export interface GetCreateOrderData {
+  errcode: string,
+  errmsg: string,
+  payData: GetCreateOrderPayData
+}
+
+export interface GetCreateOrderPayData {
+  appId: string,
+  nonceStr: string,
+  package: string,
+  paySign: string,
+  signType: 'MD5' | 'HMAC-SHA256',
+  timeStamp: string
+}
+
+// 发布二手交易信息
+export interface PublishUsedInfoRusult {
+  errcode: string,
+  errmsg: string,
+  id: number
+}
+
+// 用户获取手机验证码
+export interface GetUserPhoneCode {
+  errcode: string,
+  errmsg: string,
+  refresh: number
+}
+
+//二手交易详情
+export interface GetUsedInfo {
+  errcode: string,
+  errmsg: string,
+  data: GetUsedInfoData
+}
+
+export interface GetUsedInfoData {
+  id: string,
+  detail: string,
+  is_check: string,
+  is_end: string,
+  is_end_word: string,
+  showAddress: string,
+  time: string,
+  title: string,
+  user_mobile: string,
+  user_name: string,
+  showCateAttr?: string
+}
+
+// 用户实名查询
+export interface CheckUserAuth {
+  errcode: string,
+  errmsg: string,
+  member: CheckUserAuthMember
+}
+
+export interface CheckUserAuthMember {
+  age: number
+  check_degree: string
+  finally_login_address: string
+  finally_login_ip: string
+  id: string
+  is_check: string
+  nationality: string
+  occupations: string[]
+  register_address: string
+  register_ip: string
+  status: string
+  tel: string
+  username: string
+}
+
+// 用户会员中心数据接口
+export interface MemberInfo extends Result{
+  is_checking: number,
+  member: MemberInfoMember
+}
+
+export interface MemberInfoMember {
+  id: string,
+  check_degree: string,
+  check_state: string,
+  expend_integral: string,
+  has_resume: number,
+  headimgurl: string,
+  integral: string,
+  is_check: string,
+  nickname: string,
+  pwd_status: string,
+  return_integral: string,
+  tel: string,
+  temporary_integral: string,
+  to_auth: boolean,
+  username: string
+  has_notice_msg: MemberInfoNoticeMsg,
+  resume_status: MemberInfoResumeStatus
+}
+
+export interface MemberInfoNoticeMsg {
+  hasNoticeMsgg: number
+}
+
+export interface MemberInfoResumeStatus {
+  check_status: number,
+  has_resume: number,
+  resume_id: number,
+  resume_tips_string: string
+}
+
+// 用户未读信息数量
+export interface MemberMsgNumber {
+  jobNumber: number,
+  messageNumber: number
 }

@@ -1,6 +1,6 @@
 import Taro from '@tarojs/taro'
 
-export default function Msg(msg: string, duration: number = 1500) {
+export default function Msg(msg: string, duration: number = 3000) {
   Taro.showToast({
     title: msg,
     icon: 'none',
@@ -15,7 +15,7 @@ interface ShowBackModel {
   success?: () => void
 }
 
-export function ShowActionModel(data: string | ShowBackModel){
+export function ShowActionModal(data: string | ShowBackModel){
   let { title = '温馨提示', confirmText = '确定', msg, success } = data as ShowBackModel
   Taro.showModal({
     title: title,

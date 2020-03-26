@@ -82,7 +82,7 @@ var FastBarConfig = [{
   isout: false
 }, {
   appid: '',
-  url: '/pages/used/index',
+  url: '/pages/used/lists/index',
   opentype: 'navigate',
   target: '',
   img: _index.IMGCDNURL + 'es.png',

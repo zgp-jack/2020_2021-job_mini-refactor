@@ -151,6 +151,12 @@
           color: #666564;
           font-size: 30rpx;
           margin-top: 5rpx; }
+        .member-container .member-header-box .member-user-integral .member-integral-item .member-integral-tips {
+          position: absolute;
+          font-size: 20rpx;
+          color: #ff0000;
+          right: 20rpx;
+          top: 20rpx; }
   .member-container .member-body-container {
     position: relative;
     margin-top: 60rpx;

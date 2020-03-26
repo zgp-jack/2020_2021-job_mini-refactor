@@ -12987,7 +12987,7 @@ Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.GetUserInviteLink = exports.CheckAdcodeValid = exports.GetAllAreas = exports.GetPublisRecruitView = exports.GetIntegralList = exports.GetTabbarMsg = exports.GetListFilterData = exports.GetWechatNotice = exports.GetFleamarketlist = exports.GetResumelist = exports.GetRecruitlist = exports.GetAllListItem = exports.GetBannerNotice = exports.GetUserInfo = exports.GetUserSessionKey = undefined;
+exports.getMemberMsgNumber = exports.getMemberInfo = exports.CheckMineAuthInfo = exports.CheckAuth = exports.GetUsedInfo = exports.GetUserPhoneCode = exports.PublishUsedInfo = exports.GetUsedInfoModel = exports.GetRechargeOrder = exports.GetRechargeOpenid = exports.GetRechargeList = exports.GetUserInviteLink = exports.CheckAdcodeValid = exports.GetAllAreas = exports.GetPublisRecruitView = exports.GetIntegralList = exports.GetTabbarMsg = exports.GetListFilterData = exports.GetWechatNotice = exports.GetFleamarketlist = exports.GetResumelist = exports.GetRecruitlist = exports.GetAllListItem = exports.GetBannerNotice = exports.GetUserInfo = exports.GetUserSessionKey = undefined;
 
 var _index = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
 
@@ -13021,6 +13021,28 @@ var GetAllAreas = exports.GetAllAreas = _index.REQUESTURL + 'index/index-area/';
 var CheckAdcodeValid = exports.CheckAdcodeValid = _index.REQUESTURL + 'publish/checking-adcode/';
 // 获取用户邀请链接
 var GetUserInviteLink = exports.GetUserInviteLink = _index.REQUESTURL + 'index/invite-friends/';
+// 获取积分充值选项
+var GetRechargeList = exports.GetRechargeList = _index.REQUESTURL + 'integral/integral-price/';
+// 用户充值获取openid
+var GetRechargeOpenid = exports.GetRechargeOpenid = _index.REQUESTURL + 'get-openid/';
+// 用户充值创建订单
+var GetRechargeOrder = exports.GetRechargeOrder = _index.REQUESTURL + 'create-order/';
+// 用户发布二手交易信息
+var GetUsedInfoModel = exports.GetUsedInfoModel = _index.REQUESTURL + 'publish/view-message/';
+// 用户发布二手交易
+var PublishUsedInfo = exports.PublishUsedInfo = _index.REQUESTURL + 'publish/publish-msg/';
+// 用户获取手机验证码
+var GetUserPhoneCode = exports.GetUserPhoneCode = _index.REQUESTURL + 'index/get-code/';
+// 获取二手交易详情
+var GetUsedInfo = exports.GetUsedInfo = _index.REQUESTURL + 'fleamarket/fleamarket-info/';
+// 用户实名查询
+var CheckAuth = exports.CheckAuth = _index.REQUESTURL + 'resume/query-worker/';
+// 验证当前用户是否实名
+var CheckMineAuthInfo = exports.CheckMineAuthInfo = _index.REQUESTURL + 'resume/auth-status/';
+// 初始化会员中心用户信息
+var getMemberInfo = exports.getMemberInfo = _index.REQUESTURL + 'user/personal/';
+// 用户通知信息数量
+var getMemberMsgNumber = exports.getMemberMsgNumber = _index.REQUESTURL + 'member/original-message/';
 
 /***/ }),
 
@@ -13044,6 +13066,7 @@ exports.objDeepCopy = objDeepCopy;
 exports.userAuthLoction = userAuthLoction;
 exports.getAmapPoiList = getAmapPoiList;
 exports.userJumpPage = userJumpPage;
+exports.getPointNumber = getPointNumber;
 
 var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
@@ -13107,6 +13130,10 @@ function getAmapPoiList(val) {
 function userJumpPage(url) {
   _taroWeapp2.default.navigateTo({ url: url });
 }
+// 数字四舍五入并向下取2位小数
+function getPointNumber(p, n) {
+  return Math.floor(p / n * 100) / 100;
+}
 
 /***/ }),
 
@@ -13124,7 +13151,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = Msg;
-exports.ShowActionModel = ShowActionModel;
+exports.ShowActionModal = ShowActionModal;
 exports.errMsg = errMsg;
 exports.warnMsg = warnMsg;
 exports.successMsg = successMsg;
@@ -13136,7 +13163,7 @@ var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Msg(msg) {
-  var duration = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1500;
+  var duration = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 3000;
 
   _taroWeapp2.default.showToast({
     title: msg,
@@ -13144,7 +13171,7 @@ function Msg(msg) {
     duration: duration
   });
 }
-function ShowActionModel(data) {
+function ShowActionModal(data) {
   var _data$title = data.title,
       title = _data$title === undefined ? '温馨提示' : _data$title,
       _data$confirmText = data.confirmText,
@@ -13222,6 +13249,17 @@ exports.getAllAreas = getAllAreas;
 exports.getHotAreas = getHotAreas;
 exports.checkAdcodeValid = checkAdcodeValid;
 exports.getUserInviteLink = getUserInviteLink;
+exports.getRechargeList = getRechargeList;
+exports.getRechargeOpenid = getRechargeOpenid;
+exports.getRechargeOrder = getRechargeOrder;
+exports.getUsedInfoModel = getUsedInfoModel;
+exports.publishUsedInfo = publishUsedInfo;
+exports.getUserPhoneCode = getUserPhoneCode;
+exports.getUsedInfo = getUsedInfo;
+exports.getUserIsAuth = getUserIsAuth;
+exports.checkMineAuthInfo = checkMineAuthInfo;
+exports.getMemberInfo = getMemberInfo;
+exports.getMemberMsgNumber = getMemberMsgNumber;
 
 var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
@@ -13433,6 +13471,100 @@ function getUserInviteLink() {
     url: api.GetUserInviteLink,
     method: 'POST',
     failToast: true
+  });
+}
+// 获取充值选项
+function getRechargeList() {
+  return doRequestAction({
+    url: api.GetRechargeList,
+    method: 'POST'
+  });
+}
+// 用户充值获取openid
+function getRechargeOpenid(code) {
+  return doRequestAction({
+    url: api.GetRechargeOpenid,
+    method: 'POST',
+    data: {
+      js_code: code
+    }
+  });
+}
+// 用户创建充值订单
+function getRechargeOrder(data) {
+  return doRequestAction({
+    url: api.GetRechargeOrder,
+    method: 'POST',
+    data: data
+  });
+}
+// 初始化用户发布二手交易信息
+function getUsedInfoModel(data) {
+  return doRequestAction({
+    url: api.GetUsedInfoModel,
+    data: data,
+    method: 'POST'
+  });
+}
+// 发布二手交易
+function publishUsedInfo(data) {
+  return doRequestAction({
+    url: api.PublishUsedInfo,
+    data: data,
+    method: 'POST'
+  });
+}
+// 获取验证码
+function getUserPhoneCode(data) {
+  return doRequestAction({
+    url: api.GetUserPhoneCode,
+    method: 'POST',
+    data: data,
+    title: '验证码获取中'
+  });
+}
+// 二手交易详情
+function getUsedInfo(id) {
+  return doRequestAction({
+    url: api.GetUsedInfo,
+    method: 'POST',
+    data: {
+      infoId: id
+    }
+  });
+}
+// 用户实名查询
+function getUserIsAuth(tel) {
+  return doRequestAction({
+    url: api.CheckAuth,
+    method: 'POST',
+    data: {
+      tel: tel
+    }
+  });
+}
+// 验证当前用户是否实名
+function checkMineAuthInfo() {
+  return doRequestAction({
+    url: api.CheckMineAuthInfo,
+    method: 'POST'
+  });
+}
+// 用户会员中心
+function getMemberInfo() {
+  return doRequestAction({
+    url: api.getMemberInfo,
+    method: 'POST'
+  });
+}
+// 获取当前用户的提示信息
+function getMemberMsgNumber(type) {
+  return doRequestAction({
+    url: api.getMemberMsgNumber,
+    method: 'POST',
+    data: {
+      terminal_type: type
+    }
   });
 }
 
@@ -13654,6 +13786,109 @@ function AppUploadImg(resolve, res) {
       _taroWeapp2.default.hideLoading();
     }
   });
+}
+
+/***/ }),
+
+/***/ "./src/utils/v/index.ts":
+/*!******************************!*\
+  !*** ./src/utils/v/index.ts ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.isPhone = isPhone;
+exports.isNumber = isNumber;
+exports.isVaildNumber = isVaildNumber;
+exports.randIntNumber = randIntNumber;
+exports.getRandNumber = getRandNumber;
+exports.isUrl = isUrl;
+exports.isRequire = isRequire;
+exports.isVaildVal = isVaildVal;
+exports.isIdcard = isIdcard;
+exports.isType = isType;
+exports.isIos = isIos;
+
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
+
+var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// 是否是电话号码
+function isPhone(tel) {
+  var reg = /^1[0-9]{10}$/;
+  return reg.test(tel);
+}
+// 是否是数字
+function isNumber(num) {
+  var reg = /^[0-9]+$/;
+  return reg.test(num);
+}
+function isVaildNumber(_ref) {
+  var num = _ref.num,
+      _ref$min = _ref.min,
+      min = _ref$min === undefined ? 0 : _ref$min,
+      _ref$max = _ref.max,
+      max = _ref$max === undefined ? 10 : _ref$max;
+
+  if (!isNumber(num)) return false;
+  return num >= min && num <= max;
+}
+// 生成区间整数
+function randIntNumber() {
+  var min = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+  var max = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 20;
+
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+// 生成随机数
+function getRandNumber() {
+  var min = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+  var max = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 20;
+
+  return min + Math.random() * (max - min);
+}
+// 检测是否是网址
+function isUrl(url) {
+  var reg = /^([hH][tT]{2}[pP]:\/\/|[hH][tT]{2}[pP][sS]:\/\/)(([A-Za-z0-9-~]+)\.)+([A-Za-z0-9-~\/])+$/;
+  return reg.test(url);
+}
+// 检测必填
+function isRequire(val) {
+  var str = val.replace(/\s+/g, '');
+  return str != '' && str != null && str != undefined && str != 'null' && str != undefined;
+}
+// 内容必须有汉字 且不少于 min 字
+function isVaildVal(val) {
+  var min = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 15;
+  var max = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
+
+  var reg = new RegExp('[\\u4E00-\\u9FFF]+');
+  return max ? reg.test(val) && val.length >= min && val.length <= max : reg.test(val) && val.length >= min;
+}
+// 检测是否是身份证
+function isIdcard(val) {
+  var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
+  return reg.test(val);
+}
+// 检测数据类型
+function isType(data, type) {
+  var reg = Object.prototype.toString.call(data).slice(8, -1).toLowerCase();
+  if (!type) return reg;
+  if (reg == type) return true;
+  return false;
+}
+// 检测是否是ios客户端
+function isIos() {
+  var system = _taroWeapp2.default.getSystemInfoSync();
+  return system.platform === 'ios';
 }
 
 /***/ })

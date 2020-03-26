@@ -30,3 +30,25 @@ export const GetAllAreas: string = REQUESTURL + 'index/index-area/'
 export const CheckAdcodeValid: string = REQUESTURL + 'publish/checking-adcode/'
 // 获取用户邀请链接
 export const GetUserInviteLink: string = REQUESTURL + 'index/invite-friends/'
+// 获取积分充值选项
+export const GetRechargeList: string = REQUESTURL + 'integral/integral-price/'
+// 用户充值获取openid
+export const GetRechargeOpenid: string = REQUESTURL + 'get-openid/'
+// 用户充值创建订单
+export const GetRechargeOrder: string = REQUESTURL + 'create-order/'
+// 用户发布二手交易信息
+export const GetUsedInfoModel: string = REQUESTURL + 'publish/view-message/'
+// 用户发布二手交易
+export const PublishUsedInfo: string = REQUESTURL + 'publish/publish-msg/'
+// 用户获取手机验证码
+export const GetUserPhoneCode: string = REQUESTURL + 'index/get-code/'
+// 获取二手交易详情
+export const GetUsedInfo: string = REQUESTURL + 'fleamarket/fleamarket-info/'
+// 用户实名查询
+export const CheckAuth: string = REQUESTURL + 'resume/query-worker/'
+// 验证当前用户是否实名
+export const CheckMineAuthInfo: string = REQUESTURL + 'resume/auth-status/'
+// 初始化会员中心用户信息
+export const getMemberInfo: string = REQUESTURL + 'user/personal/'
+// 用户通知信息数量
+export const getMemberMsgNumber: string = REQUESTURL + 'member/original-message/'

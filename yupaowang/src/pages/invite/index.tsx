@@ -3,7 +3,7 @@ import { View, Button, Image, Input } from '@tarojs/components'
 import { IMGCDNURL } from '../../config'
 import { useSelector } from '@tarojs/redux'
 import { getUserInviteLink } from '../../utils/request'
-import { ShowActionModel } from '../../utils/msg'
+import { ShowActionModal } from '../../utils/msg'
 import Auth from '../../components/auth'
 import './index.scss'
 
@@ -19,7 +19,7 @@ export default function Invite() {
     if (!login) return
     getUserInviteLink().then(res=>{
       if (res.errcode == 'ok') setLink(res.link)
-      else ShowActionModel({msg: res.errmsg})
+      else ShowActionModal({msg: res.errmsg})
     })
   }, [login])
   // 用户复制邀请链接
@@ -28,7 +28,7 @@ export default function Invite() {
       data: link,
       success: ()=>{
         Taro.hideToast()
-        ShowActionModel({
+        ShowActionModal({
           title: '恭喜您',
           msg: '您的邀请链接已复制到粘贴板，赶快去邀请好友吧！'
         })

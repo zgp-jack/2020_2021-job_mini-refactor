@@ -4,25 +4,25 @@
             <view class="member-header-title">会员中心</view>
             <view class="member-userinfobox">
                 <block>
-                    <block wx:if="{{login}}">
+                    <block wx:if="{{login && model}}">
                         <view class="member-userinfo">
                             <view class="member-userinfo-content">
                                 <image class="member-userinfo-avatar" src="http://cdn.yupao.com/miniprogram/images/user.png"></image>
                                 <view class="member-username">
-                                    <view class="member-username-text">张某某
-                                        <image class="member-realnameimg" src="http://cdn.yupao.com/miniprogram/images/newresume-infolist-ysm.png"></image>
+                                    <view class="member-username-text">{{model.member.username}}
+                                        <block wx:if="{{model.is_checking == 2 && model.member.is_check == '2'}}">
+                                            <image class="member-realnameimg" src="http://cdn.yupao.com/miniprogram/images/newresume-infolist-ysm.png"></image>
+                                        </block>
                                     </view>
                                 </view>
-                                <view class="member-usernum">会员编号：<text class="member-id">369</text>
+                                <view class="member-usernum">会员编号：<text class="member-id">{{model.member.id}}</text>
                                 </view>
                                 <view class="member-editinfo">修改资料</view>
                             </view>
                             <view class="member-user-integral">
-                                <view class="member-integral-item"><text class="member-integral-num">23</text><text class="member-integral-text">退还积分</text>
+                                <view class="member-integral-item"><text class="member-integral-num">{{model.member.integral}}</text><text class="member-integral-text">积分</text>
                                 </view>
-                                <view class="member-integral-item"><text class="member-integral-num">23233</text><text class="member-integral-text">积分</text>
-                                </view>
-                                <view class="member-integral-item"><text class="member-integral-num">23</text><text class="member-integral-text">临时积分</text>
+                                <view class="member-integral-item"><text class="member-integral-num">{{model.member.temporary_integral}}</text><text class="member-integral-text">临时积分</text><text class="member-integral-tips">详情</text>
                                 </view>
                             </view>
                         </view>
@@ -44,7 +44,7 @@
                     <image class="member-list-icon" src="{{IMGCDNURL + 'lpy/ucenter/newcenter-recruit.png'}}"></image><text class="member-list-title">我的招工</text><text class="member-list-tips">状态有更新</text>
                 </view>
                 <view class="member-list-item">
-                    <image class="member-list-icon" src="{{IMGCDNURL + 'lpy/ucenter/newcenter-resume.png'}}"></image><text class="member-list-title">我的找活名片</text><text class="member-list-tips">去添加</text>
+                    <image class="member-list-icon" src="{{IMGCDNURL + 'lpy/ucenter/newcenter-resume.png'}}"></image><text class="member-list-title">我的找活名片</text><text class="member-list-tips">{{model && model.member.resume_status.resume_tips_string}}</text>
                 </view>
                 <view class="member-list-item">
                     <image class="member-list-icon" src="{{IMGCDNURL + 'lpy/ucenter/newcenter-used.png'}}"></image><text class="member-list-title">我的二手交易</text>

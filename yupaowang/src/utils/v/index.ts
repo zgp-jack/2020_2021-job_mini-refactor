@@ -46,9 +46,9 @@ export function isRequire(val: string): boolean {
 }
 
 // 内容必须有汉字 且不少于 min 字
-export function isVaildVal(val: string, min: number = 15): boolean {
+export function isVaildVal(val: string, min: number = 15, max: number = 0): boolean {
   let reg = new RegExp("[\\u4E00-\\u9FFF]+");
-  return reg.test(val) && val.length >= min
+  return max ? reg.test(val) && val.length >= min && val.length <= max : reg.test(val) && val.length >= min
 }
 
 // 检测是否是身份证

@@ -1,5 +1,37 @@
 (wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["components/tabbar/index"],{
 
+/***/ "./src/actions/msg.ts":
+/*!****************************!*\
+  !*** ./src/actions/msg.ts ***!
+  \****************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.setMsg = setMsg;
+exports.getMsg = getMsg;
+
+var _msg = __webpack_require__(/*! ../constants/msg */ "./src/constants/msg.ts");
+
+function setMsg(data) {
+  return {
+    type: _msg.SET,
+    data: data
+  };
+}
+function getMsg() {
+  return {
+    type: _msg.GET
+  };
+}
+
+/***/ }),
+
 /***/ "./src/components/tabbar/index.scss":
 /*!******************************************!*\
   !*** ./src/components/tabbar/index.scss ***!
@@ -37,7 +69,13 @@ var _classnames = __webpack_require__(/*! classnames */ "./node_modules/classnam
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
+var _index = __webpack_require__(/*! ../../utils/request/index */ "./src/utils/request/index.ts");
+
+var _index2 = __webpack_require__(/*! ../../utils/v/index */ "./src/utils/v/index.ts");
+
 var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/redux/index.js");
+
+var _msg = __webpack_require__(/*! ../../actions/msg */ "./src/actions/msg.ts");
 
 var _tabbar = __webpack_require__(/*! ../../actions/tabbar */ "./src/actions/tabbar.ts");
 
@@ -59,20 +97,20 @@ var Tabbar = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (Tabbar.__proto__ || Object.getPrototypeOf(Tabbar)).apply(this, arguments));
 
-    _this.$usedState = ["tabbar", "loopArray11", "notredirect"];
+    _this.$usedState = ["tabbar", "loopArray37", "notredirect"];
     _this.anonymousFunc0Map = {};
     _this.customComponents = [];
     return _this;
   }
 
   _createClass(Tabbar, [{
-    key: '_constructor',
+    key: "_constructor",
     value: function _constructor(props) {
-      _get(Tabbar.prototype.__proto__ || Object.getPrototypeOf(Tabbar.prototype), '_constructor', this).call(this, props);
+      _get(Tabbar.prototype.__proto__ || Object.getPrototypeOf(Tabbar.prototype), "_constructor", this).call(this, props);
       this.$$refs = new _taroWeapp2.default.RefsArray();
     }
   }, {
-    key: '_createData',
+    key: "_createData",
     value: function _createData() {
       var _this2 = this;
 
@@ -83,9 +121,11 @@ var Tabbar = function (_Taro$Component) {
       ;
       var notredirect = this.__props.notredirect;
 
-      console.log(notredirect);
       var tabbar = (0, _redux.useSelector)(function (state) {
         return state.tabbar;
+      });
+      var login = (0, _redux.useSelector)(function (state) {
+        return state.User['login'];
       });
       var dispatch = (0, _redux.useDispatch)();
       // * 判断跳转还是切换tabbar
@@ -94,7 +134,17 @@ var Tabbar = function (_Taro$Component) {
           dispatch((0, _tabbar.changeTabbar)(item.id));
         } else _taroWeapp2.default.reLaunch({ url: '/pages/index/index?type=' + item.id });
       };
-      var loopArray11 = tabbar.list.map(function (item, __index0) {
+      (0, _taroWeapp.useEffect)(function () {
+        if (!login || !tabbar) {
+          return;
+        }
+        (0, _index.getMemberMsgNumber)((0, _index2.isIos)()).then(function (data) {
+          if (data.errcode == 'ok') {
+            dispatch((0, _msg.setMsg)(data.data));
+          }
+        });
+      }, [login, tabbar]);
+      var loopArray37 = tabbar.list.map(function (item, __index0) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
@@ -102,7 +152,7 @@ var Tabbar = function (_Taro$Component) {
           'common-footer-tabbar-list': true,
           'common-footer-tabbar-list-active': item.$original.id === tabbar.key
         });
-        var _$indexKey = "ezzzz" + __index0;
+        var _$indexKey = "cbzzz" + __index0;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return changeTabbarAction(item.$original);
         };
@@ -114,12 +164,12 @@ var Tabbar = function (_Taro$Component) {
       });
       Object.assign(this.__state, {
         tabbar: tabbar,
-        loopArray11: loopArray11
+        loopArray37: loopArray37
       });
       return this.__state;
     }
   }, {
-    key: 'anonymousFunc0',
+    key: "anonymousFunc0",
     value: function anonymousFunc0(_$indexKey) {
       var _anonymousFunc0Map;
 
@@ -141,6 +191,24 @@ Tabbar.$$componentPath = "components/tabbar/index";
 exports.default = Tabbar;
 
 Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(Tabbar));
+
+/***/ }),
+
+/***/ "./src/constants/msg.ts":
+/*!******************************!*\
+  !*** ./src/constants/msg.ts ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var GET = exports.GET = 'get';
+var SET = exports.SET = 'set';
 
 /***/ })
 

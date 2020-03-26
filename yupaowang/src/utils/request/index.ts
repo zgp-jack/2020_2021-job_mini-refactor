@@ -3,6 +3,7 @@ import * as api from '../api'
 import { TOKEN } from '../../config'
 import * as Inter from './index.d'
 import Msg from '../msg'
+import { UserOpenid } from '../../config/inter'
 import { SearchType as RecruitSearchType } from '../../pages/recruit/index.d'
 import { SearchType as ResumeSearchType } from '../../pages/resume/index.d'
 import { SearchType as FleamarketSearchType } from '../../pages/used/lists/index'
@@ -12,6 +13,10 @@ import { User } from '../../reducers/user'
 import { IntegralData } from '../../pages/integral/config'
 import { InitRecruitView } from '../../pages/recruit/publish'
 import { UserInfo } from '../../config/store'
+import { CreateOrder } from '../../pages/recharge'
+import { UsedPublishModel } from '../../pages/used/index.d'
+import { UserPublishUsedInfo } from '../../pages/used/index.d'
+import * as Hooks from '../../hooks/index.d'
 
 interface RequestHeader {
   'content-type'?: string
@@ -244,5 +249,110 @@ export function getUserInviteLink(): Promise<Inter.GetUserInviteLink>{
     url: api.GetUserInviteLink,
     method: 'POST',
     failToast: true
+  })
+}
+
+// 获取充值选项
+export function getRechargeList(): Promise<Inter.GetRechargeList>{
+  return doRequestAction({
+    url: api.GetRechargeList,
+    method: 'POST'
+  })
+}
+
+// 用户充值获取openid
+export function getRechargeOpenid(code: string): Promise<UserOpenid>{
+  return doRequestAction({
+    url: api.GetRechargeOpenid,
+    method: 'POST',
+    data: {
+      js_code: code
+    }
+  })
+}
+
+// 用户创建充值订单
+export function getRechargeOrder(data: CreateOrder): Promise<Inter.GetCreateOrderData>{
+  return doRequestAction({
+    url: api.GetRechargeOrder,
+    method: 'POST',
+    data: data
+  })
+}
+
+// 初始化用户发布二手交易信息
+export function getUsedInfoModel(data: Hooks.InitUsedModelInfoParams): Promise<UsedPublishModel>{
+  return doRequestAction({
+    url: api.GetUsedInfoModel,
+    data: data,
+    method: 'POST'
+  })
+}
+
+// 发布二手交易
+export function publishUsedInfo(data: UserPublishUsedInfo): Promise<Inter.PublishUsedInfoRusult>{
+  return doRequestAction({
+    url: api.PublishUsedInfo,
+    data: data,
+    method: 'POST'
+  })
+}
+
+// 获取验证码
+export function getUserPhoneCode(data: Hooks.UserGetCodeData ): Promise<Inter.GetUserPhoneCode> {
+  return doRequestAction({
+    url: api.GetUserPhoneCode,
+    method: 'POST',
+    data: data,
+    title: '验证码获取中'
+  })
+}
+
+// 二手交易详情
+export function getUsedInfo(id: string): Promise<Inter.GetUsedInfo>{
+  return doRequestAction({
+    url: api.GetUsedInfo,
+    method: 'POST',
+    data: {
+      infoId: id
+    }
+  })
+}
+
+// 用户实名查询
+export function getUserIsAuth(tel: string): Promise<Inter.CheckUserAuth>{
+  return doRequestAction({
+    url: api.CheckAuth,
+    method: 'POST',
+    data: {
+      tel: tel
+    }
+  })
+}
+
+// 验证当前用户是否实名
+export function checkMineAuthInfo(): Promise<Inter.Result>{
+  return doRequestAction({
+    url: api.CheckMineAuthInfo,
+    method: 'POST'
+  })
+}
+
+// 用户会员中心
+export function getMemberInfo(): Promise<Inter.MemberInfo>{
+  return doRequestAction({
+    url: api.getMemberInfo,
+    method: 'POST'
+  })
+}
+
+// 获取当前用户的提示信息
+export function getMemberMsgNumber(type: string): Promise<Inter.ResultData<Inter.MemberMsgNumber>>{
+  return doRequestAction({
+    url: api.getMemberMsgNumber,
+    method: 'POST',
+    data: {
+      terminal_type: type
+    }
   })
 }

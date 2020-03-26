@@ -55,6 +55,7 @@
         }
         .recharge-list-box-active{
           background-color: $color;
+          border: 1px solid $color;
           .recharge-money,.recharge-num{
             color: white;
           }

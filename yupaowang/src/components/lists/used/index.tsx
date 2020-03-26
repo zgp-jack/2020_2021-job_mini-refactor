@@ -9,13 +9,19 @@ interface Props {
   bottom?: boolean
 }
 
-export default function UsedList({ data, bottom = true }: Props){
+export default function UsedList({ data = [], bottom = true }: Props){
+  // 用户查看二手交易详情
+  const userLookUsedInfo = (id: string)=> {
+    Taro.navigateTo({
+      url: '/pages/used/info/index?id='+id
+    })
+  }
   return (
     <View className='usedlist-container' style={ bottom ? '' : 'padding-bottom:0' }>
-      {data.map((item)=>(
+      {data.length&&data.map((item)=>(
         <Block>
           {item.map((d)=>(
-            <View className='usedlist-item'>
+            <View className='usedlist-item' onClick={()=>userLookUsedInfo(d.id)}>
               <View className='usedlist-item-header'>
                 <View className='usedlist-item-title overwords'>{ d.title }</View>
                 <Text className='usedlist-item-time'>{ d.time }</Text>

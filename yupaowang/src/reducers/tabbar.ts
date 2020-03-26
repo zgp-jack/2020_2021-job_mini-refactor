@@ -4,7 +4,8 @@ export interface Menu {
   title: string,
   defaultImg: string,
   activeImg: string,
-  id: string
+  id: string,
+  msg?: boolean
 }
 
 export interface DEFAULT_MENUS_TYPE {
@@ -36,7 +37,8 @@ const DEFAULT_MENUS: DEFAULT_MENUS_TYPE = {
       title: '会员',
       defaultImg: 'http://cdn.yupao.com/newyupao/images/footer-member.png',
       activeImg: 'http://cdn.yupao.com/newyupao/images/footer-member-active.png',
-      id: MEMBER
+      id: MEMBER,
+      msg: true
     }
   ],
   key: ''
