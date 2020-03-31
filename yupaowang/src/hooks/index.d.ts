@@ -11,3 +11,18 @@ export interface InitUsedModelInfoParams {
   infoId: string,
   type: 'fleamarket'
 }
+
+// 提交用户实名信息
+export interface PostUserAuthInfo {
+  username: string,
+  age: string,
+  nation_id: string,
+  notionality: string,
+  idCard: string,
+  handImg: string,
+  tel: string,
+  code: string,
+  address: string,
+  birthday: string,
+  gender: string
+}

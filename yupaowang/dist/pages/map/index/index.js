@@ -69,7 +69,7 @@ var MapComponent = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (MapComponent.__proto__ || Object.getPrototypeOf(MapComponent)).apply(this, arguments));
 
-    _this.$usedState = ["loopArray15", "loopArray16", "$compid__23", "smAreaText", "showHistory", "histroyList", "lists", "IMGCDNURL", "showCity", "area", "data"];
+    _this.$usedState = ["loopArray16", "loopArray17", "$compid__23", "smAreaText", "showHistory", "histroyList", "lists", "IMGCDNURL", "showCity", "area", "data"];
     _this.anonymousFunc4Map = {};
     _this.anonymousFunc5Map = {};
     _this.customComponents = ["Cities"];
@@ -262,7 +262,7 @@ var MapComponent = function (_Taro$Component) {
       this.anonymousFunc3 = function () {
         return userCloseMap();
       };
-      var loopArray15 = showHistory ? histroyList.map(function (item, index) {
+      var loopArray16 = showHistory ? histroyList.map(function (item, index) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
@@ -275,7 +275,7 @@ var MapComponent = function (_Taro$Component) {
           $original: item.$original
         };
       }) : [];
-      var loopArray16 = lists.map(function (item, index) {
+      var loopArray17 = lists.map(function (item, index) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
@@ -296,8 +296,8 @@ var MapComponent = function (_Taro$Component) {
         "userTapCityBtn": userTapCityBtn
       }, $compid__23, $prevCompid__23);
       Object.assign(this.__state, {
-        loopArray15: loopArray15,
         loopArray16: loopArray16,
+        loopArray17: loopArray17,
         $compid__23: $compid__23,
         smAreaText: smAreaText,
         showHistory: showHistory,

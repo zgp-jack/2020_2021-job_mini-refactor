@@ -53,7 +53,7 @@ var UsedList = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (UsedList.__proto__ || Object.getPrototypeOf(UsedList)).apply(this, arguments));
 
-    _this.$usedState = ["anonymousState__temp", "loopArray6", "data", "IMGCDNURL", "bottom"];
+    _this.$usedState = ["anonymousState__temp", "loopArray7", "data", "IMGCDNURL", "bottom"];
     _this.anonymousFunc0Map = {};
     _this.customComponents = [];
     return _this;
@@ -88,7 +88,7 @@ var UsedList = function (_Taro$Component) {
         });
       };
       var anonymousState__temp = (0, _taroWeapp.internal_inline_style)(bottom ? '' : 'padding-bottom:0');
-      var loopArray6 = data.length ? data.map(function (item, __index1) {
+      var loopArray7 = data.length ? data.map(function (item, __index1) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
@@ -112,7 +112,7 @@ var UsedList = function (_Taro$Component) {
       }) : [];
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
-        loopArray6: loopArray6,
+        loopArray7: loopArray7,
         data: data,
         IMGCDNURL: _index.IMGCDNURL
       });

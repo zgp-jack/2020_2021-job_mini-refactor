@@ -24,6 +24,7 @@ class App extends Component {
       "pages/integral/official/index", //正式积分记录
       "pages/integral/expend/index", //积分消耗记录
       "pages/recharge/index", //用户充值页面
+      "pages/realname/index", //用户实名认证
     ],
     subPackages: [
       {

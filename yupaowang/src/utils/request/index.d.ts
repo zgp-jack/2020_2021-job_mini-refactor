@@ -348,3 +348,52 @@ export interface MemberMsgNumber {
   jobNumber: number,
   messageNumber: number
 }
+
+// 获取用户实名认证信息
+export interface UserAuthInfo extends Result{
+  authData: UserAuthInfoData
+}
+
+export interface UserAuthInfoData {
+  member?: UserAuthInfoMemberData,
+  memberExt: UserAuthInfoMemberExtData,
+  nation: UserAuthInfoNationData[],
+  show_resume: number
+}
+
+export interface UserAuthInfoMemberData {
+  check_degree: string,
+  id: string,
+  is_check: string,
+  status: string,
+  tel: string,
+  username: string
+}
+
+export interface UserAuthInfoMemberExtData {
+  adcode: string,
+  address: string,
+  age: string,
+  birthday: string,
+  hand_img: string,
+  hand_img_path: string,
+  hometown: string,
+  id: string,
+  id_card: string,
+  id_card_img: string,
+  id_card_img_path: string,
+  idcard_check_failure_reason: string,
+  notion_id: string,
+  notionality: string,
+  note: string,
+  note_status: string,
+  sex: string,
+  source: string,
+  user_id: string,
+  user_name: string
+}
+
+export interface UserAuthInfoNationData {
+  mz_id: string,
+  mz_name: string
+}

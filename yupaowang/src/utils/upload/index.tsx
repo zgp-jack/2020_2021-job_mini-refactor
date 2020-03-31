@@ -6,17 +6,32 @@ interface ResultImage {
   errcode: string,
   errmsg: string,
   url: string,
-  httpurl: string
+  httpurl: string,
+  card_info?: ResultCardInfoImage
+}
+
+interface ResultCardInfoImage {
+  success: boolean,
+  tips_message: string,
+  address: string,
+  birth: string,
+  gender: number,
+  name: string,
+  nation_id: string,
+  nationality: string,
+  num: string,
+  sex: string
 }
 
 export default function UploadImgAction(url: string = UPLOADIMGURL): Promise<ResultImage>{
+  let uploadUrl = url || UPLOADIMGURL
   return new Promise((resolve)=>{
     Taro.chooseImage({
       count: 1,
       sizeType: ['compressed'],
       sourceType: ['album', 'camera'],
       success: res => {
-        AppUploadImg(resolve,res,url)
+        AppUploadImg(resolve, res, uploadUrl)
       }
     })
   })

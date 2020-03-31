@@ -55,7 +55,7 @@ var Profession = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (Profession.__proto__ || Object.getPrototypeOf(Profession)).apply(this, arguments));
 
-    _this.$usedState = ["loopArray13", "data", "title", "footerTitle", "closeProfession", "onClickItem"];
+    _this.$usedState = ["loopArray14", "data", "title", "footerTitle", "closeProfession", "onClickItem"];
     _this.anonymousFunc0Map = {};
     _this.customComponents = [];
     return _this;
@@ -89,7 +89,7 @@ var Profession = function (_Taro$Component) {
       this.anonymousFunc1 = function () {
         return closeProfession();
       };
-      var loopArray13 = data ? data.map(function (item, i) {
+      var loopArray14 = data ? data.map(function (item, i) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
@@ -119,7 +119,7 @@ var Profession = function (_Taro$Component) {
         };
       }) : [];
       Object.assign(this.__state, {
-        loopArray13: loopArray13,
+        loopArray14: loopArray14,
         data: data,
         title: title,
         footerTitle: footerTitle

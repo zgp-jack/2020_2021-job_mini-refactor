@@ -97,7 +97,7 @@ var Tabbar = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (Tabbar.__proto__ || Object.getPrototypeOf(Tabbar)).apply(this, arguments));
 
-    _this.$usedState = ["tabbar", "loopArray37", "notredirect"];
+    _this.$usedState = ["tabbar", "loopArray12", "memberMsg", "notredirect"];
     _this.anonymousFunc0Map = {};
     _this.customComponents = [];
     return _this;
@@ -127,15 +127,20 @@ var Tabbar = function (_Taro$Component) {
       var login = (0, _redux.useSelector)(function (state) {
         return state.User['login'];
       });
+      var memberMsg = (0, _redux.useSelector)(function (state) {
+        return state.msg['messageNumber'];
+      });
       var dispatch = (0, _redux.useDispatch)();
+      var timer = void 0; //定时器接收对象
       // * 判断跳转还是切换tabbar
       var changeTabbarAction = function changeTabbarAction(item) {
         if (notredirect) {
           dispatch((0, _tabbar.changeTabbar)(item.id));
         } else _taroWeapp2.default.reLaunch({ url: '/pages/index/index?type=' + item.id });
       };
-      (0, _taroWeapp.useEffect)(function () {
-        if (!login || !tabbar) {
+      // 统计未读信息
+      var getMemberMsg = function getMemberMsg() {
+        if (!login) {
           return;
         }
         (0, _index.getMemberMsgNumber)((0, _index2.isIos)()).then(function (data) {
@@ -143,8 +148,19 @@ var Tabbar = function (_Taro$Component) {
             dispatch((0, _msg.setMsg)(data.data));
           }
         });
-      }, [login, tabbar]);
-      var loopArray37 = tabbar.list.map(function (item, __index0) {
+      };
+      // 定时请求未读信息
+      // onAppShow(()=>{
+      //   getMemberMsg()
+      //   timer = setInterval(() => {
+      //     getMemberMsg()
+      //   }, MemberMsgTimerInterval)
+      // })
+      // 清除页面定时器
+      (0, _taroWeapp.onAppHide)(function () {
+        clearInterval(timer);
+      });
+      var loopArray12 = tabbar.list.map(function (item, __index0) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
@@ -152,7 +168,7 @@ var Tabbar = function (_Taro$Component) {
           'common-footer-tabbar-list': true,
           'common-footer-tabbar-list-active': item.$original.id === tabbar.key
         });
-        var _$indexKey = "cbzzz" + __index0;
+        var _$indexKey = "fzzzz" + __index0;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return changeTabbarAction(item.$original);
         };
@@ -164,7 +180,8 @@ var Tabbar = function (_Taro$Component) {
       });
       Object.assign(this.__state, {
         tabbar: tabbar,
-        loopArray37: loopArray37
+        loopArray12: loopArray12,
+        memberMsg: memberMsg
       });
       return this.__state;
     }
@@ -191,24 +208,6 @@ Tabbar.$$componentPath = "components/tabbar/index";
 exports.default = Tabbar;
 
 Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(Tabbar));
-
-/***/ }),
-
-/***/ "./src/constants/msg.ts":
-/*!******************************!*\
-  !*** ./src/constants/msg.ts ***!
-  \******************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var GET = exports.GET = 'get';
-var SET = exports.SET = 'set';
 
 /***/ })
 

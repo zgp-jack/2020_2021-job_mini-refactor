@@ -6,7 +6,7 @@ const DEFAULT_STATE: MemberMsgNumber = {
   messageNumber: 0
 }
 
-interface ACTIONTYPE {
+export interface ACTIONTYPE {
   type: string,
   data: MemberMsgNumber
 }

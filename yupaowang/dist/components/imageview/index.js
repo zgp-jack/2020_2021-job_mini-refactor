@@ -51,7 +51,7 @@ var ImageView = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (ImageView.__proto__ || Object.getPrototypeOf(ImageView)).apply(this, arguments));
 
-    _this.$usedState = ["loopArray14", "images", "max", "userUploadImg"];
+    _this.$usedState = ["loopArray15", "images", "max", "userUploadImg"];
     _this.anonymousFunc0Map = {};
     _this.customComponents = [];
     return _this;
@@ -81,7 +81,7 @@ var ImageView = function (_Taro$Component) {
       this.anonymousFunc1 = function () {
         return userUploadImg && userUploadImg(-1);
       };
-      var loopArray14 = images ? images.map(function (item, index) {
+      var loopArray15 = images ? images.map(function (item, index) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
@@ -95,7 +95,7 @@ var ImageView = function (_Taro$Component) {
         };
       }) : [];
       Object.assign(this.__state, {
-        loopArray14: loopArray14,
+        loopArray15: loopArray15,
         images: images,
         max: max
       });

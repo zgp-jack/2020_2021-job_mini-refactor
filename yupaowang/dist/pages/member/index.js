@@ -45,6 +45,8 @@ var _index2 = __webpack_require__(/*! ../../config/index */ "./src/config/index.
 
 var _index3 = __webpack_require__(/*! ../../utils/msg/index */ "./src/utils/msg/index.ts");
 
+var _index4 = __webpack_require__(/*! ../../utils/v/index */ "./src/utils/v/index.ts");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -61,7 +63,7 @@ var Member = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (Member.__proto__ || Object.getPrototypeOf(Member)).apply(this, arguments));
 
-    _this.$usedState = ["login", "model", "IMGCDNURL"];
+    _this.$usedState = ["login", "model", "IMGCDNURL", "jobNumber", "msgNumber", "ios"];
     _this.customComponents = [];
     return _this;
   }
@@ -90,6 +92,22 @@ var Member = function (_Taro$Component) {
           _useState2 = _slicedToArray(_useState, 2),
           model = _useState2[0],
           setModel = _useState2[1];
+      // 获取招工信息更新数量
+
+
+      var jobNumber = (0, _redux.useSelector)(function (state) {
+        return state.msg['jobNumber'];
+      });
+      // 获取我的信息未读数量
+      var msgNumber = (0, _redux.useSelector)(function (state) {
+        return state.msg['messageNumber'];
+      });
+      // 判断是否是ios
+
+      var _useState3 = (0, _taroWeapp.useState)(false),
+          _useState4 = _slicedToArray(_useState3, 2),
+          ios = _useState4[0],
+          setIos = _useState4[1];
       // 跳转用户授权
 
 
@@ -110,6 +128,9 @@ var Member = function (_Taro$Component) {
         });
       };
       (0, _taroWeapp.useEffect)(function () {
+        setIos((0, _index4.isIos)());
+      }, []);
+      (0, _taroWeapp.useEffect)(function () {
         initMemberInfo();
       }, [login]);
       this.anonymousFunc0 = function () {
@@ -118,7 +139,10 @@ var Member = function (_Taro$Component) {
       Object.assign(this.__state, {
         login: login,
         model: model,
-        IMGCDNURL: _index2.IMGCDNURL
+        IMGCDNURL: _index2.IMGCDNURL,
+        jobNumber: jobNumber,
+        msgNumber: msgNumber,
+        ios: ios
       });
       return this.__state;
     }

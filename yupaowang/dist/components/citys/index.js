@@ -63,7 +63,7 @@ var Cities = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (Cities.__proto__ || Object.getPrototypeOf(Cities)).apply(this, arguments));
 
-    _this.$usedState = ["loopArray17", "loopArray18", "loopArray19", "text", "IMGCDNURL", "userLoc", "recentlyCities", "data", "show", "inputCity", "area", "parent", "userTapCityBtn", "userChangeCity"];
+    _this.$usedState = ["loopArray18", "loopArray19", "loopArray20", "text", "IMGCDNURL", "userLoc", "recentlyCities", "data", "show", "inputCity", "area", "parent", "userTapCityBtn", "userChangeCity"];
     _this.anonymousFunc4Map = {};
     _this.anonymousFunc5Map = {};
     _this.anonymousFunc6Map = {};
@@ -237,7 +237,7 @@ var Cities = function (_Taro$Component) {
       this.anonymousFunc3 = function () {
         return userTapCityBtn(false);
       };
-      var loopArray17 = recentlyCities.map(function (item, __index4) {
+      var loopArray18 = recentlyCities.map(function (item, __index4) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
@@ -252,7 +252,7 @@ var Cities = function (_Taro$Component) {
           $original: item.$original
         };
       });
-      var loopArray18 = data.map(function (item, index) {
+      var loopArray19 = data.map(function (item, index) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
@@ -278,7 +278,7 @@ var Cities = function (_Taro$Component) {
           $original: item.$original
         };
       });
-      var loopArray19 = show ? inputCity.map(function (item, __index6) {
+      var loopArray20 = show ? inputCity.map(function (item, __index6) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
@@ -292,9 +292,9 @@ var Cities = function (_Taro$Component) {
         };
       }) : [];
       Object.assign(this.__state, {
-        loopArray17: loopArray17,
         loopArray18: loopArray18,
         loopArray19: loopArray19,
+        loopArray20: loopArray20,
         text: text,
         IMGCDNURL: _index.IMGCDNURL,
         userLoc: userLoc,

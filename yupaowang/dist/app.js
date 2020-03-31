@@ -70,7 +70,7 @@ var _App = function (_BaseComponent) {
     var _this = _possibleConstructorReturn(this, (_App.__proto__ || Object.getPrototypeOf(_App)).apply(this, arguments));
 
     _this.config = {
-      pages: ['pages/index/index', 'pages/userauth/index', "pages/recruit/publish/index", "pages/used/lists/index", "pages/map/recruit/index", "pages/used/publish/index", "pages/used/info/index", "pages/invite/index", "pages/getintegral/index", "pages/integral/source/index", "pages/integral/temp/index", "pages/integral/official/index", "pages/integral/expend/index", "pages/recharge/index"],
+      pages: ['pages/index/index', 'pages/userauth/index', "pages/recruit/publish/index", "pages/used/lists/index", "pages/map/recruit/index", "pages/used/publish/index", "pages/used/info/index", "pages/invite/index", "pages/getintegral/index", "pages/integral/source/index", "pages/integral/temp/index", "pages/integral/official/index", "pages/integral/expend/index", "pages/recharge/index", "pages/realname/index"],
       subPackages: [{
         root: 'subpackage/pages/',
         pages: ['checkauth/index']
@@ -157,13 +157,58 @@ var _user = __webpack_require__(/*! ./user */ "./src/reducers/user.tsx");
 
 var _user2 = _interopRequireDefault(_user);
 
+var _msg = __webpack_require__(/*! ./msg */ "./src/reducers/msg.ts");
+
+var _msg2 = _interopRequireDefault(_msg);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = (0, _redux.combineReducers)({
   tabbar: _tabbar2.default,
   WechatNotice: _wechat_notice2.default,
-  User: _user2.default
+  User: _user2.default,
+  msg: _msg2.default
 });
+
+/***/ }),
+
+/***/ "./src/reducers/msg.ts":
+/*!*****************************!*\
+  !*** ./src/reducers/msg.ts ***!
+  \*****************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+exports.default = msg;
+
+var _msg = __webpack_require__(/*! ../constants/msg */ "./src/constants/msg.ts");
+
+var DEFAULT_STATE = {
+  jobNumber: 0,
+  messageNumber: 0
+};
+function msg() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : DEFAULT_STATE;
+  var action = arguments[1];
+
+  switch (action.type) {
+    case _msg.GET:
+      return state;
+    case _msg.SET:
+      return _extends({}, state, action.data);
+    default:
+      return state;
+  }
+}
 
 /***/ }),
 

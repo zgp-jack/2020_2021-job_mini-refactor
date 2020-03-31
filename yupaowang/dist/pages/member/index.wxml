@@ -41,7 +41,9 @@
         <view class="member-body-container">
             <view class="member-list-container">
                 <view class="member-list-item">
-                    <image class="member-list-icon" src="{{IMGCDNURL + 'lpy/ucenter/newcenter-recruit.png'}}"></image><text class="member-list-title">我的招工</text><text class="member-list-tips">状态有更新</text>
+                    <image class="member-list-icon" src="{{IMGCDNURL + 'lpy/ucenter/newcenter-recruit.png'}}"></image><text class="member-list-title">我的招工</text>
+                    <block wx:if="{{jobNumber}}"><text class="member-list-tips">状态有更新</text>
+                    </block>
                 </view>
                 <view class="member-list-item">
                     <image class="member-list-icon" src="{{IMGCDNURL + 'lpy/ucenter/newcenter-resume.png'}}"></image><text class="member-list-title">我的找活名片</text><text class="member-list-tips">{{model && model.member.resume_status.resume_tips_string}}</text>
@@ -50,12 +52,22 @@
                     <image class="member-list-icon" src="{{IMGCDNURL + 'lpy/ucenter/newcenter-used.png'}}"></image><text class="member-list-title">我的二手交易</text>
                 </view>
                 <view class="member-list-item">
-                    <image class="member-list-icon" src="{{IMGCDNURL + 'lpy/ucenter/newcenter-info.png'}}"></image><text class="member-list-title">我的信息</text><text class="member-list-tips">有新信息待查看</text>
+                    <image class="member-list-icon" src="{{IMGCDNURL + 'lpy/ucenter/newcenter-info.png'}}"></image>
+                    <view class="member-list-title"><text>我的信息</text>
+                        <block wx:if="{{msgNumber}}">
+                            <view class="member-num-dotbox"><text class="member-num-dot">{{msgNumber > 9 ? '9+' : msgNumber}}</text>
+                            </view>
+                        </block>
+                    </view>
+                    <block wx:if="{{msgNumber}}"><text class="member-list-tips">有新信息待查看</text>
+                    </block>
                 </view>
             </view>
             <view class="member-list-container">
                 <view class="member-list-item">
-                    <image class="member-list-icon" src="{{IMGCDNURL + 'lpy/ucenter/newcenter-integral.png'}}"></image><text class="member-list-title">获取积分</text><text class="member-list-tips">去充值</text>
+                    <image class="member-list-icon" src="{{IMGCDNURL + 'lpy/ucenter/newcenter-integral.png'}}"></image><text class="member-list-title">获取积分</text>
+                    <block wx:if="{{!ios}}"><text class="member-list-tips">去充值</text>
+                    </block>
                 </view>
                 <view class="member-list-item">
                     <image class="member-list-icon" src="{{IMGCDNURL + 'lpy/ucenter/newcenter-invite.png'}}"></image><text class="member-list-title">邀请工友</text><text class="member-list-tips">邀请好友得积分</text>
@@ -69,7 +81,7 @@
             </view>
             <view class="member-list-container">
                 <view class="member-list-item">
-                    <image class="member-list-icon" src="{{IMGCDNURL + 'lpy/ucenter/newcenter-realname.png'}}"></image><text class="member-list-title">实名认证</text><text class="member-list-tips">去实名</text>
+                    <image class="member-list-icon" src="{{IMGCDNURL + 'lpy/ucenter/newcenter-realname.png'}}"></image><text class="member-list-title">实名认证</text><text class="member-list-tips">{{model && model.member.check_state}}</text>
                 </view>
                 <view class="member-list-item">
                     <image class="member-list-icon" src="{{IMGCDNURL + 'lpy/ucenter/newcenter-collect.png'}}"></image><text class="member-list-title">我的收藏</text>
@@ -77,7 +89,13 @@
             </view>
             <view class="member-list-container">
                 <view class="member-list-item">
-                    <image class="member-list-icon" src="{{IMGCDNURL + 'lpy/ucenter/newcenter-feedback.png'}}"></image><text class="member-list-title">意见反馈</text><text class="member-list-tips">去添加</text>
+                    <image class="member-list-icon" src="{{IMGCDNURL + 'lpy/ucenter/newcenter-feedback.png'}}"></image>
+                    <view class="member-list-title"><text>意见反馈</text>
+                        <block wx:if="{{model && model.member.has_notice_msg.hasNoticeMsgg}}"><text class="member-list-dot"></text>
+                        </block>
+                    </view>
+                    <block wx:if="{{model && model.member.has_notice_msg.hasNoticeMsgg}}"><text class="member-list-tips">有最新回复</text>
+                    </block>
                 </view>
                 <view class="member-list-item">
                     <image class="member-list-icon" src="{{IMGCDNURL + 'lpy/ucenter/newcenter-help.png'}}"></image><text class="member-list-title">帮助中心</text><text class="member-list-tips">使用教程</text>

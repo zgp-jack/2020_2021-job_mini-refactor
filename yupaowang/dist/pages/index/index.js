@@ -139,7 +139,8 @@ var Index = function (_Taro$Component) {
       var dispatch = (0, _redux.useDispatch)();
       // 初始化页面参数
       var router = (0, _taroWeapp.useRouter)();
-      var type = router.params.type;
+      var _router$params$type = router.params.type,
+          type = _router$params$type === undefined ? _tabbar.RECRUIT : _router$params$type;
       // 获取当前tabbar高亮值
 
       var tabKey = (0, _redux.useSelector)(function (state) {

@@ -17,7 +17,7 @@ export default function Index(){
 
   // 初始化页面参数
   const router = useRouter()
-  const { type } = router.params
+  const { type = RECRUIT } = router.params
   // 获取当前tabbar高亮值
   const tabKey: string = useSelector<any, string>(state=>state.tabbar.key)
   // 标记是否触发下拉刷新

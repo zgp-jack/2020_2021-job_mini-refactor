@@ -1,0 +1,131 @@
+@import '../../common.scss';
+
+.realname-container{
+  position: relative;
+  width: 100%;
+  .realname-cardimgbox{
+    position: relative;
+    width: 100%;
+    padding: 0 20px 30px;
+    background-color: white;
+    box-shadow: 0 0 10px #e7e6e4;
+    .realname-card-title{
+      position: relative;
+      width: 100%;
+      line-height: 100px;
+      color: #333;
+      font-weight: bold;
+    }
+    .realname-card-imgs{
+      position: relative;
+      .realname-card-item{
+        position: relative;
+        width: 48%;
+        border-radius: 10px;
+        height: 350px;
+        overflow: hidden;
+        margin-right: 4%;
+        float: left;
+        &:nth-last-child(1){
+          margin-right: 0;
+        }
+        .realname-card-img{
+          position: relative;
+          width: 100%;
+          height: 280px;
+          .realname-card-upimg{
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: block;
+          }
+        }
+        .realname-card-title{
+          line-height: 70px;
+          text-align: center;
+          color: white;
+          font-size: 30px;
+          width: 100%;
+          background-color: $color;
+        }
+      }
+    }
+  }
+  .realname-card-remark{
+    position: relative;
+    margin-top: $margin;
+    width: 100%;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 0 10px #e7e6e4;
+    .realname-remark-title{
+      position: relative;
+      line-height: 70px;
+    }
+    .realname-remark-tips{
+      position: relative;
+      line-height: 50px;
+      font-size: 28px;
+      color: #666;
+      .realname-remark-text{
+        position: relative;
+        color: #ff0000;
+      }
+    }
+    .realname-remark-imglist{
+      position: relative;
+      width: 100%;
+      margin-top: $margin;
+      @include flex();
+      flex-wrap: wrap;
+      justify-content:space-between;
+      .realname-remark-imgitem{
+        position: relative;
+        width: 24%;
+        .realname-remark-item-img{
+          position: relative;
+          width: 100%;
+          height: 130px;
+          display: block;
+        }
+        .realname-remark-item-text{
+          line-height: 50px;
+          display: inline-block;
+          width: 100%;
+          text-align: center;
+          font-size: 28px;
+          color: #666;
+        }
+      }
+    }
+  }
+  .realname-card-form{
+    position: relative;
+    background-color: white;
+    margin-top: $margin;
+    box-shadow: 0 0 10px #e7e6e4;
+    @import '../../style/publish.scss';
+    .publish-list-item{
+      padding: 15px 20px 15px 200px;
+      .pulish-list-title{
+        left: 20px;
+      }
+      .publish-code-btn{
+        right: 20px;
+      }
+    }
+  }
+  .userauth-btn{
+    position: relative;
+    width: 80%;
+    background-color: $color;
+    color: white;
+    text-align: center;
+    line-height: 80px;
+    display: block;
+    border-radius: 5px;
+    border: 0;
+    font-size: 30px;
+    margin: 30px auto;
+  }
+} 

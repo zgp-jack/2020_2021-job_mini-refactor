@@ -52,3 +52,9 @@ export const CheckMineAuthInfo: string = REQUESTURL + 'resume/auth-status/'
 export const getMemberInfo: string = REQUESTURL + 'user/personal/'
 // 用户通知信息数量
 export const getMemberMsgNumber: string = REQUESTURL + 'member/original-message/'
+// 获取用户实名认证信息
+export const getUserAuthInfo: string = REQUESTURL + 'user/auth-view/'
+// 提交用户实名认证信息
+export const postUserAuthInfo: string = REQUESTURL + 'user/do-auth/'
+// 实名认证识别身份证接口
+export const getIdcardAuthInfo: string = REQUESTURL + 'index/authid-card/'

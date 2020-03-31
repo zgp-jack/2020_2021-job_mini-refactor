@@ -25,3 +25,5 @@ export const PAGETITLE: string = '鱼泡网-'
 export const MAXCACHECITYNUM: number = 3
 // * 用户发布 选择地址 历史记录 最大数量
 export const UserPublishAreaHistoryMaxNum: number = 10
+// * 小程序tabbar msg统计 定时器请求间隔 1分钟
+export const MemberMsgTimerInterval: number = 1000 * 60

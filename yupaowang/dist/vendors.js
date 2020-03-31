@@ -10115,6 +10115,8 @@ var PAGETITLE = exports.PAGETITLE = '鱼泡网-';
 var MAXCACHECITYNUM = exports.MAXCACHECITYNUM = 3;
 // * 用户发布 选择地址 历史记录 最大数量
 var UserPublishAreaHistoryMaxNum = exports.UserPublishAreaHistoryMaxNum = 10;
+// * 小程序tabbar msg统计 定时器请求间隔 1分钟
+var MemberMsgTimerInterval = exports.MemberMsgTimerInterval = 60000;
 
 /***/ }),
 
@@ -10146,6 +10148,24 @@ var UserListChooseCity = exports.UserListChooseCity = 'userListChooseCity';
 var UserLastPublishArea = exports.UserLastPublishArea = 'userLastPublishArea';
 // 用户发布 选择地址 历史记录
 var UserPublishAreaHistory = exports.UserPublishAreaHistory = 'userPublishAreaHistory';
+
+/***/ }),
+
+/***/ "./src/constants/msg.ts":
+/*!******************************!*\
+  !*** ./src/constants/msg.ts ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var GET = exports.GET = 'get';
+var SET = exports.SET = 'set';
 
 /***/ }),
 
@@ -12987,7 +13007,7 @@ Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.getMemberMsgNumber = exports.getMemberInfo = exports.CheckMineAuthInfo = exports.CheckAuth = exports.GetUsedInfo = exports.GetUserPhoneCode = exports.PublishUsedInfo = exports.GetUsedInfoModel = exports.GetRechargeOrder = exports.GetRechargeOpenid = exports.GetRechargeList = exports.GetUserInviteLink = exports.CheckAdcodeValid = exports.GetAllAreas = exports.GetPublisRecruitView = exports.GetIntegralList = exports.GetTabbarMsg = exports.GetListFilterData = exports.GetWechatNotice = exports.GetFleamarketlist = exports.GetResumelist = exports.GetRecruitlist = exports.GetAllListItem = exports.GetBannerNotice = exports.GetUserInfo = exports.GetUserSessionKey = undefined;
+exports.getIdcardAuthInfo = exports.postUserAuthInfo = exports.getUserAuthInfo = exports.getMemberMsgNumber = exports.getMemberInfo = exports.CheckMineAuthInfo = exports.CheckAuth = exports.GetUsedInfo = exports.GetUserPhoneCode = exports.PublishUsedInfo = exports.GetUsedInfoModel = exports.GetRechargeOrder = exports.GetRechargeOpenid = exports.GetRechargeList = exports.GetUserInviteLink = exports.CheckAdcodeValid = exports.GetAllAreas = exports.GetPublisRecruitView = exports.GetIntegralList = exports.GetTabbarMsg = exports.GetListFilterData = exports.GetWechatNotice = exports.GetFleamarketlist = exports.GetResumelist = exports.GetRecruitlist = exports.GetAllListItem = exports.GetBannerNotice = exports.GetUserInfo = exports.GetUserSessionKey = undefined;
 
 var _index = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
 
@@ -13043,6 +13063,12 @@ var CheckMineAuthInfo = exports.CheckMineAuthInfo = _index.REQUESTURL + 'resume/
 var getMemberInfo = exports.getMemberInfo = _index.REQUESTURL + 'user/personal/';
 // 用户通知信息数量
 var getMemberMsgNumber = exports.getMemberMsgNumber = _index.REQUESTURL + 'member/original-message/';
+// 获取用户实名认证信息
+var getUserAuthInfo = exports.getUserAuthInfo = _index.REQUESTURL + 'user/auth-view/';
+// 提交用户实名认证信息
+var postUserAuthInfo = exports.postUserAuthInfo = _index.REQUESTURL + 'user/do-auth/';
+// 实名认证识别身份证接口
+var getIdcardAuthInfo = exports.getIdcardAuthInfo = _index.REQUESTURL + 'index/authid-card/';
 
 /***/ }),
 
@@ -13260,6 +13286,8 @@ exports.getUserIsAuth = getUserIsAuth;
 exports.checkMineAuthInfo = checkMineAuthInfo;
 exports.getMemberInfo = getMemberInfo;
 exports.getMemberMsgNumber = getMemberMsgNumber;
+exports.getUserAuthInfo = getUserAuthInfo;
+exports.postUserAuthInfo = postUserAuthInfo;
 
 var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
@@ -13563,8 +13591,24 @@ function getMemberMsgNumber(type) {
     url: api.getMemberMsgNumber,
     method: 'POST',
     data: {
-      terminal_type: type
-    }
+      terminal_type: type ? 'ios' : 'android'
+    },
+    loading: false
+  });
+}
+// 用户实名认证
+function getUserAuthInfo() {
+  return doRequestAction({
+    url: api.getUserAuthInfo,
+    method: 'POST'
+  });
+}
+// 提交实名认证信息
+function postUserAuthInfo(data) {
+  return doRequestAction({
+    url: api.postUserAuthInfo,
+    method: 'POST',
+    data: data
   });
 }
 
@@ -13720,13 +13764,14 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function UploadImgAction() {
   var url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _index.UPLOADIMGURL;
 
+  var uploadUrl = url || _index.UPLOADIMGURL;
   return new Promise(function (resolve) {
     _taroWeapp2.default.chooseImage({
       count: 1,
       sizeType: ['compressed'],
       sourceType: ['album', 'camera'],
       success: function success(res) {
-        AppUploadImg(resolve, res, url);
+        AppUploadImg(resolve, res, uploadUrl);
       }
     });
   });

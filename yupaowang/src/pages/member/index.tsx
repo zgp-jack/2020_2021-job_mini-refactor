@@ -6,6 +6,7 @@ import { MemberInfo } from '../../utils/request/index.d'
 import './index.scss'
 import { IMGCDNURL, AUTHPATH } from '../../config'
 import { ShowActionModal } from '../../utils/msg'
+import { isIos } from '../../utils/v'
 
 export default function Member(){
 
@@ -13,6 +14,12 @@ export default function Member(){
   const login = useSelector<any, boolean>(state => state.User['login'])
   // member信息
   const [model, setModel] = useState<MemberInfo>()
+  // 获取招工信息更新数量
+  const jobNumber: number = useSelector<any, number>(state => state.msg['jobNumber'])
+  // 获取我的信息未读数量
+  const msgNumber: number = useSelector<any, number>(state => state.msg['messageNumber'])
+  // 判断是否是ios
+  const [ios, setIos] = useState<boolean>(false)
 
   // 跳转用户授权
   const userAuthLogin = ()=> {
@@ -29,6 +36,10 @@ export default function Member(){
       else ShowActionModal(data.errmsg)
     })
   }
+
+  useEffect(()=>{
+    setIos(isIos())
+  },[])
 
   useEffect(()=>{
     initMemberInfo()
@@ -83,7 +94,7 @@ export default function Member(){
           <View className='member-list-item'>
             <Image className='member-list-icon' src={ IMGCDNURL + 'lpy/ucenter/newcenter-recruit.png' } />
             <Text className='member-list-title'>我的招工</Text>
-            <Text className='member-list-tips'>状态有更新</Text>
+            {jobNumber && <Text className='member-list-tips'>状态有更新</Text>}
           </View>
           <View className='member-list-item'>
             <Image className='member-list-icon' src={ IMGCDNURL + 'lpy/ucenter/newcenter-resume.png'} />
@@ -96,15 +107,22 @@ export default function Member(){
           </View>
           <View className='member-list-item'>
             <Image className='member-list-icon' src={ IMGCDNURL + 'lpy/ucenter/newcenter-info.png'} />
-            <Text className='member-list-title'>我的信息</Text>
-            <Text className='member-list-tips'>有新信息待查看</Text>
+            <View className='member-list-title'>
+              <Text>我的信息</Text>
+              {msgNumber &&
+              <View className='member-num-dotbox'>
+                <Text className='member-num-dot'>{msgNumber > 9 ? '9+' : msgNumber}</Text>
+              </View>
+              }
+            </View>
+            {msgNumber && <Text className='member-list-tips'>有新信息待查看</Text>}
           </View>
         </View>
         <View className='member-list-container'>
           <View className='member-list-item'>
             <Image className='member-list-icon' src={ IMGCDNURL + 'lpy/ucenter/newcenter-integral.png'} />
             <Text className='member-list-title'>获取积分</Text>
-            <Text className='member-list-tips'>去充值</Text>
+            {!ios && <Text className='member-list-tips'>去充值</Text>}
           </View>
           <View className='member-list-item'>
             <Image className='member-list-icon' src={ IMGCDNURL + 'lpy/ucenter/newcenter-invite.png'} />
@@ -124,7 +142,7 @@ export default function Member(){
           <View className='member-list-item'>
             <Image className='member-list-icon' src={ IMGCDNURL + 'lpy/ucenter/newcenter-realname.png'} />
             <Text className='member-list-title'>实名认证</Text>
-            <Text className='member-list-tips'>去实名</Text>
+            <Text className='member-list-tips'>{model&&model.member.check_state }</Text>
           </View>
           <View className='member-list-item'>
             <Image className='member-list-icon' src={ IMGCDNURL + 'lpy/ucenter/newcenter-collect.png'} />
@@ -134,8 +152,11 @@ export default function Member(){
         <View className='member-list-container'>
           <View className='member-list-item'>
             <Image className='member-list-icon' src={ IMGCDNURL + 'lpy/ucenter/newcenter-feedback.png'} />
-            <Text className='member-list-title'>意见反馈</Text>
-            <Text className='member-list-tips'>去添加</Text>
+            <View className='member-list-title'>
+              <Text>意见反馈</Text>
+              {model && model.member.has_notice_msg.hasNoticeMsgg && <Text className='member-list-dot'></Text>}
+            </View>
+            {model && model.member.has_notice_msg.hasNoticeMsgg && <Text className='member-list-tips'>有最新回复</Text>}
           </View>
           <View className='member-list-item'>
             <Image className='member-list-icon' src={ IMGCDNURL + 'lpy/ucenter/newcenter-help.png'} />

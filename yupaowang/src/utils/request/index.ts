@@ -347,12 +347,30 @@ export function getMemberInfo(): Promise<Inter.MemberInfo>{
 }
 
 // 获取当前用户的提示信息
-export function getMemberMsgNumber(type: string): Promise<Inter.ResultData<Inter.MemberMsgNumber>>{
+export function getMemberMsgNumber(type: boolean): Promise<Inter.ResultData<Inter.MemberMsgNumber>>{
   return doRequestAction({
     url: api.getMemberMsgNumber,
     method: 'POST',
     data: {
-      terminal_type: type
-    }
+      terminal_type: type ? 'ios' : 'android'
+    },
+    loading: false
+  })
+}
+
+// 用户实名认证
+export function getUserAuthInfo(): Promise<Inter.UserAuthInfo>{
+  return doRequestAction({
+    url: api.getUserAuthInfo,
+    method: 'POST'
+  })
+}
+
+// 提交实名认证信息
+export function postUserAuthInfo(data: Hooks.PostUserAuthInfo): Promise<Inter.Result>{
+  return doRequestAction({
+    url: api.postUserAuthInfo,
+    method: 'POST',
+    data: data
   })
 }
