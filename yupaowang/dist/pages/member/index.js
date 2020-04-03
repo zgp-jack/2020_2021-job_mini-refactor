@@ -39,13 +39,13 @@ var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/re
 
 var _index = __webpack_require__(/*! ../../utils/request/index */ "./src/utils/request/index.ts");
 
-__webpack_require__(/*! ./index.scss */ "./src/pages/member/index.scss");
-
 var _index2 = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
 
 var _index3 = __webpack_require__(/*! ../../utils/msg/index */ "./src/utils/msg/index.ts");
 
 var _index4 = __webpack_require__(/*! ../../utils/v/index */ "./src/utils/v/index.ts");
+
+__webpack_require__(/*! ./index.scss */ "./src/pages/member/index.scss");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -108,12 +108,18 @@ var Member = function (_Taro$Component) {
           _useState4 = _slicedToArray(_useState3, 2),
           ios = _useState4[0],
           setIos = _useState4[1];
-      // 跳转用户授权
+      // 创建memberContext
 
 
-      var userAuthLogin = function userAuthLogin() {
+      var value = {
+        username: model ? model.member.username || model.member.nickname : '',
+        avatar: model ? model.member.headimgurl : '',
+        phone: model ? model.member.tel : ''
+      };
+      // 用户页面跳转
+      var userRouteJump = function userRouteJump(url) {
         _taroWeapp2.default.navigateTo({
-          url: _index2.AUTHPATH
+          url: url
         });
       };
       // 初始化用户信息
@@ -134,7 +140,16 @@ var Member = function (_Taro$Component) {
         initMemberInfo();
       }, [login]);
       this.anonymousFunc0 = function () {
-        return userAuthLogin();
+        return userRouteJump("/pages/userinfo/index/index?username=" + value.username + "&phone=" + value.phone + "&avatar=" + value.avatar);
+      };
+      this.anonymousFunc1 = function () {
+        return userRouteJump('/pages/userinfo/add/index');
+      };
+      this.anonymousFunc2 = function () {
+        return userRouteJump(_index2.AUTHPATH);
+      };
+      this.anonymousFunc3 = function () {
+        return userRouteJump('/pages/realname/index');
       };
       Object.assign(this.__state, {
         login: login,
@@ -151,12 +166,27 @@ var Member = function (_Taro$Component) {
     value: function anonymousFunc0(e) {
       ;
     }
+  }, {
+    key: "anonymousFunc1",
+    value: function anonymousFunc1(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc2",
+    value: function anonymousFunc2(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc3",
+    value: function anonymousFunc3(e) {
+      ;
+    }
   }]);
 
   return Member;
 }(_taroWeapp2.default.Component);
 
-Member.$$events = ["anonymousFunc0"];
+Member.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3"];
 Member.$$componentPath = "pages/member/index";
 exports.default = Member;
 

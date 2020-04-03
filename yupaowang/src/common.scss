@@ -51,7 +51,7 @@ $margin: 15px;
   align-items: center;
 }
 
-@mixin shadow($px:5px) {
+@mixin shadow($px:10px) {
   box-shadow: 0 0 $px $shadowcolor;
 }
 

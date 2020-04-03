@@ -1,13 +1,28 @@
-import Taro, { useState } from '@tarojs/taro'
+import Taro, { createContext } from '@tarojs/taro'
 import { View, Text, Input, Image, Button, Picker } from '@tarojs/components'
-import { IMGCDNURL } from '../../config'
+import { ALIYUNCDN, IMGCDNURL } from '../../config'
 import useRealname from '../../hooks/realname'
+import { PostUserAuthInfo } from '../../hooks/index.d'
+import useCode from '../../hooks/code'
+import { UserAuthInfoMemberExtData } from '../../utils/request/index.d'
+import { isPhone } from '../../utils/v'
+import Msg from '../../utils/msg'
+import { Injected } from '../recruit/publish'
 import './index.scss'
+
+export const context = createContext<Injected>({} as Injected)
 
 export default function RealName(){
 
-  const { userUploadIdcard, sexArray, sexCurrent, setSexCurrent, setSexName, sexName } = useRealname()
-  
+  // 使用 实名hook 与 获取短信验证码hook
+  const { checkDegree, userUploadIdcard, sexArray, sexCurrent, setSexCurrent, setSexName, sexName, nationCurrent, initModel, setNationCurrent, setInitModel, model, setModel, userPostAuthInfo, area, setArea } = useRealname()
+  const { text, userGetCode } = useCode()
+
+  const value: Injected = {
+    area: area,
+    setArea: (city: string) => setArea(city)
+  }
+
   // 初始化生日选择时间
   const date = new Date()
   const year: number = date.getFullYear()
@@ -18,10 +33,18 @@ export default function RealName(){
 
   // 用户滑动性别picker
   const userChangeSex = (e: any)=> {
-    let current: number = parseInt(e.detail.value);
+    let current: number = parseInt(e.detail.value)
     let id: string = sexArray[current].id
     setSexCurrent(current)
     setSexName(sexArray[current].name)
+    if(model) setModel({...model, gender: id})
+  }
+
+  // 用户填写信息
+  const userEnterFormInfo = (title: string, e: any)=> {
+    let modelInfo: PostUserAuthInfo = JSON.parse(JSON.stringify(model))
+    modelInfo[title] = e.detail.value
+    setModel(modelInfo)
   }
 
   // 用户上传身份证照片
@@ -32,24 +55,53 @@ export default function RealName(){
   // 用户选择生日
   const userChangeBirthday = (e: any)=> {
     let { value } = e.detail;
-    console.log(value)
+    if(!initModel) return
+    let memberExt: UserAuthInfoMemberExtData = JSON.parse(JSON.stringify(initModel.memberExt))
+    memberExt.birthday = value
+    setInitModel({ ...initModel, memberExt: memberExt })
+    if(model) setModel({...model, birthday: value})
   }
 
+  // 用户选择民族
+  const userChangeNation = (e: any)=> {
+    let current: number = parseInt(e.detail.value)
+    setNationCurrent(current)
+    if(!initModel) return
+    let name: string = initModel.nation[current].mz_name
+    let id: string = initModel.nation[current].mz_id
+    if (model) setModel({ ...model, nation_id: id, nationality: name})
+  }
+
+  // 用户点击发送短信
+  const userSendCode = ()=> {
+    let tel: string = initModel ? (initModel.member ? initModel.member.tel : '') : ''
+    let flag: boolean = isPhone(tel)
+    if(flag) userGetCode(tel)
+    else Msg('请先输入正确的手机号')
+  }
+
+  // 用户选择地区
+  const userChooseArea = ()=> {
+    Taro.navigateTo({
+      url: '/pages/map/realname/index'
+    })
+  }
 
   return (
+    <context.Provider value={ value }>
     <View className='realname-container'>
       <View className='realname-cardimgbox'>
         <View className='realname-card-title'>请拍摄并上传你的身份证照片</View>
         <View className='realname-card-imgs clearfix'>
           <View className='realname-card-item' onClick={() => userUploadIdcardImg()}>
             <View className='realname-card-img'>
-              <Image className='realname-card-upimg' src={ IMGCDNURL + 'lpy/auth/idcard-l.png' } />
+              <Image className='realname-card-upimg' src={(model && model.idCardImg) ? (ALIYUNCDN + (model && model.idCardImg)) : IMGCDNURL + 'lpy/auth/idcard-l.png' } />
             </View>
             <View className='realname-card-title'>身份证正面照</View>
           </View>
           <View className='realname-card-item' onClick={() => userUploadIdcardImg()}>
             <View className='realname-card-img'>
-              <Image className='realname-card-upimg' src={ IMGCDNURL + 'lpy/auth/idcard-z.png'} />
+              <Image className='realname-card-upimg' src={(model && model.idCardImg) ? (ALIYUNCDN + (model && model.handImg)) : IMGCDNURL + 'lpy/auth/idcard-z.png' } />
             </View>
             <View className='realname-card-title'>手持身份证照</View>
           </View>
@@ -85,7 +137,8 @@ export default function RealName(){
             className='publish-list-input'
             type='text'
             placeholder='请输入姓名'
-            value=''
+            onInput={(e)=>userEnterFormInfo('username', e)}
+            value={ model && model.username }
           />
         </View>
         <View className='publish-list-item'>
@@ -102,25 +155,27 @@ export default function RealName(){
         </View>
         <View className='publish-list-item'>
           <Text className='pulish-list-title'>出生日期</Text>
-          <Picker mode='date' value='2001-01-12' onChange={(e)=>userChangeBirthday(e)} start={ startDate } end={ endDate }>
+          <Picker mode='date' value={ initModel ? initModel.memberExt.birthday : '' } onChange={(e)=>userChangeBirthday(e)} start={ startDate } end={ endDate }>
             <Input
               className='publish-list-input'
               type='text'
               disabled
               placeholder='请选择出生日期'
-              value=''
+              value={ model && model.birthday }
             />
           </Picker>
         </View>
         <View className='publish-list-item'>
           <Text className='pulish-list-title'>民族</Text>
-          <Input
-            className='publish-list-input'
-            type='text'
-            disabled
-            placeholder='请选择民族'
-            value=''
-          />
+          <Picker mode='selector' value={nationCurrent} rangeKey='mz_name' range={ initModel&&initModel.nation || []  } onChange={(e)=>userChangeNation(e)} >
+            <Input
+              className='publish-list-input'
+              type='text'
+              disabled
+              placeholder='请选择民族'
+              value={ initModel && initModel.nation[nationCurrent].mz_name }
+            />
+          </Picker>
         </View>
         <View className='publish-list-item'>
           <Text className='pulish-list-title'>身份证号</Text>
@@ -128,7 +183,8 @@ export default function RealName(){
             className='publish-list-input'
             type='text'
             placeholder='请输入身份证号码'
-            value=''
+            onInput={(e) => userEnterFormInfo('idCard', e)}
+            value={ model&&model.idCard }
           />
         </View>
         <View className='publish-list-item'>
@@ -138,10 +194,13 @@ export default function RealName(){
             type='text'
             disabled
             placeholder='请选择详细地址'
-            value=''
+            onClick={() => userChooseArea()}
+            value={ model && model.address }
           />
         </View>
       </View>
+
+      {(model && !model.tel) && checkDegree &&
       <View className='realname-card-form'>
         <View className='publish-list-item'>
           <Text className='pulish-list-title'>电话号码</Text>
@@ -149,7 +208,8 @@ export default function RealName(){
             className='publish-list-input'
             type='text'
             placeholder='请输入电话号码'
-            value=''
+            onInput={(e)=>userEnterFormInfo('tel', e)}
+            value={ model && model.tel }
           />
         </View>
         <View className='publish-list-item publish-list-item-code'>
@@ -158,12 +218,15 @@ export default function RealName(){
             className='publish-list-input'
             type='text'
             placeholder='请输入验证码'
-            value=''
+            onInput={(e)=>userEnterFormInfo('code', e)}
+            value={ model&&model.code }
           />
-          <View className='publish-code-btn' >获取验证码</View>
+          <View className='publish-code-btn' onClick={()=>userSendCode()}>{ text }</View>
         </View>
       </View>
-      <Button className='userauth-btn'>身份认证</Button>
+      }
+      <Button className='userauth-btn' onClick={() => userPostAuthInfo()} >身份认证</Button>
     </View>
+    </context.Provider>
   )
 }

@@ -128,9 +128,7 @@ var Auth = function (_Taro$Component) {
       });
       // 返回上一页
       var pageBack = function pageBack() {
-        _taroWeapp2.default.navigateBack({
-          delta: 1
-        });
+        _taroWeapp2.default.navigateBack();
       };
       // 取消授权
       var cancelAuth = function cancelAuth() {

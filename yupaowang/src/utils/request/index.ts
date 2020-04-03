@@ -17,6 +17,7 @@ import { CreateOrder } from '../../pages/recharge'
 import { UsedPublishModel } from '../../pages/used/index.d'
 import { UserPublishUsedInfo } from '../../pages/used/index.d'
 import * as Hooks from '../../hooks/index.d'
+import { UserAddInfo } from '../../pages/userinfo/add'
 
 interface RequestHeader {
   'content-type'?: string
@@ -372,5 +373,48 @@ export function postUserAuthInfo(data: Hooks.PostUserAuthInfo): Promise<Inter.Re
     url: api.postUserAuthInfo,
     method: 'POST',
     data: data
+  })
+}
+
+// 用户完善信息
+export function postUserAddInfo(data: UserAddInfo): Promise<Inter.Result>{
+  return doRequestAction({
+    url: api.postUserAddInfo,
+    method: 'POST',
+    data: data
+  })
+}
+
+// 用户修改头像
+export function userChangeAvatar(img: string): Promise<Inter.Result>{
+  return doRequestAction({
+    url: api.userChangeAvatar,
+    method: 'POST',
+    data: {
+      headerImg: img
+    }
+  })
+}
+
+// 用户修改名字
+export function userUpdateName(name: string): Promise<Inter.Result>{
+  return doRequestAction({
+    url: api.userUpdateName,
+    method: 'POST',
+    data: {
+      username: name
+    }
+  })
+}
+
+// 用户更换手机
+export function userChangePhone(tel: string, code: string): Promise<Inter.Result>{
+  return doRequestAction({
+    url: api.userChangePhone,
+    method: 'POST',
+    data: {
+      tel: tel,
+      code: code
+    }
   })
 }

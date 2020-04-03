@@ -9,7 +9,7 @@
                             <view class="member-userinfo-content">
                                 <image class="member-userinfo-avatar" src="http://cdn.yupao.com/miniprogram/images/user.png"></image>
                                 <view class="member-username">
-                                    <view class="member-username-text">{{model.member.username}}
+                                    <view class="member-username-text">{{model.member.username || model.member.nickname}}
                                         <block wx:if="{{model.is_checking == 2 && model.member.is_check == '2'}}">
                                             <image class="member-realnameimg" src="http://cdn.yupao.com/miniprogram/images/newresume-infolist-ysm.png"></image>
                                         </block>
@@ -17,7 +17,14 @@
                                 </view>
                                 <view class="member-usernum">会员编号：<text class="member-id">{{model.member.id}}</text>
                                 </view>
-                                <view class="member-editinfo">修改资料</view>
+                                <block>
+                                    <block wx:if="{{model.member.tel}}">
+                                        <view class="member-editinfo" bindtap="anonymousFunc0">修改资料</view>
+                                    </block>
+                                    <block wx:else>
+                                        <view class="member-editinfo" bindtap="anonymousFunc1">完善资料</view>
+                                    </block>
+                                </block>
                             </view>
                             <view class="member-user-integral">
                                 <view class="member-integral-item"><text class="member-integral-num">{{model.member.integral}}</text><text class="member-integral-text">积分</text>
@@ -28,7 +35,7 @@
                         </view>
                     </block>
                     <block wx:else>
-                        <view class="member-userinfo member-userinfo-null" bindtap="anonymousFunc0">
+                        <view class="member-userinfo member-userinfo-null" bindtap="anonymousFunc2">
                             <view class="member-toauth">
                                 <image class="member-user-nullimg" src="{{IMGCDNURL + 'userauth-userinfo-null.png'}}"></image><text class="member-user-login">登录/注册</text>
                             </view>
@@ -80,7 +87,7 @@
                 </view>
             </view>
             <view class="member-list-container">
-                <view class="member-list-item">
+                <view class="member-list-item" bindtap="anonymousFunc3">
                     <image class="member-list-icon" src="{{IMGCDNURL + 'lpy/ucenter/newcenter-realname.png'}}"></image><text class="member-list-title">实名认证</text><text class="member-list-tips">{{model && model.member.check_state}}</text>
                 </view>
                 <view class="member-list-item">

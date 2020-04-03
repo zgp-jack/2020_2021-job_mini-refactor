@@ -383,7 +383,7 @@ export interface UserAuthInfoMemberExtData {
   id_card_img: string,
   id_card_img_path: string,
   idcard_check_failure_reason: string,
-  notion_id: string,
+  nation_id: string,
   notionality: string,
   note: string,
   note_status: string,

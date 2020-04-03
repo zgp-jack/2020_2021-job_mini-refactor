@@ -3,11 +3,16 @@ import { View, Image, Text } from '@tarojs/components'
 import { useSelector } from '@tarojs/redux'
 import { getMemberInfo } from '../../utils/request'
 import { MemberInfo } from '../../utils/request/index.d'
-import './index.scss'
 import { IMGCDNURL, AUTHPATH } from '../../config'
 import { ShowActionModal } from '../../utils/msg'
 import { isIos } from '../../utils/v'
+import './index.scss'
 
+export interface UserMemberInfo {
+  username: string,
+  phone: string,
+  avatar: string
+}
 export default function Member(){
 
   // 获取用户信息
@@ -20,11 +25,17 @@ export default function Member(){
   const msgNumber: number = useSelector<any, number>(state => state.msg['messageNumber'])
   // 判断是否是ios
   const [ios, setIos] = useState<boolean>(false)
+  // 创建memberContext
+  const value: UserMemberInfo = {
+    username: model ? model.member.username||model.member.nickname : '',
+    avatar: model ? model.member.headimgurl : '',
+    phone: model ? model.member.tel : ''
+  }
 
-  // 跳转用户授权
-  const userAuthLogin = ()=> {
+  // 用户页面跳转
+  const userRouteJump = (url: string)=> {
     Taro.navigateTo({
-      url: AUTHPATH
+      url: url
     })
   }
 
@@ -57,14 +68,18 @@ export default function Member(){
               <Image className='member-userinfo-avatar' src='http://cdn.yupao.com/miniprogram/images/user.png' />
               <View className='member-username'>
                 <View className='member-username-text'>
-                { model.member.username }
+                { model.member.username || model.member.nickname }
                 { model.is_checking == 2 && model.member.is_check == '2' &&
                 <Image className='member-realnameimg' src='http://cdn.yupao.com/miniprogram/images/newresume-infolist-ysm.png' />
                 }
                 </View>
               </View>
               <View className='member-usernum'>会员编号：<Text className='member-id'>{ model.member.id }</Text></View>
-              <View className='member-editinfo'>修改资料</View>
+              { model.member.tel ? 
+                  <View className='member-editinfo' onClick={() => userRouteJump(`/pages/userinfo/index/index?username=${value.username}&phone=${value.phone}&avatar=${value.avatar}`)}>修改资料</View>
+              :
+              <View className='member-editinfo' onClick={()=>userRouteJump('/pages/userinfo/add/index')}>完善资料</View>
+              }
             </View>
             <View className='member-user-integral'>
               <View className='member-integral-item'>
@@ -79,7 +94,7 @@ export default function Member(){
             </View>
           </View>
           :
-          <View className='member-userinfo member-userinfo-null' onClick={()=>userAuthLogin()}>
+          <View className='member-userinfo member-userinfo-null' onClick={() => userRouteJump(AUTHPATH)}>
             <View className='member-toauth'>
               <Image className='member-user-nullimg' src={IMGCDNURL + 'userauth-userinfo-null.png' } />
               <Text className='member-user-login'>登录/注册</Text>
@@ -139,7 +154,7 @@ export default function Member(){
           </View>
         </View>
         <View className='member-list-container'>
-          <View className='member-list-item'>
+          <View className='member-list-item' onClick={() => userRouteJump('/pages/realname/index')}>
             <Image className='member-list-icon' src={ IMGCDNURL + 'lpy/ucenter/newcenter-realname.png'} />
             <Text className='member-list-title'>实名认证</Text>
             <Text className='member-list-tips'>{model&&model.member.check_state }</Text>

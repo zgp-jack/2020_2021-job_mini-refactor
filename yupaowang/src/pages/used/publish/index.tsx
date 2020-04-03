@@ -156,7 +156,7 @@ export default function UsedPublish() {
               <Text className='pulish-list-title'>联系电话</Text>
               <Input
                 className='publish-list-input'
-                type='text'
+                type='number'
                 placeholder='请输入联系电话'
                 value={ model.user_mobile }
                 onInput={(e) => userEnterFrom(e, 'user_mobile')}

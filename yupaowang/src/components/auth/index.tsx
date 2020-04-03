@@ -31,9 +31,7 @@ export default function Auth({ page = false, callback, userCancelAuth }: PROPS){
 
   // 返回上一页
   const pageBack = ()=> {
-    Taro.navigateBack({
-      delta:1
-    })
+    Taro.navigateBack()
   }
 
   // 取消授权

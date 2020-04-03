@@ -1,16 +1,5 @@
 (wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["pages/map/recruit/index"],{
 
-/***/ "./src/pages/map/recruit/index.scss":
-/*!******************************************!*\
-  !*** ./src/pages/map/recruit/index.scss ***!
-  \******************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
-
-/***/ }),
-
 /***/ "./src/pages/map/recruit/index.tsx":
 /*!*****************************************!*\
   !*** ./src/pages/map/recruit/index.tsx ***!
@@ -37,7 +26,9 @@ var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
 
 var _store = __webpack_require__(/*! ../../../config/store */ "./src/config/store.ts");
 
-var _index = __webpack_require__(/*! ../../../utils/request/index */ "./src/utils/request/index.ts");
+var _index = __webpack_require__(/*! ../../recruit/publish/index */ "./src/pages/recruit/publish/index.tsx");
+
+var _index2 = __webpack_require__(/*! ../../../utils/request/index */ "./src/utils/request/index.ts");
 
 __webpack_require__(/*! ./index.scss */ "./src/pages/map/recruit/index.scss");
 
@@ -95,14 +86,15 @@ var RecruitMap = function (_Taro$Component) {
         var areas = _taroWeapp2.default.getStorageSync(_store.Areas);
         if (areas) {
           setAreas(areas);
-        } else (0, _index.getAllAreas)().then(function (res) {
+        } else (0, _index2.getAllAreas)().then(function (res) {
           // 存入缓存
           _taroWeapp2.default.setStorageSync(_store.Areas, res);
           setAreas(res);
         });
       }, []);
       _taroWeapp.propsManager.set({
-        "data": areas
+        "data": areas,
+        "context": _index.context
       }, $compid__22, $prevCompid__22);
       Object.assign(this.__state, {
         $compid__22: $compid__22

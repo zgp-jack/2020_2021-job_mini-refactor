@@ -5,8 +5,10 @@ export const REQUESTURL: string = 'https://miniapi.zhaogong.vrtbbs.com/'   //测
 // export const REQUESTURL: string = 'https://newyupaomini.54xiaoshuo.com/'   //正式站
 // * 默认上传图片
 export const UPLOADIMGURL: string = REQUESTURL + 'index/upload/'
+// * 阿里云CDN域名
+export const ALIYUNCDN: string = 'http://cdn.yupao.com'
 // * 阿里云CDN图片域名
-export const IMGCDNURL: string = 'http://cdn.yupao.com/miniprogram/images/'
+export const IMGCDNURL: string = ALIYUNCDN + '/miniprogram/images/'
 // * 公司默认客服电话
 export const SERVERPHONE: string = '400-838-1888'
 // * 小程序广告unitid

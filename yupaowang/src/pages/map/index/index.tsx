@@ -7,18 +7,18 @@ import { UserLocationCity, UserPublishAreaHistory } from '../../../config/store'
 import { UserLocationPromiss, getCityInfo, ChildItems } from '../../../models/area'
 import { getAmapPoiList } from '../../../utils/helper'
 import { InputPoiListTips } from '../../../utils/helper/index.d'
-import { context } from '../../recruit/publish'
+// import { context } from '../../recruit/publish'
 import { checkAdcodeValid } from '../../../utils/request'
 import { AllAreasDataItem } from '../../../utils/request/index.d'
+import { Injected } from '../../recruit/publish'
 import './index.scss'
 import Msg, { ShowActionModal } from '../../../utils/msg'
 
 interface PROPS extends IPROPS{
-  
+  context: Taro.Context<Injected>
 }
 
-
-export default function MapComponent({ data }: PROPS){
+export default function MapComponent({ data, context }: PROPS){
 
   // 用户定位城市
   const [userLoc, setUserLoc] = useState<AllAreasDataItem>({
@@ -58,9 +58,9 @@ export default function MapComponent({ data }: PROPS){
 
   // 初始化所需数据
   useEffect(()=>{
-    initUserLocationCity()
+    if(!area) initUserLocationCity()
     initUserPublishAreaHistory()
-  })
+  },[])
 
   // 用户切换城市
   const userChangeCity = (city: string)=> {
@@ -74,6 +74,7 @@ export default function MapComponent({ data }: PROPS){
 
   // 获取关键词地区列表
   useEffect(() => {
+    if (!context) return
     getAmapPoiList(area + smAreaText).then(data=>{
       let lists: InputPoiListTips[] = data.filter(item => {
         return item.name && item.adcode && (typeof item.location === 'string')
@@ -81,7 +82,7 @@ export default function MapComponent({ data }: PROPS){
       setLists(lists)
     })
     
-  }, [smAreaText])
+  }, [smAreaText, area])
 
   // 用户点击城市选择
   const userTapCityBtn = (b: boolean)=> {
@@ -130,14 +131,16 @@ export default function MapComponent({ data }: PROPS){
   const userClickAreaItem = (item: InputPoiListTips)=> {
     checkAdcodeValid(item.adcode).then(res=>{
       if (res.errcode == "ok"){
-        setUserPublishAreaHistoryItem(item)
-        setAreaInfo({
-          title: item.name,
-          location: item.location,
-          adcode: item.adcode,
-          info: item.district
-        })
-        setPublishArea(item.name)
+        if (setAreaInfo){
+          setUserPublishAreaHistoryItem(item)
+          setAreaInfo({
+            title: item.name,
+            location: item.location,
+            adcode: item.adcode,
+            info: item.district
+          })
+          setPublishArea && setPublishArea(item.name)
+        }
         Taro.navigateBack()
       }
       else ShowActionModal({ msg: res.errmsg })

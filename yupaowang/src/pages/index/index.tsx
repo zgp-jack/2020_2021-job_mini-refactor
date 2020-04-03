@@ -1,4 +1,4 @@
-import Taro, { Config, useState, usePullDownRefresh, useEffect, useRouter } from '@tarojs/taro'
+import Taro, { Config, useState, usePullDownRefresh, useEffect, useRouter, RouterInfo } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import Tabbar from '../../components/tabbar'
 import { HOME, RECRUIT, RESUME, MEMBER, typeInTabbar } from '../../constants/tabbar'
@@ -16,7 +16,7 @@ export default function Index(){
   const dispatch = useDispatch()
 
   // 初始化页面参数
-  const router = useRouter()
+  const router: RouterInfo = useRouter()
   const { type = RECRUIT } = router.params
   // 获取当前tabbar高亮值
   const tabKey: string = useSelector<any, string>(state=>state.tabbar.key)

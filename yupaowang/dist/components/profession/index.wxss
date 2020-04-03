@@ -86,5 +86,5 @@
       text-align: center;
       font-weight: bold;
       letter-spacing: 15rpx;
-      box-shadow: 0 0 5rpx #e7e6e4; }
+      box-shadow: 0 0 10rpx #e7e6e4; }
 

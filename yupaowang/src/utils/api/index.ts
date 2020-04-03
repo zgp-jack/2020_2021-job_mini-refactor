@@ -58,3 +58,11 @@ export const getUserAuthInfo: string = REQUESTURL + 'user/auth-view/'
 export const postUserAuthInfo: string = REQUESTURL + 'user/do-auth/'
 // 实名认证识别身份证接口
 export const getIdcardAuthInfo: string = REQUESTURL + 'index/authid-card/'
+// 用户完善资料
+export const postUserAddInfo: string = REQUESTURL + 'user/bind-tel/'
+// 用户修改头像
+export const userChangeAvatar: string = REQUESTURL + 'user/update-header/'
+// 用户修改名字
+export const userUpdateName: string = REQUESTURL + 'user/update-username/'
+// 用户更换手机
+export const userChangePhone: string = REQUESTURL + 'user/update-tel/'

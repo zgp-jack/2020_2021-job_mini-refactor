@@ -18,19 +18,19 @@ export interface InitRecruitView {
 
 // context类型
 export interface Injected {
-  area: string,
-  setArea: (city: string)=>void,
-  setAreaInfo: (item: UserLastPublishRecruitArea)=>void,
-  setPublishArea: (val: string)=> void
+  area: string, // 城市名称
+  setArea: (city: string)=>void, //设置城市名称
+  setAreaInfo?: (item: UserLastPublishRecruitArea)=>void, // 用户点击的小地址信息
+  setPublishArea?: (val: string)=> void //设置最后一次点击 城市的名字
 }
 
-export const context = createContext<Injected>({} as Injected);
+export const context = createContext<Injected>({} as Injected)
 
 export default function PublishRecruit() {
 
   // 获取路由参数
   const router: RouterInfo = useRouter()
-  const id:string = router.params.id || ''
+  const id: string = router.params.id || ''
   const type: string = 'job'
   const InitParams: InitRecruitView = { type: type,infoId: id }
   
@@ -68,7 +68,7 @@ export default function PublishRecruit() {
 
   // 用户填写表单
   const userEnterFrom = (e: any,key: string)=> {
-    const value = e.detail.value
+    const value: string = e.detail.value
     const state: RecruitModelInfo = JSON.parse(JSON.stringify(model))
     state[key] = value
     setModel(state)
@@ -95,8 +95,8 @@ export default function PublishRecruit() {
     let works: ProfessionRecruitData[] = JSON.parse(JSON.stringify(model.classifyTree))
     let check: boolean = works[i].children[k].is_check
     if(!check){
-      let max = model.maxClassifyCount
-      let num = model.classifies.length
+      let max: number = model.maxClassifyCount
+      let num: number = model.classifies.length
       if(num >= max){
         Msg('工种最多可以选择'+ max + '个')
         return
@@ -144,7 +144,7 @@ export default function PublishRecruit() {
                 <Input 
                   className='publish-list-input' 
                   type='text' 
-                  placeholder='请输入标题（3-30个字' 
+                  placeholder='请输入标题（3-30个字）' 
                   value={ model&&model.title }
                   onInput={(e)=>userEnterFrom(e,'title')}
                 />

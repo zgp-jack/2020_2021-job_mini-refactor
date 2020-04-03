@@ -2676,6 +2676,30 @@ export function getCityInfo(data: UserLocationPromiss, current = 0): ChildItems{
   // 查询不到内容 直接返回全国/北京
   return current ? AREABEIJING : AREACHINA
 }
-
+// 根据城市名字返回数据内名字
+export function getLongAreaAdname(title: string): string {
+  let area: string = '北京市'
+  if(!title) return area
+  let flag: boolean = false
+  for (let i: number = 1, len: number = AREAS.length -1; i< len; i ++){
+    if(flag) break
+    if(title.indexOf(AREAS[i].name) !== -1){
+      return AREAS[i].ad_name
+      break
+    }
+    if (AREAS[i].has_children){
+      let ChildItems = AREAS[i].children
+      for(let j: number = 0, clen: number = 0; j < clen; j++){
+        if (title.indexOf(ChildItems[j].name) !== -1){
+          flag = true
+          return ChildItems[j].ad_name
+          break
+        }
+      }
+    }
+    
+  }
+  return area
+}
 
 export default AREAS

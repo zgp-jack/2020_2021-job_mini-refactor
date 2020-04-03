@@ -1,3 +1,5 @@
+@import '../common.scss';
+
 .publish-list-item{
   position: relative;
   width: 100%;
@@ -79,4 +81,17 @@
     line-height: 40px;
     padding-bottom: 60px;
   }
+}
+
+.user-submit-btn{
+  position: relative;
+  width: 80%;
+  margin: 30px auto;
+  line-height: 80px;
+  text-align: center;
+  background-color: $color;
+  color: white;
+  border-radius: 5px;
+  font-size: 30px;
+  letter-spacing: 3px;
 }

@@ -20,7 +20,7 @@
   width: 100%;
   padding: 10rpx 20rpx 0;
   background-color: white;
-  box-shadow: 0 0 5rpx #e7e6e4; }
+  box-shadow: 0 0 10rpx #e7e6e4; }
   .wechatinfo-container .wechat-container {
     position: relative;
     font-size: 28rpx;

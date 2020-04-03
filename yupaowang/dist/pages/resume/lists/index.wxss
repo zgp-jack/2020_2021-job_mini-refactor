@@ -46,5 +46,5 @@
     font-size: 30rpx;
     font-weight: bold;
     letter-spacing: 5rpx;
-    box-shadow: 0 0 5rpx #e7e6e4; }
+    box-shadow: 0 0 10rpx #e7e6e4; }
 

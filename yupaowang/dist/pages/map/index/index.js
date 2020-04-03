@@ -43,15 +43,13 @@ var _area = __webpack_require__(/*! ../../../models/area */ "./src/models/area.t
 
 var _index2 = __webpack_require__(/*! ../../../utils/helper/index */ "./src/utils/helper/index.ts");
 
-var _index3 = __webpack_require__(/*! ../../recruit/publish/index */ "./src/pages/recruit/publish/index.tsx");
-
-var _index4 = __webpack_require__(/*! ../../../utils/request/index */ "./src/utils/request/index.ts");
+var _index3 = __webpack_require__(/*! ../../../utils/request/index */ "./src/utils/request/index.ts");
 
 __webpack_require__(/*! ./index.scss */ "./src/pages/map/index/index.scss");
 
-var _index5 = __webpack_require__(/*! ../../../utils/msg/index */ "./src/utils/msg/index.ts");
+var _index4 = __webpack_require__(/*! ../../../utils/msg/index */ "./src/utils/msg/index.ts");
 
-var _index6 = _interopRequireDefault(_index5);
+var _index5 = _interopRequireDefault(_index4);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -60,6 +58,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+// import { context } from '../../recruit/publish'
+
 
 var MapComponent = function (_Taro$Component) {
   _inherits(MapComponent, _Taro$Component);
@@ -69,7 +69,7 @@ var MapComponent = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (MapComponent.__proto__ || Object.getPrototypeOf(MapComponent)).apply(this, arguments));
 
-    _this.$usedState = ["loopArray16", "loopArray17", "$compid__23", "smAreaText", "showHistory", "histroyList", "lists", "IMGCDNURL", "showCity", "area", "data"];
+    _this.$usedState = ["loopArray16", "loopArray17", "$compid__23", "smAreaText", "showHistory", "histroyList", "lists", "IMGCDNURL", "showCity", "area", "data", "context"];
     _this.anonymousFunc4Map = {};
     _this.anonymousFunc5Map = {};
     _this.customComponents = ["Cities"];
@@ -98,7 +98,9 @@ var MapComponent = function (_Taro$Component) {
           $prevCompid__23 = _genCompid2[0],
           $compid__23 = _genCompid2[1];
 
-      var data = this.__props.data;
+      var _props = this.__props,
+          data = _props.data,
+          context = _props.context;
       // 用户定位城市
 
       var _useState = (0, _taroWeapp.useState)({
@@ -120,7 +122,7 @@ var MapComponent = function (_Taro$Component) {
       // 使用发布招工hook处理数据
 
 
-      var _useContext = (0, _taroWeapp.useContext)(_index3.context),
+      var _useContext = (0, _taroWeapp.useContext)(context),
           area = _useContext.area,
           setArea = _useContext.setArea,
           setAreaInfo = _useContext.setAreaInfo,
@@ -172,9 +174,11 @@ var MapComponent = function (_Taro$Component) {
       };
       // 初始化所需数据
       (0, _taroWeapp.useEffect)(function () {
-        initUserLocationCity();
+        if (!area) {
+          initUserLocationCity();
+        }
         initUserPublishAreaHistory();
-      });
+      }, []);
       // 用户切换城市
       var userChangeCity = function userChangeCity(city) {
         setArea(city);
@@ -185,13 +189,16 @@ var MapComponent = function (_Taro$Component) {
       };
       // 获取关键词地区列表
       (0, _taroWeapp.useEffect)(function () {
+        if (!context) {
+          return;
+        }
         (0, _index2.getAmapPoiList)(area + smAreaText).then(function (data) {
           var lists = data.filter(function (item) {
             return item.name && item.adcode && typeof item.location === 'string';
           });
           setLists(lists);
         });
-      }, [smAreaText]);
+      }, [smAreaText, area]);
       // 用户点击城市选择
       var userTapCityBtn = function userTapCityBtn(b) {
         setShowCity(b);
@@ -234,20 +241,22 @@ var MapComponent = function (_Taro$Component) {
       };
       // 用户选择小地区 检测adcode
       var userClickAreaItem = function userClickAreaItem(item) {
-        (0, _index4.checkAdcodeValid)(item.adcode).then(function (res) {
+        (0, _index3.checkAdcodeValid)(item.adcode).then(function (res) {
           if (res.errcode == "ok") {
-            setUserPublishAreaHistoryItem(item);
-            setAreaInfo({
-              title: item.name,
-              location: item.location,
-              adcode: item.adcode,
-              info: item.district
-            });
-            setPublishArea(item.name);
+            if (setAreaInfo) {
+              setUserPublishAreaHistoryItem(item);
+              setAreaInfo({
+                title: item.name,
+                location: item.location,
+                adcode: item.adcode,
+                info: item.district
+              });
+              setPublishArea && setPublishArea(item.name);
+            }
             _taroWeapp2.default.navigateBack();
-          } else (0, _index5.ShowActionModal)({ msg: res.errmsg });
+          } else (0, _index4.ShowActionModal)({ msg: res.errmsg });
         }).catch(function () {
-          (0, _index6.default)("网络错误，请求失败！");
+          (0, _index5.default)("网络错误，请求失败！");
         });
       };
       this.anonymousFunc0 = function () {

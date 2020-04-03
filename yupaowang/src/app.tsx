@@ -25,6 +25,10 @@ class App extends Component {
       "pages/integral/expend/index", //积分消耗记录
       "pages/recharge/index", //用户充值页面
       "pages/realname/index", //用户实名认证
+      "pages/map/realname/index", // 用户实名选择地址
+      "pages/userinfo/index/index", // 用户修改资料
+      "pages/userinfo/add/index", // 用户完善资料
+      "pages/userinfo/phone/index", // 用户更换手机
     ],
     subPackages: [
       {

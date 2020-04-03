@@ -23,7 +23,7 @@
     position: relative;
     width: 100%;
     height: 380rpx;
-    background-image: url(http://cdn.yupao.com/miniprogram/images/new-ucenter.png);
+    background-image: url("http://cdn.yupao.com/miniprogram/images/new-ucenter.png");
     background-repeat: no-repeat;
     background-size: 100% 100%; }
     .member-container .member-header-box .member-header-title {
