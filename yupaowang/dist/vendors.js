@@ -10091,10 +10091,10 @@ Object.defineProperty(exports, "__esModule", {
 });
 // ? 全局不动配置项 只做导出不做修改
 // * 全局请求接口域名
-var REQUESTURL = exports.REQUESTURL = 'https://miniapi.zhaogong.vrtbbs.com/'; //测试站
+var REQUESTURL = exports.REQUESTURL = 'http://miniapitest.zhaogong.vrtbbs.com/'; //测试站
 // export const REQUESTURL: string = 'https://newyupaomini.54xiaoshuo.com/'   //正式站
 // * 默认上传图片
-var UPLOADIMGURL = exports.UPLOADIMGURL = "https://miniapi.zhaogong.vrtbbs.com/index/upload/";
+var UPLOADIMGURL = exports.UPLOADIMGURL = "http://miniapitest.zhaogong.vrtbbs.com/index/upload/";
 // * 阿里云CDN域名
 var ALIYUNCDN = exports.ALIYUNCDN = 'http://cdn.yupao.com';
 // * 阿里云CDN图片域名

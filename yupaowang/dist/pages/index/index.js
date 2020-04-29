@@ -111,7 +111,7 @@ var Index = function (_Taro$Component) {
       backgroundTextStyle: "dark"
     };
 
-    _this.$usedState = ["$compid__27", "tabKey", "HOME", "RECRUIT", "RESUME", "MEMBER"];
+    _this.$usedState = ["$compid__0", "tabKey", "HOME", "RECRUIT", "RESUME", "MEMBER"];
     _this.customComponents = ["Home", "Recruit", "Resume", "Member", "Tabbar"];
     return _this;
   }
@@ -131,10 +131,10 @@ var Index = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__27"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__0"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__27 = _genCompid2[0],
-          $compid__27 = _genCompid2[1];
+          $prevCompid__0 = _genCompid2[0],
+          $compid__0 = _genCompid2[1];
 
       var dispatch = (0, _redux.useDispatch)();
       // 初始化页面参数
@@ -180,9 +180,9 @@ var Index = function (_Taro$Component) {
       }, [tabKey]);
       _taroWeapp.propsManager.set({
         "notredirect": true
-      }, $compid__27, $prevCompid__27);
+      }, $compid__0, $prevCompid__0);
       Object.assign(this.__state, {
-        $compid__27: $compid__27,
+        $compid__0: $compid__0,
         tabKey: tabKey,
         HOME: _tabbar.HOME,
         RECRUIT: _tabbar.RECRUIT,
