@@ -70,7 +70,7 @@ var _App = function (_BaseComponent) {
     var _this = _possibleConstructorReturn(this, (_App.__proto__ || Object.getPrototypeOf(_App)).apply(this, arguments));
 
     _this.config = {
-      pages: ['pages/index/index', 'pages/userauth/index', "pages/recruit/publish/index", "pages/used/lists/index", "pages/map/recruit/index", "pages/used/publish/index", "pages/used/info/index", "pages/invite/index", "pages/getintegral/index", "pages/integral/source/index", "pages/integral/temp/index", "pages/integral/official/index", "pages/integral/expend/index", "pages/recharge/index", "pages/realname/index", "pages/map/realname/index", "pages/userinfo/index/index", "pages/userinfo/add/index"],
+      pages: ['pages/index/index', 'pages/userauth/index', "pages/recruit/publish/index", "pages/used/lists/index", "pages/map/recruit/index", "pages/used/publish/index", "pages/used/info/index", "pages/invite/index", "pages/getintegral/index", "pages/integral/source/index", "pages/integral/temp/index", "pages/integral/official/index", "pages/integral/expend/index", "pages/recharge/index", "pages/realname/index", "pages/map/realname/index", "pages/userinfo/index/index", "pages/userinfo/add/index", "pages/userinfo/phone/index", "pages/published/recruit/index"],
       subPackages: [{
         root: 'subpackage/pages/',
         pages: ['checkauth/index']

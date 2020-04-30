@@ -136,6 +136,9 @@ var Member = function (_Taro$Component) {
       (0, _taroWeapp.useEffect)(function () {
         setIos((0, _index4.isIos)());
       }, []);
+      (0, _taroWeapp.useDidShow)(function () {
+        initMemberInfo();
+      });
       (0, _taroWeapp.useEffect)(function () {
         initMemberInfo();
       }, [login]);
@@ -149,6 +152,12 @@ var Member = function (_Taro$Component) {
         return userRouteJump(_index2.AUTHPATH);
       };
       this.anonymousFunc3 = function () {
+        return userRouteJump('/pages/recharge/index');
+      };
+      this.anonymousFunc4 = function () {
+        return userRouteJump('/pages/invite/index');
+      };
+      this.anonymousFunc5 = function () {
         return userRouteJump('/pages/realname/index');
       };
       Object.assign(this.__state, {
@@ -181,12 +190,22 @@ var Member = function (_Taro$Component) {
     value: function anonymousFunc3(e) {
       ;
     }
+  }, {
+    key: "anonymousFunc4",
+    value: function anonymousFunc4(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc5",
+    value: function anonymousFunc5(e) {
+      ;
+    }
   }]);
 
   return Member;
 }(_taroWeapp2.default.Component);
 
-Member.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3"];
+Member.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5"];
 Member.$$componentPath = "pages/member/index";
 exports.default = Member;
 

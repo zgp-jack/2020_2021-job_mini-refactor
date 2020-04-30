@@ -13659,6 +13659,256 @@ Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/
 
 /***/ }),
 
+/***/ "./src/pages/userinfo/index/index.scss":
+/*!*********************************************!*\
+  !*** ./src/pages/userinfo/index/index.scss ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
+/***/ "./src/pages/userinfo/index/index.tsx":
+/*!********************************************!*\
+  !*** ./src/pages/userinfo/index/index.tsx ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.PhoneContext = undefined;
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
+
+var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
+
+var _index = __webpack_require__(/*! ../../../utils/request/index */ "./src/utils/request/index.ts");
+
+var _index2 = __webpack_require__(/*! ../../../utils/upload/index */ "./src/utils/upload/index.tsx");
+
+var _index3 = _interopRequireDefault(_index2);
+
+var _index4 = __webpack_require__(/*! ../../../utils/msg/index */ "./src/utils/msg/index.ts");
+
+var _index5 = _interopRequireDefault(_index4);
+
+__webpack_require__(/*! ./index.scss */ "./src/pages/userinfo/index/index.scss");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var PhoneContext = exports.PhoneContext = (0, _taroWeapp.createContext)({});
+
+var UserUpdateInfo = function (_Taro$Component) {
+  _inherits(UserUpdateInfo, _Taro$Component);
+
+  function UserUpdateInfo() {
+    _classCallCheck(this, UserUpdateInfo);
+
+    var _this = _possibleConstructorReturn(this, (UserUpdateInfo.__proto__ || Object.getPrototypeOf(UserUpdateInfo)).apply(this, arguments));
+
+    _this.$usedState = ["headerImg", "showModal", "newName", "name", "uphone"];
+    _this.customComponents = [];
+    return _this;
+  }
+
+  _createClass(UserUpdateInfo, [{
+    key: "_constructor",
+    value: function _constructor(props) {
+      _get(UserUpdateInfo.prototype.__proto__ || Object.getPrototypeOf(UserUpdateInfo.prototype), "_constructor", this).call(this, props);
+      this.$$refs = new _taroWeapp2.default.RefsArray();
+    }
+  }, {
+    key: "_createData",
+    value: function _createData() {
+      this.__state = arguments[0] || this.state || {};
+      this.__props = arguments[1] || this.props || {};
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
+      ;
+      var router = (0, _taroWeapp.useRouter)();
+      var _router$params = router.params,
+          _router$params$userna = _router$params.username,
+          username = _router$params$userna === undefined ? '' : _router$params$userna,
+          _router$params$phone = _router$params.phone,
+          phone = _router$params$phone === undefined ? '' : _router$params$phone,
+          _router$params$avatar = _router$params.avatar,
+          avatar = _router$params$avatar === undefined ? '' : _router$params$avatar;
+      // 用户改头像
+
+      var _useState = (0, _taroWeapp.useState)(avatar),
+          _useState2 = _slicedToArray(_useState, 2),
+          headerImg = _useState2[0],
+          setHeaderImg = _useState2[1];
+      // 是否展示修改名字模态框
+
+
+      var _useState3 = (0, _taroWeapp.useState)(false),
+          _useState4 = _slicedToArray(_useState3, 2),
+          showModal = _useState4[0],
+          setShowModal = _useState4[1];
+      // 用户名字
+
+
+      var _useState5 = (0, _taroWeapp.useState)(username),
+          _useState6 = _slicedToArray(_useState5, 2),
+          name = _useState6[0],
+          setName = _useState6[1];
+      // 用户新名字
+
+
+      var _useState7 = (0, _taroWeapp.useState)(username),
+          _useState8 = _slicedToArray(_useState7, 2),
+          newName = _useState8[0],
+          setNewName = _useState8[1];
+      // 用户电话号码
+
+
+      var _useState9 = (0, _taroWeapp.useState)(phone),
+          _useState10 = _slicedToArray(_useState9, 2),
+          uphone = _useState10[0],
+          setUPhone = _useState10[1];
+
+      var value = {
+        setPhone: function setPhone(tel) {
+          return setUPhone(tel);
+        }
+      };
+      // 用户输入新名字
+      var userEnterName = function userEnterName(e) {
+        var _e$detail$value = e.detail.value,
+            value = _e$detail$value === undefined ? '' : _e$detail$value;
+
+        setNewName(value);
+      };
+      // 用户修改头像
+      var userUploadAvatar = function userUploadAvatar() {
+        (0, _index3.default)().then(function (res) {
+          if (res.errcode == 'ok') {
+            (0, _index.userChangeAvatar)(res.url).then(function (data) {
+              (0, _index5.default)(data.errmsg);
+              if (data.errcode == 'ok') {
+                setHeaderImg(res.httpurl);
+              }
+            });
+          } else {
+            (0, _index5.default)(res.errmsg);
+          }
+        }).catch(function () {
+          (0, _index5.default)('网络错误，上传失败');
+        });
+      };
+      // 用户前往修改手机
+      var userJumpPhonePage = function userJumpPhonePage() {
+        _taroWeapp2.default.navigateTo({
+          url: "/pages/userinfo/phone/index"
+        });
+      };
+      // 用户修改新名字
+      var userSubmitName = function userSubmitName() {
+        if (newName === name) {
+          setShowModal(false);
+          return;
+        }
+        (0, _index.userUpdateName)(newName).then(function (res) {
+          (0, _index5.default)(res.errmsg);
+          if (res.errcode == 'ok') {
+            setName(newName);
+            setShowModal(false);
+          }
+        }).catch(function () {
+          (0, _index5.default)('网络错误，修改失败');
+        });
+      };
+      PhoneContext.Provider(value);
+      this.anonymousFunc0 = function () {
+        return userUploadAvatar();
+      };
+      this.anonymousFunc1 = function () {
+        return setShowModal(true);
+      };
+      this.anonymousFunc2 = function () {
+        return userJumpPhonePage();
+      };
+      this.anonymousFunc3 = function (e) {
+        return userEnterName(e);
+      };
+      this.anonymousFunc4 = function () {
+        return setShowModal(false);
+      };
+      this.anonymousFunc5 = function () {
+        return userSubmitName();
+      };
+      Object.assign(this.__state, {
+        headerImg: headerImg,
+        showModal: showModal,
+        newName: newName,
+        name: name,
+        uphone: uphone
+      });
+      return this.__state;
+    }
+  }, {
+    key: "anonymousFunc0",
+    value: function anonymousFunc0(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc1",
+    value: function anonymousFunc1(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc2",
+    value: function anonymousFunc2(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc3",
+    value: function anonymousFunc3(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc4",
+    value: function anonymousFunc4(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc5",
+    value: function anonymousFunc5(e) {
+      ;
+    }
+  }]);
+
+  return UserUpdateInfo;
+}(_taroWeapp2.default.Component);
+
+UserUpdateInfo.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5"];
+UserUpdateInfo.$$componentPath = "pages/userinfo/index/index";
+exports.default = UserUpdateInfo;
+
+Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(UserUpdateInfo, true));
+
+/***/ }),
+
 /***/ "./src/utils/api/index.ts":
 /*!********************************!*\
   !*** ./src/utils/api/index.ts ***!
@@ -13672,7 +13922,7 @@ Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.userChangePhone = exports.userUpdateName = exports.userChangeAvatar = exports.postUserAddInfo = exports.getIdcardAuthInfo = exports.postUserAuthInfo = exports.getUserAuthInfo = exports.getMemberMsgNumber = exports.getMemberInfo = exports.CheckMineAuthInfo = exports.CheckAuth = exports.GetUsedInfo = exports.GetUserPhoneCode = exports.PublishUsedInfo = exports.GetUsedInfoModel = exports.GetRechargeOrder = exports.GetRechargeOpenid = exports.GetRechargeList = exports.GetUserInviteLink = exports.CheckAdcodeValid = exports.GetAllAreas = exports.GetPublisRecruitView = exports.GetIntegralList = exports.GetTabbarMsg = exports.GetListFilterData = exports.GetWechatNotice = exports.GetFleamarketlist = exports.GetResumelist = exports.GetRecruitlist = exports.GetAllListItem = exports.GetBannerNotice = exports.GetUserInfo = exports.GetUserSessionKey = undefined;
+exports.userChangeRecruitStatus = exports.userGetPublishedRecruitList = exports.userChangePhone = exports.userUpdateName = exports.userChangeAvatar = exports.postUserAddInfo = exports.getIdcardAuthInfo = exports.postUserAuthInfo = exports.getUserAuthInfo = exports.getMemberMsgNumber = exports.getMemberInfo = exports.CheckMineAuthInfo = exports.CheckAuth = exports.GetUsedInfo = exports.GetUserPhoneCode = exports.PublishUsedInfo = exports.GetUsedInfoModel = exports.GetRechargeOrder = exports.GetRechargeOpenid = exports.GetRechargeList = exports.GetUserInviteLink = exports.CheckAdcodeValid = exports.GetAllAreas = exports.GetPublisRecruitView = exports.GetIntegralList = exports.GetTabbarMsg = exports.GetListFilterData = exports.GetWechatNotice = exports.GetFleamarketlist = exports.GetResumelist = exports.GetRecruitlist = exports.GetAllListItem = exports.GetBannerNotice = exports.GetUserInfo = exports.GetUserSessionKey = undefined;
 
 var _index = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
 
@@ -13742,6 +13992,10 @@ var userChangeAvatar = exports.userChangeAvatar = _index.REQUESTURL + 'user/upda
 var userUpdateName = exports.userUpdateName = _index.REQUESTURL + 'user/update-username/';
 // 用户更换手机
 var userChangePhone = exports.userChangePhone = _index.REQUESTURL + 'user/update-tel/';
+// 用户获取已发布招工列表
+var userGetPublishedRecruitList = exports.userGetPublishedRecruitList = _index.REQUESTURL + 'job/issue-lists/';
+// 用户改变招工状态
+var userChangeRecruitStatus = exports.userChangeRecruitStatus = _index.REQUESTURL + 'job/job-end-status/';
 
 /***/ }),
 
@@ -13965,6 +14219,8 @@ exports.postUserAddInfo = postUserAddInfo;
 exports.userChangeAvatar = userChangeAvatar;
 exports.userUpdateName = userUpdateName;
 exports.userChangePhone = userChangePhone;
+exports.userGetPublishedRecruitLists = userGetPublishedRecruitLists;
+exports.userChangeRecruitStatus = userChangeRecruitStatus;
 
 var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
@@ -14325,6 +14581,22 @@ function userChangePhone(tel, code) {
       tel: tel,
       code: code
     }
+  });
+}
+// 用户获取已发布招工列表
+function userGetPublishedRecruitLists(data) {
+  return doRequestAction({
+    url: api.userGetPublishedRecruitList,
+    data: data,
+    method: 'POST'
+  });
+}
+// 用户改变发布招工状态
+function userChangeRecruitStatus(id) {
+  return doRequestAction({
+    url: api.userChangeRecruitStatus,
+    data: { infoId: id },
+    method: 'POST'
   });
 }
 

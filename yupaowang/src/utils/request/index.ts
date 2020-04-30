@@ -18,6 +18,7 @@ import { UsedPublishModel } from '../../pages/used/index.d'
 import { UserPublishUsedInfo } from '../../pages/used/index.d'
 import * as Hooks from '../../hooks/index.d'
 import { UserAddInfo } from '../../pages/userinfo/add'
+import { searchDataType } from '../../pages/published/recruit' 
 
 interface RequestHeader {
   'content-type'?: string
@@ -416,5 +417,23 @@ export function userChangePhone(tel: string, code: string): Promise<Inter.Result
       tel: tel,
       code: code
     }
+  })
+}
+
+// 用户获取已发布招工列表
+export function userGetPublishedRecruitLists(data: searchDataType): Promise<Inter.UserPublishedRecruitData>{
+  return doRequestAction({
+    url: api.userGetPublishedRecruitList,
+    data: data,
+    method: 'POST'
+  })
+}
+
+// 用户改变发布招工状态
+export function userChangeRecruitStatus(id: string): Promise<Inter.UserChangePublishedRecruitStatus>{
+  return doRequestAction({
+    url: api.userChangeRecruitStatus,
+    data: { infoId: id },
+    method: 'POST'
   })
 }

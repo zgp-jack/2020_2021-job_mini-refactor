@@ -28,7 +28,8 @@ class App extends Component {
       "pages/map/realname/index", // 用户实名选择地址
       "pages/userinfo/index/index", // 用户修改资料
       "pages/userinfo/add/index", // 用户完善资料
-      // "pages/userinfo/phone/index", // 用户更换手机
+      "pages/userinfo/phone/index", // 用户更换手机
+      "pages/published/recruit/index", // 已发布招工列表
     ],
     subPackages: [
       {

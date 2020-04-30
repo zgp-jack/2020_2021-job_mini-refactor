@@ -1,4 +1,4 @@
-import Taro, { useState, useEffect } from '@tarojs/taro'
+import Taro, { useState, useEffect, useDidShow } from '@tarojs/taro'
 import { View, Image, Text } from '@tarojs/components'
 import { useSelector } from '@tarojs/redux'
 import { getMemberInfo } from '../../utils/request'
@@ -51,6 +51,10 @@ export default function Member(){
   useEffect(()=>{
     setIos(isIos())
   },[])
+
+  useDidShow(()=>{
+    initMemberInfo()
+  })
 
   useEffect(()=>{
     initMemberInfo()
@@ -134,12 +138,12 @@ export default function Member(){
           </View>
         </View>
         <View className='member-list-container'>
-          <View className='member-list-item'>
+          <View className='member-list-item' onClick={() => userRouteJump('/pages/recharge/index')}>
             <Image className='member-list-icon' src={ IMGCDNURL + 'lpy/ucenter/newcenter-integral.png'} />
             <Text className='member-list-title'>获取积分</Text>
             {!ios && <Text className='member-list-tips'>去充值</Text>}
           </View>
-          <View className='member-list-item'>
+          <View className='member-list-item' onClick={() => userRouteJump('/pages/invite/index')}>
             <Image className='member-list-icon' src={ IMGCDNURL + 'lpy/ucenter/newcenter-invite.png'} />
             <Text className='member-list-title'>邀请工友</Text>
             <Text className='member-list-tips'>邀请好友得积分</Text>
