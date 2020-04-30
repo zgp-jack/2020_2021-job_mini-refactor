@@ -66,3 +66,11 @@ export const userChangeAvatar: string = REQUESTURL + 'user/update-header/'
 export const userUpdateName: string = REQUESTURL + 'user/update-username/'
 // 用户更换手机
 export const userChangePhone: string = REQUESTURL + 'user/update-tel/'
+// 收藏招工列表
+export const getCollectionRecruitList: string = REQUESTURL +'job/collect-list/'
+// 收藏找活列表
+export const getCollectionResumeList: string = REQUESTURL +'resumes/collect-list/'
+// 招工取消收藏
+export const recruitCancelCollection: string = REQUESTURL +'job/collect/'
+// 招活取消收藏
+export const ResumeCancelCollection: string = REQUESTURL + 'resumes/resume-collect/'

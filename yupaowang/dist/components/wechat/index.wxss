@@ -2,7 +2,6 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis; }
-
 .clearfix:after {
   content: "";
   display: block;
@@ -11,46 +10,43 @@
   line-height: 0;
   height: 0;
   font-size: 0; }
-
 .clearfix {
   zoom: 1; }
-
 .wechatinfo-container {
   position: relative;
   width: 100%;
   padding: 10rpx 20rpx 0;
   background-color: white;
   box-shadow: 0 0 10rpx #e7e6e4; }
-  .wechatinfo-container .wechat-container {
+.wechatinfo-container .wechat-container {
     position: relative;
     font-size: 28rpx;
     line-height: 50rpx; }
-    .wechatinfo-container .wechat-container .wechat-addgroup {
+.wechatinfo-container .wechat-container .wechat-addgroup {
       position: relative;
       color: #f86e09; }
-    .wechatinfo-container .wechat-container .wechat-text {
+.wechatinfo-container .wechat-container .wechat-text {
       color: #0099ff; }
-    .wechatinfo-container .wechat-container .wechat-btn {
+.wechatinfo-container .wechat-container .wechat-btn {
       background-color: #0099ff;
       color: white;
       padding: 4rpx 15rpx;
       font-size: 26rpx;
       border-radius: 5rpx;
       margin: 0 10rpx; }
-  .wechatinfo-container .notice-container {
+.wechatinfo-container .notice-container {
     position: relative;
     margin-top: 10rpx;
     border-top: 1rpx dashed #0099ff;
     height: 80rpx;
     padding-left: 150rpx; }
-    .wechatinfo-container .notice-container .notice-tips {
+.wechatinfo-container .notice-container .notice-tips {
       position: absolute;
       line-height: 60rpx;
       left: 0;
       top: 10rpx;
       font-size: 28rpx;
       color: #f86e09; }
-    .wechatinfo-container .notice-container .notice-lists {
+.wechatinfo-container .notice-container .notice-lists {
       position: relative;
       width: 100%; }
-

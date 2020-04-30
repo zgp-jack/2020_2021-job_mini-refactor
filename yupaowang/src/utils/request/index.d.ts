@@ -397,3 +397,55 @@ export interface UserAuthInfoNationData {
   mz_id: string,
   mz_name: string
 }
+// 收藏招工
+export interface CollectionRecruitListData extends Result {
+  list: CollectionRecruitListDataList[],
+  pageSize: number
+}
+export interface CollectionRecruitListDataList {
+  check_status: CollectionRecruitListDataListStatus,
+  detail: string,
+  header_img: string,
+  id: string,
+  is_check: string,
+  is_end: string,
+  state: string,
+  status: string,
+  time: string,
+  title: string,
+  user_name: string,
+}
+
+export interface CollectionRecruitListDataListStatus {
+  showTips: number,
+  tipsMsg: string
+}
+
+// 收藏找活
+export interface CollectionResumeListData {
+  data: CollectionResumeListDataList[],
+  errcode: number,
+  pageSize: number
+}
+export interface CollectionResumeListDataList {
+  check_tips_string: string,
+  id: string,
+  resume: CollectionResumeListDataListResume,
+  resume_uuid: string,
+  show_tips: string,
+  time: string,
+  user_uuid: string,
+}
+export interface CollectionResumeListDataListResume {
+  time: string,
+  headerimg: string,
+  username: string,
+  nation: string,
+  type: string,
+  prof_degree: string,
+  occupations: string[],
+  introduce: string,
+  show_address: string,
+  distance: string,
+  gender: string,
+}

@@ -37,7 +37,7 @@
     font-size: 30rpx;
     letter-spacing: 5rpx;
     margin-top: 30rpx; }
-    .user-auth-container .user-btn::after {
+  .user-auth-container .user-btn::after {
       border-radius: 0;
       border: 0; }
   .user-auth-container .user-auth-submit {
@@ -47,4 +47,3 @@
     background: #ffffff;
     color: #555;
     border: 1rpx solid #f1f1f1; }
-

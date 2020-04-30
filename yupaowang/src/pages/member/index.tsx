@@ -161,7 +161,7 @@ export default function Member(){
           </View>
           <View className='member-list-item'>
             <Image className='member-list-icon' src={ IMGCDNURL + 'lpy/ucenter/newcenter-collect.png'} />
-            <Text className='member-list-title'>我的收藏</Text>
+            <Text className='member-list-title' onClick={() => userRouteJump('/pages/collection/index')}>我的收藏</Text>
           </View>
         </View>
         <View className='member-list-container'>

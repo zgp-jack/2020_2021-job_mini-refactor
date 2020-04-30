@@ -418,3 +418,34 @@ export function userChangePhone(tel: string, code: string): Promise<Inter.Result
     }
   })
 }
+// 收藏招工请求数据
+export function getCollectionRecruitListData(page: number): Promise<Inter.CollectionRecruitListData>{
+  return doRequestAction({
+    url: api.getCollectionRecruitList,
+    method: 'POST',
+    data: {
+      page,
+    }
+  })
+}
+// 收藏找活请求数据
+export function getCollectionResumeListData(page: number): Promise<Inter.CollectionResumeListData>{
+  return doRequestAction({
+    url: api.getCollectionResumeList,
+    method: 'POST',
+    data: {
+      page,
+    }
+  })
+}
+
+// 取消招工收藏
+export function recruitListCancelCollectionAction(id:string): Promise<Inter.Result>{
+  return doRequestAction({
+    url: api.recruitCancelCollection,
+    method: 'POST',
+    data: {
+      id,
+    }
+  })
+}

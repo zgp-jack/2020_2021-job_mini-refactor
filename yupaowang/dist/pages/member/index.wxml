@@ -91,7 +91,7 @@
                     <image class="member-list-icon" src="{{IMGCDNURL + 'lpy/ucenter/newcenter-realname.png'}}"></image><text class="member-list-title">实名认证</text><text class="member-list-tips">{{model && model.member.check_state}}</text>
                 </view>
                 <view class="member-list-item">
-                    <image class="member-list-icon" src="{{IMGCDNURL + 'lpy/ucenter/newcenter-collect.png'}}"></image><text class="member-list-title">我的收藏</text>
+                    <image class="member-list-icon" src="{{IMGCDNURL + 'lpy/ucenter/newcenter-collect.png'}}"></image><text class="member-list-title" bindtap="anonymousFunc4">我的收藏</text>
                 </view>
             </view>
             <view class="member-list-container">

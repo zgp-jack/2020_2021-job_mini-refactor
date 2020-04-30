@@ -2,7 +2,7 @@
     <block>
         <block>
             <block wx:if="{{showProfession}}">
-                <profession compid="{{$compid__16}}"></profession>
+                <profession compid="{{$compid__55}}"></profession>
             </block>
             <view class="publish-recruit-container">
                 <form>
@@ -38,7 +38,7 @@
                         </view>
                         <view class="publish-list-textarea"><text class="publish-textarea-title">招工详情</text>
                             <textarea class="publish-textarea" value="{{model && model.detail || ''}}" focus="{{textFocus}}" bindtap="anonymousFunc6" bindfocus="anonymousFunc7" placeholder="请输入招工详情" bindinput="anonymousFunc8"></textarea>
-                            <words-total compid="{{$compid__17}}"></words-total>
+                            <words-total compid="{{$compid__56}}"></words-total>
                         </view>
                     </view>
                     <view class="publish-recruit-card">
@@ -52,7 +52,7 @@
                             <view class="publish-upload-tips">可上传工地现场照片、工程图纸、承包合同等</view>
                         </view>
                         <block wx:if="{{showUpload && model}}">
-                            <image-view compid="{{$compid__18}}"></image-view>
+                            <image-view compid="{{$compid__57}}"></image-view>
                         </block>
                     </view>
                     <view class="publish-recruit-btn" bindtap="anonymousFunc10">确认发布</view>

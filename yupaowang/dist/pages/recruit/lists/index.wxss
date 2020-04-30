@@ -2,7 +2,6 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis; }
-
 .clearfix:after {
   content: "";
   display: block;
@@ -11,27 +10,25 @@
   line-height: 0;
   height: 0;
   font-size: 0; }
-
 .clearfix {
   zoom: 1; }
-
 .recruit-container {
   position: relative;
   width: 100%; }
-  .recruit-container .recruit-fiexd-header {
+.recruit-container .recruit-fiexd-header {
     position: fixed;
     z-index: 500;
     width: 100%;
     left: 0;
     top: 0; }
-  .recruit-container .recruit-lists-containerbox {
+.recruit-container .recruit-lists-containerbox {
     position: fixed;
     width: 100%;
     left: 0;
     top: 180rpx;
     height: calc(100% - 180rpx);
     z-index: 3; }
-  .recruit-container .publish-list-btn {
+.recruit-container .publish-list-btn {
     position: fixed;
     width: 280rpx;
     line-height: 80rpx;
@@ -47,4 +44,3 @@
     font-weight: bold;
     letter-spacing: 5rpx;
     box-shadow: 0 0 10rpx #e7e6e4; }
-

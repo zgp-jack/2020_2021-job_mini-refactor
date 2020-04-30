@@ -2,7 +2,6 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis; }
-
 .clearfix:after {
   content: "";
   display: block;
@@ -11,33 +10,31 @@
   line-height: 0;
   height: 0;
   font-size: 0; }
-
 .clearfix {
   zoom: 1; }
-
 .uploads-imgs-lists {
   position: relative; }
-  .uploads-imgs-lists .uploads-img-item {
+.uploads-imgs-lists .uploads-img-item {
     position: relative;
     width: 33.333%;
     height: 180rpx;
     padding: 20rpx;
     float: left;
     margin-bottom: 15rpx; }
-    .uploads-imgs-lists .uploads-img-item .uploads-img-imgbox {
+.uploads-imgs-lists .uploads-img-item .uploads-img-imgbox {
       position: relative;
       display: block;
       width: 100%;
       height: 100%;
       border-radius: 5rpx; }
-      .uploads-imgs-lists .uploads-img-item .uploads-img-imgbox .uploads-item-img {
+.uploads-imgs-lists .uploads-img-item .uploads-img-imgbox .uploads-item-img {
         position: relative;
         display: block;
         width: 100%;
         height: 100%; }
-    .uploads-imgs-lists .uploads-img-item .uploads-img-imgbox-active {
+.uploads-imgs-lists .uploads-img-item .uploads-img-imgbox-active {
       border: 1rpx solid #dcdcdc; }
-      .uploads-imgs-lists .uploads-img-item .uploads-img-imgbox-active::after {
+.uploads-imgs-lists .uploads-img-item .uploads-img-imgbox-active::after {
         position: absolute;
         content: '';
         width: 50rpx;
@@ -48,7 +45,7 @@
         margin-top: -1rpx;
         z-index: 1;
         background: #dcdcdc; }
-      .uploads-imgs-lists .uploads-img-item .uploads-img-imgbox-active::before {
+.uploads-imgs-lists .uploads-img-item .uploads-img-imgbox-active::before {
         position: absolute;
         content: '';
         width: 2rpx;
@@ -59,4 +56,3 @@
         margin-top: -25rpx;
         z-index: 1;
         background: #dcdcdc; }
-

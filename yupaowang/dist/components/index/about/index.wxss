@@ -2,7 +2,6 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis; }
-
 .clearfix:after {
   content: "";
   display: block;
@@ -11,10 +10,8 @@
   line-height: 0;
   height: 0;
   font-size: 0; }
-
 .clearfix {
   zoom: 1; }
-
 .home-about {
   position: relative;
   margin-top: 30rpx;
@@ -22,18 +19,18 @@
   flex-direction: column;
   justify-content: center;
   align-items: center; }
-  .home-about .home-about-navlist {
+.home-about .home-about-navlist {
     position: relative;
     margin-bottom: 5rpx; }
-    .home-about .home-about-navlist .about-navlist-item {
+.home-about .home-about-navlist .about-navlist-item {
       position: relative;
       display: block;
       font-size: 28rpx;
       float: left;
       margin-right: 40rpx; }
-      .home-about .home-about-navlist .about-navlist-item:nth-last-child(1) {
+.home-about .home-about-navlist .about-navlist-item:nth-last-child(1) {
         margin-right: 0; }
-      .home-about .home-about-navlist .about-navlist-item::after {
+.home-about .home-about-navlist .about-navlist-item::after {
         position: absolute;
         content: '';
         right: -20rpx;
@@ -41,10 +38,9 @@
         width: 1rpx;
         top: 10rpx;
         background: #828586; }
-      .home-about .home-about-navlist .about-navlist-item:nth-last-child(1)::after {
+.home-about .home-about-navlist .about-navlist-item:nth-last-child(1)::after {
         content: none; }
-  .home-about .home-about-icp, .home-about .home-about-version {
+.home-about .home-about-icp, .home-about .home-about-version {
     position: relative;
     font-size: 28rpx;
     line-height: 40rpx; }
-

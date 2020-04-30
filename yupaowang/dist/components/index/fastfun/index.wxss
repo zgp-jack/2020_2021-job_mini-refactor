@@ -2,7 +2,6 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis; }
-
 .clearfix:after {
   content: "";
   display: block;
@@ -11,10 +10,8 @@
   line-height: 0;
   height: 0;
   font-size: 0; }
-
 .clearfix {
   zoom: 1; }
-
 .home-fastfun {
   position: relative;
   width: 100%;
@@ -25,7 +22,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center; }
-  .home-fastfun .home-fastfun-item {
+.home-fastfun .home-fastfun-item {
     position: relative;
     width: 33.333%;
     height: 100%;
@@ -35,15 +32,14 @@
     flex-direction: row;
     justify-content: center;
     align-items: center; }
-    .home-fastfun .home-fastfun-item:nth-last-child(1) {
+.home-fastfun .home-fastfun-item:nth-last-child(1) {
       border-right: 0; }
-    .home-fastfun .home-fastfun-item .home-fastfun-img {
+.home-fastfun .home-fastfun-item .home-fastfun-img {
       position: relative;
       width: 40rpx;
       height: 40rpx;
       display: block;
       margin-right: 10rpx; }
-    .home-fastfun .home-fastfun-item .home-fastfun-text {
+.home-fastfun .home-fastfun-item .home-fastfun-text {
       position: relative;
       font-size: 28rpx; }
-
