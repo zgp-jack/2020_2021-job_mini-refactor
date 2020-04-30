@@ -5,7 +5,7 @@ import { CollectionResumeListDataList, CollectionRecruitListDataList } from '../
 import classnames from 'classnames'
 import CollectionRecruitList from "./collectionRecruitList"
 import CollectionResumeList from "./collectionResumeList"
-import { getCollectionRecruitListData, getCollectionResumeListData, recruitListCancelCollectionAction } from '../../utils/request'
+import { getCollectionRecruitListData, getCollectionResumeListData, recruitListCancelCollectionAction, ResumeCancelCollectionAction } from '../../utils/request'
 import './index.scss'
 
 export interface FilterData {
@@ -103,11 +103,19 @@ export default function Collection() {
       setinitRecPage({ ...initRecPage, page: initRecPage.page + 1})
     }
   }
-  const parantHandler = (id:string) => {
+  // 招工取消收藏
+  const RecruitListHandler = (id:string) => {
     recruitListCancelCollectionAction(id).then(res => {
-      console.log(res);
       if (res.errcode === "ok") {
         setinitRecPage({ ...initRecPage, page: 1 })
+      }
+    })
+  }
+  // 找活取消收藏
+  const ResumeListHandler = (id:string) => {
+    ResumeCancelCollectionAction(id).then(res => {
+      if (res.errcode === "ok") {
+        setinitResPage({ ...initResPage, page: 1 })
       }
     })
   }
@@ -133,9 +141,9 @@ export default function Collection() {
         onScrollToLower={() => getNextPageData()}
       >
         {/* 招工 */}
-        {current === 1 && <CollectionRecruitList data={lists.item} handlerClick={parantHandler}/>}
+        {current === 1 && <CollectionRecruitList data={lists.item} onHandlerClick={RecruitListHandler}/>}
         {/* 找活 */}
-        {current === 2 && <CollectionResumeList data={resLists.resume}  />}
+        {current === 2 && <CollectionResumeList data={resLists.resume} onHandlerClick={ResumeListHandler} />}
       </ScrollView>
     </View> 
   )

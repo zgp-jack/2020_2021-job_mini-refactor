@@ -1,18 +1,20 @@
 import Taro from '@tarojs/taro'
 import { View, Text, Image, Block, Button } from '@tarojs/components'
 import { IMGCDNURL } from '../../../config'
+import Nodata from '../../../components/nodata'
 import './index.scss'
 import { CollectionRecruitListDataList } from '../../../utils/request/index.d'
 
 interface PROPS {
   data: CollectionRecruitListDataList[],
-  handlerClick : Function,
+  onHandlerClick : Function,
 }
 
-export default function CollectionRecruitList({ data, handlerClick }: PROPS) {
+export default function CollectionRecruitList({ data, onHandlerClick }: PROPS) {
   return (
     <View className='recruit-lists-container'>
-      {data&&data.map((item) => (
+      {!data.length && <Nodata text='没有找到相关的数据'/>}
+      { data && data.map((item) => (
         <Block>
           {
             // item.map((d) => (
@@ -38,7 +40,7 @@ export default function CollectionRecruitList({ data, handlerClick }: PROPS) {
               <View className='recruit-list-footer'>
                 {/* <Image className='recruit-list-loc' src={IMGCDNURL + 'newlist-jobposi.png'} /> */}
                 <View className='recruit-list-loctxt overwords'>{item.time}</View>
-                <Button size='mini' className='recruit-list-button' onClick={()=>{handlerClick(item.id)}}>取消收藏</Button>
+                <Button size='mini' className='recruit-list-button' onClick={()=>{onHandlerClick(item.id)}}>取消收藏</Button>
               </View>
             </View>
           // )

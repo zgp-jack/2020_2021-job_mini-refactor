@@ -2,16 +2,18 @@ import Taro, { Config, useState, usePullDownRefresh, useEffect, useRouter, Route
 import { View, Button, Image, Text, Block } from '@tarojs/components'
 import { CollectionResumeListDataList } from '../../../utils/request/index.d'
 import { IMGCDNURL } from '../../../config'
+import Nodata from '../../../components/nodata'
 import './index.scss'
 
 interface PROPS {
   data: CollectionResumeListDataList[],
+  onHandlerClick:Function,
 }
-export default function CollectionResumeList({ data }: PROPS) {
+export default function CollectionResumeList({ data, onHandlerClick }: PROPS) {
   return (
     <View className='resume-list-container'>
-      {
-        data&&data.map((item) => (
+      {!data.length && <Nodata text='没有找到相关的数据'/>}
+      { data && data.map((item) => (
         <Block>
           {
             // item.map((d) => (
@@ -47,7 +49,7 @@ export default function CollectionResumeList({ data }: PROPS) {
                 {/* <Image className='resume-list-loc' src={IMGCDNURL + 'lpy/biaoqian.png'} /> */}
                   <View className='resume-list-loctxt overwords'>{item.resume.time}</View>
                   {/* <Text className='resume-list-time'>{item.resume.prof_degree}</Text> */}
-                  <Button size='mini' className='resume-list-button' onClick={() => { console.log(item.resume_uuid)}}>取消收藏</Button>
+                  <Button size='mini' className='resume-list-button' onClick={() => { onHandlerClick(item.resume_uuid)}}>取消收藏</Button>
               </View>
             </View>
           // ))

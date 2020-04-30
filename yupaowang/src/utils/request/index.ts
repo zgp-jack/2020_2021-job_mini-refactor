@@ -449,3 +449,13 @@ export function recruitListCancelCollectionAction(id:string): Promise<Inter.Resu
     }
   })
 }
+// 取消找活收藏
+export function ResumeCancelCollectionAction(resume_uuid:string): Promise<Inter.Result>{
+  return doRequestAction({
+    url: api.ResumeCancelCollection,
+    method: 'POST',
+    data: {
+      resume_uuid,
+    }
+  })
+}
