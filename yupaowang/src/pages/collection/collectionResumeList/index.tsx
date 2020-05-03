@@ -8,21 +8,26 @@ import './index.scss'
 interface PROPS {
   data: CollectionResumeListDataList[],
   onHandlerClick:Function,
+  onHandleClick: Function,
+  bottom?: boolean,
+  recruitNoMoreData: boolean,
 }
-export default function CollectionResumeList({ data, onHandlerClick }: PROPS) {
+export default function CollectionResumeList({ data = [], onHandlerClick, onHandleClick, bottom = true, recruitNoMoreData}: PROPS) {
   return (
-    <View className='resume-list-container'>
+    <View className='resume-list-container' style={bottom ? '' : 'padding-bottom:0'}>
       {!data.length && <Nodata text='没有找到相关的数据'/>}
       { data && data.map((item) => (
         <Block>
           {
             // item.map((d) => (
-            <View className='resume-list-item'>
+            <View className='resume-list-item' onClick={() => onHandleClick(item.resume.check)} key={item.id}>
               <View className='resume-list-header'>
                   <Image className='resume-list-user' src={item.resume.headerimg} />
                 <View className='resume-list-userinfo'>
                   <View className='resume-list-userinfo-detail'>
                       <Text className='resume-userinfo-name'>{item.resume.username}</Text>
+                    <Text className='resume-userinfo-birthday'>{item.resume.birthday || 0 }岁</Text>
+                    {item.resume.certificate == 1 && < Image className='resume-userinfo-img' src="http://cdn.yupao.com/miniprogram/images/newresume-infolist-jnz.png?t=1"/>}
                     {/* <Text className='resume-userinfo-sex'>男</Text> */}
                       {/* <Text className='resume-userinfo-age'>{item.resume.birthday}岁</Text> */}
                   </View>
@@ -30,7 +35,7 @@ export default function CollectionResumeList({ data, onHandlerClick }: PROPS) {
                   <View className='resume-otherinfo'>
                       <Text className='resume-otherinfo-text'>{item.resume.nation}</Text>
                       <Text className='resume-otherinfo-text'>{item.resume.prof_degree}</Text>
-                      {/* <Text className='resume-otherinfo-text'>{item.resume.experience}</Text> */}
+                      <Text className='resume-otherinfo-text'>{item.resume.experience}</Text>
                   </View>
                   {/* <View className='resume-list-tags'>
               <Text className='resume-list-tags-item'>任劳任怨</Text>
@@ -56,6 +61,9 @@ export default function CollectionResumeList({ data, onHandlerClick }: PROPS) {
           }
         </Block>
       ))}
+      {/* {data.length && recruitNoMoreData &&  */}
+      <View className="resume-lists-noData">没有更多数据了</View>
+      {/* }  */}
     </View>
   )
 }

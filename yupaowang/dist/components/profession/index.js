@@ -52,7 +52,7 @@ var Profession = (_temp2 = _class = function (_Taro$Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Profession.__proto__ || Object.getPrototypeOf(Profession)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray47", "data", "title", "footerTitle", "closeProfession", "onClickItem"], _this.anonymousFunc0Map = {}, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Profession.__proto__ || Object.getPrototypeOf(Profession)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray46", "data", "title", "footerTitle", "closeProfession", "onClickItem"], _this.anonymousFunc0Map = {}, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Profession, [{
@@ -86,15 +86,15 @@ var Profession = (_temp2 = _class = function (_Taro$Component) {
         return closeProfession();
       };
 
-      var loopArray47 = data ? data.map(function (item, i) {
+      var loopArray46 = data ? data.map(function (item, i) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
-        var $anonymousCallee__9 = data ? item.$original.children.map(function (d, k) {
+        var $anonymousCallee__7 = data ? item.$original.children.map(function (d, k) {
           d = {
             $original: (0, _taroWeapp.internal_get_original)(d)
           };
-          var _$indexKey = 'dazzz' + i + '-' + k;
+          var _$indexKey = 'ddzzz' + i + '-' + k;
 
           _this2.anonymousFunc0Map[_$indexKey] = function () {
             return _this2.__props.onClickItem(i, k, d.$original.id);
@@ -113,12 +113,12 @@ var Profession = (_temp2 = _class = function (_Taro$Component) {
           };
         }) : [];
         return {
-          $anonymousCallee__9: $anonymousCallee__9,
+          $anonymousCallee__7: $anonymousCallee__7,
           $original: item.$original
         };
       }) : [];
       Object.assign(this.__state, {
-        loopArray47: loopArray47,
+        loopArray46: loopArray46,
         data: data,
         title: title,
         footerTitle: footerTitle

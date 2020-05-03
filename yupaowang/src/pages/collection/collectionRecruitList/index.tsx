@@ -8,17 +8,20 @@ import { CollectionRecruitListDataList } from '../../../utils/request/index.d'
 interface PROPS {
   data: CollectionRecruitListDataList[],
   onHandlerClick : Function,
+  onHandleClick: Function,
+  recruitNoMoreData:boolean,
+  bottom?: boolean
 }
 
-export default function CollectionRecruitList({ data, onHandlerClick }: PROPS) {
+export default function CollectionRecruitList({ data = [], onHandlerClick, onHandleClick, recruitNoMoreData, bottom = true }: PROPS) {
   return (
-    <View className='recruit-lists-container'>
+    <View className='recruit-lists-container' style={bottom ? '' : 'padding-bottom:0'}>
       {!data.length && <Nodata text='没有找到相关的数据'/>}
       { data && data.map((item) => (
         <Block>
           {
             // item.map((d) => (
-            <View className='recruit-list-item'>
+            <View className='recruit-list-item' onClick={() => { onHandleClick(item.is_check)}} key={item.id}>
               {/* {item.top && <Image className='list-toprecruit-img' src={IMGCDNURL + 'newlist-jobzd.png'} />} */}
               {item.is_end == '2' && <Image className='recruit-findend-img' src={IMGCDNURL + 'newlist-jobfindend.png'} />}
               <View className='recruit-list-header'>
@@ -47,8 +50,9 @@ export default function CollectionRecruitList({ data, onHandlerClick }: PROPS) {
           // )
           }
         </Block>
-      )
-      )}
+      ))}
+      {data.length && recruitNoMoreData && <View className="recruit-lists-noData">没有更多数据了</View>} 
+      {/* <View className="recruit-lists-bottom">没有更多数据了</View> */}
     </View>
   )
 }

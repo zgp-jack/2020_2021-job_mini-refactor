@@ -448,4 +448,9 @@ export interface CollectionResumeListDataListResume {
   show_address: string,
   distance: string,
   gender: string,
+  check: string,
+  birthday: number,
+  certificate:number,
+  authentication: string,
+  experience: string,
 }
