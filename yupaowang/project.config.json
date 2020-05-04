@@ -53,6 +53,28 @@
 					"id": -1,
 					"name": "收藏列表",
 					"pathName": "pages/collection/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 1,
+					"name": "关于我们",
+					"pathName": "pages/about/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "使用教程",
+					"pathName": "pages/course/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "举报骗子",
+					"pathName": "pages/report/index",
+					"query": "",
 					"scene": null
 				}
 			]

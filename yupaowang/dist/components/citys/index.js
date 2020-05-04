@@ -60,7 +60,7 @@ var Cities = (_temp2 = _class = function (_Taro$Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Cities.__proto__ || Object.getPrototypeOf(Cities)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray43", "loopArray44", "loopArray45", "text", "IMGCDNURL", "userLoc", "recentlyCities", "data", "show", "inputCity", "area", "parent", "userTapCityBtn", "userChangeCity"], _this.anonymousFunc4Map = {}, _this.anonymousFunc5Map = {}, _this.anonymousFunc6Map = {}, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Cities.__proto__ || Object.getPrototypeOf(Cities)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray51", "loopArray52", "loopArray53", "text", "IMGCDNURL", "userLoc", "recentlyCities", "data", "show", "inputCity", "area", "parent", "userTapCityBtn", "userChangeCity"], _this.anonymousFunc4Map = {}, _this.anonymousFunc5Map = {}, _this.anonymousFunc6Map = {}, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Cities, [{
@@ -235,13 +235,13 @@ var Cities = (_temp2 = _class = function (_Taro$Component) {
         return userTapCityBtn(false);
       };
 
-      var loopArray43 = recentlyCities.map(function (item, __index4) {
+      var loopArray51 = recentlyCities.map(function (item, __index4) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
         var $loopState__temp2 = 'rec' + item.$original.id;
 
-        var _$indexKey = "cgzzz" + __index4;
+        var _$indexKey = "dizzz" + __index4;
 
         _this2.anonymousFunc4Map[_$indexKey] = function () {
           return userTapCity(item.$original);
@@ -253,7 +253,7 @@ var Cities = (_temp2 = _class = function (_Taro$Component) {
           $original: item.$original
         };
       });
-      var loopArray44 = data.map(function (item, index) {
+      var loopArray52 = data.map(function (item, index) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
@@ -263,7 +263,7 @@ var Cities = (_temp2 = _class = function (_Taro$Component) {
             $original: (0, _taroWeapp.internal_get_original)(d)
           };
           var $loopState__temp6 = key + d.$original.id;
-          var _$indexKey2 = "chzzz" + index + "-" + key;
+          var _$indexKey2 = "djzzz" + index + "-" + key;
 
           _this2.anonymousFunc5Map[_$indexKey2] = function () {
             return userTapCity(d.$original);
@@ -281,12 +281,12 @@ var Cities = (_temp2 = _class = function (_Taro$Component) {
           $original: item.$original
         };
       });
-      var loopArray45 = show ? inputCity.map(function (item, __index6) {
+      var loopArray53 = show ? inputCity.map(function (item, __index6) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
 
-        var _$indexKey3 = "cizzz" + __index6;
+        var _$indexKey3 = "eazzz" + __index6;
 
         _this2.anonymousFunc6Map[_$indexKey3] = function () {
           return userTapInputCity(item.$original);
@@ -298,9 +298,9 @@ var Cities = (_temp2 = _class = function (_Taro$Component) {
         };
       }) : [];
       Object.assign(this.__state, {
-        loopArray43: loopArray43,
-        loopArray44: loopArray44,
-        loopArray45: loopArray45,
+        loopArray51: loopArray51,
+        loopArray52: loopArray52,
+        loopArray53: loopArray53,
         text: text,
         IMGCDNURL: _index.IMGCDNURL,
         userLoc: userLoc,

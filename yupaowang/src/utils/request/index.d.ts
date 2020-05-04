@@ -454,3 +454,20 @@ export interface CollectionResumeListDataListResume {
   authentication: string,
   experience: string,
 }
+// 操作教程
+export interface reportData extends Result {
+  masterList: reportMasterList[],
+  userList: reportUserList[],
+}
+export interface reportMasterList {
+  id: string,
+  video_url: string,
+  title: string,
+  isShow?:boolean,
+}
+export interface reportUserList{
+  title: string,
+  id: string,
+  video_url: string,
+  isShow?: boolean,
+}

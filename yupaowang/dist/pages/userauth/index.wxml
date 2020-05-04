@@ -1,5 +1,5 @@
 <block wx:if="{{$taroCompReady}}">
     <block>
-        <auth compid="{{$compid__27}}"></auth>
+        <auth compid="{{$compid__36}}"></auth>
     </block>
 </block>

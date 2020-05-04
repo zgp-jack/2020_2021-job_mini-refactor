@@ -53,6 +53,14 @@
           "id": -1,
           "name": "收藏列表",
           "pathName": "pages/collection/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 1,
+          "name": "页面",
+          "pathName": "pages/listAbout/index",
+          "query": "",
           "scene": null
         }
       ]

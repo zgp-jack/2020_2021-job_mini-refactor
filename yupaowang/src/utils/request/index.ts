@@ -459,3 +459,11 @@ export function ResumeCancelCollectionAction(resume_uuid:string): Promise<Inter.
     }
   })
 }
+
+// 使用教程
+export function requestAction(): Promise<Inter.reportData> {
+  return doRequestAction({
+    url: api.requestActionUrl,
+    method: 'POST',
+  })
+}

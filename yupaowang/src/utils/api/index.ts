@@ -74,3 +74,5 @@ export const getCollectionResumeList: string = REQUESTURL +'resumes/collect-list
 export const recruitCancelCollection: string = REQUESTURL +'job/collect/'
 // 招活取消收藏
 export const ResumeCancelCollection: string = REQUESTURL + 'resumes/resume-collect/'
+// 使用教程
+export const requestActionUrl: string = REQUESTURL + 'index/course/'

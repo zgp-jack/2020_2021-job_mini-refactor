@@ -29,7 +29,10 @@ class App extends Component {
       "pages/userinfo/index/index", // 用户修改资料
       "pages/userinfo/add/index", // 用户完善资料
       // "pages/userinfo/phone/index", // 用户更换手机
-      "pages/collection/index" //收藏
+      "pages/collection/index", //收藏
+      "pages/about/index", //关于我们
+      "pages/report/index", // 举报骗子
+      "pages/course/index" //使用教程
     ],
     subPackages: [
       {
