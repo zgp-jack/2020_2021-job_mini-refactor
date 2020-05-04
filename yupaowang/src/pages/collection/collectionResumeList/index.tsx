@@ -1,8 +1,8 @@
-import Taro, { Config, useState, usePullDownRefresh, useEffect, useRouter, RouterInfo } from '@tarojs/taro'
+import Taro from '@tarojs/taro'
 import { View, Button, Image, Text, Block } from '@tarojs/components'
 import { CollectionResumeListDataList } from '../../../utils/request/index.d'
-import { IMGCDNURL } from '../../../config'
 import Nodata from '../../../components/nodata'
+import { IMGCDNURL } from '../../../config'
 import './index.scss'
 
 interface PROPS {
@@ -27,7 +27,7 @@ export default function CollectionResumeList({ data = [], onHandlerClick, onHand
                   <View className='resume-list-userinfo-detail'>
                       <Text className='resume-userinfo-name'>{item.resume.username}</Text>
                     <Text className='resume-userinfo-birthday'>{item.resume.birthday || 0 }岁</Text>
-                    {item.resume.certificate == 1 && < Image className='resume-userinfo-img' src="http://cdn.yupao.com/miniprogram/images/newresume-infolist-jnz.png?t=1"/>}
+                    {item.resume.certificate == 1 && < Image className='resume-userinfo-img' src={`${IMGCDNURL}newresume-infolist-jnz.png?t=1`}/>}
                     {/* <Text className='resume-userinfo-sex'>男</Text> */}
                       {/* <Text className='resume-userinfo-age'>{item.resume.birthday}岁</Text> */}
                   </View>
@@ -62,7 +62,7 @@ export default function CollectionResumeList({ data = [], onHandlerClick, onHand
         </Block>
       ))}
       {/* {data.length && recruitNoMoreData &&  */}
-      <View className="resume-lists-noData">没有更多数据了</View>
+      {data.length && recruitNoMoreData && <View className="resume-lists-noData">没有更多数据了</View>}
       {/* }  */}
     </View>
   )

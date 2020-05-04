@@ -95,7 +95,7 @@ export default function ResumeList() {
       <AtModal isOpened={isOpened}>
         <AtModalHeader>温馨提示</AtModalHeader>
         <AtModalContent>
-          该信息正在人工审核中，请稍后再试！
+          {modalContent}
         </AtModalContent>
         <AtModalAction>
           <Button onClick={() => { setIsOpened(false) }}>确定</Button>

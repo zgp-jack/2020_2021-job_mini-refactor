@@ -2,18 +2,10 @@ import Taro, { useEffect, useState } from '@tarojs/taro'
 import { View, ScrollView, Button } from '@tarojs/components'
 import CollectionRecruitList from "../collectionRecruitList";
 import { AtModal, AtModalHeader, AtModalContent, AtModalAction } from "taro-ui"
-import { getCollectionRecruitListData, recruitListCancelCollectionAction, ResumeCancelCollectionAction } from '../../../utils/request'
-import { CollectionResumeListDataList, CollectionRecruitListDataList } from '../../../utils/request/index.d'
+import { getCollectionRecruitListData, recruitListCancelCollectionAction } from '../../../utils/request'
+import {  CollectionRecruitListDataList } from '../../../utils/request/index.d'
 import './index.scss'
 
-// 定义找活页数
-export interface initResPageType {
-  page: number
-}
-// 定义找活
-export interface AllLists {
-  resume: CollectionResumeListDataList[],
-}
 // 定义招工
 export interface Recruit {
   item: CollectionRecruitListDataList[]
@@ -104,7 +96,7 @@ export default function RecruitList() {
       <AtModal isOpened={isOpened}>
         <AtModalHeader>温馨提示</AtModalHeader>
         <AtModalContent>
-          该信息正在人工审核中，请稍后再试！
+          {modalContent}
         </AtModalContent>
         <AtModalAction>
           <Button onClick={() => { setIsOpened(false) }}>确定</Button>
