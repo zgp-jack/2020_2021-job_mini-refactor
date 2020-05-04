@@ -3,6 +3,14 @@
   white-space: nowrap;
   text-overflow: ellipsis; }
 
+.showMore {
+  position: relative;
+  width: 100%;
+  padding: 20rpx 0;
+  text-align: center;
+  font-size: 26rpx;
+  color: #525252; }
+
 .clearfix:after {
   content: "";
   display: block;
@@ -159,6 +167,14 @@
   white-space: nowrap;
   text-overflow: ellipsis; }
 
+.showMore {
+  position: relative;
+  width: 100%;
+  padding: 20rpx 0;
+  text-align: center;
+  font-size: 26rpx;
+  color: #525252; }
+
 .clearfix:after {
   content: "";
   display: block;
@@ -243,6 +259,14 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis; }
+
+.showMore {
+  position: relative;
+  width: 100%;
+  padding: 20rpx 0;
+  text-align: center;
+  font-size: 26rpx;
+  color: #525252; }
 
 .clearfix:after {
   content: "";
@@ -351,6 +375,13 @@
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis; }
+    .realname-container .realname-card-form .showMore {
+      position: relative;
+      width: 100%;
+      padding: 20rpx 0;
+      text-align: center;
+      font-size: 26rpx;
+      color: #525252; }
     .realname-container .realname-card-form .clearfix:after {
       content: "";
       display: block;
@@ -476,6 +507,14 @@ page, .publishrecruit-container {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis; }
+
+.showMore {
+  position: relative;
+  width: 100%;
+  padding: 20rpx 0;
+  text-align: center;
+  font-size: 26rpx;
+  color: #525252; }
 
 .clearfix:after {
   content: "";

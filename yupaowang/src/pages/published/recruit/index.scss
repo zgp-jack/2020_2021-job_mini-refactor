@@ -33,14 +33,17 @@
     }
   }
   .user-published-body{
-    position: relative;
-    padding-top: 115px;
+    position: fixed;
     width: 100%;
+    left: 0;
+    top: 100px;
+    z-index: 20;
+    height: calc(100% - 115px);
     .user-published-item{
       position: relative;
       padding: 20px 20px 0;
       background: white;
-      margin-bottom: $margin;
+      margin-top: 20px;
       box-shadow: 0 0 10px $shadowcolor;
       .user-published-title{
         position: relative;

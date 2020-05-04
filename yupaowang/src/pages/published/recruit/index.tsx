@@ -1,5 +1,5 @@
-import Taro, { useState, useEffect, useReachBottom } from '@tarojs/taro'
-import { View, Text, Image, Block } from '@tarojs/components'
+import Taro, { useState, useEffect, Config, login } from '@tarojs/taro'
+import { View, Text, Image, Block, ScrollView } from '@tarojs/components'
 import { useSelector } from '@tarojs/redux'
 import HeaderList from './config'
 import { userGetPublishedRecruitLists, userChangeRecruitStatus } from '../../../utils/request'
@@ -25,6 +25,8 @@ export default function PublishedRecruit(){
   const [more, setMore] = useState<boolean>(true)
   // 数据加载中
   const [loading, setLoading] = useState<boolean>(false)
+  // 是否下拉刷新
+  const [refresh, setRefresh] = useState<boolean>(false)
   // 已发布招工列表
   const [lists, setLists] = useState<UserPublishedRecruitListDataItem[]>([])
   // 获取用户信息
@@ -52,14 +54,19 @@ export default function PublishedRecruit(){
       }
     })
     .finally(()=>{
+      if(refresh){
+        setRefresh(false)
+        Taro.stopPullDownRefresh()
+        Taro.hideNavigationBarLoading()
+      } 
       setLoading(false)
     })
   }
 
   // 用户切换招工状态列表
-  const userChangePublishedItem = (key) => {
+  const userChangePublishedItem = (key: string) => {
     setId(key)
-    setSearchData({...searchData,type: key})
+    setSearchData({...searchData,type: key, page: 1})
   }
 
   useEffect(()=>{
@@ -67,10 +74,17 @@ export default function PublishedRecruit(){
   }, [searchData])
 
   // 加载下一页
-  useReachBottom(()=>{
-    if(!more) return
+  const getNextPageData = () => {
+    if (!more || loading) return
     setSearchData({ ...searchData, page: searchData.page + 1 })
-  })
+  }
+
+  // 刷新当前页
+  const reloadPage = () => {
+    Taro.showNavigationBarLoading()
+    setRefresh(true)
+    setSearchData({ ...searchData, page: 1 })
+  }
 
   // 停止招工
   const userStopRecruit = (id: string,i: number) => {
@@ -103,7 +117,15 @@ export default function PublishedRecruit(){
           </View>
         ))}
       </View>
-      <View className='user-published-body'>
+      <ScrollView 
+        className='user-published-body'
+        scrollY
+        refresherEnabled
+        refresherTriggered={refresh}
+        onRefresherRefresh={() => reloadPage()}
+        lowerThreshold={200}
+        onScrollToLower={() => getNextPageData()} 
+      >
         {lists.map((item,index)=>(
           <View className='user-published-item' key={ item.id }>
             {item.is_check == '1' && <Image className='published-status-img' src={IMGCDNURL + 'published-recruit-checking.png'} />}
@@ -131,12 +153,21 @@ export default function PublishedRecruit(){
             }
           </View>
         ))}
+        {!more && searchData.page > 1 && <View className='showMore'>没有更多数据了</View>}
         {!lists.length &&
         <View className='user-published-nodata'>
           <Nodata />
         </View>
         }
-      </View>
+      </ScrollView>
     </View>
   )
 }
+
+
+PublishedRecruit.config = {
+  navigationBarTitleText: '我的招工信息',
+  navigationBarBackgroundColor: '#0099ff',
+  navigationBarTextStyle: 'white',
+  backgroundTextStyle: "dark"
+} as Config

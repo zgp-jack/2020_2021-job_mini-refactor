@@ -110,7 +110,7 @@ export default function Member(){
       </View>
       <View className='member-body-container'>
         <View className='member-list-container'>
-          <View className='member-list-item'>
+          <View className='member-list-item' onClick={()=>userRouteJump('/pages/published/recruit/index')}>
             <Image className='member-list-icon' src={ IMGCDNURL + 'lpy/ucenter/newcenter-recruit.png' } />
             <Text className='member-list-title'>我的招工</Text>
             {jobNumber && <Text className='member-list-tips'>状态有更新</Text>}
