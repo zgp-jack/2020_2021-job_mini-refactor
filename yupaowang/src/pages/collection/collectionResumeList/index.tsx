@@ -17,7 +17,7 @@ export default function CollectionResumeList({ data = [], onHandlerClick, onHand
     <View className='resume-list-container' style={bottom ? '' : 'padding-bottom:0'}>
       {!data.length && <Nodata text='没有找到相关的数据'/>}
       { data && data.map((item) => (
-        <Block>
+        <Block key={item.id}>
           {
             // item.map((d) => (
             <View className='resume-list-item' onClick={() => onHandleClick(item.resume.check)} key={item.id}>

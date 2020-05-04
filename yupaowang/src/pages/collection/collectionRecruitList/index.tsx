@@ -18,7 +18,7 @@ export default function CollectionRecruitList({ data = [], onHandlerClick, onHan
     <View className='recruit-lists-container' style={bottom ? '' : 'padding-bottom:0'}>
       {!data.length && <Nodata text='没有找到相关的数据'/>}
       { data && data.map((item) => (
-        <Block>
+        <Block key={item.id}>
           {
             // item.map((d) => (
             <View className='recruit-list-item' onClick={() => { onHandleClick(item.is_check)}} key={item.id}>

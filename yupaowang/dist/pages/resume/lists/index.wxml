@@ -1,13 +1,13 @@
 <block wx:if="{{$taroCompReady}}">
     <view class="recruit-container">
         <view class="recruit-fiexd-header">
-            <search compid="{{$compid__58}}"></search>
-            <condition compid="{{$compid__59}}"></condition>
+            <search compid="{{$compid__47}}"></search>
+            <condition compid="{{$compid__48}}"></condition>
         </view>
         <scroll-view class="recruit-lists-containerbox" scroll-y="{{true}}" lower-threshold="{{200}}" refresher-enabled="{{true}}" refresher-triggered="{{refresh}}" bindrefresherrefresh="anonymousFunc0" bindscrolltolower="anonymousFunc1">
             <view style="{{anonymousState__temp}}"></view>
             <wechat-notice></wechat-notice>
-            <resume-list compid="{{$compid__60}}"></resume-list>
+            <resume-list compid="{{$compid__49}}"></resume-list>
         </scroll-view>
     </view>
 </block>
