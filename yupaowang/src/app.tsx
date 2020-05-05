@@ -32,7 +32,10 @@ class App extends Component {
       "pages/collection/index", //收藏
       "pages/about/index", //关于我们
       "pages/report/index", // 举报骗子
-      "pages/course/index" //使用教程
+      "pages/course/index", //使用教程
+      "pages/help/index", //帮助中心
+      "pages/feedbackList/index", //意见反馈列表
+      "pages/feedback/index" //意见反馈
     ],
     subPackages: [
       {

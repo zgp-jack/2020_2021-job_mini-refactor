@@ -52,7 +52,7 @@ var Profession = (_temp2 = _class = function (_Taro$Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Profession.__proto__ || Object.getPrototypeOf(Profession)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray46", "data", "title", "footerTitle", "closeProfession", "onClickItem"], _this.anonymousFunc0Map = {}, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Profession.__proto__ || Object.getPrototypeOf(Profession)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray57", "data", "title", "footerTitle", "closeProfession", "onClickItem"], _this.anonymousFunc0Map = {}, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Profession, [{
@@ -86,7 +86,7 @@ var Profession = (_temp2 = _class = function (_Taro$Component) {
         return closeProfession();
       };
 
-      var loopArray46 = data ? data.map(function (item, i) {
+      var loopArray57 = data ? data.map(function (item, i) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
@@ -94,7 +94,7 @@ var Profession = (_temp2 = _class = function (_Taro$Component) {
           d = {
             $original: (0, _taroWeapp.internal_get_original)(d)
           };
-          var _$indexKey = 'dezzz' + i + '-' + k;
+          var _$indexKey = 'fezzz' + i + '-' + k;
 
           _this2.anonymousFunc0Map[_$indexKey] = function () {
             return _this2.__props.onClickItem(i, k, d.$original.id);
@@ -118,7 +118,7 @@ var Profession = (_temp2 = _class = function (_Taro$Component) {
         };
       }) : [];
       Object.assign(this.__state, {
-        loopArray46: loopArray46,
+        loopArray57: loopArray57,
         data: data,
         title: title,
         footerTitle: footerTitle

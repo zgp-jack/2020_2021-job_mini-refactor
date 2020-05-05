@@ -1,11 +1,9 @@
 import Taro, { useEffect, useState } from '@tarojs/taro'
-import { View, ScrollView, Button, Text, Image } from '@tarojs/components'
+import { View, ScrollView, Button } from '@tarojs/components'
 import CollectionRecruitList from "../collectionRecruitList";
 import { AtModal, AtModalHeader, AtModalContent, AtModalAction } from "taro-ui"
 import { getCollectionRecruitListData, recruitListCancelCollectionAction } from '../../../utils/request'
 import {  CollectionRecruitListDataList } from '../../../utils/request/index.d'
-import { IMGCDNURL } from '../../../config'
-import classnames from 'classnames'
 import './index.scss'
 
 // 定义招工
@@ -16,10 +14,11 @@ export interface Recruit {
 export interface initRecPageType {
   page: number
 }
-interface PROPS {
-  onClick: Function,
-}
-export default function RecruitList({ onClick }: PROPS) {
+// interface PROPS {
+//   onClick?: () => void,
+//   highlight?:number,
+// }
+export default function RecruitList() {
   // * 标记是否是在刷新状态
   const [refresh, setRefresh] = useState<boolean>(false)
   // * 定义招工列表数组
@@ -30,16 +29,6 @@ export default function RecruitList({ onClick }: PROPS) {
   const [initRecPage, setinitRecPage] = useState<initRecPageType>({
     page: 1
   })
-  // 设置默认tab
-  const tab = [
-    {
-      id: 1, text: '招工信息', icon: `${IMGCDNURL}new-collect-info-active.png`
-    },
-    {
-      id: 2, text: '找活信息',  icon: `${IMGCDNURL}new-collect-resume.png`
-    },
-  ]
-
   // 弹窗内容
   const [modalContent, setModalContent ] = useState<string>("") 
   // 定义弹窗
@@ -89,11 +78,11 @@ export default function RecruitList({ onClick }: PROPS) {
     }
   // * 触底加载下一页
   const getNextPageData = () => {
+    console.log(31)
     if (recruitNoMoreData) return false
     Taro.showNavigationBarLoading()
     setinitRecPage({ ...initRecPage, page: initRecPage.page + 1 })
   }
-  
   return (
     <View className='recruit-container'>
       <ScrollView
@@ -105,22 +94,6 @@ export default function RecruitList({ onClick }: PROPS) {
         lowerThreshold={200}
         onScrollToLower={() => getNextPageData()}
       >
-        <View className='collection-tab'>
-          {tab.map(item => (
-            <View className='collection-tab-box' key={item.id} onClick={() => { onClick(2) }}>
-              <View className='collection-tab-content'>
-                <View className='collection-tab-img'>
-                  <Image src={item.icon}></Image>
-                </View>
-                <Text
-                className={classnames({
-                  'collection.active-text': item.id === 1
-                })}
-                >{item.text}</Text>
-              </View>
-            </View>
-          ))}
-        </View>
         {/* 招工 */}
         <View style={{ height: '8px' }}></View>
         <CollectionRecruitList data={lists.item} onHandlerClick={recruitListHandler} onHandleClick={handleModal} recruitNoMoreData={recruitNoMoreData}/>

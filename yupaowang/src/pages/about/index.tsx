@@ -1,6 +1,6 @@
 import Taro, { Config } from '@tarojs/taro'
 import { View, Text, Image} from '@tarojs/components'
-import { SERVERPHONE } from "../../config"
+import { SERVERPHONE, ALIYUNCDN } from "../../config"
 import './index.scss'
 
 export default function About(){
@@ -47,22 +47,22 @@ export default function About(){
         <View className='yupao-about-group yupao-about-groupb'>
           <View className='about-header-title'>团队风采</View>
           <View className='about-group-img'>
-            <Image src='http://cdn.yupao.com/miniprogram/images/group.png' mode="widthFix"></Image>
+            <Image src={`${ALIYUNCDN}/miniprogram/images/group.png`} mode="widthFix"></Image>
           </View>
           <View className='about-group-img'>
-            <Image src='http://cdn.yupao.com/miniprogram/images/yupao-group-contnet.png' mode="widthFix"></Image>
+            <Image src={`${ALIYUNCDN}/miniprogram/images/yupao-group-contnet.png`} mode="widthFix"></Image>
           </View>
           <View className='about-group-img'>
-            <Image src='http://cdn.yupao.com/miniprogram/images/ypao-group-telg.png' mode="widthFix"></Image>
+            <Image src={`${ALIYUNCDN}/miniprogram/images/ypao-group-telg.png`} mode="widthFix"></Image>
           </View>
           <View className='about-group-img'>
-            <Image src='http://cdn.yupao.com/miniprogram/images/kefu.png' mode="widthFix"></Image>
+            <Image src={`${ALIYUNCDN}/miniprogram/images/kefu.png`} mode="widthFix"></Image>
           </View>
         </View>
         <View className='yupao-about-group'>
           <View className='about-header-title'>资质证书</View>
           <View className='about-group-img'>
-            <Image src='http://cdn.yupao.com/miniprogram/images/yupao-about-zizhizs.png' mode="widthFix"></Image>
+            <Image src={`${ALIYUNCDN}/miniprogram/images/yupao-about-zizhizs.png`} mode="widthFix"></Image>
           </View>
         </View>
         <View className='yupao-about-footer common-shaded-box'>

@@ -53,7 +53,7 @@ var UserAuth = (_temp2 = _class = function (_Taro$Component) {
       navigationBarBackgroundColor: '#0099ff',
       navigationBarTextStyle: 'white',
       backgroundTextStyle: "dark"
-    }, _this.$usedState = ["$compid__36"], _this.customComponents = ["Auth"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["$compid__47"], _this.customComponents = ["Auth"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(UserAuth, [{
@@ -72,16 +72,16 @@ var UserAuth = (_temp2 = _class = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__36"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__47"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__36 = _genCompid2[0],
-          $compid__36 = _genCompid2[1];
+          $prevCompid__47 = _genCompid2[0],
+          $compid__47 = _genCompid2[1];
 
       _taroWeapp.propsManager.set({
         "page": true
-      }, $compid__36, $prevCompid__36);
+      }, $compid__47, $prevCompid__47);
       Object.assign(this.__state, {
-        $compid__36: $compid__36
+        $compid__47: $compid__47
       });
       return this.__state;
     }

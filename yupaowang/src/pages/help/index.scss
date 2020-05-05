@@ -1,0 +1,58 @@
+.at-accordion__info__title{
+  white-space:normal
+}
+.help-text {
+  display: flex;
+  padding: 10px 25px 10px 60px;
+  align-items: center;
+  font-size: 30px;
+  color: #999999;
+  background: #fff;
+}
+.at-accordion__info__title {
+  font-size: 28px;
+  font-weight: 400;
+  display: inline-block;
+  // padding: 0 20px 0 50px;
+  padding-top: 10px;
+}
+.help-button{
+  Button{
+    position: fixed;
+    bottom: 0;
+    width: 98%;
+    background: #0099ff;
+    color: #fff;
+    text-align: center;
+    margin: 1%;
+    height: 90rpx;
+    line-height: 90rpx;
+    box-shadow: 0px 0px 0px 5px #fff;
+    }
+}
+.recruit-lists-containerbox {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  top: 5;
+  height: calc(100% - 10px);
+  margin-bottom: 100px;
+}
+.help-content{
+  height: 100vh;
+  margin-bottom: 200px;
+}
+.help-content-text{
+  height: 200px;
+  width: 100%;
+}
+.help-noData{
+  position: relative;
+  width: 100%;
+  text-align: center;
+  line-height: 50px;
+  margin-top: 30px;
+  font-size: 28px;
+  color: #666;
+
+}

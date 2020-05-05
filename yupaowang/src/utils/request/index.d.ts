@@ -471,3 +471,33 @@ export interface reportUserList{
   video_url: string,
   isShow?: boolean,
 }
+
+// 意见反馈
+export interface feedbackList extends Result{
+  data: feedbackListData[],
+  memberInfo: feedbackMemberInfo
+}
+export interface feedbackMemberInfo{
+  phone: string,
+  username: string,
+}
+export interface feedbackListData {
+  ask_time:string,
+  content:string,
+  id:string,
+  send_msg:string,
+  images:[],
+  is_answer: string,
+}
+
+// 帮助中心
+export interface helpData extends Result{
+  lists: heleDatalist[]
+}
+
+export interface heleDatalist {
+  answer: string,
+  question: string,
+  isShow?: boolean,
+  id?: number
+}

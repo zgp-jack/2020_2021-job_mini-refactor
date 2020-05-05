@@ -165,7 +165,7 @@ export default function Member(){
           </View>
         </View>
         <View className='member-list-container'>
-          <View className='member-list-item'>
+          <View className='member-list-item' onClick={() => userRouteJump('/pages/feedbackList/index')}>
             <Image className='member-list-icon' src={ IMGCDNURL + 'lpy/ucenter/newcenter-feedback.png'} />
             <View className='member-list-title'>
               <Text>意见反馈</Text>
@@ -173,7 +173,7 @@ export default function Member(){
             </View>
             {model && model.member.has_notice_msg.hasNoticeMsgg && <Text className='member-list-tips'>有最新回复</Text>}
           </View>
-          <View className='member-list-item'>
+          <View className='member-list-item' onClick={() => userRouteJump('/pages/help/index')} >
             <Image className='member-list-icon' src={ IMGCDNURL + 'lpy/ucenter/newcenter-help.png'} />
             <Text className='member-list-title'>帮助中心</Text>
             <Text className='member-list-tips'>使用教程</Text>

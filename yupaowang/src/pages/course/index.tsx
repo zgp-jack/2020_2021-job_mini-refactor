@@ -36,8 +36,6 @@ export default function Course() {
   const [workerMaster, setWorkerMaster] = useState<WorkerMasterData>({
     item:[],
   })
-  // 老板内容是否展开
-  const [showBoss,setShowBoss] = useState<boolean>(false);
   // 请求数据
   useEffect(() => {
     requestAction().then(res =>{

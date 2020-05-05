@@ -76,3 +76,9 @@ export const recruitCancelCollection: string = REQUESTURL +'job/collect/'
 export const ResumeCancelCollection: string = REQUESTURL + 'resumes/resume-collect/'
 // 使用教程
 export const requestActionUrl: string = REQUESTURL + 'index/course/'
+// 意见反馈数据
+export const feedbackUrl: string = REQUESTURL + 'leaving-message/list/'
+// 意见反馈提交
+export const feedbackSubmissionUrl: string = REQUESTURL + 'leaving-message/publish/'
+// 帮助中心
+export const helpUrl: string = REQUESTURL + 'others/help-feedback/'

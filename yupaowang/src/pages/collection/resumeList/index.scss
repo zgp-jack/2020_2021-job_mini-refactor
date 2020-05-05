@@ -50,8 +50,8 @@
   margin-right: 10px;
 
   Image {
-    height: 26rpx;
-    width: 26rpx;
+    height: 26px;
+    width: 26px;
   }
 }
 
@@ -60,10 +60,12 @@
 }
 
 .recruit-lists-containerbox {
-  position: fixed;
+  // position: fixed;
   width: 100%;
-  left: 0;
-  top: 5;
-  height: calc(100% - 10px);
-  z-index: 3;
+  // left: 0;
+  // top: 5;
+  // height: calc(100% - 10px);
+  // z-index: 3;
+  // height: 100vh;
+  height: calc(100% - 80px);
 }

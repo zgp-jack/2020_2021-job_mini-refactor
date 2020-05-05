@@ -59,10 +59,11 @@
 }
 
 .recruit-lists-containerbox {
-  position: fixed;
+  // position: fixed;
   width: 100%;
-  left: 0;
-  top: 5;
-  height: calc(100% - 10px);
-  z-index: 3;
+  // left: 0;
+  // top: 5;
+  height: calc(100% - 80px);
+  // z-index: 3;
+  // height: 100vh;
 }

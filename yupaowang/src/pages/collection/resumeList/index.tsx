@@ -1,11 +1,9 @@
 import Taro, { useEffect, useState } from '@tarojs/taro'
-import { View, ScrollView, Button, Text, Image  } from '@tarojs/components'
+import { View, ScrollView, Button } from '@tarojs/components'
 import CollectionResumeList from "../collectionResumeList";
 import {  getCollectionResumeListData, ResumeCancelCollectionAction } from '../../../utils/request'
 import { AtModal, AtModalHeader, AtModalContent, AtModalAction } from "taro-ui"
 import { CollectionResumeListDataList } from '../../../utils/request/index.d'
-import { IMGCDNURL } from '../../../config'
-import classnames from 'classnames'
 import './index.scss'
 
 // 定义找活
@@ -16,10 +14,11 @@ export interface AllLists {
 export interface initResPageType {
   page: number
 }
-interface PROPS {
-  onClick:Function,
-}
-export default function ResumeList({ onClick }: PROPS) {
+// interface PROPS {
+//   onClick:Function,
+//   highlight:number,
+// }
+export default function ResumeList() {
   // * 标记是否是在刷新状态
   const [refresh, setRefresh] = useState<boolean>(false)
   // * 定义找活列表数组
@@ -36,16 +35,6 @@ export default function ResumeList({ onClick }: PROPS) {
   const [recruitNoMoreData, setRecruitNoMoreData] = useState<boolean>(false)
   // 弹窗内容
   const [modalContent, setModalContent] = useState<string>("") 
-  // 设置默认tab
-  const tab = [
-    {
-      id: 1, text: '招工信息', icon: `${IMGCDNURL}new-collect-info.png`
-    },
-    {
-      id: 2, text: '找活信息', icon: `${IMGCDNURL}new-collect-resume-active.png`
-    },
-  ]
-
   // 请求数据
   useEffect(() =>{
     getCollectionResumeListData(initResPage.page).then(res => {
@@ -103,22 +92,6 @@ export default function ResumeList({ onClick }: PROPS) {
         onRefresherRefresh={() => pullDownAction()}
         onScrollToLower={() => getNextPageData()}
       >
-        <View className='collection-tab'>
-          {tab.map(item => (
-            <View className='collection-tab-box' key={item.id} onClick={() => { onClick(1)}}>
-              <View className='collection-tab-content'>
-                <View className='collection-tab-img'>
-                  <Image src={item.icon}></Image>
-                </View>
-                <Text
-                  className={classnames({
-                    'collection.active-text': item.id !== 1
-                  })}
-                >{item.text}</Text>
-              </View>
-            </View>
-          ))}
-        </View>
         <View style={{ height: '8px' }}></View>
         {/* 招工 */}
         <CollectionResumeList data={resLists.resume} onHandlerClick={resumeListHandler} onHandleClick={handleModal} recruitNoMoreData={recruitNoMoreData}/>

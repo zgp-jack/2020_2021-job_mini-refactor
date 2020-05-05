@@ -467,3 +467,33 @@ export function requestAction(): Promise<Inter.reportData> {
     method: 'POST',
   })
 }
+
+
+// 意见反馈
+export function feedbackAction(page: number): Promise<Inter.feedbackList> {
+  return doRequestAction({
+    url: api.feedbackUrl,
+    method: 'POST',
+    data:page
+  })
+}
+
+// 意见返回提交
+export function feedbackSubmissionAction(params:object): Promise<Inter.Result> {
+  return doRequestAction({
+    url: api.feedbackSubmissionUrl,
+    method: 'POST',
+    data: params
+  })
+}
+
+// 帮助中心
+export function helpAction(page: number): Promise<Inter.helpData> {
+  return doRequestAction({
+    url: api.helpUrl,
+    data:{
+      page
+    }
+  })
+}
+

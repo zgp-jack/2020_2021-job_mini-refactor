@@ -95,7 +95,7 @@
                 </view>
             </view>
             <view class="member-list-container">
-                <view class="member-list-item">
+                <view class="member-list-item" bindtap="anonymousFunc5">
                     <image class="member-list-icon" src="{{IMGCDNURL + 'lpy/ucenter/newcenter-feedback.png'}}"></image>
                     <view class="member-list-title"><text>意见反馈</text>
                         <block wx:if="{{model && model.member.has_notice_msg.hasNoticeMsgg}}"><text class="member-list-dot"></text>
@@ -104,7 +104,7 @@
                     <block wx:if="{{model && model.member.has_notice_msg.hasNoticeMsgg}}"><text class="member-list-tips">有最新回复</text>
                     </block>
                 </view>
-                <view class="member-list-item">
+                <view class="member-list-item" bindtap="anonymousFunc6">
                     <image class="member-list-icon" src="{{IMGCDNURL + 'lpy/ucenter/newcenter-help.png'}}"></image><text class="member-list-title">帮助中心</text><text class="member-list-tips">使用教程</text>
                 </view>
             </view>

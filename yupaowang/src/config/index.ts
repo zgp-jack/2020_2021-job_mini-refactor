@@ -29,3 +29,4 @@ export const MAXCACHECITYNUM: number = 3
 export const UserPublishAreaHistoryMaxNum: number = 10
 // * 小程序tabbar msg统计 定时器请求间隔 1分钟
 export const MemberMsgTimerInterval: number = 1000 * 60
+
