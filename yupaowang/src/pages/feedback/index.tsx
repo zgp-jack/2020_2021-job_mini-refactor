@@ -4,7 +4,6 @@ import { AtTextarea, AtInput } from 'taro-ui'
 import WechatNotice from '../../components/wechat'
 import ImageView from '../../components/imageview'
 import UploadImgAction from '../../utils/upload'
-import usePublishViewInfo from '../../hooks/publish/recruit'
 import userCode from '../../hooks/code'
 import { feedbackSubmissionAction } from '../../utils/request/index'
 import './index.scss'
@@ -25,6 +24,14 @@ export interface InitRecruitView {
   type: string,
   infoId: string
 }
+export interface ImageItem {
+  url: string,
+  httpurl: string
+}
+export interface ImageDataType {
+  item: ImageItem[]
+}
+
 export default function Feedback() {
   const router: Taro.RouterInfo = useRouter()
   let { username = '', phone = '' } = router.params;
@@ -34,21 +41,15 @@ export default function Feedback() {
   const [uphone, setUPhone] = useState<string>(phone||'')
   // 意见
   const [textarea, setTextarea] = useState<string>("");
-  // 图片
-  const [img, setImg] = useState<ImgType>({
-    item:[]
-  })
   // 是否显示获取验证码
   const [isShow,setIsShow] = useState<boolean>(false)
   // 验证码
   const [code,setCode] = useState<string>('');
-  const id: string = router.params.id || ''
-  const type: string = 'job'
-  const InitParams: InitRecruitView = { type: type, infoId: id }
-  // 初始化当前信息
-  const { model, setModel } = usePublishViewInfo(InitParams)
+  const [image, setImage] = useState<ImageDataType>({
+    item:[],
+  })
   // 使用自定义验证码hook
-  const { text, userGetCode } = userCode()
+  const { text, userGetCode, disabled } = userCode()
   // 用户上传图片
   const userUploadImg = (i: number = -1) => {
     UploadImgAction().then(res => {
@@ -56,12 +57,12 @@ export default function Feedback() {
         url: res.url,
         httpurl: res.httpurl
       }
-      if (model) {
+      if (image) {
         if (i === -1) {
-          setModel({ ...model, view_images: [...model.view_images, imageItem] })
+          setImage({ ...image, item: [...image.item, imageItem] })
         } else {
-          model.view_images[i] = imageItem
-          setModel({ ...model })
+          image.item[i] = imageItem
+          setImage({ ...image })
         }
       }
     })
@@ -76,22 +77,32 @@ export default function Feedback() {
   }
   // 提交
   const handleSubmission = ()=>{
-    console.log(1111);
+    let images:string[]=[];
+    if (image.item.length>0){
+      for (let i = 0; i < image.item.length;i++){
+        images.push(image.item[i].url);
+      }
+    }
     const params = {
-      images: img,
+      images,
       content: textarea,
       username:name,
       tel:uphone,
       code:code
     }
     feedbackSubmissionAction(params).then(res =>{
-      console.log(res)
       if(res.errcode == "ok"){
         Taro.showModal({
           title: '提示',
           content: res.errmsg,
-          showCancel: false
+          showCancel: false,
+          success: function () {
+            Taro.navigateBack({
+              delta: 1
+            })
+          }
         })
+        
       }else{
         Taro.showModal({
           title: '提示',
@@ -114,15 +125,8 @@ export default function Feedback() {
           placeholder='请填写您对鱼泡的建议或意见'
         />
           <View className='feedback-content-middle-imgBox'>
-            {/* <AtImagePicker
-              length={5}
-              files={img.item}
-              onChange={(e)=>handleImgChange(e)}
-              onFail={(e)=>{console.log(e)}}
-              onImageClick={(i,url)=>{console.log(i,url)}}
-            /> */}
-            {model &&
-              <ImageView images={model.view_images} max={9} userUploadImg={userUploadImg} />
+            {image.item &&
+              <ImageView images={image.item} max={9} userUploadImg={userUploadImg} />
             }
         </View>
       </View>
@@ -140,7 +144,8 @@ export default function Feedback() {
           name='phone'
           title='联系电话'
           type='text'
-          placeholder='请输入你的电话'
+          placeholder='请输入手机号方便客服联系你'
+          maxLength={11}
           value={uphone}
           onChange={(e:string)=>{handlePhone(e)}}
         />
@@ -151,17 +156,21 @@ export default function Feedback() {
               title='验证码'
               type='text'
               maxLength={4}
-              placeholder='验证码'
+              placeholder='请输入你的验证码'
               name="code"
               value={code}
               onChange={(e:string)=>setCode(e)}
             >
-            <View className='publish-code-btn' onClick={() => userGetCode(uphone)}>{text}</View>
+            <Button 
+              disabled={disabled}
+              className='feedback-content-code' 
+              onClick={() => userGetCode(uphone)}
+              >{text}</Button>
             </AtInput>
         </View>
       }
       </View>
-      <View><Button className='feedback-content-button' onClick={handleSubmission}>提交保存</Button></View>
+      <View><Button className='feedback-content-button' onClick={handleSubmission}>反馈意见</Button></View>
     </View>
   )
 }

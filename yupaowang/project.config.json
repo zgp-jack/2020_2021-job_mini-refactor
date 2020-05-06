@@ -97,6 +97,13 @@
 					"pathName": "pages/feedbackList/index",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/used/publish/index",
+					"pathName": "pages/used/publish/index",
+					"query": "",
+					"scene": null
 				}
 			]
 		}

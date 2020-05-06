@@ -16,7 +16,6 @@
   line-height: 80px;
   text-align: center;
   font-size: 30px;
-
 }
 .common-userauth {
   position: fixed;
@@ -215,4 +214,23 @@
   font-size: 28px;
   color: white;
   text-align: center;
+}
+
+.recruit-lists-containerbox {
+  width: 100%;
+  // left: 0;
+  // top: 5;
+  height: calc(100% - 80px);
+  // z-index: 3;
+  // height: 100vh;
+  margin-bottom: 150px;
+}
+.feedback-noData{
+  position: relative;
+  width: 100%;
+  text-align: center;
+  line-height: 50px;
+  margin-top: 30px;
+  font-size: 28px;
+  color: #666;
 }

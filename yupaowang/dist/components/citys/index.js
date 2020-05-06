@@ -241,7 +241,7 @@ var Cities = (_temp2 = _class = function (_Taro$Component) {
         };
         var $loopState__temp2 = 'rec' + item.$original.id;
 
-        var _$indexKey = "fgzzz" + __index4;
+        var _$indexKey = "fizzz" + __index4;
 
         _this2.anonymousFunc4Map[_$indexKey] = function () {
           return userTapCity(item.$original);
@@ -258,12 +258,12 @@ var Cities = (_temp2 = _class = function (_Taro$Component) {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
         var $loopState__temp4 = index + item.$original[0].id;
-        var $anonymousCallee__8 = item.$original.map(function (d, key) {
+        var $anonymousCallee__10 = item.$original.map(function (d, key) {
           d = {
             $original: (0, _taroWeapp.internal_get_original)(d)
           };
           var $loopState__temp6 = key + d.$original.id;
-          var _$indexKey2 = "fhzzz" + index + "-" + key;
+          var _$indexKey2 = "fjzzz" + index + "-" + key;
 
           _this2.anonymousFunc5Map[_$indexKey2] = function () {
             return userTapCity(d.$original);
@@ -277,7 +277,7 @@ var Cities = (_temp2 = _class = function (_Taro$Component) {
         });
         return {
           $loopState__temp4: $loopState__temp4,
-          $anonymousCallee__8: $anonymousCallee__8,
+          $anonymousCallee__10: $anonymousCallee__10,
           $original: item.$original
         };
       });
@@ -286,7 +286,7 @@ var Cities = (_temp2 = _class = function (_Taro$Component) {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
 
-        var _$indexKey3 = "fizzz" + __index6;
+        var _$indexKey3 = "gazzz" + __index6;
 
         _this2.anonymousFunc6Map[_$indexKey3] = function () {
           return userTapInputCity(item.$original);

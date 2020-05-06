@@ -18,7 +18,10 @@ export interface initRecPageType {
 //   onClick?: () => void,
 //   highlight?:number,
 // }
-export default function RecruitList() {
+interface PROPS {
+  bottom:number,
+}
+export default function RecruitList({ bottom }: PROPS) {
   // * 标记是否是在刷新状态
   const [refresh, setRefresh] = useState<boolean>(false)
   // * 定义招工列表数组
@@ -35,6 +38,8 @@ export default function RecruitList() {
   const [isOpened, setIsOpened] = useState<boolean>(false)
   // 没有更多数据
   const [recruitNoMoreData, setRecruitNoMoreData] = useState<boolean>(false)
+  // 是否加载更多
+  const [more,setMore] = useState<boolean>(false)
   // 请求数据
   useEffect(() => {
     getCollectionRecruitListData(initRecPage.page).then(res => {
@@ -49,8 +54,14 @@ export default function RecruitList() {
         setLists({ item: [...lists.item, ...res.list] })
       }
       if (refresh) setRefresh(false)
+      if (more) setMore(false)
     })
   }, [initRecPage])
+  useEffect(() => {
+    if(!bottom) return
+    if (recruitNoMoreData ) return
+    setinitRecPage({ ...initRecPage, page: initRecPage.page+1  })
+  },[bottom])
   // 招工取消收藏
   const recruitListHandler = (id: string) => {
     recruitListCancelCollectionAction(id).then(res => {
@@ -79,10 +90,11 @@ export default function RecruitList() {
   // * 触底加载下一页
   const getNextPageData = () => {
     console.log(31)
-    if (recruitNoMoreData) return false
+    if (recruitNoMoreData) return 
     Taro.showNavigationBarLoading()
     setinitRecPage({ ...initRecPage, page: initRecPage.page + 1 })
   }
+
   return (
     <View className='recruit-container'>
       <ScrollView
@@ -110,3 +122,6 @@ export default function RecruitList() {
     </View>
   )
 }
+// RecruitList.config = {
+//   "onReachBottomDistance": 50
+// } as Config

@@ -88,11 +88,11 @@ var UsedList = (_temp2 = _class = function (_Taro$Component) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
-        var $anonymousCallee__10 = data.length ? item.$original.map(function (d, __index0) {
+        var $anonymousCallee__12 = data.length ? item.$original.map(function (d, __index0) {
           d = {
             $original: (0, _taroWeapp.internal_get_original)(d)
           };
-          var _$indexKey = "gazzz" + __index1 + "-" + __index0;
+          var _$indexKey = "gczzz" + __index1 + "-" + __index0;
 
           _this2.anonymousFunc0Map[_$indexKey] = function () {
             return userLookUsedInfo(d.$original.id);
@@ -104,7 +104,7 @@ var UsedList = (_temp2 = _class = function (_Taro$Component) {
           };
         }) : [];
         return {
-          $anonymousCallee__10: $anonymousCallee__10,
+          $anonymousCallee__12: $anonymousCallee__12,
           $original: item.$original
         };
       }) : [];

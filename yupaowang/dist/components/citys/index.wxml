@@ -24,7 +24,7 @@
             <view class="city-area-item" wx:key="$loopState__temp4" wx:for="{{loopArray60}}" wx:for-item="item" wx:for-index="index">
                 <view class="city-area-title">{{item.$original[0].city}}</view>
                 <view class="city-area-content clearfix">
-                    <view class="city-item" wx:key="$loopState__temp6" bindtap="anonymousFunc5" wx:for="{{item.$anonymousCallee__8}}" wx:for-item="d" wx:for-index="key" data-e-tap-so="this" data-e-tap-a-a="{{d._$indexKey2}}"><text class="city-item-text overwords">{{d.$original.city}}</text>
+                    <view class="city-item" wx:key="$loopState__temp6" bindtap="anonymousFunc5" wx:for="{{item.$anonymousCallee__10}}" wx:for-item="d" wx:for-index="key" data-e-tap-so="this" data-e-tap-a-a="{{d._$indexKey2}}"><text class="city-item-text overwords">{{d.$original.city}}</text>
                     </view>
                 </view>
             </view>

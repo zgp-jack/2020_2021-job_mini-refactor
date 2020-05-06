@@ -1,4 +1,4 @@
-import Taro, { Config, useState } from '@tarojs/taro'
+import Taro, { Config, useState, useReachBottom } from '@tarojs/taro'
 import { View, Text, Image } from '@tarojs/components'
 import RecruitList from './recruitList'
 import ResumeList from './resumeList'
@@ -19,12 +19,17 @@ const tab = [
 export default function Collection() {
   // 默认table
   const [current, setCurrent] = useState<number>(1)
+  const [bottom,setBottom] = useState<number>(0)
   const handleTable = (type:number)=>{
+    setBottom(0)
     setCurrent(type);
   }
-  
+  // 是否加载更多
+  useReachBottom(()=>{
+    setBottom(bottom+1)
+  })
   return (
-    <View>
+    <View className='collection-content'>
       <View className='collection-tab'>
         {tab.map(item => (
           <View className='collection-tab-box' key={item.id} onClick={() => handleTable(item.id)}>
@@ -42,11 +47,13 @@ export default function Collection() {
           </View>
         ))}
       </View>
-      {current === 1 && <RecruitList/>}
-      {current === 2 && <ResumeList />}
+      {current === 1 && <RecruitList bottom={bottom}/>}
+      {current === 2 && <ResumeList bottom={bottom}/>}
     </View> 
   )
 }
 Collection.config = {
   navigationBarTitleText: '我的收藏找活',
+  // onReachBottomDistance:true
+  "onReachBottomDistance": 50
 } as Config

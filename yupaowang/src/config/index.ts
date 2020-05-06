@@ -1,10 +1,14 @@
 // ? 全局不动配置项 只做导出不做修改
 
 // * 全局请求接口域名
-export const REQUESTURL: string = 'http://miniapitest.zhaogong.vrtbbs.com/'   //测试站
-// export const REQUESTURL: string = 'https://newyupaomini.54xiaoshuo.com/'   //正式站
+//测试站
+export const DEVREQUESTURL: string = 'http://miniapitest.zhaogong.vrtbbs.com/'  
+//正式站
+export const PROREQUESTURL: string = 'https://newyupaomini.54xiaoshuo.com/'  
+// 当前测试
+export const REQUESTURL: string = DEVREQUESTURL;
 // * 默认上传图片
-export const UPLOADIMGURL: string = REQUESTURL + 'index/upload/'
+export const UPLOADIMGURL: string = PROREQUESTURL + 'index/upload/'
 // * 阿里云CDN域名
 export const ALIYUNCDN: string = 'http://cdn.yupao.com'
 // * 阿里云CDN图片域名

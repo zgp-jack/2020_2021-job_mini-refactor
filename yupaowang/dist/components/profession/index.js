@@ -90,11 +90,11 @@ var Profession = (_temp2 = _class = function (_Taro$Component) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
-        var $anonymousCallee__7 = data ? item.$original.children.map(function (d, k) {
+        var $anonymousCallee__9 = data ? item.$original.children.map(function (d, k) {
           d = {
             $original: (0, _taroWeapp.internal_get_original)(d)
           };
-          var _$indexKey = 'fezzz' + i + '-' + k;
+          var _$indexKey = 'fgzzz' + i + '-' + k;
 
           _this2.anonymousFunc0Map[_$indexKey] = function () {
             return _this2.__props.onClickItem(i, k, d.$original.id);
@@ -113,7 +113,7 @@ var Profession = (_temp2 = _class = function (_Taro$Component) {
           };
         }) : [];
         return {
-          $anonymousCallee__7: $anonymousCallee__7,
+          $anonymousCallee__9: $anonymousCallee__9,
           $original: item.$original
         };
       }) : [];

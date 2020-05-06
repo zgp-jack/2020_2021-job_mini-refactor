@@ -18,7 +18,10 @@ export interface initResPageType {
 //   onClick:Function,
 //   highlight:number,
 // }
-export default function ResumeList() {
+interface PROPS {
+  bottom: number,
+}
+export default function ResumeList({ bottom }: PROPS) {
   // * 标记是否是在刷新状态
   const [refresh, setRefresh] = useState<boolean>(false)
   // * 定义找活列表数组
@@ -50,6 +53,11 @@ export default function ResumeList() {
       if (refresh) setRefresh(false)
     })
   },[initResPage])
+  useEffect(() => {
+    if (!bottom) return
+    if (recruitNoMoreData) return
+    setinitResPage({ ...initResPage, page: initResPage.page + 1 })
+  }, [bottom])
   // 找活取消收藏
   const resumeListHandler = (id: string) => {
     ResumeCancelCollectionAction(id).then(res => {
@@ -65,7 +73,7 @@ export default function ResumeList() {
   }
   // * 触底加载下一页
   const getNextPageData = () => {
-    if (recruitNoMoreData) return false
+    if (recruitNoMoreData) return 
     Taro.showNavigationBarLoading()
       setinitResPage({ ...initResPage, page: initResPage.page + 1 })
   }

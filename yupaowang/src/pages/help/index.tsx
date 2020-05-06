@@ -118,7 +118,7 @@ export default function Help() {
           </AtList>
         </AtAccordion>
       ))}
-        {!setIsDown && <View className="help-noData">没有更多数据了</View>}
+        {!isDown && <View className="help-noData">没有更多数据了</View>}
         <View style={{ height: '50px' }}></View>
       </ScrollView>
       <View className="help-button" onClick={() => userRouteJump(`/pages/feedback/index?username=${userData.username}&phone=${userData.phone}`)}><Button>意见反馈</Button></View>

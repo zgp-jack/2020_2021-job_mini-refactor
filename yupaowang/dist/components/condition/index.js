@@ -155,7 +155,7 @@ var Condition = (_temp2 = _class = function (_Taro$Component) {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
 
-        var _$indexKey = "fbzzz" + __index0;
+        var _$indexKey = "fdzzz" + __index0;
 
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return conditionItemClick(item.$original.id);
@@ -175,7 +175,7 @@ var Condition = (_temp2 = _class = function (_Taro$Component) {
           'drawer-list-item-active': index === areaIndex
         });
 
-        var _$indexKey2 = "fczzz" + index;
+        var _$indexKey2 = "fezzz" + index;
 
         _this2.anonymousFunc2Map[_$indexKey2] = function () {
           return changeAreaIndex(index);

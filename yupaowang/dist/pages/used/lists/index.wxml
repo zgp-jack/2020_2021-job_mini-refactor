@@ -2,13 +2,13 @@
     <block>
         <view class="recruit-container">
             <view class="recruit-fiexd-header">
-                <search compid="{{$compid__74}}"></search>
-                <condition compid="{{$compid__75}}"></condition>
+                <search compid="{{$compid__72}}"></search>
+                <condition compid="{{$compid__73}}"></condition>
             </view>
             <scroll-view class="recruit-lists-containerbox" scroll-y="{{true}}" refresher-enabled="{{true}}" refresher-triggered="{{refresh}}" bindrefresherrefresh="anonymousFunc0" lower-threshold="{{200}}" bindscrolltolower="anonymousFunc1">
                 <view style="{{anonymousState__temp}}"></view>
                 <wechat-notice></wechat-notice>
-                <used-list compid="{{$compid__76}}"></used-list>
+                <used-list compid="{{$compid__74}}"></used-list>
             </scroll-view>
         </view>
         <tabbar></tabbar>
