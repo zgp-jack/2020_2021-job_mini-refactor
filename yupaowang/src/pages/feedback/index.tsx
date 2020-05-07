@@ -1,6 +1,7 @@
 import Taro, { Config, useState, useRouter, useEffect } from '@tarojs/taro'
-import { View, Button } from '@tarojs/components'
-import { AtTextarea, AtInput } from 'taro-ui'
+import { View, Button, Textarea } from '@tarojs/components'
+import { AtInput } from 'taro-ui'
+import WordsTotal from '../../components/wordstotal'
 import WechatNotice from '../../components/wechat'
 import ImageView from '../../components/imageview'
 import UploadImgAction from '../../utils/upload'
@@ -52,6 +53,8 @@ export default function Feedback() {
   const [image, setImage] = useState<ImageDataType>({
     item:[],
   })
+  // 默认字数
+  const [num, setNum] = useState<number>(0)
   // 获取用户是否登录
   const login = useSelector<any, boolean>(state => state.User['login'])
   useEffect(() => {
@@ -136,19 +139,27 @@ export default function Feedback() {
       }
     })
   }
+  const handleTextarea = (e:any)=>{
+    let val: string = e.detail.value;
+    setTextarea(val);
+    setNum(val.length);
+  }
   return (
     <View className='feedback-content'>
       <Auth />
       <WechatNotice />
       <View className='feedback-content-middle'>
         <View className='feedback-content-middle-box'>
-        <AtTextarea
+        <Textarea
           className='feedback-content-middle-textarea'
           value={textarea}
-          onChange={(e) => setTextarea(e) }
-          maxLength={500}
+          onInput={(e) => handleTextarea(e) }
+          maxlength={500}
           placeholder='请填写您对鱼泡的建议或意见'
         />
+          <View className="feedback-wordsTotal">
+            <WordsTotal num={num} />
+        </View>
           <View className='feedback-content-middle-imgBox'>
             {image.item &&
               <ImageView images={image.item} max={9} userUploadImg={userUploadImg} />

@@ -12,10 +12,13 @@
   background:rgba(246, 246, 246, 1);
   border: none;
   border-radius: 0px;
+  width: 100%;
+  font-size: 28px;
+  padding: 20px;
 }
 
 .feedback-content-middle-imgBox {
-background:rgba(246, 246, 246, 1);
+  background:rgba(246, 246, 246, 1);
   min-height: 200px;
 }
 .feedback-content-middle-from {
@@ -51,4 +54,8 @@ background:rgba(246, 246, 246, 1);
 }
 .at-textarea__textarea{
   min-height: 300px !important;
+}
+.feedback-wordsTotal{
+  position: absolute;
+  right: 50px;
 }

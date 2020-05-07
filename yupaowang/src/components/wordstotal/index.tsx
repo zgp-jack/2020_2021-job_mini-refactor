@@ -1,6 +1,5 @@
 import Taro from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
-import classnames from 'classnames'
 import './index.scss'
 
 interface PROPS {
