@@ -7,7 +7,7 @@ import ImageView from '../../components/imageview'
 import UploadImgAction from '../../utils/upload'
 import userCode from '../../hooks/code'
 import { feedbackSubmissionAction } from '../../utils/request/index'
-import Msg from '../../utils/msg'
+import Msg, { ShowActionModal} from '../../utils/msg'
 import { isVaildVal, isPhone } from '../../utils/v'
 import Auth from '../../components/auth'
 import { useSelector } from '@tarojs/redux'
@@ -104,7 +104,7 @@ export default function Feedback() {
       return false
     }
     if (!isPhone(uphone)) {
-      Msg('请输入手机号')
+      Msg('请输入正确手机号')
       return false
     }
     if (uphone !== router.params.phone && !code){
@@ -120,10 +120,8 @@ export default function Feedback() {
     }
     feedbackSubmissionAction(params).then(res =>{
       if(res.errcode == 'ok'){
-        Taro.showModal({
-          title: '提示',
-          content: res.errmsg,
-          showCancel: false,
+        ShowActionModal({ 
+          msg: res.errmsg,
           success: function () {
             Taro.navigateBack({
               delta: 1
@@ -131,11 +129,7 @@ export default function Feedback() {
           }
         })
       }else{
-        Taro.showModal({
-          title: '提示',
-          content: res.errmsg,
-          showCancel: false
-        })
+        Msg(res.errmsg)
       }
     })
   }
