@@ -1,4 +1,4 @@
-import Taro, { useState, useEffect, Config, login } from '@tarojs/taro'
+import Taro, { useState, useEffect, Config } from '@tarojs/taro'
 import { View, Text, Image, Block, ScrollView } from '@tarojs/components'
 import { useSelector } from '@tarojs/redux'
 import HeaderList from './config'

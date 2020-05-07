@@ -7,7 +7,7 @@ const HeaderList: HeaderListItem[] = [
   {
     title: '全部',
     id: 'all'
-  },
+  }, 
   {
     title: '正在招',
     id: 'being'
