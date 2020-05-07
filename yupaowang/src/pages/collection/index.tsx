@@ -1,9 +1,11 @@
-import Taro, { Config, useState, useReachBottom } from '@tarojs/taro'
+import Taro, { Config, useState, useReachBottom, usePullDownRefresh, useEffect } from '@tarojs/taro'
 import { View, Text, Image } from '@tarojs/components'
 import RecruitList from './recruitList'
 import ResumeList from './resumeList'
 import { IMGCDNURL } from '../../config'
 import classnames from 'classnames'
+import { useSelector } from '@tarojs/redux'
+import Auth from '../../components/auth'
 import './index.scss'
 
 
@@ -20,16 +22,30 @@ export default function Collection() {
   // 默认table
   const [current, setCurrent] = useState<number>(1)
   const [bottom,setBottom] = useState<number>(0)
+  const [initPage,setInitPage] = useState<number>(0)
+  // 获取用户是否登录
+  const login = useSelector<any, boolean>(state => state.User['login'])
+
+  useEffect(() => {
+    if (!login) return
+    setInitPage(initPage + 1)
+  }, [login])
   const handleTable = (type:number)=>{
     setBottom(0)
+    setInitPage(0)
     setCurrent(type);
   }
   // 是否加载更多
   useReachBottom(()=>{
     setBottom(bottom + 1)
   })
+  // 下拉刷新
+  usePullDownRefresh(()=>{
+    setInitPage(initPage + 1)
+  })
   return (
     <View className='collection-content'>
+      <Auth />
       <View className='collection-tab'>
         {tab.map(item => (
           <View className='collection-tab-box' key={item.id} onClick={() => handleTable(item.id)}>
@@ -46,11 +62,15 @@ export default function Collection() {
           </View>
         ))}
       </View>
-      {current === 1 ?  <RecruitList bottom={bottom} /> : <ResumeList bottom={bottom} />}
+      {current === 1 ? <RecruitList bottom={bottom} initPage={initPage} /> : <ResumeList bottom={bottom} initPage={initPage}/>}
     </View> 
   )
 }
 Collection.config = {
   navigationBarTitleText: '我的收藏找活',
-  'onReachBottomDistance': 50
+  // 'onReachBottomDistance': 50,
+  enablePullDownRefresh:true,
+  backgroundTextStyle: "dark",
+  navigationBarBackgroundColor: '#0099ff',
+  navigationBarTextStyle: 'white',
 } as Config

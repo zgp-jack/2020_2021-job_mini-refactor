@@ -1,4 +1,4 @@
-import Taro, { Config, useState, useRouter } from '@tarojs/taro'
+import Taro, { Config, useState, useRouter, useEffect } from '@tarojs/taro'
 import { View, Button } from '@tarojs/components'
 import { AtTextarea, AtInput } from 'taro-ui'
 import WechatNotice from '../../components/wechat'
@@ -8,6 +8,8 @@ import userCode from '../../hooks/code'
 import { feedbackSubmissionAction } from '../../utils/request/index'
 import Msg from '../../utils/msg'
 import { isVaildVal, isPhone } from '../../utils/v'
+import Auth from '../../components/auth'
+import { useSelector } from '@tarojs/redux'
 import './index.scss'
 
 export interface DataType {
@@ -50,6 +52,11 @@ export default function Feedback() {
   const [image, setImage] = useState<ImageDataType>({
     item:[],
   })
+  // 获取用户是否登录
+  const login = useSelector<any, boolean>(state => state.User['login'])
+  useEffect(() => {
+    if (!login) return
+  }, [login])
   // 使用自定义验证码hook
   const { text, userGetCode, disabled } = userCode()
   // 用户上传图片
@@ -86,7 +93,7 @@ export default function Feedback() {
       }
     }
     if (!isVaildVal(textarea, 15, 500)) {
-      Msg('请输入3-30字的标题')
+      Msg('输入内容不少于15个字且必须包含文字')
       return false
     }
     if (!name) {
@@ -131,6 +138,7 @@ export default function Feedback() {
   }
   return (
     <View className='feedback-content'>
+      <Auth />
       <WechatNotice />
       <View className='feedback-content-middle'>
         <View className='feedback-content-middle-box'>

@@ -15,11 +15,12 @@ export interface initRecPageType {
 }
 interface PROPS {
   bottom:number,
+  initPage:number,
 }
 interface PageType {
   page :number,
 }
-export default function RecruitList({ bottom }: PROPS) {
+export default function RecruitList({ bottom, initPage}: PROPS) {
   // * 标记是否是在刷新状态
   const [refresh, setRefresh] = useState<boolean>(false)
   // * 定义招工列表数组
@@ -32,11 +33,12 @@ export default function RecruitList({ bottom }: PROPS) {
   const [recruitNoMoreData, setRecruitNoMoreData] = useState<boolean>(false)
   // 是否加载更多
   const [more,setMore] = useState<boolean>(false)
-  
+
   // * 请求数据
   useEffect(() => {
     getCollectionRecruitListData(initRecPage.page).then(res => {
       Taro.hideNavigationBarLoading()
+      Taro.stopPullDownRefresh();
       if ((res.list.length < res.pageSize) && res.list.length) {
         setRecruitNoMoreData(true)
       }
@@ -56,6 +58,12 @@ export default function RecruitList({ bottom }: PROPS) {
     if (recruitNoMoreData ) return
     setinitRecPage({ ...initRecPage,page:initRecPage.page + 1})
   },[bottom])
+  console.log(initPage);
+  // 下拉
+  useEffect(() => {
+    if (initPage === 0) return
+    setinitRecPage({page:1})
+  }, [initPage])
 
   // * 招工取消收藏
   const recruitListHandler = (id: string) => {
@@ -65,22 +73,22 @@ export default function RecruitList({ bottom }: PROPS) {
       }
     })
   }
-  // * 监听下拉刷新
-  const pullDownAction = () => {
-    setRefresh(true)
-    setRecruitNoMoreData(false)
-    setinitRecPage({ page: 1 })
-  }
-  // * 触底加载下一页
-  const getNextPageData = () => {
-    if (recruitNoMoreData) return 
-    Taro.showNavigationBarLoading()
-    setinitRecPage({ ...initRecPage, page: initRecPage.page + 1 })
-  }
+  // // * 监听下拉刷新
+  // const pullDownAction = () => {
+  //   setRefresh(true)
+  //   setRecruitNoMoreData(false)
+  //   setinitRecPage({ page: 1 })
+  // }
+  // // * 触底加载下一页
+  // const getNextPageData = () => {
+  //   if (recruitNoMoreData) return 
+  //   Taro.showNavigationBarLoading()
+  //   setinitRecPage({ ...initRecPage, page: initRecPage.page + 1 })
+  // }
 
   return (
     <View className='recruit-container'>
-      <ScrollView
+      {/* <ScrollView
         className='recruit-lists-containerbox'
         scrollY
         refresherEnabled
@@ -88,9 +96,11 @@ export default function RecruitList({ bottom }: PROPS) {
         onRefresherRefresh={() => pullDownAction()}
         lowerThreshold={200}
         onScrollToLower={() => getNextPageData()}
-      >
+      > */}
+        <View className='recruit-lists-containerbox'>
         <CollectionRecruitList  data={lists} onHandlerClick={recruitListHandler} recruitNoMoreData={recruitNoMoreData}/>
-      </ScrollView>
+        </View>
+      {/* </ScrollView> */}
     </View>
   )
 }

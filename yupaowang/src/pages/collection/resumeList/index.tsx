@@ -11,11 +11,12 @@ export interface AllLists {
 }
 interface PROPS {
   bottom: number,
+  initPage: number,
 }
 interface PageType{
   page:number
 }
-export default function ResumeList({ bottom }: PROPS) {
+export default function ResumeList({ bottom, initPage}: PROPS) {
   // * 标记是否是在刷新状态
   const [refresh, setRefresh] = useState<boolean>(false)
   // * 定义找活列表数组
@@ -31,6 +32,7 @@ export default function ResumeList({ bottom }: PROPS) {
   useEffect(() =>{
     getCollectionResumeListData(initResPage.page).then(res => {
       Taro.hideNavigationBarLoading()
+      Taro.stopPullDownRefresh();
       if(res.data.length < res.pageSize && res.data.length){
         setRecruitNoMoreData(true)
       }
@@ -41,16 +43,22 @@ export default function ResumeList({ bottom }: PROPS) {
       }
       if (refresh) setRefresh(false)
     })
-      .catch(err =>{
-        Taro.showToast({ title: err})
-    })
   },[initResPage])
+
   // 上拉加载更多
   useEffect(() => {
     if (!bottom) return
     if (recruitNoMoreData) return
     setinitResPage({...initResPage,page:initResPage.page + 1})
   }, [bottom])
+
+  // 下拉
+  useEffect(() => {
+    // console.log('下拉')
+    if (!initPage) return
+    setinitResPage({ page: initPage })
+  }, [initPage])
+
   // 找活取消收藏
   const resumeListHandler = (id: string) => {
     ResumeCancelCollectionAction(id).then(res => {
@@ -59,22 +67,22 @@ export default function ResumeList({ bottom }: PROPS) {
       }
     })
   }
-  // * 监听下拉刷新
-  const pullDownAction = () => {
-    setRefresh(true)
-    setRecruitNoMoreData(false)
-    setinitResPage({page:1})
-  }
-  // * 触底加载下一页
-  const getNextPageData = () => {
-    if (recruitNoMoreData) return 
-    Taro.showNavigationBarLoading()
-    setinitResPage({...initResPage, page: initResPage.page + 1})
-  }
+  // // * 监听下拉刷新
+  // const pullDownAction = () => {
+  //   setRefresh(true)
+  //   setRecruitNoMoreData(false)
+  //   setinitResPage({page:1})
+  // }
+  // // * 触底加载下一页
+  // const getNextPageData = () => {
+  //   if (recruitNoMoreData) return 
+  //   Taro.showNavigationBarLoading()
+  //   setinitResPage({...initResPage, page: initResPage.page + 1})
+  // }
   
   return (
     <View className='recruit-container'>
-      <ScrollView
+      {/* <ScrollView
         className='recruit-lists-containerbox'
         scrollY
         lowerThreshold={200}
@@ -82,9 +90,11 @@ export default function ResumeList({ bottom }: PROPS) {
         refresherTriggered={refresh}
         onRefresherRefresh={() => pullDownAction()}
         onScrollToLower={() => getNextPageData()}
-      >
+      > */}
+      <View className='recruit-lists-containerbox'>
         <CollectionResumeList data={resLists} onHandlerClick={resumeListHandler} recruitNoMoreData={recruitNoMoreData}/>
-      </ScrollView>
+      </View>
+      {/* </ScrollView> */}
     </View>
   )
 }

@@ -4,6 +4,8 @@ import WechatNotice from '../../components/wechat'
 import Nodata from '../../components/nodata'
 import { feedbackAction  } from '../../utils/request'
 import { feedbackListData } from '../../utils/request/index.d'
+import Auth from '../../components/auth'
+import { useSelector } from '@tarojs/redux'
 import './index.scss'
 
 // 页数
@@ -35,8 +37,14 @@ export default function FeedbackList() {
     phone:'',
     username:'',
   })
+  // 获取用户是否登录
+  const login = useSelector<any, boolean>(state => state.User['login'])
   // 是否能下啦加载更多
   const [isDown, setIsDown] = useState<boolean>(true);
+  useEffect(() => {
+    if (!login) return
+    setPage({ page: 1 })
+  }, [login])
   useEffect(() => {
     feedbackAction(initPage.page).then(res =>{
       Taro.hideNavigationBarLoading()
@@ -72,6 +80,7 @@ export default function FeedbackList() {
   }
   return(
     <View>
+      <Auth />
       <WechatNotice/>
       {!lists.item.length && <Nodata text='暂无相关数据反馈' />}
       <ScrollView

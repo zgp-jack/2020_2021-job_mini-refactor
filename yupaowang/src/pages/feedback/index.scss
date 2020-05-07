@@ -1,3 +1,6 @@
+.feedback-content{
+  height: 100%;
+}
 .feedback-content-middle {
   margin: 20px;
 }
@@ -6,7 +9,7 @@
   background: #fff;
 }
 .feedback-content-middle-textarea {
-background:rgba(246, 246, 246, 1);
+  background:rgba(246, 246, 246, 1);
   border: none;
   border-radius: 0px;
 }
@@ -32,6 +35,7 @@ background:rgba(246, 246, 246, 1);
   letter-spacing: 2px;
   margin: 15px auto 0;
   border-radius: 5px;
+  margin-bottom: 200px;
 }
 .at-input{
   margin-left: 0px;
@@ -44,4 +48,7 @@ background:rgba(246, 246, 246, 1);
   background: #09f;
   color: white;
   font-size: 24px;
+}
+.at-textarea__textarea{
+  min-height: 300px !important;
 }
