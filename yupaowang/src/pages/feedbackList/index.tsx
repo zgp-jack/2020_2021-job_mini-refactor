@@ -2,8 +2,8 @@ import Taro, { Config, useState, useEffect } from '@tarojs/taro'
 import { View, Button, Block, Text, Image, ScrollView } from '@tarojs/components'
 import WechatNotice from '../../components/wechat'
 import Nodata from '../../components/nodata'
-import { feedbackAction  } from "../../utils/request"
-import { feedbackListData } from "../../utils/request/index.d"
+import { feedbackAction  } from '../../utils/request'
+import { feedbackListData } from '../../utils/request/index.d'
 import './index.scss'
 
 // 页数
@@ -84,27 +84,27 @@ export default function FeedbackList() {
       >
         {lists.item && lists.item.map((item) => (
           <Block key={item.id}>
-            <View className="feedback-body-1">
-              <View className="superior">
-                <View className="superior-1">
+            <View className='feedback-body-1'>
+              <View className='superior'>
+                <View className='superior-1'>
                   <text>问</text>
                 </View>
-                <View className="superior-2">
+                <View className='superior-2'>
                   <text>{item.content}</text>
                 </View>
               </View>
-              <View className="species">
+              <View className='species'>
                 {item.images && item.images.map((v) => (
-                  <View className="species-1" key={v} onClick={()=>{handleImg(v)}}>
+                  <View className='species-1' key={v} onClick={()=>{handleImg(v)}}>
                     <Image style={{ width: '100%', height: '85px' }} src={v} />
                   </View>
                 ))}
               </View>
-              <View className="species-text">{item.ask_time}</View>
+              <View className='species-text'>{item.ask_time}</View>
               {item.is_answer &&
-                <View className="superior-1s">
-                  <View className="superiordati">答</View>
-                  <View className="superioredase">
+                <View className='superior-1s'>
+                  <View className='superiordati'>答</View>
+                  <View className='superioredase'>
                     {item.send_msg && <Text >{item.send_msg}</Text>}
                   </View>
                 </View>
@@ -112,10 +112,10 @@ export default function FeedbackList() {
             </View>
           </Block>
         ))}
-        {/* {!isDown && <View className="feedback-noData">没有更多数据了</View>} */}
+        {/* {!isDown && <View className='feedback-noData'>没有更多数据了</View>} */}
       </ScrollView>
       <View className='feedback-bttonBox'>
-        <Button className="feedback-bttonBox-botton" onClick={() => userRouteJump(`/pages/feedback/index?username=${userData.username}&phone=${userData.phone}`)}>我要提意见</Button>
+        <Button className='feedback-bttonBox-botton' onClick={() => userRouteJump(`/pages/feedback/index?username=${userData.username}&phone=${userData.phone}`)}>我要提意见</Button>
       </View>
     </View>
   )

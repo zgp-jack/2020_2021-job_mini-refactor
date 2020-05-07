@@ -8,7 +8,7 @@ export default function Report() {
     Taro.makePhoneCall({ phoneNumber: SERVERPHONE })
   }
   return (
-    <View className="yupao-common-container">
+    <View className='yupao-common-container'>
       <View className='report-container'>
         <View className='report-words-box'>
           <View className='report-words-item'>鱼泡网为给工友们提供一个更加安全可靠、方便快捷的招工找活平台，同时也希望为净化建筑行业出一份力，故开通举报热线：<Text onClick={() => { handleClick()}}>{SERVERPHONE }</Text></View>

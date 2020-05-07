@@ -1,5 +1,5 @@
 import Taro, { Config, useEffect, useState } from '@tarojs/taro'
-import { View, Text, ScrollView, Button} from '@tarojs/components'
+import { View, Text, ScrollView} from '@tarojs/components'
 import { helpAction, feedbackAction } from '../../utils/request'
 import { AtAccordion, AtList } from 'taro-ui'
 import { heleDatalist } from '../../utils/request/index.d'
@@ -28,10 +28,6 @@ export default function Help() {
   const [data, setData] = useState<DataType>({
     item:[],
   })
-  // // 设置初始页面
-  // const [init, setInit] = useState<InitType>({
-  //   page: 1
-  // })
   // 用户数据
   const [userData,setUserData] = useState<UserDataType>({
     phone: '',
@@ -93,6 +89,12 @@ export default function Help() {
       url: url
     })
   }
+  // * 监听下拉刷新
+  const pullDownAction = () => {
+    setRefresh(true)
+    setIsDown(true)
+    setinitPage({ page: 1 })
+  }
   return (
     <View className='help-content'>
       <ScrollView
@@ -101,27 +103,27 @@ export default function Help() {
         lowerThreshold={200}
         refresherEnabled
         refresherTriggered={refresh}
-        // onRefresherRefresh={() => pullDownAction()}
+        onRefresherRefresh={() => pullDownAction()}
         onScrollToLower={() => getNextPageData()}
       >
         <View style={{ height: '10px' }}></View>
-      {data.item.map(item => (
-        <AtAccordion
-          icon={{ value: 'help', color: '#09f', size: '15'}}
-          // icon={`${apiImgUrl}new-ucenter-question.png`}
-          open={item.isShow}
-          onClick={(e) => { handleShow(item.id, e) }}
-          title={item.question}
-        >
-          <AtList hasBorder={false}>
-            <Text className="help-text">{item.answer}</Text>
-          </AtList>
-        </AtAccordion>
-      ))}
-        {!isDown && <View className="help-noData">没有更多数据了</View>}
+          {data.item.map(item => (
+            <AtAccordion
+              icon={{ value: 'help', color: '#09f', size: '15'}}
+              key={item.id}
+              open={item.isShow}
+              onClick={(e) => { handleShow(item.id, e) }}
+              title={item.question}
+            >
+              <AtList hasBorder={false}>
+                <Text className='help-text'>{item.answer}</Text>
+              </AtList>
+            </AtAccordion>
+          ))}
+        {!isDown && <View className='help-noData'>没有更多数据了</View>}
         <View style={{ height: '50px' }}></View>
       </ScrollView>
-      <View className="help-button" onClick={() => userRouteJump(`/pages/feedback/index?username=${userData.username}&phone=${userData.phone}`)}><Button>意见反馈</Button></View>
+      <View className='help-button-box' onClick={() => userRouteJump(`/pages/feedback/index?username=${userData.username}&phone=${userData.phone}`)}><Text className='help-button'>意见反馈</Text></View>
     </View>
   )
 }

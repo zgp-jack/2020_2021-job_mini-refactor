@@ -425,7 +425,8 @@ export function getCollectionRecruitListData(page: number): Promise<Inter.Collec
     method: 'POST',
     data: {
       page,
-    }
+    },
+    failToast:true
   })
 }
 // 收藏找活请求数据
@@ -433,6 +434,7 @@ export function getCollectionResumeListData(page: number): Promise<Inter.Collect
   return doRequestAction({
     url: api.getCollectionResumeList,
     method: 'POST',
+    failToast: true,
     data: {
       page,
     }
@@ -444,6 +446,7 @@ export function recruitListCancelCollectionAction(id:string): Promise<Inter.Resu
   return doRequestAction({
     url: api.recruitCancelCollection,
     method: 'POST',
+    failToast: true,
     data: {
       id,
     }
@@ -454,6 +457,7 @@ export function ResumeCancelCollectionAction(resume_uuid:string): Promise<Inter.
   return doRequestAction({
     url: api.ResumeCancelCollection,
     method: 'POST',
+    failToast: true,
     data: {
       resume_uuid,
     }
@@ -465,6 +469,7 @@ export function requestAction(): Promise<Inter.reportData> {
   return doRequestAction({
     url: api.requestActionUrl,
     method: 'POST',
+    failToast: true,
   })
 }
 
@@ -474,6 +479,7 @@ export function feedbackAction(page: number): Promise<Inter.feedbackList> {
   return doRequestAction({
     url: api.feedbackUrl,
     method: 'POST',
+    failToast: true,
     data:page
   })
 }
@@ -483,6 +489,7 @@ export function feedbackSubmissionAction(params:object): Promise<Inter.Result> {
   return doRequestAction({
     url: api.feedbackSubmissionUrl,
     method: 'POST',
+    failToast: true,
     data: params
   })
 }
@@ -491,6 +498,7 @@ export function feedbackSubmissionAction(params:object): Promise<Inter.Result> {
 export function helpAction(page: number): Promise<Inter.helpData> {
   return doRequestAction({
     url: api.helpUrl,
+    failToast: true,
     data:{
       page
     }

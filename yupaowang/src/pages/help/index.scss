@@ -8,16 +8,16 @@
   font-size: 30px;
   color: #999999;
   background: #fff;
+  line-height-step: 10px;
 }
 .at-accordion__info__title {
   font-size: 28px;
   font-weight: 400;
   display: inline-block;
-  // padding: 0 20px 0 50px;
   padding-top: 10px;
 }
-.help-button{
-  Button{
+.help-button-box {
+  .help-button {
     position: fixed;
     bottom: 0;
     width: 98%;
@@ -56,7 +56,7 @@
   color: #666;
 }
 .at-accordion__header{
-  align-items: stretch;
+  align-items:flex-start;
 }
 .at-accordion__icon{
   margin-top: 12px;

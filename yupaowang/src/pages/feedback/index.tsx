@@ -6,6 +6,8 @@ import ImageView from '../../components/imageview'
 import UploadImgAction from '../../utils/upload'
 import userCode from '../../hooks/code'
 import { feedbackSubmissionAction } from '../../utils/request/index'
+import Msg from '../../utils/msg'
+import { isVaildVal, isPhone } from '../../utils/v'
 import './index.scss'
 
 export interface DataType {
@@ -40,7 +42,7 @@ export default function Feedback() {
   // 用户电话号码
   const [uphone, setUPhone] = useState<string>(phone||'')
   // 意见
-  const [textarea, setTextarea] = useState<string>("");
+  const [textarea, setTextarea] = useState<string>('');
   // 是否显示获取验证码
   const [isShow,setIsShow] = useState<boolean>(false)
   // 验证码
@@ -83,6 +85,22 @@ export default function Feedback() {
         images.push(image.item[i].url);
       }
     }
+    if (!isVaildVal(textarea, 15, 500)) {
+      Msg('请输入3-30字的标题')
+      return false
+    }
+    if (!name) {
+      Msg('请输入联系人姓名')
+      return false
+    }
+    if (!isPhone(uphone)) {
+      Msg('请输入手机号')
+      return false
+    }
+    if (uphone !== router.params.phone && !code){
+      Msg('请输入验证码')
+      return false
+    }
     const params = {
       images,
       content: textarea,
@@ -91,7 +109,7 @@ export default function Feedback() {
       code:code
     }
     feedbackSubmissionAction(params).then(res =>{
-      if(res.errcode == "ok"){
+      if(res.errcode == 'ok'){
         Taro.showModal({
           title: '提示',
           content: res.errmsg,
@@ -102,7 +120,6 @@ export default function Feedback() {
             })
           }
         })
-        
       }else{
         Taro.showModal({
           title: '提示',
@@ -113,12 +130,12 @@ export default function Feedback() {
     })
   }
   return (
-    <View className="feedback-content">
+    <View className='feedback-content'>
       <WechatNotice />
-      <View className="feedback-content-middle">
+      <View className='feedback-content-middle'>
         <View className='feedback-content-middle-box'>
         <AtTextarea
-          className="feedback-content-middle-textarea"
+          className='feedback-content-middle-textarea'
           value={textarea}
           onChange={(e) => { setTextarea(e) }}
           maxLength={500}
@@ -157,7 +174,7 @@ export default function Feedback() {
               type='text'
               maxLength={4}
               placeholder='请输入你的验证码'
-              name="code"
+              name='code'
               value={code}
               onChange={(e:string)=>setCode(e)}
             >

@@ -58,7 +58,7 @@ var Home = (_temp2 = _class = function (_Taro$Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Home.__proto__ || Object.getPrototypeOf(Home)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__55", "$compid__56", "$compid__57", "$compid__58", "$compid__59", "IMGCDNURL"], _this.customComponents = ["SwiperComponent", "Projects", "Fastfun", "SwiperNews", "RecruitList", "ResumeList", "UsedList", "About"], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Home.__proto__ || Object.getPrototypeOf(Home)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__64", "$compid__65", "$compid__66", "$compid__67", "$compid__68", "IMGCDNURL"], _this.customComponents = ["SwiperComponent", "Projects", "Fastfun", "SwiperNews", "RecruitList", "ResumeList", "UsedList", "About"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Home, [{
@@ -77,30 +77,30 @@ var Home = (_temp2 = _class = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__55"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__64"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__55 = _genCompid2[0],
-          $compid__55 = _genCompid2[1];
+          $prevCompid__64 = _genCompid2[0],
+          $compid__64 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__56"),
+      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__65"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__56 = _genCompid4[0],
-          $compid__56 = _genCompid4[1];
+          $prevCompid__65 = _genCompid4[0],
+          $compid__65 = _genCompid4[1];
 
-      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__57"),
+      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__66"),
           _genCompid6 = _slicedToArray(_genCompid5, 2),
-          $prevCompid__57 = _genCompid6[0],
-          $compid__57 = _genCompid6[1];
+          $prevCompid__66 = _genCompid6[0],
+          $compid__66 = _genCompid6[1];
 
-      var _genCompid7 = (0, _taroWeapp.genCompid)(__prefix + "$compid__58"),
+      var _genCompid7 = (0, _taroWeapp.genCompid)(__prefix + "$compid__67"),
           _genCompid8 = _slicedToArray(_genCompid7, 2),
-          $prevCompid__58 = _genCompid8[0],
-          $compid__58 = _genCompid8[1];
+          $prevCompid__67 = _genCompid8[0],
+          $compid__67 = _genCompid8[1];
 
-      var _genCompid9 = (0, _taroWeapp.genCompid)(__prefix + "$compid__59"),
+      var _genCompid9 = (0, _taroWeapp.genCompid)(__prefix + "$compid__68"),
           _genCompid10 = _slicedToArray(_genCompid9, 2),
-          $prevCompid__59 = _genCompid10[0],
-          $compid__59 = _genCompid10[1];
+          $prevCompid__68 = _genCompid10[0],
+          $compid__68 = _genCompid10[1];
 
       // * 获取列表数据的data
 
@@ -159,28 +159,28 @@ var Home = (_temp2 = _class = function (_Taro$Component) {
       }, [filterData]);
       _taroWeapp.propsManager.set({
         "data": swiper
-      }, $compid__55, $prevCompid__55);
+      }, $compid__64, $prevCompid__64);
       _taroWeapp.propsManager.set({
         "data": notice
-      }, $compid__56, $prevCompid__56);
+      }, $compid__65, $prevCompid__65);
       _taroWeapp.propsManager.set({
         "data": lists.recruit,
         "bottom": false
-      }, $compid__57, $prevCompid__57);
+      }, $compid__66, $prevCompid__66);
       _taroWeapp.propsManager.set({
         "data": lists.resume,
         "bottom": false
-      }, $compid__58, $prevCompid__58);
+      }, $compid__67, $prevCompid__67);
       _taroWeapp.propsManager.set({
         "data": lists.fleamarket,
         "bottom": false
-      }, $compid__59, $prevCompid__59);
+      }, $compid__68, $prevCompid__68);
       Object.assign(this.__state, {
-        $compid__55: $compid__55,
-        $compid__56: $compid__56,
-        $compid__57: $compid__57,
-        $compid__58: $compid__58,
-        $compid__59: $compid__59,
+        $compid__64: $compid__64,
+        $compid__65: $compid__65,
+        $compid__66: $compid__66,
+        $compid__67: $compid__67,
+        $compid__68: $compid__68,
         IMGCDNURL: _index.IMGCDNURL
       });
       return this.__state;
