@@ -145,7 +145,7 @@ export default function Feedback() {
         <AtTextarea
           className='feedback-content-middle-textarea'
           value={textarea}
-          onChange={(e) => { setTextarea(e) }}
+          onChange={(e) => setTextarea(e) }
           maxLength={500}
           placeholder='请填写您对鱼泡的建议或意见'
         />
@@ -163,7 +163,7 @@ export default function Feedback() {
           type='text'
           placeholder='请输入你的名字'
           value={name}
-          onChange={(e: string) => { setName(e) }}
+          onChange={(e: string) =>setName(e)}
         />
         <AtInput
           name='phone'
@@ -172,7 +172,7 @@ export default function Feedback() {
           placeholder='请输入手机号方便客服联系你'
           maxLength={11}
           value={uphone}
-          onChange={(e:string)=>{handlePhone(e)}}
+          onChange={(e:string)=>handlePhone(e)}
         />
         {isShow && 
           <View>

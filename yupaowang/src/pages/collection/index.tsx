@@ -1,10 +1,9 @@
-import Taro, { Config, useState, useReachBottom, usePullDownRefresh, useEffect } from '@tarojs/taro'
+import Taro, { Config, useState, useReachBottom, usePullDownRefresh } from '@tarojs/taro'
 import { View, Text, Image } from '@tarojs/components'
 import RecruitList from './recruitList'
 import ResumeList from './resumeList'
 import { IMGCDNURL } from '../../config'
 import classnames from 'classnames'
-import { useSelector } from '@tarojs/redux'
 import Auth from '../../components/auth'
 import './index.scss'
 
@@ -23,13 +22,6 @@ export default function Collection() {
   const [current, setCurrent] = useState<number>(1)
   const [bottom,setBottom] = useState<number>(0)
   const [initPage,setInitPage] = useState<number>(0)
-  // 获取用户是否登录
-  const login = useSelector<any, boolean>(state => state.User['login'])
-
-  useEffect(() => {
-    if (!login) return
-    setInitPage(initPage + 1)
-  }, [login])
   const handleTable = (type:number)=>{
     setBottom(0)
     setInitPage(0)
@@ -68,9 +60,8 @@ export default function Collection() {
 }
 Collection.config = {
   navigationBarTitleText: '我的收藏找活',
-  // 'onReachBottomDistance': 50,
-  enablePullDownRefresh:true,
-  backgroundTextStyle: "dark",
+  enablePullDownRefresh: true,
   navigationBarBackgroundColor: '#0099ff',
   navigationBarTextStyle: 'white',
+  backgroundTextStyle: "dark"
 } as Config

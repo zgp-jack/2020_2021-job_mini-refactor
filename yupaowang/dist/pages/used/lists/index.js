@@ -62,7 +62,7 @@ var Fleamarket = (_temp2 = _class = function (_Taro$Component) {
       navigationBarBackgroundColor: '#0099ff',
       navigationBarTextStyle: 'white',
       backgroundTextStyle: "dark"
-    }, _this.$usedState = ["anonymousState__temp", "$compid__81", "$compid__82", "$compid__83", "refresh"], _this.customComponents = ["Search", "Condition", "WechatNotice", "UsedList", "Tabbar"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["anonymousState__temp", "$compid__76", "$compid__77", "$compid__78", "refresh"], _this.customComponents = ["Search", "Condition", "WechatNotice", "UsedList", "Tabbar"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Fleamarket, [{
@@ -81,20 +81,20 @@ var Fleamarket = (_temp2 = _class = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__81"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__76"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__81 = _genCompid2[0],
-          $compid__81 = _genCompid2[1];
+          $prevCompid__76 = _genCompid2[0],
+          $compid__76 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__82"),
+      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__77"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__82 = _genCompid4[0],
-          $compid__82 = _genCompid4[1];
+          $prevCompid__77 = _genCompid4[0],
+          $compid__77 = _genCompid4[1];
 
-      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__83"),
+      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__78"),
           _genCompid6 = _slicedToArray(_genCompid5, 2),
-          $prevCompid__83 = _genCompid6[0],
-          $compid__83 = _genCompid6[1];
+          $prevCompid__78 = _genCompid6[0],
+          $compid__78 = _genCompid6[1];
 
       // * 配置筛选条件
 
@@ -164,18 +164,18 @@ var Fleamarket = (_temp2 = _class = function (_Taro$Component) {
       _taroWeapp.propsManager.set({
         "placeholder": "\u8DF3\u86A4\u5E02\u573A",
         "value": ""
-      }, $compid__81, $prevCompid__81);
+      }, $compid__76, $prevCompid__76);
       _taroWeapp.propsManager.set({
         "data": DEFAULT_CONDITION
-      }, $compid__82, $prevCompid__82);
+      }, $compid__77, $prevCompid__77);
       _taroWeapp.propsManager.set({
         "data": lists
-      }, $compid__83, $prevCompid__83);
+      }, $compid__78, $prevCompid__78);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
-        $compid__81: $compid__81,
-        $compid__82: $compid__82,
-        $compid__83: $compid__83,
+        $compid__76: $compid__76,
+        $compid__77: $compid__77,
+        $compid__78: $compid__78,
         refresh: refresh
       });
       return this.__state;

@@ -1,8 +1,10 @@
 import Taro, { useEffect, useState } from '@tarojs/taro'
-import { View, ScrollView } from '@tarojs/components'
+import { View } from '@tarojs/components'
 import CollectionRecruitList from '../collectionRecruitList';
 import { getCollectionRecruitListData, recruitListCancelCollectionAction } from '../../../utils/request'
 import {  CollectionRecruitListDataList } from '../../../utils/request/index.d'
+import Auth from '../../../components/auth'
+import { useSelector } from '@tarojs/redux'
 import './index.scss'
 
 // 定义招工
@@ -33,13 +35,19 @@ export default function RecruitList({ bottom, initPage}: PROPS) {
   const [recruitNoMoreData, setRecruitNoMoreData] = useState<boolean>(false)
   // 是否加载更多
   const [more,setMore] = useState<boolean>(false)
-
-  // * 请求数据
+  // 获取用户是否登录
+  const login = useSelector<any, boolean>(state => state.User['login'])
+  // 判断是否登陆
   useEffect(() => {
+    if (!login) return
+    getCollectionRecruitListDataAction();
+  }, [login, initRecPage])
+  // * 请求数据
+  const getCollectionRecruitListDataAction =  ()=>{
     getCollectionRecruitListData(initRecPage.page).then(res => {
       Taro.hideNavigationBarLoading()
       Taro.stopPullDownRefresh();
-      if ((res.list.length < res.pageSize) && res.list.length) {
+      if (((res.list.length < res.pageSize) || (res.list.length = res.pageSize)) && res.list.length) {
         setRecruitNoMoreData(true)
       }
       if (initRecPage.page === 1) {
@@ -50,15 +58,13 @@ export default function RecruitList({ bottom, initPage}: PROPS) {
       if (refresh) setRefresh(false)
       if (more) setMore(false)
     })
-  }, [initRecPage])
-
+  }
   // * 上拉刷新
   useEffect(() => {
     if(!bottom) return
     if (recruitNoMoreData ) return
     setinitRecPage({ ...initRecPage,page:initRecPage.page + 1})
   },[bottom])
-  console.log(initPage);
   // 下拉
   useEffect(() => {
     if (initPage === 0) return
@@ -73,34 +79,12 @@ export default function RecruitList({ bottom, initPage}: PROPS) {
       }
     })
   }
-  // // * 监听下拉刷新
-  // const pullDownAction = () => {
-  //   setRefresh(true)
-  //   setRecruitNoMoreData(false)
-  //   setinitRecPage({ page: 1 })
-  // }
-  // // * 触底加载下一页
-  // const getNextPageData = () => {
-  //   if (recruitNoMoreData) return 
-  //   Taro.showNavigationBarLoading()
-  //   setinitRecPage({ ...initRecPage, page: initRecPage.page + 1 })
-  // }
-
   return (
     <View className='recruit-container'>
-      {/* <ScrollView
-        className='recruit-lists-containerbox'
-        scrollY
-        refresherEnabled
-        refresherTriggered={refresh}
-        onRefresherRefresh={() => pullDownAction()}
-        lowerThreshold={200}
-        onScrollToLower={() => getNextPageData()}
-      > */}
+      <Auth />
         <View className='recruit-lists-containerbox'>
         <CollectionRecruitList  data={lists} onHandlerClick={recruitListHandler} recruitNoMoreData={recruitNoMoreData}/>
         </View>
-      {/* </ScrollView> */}
     </View>
   )
 }

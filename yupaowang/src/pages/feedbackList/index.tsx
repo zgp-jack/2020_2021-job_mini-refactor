@@ -41,17 +41,19 @@ export default function FeedbackList() {
   const login = useSelector<any, boolean>(state => state.User['login'])
   // 是否能下啦加载更多
   const [isDown, setIsDown] = useState<boolean>(true);
+  // 判断是够登陆
   useEffect(() => {
     if (!login) return
-    setPage({ page: 1 })
-  }, [login])
-  useEffect(() => {
-    feedbackAction(initPage.page).then(res =>{
+    feedbackDataAction();
+  }, [login, initPage])
+  // 进来时获取数据
+  const feedbackDataAction = ()=>{
+    feedbackAction(initPage.page).then(res => {
       Taro.hideNavigationBarLoading()
-      if(initPage.page === 1){
+      if (initPage.page === 1) {
         setLists({ item: [...res.data] })
-      }else{
-        setLists({ item: [...lists.item,...res.data] })
+      } else {
+        setLists({ item: [...lists.item, ...res.data] })
       }
       setUserData(res.memberInfo);
       if (refresh) setRefresh(false)
@@ -59,8 +61,7 @@ export default function FeedbackList() {
         setIsDown(false)
       }
     })
-  }, [initPage])
-
+  }
   // 用户页面跳转
   const userRouteJump = (url: string) => {
     Taro.navigateTo({
