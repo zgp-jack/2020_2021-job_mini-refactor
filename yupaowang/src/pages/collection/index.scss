@@ -29,10 +29,12 @@
   color: rgba(0, 153, 255, 1);
   font-size: 30px;
 }
+.collection-tab-box:first-child {
+  border-right: 1px solid #C7C6C6;
+}
 .collection-tab-box{
   width: 50%;
   text-align: center;
-  border-right: 1px solid #C7C6C6;
 }
 .collection-tab-content{
   display: flex;
@@ -49,7 +51,4 @@
 
 .at-modal__content{
 min-height: 10px !important;
-}
-.collection-content{
-  height: 100vh;
 }

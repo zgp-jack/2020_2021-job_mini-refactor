@@ -1,4 +1,4 @@
-import Taro, { Config, useState, useEffect } from '@tarojs/taro'
+import Taro, { Config, useState, useEffect, usePullDownRefresh } from '@tarojs/taro'
 import { View, Button, Block, Text, Image, ScrollView } from '@tarojs/components'
 import WechatNotice from '../../components/wechat'
 import Nodata from '../../components/nodata'
@@ -39,7 +39,7 @@ export default function FeedbackList() {
   })
   // 获取用户是否登录
   const login = useSelector<any, boolean>(state => state.User['login'])
-  // 是否能下啦加载更多
+  // 是否能上啦加载更多
   const [isDown, setIsDown] = useState<boolean>(true);
   // 判断是够登陆
   useEffect(() => {
@@ -50,6 +50,7 @@ export default function FeedbackList() {
   const feedbackDataAction = ()=>{
     feedbackAction(initPage.page).then(res => {
       Taro.hideNavigationBarLoading()
+      Taro.stopPullDownRefresh();
       if (initPage.page === 1) {
         setLists({ item: [...res.data] })
       } else {
@@ -79,6 +80,10 @@ export default function FeedbackList() {
       urls: [e]
     })
   }
+  // 下拉刷新
+  usePullDownRefresh(() => {
+    setPage({page:1})
+  })
   return(
     <View>
       <Auth />
@@ -133,4 +138,8 @@ export default function FeedbackList() {
 
 FeedbackList.config = {
   navigationBarTitleText: '鱼泡网-意见反馈列表',
+  enablePullDownRefresh: true,
+  navigationBarBackgroundColor: '#0099ff',
+  navigationBarTextStyle: 'white',
+  backgroundTextStyle: "dark"
 } as Config
