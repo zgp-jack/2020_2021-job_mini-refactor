@@ -501,3 +501,45 @@ export interface heleDatalist {
   isShow?: boolean,
   id?: number
 }
+
+// 新闻资讯类型
+export interface newsTypesList extends Result {
+  data: newsTypesListData[]
+}
+
+export interface newsTypesListData {
+  index:string,
+  letter:string,
+  name:string
+}
+
+
+// 新闻列表数据
+export interface newList extends Result {
+  data: newListData[]
+}
+export interface newListData {
+  author: string
+  cover_img: string
+  desc: string
+  id: number
+  jump_url: number
+  news_type: string
+  time: string
+  title: string
+  url: string
+}
+
+// 资讯详情
+export interface consultationDetails extends Result {
+  data: consultationDetailsData
+}
+export interface consultationDetailsData{
+  author: string
+  content: string
+  id: number
+  look_number: number
+  news_type: []
+  time: string,
+  title: string
+}

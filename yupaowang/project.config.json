@@ -104,6 +104,20 @@
 					"pathName": "pages/used/publish/index",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": 8,
+					"name": "新闻资讯",
+					"pathName": "pages/static/invite/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "资讯详情",
+					"pathName": "pages/consultationDetails/index",
+					"query": "",
+					"scene": null
 				}
 			]
 		}

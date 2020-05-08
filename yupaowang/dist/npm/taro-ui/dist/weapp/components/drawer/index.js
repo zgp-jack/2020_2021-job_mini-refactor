@@ -60,7 +60,7 @@ var AtDrawer = (_temp2 = _class = function (_AtComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AtDrawer.__proto__ || Object.getPrototypeOf(AtDrawer)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "anonymousState__temp3", "loopArray70", "_show", "items", "animShow", "mask", "width", "right", "className", "show", "children"], _this.customComponents = ["AtList", "AtListItem"], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AtDrawer.__proto__ || Object.getPrototypeOf(AtDrawer)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "anonymousState__temp3", "loopArray74", "_show", "items", "animShow", "mask", "width", "right", "className", "show", "children"], _this.customComponents = ["AtList", "AtListItem"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(AtDrawer, [{
@@ -172,13 +172,13 @@ var AtDrawer = (_temp2 = _class = function (_AtComponent) {
       var anonymousState__temp = _show ? (0, _classnames2.default)(rootClassName, classObject, this.__props.className) : null;
       var anonymousState__temp2 = _show ? (0, _taroWeapp.internal_inline_style)(maskStyle) : null;
       var anonymousState__temp3 = _show ? (0, _taroWeapp.internal_inline_style)(listStyle) : null;
-      var loopArray70 = !!items && items.length ? items.map(function (name, index) {
+      var loopArray74 = !!items && items.length ? items.map(function (name, index) {
         name = {
           $original: (0, _taroWeapp.internal_get_original)(name)
         };
         var $loopState__temp5 = !!items && items.length ? name.$original + "-" + index : null;
 
-        var _genCompid = (0, _taroWeapp.genCompid)(__prefix + 'gdzzzzzzzz' + index, true),
+        var _genCompid = (0, _taroWeapp.genCompid)(__prefix + 'gfzzzzzzzz' + index, true),
             _genCompid2 = _slicedToArray(_genCompid, 2),
             $prevCompid__91 = _genCompid2[0],
             $compid__91 = _genCompid2[1];
@@ -198,7 +198,7 @@ var AtDrawer = (_temp2 = _class = function (_AtComponent) {
         anonymousState__temp: anonymousState__temp,
         anonymousState__temp2: anonymousState__temp2,
         anonymousState__temp3: anonymousState__temp3,
-        loopArray70: loopArray70,
+        loopArray74: loopArray74,
         items: items
       });
       return this.__state;

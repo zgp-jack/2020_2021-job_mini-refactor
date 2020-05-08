@@ -505,3 +505,32 @@ export function helpAction(page: number): Promise<Inter.helpData> {
   })
 }
 
+// 新闻类型
+export function newsTypesAction(): Promise<Inter.newsTypesList> {
+  return doRequestAction({
+    url: api.newsTypesUrl,
+    failToast: true,
+  })
+}
+
+// 新闻列表
+export function newListAction(params:object): Promise<Inter.newList> {
+  return doRequestAction({
+    url: api.newListUrl,
+    method: 'POST',
+    failToast: true,
+    data:params
+  })
+}
+
+// 资讯详情
+export function newsInfoAction(id: string): Promise<Inter.consultationDetails> {
+  return doRequestAction({
+    url: api.newsInfoUrl,
+    method: 'POST',
+    failToast: true,
+    data:{
+      id,
+    }
+  })
+}

@@ -1,0 +1,43 @@
+.consultationDetails-content{
+  padding: 20px;
+  box-sizing: border-box;
+  max-width: 100%;
+  overflow: hidden;
+  padding-bottom: 100px;
+}
+.consultationDetails-title {
+  font-size: 34px;
+  line-height: 50px;
+  padding: 10px 0;
+}
+.consultationDetails-flex {
+  width: 100%;
+  border-bottom: 1px solid #dcdcdc;
+  font-size: 26px;
+  color: #586069;
+  line-height: 40px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+.consultationDetails-button {
+  position: fixed;
+  width: 100px;
+  height: 100px;
+  line-height: 100px;
+  text-align: center;
+  font-size: 30px;
+  color: #0099ff;
+  border-radius: 50%;
+  box-shadow: 0 0 5px #0099ff;
+  right: 27px;
+  top: 400px;
+  z-index: 10;
+  background: white;
+  overflow: hidden;
+  font-weight: bold;
+  letter-spacing: 1px;
+  border: none;
+  padding: 0;
+}

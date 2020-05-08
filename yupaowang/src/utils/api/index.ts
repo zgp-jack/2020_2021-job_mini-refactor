@@ -82,3 +82,9 @@ export const feedbackUrl: string = REQUESTURL + 'leaving-message/list/'
 export const feedbackSubmissionUrl: string = REQUESTURL + 'leaving-message/publish/'
 // 帮助中心
 export const helpUrl: string = REQUESTURL + 'others/help-feedback/'
+// 新闻列表
+export const newListUrl: string = REQUESTURL + 'news/list/'
+// 新闻类型
+export const newsTypesUrl: string = REQUESTURL + 'news/types/'
+// 咨询详情
+export const newsInfoUrl: string = REQUESTURL + 'news/info/'

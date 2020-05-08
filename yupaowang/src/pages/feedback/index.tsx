@@ -9,8 +9,6 @@ import userCode from '../../hooks/code'
 import { feedbackSubmissionAction } from '../../utils/request/index'
 import Msg, { ShowActionModal} from '../../utils/msg'
 import { isVaildVal, isPhone } from '../../utils/v'
-import Auth from '../../components/auth'
-import { useSelector } from '@tarojs/redux'
 import './index.scss'
 
 export interface DataType {
@@ -19,9 +17,6 @@ export interface DataType {
 }
 export interface ImageType{
   url:string
-}
-export interface ImgType{
-  item: any
 }
 
 // 初始化获取信息类型
@@ -41,9 +36,9 @@ export default function Feedback() {
   const router: Taro.RouterInfo = useRouter()
   let { username = '', phone = '' } = router.params;
   // 用户名字
-  const [name, setName] = useState<string>(username||'')
+  const [name, setName] = useState<string>(username)
   // 用户电话号码
-  const [uphone, setUPhone] = useState<string>(phone||'')
+  const [uphone, setUPhone] = useState<string>(phone)
   // 意见
   const [textarea, setTextarea] = useState<string>('');
   // 是否显示获取验证码
@@ -55,11 +50,6 @@ export default function Feedback() {
   })
   // 默认字数
   const [num, setNum] = useState<number>(0)
-  // 获取用户是否登录
-  const login = useSelector<any, boolean>(state => state.User['login'])
-  useEffect(() => {
-    if (!login) return
-  }, [login])
   // 使用自定义验证码hook
   const { text, userGetCode, disabled } = userCode()
   // 用户上传图片
@@ -80,7 +70,7 @@ export default function Feedback() {
     })
   }
   const handlePhone = (e:string)=>{
-    if (e !== router.params.phone || !router.params.phone){
+    if (e !== phone || !phone){
       setIsShow(true)
     }else{
       setIsShow(false)
@@ -89,12 +79,7 @@ export default function Feedback() {
   }
   // 提交
   const handleSubmission = ()=>{
-    let images:string[]=[];
-    if (image.item.length>0){
-      for (let i = 0; i < image.item.length;i++){
-        images.push(image.item[i].url);
-      }
-    }
+    let images: string[] = image.item.map(item=>item.url)
     if (!isVaildVal(textarea, 15, 500)) {
       Msg('输入内容不少于15个字且必须包含文字')
       return false
@@ -107,7 +92,7 @@ export default function Feedback() {
       Msg('请输入正确手机号')
       return false
     }
-    if (uphone !== router.params.phone && !code){
+    if (uphone !== phone && !code){
       Msg('请输入验证码')
       return false
     }
@@ -140,7 +125,6 @@ export default function Feedback() {
   }
   return (
     <View className='feedback-content'>
-      <Auth />
       <WechatNotice />
       <View className='feedback-content-middle'>
         <View className='feedback-content-middle-box'>

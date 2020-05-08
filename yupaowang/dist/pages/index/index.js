@@ -66,7 +66,7 @@ var Index = (_temp2 = _class = function (_Taro$Component) {
       navigationBarBackgroundColor: '#0099ff',
       navigationBarTextStyle: 'white',
       backgroundTextStyle: "dark"
-    }, _this.$usedState = ["$compid__49", "tabKey", "HOME", "RECRUIT", "RESUME", "MEMBER"], _this.customComponents = ["Home", "Recruit", "Resume", "Member", "Tabbar"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["$compid__48", "tabKey", "HOME", "RECRUIT", "RESUME", "MEMBER"], _this.customComponents = ["Home", "Recruit", "Resume", "Member", "Tabbar"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Index, [{
@@ -85,10 +85,10 @@ var Index = (_temp2 = _class = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__49"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__48"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__49 = _genCompid2[0],
-          $compid__49 = _genCompid2[1];
+          $prevCompid__48 = _genCompid2[0],
+          $compid__48 = _genCompid2[1];
 
       var dispatch = (0, _redux.useDispatch)();
       // 初始化页面参数
@@ -133,9 +133,9 @@ var Index = (_temp2 = _class = function (_Taro$Component) {
       }, [tabKey]);
       _taroWeapp.propsManager.set({
         "notredirect": true
-      }, $compid__49, $prevCompid__49);
+      }, $compid__48, $prevCompid__48);
       Object.assign(this.__state, {
-        $compid__49: $compid__49,
+        $compid__48: $compid__48,
         tabKey: tabKey,
         HOME: _tabbar.HOME,
         RECRUIT: _tabbar.RECRUIT,

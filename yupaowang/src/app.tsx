@@ -35,7 +35,9 @@ class App extends Component {
       "pages/course/index", //使用教程
       "pages/help/index", //帮助中心
       "pages/feedbackList/index", //意见反馈列表
-      "pages/feedback/index" //意见反馈
+      "pages/feedback/index", //意见反馈
+      "pages/static/invite/index", //新闻资讯
+      "pages/consultationDetails/index" //资讯详情
     ],
     subPackages: [
       {
