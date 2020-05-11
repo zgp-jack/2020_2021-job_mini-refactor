@@ -51,7 +51,7 @@ export default function Course() {
       setWorkerMaster({ item: [...res.userList]})
     })
   },[])
-  const bossIsShow = (id:string,e:boolean)=>{
+  const bossIsShow = (id:string,e:any)=>{
     let mydata = JSON.parse(JSON.stringify(bossData))
     for(let i =0;i<mydata.item.length;i++){
       if (id === mydata.item[i].id){
@@ -66,7 +66,7 @@ export default function Course() {
     }
     setBossData(mydata);
   }
-  const workerMasterIsShow = (id: string, e: boolean) => {
+  const workerMasterIsShow = (id: string, e: any) => {
     let workerMasterData = JSON.parse(JSON.stringify(workerMaster))
     for (let i = 0; i < workerMasterData.item.length; i++) {
       if (id === workerMasterData.item[i].id) {
