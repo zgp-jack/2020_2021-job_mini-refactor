@@ -83,18 +83,24 @@ export default function Course() {
   }
   return (
     <View className='course-content'>
-    <View className='collection-tab'>
+    <View className='course-tab'>
       {tab.map(item => (
-        <View className='collection-tab-box' key={item.id} onClick={() => { handleClick(item.id) }}>
-          <View className='collection-tab-content'>
-            <View className='collection-tab-img'>
-              {item.id === highlight ? <Image className='collection-tab-img-box' src={item.activeIcon}></Image> : <Image className='collection-tab-img-box' src={item.icon}></Image>}
+        <View className='course-tab-box' key={item.id} onClick={() => { handleClick(item.id) }}>
+          <View className='course-tab-content'>
+            <View style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+              className={classnames({
+                'course-tab-border': item.id === highlight
+              })}
+            >
+            <View className='course-tab-img'>
+              {item.id === highlight ? <Image className='course-tab-img-box' src={item.activeIcon}></Image> : <Image className='course-tab-img-box' src={item.icon}></Image>}
             </View>
             <Text
               className={classnames({
-                'collection.active-text': item.id === highlight
+                'course.active-text': item.id === highlight
               })}
             >{item.text}</Text>
+          </View>
           </View>
         </View>
       ))}
@@ -110,7 +116,7 @@ export default function Course() {
               title={item.title}
             >
               <AtList hasBorder={false}>
-                <Video src={item.video_url} />
+                <Video className='course-atAccordion-box-video' src={item.video_url} />
               </AtList>
             </AtAccordion>
           ))}

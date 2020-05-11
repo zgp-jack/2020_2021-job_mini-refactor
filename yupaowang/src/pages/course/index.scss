@@ -4,58 +4,56 @@
   width: 95%;
   margin: 0 auto;
 }
-.collection-tab {
+.course-tab {
   position: relative;
   display: flex;
   width: 100%;
-  // justify-content: space-around;
   height: 20px;
-  // justify-items: center;
   align-items: center;
   justify-content: space-around;
   background: #fff;
   height: 80px;
   line-height: 80px;
-  color: rgba(111, 108, 108, 1);
+  color: rgba(108, 109, 109, 1);
   font-size: 30px;
   margin-top: 18px;
 }
 
-.collection-modal-text {
+.course-modal-text {
   font-size: 20px;
   text-align: center;
   margin-left: 20%;
   line-height: 100px;
 }
 
-.collection-error-text {
+.course-error-text {
   font-size: 20px;
   text-align: center;
   margin-left: 10%;
   line-height: 100px;
 }
 
-.collection.active-text {
+.course.active-text {
   color: rgba(0, 153, 255, 1);
   font-size: 30px;
 }
-.collection-tab-box{
+.course-tab-box{
   width: 50%;
   text-align: center;
 }
-.collection-tab-box:first-child {
+.course-tab-box:first-child {
   border-right: 1px solid #C7C6C6;
 }
 
-.collection-tab-content {
+.course-tab-content {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.collection-tab-img {
+.course-tab-img {
   margin-right: 10px;
-  .collection-tab-img-box {
+  .course-tab-img-box {
     height: 26px;
     width: 26px;
   }
@@ -77,11 +75,18 @@
   margin-top: 20px;
   background: #fff;
 }
-.at-icon{
-  display: none;
-}
 .at-accordion__info__title{
   white-space:normal;
   word-wrap: break-word;
   word-break: normal;
+}
+.course-atAccordion-box-video{
+  width: 100%;
+  padding: 10px;
+}
+.course-tab-border {
+  border-bottom: 2px solid $color;
+}
+.at-accordion__header{
+  align-items:flex-start;
 }
