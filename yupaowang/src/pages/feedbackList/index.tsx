@@ -1,5 +1,5 @@
-import Taro, { Config, useState, useEffect, usePullDownRefresh } from '@tarojs/taro'
-import { View, Button, Block, Text, Image, ScrollView } from '@tarojs/components'
+import Taro, { Config, useState, useEffect, usePullDownRefresh, useReachBottom } from '@tarojs/taro'
+import { View, Button, Block, Text, Image } from '@tarojs/components'
 import WechatNotice from '../../components/wechat'
 import Nodata from '../../components/nodata'
 import { feedbackAction  } from '../../utils/request'
@@ -39,7 +39,7 @@ export default function FeedbackList() {
   })
   // 获取用户是否登录
   const login = useSelector<any, boolean>(state => state.User['login'])
-  // 是否能上啦加载更多
+  // 是否能上拉加载更多
   const [isDown, setIsDown] = useState<boolean>(true);
   // 判断是否登陆
   useEffect(() => {
@@ -51,9 +51,6 @@ export default function FeedbackList() {
     feedbackAction(initPage.page).then(res => {
       Taro.hideNavigationBarLoading()
       Taro.stopPullDownRefresh();
-      if (((res.data.length < 15) || (res.data.length = 15)) && res.data.length) {
-        setIsDown(false)
-      }
       if (initPage.page === 1) {
         setLists({ item: [...res.data] })
       } else {
@@ -61,7 +58,7 @@ export default function FeedbackList() {
       }
       setUserData(res.memberInfo);
       if (refresh) setRefresh(false)
-      if (res.data.length === 0) {
+      if (!res.data.length) {
         setIsDown(false)
       }
     })
@@ -72,11 +69,12 @@ export default function FeedbackList() {
       url: url
     })
   }
-  const getNextPageData = ()=>{
+  // 上拉加载更多
+  useReachBottom(()=>{
     if (!isDown) return;
     Taro.showNavigationBarLoading()
     setPage({...initPage,page:initPage.page + 1})
-  }
+  })
   const handleImg = (e:string)=>{
     Taro.previewImage({
       current: e,
@@ -85,6 +83,7 @@ export default function FeedbackList() {
   }
   // 下拉刷新
   usePullDownRefresh(() => {
+    setIsDown(true);
     setPage({page:1})
   })
   return(
@@ -92,14 +91,7 @@ export default function FeedbackList() {
       <Auth />
       <WechatNotice/>
       {!lists.item.length && <Nodata text='暂无相关数据反馈' />}
-      <ScrollView
-        className='recruit-lists-containerbox'
-        scrollY
-        refresherEnabled
-        refresherTriggered={refresh}
-        lowerThreshold={200}
-        onScrollToLower={() => getNextPageData()}
-      >
+      <View className='recruit-lists-containerbox'>
         {lists.item && lists.item.map((item) => (
           <Block key={item.id}>
             <View className='feedback-body-content'>
@@ -130,8 +122,8 @@ export default function FeedbackList() {
             </View>
           </Block>
         ))}
-        {!isDown && <View className='feedback-noData'>没有更多数据了</View>}
-      </ScrollView>
+        {!isDown && lists.item.length && <View className='feedback-noData'>没有更多数据了</View>}
+      </View>
       <View className='feedback-bttonBox'>
         <Button className='feedback-bttonBox-botton' onClick={() => userRouteJump(`/pages/feedback/index?username=${userData.username}&phone=${userData.phone}`)}>我要提意见</Button>
       </View>

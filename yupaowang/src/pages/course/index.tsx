@@ -51,34 +51,20 @@ export default function Course() {
       setWorkerMaster({ item: [...res.userList]})
     })
   },[])
-  const bossIsShow = (id:string,e:any)=>{
-    let mydata = JSON.parse(JSON.stringify(bossData))
-    for(let i =0;i<mydata.item.length;i++){
-      if (id === mydata.item[i].id){
-        mydata.item[i].isShow = e;
-      }else{
-        if(e){
-          mydata.item[i].isShow =!e;
-        }else{
-          mydata.item[i].isShow = e;
-        }
-      }
-    }
+  const bossIsShow = (id:number|string)=>{
+    let mydata:BossData = JSON.parse(JSON.stringify(bossData))
+    mydata.item.forEach((v)=>{
+      let flag: boolean = v.id === id && !v.isShow
+      v.isShow = flag ? true : false
+    })
     setBossData(mydata);
   }
-  const workerMasterIsShow = (id: string, e: any) => {
-    let workerMasterData = JSON.parse(JSON.stringify(workerMaster))
-    for (let i = 0; i < workerMasterData.item.length; i++) {
-      if (id === workerMasterData.item[i].id) {
-        workerMasterData.item[i].isShow = e;
-      } else {
-        if (e) {
-          workerMasterData.item[i].isShow = !e;
-        } else {
-          workerMasterData.item[i].isShow = e;
-        }
-      }
-    }
+  const workerMasterIsShow = (id:number|string) => {
+    let workerMasterData: WorkerMasterData = JSON.parse(JSON.stringify(workerMaster))
+    workerMasterData.item.forEach((v) => {
+      let flag: boolean = v.id === id && !v.isShow
+      v.isShow = flag ? true : false
+    })
     setWorkerMaster(workerMasterData);
   }
   return (
@@ -86,10 +72,11 @@ export default function Course() {
     <View className='course-tab'>
       {tab.map(item => (
         <View className='course-tab-box' key={item.id} onClick={() => { handleClick(item.id) }}>
-          <View className='course-tab-content'>
-            <View style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+          <View>
+            <View 
               className={classnames({
-                'course-tab-border': item.id === highlight
+                'course-tab-border': item.id === highlight,
+                'course-tab-content':true
               })}
             >
             <View className='course-tab-img'>
@@ -109,10 +96,10 @@ export default function Course() {
       <View className='course-atAccordion-box'>
     {highlight ===1 &&
         <View>
-          {bossData.item.map(item => (
+          {bossData.item.map((item) => (
             <AtAccordion
               open={item.isShow}
-              onClick={(e) => { bossIsShow(item.id, e) }}
+              onClick={() => { bossIsShow(item.id) }}
               title={item.title}
             >
               <AtList hasBorder={false}>
@@ -128,7 +115,7 @@ export default function Course() {
           {workerMaster.item.map(item => (
             <AtAccordion
               open={item.isShow}
-              onClick={(e) => { workerMasterIsShow(item.id, e) }}
+              onClick={() => { workerMasterIsShow(item.id) }}
               title={item.title}
             >
               <AtList hasBorder={false}>

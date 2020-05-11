@@ -1,6 +1,6 @@
 import Taro, { Config } from '@tarojs/taro'
 import { View, Video, Text,Image } from '@tarojs/components'
-import { IMGCDNURL, ALIYUNCDN } from '../../config'
+import { IMGCDNURL, ALIYUNCDN, DownloadApp } from '../../config'
 import './index.scss'
 
 
@@ -8,7 +8,7 @@ export const Img = IMGCDNURL + 'downloadapp-topbg.png'
 export default function DownloadPage() {
   const handleClick = ()=>{
     Taro.setClipboardData({
-      data: 'https://android.myapp.com/myapp/detail.htm?apkName=io.dcloud.H576E6CC7&amp;ADTAG=mobile',
+      data: DownloadApp,
       success() {
         Taro.hideToast();
         Taro.showModal({
@@ -23,7 +23,7 @@ export default function DownloadPage() {
   return (
     <View className='downloadAppPage-content'>
       <View className='downloadAppPage-img-box'>
-        <Image src={`${IMGCDNURL + 'downloadapp-topbg.png'}`} className='downloadAppPage-img' onClick={handleClick} style={{height:'320px'}}/>
+        <Image src={`${IMGCDNURL + 'downloadapp-topbg.png'}`} className='downloadAppPage-img' onClick={handleClick}/>
       </View>
       <View className='downloadAppPage-item'>
         <Video className='downloadAppPage-video' src={`${ALIYUNCDN}/miniprogram/videos/download-app.mp4`}></Video>
@@ -42,7 +42,7 @@ export default function DownloadPage() {
 DownloadPage.config = {
   navigationBarTitleText: '下载鱼泡App教程',
   enablePullDownRefresh: true,
-  navigationBarBackgroundColor: '#0099ff',
+  navigationBarBackgroundColor: '#109ffe',
   navigationBarTextStyle: 'white',
   backgroundTextStyle: 'dark'
 } as Config

@@ -56,6 +56,7 @@ export default function ResumeList({ bottom, initPage}: PROPS) {
   useEffect(() => {
     // console.log('下拉')
     if (!initPage) return
+    setRecruitNoMoreData(false);
     setinitResPage({ page: initPage })
   }, [initPage])
 

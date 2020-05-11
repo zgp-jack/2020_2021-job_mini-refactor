@@ -5,6 +5,7 @@
   background: rgba(255, 255, 255, 1);
   width: 100%;
   padding: 25px 20px;
+  z-index: 20;
 }
 .feedback-bttonBox-botton {
   width: 100%;
@@ -124,7 +125,12 @@
 .recruit-lists-containerbox {
   width: 100%;
   height: calc(100% - 80px);
-  margin-bottom: 150px;
+  margin-bottom: 200px;
+  // position: fixed;
+  // top: 0;
+  // left: 0;
+  // z-index: 3;
+  // padding-bottom: 110px;
 }
 .feedback-noData{
   position: relative;

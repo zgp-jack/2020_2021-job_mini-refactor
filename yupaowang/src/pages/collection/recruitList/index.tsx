@@ -68,6 +68,7 @@ export default function RecruitList({ bottom, initPage}: PROPS) {
   // 下拉
   useEffect(() => {
     if (initPage === 0) return
+    setRecruitNoMoreData(false);
     setinitRecPage({page:1})
   }, [initPage])
 
