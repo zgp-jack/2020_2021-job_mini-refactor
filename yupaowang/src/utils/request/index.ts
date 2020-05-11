@@ -534,3 +534,25 @@ export function newsInfoAction(id: string): Promise<Inter.consultationDetails> {
     }
   })
 }
+
+
+// 排名规则
+export function resumesSortAction(): Promise<Inter.resumesSort> {
+  return doRequestAction({
+    url: api.resumesSortUrl,
+    method: 'POST',
+    failToast: true,
+  })
+}
+
+// 排名规则点击按钮发请求
+export function resumesAddClickLogAction(type:number): Promise<Inter.Result> {
+  return doRequestAction({
+    url: api.resumesAddClickLog,
+    method: 'POST',
+    failToast: true,
+    data:{
+      type
+    }
+  })
+}

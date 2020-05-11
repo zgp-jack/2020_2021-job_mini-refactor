@@ -90,7 +90,7 @@ var Projects = (_temp2 = _class = function (_Taro$Component) {
         };
         var $loopState__temp2 = index + item.$original.appid;
 
-        var _$indexKey = "gdzzz" + index;
+        var _$indexKey = "ggzzz" + index;
 
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return FastbarAction(item.$original);

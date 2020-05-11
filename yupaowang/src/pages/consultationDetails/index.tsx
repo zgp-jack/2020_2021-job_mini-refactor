@@ -13,6 +13,9 @@ export default function ConsultationDetails() {
   const [data, setData] = useState<DataType>()
   useEffect(()=>{
     newsInfoAction(id).then(res=>{
+      // 图片显示有问题，设置他的最大宽度
+      const ImgData:string = res.data.content.replace(/\<img/gi, '<img style="max-width:100%;height:auto"')
+      res.data.content = ImgData;
       setData({item:res.data})
     })
   },[])
@@ -25,7 +28,9 @@ export default function ConsultationDetails() {
           <View>作者：{data && data.item.author}</View>
           <View>{data.item.time}</View>
         </View>
-        <RichText nodes={data.item.content}/>
+        <View className="consultationDetails-substance">
+          <RichText nodes={data.item.content} className="consultationDetails-richText"/>
+        </View>
       </View>
       }
       <Button className='consultationDetails-button'>分享</Button>

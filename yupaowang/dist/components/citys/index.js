@@ -241,7 +241,7 @@ var Cities = (_temp2 = _class = function (_Taro$Component) {
         };
         var $loopState__temp2 = 'rec' + item.$original.id;
 
-        var _$indexKey = "gazzz" + __index4;
+        var _$indexKey = "gdzzz" + __index4;
 
         _this2.anonymousFunc4Map[_$indexKey] = function () {
           return userTapCity(item.$original);
@@ -263,7 +263,7 @@ var Cities = (_temp2 = _class = function (_Taro$Component) {
             $original: (0, _taroWeapp.internal_get_original)(d)
           };
           var $loopState__temp6 = key + d.$original.id;
-          var _$indexKey2 = "gbzzz" + index + "-" + key;
+          var _$indexKey2 = "gezzz" + index + "-" + key;
 
           _this2.anonymousFunc5Map[_$indexKey2] = function () {
             return userTapCity(d.$original);
@@ -286,7 +286,7 @@ var Cities = (_temp2 = _class = function (_Taro$Component) {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
 
-        var _$indexKey3 = "gczzz" + __index6;
+        var _$indexKey3 = "gfzzz" + __index6;
 
         _this2.anonymousFunc6Map[_$indexKey3] = function () {
           return userTapInputCity(item.$original);

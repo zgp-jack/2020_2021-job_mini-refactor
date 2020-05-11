@@ -27,7 +27,10 @@ export default function InvitePage() {
   const [list, setList] = useState<newListData[]>([])
   // 能否再上拉
   const [pull,setPull] = useState<boolean>(true)
-  const handleTable = (id:string,name:string)=>{
+  // 设置滚动未知
+  const [scrollLeft, setScrollLeft] = useState<number>(0)
+  const handleTable = (id:string,name:string,index:number)=>{
+    setScrollLeft(index*80)
     setCurrent(id);
     setNodata(name)
     setInitPage({page:1})
@@ -80,16 +83,17 @@ export default function InvitePage() {
     <View>
       <ScrollView
         className='invite-ScrollView'
-        //scrollx
         scrollX
         upperThreshold={50}
         lowerThreshold={50}
         enableFlex
-        onScrollToLower={(e)=>{console.log(e)}}
+        scrollLeft={scrollLeft}
+        scrollWithAnimation
+        onScroll={(e=>{console.log(e)})}
       >
       <View className='invite-tab'>
-        {tab.item && tab.item.map(item => (
-          <View key={item.index} className="invite-tab-box" onClick={() => { handleTable(item.index,item.name)}}>
+        {tab.item && tab.item.map((item,i) => (
+          <View key={item.index} className="invite-tab-box" onClick={() => { handleTable(item.index,item.name,i)}}>
             <View className={classnames({
               'invite-tab-active': item.index === current
             })}>
@@ -97,15 +101,6 @@ export default function InvitePage() {
             </View>
           </View>
         ))}
-          {tab.item && tab.item.map(item => (
-            <View key={item.index} className="invite-tab-box" onClick={() => { handleTable(item.index, item.name) }}>
-              <View className={classnames({
-                'invite-tab-active': item.index === current
-              })}>
-                {item.name}
-              </View>
-            </View>
-          ))}
       </View>
       </ScrollView>
       {!list.length && <Nodata text={noData} />}

@@ -4,7 +4,7 @@
 //测试站
 export const DEVREQUESTURL: string = 'http://miniapitest.zhaogong.vrtbbs.com/'  
 //正式站
-export const PROREQUESTURL: string = 'https://newyupaomini.54xiaoshuo.com/'  
+export const PROREQUESTURL: string = 'https://newyupaomini.54xiaoshuo.com/' 
 // 当前测试
 export const REQUESTURL: string = DEVREQUESTURL;
 // * 默认上传图片
@@ -33,4 +33,5 @@ export const MAXCACHECITYNUM: number = 3
 export const UserPublishAreaHistoryMaxNum: number = 10
 // * 小程序tabbar msg统计 定时器请求间隔 1分钟
 export const MemberMsgTimerInterval: number = 1000 * 60
+
 

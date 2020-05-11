@@ -58,7 +58,7 @@ var Home = (_temp2 = _class = function (_Taro$Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Home.__proto__ || Object.getPrototypeOf(Home)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__64", "$compid__65", "$compid__66", "$compid__67", "$compid__68", "IMGCDNURL"], _this.customComponents = ["SwiperComponent", "Projects", "Fastfun", "SwiperNews", "RecruitList", "ResumeList", "UsedList", "About"], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Home.__proto__ || Object.getPrototypeOf(Home)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__65", "$compid__66", "$compid__67", "$compid__68", "$compid__69", "IMGCDNURL"], _this.customComponents = ["SwiperComponent", "Projects", "Fastfun", "SwiperNews", "RecruitList", "ResumeList", "UsedList", "About"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Home, [{
@@ -77,30 +77,30 @@ var Home = (_temp2 = _class = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__64"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__65"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__64 = _genCompid2[0],
-          $compid__64 = _genCompid2[1];
+          $prevCompid__65 = _genCompid2[0],
+          $compid__65 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__65"),
+      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__66"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__65 = _genCompid4[0],
-          $compid__65 = _genCompid4[1];
+          $prevCompid__66 = _genCompid4[0],
+          $compid__66 = _genCompid4[1];
 
-      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__66"),
+      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__67"),
           _genCompid6 = _slicedToArray(_genCompid5, 2),
-          $prevCompid__66 = _genCompid6[0],
-          $compid__66 = _genCompid6[1];
+          $prevCompid__67 = _genCompid6[0],
+          $compid__67 = _genCompid6[1];
 
-      var _genCompid7 = (0, _taroWeapp.genCompid)(__prefix + "$compid__67"),
+      var _genCompid7 = (0, _taroWeapp.genCompid)(__prefix + "$compid__68"),
           _genCompid8 = _slicedToArray(_genCompid7, 2),
-          $prevCompid__67 = _genCompid8[0],
-          $compid__67 = _genCompid8[1];
+          $prevCompid__68 = _genCompid8[0],
+          $compid__68 = _genCompid8[1];
 
-      var _genCompid9 = (0, _taroWeapp.genCompid)(__prefix + "$compid__68"),
+      var _genCompid9 = (0, _taroWeapp.genCompid)(__prefix + "$compid__69"),
           _genCompid10 = _slicedToArray(_genCompid9, 2),
-          $prevCompid__68 = _genCompid10[0],
-          $compid__68 = _genCompid10[1];
+          $prevCompid__69 = _genCompid10[0],
+          $compid__69 = _genCompid10[1];
 
       // * 获取列表数据的data
 
@@ -157,38 +157,54 @@ var Home = (_temp2 = _class = function (_Taro$Component) {
           setLists(_extends({}, lists, { recruit: [[].concat(_toConsumableArray(res.job.lists))], resume: [[].concat(_toConsumableArray(res.resume.lists))], fleamarket: [[].concat(_toConsumableArray(res.fleamarket.lists))] }));
         });
       }, [filterData]);
+      // 用户页面跳转
+      var userRouteJump = function userRouteJump(url) {
+        _taroWeapp2.default.navigateTo({
+          url: url
+        });
+      };
+
+      this.anonymousFunc0 = function () {
+        return userRouteJump('/pages/downloadApp/index');
+      };
+
       _taroWeapp.propsManager.set({
         "data": swiper
-      }, $compid__64, $prevCompid__64);
+      }, $compid__65, $prevCompid__65);
       _taroWeapp.propsManager.set({
         "data": notice
-      }, $compid__65, $prevCompid__65);
+      }, $compid__66, $prevCompid__66);
       _taroWeapp.propsManager.set({
         "data": lists.recruit,
         "bottom": false
-      }, $compid__66, $prevCompid__66);
+      }, $compid__67, $prevCompid__67);
       _taroWeapp.propsManager.set({
         "data": lists.resume,
         "bottom": false
-      }, $compid__67, $prevCompid__67);
+      }, $compid__68, $prevCompid__68);
       _taroWeapp.propsManager.set({
         "data": lists.fleamarket,
         "bottom": false
-      }, $compid__68, $prevCompid__68);
+      }, $compid__69, $prevCompid__69);
       Object.assign(this.__state, {
-        $compid__64: $compid__64,
         $compid__65: $compid__65,
         $compid__66: $compid__66,
         $compid__67: $compid__67,
         $compid__68: $compid__68,
+        $compid__69: $compid__69,
         IMGCDNURL: _index.IMGCDNURL
       });
       return this.__state;
     }
+  }, {
+    key: "anonymousFunc0",
+    value: function anonymousFunc0(e) {
+      ;
+    }
   }]);
 
   return Home;
-}(_taroWeapp2.default.Component), _class.$$events = [], _class.$$componentPath = "pages/home/index", _temp2);
+}(_taroWeapp2.default.Component), _class.$$events = ["anonymousFunc0"], _class.$$componentPath = "pages/home/index", _temp2);
 exports.default = Home;
 
 Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(Home));

@@ -543,3 +543,33 @@ export interface consultationDetailsData{
   time: string,
   title: string
 }
+
+// 排名规则
+export interface resumesSort extends Result{
+  data: resumesSortData,
+}
+export interface resumesSortData {
+  warm_tips:[],
+  sort_rule_lists: resumesSortDataList[],
+  resume_info: resumesSortDataIfo,
+}
+export interface resumesSortDataIfo {
+  has_resume:number,
+  sort_flag:number,
+}
+export interface resumesSortDataList{
+  button_words:string,
+  click_type:number,
+  description:string,
+  img_url:string,
+  is_share:number,
+  share_type:string,
+  type_name:string,
+  jump: resumesSortDataListJump;
+}
+export interface resumesSortDataListJump{
+  android_path:string,
+  ios_path:string,
+  mini_path:string,
+  need_jump:number
+}

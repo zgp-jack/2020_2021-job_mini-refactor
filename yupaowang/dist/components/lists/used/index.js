@@ -92,7 +92,7 @@ var UsedList = (_temp2 = _class = function (_Taro$Component) {
           d = {
             $original: (0, _taroWeapp.internal_get_original)(d)
           };
-          var _$indexKey = "gezzz" + __index1 + "-" + __index0;
+          var _$indexKey = "gizzz" + __index1 + "-" + __index0;
 
           _this2.anonymousFunc0Map[_$indexKey] = function () {
             return userLookUsedInfo(d.$original.id);

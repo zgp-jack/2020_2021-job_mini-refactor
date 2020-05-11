@@ -108,7 +108,7 @@
         {
           "id": 8,
           "name": "新闻资讯",
-          "pathName": "pages/consultationDetails/index",
+          "pathName": "pages/static/invite/index",
           "query": "",
           "scene": null
         },
@@ -116,6 +116,20 @@
           "id": -1,
           "name": "资讯详情",
           "pathName": "pages/consultationDetails/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "下载app",
+          "pathName": "pages/downloadApp/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "排名规则",
+          "pathName": "pages/rankingRules/index",
           "query": "",
           "scene": null
         }

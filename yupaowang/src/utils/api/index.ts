@@ -88,3 +88,7 @@ export const newListUrl: string = REQUESTURL + 'news/list/'
 export const newsTypesUrl: string = REQUESTURL + 'news/types/'
 // 咨询详情
 export const newsInfoUrl: string = REQUESTURL + 'news/info/'
+// 排名规则
+export const resumesSortUrl: string = REQUESTURL + 'resumes/sort/'
+// 排名规则点击时发送的请求
+export const resumesAddClickLog: string = REQUESTURL + 'resumes/add-click-log/'
