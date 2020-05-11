@@ -30,7 +30,7 @@ export default function DownloadPage() {
         <Text className='downloadAppPage-text'>使用教程</Text>
       </View>
       <View className='downloadAppPage-words'>方法一：浏览器内下载</View>
-      <View>
+      <View className='downloadAppPage-item'>
         <Video className='downloadAppPage-video' src={`${ALIYUNCDN}/yupaoweb/miniWechat/video/downloadAppVideo.mp4`}></Video>
         <Text className='downloadAppPage-text'>使用教程</Text>
       </View>

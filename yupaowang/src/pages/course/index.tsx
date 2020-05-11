@@ -132,7 +132,7 @@ export default function Course() {
               title={item.title}
             >
               <AtList hasBorder={false}>
-                <Video src={item.video_url} controls/>
+                <Video className='course-atAccordion-box-video' src={item.video_url} controls/>
               </AtList>
             </AtAccordion>
           ))}
