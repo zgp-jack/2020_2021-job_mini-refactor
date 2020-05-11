@@ -5,7 +5,7 @@ import './index.scss'
 
 
 export const Img = IMGCDNURL + "downloadapp-topbg.png?t=" + new Date().getTime()
-export default function DownloadAppPage() {
+export default function DownloadPage() {
   const handleClick = ()=>{
     Taro.setClipboardData({
       data: Img,
@@ -39,7 +39,7 @@ export default function DownloadAppPage() {
   )
 }
 
-DownloadAppPage.config = {
+DownloadPage.config = {
   navigationBarTitleText: '下载鱼泡App教程',
   enablePullDownRefresh: true,
   navigationBarBackgroundColor: '#0099ff',

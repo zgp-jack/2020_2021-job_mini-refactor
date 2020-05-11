@@ -7,7 +7,7 @@
                     <block>
                         <block wx:if="{{!!items && items.length}}">
                             <at-list>
-                                <at-list-item wx:key="$loopState__temp5" data-index="{{index}}" wx:for="{{loopArray74}}" wx:for-item="name" wx:for-index="index" compid="{{name.$compid__93}}"></at-list-item>
+                                <at-list-item wx:key="$loopState__temp5" data-index="{{index}}" wx:for="{{loopArray78}}" wx:for-item="name" wx:for-index="index" compid="{{name.$compid__90}}"></at-list-item>
                             </at-list>
                         </block>
                         <block wx:else>

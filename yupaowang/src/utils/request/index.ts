@@ -480,7 +480,9 @@ export function feedbackAction(page: number): Promise<Inter.feedbackList> {
     url: api.feedbackUrl,
     method: 'POST',
     failToast: true,
-    data:page
+    data:{
+      page
+    }
   })
 }
 

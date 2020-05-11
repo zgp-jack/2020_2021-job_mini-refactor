@@ -7,7 +7,7 @@ import './index.scss'
 interface DataType {
   item: consultationDetailsData,
 }
-export default function ConsultationDetails() {
+export default function Notice() {
   const router: Taro.RouterInfo = useRouter()
   let { id } = router.params;
   const [data, setData] = useState<DataType>()
@@ -37,6 +37,6 @@ export default function ConsultationDetails() {
     </View>
   )
 }
-ConsultationDetails.config = {
+Notice.config = {
   navigationBarTitleText: '咨讯详情',
 } as Config

@@ -165,7 +165,7 @@ var Home = (_temp2 = _class = function (_Taro$Component) {
       };
 
       this.anonymousFunc0 = function () {
-        return userRouteJump('/pages/downloadApp/index');
+        return userRouteJump('/pages/download/index');
       };
 
       _taroWeapp.propsManager.set({

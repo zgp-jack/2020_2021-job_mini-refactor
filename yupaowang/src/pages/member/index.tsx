@@ -165,7 +165,7 @@ export default function Member(){
           </View>
         </View>
         <View className='member-list-container'>
-          <View className='member-list-item' onClick={() => userRouteJump('/pages/feedbackList/index')}>
+          <View className='member-list-item' onClick={() => userRouteJump('/pages/feedbacklist/index')}>
             <Image className='member-list-icon' src={ IMGCDNURL + 'lpy/ucenter/newcenter-feedback.png'} />
             <View className='member-list-title'>
               <Text>意见反馈</Text>

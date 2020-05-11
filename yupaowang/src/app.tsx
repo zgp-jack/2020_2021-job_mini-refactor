@@ -34,12 +34,12 @@ class App extends Component {
       "pages/report/index", // 举报骗子
       "pages/course/index", //使用教程
       "pages/help/index", //帮助中心
-      "pages/feedbackList/index", //意见反馈列表
+      "pages/feedbacklist/index", //意见反馈列表
       "pages/feedback/index", //意见反馈
       "pages/static/invite/index", //新闻资讯
-      "pages/consultationDetails/index", //资讯详情
-      "pages/downloadApp/index", //下载app
-      "pages/rankingRules/index" //排名规则
+      "pages/notice/index", //资讯详情
+      "pages/download/index", //下载app
+      "pages/ranking/index" //排名规则
     ],
     subPackages: [
       {

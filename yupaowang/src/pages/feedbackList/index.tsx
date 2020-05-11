@@ -49,6 +49,7 @@ export default function FeedbackList() {
   // 进来时获取数据
   const feedbackDataAction = ()=>{
     feedbackAction(initPage.page).then(res => {
+      console.log(initPage.page)
       Taro.hideNavigationBarLoading()
       Taro.stopPullDownRefresh();
       if (initPage.page === 1) {

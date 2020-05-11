@@ -62,7 +62,7 @@ var Tabbar = (_temp2 = _class = function (_Taro$Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Tabbar.__proto__ || Object.getPrototypeOf(Tabbar)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["tabbar", "loopArray60", "memberMsg", "notredirect"], _this.anonymousFunc0Map = {}, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Tabbar.__proto__ || Object.getPrototypeOf(Tabbar)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["tabbar", "loopArray64", "memberMsg", "notredirect"], _this.anonymousFunc0Map = {}, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Tabbar, [{
@@ -123,7 +123,7 @@ var Tabbar = (_temp2 = _class = function (_Taro$Component) {
       (0, _taroWeapp.onAppHide)(function () {
         clearInterval(timer);
       });
-      var loopArray60 = tabbar.list.map(function (item, __index0) {
+      var loopArray64 = tabbar.list.map(function (item, __index0) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
@@ -132,7 +132,7 @@ var Tabbar = (_temp2 = _class = function (_Taro$Component) {
           'common-footer-tabbar-list-active': item.$original.id === tabbar.key
         });
 
-        var _$indexKey = "gazzz" + __index0;
+        var _$indexKey = "gczzz" + __index0;
 
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return changeTabbarAction(item.$original);
@@ -146,7 +146,7 @@ var Tabbar = (_temp2 = _class = function (_Taro$Component) {
       });
       Object.assign(this.__state, {
         tabbar: tabbar,
-        loopArray60: loopArray60,
+        loopArray64: loopArray64,
         memberMsg: memberMsg
       });
       return this.__state;

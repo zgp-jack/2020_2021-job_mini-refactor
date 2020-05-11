@@ -62,7 +62,7 @@ var Recruit = (_temp2 = _class = function (_Taro$Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Recruit.__proto__ || Object.getPrototypeOf(Recruit)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "$compid__76", "$compid__77", "$compid__78", "refresh"], _this.customComponents = ["Search", "Condition", "WechatNotice", "RecruitList"], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Recruit.__proto__ || Object.getPrototypeOf(Recruit)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "$compid__80", "$compid__81", "$compid__82", "refresh"], _this.customComponents = ["Search", "Condition", "WechatNotice", "RecruitList"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Recruit, [{
@@ -81,20 +81,20 @@ var Recruit = (_temp2 = _class = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__76"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__80"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__76 = _genCompid2[0],
-          $compid__76 = _genCompid2[1];
+          $prevCompid__80 = _genCompid2[0],
+          $compid__80 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__77"),
+      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__81"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__77 = _genCompid4[0],
-          $compid__77 = _genCompid4[1];
+          $prevCompid__81 = _genCompid4[0],
+          $compid__81 = _genCompid4[1];
 
-      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__78"),
+      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__82"),
           _genCompid6 = _slicedToArray(_genCompid5, 2),
-          $prevCompid__78 = _genCompid6[0],
-          $compid__78 = _genCompid6[1];
+          $prevCompid__82 = _genCompid6[0],
+          $compid__82 = _genCompid6[1];
 
       // * 获取选择城市缓存
 
@@ -227,18 +227,18 @@ var Recruit = (_temp2 = _class = function (_Taro$Component) {
       _taroWeapp.propsManager.set({
         "placeholder": "\u627E\u6D3B\u3001\u627E\u5DE5\u4F5C",
         "value": ""
-      }, $compid__76, $prevCompid__76);
+      }, $compid__80, $prevCompid__80);
       _taroWeapp.propsManager.set({
         "data": condition
-      }, $compid__77, $prevCompid__77);
+      }, $compid__81, $prevCompid__81);
       _taroWeapp.propsManager.set({
         "data": lists
-      }, $compid__78, $prevCompid__78);
+      }, $compid__82, $prevCompid__82);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
-        $compid__76: $compid__76,
-        $compid__77: $compid__77,
-        $compid__78: $compid__78,
+        $compid__80: $compid__80,
+        $compid__81: $compid__81,
+        $compid__82: $compid__82,
         refresh: refresh
       });
       return this.__state;

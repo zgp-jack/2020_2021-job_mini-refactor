@@ -79,7 +79,7 @@ export default function Home(){
           <Text className='home-header-text'>四川</Text>
           <Image className='home-header-select' src={ IMGCDNURL + 'areamore.png' }></Image>
         </View>
-        <Image onClick={() => userRouteJump('/pages/downloadApp/index')} className='home-header-app' src={ IMGCDNURL + 'loadapp.png' }></Image>
+        <Image onClick={() => userRouteJump('/pages/download/index')} className='home-header-app' src={ IMGCDNURL + 'loadapp.png' }></Image>
       </View>
       {/* // ? 轮播图  */}
       <SwiperComponent data={ swiper } />

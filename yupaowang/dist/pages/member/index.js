@@ -157,7 +157,7 @@ var Member = (_temp2 = _class = function (_Taro$Component) {
       };
 
       this.anonymousFunc5 = function () {
-        return userRouteJump('/pages/feedbackList/index');
+        return userRouteJump('/pages/feedbacklist/index');
       };
 
       this.anonymousFunc6 = function () {

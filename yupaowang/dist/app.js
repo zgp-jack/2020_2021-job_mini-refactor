@@ -64,7 +64,7 @@ var _App = function (_BaseComponent) {
     _this.config = {
       pages: ['pages/index/index', 'pages/userauth/index', "pages/recruit/publish/index", "pages/used/lists/index", "pages/map/recruit/index", "pages/used/publish/index", "pages/used/info/index", "pages/invite/index", "pages/getintegral/index", "pages/integral/source/index", "pages/integral/temp/index", "pages/integral/official/index", "pages/integral/expend/index", "pages/recharge/index", "pages/realname/index", "pages/map/realname/index", "pages/userinfo/index/index", "pages/userinfo/add/index",
       // "pages/userinfo/phone/index", // 用户更换手机
-      "pages/collection/index", "pages/about/index", "pages/report/index", "pages/course/index", "pages/help/index", "pages/feedbackList/index", "pages/feedback/index", "pages/static/invite/index", "pages/consultationDetails/index", "pages/downloadApp/index", "pages/rankingRules/index" //排名规则
+      "pages/collection/index", "pages/about/index", "pages/report/index", "pages/course/index", "pages/help/index", "pages/feedbacklist/index", "pages/feedback/index", "pages/static/invite/index", "pages/notice/index", "pages/download/index", "pages/ranking/index" //排名规则
       ],
       subPackages: [{
         root: 'subpackage/pages/',

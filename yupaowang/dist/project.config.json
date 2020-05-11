@@ -94,7 +94,7 @@
         {
           "id": 6,
           "name": "反馈列表",
-          "pathName": "pages/feedbackList/index",
+          "pathName": "pages/feedbacklist/index",
           "query": "",
           "scene": null
         },
@@ -113,9 +113,9 @@
           "scene": null
         },
         {
-          "id": -1,
-          "name": "资讯详情",
-          "pathName": "pages/consultationDetails/index",
+          "id": 9,
+          "name": "咨询详情",
+          "pathName": "pages/notice/index",
           "query": "",
           "scene": null
         },
@@ -127,9 +127,9 @@
           "scene": null
         },
         {
-          "id": -1,
+          "id": 11,
           "name": "排名规则",
-          "pathName": "pages/rankingRules/index",
+          "pathName": "pages/ranking/index",
           "query": "",
           "scene": null
         }
