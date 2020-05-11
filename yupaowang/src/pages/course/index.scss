@@ -55,10 +55,9 @@
 
 .collection-tab-img {
   margin-right: 10px;
-
-  Image {
-    height: 26rpx;
-    width: 26rpx;
+  .collection-tab-img-box {
+    height: 26px;
+    width: 26px;
   }
 }
 
@@ -77,4 +76,12 @@
 .course-atAccordion-box{
   margin-top: 20px;
   background: #fff;
+}
+.at-icon{
+  display: none;
+}
+.at-accordion__info__title{
+  white-space:normal;
+  word-wrap: break-word;
+  word-break: normal;
 }

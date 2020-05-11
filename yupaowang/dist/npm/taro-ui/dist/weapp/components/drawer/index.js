@@ -180,17 +180,17 @@ var AtDrawer = (_temp2 = _class = function (_AtComponent) {
 
         var _genCompid = (0, _taroWeapp.genCompid)(__prefix + 'hbzzzzzzzz' + index, true),
             _genCompid2 = _slicedToArray(_genCompid, 2),
-            $prevCompid__90 = _genCompid2[0],
-            $compid__90 = _genCompid2[1];
+            $prevCompid__93 = _genCompid2[0],
+            $compid__93 = _genCompid2[1];
 
         _show && !!items && items.length && _taroWeapp.propsManager.set({
           "onClick": _this5.onItemClick.bind(_this5, index),
           "title": name.$original,
           "arrow": "right"
-        }, $compid__90, $prevCompid__90);
+        }, $compid__93, $prevCompid__93);
         return {
           $loopState__temp5: $loopState__temp5,
-          $compid__90: $compid__90,
+          $compid__93: $compid__93,
           $original: name.$original
         };
       }) : [];

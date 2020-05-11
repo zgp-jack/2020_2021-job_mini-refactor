@@ -17,48 +17,8 @@
   text-align: center;
   font-size: 30px;
 }
-.common-userauth {
-  position: fixed;
-  left: 0;
-  top: 0;
-  z-index: 999999;
-  width: 100%;
-  height: 100%;
-  background: white;
-}
 
-.feedback-header {
-  position: relative;
-  width: 100%;
-  background: #fff;
-  padding: 30px;
-  display: flex;
-  font-size: 28px;
-  color: #545454;
-
-
-}
-
-.feedback-header view {
-  line-height: 50px;
-}
-
-.feedback-header-texr {
-  color: #f86e09;
-  font-size: 28px;
-}
-
-.gehu {
-  color: #09f;
-}
-
-.feedback-body {
-  position: relative;
-  padding-bottom: 200px;
-  margin-top: 15px;
-}
-
-.feedback-body-1 {
+.feedback-body-content {
   background: rgba(255, 255, 255, 1);
   border-radius: 3px;
   padding: 20px;
@@ -71,7 +31,7 @@
   margin-bottom: 20px;
 }
 
-.superior-1 {
+.superior-text {
   width: 40px;
   height: 40px;
   line-height: 40px;
@@ -83,7 +43,7 @@
   margin-top: -5px;
 }
 
-.superior-2 {
+.superior-content {
   width: 640px;
   margin-left: 20px;
   font-size: 26px;
@@ -130,14 +90,14 @@
   box-sizing: border-box;
 }
 
-.species-1 {
+.species-box {
   width: 30%;
   height: 200px;
   margin-bottom: 20px;
   margin-right: 2%;
 }
 
-.species-1:nth-child(3n) {
+.species-box:nth-child(3n) {
   margin-right: 0;
 }
 
@@ -150,58 +110,6 @@
   padding-bottom: 20px;
   box-sizing: border-box;
 }
-
-.descend {
-  border-top: 1px dashed #bcbcbc;
-  padding: 20px;
-}
-
-.descend {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
-}
-
-.descend-1 {
-  width: 40px;
-  height: 40px;
-  line-height: 40px;
-  background: #006cff;
-  border-radius: 2px;
-  font-size: 28px;
-  color: white;
-  text-align: center;
-}
-
-.footr {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  background: rgba(255, 255, 255, 1);
-  width: 100%;
-  padding: 25px 20px;
-}
-
-.footr-1 {
-  width: 100%;
-  height: 80px;
-  background: linear-gradient(90deg, rgba(39, 176, 255, 1), rgba(12, 122, 252, 1));
-  border-radius: 6px;
-  color: white;
-  margin: 0 auto;
-  line-height: 80px;
-  text-align: center;
-  font-size: 30px;
-}
-
-.superior-1s {
-  width: 100%;
-  display: flex;
-  padding-top: 20px;
-  margin-bottom: 20px;
-  border-top: 1px dashed #bbbaba;
-}
-
 .superiordati {
   background: #09f;
   width: 40px;
@@ -226,4 +134,11 @@
   margin-top: 30px;
   font-size: 28px;
   color: #666;
+}
+.superior-data{
+  width: 100%;
+  display: flex;
+  padding-top: 20px;
+  margin-bottom: 20px;
+  border-top: 1px dashed #bbbaba;
 }

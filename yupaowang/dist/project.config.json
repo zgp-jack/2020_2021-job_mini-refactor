@@ -120,9 +120,9 @@
           "scene": null
         },
         {
-          "id": -1,
+          "id": 10,
           "name": "下载app",
-          "pathName": "pages/downloadApp/index",
+          "pathName": "pages/download/index",
           "query": "",
           "scene": null
         },

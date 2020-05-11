@@ -1,11 +1,11 @@
 import Taro, { Config } from '@tarojs/taro'
 import { View, Text, Image} from '@tarojs/components'
-import { SERVERPHONE, ALIYUNCDN } from "../../config"
+import { SERVERPHONE, ALIYUNCDN } from '../../config'
 import './index.scss'
 
 export default function About(){
   return (
-    <View className="yupao-common-container">
+    <View className='yupao-common-container'>
       <View className='about-content'>
         <View className='about-content-header'>
           <View className='about-content-headerbox common-shaded-box'>
@@ -47,28 +47,28 @@ export default function About(){
         <View className='yupao-about-group yupao-about-groupb'>
           <View className='about-header-title'>团队风采</View>
           <View className='about-group-img'>
-            <Image src={`${ALIYUNCDN}/miniprogram/images/group.png`} mode="widthFix"></Image>
+            <Image className='yupao-about-group-image' src={`${ALIYUNCDN}/miniprogram/images/group.png`} mode='widthFix'></Image>
           </View>
           <View className='about-group-img'>
-            <Image src={`${ALIYUNCDN}/miniprogram/images/yupao-group-contnet.png`} mode="widthFix"></Image>
+            <Image className='yupao-about-group-image' src={`${ALIYUNCDN}/miniprogram/images/yupao-group-contnet.png`} mode='widthFix'></Image>
           </View>
           <View className='about-group-img'>
-            <Image src={`${ALIYUNCDN}/miniprogram/images/ypao-group-telg.png`} mode="widthFix"></Image>
+            <Image className='yupao-about-group-image' src={`${ALIYUNCDN}/miniprogram/images/ypao-group-telg.png`} mode='widthFix'></Image>
           </View>
           <View className='about-group-img'>
-            <Image src={`${ALIYUNCDN}/miniprogram/images/kefu.png`} mode="widthFix"></Image>
+            <Image className='yupao-about-group-image' src={`${ALIYUNCDN}/miniprogram/images/kefu.png`} mode='widthFix'></Image>
           </View>
         </View>
         <View className='yupao-about-group'>
           <View className='about-header-title'>资质证书</View>
           <View className='about-group-img'>
-            <Image src={`${ALIYUNCDN}/miniprogram/images/yupao-about-zizhizs.png`} mode="widthFix"></Image>
+            <Image className='yupao-about-group-image' src={`${ALIYUNCDN}/miniprogram/images/yupao-about-zizhizs.png`} mode='widthFix'></Image>
           </View>
         </View>
         <View className='yupao-about-footer common-shaded-box'>
-          <Text>鱼泡网值得每一位建筑人的期待，定不负你所望！</Text>
-          <Text onClick={() => { Taro.makePhoneCall({ phoneNumber: SERVERPHONE })}}>鱼泡客服热线：{SERVERPHONE}</Text>
-          <Text>鱼泡网：yupao.com</Text>
+          <Text className='yupao-about-footer-text'>鱼泡网值得每一位建筑人的期待，定不负你所望！</Text>
+          <Text className='yupao-about-footer-text' onClick={() => { Taro.makePhoneCall({ phoneNumber: SERVERPHONE })}}>鱼泡客服热线：{SERVERPHONE}</Text>
+          <Text className='yupao-about-footer-text'>鱼泡网：yupao.com</Text>
         </View>
       </View>
     </View>

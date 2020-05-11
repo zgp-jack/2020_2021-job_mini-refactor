@@ -1,14 +1,14 @@
-import Taro, { Config, useState, useEffect, useReachBottom } from '@tarojs/taro'
+import Taro, { Config } from '@tarojs/taro'
 import { View, Video, Text,Image } from '@tarojs/components'
 import { IMGCDNURL } from '../../config'
 import './index.scss'
 
 
-export const Img = IMGCDNURL + "downloadapp-topbg.png?t=" + new Date().getTime()
+export const Img = IMGCDNURL + 'downloadapp-topbg.png'
 export default function DownloadPage() {
   const handleClick = ()=>{
     Taro.setClipboardData({
-      data: Img,
+      data: 'https://android.myapp.com/myapp/detail.htm?apkName=io.dcloud.H576E6CC7&amp;ADTAG=mobile',
       success() {
         Taro.hideToast();
         Taro.showModal({
@@ -22,8 +22,8 @@ export default function DownloadPage() {
   }
   return (
     <View className='downloadAppPage-content'>
-      <View className="downloadAppPage-img-box">
-      <Image src={Img} className="downloadAppPage-img" onClick={handleClick} style={{height:"320px"}}/>
+      <View className='downloadAppPage-img-box'>
+        <Image src={`${IMGCDNURL + 'downloadapp-topbg.png'}`} className='downloadAppPage-img' onClick={handleClick} style={{height:'320px'}}/>
       </View>
       <View className='downloadAppPage-item'>
         <Video className='downloadAppPage-video' src='http://cdn.yupao.com/miniprogram/videos/download-app.mp4'></Video>
@@ -44,5 +44,5 @@ DownloadPage.config = {
   enablePullDownRefresh: true,
   navigationBarBackgroundColor: '#0099ff',
   navigationBarTextStyle: 'white',
-  backgroundTextStyle: "dark"
+  backgroundTextStyle: 'dark'
 } as Config

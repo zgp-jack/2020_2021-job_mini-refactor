@@ -59,13 +59,11 @@ export default function Feedback() {
         url: res.url,
         httpurl: res.httpurl
       }
-      if (image) {
-        if (i === -1) {
-          setImage({ ...image, item: [...image.item, imageItem] })
-        } else {
-          image.item[i] = imageItem
-          setImage({ ...image })
-        }
+      if (i === -1) {
+        setImage({ ...image, item: [...image.item, imageItem] })
+      } else {
+        image.item[i] = imageItem
+        setImage({ ...image })
       }
     })
   }
@@ -135,7 +133,7 @@ export default function Feedback() {
           maxlength={500}
           placeholder='请填写您对鱼泡的建议或意见'
         />
-          <View className="feedback-wordsTotal">
+          <View className='feedback-wordsTotal'>
             <WordsTotal num={num} />
         </View>
           <View className='feedback-content-middle-imgBox'>

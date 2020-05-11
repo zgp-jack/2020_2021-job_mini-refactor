@@ -42,14 +42,21 @@ export default function Collection() {
         {tab.map(item => (
           <View className='collection-tab-box' key={item.id} onClick={() => handleTable(item.id)}>
             <View className='collection-tab-content'>
+            <View style={{display:'flex',justifyContent:'center',alignItems:'center'}}
+              className={classnames({
+                'collection-tab-border': item.id === current
+              })}
+            >
               <View className='collection-tab-img'>
                 {current === 1 ? <Image src={item.icon}></Image> : <Image src={item.activeIcon}></Image>}
               </View>
               <Text
                 className={classnames({
-                  'collection.active-text': item.id === current
+                  'collection.active-text': item.id === current,
+                  // 'collection-tab-border': item.id === current
                 })}
               >{item.text}</Text>
+            </View>
             </View>
           </View>
         ))}

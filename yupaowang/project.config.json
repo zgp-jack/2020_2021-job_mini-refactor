@@ -26,6 +26,7 @@
 	"compileType": "miniprogram",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
+	"libVersion": "2.0.6",
 	"condition": {
 		"search": {
 			"current": -1,

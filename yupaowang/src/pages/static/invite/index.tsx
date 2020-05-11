@@ -16,7 +16,7 @@ interface InitPageType {
 }
 export default function InvitePage() {
   // 默认table
-  const [current, setCurrent] = useState<string>("-1")
+  const [current, setCurrent] = useState<string>('-1')
   // 页数
   const [initPage,setInitPage] = useState<InitPageType>({
     page:1,
@@ -93,7 +93,7 @@ export default function InvitePage() {
       >
       <View className='invite-tab'>
         {tab.item && tab.item.map((item,i) => (
-          <View key={item.index} className="invite-tab-box" onClick={() => { handleTable(item.index,item.name,i)}}>
+          <View key={item.index} className='invite-tab-box' onClick={() => { handleTable(item.index,item.name,i)}}>
             <View className={classnames({
               'invite-tab-active': item.index === current
             })}>
@@ -104,9 +104,9 @@ export default function InvitePage() {
       </View>
       </ScrollView>
       {!list.length && <Nodata text={noData} />}
-      <View className="invite-content-box">
+      <View className='invite-content-box'>
         {list && list.map((v)=>(
-          <View key={v.id} className='invite-content' onClick={() => userRouteJump(`/pages/consultationDetails/index?id=${v.id}`)}>
+          <View key={v.id} className='invite-content' onClick={() => userRouteJump(`/pages/notice/index?id=${v.id}`)}>
             <View>
               <Image className='invite-content-img' src={v.cover_img} />
             </View>
@@ -121,18 +121,14 @@ export default function InvitePage() {
           </View>
         ))}
       </View>
-      {/* {current === '1' && AllContentData}
-      {current === '2' && EnterpriseDynamics}
-      {current === '3' && IndustryTrends}
-      {current === '4' && EnterpriseAnnouncement} */}
     </View>
   )
 }
 
 InvitePage.config = {
-  navigationBarTitleText: '鱼泡网-意见反馈列表',
+  navigationBarTitleText: '鱼泡网-新闻资讯',
   enablePullDownRefresh: true,
   navigationBarBackgroundColor: '#0099ff',
   navigationBarTextStyle: 'white',
-  backgroundTextStyle: "dark"
+  backgroundTextStyle: 'dark'
 } as Config

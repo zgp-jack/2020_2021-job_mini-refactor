@@ -2,7 +2,7 @@ import Taro, { useState, useEffect, Config } from '@tarojs/taro'
 import { View, Text, Image, Video } from '@tarojs/components'
 import { IMGCDNURL } from '../../config'
 import classnames from 'classnames'
-import { requestAction } from "../../utils/request";
+import { requestAction } from '../../utils/request';
 import { reportMasterList, reportUserList} from '../../utils/request/index.d'
 import { AtAccordion, AtList } from 'taro-ui'
 import './index.scss'
@@ -88,8 +88,7 @@ export default function Course() {
         <View className='collection-tab-box' key={item.id} onClick={() => { handleClick(item.id) }}>
           <View className='collection-tab-content'>
             <View className='collection-tab-img'>
-              {item.id === highlight &&< Image src={item.activeIcon}></Image> }
-              {item.id !== highlight && < Image src={item.icon}></Image>}
+              {item.id === highlight ? <Image className='collection-tab-img-box' src={item.activeIcon}></Image> : <Image className='collection-tab-img-box' src={item.icon}></Image>}
             </View>
             <Text
               className={classnames({
@@ -101,7 +100,7 @@ export default function Course() {
       ))}
     
     </View>
-      <View className="course-atAccordion-box">
+      <View className='course-atAccordion-box'>
     {highlight ===1 &&
         <View>
           {bossData.item.map(item => (
@@ -127,7 +126,7 @@ export default function Course() {
               title={item.title}
             >
               <AtList hasBorder={false}>
-                <Video src={item.video_url} />
+                <Video src={item.video_url} controls/>
               </AtList>
             </AtAccordion>
           ))}

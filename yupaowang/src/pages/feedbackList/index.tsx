@@ -30,7 +30,7 @@ export default function FeedbackList() {
   })
   // 定义数据
   const [lists, setLists] = useState<ItmeType>({
-    item: []
+    item: [],
   })
   // 用户信息
   const [userData,setUserData] = useState<UserDataType>({
@@ -41,7 +41,7 @@ export default function FeedbackList() {
   const login = useSelector<any, boolean>(state => state.User['login'])
   // 是否能上啦加载更多
   const [isDown, setIsDown] = useState<boolean>(true);
-  // 判断是够登陆
+  // 判断是否登陆
   useEffect(() => {
     if (!login) return
     feedbackDataAction();
@@ -49,9 +49,11 @@ export default function FeedbackList() {
   // 进来时获取数据
   const feedbackDataAction = ()=>{
     feedbackAction(initPage.page).then(res => {
-      console.log(initPage.page)
       Taro.hideNavigationBarLoading()
       Taro.stopPullDownRefresh();
+      if (((res.data.length < 15) || (res.data.length = 15)) && res.data.length) {
+        setIsDown(false)
+      }
       if (initPage.page === 1) {
         setLists({ item: [...res.data] })
       } else {
@@ -100,25 +102,25 @@ export default function FeedbackList() {
       >
         {lists.item && lists.item.map((item) => (
           <Block key={item.id}>
-            <View className='feedback-body-1'>
+            <View className='feedback-body-content'>
               <View className='superior'>
-                <View className='superior-1'>
+                <View className='superior-text'>
                   <text>问</text>
                 </View>
-                <View className='superior-2'>
+                <View className='superior-content'>
                   <text>{item.content}</text>
                 </View>
               </View>
               <View className='species'>
                 {item.images && item.images.map((v) => (
-                  <View className='species-1' key={v} onClick={()=>{handleImg(v)}}>
+                  <View className='species-box' key={v} onClick={()=>{handleImg(v)}}>
                     <Image style={{ width: '100%', height: '85px' }} src={v} />
                   </View>
                 ))}
               </View>
               <View className='species-text'>{item.ask_time}</View>
               {item.is_answer &&
-                <View className='superior-1s'>
+                <View className='superior-data'>
                   <View className='superiordati'>答</View>
                   <View className='superioredase'>
                     {item.send_msg && <Text >{item.send_msg}</Text>}
@@ -128,7 +130,7 @@ export default function FeedbackList() {
             </View>
           </Block>
         ))}
-        {/* {!isDown && <View className='feedback-noData'>没有更多数据了</View>} */}
+        {!isDown && <View className='feedback-noData'>没有更多数据了</View>}
       </ScrollView>
       <View className='feedback-bttonBox'>
         <Button className='feedback-bttonBox-botton' onClick={() => userRouteJump(`/pages/feedback/index?username=${userData.username}&phone=${userData.phone}`)}>我要提意见</Button>
@@ -142,5 +144,5 @@ FeedbackList.config = {
   enablePullDownRefresh: true,
   navigationBarBackgroundColor: '#0099ff',
   navigationBarTextStyle: 'white',
-  backgroundTextStyle: "dark"
+  backgroundTextStyle: 'dark'
 } as Config
