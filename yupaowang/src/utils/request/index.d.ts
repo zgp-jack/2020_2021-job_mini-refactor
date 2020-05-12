@@ -576,9 +576,12 @@ export interface resumesSortDataListJump{
 
 // 我的信息
 export interface userMessagesList extends Result {
-  data: userMessagesListData[]
+  data: userMessagesListData,
 }
 export interface userMessagesListData{
+  lists: userMessagesListDataList[],
+}
+export interface userMessagesListDataList {
   count: number,
   description: string,
   imageUrl: string,
@@ -586,4 +589,26 @@ export interface userMessagesListData{
   timeString: string,
   type: number,
   typeName: string
+}
+
+// 我的信息详情
+export interface system extends Result {
+  data: systemData,
+}
+export interface systemData {
+  lists: systemDataList[],
+}
+export interface systemDataList {
+  click_time: string
+  description: string
+  ext: null
+  id: string
+  image_url: string
+  read_time: number
+  target_uuid: string
+  time: string
+  title: string
+  type: number
+  type_name: string
+  user_uuid: string
 }

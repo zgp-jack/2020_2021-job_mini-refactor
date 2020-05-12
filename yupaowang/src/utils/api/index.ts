@@ -94,3 +94,5 @@ export const resumesSortUrl: string = REQUESTURL + 'resumes/sort/'
 export const resumesAddClickLog: string = REQUESTURL + 'resumes/add-click-log/'
 // 我的信息
 export const userMessagesUrl: string = REQUESTURL + 'member/user-messages/'
+// 我的信息详情
+export const messagesTypeUrl: string = REQUESTURL + 'member/message-of-type/'

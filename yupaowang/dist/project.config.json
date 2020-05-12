@@ -133,6 +133,13 @@
           "pathName": "pages/ranking/index",
           "query": "",
           "scene": null
+        },
+        {
+          "id": 12,
+          "name": "我的信息",
+          "pathName": "pages/information/index",
+          "query": "",
+          "scene": null
         }
       ]
     }

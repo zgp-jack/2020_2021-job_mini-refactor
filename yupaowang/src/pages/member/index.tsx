@@ -120,7 +120,7 @@ export default function Member(){
             <Image className='member-list-icon' src={ IMGCDNURL + 'lpy/ucenter/newcenter-used.png'} />
             <Text className='member-list-title'>我的二手交易</Text>
           </View>
-          <View className='member-list-item' onClick={() => userRouteJump('/pages/information/index')}>
+          <View className='member-list-item' onClick={() => userRouteJump('/pages/information/mymessage/index')}>
             <Image className='member-list-icon' src={ IMGCDNURL + 'lpy/ucenter/newcenter-info.png'} />
             <View className='member-list-title'>
               <Text>我的信息</Text>

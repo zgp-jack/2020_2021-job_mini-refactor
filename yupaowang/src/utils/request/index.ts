@@ -567,3 +567,13 @@ export function userMessagesAction(): Promise<Inter.userMessagesList> {
     failToast: true,
   })
 }
+
+// 我的信息详情
+export function messagesTypeAction(params:object): Promise<Inter.system> {
+  return doRequestAction({
+    url: api.messagesTypeUrl,
+    method: 'POST',
+    failToast: true,
+    data:params
+  })
+}

@@ -137,7 +137,14 @@
 				{
 					"id": 12,
 					"name": "我的信息",
-					"pathName": "pages/information/index",
+					"pathName": "pages/information/mymessage/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的信息详情",
+					"pathName": "pages/information/system/index",
 					"query": "",
 					"scene": null
 				}

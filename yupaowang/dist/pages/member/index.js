@@ -149,7 +149,7 @@ var Member = (_temp2 = _class = function (_Taro$Component) {
       };
 
       this.anonymousFunc3 = function () {
-        return userRouteJump('/pages/information/index');
+        return userRouteJump('/pages/information/mymessage/index');
       };
 
       this.anonymousFunc4 = function () {
