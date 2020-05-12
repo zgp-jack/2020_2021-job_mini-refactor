@@ -1,2 +1,2 @@
-node_modules/
-dist/
+yupaowang/node_modules/*
+yupaowang/dist/
