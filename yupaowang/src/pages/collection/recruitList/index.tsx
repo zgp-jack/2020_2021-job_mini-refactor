@@ -47,7 +47,7 @@ export default function RecruitList({ bottom, initPage}: PROPS) {
     getCollectionRecruitListData(initRecPage.page).then(res => {
       Taro.hideNavigationBarLoading()
       Taro.stopPullDownRefresh();
-      if (((res.list.length < res.pageSize) || (res.list.length = res.pageSize)) && res.list.length) {
+      if (!res.list.length) {
         setRecruitNoMoreData(true)
       }
       if (initRecPage.page === 1) {

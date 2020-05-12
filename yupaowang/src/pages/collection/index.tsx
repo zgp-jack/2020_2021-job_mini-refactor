@@ -41,7 +41,7 @@ export default function Collection() {
       <View className='collection-tab'>
         {tab.map(item => (
           <View className='collection-tab-box' key={item.id} onClick={() => handleTable(item.id)}>
-            <View>
+            <View className='collection-tab-content'>
             <View
               className={classnames({
                 'collection-tab-border': item.id === current,

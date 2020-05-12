@@ -64,17 +64,10 @@ export default function Help() {
   // 开关
   const handleShow = (id,e)=>{
     const newData = JSON.parse(JSON.stringify(data));
-    for (let i = 0; i < newData.item.length; i++) {
-      if (id == newData.item[i].id) {
-        newData.item[i].isShow = e;
-      } else {
-        if (e) {
-          newData.item[i].isShow = !e;
-        } else {
-          newData.item[i].isShow = e;
-        }
-      }
-    }
+    newData.item.forEach((v:any) => {
+      let flag: boolean = v.id === id && !v.isShow
+      v.isShow = flag ? true : false
+    })
     setData(newData);
   }
   // * 触底加载下一页

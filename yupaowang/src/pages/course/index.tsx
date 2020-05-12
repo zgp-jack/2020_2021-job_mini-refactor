@@ -53,7 +53,7 @@ export default function Course() {
   },[])
   const bossIsShow = (id:number|string)=>{
     let mydata:BossData = JSON.parse(JSON.stringify(bossData))
-    mydata.item.forEach((v)=>{
+    mydata.item.forEach((v:any)=>{
       let flag: boolean = v.id === id && !v.isShow
       v.isShow = flag ? true : false
     })
@@ -61,7 +61,7 @@ export default function Course() {
   }
   const workerMasterIsShow = (id:number|string) => {
     let workerMasterData: WorkerMasterData = JSON.parse(JSON.stringify(workerMaster))
-    workerMasterData.item.forEach((v) => {
+    workerMasterData.item.forEach((v:any) => {
       let flag: boolean = v.id === id && !v.isShow
       v.isShow = flag ? true : false
     })
@@ -72,7 +72,7 @@ export default function Course() {
     <View className='course-tab'>
       {tab.map(item => (
         <View className='course-tab-box' key={item.id} onClick={() => { handleClick(item.id) }}>
-          <View>
+          <View className='course-tab-content'>
             <View 
               className={classnames({
                 'course-tab-border': item.id === highlight,
@@ -80,7 +80,7 @@ export default function Course() {
               })}
             >
             <View className='course-tab-img'>
-              {item.id === highlight ? <Image className='course-tab-img-box' src={item.activeIcon}></Image> : <Image className='course-tab-img-box' src={item.icon}></Image>}
+                <Image className='course-tab-img-box' src={item.id === highlight ? item.activeIcon : item.icon}></Image>
             </View>
             <Text
               className={classnames({

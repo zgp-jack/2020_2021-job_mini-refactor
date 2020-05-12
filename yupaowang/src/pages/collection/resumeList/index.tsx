@@ -33,7 +33,7 @@ export default function ResumeList({ bottom, initPage}: PROPS) {
     getCollectionResumeListData(initResPage.page).then(res => {
       Taro.hideNavigationBarLoading()
       Taro.stopPullDownRefresh();
-      if (((res.data.length < res.pageSize) || (res.data.length = res.pageSize)) && res.data.length){
+      if (!res.data.length) {
         setRecruitNoMoreData(true)
       }
       if (initResPage.page === 1){
