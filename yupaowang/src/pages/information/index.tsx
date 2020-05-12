@@ -1,5 +1,5 @@
 import Taro, { useState, useEffect, Config } from '@tarojs/taro'
-import { View, Text, Image } from '@tarojs/components'
+import { View } from '@tarojs/components'
 import { userMessagesAction } from '../../utils/request/index'
 import { userMessagesListData  } from '../../utils/request/index.d';
 import './index.scss'
