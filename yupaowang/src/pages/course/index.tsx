@@ -5,6 +5,7 @@ import classnames from 'classnames'
 import { requestAction } from '../../utils/request';
 import { reportMasterList, reportUserList} from '../../utils/request/index.d'
 import { AtAccordion, AtList } from 'taro-ui'
+import Nodata from '../../components/nodata'
 import './index.scss'
 
 export interface BossData {
@@ -51,17 +52,17 @@ export default function Course() {
       setWorkerMaster({ item: [...res.userList]})
     })
   },[])
-  const bossIsShow = (id:number|string)=>{
+  const bossIsShow = (id:string)=>{
     let mydata:BossData = JSON.parse(JSON.stringify(bossData))
-    mydata.item.forEach((v:any)=>{
+    mydata.item.forEach((v: reportMasterList)=>{
       let flag: boolean = v.id === id && !v.isShow
       v.isShow = flag ? true : false
     })
     setBossData(mydata);
   }
-  const workerMasterIsShow = (id:number|string) => {
+  const workerMasterIsShow = (id:string) => {
     let workerMasterData: WorkerMasterData = JSON.parse(JSON.stringify(workerMaster))
-    workerMasterData.item.forEach((v:any) => {
+    workerMasterData.item.forEach((v: reportUserList) => {
       let flag: boolean = v.id === id && !v.isShow
       v.isShow = flag ? true : false
     })
@@ -70,6 +71,7 @@ export default function Course() {
   return (
     <View className='course-content'>
     <View className='course-tab'>
+      {!tab.length && <Nodata />}
       {tab.map(item => (
         <View className='course-tab-box' key={item.id} onClick={() => { handleClick(item.id) }}>
           <View className='course-tab-content'>

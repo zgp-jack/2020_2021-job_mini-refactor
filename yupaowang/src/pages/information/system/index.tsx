@@ -3,8 +3,8 @@ import { View, Text, Image } from '@tarojs/components'
 import { messagesTypeAction } from '../../../utils/request';
 import { systemDataList } from '../../../utils/request/index.d'
 import { IMGCDNURL } from '../../../config'
-import Auth from '../../../components/auth'
-import { useSelector } from '@tarojs/redux'
+import Nodata from '../../../components/nodata'
+import { isIos } from '../../../utils/v'
 import './index.scss'
 
 interface DataType {
@@ -14,17 +14,57 @@ interface InitPageType{
   page: number
 }
 // 默认跳转路径
-const newmessage = {
-  // 1 系统信息
-  type2: '/pages/published/published',            // 2 招工信息
-  type3: '/pages/clients-looking-for-work/finding-name-card/findingnamecard',      // 3 名片信息
-  type4: '/pages/clients-looking-for-work/all-skills-certificate/skillscertificate', // 4 证书信息
-  type5: '/pages/clients-looking-for-work/all-project-experience/allexperience',      // 5 项目信息
-  type6: '/pages/integral/source/source', // 6 投诉招工信息
-  type7: '/pages/others/message/lists/lists',      // 7 留言信息
-  type8: '/pages/integral/source/source', // 8 积分管理-充值
-  type9: '/pages/realname/realname',      // 9 实名认证
-  type10: '/pages/integral/return/return',     // 10 投诉找活信息
+const newmessageinfo = {
+  1: {
+    title: '系统信息',
+    url: '',
+    titleText:'系统提醒',
+    },
+  2: {
+    title:'招工信息',
+    url: '',
+    titleText: '招工提醒',
+  },
+  3: {
+    title: '名片信息',
+    url: '',
+    titleText: '找活提醒',
+  },
+  4: {
+    title: '证书信息',
+    url: '',
+    titleText: '找活提醒',
+  },
+  5: {
+    title: '项目信息',
+    url: '',
+    titleText: '找活提醒',
+  },
+  6: {
+    title: '投诉招工信息',
+    url: '',
+    titleText: '投诉提醒',
+  },
+  7: {
+    title: '留言信息',
+    url: '',
+    titleText: '我的信息-留言',
+  },
+  8: {
+    title: '积分管理-充值',
+    url: '',
+    titleText: '系统提醒',
+  },
+  9: {
+    title: '实名认证',
+    url: '',
+    titleText: '系统提醒',
+  },
+  10: {
+    title: '投诉找活信息',
+    url: '',
+    titleText: '投诉提醒',
+  }
 }
 export default function System (){
   const router: RouterInfo = useRouter()
@@ -39,33 +79,25 @@ export default function System (){
   })
   // 是够能加载更多
   const [isDown,setIsDown] = useState<boolean>(true)
-  // 获取用户是否登录
-  const login = useSelector<any, boolean>(state => state.User['login'])
+  // 判断是否是ios
+  const [ios, setIos] = useState<boolean>(false)
 
   useEffect(()=>{
-    let titleTypr:string='';
-  if (type == '1' || type == '8' || type == '9') {
-      titleTypr = '系统提醒'
-  } else if (type == '2') {
-      titleTypr = '招工提醒'
-  } else if (type == '3' || type == '4' || type == '5') {
-      titleTypr = '找活提醒'
-  } else if (type == '6' || type == '10') {
-      titleTypr = '投诉提醒'
-  } else if (type == '7') {
-      titleTypr = '我的信息-留言'
-  } 
+    // 判断是安卓还是苹果
+    setIos(isIos())
+    let terminal_type = ios ? 'ios' : 'android';
+    let ListType:number = parseInt(type);
     Taro.setNavigationBarTitle({
-      title: titleTypr
+      title: newmessageinfo[ListType].titleText
     })  
-    if (!login) return
-    messagesType(parseInt(type))
-  }, [initPage, login])
+    messagesType(parseInt(type), terminal_type)
+  }, [initPage])
   // 请求
-  const messagesType = (type:number)=>{
-    const params:object = {
+  const messagesType = (type: number, terminal_type:string)=>{
+    const params = {
       type,
       page:initPage.page,
+      terminal_type,
     }
     messagesTypeAction(params).then(res=>{
       Taro.hideNavigationBarLoading()
@@ -81,11 +113,9 @@ export default function System (){
   }
   // 用户页面跳转
   const userRouteJump = (type:number) => {
-    let jumpType = 'type' + type
-    console.log(newmessage[jumpType]);
     return;
     Taro.navigateTo({
-      url: newmessage[jumpType]
+      url: newmessageinfo[type].url
     })
   }
   // 上拉加载更多
@@ -96,7 +126,7 @@ export default function System (){
   })
   return(
     <View>
-      <Auth/>
+      {!data.item.length && <Nodata />}
       {data.item.map((item)=>(
         <View
           className='system-lists'

@@ -3,6 +3,7 @@ import { View, Text, ScrollView} from '@tarojs/components'
 import { helpAction, feedbackAction } from '../../utils/request'
 import { AtAccordion, AtList } from 'taro-ui'
 import { heleDatalist } from '../../utils/request/index.d'
+import Nodata from '../../components/nodata'
 import './index.scss'
 
 export interface InitPageType {
@@ -62,9 +63,9 @@ export default function Help() {
     })
   },[])
   // 开关
-  const handleShow = (id:any)=>{
+  const handleShow = (id:number|undefined)=>{
     const newData = JSON.parse(JSON.stringify(data));
-    newData.item.forEach((v:any) => {
+    newData.item.forEach((v: heleDatalist) => {
       let flag: boolean = v.id === id && !v.isShow
       v.isShow = flag ? true : false
     })
@@ -90,6 +91,7 @@ export default function Help() {
   }
   return (
     <View className='help-content'>
+      {!data.item.length && <Nodata />}
       <ScrollView
         className='recruit-lists-containerbox'
         scrollY
@@ -113,7 +115,7 @@ export default function Help() {
               </AtList>
             </AtAccordion>
           ))}
-        {!isDown && <View className='help-noData'>没有更多数据了</View>}
+        {!isDown && data.item.length && <View className='help-noData'>没有更多数据了</View>}
         <View className='BootomNoneBox'></View>
       </ScrollView>
       <View className='help-button-box' onClick={() => userRouteJump(`/pages/feedback/index?username=${userData.username}&phone=${userData.phone}`)}><Text className='help-button'>意见反馈</Text></View>

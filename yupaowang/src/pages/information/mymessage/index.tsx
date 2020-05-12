@@ -3,6 +3,10 @@ import { View, Text, Image } from '@tarojs/components'
 import { userMessagesAction } from '../../../utils/request/index'
 import { userMessagesListDataList  } from '../../../utils/request/index.d';
 import { IMGCDNURL } from '../../../config'
+import Auth from '../../../components/auth'
+import { useSelector } from '@tarojs/redux'
+import Nodata from '../../../components/nodata'
+import { isIos } from '../../../utils/v'
 import './index.scss'
 
 interface DataType {
@@ -14,12 +18,19 @@ export default function Mymessage (){
   const [data, setData] = useState <DataType>({
     item:[]
   })
+  // 获取用户是否登录
+  const login = useSelector<any, boolean>(state => state.User['login'])
+  // 判断是否是ios
+  const [ios, setIos] = useState<boolean>(false)
   // 数据请求
   useEffect(()=>{
-    userMessagesAction().then(res=>{
+    if (!login) return
+    setIos(isIos())
+    let type = ios ? 'ios' : 'android';
+    userMessagesAction(type).then(res=>{
       setData({item:res.data.lists})
     })
-  },[])
+  }, [login])
   // 用户页面跳转
   const userRouteJump = (url: string) => {
     Taro.navigateTo({
@@ -28,6 +39,8 @@ export default function Mymessage (){
   }
   return (
     <View>
+      <Auth />
+      {!data.item.length && <Nodata />}
       {data.item.map((item,index)=>(
         <View 
           className='messsage-lists' 
