@@ -66,7 +66,7 @@ var MapComponent = (_temp2 = _class = function (_Taro$Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = MapComponent.__proto__ || Object.getPrototypeOf(MapComponent)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray55", "loopArray56", "$compid__86", "smAreaText", "showHistory", "histroyList", "lists", "IMGCDNURL", "showCity", "area", "data", "context"], _this.anonymousFunc4Map = {}, _this.anonymousFunc5Map = {}, _this.customComponents = ["Cities"], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = MapComponent.__proto__ || Object.getPrototypeOf(MapComponent)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray53", "loopArray54", "$compid__86", "smAreaText", "showHistory", "histroyList", "lists", "IMGCDNURL", "showCity", "area", "data", "context"], _this.anonymousFunc4Map = {}, _this.anonymousFunc5Map = {}, _this.customComponents = ["Cities"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(MapComponent, [{
@@ -268,7 +268,7 @@ var MapComponent = (_temp2 = _class = function (_Taro$Component) {
         return userCloseMap();
       };
 
-      var loopArray55 = showHistory ? histroyList.map(function (item, index) {
+      var loopArray53 = showHistory ? histroyList.map(function (item, index) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
@@ -284,7 +284,7 @@ var MapComponent = (_temp2 = _class = function (_Taro$Component) {
           $original: item.$original
         };
       }) : [];
-      var loopArray56 = lists.map(function (item, index) {
+      var loopArray54 = lists.map(function (item, index) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
@@ -308,8 +308,8 @@ var MapComponent = (_temp2 = _class = function (_Taro$Component) {
         "userTapCityBtn": userTapCityBtn
       }, $compid__86, $prevCompid__86);
       Object.assign(this.__state, {
-        loopArray55: loopArray55,
-        loopArray56: loopArray56,
+        loopArray53: loopArray53,
+        loopArray54: loopArray54,
         $compid__86: $compid__86,
         smAreaText: smAreaText,
         showHistory: showHistory,

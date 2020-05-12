@@ -48,7 +48,7 @@ var ImageView = (_temp2 = _class = function (_Taro$Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ImageView.__proto__ || Object.getPrototypeOf(ImageView)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray66", "images", "max", "userUploadImg"], _this.anonymousFunc0Map = {}, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ImageView.__proto__ || Object.getPrototypeOf(ImageView)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray61", "images", "max", "userUploadImg"], _this.anonymousFunc0Map = {}, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(ImageView, [{
@@ -78,12 +78,12 @@ var ImageView = (_temp2 = _class = function (_Taro$Component) {
         return userUploadImg && userUploadImg(-1);
       };
 
-      var loopArray66 = images ? images.map(function (item, index) {
+      var loopArray61 = images ? images.map(function (item, index) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
 
-        var _$indexKey = "gezzz" + index;
+        var _$indexKey = "gazzz" + index;
 
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return userUploadImg && userUploadImg(index);
@@ -95,7 +95,7 @@ var ImageView = (_temp2 = _class = function (_Taro$Component) {
         };
       }) : [];
       Object.assign(this.__state, {
-        loopArray66: loopArray66,
+        loopArray61: loopArray61,
         images: images,
         max: max
       });

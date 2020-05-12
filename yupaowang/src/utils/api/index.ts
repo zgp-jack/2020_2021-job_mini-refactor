@@ -92,3 +92,5 @@ export const newsInfoUrl: string = REQUESTURL + 'news/info/'
 export const resumesSortUrl: string = REQUESTURL + 'resumes/sort/'
 // 排名规则点击时发送的请求
 export const resumesAddClickLog: string = REQUESTURL + 'resumes/add-click-log/'
+// 我的信息
+export const userMessagesUrl: string = REQUESTURL + 'member/user-messages/'

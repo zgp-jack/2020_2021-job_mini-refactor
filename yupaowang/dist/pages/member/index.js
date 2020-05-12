@@ -149,18 +149,22 @@ var Member = (_temp2 = _class = function (_Taro$Component) {
       };
 
       this.anonymousFunc3 = function () {
-        return userRouteJump('/pages/realname/index');
+        return userRouteJump('/pages/information/index');
       };
 
       this.anonymousFunc4 = function () {
-        return userRouteJump('/pages/collection/index');
+        return userRouteJump('/pages/realname/index');
       };
 
       this.anonymousFunc5 = function () {
-        return userRouteJump('/pages/feedbacklist/index');
+        return userRouteJump('/pages/collection/index');
       };
 
       this.anonymousFunc6 = function () {
+        return userRouteJump('/pages/feedbacklist/index');
+      };
+
+      this.anonymousFunc7 = function () {
         return userRouteJump('/pages/help/index');
       };
 
@@ -209,10 +213,15 @@ var Member = (_temp2 = _class = function (_Taro$Component) {
     value: function anonymousFunc6(e) {
       ;
     }
+  }, {
+    key: "anonymousFunc7",
+    value: function anonymousFunc7(e) {
+      ;
+    }
   }]);
 
   return Member;
-}(_taroWeapp2.default.Component), _class.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6"], _class.$$componentPath = "pages/member/index", _temp2);
+}(_taroWeapp2.default.Component), _class.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6", "anonymousFunc7"], _class.$$componentPath = "pages/member/index", _temp2);
 exports.default = Member;
 
 Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(Member));

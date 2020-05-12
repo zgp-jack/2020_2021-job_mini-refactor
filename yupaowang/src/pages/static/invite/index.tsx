@@ -4,7 +4,6 @@ import classnames from 'classnames'
 import { newsTypesAction, newListAction} from '../../../utils/request/index'
 import { newsTypesListData, newListData } from '../../../utils/request/index.d'
 import Nodata from '../../../components/nodata'
-import Msg from '../../../utils/msg'
 import './index.scss'
 
 
@@ -56,13 +55,12 @@ export default function InvitePage() {
     }
     newListAction(params).then(res => {
       Taro.hideNavigationBarLoading()
+      if (!res.data.length) {
+        setPull(false)
+      }
       if(params.page ===1){
         setList([...res.data])
       }else{
-        if(res.data.length === 0 ){
-          Msg('没有更多数据了')
-          setPull(false)
-        }
         setList([...list, ...res.data])
       }
     })
@@ -121,6 +119,7 @@ export default function InvitePage() {
           </View>
         ))}
       </View>
+      {list.length && !pull && <View className='invite-nodata'>没有更多数据了</View>}
     </View>
   )
 }

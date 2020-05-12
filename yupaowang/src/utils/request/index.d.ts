@@ -573,3 +573,17 @@ export interface resumesSortDataListJump{
   mini_path:string,
   need_jump:number
 }
+
+// 我的信息
+export interface userMessagesList extends Result {
+  data: userMessagesListData[]
+}
+export interface userMessagesListData{
+  count: number,
+  description: string,
+  imageUrl: string,
+  time: string,
+  timeString: string,
+  type: number,
+  typeName: string
+}

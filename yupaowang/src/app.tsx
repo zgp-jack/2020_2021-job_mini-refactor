@@ -39,7 +39,8 @@ class App extends Component {
       "pages/static/invite/index", //新闻资讯
       "pages/notice/index", //资讯详情
       "pages/download/index", //下载app
-      "pages/ranking/index" //排名规则
+      "pages/ranking/index", //排名规则
+      "pages/information/index" //我的信息
     ],
     subPackages: [
       {

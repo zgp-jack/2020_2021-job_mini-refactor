@@ -558,3 +558,12 @@ export function resumesAddClickLogAction(type:number): Promise<Inter.Result> {
     }
   })
 }
+
+// 我的信息
+export function userMessagesAction(): Promise<Inter.userMessagesList> {
+  return doRequestAction({
+    url: api.userMessagesUrl,
+    method: 'POST',
+    failToast: true,
+  })
+}

@@ -104,9 +104,9 @@ export default function FeedbackList() {
                 </View>
               </View>
               <View className='species'>
-                {item.images && item.images.map((v) => (
-                  <View className='species-box' key={v} onClick={()=>{handleImg(v)}}>
-                    <Image style={{ width: '100%', height: '85px' }} src={v} />
+                {item.images && item.images.map((v,index) => (
+                  <View className='species-box' key={index} onClick={()=>{handleImg(v)}}>
+                    <Image className='species-box-img' src={v} />
                   </View>
                 ))}
               </View>

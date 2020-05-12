@@ -35,14 +35,15 @@ export default function RankingRules() {
     // 日志请求
     resumesAddClickLog(v.click_type);
     // 名片信息
-    if (data.resume_info.has_resume == 1 && v.jump.need_jump == 1 && v.jump.mini_path == '/pages/clients-looking-for-work/finding-name-card/findingnamecard'){
+    if (data.resume_info.has_resume == 1 && v.jump.need_jump == 1){
       console.log(v.jump.mini_path + `?rankjump=rankjump`);
       // Taro.navigateTo({
       //   url: v.jump.mini_path + `?rankjump=rankjump`,
       // })
-    } else if (data.resume_info.has_resume == 1 && v.jump.need_jump == 1) {
       // 技能证书
       if (v.jump.mini_path == '/pages/clients-looking-for-work/new-project-experience/projectexperience' || v.jump.mini_path == '/pages/clients-looking-for-work/addcertificate/addcertificate') {
+
+      } else if ( v.jump.mini_path == '/pages/clients-looking-for-work/finding-name-card/findingnamecard'){
 
       } else {
         Taro.navigateTo({
@@ -69,8 +70,8 @@ export default function RankingRules() {
         <View className='rankingRules-top-careful'>注：找活名片只有审核通过后，才会在列表展示。排名点越高，排名越靠前。</View>
       </View>
       <View className='rankingRules-list'>
-        {data.sort_rule_lists && data.sort_rule_lists.map(v=>(
-          <View className='rankingRules-list-box'>
+        { data.sort_rule_lists.map((v,index)=>(
+          <View className='rankingRules-list-box' key={index}>
             <View className='rankingRules-list-content'>
               <Image className='rankingRules-list-content-img' src={v.img_url}/>
               <View className='rankingRules-list-content-box'>
@@ -94,8 +95,8 @@ export default function RankingRules() {
       </View>
       <View className='rankingRules-Tips'>
         <View className='rankingRules-Tips-title'>温馨提示</View>
-        {data.warm_tips && data.warm_tips.map(v=>(
-          <View className='rankingRules-Tips-text' key={v}>{v}</View>
+        {data.warm_tips.map((v,index)=>(
+          <View className='rankingRules-Tips-text' key={index}>{v}</View>
         ))}
       </View>
     </View>

@@ -62,7 +62,7 @@ export default function Help() {
     })
   },[])
   // 开关
-  const handleShow = (id,e)=>{
+  const handleShow = (id:any)=>{
     const newData = JSON.parse(JSON.stringify(data));
     newData.item.forEach((v:any) => {
       let flag: boolean = v.id === id && !v.isShow
@@ -105,7 +105,7 @@ export default function Help() {
               icon={{ value: 'help', color: '#09f', size: '15'}}
               key={item.id}
               open={item.isShow}
-              onClick={(e) => { handleShow(item.id, e) }}
+              onClick={() => { handleShow(item.id) }}
               title={item.question}
             >
               <AtList hasBorder={false}>
@@ -114,7 +114,7 @@ export default function Help() {
             </AtAccordion>
           ))}
         {!isDown && <View className='help-noData'>没有更多数据了</View>}
-        <View style={{ height: '50px' }}></View>
+        <View className='noneBox'></View>
       </ScrollView>
       <View className='help-button-box' onClick={() => userRouteJump(`/pages/feedback/index?username=${userData.username}&phone=${userData.phone}`)}><Text className='help-button'>意见反馈</Text></View>
     </View>

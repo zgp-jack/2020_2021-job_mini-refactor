@@ -58,7 +58,7 @@
                 <view class="member-list-item">
                     <image class="member-list-icon" src="{{IMGCDNURL + 'lpy/ucenter/newcenter-used.png'}}"></image><text class="member-list-title">我的二手交易</text>
                 </view>
-                <view class="member-list-item">
+                <view class="member-list-item" bindtap="anonymousFunc3">
                     <image class="member-list-icon" src="{{IMGCDNURL + 'lpy/ucenter/newcenter-info.png'}}"></image>
                     <view class="member-list-title"><text>我的信息</text>
                         <block wx:if="{{msgNumber}}">
@@ -87,15 +87,15 @@
                 </view>
             </view>
             <view class="member-list-container">
-                <view class="member-list-item" bindtap="anonymousFunc3">
+                <view class="member-list-item" bindtap="anonymousFunc4">
                     <image class="member-list-icon" src="{{IMGCDNURL + 'lpy/ucenter/newcenter-realname.png'}}"></image><text class="member-list-title">实名认证</text><text class="member-list-tips">{{model && model.member.check_state}}</text>
                 </view>
                 <view class="member-list-item">
-                    <image class="member-list-icon" src="{{IMGCDNURL + 'lpy/ucenter/newcenter-collect.png'}}"></image><text class="member-list-title" bindtap="anonymousFunc4">我的收藏</text>
+                    <image class="member-list-icon" src="{{IMGCDNURL + 'lpy/ucenter/newcenter-collect.png'}}"></image><text class="member-list-title" bindtap="anonymousFunc5">我的收藏</text>
                 </view>
             </view>
             <view class="member-list-container">
-                <view class="member-list-item" bindtap="anonymousFunc5">
+                <view class="member-list-item" bindtap="anonymousFunc6">
                     <image class="member-list-icon" src="{{IMGCDNURL + 'lpy/ucenter/newcenter-feedback.png'}}"></image>
                     <view class="member-list-title"><text>意见反馈</text>
                         <block wx:if="{{model && model.member.has_notice_msg.hasNoticeMsgg}}"><text class="member-list-dot"></text>
@@ -104,7 +104,7 @@
                     <block wx:if="{{model && model.member.has_notice_msg.hasNoticeMsgg}}"><text class="member-list-tips">有最新回复</text>
                     </block>
                 </view>
-                <view class="member-list-item" bindtap="anonymousFunc6">
+                <view class="member-list-item" bindtap="anonymousFunc7">
                     <image class="member-list-icon" src="{{IMGCDNURL + 'lpy/ucenter/newcenter-help.png'}}"></image><text class="member-list-title">帮助中心</text><text class="member-list-tips">使用教程</text>
                 </view>
             </view>

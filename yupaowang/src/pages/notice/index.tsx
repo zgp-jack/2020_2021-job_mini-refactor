@@ -23,13 +23,13 @@ export default function Notice() {
     <View className='consultationDetails-content'>
       {data && 
       <View>
-        <View className='consultationDetails-title'>{data && data.item.title}</View>
+        <View className='consultationDetails-title'>{data.item.title}</View>
         <View className='consultationDetails-flex'>
-          <View>作者：{data && data.item.author}</View>
+          <View>作者：{ data.item.author}</View>
           <View>{data.item.time}</View>
         </View>
         <View className="consultationDetails-substance">
-          <RichText nodes={data.item.content} className="consultationDetails-richText"/>
+          <RichText space='nbsp' nodes={data.item.content} className="consultationDetails-richText"/>
         </View>
       </View>
       }
