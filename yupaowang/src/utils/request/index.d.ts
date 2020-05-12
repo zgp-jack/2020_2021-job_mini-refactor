@@ -397,3 +397,39 @@ export interface UserAuthInfoNationData {
   mz_id: string,
   mz_name: string
 }
+
+// 用户已发布列表招工信息
+export interface UserPublishedRecruitData extends Result{
+  data: UserPublishedRecruitListData
+}
+
+export interface UserPublishedRecruitListData {
+  lists: UserPublishedRecruitListDataItem[]
+}
+
+export interface UserPublishedRecruitListDataItem {
+  id: string,
+  title: string,
+  detail: string,
+  is_check: string,
+  is_end: string,
+  sort_time: string,
+  top: number,
+  top_data: {
+    end_time: string,
+    information_id: string,
+    time_str: string,
+    is_top: string
+  }
+}
+
+// 用户修改已发布列表的招工状态
+export interface UserChangePublishedRecruitStatus extends Result{
+  data: {
+    is_check: number,
+    is_end: number,
+    top: {
+      is_top: number
+    }
+  }
+}
