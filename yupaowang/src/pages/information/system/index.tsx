@@ -44,16 +44,16 @@ export default function System (){
 
   useEffect(()=>{
     let titleTypr:string='';
-  if (type == "1" || type == "8" || type == "9") {
-      titleTypr = "系统提醒"
-  } else if (type == "2") {
-      titleTypr = "招工提醒"
-  } else if (type == "3" || type == "4" || type == "5") {
-      titleTypr = "找活提醒"
-  } else if (type == "6" || type == "10") {
-      titleTypr = "投诉提醒"
-  } else if (type == "7") {
-      titleTypr = "我的信息-留言"
+  if (type == '1' || type == '8' || type == '9') {
+      titleTypr = '系统提醒'
+  } else if (type == '2') {
+      titleTypr = '招工提醒'
+  } else if (type == '3' || type == '4' || type == '5') {
+      titleTypr = '找活提醒'
+  } else if (type == '6' || type == '10') {
+      titleTypr = '投诉提醒'
+  } else if (type == '7') {
+      titleTypr = '我的信息-留言'
   } 
     Taro.setNavigationBarTitle({
       title: titleTypr
@@ -81,7 +81,7 @@ export default function System (){
   }
   // 用户页面跳转
   const userRouteJump = (type:number) => {
-    let jumpType = "type" + type
+    let jumpType = 'type' + type
     console.log(newmessage[jumpType]);
     return;
     Taro.navigateTo({
@@ -102,22 +102,22 @@ export default function System (){
           className='system-lists'
           key={item.id}
           onClick={() => userRouteJump(item.type)}>
-          <View className="system-lists-top">
-            <View className="system-num" >
+          <View className='system-lists-top'>
+            <View className='system-num' >
               <Image src={item.image_url} className='system-num-img' />
-              {item.read_time == 0 && <Text className="msgNumber"></Text>}
+              {item.read_time == 0 && <Text className='msgNumber'></Text>}
             </View>
-            <View className="system-title" >
-              <View className="msgflex">
+            <View className='system-title' >
+              <View className='msgflex'>
                 <Text className='msgflex-text'> {item.type_name} </Text>
-                <Image src={`${IMGCDNURL}new-center-rightarrow.png`} className="rightarrow" />
+                <Image src={`${IMGCDNURL}new-center-rightarrow.png`} className='rightarrow' />
               </View>
-              <View className="system-deail"> {item.description} </View>
+              <View className='system-deail'> {item.description} </View>
             </View>
           </View>
-          <View className="system-bottom">
-            <Text className="system-deail"> 查看详情 </Text>
-            <Text className="system-deail">  {item.time} </Text>
+          <View className='system-bottom'>
+            <Text className='system-deail'> 查看详情 </Text>
+            <Text className='system-deail'>  {item.time} </Text>
           </View>
         </View>
       ))}

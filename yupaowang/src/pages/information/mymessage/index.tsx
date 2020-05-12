@@ -33,22 +33,22 @@ export default function Mymessage (){
           className='messsage-lists' 
           key={index} 
           onClick={() => userRouteJump(`/pages/information/system/index?type=${item.type}`)}>
-          <View className="messsage-lists-top">
-            <View className="messsage-num" >
+          <View className='messsage-lists-top'>
+            <View className='messsage-num' >
               <Image src={item.imageUrl} className='messsage-num-img' />
-              {item.count > 0 && <Text className="msgNumber">{item.count > 9 ? '9+' : item.count}</Text> }
+              {item.count > 0 && <Text className='msgNumber'>{item.count > 9 ? '9+' : item.count}</Text> }
           </View>
-            <View className="messsage-title" >
-              <View className="msgflex">
+            <View className='messsage-title' >
+              <View className='msgflex'>
                 <Text className='msgflex-text'> { item.typeName } </Text>
-                <Image src={`${IMGCDNURL}new-center-rightarrow.png` } className="rightarrow"/>
+                <Image src={`${IMGCDNURL}new-center-rightarrow.png` } className='rightarrow'/>
               </View>
-              <View className="messsage-deail"> { item.description } </View>
+              <View className='messsage-deail'> { item.description } </View>
             </View>
           </View>
-          <View className="messsage-bottom">
-            <Text className="messsage-deail"> 立即查看 </Text>
-            <Text className="messsage-deail">  { item.timeString } </Text>
+          <View className='messsage-bottom'>
+            <Text className='messsage-deail'> 立即查看 </Text>
+            <Text className='messsage-deail'>  { item.timeString } </Text>
           </View>
         </View>
     ))}
