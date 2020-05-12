@@ -70,3 +70,33 @@ export const userChangePhone: string = REQUESTURL + 'user/update-tel/'
 export const userGetPublishedRecruitList: string = REQUESTURL + 'job/issue-lists/'
 // 用户改变招工状态
 export const userChangeRecruitStatus: string = REQUESTURL + 'job/job-end-status/'
+// 收藏招工列表
+export const getCollectionRecruitList: string = REQUESTURL +'job/collect-list/'
+// 收藏找活列表
+export const getCollectionResumeList: string = REQUESTURL +'resumes/collect-list/'
+// 招工取消收藏
+export const recruitCancelCollection: string = REQUESTURL +'job/collect/'
+// 招活取消收藏
+export const ResumeCancelCollection: string = REQUESTURL + 'resumes/resume-collect/'
+// 使用教程
+export const requestActionUrl: string = REQUESTURL + 'index/course/'
+// 意见反馈数据
+export const feedbackUrl: string = REQUESTURL + 'leaving-message/list/'
+// 意见反馈提交
+export const feedbackSubmissionUrl: string = REQUESTURL + 'leaving-message/publish/'
+// 帮助中心
+export const helpUrl: string = REQUESTURL + 'others/help-feedback/'
+// 新闻列表
+export const newListUrl: string = REQUESTURL + 'news/list/'
+// 新闻类型
+export const newsTypesUrl: string = REQUESTURL + 'news/types/'
+// 咨询详情
+export const newsInfoUrl: string = REQUESTURL + 'news/info/'
+// 排名规则
+export const resumesSortUrl: string = REQUESTURL + 'resumes/sort/'
+// 排名规则点击时发送的请求
+export const resumesAddClickLog: string = REQUESTURL + 'resumes/add-click-log/'
+// 我的信息
+export const userMessagesUrl: string = REQUESTURL + 'member/user-messages/'
+// 我的信息详情
+export const messagesTypeUrl: string = REQUESTURL + 'member/message-of-type/'

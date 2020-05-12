@@ -155,13 +155,25 @@ var Member = function (_Taro$Component) {
         return userRouteJump('/pages/published/recruit/index');
       };
       this.anonymousFunc4 = function () {
-        return userRouteJump('/pages/recharge/index');
+        return userRouteJump('/pages/information/mymessage/index');
       };
       this.anonymousFunc5 = function () {
-        return userRouteJump('/pages/invite/index');
+        return userRouteJump('/pages/recharge/index');
       };
       this.anonymousFunc6 = function () {
+        return userRouteJump('/pages/invite/index');
+      };
+      this.anonymousFunc7 = function () {
         return userRouteJump('/pages/realname/index');
+      };
+      this.anonymousFunc8 = function () {
+        return userRouteJump('/pages/collection/index');
+      };
+      this.anonymousFunc9 = function () {
+        return userRouteJump('/pages/feedbacklist/index');
+      };
+      this.anonymousFunc10 = function () {
+        return userRouteJump('/pages/help/index');
       };
       Object.assign(this.__state, {
         login: login,
@@ -208,12 +220,32 @@ var Member = function (_Taro$Component) {
     value: function anonymousFunc6(e) {
       ;
     }
+  }, {
+    key: "anonymousFunc7",
+    value: function anonymousFunc7(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc8",
+    value: function anonymousFunc8(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc9",
+    value: function anonymousFunc9(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc10",
+    value: function anonymousFunc10(e) {
+      ;
+    }
   }]);
 
   return Member;
 }(_taroWeapp2.default.Component);
 
-Member.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6"];
+Member.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6", "anonymousFunc7", "anonymousFunc8", "anonymousFunc9", "anonymousFunc10"];
 Member.$$componentPath = "pages/member/index";
 exports.default = Member;
 

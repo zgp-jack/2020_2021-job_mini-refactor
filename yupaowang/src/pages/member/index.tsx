@@ -124,7 +124,7 @@ export default function Member(){
             <Image className='member-list-icon' src={ IMGCDNURL + 'lpy/ucenter/newcenter-used.png'} />
             <Text className='member-list-title'>我的二手交易</Text>
           </View>
-          <View className='member-list-item'>
+          <View className='member-list-item' onClick={() => userRouteJump('/pages/information/mymessage/index')}>
             <Image className='member-list-icon' src={ IMGCDNURL + 'lpy/ucenter/newcenter-info.png'} />
             <View className='member-list-title'>
               <Text>我的信息</Text>
@@ -165,11 +165,11 @@ export default function Member(){
           </View>
           <View className='member-list-item'>
             <Image className='member-list-icon' src={ IMGCDNURL + 'lpy/ucenter/newcenter-collect.png'} />
-            <Text className='member-list-title'>我的收藏</Text>
+            <Text className='member-list-title' onClick={() => userRouteJump('/pages/collection/index')}>我的收藏</Text>
           </View>
         </View>
         <View className='member-list-container'>
-          <View className='member-list-item'>
+          <View className='member-list-item' onClick={() => userRouteJump('/pages/feedbacklist/index')}>
             <Image className='member-list-icon' src={ IMGCDNURL + 'lpy/ucenter/newcenter-feedback.png'} />
             <View className='member-list-title'>
               <Text>意见反馈</Text>
@@ -177,7 +177,7 @@ export default function Member(){
             </View>
             {model && model.member.has_notice_msg.hasNoticeMsgg && <Text className='member-list-tips'>有最新回复</Text>}
           </View>
-          <View className='member-list-item'>
+          <View className='member-list-item' onClick={() => userRouteJump('/pages/help/index')} >
             <Image className='member-list-icon' src={ IMGCDNURL + 'lpy/ucenter/newcenter-help.png'} />
             <Text className='member-list-title'>帮助中心</Text>
             <Text className='member-list-tips'>使用教程</Text>

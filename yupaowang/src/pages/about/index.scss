@@ -1,0 +1,152 @@
+.yupao-common-container{
+  position: relative;
+  width: 100%;
+  padding-bottom: 150px;
+}
+.about-content {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0 27px;
+}
+
+.about-content-header {
+  position: relative;
+  padding: 50px 0 15px;
+}
+
+.about-content-headerbox {
+  position: relative;
+  background: white;
+  padding: 10px;
+}
+
+.about-header-title {
+  position: absolute;
+  display: block;
+  width: 410px;
+  height: 70px;
+  background: url("http://cdn.yupao.com/miniprogram/images/biaoti.png") no-repeat;
+  background-size: 100% 100%;
+  text-align: center;
+  font-size: 32px;
+  line-height: 70px;
+  left: 50%;
+  margin-left: -205px;
+  top: -40px;
+  color: #fff;
+  z-index: 3;
+}
+
+.about-header-words {
+  position: relative;
+  font-size: 30px;
+  text-align: center;
+  line-height: 50px;
+  padding: 30px 20px 20px;
+}
+
+.about-yupao-industry {
+  position: relative;
+  background: url("http://cdn.yupao.com/miniprogram/images/bj1.png") no-repeat;
+  background-size: 100% 100%;
+  padding: 20px 0;
+  height: 500px;
+}
+
+.about-industry-item {
+  padding: 10px 0;
+}
+
+.about-industry-content {
+  position: relative;
+  display: block;
+  width: 50%;
+  float: left;
+  padding: 20px;
+  border-right: 1px solid #dcdcdc;
+}
+
+.about-industry-content:nth-last-child(1) {
+  border-right: 0;
+}
+
+.about-industry-item .about-industry-item-title {
+  color: #0099ff;
+  font-size: 32px;
+  line-height: 50px;
+}
+
+.about-industry-item .about-industry-item-body {
+  color: #101010;
+  font-size: 28px;
+}
+
+.about-content-header::after,
+.about-content-header::before,
+.yupao-about-group .about-group-img::before,
+.yupao-about-group .about-group-img::after {
+  position: absolute;
+  content: '';
+  display: block;
+  width: 16px;
+  height: 80px;
+  background: url("http://cdn.yupao.com/miniprogram/images/roand.png") no-repeat;
+  background-size: 100% 100%;
+  bottom: -30px;
+  left: 20px;
+  z-index: 3;
+}
+
+.about-content-header::before {
+  left: auto;
+  right: 20px;
+}
+
+.yupao-about-group {
+  position: relative;
+  width: 100%;
+  margin-top: 80px;
+}
+
+.yupao-about-group .about-group-img {
+  position: relative;
+}
+
+.yupao-about-group-image {
+  position: relative;
+  display: block;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.yupao-about-group .about-group-img::before {
+  bottom: -50px;
+}
+
+.yupao-about-group .about-group-img::after {
+  left: auto;
+  right: 20px;
+  bottom: -50px;
+}
+
+.yupao-about-footer {
+  position: relative;
+  width: 100%;
+  background: url("http://cdn.yupao.com/miniprogram/images/bj2.png") no-repeat;
+  background-size: 100% 100%;
+  padding: 30px 10px;
+}
+
+.yupao-about-footer-text {
+  display: block;
+  text-align: center;
+  font-size: 28px;
+  line-height: 50px;
+}
+
+
+.yupao-about-groupb .about-group-img:nth-last-child(1)::before,
+.yupao-about-groupb .about-group-img:nth-last-child(1)::after {
+  content: none;
+}

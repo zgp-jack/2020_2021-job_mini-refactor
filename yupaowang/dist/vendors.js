@@ -9944,6 +9944,220 @@ exports.default = AtComponent;
 
 /***/ }),
 
+/***/ "./node_modules/taro-ui/dist/weapp/common/utils.ts":
+/*!*********************************************************!*\
+  !*** ./node_modules/taro-ui/dist/weapp/common/utils.ts ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.delayGetScrollOffset = exports.delayGetClientRect = exports.handleTouchScroll = exports.pxTransform = exports.isTest = exports.initTestEnv = exports.getEventDetail = exports.uuid = exports.delayQuerySelector = exports.delay = undefined;
+
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
+
+var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var ENV = _taroWeapp2.default.getEnv();
+function delay() {
+  var delayTime = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 500;
+
+  return new Promise(function (resolve) {
+    if ([_taroWeapp2.default.ENV_TYPE.WEB, _taroWeapp2.default.ENV_TYPE.SWAN].includes(ENV)) {
+      setTimeout(function () {
+        resolve();
+      }, delayTime);
+      return;
+    }
+    resolve();
+  });
+}
+function delayQuerySelector(self, selectorStr) {
+  var delayTime = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 500;
+
+  var $scope = ENV === _taroWeapp2.default.ENV_TYPE.WEB ? self : self.$scope;
+  var selector = _taroWeapp2.default.createSelectorQuery().in($scope);
+  return new Promise(function (resolve) {
+    delay(delayTime).then(function () {
+      selector.select(selectorStr).boundingClientRect().exec(function (res) {
+        resolve(res);
+      });
+    });
+  });
+}
+function delayGetScrollOffset(_ref) {
+  var _ref$delayTime = _ref.delayTime,
+      delayTime = _ref$delayTime === undefined ? 500 : _ref$delayTime;
+
+  return new Promise(function (resolve) {
+    delay(delayTime).then(function () {
+      _taroWeapp2.default.createSelectorQuery().selectViewport().scrollOffset().exec(function (res) {
+        resolve(res);
+      });
+    });
+  });
+}
+function delayGetClientRect(_ref2) {
+  var self = _ref2.self,
+      selectorStr = _ref2.selectorStr,
+      _ref2$delayTime = _ref2.delayTime,
+      delayTime = _ref2$delayTime === undefined ? 500 : _ref2$delayTime;
+
+  var $scope = ENV === _taroWeapp2.default.ENV_TYPE.WEB || ENV === _taroWeapp2.default.ENV_TYPE.SWAN ? self : self.$scope;
+  var selector = _taroWeapp2.default.createSelectorQuery().in($scope);
+  return new Promise(function (resolve) {
+    delay(delayTime).then(function () {
+      selector.select(selectorStr).boundingClientRect().exec(function (res) {
+        resolve(res);
+      });
+    });
+  });
+}
+function uuid() {
+  var len = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 8;
+  var radix = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 16;
+
+  var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split('');
+  var value = [];
+  var i = 0;
+  radix = radix || chars.length;
+  if (len) {
+    // Compact form
+    for (i = 0; i < len; i++) {
+      value[i] = chars[0 | Math.random() * radix];
+    }
+  } else {
+    // rfc4122, version 4 form
+    var r = void 0;
+    // rfc4122 requires these characters
+    /* eslint-disable-next-line */
+    value[8] = value[13] = value[18] = value[23] = '-';
+    value[14] = '4';
+    // Fill in random data.  At i==19 set the high bits of clock sequence as
+    // per rfc4122, sec. 4.1.5
+    for (i = 0; i < 36; i++) {
+      if (!value[i]) {
+        r = 0 | Math.random() * 16;
+        value[i] = chars[i === 19 ? r & 0x3 | 0x8 : r];
+      }
+    }
+  }
+  return value.join('');
+}
+function getEventDetail(event) {
+  var detail = void 0;
+  switch (ENV) {
+    case _taroWeapp2.default.ENV_TYPE.WEB:
+      detail = {
+        pageX: event.pageX,
+        pageY: event.pageY,
+        clientX: event.clientX,
+        clientY: event.clientY,
+        offsetX: event.offsetX,
+        offsetY: event.offsetY,
+        x: event.x,
+        y: event.y
+      };
+      break;
+    case _taroWeapp2.default.ENV_TYPE.WEAPP:
+      detail = {
+        pageX: event.touches[0].pageX,
+        pageY: event.touches[0].pageY,
+        clientX: event.touches[0].clientX,
+        clientY: event.touches[0].clientY,
+        offsetX: event.target.offsetLeft,
+        offsetY: event.target.offsetTop,
+        x: event.target.x,
+        y: event.target.y
+      };
+      break;
+    case _taroWeapp2.default.ENV_TYPE.ALIPAY:
+      detail = {
+        pageX: event.target.pageX,
+        pageY: event.target.pageY,
+        clientX: event.target.clientX,
+        clientY: event.target.clientY,
+        offsetX: event.target.offsetLeft,
+        offsetY: event.target.offsetTop,
+        x: event.target.x,
+        y: event.target.y
+      };
+      break;
+    case _taroWeapp2.default.ENV_TYPE.SWAN:
+      detail = {
+        pageX: event.changedTouches[0].pageX,
+        pageY: event.changedTouches[0].pageY,
+        clientX: event.target.clientX,
+        clientY: event.target.clientY,
+        offsetX: event.target.offsetLeft,
+        offsetY: event.target.offsetTop,
+        x: event.detail.x,
+        y: event.detail.y
+      };
+      break;
+    default:
+      detail = {
+        pageX: 0,
+        pageY: 0,
+        clientX: 0,
+        clientY: 0,
+        offsetX: 0,
+        offsetY: 0,
+        x: 0,
+        y: 0
+      };
+      console.warn('getEventDetail暂未支持该环境');
+      break;
+  }
+  return detail;
+}
+function initTestEnv() {
+  if (false) {}
+}
+function isTest() {
+  return "development" === 'test';
+}
+var scrollTop = 0;
+function handleTouchScroll(flag) {
+  if (ENV !== _taroWeapp2.default.ENV_TYPE.WEB) {
+    return;
+  }
+  if (flag) {
+    scrollTop = document.documentElement.scrollTop;
+    // 使body脱离文档流
+    document.body.classList.add('at-frozen');
+    // 把脱离文档流的body拉上去！否则页面会回到顶部！
+    document.body.style.top = -scrollTop + 'px';
+  } else {
+    document.body.style.top = null;
+    document.body.classList.remove('at-frozen');
+    document.documentElement.scrollTop = scrollTop;
+  }
+}
+function pxTransform(size) {
+  if (!size) return '';
+  return _taroWeapp2.default.pxTransform(size);
+}
+exports.delay = delay;
+exports.delayQuerySelector = delayQuerySelector;
+exports.uuid = uuid;
+exports.getEventDetail = getEventDetail;
+exports.initTestEnv = initTestEnv;
+exports.isTest = isTest;
+exports.pxTransform = pxTransform;
+exports.handleTouchScroll = handleTouchScroll;
+exports.delayGetClientRect = delayGetClientRect;
+exports.delayGetScrollOffset = delayGetScrollOffset;
+
+/***/ }),
+
 /***/ "./node_modules/webpack/buildin/amd-options.js":
 /*!****************************************!*\
   !*** (webpack)/buildin/amd-options.js ***!
@@ -10091,10 +10305,14 @@ Object.defineProperty(exports, "__esModule", {
 });
 // ? 全局不动配置项 只做导出不做修改
 // * 全局请求接口域名
-var REQUESTURL = exports.REQUESTURL = 'http://miniapitest.zhaogong.vrtbbs.com/'; //测试站
-// export const REQUESTURL: string = 'https://newyupaomini.54xiaoshuo.com/'   //正式站
+//测试站
+var DEVREQUESTURL = exports.DEVREQUESTURL = 'http://miniapitest.zhaogong.vrtbbs.com/';
+//正式站
+var PROREQUESTURL = exports.PROREQUESTURL = 'https://newyupaomini.54xiaoshuo.com/';
+// 当前测试
+var REQUESTURL = exports.REQUESTURL = DEVREQUESTURL;
 // * 默认上传图片
-var UPLOADIMGURL = exports.UPLOADIMGURL = "http://miniapitest.zhaogong.vrtbbs.com/index/upload/";
+var UPLOADIMGURL = exports.UPLOADIMGURL = "https://newyupaomini.54xiaoshuo.com/index/upload/";
 // * 阿里云CDN域名
 var ALIYUNCDN = exports.ALIYUNCDN = 'http://cdn.yupao.com';
 // * 阿里云CDN图片域名
@@ -10119,6 +10337,8 @@ var MAXCACHECITYNUM = exports.MAXCACHECITYNUM = 3;
 var UserPublishAreaHistoryMaxNum = exports.UserPublishAreaHistoryMaxNum = 10;
 // * 小程序tabbar msg统计 定时器请求间隔 1分钟
 var MemberMsgTimerInterval = exports.MemberMsgTimerInterval = 60000;
+// * 下载App
+var DownloadApp = exports.DownloadApp = 'https://android.myapp.com/myapp/detail.htm?apkName=io.dcloud.H576E6CC7&amp;ADTAG=mobile';
 
 /***/ }),
 
@@ -13922,7 +14142,7 @@ Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.userChangeRecruitStatus = exports.userGetPublishedRecruitList = exports.userChangePhone = exports.userUpdateName = exports.userChangeAvatar = exports.postUserAddInfo = exports.getIdcardAuthInfo = exports.postUserAuthInfo = exports.getUserAuthInfo = exports.getMemberMsgNumber = exports.getMemberInfo = exports.CheckMineAuthInfo = exports.CheckAuth = exports.GetUsedInfo = exports.GetUserPhoneCode = exports.PublishUsedInfo = exports.GetUsedInfoModel = exports.GetRechargeOrder = exports.GetRechargeOpenid = exports.GetRechargeList = exports.GetUserInviteLink = exports.CheckAdcodeValid = exports.GetAllAreas = exports.GetPublisRecruitView = exports.GetIntegralList = exports.GetTabbarMsg = exports.GetListFilterData = exports.GetWechatNotice = exports.GetFleamarketlist = exports.GetResumelist = exports.GetRecruitlist = exports.GetAllListItem = exports.GetBannerNotice = exports.GetUserInfo = exports.GetUserSessionKey = undefined;
+exports.messagesTypeUrl = exports.userMessagesUrl = exports.resumesAddClickLog = exports.resumesSortUrl = exports.newsInfoUrl = exports.newsTypesUrl = exports.newListUrl = exports.helpUrl = exports.feedbackSubmissionUrl = exports.feedbackUrl = exports.requestActionUrl = exports.ResumeCancelCollection = exports.recruitCancelCollection = exports.getCollectionResumeList = exports.getCollectionRecruitList = exports.userChangeRecruitStatus = exports.userGetPublishedRecruitList = exports.userChangePhone = exports.userUpdateName = exports.userChangeAvatar = exports.postUserAddInfo = exports.getIdcardAuthInfo = exports.postUserAuthInfo = exports.getUserAuthInfo = exports.getMemberMsgNumber = exports.getMemberInfo = exports.CheckMineAuthInfo = exports.CheckAuth = exports.GetUsedInfo = exports.GetUserPhoneCode = exports.PublishUsedInfo = exports.GetUsedInfoModel = exports.GetRechargeOrder = exports.GetRechargeOpenid = exports.GetRechargeList = exports.GetUserInviteLink = exports.CheckAdcodeValid = exports.GetAllAreas = exports.GetPublisRecruitView = exports.GetIntegralList = exports.GetTabbarMsg = exports.GetListFilterData = exports.GetWechatNotice = exports.GetFleamarketlist = exports.GetResumelist = exports.GetRecruitlist = exports.GetAllListItem = exports.GetBannerNotice = exports.GetUserInfo = exports.GetUserSessionKey = undefined;
 
 var _index = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
 
@@ -13996,6 +14216,36 @@ var userChangePhone = exports.userChangePhone = _index.REQUESTURL + 'user/update
 var userGetPublishedRecruitList = exports.userGetPublishedRecruitList = _index.REQUESTURL + 'job/issue-lists/';
 // 用户改变招工状态
 var userChangeRecruitStatus = exports.userChangeRecruitStatus = _index.REQUESTURL + 'job/job-end-status/';
+// 收藏招工列表
+var getCollectionRecruitList = exports.getCollectionRecruitList = _index.REQUESTURL + 'job/collect-list/';
+// 收藏找活列表
+var getCollectionResumeList = exports.getCollectionResumeList = _index.REQUESTURL + 'resumes/collect-list/';
+// 招工取消收藏
+var recruitCancelCollection = exports.recruitCancelCollection = _index.REQUESTURL + 'job/collect/';
+// 招活取消收藏
+var ResumeCancelCollection = exports.ResumeCancelCollection = _index.REQUESTURL + 'resumes/resume-collect/';
+// 使用教程
+var requestActionUrl = exports.requestActionUrl = _index.REQUESTURL + 'index/course/';
+// 意见反馈数据
+var feedbackUrl = exports.feedbackUrl = _index.REQUESTURL + 'leaving-message/list/';
+// 意见反馈提交
+var feedbackSubmissionUrl = exports.feedbackSubmissionUrl = _index.REQUESTURL + 'leaving-message/publish/';
+// 帮助中心
+var helpUrl = exports.helpUrl = _index.REQUESTURL + 'others/help-feedback/';
+// 新闻列表
+var newListUrl = exports.newListUrl = _index.REQUESTURL + 'news/list/';
+// 新闻类型
+var newsTypesUrl = exports.newsTypesUrl = _index.REQUESTURL + 'news/types/';
+// 咨询详情
+var newsInfoUrl = exports.newsInfoUrl = _index.REQUESTURL + 'news/info/';
+// 排名规则
+var resumesSortUrl = exports.resumesSortUrl = _index.REQUESTURL + 'resumes/sort/';
+// 排名规则点击时发送的请求
+var resumesAddClickLog = exports.resumesAddClickLog = _index.REQUESTURL + 'resumes/add-click-log/';
+// 我的信息
+var userMessagesUrl = exports.userMessagesUrl = _index.REQUESTURL + 'member/user-messages/';
+// 我的信息详情
+var messagesTypeUrl = exports.messagesTypeUrl = _index.REQUESTURL + 'member/message-of-type/';
 
 /***/ }),
 
@@ -14221,6 +14471,21 @@ exports.userUpdateName = userUpdateName;
 exports.userChangePhone = userChangePhone;
 exports.userGetPublishedRecruitLists = userGetPublishedRecruitLists;
 exports.userChangeRecruitStatus = userChangeRecruitStatus;
+exports.getCollectionRecruitListData = getCollectionRecruitListData;
+exports.getCollectionResumeListData = getCollectionResumeListData;
+exports.recruitListCancelCollectionAction = recruitListCancelCollectionAction;
+exports.ResumeCancelCollectionAction = ResumeCancelCollectionAction;
+exports.requestAction = requestAction;
+exports.feedbackAction = feedbackAction;
+exports.feedbackSubmissionAction = feedbackSubmissionAction;
+exports.helpAction = helpAction;
+exports.newsTypesAction = newsTypesAction;
+exports.newListAction = newListAction;
+exports.newsInfoAction = newsInfoAction;
+exports.resumesSortAction = resumesSortAction;
+exports.resumesAddClickLogAction = resumesAddClickLogAction;
+exports.userMessagesAction = userMessagesAction;
+exports.messagesTypeAction = messagesTypeAction;
 
 var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
@@ -14597,6 +14862,154 @@ function userChangeRecruitStatus(id) {
     url: api.userChangeRecruitStatus,
     data: { infoId: id },
     method: 'POST'
+  });
+}
+// 收藏招工请求数据
+function getCollectionRecruitListData(page) {
+  return doRequestAction({
+    url: api.getCollectionRecruitList,
+    method: 'POST',
+    data: {
+      page: page
+    },
+    failToast: true
+  });
+}
+// 收藏找活请求数据
+function getCollectionResumeListData(page) {
+  return doRequestAction({
+    url: api.getCollectionResumeList,
+    method: 'POST',
+    failToast: true,
+    data: {
+      page: page
+    }
+  });
+}
+// 取消招工收藏
+function recruitListCancelCollectionAction(id) {
+  return doRequestAction({
+    url: api.recruitCancelCollection,
+    method: 'POST',
+    failToast: true,
+    data: {
+      id: id
+    }
+  });
+}
+// 取消找活收藏
+function ResumeCancelCollectionAction(resume_uuid) {
+  return doRequestAction({
+    url: api.ResumeCancelCollection,
+    method: 'POST',
+    failToast: true,
+    data: {
+      resume_uuid: resume_uuid
+    }
+  });
+}
+// 使用教程
+function requestAction() {
+  return doRequestAction({
+    url: api.requestActionUrl,
+    method: 'POST',
+    failToast: true
+  });
+}
+// 意见反馈
+function feedbackAction(page) {
+  return doRequestAction({
+    url: api.feedbackUrl,
+    method: 'POST',
+    failToast: true,
+    data: {
+      page: page
+    }
+  });
+}
+// 意见返回提交
+function feedbackSubmissionAction(params) {
+  return doRequestAction({
+    url: api.feedbackSubmissionUrl,
+    method: 'POST',
+    failToast: true,
+    data: params
+  });
+}
+// 帮助中心
+function helpAction(page) {
+  return doRequestAction({
+    url: api.helpUrl,
+    failToast: true,
+    data: {
+      page: page
+    }
+  });
+}
+// 新闻类型
+function newsTypesAction() {
+  return doRequestAction({
+    url: api.newsTypesUrl,
+    failToast: true
+  });
+}
+// 新闻列表
+function newListAction(params) {
+  return doRequestAction({
+    url: api.newListUrl,
+    method: 'POST',
+    failToast: true,
+    data: params
+  });
+}
+// 资讯详情
+function newsInfoAction(id) {
+  return doRequestAction({
+    url: api.newsInfoUrl,
+    method: 'POST',
+    failToast: true,
+    data: {
+      id: id
+    }
+  });
+}
+// 排名规则
+function resumesSortAction() {
+  return doRequestAction({
+    url: api.resumesSortUrl,
+    method: 'POST',
+    failToast: true
+  });
+}
+// 排名规则点击按钮发请求
+function resumesAddClickLogAction(type) {
+  return doRequestAction({
+    url: api.resumesAddClickLog,
+    method: 'POST',
+    failToast: true,
+    data: {
+      type: type
+    }
+  });
+}
+// 我的信息
+function userMessagesAction(type) {
+  return doRequestAction({
+    url: api.userMessagesUrl,
+    method: 'POST',
+    failToast: true,
+    data: {
+      terminal_type: type
+    }
+  });
+}
+// 我的信息详情
+function messagesTypeAction(params) {
+  return doRequestAction({
+    url: api.messagesTypeUrl,
+    method: 'POST',
+    failToast: true,
+    data: params
   });
 }
 

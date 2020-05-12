@@ -70,7 +70,8 @@ var _App = function (_BaseComponent) {
     var _this = _possibleConstructorReturn(this, (_App.__proto__ || Object.getPrototypeOf(_App)).apply(this, arguments));
 
     _this.config = {
-      pages: ['pages/index/index', 'pages/userauth/index', "pages/recruit/publish/index", "pages/used/lists/index", "pages/map/recruit/index", "pages/used/publish/index", "pages/used/info/index", "pages/invite/index", "pages/getintegral/index", "pages/integral/source/index", "pages/integral/temp/index", "pages/integral/official/index", "pages/integral/expend/index", "pages/recharge/index", "pages/realname/index", "pages/map/realname/index", "pages/userinfo/index/index", "pages/userinfo/add/index", "pages/userinfo/phone/index", "pages/published/recruit/index"],
+      pages: ['pages/index/index', 'pages/userauth/index', "pages/recruit/publish/index", "pages/used/lists/index", "pages/map/recruit/index", "pages/used/publish/index", "pages/used/info/index", "pages/invite/index", "pages/getintegral/index", "pages/integral/source/index", "pages/integral/temp/index", "pages/integral/official/index", "pages/integral/expend/index", "pages/recharge/index", "pages/realname/index", "pages/map/realname/index", "pages/userinfo/index/index", "pages/userinfo/add/index", "pages/userinfo/phone/index", "pages/published/recruit/index", "pages/collection/index", "pages/about/index", "pages/report/index", "pages/course/index", "pages/help/index", "pages/feedbacklist/index", "pages/feedback/index", "pages/static/invite/index", "pages/notice/index", "pages/download/index", "pages/ranking/index", "pages/information/mymessage/index", "pages/information/system/index" //我的信息详情
+      ],
       subPackages: [{
         root: 'subpackage/pages/',
         pages: ['checkauth/index']

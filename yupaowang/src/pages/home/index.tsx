@@ -62,7 +62,13 @@ export default function Home(){
       setLists({ ...lists, recruit:[[...res.job.lists]],resume: [[...res.resume.lists]], fleamarket: [[...res.fleamarket.lists]]})
     })
   },[filterData])
-
+  
+  // 用户页面跳转
+  const userRouteJump = (url: string) => {
+    Taro.navigateTo({
+      url: url
+    })
+  }
   return (
     <View className='home-container'>
       {/* // ? 顶部结构  */}
@@ -73,7 +79,7 @@ export default function Home(){
           <Text className='home-header-text'>四川</Text>
           <Image className='home-header-select' src={ IMGCDNURL + 'areamore.png' }></Image>
         </View>
-        <Image className='home-header-app' src={ IMGCDNURL + 'loadapp.png' }></Image>
+        <Image onClick={() => userRouteJump('/pages/download/index')} className='home-header-app' src={ IMGCDNURL + 'loadapp.png' }></Image>
       </View>
       {/* // ? 轮播图  */}
       <SwiperComponent data={ swiper } />

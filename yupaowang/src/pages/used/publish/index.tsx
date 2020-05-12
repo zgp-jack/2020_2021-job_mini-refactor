@@ -1,4 +1,4 @@
-import Taro, { useState, useEffect, useRouter } from '@tarojs/taro'
+import Taro, { useState, useRouter } from '@tarojs/taro'
 import { View, Form, Text, Input, Textarea, ScrollView, Picker } from '@tarojs/components'
 import { AtDrawer } from 'taro-ui'
 import WordsTotal from '../../../components/wordstotal'

@@ -1,0 +1,154 @@
+{
+  "miniprogramRoot": "./",
+  "projectname": "%E9%B1%BC%E6%B3%A1%E7%BD%91",
+  "description": "yupaowang",
+  "appid": "wx456feacb0e86162f",
+  "setting": {
+    "urlCheck": false,
+    "es6": false,
+    "postcss": false,
+    "preloadBackgroundData": false,
+    "minified": false,
+    "newFeature": true,
+    "coverView": true,
+    "autoAudits": false,
+    "showShadowRootInWxmlPanel": true,
+    "scopeDataCheck": false,
+    "checkInvalidKey": true,
+    "checkSiteMap": true,
+    "uploadWithSourceMap": true,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    }
+  },
+  "compileType": "miniprogram",
+  "simulatorType": "wechat",
+  "simulatorPluginLibVersion": {},
+  "libVersion": "2.8.3",
+  "condition": {
+    "search": {
+      "current": -1,
+      "list": []
+    },
+    "conversation": {
+      "current": -1,
+      "list": []
+    },
+    "plugin": {
+      "current": -1,
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "current": -1,
+      "list": []
+    },
+    "miniprogram": {
+      "current": -1,
+      "list": [
+        {
+          "id": -1,
+          "name": "收藏列表",
+          "pathName": "pages/collection/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 1,
+          "name": "关于我们",
+          "pathName": "pages/about/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "使用教程",
+          "pathName": "pages/course/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "举报骗子",
+          "pathName": "pages/report/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "意见反馈",
+          "pathName": "pages/feedback/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 5,
+          "name": "帮助中心",
+          "pathName": "pages/help/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 6,
+          "name": "反馈列表",
+          "pathName": "pages/feedbacklist/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/used/publish/index",
+          "pathName": "pages/used/publish/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 8,
+          "name": "新闻资讯",
+          "pathName": "pages/static/invite/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 9,
+          "name": "咨询详情",
+          "pathName": "pages/notice/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 10,
+          "name": "下载app",
+          "pathName": "pages/download/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 11,
+          "name": "排名规则",
+          "pathName": "pages/ranking/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 12,
+          "name": "我的信息",
+          "pathName": "pages/information/mymessage/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "我的信息详情",
+          "pathName": "pages/information/system/index",
+          "query": "",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

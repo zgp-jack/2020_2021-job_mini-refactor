@@ -1,0 +1,11 @@
+<block wx:if="{{$taroCompReady}}">
+    <view class="home-about">
+        <view class="home-about-navlist clearfix">
+            <navigator class="about-navlist-item" url="/pages/about/index" open-type="navigate">关于我们</navigator>
+            <navigator class="about-navlist-item" url="/pages/course/index" open-type="navigate">使用教程</navigator>
+            <navigator class="about-navlist-item" url="/pages/report/index" open-type="navigate">举报骗子</navigator><text class="about-navlist-item" bindtap="anonymousFunc0">联系我们</text>
+        </view>
+        <view class="home-about-icp">©2017-{{anonymousState__temp}} 版权所有 粤ICP备17088633号-1</view>
+        <view class="home-about-version">版本号：{{VERSION}}</view>
+    </view>
+</block>

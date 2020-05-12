@@ -433,3 +433,218 @@ export interface UserChangePublishedRecruitStatus extends Result{
     }
   }
 }
+// 收藏招工
+export interface CollectionRecruitListData extends Result {
+  list: CollectionRecruitListDataList[],
+  pageSize: number
+}
+export interface CollectionRecruitListDataList {
+  check_status: CollectionRecruitListDataListStatus,
+  detail: string,
+  header_img: string,
+  id: string,
+  is_check: string,
+  is_end: string,
+  state: string,
+  status: string,
+  time: string,
+  title: string,
+  user_name: string,
+}
+
+export interface CollectionRecruitListDataListStatus {
+  showTips: number,
+  tipsMsg: string
+}
+
+// 收藏找活
+export interface CollectionResumeListData {
+  data: CollectionResumeListDataList[],
+  errcode: number,
+  pageSize: number
+}
+export interface CollectionResumeListDataList {
+  check_tips_string: string,
+  id: string,
+  resume: CollectionResumeListDataListResume,
+  resume_uuid: string,
+  show_tips: string,
+  time: string,
+  user_uuid: string,
+}
+export interface CollectionResumeListDataListResume {
+  time: string,
+  headerimg: string,
+  username: string,
+  nation: string,
+  type: string,
+  prof_degree: string,
+  occupations: string[],
+  introduce: string,
+  show_address: string,
+  distance: string,
+  gender: string,
+  check: string,
+  birthday: number,
+  certificate:number,
+  authentication: string,
+  experience: string,
+}
+// 操作教程
+export interface reportData extends Result {
+  masterList: reportMasterList[],
+  userList: reportUserList[],
+}
+export interface reportMasterList {
+  id: string,
+  video_url: string,
+  title: string,
+  isShow?:boolean,
+}
+export interface reportUserList{
+  title: string,
+  id: string,
+  video_url: string,
+  isShow?: boolean,
+}
+
+// 意见反馈
+export interface feedbackList extends Result{
+  data: feedbackListData[],
+  memberInfo: feedbackMemberInfo
+}
+export interface feedbackMemberInfo{
+  phone: string,
+  username: string,
+}
+export interface feedbackListData {
+  ask_time:string,
+  content:string,
+  id:string,
+  send_msg:string,
+  images:[],
+  is_answer: string,
+}
+
+// 帮助中心
+export interface helpData extends Result{
+  lists: heleDatalist[]
+}
+
+export interface heleDatalist {
+  answer: string,
+  question: string,
+  isShow?: boolean,
+  id?: number
+}
+
+// 新闻资讯类型
+export interface newsTypesList extends Result {
+  data: newsTypesListData[]
+}
+
+export interface newsTypesListData {
+  index:string,
+  letter:string,
+  name:string
+}
+
+
+// 新闻列表数据
+export interface newList extends Result {
+  data: newListData[]
+}
+export interface newListData {
+  author: string
+  cover_img: string
+  desc: string
+  id: number
+  jump_url: number
+  news_type: string
+  time: string
+  title: string
+  url: string
+}
+
+// 资讯详情
+export interface consultationDetails extends Result {
+  data: consultationDetailsData
+}
+export interface consultationDetailsData{
+  author: string
+  content: string
+  id: number
+  look_number: number
+  news_type: []
+  time: string,
+  title: string
+}
+
+// 排名规则
+export interface resumesSort extends Result{
+  data: resumesSortData,
+}
+export interface resumesSortData {
+  warm_tips:[],
+  sort_rule_lists: resumesSortDataList[],
+  resume_info: resumesSortDataIfo,
+}
+export interface resumesSortDataIfo {
+  has_resume:number,
+  sort_flag:number,
+}
+export interface resumesSortDataList{
+  button_words:string,
+  click_type:number,
+  description:string,
+  img_url:string,
+  is_share:number,
+  share_type:string,
+  type_name:string,
+  jump: resumesSortDataListJump;
+}
+export interface resumesSortDataListJump{
+  android_path:string,
+  ios_path:string,
+  mini_path:string,
+  need_jump:number
+}
+
+// 我的信息
+export interface userMessagesList extends Result {
+  data: userMessagesListData,
+}
+export interface userMessagesListData{
+  lists: userMessagesListDataList[],
+}
+export interface userMessagesListDataList {
+  count: number,
+  description: string,
+  imageUrl: string,
+  time: string,
+  timeString: string,
+  type: number,
+  typeName: string
+}
+
+// 我的信息详情
+export interface system extends Result {
+  data: systemData,
+}
+export interface systemData {
+  lists: systemDataList[],
+}
+export interface systemDataList {
+  click_time: string
+  description: string
+  ext: null
+  id: string
+  image_url: string
+  read_time: number
+  target_uuid: string
+  time: string
+  title: string
+  type: number
+  type_name: string
+  user_uuid: string
+}
