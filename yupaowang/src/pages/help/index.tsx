@@ -99,7 +99,7 @@ export default function Help() {
         onRefresherRefresh={() => pullDownAction()}
         onScrollToLower={() => getNextPageData()}
       >
-        <View style={{ height: '10px' }}></View>
+        <View className='topNoneBox'></View>
           {data.item.map(item => (
             <AtAccordion
               icon={{ value: 'help', color: '#09f', size: '15'}}
@@ -114,7 +114,7 @@ export default function Help() {
             </AtAccordion>
           ))}
         {!isDown && <View className='help-noData'>没有更多数据了</View>}
-        <View className='noneBox'></View>
+        <View className='BootomNoneBox'></View>
       </ScrollView>
       <View className='help-button-box' onClick={() => userRouteJump(`/pages/feedback/index?username=${userData.username}&phone=${userData.phone}`)}><Text className='help-button'>意见反馈</Text></View>
     </View>
