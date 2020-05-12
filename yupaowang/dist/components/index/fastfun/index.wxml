@@ -1,7 +1,0 @@
-<block wx:if="{{$taroCompReady}}">
-    <view class="home-fastfun clearfix">
-        <view class="home-fastfun-item" wx:key="index" wx:for="{{Config}}" wx:for-item="item" wx:for-index="index">
-            <image class="home-fastfun-img" src="{{item.img}}"></image><text class="home-fastfun-text">{{item.text}}</text>
-        </view>
-    </view>
-</block>
