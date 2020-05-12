@@ -2,7 +2,6 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis; }
-
 .showMore {
   position: relative;
   width: 100%;
@@ -10,7 +9,6 @@
   text-align: center;
   font-size: 26rpx;
   color: #525252; }
-
 .clearfix:after {
   content: "";
   display: block;
@@ -19,30 +17,28 @@
   line-height: 0;
   height: 0;
   font-size: 0; }
-
 .clearfix {
   zoom: 1; }
-
 .usedlist-container {
   position: relative;
   width: 100%;
   padding-bottom: 150rpx; }
-  .usedlist-container .usedlist-item {
+.usedlist-container .usedlist-item {
     position: relative;
     width: 100%;
     background-color: white;
     margin-top: 15rpx; }
-    .usedlist-container .usedlist-item .usedlist-item-header {
+.usedlist-container .usedlist-item .usedlist-item-header {
       position: relative;
       width: 100%;
       padding-right: 250rpx;
       padding-left: 20rpx;
       border-bottom: 1rpx dashed #dcdcdc; }
-      .usedlist-container .usedlist-item .usedlist-item-header .usedlist-item-title {
+.usedlist-container .usedlist-item .usedlist-item-header .usedlist-item-title {
         position: relative;
         font-size: 28rpx;
         line-height: 80rpx; }
-      .usedlist-container .usedlist-item .usedlist-item-header .usedlist-item-time {
+.usedlist-container .usedlist-item .usedlist-item-header .usedlist-item-time {
         position: absolute;
         display: inline-block;
         right: 20rpx;
@@ -50,11 +46,11 @@
         line-height: 80rpx;
         font-size: 26rpx;
         color: #828586; }
-    .usedlist-container .usedlist-item .usedlist-item-body {
+.usedlist-container .usedlist-item .usedlist-item-body {
       position: relative;
       width: 100%;
       padding-left: 150rpx; }
-      .usedlist-container .usedlist-item .usedlist-item-body .usedlist-item-user {
+.usedlist-container .usedlist-item .usedlist-item-body .usedlist-item-user {
         position: absolute;
         display: block;
         width: 135rpx;
@@ -62,7 +58,7 @@
         top: 20rpx;
         left: 20rpx;
         border-radius: 50%; }
-      .usedlist-container .usedlist-item .usedlist-item-body .usedlist-item-content {
+.usedlist-container .usedlist-item .usedlist-item-body .usedlist-item-content {
         position: relative;
         width: 100%;
         padding: 20rpx;
@@ -72,20 +68,19 @@
         justify-content: center;
         align-items: center;
         align-items: flex-start; }
-        .usedlist-container .usedlist-item .usedlist-item-body .usedlist-item-content .usedlist-content-item {
+.usedlist-container .usedlist-item .usedlist-item-body .usedlist-item-content .usedlist-content-item {
           flex: 1;
           position: relative; }
-          .usedlist-container .usedlist-item .usedlist-item-body .usedlist-item-content .usedlist-content-item .usedlist-content-item-img {
+.usedlist-container .usedlist-item .usedlist-item-body .usedlist-item-content .usedlist-content-item .usedlist-content-item-img {
             position: absolute;
             width: 36rpx;
             height: 36rpx;
             display: block;
             left: 0;
             top: 2rpx; }
-          .usedlist-container .usedlist-item .usedlist-item-body .usedlist-item-content .usedlist-content-item .usedlist-content-info {
+.usedlist-container .usedlist-item .usedlist-item-body .usedlist-item-content .usedlist-content-item .usedlist-content-info {
             padding-left: 50rpx;
             position: relative;
             font-size: 28rpx; }
-            .usedlist-container .usedlist-item .usedlist-item-body .usedlist-item-content .usedlist-content-item .usedlist-content-info .usedlist-content-status {
+.usedlist-container .usedlist-item .usedlist-item-body .usedlist-item-content .usedlist-content-item .usedlist-content-info .usedlist-content-status {
               color: #ff0000; }
-

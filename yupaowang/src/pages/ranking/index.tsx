@@ -71,7 +71,7 @@ export default function RankingRules() {
       </View>
       <View className='rankingRules-list'>
         { data.sort_rule_lists.map((v,index)=>(
-          <View className='rankingRules-list-box' key={index}>
+          <View className='rankingRules-list-box' key={index+index}>
             <View className='rankingRules-list-content'>
               <Image className='rankingRules-list-content-img' src={v.img_url}/>
               <View className='rankingRules-list-content-box'>
@@ -96,7 +96,7 @@ export default function RankingRules() {
       <View className='rankingRules-Tips'>
         <View className='rankingRules-Tips-title'>温馨提示</View>
         {data.warm_tips.map((v,index)=>(
-          <View className='rankingRules-Tips-text' key={index}>{v}</View>
+          <View className='rankingRules-Tips-text' key={index+index}>{v}</View>
         ))}
       </View>
     </View>

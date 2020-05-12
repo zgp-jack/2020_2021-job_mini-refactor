@@ -44,7 +44,7 @@ export default function Mymessage (){
       {data.item.map((item,index)=>(
         <View 
           className='messsage-lists' 
-          key={index} 
+          key={index+index} 
           onClick={() => userRouteJump(`/pages/information/system/index?type=${item.type}`)}>
           <View className='messsage-lists-top'>
             <View className='messsage-num' >

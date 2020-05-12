@@ -2,7 +2,6 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis; }
-
 .showMore {
   position: relative;
   width: 100%;
@@ -10,7 +9,6 @@
   text-align: center;
   font-size: 26rpx;
   color: #525252; }
-
 .clearfix:after {
   content: "";
   display: block;
@@ -19,10 +17,8 @@
   line-height: 0;
   height: 0;
   font-size: 0; }
-
 .clearfix {
   zoom: 1; }
-
 @-webkit-keyframes scaleToorigin {
   0% {
     -webkit-transform: scale(1);
@@ -33,7 +29,6 @@
   100% {
     -webkit-transform: scale(1);
             transform: scale(1); } }
-
 @keyframes scaleToorigin {
   0% {
     -webkit-transform: scale(1);
@@ -44,7 +39,6 @@
   100% {
     -webkit-transform: scale(1);
             transform: scale(1); } }
-
 .common-footer-tabbar {
   position: fixed;
   width: 100%;
@@ -58,7 +52,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center; }
-  .common-footer-tabbar .common-footer-tabbar-list {
+.common-footer-tabbar .common-footer-tabbar-list {
     flex: 1;
     position: relative;
     display: flex;
@@ -67,16 +61,16 @@
     align-items: center;
     padding: 10rpx 0;
     transition: 0.3s; }
-    .common-footer-tabbar .common-footer-tabbar-list .commmon-footer-tabbar-img {
+.common-footer-tabbar .common-footer-tabbar-list .commmon-footer-tabbar-img {
       width: 50rpx;
       height: 50rpx; }
-    .common-footer-tabbar .common-footer-tabbar-list .commmon-footer-tabbar-text {
+.common-footer-tabbar .common-footer-tabbar-list .commmon-footer-tabbar-text {
       font-size: 28rpx;
       color: #333;
       display: block;
       margin-top: 10rpx;
       line-height: 30rpx; }
-    .common-footer-tabbar .common-footer-tabbar-list .footermsg {
+.common-footer-tabbar .common-footer-tabbar-list .footermsg {
       position: absolute;
       right: 30rpx;
       top: 10rpx;
@@ -90,9 +84,8 @@
       text-align: center;
       width: 30rpx;
       z-index: 3; }
-  .common-footer-tabbar .common-footer-tabbar-list-active {
+.common-footer-tabbar .common-footer-tabbar-list-active {
     -webkit-animation: scaleToorigin 0.5s ease-in-out;
             animation: scaleToorigin 0.5s ease-in-out; }
-    .common-footer-tabbar .common-footer-tabbar-list-active .commmon-footer-tabbar-text {
+.common-footer-tabbar .common-footer-tabbar-list-active .commmon-footer-tabbar-text {
       color: #0099ff; }
-

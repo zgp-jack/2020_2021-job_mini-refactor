@@ -1,9 +1,9 @@
 (wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["npm/taro-ui/dist/weapp/components/list/item/index"],{
 
-/***/ "./node_modules/taro-ui/dist/weapp/components/list/item/index.js":
-/*!***********************************************************************!*\
-  !*** ./node_modules/taro-ui/dist/weapp/components/list/item/index.js ***!
-  \***********************************************************************/
+/***/ "./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js?!./node_modules/taro-ui/dist/weapp/components/list/item/index.tsx?taro&type=script&parse=COMPONENT&":
+/*!*******************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js??ref--6-0!./node_modules/taro-ui/dist/weapp/components/list/item/index.tsx?taro&type=script&parse=COMPONENT& ***!
+  \*******************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -18,25 +18,21 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _class, _temp2, _initialiseProps;
+var _class, _temp2;
 
 var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
 var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
 
-var _propTypes = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
 var _classnames = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
-var _isFunction2 = __webpack_require__(/*! lodash/isFunction */ "./node_modules/lodash/isFunction.js");
+var _propTypes = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
 
-var _isFunction3 = _interopRequireDefault(_isFunction2);
+var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _component = __webpack_require__(/*! ../../../common/component */ "./node_modules/taro-ui/dist/weapp/common/component.js");
+var _component = __webpack_require__(/*! ../../../common/component */ "./node_modules/taro-ui/dist/weapp/common/component.tsx");
 
 var _component2 = _interopRequireDefault(_component);
 
@@ -49,6 +45,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+// TODO: Fix dirty hack
 
 var AtListItem = (_temp2 = _class = function (_AtComponent) {
   _inherits(AtListItem, _AtComponent);
@@ -64,14 +62,21 @@ var AtListItem = (_temp2 = _class = function (_AtComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AtListItem.__proto__ || Object.getPrototypeOf(AtListItem)).call.apply(_ref, [this].concat(args))), _this), _initialiseProps.call(_this), _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AtListItem.__proto__ || Object.getPrototypeOf(AtListItem)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "rootClass", "thumb", "iconInfo", "iconClass", "note", "extraText", "extraThumb", "isSwitch", "switchColor", "disabled", "switchIsCheck", "arrow", "title", "hasBorder", "className"], _this.handleClick = function (event) {
+      if (typeof _this.props.onClick === 'function' && !_this.props.disabled) {
+        _this.props.onClick(event);
+      }
+    }, _this.handleSwitchChange = function (event) {
+      if (typeof _this.props.onSwitchChange === 'function' && !_this.props.disabled) {
+        _this.props.onSwitchChange(event);
+      }
+    }, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(AtListItem, [{
     key: '_constructor',
-    value: function _constructor(props) {
-      _get(AtListItem.prototype.__proto__ || Object.getPrototypeOf(AtListItem.prototype), '_constructor', this).call(this, props);
-
+    value: function _constructor() {
+      _get(AtListItem.prototype.__proto__ || Object.getPrototypeOf(AtListItem.prototype), '_constructor', this).apply(this, arguments);
       this.$$refs = new _taroWeapp2.default.RefsArray();
     }
   }, {
@@ -103,10 +108,8 @@ var AtListItem = (_temp2 = _class = function (_AtComponent) {
           extraText = _props2.extraText,
           title = _props2.title;
 
-
       extraText = String(extraText);
       title = String(title);
-
       var rootClass = (0, _classnames2.default)('at-list__item', {
         'at-list__item--thumb': thumb,
         'at-list__item--multiple': note,
@@ -114,7 +117,6 @@ var AtListItem = (_temp2 = _class = function (_AtComponent) {
         'at-list__item--no-border': !hasBorder
       }, this.__props.className);
       var iconClass = (0, _classnames2.default)(iconInfo.prefixClass || 'at-icon', _defineProperty({}, (iconInfo.prefixClass || 'at-icon') + "-" + iconInfo.value, iconInfo.value), iconInfo.className);
-
       var anonymousState__temp = iconInfo.value ? (0, _taroWeapp.internal_inline_style)(this.mergeStyle({
         color: iconInfo.color || '',
         fontSize: (iconInfo.size || 24) + "px"
@@ -140,29 +142,7 @@ var AtListItem = (_temp2 = _class = function (_AtComponent) {
   }]);
 
   return AtListItem;
-}(_component2.default), _class.$$events = ["handleClick", "handleSwitchClick", "handleSwitchChange"], _class.$$componentPath = 'Users/axin/codes/\u9C7C\u6CE1\u7F51/\u5C0F\u7A0B\u5E8FTS\u91CD\u6784\u9879\u76EE/TaroTs-YuPaoWang/yupaowang/node_modules/taro-ui/dist/weapp/components/list/item/index', _initialiseProps = function _initialiseProps() {
-  var _this2 = this;
-
-  this.$usedState = ["anonymousState__temp", "rootClass", "thumb", "iconInfo", "iconClass", "note", "extraText", "extraThumb", "isSwitch", "switchColor", "disabled", "switchIsCheck", "arrow", "title", "hasBorder", "className"];
-
-  this.handleClick = function () {
-    if ((0, _isFunction3.default)(_this2.props.onClick) && !_this2.props.disabled) {
-      var _props3;
-
-      (_props3 = _this2.props).onClick.apply(_props3, arguments);
-    }
-  };
-
-  this.handleSwitchChange = function () {
-    if ((0, _isFunction3.default)(_this2.props.onSwitchChange) && !_this2.props.disabled) {
-      var _props4;
-
-      (_props4 = _this2.props).onSwitchChange.apply(_props4, arguments);
-    }
-  };
-
-  this.customComponents = [];
-}, _temp2);
+}(_component2.default), _class.$$events = ["handleClick", "handleSwitchClick", "handleSwitchChange"], _class.$$componentPath = "node_modules/taro-ui/dist/weapp/components/list/item/index", _temp2);
 
 
 AtListItem.defaultProps = {
@@ -176,11 +156,10 @@ AtListItem.defaultProps = {
   switchIsCheck: false,
   extraText: '',
   extraThumb: '',
-  iconInfo: {},
+  iconInfo: { value: '' },
   onSwitchChange: function onSwitchChange() {},
   onClick: function onClick() {}
 };
-
 AtListItem.propTypes = {
   note: _propTypes2.default.string,
   disabled: _propTypes2.default.bool,
@@ -208,6 +187,67 @@ exports.default = AtListItem;
 
 Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(AtListItem));
 
+/***/ }),
+
+/***/ "./node_modules/file-loader/dist/cjs.js?name=[path][name].wxml&context=/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules&outputPath=npm!./node_modules/@tarojs/mini-runner/dist/loaders/miniTemplateLoader.js!./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js?!./node_modules/taro-ui/dist/weapp/components/list/item/index.tsx?taro&type=template&parse=COMPONENT&":
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/file-loader/dist/cjs.js?name=[path][name].wxml&context=/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules&outputPath=npm!./node_modules/@tarojs/mini-runner/dist/loaders/miniTemplateLoader.js!./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js??ref--6-0!./node_modules/taro-ui/dist/weapp/components/list/item/index.tsx?taro&type=template&parse=COMPONENT& ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "npm/taro-ui/dist/weapp/components/list/item/index.wxml";
+
+/***/ }),
+
+/***/ "./node_modules/taro-ui/dist/weapp/components/list/item/index.tsx":
+/*!************************************************************************!*\
+  !*** ./node_modules/taro-ui/dist/weapp/components/list/item/index.tsx ***!
+  \************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _index_tsx_taro_type_template_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.tsx?taro&type=template&parse=COMPONENT& */ "./node_modules/taro-ui/dist/weapp/components/list/item/index.tsx?taro&type=template&parse=COMPONENT&");
+/* harmony import */ var _index_tsx_taro_type_script_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./index.tsx?taro&type=script&parse=COMPONENT& */ "./node_modules/taro-ui/dist/weapp/components/list/item/index.tsx?taro&type=script&parse=COMPONENT&");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _index_tsx_taro_type_script_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _index_tsx_taro_type_script_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+
+
+
+
+/***/ }),
+
+/***/ "./node_modules/taro-ui/dist/weapp/components/list/item/index.tsx?taro&type=script&parse=COMPONENT&":
+/*!**********************************************************************************************************!*\
+  !*** ./node_modules/taro-ui/dist/weapp/components/list/item/index.tsx?taro&type=script&parse=COMPONENT& ***!
+  \**********************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_script_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js??ref--6-0!./index.tsx?taro&type=script&parse=COMPONENT& */ "./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js?!./node_modules/taro-ui/dist/weapp/components/list/item/index.tsx?taro&type=script&parse=COMPONENT&");
+/* harmony import */ var _tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_script_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_script_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_script_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_script_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_script_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./node_modules/taro-ui/dist/weapp/components/list/item/index.tsx?taro&type=template&parse=COMPONENT&":
+/*!************************************************************************************************************!*\
+  !*** ./node_modules/taro-ui/dist/weapp/components/list/item/index.tsx?taro&type=template&parse=COMPONENT& ***!
+  \************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _file_loader_name_path_name_wxml_context_Users_zhangyibo_TaroTs_YuPaoWang_yupaowang_node_modules_outputPath_npm_tarojs_mini_runner_dist_loaders_miniTemplateLoader_js_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_template_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!file-loader?name=[path][name].wxml&context=/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules&outputPath=npm!../../../../../../@tarojs/mini-runner/dist/loaders/miniTemplateLoader.js!../../../../../../@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js??ref--6-0!./index.tsx?taro&type=template&parse=COMPONENT& */ "./node_modules/file-loader/dist/cjs.js?name=[path][name].wxml&context=/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules&outputPath=npm!./node_modules/@tarojs/mini-runner/dist/loaders/miniTemplateLoader.js!./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js?!./node_modules/taro-ui/dist/weapp/components/list/item/index.tsx?taro&type=template&parse=COMPONENT&");
+/* harmony import */ var _file_loader_name_path_name_wxml_context_Users_zhangyibo_TaroTs_YuPaoWang_yupaowang_node_modules_outputPath_npm_tarojs_mini_runner_dist_loaders_miniTemplateLoader_js_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_template_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_file_loader_name_path_name_wxml_context_Users_zhangyibo_TaroTs_YuPaoWang_yupaowang_node_modules_outputPath_npm_tarojs_mini_runner_dist_loaders_miniTemplateLoader_js_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_template_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _file_loader_name_path_name_wxml_context_Users_zhangyibo_TaroTs_YuPaoWang_yupaowang_node_modules_outputPath_npm_tarojs_mini_runner_dist_loaders_miniTemplateLoader_js_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_template_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _file_loader_name_path_name_wxml_context_Users_zhangyibo_TaroTs_YuPaoWang_yupaowang_node_modules_outputPath_npm_tarojs_mini_runner_dist_loaders_miniTemplateLoader_js_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_template_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+
+
 /***/ })
 
-},[["./node_modules/taro-ui/dist/weapp/components/list/item/index.js","runtime","vendors"]]]);
+},[["./node_modules/taro-ui/dist/weapp/components/list/item/index.tsx","runtime","taro","vendors"]]]);

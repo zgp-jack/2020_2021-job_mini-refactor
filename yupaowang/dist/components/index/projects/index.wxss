@@ -2,7 +2,6 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis; }
-
 .showMore {
   position: relative;
   width: 100%;
@@ -10,7 +9,6 @@
   text-align: center;
   font-size: 26rpx;
   color: #525252; }
-
 .clearfix:after {
   content: "";
   display: block;
@@ -19,10 +17,8 @@
   line-height: 0;
   height: 0;
   font-size: 0; }
-
 .clearfix {
   zoom: 1; }
-
 .home-fastbar-container {
   position: relative;
   width: 100%;
@@ -30,21 +26,20 @@
   border-radius: 16rpx 16rpx 0 0;
   background-color: white;
   padding: 10rpx; }
-  .home-fastbar-container .home-fastbar-item {
+.home-fastbar-container .home-fastbar-item {
     position: relative;
     width: 20%;
     height: 150rpx;
     padding: 10rpx;
     display: block;
     float: left; }
-    .home-fastbar-container .home-fastbar-item .home-fastbar-img {
+.home-fastbar-container .home-fastbar-item .home-fastbar-img {
       display: block;
       width: 80rpx;
       height: 80rpx;
       margin: 10rpx auto; }
-    .home-fastbar-container .home-fastbar-item .home-fastbar-text {
+.home-fastbar-container .home-fastbar-item .home-fastbar-text {
       display: block;
       font-size: 26rpx;
       margin: 10rpx 0;
       text-align: center; }
-

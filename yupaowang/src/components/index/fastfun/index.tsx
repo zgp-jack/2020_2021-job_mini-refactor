@@ -13,7 +13,7 @@ export default function Fastfun(){
   return (
     <View className='home-fastfun clearfix'>
       {Config.map((item,index)=>(
-        <View className='home-fastfun-item' key={index} onClick={() => userRouteJump(item.url)}>
+        <View className='home-fastfun-item' key={index+index} onClick={() => userRouteJump(item.url)}>
           <Image className='home-fastfun-img' src={ item.img } />
           <Text className='home-fastfun-text'>{ item.text }</Text>
         </View>

@@ -170,7 +170,7 @@ export default function MapComponent({ data, context }: PROPS){
           {showHistory && <View className='history-title'>历史记录</View>}
           {showHistory ? 
           histroyList.map((item, index)=>(
-            <View className='location-list-item' key={index} onClick={() => userClickAreaItem(item)}>
+            <View className='location-list-item' key={index+index} onClick={() => userClickAreaItem(item)}>
               <View className='location-list-header overwords'>
               { item.name }
               <Text>3.2km</Text>
@@ -179,7 +179,7 @@ export default function MapComponent({ data, context }: PROPS){
             </View>
           )) : 
           lists.map((item, index) => (
-            <View className='location-list-item' key={index} onClick={() => userClickAreaItem(item)}>
+            <View className='location-list-item' key={index+index} onClick={() => userClickAreaItem(item)}>
               <View className='location-list-header overwords'>
                 {item.name}
                 <Text>3.2km</Text>

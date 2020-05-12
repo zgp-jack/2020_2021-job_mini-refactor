@@ -2,7 +2,6 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis; }
-
 .showMore {
   position: relative;
   width: 100%;
@@ -10,7 +9,6 @@
   text-align: center;
   font-size: 26rpx;
   color: #525252; }
-
 .clearfix:after {
   content: "";
   display: block;
@@ -19,10 +17,8 @@
   line-height: 0;
   height: 0;
   font-size: 0; }
-
 .clearfix {
   zoom: 1; }
-
 .search-header-box {
   position: relative;
   width: 100%;
@@ -30,7 +26,7 @@
   height: 100rpx;
   padding: 15rpx 20rpx;
   padding-right: 100rpx; }
-  .search-header-box .search-input {
+.search-header-box .search-input {
     position: relative;
     width: 100%;
     background-color: white;
@@ -39,7 +35,7 @@
     line-height: 70rpx;
     padding: 0 15rpx;
     font-size: 28rpx; }
-  .search-header-box .search-btn {
+.search-header-box .search-btn {
     position: absolute;
     right: 0;
     top: 15rpx;
@@ -47,4 +43,3 @@
     padding: 0 20rpx;
     color: white;
     font-size: 28rpx; }
-
