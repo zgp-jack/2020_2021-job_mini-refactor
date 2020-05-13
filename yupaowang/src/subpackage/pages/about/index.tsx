@@ -1,6 +1,6 @@
 import Taro, { Config } from '@tarojs/taro'
 import { View, Text, Image} from '@tarojs/components'
-import { SERVERPHONE, ALIYUNCDN } from '../../config'
+import { SERVERPHONE, ALIYUNCDN } from '../../../config'
 import './index.scss'
 
 export default function About(){

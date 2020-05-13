@@ -1,6 +1,6 @@
 import Taro, { Config } from '@tarojs/taro'
 import { View, Video, Text,Image } from '@tarojs/components'
-import { IMGCDNURL, ALIYUNCDN, DownloadApp } from '../../config'
+import { IMGCDNURL, ALIYUNCDN, DownloadApp } from '../../../config'
 import './index.scss'
 
 

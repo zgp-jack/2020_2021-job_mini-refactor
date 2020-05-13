@@ -63,3 +63,9 @@ export function userJumpPage(url: string):void {
 export function getPointNumber(p: number, n: number): number {
   return Math.floor((p / n) * 100) / 100;
 }
+
+// 获取设备系统
+export function getSystemInfo(): string{
+  let system = Taro.getSystemInfoSync()
+  return system.platform
+}

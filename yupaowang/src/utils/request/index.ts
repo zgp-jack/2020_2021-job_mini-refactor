@@ -518,12 +518,13 @@ export function feedbackSubmissionAction(params:object): Promise<Inter.Result> {
 }
 
 // 帮助中心
-export function helpAction(page: number): Promise<Inter.helpData> {
+export function helpAction(page: number, system:string): Promise<Inter.helpData> {
   return doRequestAction({
     url: api.helpUrl,
     failToast: true,
     data:{
-      page
+      page,
+      system,
     }
   })
 }
@@ -599,5 +600,42 @@ export function messagesTypeAction(params:object): Promise<Inter.system> {
     method: 'POST',
     failToast: true,
     data:params
+  })
+}
+
+// 获取积分分类
+export function integralSourceConfigAction(): Promise<Inter.integralSourceConfig> {
+  return doRequestAction({
+    url: api.integralSourceConfigUrl,
+    method: 'POST',
+    failToast: true,
+  })
+}
+// 积分数据
+export function integralSourceListsAction(params: object): Promise<Inter.integralSourceLists> {
+  return doRequestAction({
+    url: api.integralSourceListsUrl,
+    method: 'POST',
+    failToast: true,
+    data: params
+  })
+}
+
+// 积分消耗
+export function integralExpendConfigAction(): Promise<Inter.integralSourceConfig> {
+  return doRequestAction({
+    url: api.integralExpendConfigUrl,
+    method: 'POST',
+    failToast: true,
+  })
+}
+
+// 积分消耗 数量
+export function integralExpendListsAction(params: object): Promise<Inter.integralSourceLists> {
+  return doRequestAction({
+    url: api.integralExpendListsUrl,
+    method: 'POST',
+    failToast: true,
+    data: params
   })
 }

@@ -4,6 +4,7 @@ import { helpAction, feedbackAction } from '../../utils/request'
 import { AtAccordion, AtList } from 'taro-ui'
 import { heleDatalist } from '../../utils/request/index.d'
 import Nodata from '../../components/nodata'
+import { isIos } from '../../utils/v'
 import './index.scss'
 
 export interface InitPageType {
@@ -36,10 +37,15 @@ export default function Help() {
   }) 
   // 是否能下啦加载更多
   const [isDown,setIsDown] = useState<boolean>(true);
+  // 判断是否是ios
+  const [ios, setIos] = useState<boolean>(false)
   // 请求数据
   // 列表数据
   useEffect(() => {
-    helpAction(initPage.page).then(res =>{
+    // 判断是安卓还是苹果
+    setIos(isIos())
+    let terminal_type = ios ? 'ios' : 'android';
+    helpAction(initPage.page, terminal_type).then(res =>{
       Taro.hideNavigationBarLoading()
       for(let i =0;i<res.lists.length;i++){
         res.lists[i].isShow = false;

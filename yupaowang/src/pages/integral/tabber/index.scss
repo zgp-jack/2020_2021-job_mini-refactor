@@ -1,0 +1,66 @@
+@import '../../../common.scss';
+
+.tabber-content{
+  height: 150px;
+  width: 100%;
+  background: #FFFFFF;
+}
+.tabber-content-box{
+  display: flex;
+  justify-content: space-between;
+  line-height: 74px;
+  height: 74px;
+  border-bottom: 1px solid rgba(238, 238, 238, 1);
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.tabber-content-box-numBox{
+  display: flex;
+  line-height: 75px;
+  height: 75px;
+  padding-left: 20px;
+  padding-right: 20px;
+  color: #4F4F4F;
+  font-size: 26px;
+}
+.tabber-content-box-numBox-num {
+  display: inline-block;
+  margin-left: 123px;
+}
+.tabber-content-box-num-color{
+  color: $color
+}
+.tabber-content-box-selector-text{
+  width:95px;
+  height:23px;
+  font-size:24px;
+  font-weight:400;
+  color:rgba(79, 79, 79, 1);
+}
+.tabber-content-box-selector {
+  width:150px;
+  height:43px;
+  line-height: 43px;
+  text-align: center;
+  background:rgba(246, 246, 246, 1);
+  border-radius:3px;
+  vertical-align: middle;
+  margin: auto 0;
+}
+.tabber-content-box-time-text {
+  width:121px;
+  height:25px;
+  font-size:26px;
+  font-weight:500;
+  color:rgba(48, 48, 48, 1);
+}
+.tabber-content-box-time-img{
+  width: 38px;
+  height: 34px;
+  vertical-align: middle;
+}
+.tabber-content-box-selector-img{
+  width: 38px;
+  height: 34px;
+  vertical-align: middle;
+}

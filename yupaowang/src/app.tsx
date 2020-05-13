@@ -31,26 +31,27 @@ class App extends Component {
       "pages/userinfo/phone/index", // 用户更换手机
       "pages/published/recruit/index", // 已发布招工列表
       "pages/collection/index", //收藏
-      "pages/about/index", //关于我们
-      "pages/report/index", // 举报骗子
-      "pages/course/index", //使用教程
       "pages/help/index", //帮助中心
       "pages/feedbacklist/index", //意见反馈列表
       "pages/feedback/index", //意见反馈
       "pages/static/invite/index", //新闻资讯
-      "pages/notice/index", //资讯详情
-      "pages/download/index", //下载app
-      "pages/ranking/index", //排名规则
       "pages/information/mymessage/index", //我的信息
-      "pages/information/system/index" //我的信息详情
+      "pages/information/system/index", //我的信息详情
+      'pages/integral/tabber/index' //积分来源顶部
     ],
     subPackages: [
       {
         root: 'subpackage/pages/',
         pages: [
-          'checkauth/index'
+          'checkauth/index',
+          'about/index',//关于我们
+          'report/index',//举报骗子
+          'notice/index',//资讯详情
+          'download/index',//下载app
+          'ranking/index',//排名规则
+          'course/index'//使用教程
         ]
-      }
+      },
     ],
     window: {
       backgroundTextStyle: 'light',

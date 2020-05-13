@@ -1,6 +1,6 @@
 import Taro, { Config } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
-import { SERVERPHONE } from '../../config'
+import { SERVERPHONE } from '../../../config'
 import './index.scss'
 
 export default function Report() {

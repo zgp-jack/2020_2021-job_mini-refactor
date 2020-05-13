@@ -100,3 +100,11 @@ export const resumesAddClickLog: string = REQUESTURL + 'resumes/add-click-log/'
 export const userMessagesUrl: string = REQUESTURL + 'member/user-messages/'
 // 我的信息详情
 export const messagesTypeUrl: string = REQUESTURL + 'member/message-of-type/'
+//获取积分来源分类信息
+export const integralSourceConfigUrl: string = REQUESTURL + 'integral/source-config/'
+// 获取积分数量
+export const integralSourceListsUrl: string = REQUESTURL + 'integral/source-lists/'
+// 获取积分消耗分类信息
+export const integralExpendConfigUrl: string = REQUESTURL + 'integral/expend-config/'
+// 积分消耗积分数量
+export const integralExpendListsUrl: string = REQUESTURL + 'integral/expend-lists/'

@@ -147,6 +147,27 @@
 					"pathName": "pages/information/system/index",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "积分来源记录",
+					"pathName": "pages/integral/official/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "积分消耗",
+					"pathName": "pages/integral/expend/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "积分来源顶部",
+					"pathName": "pages/integral/tabber/index",
+					"query": "",
+					"scene": null
 				}
 			]
 		}

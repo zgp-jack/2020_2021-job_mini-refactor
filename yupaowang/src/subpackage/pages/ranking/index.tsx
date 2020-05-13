@@ -1,8 +1,8 @@
 import Taro, { useState, useEffect, Config } from '@tarojs/taro'
 import { View, Text, Image } from '@tarojs/components'
-import { resumesSortAction, resumesAddClickLogAction } from '../../utils/request/index'
-import { resumesSortData } from '../../utils/request/index.d'
-import Auth from '../../components/auth'
+import { resumesSortAction, resumesAddClickLogAction } from '../../../utils/request/index'
+import { resumesSortData } from '../../../utils/request/index.d'
+import Auth from '../../../components/auth'
 import { useSelector } from '@tarojs/redux'
 import './index.scss'
 

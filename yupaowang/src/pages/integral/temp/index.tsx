@@ -6,7 +6,7 @@ import { IntegralSourceItem } from '../../../utils/request/index.d'
 
 import '../index.scss'
 
-export default function Integral() {
+export default function Temp() {
 
   // 初始化页面信息-积分来源记录
   const initType: string = 'temp'
@@ -72,7 +72,7 @@ export default function Integral() {
   )
 }
 
-Integral.config = {
+Temp.config = {
   navigationBarTitleText: '积分来源记录',
   enablePullDownRefresh: true
 } as Config

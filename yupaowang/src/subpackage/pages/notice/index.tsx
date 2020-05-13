@@ -1,7 +1,7 @@
 import Taro, { Config, useState, useEffect, useRouter } from '@tarojs/taro'
 import { View, RichText, Button } from '@tarojs/components';
-import { newsInfoAction } from "../../utils/request/index"
-import { consultationDetailsData } from '../../utils/request/index.d'
+import { newsInfoAction } from "../../../utils/request/index"
+import { consultationDetailsData } from '../../../utils/request/index.d'
 import './index.scss'
 
 interface DataType {

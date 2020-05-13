@@ -104,7 +104,7 @@ export default function InvitePage() {
       {!list.length && <Nodata text={noData} />}
       <View className='invite-content-box'>
         {list && list.map((v)=>(
-          <View key={v.id} className='invite-content' onClick={() => userRouteJump(`/pages/notice/index?id=${v.id}`)}>
+          <View key={v.id} className='invite-content' onClick={() => userRouteJump(`/subpackage/pages/notice/index?id=${v.id}`)}>
             <View>
               <Image className='invite-content-img' src={v.cover_img} />
             </View>

@@ -1,11 +1,11 @@
 import Taro, { useState, useEffect, Config } from '@tarojs/taro'
 import { View, Text, Image, Video } from '@tarojs/components'
-import { IMGCDNURL } from '../../config'
+import { IMGCDNURL } from '../../../config'
 import classnames from 'classnames'
-import { requestAction } from '../../utils/request';
-import { reportMasterList, reportUserList} from '../../utils/request/index.d'
+import { requestAction } from '../../../utils/request';
+import { reportMasterList, reportUserList} from '../../../utils/request/index.d'
 import { AtAccordion, AtList } from 'taro-ui'
-import Nodata from '../../components/nodata'
+import Nodata from '../../../components/nodata'
 import './index.scss'
 
 export interface BossData {

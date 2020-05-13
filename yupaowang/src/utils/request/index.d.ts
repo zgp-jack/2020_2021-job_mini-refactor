@@ -648,3 +648,34 @@ export interface systemDataList {
   type_name: string
   user_uuid: string
 }
+// 积分分类
+export interface integralSourceConfig {
+  data: integralSourceConfigData
+}
+export interface integralSourceConfigData{
+  types: integralSourceConfigDataType[],
+  default: integralSourceConfigDataDefault,
+  min: integralSourceConfigMin
+}
+export interface integralSourceConfigDataType{
+  name:string,
+  type:string,
+}
+export interface integralSourceConfigDataDefault{
+  m:string,
+  y:string,
+}
+export interface integralSourceConfigMin {
+  m: string,
+  y: string,
+}
+export interface integralSourceLists extends Result {
+  data: integralSourceListsData,
+}
+export interface integralSourceListsData {
+  sum_data: integralSourceListsDataSum,
+}
+export interface integralSourceListsDataSum{
+  get:number,
+  expend: number,
+}
