@@ -669,13 +669,52 @@ export interface integralSourceConfigMin {
   m: string,
   y: string,
 }
+// 积分
 export interface integralSourceLists extends Result {
   data: integralSourceListsData,
 }
 export interface integralSourceListsData {
   sum_data: integralSourceListsDataSum,
+  bak:number,
+  lists: integralSourceListsDataLists[],
+  next_page:number,
+  stime:string,
+}
+export interface integralSourceListsDataLists{
+  day: string
+  ext: string
+  his: string
+  integral: string
+  source_integral_string: string
+  source_type: string
+  time: string
+  type_name: string
+  user_id: string
+  y_m: string
+  tips?: string
+  title?:string,
+  id:string,
 }
 export interface integralSourceListsDataSum{
   get:number,
   expend: number,
 }
+
+// 积分弹窗
+export interface integralUseInfo extends Result{
+  info: integralUseInfoData
+}
+export interface integralUseInfoData {
+  classifyName: [],
+  detail: string
+  end_word: string
+  id: string
+  is_end: string
+  label: string
+  show_complain: number
+  title: string
+  type: string
+  user_mobile: string
+  user_name: string
+}
+

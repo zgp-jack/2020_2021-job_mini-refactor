@@ -148,11 +148,11 @@ export default function Member(){
             <Text className='member-list-title'>邀请工友</Text>
             <Text className='member-list-tips'>邀请好友得积分</Text>
           </View>
-          <View className='member-list-item'>
+          <View className='member-list-item' onClick={() => userRouteJump(`/pages/integral/tabber/index?info=1`)}>
             <Image className='member-list-icon' src={ IMGCDNURL + 'lpy/ucenter/newcenter-expend.png'} />
             <Text className='member-list-title'>积分消耗记录</Text>
           </View>
-          <View className='member-list-item'>
+          <View className='member-list-item' onClick={() => userRouteJump(`/pages/integral/tabber/index?info=0`)}>
             <Image className='member-list-icon' src={ IMGCDNURL + 'lpy/ucenter/newcenter-origin.png'} />
             <Text className='member-list-title'>积分来源</Text>
           </View>

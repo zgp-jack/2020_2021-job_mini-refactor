@@ -64,3 +64,217 @@
   height: 34px;
   vertical-align: middle;
 }
+.integral-content {
+  position: relative;
+  padding-left: 80px;
+  padding-right: 20px;
+
+  .integral-list {
+    position: relative;
+    background-color: white;
+    height: 200px;
+    margin-top: 15px;
+    border-radius: 5px;
+    @include shadow(10px);
+
+    .integral-list-time {
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      background-color: $color;
+      padding: 10px 0;
+      border-radius: 5px;
+      color: white;
+      left: -60px;
+      top: 40px;
+      line-height: 50px;
+      text-align: center;
+
+      .integral-time-year {
+        font-size: 26px;
+        display: block;
+      }
+
+      .integral-time-day {
+        font-size: 28px;
+        display: block;
+      }
+    }
+
+    .integral-list-item {
+      position: relative;
+      padding: 10px;
+      padding-left: 80px;
+      padding-right: 20px;
+      position: relative;
+      display: block;
+      line-height: 60px;
+      color: #333;
+
+      .integral-list-title {
+        font-size: 32px;
+      }
+
+      .integral-list-words {
+        font-size: 30px;
+      }
+
+      .integral-item-time {
+        font-size: 30px;
+
+        text {
+          float: right;
+          font-size: 30px;
+          color: #fd4040;
+        }
+      }
+    }
+  }
+}
+
+.tabber-Modal{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 5;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.tabber-Modal-content{
+  position: absolute;
+  position: relative;
+  width: 90%;
+  height:70%;
+  background: white;
+  border-radius: 10px 10px 5px 5px;
+  padding-top: 50px;
+  box-shadow: #e7e6e4 0 0 10px;
+  font-size: 30px;
+}
+.tabber-Modal-content-scroll {
+  overflow-y: scroll;
+  width: 100%;
+  height:100%;
+}
+.tabber-Modal-content-flexBox{
+  padding: 30px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #EEEEEE;
+}
+.tabber-Modal-content-flexBox:last-child{
+  border-bottom: none;
+}
+.tabber-Modal-content-flexBox-left {
+  float: left;
+  min-width: 200px;
+}
+.tabber-Modal-content-flexBox-right{
+  color: $color;
+  float: right;
+  max-width: 100%;
+}
+.tabber-Modal-content-flexBox-classifyName{
+  color: $color;
+}
+.tabber-Modal-content-close {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  left: 50%;
+  top: -50px;
+  margin-left: -50px;
+  background: url("http://cdn.yupao.com/miniprogram/images/expend-close.png") no-repeat;
+  background-size: 100% 100%;
+}
+.tabber-Modal-content-flexBox-phone{
+  display: inline - block;
+  color: #fff;
+  padding: 0 20px;
+  font-size: 26px;
+  border-radius: 8px;
+  background: #67C23A;
+  margin: 0 5px;
+}
+.tabber-Modal-content-flexBox-complaint{
+  display: inline - block;
+  color: #fff;
+  padding: 0 20px;
+  font-size: 26px;
+  border-radius: 8px;
+  background: #ff0000;
+  margin: 0 5px;
+}
+.tabber-complaintModal{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 5;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.tabber-complaintModal-content{
+  position: absolute;
+  position: relative;
+  width: 80%;
+  background: white;
+  border-radius: 10px 10px 5px 5px;
+  padding-top: 20px;
+  box-shadow: #e7e6e4 0 0 10px;
+}
+
+.tabber-complaintModal-content-title{
+  text-align: center;
+}
+.tabber-complaintModal-content-tips {
+  color: #666;
+  text-align: center;
+  font-size: 28px;
+  margin-top: 10px;
+}
+.tabber-complaintModal-content-textareaBox{
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 4px;
+}
+.tabber-complaintModal-content-textarea{
+  width: 100%;
+  font-size: 28px;
+  max-height: 200px
+}
+.tabber-complaintModal-footer{
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  justify-items: center;
+  height: 80px;
+  line-height: 80px;
+  border-top: 1px solid #f2f2f2;
+}
+.tabber-complaintModal-footer-cancel{
+  text-align: center;
+  width: 50%;
+}
+.tabber-complaintModal-footer-cancel:first-child{
+  border-right: 1px solid #f2f2f2;
+}
+.integral-noData{
+  width: 100%;
+  text-align: center;
+  line-height: 50px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  font-size: 28px;
+  color: #666;
+}

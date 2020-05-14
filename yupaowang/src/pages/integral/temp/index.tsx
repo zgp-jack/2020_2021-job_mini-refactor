@@ -3,11 +3,9 @@ import { View, Text } from '@tarojs/components'
 import { getIntegralList } from '../../../utils/request'
 import { IntegralData, IntegralListConfig } from '../config'
 import { IntegralSourceItem } from '../../../utils/request/index.d'
-
 import '../index.scss'
 
-export default function Temp() {
-
+export default function Temp(){
   // 初始化页面信息-积分来源记录
   const initType: string = 'temp'
 
@@ -39,16 +37,15 @@ export default function Temp() {
     })
   }, [data])
 
-  // 上拉加载下一页
-  useReachBottom(() => {
-    setData({ ...data, page: data.page + 1 })
-  })
+  // // 上拉加载下一页
+  // useReachBottom(() => {
+  //   setData({ ...data, page: data.page + 1 })
+  // })
 
-  // 下拉刷新当前列表
-  usePullDownRefresh(() => {
-    setData({ ...data, page: 1 })
-  })
-
+  // // 下拉刷新当前列表
+  // usePullDownRefresh(() => {
+  //   setData({ ...data, page: 1 })
+  // })
   return (
     <View className='integral-container'>
       <View className='integral-title'>显示最近30天的积分来源记录</View>
@@ -71,8 +68,3 @@ export default function Temp() {
     </View>
   )
 }
-
-Temp.config = {
-  navigationBarTitleText: '积分来源记录',
-  enablePullDownRefresh: true
-} as Config

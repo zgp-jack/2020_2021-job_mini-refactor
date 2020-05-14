@@ -108,3 +108,7 @@ export const integralSourceListsUrl: string = REQUESTURL + 'integral/source-list
 export const integralExpendConfigUrl: string = REQUESTURL + 'integral/expend-config/'
 // 积分消耗积分数量
 export const integralExpendListsUrl: string = REQUESTURL + 'integral/expend-lists/'
+// 消耗积分弹窗内容
+export const integralUseInfoUrl: string = REQUESTURL +'integral/look-used-info/'
+// 投诉
+export const publishComplainUrl: string = REQUESTURL +'publish/complain/'

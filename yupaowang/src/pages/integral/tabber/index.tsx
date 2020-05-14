@@ -1,15 +1,20 @@
-import Taro, { Config, useState, useEffect, useReachBottom, usePullDownRefresh } from '@tarojs/taro'
-import { View, Text, Picker,Image } from '@tarojs/components'
-import { integralSourceConfigAction, integralSourceListsAction, integralExpendListsAction, integralExpendConfigAction } from '../../../utils/request/index'
+import Taro, { Config, useState, useEffect, useReachBottom, useRouter } from '@tarojs/taro'
+import { View, Text, Picker, Image, Textarea } from '@tarojs/components'
+import { integralSourceConfigAction, integralSourceListsAction, integralExpendListsAction, integralExpendConfigAction, integralUseInfoAction, publishComplainAction } from '../../../utils/request/index'
 import { getSystemInfo } from '../../../utils/helper/index'
 import { IMGCDNURL } from '../../../config'
-import { integralSourceListsDataSum  } from '../../../utils/request/index.d'
-import Temp from '../temp';
-import Source from '../source';
+import Nodata from '../../../components/nodata'
+import { integralSourceListsDataSum, integralSourceListsDataLists, integralUseInfoData  } from '../../../utils/request/index.d'
+import { isVaildVal } from '../../../utils/v'
+import Msg from '../../../utils/msg'
 import './index.scss'
 
 // 只用temp和source
 export default function Tabber() {
+  const router: Taro.RouterInfo = useRouter()
+  const { info } = router.params;
+  // 是来源还是消耗
+  const [initInfo, setInitInfo] = useState<string>(info)
   // 分类
   const [list, setList] = useState<string[]>([])
   // 第一次显示内容
@@ -22,15 +27,37 @@ export default function Tabber() {
   const [time, setTime] = useState<string>('')
   // 显示时间
   const [showTime, setShowTime] = useState<string>('')
-  // 判断是积分来源还是积分消耗
-  const [info, setInfo ]  = useState<number>(0)
+  // 设置类型
+  const [sourceType, setSourceType] = useState<string>('0')
+  // 列表最小时间戳，下页请求接口开始时间戳(返回值里面的stime)
+  const [stime, setStime] = useState<string>('0')
+  // 是否备份(首次请求没有，返回值里面的bak)
+  const [bak, setBak] = useState<number>(0)
+  // 数据
+  const [data, setData] = useState<integralSourceListsDataLists[]>([])
   // 默认积分
   const [num, setNum] = useState < integralSourceListsDataSum>({
     get:0,
     expend:0,
   })
+  // 弹窗
+  const [modal,setModal] = useState<boolean>(false)
+  // 弹窗内容
+  const [modalData, setModalData] = useState<integralUseInfoData>()
+  // 投诉
+  const [complaintModal, setComplaintModal] = useState<Boolean>(false)
+  // 投诉id 
+  const [complaintId, setComplaintId ] = useState<string>('')
+  // textarea
+  const [textarea, setTextarea] = useState<string>('');
+  // ,没有更多数据
+  const [noMoreData,setNoMoreData] = useState<boolean>(false)
+  // 标识是第一次
+  const [first,setFirst] = useState<Boolean>(false)
+  // 判断是在下拉
+  const [isPull,setPull]= useState<boolean>(false)
   useEffect(()=>{
-    let navigationBarTitleText = info === 0 ? '鱼泡网-积分来源记录' : '鱼泡网-积分消耗记录'
+    let navigationBarTitleText = initInfo === '0' ? '鱼泡网-积分来源记录' : '鱼泡网-积分消耗记录'
     Taro.setNavigationBarTitle({title: navigationBarTitleText})
     // 获取现在时间
     let newTime = new Date();
@@ -40,51 +67,199 @@ export default function Tabber() {
       nowmonth = "0" + nowmonth;
     }
     setEnd(nowyear + "-" + nowmonth);
-    integralSourceConfig();
-  },[])
-  // 积分来源分类
-  const integralSourceConfig= ()=>{
-    integralSourceConfigAction().then(res => {
+    if (initInfo === '0'){
+      integralSourceConfig();
+    }else{
+      integralExpendConfig();
+    }
+  }, [initInfo])
+  // 积分消耗
+  const integralExpendConfig = ()=>{
+    integralExpendConfigAction().then(res=>{
       setStart(res.data.min.y + '-' + res.data.min.m);
       let item: string[] = res.data.types.map(item => item.name)
       setList(item);
-      if(info === 0 ){
+      if (initInfo === '0') {
         setTitle('来源分类')
-      }else{
+      } else {
         setTitle('消耗分类')
       }
       const time = res.data.default.y + '-' + res.data.default.m;
       setTime(time);
       setShowTime(res.data.default.y + '年' + res.data.default.m + '月')
-      // 获取积分请求
-      integralSourceLists(time);
+      integralExpendLists(time,'0');
+    })
+  }
+  // 积分消耗
+  const integralExpendLists = (time: string, source_type:string)=>{
+    const date = time.split("-")
+    const params = {
+      y: date[0],
+      m: date[1],
+      stime,
+      source_type,
+      bak,
+      office: 0,
+      system_type: getSystemInfo(),
+    }
+    integralExpendListsAction(params).then(res=>{
+      if(!first){
+        setNum(res.data.sum_data);
+      }
+      console.log(isPull,'ispull');
+      if (isPull){
+        setData([...data, ...res.data.lists]);
+      }else{
+        setData(res.data.lists)
+      }
+      console.log(data);
+      setFirst(true)
+      setStime(res.data.stime);
+      if (res.data.next_page === 0) {
+        setNoMoreData(true)
+      }
+      setBak(res.data.bak);
+    })
+  }
+
+  // 积分来源分类
+  const integralSourceConfig= ()=>{
+    let params = {
+      office: 0, // 是否为只查看正式数据 0/1,
+      system_type: getSystemInfo()
+    }
+    integralSourceConfigAction(params).then(res => {
+      setStart(res.data.min.y + '-' + res.data.min.m);
+      let item: string[] = res.data.types.map(item => item.name)
+      setList(item);
+      if (initInfo === '0' ){
+        setTitle('来源分类')
+      }else{
+        setTitle('消耗分类')
+      }
+      const date = res.data.default.y + '-' + res.data.default.m;
+      setTime(date);
+      setShowTime(res.data.default.y + '年' + res.data.default.m + '月')
+      integralSourceLists(date,'0');
     })
   }
   // 积分来源积分
-  const integralSourceLists = (time:string)=>{
+  const integralSourceLists = (time: string, sourceType:string)=>{
     const date = time.split("-")
     const params = {
     y: date[0],
     m: date[1],
-    stime: 0,
+    stime,
     type:0,
-    source_type: 0,
-    bak: 0,
+    source_type: sourceType,
+    bak,
     office: 0,
     system_type: getSystemInfo(),
     }
     integralSourceListsAction(params).then(res=>{
-      setNum(res.data.sum_data);
+      if(!first){
+        setNum(res.data.sum_data);
+      }
+      if (isPull) {
+        setData([...data, ...res.data.lists]);
+      } else {
+        setData(res.data.lists)
+      }
+      setData(res.data.lists)
+      setFirst(true);
+      setStime(res.data.stime);
+      if(res.data.next_page === 0 ){
+        setNoMoreData(true)
+      }
+      setBak(res.data.bak);
     })
   }
   // 点击分类
   const handleClick = (e:any)=>{
     setTitle(list[e.detail.value]);
+    setSourceType(e.detail.value);
+    setData([]);
+    setBak(0)
+    setStime('0')
+    if (initInfo === '0'){
+      integralSourceLists(time, e.detail.value)
+    }else{
+      integralExpendLists(time, e.detail.value)
+    }
   }
   // 时间选择
   const handleClckTime = (e:any)=>{
     let data = e.target.value.split('-');
     setShowTime(data[0] + '年' + data[1] + '月');
+    setData([]);
+    // 选择的各种条件初始化
+    setBak(0)
+    setStime('0')
+    if (initInfo === '0'){
+      integralSourceLists(e.target.value, sourceType)
+    }else{
+      integralExpendLists(time, e.detail.value)
+    }
+  }
+  // 是否加载更多
+  useReachBottom(() => {
+    console.log(noMoreData);
+    if(noMoreData) return;
+    setPull(true);
+    console.log(31232131);
+    if(initInfo === '0'){
+      integralSourceLists(time, sourceType)
+    }else{
+      integralExpendLists(time, sourceType);
+    }
+  })
+  // 跳转
+  const handleJump = ()=>{
+    if(initInfo === '0'){
+      setInitInfo("1")
+      setTime('0')
+      setBak(0)
+      setFirst(false);
+    } else if (initInfo === '1') {
+      setInitInfo("0")
+      setTime('0')
+      setBak(0)
+      setFirst(false);
+    }
+  }
+  // 弹窗
+  const handleModal = (userId:string)=>{
+    setModal(true);
+    integralUseInfoAction(userId).then(res=>{
+      setModalData(res.info);
+    })
+  }
+  // 投诉弹窗
+  const handleComplaint = (id:string)=>{
+    setComplaintModal(true);
+    setComplaintId(id);
+  }
+  // 多行输入
+  const handleTextarea = (e: any) => {
+    let val: string = e.detail.value;
+    setTextarea(val);
+  }
+  // 提交投诉
+  const handleSubmit = ()=>{
+    if (!isVaildVal(textarea, 15, 500)) {
+      Msg('输入内容不少于15个字且必须包含文字')
+      return false
+    }
+    const params = {
+      content:textarea,
+      type:'job',
+      infoId:complaintId
+    };
+    publishComplainAction(params).then(res=>{
+      Msg('提交成功')
+      setComplaintModal(false);
+      setModal(false);
+    })
   }
   return (
     <View className='tabber-content'>
@@ -103,15 +278,79 @@ export default function Tabber() {
         </View>
       </View>
       <View className='tabber-content-box-numBox'>
-        <View>{info === 0 ? '获取积分：' : '消耗积分：' }<Text className='tabber-content-box-num-color'>{num.get}</Text></View>
-        <View className='tabber-content-box-numBox-num'>{info === 0 ? '消耗积分：' : '获取积分：'}<Text className='tabber-content-box-num-color'>{num.expend}</Text></View>
+        <View>{initInfo === '0' ? '获取积分：' : '消耗积分：'}<Text className='tabber-content-box-num-color'>{initInfo === '0' ? num.get : num.expend}</Text></View>
+        <View onClick={handleJump} className='tabber-content-box-numBox-num'>{initInfo === '0' ? '消耗积分：' : '获取积分：'}<Text className='tabber-content-box-num-color'>{initInfo === '0' ? num.expend : num.get}</Text></View>
       </View>
-      {info === 0 ? <Source /> : <Temp/>}
+      <View className='integral-content'>
+        {!data.length && <Nodata text={initInfo === '0'?'暂无积分来源记录':'暂无积分消耗记录'}/>}
+        {data.map((item,index)=>(
+          <View key={index+index} onClick={()=>handleModal(item.id)}>
+            <View className='integral-list'>
+              <View className='integral-list-time'>
+                <Text className='integral-time-year'>{item.y_m}</Text>
+                <Text className='integral-time-day'>{item.day}</Text>
+              </View>
+              <View className='integral-list-item'>
+                <View className='integral-list-title overwords'>{item.type_name}</View>
+                <View className='integral-list-words overwords'>{initInfo === '0' ? item.ext : item.title}</View>
+                <View className='integral-item-time'>时间：{item.his}<Text>{initInfo === '0' ? item.source_integral_string : item.tips}</Text></View>
+              </View>
+            </View>
+          </View>
+        ))}
+      </View>
+      {noMoreData && data.length && <View className='integral-noData'>没有更多数据了</View>}
+      {initInfo === '1' && modal && modalData&&
+      <View className='tabber-Modal'>
+        <View className='tabber-Modal-content'>
+        <View onClick={() => { setModal(false) }} className='tabber-Modal-content-close'></View>
+          <View className='tabber-Modal-content-scroll'>
+          <View className='tabber-Modal-content-flexBox'>
+            <View className='tabber-Modal-content-flexBox-left'>项目名称</View>
+            <View className='tabber-Modal-content-flexBox-right'>{modalData.title}</View>
+          </View>
+          <View className='tabber-Modal-content-flexBox'>
+            <View>电话</View>
+            <View className='tabber-Modal-content-flexBox-color'>{modalData.user_mobile}({modalData.user_name})
+              <View onClick={() => { Taro.makePhoneCall({ phoneNumber: modalData.user_mobile})}} className='tabber-Modal-content-flexBox-phone'>拨打</View>
+              {modalData.show_complain !== 0 && <View className='tabber-Modal-content-flexBox-complaint' onClick={() => handleComplaint(modalData.id)}>投诉</View>}
+            </View>
+          </View>
+          <View className='tabber-Modal-content-flexBox'>
+            <View className='tabber-Modal-content-flexBox-classifyName'>{(modalData.classifyName).join(',')}</View>
+          </View>
+          <View className='tabber-Modal-content-flexBox'>
+            <View>{modalData.detail}</View>
+          </View>
+        </View>
+        </View>
+      </View>
+      }
+      {complaintModal &&
+        <View className='tabber-complaintModal'>
+          <View className='tabber-complaintModal-content'>
+            <View className='tabber-complaintModal-content-title'>投诉信息</View>
+            <View className='tabber-complaintModal-content-tips'>请输入投诉内容</View>
+            <View className='tabber-complaintModal-content-textareaBox'>
+              <Textarea
+                className='tabber-complaintModal-content-textarea'
+                placeholder='请填写5~100字，必须含有汉字。（恶意投诉会被封号，请谨慎投诉！）'
+                value={textarea}
+                maxlength={100}
+                onInput={(e) => handleTextarea(e)}
+              />
+            </View>
+            <View className='tabber-complaintModal-footer'>
+              <View className='tabber-complaintModal-footer-cancel' onClick={()=>{setComplaintModal(false)}}>取消</View>
+            <View className='tabber-complaintModal-footer-cancel' onClick={() => handleSubmit()}>确定</View>
+            </View>
+          </View>
+        </View>
+      }
     </View>
   )
 }
 
 Tabber.config = {
   navigationBarTitleText: '',
-  enablePullDownRefresh: true,
 } as Config

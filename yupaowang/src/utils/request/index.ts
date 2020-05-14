@@ -604,11 +604,12 @@ export function messagesTypeAction(params:object): Promise<Inter.system> {
 }
 
 // 获取积分分类
-export function integralSourceConfigAction(): Promise<Inter.integralSourceConfig> {
+export function integralSourceConfigAction(params:object): Promise<Inter.integralSourceConfig> {
   return doRequestAction({
     url: api.integralSourceConfigUrl,
     method: 'POST',
     failToast: true,
+    data: params
   })
 }
 // 积分数据
@@ -634,6 +635,28 @@ export function integralExpendConfigAction(): Promise<Inter.integralSourceConfig
 export function integralExpendListsAction(params: object): Promise<Inter.integralSourceLists> {
   return doRequestAction({
     url: api.integralExpendListsUrl,
+    method: 'POST',
+    failToast: true,
+    data: params
+  })
+}
+
+// 消耗积分弹窗内容
+export function integralUseInfoAction(logId: string): Promise<Inter.integralUseInfo> {
+  return doRequestAction({
+    url: api.integralUseInfoUrl,
+    method: 'POST',
+    failToast: true,
+    data: {
+      logId
+    }
+  })
+}
+
+// 投诉
+export function publishComplainAction(params: object): Promise<Inter.Result> {
+  return doRequestAction({
+    url: api.publishComplainUrl,
     method: 'POST',
     failToast: true,
     data: params
