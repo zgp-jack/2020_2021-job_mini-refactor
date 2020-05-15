@@ -675,7 +675,7 @@ export interface integralSourceLists extends Result {
 }
 export interface integralSourceListsData {
   sum_data: integralSourceListsDataSum,
-  bak:number,
+  bak:string,
   lists: integralSourceListsDataLists[],
   next_page:number,
   stime:string,
