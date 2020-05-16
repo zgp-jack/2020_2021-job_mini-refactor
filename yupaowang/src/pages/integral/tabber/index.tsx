@@ -13,11 +13,11 @@ interface ParamsType {
   y: string,
   m: string,
   stime: string,
-  type?: number,
+  type?: number|string,
   bak: string,
   system_type: string,
   flag:boolean,
-  source_type?:number,
+  source_type?:number|string,
   office?:number|string,
 }
 interface DataType {
@@ -42,8 +42,6 @@ export default function Tabber() {
   const [first, setFirst] = useState<Boolean>(false)
   // 是来源还是消耗
   const [initInfo, setInitInfo] = useState<string>(info)
-  // 分类
-  const [list, setList] = useState<string[]>([])
   // 分类原始内容
   const [initList, setInitList] = useState<integralSourceConfigDataType[]>([])
   // 第一次显示内容
@@ -58,6 +56,8 @@ export default function Tabber() {
   const [showTime, setShowTime] = useState<string>('')
   // 设置类型
   const [sourceType, setSourceType] = useState<string>('0')
+  // 消耗
+  const [consumeType, setConsumeType] = useState<string>('0')
   // 数据
   const [data, setData] = useState<DataType>({
     lists:[],
@@ -108,8 +108,14 @@ export default function Tabber() {
   })
   // 下拉框开始位置
   const [startType,setStartType] = useState<number>(0)
-
-
+  // 来源分类list
+  const [sourceList, setSourceList] = useState<string[]>([])
+  // 消耗分类list
+  const [consumeList, setConsumeList] = useState<string[]>([])
+  // 来源是否获取到list
+  const [issource, setIssource] = useState<boolean>(false);
+  // 积分是否获取到list
+  const [isconsume, setIsconsume] = useState<boolean>(false);
   useEffect(()=>{
     let navigationBarTitleText = initInfo === '0' ? '鱼泡网-积分来源记录' : '鱼泡网-积分消耗记录'
     Taro.setNavigationBarTitle({title: navigationBarTitleText})
@@ -122,9 +128,56 @@ export default function Tabber() {
     }
     setEnd(nowyear + "-" + nowmonth);
     if (initInfo === '0'){
-      integralSourceConfig();
+      if (!issource){
+        integralSourceConfig();
+      }else{
+        if (sourceSearch.flag) {
+          let date = sourceSearch.time.split('-');
+          const params = {
+            y: date[0],
+            m: date[1],
+            stime: '0',
+            source_type: sourceSearch.sortType,
+            bak: '0',
+            system_type: getSystemInfo(),
+            flag: true,
+            office,
+          }
+          //设置显示类型名字
+          setTitle(sourceList[sourceSearch.listType])
+          // 设置显示时间
+          setShowTime(date[0] + '年' + date[1] + '月');
+          // 设置时间
+          setTime(sourceSearch.time)
+          // 设置下拉分类的位置
+          setStartType(parseInt(sourceSearch.listType));
+          setParams(params);
+        } 
+      }
     }else{
-      integralExpendConfig();
+      if (!isconsume){
+        integralExpendConfig();
+      }else{
+        let date = consumeSearch.time.split('-');
+        const params = {
+          y: date[0],
+          m: date[1],
+          stime: '0',
+          type: consumeSearch.sortType,
+          bak: '0',
+          system_type: getSystemInfo(),
+          flag: true
+        }
+        //设置显示类型名字
+        setTitle(consumeList[consumeSearch.listType])
+        // 设置显示时间
+        setShowTime(date[0] + '年' + date[1] + '月');
+        // 设置时间
+        setTime(consumeSearch.time)
+        // 设置下拉分类的位置
+        setStartType(parseInt(consumeSearch.listType));
+        setParams(params);
+      }
     }
   }, [initInfo])
   useEffect(()=>{
@@ -142,37 +195,13 @@ export default function Tabber() {
       setStart(res.data.min.y + '-' + res.data.min.m);
       let item: string[] = res.data.types.map(item => item.name)
       setInitList(res.data.types)
-      setList(item);
-      if (initInfo === '0') {
-        setTitle('来源分类')
-      } else {
-        setTitle('消耗分类')
-      }
+      setConsumeList(item);
+      setIsconsume(true);
+      setTitle('消耗分类')
       const time = res.data.default.y + '-' + res.data.default.m;
       setTime(time);
       setShowTime(res.data.default.y + '年' + res.data.default.m + '月')
-      let params;
-      if (consumeSearch.flag){
-        let date = consumeSearch.time.split('-');
-        params = {
-          y: date[0],
-          m: date[1],
-          stime: '0',
-          type: consumeSearch.sortType,
-          bak: '0',
-          system_type: getSystemInfo(),
-          flag: true
-        }
-        //设置显示类型名字
-        setTitle(item[consumeSearch.listType])
-        // 设置显示时间
-        setShowTime(date[0] + '年' + date[1] + '月');
-        // 设置时间
-        setTime(consumeSearch.time)
-        // 设置下拉分类的位置
-        setStartType(parseInt(consumeSearch.listType));
-      }else{
-        params = {
+        const params = {
           y: res.data.default.y,
           m: res.data.default.m,
           stime: '0',
@@ -181,7 +210,6 @@ export default function Tabber() {
           system_type: getSystemInfo(),
           flag: true
         }
-      }
       setParams(params);
     })
   }
@@ -195,38 +223,13 @@ export default function Tabber() {
       setStart(res.data.min.y + '-' + res.data.min.m);
       let item: string[] = res.data.types.map(item => item.name)
       setInitList(res.data.types)
-      setList(item);
-      if (initInfo === '0' ){
-        setTitle('来源分类')
-      }else{
-        setTitle('消耗分类')
-      }
+      setSourceList(item);
+      setIssource(true);
+      setTitle('来源分类')
       const date = res.data.default.y + '-' + res.data.default.m;
       setTime(date);
       setShowTime(res.data.default.y + '年' + res.data.default.m + '月')
-      let params;
-      if (sourceSearch.flag) {
-        let date = sourceSearch.time.split('-');
-        params = {
-          y: date[0],
-          m: date[1],
-          stime: '0',
-          source_type: sourceSearch.sortType,
-          bak: '0',
-          system_type: getSystemInfo(),
-          flag: true,
-          office,
-        }
-        //设置显示类型名字
-        setTitle(item[sourceSearch.listType])
-        // 设置显示时间
-        setShowTime(date[0] + '年' + date[1] + '月');
-        // 设置时间
-        setTime(sourceSearch.time)
-        // 设置下拉分类的位置
-        setStartType(parseInt(consumeSearch.listType));
-      }else{
-        params = {
+        const params = {
           y: res.data.default.y,
           m: res.data.default.m,
           stime: '0',
@@ -236,7 +239,6 @@ export default function Tabber() {
           flag: true,
           office,
         }
-      }
       setParams(params);
     })
   }
@@ -281,12 +283,22 @@ export default function Tabber() {
   const handleClick = (e:any)=>{
     setChangeType(true)
     setFirst(false)
-    setSourceType(e.detail.value);
-    setTitle(list[e.detail.value])
     let type:any;
-    for (let i =0;i<initList.length;i++){
-      if (initList[i].name === list[e.detail.value]){
-        type = initList[i].type
+    if(initInfo === '0'){
+      setSourceType(e.detail.value);
+      setTitle(sourceList[e.detail.value])
+      for (let i =0;i<initList.length;i++){
+        if (initList[i].name === sourceList[e.detail.value]){
+          type = initList[i].type
+        }
+      }
+    }else{
+      setTitle(consumeList[e.detail.value])
+      setConsumeType(e.detail.value)
+      for (let i = 0; i < initList.length; i++) {
+        if (initList[i].name === consumeList[e.detail.value]) {
+          type = initList[i].type
+        }
       }
     }
     let date = time.split('-');
@@ -309,10 +321,18 @@ export default function Tabber() {
     let date = e.target.value.split('-');
     setShowTime(date[0] + '年' + date[1] + '月');
     setTime(e.target.value)
-    let type;
-    for (let i = 0; i < initList.length; i++) {
-      if (initList[i].name === list[sourceType]) {
-        type = initList[i].type
+    let type: any;
+    if (initInfo === '0') {
+      for (let i = 0; i < initList.length; i++) {
+        if (initList[i].name === sourceList[sourceType]) {
+          type = initList[i].type
+        }
+      }
+    } else {
+      for (let i = 0; i < initList.length; i++) {
+        if (initList[i].name === consumeList[consumeType]) {
+          type = initList[i].type
+        }
       }
     }
     const params = {
@@ -339,9 +359,17 @@ export default function Tabber() {
     let date = time.split('-');
     // 类型
     let type: any;
-    for (let i = 0; i < initList.length; i++) {
-      if (initList[i].name === list[sourceType]) {
-        type = initList[i].type
+    if (initInfo === '0') {
+      for (let i = 0; i < initList.length; i++) {
+        if (initList[i].name === sourceList[sourceType]) {
+          type = initList[i].type
+        }
+      }
+    } else {
+      for (let i = 0; i < initList.length; i++) {
+        if (initList[i].name === consumeList[consumeType]) {
+          type = initList[i].type
+        }
       }
     }
     const params = {
@@ -363,9 +391,17 @@ export default function Tabber() {
     setNextPage(false);
     setChangeType(true)
     let type: any;
-    for (let i = 0; i < initList.length; i++) {
-      if (initList[i].name === list[sourceType]) {
-        type = initList[i].type
+    if (initInfo === '0') {
+      for (let i = 0; i < initList.length; i++) {
+        if (initList[i].name === sourceList[sourceType]) {
+          type = initList[i].type
+        }
+      }
+    } else {
+      for (let i = 0; i < initList.length; i++) {
+        if (initList[i].name === consumeList[consumeType]) {
+          type = initList[i].type
+        }
       }
     }
     if(initInfo === '0'){
@@ -384,7 +420,7 @@ export default function Tabber() {
         time,
         sortType: type,
         flag: true,
-        listType: sourceType
+        listType: consumeType
       })
     }
   }
@@ -432,7 +468,7 @@ export default function Tabber() {
           </Picker>
         </View>
         <View className='tabber-content-box-selector'>
-          <Picker mode='selector' range={list} value={startType} onChange={(e)=>handleClick(e)}>
+          <Picker mode='selector' range={initInfo === '0' ? sourceList : consumeList} value={startType} onChange={(e)=>handleClick(e)}>
             <Text className='tabber-content-box-selector-text'>{title}</Text>
             <Image className='tabber-content-box-selector-img' src={`${IMGCDNURL}lpy/integral/select1.png`}/>
           </Picker>
