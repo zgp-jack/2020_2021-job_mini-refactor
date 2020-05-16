@@ -4,7 +4,7 @@ import { integralSourceConfigAction, integralSourceListsAction, integralExpendLi
 import { getSystemInfo } from '../../../utils/helper/index'
 import { IMGCDNURL } from '../../../config'
 import Nodata from '../../../components/nodata'
-import { integralSourceListsDataSum, integralSourceListsDataLists, integralUseInfoData, integralSourceConfigDataType, integralSourceListsData  } from '../../../utils/request/index.d'
+import { integralSourceListsDataSum, integralSourceListsDataLists, integralUseInfoData, integralSourceConfigDataType  } from '../../../utils/request/index.d'
 import { isVaildVal } from '../../../utils/v'
 import Msg from '../../../utils/msg'
 import './index.scss'
@@ -18,7 +18,7 @@ interface ParamsType {
   system_type: string,
   flag:boolean,
   source_type?:number,
-  office?:number,
+  office?:number|string,
 }
 interface DataType {
   lists: integralSourceListsDataLists[],
@@ -26,16 +26,20 @@ interface DataType {
   stime:string,
   bak:string,
 }
+interface SearchType{
+  time:string,
+  sortType:string,
+  flag: boolean,
+  listType:string,
+}
 // 只用temp和source
 export default function Tabber() {
+  const router: Taro.RouterInfo = useRouter()
+  const { info, office } = router.params;
   // 切换
   const [changeType, setChangeType] = useState<boolean>(false)
-  // 点击时间和点击类型
-  const [isChange, setIsChange] = useState<boolean>(false)
   // 标识是第一次
   const [first, setFirst] = useState<Boolean>(false)
-  const router: Taro.RouterInfo = useRouter()
-  const { info } = router.params;
   // 是来源还是消耗
   const [initInfo, setInitInfo] = useState<string>(info)
   // 分类
@@ -54,20 +58,12 @@ export default function Tabber() {
   const [showTime, setShowTime] = useState<string>('')
   // 设置类型
   const [sourceType, setSourceType] = useState<string>('0')
-  // 列表最小时间戳，下页请求接口开始时间戳(返回值里面的stime)
-  const [stime, setStime] = useState<string>('0')
-  // 是否备份(首次请求没有，返回值里面的bak)
-  const [bak, setBak] = useState<string>('0')
   // 数据
   const [data, setData] = useState<DataType>({
     lists:[],
     next_page: 0,
     stime: '0',
     bak:'0'
-    // lists:[],
-    // next_page:0,
-    // stime:'0',
-    // sum_data:{}
   })
   // 默认积分
   const [num, setNum] = useState < integralSourceListsDataSum>({
@@ -84,8 +80,6 @@ export default function Tabber() {
   const [complaintId, setComplaintId ] = useState<string>('')
   // textarea
   const [textarea, setTextarea] = useState<string>('');
-  // ,没有更多数据
-  const [noMoreData,setNoMoreData] = useState<boolean>(false)
   // 需要传递的参数
   const [params, setParams] = useState<ParamsType>({
     y: '0',
@@ -98,6 +92,24 @@ export default function Tabber() {
   })
   // 没有下一页
   const [nextPage,setNextPage]= useState<boolean>(false)
+  // 搜索来源记录
+  const [sourceSearch, setSourceSearch] = useState<SearchType>({
+    time: '',
+    sortType: '0',
+    flag: false,
+    listType:'0',
+  })
+  // 搜索消耗记录
+  const [consumeSearch, setConsumeSearch] = useState <SearchType>({
+    time: '',
+    sortType: '0',
+    flag: false,
+    listType: '0',
+  })
+  // 下拉框开始位置
+  const [startType,setStartType] = useState<number>(0)
+
+
   useEffect(()=>{
     let navigationBarTitleText = initInfo === '0' ? '鱼泡网-积分来源记录' : '鱼泡网-积分消耗记录'
     Taro.setNavigationBarTitle({title: navigationBarTitleText})
@@ -139,14 +151,36 @@ export default function Tabber() {
       const time = res.data.default.y + '-' + res.data.default.m;
       setTime(time);
       setShowTime(res.data.default.y + '年' + res.data.default.m + '月')
-      const params = {
-        y: res.data.default.y,
-        m: res.data.default.m,
-        stime: '0',
-        type: 0,
-        bak: '0',
-        system_type: getSystemInfo(),
-        flag: true
+      let params;
+      if (consumeSearch.flag){
+        let date = consumeSearch.time.split('-');
+        params = {
+          y: date[0],
+          m: date[1],
+          stime: '0',
+          type: consumeSearch.sortType,
+          bak: '0',
+          system_type: getSystemInfo(),
+          flag: true
+        }
+        //设置显示类型名字
+        setTitle(item[consumeSearch.listType])
+        // 设置显示时间
+        setShowTime(date[0] + '年' + date[1] + '月');
+        // 设置时间
+        setTime(consumeSearch.time)
+        // 设置下拉分类的位置
+        setStartType(parseInt(consumeSearch.listType));
+      }else{
+        params = {
+          y: res.data.default.y,
+          m: res.data.default.m,
+          stime: '0',
+          type: 0,
+          bak: '0',
+          system_type: getSystemInfo(),
+          flag: true
+        }
       }
       setParams(params);
     })
@@ -154,7 +188,7 @@ export default function Tabber() {
    // 积分来源分类
   const integralSourceConfig= ()=>{
     let params = {
-      office: 0, // 是否为只查看正式数据 0/1,
+      office, // 是否为只查看正式数据 0/1,
       system_type: getSystemInfo()
     }
     integralSourceConfigAction(params).then(res => {
@@ -170,15 +204,38 @@ export default function Tabber() {
       const date = res.data.default.y + '-' + res.data.default.m;
       setTime(date);
       setShowTime(res.data.default.y + '年' + res.data.default.m + '月')
-      const params = {
-        y: res.data.default.y,
-        m: res.data.default.m,
-        stime: '0',
-        source_type: 0,
-        bak: '0',
-        system_type: getSystemInfo(),
-        flag: true,
-        office:0,
+      let params;
+      if (sourceSearch.flag) {
+        let date = sourceSearch.time.split('-');
+        params = {
+          y: date[0],
+          m: date[1],
+          stime: '0',
+          source_type: sourceSearch.sortType,
+          bak: '0',
+          system_type: getSystemInfo(),
+          flag: true,
+          office,
+        }
+        //设置显示类型名字
+        setTitle(item[sourceSearch.listType])
+        // 设置显示时间
+        setShowTime(date[0] + '年' + date[1] + '月');
+        // 设置时间
+        setTime(sourceSearch.time)
+        // 设置下拉分类的位置
+        setStartType(parseInt(consumeSearch.listType));
+      }else{
+        params = {
+          y: res.data.default.y,
+          m: res.data.default.m,
+          stime: '0',
+          source_type: 0,
+          bak: '0',
+          system_type: getSystemInfo(),
+          flag: true,
+          office,
+        }
       }
       setParams(params);
     })
@@ -188,33 +245,17 @@ export default function Tabber() {
   const integralSourceLists = ()=>{
     integralSourceListsAction(params).then(res => {
       if (!nextPage) {
-        console.log(11)
         if (!first) {
-          console.log(12)
           setNum(res.data.sum_data);
           setFirst(true)
         }
         if (changeType) {
-          console.log(13)
           setData({ lists: [...res.data.lists], next_page: res.data.next_page, stime: res.data.stime, bak: res.data.bak })
           setChangeType(false)
         } else {
-          console.log(14)
           setData({ lists: [...data.lists, ...res.data.lists], next_page: res.data.next_page, stime: res.data.stime, bak: res.data.bak })
         }
       }
-      // if (!nextPage) {
-      //   if (!first) {
-      //     setNum(res.data.sum_data);
-      //     setFirst(true)
-      //   }
-      //   if (changeType) {
-      //     setData({ lists: [...res.data.lists], next_page: res.data.next_page, stime: res.data.stime, bak: res.data.bak })
-      //     setChangeType(false)
-      //   } else {
-      //     setData({ lists: [...data.lists, ...res.data.lists], next_page: res.data.next_page, stime: res.data.stime, bak: res.data.bak })
-      //   }
-      // }
     })
   }
   // 消耗积分列表
@@ -223,18 +264,14 @@ export default function Tabber() {
       // 下拉时候不修改
       // 选择时间/分类/跳转就直接赋值，只有加载更多在追加
       if (!nextPage){
-        console.log(1)
         if (!first){
-          console.log(2)
           setNum(res.data.sum_data);
           setFirst(true)
         }
         if (changeType){
-          console.log(3)
           setData({ lists: [...res.data.lists], next_page: res.data.next_page, stime: res.data.stime, bak: res.data.bak })
           setChangeType(false)
         }else{
-          console.log(4)
           setData({ lists: [...data.lists, ...res.data.lists], next_page: res.data.next_page, stime: res.data.stime, bak: res.data.bak })
         }
       }
@@ -245,6 +282,7 @@ export default function Tabber() {
     setChangeType(true)
     setFirst(false)
     setSourceType(e.detail.value);
+    setTitle(list[e.detail.value])
     let type:any;
     for (let i =0;i<initList.length;i++){
       if (initList[i].name === list[e.detail.value]){
@@ -257,6 +295,7 @@ export default function Tabber() {
       m: date[1],
       stime: '0',
       type,
+      source_type: type,
       bak:'0',
       system_type: getSystemInfo(),
       flag: true
@@ -323,10 +362,30 @@ export default function Tabber() {
     setFirst(false)
     setNextPage(false);
     setChangeType(true)
+    let type: any;
+    for (let i = 0; i < initList.length; i++) {
+      if (initList[i].name === list[sourceType]) {
+        type = initList[i].type
+      }
+    }
     if(initInfo === '0'){
       setInitInfo("1")
+      // 存搜索记录
+      setSourceSearch({
+        time,
+        sortType: type,
+        flag:true,
+        listType: sourceType
+      })
     } else if (initInfo === '1') {
-      setInitInfo("0")
+      setInitInfo("0");
+      // 存搜索记录
+      setConsumeSearch({
+        time,
+        sortType: type,
+        flag: true,
+        listType: sourceType
+      })
     }
   }
   // 弹窗
@@ -357,13 +416,12 @@ export default function Tabber() {
       type:'job',
       infoId:complaintId
     };
-    publishComplainAction(params).then(res=>{
+    publishComplainAction(params).then(()=>{
       Msg('提交成功')
       setComplaintModal(false);
       setModal(false);
     })
   }
-  console.log(data,'data');
   return (
     <View className='tabber-content'>
       <View className='tabber-content-box'>
@@ -374,7 +432,7 @@ export default function Tabber() {
           </Picker>
         </View>
         <View className='tabber-content-box-selector'>
-          <Picker mode='selector' range={list} value={0} onChange={(e)=>handleClick(e)}>
+          <Picker mode='selector' range={list} value={startType} onChange={(e)=>handleClick(e)}>
             <Text className='tabber-content-box-selector-text'>{title}</Text>
             <Image className='tabber-content-box-selector-img' src={`${IMGCDNURL}lpy/integral/select1.png`}/>
           </Picker>

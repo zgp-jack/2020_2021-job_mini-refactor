@@ -86,7 +86,7 @@ export default function Member(){
               }
             </View>
             <View className='member-user-integral'>
-              <View className='member-integral-item'>
+                <View className='member-integral-item' onClick={() => userRouteJump('/pages/integral/tabber/index?info=0&office=0')}>
                 <Text className='member-integral-num'>{ model.member.integral }</Text>
                 <Text className='member-integral-text'>积分</Text>
               </View>
