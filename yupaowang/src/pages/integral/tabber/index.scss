@@ -155,6 +155,7 @@
   padding-top: 50px;
   box-shadow: #e7e6e4 0 0 10px;
   font-size: 30px;
+  padding-bottom: 20px;
 }
 .tabber-Modal-content-scroll {
   overflow-y: scroll;
@@ -167,8 +168,22 @@
   justify-content: space-between;
   border-bottom: 1px solid #EEEEEE;
 }
-.tabber-Modal-content-flexBox:last-child{
-  border-bottom: none;
+.tabber-Modal-content-flexBox-classifyName{
+  padding: 30px;
+  border-bottom: 1px solid #EEEEEE;
+  // display: flex
+  float: left;
+}
+.clear{
+  clear: both;
+}
+.tabber-Modal-content-flexBox-classifyName-data{
+  margin-right: 10px;
+}
+.tabber-Modal-content-flexBox-last{
+  padding: 30px;
+  display: flex;
+  justify-content: space-between;
 }
 .tabber-Modal-content-flexBox-left {
   float: left;
@@ -181,6 +196,8 @@
 }
 .tabber-Modal-content-flexBox-classifyName{
   color: $color;
+  margin-right: 10px;
+  width: 100%;
 }
 .tabber-Modal-content-close {
   position: absolute;

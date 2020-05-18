@@ -463,7 +463,7 @@ export function getCollectionResumeListData(page: number): Promise<Inter.Collect
 }
 
 // 取消招工收藏
-export function recruitListCancelCollectionAction(id:string): Promise<Inter.Result>{
+export function recruitListCancelCollectionAction(id: string): Promise<Inter.recruitListCancelCollectionType>{
   return doRequestAction({
     url: api.recruitCancelCollection,
     method: 'POST',
@@ -657,6 +657,36 @@ export function integralUseInfoAction(logId: string): Promise<Inter.integralUseI
 export function publishComplainAction(params: object): Promise<Inter.Result> {
   return doRequestAction({
     url: api.publishComplainUrl,
+    method: 'POST',
+    failToast: true,
+    data: params
+  })
+}
+
+// 招工详情
+export function jobInfoAction(params: object): Promise<Inter.jobInfoData> {
+  return doRequestAction({
+    url: api.jobInfoUrl,
+    method: 'POST',
+    failToast: true,
+    data: params
+  })
+}
+
+// 招工详情，没有用户信息
+export function jobNoUserInfoAction(params: object): Promise<Inter.Result> {
+  return doRequestAction({
+    url: api.jobNoUserInfoUrl,
+    method: 'POST',
+    failToast: true,
+    data: params
+  })
+}
+
+// 获取电话好吗
+export function jobGetTelAction(params: object): Promise<Inter.Result> {
+  return doRequestAction({
+    url: api.jobGetTelUrl,
     method: 'POST',
     failToast: true,
     data: params

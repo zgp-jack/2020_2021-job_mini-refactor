@@ -716,5 +716,54 @@ export interface integralUseInfoData {
   type: string
   user_mobile: string
   user_name: string
+  expend_type:number
+  team_composition_words:string
+  showProvinceList:string
 }
 
+// 招活详情
+export interface jobInfoData extends Result{
+  result: jobInfoDataResult
+}
+export interface jobInfoDataResult {
+  address: string
+  city_id: number
+  classifyName: []
+  county_id: number
+  detail: string
+  download_app: string
+  has_top: number
+  header_img: string
+  id: number
+  image: string
+  isLook: number
+  is_check: number
+  is_collect: number
+  is_end: number
+  is_end_word: string
+  location: string
+  map_address_name: string
+  map_street_name: string
+  occupations: []
+  province_id: number
+  show_ajax_btn: true
+  show_complaint: jobInfoDataResultComplaint
+  show_full_address:string
+  show_tel: number
+  sort_time: number
+  tel_str: string
+  time: string
+  title: string
+  user_id: number
+  user_name: string
+  view_images: []
+}
+export interface jobInfoDataResultComplaint {
+  show_complaint: number, 
+  tips_message: string
+}
+
+// 收藏
+export interface recruitListCancelCollectionType extends Result {
+  action ?: string,
+}

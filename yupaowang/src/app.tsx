@@ -37,7 +37,8 @@ class App extends Component {
       "pages/static/invite/index", //新闻资讯
       "pages/information/mymessage/index", //我的信息
       "pages/information/system/index", //我的信息详情
-      'pages/integral/tabber/index' //积分来源顶部
+      'pages/integral/tabber/index', //积分来源顶部
+      'pages/detail/info/index' //详情
     ],
     subPackages: [
       {
@@ -49,7 +50,8 @@ class App extends Component {
           'notice/index',//资讯详情
           'download/index',//下载app
           'ranking/index',//排名规则
-          'course/index'//使用教程
+          'course/index',//使用教程
+          'anti-fraud/index' //防骗指南
         ]
       },
     ],

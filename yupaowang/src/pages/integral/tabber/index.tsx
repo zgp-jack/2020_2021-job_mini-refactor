@@ -426,9 +426,17 @@ export default function Tabber() {
   }
   // 弹窗
   const handleModal = (userId:string)=>{
-    setModal(true);
     integralUseInfoAction(userId).then(res=>{
-      setModalData(res.info);
+      if (res.errcode === 'deleted'){
+        Taro.showModal({
+          title: '温馨提示',
+          content: res.errmsg,
+          showCancel: false,
+        })
+      }else{
+        setModalData(res.info);
+        setModal(true);
+      }
     })
   }
   // 投诉弹窗
@@ -502,21 +510,40 @@ export default function Tabber() {
         <View className='tabber-Modal-content'>
         <View onClick={() => { setModal(false) }} className='tabber-Modal-content-close'></View>
           <View className='tabber-Modal-content-scroll'>
-          <View className='tabber-Modal-content-flexBox'>
-            <View className='tabber-Modal-content-flexBox-left'>项目名称</View>
-            <View className='tabber-Modal-content-flexBox-right'>{modalData.title}</View>
-          </View>
+            {modalData.expend_type !== 2 && 
+            <View className='tabber-Modal-content-flexBox'>
+              <View className='tabber-Modal-content-flexBox-left'>项目名称</View>
+              <View className='tabber-Modal-content-flexBox-right'>{modalData.title}</View>
+            </View>
+            }
           <View className='tabber-Modal-content-flexBox'>
             <View>电话</View>
-            <View className='tabber-Modal-content-flexBox-color'>{modalData.user_mobile}({modalData.user_name})
+              <View className='tabber-content-box-num-color'>{modalData.user_mobile}({modalData.user_name})
               <View onClick={() => { Taro.makePhoneCall({ phoneNumber: modalData.user_mobile})}} className='tabber-Modal-content-flexBox-phone'>拨打</View>
               {modalData.show_complain !== 0 && <View className='tabber-Modal-content-flexBox-complaint' onClick={() => handleComplaint(modalData.id)}>投诉</View>}
             </View>
           </View>
-          <View className='tabber-Modal-content-flexBox'>
-            <View className='tabber-Modal-content-flexBox-classifyName'>{(modalData.classifyName).join(',')}</View>
+            {modalData.expend_type === 2 && 
+              <View>
+                <View className='tabber-Modal-content-flexBox'>
+                  <View>规模</View>
+                <View className='tabber-content-box-num-color'>{modalData.team_composition_words}</View>
+                </View>
+                <View className='tabber-Modal-content-flexBox'>
+                <View >接活省份</View>
+                <View className='tabber-content-box-num-color'>{modalData.showProvinceList}</View>
+                </View>
+              </View>
+            }
+            <View className='tabber-Modal-content-flexBox-classifyName'>
+              {modalData.classifyName.map((v,i)=>(
+                <Text key={i + i} className='tabber-Modal-content-flexBox-classifyName-data'>
+                  [{v}]
+                </Text>
+              ))}
           </View>
-          <View className='tabber-Modal-content-flexBox'>
+            <View className='clear'></View>
+          <View className='tabber-Modal-content-flexBox-last'>
             <View>{modalData.detail}</View>
           </View>
         </View>

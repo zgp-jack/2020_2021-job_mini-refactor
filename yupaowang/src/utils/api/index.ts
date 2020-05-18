@@ -112,3 +112,9 @@ export const integralExpendListsUrl: string = REQUESTURL + 'integral/expend-list
 export const integralUseInfoUrl: string = REQUESTURL +'integral/look-used-info/'
 // 投诉
 export const publishComplainUrl: string = REQUESTURL +'publish/complain/'
+// 招工详情
+export const jobInfoUrl: string = REQUESTURL + 'job/job-info/'
+// 招工详情，没有用户信息
+export const jobNoUserInfoUrl: string = REQUESTURL + '/job/no-user-info/'
+// 获取完整电话好吗
+export const jobGetTelUrl : string = REQUESTURL + 'job/get-tel/'
