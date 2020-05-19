@@ -38,7 +38,9 @@ class App extends Component {
       "pages/information/mymessage/index", //我的信息
       "pages/information/system/index", //我的信息详情
       'pages/integral/tabber/index', //积分来源顶部
-      'pages/detail/info/index' //详情
+      'pages/detail/info/index', //招工详情
+      'pages/topping/index', //置顶
+      'pages/topping/distruction/index' //置顶选择范围
     ],
     subPackages: [
       {

@@ -175,6 +175,19 @@
 					"pathName": "pages/detail/info/index",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "招工置顶",
+					"pathName": "pages/topping/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "招工置顶",
+					"pathName": "pages/topping/distruction/index",
+					"scene": null
 				}
 			]
 		}

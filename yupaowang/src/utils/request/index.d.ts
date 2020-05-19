@@ -736,7 +736,7 @@ export interface jobInfoDataResult {
   header_img: string
   id: number
   image: string
-  isLook: number
+  isLook?: number
   is_check: number
   is_collect: number
   is_end: number
@@ -766,4 +766,26 @@ export interface jobInfoDataResultComplaint {
 // 收藏
 export interface recruitListCancelCollectionType extends Result {
   action ?: string,
+}
+
+
+//置顶
+export interface jobTopConfig extends Result {
+  data: jobTopConfigData,
+}
+export interface jobTopConfigData {
+  top_rules:[],
+  max_top_days:number,
+}
+
+
+// 置顶区域
+export interface jobTopHotAreas extends Result {
+  data: jobTopHotAreasData[],
+}
+export interface jobTopHotAreasData{
+  id:string,
+  is_hot: string,
+  name: string,
+  pid: string,
 }

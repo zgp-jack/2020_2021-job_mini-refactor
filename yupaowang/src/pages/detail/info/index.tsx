@@ -1,12 +1,21 @@
 import Taro, { Config, useState, useEffect } from '@tarojs/taro'
 import { View, Text, Image, Icon, Button, Textarea } from '@tarojs/components'
-import { jobInfoAction, publishComplainAction, jobGetTelAction, recruitListCancelCollectionAction } from '../../../utils/request/index'
+import { jobInfoAction, publishComplainAction, jobGetTelAction, recruitListCancelCollectionAction, jobEndStatusAction } from '../../../utils/request/index'
+import { jobInfoDataResult } from '../../../utils/request/index.d'
 import WechatNotice from '../../../components/wechat'
 import { IMGCDNURL } from '../../../config'
 import { isVaildVal } from '../../../utils/v'
 import Msg from '../../../utils/msg'
+import { UserInfo } from '../../../config/store'
 import './index.scss'
 
+interface User {
+  userId: number,
+  tokenTime: number,
+  token: string,
+  uuid: string,
+  login: boolean
+}
 interface DataType {
   title: string,
   time: string,
@@ -14,25 +23,33 @@ interface DataType {
   user_name: string,
   classifyName: [],
   detail: string,
-  address: string,
+  show_full_address: string,
   location: string,
   map_address_name: string,
   map_street_name: string,
   tel_str: string,
-  show_ajax_btn:boolean,
-  id:number,
-  is_collect:number,
-  view_images:[],
+  show_ajax_btn: boolean,
+  id: number,
+  is_collect: number,
+  view_images: [],
+  is_end: number,
+  is_check:number,
+  show_complaint: {
+    show_complaint: number,
+    tips_message: string
+  }
 }
 export default function DetailInfoPage() {
-  const [data,setData] = useState<DataType>({
+  // 获取userInfo
+  let userInfo: User = Taro.getStorageSync(UserInfo)
+  const [data, setData] = useState<DataType>({
     title: '',
     time: '',
     image: '',
     user_name: '',
     classifyName: [],
     detail: '',
-    address: '',
+    show_full_address: '',
     location:'',
     map_address_name: '',
     map_street_name: '',
@@ -41,6 +58,12 @@ export default function DetailInfoPage() {
     id:0,
     is_collect:0,
     view_images:[],
+    is_end:0,
+    is_check:0,
+    show_complaint:{
+      show_complaint: 0,
+      tips_message: ''
+    }
   })
   // 投诉
   const [complaintModal, setComplaintModal] = useState<Boolean>(false)
@@ -50,20 +73,32 @@ export default function DetailInfoPage() {
   const [refresh,setRefresh] = useState<boolean>(false)
   // 是否收藏
   const [isCollection, setIsCollection] = useState<number>(0)
-  // 判读招聘类型
+  // 判断招聘类型
   const [resCode,setResCode] = useState<string>('')
+  // 是否显示停止招工
+  const [stopHiring, setStopHiring] = useState<boolean>(false)
+  // 是够能继续投诉
+  const [complaint, setComplaint] = useState<boolean>(false)
+  // 重新招工
+  const [again,setAgain] = useState<boolean>(false)
   useEffect(()=>{
     const params={
       type:'job',
       // 先写死
-      infoId:'13161252'
+      infoId:'13161659'
     }
     jobInfoAction(params).then(res=>{
       setData(res.result);
+      Taro.setNavigationBarTitle({
+        title: res.result.title
+      })
       setIsCollection(res.result.is_collect);
-      // if(res.errcode === 'end'){
+      if(userInfo.userId === res.result.user_id){
+        // 判断是自己发布的招工
+        setResCode('own')
+      }else{
         setResCode(res.errcode)
-      // }
+      }
     })
   }, [refresh])
   // 地图
@@ -101,6 +136,7 @@ export default function DetailInfoPage() {
     publishComplainAction(params).then(() => {
       Msg('提交成功')
       setComplaintModal(false);
+      setComplaint(true)
     })
   }
   // 获取电话
@@ -123,10 +159,26 @@ export default function DetailInfoPage() {
         showCancel: false,
       })
     }else{
-      if(data.show_ajax_btn){
-        Msg('请查看完整的手机号码后再操作！')
+      if (complaint) {
+        Taro.showModal({
+          title: '提示',
+          content: '您已投诉该信息，请勿重复操作！',
+          showCancel: false,
+        })
       }else{
-        setComplaintModal(true)
+        if(data.show_ajax_btn){
+          Msg('请查看完整的手机号码后再操作！')
+        }else{
+          if (data.is_end === 2 || !data.show_complaint.show_complaint ){
+            Taro.showModal({
+              title: '提示',
+              content: '您已投诉该信息，请勿重复投诉！',
+              showCancel: false,
+            })
+          }else{
+            setComplaintModal(true)
+          }
+        }
       }
     }
   }
@@ -146,6 +198,21 @@ export default function DetailInfoPage() {
       urls: [v]
     })
   }
+  const handleStatus = ()=>{
+    jobEndStatusAction(data.id).then(res=>{
+    
+      if(res.errcode === 'ok'){
+        if (stopHiring || (data.is_end === 2)) {
+          setAgain(true);
+        }else{
+          setStopHiring(true);
+          Msg(res.errmsg)
+        }
+      }else{
+        Msg(res.errmsg)
+      }
+    })
+  }
   return(
     <View className='detailInfo'>
       <WechatNotice />
@@ -160,12 +227,15 @@ export default function DetailInfoPage() {
             <View className='detailInfo-userContent-content-list'>{data.user_name}</View>
             <View className='detailInfo-userContent-content-list'>{data.tel_str}</View>
           </View>
-          {resCode === 'end' || resCode === 'ok' ? (resCode === 'end' ? <View className='detailInfo-userContent-buttonBox-'><Button className='detailInfo-userContent-button-end'>已招到</Button></View> :<View></View>) : (data.show_ajax_btn ? <View className='detailInfo-userContent-buttonBox'><Button className='detailInfo-userContent-button' onClick={() => jobGetTel()}>查看完整电话</Button></View> :
-            <View className='detailInfo-userContent-buttonBox'>
-              <View className='detailInfo-userContent-button-call' onClick={() => { Taro.makePhoneCall({ phoneNumber: data.tel_str }) }}>点击拨打</View>
-              <View className='detailInfo-userContent-button-complaint' onClick={() => setComplaintModal(true)}>投诉</View>
-            </View>)}
-          {/* {ss
+          {/* 判断是否是自己发布的招工 */}
+          {resCode === 'own' ? <View></View>:
+            (resCode === 'end' ? <View className='detailInfo-userContent-buttonBox-'><Button className='detailInfo-userContent-button-end'>已招到</Button></View> : (data.show_ajax_btn ? <View className='detailInfo-userContent-buttonBox'><Button className='detailInfo-userContent-button' onClick={() => jobGetTel()}>查看完整电话</Button></View> :
+              <View className='detailInfo-userContent-buttonBox'>
+                <View className='detailInfo-userContent-button-call' onClick={() => { Taro.makePhoneCall({ phoneNumber: data.tel_str }) }}>点击拨打</View>
+                <View className='detailInfo-userContent-button-complaint' onClick={footerComplaint}>投诉</View>
+              </View>))
+        }
+          {/* {
           } */}
         </View>
       </View>
@@ -200,42 +270,68 @@ export default function DetailInfoPage() {
           </View>
         }
         <View className='detailInfo-project-content-address'>项目地址: 
-        <View className='detailInfo-project-content-address-color'>{data.address}</View>
+        <View className='detailInfo-project-content-address-color'>{data.show_full_address}</View>
           {data.location && <View className='detailInfo-project-content-map' onClick={handleMap}>查看地图</View>}
         </View>
       </View>
       <View className='detailInfo-Image-box'>
         <Image src={`${IMGCDNURL}download.png`} className='detailInfo-Image' onClick={() => userRouteJump('/subpackage/pages/download/index')}/>
       </View>
-      {/* <View className='detailInfo-footer-content'>
-        <View className='detailInfo-footer-content-box'>
-          <View className='detailInfo-footer-content-box-list' onClick={collection}>
-            <View><Image src={isCollection === 1 ? `${IMGCDNURL}job-collect-active.png` : `${IMGCDNURL}job-collect-normal.png`} className='detailInfo-footer-content-box-image'/></View>
-            <View className='detailInfo-footer-content-box-text'>{isCollection === 0 ?'收藏':'已收藏'}</View>
-          </View>
-          <View className='detailInfo-footer-content-box-list' onClick={footerComplaint}>
-            <View><Image src={`${IMGCDNURL}newjobinfo-complain.png`} className='detailInfo-footer-content-box-image'/></View>
-            <View className='detailInfo-footer-content-box-text'>投诉</View>
-          </View>
-          <View className='detailInfo-footer-content-box-list'>
-            <View><Image src={`${IMGCDNURL}newjobinfo-share.png`} className='detailInfo-footer-content-box-image'/></View>
-            <View className='detailInfo-footer-content-box-text'>分享</View>
-          </View>
-          <View>
-            {resCode === 'end' ? <Button className='detailInfo-footer-content-box-button'>已招到</Button> : (data.show_ajax_btn ?
-              <Button className='detailInfo-footer-content-box-button' onClick={() => jobGetTel()}>查看完整电话</Button> :
-              <Button className='detailInfo-footer-content-box-button' onClick={() => { Taro.makePhoneCall({ phoneNumber: data.tel_str }) }}>拨打电话</Button>)}
-            {
-            }
-          </View>
-        </View>
-      </View> */}
-      {/* 自己发布的找活 */}
+      {/* 判断是否是自己发布的招工 停止招工状态 
+        判断是否查看完成电话 
+      */}
+      {/* 自己发布的招工 */}
+      {/* 点击停止招工 （修改，重新招工）*/}
+      {/* 点击重新招工 （需要审核） */}
+      {/* 审核失败只有招工 */}
+      {/* 审核后出现 （修改，停止招工，我要置顶） */}
+      {resCode === 'own' ? (data.is_check === 1 || again? 
       <View className='detailInfo-userfooter'>
         <View className='detailInfo-userfooter-examine'><Image className='detailInfo-userfooter-examine-image' src={`${IMGCDNURL}published-info.png`}/>提示:人工审核中，该信息仅自己可见。</View>
-        <View></View>
-        <View></View>
-      </View>
+      </View> :
+        (data.is_check === 2 ? 
+        <View className='detailInfo-edit'>
+          <View className='detailInfo-edit-box'>
+            <View className={stopHiring || (data.is_end === 2) ? 'detailInfo-edit-list-none' : 'detailInfo-edit-list'}>修改</View>
+            <View className={stopHiring || (data.is_end === 2) ? 'detailInfo-edit-list-none' : 'detailInfo-edit-list'} onClick={handleStatus}>停止招工</View>
+            {stopHiring || (data.is_end === 2) ? <View className='detailInfo-edit-list' onClick={handleStatus}>重新招工</View> : <View className='detailInfo-edit-list'>我要置顶</View>}
+          </View>
+          </View> : 
+          // 失败的时候只有修改
+          <View className='detailInfo-edit'>
+            <View className='detailInfo-edit-box'>
+              <View className='detailInfo-edit-list'>修改</View>
+            </View>
+          </View>)
+        // 自己发布
+        ):
+        // 他人发布
+        <View className='detailInfo-footer-content'>
+          <View className='detailInfo-footer-content-box'>
+            <View className='detailInfo-footer-content-box-list' onClick={collection}>
+              <View><Image src={isCollection === 1 ? `${IMGCDNURL}job-collect-active.png` : `${IMGCDNURL}job-collect-normal.png`} className='detailInfo-footer-content-box-image' /></View>
+              <View className='detailInfo-footer-content-box-text'>{isCollection === 0 ? '收藏' : '已收藏'}</View>
+            </View>
+            <View className='detailInfo-footer-content-box-list' onClick={footerComplaint}>
+              <View><Image src={`${IMGCDNURL}newjobinfo-complain.png`} className='detailInfo-footer-content-box-image' /></View>
+              <View className='detailInfo-footer-content-box-text'>投诉</View>
+            </View>
+            <View className='detailInfo-footer-content-box-list'>
+              <View><Image src={`${IMGCDNURL}newjobinfo-share.png`} className='detailInfo-footer-content-box-image' /></View>
+              <View className='detailInfo-footer-content-box-text'>分享</View>
+            </View>
+            <View>
+              {resCode === 'end' ? <Button className='detailInfo-footer-content-box-button'>已招到</Button> : (data.show_ajax_btn ?
+                <Button className='detailInfo-footer-content-box-button' onClick={() => jobGetTel()}>查看完整电话</Button> :
+                <Button className='detailInfo-footer-content-box-button' onClick={() => { Taro.makePhoneCall({ phoneNumber: data.tel_str }) }}>拨打电话</Button>)}
+              {
+              }
+            </View>
+          </View>
+        </View>
+      }
+      {/* 自己发布的找活 */}
+    
       {complaintModal &&
         <View className='tabber-complaintModal'>
           <View className='tabber-complaintModal-content'>

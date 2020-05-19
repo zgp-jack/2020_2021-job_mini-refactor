@@ -692,3 +692,34 @@ export function jobGetTelAction(params: object): Promise<Inter.Result> {
     data: params
   })
 }
+
+// 修改状态
+export function jobEndStatusAction(infoId:number): Promise<Inter.Result> {
+  return doRequestAction({
+    url: api.jobEndStatusUrl,
+    method: 'POST',
+    failToast: true,
+    data: {
+      infoId,
+    }
+  })
+}
+
+// 置顶信息
+export function jobTopConfigAction(): Promise<Inter.jobTopConfig> {
+  return doRequestAction({
+    url: api.jobTopConfigUrl,
+    method: 'POST',
+    failToast: true,
+  })
+}
+
+
+// 置顶区域
+export function jobTopHotAreasAction(): Promise<Inter.jobTopHotAreas> {
+  return doRequestAction({
+    url: api.jobTopHotAreasUrl,
+    method: 'POST',
+    failToast: true,
+  })
+}

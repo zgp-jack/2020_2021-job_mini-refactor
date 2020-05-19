@@ -116,5 +116,11 @@ export const publishComplainUrl: string = REQUESTURL +'publish/complain/'
 export const jobInfoUrl: string = REQUESTURL + 'job/job-info/'
 // 招工详情，没有用户信息
 export const jobNoUserInfoUrl: string = REQUESTURL + '/job/no-user-info/'
-// 获取完整电话好吗
+// 获取完整电话好码
 export const jobGetTelUrl : string = REQUESTURL + 'job/get-tel/'
+// 修改状态
+export const jobEndStatusUrl: string = REQUESTURL + 'job/job-end-status/'
+// 置顶信息
+export const jobTopConfigUrl: string = REQUESTURL + 'job/top-config/'
+// 置顶获取区域
+export const jobTopHotAreasUrl: string = REQUESTURL + '/job/top-hot-areas-v1/'
