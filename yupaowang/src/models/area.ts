@@ -2605,7 +2605,7 @@ export interface ParentItems {
   name: string,
   ad_name: string,
   has_children: number,
-  children: ChildItems[] | []
+  children: ChildItems[]
 }
 
 // 用户定位返回信息

@@ -788,4 +788,5 @@ export interface jobTopHotAreasData{
   is_hot: string,
   name: string,
   pid: string,
+  click?:boolean,
 }

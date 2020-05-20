@@ -14,3 +14,5 @@ export const UserListChooseCity: string = 'userListChooseCity'
 export const UserLastPublishArea: string = 'userLastPublishArea'
 // 用户发布 选择地址 历史记录
 export const UserPublishAreaHistory: string = 'userPublishAreaHistory'
+// 招工置顶 暂存搜索记录
+export const SearchList: string = 'searchList'

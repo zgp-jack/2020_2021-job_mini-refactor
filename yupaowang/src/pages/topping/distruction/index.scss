@@ -12,6 +12,7 @@
   line-height: 70px;
   margin-left: 30px;
   padding-left: 20px;
+  font-size: 28px;
 }
 .distruction-top-seach{
   color: #333;
@@ -45,10 +46,21 @@
 .distruction-content-box-list{
   width: 30%;
   text-align: center;
-  // padding: 10px;
   margin-bottom: 10px;
   background: white;
   color: #333;
+  text-align: center;
+  border-radius: 5px;
+  line-height: 80px;
+  font-size: 28px;
+  margin: 10px;
+}
+.distruction-content-box-list-click{
+  width: 30%;
+  text-align: center;
+  margin-bottom: 10px;
+  background: #0099ff;
+  color: white;
   text-align: center;
   border-radius: 5px;
   line-height: 80px;
@@ -73,10 +85,21 @@
 .distruction-content-are-content-box-list-item{
   position: relative;
   width: 30%;
-  // padding: 10px;
   margin-bottom: 10px;
   background: white;
   color: #333;
+  text-align: center;
+  border-radius: 5px;
+  line-height: 80px;
+  font-size: 28px;
+  margin: 10px;
+}
+.distruction-content-are-content-box-list-item-click {
+  position: relative;
+  width: 30%;
+  margin-bottom: 10px;
+  background: #0099ff;
+  color: white;
   text-align: center;
   border-radius: 5px;
   line-height: 80px;
@@ -100,6 +123,16 @@
   height: 120px;
   z-index: 101;
 }
+.distruction-head-click {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 500;
+  // background: #F8F6F9;
+  background: #fff;
+}
 .distruction-footerBtn-btn{
   margin: 0 auto;
   width: 550px;
@@ -117,4 +150,65 @@
   left: 0;
   z-index: 200;
   width: 100%;
+}
+.distruction-none{
+  display: none;
+}
+.distruction-search{
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+.distruction-head-click-seachList{
+  background: #ffffff;
+}
+.distruction-head-click-seachList-head{
+  display: flex;
+  justify-content: space-between;
+  font-size: 30px;
+  padding: 0 30px;
+}
+.distruction-head-click-seachList-head-image{
+  height: 30px;
+  width: 30px;
+  background: red;
+}
+.distruction-head-click-seachList-list-box {
+  box-sizing: border-box;
+  padding-bottom: 20px;
+}
+.distruction-head-click-seachList-list{
+  margin-top: 20px;
+  height: 80px;
+  display: inline-block;
+  font-size: 30px;
+  background: #F7F4F8;
+  width: 27%;
+  color: #666366;
+  margin-left: 5%;
+  text-align: center;
+  line-height: 80px;
+  border-radius: 6px;
+}
+.distruction-head-click-cityList{
+  width: 100%;
+  background: #ffffff;
+  text-align: center;
+}
+.distruction-head-click-cityList-text{
+  padding:300px 0px;
+  font-size: 28px;
+}
+.distruction-top-seach-list {
+  position: relative;
+  width: 100%;
+  padding: 0 20px;
+  line-height: 80px;
+  border-bottom: 1px solid #dcdcdc;
+  font-size: 28px;
+}
+.distruction-top-seach-list-box{
+  overflow-y: scroll;
+  height: 100%;
+  padding-bottom: 100px;
 }
