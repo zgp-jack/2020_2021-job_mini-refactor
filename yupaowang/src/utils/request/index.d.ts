@@ -776,6 +776,8 @@ export interface jobTopConfig extends Result {
 export interface jobTopConfigData {
   top_rules:[],
   max_top_days:number,
+  max_city:number,
+  max_province:number
 }
 
 

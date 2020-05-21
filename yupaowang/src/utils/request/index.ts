@@ -723,3 +723,14 @@ export function jobTopHotAreasAction(): Promise<Inter.jobTopHotAreas> {
     failToast: true,
   })
 }
+
+
+// 招工置顶
+export function jobDoTopAction(detail:object): Promise<Inter.Result> {
+  return doRequestAction({
+    url: api.jobDoTopUrl,
+    method: 'POST',
+    failToast: true,
+    data: detail,
+  })
+}

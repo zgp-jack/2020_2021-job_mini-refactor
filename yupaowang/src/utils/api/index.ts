@@ -124,3 +124,5 @@ export const jobEndStatusUrl: string = REQUESTURL + 'job/job-end-status/'
 export const jobTopConfigUrl: string = REQUESTURL + 'job/top-config/'
 // 置顶获取区域
 export const jobTopHotAreasUrl: string = REQUESTURL + '/job/top-hot-areas-v1/'
+// 招工置顶
+export const jobDoTopUrl: string = REQUESTURL + 'job/do-top/'
