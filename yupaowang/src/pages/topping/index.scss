@@ -103,3 +103,41 @@
   font-size: 30px;
 }
 
+.topping-list-box{
+  display: flex;
+  flex-flow: wrap;
+}
+.topping-list{
+  position: relative;
+  display: inline-block;
+  width: 26.33%;
+  font-size: 36px;
+  color: #6F6F6F;
+  line-height: 80px;
+  border: 1px solid #6F6F6F;
+  border-radius: 10px;
+  text-align: center;
+  margin-top: 22px;
+  margin-right: 7%;
+}
+.topping-list-image{
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  right: 0px;
+  top: 0px
+}
+.topping-list-add{
+  display: inline-block;
+  font-size: 36px;
+  color: white;
+  line-height: 80px;
+  border-radius: 10px;
+  text-align: center;
+  margin-top: 22px;
+  margin-right: 10.5%;
+  position: relative;
+  border: 0;
+  background: #0099FF;
+  width: 26.33%;
+}

@@ -7,12 +7,12 @@ import { SearchList } from '../../../config/store'
 import { IMGCDNURL } from '../../../config';
 import './index.scss'
 
-export interface Distruction{
-  params: ParamsType,
-  setParams: (city: areDataChildrenType[], province: areDataChildrenType[]) => void,
-}
+// export interface Distruction{
+//   params: ParamsType,
+//   setParams: (city: areDataChildrenType[], province: areDataChildrenType[]) => void,
+// }
 
-export const context = createContext<Distruction>({} as Distruction)
+// export const context = createContext<Distruction>({} as Distruction)
 
 interface DataType {
   item: jobTopHotAreasData[]
@@ -79,6 +79,7 @@ export default function Distruction() {
     city:[],
     province:[],
   })
+
   useEffect(()=>{
     // 获取搜索历史
     let searchItem: [] = Taro.getStorageSync(SearchList)
@@ -288,6 +289,7 @@ export default function Distruction() {
           }
           return val;
         })
+        console.log(arr,2)
         const itemList = are.areData.map((val) => {
           val.children.map(item => {
             if (item.id === v.id) {
@@ -325,6 +327,7 @@ export default function Distruction() {
           }
           return val;
         })
+        console.log(arr);
         const itemList = are.areData.map((val) => {
           if(val.id !== v.id){
             val.children.map(item => {
@@ -427,11 +430,11 @@ export default function Distruction() {
         const cityList = JSON.parse(JSON.stringify(params.city))
         are.areData.map((val) => {
           if (val.id === v.id) {
-            console.log(val, 'val')
             val.children.map((item) => {
               cityList.map((list, i) => {
                 if (item.id === list.id) {
                   cityList.splice(i, 1)
+                  
                 }
               })
             })
@@ -441,12 +444,12 @@ export default function Distruction() {
         setData({ item: arr })
         setParams({ city: cityList, province: val })
       } else {
-        const arr = data.item.map((val) => {
-          if (val.id === v.id) {
-            val.click = !v.click
-          }
-          return val;
-        })
+        // const arr = data.item.map((val) => {
+        //   if (val.id === v.id) {
+        //     val.click = !v.click
+        //   }
+        //   return val;
+        // })
         const List = JSON.parse(JSON.stringify(are.areData))
         // 点击市的时候把省取消
         for (let i = 0; i < List.length;i++){
@@ -466,8 +469,13 @@ export default function Distruction() {
         const cityList = JSON.parse(JSON.stringify(params.city))
         are.areData.map((val) => {
           if (val.id === v.id) {
-            console.log(val, 'val')
             val.children.map((item) => {
+              data.item.map((val) => {
+                if (val.id === item.id) {
+                  val.click = false
+                }
+                return val;
+              })
               cityList.map((list, i) => {
                 if (item.id === list.id) {
                   cityList.splice(i, 1)
@@ -476,9 +484,8 @@ export default function Distruction() {
             })
           }
         })
-        console.log(cityList, 'cityList')
         setAre({ areData: List });
-        setData({ item: arr });
+        setData({ item: data.item });
         const val = JSON.parse(JSON.stringify(provinceItem))
         val.push(v);
         setParams({ city: cityList, province: val })
@@ -486,7 +493,7 @@ export default function Distruction() {
     }
   }
   const handleSeach = (v:any)=>{
-    handleListAreas(v);
+    // handleListAreas(v);
     handleAllAre(v,0);
     setClickInput(false);
     setOnInput(false)
@@ -527,8 +534,9 @@ export default function Distruction() {
     //   setModel({ ...model, address: val })
     // }
   }
+  console.log(value,'dsadsds');
   return(
-    <context.Provider value={value}>
+    // <context.Provider value={value}>
     <View className='distruction'>
       <View className={clickInput ? 'distruction-head-click' :'distruction-head'}>
       <View className='distruction-top'>
@@ -596,7 +604,7 @@ export default function Distruction() {
         <View className='distruction-footerBtn-btn' onClick={handleClick}>确认选择</View>
       </View>
     </View>
-    </context.Provider>
+    // </context.Provider>
   )
 }
 Distruction.config = {

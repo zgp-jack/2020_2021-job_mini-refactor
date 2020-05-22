@@ -1,11 +1,11 @@
 import Taro, { Config, useEffect, useState, useContext } from '@tarojs/taro'
-import { View, Picker, Text, Input } from '@tarojs/components'
+import { View, Picker, Text, Image } from '@tarojs/components'
 import { jobTopConfigAction, jobDoTopAction } from '../../utils/request/index'
 import { jobTopConfigData } from '../../utils/request/index.d'
 import Msg, { ShowActionModal } from '../../utils/msg'
-import { SERVERPHONE,  } from '../../config'
+import { SERVERPHONE, IMGCDNURL  } from '../../config'
 import { UserInfo } from '../../config/store'
-import { context } from './distruction/index'
+// import { context } from './distruction/index'
 import './index.scss'
 
 interface DataType {
@@ -41,6 +41,9 @@ export default function Topping() {
     max_city:0,
     max_province:0
   })
+  // const params = useContext(context);
+  // console.log(params,'xxxx');
+  // console.log(context);
   // 置顶范围
   // const [params, setParams] = useContext(context)
   // console.log(params,'params')
@@ -88,10 +91,24 @@ export default function Topping() {
     })
   }
   // console.log(params,'xxxx');
+  // const params = [1,2,3,4];
+  const handleAddJump = ()=>{
+    console.log(312313);
+  }
   return(
     <View className='topping'>
       <View className='topping-title'>当前选择置顶范围：</View>
-      {}
+      {/* <View className='topping-list-box'>
+        {params && params.map((v)=>(
+          <View className='topping-list'>{v}
+            <Image src={`${IMGCDNURL}lpy/delete.png`} className='topping-list-image' />
+          </View>
+        ))
+        }
+        {params.length<6 && 
+            <View onClick={handleAddJump} className='topping-list-add'>添加更多</View>
+        }
+      </View> */}
       <View className='topping-change-btnBox' onClick={() => userRouteJump(`/pages/topping/distruction/index?max_city=${city.max_city}&max_province=${city.max_province}`)}><View className='topping-change-btnBox-btn'>点击选择置顶范围></View></View>
       <View className='topping-day'>请选择置顶天数：</View>
       <View className='topping-input-box'>
