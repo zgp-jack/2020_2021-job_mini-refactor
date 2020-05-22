@@ -1,10 +1,11 @@
-import Taro, { Config, useEffect, useState, useRouter, createContext } from '@tarojs/taro'
+import Taro, { Config, useEffect, useState, useRouter, useContext } from '@tarojs/taro'
 import { View, Image, Input } from '@tarojs/components'
 import { jobTopHotAreasAction } from '../../../utils/request/index'
 import { jobTopHotAreasData } from '../../../utils/request/index.d'
 import AREAS from '../../../models/area'
 import { SearchList } from '../../../config/store'
 import { IMGCDNURL } from '../../../config';
+import { context } from '../index'
 import './index.scss'
 
 // export interface Distruction{
@@ -13,7 +14,6 @@ import './index.scss'
 // }
 
 // export const context = createContext<Distruction>({} as Distruction)
-
 interface DataType {
   item: jobTopHotAreasData[]
 }
@@ -50,6 +50,7 @@ interface ParamsType {
 }
 
 export default function Distruction() {
+  const { AreParams, setAreParams } = useContext(context);
   const router: Taro.RouterInfo = useRouter()
   let { max_city, max_province  } = router.params;
   // 热门城市
@@ -79,7 +80,9 @@ export default function Distruction() {
     city:[],
     province:[],
   })
-
+  // 天
+  const [paramsDay, setParamsDay] = useState<number>(0)
+  // 设置参数
   useEffect(()=>{
     // 获取搜索历史
     let searchItem: [] = Taro.getStorageSync(SearchList)
@@ -87,25 +90,64 @@ export default function Distruction() {
       setHistory({ historylist: searchItem})
     }
     jobTopHotAreasAction().then(res=>{
-      setData({item:res.data});
-      const item:any =[];
-      AREAS.map((v)=>{
-        if(v.children.length>0){
+      const item: any = [];
+      AREAS.map((v) => {
+        if (v.children.length > 0) {
           item.push(v);
         }
       });
-      for(let i =0;i<item.length;i++){
-        for (let j = 0; j < item[i].children.length;j++){
+      for (let i = 0; i < item.length; i++) {
+        for (let j = 0; j < item[i].children.length; j++) {
           item[i].click = false;
           item[i].children[j].click = false;
-          // if(item[i].name === item[i].children[j].name){
-          //   item[i].children[j].name = '全省置顶'
-          // }
         }
       }
+      if (AreParams){
+        // 热门
+        res.data.map((val)=>{
+          if(AreParams.city){
+            AreParams.city.map((v)=>{
+              if(val.id === v.id){
+                val.click = true;
+              }
+              return v;
+            })
+          }
+          if(AreParams.province){
+            AreParams.province.map((v)=>{
+              if(val.id === v.id){
+                val.click = true;
+              }
+              return v;
+            })
+          }
+        })
+        // 所有
+        item.map((val)=>{
+          val.children.map((itme)=>{
+            if (AreParams.city) {
+              AreParams.city.map((v) => {
+                if (itme.id === v.id) {
+                  itme.click = true;
+                }
+                return v;
+              })
+            }
+            if (AreParams.province) {
+              AreParams.province.map((v) => {
+                if (itme.id === v.id) {
+                  itme.click = true;
+                }
+                return v;
+              })
+            }
+          })
+        })
+      }
+      setData({item:res.data});
       setAre({areData:item})
+      setParams({city:AreParams.city,province:AreParams.province})
     })
-    
   },[])
   // 点击输入框
   const handleInput = ()=>{
@@ -289,7 +331,6 @@ export default function Distruction() {
           }
           return val;
         })
-        console.log(arr,2)
         const itemList = are.areData.map((val) => {
           val.children.map(item => {
             if (item.id === v.id) {
@@ -327,7 +368,6 @@ export default function Distruction() {
           }
           return val;
         })
-        console.log(arr);
         const itemList = are.areData.map((val) => {
           if(val.id !== v.id){
             val.children.map(item => {
@@ -341,7 +381,6 @@ export default function Distruction() {
               if(item.pid === '1'){
                 val.children.map((list,i)=>{
                   if(list.id === v.id){
-                    console.log(list,'list');
                     list.click = false
                   }
                 })
@@ -365,7 +404,6 @@ export default function Distruction() {
                 provinceList.map((list,i)=>{
                   if (list.id === val.id){
                     // console.log(list);
-                    console.log(list,i);
                     provinceList.splice(i,1)
                   }
                 })
@@ -373,10 +411,10 @@ export default function Distruction() {
             })
           }
         })
-        console.log(provinceList,'xxx');
         setParams({ city: val, province: provinceList })
       }
     }else{
+      console.log(v,1)
       const provinceItem = JSON.parse(JSON.stringify(params.province));
       if (provinceItem.length) {
         const val = JSON.parse(JSON.stringify(provinceItem))
@@ -426,6 +464,7 @@ export default function Distruction() {
           }
           return val;
         })
+        console.log(itemList,'xxx')
         // 点击省，删除市
         const cityList = JSON.parse(JSON.stringify(params.city))
         are.areData.map((val) => {
@@ -444,6 +483,7 @@ export default function Distruction() {
         setData({ item: arr })
         setParams({ city: cityList, province: val })
       } else {
+        console.log(2231321312)
         // const arr = data.item.map((val) => {
         //   if (val.id === v.id) {
         //     val.click = !v.click
@@ -468,7 +508,10 @@ export default function Distruction() {
         // 点击省，删除市
         const cityList = JSON.parse(JSON.stringify(params.city))
         are.areData.map((val) => {
+          console.log('省')
+          console.log(val);
           if (val.id === v.id) {
+            console.log('dsadasdds')
             val.children.map((item) => {
               data.item.map((val) => {
                 if (val.id === item.id) {
@@ -484,8 +527,16 @@ export default function Distruction() {
             })
           }
         })
+        const hot = data.item.map((val)=>{
+          if(val.id === v.id){
+            console.log(val);
+            val.click = true
+          }
+          return val;
+        })
+        console.log(List);
         setAre({ areData: List });
-        setData({ item: data.item });
+        setData({ item: hot});
         const val = JSON.parse(JSON.stringify(provinceItem))
         val.push(v);
         setParams({ city: cityList, province: val })
@@ -520,23 +571,12 @@ export default function Distruction() {
   const handleClick = ()=>{
     console.log(params);
     console.log(data,'data')
-    // Taro.navigateBack({
-    //   delta: 1
-    // })
+    setAreParams(params.city, params.province);
+    Taro.navigateBack({
+      delta: 1
+    })
   }
-  // 需要传递的值
-  const value: Distruction = {
-    params: params,
-    setParams: (city: areDataChildrenType[], province: areDataChildrenType[]) => setParams({ city, province}),
-    // setAreaInfo: (item: UserLastPublishRecruitArea) => setAreaInfo(item),
-    // setPublishArea: (val: string) => {
-    //   if (!model) return
-    //   setModel({ ...model, address: val })
-    // }
-  }
-  console.log(value,'dsadsds');
   return(
-    // <context.Provider value={value}>
     <View className='distruction'>
       <View className={clickInput ? 'distruction-head-click' :'distruction-head'}>
       <View className='distruction-top'>
@@ -604,7 +644,6 @@ export default function Distruction() {
         <View className='distruction-footerBtn-btn' onClick={handleClick}>确认选择</View>
       </View>
     </View>
-    // </context.Provider>
   )
 }
 Distruction.config = {

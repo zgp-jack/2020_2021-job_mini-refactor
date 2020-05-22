@@ -102,6 +102,13 @@ export default function PublishedRecruit(){
       }
     })
   }
+  // 跳转
+  // 用户页面跳转
+  const userRouteJump = (url: string) => {
+    Taro.navigateTo({
+      url: url
+    })
+  }
   return (
     <View className='user-published-container'>
       <View className='user-published-header'>
@@ -144,7 +151,7 @@ export default function PublishedRecruit(){
               {item.is_check == '2' &&
               <Block >
                 <View className='user-published-footer-item' onClick={()=>userStopRecruit(item.id,index)}>停止招工</View>
-                <View className='user-published-footer-item'>我要置顶</View>
+                <View className='user-published-footer-item' onClick={() => userRouteJump(`/pages/topping/index?id=${item.id}`)}>我要置顶</View>
               </Block>
               }
             </View>
