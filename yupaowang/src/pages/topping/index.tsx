@@ -5,7 +5,7 @@ import { jobTopConfigData } from '../../utils/request/index.d'
 import Msg, { ShowActionModal } from '../../utils/msg'
 import { SERVERPHONE,  } from '../../config'
 import { UserInfo } from '../../config/store'
-// import { context } from './distruction/index'
+import { context } from './distruction/index'
 import './index.scss'
 
 interface DataType {
@@ -87,6 +87,7 @@ export default function Topping() {
       console.log(res);
     })
   }
+  // console.log(params,'xxxx');
   return(
     <View className='topping'>
       <View className='topping-title'>当前选择置顶范围：</View>
