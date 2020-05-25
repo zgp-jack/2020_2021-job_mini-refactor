@@ -2,13 +2,13 @@ import Taro, { useState, useEffect, Config } from '@tarojs/taro'
 import { View, Text, Image, Block, ScrollView } from '@tarojs/components'
 import { useSelector } from '@tarojs/redux'
 import HeaderList from './config'
-import { userGetPublishedRecruitLists, userChangeRecruitStatus } from '../../../utils/request'
+import { userGetPublishedRecruitLists, userChangeRecruitStatus, jobUpdateTopStatusAction } from '../../../utils/request'
 import { UserPublishedRecruitListDataItem } from '../../../utils/request/index.d'
 import classnames from 'classnames'
 import { User } from '../../../reducers/user'
 import Nodata from '../../../components/nodata'
 import './index.scss'
-import { IMGCDNURL } from '../../../config'
+import { IMGCDNURL, SERVERPHONE } from '../../../config'
 import Msg from '../../../utils/msg'
 
 export interface searchDataType {
@@ -109,6 +109,93 @@ export default function PublishedRecruit(){
       url: url
     })
   }
+  // 取消置顶 jobUpdateTopStatusAction
+  const handlCancel = (id:string)=>{
+    const params = {
+      infoId: id,
+      status:0,
+    }
+    jobUpdateTopStatusAction(params).then(res=>{
+      if(res.errcode){
+        Msg(res.errmsg)
+        setSearchData({ ...searchData, page: searchData.page })
+      }
+    })
+  }
+  //置顶
+  const handleTopping = (item)=>{
+    if (item.is_end === '2') {
+      Taro.showModal({
+        title: '提示',
+        content: '已招到状态不能进行置顶操作，请修改招工状态',
+        showCancel: false
+      })
+      return false;
+    }
+    if (item.top == '1'){
+      let now = new Date().getTime() / 1000 // 当前时间戳
+      let data = item.top_data; //置顶数据
+      let endtime = data.end_time //置顶到期时间
+      let toping = data.is_top // 是否置顶状态
+      let showTime = now > parseInt(endtime) ? true : false; // 置顶是否过期 已过期
+      if (showTime) { //如果置顶过期
+        userRouteJump(`/pages/topping/index?id=${item.id}`)
+        return false
+      }
+      const params = {
+        infoId: item.id,
+        status: toping == '0' ? '1' : "0"
+      }
+      jobUpdateTopStatusAction(params).then(res => {
+        if (res.errcode === 'ok') {
+          Msg(res.errmsg)
+          setSearchData({ ...searchData, page: searchData.page })
+        } else if (res.errcode === 'auth_forbid'){
+          // 去实名
+          Taro.showModal({
+            title: '温馨提示',
+            content: res.errmsg,
+            cancelText: '取消',
+            confirmText: '去实名',
+            success(res) {
+              if (res.confirm) {
+                let backtwo = "backtwo"
+                Taro.navigateTo({
+                  url: `/pages/realname/index?backtwo=${backtwo}`
+                })
+              }
+            }
+          })
+          return
+        } else if(res.errcode == "member_forbid"){
+          Taro.showModal({
+            title: '温馨提示',
+            content: "mydata.errmsg",
+            cancelText: "取消",
+            confirmText: "联系客服",
+            success(res) {
+              if (res.confirm) {
+                let tel = SERVERPHONE;
+                Taro.makePhoneCall({
+                  phoneNumber: tel,
+                })
+              }
+            }
+          })
+          return;
+        } else {
+          Taro.showToast({
+            title: res.errmsg,
+            icon: "none",
+            duration: 1500
+          })
+        }
+      })
+    }else{
+      userRouteJump(`/pages/topping/index?id=${item.id}`)
+    }
+    
+  }
   return (
     <View className='user-published-container'>
       <View className='user-published-header'>
@@ -134,7 +221,7 @@ export default function PublishedRecruit(){
         onScrollToLower={() => getNextPageData()} 
       >
         {lists.map((item,index)=>(
-          <View className='user-published-item' key={ item.id }>
+          <View className='user-published-item' key={item.id} onClick={() => userRouteJump(`/pages/detail/info/index?id=${item.id}`)}>
             {item.is_check == '1' && <Image className='published-status-img' src={IMGCDNURL + 'published-recruit-checking.png'} />}
             {item.is_check == '0' && <Image className='published-status-img' src={IMGCDNURL + 'published-recruit-nopass.png'} /> }
             {item.is_end == '2' && <Image className='published-status-img' src={IMGCDNURL + 'published-recruit-end.png'} /> }
@@ -151,12 +238,19 @@ export default function PublishedRecruit(){
               {item.is_check == '2' &&
               <Block >
                 <View className='user-published-footer-item' onClick={()=>userStopRecruit(item.id,index)}>停止招工</View>
-                <View className='user-published-footer-item' onClick={() => userRouteJump(`/pages/topping/index?id=${item.id}`)}>我要置顶</View>
+              {item.top && item.top_data && item.top_data.is_top == '1' ?
+                  <View className='user-published-footer-item' onClick={()=>handlCancel(item.id)}>取消置顶</View> :
+                  <View className='user-published-footer-item' onClick={()=>handleTopping(item)}>我要置顶</View>
+                }
+                {/* <View className='user-published-footer-item' onClick={() => userRouteJump(`/pages/topping/index?id=${item.id}&type=1`)}>修改置顶</View> */}
               </Block>
               }
             </View>
             {item.top && item.top_data && item.top_data.is_top == '1' &&
-            <View className='published-top-time'>到期时间：2020年04月30日11:31:38</View>
+              <View className='published-top-box'>
+              <View className='published-top-time'>到期时间：2020年04月30日11:31:38</View>
+              <View className='published-top-cancel' onClick={() => userRouteJump(`/pages/topping/index?id=${item.id}&type=1`)}>修改置顶</View>
+            </View>
             }
           </View>
         ))}

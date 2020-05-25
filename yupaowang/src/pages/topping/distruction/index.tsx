@@ -8,12 +8,6 @@ import { IMGCDNURL } from '../../../config';
 import { context } from '../index'
 import './index.scss'
 
-// export interface Distruction{
-//   params: ParamsType,
-//   setParams: (city: areDataChildrenType[], province: areDataChildrenType[]) => void,
-// }
-
-// export const context = createContext<Distruction>({} as Distruction)
 interface DataType {
   item: jobTopHotAreasData[]
 }
@@ -80,8 +74,6 @@ export default function Distruction() {
     city:[],
     province:[],
   })
-  // 天
-  const [paramsDay, setParamsDay] = useState<number>(0)
   // 设置参数
   useEffect(()=>{
     // 获取搜索历史
@@ -90,6 +82,7 @@ export default function Distruction() {
       setHistory({ historylist: searchItem})
     }
     jobTopHotAreasAction().then(res=>{
+      if (res.errcode == "ok") {
       const item: any = [];
       AREAS.map((v) => {
         if (v.children.length > 0) {
@@ -147,6 +140,13 @@ export default function Distruction() {
       setData({item:res.data});
       setAre({areData:item})
       setParams({city:AreParams.city,province:AreParams.province})
+    }else{
+      Taro.showModal({
+        title: '温馨提示',
+        content: res.errmsg,
+        showCancel: false,
+      })
+    }
     })
   },[])
   // 点击输入框
@@ -182,121 +182,6 @@ export default function Distruction() {
       return v;
     })
     setSearchData({list:data});
-  }
-  // 热门点击
-  const handleListAreas = (v:any)=>{
-    // 点击后，所有的内容也要设置
-    // 只能点击两个省，三个市，点了两个省还有点三个市，点了后还可以取消
-    // 市
-    if(v.pid !== '1'){
-      const cityItem = JSON.parse(JSON.stringify(params.city));
-      // 已选择大于限制大小
-        if (cityItem.length){
-          const val = JSON.parse(JSON.stringify(cityItem))
-          const dataItem =  val.find((item)=>item.id ===v.id );
-          if (dataItem) {
-            val.map((item, i) => {
-              if (item.id === v.id) {
-                val.splice(i, 1)
-              }
-            })
-          } else {
-            if (cityItem.length >= (parseInt(max_city))) {
-              Taro.showModal({
-                title: '温馨提示',
-                content: `最多可同时置顶${max_city}个市、${max_province}个省或直辖市`,
-                showCancel: false,
-              })
-              return;
-            }
-            val.push(v)
-          }
-          const arr = data.item.map(val => {
-            if (val.id === v.id) {
-              val.click = !v.click
-            }
-            return val;
-          })
-          const itemList = are.areData.map((val) => {
-            val.children.map(item => {
-              if (item.id === v.id) {
-                item.click = v.click
-              }
-              return item
-            })
-            return val;
-          })
-          // console.log(3213211);
-          setAre({ areData: itemList });
-          setData({item:arr})
-          setParams({city:val,province:params.province})
-        }else{
-          const arr = data.item.map((val) => {
-            if (val.id === v.id) {
-              val.click = !v.click
-            }
-            return val;
-          })
-          const itemList = are.areData.map((val) => {
-            val.children.map(item => {
-              if (item.id == v.id) {
-                item.click = v.click
-              }
-              return item 
-            })
-            return val;
-          })
-          // console.log(itemList);
-          setAre({ areData: itemList });
-          setData({ item: arr });
-          const val = JSON.parse(JSON.stringify(cityItem))
-          val.push(v);
-          setParams({ city: val, province: params.province })
-        }
-    // 省
-    }else{  
-      const provinceItem = JSON.parse(JSON.stringify(params.province));
-      if (provinceItem.length) {
-        const val = JSON.parse(JSON.stringify(provinceItem))
-        const dataItem = val.find((item) => item.id === v.id);
-        if (dataItem) {
-          val.map((item, i) => {
-            if (item.id === v.id) {
-              val.splice(i, 1)
-            }
-          })
-        } else {
-          if (provinceItem.length >= (parseInt(max_province))) {
-            Taro.showModal({
-              title: '温馨提示',
-              content: `最多可同时置顶${max_city}个市、${max_province}个省或直辖市`,
-              showCancel: false,
-            })
-            return;
-          }
-          val.push(v)
-        }
-        const arr = data.item.map(val => {
-          if (val.id === v.id) {
-            val.click = !v.click
-          }
-          return val;
-        })
-        setData({ item: arr })
-        setParams({ city: params.city, province: val })
-      } else {
-        const arr = data.item.map((val) => {
-          if (val.id === v.id) {
-            val.click = !v.click
-          }
-          return val;
-        })
-        setData({ item: arr });
-        const val = JSON.parse(JSON.stringify(provinceItem))
-        val.push(v);
-        setParams({ city: params.city, province: val })
-      }
-    }
   }
   // 点击其他省市
   const handleAllAre = (v:any,type:number)=>{
@@ -379,7 +264,7 @@ export default function Distruction() {
                 }
               }
               if(item.pid === '1'){
-                val.children.map((list,i)=>{
+                val.children.map((list)=>{
                   if(list.id === v.id){
                     list.click = false
                   }
@@ -414,7 +299,6 @@ export default function Distruction() {
         setParams({ city: val, province: provinceList })
       }
     }else{
-      console.log(v,1)
       const provinceItem = JSON.parse(JSON.stringify(params.province));
       if (provinceItem.length) {
         const val = JSON.parse(JSON.stringify(provinceItem))
@@ -464,7 +348,6 @@ export default function Distruction() {
           }
           return val;
         })
-        console.log(itemList,'xxx')
         // 点击省，删除市
         const cityList = JSON.parse(JSON.stringify(params.city))
         are.areData.map((val) => {
@@ -483,13 +366,6 @@ export default function Distruction() {
         setData({ item: arr })
         setParams({ city: cityList, province: val })
       } else {
-        console.log(2231321312)
-        // const arr = data.item.map((val) => {
-        //   if (val.id === v.id) {
-        //     val.click = !v.click
-        //   }
-        //   return val;
-        // })
         const List = JSON.parse(JSON.stringify(are.areData))
         // 点击市的时候把省取消
         for (let i = 0; i < List.length;i++){
@@ -508,10 +384,7 @@ export default function Distruction() {
         // 点击省，删除市
         const cityList = JSON.parse(JSON.stringify(params.city))
         are.areData.map((val) => {
-          console.log('省')
-          console.log(val);
           if (val.id === v.id) {
-            console.log('dsadasdds')
             val.children.map((item) => {
               data.item.map((val) => {
                 if (val.id === item.id) {
@@ -529,12 +402,10 @@ export default function Distruction() {
         })
         const hot = data.item.map((val)=>{
           if(val.id === v.id){
-            console.log(val);
             val.click = true
           }
           return val;
         })
-        console.log(List);
         setAre({ areData: List });
         setData({ item: hot});
         const val = JSON.parse(JSON.stringify(provinceItem))
@@ -544,7 +415,6 @@ export default function Distruction() {
     }
   }
   const handleSeach = (v:any)=>{
-    // handleListAreas(v);
     handleAllAre(v,0);
     setClickInput(false);
     setOnInput(false)
@@ -569,8 +439,6 @@ export default function Distruction() {
   }
   // 确认选择
   const handleClick = ()=>{
-    console.log(params);
-    console.log(data,'data')
     setAreParams(params.city, params.province);
     Taro.navigateBack({
       delta: 1

@@ -734,3 +734,33 @@ export function jobDoTopAction(detail:object): Promise<Inter.Result> {
     data: detail,
   })
 }
+
+
+// 修改置顶获取数据
+export function jobGetTopAreasAction(detail: object): Promise<Inter.jobGetTopAreas> {
+  return doRequestAction({
+    url: api.jobGetTopAreasUrl,
+    method: 'POST',
+    failToast: true,
+    data: detail,
+  })
+}
+
+// 更新招工置顶城市
+export function jobChangeTopAreasAction(detail: object): Promise<Inter.Result> {
+  return doRequestAction({
+    url: api.jobChangeTopAreasUrl,
+    method: 'POST',
+    failToast: true,
+    data: detail,
+  })
+}
+// 取消招工置顶
+export function jobUpdateTopStatusAction(detail: object): Promise<Inter.Result> {
+  return doRequestAction({
+    url: api.jobUpdateTopStatusUrl,
+    method: 'POST',
+    failToast: true,
+    data: detail,
+  })
+}

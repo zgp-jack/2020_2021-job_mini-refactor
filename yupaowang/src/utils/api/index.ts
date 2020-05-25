@@ -126,3 +126,9 @@ export const jobTopConfigUrl: string = REQUESTURL + 'job/top-config/'
 export const jobTopHotAreasUrl: string = REQUESTURL + '/job/top-hot-areas-v1/'
 // 招工置顶
 export const jobDoTopUrl: string = REQUESTURL + 'job/do-top/'
+// 修改置顶获取数据
+export const jobGetTopAreasUrl: string = REQUESTURL +'job/get-top-areas/'
+// 更新招工置顶城市
+export const jobChangeTopAreasUrl: string = REQUESTURL + 'job/change-top-areas/'
+// 取消置顶
+export const jobUpdateTopStatusUrl: string = REQUESTURL + 'job/update-top-status/'

@@ -1,7 +1,6 @@
-import Taro, { Config, useState, useEffect } from '@tarojs/taro'
+import Taro, { Config, useState, useEffect,useRouter } from '@tarojs/taro'
 import { View, Text, Image, Icon, Button, Textarea } from '@tarojs/components'
 import { jobInfoAction, publishComplainAction, jobGetTelAction, recruitListCancelCollectionAction, jobEndStatusAction } from '../../../utils/request/index'
-import { jobInfoDataResult } from '../../../utils/request/index.d'
 import WechatNotice from '../../../components/wechat'
 import { IMGCDNURL } from '../../../config'
 import { isVaildVal } from '../../../utils/v'
@@ -34,12 +33,18 @@ interface DataType {
   view_images: [],
   is_end: number,
   is_check:number,
+  has_top: number,
+  top_info:{
+    is_top:string,
+  }
   show_complaint: {
     show_complaint: number,
     tips_message: string
   }
 }
 export default function DetailInfoPage() {
+  const router: Taro.RouterInfo = useRouter()
+  let { id } = router.params;
   // 获取userInfo
   let userInfo: User = Taro.getStorageSync(UserInfo)
   const [data, setData] = useState<DataType>({
@@ -60,9 +65,13 @@ export default function DetailInfoPage() {
     view_images:[],
     is_end:0,
     is_check:0,
+    has_top:0,
     show_complaint:{
       show_complaint: 0,
       tips_message: ''
+    },
+    top_info:{
+      is_top:''
     }
   })
   // 投诉
@@ -85,7 +94,7 @@ export default function DetailInfoPage() {
     const params={
       type:'job',
       // 先写死
-      infoId:'13161659'
+      infoId: id
     }
     jobInfoAction(params).then(res=>{
       setData(res.result);
@@ -285,6 +294,7 @@ export default function DetailInfoPage() {
       {/* 点击重新招工 （需要审核） */}
       {/* 审核失败只有招工 */}
       {/* 审核后出现 （修改，停止招工，我要置顶） */}
+      {/* 判断是自己发布的招工 */}
       {resCode === 'own' ? (data.is_check === 1 || again? 
       <View className='detailInfo-userfooter'>
         <View className='detailInfo-userfooter-examine'><Image className='detailInfo-userfooter-examine-image' src={`${IMGCDNURL}published-info.png`}/>提示:人工审核中，该信息仅自己可见。</View>
@@ -292,9 +302,10 @@ export default function DetailInfoPage() {
         (data.is_check === 2 ? 
         <View className='detailInfo-edit'>
           <View className='detailInfo-edit-box'>
-            <View className={stopHiring || (data.is_end === 2) ? 'detailInfo-edit-list-none' : 'detailInfo-edit-list'}>修改</View>
+            <View className='detailInfo-edit-list'>修改</View>
+            {/* <View className={stopHiring || (data.is_end === 2) ? 'detailInfo-edit-list-none' : 'detailInfo-edit-list'}>修改</View> */}
             <View className={stopHiring || (data.is_end === 2) ? 'detailInfo-edit-list-none' : 'detailInfo-edit-list'} onClick={handleStatus}>停止招工</View>
-            {stopHiring || (data.is_end === 2) ? <View className='detailInfo-edit-list' onClick={handleStatus}>重新招工</View> : <View className='detailInfo-edit-list'>我要置顶</View>}
+              {data.has_top && data.top_info.is_top == '1' ? <View className='detailInfo-edit-list-edit' onClick={() => userRouteJump(`/pages/topping/index?id=${data.id}&type=1`)}>修改置顶</View> : (stopHiring || (data.is_end === 2) ? <View className='detailInfo-edit-list' onClick={handleStatus}>重新招工</View> : <View className='detailInfo-edit-list' onClick={() => userRouteJump(`/pages/topping/index?id=${data.id}`)}>我要置顶</View>)}
           </View>
           </View> : 
           // 失败的时候只有修改

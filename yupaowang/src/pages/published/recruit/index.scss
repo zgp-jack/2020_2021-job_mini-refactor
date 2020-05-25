@@ -114,3 +114,19 @@
     z-index: 2;
   }
 }
+.published-top-box{
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
+}
+.published-top-cancel{
+  background: #F5F5F5;
+  color: #F12424;
+  font-size: 30px;
+  display: inline-block;
+  line-height: 50px;
+  padding: 0 10px;
+  width: 160px;
+  border: 1px solid #F5F5F5;
+  text-align: center;
+}

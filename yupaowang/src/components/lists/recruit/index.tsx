@@ -10,13 +10,18 @@ interface PROPS {
 }
 
 export default function RecruitList({ data, bottom = true }: PROPS){
-
+  // 用户页面跳转
+  const userRouteJump = (url: string) => {
+    Taro.navigateTo({
+      url: url
+    })
+  }
   return (
     <View className='recruit-lists-container' style={ bottom ? '' : 'padding-bottom:0' }>
       {data.map((item)=>(
         <Block>
           {item.map((d) => (
-            <View className='recruit-list-item'>
+            <View className='recruit-list-item' onClick={() => userRouteJump(`/pages/detail/info/index?id=${d.id}`)}>
               {d.top && <Image className='list-toprecruit-img' src={IMGCDNURL + 'newlist-jobzd.png'} />}
               {d.is_end == 2 && <Image className='recruit-findend-img' src={IMGCDNURL + 'newlist-jobfindend.png'} /> }
               <View className='recruit-list-header'>

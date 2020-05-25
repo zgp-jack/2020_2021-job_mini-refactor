@@ -756,7 +756,11 @@ export interface jobInfoDataResult {
   title: string
   user_id: number
   user_name: string
-  view_images: []
+  view_images: [],
+  top_info: jobInfoDataResultInfo,
+}
+export interface jobInfoDataResultInfo {
+  is_top:string
 }
 export interface jobInfoDataResultComplaint {
   show_complaint: number, 
@@ -792,3 +796,34 @@ export interface jobTopHotAreasData{
   pid: string,
   click?:boolean,
 }
+
+// 获取修改置顶数据
+export interface jobGetTopAreas extends Result {
+  data: jobGetTopAreasData,
+}
+export interface jobGetTopAreasData {
+  top_province_ids: [],
+  top_city_ids: [],
+  max_price: number,
+  top_province: jobGetTopAreasDataPro[],
+  top_city: jobGetTopAreasDataCity[],
+  end_time_string:string,
+  end_time:number
+}
+export interface jobGetTopAreasDataPro{
+  ad_name: string
+  id: string
+  name: string
+  pid: string,
+  click: boolean,
+  listName?: string
+}
+export interface jobGetTopAreasDataCity{
+  ad_name: string
+  id: string
+  name: string
+  pid: string,
+  click: boolean,
+  listName?: string
+}
+
