@@ -1,8 +1,8 @@
-import Taro, { Config, useState, useEffect,useRouter } from '@tarojs/taro'
+import Taro, { Config, useState, useEffect, useRouter, useDidShow } from '@tarojs/taro'
 import { View, Text, Image, Icon, Button, Textarea } from '@tarojs/components'
-import { jobInfoAction, publishComplainAction, jobGetTelAction, recruitListCancelCollectionAction, jobEndStatusAction } from '../../../utils/request/index'
+import { jobInfoAction, publishComplainAction, jobGetTelAction, recruitListCancelCollectionAction, jobEndStatusAction, jobUpdateTopStatusAction } from '../../../utils/request/index'
 import WechatNotice from '../../../components/wechat'
-import { IMGCDNURL } from '../../../config'
+import { IMGCDNURL, SERVERPHONE } from '../../../config'
 import { isVaildVal } from '../../../utils/v'
 import Msg from '../../../utils/msg'
 import { UserInfo } from '../../../config/store'
@@ -90,6 +90,11 @@ export default function DetailInfoPage() {
   const [complaint, setComplaint] = useState<boolean>(false)
   // 重新招工
   const [again,setAgain] = useState<boolean>(false)
+
+  // 返回刷新页面
+  useDidShow(()=>{
+    setRefresh(true)
+  })
   useEffect(()=>{
     const params={
       type:'job',
@@ -97,6 +102,7 @@ export default function DetailInfoPage() {
       infoId: id
     }
     jobInfoAction(params).then(res=>{
+      setRefresh(false)
       setData(res.result);
       Taro.setNavigationBarTitle({
         title: res.result.title
@@ -209,19 +215,92 @@ export default function DetailInfoPage() {
   }
   const handleStatus = ()=>{
     jobEndStatusAction(data.id).then(res=>{
-    
       if(res.errcode === 'ok'){
-        if (stopHiring || (data.is_end === 2)) {
-          setAgain(true);
-        }else{
-          setStopHiring(true);
+        console.log(stopHiring);
+        console.log(data.is_end,'xxx')
+        // if (stopHiring || (data.is_end === 2)) {
+        //   setAgain(true);
+        //   console.log(32131231);
+        // }else{
+          //   setStopHiring(true);
+          // setStopHiring se
           Msg(res.errmsg)
-        }
+          setStopHiring(false);
+          setRefresh(true)
+          // }
       }else{
         Msg(res.errmsg)
       }
     })
   }
+  // 置顶
+  const handleTopping = (data)=>{
+    if(data.has_top){
+      let endtime = parseInt(data.top_info.end_time)
+      let timestr = new Date().getTime() / 1000
+      if (timestr < endtime) {
+        Taro.showLoading({
+          title: '正在执行操作'
+        })
+        const params = {
+          infoId: id,
+          status: data.toping == '0' ? '1' : "0"
+        }
+        jobUpdateTopStatusAction(params).then(res => {
+          if (res.errcode ==='ok') {
+            console.log(res);
+            Msg(res.errmsg)
+            setRefresh(true)
+            setStopHiring(true);
+            // setSearchData({ ...searchData, page: searchData.page })
+          } else if (res.errcode === 'auth_forbid'){
+            // 去实名
+            Taro.showModal({
+              title: '温馨提示',
+              content: res.errmsg,
+              cancelText: '取消',
+              confirmText: '去实名',
+              success(res) {
+                if (res.confirm) {
+                  let backtwo = "backtwo"
+                  Taro.navigateTo({
+                    url: `/pages/realname/index?backtwo=${backtwo}`
+                  })
+                }
+              }
+            })
+            return
+          } else if (res.errcode == "member_forbid") {
+            Taro.showModal({
+              title: '温馨提示',
+              content: "mydata.errmsg",
+              cancelText: "取消",
+              confirmText: "联系客服",
+              success(res) {
+                if (res.confirm) {
+                  let tel = SERVERPHONE;
+                  Taro.makePhoneCall({
+                    phoneNumber: tel,
+                  })
+                }
+              }
+            })
+            return;
+          } else {
+            Taro.showToast({
+              title: res.errmsg,
+              icon: "none",
+              duration: 1500
+            })
+          }
+        })
+        return false
+      }
+    }
+    userRouteJump(`/pages/topping/index?id=${data.id}`)
+  }
+  console.log(data.is_end,'xx')
+  console.log(stopHiring)
   return(
     <View className='detailInfo'>
       <WechatNotice />
@@ -295,7 +374,8 @@ export default function DetailInfoPage() {
       {/* 审核失败只有招工 */}
       {/* 审核后出现 （修改，停止招工，我要置顶） */}
       {/* 判断是自己发布的招工 */}
-      {resCode === 'own' ? (data.is_check === 1 || again? 
+      {resCode === 'own' ? 
+      (data.is_check === 1 || again? 
       <View className='detailInfo-userfooter'>
         <View className='detailInfo-userfooter-examine'><Image className='detailInfo-userfooter-examine-image' src={`${IMGCDNURL}published-info.png`}/>提示:人工审核中，该信息仅自己可见。</View>
       </View> :
@@ -304,8 +384,10 @@ export default function DetailInfoPage() {
           <View className='detailInfo-edit-box'>
             <View className='detailInfo-edit-list'>修改</View>
             {/* <View className={stopHiring || (data.is_end === 2) ? 'detailInfo-edit-list-none' : 'detailInfo-edit-list'}>修改</View> */}
-            <View className={stopHiring || (data.is_end === 2) ? 'detailInfo-edit-list-none' : 'detailInfo-edit-list'} onClick={handleStatus}>停止招工</View>
-              {data.has_top && data.top_info.is_top == '1' ? <View className='detailInfo-edit-list-edit' onClick={() => userRouteJump(`/pages/topping/index?id=${data.id}&type=1`)}>修改置顶</View> : (stopHiring || (data.is_end === 2) ? <View className='detailInfo-edit-list' onClick={handleStatus}>重新招工</View> : <View className='detailInfo-edit-list' onClick={() => userRouteJump(`/pages/topping/index?id=${data.id}`)}>我要置顶</View>)}
+                <View className={stopHiring || (data.is_end === 1) ? 'detailInfo-edit-list' : 'detailInfo-edit-list-none'} onClick={handleStatus}>停止招工</View>
+              {data.has_top && data.top_info.is_top == '1' ? <View className='detailInfo-edit-list-edit' onClick={() => userRouteJump(`/pages/topping/index?id=${data.id}&type=1`)}>修改置顶</View> : (stopHiring || (data.is_end === 2) ? <View className='detailInfo-edit-list' onClick={handleStatus}>重新招工</View> : <View className='detailInfo-edit-list' onClick={() => handleTopping(data)
+                // userRouteJump(`/pages/topping/index?id=${data.id}`)
+                }>我要置顶</View>)}
           </View>
           </View> : 
           // 失败的时候只有修改
@@ -315,7 +397,8 @@ export default function DetailInfoPage() {
             </View>
           </View>)
         // 自己发布
-        ):
+        )
+        :
         // 他人发布
         <View className='detailInfo-footer-content'>
           <View className='detailInfo-footer-content-box'>

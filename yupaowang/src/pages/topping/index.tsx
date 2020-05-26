@@ -76,7 +76,6 @@ export default function Topping() {
   // 修改时最大积分
   const [maxNum,setMaxNum] = useState<number>(0)
   // 修改超过最大就显示消耗积分
-  const [showNum,setShowNum] = useState<boolean>(false)
   useEffect(()=>{
     if(type){
       const val = {
@@ -88,7 +87,6 @@ export default function Topping() {
           setParams({city:res.data.top_city,province:res.data.top_province})
           setEndTime(res.data.end_time_string)
           setEnd(res.data.end_time)
-          setNum(res.data.max_price);
           setMaxNum(res.data.max_price)
         }else{
           Taro.showModal({
@@ -125,7 +123,6 @@ export default function Topping() {
       // 时间和城市都改变了 新单价大于原单价 ：新价-旧价*剩余天数+新价格*新增天数 新单价小于原单价：旧价格*新增天数
       seteditDay('修改');
       setdisplayTime(true)
-      setShowNum(true)
       // 时间
       const time = new Date(endTime);
       const y = time.getFullYear();
@@ -145,19 +142,15 @@ export default function Topping() {
       // 时间差
       let remDay: any = (end - new Date().getTime()/1000) / 86400;
       // 修改区域
-      // const changeCity = true; //修改区域
       // 只改变时间
       let money;
       if (oldPrice === newPrice) {
         money = newPrice * (parseInt(e.detail.value) + 1);
-        setShowNum(true);
       }else{
         if (newPrice - oldPrice > 0) {
           money = Math.round((newPrice - oldPrice) * remDay + newPrice * (parseInt(e.detail.value) + 1))
-          setShowNum(true);
         } else {
           money = oldPrice * (parseInt(e.detail.value) + 1)
-          setShowNum(true);
         }
       }
       setNum(money);
@@ -179,6 +172,14 @@ export default function Topping() {
   const handleTopping = ()=>{
     const province_ids = params.province.map((v)=>v.id);
     const city_ids = params.city.map((v) => v.id);
+    if (!province_ids.length && !city_ids.length){
+      Taro.showModal({
+        title: '温馨提示',
+        content: '请选择您的置顶城市',
+        showCancel: false,
+      })
+      return
+    }
     const detail = {
       mid: userInfo.userId,
       province_ids: province_ids.toString(),
@@ -313,7 +314,6 @@ export default function Topping() {
   const calcPrice = (city,province) => {
     if (city && province){
       if(type){
-        console.log(32132131);
         // 获取旧价格
         const oldPrice = maxNum;
         // 获取价格
@@ -326,23 +326,26 @@ export default function Topping() {
         let money;
         if (paramsDay !== 0 && oldPrice === newPrice) {
           money = newPrice * paramsDay;
-          setShowNum(true);
         } else if (paramsDay === 0 && oldPrice > newPrice) {
           money = (newPrice - oldPrice) * paramsDay;
         } else if (paramsDay === 0 && changeCity) {
           // 剩余天数
           if (newPrice > oldPrice) {
             money = Math.round((newPrice - oldPrice) * remDay);
-            setShowNum(true);
           }
         } else {
           // 时间变了，城市变了
           if (newPrice - oldPrice > 0) {
             money = Math.round((newPrice - oldPrice) * remDay + newPrice * paramsDay)
-            setShowNum(true);
           } else {
             money = oldPrice * paramsDay
           }
+        }
+        let num = 0;
+        if (money <= 0) {
+          num = 0;
+        } else {
+          num = num;
         }
         setNum(money);
       }else{
@@ -384,14 +387,11 @@ export default function Topping() {
     // 修改区域
     const changeCity = true; //修改区域
     // 修改时间
-    console.log(newPrice,'newPrice');
-    console.log(oldPrice,'oldPrice');
-    console.log(remDay,'remDay');
     let money;
     // 只改变时间
     if (paramsDay !== 0 && oldPrice === newPrice ){
       money = newPrice * paramsDay;
-      setShowNum(true);
+      // setShowNum(true);
     } else if (paramsDay === 0 && oldPrice > newPrice){
       // var remDay =  (到期时间 - 现在时间)/ 86400
       // var remDay =  (old_end_time - now_time)/ 86400
@@ -400,71 +400,52 @@ export default function Topping() {
       // 剩余天数
       if (newPrice > oldPrice ){
         money = Math.round((newPrice - oldPrice) * remDay);
-        setShowNum(true);
-        // console.log(money);
       }
     }else{
       // 时间变了，城市变了
       if(newPrice-oldPrice>0){
         money = Math.round((newPrice - oldPrice) * remDay + newPrice * paramsDay)
-        setShowNum(true);
       }else{
         money = oldPrice * paramsDay
       }
     }
-    console.log(money);
-    setNum(money);
+    let num = 0;
+    if(money<=0){
+      num = 0;
+    }else{
+      num = money;
+    }
+    setNum(num);
   }
   // 取消
   const handleCancel = ()=>{
-    // const dateNum = params.city.length * 10 + params.province.length * 20;
-    // let numData;
-    // if (dateNum > maxNum){
-    //   numData = dateNum - maxNum
-    // }else{
-    //   numData = 0;
-    //   setShowNum(false)
-    // }
-    // setNum(numData)
-    // setdisplayTime(false);
-    // setParamsDay(0)
     const oldPrice = maxNum;
     // 获取价格
     const newPrice = (params.city.length * 10 + params.province.length * 20) * 1;
     // 时间差
     let remDay: any = (end - new Date().getTime() / 1000) / 86400;
     // 修改区域
-    const changeCity = true; //修改区域
     // 修改时间
-    console.log(newPrice, 'newPrice');
-    console.log(oldPrice, 'oldPrice');
-    console.log(remDay, 'remDay');
     let money;
     // 只改变时间
     if (oldPrice > newPrice) {
-      console.log(1)
-      money = (newPrice - oldPrice) * 1;
-    } else if (changeCity) {
-      console.log(2);
+       const num = (newPrice - oldPrice) * 1;
+      if(num > 0){
+        money = num;
+      }else{
+        money = 0;
+      }
+    } else if (oldPrice == newPrice) {
+      money = 0;
+      // 价格没变
+    }else{
       // 剩余天数
       if (newPrice > oldPrice) {
         money = Math.round((newPrice - oldPrice) * remDay);
-        setShowNum(true);
-        // console.log(money);
-      }else{
+      } else {
         money = oldPrice
       }
-    } 
-    // else {
-    //   // 时间变了，城市变了
-    //   if (newPrice - oldPrice > 0) {
-    //     money = Math.round((newPrice - oldPrice) * remDay + newPrice * paramsDay)
-    //     setShowNum(true);
-    //   } else {
-    //     money = oldPrice * paramsDay
-    //   }
-    // }
-    console.log(money,'xxx')
+    }
     setNum(money);
     setdisplayTime(false);
     setParamsDay(0)

@@ -101,9 +101,7 @@
   }
   .published-top-time{
     position: relative;
-    line-height: 70px;
     font-size: 28px;
-    margin-top: -15px;
   }
   .published-status-img{
     position: absolute;
@@ -117,7 +115,9 @@
 .published-top-box{
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding-bottom: 10px;
+  margin: auto 0 ;
 }
 .published-top-cancel{
   background: #F5F5F5;

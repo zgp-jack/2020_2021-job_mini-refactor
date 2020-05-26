@@ -1,4 +1,4 @@
-import Taro, { useState, useEffect, Config } from '@tarojs/taro'
+import Taro, { useState, useEffect, Config,useDidShow } from '@tarojs/taro'
 import { View, Text, Image, Block, ScrollView } from '@tarojs/components'
 import { useSelector } from '@tarojs/redux'
 import HeaderList from './config'
@@ -37,7 +37,10 @@ export default function PublishedRecruit(){
     page: 1,
     type: id
   })
-
+  // 返回刷新页面
+  useDidShow(()=>{
+    setSearchData({ ...searchData, page: 1 })
+  })
   // 加载数据类别
   const getPublishedRecruitLists = () =>  {
     setLoading(true)
@@ -221,12 +224,14 @@ export default function PublishedRecruit(){
         onScrollToLower={() => getNextPageData()} 
       >
         {lists.map((item,index)=>(
-          <View className='user-published-item' key={item.id} onClick={() => userRouteJump(`/pages/detail/info/index?id=${item.id}`)}>
+          <View className='user-published-item' key={item.id}>
             {item.is_check == '1' && <Image className='published-status-img' src={IMGCDNURL + 'published-recruit-checking.png'} />}
             {item.is_check == '0' && <Image className='published-status-img' src={IMGCDNURL + 'published-recruit-nopass.png'} /> }
             {item.is_end == '2' && <Image className='published-status-img' src={IMGCDNURL + 'published-recruit-end.png'} /> }
+            <View onClick={() => userRouteJump(`/pages/detail/info/index?id=${item.id}`)}>
             <View className='user-published-title overwords'>{ item.title }</View>
             <View className='user-published-content'>{ item.detail }</View>
+            </View>
             <View className='user-published-footer'>
               {item.is_check == '1' &&
               <View className='published-ischeking'>
@@ -237,7 +242,7 @@ export default function PublishedRecruit(){
               {item.is_check != '1' && <View className='user-published-footer-item'>修改</View>}
               {item.is_check == '2' &&
               <Block >
-                <View className='user-published-footer-item' onClick={()=>userStopRecruit(item.id,index)}>停止招工</View>
+                {item.is_end !== '2' && <View className='user-published-footer-item' onClick={() => userStopRecruit(item.id, index)}>停止招工</View>}
               {item.top && item.top_data && item.top_data.is_top == '1' ?
                   <View className='user-published-footer-item' onClick={()=>handlCancel(item.id)}>取消置顶</View> :
                   <View className='user-published-footer-item' onClick={()=>handleTopping(item)}>我要置顶</View>
