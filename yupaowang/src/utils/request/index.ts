@@ -764,3 +764,13 @@ export function jobUpdateTopStatusAction(detail: object): Promise<Inter.Result> 
     data: detail,
   })
 }
+
+// 找活详情
+export function resumeDetailAction(obj: {}): Promise<Inter.resumeDetail > {
+  return doRequestAction({
+    url: api.resumeDetailUrl,
+    method: 'POST',
+    failToast: true,
+    data: obj
+  })
+}

@@ -41,6 +41,7 @@ interface HistoryType {
 interface ParamsType {
   city: areDataChildrenType[],
   province: areDataChildrenType[],
+  whole: areDataChildrenType[],
 }
 
 export default function Distruction() {
@@ -73,6 +74,7 @@ export default function Distruction() {
   const [params, setParams] = useState<ParamsType>({
     city:[],
     province:[],
+    whole:[],
   })
   // 设置参数
   useEffect(()=>{
@@ -139,7 +141,7 @@ export default function Distruction() {
       }
       setData({item:res.data});
       setAre({areData:item})
-      setParams({city:AreParams.city,province:AreParams.province})
+      setParams({city:AreParams.city,province:AreParams.province,whole:[]})
     }else{
       Taro.showModal({
         title: '温馨提示',
@@ -185,8 +187,63 @@ export default function Distruction() {
   }
   // 点击其他省市
   const handleAllAre = (v:any,type:number)=>{
+    console.log(v);
     // 点击市的时候，该市的省取消，点击省的时候,该市的省取消
-    if (v.pid !== '1') {
+    if (v.pid === '0'){
+      // 点击全国，其他热门与省市都为false
+      // 热门城市
+      const hotList = JSON.parse(JSON.stringify(data.item));
+      // 省市
+      const allList = JSON.parse(JSON.stringify(are.areData))
+      let hot,all,list:any=[];
+      // 再次点击
+      if(v.click){
+        // 热门
+        hot = hotList.map((val)=>{
+          if(val.id === v.id){
+            val.click = false
+          }
+          return val;
+        })
+        all = allList.map(val => {
+          if (val.children) {
+            val.children.map(item => {
+              item.click = false;
+            })
+          }
+          return val
+        })
+        // 选择取消
+        // setWhole(false)
+      }else{
+        // 第一次点击
+        hot = hotList.map((val) => {
+          //出了点击的其他都为false
+          if(val.id === v.id) {
+            val.click = true;
+            list.push(val);
+          }else{
+            val.click = false
+          }
+          return val;
+        })
+        // 全部
+        all = allList.map(val => {
+          if (val.children){
+            val.children.map(item => {
+              item.click = false;
+            })
+          }
+          return val
+        })
+        // 选择全国
+        // setWhole(true)
+      }
+      setAre({ areData: all });
+      setData({ item: hot})
+      setParams({ city: [], province: [],whole:list })
+      // 选择市的时候
+    }else if (v.pid !== '1' && v.pid !== '0') {
       const cityItem = JSON.parse(JSON.stringify(params.city));
       // 已选择大于限制大小
       if (cityItem.length) {
@@ -223,6 +280,7 @@ export default function Distruction() {
                 item.click = v.click
               }else{
                 item.click = !v.click
+                val.children[0].click = false
                 }
               }
               return item
@@ -245,11 +303,16 @@ export default function Distruction() {
             })
           }
         })
-        setParams({ city: val, province: provinceList })
+        setParams({ city: val, province: provinceList,whole:[] })
       } else {
         const arr = data.item.map((val) => {
           if (val.id === v.id) {
             val.click = !v.click
+          }else{
+            if(val.pid === '0'){
+              console.log(val)
+              val.click = false;
+            }
           }
           return val;
         })
@@ -261,6 +324,8 @@ export default function Distruction() {
                   item.click = v.click
                 }else{
                   item.click = !v.click
+                  // 清除该组的省
+                  val.children[0].click = false
                 }
               }
               if(item.pid === '1'){
@@ -296,7 +361,7 @@ export default function Distruction() {
             })
           }
         })
-        setParams({ city: val, province: provinceList })
+        setParams({ city: val, province: provinceList,whole:[] })
       }
     }else{
       const provinceItem = JSON.parse(JSON.stringify(params.province));
@@ -364,8 +429,9 @@ export default function Distruction() {
         })
         setAre({ areData: itemList });
         setData({ item: arr })
-        setParams({ city: cityList, province: val })
+        setParams({ city: cityList, province: val,whole:[] })
       } else {
+        console.log(v,'第一次点击省');
         const List = JSON.parse(JSON.stringify(are.areData))
         // 点击市的时候把省取消
         for (let i = 0; i < List.length;i++){
@@ -373,6 +439,8 @@ export default function Distruction() {
             if(List[i].children.length){
               List[i].children.map((val)=>{
                 if(val.id === v.id){
+                  console.log(v);
+                  console.log(val,'222')
                   val.click = !v.click
                 }else{
                   val.click = false
@@ -403,6 +471,10 @@ export default function Distruction() {
         const hot = data.item.map((val)=>{
           if(val.id === v.id){
             val.click = true
+          }else{
+            if(val.pid === '0'){
+              val.click = false
+            }
           }
           return val;
         })
@@ -410,7 +482,7 @@ export default function Distruction() {
         setData({ item: hot});
         const val = JSON.parse(JSON.stringify(provinceItem))
         val.push(v);
-        setParams({ city: cityList, province: val })
+        setParams({ city: cityList, province: val,whole:[] })
       }
     }
   }
@@ -439,7 +511,7 @@ export default function Distruction() {
   }
   // 确认选择
   const handleClick = ()=>{
-    setAreParams(params.city, params.province);
+    setAreParams(params.city, params.province,params.whole);
     Taro.navigateBack({
       delta: 1
     })
@@ -490,7 +562,9 @@ export default function Distruction() {
         <View className='distruction-content-title'>热门城市</View>
         <View className='distruction-content-box'>
           {data.item.map((v)=>(
-            <View onClick={() => { handleAllAre(v,1) }} className={v.click ? 'distruction-content-box-list-click' :'distruction-content-box-list'} key={v.id}>{v.name}</View>
+            <View onClick={() => { handleAllAre(v,1) }} className={v.click ? 'distruction-content-box-list-click' :'distruction-content-box-list'} key={v.id}>{v.name}
+              <Image className={v.pid === '0' ? 'distruction-content-are-content-box-list-img' : 'distruction-content-are-content-box-list-noneimg'} src={`${IMGCDNURL}lpy/recruit/settop-hot.png`} />
+            </View>
           ))}
         </View>
       </View>

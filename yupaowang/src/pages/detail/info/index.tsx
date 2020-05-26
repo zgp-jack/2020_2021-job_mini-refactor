@@ -299,8 +299,6 @@ export default function DetailInfoPage() {
     }
     userRouteJump(`/pages/topping/index?id=${data.id}`)
   }
-  console.log(data.is_end,'xx')
-  console.log(stopHiring)
   return(
     <View className='detailInfo'>
       <WechatNotice />

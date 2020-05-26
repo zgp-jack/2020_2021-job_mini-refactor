@@ -132,3 +132,5 @@ export const jobGetTopAreasUrl: string = REQUESTURL +'job/get-top-areas/'
 export const jobChangeTopAreasUrl: string = REQUESTURL + 'job/change-top-areas/'
 // 取消置顶
 export const jobUpdateTopStatusUrl: string = REQUESTURL + 'job/update-top-status/'
+// 找活名片内容
+export const resumeDetailUrl: string = REQUESTURL + 'resumes/resume-detail/'

@@ -7,11 +7,12 @@ import './index.scss'
 
 interface Distruction{
   AreParams: ParamsType,
-  setAreParams: (city: areDataChildrenType[], province: areDataChildrenType[]) => void,
+  setAreParams: (city: areDataChildrenType[], province: areDataChildrenType[], whole: areDataChildrenType[]) => void,
 }
 interface ParamsType {
   city: areDataChildrenType[],
   province: areDataChildrenType[],
+  whole: areDataChildrenType[],
 }
 interface areDataChildrenType {
   ad_name: string
@@ -64,6 +65,7 @@ export default function Topping() {
   const [params, setParams] = useState<ParamsType>({
     city: [],
     province: [],
+    whole:[]
   })
   // 到期时间
   const [endTime,setEndTime ] = useState<string>('')
@@ -84,7 +86,7 @@ export default function Topping() {
       }
       jobGetTopAreasAction(val).then(res=>{
         if(res.errcode === 'ok'){
-          setParams({city:res.data.top_city,province:res.data.top_province})
+          setParams({city:res.data.top_city,province:res.data.top_province,whole:res.data.top_country})
           setEndTime(res.data.end_time_string)
           setEnd(res.data.end_time)
           setMaxNum(res.data.max_price)
@@ -115,30 +117,43 @@ export default function Topping() {
       }
     })
   },[])
+  const getMyDate = (str)=> {
+    const oDate = new Date(str),
+      oYear = oDate.getFullYear(),
+      oMonth = oDate.getMonth() + 1,
+      oDay = oDate.getDate(),
+      oHour = oDate.getHours(),
+      oMin = oDate.getMinutes(),
+      oSen = oDate.getSeconds(),
+      oTime = oYear + '-' + addZero(oMonth) + '-' + addZero(oDay) + ' ' + addZero(oHour) + ':' +
+      addZero(oMin);
+    return oTime;
+  }
+  const addZero = (num)=> {
+    if (parseInt(num) < 10) {
+      num = '0' + num;
+    }
+    return num;
+  }
   const handleClick = (e:any)=>{
     setDay(list[e.detail.value])
     if(type){
+      console.log('dsadsadasdaddsadasdsad')
       // 增加时间 新增天数*新的单价
       // 修改地区 单价比原单价大，差价*天数，
       // 时间和城市都改变了 新单价大于原单价 ：新价-旧价*剩余天数+新价格*新增天数 新单价小于原单价：旧价格*新增天数
       seteditDay('修改');
       setdisplayTime(true)
       // 时间
-      const time = new Date(endTime);
-      const y = time.getFullYear();
-      const m = time.getMonth() + 1;
-      let d = time.getDate() + (parseInt(e.detail.value) + 1);
-      const h = time.getHours();
-      const mm = time.getMinutes();
-      const add0 = (m) => {
-        return m < 10 ? '0' + m : m
-      }
-      const newTime = (y + '-' + add0(m) + '-' + add0(d) + ' ' + add0(h) + ':' + add0(mm))
+      let all = 86400000 * (parseInt(e.detail.value) + 1) + ((end - 0) * 1000 - 0);
+      // console.log(all)
+      const newTime = getMyDate(all);
       setNewTime(newTime);
       // 获取旧价格
       const oldPrice = maxNum;
       // 获取价格
-      const newPrice = (params.city.length * 10 + params.province.length * 20) * 1;
+      const newPrice = params.whole.length ? 500 * 1 : (params.city.length * 10 + params.province.length * 20) * 1;
+      // const newPrice = (params.city.length * 10 + params.province.length * 20) * 1;
       // 时间差
       let remDay: any = (end - new Date().getTime()/1000) / 86400;
       // 修改区域
@@ -156,7 +171,12 @@ export default function Topping() {
       setNum(money);
     }else{
       if(params){
-        let numData = (params.city.length * 10 + params.province.length * 20) * (parseInt(e.detail.value)+1);
+        let numData = 0;
+        if(params.whole.length){
+          numData = 500 * (parseInt(e.detail.value) + 1);
+        }else{
+          numData = (params.city.length * 10 + params.province.length * 20) * (parseInt(e.detail.value)+1);
+        }
         setNum(numData);
       }
     }
@@ -172,7 +192,8 @@ export default function Topping() {
   const handleTopping = ()=>{
     const province_ids = params.province.map((v)=>v.id);
     const city_ids = params.city.map((v) => v.id);
-    if (!province_ids.length && !city_ids.length){
+    const country_ids = params.whole.map((v) => v.id);
+    if (!province_ids.length && !city_ids.length && !country_ids.length){
       Taro.showModal({
         title: '温馨提示',
         content: '请选择您的置顶城市',
@@ -180,7 +201,9 @@ export default function Topping() {
       })
       return
     }
+    console.log(country_ids.toString())
     const detail = {
+      is_country: country_ids.toString(),
       mid: userInfo.userId,
       province_ids: province_ids.toString(),
       city_ids: city_ids.toString(),
@@ -189,6 +212,7 @@ export default function Topping() {
       time: userInfo.tokenTime,
     }
     const editDetail = {
+      is_country: country_ids.toString(),
       mid: userInfo.userId,
       province_ids: province_ids.toString(),
       city_ids: city_ids.toString(),
@@ -307,17 +331,26 @@ export default function Topping() {
     userRouteJump(`/pages/topping/distruction/index?max_city=${city.max_city}&max_province=${city.max_province}`)
   }
   // 传递方法
-  const transferFun = ({ city, province })=>{
-    setParams({ city, province });
-    calcPrice(city,province);
+  const transferFun = ({ city, province, whole })=>{
+    setParams({ city, province, whole });
+    console.log(city, province, whole,'transferFun')
+    calcPrice(city, province, whole);
   }
-  const calcPrice = (city,province) => {
-    if (city && province){
+  const calcPrice = (city, province, whole) => {
+    // if (whole.length){
+    //   if(type){
+
+    //   }else{
+    //     const numData = 500 * (paramsDay)
+    //     setNum(numData);
+    //   }
+    // }else{
+    if (city || province || whole){
       if(type){
         // 获取旧价格
         const oldPrice = maxNum;
         // 获取价格
-        const newPrice = (city.length * 10 + province.length * 20) * 1;
+        const newPrice = whole.length ? 500 * 1 : (city.length * 10 + province.length * 20) * 1;
         // 时间差
         let remDay: any = (end - new Date().getTime()/1000) / 86400;
         // 修改区域
@@ -349,7 +382,12 @@ export default function Topping() {
         }
         setNum(money);
       }else{
-        const numData = (city.length * 10 + province.length * 20) * (paramsDay)
+        let numData = 0;
+        if(whole.length){
+          numData = 500 * (paramsDay)
+        }else{
+          numData = (city.length * 10 + province.length * 20) * (paramsDay)
+        }
         setNum(numData);
       }
     }
@@ -357,7 +395,7 @@ export default function Topping() {
   // 需要传递的值
   const value: Distruction = {
     AreParams: params,
-    setAreParams: (city: areDataChildrenType[], province: areDataChildrenType[]) => transferFun({ city, province }),
+    setAreParams: (city: areDataChildrenType[], province: areDataChildrenType[], whole: areDataChildrenType[], ) => transferFun({ city, province, whole }),
   }
   // 删除
   const handleDel = (v)=>{
@@ -367,21 +405,29 @@ export default function Topping() {
           params.province.splice(i,1)
         }
       })
-      setParams({ city:params.city,province:params.province})
+      setParams({ city:params.city,province:params.province,whole:params.whole})
+    }else if(v.pid === '0'){
+      params.whole.map((val, i) => {
+        if (val.id === v.id) {
+          params.whole.splice(i, 1)
+        }
+      })
+      setParams({ city: params.city, province: params.province, whole: params.whole })
     }else{
       params.city.map((val, i) => {
         if (val.id === v.id) {
           params.city.splice(i, 1)
         }
       })
-      setParams({ city: params.city, province: params.province })
+      setParams({ city: params.city, province: params.province,whole:params.whole })
     }
     // 积分 
     // 省市大于原来的省市就改变，不然就是直接最大积分
     // 获取旧价格
     const oldPrice = maxNum;
     // 获取价格
-    const newPrice = (params.city.length * 10 + params.province.length * 20) * 1;
+    const newPrice = params.whole.length ? 500 * 1 : (params.city.length * 10 + params.province.length * 20) * 1;
+    // const newPrice = (params.city.length * 10 + params.province.length * 20) * 1;
     // 时间差
     let remDay: any = (end - new Date().getTime()/1000) / 86400;
     // 修改区域
@@ -467,10 +513,17 @@ export default function Topping() {
               <Image src={`${IMGCDNURL}lpy/delete.png`} className='topping-list-image' />
           </View>
         ))}
-          {(params.city.length || params.province.length)&& (params.city.length< 3 || params.province.length<2) &&
-          <View onClick={handleAddJump} className='topping-list-add'>添加更多</View>
-        } 
-        {!params.city.length && !params.province.length && 
+        {params && params.whole.map(v => (
+          <View className='topping-list' onClick={() => handleDel(v)}>
+            {v.name}
+            <Image src={`${IMGCDNURL}lpy/delete.png`} className='topping-list-image' />
+          </View>
+        ))}
+        {/* 判断省市有值不超过3和2的情况 */}
+          {((params.city.length || params.province.length) && (params.city.length < 3 || params.province.length < 2)) &&
+            <View onClick={handleAddJump} className='topping-list-add'>添加更多</View>
+          }
+          {!params.city.length && !params.province.length && !params.whole.length  &&
           <View className='topping-change-btnBox' onClick={() => userRouteJump(`/pages/topping/distruction/index?max_city=${city.max_city}&max_province=${city.max_province}`)}><View className='topping-change-btnBox-btn'>点击选择置顶范围></View></View>
         }
       </View>

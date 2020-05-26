@@ -196,6 +196,13 @@
 					"pathName": "pages/published/recruit/index",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "找活名片",
+					"pathName": "pages/resume/detail/index",
+					"query": "",
+					"scene": null
 				}
 			]
 		}

@@ -808,7 +808,9 @@ export interface jobGetTopAreasData {
   top_province: jobGetTopAreasDataPro[],
   top_city: jobGetTopAreasDataCity[],
   end_time_string:string,
-  end_time:number
+  end_time:number,
+  top_country: jobGetTopAreasDataPro[],
+  top_country_ids: jobGetTopAreasDataCity[],
 }
 export interface jobGetTopAreasDataPro{
   ad_name: string
@@ -827,3 +829,119 @@ export interface jobGetTopAreasDataCity{
   listName?: string
 }
 
+
+// 找活名片详情
+export interface resumeDetail{
+  certificates: resumeDetailCertificates[],
+  errcode:string,
+  info: resumeDetailInfo,
+  operation: resumeDetailOperation,
+  project: resumeDetailProject[],
+}
+export interface resumeDetailOperation{
+  is_collect: number
+  is_zan: number
+  status: number
+}
+export interface resumeDetailInfo{
+  address: string
+  admin_last_edit_time: string
+  authentication: string
+  birthday: string
+  certificate_show: number
+  check: string
+  city: string
+  collect_num: string
+  complain_num: string
+  country: string
+  current_admin: string
+  distance: string
+  experience: string
+  gender: string
+  headerimg: string
+  hometown: string
+  hometown_id: string
+  id: string
+  img: string
+  introduce: string
+  ip_address: string
+  is_end: string
+  is_introduces: string
+  is_read: number
+  last_update_admin: string
+  location: string
+  nation: string
+  nation_id: string
+  note: string
+  number_people: string
+  occupations: []
+  occupations_id: string
+  prof_degree: string
+  prof_degree_str: string
+  progress: string
+  province: string
+  provinces: string
+  show_complain: resumeDetailProjectShowComplain,
+  sort_flag: string
+  source: string
+  tag_id: string
+  tags: resumeDetailProjectTags[]
+  tel: string
+  time: string
+  title: null
+  type: string
+  type_str: string
+  update_time: string
+  user_id: string
+  user_uuid: string
+  username: string
+  uuid: string
+  view_images: null
+  view_num: string
+  zan_num: string
+}
+export interface resumeDetailProjectShowComplain{
+  show_complain: number, 
+  tips_message: string
+}
+export interface resumeDetailProjectTags{
+  id: number
+  label_name: string
+  label_py: string
+}
+export interface resumeDetailProject{
+  check: string
+  city: string
+  city_name: string
+  completion_time: string
+  detail: string
+  fail_case: string
+  id: string
+  image: []
+  images: null
+  project_name: string
+  province: string
+  province_name: string
+  resume_uuid: string
+  start_time: string
+  update_time: string
+  uuid: string
+}
+export interface resumeDetailCertificates{
+  admin_last_edit_time: string
+  certificate_time: string
+  check: string
+  current_admin: string
+  fail_case: string
+  id: string
+  image: []
+  images: string
+  last_update_admin: string
+  name: string
+  resume_uuid: string
+  sort_flag: string
+  time: string
+  update_time: string
+  user_uuid: string
+  uuid: string
+}

@@ -1,0 +1,108 @@
+.resumeDetail{
+  overflow-y: scroll;
+}
+.resumeDetail-basics{
+  background: white;
+  padding: 20px 7%;
+}
+.resumeDetail-basics-heard{
+  display: flex;
+}
+.resumeDetail-basics-heard-img{
+  height: 98px;
+  width: 98px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.resumeDetail-cardcolore {
+  background: white;
+  position: relative;
+  box-shadow: 0 0 1px #e7e6e4;
+  margin-top: 0px;
+}
+.resumeDetail-header {
+  width: 95%;
+  margin: 0 auto;
+  background: white;
+  font-size: 28px;
+  color: #f87a14;
+  text-align: center;
+  line-height: 80px;
+}
+
+.resumeDetail-findingnamecardthree {
+  width: 93%;
+  margin-top: 18px;
+  margin-bottom: 18px;
+  font-size: 0;
+  margin-left: 24px;
+}
+.resumeDetail-findingnamecardthreemobile {
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+.resumeDetail-findingnamecardthreemobile-image {
+  width: 27px;
+  height: 29px;
+}
+.resumeDetail-findingnamecardthreemobile-text {
+  padding: 0 16px;
+}
+.resumeDetail-cardcolore {
+  background: white;
+  position: relative;
+  box-shadow: 0 0 1px #e7e6e4;
+  margin-top: 0px;
+}
+.resumeDetail-introduce{
+  width: 100%;
+  margin: 0 auto;
+  background: white;
+  overflow: hidden;
+  font-size:30px;
+  color: black;
+  padding: 21px 50px;
+  word-break: break-all;
+}
+.resumeDetail-experience{
+  width: 100%;
+  background: white;
+  padding: 0px 7%;
+}
+.resumeDetail-image{
+  height: 20px;
+  width: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 20px;
+}
+.resumeDetail-experience-content{
+  margin-left: 20px;
+  color: #8b8b8a;
+  font-size: 30px;
+  margin-top: 15px;
+}
+.resumeDetail-experience-title{
+  font-size: 30px;
+  font-weight: bold;
+  padding-top: 10px;
+}
+.resumeDetail-experience-content-list{
+  padding-bottom: 15px;
+}
+.resumeDetail-skill{
+  width: 100%;
+  background: white;
+  padding: 0px 7%;
+}
+.resumeDetail-skill-image{
+  width: 185px;
+  height: 185px;
+  margin-left: 16px;
+  margin-top: 16px;
+}
