@@ -945,3 +945,151 @@ export interface resumeDetailCertificates{
   user_uuid: string
   uuid: string
 }
+// 找活详情列表
+export interface recommendList  extends Result{
+  data: recommendListData,
+}
+export interface recommendListData{
+  list: recommendListDataList[],
+  next_page: number,
+  type: number,
+}
+export interface recommendListDataList{
+  id:number,
+  headerimg:string,
+  username:string,
+  birthday:number,
+  certificate:number,
+  type:string,
+  nation:string,
+  experience:string,
+  introduce:string,
+  show_address:string,
+  prof_degree:string,
+  occupations:[]
+}
+// 查看完整电话
+export interface resumesGetTel extends Result{
+  tel: string,
+}
+
+// 赞和分享
+export interface resumeCollect extends Result {
+  show:number,
+}
+
+//完善找活
+export interface resumeList extends Result{
+  data: resumeListData,
+}
+export interface resumeListData {
+  certificate_count: number,
+  certificates:[],
+  content: resumeListDataContent
+  fail_certificate:number,
+  fail_project:number,
+  top_status: resumeListDataTopStatus[],
+  status: resumeListDataStatus[],
+  resume_top: ResumeTop,
+  project_count:number,
+  project:[],
+  popup_text:[],
+  is_popup:number,
+  is_introduces:string,
+  introduces: resumeListDataIntroduces,
+  info: resumeListDataInfo
+}
+export interface resumeListDataContent{
+  check_tips_string: string,
+  show_tips: number,
+}
+export interface ResumeTop {
+  has_top: number
+  is_show_tips: number
+  is_top: number
+  is_top_text: string
+  is_top_to_text: string
+  top_tips_string: string,
+  top_provinces_str: ResumeTopStr[],
+  start_time_str: number,
+  end_time_str: number,
+}
+export interface ResumeTopStr {
+  name:string,
+}
+export interface resumeListDataIntroduces {
+  check: string
+  experience: string
+  experience_str: string
+  hometown: string
+  hometown_id: string
+  number_people: string
+  prof_degree: string
+  prof_degree_str: string
+  tag_id: string
+  tags: []
+  type: string
+  type_str: string
+}
+export interface resumeListDataTopStatus{
+  id: number
+  name: string
+}
+export interface resumeListDataStatus{
+  id: number
+  name: string
+}
+export interface resumeListDataInfo {
+  ad_code: number
+  address: string
+  admin_last_edit_time: string
+  authentication: string
+  birthday: any
+  certificate_show: number
+  check: string
+  city: string
+  collect_num: string
+  complain_num: string
+  country: string
+  current_admin: string
+  distance: string
+  experience: string
+  gender: string
+  headerimg: string
+  hometown: string
+  id: string
+  img: string
+  introduce: string
+  ip_address: string
+  is_end: string
+  is_introduces: string
+  last_update_admin: string
+  location: string
+  miniInfoOccupations: []
+  nation: string
+  nation_id: string
+  note: string
+  number_people: string
+  occupations: []
+  occupations_id: string
+  prof_degree: string
+  progress: string
+  province: string
+  provinces: string
+  ranking: string
+  sort_flag: string
+  source: string
+  tags: []
+  tel: string
+  time: string
+  title: null
+  type: string
+  update_time: string
+  user_id: string
+  user_uuid: string
+  username: string
+  uuid: string
+  view_images: null
+  view_num: string
+  zan_num: string
+}

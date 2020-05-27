@@ -1,0 +1,332 @@
+.newJob{
+  overflow-y: scroll;
+  margin-bottom: 200px;
+}
+.heard {
+  width: 100%;
+  margin: 0 auto;
+  height: 80px;
+  background: white;
+  font-size: 31px;
+  color: #343434;
+  line-height: 80px;
+  text-align: center;
+  letter-spacing: 4px;
+  font-weight: bold;
+  margin-top: 20px;
+}
+.card{
+  width: 100%;
+  padding: 0 27px;
+  background: white;
+}
+.card-otext {
+  margin-top: 14px;
+  font-size: 30px;
+  font-weight: bold;
+  letter-spacing: 4px;
+  color: #000;
+  display: flex;
+  position: relative;
+  padding-right: 150px;
+}
+.card-otext-lang {
+  margin-top: 14px;
+  width: 150px;
+  background: #dedddd;
+  height: 14px;
+  border-radius: 8px;
+  position: relative;
+}
+.card-otext-lang-olang {
+  background: #09f;
+  height: 14px;
+  border-radius: 8px;
+  position: absolute;
+  padding: 0;
+  margin: 0;
+}
+.card-otext-olangw {
+  font-size: 30px;
+  color: #f87a14;
+  margin: 3px 0 0 30px;
+  font-weight: 500;
+}
+.isline {
+  margin-bottom: 0px;
+  font-size: 30px;
+  color: #09f;
+  margin-left: 13px;
+  position: relative;
+  line-height: 30px;
+}
+.isline-shareliveone {
+  margin: 0;
+  padding: 0;
+  background-color: white;
+  border-radius: 0;
+  margin-bottom: 8px;
+  font-size: 26px;
+  color: #09f;
+  height: 30px;
+  line-height: 30px;
+  text-align: left;
+  display: inline-block;
+}
+.isline-sontwoview {
+  color: #626160;
+  font-size: 30px;
+  font-weight: bold;
+  position: absolute;
+  right: 30px;
+}
+.card-otext-num {
+  color: #09f;
+  font-size: 30px;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 78px;
+}
+.ranking{
+  margin-left: 14px;
+  margin-right: 30px;
+  border-top: 1px dashed #b3b3b2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 0;
+  font-size: 30px;
+  color: #6F6C6C;
+}
+.ranking-last {
+  margin-left: 14px;
+  margin-right: 30px;
+  border-top: 1px dashed #b3b3b2;
+  border-bottom: 1px dashed #b3b3b2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 0;
+  font-size: 30px;
+  color: #6F6C6C;
+}
+.ranking-img{
+  width: 34px;
+  height: 36px;
+  margin: 0 auto;
+  margin-right: 12px;
+  justify-items: center;
+  vertical-align: middle;
+}
+.ranking-go {
+  color: #09f;
+}
+.topselect_box {
+  width: 30%;
+  height: 70%;
+  border-radius: 14px;
+  position: relative;
+  /* margin-top: 28px; */
+  margin-right: 1.5%;
+  font-size: 22px;
+}
+.topselect_box .select {
+  display: flex;
+  justify-content: space-around;
+}
+.topselect_box .select .select_text {
+  font-size: 30px;
+  color: #ff1800;
+  line-height: 28px;
+  text-align: right;
+  flex: 1;
+  padding-right: 6px;
+
+}
+
+.topselect_box .select .select_textone {
+  font-size: 30px;
+  color: #078f1e;
+  line-height: 28px;
+  text-align: right;
+  flex: 1;
+  padding-right: 6px;
+
+}
+
+.topselect_box .select image {
+  width: 24px;
+  height: 22px;
+  display: block;
+  margin-top: 4px;
+
+  transition: transform 0.3s;
+}
+.toptime {
+  margin-top: 10px;
+  font-size: 30px;
+  color: #6F6C6C;
+  line-height: 40px;
+}
+
+.toptime-view {
+  margin-left: 58px;
+  margin-right: 30px;
+}
+
+.toptime .proviceop {
+  margin-right: 12px;
+}
+
+.toptime .proviceop:last-child {
+  margin-right: 0px;
+}
+.topdetail {
+  color: #0099ff;
+  font-size: 30px;
+  margin-left: 58px;
+  padding: 22px 0;
+}
+.findingnamecardthree {
+  width: 93%;
+  margin-top: 18px;
+  margin-bottom: 18px;
+  font-size: 0;
+  margin-left: 24px;
+}
+.findingnamecardthreemobile {
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+.findingnamecardthree-image {
+  width: 27px;
+  height: 29px;
+}
+.findingnamemobileone{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.cardcolore {
+  background: white;
+  position: relative;
+  box-shadow: 0 0 1px #e7e6e4;
+  margin-top: 20px;
+}
+.findingnamecardtwo {
+  width: 93%;
+  margin: 0 auto;
+  background: white;
+  overflow: hidden;
+  padding-bottom: 40px;
+  position: relative;
+}
+.findingnamecardtwothree {
+  width: 100%;
+  display: block;
+  color: #828181;
+  text-align: center;
+  font-size: 30px;
+  margin-top: 45px;
+  font-weight: bold;
+}
+.findingnamecardtwofour {
+  width: 138px;
+  height: 46px;
+  background: #09f;
+  color: white;
+  text-align: center;
+  line-height: 46px;
+  font-size: 30px;
+  margin: 0 auto;
+  margin-top: 28px;
+  border-radius: 22px;
+}
+.findingnamecardeighttwo {
+  width: 222px;
+  height: 46px;
+  background: #09f;
+  color: white;
+  text-align: center;
+  line-height: 46px;
+  font-size: 30px;
+  margin: 0 auto;
+  margin-top: 22px;
+  border-radius: 22px;
+}
+.cardoneson {
+  width: 100%;
+  background-color: white;
+  height: 80rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.cardonesonone {
+  font-size: 30rpx;
+  color: #343434;
+  margin-top: 25rpx;
+  height: 28rpx;
+  font-weight: bold;
+}
+.cardonesonone-view {
+  display: inline;
+}
+.cardonesonone-image{
+   margin-left: 18rpx;
+   width: 25rpx;
+   height: 24rpx;
+   line-height: 28rpx;
+}
+.cardonesonone-text{
+ margin-left: 18rpx;
+ width: 24%;
+ height: 28rpx;
+ line-height: 28rpx;
+}
+.select_box {
+  width: 30%;
+  height: 70%;
+  border-radius: 14rpx;
+  position: relative;
+  margin-top: 28rpx;
+  margin-right: 1.5%;
+  font-size: 22rpx;
+}
+.select_box .select {
+  display: flex;
+  justify-content: space-around;
+}
+.select_box .select .select_text {
+  font-size: 30rpx;
+  color: #ff1800;
+  line-height: 28rpx;
+  text-align: right;
+  flex: 1;
+  padding-right: 6rpx;
+
+}
+.select_box .select .select_textone {
+  font-size: 30rpx;
+  color: #078f1e;
+  line-height: 28rpx;
+  text-align: right;
+  flex: 1;
+  padding-right: 6rpx;
+}
+.select_box .select-image {
+  width: 24rpx;
+  height: 22rpx;
+  display: block;
+  margin-top: 4rpx;
+
+  transition: transform 0.3s;
+}

@@ -134,3 +134,13 @@ export const jobChangeTopAreasUrl: string = REQUESTURL + 'job/change-top-areas/'
 export const jobUpdateTopStatusUrl: string = REQUESTURL + 'job/update-top-status/'
 // 找活名片内容
 export const resumeDetailUrl: string = REQUESTURL + 'resumes/resume-detail/'
+// 找活名片相关推荐
+export const recommendListUrl: string = REQUESTURL + 'resumes/resume-recommend-list/'
+// 找活名片查看完整电话
+export const resumesGetTelUrl: string = REQUESTURL + 'resumes/get-tel/'
+// 赞
+export const resumeSupportUrl: string = REQUESTURL + 'resumes/resume-support/'
+// 收藏
+export const resumeCollectUrl: string = REQUESTURL + 'resumes/resume-collect/'
+// 找活名片完善信息
+export const resumeListUrl: string = REQUESTURL + 'resumes/resume-list/'

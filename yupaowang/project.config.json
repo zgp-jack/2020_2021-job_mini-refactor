@@ -203,6 +203,26 @@
 					"pathName": "pages/resume/detail/index",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "项目经验",
+					"pathName": "pages/resume/projectList/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "技能证书",
+					"pathName": "pages/resume/skillList/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "新增找活",
+					"pathName": "pages/resume/newJob/index",
+					"scene": null
 				}
 			]
 		}

@@ -774,3 +774,48 @@ export function resumeDetailAction(obj: {}): Promise<Inter.resumeDetail > {
     data: obj
   })
 }
+// 找活详情列表
+export function recommendListAction(obj: {}): Promise<Inter.recommendList> {
+  return doRequestAction({
+    url: api.recommendListUrl,
+    method: 'POST',
+    failToast: true,
+    data: obj
+  })
+}
+
+// 找活详情查看电话
+export function resumesGetTelAcrion(obj: {}): Promise<Inter.resumesGetTel> {
+  return doRequestAction({
+    url: api.resumesGetTelUrl,
+    method: 'POST',
+    failToast: true,
+    data: obj
+  })
+}
+// 赞
+export function resumeSupportAction(obj: {}): Promise<Inter.resumeCollect> {
+  return doRequestAction({
+    url: api.resumeSupportUrl,
+    method: 'POST',
+    failToast: true,
+    data: obj
+  })
+}
+// 分享
+export function resumeCollectAction(obj: {}): Promise<Inter.resumeCollect> {
+  return doRequestAction({
+    url: api.resumeCollectUrl,
+    method: 'POST',
+    failToast: true,
+    data: obj
+  })
+}
+// 找活名片完善
+export function resumeListAction(): Promise<Inter.resumeList> {
+  return doRequestAction({
+    url: api.resumeListUrl,
+    method: 'POST',
+    failToast: true,
+  })
+}

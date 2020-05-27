@@ -35,7 +35,6 @@ export default function CollectionResumeList({ data = [], onHandlerClick, bottom
       { data && data.map((item) => (
         <Block key={item.id}>
           {
-            // item.map((d) => (
             <View className='resume-list-item' onClick={() => onHandleClick(item.resume.check)} key={item.id}>
               <View className='resume-list-header'>
                   <Image className='resume-list-user' src={item.resume.headerimg} />
@@ -44,8 +43,6 @@ export default function CollectionResumeList({ data = [], onHandlerClick, bottom
                       <Text className='resume-userinfo-name'>{item.resume.username}</Text>
                     <Text className='resume-userinfo-birthday'>{item.resume.birthday || 0 }岁</Text>
                     {item.resume.certificate == 1 && < Image className='resume-userinfo-img' src={`${IMGCDNURL}newresume-infolist-jnz.png?t=1`}/>}
-                    {/* <Text className='resume-userinfo-sex'>男</Text> */}
-                      {/* <Text className='resume-userinfo-age'>{item.resume.birthday}岁</Text> */}
                   </View>
                     <Text className='resume-list-type'>{item.resume.type}</Text>
                   <View className='resume-otherinfo'>
@@ -53,11 +50,6 @@ export default function CollectionResumeList({ data = [], onHandlerClick, bottom
                       <Text className='resume-otherinfo-text'>{item.resume.prof_degree}</Text>
                       <Text className='resume-otherinfo-text'>{item.resume.experience}</Text>
                   </View>
-                  {/* <View className='resume-list-tags'>
-              <Text className='resume-list-tags-item'>任劳任怨</Text>
-              <Text>任劳任怨</Text>
-              <Text>任劳任怨</Text>
-            </View> */}
                 </View>
               </View>
               <View className='resume-list-works'>
@@ -67,13 +59,10 @@ export default function CollectionResumeList({ data = [], onHandlerClick, bottom
               </View>
                 <View className='resume-list-content overwords'>{item.resume.introduce}</View>
               <View className='resume-list-footer'>
-                {/* <Image className='resume-list-loc' src={IMGCDNURL + 'lpy/biaoqian.png'} /> */}
                   <View className='resume-list-loctxt overwords'>{item.resume.time}</View>
-                  {/* <Text className='resume-list-time'>{item.resume.prof_degree}</Text> */}
                   <Button size='mini' className='resume-list-button' onClick={() => { onHandlerClick(item.resume_uuid)}}>取消收藏</Button>
               </View>
             </View>
-          // ))
           }
         </Block>
       ))}
