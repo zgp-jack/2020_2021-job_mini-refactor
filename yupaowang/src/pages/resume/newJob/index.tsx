@@ -15,6 +15,11 @@ interface DataType {
     sort_flag:string,
     username:string,
     nation:string,
+    occupations:[],
+    tel:string,
+    address:string,
+    introduce:string,
+    note:string,
   },
   resume_top:{
     is_top:number,
@@ -26,11 +31,12 @@ interface DataType {
   content:{
     show_tips:number,
     check_tips_string:string,
+  },
+  introduces:{
+    experience:string
   }
 }
-interface SelectdataType {
-  name:string
-}
+
 export default function NewJob() {
   
   const [data,setData] = useState<DataType>({
@@ -40,6 +46,11 @@ export default function NewJob() {
       sort_flag:'',
       username:'',
       nation:'',
+      tel:'',
+      address:'',
+      introduce:'',
+      note:'',
+      occupations:[],
     },
     resume_top:{
       is_top: 0,
@@ -51,6 +62,9 @@ export default function NewJob() {
     content:{
       show_tips:0,
       check_tips_string:''
+    },
+    introduces:{
+      experience:''
     }
   })
   const [showcomplete, setShowcomplete ] = useState<boolean>(true)
@@ -59,7 +73,7 @@ export default function NewJob() {
   const [nopassre, setNopassre] = useState<boolean>(true)
   const [showpassre, setShowpassre] = useState<boolean>(false)
   const [index ,setIndex ] = useState<number>(0)
-  const [selectdata, setSelectdata] = useState<SelectdataType[]>([])
+  const [selectdata, setSelectdata] = useState<string[]>([])
   const [showtop, setShowtop] =useState<boolean>(false)
   const [checkone, setCheckone] = useState<boolean>(false)
   const [headerimg, setHeaderimg] = useState<string>('')
@@ -70,29 +84,64 @@ export default function NewJob() {
   const [checkonef, setCheckonef] = useState<string>('4568')
   const [showskill, setShowskill] = useState<boolean>(true)
   const [occupations, setOccupations] = useState<string[]> ([])
+  const [checkstatus, setCheckstatus] =useState<boolean>(true)
+  const [intro, setIntro ] = useState<boolean>(true);
+  const [introne, serIntrone] = useState<boolean>(false)
+  // 显示没有数据完善人员信息
+  const [selfintro, setselfintro] =useState<boolean>(false)
+  // 个人资料审核
+  const [ressonone, setRessonone] = useState<boolean>(false)
+  const [showdetail, setShowdetail] = useState<boolean>(true)
+  const [checktwo, setChecktwo] = useState<boolean>(false)
+  const [selfintrone, setSelfintrone] = useState<boolean>(false)
   useEffect(()=>{
     resumeListAction().then(res=>{
       console.log(res);
       if(res.errcode == "200"){
-        setData({info:res.data.info,resume_top:res.data.resume_top})
+        setData({ info: res.data.info, resume_top: res.data.resume_top, content: res.data.content, introduces:res.data.introduces})
+        const list = res.data.top_status.map(v=>v.name);
+        console.log(list)
+        setSelectdata(list)
         if (res.data.info.uuid && res.data.info.is_introduces != '0' && res.data.project.length != 0 && res.data.certificates.length != 0 ){
           setShowcomplete(false)
         }else{
           setShowcomplete(true)
         }
-        setShowtopone(true)
-
+        if(res.data.info.uuid){
+          setShowtopone(true)
+        }else{
+          setShowtopone(false)
+        }
+        setShowpassre(true)
         if (res.data.info.check == "0") {
           setPassre(false)
+          setRessonone(false)
         }
         if (res.data.info.check == "1"){
           setNopassre(false)
+          setRessonone(false)
         }
         if (res.data.info.check == '1'){
           setCheckone(true)
+          setChecktwo(true)
         }else{
           setCheckone(false)
+          setChecktwo(false)
         }
+        if (showdetail){
+          if (res.data.info.check == "0") {
+            setRessonone(true);
+          }
+          setShowdetail(false);
+        }
+        if (res.data.is_introduces == '1'){
+          setSelfintrone(true)
+        } else if (res.data.is_introduces == '0'){
+          setSelfintrone(false)
+        }
+        setIntro(false)
+        serIntrone(true)
+        setHeaderimg(res.data.info.headerimg)
         setShowskill(false)
         setCheckonef(res.data.info.check)
         setAuthenticationimg(res.data.info.authentication)
@@ -235,10 +284,12 @@ export default function NewJob() {
               {/* <text class='select_text' wx: if="{{ index == 0}}">{{ selectData[index].name }}</text>
               <text class='select_text' wx: if="{{ index== 1}}">{{ selectData[index].name }}</text>
               <image class='select_img' src='{{subscripted}}' wx: if="{{ checkstatus }}"></image> */}
-              {index == 0 && <Text className='select_text'>{selectdata[index].name}</Text>}
-              {index == 1 && <Text className='select_text'>{selectdata[index].name}</Text>}
+              {index == 0 && <Text className='select_text'>{selectdata[index]}</Text>}
+              {index == 1 && <Text className='select_text'>{selectdata[index]}</Text>}
               {/* wx: if="{{ checkstatus }}" */}
+              {checkstatus && 
               <Image className='select-img' src={`${IMGCDNURL}select.png`} />
+              }
             </View>
             }
             {!passre && nopassre && 
@@ -254,6 +305,104 @@ export default function NewJob() {
             </View>
           }
         </View>
+        }
+        {/* 基本资料 */}
+        <View className="cardcolore">
+          {/* wx: if="{{ showtopone }}" */}
+          {showtopone &&
+            <View className="cardtwo" >
+              <Image className="link" src={`${IMGCDNURL}lpy/newresume-linktag.png`} />
+              <Image className="linkone" src={`${IMGCDNURL}lpy/newresume-linktag.png`} />
+              <View className="cardonetwof">
+                {/* wx: if="{{ checkone&& show_tips == 1}}" */}
+                {checkone && data.content.show_tips == 1 && <Image className="checkone" src={`${IMGCDNURL}lpy/audit.png`} />}
+                <View className="cardtwosonone">
+                  <View className="cardtwosononeimg">
+                    <View className='oimg'>
+                      <Image className='oimg-image' src={headerimg}></Image>
+                    </View>
+                    <View className="oimgone">
+                      <Text className="otext">{data.info.username}</Text>
+                      {/* {wx: if="{{ authenticationimg == 2}}"} */}
+                      {authenticationimg == '2' &&
+                        <Image src={`${IMGCDNURL}new-list-realname-icon.png`}></Image>
+                      }
+                      {certificate_show == 1 &&
+                        <Image src={`${IMGCDNURL}new-list-jnzs-icon.png?t=1`}></Image>
+                      }
+                      <View className="otextone">
+                        <Text>{sex}</Text>
+                        {age &&
+                          <Text className={sex ? 'ochange' : ''} >{age}</Text>
+                        }
+                        <Text className={age ? 'ochange' : ''}>{data.info.nation}</Text>
+                      </View>
+                    </View>
+                  </View>
+                  {!checkone && checkonef != '0' &&
+                    <View className="cardtwosontwo">
+                      <Text >编辑</Text>
+                    </View>
+                  }
+                  {checkonef == '0' &&
+                    <View className="cardtwosontwo">
+                      <Text>待修改</Text>
+                    </View>
+                  }
+                </View>
+                <View className="lineone">
+                  <View className="linezo">
+                    <View className='cworkotype'>
+                      <View className="ocworkotype">工种</View>
+                      <View className="ocworkotypeoo">
+                        {/* wx: if="{{!showskill}}" */}
+                        {!showskill &&
+                          <View className="ocworkotyp">
+                            <View className='ocworkotyptu'>
+                            {data.info.occupations.map((v, i) => (
+                                <View key={i + i}>{v}</View>
+                              ))}
+                            </View>
+                          </View>
+                        }
+                        {showskill &&
+                          <View className="ocworkotyp">
+                            <View className='oimg'>
+                            {data.info.occupations.map((v, i) => (
+                                <View className='oimg' key={i + i}>{v}</View>
+                              ))}
+                            </View>
+                          </View>
+                        }
+                      </View>
+                    </View>
+                    <View className="cardotext">
+                      <Text className="oworkotext">手机</Text>
+                      <Text className="workotextone">{data.info.tel}</Text>
+                    </View>
+                    <View className="cardotext">
+                      <Text className="oworkotext">所在地区</Text>
+                      <Text className="workotextone">{data.info.address}</Text>
+                    </View>
+                    <View className="cardotext">
+                      <Text className="oworkotext">自我介绍</Text>
+                      <Text className="workotextone">{data.info.address}</Text>
+                    </View>
+                  </View>
+                </View>
+                {/* intro */}
+                {intro && <View className="content" >{data.info.introduce}</View>}
+                {/* introne */}
+              {introne && <View className="contentone">{data.info.introduce}</View>}
+              </View>
+            </View>}
+        </View>
+        {ressonone && 
+          <View className="cardcoloreno">
+            <View className="nopass">
+              <Text className='nopass-text'>个人资料审核失败原因：</Text> {data.info.note}
+            </View>
+          </View>
         }
         </View>
       {/*   没有信息 */}
@@ -274,90 +423,49 @@ export default function NewJob() {
           <View className="findingnamemobileone">
             <Text>人员信息</Text>
           </View>
+          {!checktwo && checkonef != '0' && 
+          <View className="cardthreeone" >编辑</View>
+          }
+          {!checktwo && checkonef == '0' &&
+            <View className="cardthreeone" >编辑</View>
+          }
         </View>
       </View>
       {/* 有信息 */}
-      <View className="cardcolore">
-        {/* wx: if="{{ showtopone }}" */}
-        {showtopone && 
-        <View className="cardtwo" >
-          <Image className="link" src={`${IMGCDNURL}lpy/newresume-linktag.png`}/>
-          <Image className="linkone" src={`${IMGCDNURL}lpy/newresume-linktag.png`} />
-          <View className="cardonetwof">
-            {/* wx: if="{{ checkone&& show_tips == 1}}" */}
-            {checkone && data.content.show_tips == 1 && <Image className="checkone" src={`${IMGCDNURL}lpy/audit.png`} />}
-            <View className="cardtwosonone">
-              <View className="cardtwosononeimg">
-                <View className='oimg'>
-                  <Image src={headerimg}></Image>
-                </View>
-                <View className="oimgone">
-                  <Text className="otext">{data.info.username}</Text>
-                  {/* {wx: if="{{ authenticationimg == 2}}"} */}
-                  {authenticationimg == '2' && 
-                    <Image src={`${IMGCDNURL}new-list-realname-icon.png`}></Image>
-                  }
-                  {certificate_show == 1 && 
-                    <Image src={`${IMGCDNURL}new-list-jnzs-icon.png?t=1`}></Image>
-                  }
-                  <View className="otextone">
-                    <Text>{ sex }</Text>
-                    {age && 
-                    <Text className={sex?'ochange':''} >{ age }</Text>
-                    }
-                  <Text className={age?'ochange':''}>{ data.info.nation }</Text>
-                  </View>
-                </View>
-              </View>
-              {!checkone && checkonef != '0' && 
-              <View className="cardtwosontwo">
-                <Text >编辑</Text>
-              </View>
-            }
-              {checkonef == '0' && 
-                <View className="cardtwosontwo">
-                <Text>待修改</Text>
-              </View>
-            }
-            </View>
-            <View className="lineone">
-              <View className="linezo">
-                <View className='cworkotype'>
-                  <View className="ocworkotype">工种</View>
-                    <View className="ocworkotypeoo">
-                    {/* wx: if="{{!showskill}}" */}
-                    {!showskill && 
-                      <View className="ocworkotyp">
-                        <View className='ocworkotyptu'>
-                            {occupations.map((v,i)=>(
-                              <View key={i+i}>{v}</View>
-                            ))}
-                        </View>
-                      </View>
-                    }
-                  {showskill && 
-                    <View className="ocworkotyp">
-                      <View className='oimg'>
-                      {occupations.map((v, i) => (
-                        <View className='oimg' key={i + i}>{v}</View>
-                      ))}
-                      </View>
-                    </View>
-                  }
-                </View>
-                </View>
+      <View className='cardcolore'>
+        {!selfintrone && 
+          <View className='cardtwoif'>
+          {/*  wx: if="{{ checktwo&& show_tips == 1}}" */}
+          {checktwo && data.content.show_tips == 1 && 
+          <Image className="checktwo" src={`${IMGCDNURL}lpy/audit.png`}/>
+          }
+          <View className="lineone">
+            <View className="linezo">
+              <View className="cardotext">
+                <Text className="oworkotext">工龄</Text>
+                <Text className="workotextone">{data.introduces.experience}年</Text>
               </View>
             </View>
           </View>
-        </View>}
+          </View>
+        }
       </View>
+      {/* {!ressonone && 
+        <View className="cardcoloreno">
+          <View className="nopass">
+            <Text className='nopass-text'>个人资料审核失败原因：</Text> { data.info.note }
+          </View>
+        </View>
+      } */}
       {/*   没有信息 */}
+      {selfintro && 
       <View className="cardcolore">
         <View className="findingnamecardtwo">
           <Text className="findingnamecardtwothree">完善人员信息，能让老板充分了解您或您的队伍</Text>
           <View className="findingnamecardtwofour">去完善</View>
         </View>
       </View>
+      }
       {/* 项目经验 */}
       <View className='findingnamecardthree'>
         <View className='findingnamecardthreemobile'>

@@ -265,68 +265,347 @@
 .cardoneson {
   width: 100%;
   background-color: white;
-  height: 80rpx;
+  height: 80px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 .cardonesonone {
-  font-size: 30rpx;
+  font-size: 30px;
   color: #343434;
-  margin-top: 25rpx;
-  height: 28rpx;
+  margin-top: 25px;
+  height: 28px;
   font-weight: bold;
 }
 .cardonesonone-view {
   display: inline;
 }
 .cardonesonone-image{
-   margin-left: 18rpx;
-   width: 25rpx;
-   height: 24rpx;
-   line-height: 28rpx;
+   margin-left: 18px;
+   width: 25px;
+   height: 24px;
+   line-height: 28px;
 }
 .cardonesonone-text{
- margin-left: 18rpx;
+ margin-left: 18px;
  width: 24%;
- height: 28rpx;
- line-height: 28rpx;
+ height: 28px;
+ line-height: 28px;
 }
 .select_box {
   width: 30%;
   height: 70%;
-  border-radius: 14rpx;
+  border-radius: 14px;
   position: relative;
-  margin-top: 28rpx;
+  margin-top: 28px;
   margin-right: 1.5%;
-  font-size: 22rpx;
+  font-size: 22px;
 }
 .select_box .select {
   display: flex;
   justify-content: space-around;
 }
 .select_box .select .select_text {
-  font-size: 30rpx;
+  font-size: 30px;
   color: #ff1800;
-  line-height: 28rpx;
+  line-height: 28px;
   text-align: right;
   flex: 1;
-  padding-right: 6rpx;
+  padding-right: 6px;
 
 }
 .select_box .select .select_textone {
-  font-size: 30rpx;
+  font-size: 30px;
   color: #078f1e;
-  line-height: 28rpx;
+  line-height: 28px;
   text-align: right;
   flex: 1;
-  padding-right: 6rpx;
+  padding-right: 6px;
 }
 .select_box .select-image {
-  width: 24rpx;
-  height: 22rpx;
+  width: 24px;
+  height: 22px;
   display: block;
-  margin-top: 4rpx;
+  margin-top: 4px;
 
   transition: transform 0.3s;
+}
+
+.cardtwo {
+  width: 93%;
+  margin: 0 auto;
+  background-color: white;
+  padding-bottom: 6px;
+  position: relative;
+}
+.link {
+  width: 6px;
+  height: 38px;
+  position: absolute;
+  left: 24px;
+  top: -28px;
+}
+.linkone {
+  width: 6px;
+  height: 38px;
+  position: absolute;
+  right: 24px;
+  top: -28px;
+}
+
+.cardonetwof {
+  // overflow: hidden;
+}
+.cardtwo .cardtwosonone {
+  width: 100%;
+  margin-top: 22px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  position: relative;
+}
+
+.cardtwosonone .cardtwosononeimg {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  padding-right: 120px;
+}
+.cardtwosonone .cardtwosononeimg .oimg {
+  height: 98px;
+  width: 98px;
+  border-radius: 50%;
+  margin-left: 14px;
+}
+.cardtwosonone .cardtwosononeimg .oimg-image {
+  height: 98px;
+  width: 98px;
+  border-radius: 50%;
+}
+.cardtwosonone .cardtwosononeimg .oimgone {
+  padding-left: 6px;
+}
+
+.cardtwosonone .cardtwosononeimg .oimgone .otext {
+  color: #343434;
+  font-size: 32px;
+  font-weight: bold;
+}
+.cardtwosonone .cardtwosononeimg .oimgone .otextone {
+  font-size: 30px;
+  color: black;
+  margin-top: 6px;
+}
+.cardtwosonone .cardtwosononeimg .oimgone .otextone .ochange {
+  margin-left: 12px;
+}
+.cardtwo .cardtwosontwo {
+  font-size: 30px;
+  color: #09f;
+  line-height: 88px;
+  position: absolute;
+  right: 0;
+}
+.lineone {
+  position: relative;
+  margin-bottom: 8px;
+  margin-top: 18px;
+}
+.cworkotype {
+  position: relative;
+  width: 100%;
+  margin-top: 12px;
+  padding-left: 190px;
+  min-height: 30px;
+  margin-bottom: -12px;
+}
+.cworkotype::before {
+  position: absolute;
+  content: '';
+  width: 11px;
+  height: 11px;
+  background: url(http://cdn.yupao.com/miniprogram/images/newjobinfo-steps.png?t=11) no-repeat;
+  background-size: 100% 100%;
+  left: 14px;
+  margin-left: -5px;
+  top: 10px;
+}
+.ocworkotype {
+  width: 20.5%;
+  left: 0;
+  top: 0;
+  display: inline-block;
+  color: #555;
+  font-size: 30px;
+  text-align: justify;
+  position: absolute;
+  margin-left: 52px;
+}
+
+.cworkotype .ocworkotypeoo {
+  padding-right: 30px;
+}
+
+.cworkotype .ocworkotype::after {
+  content: '';
+  width: 100%;
+  display: inline-block;
+  overflow: hidden;
+  height: 0;
+}
+.cworkotype .ocworkotype::before {
+  content: ':';
+  /* overflow: hidden; */
+  height: 100%;
+  width: 6px;
+  position: absolute;
+  right: -4px;
+}
+.ocworkotyp {
+  position: relative;
+  left: 28px;
+  font-size: 0;
+}
+.ocworkotyp .ocworkotyptu {
+  color: rgba(42, 42, 42, 1);
+  font-size: 28px;
+  display: inline-block;
+  padding: 4px 10px;
+  text-align: center;
+  margin-right: 17px;
+  margin-bottom: 12px;
+  background: rgba(238, 237, 239, 1);
+  border-radius: 6px;
+}
+
+.ocworkotyp .ocworkotyptu:nth-last-child(1) {
+  margin-right: 0;
+}
+.ocworkotyp .oimg {
+  color: black;
+  font-size: 30px;
+  display: inline-block;
+  padding-left: 5px;
+  padding-right: 6px;
+  text-align: center;
+  margin-right: 17px;
+  margin-bottom: 8px;
+}
+.select-img {
+  width: 24px;
+  height: 22px;
+  display: block;
+  margin-top: 4px;
+}
+
+.cardotext {
+  position: relative;
+  width: 100%;
+  display: flex;
+  margin-top: 12px;
+}
+
+.cardotext .oworkone {
+  display: flex;
+  margin-left: 54px;
+}
+
+.cardotext::before {
+  position: absolute;
+  content: '';
+  width: 11px;
+  height: 11px;
+  background: url(http://cdn.yupao.com/miniprogram/images/newjobinfo-steps.png?t=11) no-repeat;
+  background-size: 100% 100%;
+  left: 14px;
+  margin-left: -5px;
+  top: 10px;
+
+}
+
+.cardotext .oworkotext {
+  width: 20.5%;
+  margin: 0;
+  padding: 0;
+  height: 34px;
+  display: inline-block;
+  color: #555;
+  font-size: 30px;
+  text-align: justify;
+  position: relative;
+  margin-left: 52px;
+}
+.cardotext .oworkotext::after {
+  content: '';
+  width: 100%;
+  display: inline-block;
+  overflow: hidden;
+  height: 0;
+}
+.cardotext .oworkotext::before {
+  content: ':';
+  height: 100%;
+  width: 6px;
+  position: absolute;
+  right: -4px;
+}
+
+.cardotext .workotextone {
+  color: #222;
+  font-size: 30px;
+  padding-left: 28px;
+  width: 70%;
+}
+
+.content {
+  font-size: 30px;
+  color: black;
+  margin-left: 8.5%;
+  margin-bottom: 8px;
+  padding-right: 2%;
+}
+
+.contentone {
+  font-size: 30px;
+  color: black;
+  margin-left: 7.5%;
+  margin-bottom: 8px;
+  padding-right: 2%;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+.cardcoloreno {
+  background: #fffbf7;
+  position: relative;
+}
+.nopass {
+  width: 93%;
+  margin: 0 auto;
+  background: #fffbf7;
+  color: black;
+  font-size: 30px;
+  padding-top: 10px;
+  padding-left: 19px;
+  padding-right: 19px;
+  padding-bottom: 10px;
+}
+.nopass-text{
+  color: red;
+}
+.cardthreeone {
+  font-size: 30px;
+  color: #09f;
+  position: absolute;
+  right: -2px;
+  font-weight: normal;
+}
+
+.cardtwoif {
+  width: 93%;
+  margin: 0 auto;
+  background-color: white;
+  padding-bottom: 6px;
+  position: relative;
+  overflow: hidden;
 }
