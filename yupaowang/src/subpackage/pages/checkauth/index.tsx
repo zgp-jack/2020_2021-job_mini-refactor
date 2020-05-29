@@ -1,4 +1,4 @@
-import Taro, { useEffect, useState, onAppShow } from '@tarojs/taro'
+import Taro, { useEffect, useState, useDidShow } from '@tarojs/taro'
 import { View, Text, Input } from '@tarojs/components'
 import { SERVERPHONE } from '../../../config/index'
 import { isPhone } from '../../../utils/v'
@@ -51,7 +51,7 @@ export default function CheckAuth(){
     })
   }
 
-  onAppShow(()=>{
+  useDidShow(()=>{
     InitUserAuthInfo()
   })
 

@@ -93,6 +93,7 @@ export default function DetailInfoPage() {
 
   // 返回刷新页面
   useDidShow(()=>{
+    console.log(3213123123213123213213)
     setRefresh(true)
   })
   useEffect(()=>{

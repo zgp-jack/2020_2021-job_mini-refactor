@@ -1,0 +1,59 @@
+.content{
+  width: 93%;
+  margin: 0 auto;
+}
+.at-input{
+  margin-left: 0px;
+  padding-left: 20px;
+}
+.at-list__item-content{
+  flex: none;
+  width: 210px !important;
+  margin-right:0;
+  overflow: initial;
+}
+.at-list__item .item-extra__info{
+  overflow: initial;
+  text-overflow:initial;
+}
+.at-input__title{
+  width: 210px;
+  letter-spacing: 15px;
+  padding-left: 5px;
+}
+.footer{
+  position: fixed;
+  bottom: 0;
+  background-color: white;
+  height: 110px;
+  width: 100%;
+  box-shadow: 0 0 5px #E7E6E4;
+  z-index: 9999;
+}
+.left{
+  width: 325px;
+  height: 80px;
+  background: white;
+  border: 1px solid #0099FF;
+  position: absolute;
+  left: 27px;
+  top: 15px;
+  color: #0099FF;
+  line-height: 80px;
+  text-align: center;
+  font-size: 29px;
+  border-radius: 10px
+}
+.right{
+  width: 325px;
+  height: 80px;
+  background: #0099FF;
+  position: absolute;
+  right: 27px;
+  top: 15px;
+  color: white;
+  line-height: 80px;
+  text-align: center;
+  font-size: 29px;
+  border-radius: 10px
+}

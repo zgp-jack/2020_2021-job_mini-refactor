@@ -44,7 +44,8 @@ class App extends Component {
       'pages/resume/detail/index', // 找活详情
       'pages/resume/skillList/index',//技能证书
       'pages/resume/projectList/index',//项目经验
-      'pages/resume/newJob/index' //新增
+      'pages/resume/newJob/index',//新增
+      'pages/resume/preview/index' // 预览
     ],
     subPackages: [
       {
@@ -57,7 +58,9 @@ class App extends Component {
           'download/index',//下载app
           'ranking/index',//排名规则
           'course/index',//使用教程
-          'anti-fraud/index' //防骗指南
+          'anti-fraud/index', //防骗指南
+          'addProject/index', //新增项目
+          'addSkill/index',//新增技能
         ]
       },
     ],
