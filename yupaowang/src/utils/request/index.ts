@@ -820,6 +820,17 @@ export function resumeListAction(): Promise<Inter.resumeList> {
   })
 }
 
+// 发布招工信息
+export function publishRecruitInfo(data): Promise<Inter.Result> {
+  return doRequestAction({
+    url: api.PublishRecruitInfo,
+    method: 'POST',
+    data: data,
+    failToast: true
+
+  })
+}
+
 // 找活名片推荐
 export function jobRecommendListAction(data): Promise<Inter.resumeList> {
   return doRequestAction({

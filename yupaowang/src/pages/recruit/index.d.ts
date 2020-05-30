@@ -40,7 +40,9 @@ export interface RecruitModelInfo extends RecruitBaseInfo {
   placeholder: string,
   maxImageCount: number,
   maxClassifyCount: number,
-  view_images: RecruitImageModel[]
+  view_images: RecruitImageModel[],
+  is_check: number,
+  check_fail_msg: string
 }
 
 export interface DefaultSearchName {

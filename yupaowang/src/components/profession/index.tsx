@@ -2,6 +2,7 @@ import Taro from '@tarojs/taro'
 import { View, Text, ScrollView } from '@tarojs/components'
 import { ProfessionRecruitData } from './index.d'
 import classnames from 'classnames'
+import { AtIcon } from 'taro-ui'
 
 import './index.scss'
 
@@ -28,12 +29,12 @@ export default function Profession({ data, title = '选择工种', footerTitle =
                   {item.children.map((d,k)=>(
                     <View className='prosession-item overwords' onClick={() => onClickItem(i,k,d.id)} key={ d.id }>
                       { d.name }
-                      <Text className={classnames({
+                      <View className={classnames({
                         'at-icon': true,
                         'at-icon-check': true,
                         'icon-checked': true,
                         'icon-checked-active': d.is_check
-                      })}></Text>
+                      })}></View>
                     </View>
                   ))}
                 </View>
@@ -45,4 +46,8 @@ export default function Profession({ data, title = '选择工种', footerTitle =
       </View>
     </View>
   )
+}
+
+Profession.options = {
+  addGlobalClass: true
 }
