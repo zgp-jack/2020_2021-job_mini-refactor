@@ -1,4 +1,4 @@
-import Taro, { Config, useState, useEffect, useRouter, useDidShow } from '@tarojs/taro'
+import Taro, { Config, useState, useRouter, useDidShow } from '@tarojs/taro'
 import { View, Text, Image, Icon, Button, Textarea } from '@tarojs/components'
 import { jobInfoAction, publishComplainAction, jobGetTelAction, recruitListCancelCollectionAction, jobEndStatusAction, jobUpdateTopStatusAction } from '../../../utils/request/index'
 import WechatNotice from '../../../components/wechat'
@@ -93,32 +93,39 @@ export default function DetailInfoPage() {
 
   // 返回刷新页面
   useDidShow(()=>{
-    setRefresh(true)
+    if(refresh){
+      setRefresh(false)
+      return
+    }
+    getRecruitInfo()
   })
-  useEffect(()=>{
-    const params={
-      type:'job',
+  
+  // 获取招工详情
+  const getRecruitInfo = () => {
+    const params = {
+      type: 'job',
       // 先写死
       infoId: id
     }
-    jobInfoAction(params).then(res=>{
+    jobInfoAction(params).then(res => {
       setRefresh(false)
       setData(res.result);
       Taro.setNavigationBarTitle({
         title: res.result.title
       })
       setIsCollection(res.result.is_collect);
-      if(userInfo.userId === res.result.user_id){
+      if (userInfo.userId === res.result.user_id) {
         // 判断是自己发布的招工
         setResCode('own')
-      }else{
+      } else {
         setResCode(res.errcode)
       }
     })
-  }, [refresh])
+  }
   // 地图
   const handleMap = ()=>{
     let locArr = data.location.split(",");
+    setRefresh(true)
     Taro.openLocation({
       latitude: parseFloat(locArr[1]),
       longitude: parseFloat(locArr[0]),
@@ -208,6 +215,7 @@ export default function DetailInfoPage() {
     })
   }
   const handleImage = (v:string)=>{
+    setRefresh(true)
     Taro.previewImage({
       current: v,
       urls: [v]

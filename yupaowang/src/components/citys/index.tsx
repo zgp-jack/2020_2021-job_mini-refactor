@@ -37,7 +37,7 @@ export default function Cities({
   const [text, setText] = useState<string>('')
   const [inputCity, setInputCity] = useState<AllAreasInputDataItem[]>([])
   const [saveAreaData, setSaveAreaData] = useState<AllAreasInputDataItem[]>([])
-  
+
   // 用户点击城市
   const userTapCity = (city: AllAreasDataItem)=> {
     let historyCities: AllAreasDataItem[] = Taro.getStorageSync(HistoryCities)
@@ -74,7 +74,7 @@ export default function Cities({
         return
       }
     }
-    setRecentlyCities(historyCities)
+    setRecentlyCities([])
   }
 
   // 初始化城市数据

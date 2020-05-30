@@ -24,6 +24,8 @@ export const GetTabbarMsg: string = REQUESTURL + 'member/original-message/'
 export const GetIntegralList: string = REQUESTURL + 'integral/integral-record/'
 // 初始化发布招工视图
 export const GetPublisRecruitView: string = REQUESTURL + 'publish/new-job/'
+// 发布修改招工信息
+export const PublishRecruitInfo: string = REQUESTURL + 'publish/save-job/'
 // 获取城市数据
 export const GetAllAreas: string = REQUESTURL + 'index/index-area/'
 // 检测adcode是否合法
@@ -36,7 +38,7 @@ export const GetRechargeList: string = REQUESTURL + 'integral/integral-price/'
 export const GetRechargeOpenid: string = REQUESTURL + 'get-openid/'
 // 用户充值创建订单
 export const GetRechargeOrder: string = REQUESTURL + 'create-order/'
-// 用户发布二手交易信息
+// 用户获取二手交易信息视图
 export const GetUsedInfoModel: string = REQUESTURL + 'publish/view-message/'
 // 用户发布二手交易
 export const PublishUsedInfo: string = REQUESTURL + 'publish/publish-msg/'

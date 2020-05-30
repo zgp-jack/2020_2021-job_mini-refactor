@@ -819,3 +819,13 @@ export function resumeListAction(): Promise<Inter.resumeList> {
     failToast: true,
   })
 }
+
+// 发布招工信息
+export function publishRecruitInfo(data): Promise<Inter.Result> {
+  return doRequestAction({
+    url: api.PublishRecruitInfo,
+    method: 'POST',
+    data: data,
+    failToast: true
+  })
+}
