@@ -49,6 +49,9 @@ interface DataType {
 interface introducesTags {
   label_name:string,
 }
+interface CertificatesObj {
+  check:string
+}
 export default function NewJob() {
   
   const [data,setData] = useState<DataType>({
@@ -118,7 +121,7 @@ export default function NewJob() {
   const [project_count, setProject_count] = useState<number>(0)
   const [project,setProject] = useState<any>([])
   const [skilllength, setSkilllength] = useState<number>(0)
-  const [checkfourf, setCheckfourf] = useState<number>(0)
+  const [checkfourf, setCheckfourf] = useState<string>('0')
   // 技能证书
   const [skillbooksone, setSkillbooksone] = useState<any>([])
   useEffect(()=>{
@@ -140,6 +143,10 @@ export default function NewJob() {
           setShowtopone(false)
         }
         setShowpassre(true)
+        // 判断技能证书
+        const certificatesObj: CertificatesObj = res.data.certificates[res.data.certificates.length - 1];
+        const check = certificatesObj.check;
+        setCheckfourf(check)
         // 人员信息
         if (res.data.is_introduces == '1'){
           setselfintro(false)
@@ -616,7 +623,7 @@ export default function NewJob() {
             <Text>项目经验</Text>
           </View>
           {projectlength != 0 && projectlength < project_count &&
-            <View className="cardthreeone">
+            <View className="cardthreeone" onClick={() => userRouteJump(`/subpackage/pages/addProject/index`)}>
               添加
             </View>}
         </View>
@@ -750,7 +757,7 @@ export default function NewJob() {
                 </View>
                 <View className="cardeightall">
                   <View className="cardeighttwo">
-                    <Text className='cardeighttwo-text'>{ item.name }</Text>
+                    <Text className='cardeighttwo-title'>{ item.name }</Text>
                   </View>
                   <View className="certificatetime">
                     <Text className='cardeighttwo-text'>{ item.certificate_time }</Text>
@@ -771,7 +778,7 @@ export default function NewJob() {
           ))}
           <View className="cardeightsixall">
             <View className="cardeightsix">
-              {checkfourf != 0 && 
+              {checkfourf != '0' && 
                 <View className="more">
                   更多技能证书
                   <View className='more-view'>
@@ -779,7 +786,7 @@ export default function NewJob() {
                   </View>
                 </View>
               }
-              {checkfourf == 0 && <View className='more'>
+              {checkfourf == '0' && <View className='more'>
                 修改技能证书
                 <View className='more-view'>
                   <Image src={`${IMGCDNURL}lpy/downward.png`} className="down"/>
