@@ -242,11 +242,15 @@ export default function PublishedRecruit(){
               {item.is_check != '1' && <View className='user-published-footer-item'>修改</View>}
               {item.is_check == '2' &&
               <Block >
-                {item.is_end !== '2' && <View className='user-published-footer-item' onClick={() => userStopRecruit(item.id, index)}>停止招工</View>}
-              {item.top && item.top_data && item.top_data.is_top == '1' ?
-                  <View className='user-published-footer-item' onClick={()=>handlCancel(item.id)}>取消置顶</View> :
-                  <View className='user-published-footer-item' onClick={()=>handleTopping(item)}>我要置顶</View>
-                }
+                <View className='user-published-footer-item' onClick={() => userStopRecruit(item.id, index)}>{item.is_end == '2'?'重新招工':'停止招工'}</View>
+              {item.is_end != '2' && 
+                <View>
+                    {item.top && item.top_data && item.top_data.is_top == '1' ?
+                        <View className='user-published-footer-item' onClick={()=>handlCancel(item.id)}>取消置顶</View> :
+                        <View className='user-published-footer-item' onClick={()=>handleTopping(item)}>我要置顶</View>
+                    }
+                </View>
+              }
                 {/* <View className='user-published-footer-item' onClick={() => userRouteJump(`/pages/topping/index?id=${item.id}&type=1`)}>修改置顶</View> */}
               </Block>
               }

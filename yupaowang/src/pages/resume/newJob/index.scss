@@ -214,12 +214,14 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-left: 5px;
 }
 .cardcolore {
   background: white;
   position: relative;
   box-shadow: 0 0 1px #e7e6e4;
   margin-top: 20px;
+  padding-bottom: 20px;
 }
 .findingnamecardtwo {
   width: 93%;
@@ -609,3 +611,269 @@
   position: relative;
   overflow: hidden;
 }
+.checkone {
+  width: 110px;
+  height: 110px;
+  position: absolute;
+  top: 10px;
+  right: 21px;
+  z-index: 99;
+}
+.checktwo {
+  width: 110px;
+  height: 110px;
+  position: absolute;
+  top: 10px;
+  right: 21px;
+  z-index: 99;
+}
+.alllabletu {
+  display: flex;
+  padding-left: 28px;
+  font-size: 0;
+  width: 70%;
+}
+.labletu {
+  color: #09f;
+  font-size: 26px;
+  display: inline-block;
+  padding: 0 6px;
+  text-align: center;
+  margin-right: 17px;
+  border-radius: 8px;
+  border: 1px solid #09f;
+  line-height: 40px;
+}
+
+.cardsix {
+  width: 93%;
+  margin: 0 auto;
+  background-color: white;
+}
+
+.checkthree {
+  width: 110px;
+  height: 110px;
+  position: absolute;
+  top: 10px;
+  right: 45px;
+  z-index: 99;
+}
+.editor {
+  font-size: 30px;
+  color: #09f;
+  position: absolute;
+  top: 14px;
+  right: 26px;
+}
+.audit {
+  display: inline-block;
+  width: 135px;
+  height: 130px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+.cardsix .cardsixone {
+  width: 20px;
+  height: 20px;
+  margin-left: 20px;
+  margin-top: 30px;
+}
+
+.cardsixall {
+  width: 92%;
+}
+.cardsixzong {
+  display: flex;
+  flex-direction: row;
+}
+.cardsixtwo {
+  color: #343434;
+  font-size: 30px;
+  font-weight: bold;
+  margin-left: 14px;
+  margin-top: 20px;
+}
+.cardsixthree {
+  color: #8b8b8a;
+  font-size: 30px;
+  margin-left: 14px;
+  margin-top: 10px;
+}
+.cardsixfour {
+  color: #8b8b8a;
+  font-size: 30px;
+  margin-left: 14px;
+  margin-top: 10px;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+.cardsixfive-image {
+  width: 185px;
+  height: 185px;
+  margin-left: 16px;
+  margin-top: 16px;
+}
+
+.resson {
+  font-size: 26px;
+  margin-top: 10px;
+  margin-left: 16px;
+  color: #fb2a08;
+  margin-bottom: 6px;
+}
+.cardsixthree-text:last-child {
+  margin-left: 26px;
+  font-size: 30px;
+}
+.cardsixsixall {
+  margin: 0 auto;
+  width: 246px;
+}
+.cardsixsix {
+  padding: 0;
+  width: 246px;
+  background-color: #09f;
+  font-size: 30px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  margin-top: 14px;
+  position: relative;
+  border-radius: 8px;
+}
+.more {
+  display: flex;
+  padding: 6px 6px 6px 0px;
+}
+.more-view {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 6px;
+}
+.down {
+  width: 20px;
+  height: 15px;
+}
+
+.cardeight {
+  width: 93%;
+  margin: 0 auto;
+  background-color: white;
+}
+
+.cardeightzong {
+  display: flex;
+  flex-direction: row;
+}
+.cardeight .cardeightone {
+  width: 20px;
+  height: 20px;
+  margin-left: 20px;
+  margin-top: 30px;
+}
+.cardeightzong .cardeighttwo {
+  color: #343434;
+  font-size: 30px;
+  margin-left: 14px;
+  margin-top: 20px;
+}
+.cardeighttwo-text{
+  color: #8b8b8a;
+  margin-left: 14px;
+}
+.cardeightzong .cardeighttwo-text:first-child {
+  font-weight: bold;
+}
+.cardeightzong .cardeightthree {
+  color: #8b8b8a;
+  font-size: 22px;
+  margin-left: 14px;
+  margin-top: 10px;
+}
+
+.cardeightzong .cardeightthree-text:last-child {
+  margin-left: 26px;
+}
+
+.cardeightzong .cardeightfour {
+  color: #8b8b8a;
+  font-size: 22px;
+  margin-left: 14px;
+  margin-top: 10px;
+}
+
+.cardeightzong .cardeightfive-image {
+  width: 185px;
+  height: 185px;
+  margin-left: 16px;
+  margin-top: 16px;
+}
+.checkfour {
+  width: 110px;
+  height: 110px;
+  position: absolute;
+  top: 10px;
+  right: 45px;
+  z-index: 99;
+}
+.cardnine {
+  margin: 0 auto;
+  height: 110px;
+  display: flex;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  margin-top: 18px;
+  background: #fff;
+  z-index: 7777;
+  box-shadow: 0 0 5px #e7e6e4;
+}
+.cardnine .cardnineone {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 50%;
+  color: #7d7d7d;
+  font-size: 36px;
+  text-align: center;
+  line-height: 110px;
+  background: #fff;
+  border-radius: 0;
+}
+
+.cardnine .cardnineone::after {
+  border: none;
+}
+
+.cardnine .cardnineone:first-child {
+  border-right: 1px solid #dcdcdc;
+}
+
+.cardnine .cardnineone-image {
+  width: 35px;
+  height: 35px;
+  position: relative;
+  top: 4px;
+}
+.cardeightsixall {
+  margin: 0 auto;
+  width: 246px;
+}
+
+.cardeightsix {
+  padding: 0;
+  width: 246px;
+  background-color: #09f;
+  font-size: 30px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  margin-top: 14px;
+  position: relative;
+  border-radius: 8px;
+}
+

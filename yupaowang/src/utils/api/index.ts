@@ -146,3 +146,11 @@ export const resumeSupportUrl: string = REQUESTURL + 'resumes/resume-support/'
 export const resumeCollectUrl: string = REQUESTURL + 'resumes/resume-collect/'
 // 找活名片完善信息
 export const resumeListUrl: string = REQUESTURL + 'resumes/resume-list/'
+// 找活详情推荐
+export const jobRecommendListUrl: string = REQUESTURL +'/job/job-recommend-list/'
+// 删除技能证书
+export const delCertificateUrl: string = REQUESTURL +'resumes/del-certificate/'
+// 新增技能证书
+export const resumesCertificateUrl: string = REQUESTURL + 'resumes/certificate/'
+// 新增项目
+export const resumesProjectUrl: string = REQUESTURL + 'resumes/project/'

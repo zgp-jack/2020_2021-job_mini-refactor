@@ -60,7 +60,7 @@
 				{
 					"id": 1,
 					"name": "关于我们",
-					"pathName": "pages/about/index",
+					"pathName": "subpackage/pages/about/index",
 					"query": "",
 					"scene": null
 				},
@@ -222,6 +222,35 @@
 					"id": -1,
 					"name": "新增找活",
 					"pathName": "pages/resume/newJob/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "预览",
+					"pathName": "pages/resume/preview/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 26,
+					"name": "新增项目经验",
+					"pathName": "subpackage/pages/addProject/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "新增技能证书",
+					"pathName": "subpackage/pages/addSkill/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/used/publish/index",
+					"pathName": "pages/used/publish/index",
+					"query": "",
 					"scene": null
 				}
 			]

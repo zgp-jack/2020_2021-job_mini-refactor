@@ -984,7 +984,7 @@ export interface resumeList extends Result{
 }
 export interface resumeListData {
   certificate_count: number,
-  certificates:[],
+  certificates:any[],
   content: resumeListDataContent
   fail_certificate:number,
   fail_project:number,
@@ -992,7 +992,7 @@ export interface resumeListData {
   status: resumeListDataStatus[],
   resume_top: ResumeTop,
   project_count:number,
-  project:[],
+  project:any[],
   popup_text:[],
   is_popup:number,
   is_introduces:string,
