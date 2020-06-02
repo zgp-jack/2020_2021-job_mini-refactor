@@ -10,12 +10,18 @@ interface PROPS {
 }
 
 export default function ResumeList({ data, bottom = true }: PROPS){
+  // 用户页面跳转
+  const userRouteJump = (url: string) => {
+    Taro.navigateTo({
+      url: url
+    })
+  }
   return (
     <View className='resume-list-container' style={ bottom ? '' : 'padding-bottom:0' }>
       {data.map((item)=>(
         <Block>
           {item.map((d)=>(
-            <View className='resume-list-item'>
+            <View className='resume-list-item' onClick={() => userRouteJump(`/pages/resume/detail/index?id=${d.id}`)}>
               <View className='resume-list-header'>
                 <Image className='resume-list-user' src={ d.headerimg } />
                 <View className='resume-list-userinfo'>

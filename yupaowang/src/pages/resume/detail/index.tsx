@@ -5,6 +5,7 @@ import { IMGCDNURL } from '../../../config'
 import Msg from '../../../utils/msg'
 import { resumeDetailCertificates, resumeDetailProject, resumeDetailOperation, recommendListDataList } from '../../../utils/request/index.d'
 import './index.scss'
+import CollectionRecruitList  from '../../../components/recommendList/index'
 import { isVaildVal } from '../../../utils/v'
 
 interface DataType {
@@ -93,24 +94,23 @@ export default function ResumeDetail() {
     resumeDetailAction(params).then(res=>{
       console.log(res);
       if(res.errcode === 'ok'){
+        console.log(res);
+        // Taro.setStorageSync("introinfo", res.info)
         setDate({ certificates: res.certificates,info:res.info,operation:res.operation,project:res.project})
         setPhone(res.info.tel);
         setExamine(false)
         setPraise(res.operation.is_zan)
         setCollect(res.operation.is_collect)
+        const listParams = {
+          page: 1,
+          type: 1,
+          area_id: res.info.city,
+          occupations: res.info.occupations_id,
+        }
+        recommendListAction(listParams).then(res => {
+          setList({ item: res.data.list })
+        })
       }
-    })
-    const listParams = {
-      page: 1,
-      type: 1,
-      // 写死
-      area_id:322,
-      // 写死
-      occupations: '2, 17, 25',
-    }
-    recommendListAction(listParams).then(res=>{
-      console.log(res);
-      setList({item:res.data.list})
     })
   },[])
   // 查看电话
@@ -413,11 +413,12 @@ export default function ResumeDetail() {
         }
       </View>
       {/* 相关推荐 */}
-      <View className='resumeDetail-recommend'>
+      {/* <View className='resumeDetail-recommend'>
         <View className='resumeDetail-recommend-top'>
           <Text className='resumeDetail-recommend-top-text'>相关推荐</Text></View>
-      </View>
-      <View className='resume-list-container'>
+      </View> */}
+      <CollectionRecruitList data={list.item} type={2}/>
+      {/* <View className='resume-list-container'>
       {list.item.map(item=>(
         <Block key={item.id}>
           {
@@ -455,7 +456,7 @@ export default function ResumeDetail() {
         </Block>
       ))}
         <View className="seemore-recommend-recruit">查看更多找活信息</View>
-      </View>
+      </View> */}
       {/* 底部 */}
       <View className='resumeDetail-footer'>
         <View className='resumeDetail-footer-box' onClick={resumeSupport}>

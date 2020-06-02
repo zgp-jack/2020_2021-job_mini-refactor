@@ -194,7 +194,7 @@ export default function Preview() {
                 }
                 {data.info.address !== '' &&
                   <View className="cardotext">
-                    <Text className="oworkotext">所在地区</Text>
+                  <Text className="oworkotext">所在地区</Text>
                   <Text className="workotextone">{data.info.address}</Text>
                   </View>
                 }
@@ -283,7 +283,7 @@ export default function Preview() {
             ))}
             <View className="cardsixsixall">
               <View className="cardsixsix">
-                <View className="more">
+                <View className="more" onClick={() => Taro.navigateTo({ url:`/pages/resume/projectList/index`})}>
                   更多项目经验
                 <View className='more-view'>
                     <Image src={`${IMGCDNURL}lpy/downward.png`} className="down" />
@@ -364,7 +364,7 @@ export default function Preview() {
           </View>
           <View className="cardsixsixall">
             <View className="cardsixsix">
-              <View className="more">
+              <View className="more" onClick={() => Taro.navigateTo({ url:`/pages/resume/skillList/index`})}>
                 更多技能证书
                 <View className='more-view'>
                   <Image src={`${IMGCDNURL}lpy/downward.png`} className="down" />
@@ -383,5 +383,5 @@ export default function Preview() {
   )
 }
 Preview.config = {
-  navigationBarTitleText: '技能证书',
+  navigationBarTitleText: '找活名片',
 } as Config

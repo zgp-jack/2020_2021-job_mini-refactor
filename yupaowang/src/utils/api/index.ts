@@ -154,3 +154,7 @@ export const delCertificateUrl: string = REQUESTURL +'resumes/del-certificate/'
 export const resumesCertificateUrl: string = REQUESTURL + 'resumes/certificate/'
 // 新增项目
 export const resumesProjectUrl: string = REQUESTURL + 'resumes/project/'
+// 基础信息
+export const addResumeUrl: string = REQUESTURL +'resumes/add-resume/'
+// 获取当前位置
+export const checkAdcodeUrl: string = REQUESTURL +'resumes/check-adcode/'

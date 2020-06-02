@@ -14,6 +14,7 @@ class App extends Component {
       "pages/recruit/publish/index", //发布招工
       "pages/used/lists/index", //二手交易列表
       "pages/map/recruit/index", //发布招工地图
+      "pages/map/resume/index", //发布找活地图
       "pages/used/publish/index", //发布二手交易
       "pages/used/info/index", //二手交易详情
       "pages/invite/index", //邀请好友
@@ -60,6 +61,7 @@ class App extends Component {
           'anti-fraud/index', //防骗指南
           'addProject/index', //新增项目
           'addSkill/index',//新增技能
+          'basics/index'//基础信息
         ]
       },
     ],

@@ -1,10 +1,12 @@
 import Taro, { Config, useState, useRouter, useDidShow } from '@tarojs/taro'
 import { View, Text, Image, Icon, Button, Textarea } from '@tarojs/components'
-import { jobInfoAction, publishComplainAction, jobGetTelAction, recruitListCancelCollectionAction, jobEndStatusAction, jobUpdateTopStatusAction } from '../../../utils/request/index'
+import { jobInfoAction, publishComplainAction, jobGetTelAction, recruitListCancelCollectionAction, jobEndStatusAction, jobUpdateTopStatusAction, jobNoUserInfoAction, jobRecommendListAction } from '../../../utils/request/index'
 import WechatNotice from '../../../components/wechat'
 import { IMGCDNURL, SERVERPHONE } from '../../../config'
+import { useSelector } from '@tarojs/redux'
 import { isVaildVal } from '../../../utils/v'
 import Msg from '../../../utils/msg'
+import { CollectionRecruitList  } from '../../../components/recommendList/index'
 import { UserInfo } from '../../../config/store'
 import './index.scss'
 
@@ -90,13 +92,23 @@ export default function DetailInfoPage() {
   const [complaint, setComplaint] = useState<boolean>(false)
   // 重新招工
   const [again,setAgain] = useState<boolean>(false)
-
+  // 电话
+  const [phone,setPhone] = useState<string>('')
+  // 修改电话后投诉
+  const [complaintInfo, setComplaintInfo] = useState<boolean>(false)
+  // 修改电话后，显示投诉和拨打
+  const [editPhone, setEditPhone] = useState<boolean>(true)
+  // 获取用户是否登录
+  const login = useSelector<any, boolean>(state => state.User['login'])
+  // 相关推荐
+  const [recommend, setRecommend] = useState<any[]>([])
   // 返回刷新页面
   useDidShow(()=>{
     if(refresh){
       setRefresh(false)
       return
     }
+    console.log(1111)
     getRecruitInfo()
   })
   
@@ -107,20 +119,71 @@ export default function DetailInfoPage() {
       // 先写死
       infoId: id
     }
-    jobInfoAction(params).then(res => {
-      setRefresh(false)
-      setData(res.result);
-      Taro.setNavigationBarTitle({
-        title: res.result.title
+    // let userInfo = Taro.getStorageSync("userInfo");
+    // login
+    // 用户没有认证
+    if (!login){
+      jobNoUserInfoAction(params).then(res=>{
+        setRefresh(false)
+        setData(res.result);
+        setPhone(res.result.tel_str);
+        setEditPhone(res.result.show_ajax_btn)
+        Taro.setNavigationBarTitle({
+          title: res.result.title
+        })
+        setIsCollection(res.result.is_collect);
+        if (userInfo.userId === res.result.user_id) {
+          // 判断是自己发布的招工
+          setResCode('own')
+        } else {
+          setResCode(res.errcode)
+        }
       })
-      setIsCollection(res.result.is_collect);
-      if (userInfo.userId === res.result.user_id) {
-        // 判断是自己发布的招工
-        setResCode('own')
-      } else {
-        setResCode(res.errcode)
-      }
-    })
+    }else{
+      jobInfoAction(params).then(res => {
+        let paramsObj = {
+          page:1,
+          type:1,
+          area_id: res.result.city_id,
+          job_ids: res.result.id,
+          classify_id:[res.result.occupations].join(','),
+        }
+        jobRecommendListAction(paramsObj).then(res=>{
+          console.log(res,'xxxxx')
+          setRecommend(res.data.list);
+        })
+        setRefresh(false)
+        setData(res.result);
+        setPhone(res.result.tel_str);
+        setEditPhone(res.result.show_ajax_btn)
+        Taro.setNavigationBarTitle({
+          title: res.result.title
+        })
+        setIsCollection(res.result.is_collect);
+        if (userInfo.userId === res.result.user_id) {
+          // 判断是自己发布的招工
+          setResCode('own')
+        } else {
+          setResCode(res.errcode)
+        }
+      })
+    }
+    // jobInfoAction(params).then(res => {
+    //   setRefresh(false)
+    //   setData(res.result);
+    //   setPhone(res.result.tel_str);
+    //   setEditPhone(res.result.show_ajax_btn)
+    //   Taro.setNavigationBarTitle({
+    //     title: res.result.title
+    //   })
+    //   setIsCollection(res.result.is_collect);
+    //   if (userInfo.userId === res.result.user_id) {
+    //     // 判断是自己发布的招工
+    //     setResCode('own')
+    //   } else {
+    //     setResCode(res.errcode)
+    //   }
+    // })
   }
   // 地图
   const handleMap = ()=>{
@@ -170,6 +233,9 @@ export default function DetailInfoPage() {
     jobGetTelAction(params).then(res=>{
       if(res.errcode === 'ok'){
         setRefresh(true)
+        setPhone(res.tel)
+        setComplaintInfo(true);
+        setEditPhone(false)
       }
     })
   }
@@ -181,6 +247,7 @@ export default function DetailInfoPage() {
         showCancel: false,
       })
     }else{
+      // 投诉过一次就不能投诉了
       if (complaint) {
         Taro.showModal({
           title: '提示',
@@ -188,7 +255,11 @@ export default function DetailInfoPage() {
           showCancel: false,
         })
       }else{
-        if(data.show_ajax_btn){
+        // 查看电话可以投诉一次
+        if (complaintInfo) {
+          setComplaintModal(true);
+          // 没有看到电话不能投诉
+        }else if(data.show_ajax_btn){
           Msg('请查看完整的手机号码后再操作！')
         }else{
           if (data.is_end === 2 || !data.show_complaint.show_complaint ){
@@ -319,13 +390,16 @@ export default function DetailInfoPage() {
           <Image className='detailInfo-userContent-image' src={data.image}/>
           <View className='detailInfo-userContent-content'>
             <View className='detailInfo-userContent-content-list'>{data.user_name}</View>
-            <View className='detailInfo-userContent-content-list'>{data.tel_str}</View>
+            <View className='detailInfo-userContent-content-list'>{phone}</View>
           </View>
           {/* 判断是否是自己发布的招工 */}
           {resCode === 'own' ? <View></View>:
-            (resCode === 'end' ? <View className='detailInfo-userContent-buttonBox-'><Button className='detailInfo-userContent-button-end'>已招到</Button></View> : (data.show_ajax_btn ? <View className='detailInfo-userContent-buttonBox'><Button className='detailInfo-userContent-button' onClick={() => jobGetTel()}>查看完整电话</Button></View> :
+          // 判断是否已经找到
+            (resCode === 'end' ? <View className='detailInfo-userContent-buttonBox-'><Button className='detailInfo-userContent-button-end'>已招到</Button></View> : 
+            // 判断是够查看到电话号码
+              (editPhone ? <View className='detailInfo-userContent-buttonBox'><Button className='detailInfo-userContent-button' onClick={() => jobGetTel()}>查看完整电话</Button></View> :
               <View className='detailInfo-userContent-buttonBox'>
-                <View className='detailInfo-userContent-button-call' onClick={() => { Taro.makePhoneCall({ phoneNumber: data.tel_str }) }}>点击拨打</View>
+                  <View className='detailInfo-userContent-button-call' onClick={() => { Taro.makePhoneCall({ phoneNumber: phone }) }}>点击拨打</View>
                 <View className='detailInfo-userContent-button-complaint' onClick={footerComplaint}>投诉</View>
               </View>))
         }
@@ -364,8 +438,9 @@ export default function DetailInfoPage() {
           </View>
         }
         <View className='detailInfo-project-content-address'>项目地址: 
-        <View className='detailInfo-project-content-address-color'>{data.show_full_address}</View>
-          {data.location && <View className='detailInfo-project-content-map' onClick={handleMap}>查看地图</View>}
+        {data.location ? <View className='detailInfo-project-content-address-color'>{data.show_full_address}</View> : <Text className='detailInfo-project-content-address-color'>{ data.show_full_address }</Text> }
+          {data.location && <View className='detailInfo-project-content-map' onClick={handleMap}>查看地图</View>
+        }
         </View>
       </View>
       <View className='detailInfo-Image-box'>
@@ -421,7 +496,7 @@ export default function DetailInfoPage() {
               <View className='detailInfo-footer-content-box-text'>分享</View>
             </View>
             <View>
-              {resCode === 'end' ? <Button className='detailInfo-footer-content-box-button'>已招到</Button> : (data.show_ajax_btn ?
+              {resCode === 'end' ? <Button className='detailInfo-footer-content-box-button'>已招到</Button> : (editPhone ?
                 <Button className='detailInfo-footer-content-box-button' onClick={() => jobGetTel()}>查看完整电话</Button> :
                 <Button className='detailInfo-footer-content-box-button' onClick={() => { Taro.makePhoneCall({ phoneNumber: data.tel_str }) }}>拨打电话</Button>)}
               {
@@ -430,8 +505,9 @@ export default function DetailInfoPage() {
           </View>
         </View>
       }
-      {/* 自己发布的找活 */}
-    
+      {/* 相关推荐 */}
+      <CollectionRecruitList data={recommend} type={1}/>
+      {/* 投诉 */}
       {complaintModal &&
         <View className='tabber-complaintModal'>
           <View className='tabber-complaintModal-content'>

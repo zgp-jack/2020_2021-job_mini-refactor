@@ -252,6 +252,20 @@
 					"pathName": "pages/used/publish/index",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "基础信息",
+					"pathName": "subpackage/pages/basics/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 30,
+					"name": "发布招工",
+					"pathName": "pages/recruit/publish/index",
+					"query": "",
+					"scene": null
 				}
 			]
 		}

@@ -978,6 +978,27 @@ export interface resumeCollect extends Result {
   show:number,
 }
 
+//相关推荐
+export interface jobRecommendList extends Result {
+  data: jobRecommendListData,
+}
+
+export interface jobRecommendListData {
+  type: number,
+  next_page:number,
+  list: jobRecommendListDataList[],
+}
+
+export interface jobRecommendListDataList{
+  detail:string,
+  id:string,
+  image:string,
+  title:string,
+  user_name:string,
+  show_address:string,
+  time:string,
+}
+
 //完善找活
 export interface resumeList extends Result{
   data: resumeListData,
@@ -1092,4 +1113,9 @@ export interface resumeListDataInfo {
   view_images: null
   view_num: string
   zan_num: string
+}
+
+//  获取电话
+export interface jobGetTel extends Result{
+  tel:string,
 }

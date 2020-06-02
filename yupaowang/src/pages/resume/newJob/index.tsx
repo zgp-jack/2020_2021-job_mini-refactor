@@ -8,6 +8,7 @@ import Msg from '../../../utils/msg'
 import {  UserLocationCity } from '../../../config/store'
 import { UserLocationPromiss } from '../../../models/area'
 import { resumeList, ResumeTopStr  } from '../../../utils/request/index.d'
+import CollectionRecruitList  from '../../../components/recommendList'
 import './index.scss'
 
 interface DataType {
@@ -124,10 +125,13 @@ export default function NewJob() {
   const [checkfourf, setCheckfourf] = useState<string>('0')
   // 技能证书
   const [skillbooksone, setSkillbooksone] = useState<any>([])
+  // 推荐的列表
+  const [recData,setRecData] = useState<any>([])
   useEffect(()=>{
     resumeListAction().then(res=>{
       console.log(res);
       if(res.errcode == "200"){
+        Taro.setStorageSync("introinfo", res.data.info)
         setData({ info: res.data.info, resume_top: res.data.resume_top, content: res.data.content, introduces: res.data.introduces, certificate_count: res.data.certificate_count})
         const list = res.data.status.map(v=>v.name);
         console.log(list)
@@ -246,7 +250,8 @@ export default function NewJob() {
       type: 1,
     }
     jobRecommendListAction(params).then(res=>{
-      console.log(res);
+      console.log(res,'推荐');
+      setRecData(res.data.list)
     })
   },[])
   // 用户页面跳转
@@ -290,9 +295,7 @@ export default function NewJob() {
   }
   return (
     <View className='newJob'>
-      <View className='heard'>
-        请完善以下信息
-      </View>
+      {showtop && <View className='heard'>请完善以下信息</View>}
       <View className='card'>
         <View className="card-otext">
           <Text>名片完善度：</Text>
@@ -460,7 +463,7 @@ export default function NewJob() {
                   </View>
                   {!checkone && checkonef != '0' &&
                     <View className="cardtwosontwo">
-                      <Text >编辑</Text>
+                  <Text onClick={() => userRouteJump('/subpackage/pages/basics/index')}>编辑</Text>
                     </View>
                   }
                   {checkonef == '0' &&
@@ -797,7 +800,7 @@ export default function NewJob() {
           </View>
         }
       </View>
-
+      <CollectionRecruitList type={1} data={recData}/>
       {/* 底部 */}
       {showtopone && 
         <View className="cardnine">

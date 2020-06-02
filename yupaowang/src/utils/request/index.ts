@@ -674,7 +674,7 @@ export function jobInfoAction(params: object): Promise<Inter.jobInfoData> {
 }
 
 // 招工详情，没有用户信息
-export function jobNoUserInfoAction(params: object): Promise<Inter.Result> {
+export function jobNoUserInfoAction(params: object): Promise<Inter.jobInfoData> {
   return doRequestAction({
     url: api.jobNoUserInfoUrl,
     method: 'POST',
@@ -683,8 +683,8 @@ export function jobNoUserInfoAction(params: object): Promise<Inter.Result> {
   })
 }
 
-// 获取电话好吗
-export function jobGetTelAction(params: object): Promise<Inter.Result> {
+// 获取电话号码
+export function jobGetTelAction(params: object): Promise<Inter.jobGetTel> {
   return doRequestAction({
     url: api.jobGetTelUrl,
     method: 'POST',
@@ -832,7 +832,7 @@ export function publishRecruitInfo(data): Promise<Inter.Result> {
 }
 
 // 找活名片推荐
-export function jobRecommendListAction(data): Promise<Inter.resumeList> {
+export function jobRecommendListAction(data): Promise<Inter.jobRecommendList> {
   return doRequestAction({
     url: api.jobRecommendListUrl,
     method: 'POST',
@@ -864,6 +864,25 @@ export function resumesCertificateAction(data): Promise<Inter.Result> {
 export function resumesProjectAction(data): Promise<Inter.Result> {
   return doRequestAction({
     url: api.resumesProjectUrl,
+    method: 'POST',
+    failToast: true,
+    data,
+  })
+}
+// 基础信息
+export function addResumeAction(data): Promise<Inter.Result> {
+  return doRequestAction({
+    url: api.addResumeUrl,
+    method: 'POST',
+    failToast: true,
+    data,
+  })
+}
+
+// 获取当前位置
+export function checkAdcodeAction(data): Promise<Inter.Result> {
+  return doRequestAction({
+    url: api.checkAdcodeUrl,
     method: 'POST',
     failToast: true,
     data,
