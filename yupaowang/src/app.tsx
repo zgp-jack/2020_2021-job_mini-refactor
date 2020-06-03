@@ -61,7 +61,8 @@ class App extends Component {
           'anti-fraud/index', //防骗指南
           'addProject/index', //新增项目
           'addSkill/index',//新增技能
-          'basics/index'//基础信息
+          'basics/index',//基础信息
+          'personInfo/index',//人员信息
         ]
       },
     ],

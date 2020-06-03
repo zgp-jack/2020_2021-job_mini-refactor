@@ -357,6 +357,7 @@
 
 .cardonetwof {
   // overflow: hidden;
+  padding-top: 8px;
 }
 .cardtwo .cardtwosonone {
   width: 100%;
@@ -665,6 +666,7 @@
   position: absolute;
   top: 14px;
   right: 26px;
+  z-index: 99;
 }
 .audit {
   display: inline-block;
@@ -883,3 +885,8 @@
   border-radius: 8px;
 }
 
+.iconImage {
+  width: 120px;
+  height: 30px;
+  margin-left: 14px;
+}

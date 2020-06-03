@@ -1119,3 +1119,47 @@ export interface resumeListDataInfo {
 export interface jobGetTel extends Result{
   tel:string,
 }
+
+// 找活名片公用数据
+export interface resumesGetData {
+  gender: resumesGetDataGender[],
+  label: resumesGetDataLabel[],
+  nation: resumesGetDataNation[],
+  occupation: resumesGetDataOccupation[],
+  prof_degree: resumesGetDataProfDegree[],
+  type: resumesGetDataType[],
+}
+export interface resumesGetDataGender{
+  id:number,
+  name:string,
+}
+export interface resumesGetDataLabel{
+  id: number
+  label_name: string
+  label_py: string
+  click?:boolean
+}
+export interface resumesGetDataNation{
+  mz_id: number
+  mz_name: string
+}
+export interface resumesGetDataOccupation{
+  has_children: number
+  id: string
+  letter: string
+  name: string
+  not_auth: string
+  pid: string
+}
+export interface resumesGetDataProfDegree{
+  id: string
+  name: string
+}
+export interface resumesGetDataType{
+  id: string
+  name: string
+}
+export interface resumesIntroduce {
+  errcode: number,
+  errmsg: string
+}

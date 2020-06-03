@@ -65,7 +65,7 @@ export default function ResumeMap() {
         city: data.name
       }
       console.log(data,'data')
-      setArea(data.name)
+      // setArea(data.name)
       setUserLoc(userLocData)
     }
   }

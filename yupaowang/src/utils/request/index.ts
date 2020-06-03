@@ -888,3 +888,22 @@ export function checkAdcodeAction(data): Promise<Inter.Result> {
     data,
   })
 }
+
+
+// 找活页面获取公用数据
+export function resumesGetDataAction(): Promise<Inter.resumesGetData> {
+  return doRequestAction({
+    url: api.resumesGetDataUrl,
+    method: 'POST',
+    failToast: true,
+  })
+}
+// 人员信息
+export function resumesIntroduceAction(data): Promise<Inter.resumesIntroduce> {
+  return doRequestAction({
+    url: api.resumesIntroduceUrl,
+    method: 'POST',
+    failToast: true,
+    data,
+  })
+}

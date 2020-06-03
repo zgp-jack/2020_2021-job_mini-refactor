@@ -1,9 +1,10 @@
-import Taro, { useState, useEffect, Config, useDidShow } from '@tarojs/taro'
+import Taro, { useState, useEffect, Config, useContext, useRouter } from '@tarojs/taro'
 import { View, Text, Picker, Block, Input } from '@tarojs/components'
 import { AtInput, AtList, AtListItem  } from 'taro-ui';
 import ImageView from '../../../components/imageview'
 import UploadImgAction from '../../../utils/upload'
 import Msg from '../../../utils/msg'
+import { context } from '../../../pages/resume/newJob'
 import {  resumesCertificateAction } from '../../../utils/request/index'
 import './index.scss'
 
@@ -15,11 +16,43 @@ export interface ImageItem {
   httpurl: string
 }
 export default function AddSkillPage() {
+  const router: Taro.RouterInfo = useRouter()
+  const { skillData } = useContext(context);
+  let { type } = router.params;
+  console.log(type);
   const [val,setVal] = useState<string>('')
   const [extraText, setExtraText] = useState<string>('请选择您领取证书时间')
   const [image, setImage] = useState<ImageDataType>({
     item: [],
   })
+  const [uuid, setUuid] = useState<string>('')
+  useEffect(()=>{
+    Taro.setNavigationBarTitle({
+      title: '修改技能证书'
+    })
+    console.log(skillData);
+    if (skillData){
+      const data = skillData[0];
+      setVal(data.name);
+      setExtraText(data.certificate_time);
+      let arr:any=[];
+      for (let i = 0; i < data.image.length;i++){
+        for (let j = 0; j < data.images.length;j++){
+          let obj= {
+            httpurl:'',
+            url:'',
+          };
+          if(i === j){
+            obj.httpurl = data.image[i];
+            obj.url = data.images[i]
+            arr.push(obj);
+          }
+        }
+      }
+      setImage({item:arr})
+      setUuid(data.uuid)
+    }
+  },[])
   // 用户上传图片
   const userUploadImg = (i: number = -1) => {
     UploadImgAction().then(res => {
@@ -67,10 +100,20 @@ export default function AddSkillPage() {
       })
       return;
     }
-    let params = {
+    let params;
+    if(type){
+      params = {
       image: image.item,
       name: val,
       certificate_time: extraText,
+      certificate_uuid: uuid,
+    }
+    }else{
+      params = {
+        image: image.item,
+        name: val,
+        certificate_time: extraText,
+      }
     }
     resumesCertificateAction(params).then(res=>{
       if(res.errcode === 'ok'){
@@ -85,26 +128,36 @@ export default function AddSkillPage() {
   return (
     <View>
       <View className='content'>
-      <AtInput
-        name='value'
-        title='职业技能:'
-        type='text'
-        placeholder='请输入您的职业技能名称'
-        maxLength={12}
-        value={val}
-        onChange={(e) => {setVal(e.toString())}}
-      />
-      <View>
-        <Picker 
-          mode='date' 
-          onChange={(e) => { setExtraText(e.detail.value)}}
-          value={extraText}
-        >
-          <AtList>
-            <AtListItem title='领取证书时间:' extraText={extraText} />
-          </AtList> 
-        </Picker>
-      </View>
+        <View className='publish-recruit-card'>
+          <View className='publish-list-item'>
+            <Text className='pulish-list-title'>职业技能</Text>
+            :<Input
+              className='publish-list-input'
+              type='text'
+              placeholder='请输入您的职业技能名称'
+              value={val}
+              onInput={(e) => { setVal(e.toString()) }}
+            />
+          </View>
+        </View>
+        <View className='publish-recruit-card'>
+          <Picker
+            mode='date'
+            onChange={(e) => { setExtraText(e.detail.value) }}
+            value={extraText}
+          >
+            <View className='publish-list-item'>
+              <Text className='pulish-list-title'>领取证书时间</Text>
+              :<Input
+                className='publish-list-input'
+                type='text'
+                disabled
+                placeholder='请选择领取证书时间'
+                value={extraText}
+              />
+            </View>
+          </Picker>
+        </View>
       </View>
       <View className='feedback-content-middle-imgBox'>
         {image.item &&

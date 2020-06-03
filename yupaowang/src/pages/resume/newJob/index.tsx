@@ -1,16 +1,24 @@
-import Taro, { Config, useState, useEffect, useRouter, useDidShow } from '@tarojs/taro'
+import Taro, { Config, useState, useEffect, useRouter, useDidShow, createContext } from '@tarojs/taro'
 import { View, Text, Image, Block, Button, Textarea } from '@tarojs/components'
-import { resumeListAction, jobRecommendListAction } from '../../../utils/request/index'
+import { resumeListAction, jobRecommendListAction, resumesGetDataAction } from '../../../utils/request/index'
 import WechatNotice from '../../../components/wechat'
 import { IMGCDNURL, SERVERPHONE } from '../../../config'
 import { isVaildVal } from '../../../utils/v'
 import Msg from '../../../utils/msg'
 import {  UserLocationCity } from '../../../config/store'
 import { UserLocationPromiss } from '../../../models/area'
-import { resumeList, ResumeTopStr  } from '../../../utils/request/index.d'
+import { resumeList, ResumeTopStr, resumesGetData } from '../../../utils/request/index.d'
 import CollectionRecruitList  from '../../../components/recommendList'
 import './index.scss'
 
+interface introducesType {
+  experience: string,
+  type_str: string,
+  hometown: string,
+  prof_degree_str: string,
+  number_people: string,
+  tags: introducesTags[],
+}
 interface DataType {
   info:{
     progress:string,
@@ -37,14 +45,7 @@ interface DataType {
     show_tips:number,
     check_tips_string:string,
   },
-  introduces:{
-    experience:string,
-    type_str:string,
-    hometown:string,
-    prof_degree_str:string,
-    number_people:string,
-    tags: introducesTags[],
-  }
+  introduces: introducesType
   certificate_count:number,
 }
 interface introducesTags {
@@ -53,6 +54,26 @@ interface introducesTags {
 interface CertificatesObj {
   check:string
 }
+// 最后发布地区
+export interface UserLastPublishRecruitArea {
+  location: string,
+  adcode: string,
+  title: string,
+  info: string
+}
+
+interface Injected {
+  area: string, // 城市名称
+  userInfo:any, // 个人信息
+  publicList: resumesGetData,//公用值
+  skillData:any,//修改技能证书
+  projectData:any, //修改项目经验 
+  setArea: (city: string) => void, //设置城市名称
+  setAreaInfo?: (item: UserLastPublishRecruitArea) => void, // 用户点击的小地址信息
+  setPublishArea?: (val: string) => void //设置最后一次点击 城市的名字
+}
+export const context = createContext<Injected>({} as Injected)
+
 export default function NewJob() {
   
   const [data,setData] = useState<DataType>({
@@ -123,10 +144,32 @@ export default function NewJob() {
   const [project,setProject] = useState<any>([])
   const [skilllength, setSkilllength] = useState<number>(0)
   const [checkfourf, setCheckfourf] = useState<string>('0')
+  // 传递修改技能证书
+  const [skillData, setSkillData] = useState<any[]>()
+  // 传递修改项目经验
+  const [projectData, setProjectData] = useState<any[]>()
   // 技能证书
   const [skillbooksone, setSkillbooksone] = useState<any>([])
   // 推荐的列表
   const [recData,setRecData] = useState<any>([])
+  const [area,setArea] = useState<string>('')
+  const [publicList, setPublicList] = useState<resumesGetData>({
+    gender: [],
+    label: [],
+    nation: [],
+    occupation:[],
+    prof_degree:[],
+    type:[]
+  })
+  // 人员信息
+  const [userInfo, setUserInfo] = useState<introducesType>({
+    experience: '',
+    type_str: '',
+    hometown: '',
+    prof_degree_str: '',
+    number_people: '',
+    tags: [],
+  })
   useEffect(()=>{
     resumeListAction().then(res=>{
       console.log(res);
@@ -135,6 +178,7 @@ export default function NewJob() {
         setData({ info: res.data.info, resume_top: res.data.resume_top, content: res.data.content, introduces: res.data.introduces, certificate_count: res.data.certificate_count})
         const list = res.data.status.map(v=>v.name);
         console.log(list)
+        setUserInfo(res.data.introduces)
         setSelectdata(list)
         if (res.data.info.uuid && res.data.info.is_introduces != '0' && res.data.project.length != 0 && res.data.certificates.length != 0 ){
           setShowcomplete(false)
@@ -210,6 +254,10 @@ export default function NewJob() {
         // } else if (res.data.is_introduces == '0'){
         //   setSelfintrone(false)
         // }
+        // 修改技能证书
+        setSkillData(res.data.certificates)
+        // 修改项目经验
+        setProjectData(res.data.project)
         setProject_count(res.data.project_count)
         setIntro(false)
         serIntrone(true)
@@ -230,7 +278,18 @@ export default function NewJob() {
           }
 
         }
-
+        // 推荐列表
+        let paramsList = {
+          area_id: res.data.info.city,
+          classify_id: res.data.info.occupations_id,
+          job_ids: '',
+          page: 1,
+          type: 1,
+        }
+        jobRecommendListAction(paramsList).then(res => {
+          console.log(res, '推荐');
+          setRecData(res.data.list)
+        })
       }else{
         Taro.showModal({
           title: '温馨提示',
@@ -240,18 +299,10 @@ export default function NewJob() {
         return
       }
     });
-    let userLoctionCity: UserLocationPromiss = Taro.getStorageSync(UserLocationCity)
-    // 相关推荐
-    const params={
-      area_id:322,
-      classify_id: 24,
-      job_ids:'',
-      page: 1,
-      type: 1,
-    }
-    jobRecommendListAction(params).then(res=>{
-      console.log(res,'推荐');
-      setRecData(res.data.list)
+    // 给子页面提供公用数据
+    resumesGetDataAction().then(res=>{
+      console.log(res,'公用数据')
+      setPublicList(res);
     })
   },[])
   // 用户页面跳转
@@ -293,7 +344,29 @@ export default function NewJob() {
       })
     }
   }
+  // 需要传递的值
+  const value:Injected = {
+    area: area,
+    setArea: (city: string) => setArea(city),
+    // setAreaInfo: (item: UserLastPublishRecruitArea) => setAreaInfo(item),
+    // setPublishArea: (val: string) => {
+    //   console.log(val,'val')
+    //   // if (!model) return
+    //   // setModel({ ...model, address: val })
+    // }
+    userInfo: userInfo,
+    // 公用值
+    publicList: publicList,
+    // 修改技能证书
+    skillData: skillData,
+    // 修改项目经验
+    projectData: projectData,
+  }
+  const setAreaInfo = (item)=>{
+    console.log(item,'item')
+  }
   return (
+    <context.Provider value={value}>
     <View className='newJob'>
       {showtop && <View className='heard'>请完善以下信息</View>}
       <View className='card'>
@@ -358,7 +431,7 @@ export default function NewJob() {
           <View className='toptime-view'>
             <Text>置顶地区</Text>
             {/* wx: for="{{ resume_top.top_provinces_str }}" wx:key="{{ index }}" */}
-            {data.resume_top.top_provinces_str.map((v,i)=>(
+            {data.resume_top.top_provinces_str && data.resume_top.top_provinces_str.map((v,i)=>(
               <Text className='proviceop' key={i+i}>{v.name}</Text>
             ))}
           </View>
@@ -447,10 +520,10 @@ export default function NewJob() {
                       <Text className="otext">{data.info.username}</Text>
                       {/* {wx: if="{{ authenticationimg == 2}}"} */}
                       {authenticationimg == '2' &&
-                        <Image src={`${IMGCDNURL}new-list-realname-icon.png`}></Image>
+                        <Image className='iconImage' src={`${IMGCDNURL}new-list-realname-icon.png`}></Image>
                       }
                       {certificate_show == 1 &&
-                        <Image src={`${IMGCDNURL}new-list-jnzs-icon.png?t=1`}></Image>
+                        <Image className='iconImage' src={`${IMGCDNURL}new-list-jnzs-icon.png?t=1`}></Image>
                       }
                       <View className="otextone">
                         <Text>{sex}</Text>
@@ -481,18 +554,18 @@ export default function NewJob() {
                         {!showskill &&
                           <View className="ocworkotyp">
                             <View className='ocworkotyptu'>
-                            {data.info.occupations.map((v, i) => (
-                                <View key={i + i}>{v}</View>
-                              ))}
+                              {data.info.occupations && data.info.occupations.map((v, i) => (
+                                    <View key={i + i}>{v}</View>
+                                  ))}
                             </View>
                           </View>
                         }
                         {showskill &&
                           <View className="ocworkotyp">
                             <View className='oimg'>
-                            {data.info.occupations.map((v, i) => (
-                                <View className='oimg' key={i + i}>{v}</View>
-                              ))}
+                              {data.info.occupations && data.info.occupations.map((v, i) => (
+                                    <View className='oimg' key={i + i}>{v}</View>
+                                  ))}
                             </View>
                           </View>
                         }
@@ -547,7 +620,7 @@ export default function NewJob() {
             <Text>人员信息</Text>
           </View>
           {!checktwo && checkonef != '0' && 
-          <View className="cardthreeone" >编辑</View>
+              <View className="cardthreeone" onClick={() => userRouteJump('/subpackage/pages/personInfo/index') }>编辑</View>
           }
           {!checktwo && checkonef == '0' &&
             <View className="cardthreeone" >待修改</View>
@@ -590,9 +663,9 @@ export default function NewJob() {
               <View className="cardotext">
                 <Text className="oworkotext">标签</Text>
                 <View className="alllabletu">
-                  {data.introduces.tags.map((v,i)=>(
-                    <Text className='labletu' key={i+i}>{v.label_name}</Text>
-                  ))}
+                    {data.introduces.tags && data.introduces.tags.map((v,i)=>(
+                      <Text className='labletu' key={i+i}>{v.label_name}</Text>
+                    ))}
                 </View>
               </View>
             </View>
@@ -644,7 +717,7 @@ export default function NewJob() {
         {/* wx: if="{{ projectlength != 0}}" */}
         {projectlength != 0 && 
           <View className="cardsix">
-            {project.map((item:any)=>(
+          {project && project.map((item:any)=>(
               <View className='cardsixzong' key={item.id}>
                 {/* wx: if="{{ item.check == 1 && show_tips == 1 }}" */}
                 {item.check == 1 && data.content.show_tips == 1 && 
@@ -653,7 +726,7 @@ export default function NewJob() {
                 {/* wx: if="{{ item.check == 2 }}" */}
                 {/* bindtap="editor" data-uid="{{ item }}" */}
                 {item.check == 2 && 
-                  <View className="editor">编辑</View>
+                <View className="editor" onClick={() => userRouteJump(`/subpackage/pages/addProject/index?type=1`)}>编辑</View>
                 }
                 {item.check == 0 &&
                   <View className="editor">待修改</View>
@@ -689,7 +762,7 @@ export default function NewJob() {
                   </View>
                   <View className="cardsixfive">
                     {/* wx: for="{{ item.image }}" */}
-                    {item.image.map((v,i)=>(
+                  {item.image && item.image.map((v,i)=>(
                       <Image className='cardsixfive-image' src={v} key={i+i}/>
                     ))}
                     {/* <Image  data-url="{{ item }}" catchtap="previewImage" wx:key="{{ index }}" src="{{ item }}" data-index="{{ pindex }}"/> */}
@@ -742,7 +815,7 @@ export default function NewJob() {
       <View className="cardcolore">
         {skilllength != 0 && 
           <View className="cardeight">
-          {skillbooksone.map((item:any,i)=>(
+          {skillbooksone && skillbooksone.map((item:any,i)=>(
             <View className='cardeightzong' key={i+i}>
               {item.check == 1 && data.content.show_tips == 1 && 
                 <Image className="checkfour" src={`${IMGCDNURL}lpy/audit.png`}/>
@@ -751,7 +824,7 @@ export default function NewJob() {
               <View className='cardeightzong'>
                 <Image src={item.audit} className='checkfour'/>
                 {/* wx: if="{{ item.check == 2 }}" */}
-                {item.check == 2 &&  <View className="editor">编辑</View> }
+                {item.check == 2 && <View className="editor" onClick={() => userRouteJump(`/subpackage/pages/addSkill/index?type=1`)}>编辑11111</View> }
                 {item.check == 0 && <View className="editor">待修改</View>}
                 {item.check == 0 && <Image className="audit" src={`${IMGCDNURL}lpy/notthrough.png`}/> }
                 {/* {item.check == 1 && <Image className="audit" src={`${IMGCDNURL}lpy/review.png`} />} */}
@@ -766,7 +839,7 @@ export default function NewJob() {
                     <Text className='cardeighttwo-text'>{ item.certificate_time }</Text>
                   </View>
                   <View className="cardeightfive">
-                    {item.image.map((v,i)=>(
+                    {item.image && item.image.map((v,i)=>(
                       <Image className='cardeightfive-image' src={v} key={i+i}/>
                     ))}
                   </View>
@@ -804,7 +877,7 @@ export default function NewJob() {
       {/* 底部 */}
       {showtopone && 
         <View className="cardnine">
-          <Button className="cardnineone">
+          <Button className="cardnineone" onClick={() => userRouteJump(`/pages/resume/preview/index`)}>
           <Image className='cardnineone-image' src={`${IMGCDNURL}lpy/bottom-one.png`} /> 预览
           </Button>
           <Button className="cardnineone">
@@ -813,6 +886,7 @@ export default function NewJob() {
         </View>
       }
     </View>
+    </context.Provider>
   )
 }
 NewJob.config = {

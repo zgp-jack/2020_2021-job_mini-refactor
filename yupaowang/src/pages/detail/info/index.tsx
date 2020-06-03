@@ -6,7 +6,7 @@ import { IMGCDNURL, SERVERPHONE } from '../../../config'
 import { useSelector } from '@tarojs/redux'
 import { isVaildVal } from '../../../utils/v'
 import Msg from '../../../utils/msg'
-import { CollectionRecruitList  } from '../../../components/recommendList/index'
+import  CollectionRecruitList from '../../../components/recommendList/index'
 import { UserInfo } from '../../../config/store'
 import './index.scss'
 

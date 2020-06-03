@@ -1,3 +1,4 @@
+@import '../../../common.scss';
 .content{
   width: 93%;
   margin: 0 auto;
@@ -56,4 +57,79 @@
   text-align: center;
   font-size: 29px;
   border-radius: 10px
+}
+.publish-recruit-card {
+  position: relative;
+  // width: 93%;
+  // margin: 0 auto;
+  background-color: white;
+  font-size: 28px;
+}
+
+.publish-list-item {
+  display: flex;
+  position: relative;
+  width: 90%;
+  height: 90px;
+  line-height: 90px;
+  margin-left: 30px;
+  border-bottom: 1px solid #F1F1F1;
+}.pulish-list-title {
+  width: 180px;
+  display: block;
+  text-align: justify;
+  line-height: 90px;
+  font-size: 30px;
+  &::after {
+    @include text-justify();
+  }
+}
+.publish-list-input {
+  position: relative;
+  width: 100%;
+  height: 90px;
+  line-height: 90px;
+  display: block;
+  font-size: 30px;
+  margin-left: 30px;
+  .publish-input-list {
+    position: relative;
+    display: inline-block;
+    margin-right: 20px;
+
+    &:nth-last-child(1) {
+      margin-right: 0;
+    }
+  }
+}
+.pulish-list-title {
+  width: 280px;
+  display: block;
+  // text-align: justify;
+  line-height: 90px;
+  font-size: 28px;
+
+  &::after {
+    @include text-justify();
+  }
+}
+
+.publish-list-input {
+  position: relative;
+  width: 100%;
+  height: 90px;
+  line-height: 90px;
+  display: block;
+  font-size: 30px;
+  margin-left: 30px;
+
+  .publish-input-list {
+    position: relative;
+    display: inline-block;
+    margin-right: 20px;
+
+    &:nth-last-child(1) {
+      margin-right: 0;
+    }
+  }
 }

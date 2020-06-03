@@ -1,4 +1,4 @@
-import Taro, { useState, useEffect, Config } from '@tarojs/taro'
+import Taro, { useState, useEffect, Config, useRouter, useContext } from '@tarojs/taro'
 import { View, Picker, Textarea } from '@tarojs/components'
 import { AtInput, AtList, AtListItem } from 'taro-ui';
 import ImageView from '../../../components/imageview'
@@ -9,6 +9,7 @@ import AREAS from '../../../models/area'
 import Msg from '../../../utils/msg'
 import { isVaildVal } from '../../../utils/v'
 import { UserInfo } from '../../../config/store'
+import { context } from '../../../pages/resume/newJob'
 import './index.scss'
 export interface ImageDataType {
   item: ImageItem[]
@@ -45,6 +46,9 @@ interface User {
   login: boolean
 }
 export default function AddProjectPage() {
+  const router: Taro.RouterInfo = useRouter()
+  let { type } = router.params;
+  const { projectData } = useContext(context);
   let userInfo: User = Taro.getStorageSync(UserInfo)
   // 默认字数
   const [num, setNum] = useState<number>(0)
@@ -63,11 +67,17 @@ export default function AddProjectPage() {
   const [multiIndexvalue, seMultiIndexvalue] = useState<string>('请选择所在地区')
   const [allpro, setAllpro] = useState<string>('')
   useEffect(()=>{
+    if (type){
+      Taro.setNavigationBarTitle({
+        title: '修改项目经验'
+      })
+    }
     let data:string[] = [];
     let lastData:string[] = [];
     let allChildren:any = [];
     let provice:any = [];
     let city:any=[];
+    let lastCity: any = [];
     // ☝第一次点开数据
     for (let i = 0; i < AREAS.length;i++){
       if (AREAS[i].pid !== '0') {
@@ -89,6 +99,15 @@ export default function AddProjectPage() {
       }
       lastData = [AREAS[1].name]
     }
+    for (let i = 0; i < provice.length; i++) {
+      if (provice[i].children) {
+        for (let j = 0; j < provice[i].children.length; j++) {
+          if (provice[i].children[j].pid === '1') {
+            provice[i].children.splice(provice[i].children[j], 1)
+          }
+        }
+      }
+    }
     setAllprovinces(provice)
     // 所有的省，市
     setMultiArrayone([data, allChildren])
@@ -99,6 +118,56 @@ export default function AddProjectPage() {
     if (edit === 0){
       // 省和第一个市
       setMultiArray([data, lastData])
+    }
+    // 内容回填
+    if (projectData) {
+      console.log(projectData)
+      let arr: any = [];
+      setImage({ item: arr })
+      const list = projectData[0];
+      for (let i = 0; i < list.image.length; i++) {
+        for (let j = 0; j < list.images.length; j++) {
+          let obj = {
+            httpurl: '',
+            url: '',
+          };
+          if (i === j) {
+            obj.httpurl = list.image[i];
+            obj.url = list.images[i]
+            arr.push(obj);
+          }
+        }
+      }
+      setName(list.project_name);
+      setStartTime(list.start_time);
+      setEndTime(list.completion_time);
+      setTextarea(list.detail);
+      setNum(list.detail.length);
+      const userArr = [list.province, list.city]
+      let one = 0;
+      let two = 0;
+      // 第一项
+      for (let i = 0; i < AREAS.length; i++) {
+        if (userArr[0] == AREAS[i].id) {
+          // 因为有全国要减1
+          one = i - 1;
+        }
+      }
+
+      // 第二项
+      for (let i = 0; i < AREAS.length; i++) {
+        for (let j = 0; j < AREAS[i].children.length; j++) {
+          if (userArr[1] == AREAS[i].children[j].id) {
+            lastCity = AREAS[i].children.map(v => v.name);
+            two = j
+          }
+        }
+      }
+      setMultiIndex([one, two])
+      console.log(`${list.province, list.city}`);
+      setAllpro('0,0')
+      setMultiArray([data, lastCity])
+      seMultiIndexvalue(list.province_name+list.city_name)
     }
   }, [edit])
   // 用户上传图片

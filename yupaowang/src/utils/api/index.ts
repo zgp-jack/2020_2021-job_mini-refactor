@@ -158,3 +158,7 @@ export const resumesProjectUrl: string = REQUESTURL + 'resumes/project/'
 export const addResumeUrl: string = REQUESTURL +'resumes/add-resume/'
 // 获取当前位置
 export const checkAdcodeUrl: string = REQUESTURL +'resumes/check-adcode/'
+// 在找活名片获取子页面公用数据只请求一次
+export const resumesGetDataUrl: string = REQUESTURL +'resumes/get-data/'
+//人员信息
+export const resumesIntroduceUrl: string = REQUESTURL +'resumes/introduce/'
