@@ -52,7 +52,7 @@ var Projects = (_temp2 = _class = function (_Taro$Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Projects.__proto__ || Object.getPrototypeOf(Projects)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray55", "FastBarConfig"], _this.anonymousFunc0Map = {}, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Projects.__proto__ || Object.getPrototypeOf(Projects)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray106", "FastBarConfig"], _this.anonymousFunc0Map = {}, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Projects, [{
@@ -84,13 +84,13 @@ var Projects = (_temp2 = _class = function (_Taro$Component) {
           _taroWeapp2.default.navigateTo({ url: item.url });
         }
       };
-      var loopArray55 = _config2.default.map(function (item, index) {
+      var loopArray106 = _config2.default.map(function (item, index) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
         var $loopState__temp2 = index + item.$original.appid;
 
-        var _$indexKey = "dfzzz" + index;
+        var _$indexKey = "baazz" + index;
 
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return FastbarAction(item.$original);
@@ -103,7 +103,7 @@ var Projects = (_temp2 = _class = function (_Taro$Component) {
         };
       });
       Object.assign(this.__state, {
-        loopArray55: loopArray55,
+        loopArray106: loopArray106,
         FastBarConfig: _config2.default
       });
       return this.__state;
