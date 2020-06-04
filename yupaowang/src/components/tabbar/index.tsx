@@ -1,5 +1,5 @@
-import Taro, { useEffect, onAppShow, onAppHide } from '@tarojs/taro'
-import { View, Text, Image } from '@tarojs/components'
+import Taro, { useEffect, onAppHide, useState } from '@tarojs/taro'
+import { View, Text, Image, Block } from '@tarojs/components'
 import classnames from 'classnames'
 import { getMemberMsgNumber } from '../../utils/request'
 import { isIos } from '../../utils/v'
@@ -8,6 +8,7 @@ import { DEFAULT_MENUS_TYPE, Menu } from '../../reducers/tabbar'
 import { setMsg } from '../../actions/msg'
 import { changeTabbar } from '../../actions/tabbar'
 import { MemberMsgTimerInterval } from '../../config'
+import { IMGCDNURL } from '../../config'
 import './index.scss'
 
 interface PROPS {
@@ -20,13 +21,45 @@ export default function Tabbar({ notredirect }: PROPS) {
   const memberMsg: number = useSelector<any, number>(state => state.msg['messageNumber'])
   const dispatch = useDispatch()
   let timer: NodeJS.Timeout; //定时器接收对象
+  // 是否展示发布
+  const [show, setShow] = useState<boolean>(false)
+  // 展开发布的动画效果
+  const [active, setActive] = useState<boolean>(false)
 
   // * 判断跳转还是切换tabbar
   const changeTabbarAction = (item: Menu)=> {
+    if(item.click){
+      if (item.click == 'openPublishMenu'){
+        openPublishMenu()
+        setTimeout(()=>{
+          setActive(true)
+        },10)
+      }
+      return
+    }
     if (notredirect)
       dispatch(changeTabbar(item.id))
     else 
       Taro.reLaunch({ url: '/pages/index/index?type=' + item.id })
+  }
+
+  // 点击发布按钮
+  const openPublishMenu = () => {
+    console.log('发布')
+    setShow(true)
+  }
+
+  // 点击遮罩可以关闭广告
+  const closePublishMenu = () => {
+    setShow(false)
+    setActive(false)
+  }
+
+  // 用户点击弹出的发布类型按钮
+  const userTapPublishItem = (url: string) => {
+    Taro.navigateTo({
+      url: url
+    })
   }
 
   // 统计未读信息
@@ -51,21 +84,54 @@ export default function Tabbar({ notredirect }: PROPS) {
   })
 
   return (
-    <View className='common-footer-tabbar'>
-      {tabbar.list.map((item) => (
-        <View
-          className={classnames({
-            'common-footer-tabbar-list': true,
-            'common-footer-tabbar-list-active': item.id === tabbar.key
-          })}
-          key={item.id}
-          onClick={() => changeTabbarAction(item)}
-        >
-          <Image className='commmon-footer-tabbar-img' src={item.id === tabbar.key ? item.activeImg : item.defaultImg} />
-          <Text className='commmon-footer-tabbar-text'>{item.title}</Text>
-          { item.msg && memberMsg && <Text className='footermsg'>{ memberMsg > 9 ? '9+' : memberMsg }</Text> }
+    <Block>
+      <View className='common-footer-tabbar'>
+        {tabbar.list.map((item) => (
+          <View
+            className={classnames({
+              'common-footer-tabbar-list': true,
+              'common-footer-tabbar-list-active': item.id === tabbar.key
+            })}
+            key={item.id}
+            onClick={() => changeTabbarAction(item)}
+          >
+            <Image className='commmon-footer-tabbar-img' src={item.id === tabbar.key ? item.activeImg : item.defaultImg} />
+            <Text className='commmon-footer-tabbar-text'>{item.title}</Text>
+            { item.msg && memberMsg && <Text className='footermsg'>{ memberMsg > 9 ? '9+' : memberMsg }</Text> }
+          </View>
+        ))}
+      </View>
+      {show &&
+      <View 
+        className={classnames({
+          'tabbar-publish-container': true,
+          'tabbar-publish-container-active': active
+        })}
+        onClick={() => closePublishMenu()}
+      >
+        <Image className={classnames({
+          'tabbar-publish-img': true,
+          'tabbar-publish-img-active': active
+        })} src={IMGCDNURL +'publish.png'}></Image>
+        <View className={classnames({
+          'tabbar-publish-items': true,
+          'tabbar-publish-items-active': active
+        })}>
+          <View className='tabbar-publish-item'>
+            <Image className='tabbar-publih-item-img' src={IMGCDNURL +'publish-recruit.png'}></Image>
+            <Text className='tabbar-publih-item-text'>发布招工</Text>
+          </View>
+          <View className='tabbar-publish-item'>
+            <Image className='tabbar-publih-item-img' src={IMGCDNURL +'publish-card.png'}></Image>
+            <Text className='tabbar-publih-item-text'>发布找活</Text>
+          </View>
+          <View className='tabbar-publish-item'>
+            <Image className='tabbar-publih-item-img' src={IMGCDNURL +'publish-used.png'}></Image>
+            <Text className='tabbar-publih-item-text'>二手交易</Text>
+          </View>
         </View>
-      ))}
-    </View>
+      </View>
+      }
+    </Block>
   )
 }
