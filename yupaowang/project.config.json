@@ -219,9 +219,9 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 24,
 					"name": "新增找活",
-					"pathName": "pages/resume/newJob/index",
+					"pathName": "pages/resume/newJobs/index",
 					"query": "",
 					"scene": null
 				},

@@ -4,7 +4,7 @@ import { AtInput, AtList, AtListItem } from 'taro-ui';
 import Msg, { ShowActionModal } from '../../../utils/msg'
 import AREAS from '../../../models/area'
 import { resumesIntroduceAction } from '../../../utils/request/index'
-import { context } from '../../../pages/resume/newJob'
+import { context } from '../../../pages/resume/newJobs'
 import './index.scss'
 
 interface ModelType {

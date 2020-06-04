@@ -1,3 +1,4 @@
+@import '../../../common.scss';
 .addProjectPage{
   overflow-y: scroll;
 }
@@ -6,7 +7,7 @@
   margin: 0 auto;
 }
 .feedback-content-middle {
-  margin-top: 10px;
+  margin-top: 20px;
   font-size: 30px;
 }
 .at-input {
@@ -83,4 +84,48 @@
   text-align: center;
   font-size: 29px;
   border-radius: 10px
+}
+.publish-list-item {
+  display: flex;
+  position: relative;
+  width: 90%;
+  height: 125px;
+  line-height: 125px;
+  margin-left: 30px;
+  border-bottom: 1px solid #F1F1F1;
+}
+.pulish-list-title {
+  width: 180px;
+  display: block;
+  text-align: justify;
+  line-height: 125px;
+  font-size: 30px;
+
+  &::after {
+    @include text-justify();
+  }
+}
+.publish-list-input {
+  position: relative;
+  width: 100%;
+  height: 125px;
+  line-height: 125px;
+  display: block;
+  font-size: 30px;
+  margin-left: 30px;
+
+  .publish-input-list {
+    position: relative;
+    display: inline-block;
+    margin-right: 20px;
+
+    &:nth-last-child(1) {
+      margin-right: 0;
+    }
+  }
+}
+.publish-recruit-card {
+  position: relative;
+  background-color: white;
+  margin-top: 19px;
 }

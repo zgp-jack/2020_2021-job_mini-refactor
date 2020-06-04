@@ -1,14 +1,12 @@
-import Taro, { Config, useState, useEffect, useRouter, useDidShow, createContext } from '@tarojs/taro'
-import { View, Text, Image, Block, Button, Textarea } from '@tarojs/components'
-import { resumeListAction, jobRecommendListAction, resumesGetDataAction } from '../../../utils/request/index'
-import WechatNotice from '../../../components/wechat'
-import { IMGCDNURL, SERVERPHONE } from '../../../config'
-import { isVaildVal } from '../../../utils/v'
-import Msg from '../../../utils/msg'
-import {  UserLocationCity } from '../../../config/store'
-import { UserLocationPromiss } from '../../../models/area'
-import { resumeList, ResumeTopStr, resumesGetData } from '../../../utils/request/index.d'
+import Taro, { Config, useState, useDidShow, createContext } from '@tarojs/taro'
+import { View, Text, Image, Button } from '@tarojs/components'
+import { AtModal, AtModalHeader, AtModalContent, AtModalAction } from "taro-ui"
+import { resumeListAction, jobRecommendListAction, resumesGetDataAction, resumesEditEndAction } from '../../../utils/request/index'
+import { IMGCDNURL } from '../../../config'
+import { ResumeTopStr, resumesGetData } from '../../../utils/request/index.d'
 import CollectionRecruitList  from '../../../components/recommendList'
+import { UserInfo } from '../../../config/store'
+import { AREABEIJING } from '../../../models/area'
 import './index.scss'
 
 interface introducesType {
@@ -31,6 +29,8 @@ interface DataType {
     address:string,
     introduce:string,
     note:string,
+    is_end:string,
+    check:string,
   },
   resume_top:{
     is_top:number,
@@ -47,13 +47,16 @@ interface DataType {
   },
   introduces: introducesType
   certificate_count:number,
+  fail_certificate:number,
+  fail_project:number,
+  popup_text:string[],
 }
 interface introducesTags {
   label_name:string,
 }
-interface CertificatesObj {
-  check:string
-}
+// interface CertificatesObj {
+//   check:string
+// }
 // 最后发布地区
 export interface UserLastPublishRecruitArea {
   location: string,
@@ -68,14 +71,22 @@ interface Injected {
   publicList: resumesGetData,//公用值
   skillData:any,//修改技能证书
   projectData:any, //修改项目经验 
+  // basicsCity:string,//选择区域
   setArea: (city: string) => void, //设置城市名称
   setAreaInfo?: (item: UserLastPublishRecruitArea) => void, // 用户点击的小地址信息
   setPublishArea?: (val: string) => void //设置最后一次点击 城市的名字
 }
+interface User {
+  userId: number,
+  tokenTime: number,
+  token: string,
+  uuid: string,
+  login: boolean
+}
 export const context = createContext<Injected>({} as Injected)
 
 export default function NewJob() {
-  
+  let userInfoObj: User = Taro.getStorageSync(UserInfo)
   const [data,setData] = useState<DataType>({
     info:{
       progress:'0',
@@ -87,6 +98,8 @@ export default function NewJob() {
       address:'',
       introduce:'',
       note:'',
+      is_end:'',
+      check:'',
       occupations:[],
     },
     resume_top:{
@@ -110,7 +123,10 @@ export default function NewJob() {
       number_people:'未填写',
       tags:[],
     },
+    fail_certificate:0,
     certificate_count:0,
+    fail_project:0,
+    popup_text:[],
   })
   const [showcomplete, setShowcomplete ] = useState<boolean>(true)
   const [showtopone, setShowtopone] = useState<boolean>(false)
@@ -152,7 +168,11 @@ export default function NewJob() {
   const [skillbooksone, setSkillbooksone] = useState<any>([])
   // 推荐的列表
   const [recData,setRecData] = useState<any>([])
-  const [area,setArea] = useState<string>('')
+  const [area, setArea] = useState<string>(AREABEIJING.name)
+  // 工作状态
+  const [isOpened, setIsOpened] = useState<boolean>(false)
+  // 工作状态列表
+  const [statusList, setStatusList] = useState<any>()
   const [publicList, setPublicList] = useState<resumesGetData>({
     gender: [],
     label: [],
@@ -170,14 +190,39 @@ export default function NewJob() {
     number_people: '',
     tags: [],
   })
-  useEffect(()=>{
+  // 选择详细地址信息
+  const [areaInfo, setAreaInfo] = useState<UserLastPublishRecruitArea>({
+    title: '',
+    adcode: '',
+    location: '',
+    info: ''
+  })
+  //设置基础信息所在区域
+  const [basicsCity, setBasicsCity] = useState<string>('')
+  // 修改还是更多项目经验
+  const [proStatus, setProStatus] = useState<string>('0');
+  // 提示内容
+  const [popup, setPopup] = useState<string>('')
+  // 提示弹窗
+  const [tips,setTips] = useState<boolean>(false);
+  // 置顶提示
+  const [toppingModal, setToppingModal] = useState<boolean>(false)
+  useDidShow(()=>{
     resumeListAction().then(res=>{
       console.log(res);
       if(res.errcode == "200"){
         Taro.setStorageSync("introinfo", res.data.info)
-        setData({ info: res.data.info, resume_top: res.data.resume_top, content: res.data.content, introduces: res.data.introduces, certificate_count: res.data.certificate_count})
+        setData({ info: res.data.info, resume_top: res.data.resume_top, content: res.data.content, introduces: res.data.introduces, certificate_count: res.data.certificate_count, fail_certificate: res.data.fail_certificate, fail_project: res.data.fail_project, popup_text: res.data.popup_text })
         const list = res.data.status.map(v=>v.name);
         console.log(list)
+        // 设置我的工作状态
+        if(res.data.info.is_end === '2'){
+          setIndex(1);
+        }
+        // 设置城市
+        setArea(res.data.info.city);
+        //状态列表
+        setStatusList(res.data.status);
         setUserInfo(res.data.introduces)
         setSelectdata(list)
         if (res.data.info.uuid && res.data.info.is_introduces != '0' && res.data.project.length != 0 && res.data.certificates.length != 0 ){
@@ -191,10 +236,42 @@ export default function NewJob() {
           setShowtopone(false)
         }
         setShowpassre(true)
-        // 判断技能证书
-        const certificatesObj: CertificatesObj = res.data.certificates[res.data.certificates.length - 1];
-        const check = certificatesObj.check;
-        setCheckfourf(check)
+        // 设置提示的内容
+        let popupData = '';
+        for (let i = 0; i < res.data.popup_text.length; i++) {
+          if (res.data.popup_text.length - 1 == i) {
+            popupData += res.data.popup_text[i]
+          } else {
+            popupData += res.data.popup_text[i] + "、"
+          }
+        }
+        setPopup(popupData)
+        // 判断技能证书全部遍历一次有失败就显示
+        let skillType;
+        res.data.certificates.map((v)=>{
+          if (v.check === '1'){
+            setCheckfourf(v.check);
+            skillType = v.check;
+            return;
+          } 
+          skillType = v.check;
+          setCheckfourf(v.check);
+        })
+        // 项目经验遍历有失败就显示修改
+        let projectType;
+        res.data.project.map((v) => {
+          if (v.check === '1') {
+            setProStatus(v.check);
+            projectType = v.check;
+            return;
+          }
+          projectType = v.check;
+          setProStatus(v.check);
+        })
+        // 设置提示弹窗
+        if (skillType === '0' || projectType === '0' || res.data.info.check === '0' || res.data.introduces.check === '0'){
+          setTips(true)
+        }
         // 人员信息
         if (res.data.is_introduces == '1'){
           setselfintro(false)
@@ -249,11 +326,6 @@ export default function NewJob() {
             }
           }
         }
-        // if (res.data.is_introduces == '1'){
-        //   setSelfintrone(true)
-        // } else if (res.data.is_introduces == '0'){
-        //   setSelfintrone(false)
-        // }
         // 修改技能证书
         setSkillData(res.data.certificates)
         // 修改项目经验
@@ -287,7 +359,6 @@ export default function NewJob() {
           type: 1,
         }
         jobRecommendListAction(paramsList).then(res => {
-          console.log(res, '推荐');
           setRecData(res.data.list)
         })
       }else{
@@ -304,7 +375,7 @@ export default function NewJob() {
       console.log(res,'公用数据')
       setPublicList(res);
     })
-  },[])
+  })
   // 用户页面跳转
   const userRouteJump = (url: string) => {
     Taro.navigateTo({
@@ -344,16 +415,19 @@ export default function NewJob() {
       })
     }
   }
+  console.log(area,'area23123')
   // 需要传递的值
   const value:Injected = {
     area: area,
     setArea: (city: string) => setArea(city),
-    // setAreaInfo: (item: UserLastPublishRecruitArea) => setAreaInfo(item),
-    // setPublishArea: (val: string) => {
-    //   console.log(val,'val')
-    //   // if (!model) return
-    //   // setModel({ ...model, address: val })
-    // }
+    setAreaInfo: (item: UserLastPublishRecruitArea) => setAreaInfo(item),
+    setPublishArea: (val: string) => {
+      console.log(val,'val')
+      // console.log(areaInfo,'areaInfo');
+      // if (!model) return
+      // setModel({ ...model, address: val })
+      // setBasicsCity(val);
+    },
     userInfo: userInfo,
     // 公用值
     publicList: publicList,
@@ -361,9 +435,59 @@ export default function NewJob() {
     skillData: skillData,
     // 修改项目经验
     projectData: projectData,
+    // 所在区域
+    // basicsCity: basicsCity,
   }
-  const setAreaInfo = (item)=>{
-    console.log(item,'item')
+  //设置工作状态
+  const handleStatus = ()=>{
+    if (data.info.check === '2'){
+      console.log(1111);
+      const sheetList = statusList.map(v=>v.name)
+      const sheetListId = statusList.map(v => v.id);
+      Taro.showActionSheet({
+        itemList: sheetList,
+        success(res:any) {
+          if (index == res.tapIndex) {
+            return
+          }
+          setIndex(res.tapIndex);
+          const type = sheetListId[res.tapIndex];
+          const params = {
+            type,
+            resume_uuid:userInfoObj.uuid
+          }
+          resumesEditEndAction(params).then(res => {
+            if (res.errcode == 'ok') {
+              Taro.showModal({
+                title: '温馨提示',
+                content: res.errmsg,
+                showCancel: false,
+              })
+            } else {
+              Taro.showModal({
+                title: '温馨提示',
+                content: res.errmsg,
+                showCancel: false,
+              })
+            }
+          })
+        }
+      })
+    } else if (data.info.check === '1'){
+      Taro.showModal({
+        title: '温馨提示',
+        content: "审核中请耐心等待",
+        showCancel: false,
+      })
+      return
+    } else if (data.info.check === '0'){
+      Taro.showModal({
+        title: '温馨提示',
+        content: "审核未通过，请修改信息",
+        showCancel: false,
+      })
+      return
+    }
   }
   return (
     <context.Provider value={value}>
@@ -475,7 +599,27 @@ export default function NewJob() {
             <View className='select_box'>
             {/* passre&& nopassre */}
             {passre && nopassre && 
-            <View className='select'>
+                <View className='select' 
+                  // onClick={()=>setIsOpened(true)}
+                onClick={handleStatus}
+                  >
+                {/* <AtActionSheet 
+                  onCancel={()=>handleSheetItem()} 
+                  isOpened={isOpened} 
+                  onClose={()=>handleSheetItem()} 
+                  cancelText='取消'
+                  >
+                  {statusList && statusList.map(v=>(
+                    <AtActionSheetItem onClick={()=>handleStatus(v)}>{v.name}</AtActionSheetItem>
+                  ))}
+                </AtActionSheet> */}
+                {/* <Picker
+                  mode='selector'
+                  onChange={(e) => { handelPicker(e.detail.value) }}
+                  value={working}
+                  range={['a','b','c']}
+                >
+                </Picker>> */}
               {/* <text class='select_text' wx: if="{{ index == 0}}">{{ selectData[index].name }}</text>
               <text class='select_text' wx: if="{{ index== 1}}">{{ selectData[index].name }}</text>
               <image class='select_img' src='{{subscripted}}' wx: if="{{ checkstatus }}"></image> */}
@@ -581,7 +725,7 @@ export default function NewJob() {
                     </View>
                     <View className="cardotext">
                       <Text className="oworkotext">自我介绍</Text>
-                      <Text className="workotextone">{data.info.address}</Text>
+                      {/* <Text className="workotextone">{data.info.address}</Text> */}
                     </View>
                   </View>
                 </View>
@@ -726,7 +870,7 @@ export default function NewJob() {
                 {/* wx: if="{{ item.check == 2 }}" */}
                 {/* bindtap="editor" data-uid="{{ item }}" */}
                 {item.check == 2 && 
-                <View className="editor" onClick={() => userRouteJump(`/subpackage/pages/addProject/index?type=1`)}>编辑</View>
+                <View className="editor" onClick={() => userRouteJump(`/subpackage/pages/addProject/index?type=0`)}>编辑</View>
                 }
                 {item.check == 0 &&
                   <View className="editor">待修改</View>
@@ -777,12 +921,13 @@ export default function NewJob() {
             ))}
           <View className="cardsixsixall">
             <View className="cardsixsix">
-              <View className="more">
-                更多项目经验
+                <View className="more" onClick={() => userRouteJump(`/pages/resume/projectList/index`)}>
+                  {proStatus == '0' ? '更多项目经验':'修改项目经验'}
                 <View className='more-view'>
                   <Image src={`${IMGCDNURL}lpy/downward.png`} className="down"/>
                 </View>
               </View>
+                {proStatus !== '0' && <Text className='num'>{data.fail_project}</Text>}
             </View>
           </View>
           </View>}
@@ -824,8 +969,8 @@ export default function NewJob() {
               <View className='cardeightzong'>
                 <Image src={item.audit} className='checkfour'/>
                 {/* wx: if="{{ item.check == 2 }}" */}
-                {item.check == 2 && <View className="editor" onClick={() => userRouteJump(`/subpackage/pages/addSkill/index?type=1`)}>编辑11111</View> }
-                {item.check == 0 && <View className="editor">待修改</View>}
+                {item.check == 2 && <View className="editor" onClick={() => userRouteJump(`/subpackage/pages/addSkill/index?type=${i}`)}>编辑</View> }
+                {item.check == 0 && <View className="editor" onClick={() => userRouteJump(`/subpackage/pages/addSkill/index?type=${i}`)}>待修改</View>}
                 {item.check == 0 && <Image className="audit" src={`${IMGCDNURL}lpy/notthrough.png`}/> }
                 {/* {item.check == 1 && <Image className="audit" src={`${IMGCDNURL}lpy/review.png`} />} */}
                 <View>
@@ -843,7 +988,7 @@ export default function NewJob() {
                       <Image className='cardeightfive-image' src={v} key={i+i}/>
                     ))}
                   </View>
-                  {item.check == 0 && <View className='ressons'>
+                  {item.check == 0 && <View className='resson'>
                     未通过原因：{ item.fail_case }
                   </View>}
 
@@ -855,7 +1000,7 @@ export default function NewJob() {
           <View className="cardeightsixall">
             <View className="cardeightsix">
               {checkfourf != '0' && 
-                <View className="more">
+                  <View className="more" onClick={() => userRouteJump(`/pages/resume/skillList/index`)}>
                   更多技能证书
                   <View className='more-view'>
                   <Image src={`${IMGCDNURL}lpy/downward.png`} className="down"/>
@@ -867,6 +1012,7 @@ export default function NewJob() {
                 <View className='more-view'>
                   <Image src={`${IMGCDNURL}lpy/downward.png`} className="down"/>
                 </View>
+                  <Text className='num'>{data.fail_certificate}</Text>
               </View>}
             </View>
           </View>
@@ -875,7 +1021,7 @@ export default function NewJob() {
       </View>
       <CollectionRecruitList type={1} data={recData}/>
       {/* 底部 */}
-      {showtopone && 
+      {showtopone && !isOpened &&
         <View className="cardnine">
           <Button className="cardnineone" onClick={() => userRouteJump(`/pages/resume/preview/index`)}>
           <Image className='cardnineone-image' src={`${IMGCDNURL}lpy/bottom-one.png`} /> 预览
@@ -885,6 +1031,28 @@ export default function NewJob() {
           </Button>
         </View>
       }
+      {/* 提示 */}
+      <AtModal isOpened={tips} className='AtModal'>
+        <View className='content'>
+          <View className='content-otext'>提示</View>
+          <View className='content-text'>您的<Text className='popup'>{popup}</Text>未审核通过,请修改后再进行提交</View>
+          <View className='buttontext' onClick={()=>{setTips(false)}}>确定</View>
+        </View>
+      </AtModal>
+      {/* 置顶 */}
+        <AtModal isOpened={toppingModal} className='AtModal'>
+        <View className='content'>
+          <View><Image src={`${IMGCDNURL}lpy/resume-settop-daytips.png`} className='content-image'/></View>
+          <View className='content-otext'>提示</View>
+            <View className='content-toppding'>马上去置顶提升找活名片排名，让更多老板看到您的找活名片</View>
+          {/* <View className='buttontext' onClick={() => { setTips(false) }}>确定</View> */}
+            <View className='content-btn-box'>
+              <View className='content-btn-left' onClick={() => { setToppingModal(false)}}>稍后再说</View>
+              {/* ======= */}
+              <View className='content-btn-right' onClick={()=>{console.log(1111)}}>去置顶</View>
+          </View>
+        </View>
+      </AtModal>
     </View>
     </context.Provider>
   )

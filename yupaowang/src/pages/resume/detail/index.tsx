@@ -4,9 +4,10 @@ import { resumeDetailAction, recommendListAction, resumesGetTelAcrion, resumeSup
 import { IMGCDNURL } from '../../../config'
 import Msg from '../../../utils/msg'
 import { resumeDetailCertificates, resumeDetailProject, resumeDetailOperation, recommendListDataList } from '../../../utils/request/index.d'
-import './index.scss'
 import CollectionRecruitList  from '../../../components/recommendList/index'
 import { isVaildVal } from '../../../utils/v'
+import { UserInfo } from '../../../config/store'
+import './index.scss'
 
 interface DataType {
   certificates: resumeDetailCertificates[],
@@ -40,7 +41,15 @@ interface resumeDetailInfoTages{
 interface ListType{
   item: recommendListDataList[],
 }
+interface User {
+  userId: number,
+  tokenTime: number,
+  token: string,
+  uuid: string,
+  login: boolean
+}
 export default function ResumeDetail() {
+  let userInfo: User = Taro.getStorageSync(UserInfo)
   const [data, setDate] = useState<DataType>({
     certificates:[],
     info:{
@@ -89,7 +98,7 @@ export default function ResumeDetail() {
     const params = {
       location:'',
       // 先写死
-      resume_uuid: 1590498258556959,
+      resume_uuid: userInfo.uuid
     }
     resumeDetailAction(params).then(res=>{
       console.log(res);
@@ -117,7 +126,7 @@ export default function ResumeDetail() {
   const handlePhone =()=>{
     const params = {
       // 写死
-      resume_uuid:1590498258556959
+      resume_uuid: userInfo.uuid
     }
     resumesGetTelAcrion(params).then(res=>{
       console.log(res);
@@ -154,7 +163,7 @@ export default function ResumeDetail() {
   // 赞
   const resumeSupport = ()=>{
     let params = {
-      resume_uuid:1590498258556959
+      resume_uuid: userInfo.uuid
     }
     resumeSupportAction(params).then(res=>{
       console.log(res)
@@ -169,7 +178,7 @@ export default function ResumeDetail() {
   // 收藏
   const resumeCollect = ()=>{
     let params = {
-      resume_uuid: 1590498258556959
+      resume_uuid: userInfo.uuid
     }
     resumeCollectAction(params).then(res=>{
       if (res.errcode === 'ok') {

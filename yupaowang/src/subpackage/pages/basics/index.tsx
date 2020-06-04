@@ -1,4 +1,4 @@
-import Taro, { useState, useEffect, Config, RouterInfo, useRouter } from '@tarojs/taro'
+import Taro, { useState, useEffect, Config, useDidShow, useContext } from '@tarojs/taro'
 import { View, Form, Text, Picker, Input, Textarea, Button } from '@tarojs/components'
 import { ProfessionRecruitData } from '../../../components/profession/index.d'
 import { addResumeAction, getPublishRecruitView, getUserAuthInfo, checkAdcodeAction} from '../../../utils/request/index'
@@ -9,6 +9,7 @@ import Msg from '../../../utils/msg'
 import WordsTotal from '../../../components/wordstotal'
 import { MAPKEY } from '../../../config'
 import { userAuthLoction } from '../../../utils/helper'
+import { context } from '../../../pages/resume/newJobs'
 import useCode from '../../../hooks/code'
 import { isPhone } from '../../../utils/v'
 import './index.scss'
@@ -36,6 +37,7 @@ export interface InitRecruitView {
 }
 
 export default function BasicsPage() {
+  // const { basicsCity } = useContext(context);
   // 验证码
   const { text, userGetCode } = useCode()
   const sexList = ['男', '女'];
@@ -46,6 +48,10 @@ export default function BasicsPage() {
   // 进来时的电话做验证码判断
   const [oldTel,setOldTel] = useState<string>('')
   const [num, setNum] = useState<number>(0)
+  // 省
+  const [province, setProvince] = useState<string>('')
+  // 市
+  const [city, setCity] = useState<string>('')
   const [formData, setFormData] = useState <ModelType>({
     name: '',
     sex: '',
@@ -53,7 +59,7 @@ export default function BasicsPage() {
     nation: '',
     work: [],
     workItem:'',
-    are: '',
+    are:'',
     phone: '',
     code:'',
     details: '',
@@ -62,12 +68,21 @@ export default function BasicsPage() {
     classifies: [],
     nationCurrentName:'',
   })
+  // useDidShow(() => {
+  //   if (basicsCity){
+  //     setFormData({ ...formData, are: basicsCity, });
+  //   }
+  // })
   // 获取数据
   useEffect(()=>{
+    // if (basicsCity){
+    //   console.log(basicsCity,'basicsCitybasicsCitybasicsCity')
+    //   setFormData({ ...formData, are: basicsCity,});
+    // }
     // 获取缓存信息
     const useInfo = Taro.getStorageSync('introinfo');
     if (useInfo){
-      console.log(useInfo,'xxx');
+      console.log(useInfo,'useInfo');
       let cache:any={
         // 姓名
         name: useInfo.username,
@@ -80,8 +95,15 @@ export default function BasicsPage() {
         // 民族
         nationCurrentName: useInfo.nation,
         // 自我介绍
-        details:useInfo.introduce
+        details:useInfo.introduce,
+        // 所属工种
+        workItem: (useInfo.occupations).toString(),
+        // 所在地区
+        are: useInfo.address,
+        // 自我介绍
       };
+      setProvince(useInfo.province);
+      setCity(useInfo.city)
       setOldTel(useInfo.tel);
       setFormData(cache);
       setNum(useInfo.introduce.length)
@@ -148,12 +170,12 @@ export default function BasicsPage() {
       nation: String(nation),
       birthday: formData.time,
       occupations: formData.workItem,
-      // province: String(this.data.provinceid),
-      // city: String(this.data.wardenryid),
-      // introduce: this.data.otextareavalue,
+      province,
+      city,
+      introduce: formData.details,
       // lat: this.data.latitude,
       // lng: this.data.longitude,
-      // address: this.data.regionone,
+      address: formData.are,
       // adcode: this.data.oadcode,
     }
     console.log(params);
@@ -165,7 +187,6 @@ export default function BasicsPage() {
   const closeProfession = () => {
     setShowProssion(false)
   }
-  console.log(model,'model')
   // 点击工种
   const userClickProfession = (i: number, k: number, id: string) => {
     console.log(i,'i');
@@ -209,6 +230,7 @@ export default function BasicsPage() {
   // 获取当前位置
   const handleLocation = (e)=>{
     e.stopPropagation();
+    console.log(3123213213);
     Taro.getSetting({
       success: (res) => {
         if (res.authSetting['scope.userLocation'] != undefined && res.authSetting['scope.userLocation'] != true) {//非初始化进入该页面,且未授权   
@@ -396,7 +418,7 @@ export default function BasicsPage() {
           <View className='publish-list-ditals'>
             <View>自我介绍:</View>
               <Textarea
-                // className=''
+                className='textarea'
                 placeholder='请简要介绍你所从事的行业以及工作经验...'
                 value={formData && formData.details}
                 onInput={(e) => userEnterFrom(e, 'details')}

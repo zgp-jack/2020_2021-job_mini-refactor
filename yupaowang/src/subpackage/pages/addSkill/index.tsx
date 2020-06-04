@@ -1,11 +1,10 @@
 import Taro, { useState, useEffect, Config, useContext, useRouter } from '@tarojs/taro'
-import { View, Text, Picker, Block, Input } from '@tarojs/components'
-import { AtInput, AtList, AtListItem  } from 'taro-ui';
+import { View, Text, Picker, Input } from '@tarojs/components'
 import ImageView from '../../../components/imageview'
 import UploadImgAction from '../../../utils/upload'
 import Msg from '../../../utils/msg'
-import { context } from '../../../pages/resume/newJob'
-import {  resumesCertificateAction } from '../../../utils/request/index'
+import { context } from '../../../pages/resume/newJobs'
+import { resumesCertificateAction, delCertificateAction } from '../../../utils/request/index'
 import './index.scss'
 
 export interface ImageDataType {
@@ -19,9 +18,8 @@ export default function AddSkillPage() {
   const router: Taro.RouterInfo = useRouter()
   const { skillData } = useContext(context);
   let { type } = router.params;
-  console.log(type);
   const [val,setVal] = useState<string>('')
-  const [extraText, setExtraText] = useState<string>('请选择您领取证书时间')
+  const [extraText, setExtraText] = useState<string>('')
   const [image, setImage] = useState<ImageDataType>({
     item: [],
   })
@@ -30,9 +28,8 @@ export default function AddSkillPage() {
     Taro.setNavigationBarTitle({
       title: '修改技能证书'
     })
-    console.log(skillData);
     if (skillData){
-      const data = skillData[0];
+      const data = skillData[type];
       setVal(data.name);
       setExtraText(data.certificate_time);
       let arr:any=[];
@@ -125,6 +122,30 @@ export default function AddSkillPage() {
       }
     })
   }
+  const handleDel = ()=>{
+    Taro.showModal({
+      title: '提示',
+      content: `技能证书删除后，将无法恢复`,
+      showCancel: true,
+      success(res) {
+        if (res.confirm == true) {
+          let params = {
+            certificate_uuid: uuid,
+          }
+          delCertificateAction(params).then(res => {
+            if (res.errcode == "ok") {
+              Taro.navigateBack({
+                delta: 1
+              })
+            } else {
+              Msg(res.errmsg);
+            }
+          })
+        }
+      }
+    })
+    
+  }
   return (
     <View>
       <View className='content'>
@@ -166,7 +187,10 @@ export default function AddSkillPage() {
       </View>
       {/* footer */}
       <View className='footer'>
-        <View className='left' onClick={handleCanle}>取消</View>
+        {type ? 
+          <View className='left' onClick={handleDel}>删除</View>:
+          <View className='left' onClick={handleCanle}>取消</View>
+        }
         <View className='right' onClick={handelSubmit}>确认保存</View>
       </View>
     </View>

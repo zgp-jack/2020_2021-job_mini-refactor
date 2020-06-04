@@ -43,10 +43,16 @@ export default function ProjectList() {
     })
     setRefresh(true)
   }
+  // 用户页面跳转
+  const userRouteJump = (url: string) => {
+    Taro.navigateTo({
+      url: url
+    })
+  }
   return(
     <View className='projectList'>
-      {data.map(item=>(
-        <View key={item.id} className='skilleight'>
+      {data.map((item,i)=>(
+        <View key={item.id} className='skilleight' onClick={() => userRouteJump(`/subpackage/pages/addProject/index?type=${i}`)}>
           {item.check == '1' && <Image className='audit' src={`${IMGCDNURL}lpy/review.png`}/>}
           {item.check == '0' && <Image className='audit' src={`${IMGCDNURL}lpy/notthrough.png`} />}
           {item.check == '2' && <View className='editor'>编辑</View>}

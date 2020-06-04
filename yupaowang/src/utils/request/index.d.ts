@@ -1014,11 +1014,11 @@ export interface resumeListData {
   resume_top: ResumeTop,
   project_count:number,
   project:any[],
-  popup_text:[],
+  popup_text:string[],
   is_popup:number,
   is_introduces:string,
   introduces: resumeListDataIntroduces,
-  info: resumeListDataInfo
+  info: resumeListDataInfo,
 }
 export interface resumeListDataContent{
   check_tips_string: string,

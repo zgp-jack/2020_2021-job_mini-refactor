@@ -1,5 +1,6 @@
-import Taro, { useEffect, useState, useContext } from '@tarojs/taro'
+import Taro, { useEffect, useState, useContext, Config } from '@tarojs/taro'
 import { View, Text, Image, Input } from '@tarojs/components'
+// import { context } from '../../resume/newJobs';
 import { context } from '../../recruit/publish'
 import { getAllAreas, checkAdcodeValid } from '../../../utils/request'
 import { AllAreasDataItem } from '../../../utils/request/index.d'
@@ -44,6 +45,7 @@ export default function ResumeMap() {
   const [showCity, setShowCity] = useState<boolean>(false)
   // 使用发布招工hook处理数据
   const { area, setArea, setAreaInfo, setPublishArea } = useContext(context)
+
   // 详细地址的输入框
   const [smAreaText, setSmAreaText] = useState<string>('')
   // 关键词地区列表
@@ -252,3 +254,6 @@ export default function ResumeMap() {
     </View>
   )
 }
+ResumeMap.config = {
+  navigationBarTitleText: '地址选择',
+} as Config

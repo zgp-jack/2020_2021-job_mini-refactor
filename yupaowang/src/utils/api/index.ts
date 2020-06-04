@@ -162,3 +162,7 @@ export const checkAdcodeUrl: string = REQUESTURL +'resumes/check-adcode/'
 export const resumesGetDataUrl: string = REQUESTURL +'resumes/get-data/'
 //人员信息
 export const resumesIntroduceUrl: string = REQUESTURL +'resumes/introduce/'
+// 找回名片修改状态
+export const resumesEditEndUrl: string = REQUESTURL +'resumes/edit-end/'
+// 删除项目经验
+export const resumesDelProjectUrl: string = REQUESTURL +'resumes/del-project/'

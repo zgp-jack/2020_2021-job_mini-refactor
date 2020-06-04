@@ -100,6 +100,7 @@
   color: #09f;
   font-size: 28px;
   border-left: 0px solid rgb(143, 143, 143);
+  z-index: 100;
 }
 .publish-list-item-phone{
   display: flex;
@@ -127,4 +128,8 @@
   line-height: 125px;
   margin: 20px 0px 20px 30px;
   // border-bottom: 1px solid #F1F1F1;
+}
+
+.textarea{
+  height: 100px !important;
 }

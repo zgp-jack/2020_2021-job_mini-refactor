@@ -25,7 +25,8 @@ interface RequestHeader {
   mid?: number,
   token?: string,
   time?: number,
-  uuid?: string
+  uuid?: string,
+  version?: string
 }
 
 interface RequestBase {
@@ -842,7 +843,7 @@ export function jobRecommendListAction(data): Promise<Inter.jobRecommendList> {
 }
 
 //删除技能证书
-export function delCertificateAction(data): Promise<Inter.resumeList> {
+export function delCertificateAction(data): Promise<Inter.Result> {
   return doRequestAction({
     url: api.delCertificateUrl,
     method: 'POST',
@@ -902,6 +903,38 @@ export function resumesGetDataAction(): Promise<Inter.resumesGetData> {
 export function resumesIntroduceAction(data): Promise<Inter.resumesIntroduce> {
   return doRequestAction({
     url: api.resumesIntroduceUrl,
+    method: 'POST',
+    failToast: true,
+    data,
+  })
+}
+// 找活名片修改状态
+export function resumesEditEndAction(data): Promise<Inter.Result> {
+  // 获取用户信息
+  let userInfo: User = Taro.getStorageSync(UserInfo)
+  return doRequestAction({
+    url: api.resumesEditEndUrl,
+    method: 'POST',
+    failToast: true,
+    header:{
+      version: '1.0.1',
+      'content-type': 'application/x-www-form-urlencoded',
+      // mid: 95,
+      // uuid:'1588057764721312',
+      // token:''
+      mid: userInfo.userId,
+      token: userInfo.token,
+      time: userInfo.tokenTime,
+      uuid: userInfo.uuid
+    },
+    data,
+  })
+}
+
+// 删除项目经验
+export function resumesDelProjectAction(data): Promise<Inter.Result> {
+  return doRequestAction({
+    url: api.resumesDelProjectUrl,
     method: 'POST',
     failToast: true,
     data,

@@ -66,6 +66,8 @@ export default function Preview() {
   useEffect(()=>{
     resumeListAction().then(res=>{
       console.log(res);
+      
+      setSex(res.data.info.gender == '1'?'男':'女')
       setCheckpan(res.data.info.check == '0' ? true : false)
       setCheckone(res.data.info.check == '0' ? true : false)
       setHeaderimg(res.data.info.headerimg);
@@ -309,7 +311,7 @@ export default function Preview() {
           </View>
           <View className='cardcolore'>
           <View className="cardsix">
-            {project.map((item: any) => (
+            {skillbooksone.map((item: any) => (
               <View className='cardsixzong' key={item.id}>
                 {/* wx: if="{{ item.check == 1 && show_tips == 1 }}" */}
                 {item.check == 1 && data.content.show_tips == 1 &&
@@ -317,12 +319,12 @@ export default function Preview() {
                 }
                 {/* wx: if="{{ item.check == 2 }}" */}
                 {/* bindtap="editor" data-uid="{{ item }}" */}
-                {item.check == 2 &&
+                {/* {item.check == 2 &&
                   <View className="editor">编辑</View>
                 }
                 {item.check == 0 &&
                   <View className="editor">待修改</View>
-                }
+                } */}
                 {/* wx: if="{{ item.check == 0 }}" */}
                 {item.check == 0 &&
                   <Image className="audit" src={`${IMGCDNURL}lpy/notthrough.png`} />
@@ -336,11 +338,11 @@ export default function Preview() {
                 </View>
                 <View className="cardsixall">
                   <View className="cardsixtwo">
-                    <Text>{item.project_name}</Text>
+                    <Text>{item.name}</Text>
                   </View>
                   <View className="cardsixthreeborder">
                     <View className="cardsixthree">
-                      <Text className='cardsixthree-text'>{item.start_time}-{item.completiontime == "zhijin" ? "至今" : item.completion_time}</Text>
+                      <Text className='cardsixthree-text'>{item.certificate_time}</Text>
                       {/*  wx: if="{{ item.city_name }}" */}
                       {item.city_name &&
                         <Text className='cardsixthree-text'>{item.province_name}-{item.city_name}</Text>

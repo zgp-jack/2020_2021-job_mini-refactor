@@ -1,15 +1,15 @@
 import Taro, { useState, useEffect, Config, useRouter, useContext } from '@tarojs/taro'
-import { View, Picker, Textarea } from '@tarojs/components'
-import { AtInput, AtList, AtListItem } from 'taro-ui';
+import { View, Picker, Textarea, Input, Text } from '@tarojs/components'
+import { AtInput} from 'taro-ui';
 import ImageView from '../../../components/imageview'
 import UploadImgAction from '../../../utils/upload'
 import WordsTotal from '../../../components/wordstotal'
-import { resumesProjectAction } from '../../../utils/request/index'
+import { resumesProjectAction, resumesDelProjectAction } from '../../../utils/request/index'
 import AREAS from '../../../models/area'
 import Msg from '../../../utils/msg'
 import { isVaildVal } from '../../../utils/v'
 import { UserInfo } from '../../../config/store'
-import { context } from '../../../pages/resume/newJob'
+import { context } from '../../../pages/resume/newJobs'
 import './index.scss'
 export interface ImageDataType {
   item: ImageItem[]
@@ -53,8 +53,8 @@ export default function AddProjectPage() {
   // 默认字数
   const [num, setNum] = useState<number>(0)
   const [name,setName]= useState<string>('')
-  const [startTime, setStartTime] = useState<string>('请选择开工时间')
-  const [endTime, setEndTime] = useState<string>('请选择完工时间')
+  const [startTime, setStartTime] = useState<string>('')
+  const [endTime, setEndTime] = useState<string>('')
   const [textarea, setTextarea] = useState<string>('')
   const [image, setImage] = useState<ImageDataType>({
     item: [],
@@ -64,8 +64,10 @@ export default function AddProjectPage() {
   const [multiIndex, setMultiIndex] = useState<number[]>([0,0])
   const [edit, setEdit] = useState<number>(0)
   const [allprovinces, setAllprovinces] = useState<any[]>([])
-  const [multiIndexvalue, seMultiIndexvalue] = useState<string>('请选择所在地区')
+  const [multiIndexvalue, seMultiIndexvalue] = useState<string>('')
   const [allpro, setAllpro] = useState<string>('')
+  //修改项目id
+  const [project_uuid, setProject_uuid] = useState<string>('')
   useEffect(()=>{
     if (type){
       Taro.setNavigationBarTitle({
@@ -124,7 +126,7 @@ export default function AddProjectPage() {
       console.log(projectData)
       let arr: any = [];
       setImage({ item: arr })
-      const list = projectData[0];
+      const list = projectData[type];
       for (let i = 0; i < list.image.length; i++) {
         for (let j = 0; j < list.images.length; j++) {
           let obj = {
@@ -143,6 +145,7 @@ export default function AddProjectPage() {
       setEndTime(list.completion_time);
       setTextarea(list.detail);
       setNum(list.detail.length);
+      setProject_uuid(list.uuid)
       const userArr = [list.province, list.city]
       let one = 0;
       let two = 0;
@@ -164,8 +167,7 @@ export default function AddProjectPage() {
         }
       }
       setMultiIndex([one, two])
-      console.log(`${list.province, list.city}`);
-      setAllpro('0,0')
+      setAllpro([list.province, list.city].join(','))
       setMultiArray([data, lastCity])
       seMultiIndexvalue(list.province_name+list.city_name)
     }
@@ -235,7 +237,7 @@ export default function AddProjectPage() {
       })
       return;
     } 
-    if (!startTime || startTime === '请选择开工时间'){
+    if (!startTime){
       Taro.showModal({
         title: '温馨提示',
         content: '请选择开工时间',
@@ -243,7 +245,7 @@ export default function AddProjectPage() {
       })
       return;
     }
-    if (!endTime || endTime === '请选择完工时间') {
+    if (!endTime) {
       if (new Date(startTime).getTime() > new Date(endTime).getTime()){
         Taro.showModal({
           title: '温馨提示',
@@ -279,6 +281,7 @@ export default function AddProjectPage() {
       city: String(allpro.split(",")[1]),
       image: images,
       resume_uuid:userInfo.uuid,
+      project_uuid,
     }
     console.log(params);
     resumesProjectAction(params).then(res => {
@@ -305,6 +308,29 @@ export default function AddProjectPage() {
       }
     })
   }
+  const handleDel = ()=>{
+    Taro.showModal({
+      title: '提示',
+      content: `项目经验删除后，将无法恢复`,
+      showCancel: true,
+      success(res) {
+        if (res.confirm) {
+          let params={
+            project_uuid: project_uuid,
+          }
+          resumesDelProjectAction(params).then(res=>{
+            if(res.errcode == 'ok'){
+              Taro.navigateBack({
+                delta: 1
+              })
+            }else{
+              Msg(res.errmsg)
+            }
+          })
+        }
+      }
+    })
+  }
   return (
     <View className='addProjectPage'>
     <View className='content'>
@@ -317,29 +343,41 @@ export default function AddProjectPage() {
         value={name}
         onChange={(e) => { setName(e.toString())}}
       />
-      <View className='list'>
+        <View className='publish-recruit-card'>
         <Picker
           mode='date'
           onChange={(e) => { setStartTime(e.detail.value) }}
           value={startTime}
         >
-          <AtList>
-            <AtListItem title='开工时间:' extraText={startTime} />
-          </AtList>
+          <View className='publish-list-item'>
+              <Text className='pulish-list-title'>开工时间</Text>
+            :<Input
+              className='publish-list-input'
+              type='text'
+              placeholder='请选择开工时间'
+              value={startTime}
+            />
+          </View>
         </Picker>
       </View>
-      <View className='list'>
+        <View className='publish-recruit-card'>
         <Picker
           mode='date'
           onChange={(e) => { setEndTime(e.detail.value) }}
           value={endTime}
         >
-          <AtList>
-            <AtListItem title='完工时间:' extraText={endTime} />
-          </AtList>
+          <View className='publish-list-item'>
+            <Text className='pulish-list-title'>完工时间</Text>
+            :<Input
+              className='publish-list-input'
+              type='text'
+              placeholder='请选择完工时间'
+              value={endTime}
+            />
+          </View>
         </Picker>
       </View>
-      <View className='list'>
+        <View className='publish-recruit-card'>
         <Picker
           mode='multiSelector'
           onChange={(e)=>{handleChange(e)}}
@@ -347,9 +385,15 @@ export default function AddProjectPage() {
           range={multiArray}
           onColumnChange={(e) => handlebindcolumnchange(e)}
         >
-          <AtList>
-              <AtListItem title='所在地区:' extraText={multiIndexvalue} />
-          </AtList>
+            <View className='publish-list-item'>
+              <Text className='pulish-list-title'>所在地区</Text>
+              :<Input
+                className='publish-list-input'
+                type='text'
+                placeholder='请选择你的所在地区'
+                value={multiIndexvalue}
+              />
+            </View>
         </Picker>
       </View>
       <View className='feedback-content-middle'>
@@ -374,7 +418,10 @@ export default function AddProjectPage() {
       </View>
     </View>
       <View className='footer'>
-        <View className='left' onClick={()=>handlContinue(0)}>保存 继续添加</View>
+        {type ?
+          <View className='left' onClick={() => handleDel()}>删除</View>:
+          <View className='left' onClick={()=>handlContinue(0)}>保存 继续添加</View>
+        }
         <View className='right' onClick={()=>handlContinue(1)}>确认保存</View>
       </View>
     </View>

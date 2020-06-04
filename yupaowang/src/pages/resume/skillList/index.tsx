@@ -1,11 +1,7 @@
-import Taro, { Config, useState, useEffect, useRouter, useDidShow } from '@tarojs/taro'
-import { View, Text, Image, Block, Button, Textarea } from '@tarojs/components'
+import Taro, { Config, useState, useDidShow } from '@tarojs/taro'
+import { View, Text, Image, Button } from '@tarojs/components'
 import { resumeListAction } from '../../../utils/request/index'
-import WechatNotice from '../../../components/wechat'
-import { IMGCDNURL, SERVERPHONE } from '../../../config'
-import { isVaildVal } from '../../../utils/v'
-import Msg from '../../../utils/msg'
-import { resumeDetailCertificates, resumeDetailProject, resumeDetailOperation, recommendListDataList } from '../../../utils/request/index.d'
+import { IMGCDNURL } from '../../../config'
 import './index.scss'
 
 interface DataType {
@@ -41,14 +37,20 @@ export default function SkillList() {
     })
     setRefresh(true)
   }
+  // 用户页面跳转
+  const userRouteJump = (url: string) => {
+    Taro.navigateTo({
+      url: url
+    })
+  }
   return (
     <View>
-      {data.map(item=>(
+      {data.map((item,i)=>(
         <View key={item.id} className='skilleight'>
           {item.check == '1' && <Image className='audit' src={`${IMGCDNURL}lpy/review.png`} />}
           {item.check == '0' && <Image className='audit' src={`${IMGCDNURL}lpy/notthrough.png`} />}
-          {item.check == '2' && <View className='editor'>编辑</View>}
-          {item.check == '0' && <View className='editorone'>待修改</View>}
+          {item.check == '2' && <View className='editor' onClick={() => userRouteJump(`/subpackage/pages/addSkill/index?type=${i}`)}>编辑</View>}
+          {item.check == '0' && <View className='editorone' onClick={() => userRouteJump(`/subpackage/pages/addSkill/index?type=${i}`)}>待修改</View>}
           <View className="skilleightzong">
             <View>
               <Image src={`${IMGCDNURL}lpy/newresume-experience-item.png`} className='skilleightone' />
