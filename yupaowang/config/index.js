@@ -1,3 +1,5 @@
+const webpack = require('webpack-bundle-analyzer')
+
 const config = {
   projectName: '鱼泡网',
   date: '2020-2-13',
@@ -24,6 +26,7 @@ const config = {
   },
   plugins: [],
   defineConstants: {
+    MINI: JSON.stringify(process.env.npm_config_env_mini)
   },
   mini: {
     postcss: {

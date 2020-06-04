@@ -15,7 +15,7 @@
 		"showShadowRootInWxmlPanel": true,
 		"scopeDataCheck": false,
 		"checkInvalidKey": true,
-		"checkSiteMap": true,
+		"checkSiteMap": false,
 		"uploadWithSourceMap": true,
 		"babelSetting": {
 			"ignore": [],
@@ -26,6 +26,7 @@
 	"compileType": "miniprogram",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
+	"libVersion": "2.8.3",
 	"condition": {
 		"search": {
 			"current": -1,
@@ -53,6 +54,203 @@
 					"id": -1,
 					"name": "收藏列表",
 					"pathName": "pages/collection/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 1,
+					"name": "关于我们",
+					"pathName": "subpackage/pages/about/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "使用教程",
+					"pathName": "pages/course/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "举报骗子",
+					"pathName": "pages/report/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "意见反馈",
+					"pathName": "pages/feedback/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 5,
+					"name": "帮助中心",
+					"pathName": "pages/help/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 6,
+					"name": "反馈列表",
+					"pathName": "pages/feedbacklist/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/used/publish/index",
+					"pathName": "pages/used/publish/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 8,
+					"name": "新闻资讯",
+					"pathName": "pages/static/invite/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 9,
+					"name": "咨询详情",
+					"pathName": "pages/notice/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 10,
+					"name": "下载app",
+					"pathName": "pages/download/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 11,
+					"name": "排名规则",
+					"pathName": "pages/ranking/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 12,
+					"name": "我的信息",
+					"pathName": "pages/information/mymessage/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的信息详情",
+					"pathName": "pages/information/system/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "积分来源记录",
+					"pathName": "pages/integral/official/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "积分消耗",
+					"pathName": "pages/integral/expend/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "积分来源顶部",
+					"pathName": "pages/integral/tabber/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "详情",
+					"pathName": "pages/detail/info/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "招工置顶",
+					"pathName": "pages/topping/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "招工置顶",
+					"pathName": "pages/topping/distruction/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 20,
+					"name": "我的招工信息",
+					"pathName": "pages/published/recruit/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "找活名片",
+					"pathName": "pages/resume/detail/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "项目经验",
+					"pathName": "pages/resume/projectList/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "技能证书",
+					"pathName": "pages/resume/skillList/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "新增找活",
+					"pathName": "pages/resume/newJob/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "预览",
+					"pathName": "pages/resume/preview/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 26,
+					"name": "新增项目经验",
+					"pathName": "subpackage/pages/addProject/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "新增技能证书",
+					"pathName": "subpackage/pages/addSkill/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/used/publish/index",
+					"pathName": "pages/used/publish/index",
+					"query": "",
 					"scene": null
 				}
 			]

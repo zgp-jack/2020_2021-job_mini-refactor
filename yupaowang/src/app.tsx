@@ -7,7 +7,6 @@ import './app.scss'
 const store = configStore()
 
 class App extends Component {
-
   config: Config = {
     pages: [
       'pages/index/index', //首页
@@ -25,19 +24,44 @@ class App extends Component {
       "pages/integral/expend/index", //积分消耗记录
       "pages/recharge/index", //用户充值页面
       "pages/realname/index", //用户实名认证
-      "pages/map/realname/index", // 用户实名选择地址
+      //"pages/map/realname/index", // 用户实名选择地址
       "pages/userinfo/index/index", // 用户修改资料
       "pages/userinfo/add/index", // 用户完善资料
-      // "pages/userinfo/phone/index", // 用户更换手机
-      "pages/collection/index" //收藏
+      "pages/userinfo/phone/index", // 用户更换手机
+      "pages/published/recruit/index", // 已发布招工列表
+      "pages/collection/index", //收藏
+      "pages/help/index", //帮助中心
+      "pages/feedbacklist/index", //意见反馈列表
+      "pages/feedback/index", //意见反馈
+      "pages/static/invite/index", //新闻资讯
+      "pages/information/mymessage/index", //我的信息
+      "pages/information/system/index", //我的信息详情
+      'pages/integral/tabber/index', //积分来源顶部
+      'pages/detail/info/index', //招工详情
+      'pages/topping/index', //置顶
+      'pages/topping/distruction/index',//置顶选择范围
+      'pages/resume/detail/index', // 找活详情
+      'pages/resume/skillList/index',//技能证书
+      'pages/resume/projectList/index',//项目经验
+      'pages/resume/newJob/index',//新增
+      'pages/resume/preview/index' // 预览
     ],
     subPackages: [
       {
         root: 'subpackage/pages/',
         pages: [
-          'checkauth/index'
+          'checkauth/index',
+          'about/index',//关于我们
+          'report/index',//举报骗子
+          'notice/index',//资讯详情
+          'download/index',//下载app
+          'ranking/index',//排名规则
+          'course/index',//使用教程
+          'anti-fraud/index', //防骗指南
+          'addProject/index', //新增项目
+          'addSkill/index',//新增技能
         ]
-      }
+      },
     ],
     window: {
       backgroundTextStyle: 'light',
@@ -79,6 +103,7 @@ class App extends Component {
       </Provider>
     )
   }
+  
 }
 
 Taro.render(<App />, document.getElementById('app'))

@@ -1,0 +1,27 @@
+<block wx:if="{{$taroCompReady}}">
+    <view class="recharge-container">
+        <at-message></at-message>
+        <view class="recharge-header">
+            <view class="recharge-info-item">剩余积分：<text class="recharge-info-text">{{integral}}</text>
+            </view>
+            <view class="recharge-info-item">充值金额：<text class="recharge-info-text">{{lists[current].price}}元</text>
+            </view>
+            <view class="recharge-info-item">积分价格：<text class="recharge-info-text">{{price}}元/个</text>
+            </view>
+            <view class="recharge-info-item">充值积分：<text class="recharge-info-text">{{lists[current].integral}}积分（可查看{{lists[current].integral}}个电话号码）</text>
+            </view>
+        </view>
+        <view class="recharge-body">
+            <view class="recharge-title">请选择充值金额</view>
+            <view class="recharge-content clearfix">
+                <view class="recharge-list" wx:key="id" bindtap="anonymousFunc0" wx:for="{{loopArray72}}" wx:for-item="item" wx:for-index="index" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">
+                    <view class="{{item.$loopState__temp2}}">
+                        <view class="recharge-money">{{item.$original.price}}元</view>
+                        <view class="recharge-num">{{item.$original.integral}}积分</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="recharge-btn" bindtap="anonymousFunc1">充值</view>
+    </view>
+</block>

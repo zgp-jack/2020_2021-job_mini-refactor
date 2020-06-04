@@ -36,6 +36,8 @@ var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/re
 
 var _tabbar2 = __webpack_require__(/*! ../../actions/tabbar */ "./src/actions/tabbar.ts");
 
+var _index3 = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
+
 __webpack_require__(/*! ./index.scss */ "./src/pages/index/index.scss");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -45,6 +47,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+console.log(_index3.UNITID);
 
 var Index = (_temp2 = _class = function (_Taro$Component) {
   _inherits(Index, _Taro$Component);
@@ -66,7 +70,7 @@ var Index = (_temp2 = _class = function (_Taro$Component) {
       navigationBarBackgroundColor: '#0099ff',
       navigationBarTextStyle: 'white',
       backgroundTextStyle: "dark"
-    }, _this.$usedState = ["$compid__29", "tabKey", "HOME", "RECRUIT", "RESUME", "MEMBER"], _this.customComponents = ["Home", "Recruit", "Resume", "Member", "Tabbar"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["$compid__57", "tabKey", "HOME", "RECRUIT", "RESUME", "MEMBER"], _this.customComponents = ["Home", "Recruit", "Resume", "Member", "Tabbar"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Index, [{
@@ -85,10 +89,10 @@ var Index = (_temp2 = _class = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__29"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__57"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__29 = _genCompid2[0],
-          $compid__29 = _genCompid2[1];
+          $prevCompid__57 = _genCompid2[0],
+          $compid__57 = _genCompid2[1];
 
       var dispatch = (0, _redux.useDispatch)();
       // 初始化页面参数
@@ -133,9 +137,9 @@ var Index = (_temp2 = _class = function (_Taro$Component) {
       }, [tabKey]);
       _taroWeapp.propsManager.set({
         "notredirect": true
-      }, $compid__29, $prevCompid__29);
+      }, $compid__57, $prevCompid__57);
       Object.assign(this.__state, {
-        $compid__29: $compid__29,
+        $compid__57: $compid__57,
         tabKey: tabKey,
         HOME: _tabbar.HOME,
         RECRUIT: _tabbar.RECRUIT,

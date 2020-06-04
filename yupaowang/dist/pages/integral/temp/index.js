@@ -42,30 +42,27 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Integral = (_temp2 = _class = function (_Taro$Component) {
-  _inherits(Integral, _Taro$Component);
+var Temp = (_temp2 = _class = function (_Taro$Component) {
+  _inherits(Temp, _Taro$Component);
 
-  function Integral() {
+  function Temp() {
     var _ref;
 
     var _temp, _this, _ret;
 
-    _classCallCheck(this, Integral);
+    _classCallCheck(this, Temp);
 
     for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Integral.__proto__ || Object.getPrototypeOf(Integral)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
-      navigationBarTitleText: '积分来源记录',
-      enablePullDownRefresh: true
-    }, _this.$usedState = ["lists"], _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Temp.__proto__ || Object.getPrototypeOf(Temp)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["lists"], _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
-  _createClass(Integral, [{
+  _createClass(Temp, [{
     key: "_constructor",
     value: function _constructor(props) {
-      _get(Integral.prototype.__proto__ || Object.getPrototypeOf(Integral.prototype), "_constructor", this).call(this, props);
+      _get(Temp.prototype.__proto__ || Object.getPrototypeOf(Temp.prototype), "_constructor", this).call(this, props);
 
       this.$$refs = new _taroWeapp2.default.RefsArray();
     }
@@ -118,14 +115,14 @@ var Integral = (_temp2 = _class = function (_Taro$Component) {
           } else setLists(_extends({}, lists, { hasmore: false }));
         });
       }, [data]);
-      // 上拉加载下一页
-      (0, _taroWeapp.useReachBottom)(function () {
-        setData(_extends({}, data, { page: data.page + 1 }));
-      });
-      // 下拉刷新当前列表
-      (0, _taroWeapp.usePullDownRefresh)(function () {
-        setData(_extends({}, data, { page: 1 }));
-      });
+      // // 上拉加载下一页
+      // useReachBottom(() => {
+      //   setData({ ...data, page: data.page + 1 })
+      // })
+      // // 下拉刷新当前列表
+      // usePullDownRefresh(() => {
+      //   setData({ ...data, page: 1 })
+      // })
       Object.assign(this.__state, {
         lists: lists
       });
@@ -133,14 +130,11 @@ var Integral = (_temp2 = _class = function (_Taro$Component) {
     }
   }]);
 
-  return Integral;
+  return Temp;
 }(_taroWeapp2.default.Component), _class.$$events = [], _class.$$componentPath = "pages/integral/temp/index", _temp2);
+exports.default = Temp;
 
-
-Integral.config = { navigationBarTitleText: '积分来源记录', enablePullDownRefresh: true };
-exports.default = Integral;
-
-Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(Integral, true));
+Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(Temp, true));
 
 /***/ }),
 

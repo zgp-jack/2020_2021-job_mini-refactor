@@ -52,7 +52,7 @@ var Fastfun = (_temp2 = _class = function (_Taro$Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Fastfun.__proto__ || Object.getPrototypeOf(Fastfun)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["Config"], _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Fastfun.__proto__ || Object.getPrototypeOf(Fastfun)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray98", "Config"], _this.anonymousFunc0Map = {}, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Fastfun, [{
@@ -65,20 +65,61 @@ var Fastfun = (_temp2 = _class = function (_Taro$Component) {
   }, {
     key: '_createData',
     value: function _createData() {
+      var _this2 = this;
+
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
+
+      // 用户页面跳转
+      var userRouteJump = function userRouteJump(url) {
+        _taroWeapp2.default.navigateTo({
+          url: url
+        });
+      };
+      var loopArray98 = _config2.default.map(function (item, index) {
+        item = {
+          $original: (0, _taroWeapp.internal_get_original)(item)
+        };
+        var $loopState__temp2 = index + index;
+
+        var _$indexKey = "ibzzz" + index;
+
+        _this2.anonymousFunc0Map[_$indexKey] = function () {
+          return userRouteJump(item.$original.url);
+        };
+
+        return {
+          $loopState__temp2: $loopState__temp2,
+          _$indexKey: _$indexKey,
+          $original: item.$original
+        };
+      });
       Object.assign(this.__state, {
+        loopArray98: loopArray98,
         Config: _config2.default
       });
       return this.__state;
     }
+  }, {
+    key: 'anonymousFunc0',
+    value: function anonymousFunc0(_$indexKey) {
+      var _anonymousFunc0Map;
+
+      ;
+
+      for (var _len2 = arguments.length, e = Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
+        e[_key2 - 1] = arguments[_key2];
+      }
+
+      return this.anonymousFunc0Map[_$indexKey] && (_anonymousFunc0Map = this.anonymousFunc0Map)[_$indexKey].apply(_anonymousFunc0Map, e);
+    }
   }]);
 
   return Fastfun;
-}(_taroWeapp2.default.Component), _class.$$events = [], _class.$$componentPath = "components/index/fastfun/index", _temp2);
+}(_taroWeapp2.default.Component), _class.$$events = ["anonymousFunc0"], _class.$$componentPath = "components/index/fastfun/index", _temp2);
 exports.default = Fastfun;
 
 Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(Fastfun));
@@ -121,7 +162,7 @@ var Config = [{
   img: _index.IMGCDNURL + 'smcx.png',
   text: '实名查询'
 }, {
-  url: '/pages/static/invite',
+  url: '/pages/static/invite/index',
   img: _index.IMGCDNURL + 'index-newzjxm.png',
   text: '鱼泡动态'
 }];

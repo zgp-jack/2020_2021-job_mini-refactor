@@ -1,0 +1,41 @@
+<block wx:if="{{$taroCompReady}}">
+    <view class="resume-list-container" style="{{anonymousState__temp}}">
+        <block wx:if="{{!data.length}}">
+            <nodata compid="{{$compid__72}}"></nodata>
+        </block>
+        <block wx:if="{{data}}">
+            <block wx:key="id" wx:for="{{loopArray76}}" wx:for-item="item" wx:for-index="__index0">
+                <view class="resume-list-item" bindtap="anonymousFunc0" wx:key="id" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">
+                    <view class="resume-list-header">
+                        <image class="resume-list-user" src="{{item.$original.resume.headerimg}}"></image>
+                        <view class="resume-list-userinfo">
+                            <view class="resume-list-userinfo-detail"><text class="resume-userinfo-name">{{item.$original.resume.username}}</text><text class="resume-userinfo-birthday">{{item.$original.resume.birthday || 0}}岁</text>
+                                <block wx:if="{{item.$original.resume.certificate == 1}}">
+                                    <image class="resume-userinfo-img" src="{{IMGCDNURL + 'newresume-infolist-jnz.png?t=1'}}"></image>
+                                </block>
+                            </view><text class="resume-list-type">{{item.$original.resume.type}}</text>
+                            <view class="resume-otherinfo"><text class="resume-otherinfo-text">{{item.$original.resume.nation}}</text><text class="resume-otherinfo-text">{{item.$original.resume.prof_degree}}</text><text class="resume-otherinfo-text">{{item.$original.resume.experience}}</text>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="resume-list-works"></view>
+                    <view class="resume-list-content overwords">{{item.$original.resume.introduce}}</view>
+                    <view class="resume-list-footer">
+                        <view class="resume-list-loctxt overwords">{{item.$original.resume.time}}</view>
+                        <button size="mini" class="resume-list-button" bindtap="anonymousFunc1" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey2}}">取消收藏</button>
+                    </view>
+                </view>
+            </block>
+        </block>
+        <block wx:if="{{data.length && recruitNoMoreData}}">
+            <view class="resume-lists-noData">没有更多数据了</view>
+        </block>
+        <at-modal compid="{{$compid__73}}">
+            <at-modal-header>温馨提示</at-modal-header>
+            <at-modal-content>{{modalContent}}</at-modal-content>
+            <at-modal-action>
+                <button bindtap="anonymousFunc2">确定</button>
+            </at-modal-action>
+        </at-modal>
+    </view>
+</block>

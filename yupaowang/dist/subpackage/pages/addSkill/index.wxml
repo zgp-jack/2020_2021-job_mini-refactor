@@ -1,0 +1,23 @@
+<block wx:if="{{$taroCompReady}}">
+    <view>
+        <view class="content">
+            <at-input compid="{{$compid__98}}"></at-input>
+            <view>
+                <picker mode="date" bindchange="anonymousFunc1" value="{{extraText}}">
+                    <at-list>
+                        <at-list-item compid="{{$compid__99}}"></at-list-item>
+                    </at-list>
+                </picker>
+            </view>
+        </view>
+        <view class="feedback-content-middle-imgBox">
+            <block wx:if="{{image.item}}">
+                <image-view compid="{{$compid__100}}"></image-view>
+            </block>
+        </view>
+        <view class="footer">
+            <view class="left" bindtap="anonymousFunc2">取消</view>
+            <view class="right" bindtap="anonymousFunc3">确认保存</view>
+        </view>
+    </view>
+</block>

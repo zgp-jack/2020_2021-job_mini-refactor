@@ -6,32 +6,32 @@
                 <image class="home-header-loc" src="{{IMGCDNURL + 'area.png'}}"></image><text class="home-header-text">四川</text>
                 <image class="home-header-select" src="{{IMGCDNURL + 'areamore.png'}}"></image>
             </view>
-            <image class="home-header-app" src="{{IMGCDNURL + 'loadapp.png'}}"></image>
+            <image bindtap="anonymousFunc0" class="home-header-app" src="{{IMGCDNURL + 'loadapp.png'}}"></image>
         </view>
-        <swiper-component compid="{{$compid__600}}"></swiper-component>
+        <swiper-component compid="{{$compid__74}}"></swiper-component>
         <projects></projects>
         <fastfun></fastfun>
         <view class="home-information-container">
             <image class="home-infomation-img" src="{{IMGCDNURL + 'notice.png'}}"></image>
             <view class="home-infomation-news">
-                <swiper-news compid="{{$compid__601}}"></swiper-news>
+                <swiper-news compid="{{$compid__75}}"></swiper-news>
             </view>
         </view>
         <view class="home-all-lists">
             <view class="home-lists-item">
                 <view class="home-lists-item-header"><text class="home-lists-item-title">最新招工信息</text><text class="home-lists-item-more">更多</text>
                 </view>
-                <recruit-list compid="{{$compid__602}}"></recruit-list>
+                <recruit-list compid="{{$compid__76}}"></recruit-list>
             </view>
             <view class="home-lists-item">
                 <view class="home-lists-item-header"><text class="home-lists-item-title">最新找活信息</text><text class="home-lists-item-more">更多</text>
                 </view>
-                <resume-list compid="{{$compid__603}}"></resume-list>
+                <resume-list compid="{{$compid__77}}"></resume-list>
             </view>
             <view class="home-lists-item">
                 <view class="home-lists-item-header"><text class="home-lists-item-title">最新二手交易信息</text><text class="home-lists-item-more">更多</text>
                 </view>
-                <used-list compid="{{$compid__604}}"></used-list>
+                <used-list compid="{{$compid__78}}"></used-list>
             </view>
         </view>
         <about></about>

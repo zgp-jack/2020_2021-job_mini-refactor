@@ -18,7 +18,7 @@ const Config: FastfunItem[] = [
     text: '实名查询'
   },
   {
-    url: '/pages/static/invite',
+    url: '/pages/static/invite/index',
     img: IMGCDNURL + 'index-newzjxm.png',
     text: '鱼泡动态'
   }

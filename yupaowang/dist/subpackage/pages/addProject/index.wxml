@@ -1,0 +1,46 @@
+<block wx:if="{{$taroCompReady}}">
+    <view class="addProjectPage">
+        <view class="content">
+            <at-input compid="{{$compid__107}}"></at-input>
+            <view class="list">
+                <picker mode="date" bindchange="anonymousFunc1" value="{{startTime}}">
+                    <at-list>
+                        <at-list-item compid="{{$compid__108}}"></at-list-item>
+                    </at-list>
+                </picker>
+            </view>
+            <view class="list">
+                <picker mode="date" bindchange="anonymousFunc2" value="{{endTime}}">
+                    <at-list>
+                        <at-list-item compid="{{$compid__109}}"></at-list-item>
+                    </at-list>
+                </picker>
+            </view>
+            <view class="list">
+                <picker mode="multiSelector" bindchange="anonymousFunc3" value="{{multiIndex}}" range="{{multiArray}}" bindcolumnchange="anonymousFunc4">
+                    <at-list>
+                        <at-list-item compid="{{$compid__110}}"></at-list-item>
+                    </at-list>
+                </picker>
+            </view>
+            <view class="feedback-content-middle">
+                <view class="feedback-content-middle-box">
+                    <view>项目详情:</view>
+                    <textarea class="feedback-content-middle-textarea" value="{{textarea}}" bindinput="anonymousFunc5" maxlength="{{500}}" placeholder="主要描述工作中的项目情况..."></textarea>
+                    <view class="feedback-wordsTotal">
+                        <words-total compid="{{$compid__111}}"></words-total>
+                    </view>
+                </view>
+            </view>
+            <view class="feedback-content-middle-imgBox">
+                <block wx:if="{{image.item}}">
+                    <image-view compid="{{$compid__112}}"></image-view>
+                </block>
+            </view>
+        </view>
+        <view class="footer">
+            <view class="left" bindtap="anonymousFunc6">保存 继续添加</view>
+            <view class="right" bindtap="anonymousFunc7">确认保存</view>
+        </view>
+    </view>
+</block>

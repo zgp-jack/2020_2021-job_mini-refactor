@@ -19,6 +19,16 @@ $margin: 15px;
   text-overflow: ellipsis;
 }
 
+// 没有更多数据了
+.showMore{
+  position: relative;
+  width: 100%;
+  padding: 20px 0;
+  text-align: center;
+  font-size: 26px;
+  color: #525252;
+}
+
 // 文字多行溢出
 @mixin textrow($row: 2) {
   overflow: hidden;

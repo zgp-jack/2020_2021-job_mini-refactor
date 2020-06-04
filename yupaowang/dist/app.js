@@ -62,13 +62,13 @@ var _App = function (_BaseComponent) {
     var _this = _possibleConstructorReturn(this, (_App.__proto__ || Object.getPrototypeOf(_App)).apply(this, arguments));
 
     _this.config = {
-      pages: ['pages/index/index', 'pages/userauth/index', "pages/recruit/publish/index", "pages/used/lists/index", "pages/map/recruit/index", "pages/used/publish/index", "pages/used/info/index", "pages/invite/index", "pages/getintegral/index", "pages/integral/source/index", "pages/integral/temp/index", "pages/integral/official/index", "pages/integral/expend/index", "pages/recharge/index", "pages/realname/index", "pages/map/realname/index", "pages/userinfo/index/index", "pages/userinfo/add/index",
-      // "pages/userinfo/phone/index", // 用户更换手机
-      "pages/collection/index" //收藏
+      pages: ['pages/index/index', 'pages/userauth/index', "pages/recruit/publish/index", "pages/used/lists/index", "pages/map/recruit/index", "pages/used/publish/index", "pages/used/info/index", "pages/invite/index", "pages/getintegral/index", "pages/integral/source/index", "pages/integral/temp/index", "pages/integral/official/index", "pages/integral/expend/index", "pages/recharge/index", "pages/realname/index",
+      //"pages/map/realname/index", // 用户实名选择地址
+      "pages/userinfo/index/index", "pages/userinfo/add/index", "pages/userinfo/phone/index", "pages/published/recruit/index", "pages/collection/index", "pages/help/index", "pages/feedbacklist/index", "pages/feedback/index", "pages/static/invite/index", "pages/information/mymessage/index", "pages/information/system/index", 'pages/integral/tabber/index', 'pages/detail/info/index', 'pages/topping/index', 'pages/topping/distruction/index', 'pages/resume/detail/index', 'pages/resume/skillList/index', 'pages/resume/projectList/index', 'pages/resume/newJob/index', 'pages/resume/preview/index' // 预览
       ],
       subPackages: [{
         root: 'subpackage/pages/',
-        pages: ['checkauth/index']
+        pages: ['checkauth/index', 'about/index', 'report/index', 'notice/index', 'download/index', 'ranking/index', 'course/index', 'anti-fraud/index', 'addProject/index', 'addSkill/index']
       }],
       window: {
         backgroundTextStyle: 'light',
@@ -1327,13 +1327,18 @@ var _msg = __webpack_require__(/*! ./msg */ "./src/reducers/msg.ts");
 
 var _msg2 = _interopRequireDefault(_msg);
 
+var _project = __webpack_require__(/*! ./project */ "./src/reducers/project.ts");
+
+var _project2 = _interopRequireDefault(_project);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = (0, _redux.combineReducers)({
   tabbar: _tabbar2.default,
   WechatNotice: _wechat_notice2.default,
   User: _user2.default,
-  msg: _msg2.default
+  msg: _msg2.default,
+  project: _project2.default
 });
 
 /***/ }),
@@ -1378,6 +1383,47 @@ function msg() {
 
 /***/ }),
 
+/***/ "./src/reducers/project.ts":
+/*!*********************************!*\
+  !*** ./src/reducers/project.ts ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+exports.default = project;
+
+var _msg = __webpack_require__(/*! ../constants/msg */ "./src/constants/msg.ts");
+
+// 内容的参数
+var DEFAULT_STATE = {
+  jobNumber: 0,
+  messageNumber: 0
+};
+function project() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : DEFAULT_STATE;
+  var action = arguments[1];
+
+  switch (action.type) {
+    case _msg.GET:
+      return state;
+    case _msg.SET:
+      return _extends({}, state, action.data);
+    default:
+      return state;
+  }
+}
+
+/***/ }),
+
 /***/ "./src/reducers/tabbar.ts":
 /*!********************************!*\
   !*** ./src/reducers/tabbar.ts ***!
@@ -1395,26 +1441,34 @@ exports.default = tabbar;
 
 var _tabbar = __webpack_require__(/*! ../constants/tabbar */ "./src/constants/tabbar.ts");
 
+var _index = __webpack_require__(/*! ../config/index */ "./src/config/index.ts");
+
 var DEFAULT_MENUS = {
   list: [{
     title: '首页',
-    defaultImg: 'http://cdn.yupao.com/newyupao/images/footer-home.png',
-    activeImg: 'http://cdn.yupao.com/newyupao/images/footer-home-active.png',
+    defaultImg: _index.ALIYUNCDN + '/newyupao/images/footer-home.png',
+    activeImg: _index.ALIYUNCDN + '/newyupao/images/footer-home-active.png',
     id: _tabbar.HOME
   }, {
     title: '招工',
-    defaultImg: 'http://cdn.yupao.com/newyupao/images/footer-zg.png',
-    activeImg: 'http://cdn.yupao.com/newyupao/images/footer-zg-active.png',
+    defaultImg: _index.ALIYUNCDN + '/newyupao/images/footer-zg.png',
+    activeImg: _index.ALIYUNCDN + '/newyupao/images/footer-zg-active.png',
     id: _tabbar.RECRUIT
   }, {
+    title: '发布',
+    defaultImg: _index.IMGCDNURL + 'tabbar-publish-icon.png',
+    activeImg: _index.IMGCDNURL + 'tabbar-publish-icon.png',
+    id: '',
+    click: 'openPublishMenu'
+  }, {
     title: '找活',
-    defaultImg: 'http://cdn.yupao.com/newyupao/images/footer-zh.png',
-    activeImg: 'http://cdn.yupao.com/newyupao/images/footer-zh-active.png',
+    defaultImg: _index.ALIYUNCDN + '/newyupao/images/footer-zh.png',
+    activeImg: _index.ALIYUNCDN + '/newyupao/images/footer-zh-active.png',
     id: _tabbar.RESUME
   }, {
     title: '会员',
-    defaultImg: 'http://cdn.yupao.com/newyupao/images/footer-member.png',
-    activeImg: 'http://cdn.yupao.com/newyupao/images/footer-member-active.png',
+    defaultImg: _index.ALIYUNCDN + '/newyupao/images/footer-member.png',
+    activeImg: _index.ALIYUNCDN + '/newyupao/images/footer-member-active.png',
     id: _tabbar.MEMBER,
     msg: true
   }],

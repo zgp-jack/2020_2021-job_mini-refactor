@@ -52,7 +52,7 @@ var Profession = (_temp2 = _class = function (_Taro$Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Profession.__proto__ || Object.getPrototypeOf(Profession)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray1202", "data", "title", "footerTitle", "closeProfession", "onClickItem"], _this.anonymousFunc0Map = {}, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Profession.__proto__ || Object.getPrototypeOf(Profession)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray92", "data", "title", "footerTitle", "closeProfession", "onClickItem"], _this.anonymousFunc0Map = {}, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Profession, [{
@@ -86,15 +86,15 @@ var Profession = (_temp2 = _class = function (_Taro$Component) {
         return closeProfession();
       };
 
-      var loopArray1202 = data ? data.map(function (item, i) {
+      var loopArray92 = data ? data.map(function (item, i) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
-        var $anonymousCallee__320 = data ? item.$original.children.map(function (d, k) {
+        var $anonymousCallee__17 = data ? item.$original.children.map(function (d, k) {
           d = {
             $original: (0, _taroWeapp.internal_get_original)(d)
           };
-          var _$indexKey = 'iabzz' + i + '-' + k;
+          var _$indexKey = 'hgzzz' + i + '-' + k;
 
           _this2.anonymousFunc0Map[_$indexKey] = function () {
             return _this2.__props.onClickItem(i, k, d.$original.id);
@@ -113,12 +113,12 @@ var Profession = (_temp2 = _class = function (_Taro$Component) {
           };
         }) : [];
         return {
-          $anonymousCallee__320: $anonymousCallee__320,
+          $anonymousCallee__17: $anonymousCallee__17,
           $original: item.$original
         };
       }) : [];
       Object.assign(this.__state, {
-        loopArray1202: loopArray1202,
+        loopArray92: loopArray92,
         data: data,
         title: title,
         footerTitle: footerTitle
@@ -147,6 +147,11 @@ var Profession = (_temp2 = _class = function (_Taro$Component) {
 
   return Profession;
 }(_taroWeapp2.default.Component), _class.$$events = ["anonymousFunc0", "anonymousFunc1"], _class.$$componentPath = "components/profession/index", _temp2);
+
+
+Profession.options = {
+  addGlobalClass: true
+};
 exports.default = Profession;
 
 Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(Profession));

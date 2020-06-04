@@ -1,0 +1,51 @@
+.content {
+  width: 93%;
+  margin: 0 auto; }
+.at-input {
+  margin-left: 0;
+  padding-left: 20rpx; }
+.at-list__item-content {
+  flex: none;
+  width: 210rpx !important;
+  margin-right: 0;
+  overflow: initial; }
+.at-list__item .item-extra__info {
+  overflow: initial;
+  text-overflow: initial; }
+.at-input__title {
+  width: 210rpx;
+  letter-spacing: 15rpx;
+  padding-left: 5rpx; }
+.footer {
+  position: fixed;
+  bottom: 0;
+  background-color: white;
+  height: 110rpx;
+  width: 100%;
+  box-shadow: 0 0 5rpx #E7E6E4;
+  z-index: 9999; }
+.left {
+  width: 325rpx;
+  height: 80rpx;
+  background: white;
+  border: 1rpx solid #0099FF;
+  position: absolute;
+  left: 27rpx;
+  top: 15rpx;
+  color: #0099FF;
+  line-height: 80rpx;
+  text-align: center;
+  font-size: 29rpx;
+  border-radius: 10rpx; }
+.right {
+  width: 325rpx;
+  height: 80rpx;
+  background: #0099FF;
+  position: absolute;
+  right: 27rpx;
+  top: 15rpx;
+  color: white;
+  line-height: 80rpx;
+  text-align: center;
+  font-size: 29rpx;
+  border-radius: 10rpx; }

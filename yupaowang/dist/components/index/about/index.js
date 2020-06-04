@@ -68,6 +68,11 @@ var About = (_temp2 = _class = function (_Taro$Component) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
+
+      this.anonymousFunc0 = function () {
+        _taroWeapp2.default.makePhoneCall({ phoneNumber: _index.SERVERPHONE });
+      };
+
       var anonymousState__temp = new Date().getFullYear();
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
@@ -75,10 +80,15 @@ var About = (_temp2 = _class = function (_Taro$Component) {
       });
       return this.__state;
     }
+  }, {
+    key: "anonymousFunc0",
+    value: function anonymousFunc0(e) {
+      ;
+    }
   }]);
 
   return About;
-}(_taroWeapp2.default.Component), _class.$$events = [], _class.$$componentPath = "components/index/about/index", _temp2);
+}(_taroWeapp2.default.Component), _class.$$events = ["anonymousFunc0"], _class.$$componentPath = "components/index/about/index", _temp2);
 exports.default = About;
 
 Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(About));

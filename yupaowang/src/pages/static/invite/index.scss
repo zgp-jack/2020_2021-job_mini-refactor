@@ -1,0 +1,85 @@
+@import '../../../common.scss';
+
+.invite-ScrollView {
+  width: 100%;
+  position: fixed;
+  top:0;
+  height: 110px;
+  line-height: 110px;
+  background-color: #FFF;
+  white-space: nowrap;
+}
+.invite-tab {
+  margin-bottom: 20px;
+}
+.invite-tab-box {
+  display: inline-block;
+  display: flex;
+  width: 120px;
+  height: 60px;
+  text-align: center;
+  line-height: 60px;
+  margin: 0 24px;
+  display: inline-block;
+  color: black;
+  font-size: 26px;
+}
+.invite-content-box{
+  margin-top: 130px;
+}
+.invite-content{
+  background: #FFF;
+  padding: 20px;
+  border-bottom: 1px solid #f5f5f5;
+  display: flex;
+}
+.invite-tab-active{
+  background-color: $color;
+  color: white;
+  position: relative;
+  font-size: 26px;
+  border-radius: 6px;
+}
+.invite-content-img{
+  height: 160px;
+  width: 160px;
+}
+.invite-content-right {
+  padding-left: 30px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+
+}
+.invite-content-title {
+  width: 520px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 32px;
+  letter-spacing: 3px;
+}
+.invite-content-desc {
+  width: 520px;
+  color: #969194;
+  font-size: 28px;
+  letter-spacing: 3px;
+  height: 78px;
+  @include textrow();
+}
+
+.invite-content-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 26px;
+  color: #9a9999;
+}
+.invite-nodata{
+  text-align: center;
+  display: block;
+  line-height: 100px;
+  font-size: 28px;
+  text-align: center;
+  letter-spacing: 2px;
+}

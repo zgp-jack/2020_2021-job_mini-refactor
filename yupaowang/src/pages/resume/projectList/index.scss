@@ -1,0 +1,110 @@
+.projectList{
+  overflow-y: scroll;
+}
+.skilleight {
+  width: 93%;
+  margin: 0 auto;
+  background-color: white;
+  margin-top: 22px;
+  position: relative;
+  // overflow: hidden;
+}
+.audit {
+  display: inline-block;
+  width: 113px;
+  height: 113px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.editor {
+  font-size: 30px;
+  color: #09f;
+  position: absolute;
+  top: 29px;
+  right: 29px;
+}
+
+.editorone {
+  font-size: 30px;
+  color: #FB2A08;
+  position: absolute;
+  top: 29px;
+  right: 29px;
+}
+
+.skilleightzong {
+  margin-top: 18px;
+  display: flex;
+  flex-direction: row;
+}
+
+.skilleightone {
+  margin: 0;
+  padding: 0;
+  width: 20px;
+  height: 20px;
+  margin-left: 20px;
+  margin-top: 20px;
+}
+.skilleightall {
+  width: 90%;
+  margin-left: 14px;
+}
+.project {
+  font-size: 0px;
+  color: #343434;
+  margin-top: 10px;
+
+}
+.project-text {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.skilleighttwo {
+  color: #8b8b8a;
+  font-size: 30px;
+  margin-top: 8px;
+}
+.skilleighttwo-text:last-child {
+  font-size: 30px;
+  line-height: 26px;
+  color: #8b8b8a;
+  margin-left: 14px;
+}
+.description {
+  font-size: 0px;
+  margin-top: 16px;
+  color: #8b8b8a;
+  margin-bottom: 12px;
+  width: 100%;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+.description-text {
+  font-size: 30px;
+}
+.skilleightfive {
+  margin-bottom: 20px;
+}
+.skilleightfive-image {
+  width: 185px;
+  height: 185px;
+}
+.skilleightfiveline {
+  width: 100%;
+}
+.temimage {
+  display: flex;
+  height: 185px;
+  flex-wrap: wrap;
+}
+
+.resson {
+  font-size: 26px;
+  margin-top: 10px;
+  color: #FB2A08;
+  margin-bottom: 18px;
+}

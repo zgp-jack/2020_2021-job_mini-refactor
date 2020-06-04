@@ -1,8 +1,9 @@
 <block wx:if="{{$taroCompReady}}">
     <block>
         <block>
+            <auth></auth>
             <block wx:if="{{showProfession}}">
-                <profession compid="{{$compid__605}}"></profession>
+                <profession compid="{{$compid__103}}"></profession>
             </block>
             <view class="publish-recruit-container">
                 <form>
@@ -36,9 +37,15 @@
                         <view class="publish-list-item"><text class="pulish-list-title">联系电话</text>
                             <input class="publish-list-input" type="text" placeholder="请输入联系电话" value="{{model && model.user_mobile}}" bindinput="anonymousFunc5" />
                         </view>
+                        <block wx:if="{{model && (phone !== model.user_mobile || model.user_mobile == '')}}">
+                            <view class="publish-list-item publish-list-item-code"><text class="pulish-list-title">验证码</text>
+                                <input class="publish-list-input" type="text" placeholder="请输入验证码" value="{{model.code}}" bindinput="anonymousFunc6" />
+                                <view class="publish-code-btn" bindtap="anonymousFunc7">{{text}}</view>
+                            </view>
+                        </block>
                         <view class="publish-list-textarea"><text class="publish-textarea-title">招工详情</text>
-                            <textarea class="publish-textarea" value="{{model && model.detail || ''}}" focus="{{textFocus}}" bindtap="anonymousFunc6" bindfocus="anonymousFunc7" placeholder="请输入招工详情" bindinput="anonymousFunc8"></textarea>
-                            <words-total compid="{{$compid__606}}"></words-total>
+                            <textarea class="publish-textarea" value="{{model && model.detail || ''}}" placeholder="请输入招工详情" bindinput="anonymousFunc8"></textarea>
+                            <words-total compid="{{$compid__104}}"></words-total>
                         </view>
                     </view>
                     <view class="publish-recruit-card">
@@ -52,7 +59,7 @@
                             <view class="publish-upload-tips">可上传工地现场照片、工程图纸、承包合同等</view>
                         </view>
                         <block wx:if="{{showUpload && model}}">
-                            <image-view compid="{{$compid__607}}"></image-view>
+                            <image-view compid="{{$compid__105}}"></image-view>
                         </block>
                     </view>
                     <view class="publish-recruit-btn" bindtap="anonymousFunc10">确认发布</view>

@@ -24,6 +24,8 @@ export const GetTabbarMsg: string = REQUESTURL + 'member/original-message/'
 export const GetIntegralList: string = REQUESTURL + 'integral/integral-record/'
 // 初始化发布招工视图
 export const GetPublisRecruitView: string = REQUESTURL + 'publish/new-job/'
+// 发布修改招工信息
+export const PublishRecruitInfo: string = REQUESTURL + 'publish/save-job/'
 // 获取城市数据
 export const GetAllAreas: string = REQUESTURL + 'index/index-area/'
 // 检测adcode是否合法
@@ -36,7 +38,7 @@ export const GetRechargeList: string = REQUESTURL + 'integral/integral-price/'
 export const GetRechargeOpenid: string = REQUESTURL + 'get-openid/'
 // 用户充值创建订单
 export const GetRechargeOrder: string = REQUESTURL + 'create-order/'
-// 用户发布二手交易信息
+// 用户获取二手交易信息视图
 export const GetUsedInfoModel: string = REQUESTURL + 'publish/view-message/'
 // 用户发布二手交易
 export const PublishUsedInfo: string = REQUESTURL + 'publish/publish-msg/'
@@ -66,6 +68,10 @@ export const userChangeAvatar: string = REQUESTURL + 'user/update-header/'
 export const userUpdateName: string = REQUESTURL + 'user/update-username/'
 // 用户更换手机
 export const userChangePhone: string = REQUESTURL + 'user/update-tel/'
+// 用户获取已发布招工列表
+export const userGetPublishedRecruitList: string = REQUESTURL + 'job/issue-lists/'
+// 用户改变招工状态
+export const userChangeRecruitStatus: string = REQUESTURL + 'job/job-end-status/'
 // 收藏招工列表
 export const getCollectionRecruitList: string = REQUESTURL +'job/collect-list/'
 // 收藏找活列表
@@ -74,3 +80,77 @@ export const getCollectionResumeList: string = REQUESTURL +'resumes/collect-list
 export const recruitCancelCollection: string = REQUESTURL +'job/collect/'
 // 招活取消收藏
 export const ResumeCancelCollection: string = REQUESTURL + 'resumes/resume-collect/'
+// 使用教程
+export const requestActionUrl: string = REQUESTURL + 'index/course/'
+// 意见反馈数据
+export const feedbackUrl: string = REQUESTURL + 'leaving-message/list/'
+// 意见反馈提交
+export const feedbackSubmissionUrl: string = REQUESTURL + 'leaving-message/publish/'
+// 帮助中心
+export const helpUrl: string = REQUESTURL + 'others/help-feedback/'
+// 新闻列表
+export const newListUrl: string = REQUESTURL + 'news/list/'
+// 新闻类型
+export const newsTypesUrl: string = REQUESTURL + 'news/types/'
+// 咨询详情
+export const newsInfoUrl: string = REQUESTURL + 'news/info/'
+// 排名规则
+export const resumesSortUrl: string = REQUESTURL + 'resumes/sort/'
+// 排名规则点击时发送的请求
+export const resumesAddClickLog: string = REQUESTURL + 'resumes/add-click-log/'
+// 我的信息
+export const userMessagesUrl: string = REQUESTURL + 'member/user-messages/'
+// 我的信息详情
+export const messagesTypeUrl: string = REQUESTURL + 'member/message-of-type/'
+//获取积分来源分类信息
+export const integralSourceConfigUrl: string = REQUESTURL + 'integral/source-config/'
+// 获取积分数量
+export const integralSourceListsUrl: string = REQUESTURL + 'integral/source-lists/'
+// 获取积分消耗分类信息
+export const integralExpendConfigUrl: string = REQUESTURL + 'integral/expend-config/'
+// 积分消耗积分数量
+export const integralExpendListsUrl: string = REQUESTURL + 'integral/expend-lists/'
+// 消耗积分弹窗内容
+export const integralUseInfoUrl: string = REQUESTURL +'integral/look-used-info/'
+// 投诉
+export const publishComplainUrl: string = REQUESTURL +'publish/complain/'
+// 招工详情
+export const jobInfoUrl: string = REQUESTURL + 'job/job-info/'
+// 招工详情，没有用户信息
+export const jobNoUserInfoUrl: string = REQUESTURL + '/job/no-user-info/'
+// 获取完整电话好码
+export const jobGetTelUrl : string = REQUESTURL + 'job/get-tel/'
+// 修改状态
+export const jobEndStatusUrl: string = REQUESTURL + 'job/job-end-status/'
+// 置顶信息
+export const jobTopConfigUrl: string = REQUESTURL + 'job/top-config/'
+// 置顶获取区域
+export const jobTopHotAreasUrl: string = REQUESTURL + '/job/top-hot-areas-v1/'
+// 招工置顶
+export const jobDoTopUrl: string = REQUESTURL + 'job/do-top/'
+// 修改置顶获取数据
+export const jobGetTopAreasUrl: string = REQUESTURL +'job/get-top-areas/'
+// 更新招工置顶城市
+export const jobChangeTopAreasUrl: string = REQUESTURL + 'job/change-top-areas/'
+// 取消置顶
+export const jobUpdateTopStatusUrl: string = REQUESTURL + 'job/update-top-status/'
+// 找活名片内容
+export const resumeDetailUrl: string = REQUESTURL + 'resumes/resume-detail/'
+// 找活名片相关推荐
+export const recommendListUrl: string = REQUESTURL + 'resumes/resume-recommend-list/'
+// 找活名片查看完整电话
+export const resumesGetTelUrl: string = REQUESTURL + 'resumes/get-tel/'
+// 赞
+export const resumeSupportUrl: string = REQUESTURL + 'resumes/resume-support/'
+// 收藏
+export const resumeCollectUrl: string = REQUESTURL + 'resumes/resume-collect/'
+// 找活名片完善信息
+export const resumeListUrl: string = REQUESTURL + 'resumes/resume-list/'
+// 找活详情推荐
+export const jobRecommendListUrl: string = REQUESTURL +'/job/job-recommend-list/'
+// 删除技能证书
+export const delCertificateUrl: string = REQUESTURL +'resumes/del-certificate/'
+// 新增技能证书
+export const resumesCertificateUrl: string = REQUESTURL + 'resumes/certificate/'
+// 新增项目
+export const resumesProjectUrl: string = REQUESTURL + 'resumes/project/'

@@ -1,13 +1,15 @@
-import Taro, { useRouter, RouterInfo, createContext, useState } from '@tarojs/taro'
+import Taro, { useRouter, RouterInfo, createContext, Config } from '@tarojs/taro'
 import { View, Text, Form, Input, Textarea, Block } from '@tarojs/components'
 import { ProfessionRecruitData } from '../../../components/profession/index.d'
 import WordsTotal from '../../../components/wordstotal'
 import Profession from '../../../components/profession'
+import userCode from '../../../hooks/code'
 import usePublishViewInfo from '../../../hooks/publish/recruit'
 import { RecruitModelInfo, UserLastPublishRecruitArea } from '../index.d'
 import UploadImgAction from '../../../utils/upload'
 import ImageView from '../../../components/imageview'
 import Msg from '../../../utils/msg'
+import Auth from '../../../components/auth'
 import './index.scss'
 
 // 初始化获取信息类型
@@ -35,13 +37,7 @@ export default function PublishRecruit() {
   const InitParams: InitRecruitView = { type: type,infoId: id }
   
   // 初始化当前信息
-  const { model, setModel, showUpload, setShowUpload, showProfession, setShowProssion, area, setArea, setAreaInfo, getPublishRecruitInfo } = usePublishViewInfo(InitParams)
-  // textarea焦点
-  const [textFocus, setTextFocus] = useState<boolean>(false)
-  const userClickTextArea = (b: boolean)=> {
-    setTextFocus(b)
-  }
-
+  const { model, setModel, showUpload, setShowUpload, showProfession, setShowProssion, area, setArea, setAreaInfo, userPublishRecruitAction, num, setNum, phone } = usePublishViewInfo(InitParams)
   // 需要传递的值
   const value: Injected = {
     area: area,
@@ -52,6 +48,8 @@ export default function PublishRecruit() {
       setModel({ ...model, address: val })
     }
   }
+  // 使用自定义验证码hook
+  const { text, userGetCode } = userCode()
 
   // 切换图片上传显示隐藏
   const changeShowUpload = ()=> {
@@ -72,12 +70,10 @@ export default function PublishRecruit() {
     const state: RecruitModelInfo = JSON.parse(JSON.stringify(model))
     state[key] = value
     setModel(state)
-  }
-
-  // 用户发布招工信息
-  const userPublishRecruit = ()=> {
-    let data = getPublishRecruitInfo()
-    console.log(data)
+    // 如果是detail, 那么需要统计字数
+    if(key === 'detail'){
+      setNum(value.length)
+    }
   }
 
   // 选择地址
@@ -126,9 +122,18 @@ export default function PublishRecruit() {
     })
   }
 
+  // 用户删除图片
+  const userDelImg = (i: number) => {
+    if(!model) return
+    let bakModel = JSON.parse(JSON.stringify(model))
+    bakModel.view_images.splice(i,1)
+    setModel(bakModel)
+  }
+
   return (
     <context.Provider value={ value }>
       <Block>
+        <Auth />
         {showProfession && 
         <Profession 
           closeProfession={ closeProfession } 
@@ -192,18 +197,28 @@ export default function PublishRecruit() {
                   onInput={(e)=>userEnterFrom(e,'user_mobile')}
                 />
               </View>
+              {model && (phone !== model.user_mobile || model.user_mobile == '') &&
+                <View className='publish-list-item publish-list-item-code'>
+                  <Text className='pulish-list-title'>验证码</Text>
+                  <Input
+                    className='publish-list-input'
+                    type='text'
+                    placeholder='请输入验证码'
+                    value={model.code}
+                    onInput={(e) => userEnterFrom(e, 'code')}
+                  />
+                  <View className='publish-code-btn' onClick={() => userGetCode(model.user_mobile)}>{text}</View>
+                </View>
+              }
               <View className='publish-list-textarea'>
                 <Text className='publish-textarea-title'>招工详情</Text>
                 <Textarea 
                   className='publish-textarea'
-                  value={ model&&model.detail||'' } 
-                  focus={ textFocus }
-                  onClick={() => userClickTextArea(true)} 
-                  onFocus={() => userClickTextArea(false)}
+                  value={ model&&model.detail||'' }
                   placeholder='请输入招工详情'
                   onInput={(e)=>userEnterFrom(e,'detail')}
                 ></Textarea>
-                <WordsTotal num={0} />
+                <WordsTotal num={num} />
               </View>
             </View>
             <View className='publish-recruit-card'>
@@ -219,12 +234,26 @@ export default function PublishRecruit() {
                 </View>
                 <View className='publish-upload-tips'>可上传工地现场照片、工程图纸、承包合同等</View>
               </View>
-              {showUpload && model && <ImageView images={ model.view_images } max={ model.maxImageCount } userUploadImg={ userUploadImg } />}
+              {showUpload && model && 
+                <ImageView 
+                  images={model.view_images} 
+                  max={model.maxImageCount} 
+                  userUploadImg={userUploadImg} 
+                  userDelImg={userDelImg} 
+                />
+              }
             </View>
-            <View className='publish-recruit-btn' onClick={()=>userPublishRecruit()} >确认发布</View>
+            <View className='publish-recruit-btn' onClick={() => userPublishRecruitAction()} >确认发布</View>
           </Form>
         </View>
       </Block>
     </context.Provider>
   )
 }
+
+PublishRecruit.config = {
+  navigationBarTitleText: '发布招工',
+  navigationBarBackgroundColor: '#0099ff',
+  navigationBarTextStyle: 'white',
+  backgroundTextStyle: "dark"
+} as Config

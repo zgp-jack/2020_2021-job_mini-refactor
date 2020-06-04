@@ -18,6 +18,7 @@ import { UsedPublishModel } from '../../pages/used/index.d'
 import { UserPublishUsedInfo } from '../../pages/used/index.d'
 import * as Hooks from '../../hooks/index.d'
 import { UserAddInfo } from '../../pages/userinfo/add'
+import { searchDataType } from '../../pages/published/recruit' 
 
 interface RequestHeader {
   'content-type'?: string
@@ -418,6 +419,25 @@ export function userChangePhone(tel: string, code: string): Promise<Inter.Result
     }
   })
 }
+
+// 用户获取已发布招工列表
+export function userGetPublishedRecruitLists(data: searchDataType): Promise<Inter.UserPublishedRecruitData>{
+  return doRequestAction({
+    url: api.userGetPublishedRecruitList,
+    data: data,
+    method: 'POST'
+  })
+}
+
+// 用户改变发布招工状态
+export function userChangeRecruitStatus(id: string): Promise<Inter.UserChangePublishedRecruitStatus>{
+  return doRequestAction({
+    url: api.userChangeRecruitStatus,
+    data: { infoId: id },
+    method: 'POST'
+  })
+}
+
 // 收藏招工请求数据
 export function getCollectionRecruitListData(page: number): Promise<Inter.CollectionRecruitListData>{
   return doRequestAction({
@@ -425,14 +445,17 @@ export function getCollectionRecruitListData(page: number): Promise<Inter.Collec
     method: 'POST',
     data: {
       page,
-    }
+    },
+    failToast:true
   })
 }
+
 // 收藏找活请求数据
 export function getCollectionResumeListData(page: number): Promise<Inter.CollectionResumeListData>{
   return doRequestAction({
     url: api.getCollectionResumeList,
     method: 'POST',
+    failToast: true,
     data: {
       page,
     }
@@ -440,12 +463,409 @@ export function getCollectionResumeListData(page: number): Promise<Inter.Collect
 }
 
 // 取消招工收藏
-export function recruitListCancelCollectionAction(id:string): Promise<Inter.Result>{
+export function recruitListCancelCollectionAction(id: string): Promise<Inter.recruitListCancelCollectionType>{
   return doRequestAction({
     url: api.recruitCancelCollection,
     method: 'POST',
+    failToast: true,
     data: {
       id,
     }
+  })
+}
+// 取消找活收藏
+export function ResumeCancelCollectionAction(resume_uuid:string): Promise<Inter.Result>{
+  return doRequestAction({
+    url: api.ResumeCancelCollection,
+    method: 'POST',
+    failToast: true,
+    data: {
+      resume_uuid,
+    }
+  })
+}
+
+// 使用教程
+export function requestAction(): Promise<Inter.reportData> {
+  return doRequestAction({
+    url: api.requestActionUrl,
+    method: 'POST',
+    failToast: true,
+  })
+}
+
+
+// 意见反馈
+export function feedbackAction(page: number): Promise<Inter.feedbackList> {
+  return doRequestAction({
+    url: api.feedbackUrl,
+    method: 'POST',
+    failToast: true,
+    data:{
+      page
+    }
+  })
+}
+
+// 意见返回提交
+export function feedbackSubmissionAction(params:object): Promise<Inter.Result> {
+  return doRequestAction({
+    url: api.feedbackSubmissionUrl,
+    method: 'POST',
+    failToast: true,
+    data: params
+  })
+}
+
+// 帮助中心
+export function helpAction(page: number, system:string): Promise<Inter.helpData> {
+  return doRequestAction({
+    url: api.helpUrl,
+    failToast: true,
+    data:{
+      page,
+      system,
+    }
+  })
+}
+
+// 新闻类型
+export function newsTypesAction(): Promise<Inter.newsTypesList> {
+  return doRequestAction({
+    url: api.newsTypesUrl,
+    failToast: true,
+  })
+}
+
+// 新闻列表
+export function newListAction(params:object): Promise<Inter.newList> {
+  return doRequestAction({
+    url: api.newListUrl,
+    method: 'POST',
+    failToast: true,
+    data:params
+  })
+}
+
+// 资讯详情
+export function newsInfoAction(id: string): Promise<Inter.consultationDetails> {
+  return doRequestAction({
+    url: api.newsInfoUrl,
+    method: 'POST',
+    failToast: true,
+    data:{
+      id,
+    }
+  })
+}
+
+
+// 排名规则
+export function resumesSortAction(): Promise<Inter.resumesSort> {
+  return doRequestAction({
+    url: api.resumesSortUrl,
+    method: 'POST',
+    failToast: true,
+  })
+}
+
+// 排名规则点击按钮发请求
+export function resumesAddClickLogAction(type:number): Promise<Inter.Result> {
+  return doRequestAction({
+    url: api.resumesAddClickLog,
+    method: 'POST',
+    failToast: true,
+    data:{
+      type
+    }
+  })
+}
+
+// 我的信息
+export function userMessagesAction(type:string): Promise<Inter.userMessagesList> {
+  return doRequestAction({
+    url: api.userMessagesUrl,
+    method: 'POST',
+    failToast: true,
+    data:{
+      terminal_type:type,
+    }
+  })
+}
+
+// 我的信息详情
+export function messagesTypeAction(params:object): Promise<Inter.system> {
+  return doRequestAction({
+    url: api.messagesTypeUrl,
+    method: 'POST',
+    failToast: true,
+    data:params
+  })
+}
+
+// 获取积分分类
+export function integralSourceConfigAction(params:object): Promise<Inter.integralSourceConfig> {
+  return doRequestAction({
+    url: api.integralSourceConfigUrl,
+    method: 'POST',
+    failToast: true,
+    data: params
+  })
+}
+// 积分数据
+export function integralSourceListsAction(params: object): Promise<Inter.integralSourceLists> {
+  return doRequestAction({
+    url: api.integralSourceListsUrl,
+    method: 'POST',
+    failToast: true,
+    data: params
+  })
+}
+
+// 积分消耗
+export function integralExpendConfigAction(): Promise<Inter.integralSourceConfig> {
+  return doRequestAction({
+    url: api.integralExpendConfigUrl,
+    method: 'POST',
+    failToast: true,
+  })
+}
+
+// 积分消耗 数量
+export function integralExpendListsAction(params: object): Promise<Inter.integralSourceLists> {
+  return doRequestAction({
+    url: api.integralExpendListsUrl,
+    method: 'POST',
+    failToast: true,
+    data: params
+  })
+}
+
+// 消耗积分弹窗内容
+export function integralUseInfoAction(logId: string): Promise<Inter.integralUseInfo> {
+  return doRequestAction({
+    url: api.integralUseInfoUrl,
+    method: 'POST',
+    failToast: true,
+    data: {
+      logId
+    }
+  })
+}
+
+// 投诉
+export function publishComplainAction(params: object): Promise<Inter.Result> {
+  return doRequestAction({
+    url: api.publishComplainUrl,
+    method: 'POST',
+    failToast: true,
+    data: params
+  })
+}
+
+// 招工详情
+export function jobInfoAction(params: object): Promise<Inter.jobInfoData> {
+  return doRequestAction({
+    url: api.jobInfoUrl,
+    method: 'POST',
+    failToast: true,
+    data: params
+  })
+}
+
+// 招工详情，没有用户信息
+export function jobNoUserInfoAction(params: object): Promise<Inter.Result> {
+  return doRequestAction({
+    url: api.jobNoUserInfoUrl,
+    method: 'POST',
+    failToast: true,
+    data: params
+  })
+}
+
+// 获取电话好吗
+export function jobGetTelAction(params: object): Promise<Inter.Result> {
+  return doRequestAction({
+    url: api.jobGetTelUrl,
+    method: 'POST',
+    failToast: true,
+    data: params
+  })
+}
+
+// 修改状态
+export function jobEndStatusAction(infoId:number): Promise<Inter.Result> {
+  return doRequestAction({
+    url: api.jobEndStatusUrl,
+    method: 'POST',
+    failToast: true,
+    data: {
+      infoId,
+    }
+  })
+}
+
+// 置顶信息
+export function jobTopConfigAction(): Promise<Inter.jobTopConfig> {
+  return doRequestAction({
+    url: api.jobTopConfigUrl,
+    method: 'POST',
+    failToast: true,
+  })
+}
+
+
+// 置顶区域
+export function jobTopHotAreasAction(): Promise<Inter.jobTopHotAreas> {
+  return doRequestAction({
+    url: api.jobTopHotAreasUrl,
+    method: 'POST',
+    failToast: true,
+  })
+}
+
+
+// 招工置顶
+export function jobDoTopAction(detail:object): Promise<Inter.Result> {
+  return doRequestAction({
+    url: api.jobDoTopUrl,
+    method: 'POST',
+    failToast: true,
+    data: detail,
+  })
+}
+
+
+// 修改置顶获取数据
+export function jobGetTopAreasAction(detail: object): Promise<Inter.jobGetTopAreas> {
+  return doRequestAction({
+    url: api.jobGetTopAreasUrl,
+    method: 'POST',
+    failToast: true,
+    data: detail,
+  })
+}
+
+// 更新招工置顶城市
+export function jobChangeTopAreasAction(detail: object): Promise<Inter.Result> {
+  return doRequestAction({
+    url: api.jobChangeTopAreasUrl,
+    method: 'POST',
+    failToast: true,
+    data: detail,
+  })
+}
+// 取消招工置顶
+export function jobUpdateTopStatusAction(detail: object): Promise<Inter.Result> {
+  return doRequestAction({
+    url: api.jobUpdateTopStatusUrl,
+    method: 'POST',
+    failToast: true,
+    data: detail,
+  })
+}
+
+// 找活详情
+export function resumeDetailAction(obj): Promise<Inter.resumeDetail > {
+  return doRequestAction({
+    url: api.resumeDetailUrl,
+    method: 'POST',
+    failToast: true,
+    data: obj
+  })
+}
+// 找活详情列表
+export function recommendListAction(obj): Promise<Inter.recommendList> {
+  return doRequestAction({
+    url: api.recommendListUrl,
+    method: 'POST',
+    failToast: true,
+    data: obj
+  })
+}
+
+// 找活详情查看电话
+export function resumesGetTelAcrion(obj): Promise<Inter.resumesGetTel> {
+  return doRequestAction({
+    url: api.resumesGetTelUrl,
+    method: 'POST',
+    failToast: true,
+    data: obj
+  })
+}
+// 赞
+export function resumeSupportAction(obj): Promise<Inter.resumeCollect> {
+  return doRequestAction({
+    url: api.resumeSupportUrl,
+    method: 'POST',
+    failToast: true,
+    data: obj
+  })
+}
+// 分享
+export function resumeCollectAction(obj): Promise<Inter.resumeCollect> {
+  return doRequestAction({
+    url: api.resumeCollectUrl,
+    method: 'POST',
+    failToast: true,
+    data: obj
+  })
+}
+// 找活名片完善
+export function resumeListAction(): Promise<Inter.resumeList> {
+  return doRequestAction({
+    url: api.resumeListUrl,
+    method: 'POST',
+    failToast: true,
+  })
+}
+
+// 发布招工信息
+export function publishRecruitInfo(data): Promise<Inter.Result> {
+  return doRequestAction({
+    url: api.PublishRecruitInfo,
+    method: 'POST',
+    data: data,
+    failToast: true
+
+  })
+}
+
+// 找活名片推荐
+export function jobRecommendListAction(data): Promise<Inter.resumeList> {
+  return doRequestAction({
+    url: api.jobRecommendListUrl,
+    method: 'POST',
+    failToast: true,
+    data,
+  })
+}
+
+//删除技能证书
+export function delCertificateAction(data): Promise<Inter.resumeList> {
+  return doRequestAction({
+    url: api.delCertificateUrl,
+    method: 'POST',
+    failToast: true,
+    data,
+  })
+}
+// 新增技能证书
+export function resumesCertificateAction(data): Promise<Inter.Result> {
+  return doRequestAction({
+    url: api.resumesCertificateUrl,
+    method: 'POST',
+    failToast: true,
+    data,
+  })
+}
+
+// 新增项目
+export function resumesProjectAction(data): Promise<Inter.Result> {
+  return doRequestAction({
+    url: api.resumesProjectUrl,
+    method: 'POST',
+    failToast: true,
+    data,
   })
 }

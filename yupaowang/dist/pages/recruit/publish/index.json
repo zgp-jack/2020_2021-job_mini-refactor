@@ -1,1 +1,1 @@
-{"usingComponents":{"profession":"../../../components/profession/index","words-total":"../../../components/wordstotal/index","image-view":"../../../components/imageview/index"}}
+{"usingComponents":{"auth":"../../../components/auth/index","profession":"../../../components/profession/index","words-total":"../../../components/wordstotal/index","image-view":"../../../components/imageview/index"},"navigationBarTitleText":"发布招工","navigationBarBackgroundColor":"#0099ff","navigationBarTextStyle":"white","backgroundTextStyle":"dark"}

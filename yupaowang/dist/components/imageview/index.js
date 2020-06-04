@@ -14,6 +14,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
@@ -48,7 +50,7 @@ var ImageView = (_temp2 = _class = function (_Taro$Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ImageView.__proto__ || Object.getPrototypeOf(ImageView)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray1203", "images", "max", "userUploadImg"], _this.anonymousFunc0Map = {}, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ImageView.__proto__ || Object.getPrototypeOf(ImageView)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray91", "images", "bool", "max", "userUploadImg", "userDelImg"], _this.anonymousFunc0Map = {}, _this.anonymousFunc1Map = {}, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(ImageView, [{
@@ -71,32 +73,45 @@ var ImageView = (_temp2 = _class = function (_Taro$Component) {
       var _props = this.__props,
           images = _props.images,
           userUploadImg = _props.userUploadImg,
-          max = _props.max;
+          max = _props.max,
+          userDelImg = _props.userDelImg;
 
 
-      this.anonymousFunc1 = function () {
+      var bool = userDelImg ? true : false;
+
+      this.anonymousFunc2 = function () {
         return userUploadImg && userUploadImg(-1);
       };
 
-      var loopArray1203 = images ? images.map(function (item, index) {
+      var loopArray91 = images ? images.map(function (item, index) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
+        var $loopState__temp2 = images ? index + 'a' : null;
 
-        var _$indexKey = "iaczz" + index;
+        var _$indexKey = "hezzz" + index;
 
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return userUploadImg && userUploadImg(index);
         };
 
+        var _$indexKey2 = "hfzzz" + index;
+
+        _this2.anonymousFunc1Map[_$indexKey2] = function (e) {
+          e.stopPropagation();userDelImg && userDelImg(index);
+        };
+
         return {
+          $loopState__temp2: $loopState__temp2,
           _$indexKey: _$indexKey,
+          _$indexKey2: _$indexKey2,
           $original: item.$original
         };
       }) : [];
       Object.assign(this.__state, {
-        loopArray1203: loopArray1203,
+        loopArray91: loopArray91,
         images: images,
+        bool: bool,
         max: max
       });
       return this.__state;
@@ -116,13 +131,30 @@ var ImageView = (_temp2 = _class = function (_Taro$Component) {
     }
   }, {
     key: "anonymousFunc1",
-    value: function anonymousFunc1(e) {
+    value: function anonymousFunc1(_$indexKey2) {
+      var _anonymousFunc1Map;
+
+      for (var _len3 = arguments.length, e = Array(_len3 > 1 ? _len3 - 1 : 0), _key3 = 1; _key3 < _len3; _key3++) {
+        e[_key3 - 1] = arguments[_key3];
+      }
+
+      (typeof e === "undefined" ? "undefined" : _typeof(e)) === 'object' && e.stopPropagation && e.stopPropagation();
+      return this.anonymousFunc1Map[_$indexKey2] && (_anonymousFunc1Map = this.anonymousFunc1Map)[_$indexKey2].apply(_anonymousFunc1Map, e);
+    }
+  }, {
+    key: "anonymousFunc2",
+    value: function anonymousFunc2(e) {
       ;
     }
   }]);
 
   return ImageView;
-}(_taroWeapp2.default.Component), _class.$$events = ["anonymousFunc0", "anonymousFunc1"], _class.$$componentPath = "components/imageview/index", _temp2);
+}(_taroWeapp2.default.Component), _class.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2"], _class.$$componentPath = "components/imageview/index", _temp2);
+
+
+ImageView.options = {
+  addGlobalClass: true
+};
 exports.default = ImageView;
 
 Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(ImageView));

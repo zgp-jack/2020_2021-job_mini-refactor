@@ -7,18 +7,18 @@ import { UserLocationCity, UserPublishAreaHistory } from '../../../config/store'
 import { UserLocationPromiss, getCityInfo, ChildItems } from '../../../models/area'
 import { getAmapPoiList } from '../../../utils/helper'
 import { InputPoiListTips } from '../../../utils/helper/index.d'
-// import { context } from '../../recruit/publish'
+import { context } from '../../recruit/publish'
 import { checkAdcodeValid } from '../../../utils/request'
 import { AllAreasDataItem } from '../../../utils/request/index.d'
 import { Injected } from '../../recruit/publish'
 import './index.scss'
 import Msg, { ShowActionModal } from '../../../utils/msg'
 
-interface PROPS extends IPROPS{
-  context: Taro.Context<Injected>
-}
+// interface PROPS extends IPROPS{
+//   context: Taro.Context<Injected>
+// }
 
-export default function MapComponent({ data, context }: PROPS){
+export default function MapComponent({ data }){
 
   // 用户定位城市
   const [userLoc, setUserLoc] = useState<AllAreasDataItem>({
@@ -170,7 +170,7 @@ export default function MapComponent({ data, context }: PROPS){
           {showHistory && <View className='history-title'>历史记录</View>}
           {showHistory ? 
           histroyList.map((item, index)=>(
-            <View className='location-list-item' key={index} onClick={() => userClickAreaItem(item)}>
+            <View className='location-list-item' key={index+index} onClick={() => userClickAreaItem(item)}>
               <View className='location-list-header overwords'>
               { item.name }
               <Text>3.2km</Text>
@@ -179,7 +179,7 @@ export default function MapComponent({ data, context }: PROPS){
             </View>
           )) : 
           lists.map((item, index) => (
-            <View className='location-list-item' key={index} onClick={() => userClickAreaItem(item)}>
+            <View className='location-list-item' key={index+index} onClick={() => userClickAreaItem(item)}>
               <View className='location-list-header overwords'>
                 {item.name}
                 <Text>3.2km</Text>

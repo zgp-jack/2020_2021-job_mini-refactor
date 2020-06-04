@@ -1,0 +1,34 @@
+<block wx:if="{{$taroCompReady}}">
+    <view>
+        <scroll-view class="invite-ScrollView" scroll-x="{{true}}" upper-threshold="{{50}}" lower-threshold="{{50}}" enable-flex="{{true}}" scroll-left="{{scrollLeft}}" scroll-with-animation="{{true}}" bindscroll="anonymousFunc0">
+            <view class="invite-tab">
+                <block wx:if="{{tab.item}}">
+                    <view wx:key="index" class="invite-tab-box" bindtap="anonymousFunc1" wx:for="{{loopArray82}}" wx:for-item="item" wx:for-index="i" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">
+                        <view class="{{item.$loopState__temp2}}">{{item.$original.name}}</view>
+                    </view>
+                </block>
+            </view>
+        </scroll-view>
+        <block wx:if="{{!list.length}}">
+            <nodata compid="{{$compid__88}}"></nodata>
+        </block>
+        <view class="invite-content-box">
+            <block wx:if="{{list}}">
+                <view wx:key="id" class="invite-content" bindtap="anonymousFunc2" wx:for="{{loopArray83}}" wx:for-item="v" wx:for-index="__index2" data-e-tap-so="this" data-e-tap-a-a="{{v._$indexKey2}}">
+                    <view>
+                        <image class="invite-content-img" src="{{v.$original.cover_img}}"></image>
+                    </view>
+                    <view class="invite-content-right">
+                        <view class="invite-content-title">{{v.$original.title}}</view>
+                        <view class="invite-content-desc">{{v.$original.desc}}</view>
+                        <view class="invite-content-footer"><text>{{v.$original.author}}</text><text>{{v.$original.time}}</text>
+                        </view>
+                    </view>
+                </view>
+            </block>
+        </view>
+        <block wx:if="{{list.length && !pull}}">
+            <view class="invite-nodata">没有更多数据了</view>
+        </block>
+    </view>
+</block>

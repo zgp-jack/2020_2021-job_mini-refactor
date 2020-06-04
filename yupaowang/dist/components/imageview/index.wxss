@@ -2,6 +2,13 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis; }
+.showMore {
+  position: relative;
+  width: 100%;
+  padding: 20rpx 0;
+  text-align: center;
+  font-size: 26rpx;
+  color: #525252; }
 .clearfix:after {
   content: "";
   display: block;
@@ -56,3 +63,17 @@
         margin-top: -25rpx;
         z-index: 1;
         background: #dcdcdc; }
+.uploads-imgs-lists .uploads-img-item .uploads-img-del {
+      position: absolute;
+      width: 100%;
+      height: 60rpx;
+      background: rgba(0, 0, 0, 0.35);
+      text-align: center;
+      left: 0;
+      bottom: 0;
+      z-index: 5;
+      padding: 10rpx 0; }
+.uploads-imgs-lists .uploads-img-item .uploads-img-del .at-icon-trash {
+        color: #ff0000;
+        font-size: 34rpx;
+        display: block; }

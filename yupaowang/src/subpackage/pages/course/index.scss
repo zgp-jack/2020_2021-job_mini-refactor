@@ -1,0 +1,92 @@
+@import '../../../common.scss';
+
+.course-content{
+  width: 95%;
+  margin: 0 auto;
+}
+.course-tab {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 20px;
+  align-items: center;
+  justify-content: space-around;
+  background: #fff;
+  height: 80px;
+  line-height: 80px;
+  color: rgba(108, 109, 109, 1);
+  font-size: 30px;
+  margin-top: 18px;
+}
+
+.course-modal-text {
+  font-size: 20px;
+  text-align: center;
+  margin-left: 20%;
+  line-height: 100px;
+}
+
+.course-error-text {
+  font-size: 20px;
+  text-align: center;
+  margin-left: 10%;
+  line-height: 100px;
+}
+
+.course.active-text {
+  color: rgba(0, 153, 255, 1);
+  font-size: 30px;
+}
+.course-tab-box{
+  width: 50%;
+  text-align: center;
+}
+.course-tab-box:first-child {
+  border-right: 1px solid #C7C6C6;
+}
+
+.course-tab-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.course-tab-img {
+  margin-right: 10px;
+  .course-tab-img-box {
+    height: 26px;
+    width: 26px;
+  }
+}
+
+.at-modal__content {
+  min-height: 10px !important;
+}
+
+.recruit-lists-containerbox {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  top: 5;
+  height: calc(100% - 10px);
+  z-index: 3;
+}
+.course-atAccordion-box{
+  margin-top: 20px;
+  background: #fff;
+}
+.at-accordion__info__title{
+  white-space:normal;
+  word-wrap: break-word;
+  word-break: normal;
+}
+.course-atAccordion-box-video{
+  width: 100%;
+  padding: 10px;
+}
+.course-tab-border {
+  border-bottom: 2px solid $color;
+}
+.at-accordion__header{
+  align-items:flex-start;
+}

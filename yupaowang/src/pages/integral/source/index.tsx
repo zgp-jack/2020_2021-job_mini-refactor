@@ -6,7 +6,7 @@ import { IntegralSourceItem } from '../../../utils/request/index.d'
 
 import '../index.scss'
 
-export default function Integral() {
+export default function Source() {
 
   // 初始化页面信息-积分来源记录
   const initType: string = 'source'
@@ -51,7 +51,8 @@ export default function Integral() {
 
   return (
     <View className='integral-container'>
-      <View className='integral-title'>显示最近30天的积分来源记录</View>
+      1111
+      {/* <View className='integral-title'>显示最近30天的积分来源记录</View>
       <View className='integral-content'>
         {lists.lists.map(item => (
           <View className='integral-list'>
@@ -67,12 +68,12 @@ export default function Integral() {
           </View>
         ))}
       </View>
-      {!lists.hasmore && <View className='integral-notmore'>没有更多数据了</View>}
+      {!lists.hasmore && <View className='integral-notmore'>没有更多数据了</View>} */}
     </View>
   )
 }
 
-Integral.config = {
-  navigationBarTitleText: '积分来源记录',
-  enablePullDownRefresh: true
-} as Config
+// Source.config = {
+//   navigationBarTitleText: '积分来源记录',
+//   enablePullDownRefresh: true
+// } as Config

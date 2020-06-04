@@ -60,7 +60,7 @@ var Cities = (_temp2 = _class = function (_Taro$Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Cities.__proto__ || Object.getPrototypeOf(Cities)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray1211", "loopArray1212", "loopArray1213", "text", "IMGCDNURL", "userLoc", "recentlyCities", "data", "show", "inputCity", "area", "parent", "userTapCityBtn", "userChangeCity"], _this.anonymousFunc4Map = {}, _this.anonymousFunc5Map = {}, _this.anonymousFunc6Map = {}, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Cities.__proto__ || Object.getPrototypeOf(Cities)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray94", "loopArray95", "loopArray96", "text", "IMGCDNURL", "userLoc", "recentlyCities", "data", "show", "inputCity", "area", "parent", "userTapCityBtn", "userChangeCity"], _this.anonymousFunc4Map = {}, _this.anonymousFunc5Map = {}, _this.anonymousFunc6Map = {}, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Cities, [{
@@ -159,7 +159,7 @@ var Cities = (_temp2 = _class = function (_Taro$Component) {
             return;
           }
         }
-        setRecentlyCities(historyCities);
+        setRecentlyCities([]);
       };
       // 初始化城市数据
       (0, _taroWeapp.useEffect)(function () {
@@ -235,13 +235,13 @@ var Cities = (_temp2 = _class = function (_Taro$Component) {
         return userTapCityBtn(false);
       };
 
-      var loopArray1211 = recentlyCities.map(function (item, __index4) {
+      var loopArray94 = recentlyCities.map(function (item, __index4) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
         var $loopState__temp2 = 'rec' + item.$original.id;
 
-        var _$indexKey = "iafzz" + __index4;
+        var _$indexKey = "hizzz" + __index4;
 
         _this2.anonymousFunc4Map[_$indexKey] = function () {
           return userTapCity(item.$original);
@@ -253,17 +253,17 @@ var Cities = (_temp2 = _class = function (_Taro$Component) {
           $original: item.$original
         };
       });
-      var loopArray1212 = data.map(function (item, index) {
+      var loopArray95 = data.map(function (item, index) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
         var $loopState__temp4 = index + item.$original[0].id;
-        var $anonymousCallee__324 = item.$original.map(function (d, key) {
+        var $anonymousCallee__18 = item.$original.map(function (d, key) {
           d = {
             $original: (0, _taroWeapp.internal_get_original)(d)
           };
           var $loopState__temp6 = key + d.$original.id;
-          var _$indexKey2 = "iagzz" + index + "-" + key;
+          var _$indexKey2 = "hjzzz" + index + "-" + key;
 
           _this2.anonymousFunc5Map[_$indexKey2] = function () {
             return userTapCity(d.$original);
@@ -277,16 +277,16 @@ var Cities = (_temp2 = _class = function (_Taro$Component) {
         });
         return {
           $loopState__temp4: $loopState__temp4,
-          $anonymousCallee__324: $anonymousCallee__324,
+          $anonymousCallee__18: $anonymousCallee__18,
           $original: item.$original
         };
       });
-      var loopArray1213 = show ? inputCity.map(function (item, __index6) {
+      var loopArray96 = show ? inputCity.map(function (item, __index6) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
 
-        var _$indexKey3 = "iahzz" + __index6;
+        var _$indexKey3 = "iazzz" + __index6;
 
         _this2.anonymousFunc6Map[_$indexKey3] = function () {
           return userTapInputCity(item.$original);
@@ -298,9 +298,9 @@ var Cities = (_temp2 = _class = function (_Taro$Component) {
         };
       }) : [];
       Object.assign(this.__state, {
-        loopArray1211: loopArray1211,
-        loopArray1212: loopArray1212,
-        loopArray1213: loopArray1213,
+        loopArray94: loopArray94,
+        loopArray95: loopArray95,
+        loopArray96: loopArray96,
         text: text,
         IMGCDNURL: _index.IMGCDNURL,
         userLoc: userLoc,

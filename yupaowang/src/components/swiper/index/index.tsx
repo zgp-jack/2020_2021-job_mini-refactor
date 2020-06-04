@@ -14,7 +14,7 @@ export default function SwiperComponent({ data }: NormalProps<BannerNoticeBanner
       indicatorDots={swiper.indicatorDots}
       autoplay={swiper.autoplay}>
       {swiper.lists.map((item, index)=>(
-        <SwiperItem className='index-swiper-item' key={index}>
+        <SwiperItem className='index-swiper-item' key={index+index}>
           <Image className='index-swiper-img' src={ item.banner } />
         </SwiperItem>
       ))}

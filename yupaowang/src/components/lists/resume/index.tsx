@@ -15,7 +15,7 @@ export default function ResumeList({ data, bottom = true }: PROPS){
       {data.map((item)=>(
         <Block>
           {item.map((d)=>(
-            <View className='resume-list-item'>
+            <View className='resume-list-item' key={ d.id }>
               <View className='resume-list-header'>
                 <Image className='resume-list-user' src={ d.headerimg } />
                 <View className='resume-list-userinfo'>

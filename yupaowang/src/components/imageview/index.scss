@@ -49,5 +49,21 @@
         background: #dcdcdc;
       }
     }
+    .uploads-img-del{
+      position: absolute;
+      width: 100%;
+      height: 60px;
+      background: rgba(0, 0, 0, 0.35);
+      text-align: center;
+      left: 0;
+      bottom: 0;
+      z-index: 5;
+      padding: 10px 0;
+      .at-icon-trash{
+        color: #ff0000;
+        font-size: 34px;
+        display: block;
+      }
+    }
   }
 }

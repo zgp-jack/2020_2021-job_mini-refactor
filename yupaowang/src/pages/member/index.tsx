@@ -1,4 +1,4 @@
-import Taro, { useState, useEffect } from '@tarojs/taro'
+import Taro, { useState, useEffect, useDidShow } from '@tarojs/taro'
 import { View, Image, Text } from '@tarojs/components'
 import { useSelector } from '@tarojs/redux'
 import { getMemberInfo } from '../../utils/request'
@@ -52,6 +52,10 @@ export default function Member(){
     setIos(isIos())
   },[])
 
+  useDidShow(()=>{
+    initMemberInfo()
+  })
+
   useEffect(()=>{
     initMemberInfo()
   },[login])
@@ -82,7 +86,7 @@ export default function Member(){
               }
             </View>
             <View className='member-user-integral'>
-              <View className='member-integral-item'>
+                <View className='member-integral-item' onClick={() => userRouteJump('/pages/integral/tabber/index?info=0&office=0')}>
                 <Text className='member-integral-num'>{ model.member.integral }</Text>
                 <Text className='member-integral-text'>积分</Text>
               </View>
@@ -106,7 +110,7 @@ export default function Member(){
       </View>
       <View className='member-body-container'>
         <View className='member-list-container'>
-          <View className='member-list-item'>
+          <View className='member-list-item' onClick={()=>userRouteJump('/pages/published/recruit/index')}>
             <Image className='member-list-icon' src={ IMGCDNURL + 'lpy/ucenter/newcenter-recruit.png' } />
             <Text className='member-list-title'>我的招工</Text>
             {jobNumber && <Text className='member-list-tips'>状态有更新</Text>}
@@ -120,7 +124,7 @@ export default function Member(){
             <Image className='member-list-icon' src={ IMGCDNURL + 'lpy/ucenter/newcenter-used.png'} />
             <Text className='member-list-title'>我的二手交易</Text>
           </View>
-          <View className='member-list-item'>
+          <View className='member-list-item' onClick={() => userRouteJump('/pages/information/mymessage/index')}>
             <Image className='member-list-icon' src={ IMGCDNURL + 'lpy/ucenter/newcenter-info.png'} />
             <View className='member-list-title'>
               <Text>我的信息</Text>
@@ -134,21 +138,21 @@ export default function Member(){
           </View>
         </View>
         <View className='member-list-container'>
-          <View className='member-list-item'>
+          <View className='member-list-item' onClick={() => userRouteJump('/pages/recharge/index')}>
             <Image className='member-list-icon' src={ IMGCDNURL + 'lpy/ucenter/newcenter-integral.png'} />
             <Text className='member-list-title'>获取积分</Text>
             {!ios && <Text className='member-list-tips'>去充值</Text>}
           </View>
-          <View className='member-list-item'>
+          <View className='member-list-item' onClick={() => userRouteJump('/pages/invite/index')}>
             <Image className='member-list-icon' src={ IMGCDNURL + 'lpy/ucenter/newcenter-invite.png'} />
             <Text className='member-list-title'>邀请工友</Text>
             <Text className='member-list-tips'>邀请好友得积分</Text>
           </View>
-          <View className='member-list-item'>
+          <View className='member-list-item' onClick={() => userRouteJump(`/pages/integral/tabber/index?info=1`)}>
             <Image className='member-list-icon' src={ IMGCDNURL + 'lpy/ucenter/newcenter-expend.png'} />
             <Text className='member-list-title'>积分消耗记录</Text>
           </View>
-          <View className='member-list-item'>
+          <View className='member-list-item' onClick={() => userRouteJump(`/pages/integral/tabber/index?info=0`)}>
             <Image className='member-list-icon' src={ IMGCDNURL + 'lpy/ucenter/newcenter-origin.png'} />
             <Text className='member-list-title'>积分来源</Text>
           </View>
@@ -165,7 +169,7 @@ export default function Member(){
           </View>
         </View>
         <View className='member-list-container'>
-          <View className='member-list-item'>
+          <View className='member-list-item' onClick={() => userRouteJump('/pages/feedbacklist/index')}>
             <Image className='member-list-icon' src={ IMGCDNURL + 'lpy/ucenter/newcenter-feedback.png'} />
             <View className='member-list-title'>
               <Text>意见反馈</Text>
@@ -173,7 +177,7 @@ export default function Member(){
             </View>
             {model && model.member.has_notice_msg.hasNoticeMsgg && <Text className='member-list-tips'>有最新回复</Text>}
           </View>
-          <View className='member-list-item'>
+          <View className='member-list-item' onClick={() => userRouteJump('/pages/help/index')} >
             <Image className='member-list-icon' src={ IMGCDNURL + 'lpy/ucenter/newcenter-help.png'} />
             <Text className='member-list-title'>帮助中心</Text>
             <Text className='member-list-tips'>使用教程</Text>

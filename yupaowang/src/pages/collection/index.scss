@@ -29,3 +29,30 @@
   color: rgba(0, 153, 255, 1);
   font-size: 30px;
 }
+.collection-tab-box:first-child {
+  border-right: 1px solid #C7C6C6;
+}
+.collection-tab-box{
+  width: 50%;
+  text-align: center;
+}
+.collection-tab-content{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.collection-tab-img{
+    margin-right: 10px;
+  Image{
+    height: 26px;
+    width: 26px;
+  }
+}
+
+.at-modal__content{
+min-height: 10px !important;
+}
+
+.collection-tab-border {
+  border-bottom: 2px solid $color;
+}

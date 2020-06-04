@@ -14,7 +14,7 @@ export default function SwiperNews({ data }: NormalProps<BannerNoticeNotice>){
       indicatorDots={swiper.indicatorDots}
       autoplay={swiper.autoplay}>
       {swiper.lists.map((item, index) => (
-        <SwiperItem className='home-swipernews-item' key={index}>
+        <SwiperItem className='home-swipernews-item' key={index+index}>
           <View className='home-swipernews-text overwords'>{ item.title }</View>
         </SwiperItem>
       ))}

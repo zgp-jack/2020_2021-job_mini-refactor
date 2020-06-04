@@ -2,6 +2,13 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis; }
+.showMore {
+  position: relative;
+  width: 100%;
+  padding: 20rpx 0;
+  text-align: center;
+  font-size: 26rpx;
+  color: #525252; }
 .clearfix:after {
   content: "";
   display: block;
@@ -16,6 +23,13 @@
   position: relative;
   width: 100%;
   padding-bottom: 150rpx; }
+.resume-list-container .resume-list-noData {
+    text-align: center;
+    display: block;
+    line-height: 100rpx;
+    font-size: 28rpx;
+    text-align: center;
+    letter-spacing: 2rpx; }
 .resume-list-container .resume-list-item {
     position: relative;
     width: 100%;
