@@ -60,7 +60,7 @@ var Condition = (_temp2 = _class = function (_Taro$Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Condition.__proto__ || Object.getPrototypeOf(Condition)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "loopArray95", "loopArray96", "$compid__97", "data", "IMGCDNURL", "AREAS", "childAreaList", "scrollTop"], _this.anonymousFunc0Map = {}, _this.anonymousFunc2Map = {}, _this.customComponents = ["AtDrawer"], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Condition.__proto__ || Object.getPrototypeOf(Condition)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "loopArray87", "loopArray88", "$compid__92", "data", "IMGCDNURL", "AREAS", "childAreaList", "scrollTop"], _this.anonymousFunc0Map = {}, _this.anonymousFunc2Map = {}, _this.customComponents = ["AtDrawer"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Condition, [{
@@ -81,15 +81,13 @@ var Condition = (_temp2 = _class = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__97"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__92"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__97 = _genCompid2[0],
-          $compid__97 = _genCompid2[1];
+          $prevCompid__92 = _genCompid2[0],
+          $compid__92 = _genCompid2[1];
 
       var data = this.__props.data;
 
-
-      console.log(data);
       // * 当前展开项id
 
       var _useState = (0, _taroWeapp.useState)(''),
@@ -150,12 +148,12 @@ var Condition = (_temp2 = _class = function (_Taro$Component) {
         return onScrollAction(e);
       };
 
-      var loopArray95 = data ? data.map(function (item, __index0) {
+      var loopArray87 = data ? data.map(function (item, __index0) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
 
-        var _$indexKey = "jdzzz" + __index0;
+        var _$indexKey = "hbzzz" + __index0;
 
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return conditionItemClick(item.$original.id);
@@ -166,7 +164,7 @@ var Condition = (_temp2 = _class = function (_Taro$Component) {
           $original: item.$original
         };
       }) : [];
-      var loopArray96 = _area2.default.map(function (item, index) {
+      var loopArray88 = _area2.default.map(function (item, index) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
@@ -175,7 +173,7 @@ var Condition = (_temp2 = _class = function (_Taro$Component) {
           'drawer-list-item-active': index === areaIndex
         });
 
-        var _$indexKey2 = "jezzz" + index;
+        var _$indexKey2 = "hczzz" + index;
 
         _this2.anonymousFunc2Map[_$indexKey2] = function () {
           return changeAreaIndex(index);
@@ -191,12 +189,12 @@ var Condition = (_temp2 = _class = function (_Taro$Component) {
         "show": anonymousState__temp,
         "mask": true,
         "onClose": this.anonymousFunc1
-      }, $compid__97, $prevCompid__97);
+      }, $compid__92, $prevCompid__92);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
-        loopArray95: loopArray95,
-        loopArray96: loopArray96,
-        $compid__97: $compid__97,
+        loopArray87: loopArray87,
+        loopArray88: loopArray88,
+        $compid__92: $compid__92,
         data: data,
         IMGCDNURL: _index.IMGCDNURL,
         AREAS: _area2.default,
@@ -245,7 +243,7 @@ var Condition = (_temp2 = _class = function (_Taro$Component) {
 
   return Condition;
 }(_taroWeapp2.default.Component), _class.$$events = ["anonymousFunc0", "anonymousFunc2", "anonymousFunc3"], _class.$$componentPath = "components/condition/index", _temp2);
-exports.default = Condition;
+exports.default = (0, _taroWeapp.memo)(Condition);
 
 Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(Condition));
 
@@ -267,9 +265,9 @@ module.exports = __webpack_require__.p + "components/condition/index.wxml";
   !*** ./src/components/condition/index.scss ***!
   \*********************************************/
 /*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-// extracted by mini-css-extract-plugin
+throw new Error("Module build failed (from ./node_modules/@tarojs/mini-runner/node_modules/mini-css-extract-plugin/dist/loader.js):\nModuleBuildError: Module build failed (from ./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js):\nError: ENOENT: no such file or directory, open '/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules/@tarojs/mini-runner/node_modules/css-loader/dist/runtime/api.js'\n    at runLoaders (/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules/@tarojs/mini-runner/node_modules/webpack/lib/NormalModule.js:316:20)\n    at /Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules/loader-runner/lib/LoaderRunner.js:367:11\n    at Array.<anonymous> (/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules/loader-runner/lib/LoaderRunner.js:203:19)\n    at Storage.finished (/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules/enhanced-resolve/lib/CachedInputFileSystem.js:55:16)\n    at ReadFileContext.provider (/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules/enhanced-resolve/lib/CachedInputFileSystem.js:91:9)\n    at ReadFileContext.callback (/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules/graceful-fs/graceful-fs.js:123:16)\n    at FSReqCallback.readFileAfterOpen [as oncomplete] (fs.js:242:13)");
 
 /***/ }),
 

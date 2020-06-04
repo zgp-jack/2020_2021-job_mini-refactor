@@ -60,7 +60,7 @@ var Cities = (_temp2 = _class = function (_Taro$Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Cities.__proto__ || Object.getPrototypeOf(Cities)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray99", "loopArray100", "loopArray101", "text", "IMGCDNURL", "userLoc", "recentlyCities", "data", "show", "inputCity", "area", "parent", "userTapCityBtn", "userChangeCity"], _this.anonymousFunc4Map = {}, _this.anonymousFunc5Map = {}, _this.anonymousFunc6Map = {}, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Cities.__proto__ || Object.getPrototypeOf(Cities)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray94", "loopArray95", "loopArray96", "text", "IMGCDNURL", "userLoc", "recentlyCities", "data", "show", "inputCity", "area", "parent", "userTapCityBtn", "userChangeCity"], _this.anonymousFunc4Map = {}, _this.anonymousFunc5Map = {}, _this.anonymousFunc6Map = {}, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Cities, [{
@@ -235,13 +235,13 @@ var Cities = (_temp2 = _class = function (_Taro$Component) {
         return userTapCityBtn(false);
       };
 
-      var loopArray99 = recentlyCities.map(function (item, __index4) {
+      var loopArray94 = recentlyCities.map(function (item, __index4) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
         var $loopState__temp2 = 'rec' + item.$original.id;
 
-        var _$indexKey = "jgzzz" + __index4;
+        var _$indexKey = "hizzz" + __index4;
 
         _this2.anonymousFunc4Map[_$indexKey] = function () {
           return userTapCity(item.$original);
@@ -253,17 +253,17 @@ var Cities = (_temp2 = _class = function (_Taro$Component) {
           $original: item.$original
         };
       });
-      var loopArray100 = data.map(function (item, index) {
+      var loopArray95 = data.map(function (item, index) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
         var $loopState__temp4 = index + item.$original[0].id;
-        var $anonymousCallee__20 = item.$original.map(function (d, key) {
+        var $anonymousCallee__18 = item.$original.map(function (d, key) {
           d = {
             $original: (0, _taroWeapp.internal_get_original)(d)
           };
           var $loopState__temp6 = key + d.$original.id;
-          var _$indexKey2 = "jhzzz" + index + "-" + key;
+          var _$indexKey2 = "hjzzz" + index + "-" + key;
 
           _this2.anonymousFunc5Map[_$indexKey2] = function () {
             return userTapCity(d.$original);
@@ -277,16 +277,16 @@ var Cities = (_temp2 = _class = function (_Taro$Component) {
         });
         return {
           $loopState__temp4: $loopState__temp4,
-          $anonymousCallee__20: $anonymousCallee__20,
+          $anonymousCallee__18: $anonymousCallee__18,
           $original: item.$original
         };
       });
-      var loopArray101 = show ? inputCity.map(function (item, __index6) {
+      var loopArray96 = show ? inputCity.map(function (item, __index6) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
 
-        var _$indexKey3 = "jizzz" + __index6;
+        var _$indexKey3 = "iazzz" + __index6;
 
         _this2.anonymousFunc6Map[_$indexKey3] = function () {
           return userTapInputCity(item.$original);
@@ -298,9 +298,9 @@ var Cities = (_temp2 = _class = function (_Taro$Component) {
         };
       }) : [];
       Object.assign(this.__state, {
-        loopArray99: loopArray99,
-        loopArray100: loopArray100,
-        loopArray101: loopArray101,
+        loopArray94: loopArray94,
+        loopArray95: loopArray95,
+        loopArray96: loopArray96,
         text: text,
         IMGCDNURL: _index.IMGCDNURL,
         userLoc: userLoc,
@@ -397,9 +397,9 @@ module.exports = __webpack_require__.p + "components/citys/index.wxml";
   !*** ./src/components/citys/index.scss ***!
   \*****************************************/
 /*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-// extracted by mini-css-extract-plugin
+throw new Error("Module build failed (from ./node_modules/@tarojs/mini-runner/node_modules/mini-css-extract-plugin/dist/loader.js):\nModuleBuildError: Module build failed (from ./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js):\nError: ENOENT: no such file or directory, open '/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules/@tarojs/mini-runner/node_modules/css-loader/dist/runtime/api.js'\n    at runLoaders (/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules/@tarojs/mini-runner/node_modules/webpack/lib/NormalModule.js:316:20)\n    at /Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules/loader-runner/lib/LoaderRunner.js:367:11\n    at Array.<anonymous> (/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules/loader-runner/lib/LoaderRunner.js:203:19)\n    at Storage.finished (/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules/enhanced-resolve/lib/CachedInputFileSystem.js:55:16)\n    at ReadFileContext.provider (/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules/enhanced-resolve/lib/CachedInputFileSystem.js:91:9)\n    at ReadFileContext.callback (/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules/graceful-fs/graceful-fs.js:123:16)\n    at FSReqCallback.readFileAfterOpen [as oncomplete] (fs.js:242:13)");
 
 /***/ }),
 
@@ -453,4 +453,4 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ })
 
-},[["./src/components/citys/index.tsx","runtime","taro","vendors","common"]]]);
+},[["./src/components/citys/index.tsx","runtime","taro","common"]]]);

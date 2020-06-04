@@ -58,7 +58,7 @@ var Home = (_temp2 = _class = function (_Taro$Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Home.__proto__ || Object.getPrototypeOf(Home)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__75", "$compid__76", "$compid__77", "$compid__78", "$compid__79", "IMGCDNURL"], _this.customComponents = ["SwiperComponent", "Projects", "Fastfun", "SwiperNews", "RecruitList", "ResumeList", "UsedList", "About"], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Home.__proto__ || Object.getPrototypeOf(Home)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__74", "$compid__75", "$compid__76", "$compid__77", "$compid__78", "IMGCDNURL"], _this.customComponents = ["SwiperComponent", "Projects", "Fastfun", "SwiperNews", "RecruitList", "ResumeList", "UsedList", "About"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Home, [{
@@ -77,30 +77,30 @@ var Home = (_temp2 = _class = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__75"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__74"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__75 = _genCompid2[0],
-          $compid__75 = _genCompid2[1];
+          $prevCompid__74 = _genCompid2[0],
+          $compid__74 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__76"),
+      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__75"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__76 = _genCompid4[0],
-          $compid__76 = _genCompid4[1];
+          $prevCompid__75 = _genCompid4[0],
+          $compid__75 = _genCompid4[1];
 
-      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__77"),
+      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__76"),
           _genCompid6 = _slicedToArray(_genCompid5, 2),
-          $prevCompid__77 = _genCompid6[0],
-          $compid__77 = _genCompid6[1];
+          $prevCompid__76 = _genCompid6[0],
+          $compid__76 = _genCompid6[1];
 
-      var _genCompid7 = (0, _taroWeapp.genCompid)(__prefix + "$compid__78"),
+      var _genCompid7 = (0, _taroWeapp.genCompid)(__prefix + "$compid__77"),
           _genCompid8 = _slicedToArray(_genCompid7, 2),
-          $prevCompid__78 = _genCompid8[0],
-          $compid__78 = _genCompid8[1];
+          $prevCompid__77 = _genCompid8[0],
+          $compid__77 = _genCompid8[1];
 
-      var _genCompid9 = (0, _taroWeapp.genCompid)(__prefix + "$compid__79"),
+      var _genCompid9 = (0, _taroWeapp.genCompid)(__prefix + "$compid__78"),
           _genCompid10 = _slicedToArray(_genCompid9, 2),
-          $prevCompid__79 = _genCompid10[0],
-          $compid__79 = _genCompid10[1];
+          $prevCompid__78 = _genCompid10[0],
+          $compid__78 = _genCompid10[1];
 
       // * 获取列表数据的data
 
@@ -170,28 +170,28 @@ var Home = (_temp2 = _class = function (_Taro$Component) {
 
       _taroWeapp.propsManager.set({
         "data": swiper
-      }, $compid__75, $prevCompid__75);
+      }, $compid__74, $prevCompid__74);
       _taroWeapp.propsManager.set({
         "data": notice
-      }, $compid__76, $prevCompid__76);
+      }, $compid__75, $prevCompid__75);
       _taroWeapp.propsManager.set({
         "data": lists.recruit,
         "bottom": false
-      }, $compid__77, $prevCompid__77);
+      }, $compid__76, $prevCompid__76);
       _taroWeapp.propsManager.set({
         "data": lists.resume,
         "bottom": false
-      }, $compid__78, $prevCompid__78);
+      }, $compid__77, $prevCompid__77);
       _taroWeapp.propsManager.set({
         "data": lists.fleamarket,
         "bottom": false
-      }, $compid__79, $prevCompid__79);
+      }, $compid__78, $prevCompid__78);
       Object.assign(this.__state, {
+        $compid__74: $compid__74,
         $compid__75: $compid__75,
         $compid__76: $compid__76,
         $compid__77: $compid__77,
         $compid__78: $compid__78,
-        $compid__79: $compid__79,
         IMGCDNURL: _index.IMGCDNURL
       });
       return this.__state;
@@ -227,9 +227,9 @@ module.exports = __webpack_require__.p + "pages/home/index.wxml";
   !*** ./src/pages/home/index.scss ***!
   \***********************************/
 /*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-// extracted by mini-css-extract-plugin
+throw new Error("Module build failed (from ./node_modules/@tarojs/mini-runner/node_modules/mini-css-extract-plugin/dist/loader.js):\nModuleBuildError: Module build failed (from ./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js):\nError: ENOENT: no such file or directory, open '/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules/@tarojs/mini-runner/node_modules/css-loader/dist/runtime/api.js'\n    at runLoaders (/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules/@tarojs/mini-runner/node_modules/webpack/lib/NormalModule.js:316:20)\n    at /Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules/loader-runner/lib/LoaderRunner.js:367:11\n    at Array.<anonymous> (/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules/loader-runner/lib/LoaderRunner.js:203:19)\n    at Storage.finished (/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules/enhanced-resolve/lib/CachedInputFileSystem.js:55:16)\n    at ReadFileContext.provider (/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules/enhanced-resolve/lib/CachedInputFileSystem.js:91:9)\n    at ReadFileContext.callback (/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules/graceful-fs/graceful-fs.js:123:16)\n    at FSReqCallback.readFileAfterOpen [as oncomplete] (fs.js:242:13)");
 
 /***/ }),
 
@@ -283,4 +283,4 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ })
 
-},[["./src/pages/home/index.tsx","runtime","taro","vendors","common"]]]);
+},[["./src/pages/home/index.tsx","runtime","taro","common"]]]);

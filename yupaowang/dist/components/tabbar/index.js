@@ -14,6 +14,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
@@ -37,6 +39,8 @@ var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/re
 var _msg = __webpack_require__(/*! ../../actions/msg */ "./src/actions/msg.ts");
 
 var _tabbar = __webpack_require__(/*! ../../actions/tabbar */ "./src/actions/tabbar.ts");
+
+var _index3 = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
 
 __webpack_require__(/*! ./index.scss */ "./src/components/tabbar/index.scss");
 
@@ -62,7 +66,7 @@ var Tabbar = (_temp2 = _class = function (_Taro$Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Tabbar.__proto__ || Object.getPrototypeOf(Tabbar)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["tabbar", "loopArray98", "memberMsg", "notredirect"], _this.anonymousFunc0Map = {}, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Tabbar.__proto__ || Object.getPrototypeOf(Tabbar)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp3", "anonymousState__temp4", "anonymousState__temp5", "tabbar", "loopArray90", "memberMsg", "show", "IMGCDNURL", "notredirect"], _this.anonymousFunc0Map = {}, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Tabbar, [{
@@ -96,11 +100,51 @@ var Tabbar = (_temp2 = _class = function (_Taro$Component) {
       });
       var dispatch = (0, _redux.useDispatch)();
       var timer = void 0; //定时器接收对象
+      // 是否展示发布
+
+      var _useState = (0, _taroWeapp.useState)(false),
+          _useState2 = _slicedToArray(_useState, 2),
+          show = _useState2[0],
+          setShow = _useState2[1];
+      // 展开发布的动画效果
+
+
+      var _useState3 = (0, _taroWeapp.useState)(false),
+          _useState4 = _slicedToArray(_useState3, 2),
+          active = _useState4[0],
+          setActive = _useState4[1];
       // * 判断跳转还是切换tabbar
+
+
       var changeTabbarAction = function changeTabbarAction(item) {
+        if (item.click) {
+          if (item.click == 'openPublishMenu') {
+            openPublishMenu();
+            setTimeout(function () {
+              setActive(true);
+            }, 10);
+          }
+          return;
+        }
         if (notredirect) {
           dispatch((0, _tabbar.changeTabbar)(item.id));
         } else _taroWeapp2.default.reLaunch({ url: '/pages/index/index?type=' + item.id });
+      };
+      // 点击发布按钮
+      var openPublishMenu = function openPublishMenu() {
+        console.log('发布');
+        setShow(true);
+      };
+      // 点击遮罩可以关闭广告
+      var closePublishMenu = function closePublishMenu() {
+        setShow(false);
+        setActive(false);
+      };
+      // 用户点击弹出的发布类型按钮
+      var userTapPublishItem = function userTapPublishItem(url) {
+        _taroWeapp2.default.navigateTo({
+          url: url
+        });
       };
       // 统计未读信息
       var getMemberMsg = function getMemberMsg() {
@@ -123,7 +167,24 @@ var Tabbar = (_temp2 = _class = function (_Taro$Component) {
       (0, _taroWeapp.onAppHide)(function () {
         clearInterval(timer);
       });
-      var loopArray98 = tabbar.list.map(function (item, __index0) {
+      var anonymousState__temp3 = show ? (0, _classnames2.default)({
+        'tabbar-publish-container': true,
+        'tabbar-publish-container-active': active
+      }) : null;
+
+      this.anonymousFunc1 = function () {
+        return closePublishMenu();
+      };
+
+      var anonymousState__temp4 = show ? (0, _classnames2.default)({
+        'tabbar-publish-img': true,
+        'tabbar-publish-img-active': active
+      }) : null;
+      var anonymousState__temp5 = show ? (0, _classnames2.default)({
+        'tabbar-publish-items': true,
+        'tabbar-publish-items-active': active
+      }) : null;
+      var loopArray90 = tabbar.list.map(function (item, __index0) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
@@ -132,7 +193,7 @@ var Tabbar = (_temp2 = _class = function (_Taro$Component) {
           'common-footer-tabbar-list-active': item.$original.id === tabbar.key
         });
 
-        var _$indexKey = "jfzzz" + __index0;
+        var _$indexKey = "hdzzz" + __index0;
 
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return changeTabbarAction(item.$original);
@@ -145,9 +206,14 @@ var Tabbar = (_temp2 = _class = function (_Taro$Component) {
         };
       });
       Object.assign(this.__state, {
+        anonymousState__temp3: anonymousState__temp3,
+        anonymousState__temp4: anonymousState__temp4,
+        anonymousState__temp5: anonymousState__temp5,
         tabbar: tabbar,
-        loopArray98: loopArray98,
-        memberMsg: memberMsg
+        loopArray90: loopArray90,
+        memberMsg: memberMsg,
+        show: show,
+        IMGCDNURL: _index3.IMGCDNURL
       });
       return this.__state;
     }
@@ -164,10 +230,15 @@ var Tabbar = (_temp2 = _class = function (_Taro$Component) {
 
       return this.anonymousFunc0Map[_$indexKey] && (_anonymousFunc0Map = this.anonymousFunc0Map)[_$indexKey].apply(_anonymousFunc0Map, e);
     }
+  }, {
+    key: "anonymousFunc1",
+    value: function anonymousFunc1(e) {
+      ;
+    }
   }]);
 
   return Tabbar;
-}(_taroWeapp2.default.Component), _class.$$events = ["anonymousFunc0"], _class.$$componentPath = "components/tabbar/index", _temp2);
+}(_taroWeapp2.default.Component), _class.$$events = ["anonymousFunc0", "anonymousFunc1"], _class.$$componentPath = "components/tabbar/index", _temp2);
 exports.default = Tabbar;
 
 Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(Tabbar));
@@ -222,9 +293,9 @@ function getMsg() {
   !*** ./src/components/tabbar/index.scss ***!
   \******************************************/
 /*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-// extracted by mini-css-extract-plugin
+throw new Error("Module build failed (from ./node_modules/@tarojs/mini-runner/node_modules/mini-css-extract-plugin/dist/loader.js):\nModuleBuildError: Module build failed (from ./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js):\nError: ENOENT: no such file or directory, open '/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules/@tarojs/mini-runner/node_modules/css-loader/dist/runtime/api.js'\n    at runLoaders (/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules/@tarojs/mini-runner/node_modules/webpack/lib/NormalModule.js:316:20)\n    at /Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules/loader-runner/lib/LoaderRunner.js:367:11\n    at Array.<anonymous> (/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules/loader-runner/lib/LoaderRunner.js:203:19)\n    at Storage.finished (/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules/enhanced-resolve/lib/CachedInputFileSystem.js:55:16)\n    at ReadFileContext.provider (/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules/enhanced-resolve/lib/CachedInputFileSystem.js:91:9)\n    at ReadFileContext.callback (/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules/graceful-fs/graceful-fs.js:123:16)\n    at FSReqCallback.readFileAfterOpen [as oncomplete] (fs.js:242:13)");
 
 /***/ }),
 
