@@ -1,0 +1,39 @@
+<block wx:if="{{$taroCompReady}}">
+    <view class="home-container">
+        <view class="home-header">
+            <image class="home-header-logo" src="{{IMGCDNURL + 'logo.png'}}"></image>
+            <view class="home-header-area">
+                <image class="home-header-loc" src="{{IMGCDNURL + 'area.png'}}"></image><text class="home-header-text">四川</text>
+                <image class="home-header-select" src="{{IMGCDNURL + 'areamore.png'}}"></image>
+            </view>
+            <image bindtap="anonymousFunc0" class="home-header-app" src="{{IMGCDNURL + 'loadapp.png'}}"></image>
+        </view>
+        <swiper-component compid="{{$compid__75}}"></swiper-component>
+        <projects></projects>
+        <fastfun></fastfun>
+        <view class="home-information-container">
+            <image class="home-infomation-img" src="{{IMGCDNURL + 'notice.png'}}"></image>
+            <view class="home-infomation-news">
+                <swiper-news compid="{{$compid__76}}"></swiper-news>
+            </view>
+        </view>
+        <view class="home-all-lists">
+            <view class="home-lists-item">
+                <view class="home-lists-item-header"><text class="home-lists-item-title">最新招工信息</text><text class="home-lists-item-more">更多</text>
+                </view>
+                <recruit-list compid="{{$compid__77}}"></recruit-list>
+            </view>
+            <view class="home-lists-item">
+                <view class="home-lists-item-header"><text class="home-lists-item-title">最新找活信息</text><text class="home-lists-item-more">更多</text>
+                </view>
+                <resume-list compid="{{$compid__78}}"></resume-list>
+            </view>
+            <view class="home-lists-item">
+                <view class="home-lists-item-header"><text class="home-lists-item-title">最新二手交易信息</text><text class="home-lists-item-more">更多</text>
+                </view>
+                <used-list compid="{{$compid__79}}"></used-list>
+            </view>
+        </view>
+        <about></about>
+    </view>
+</block>
