@@ -66,7 +66,7 @@ var Tabbar = (_temp2 = _class = function (_Taro$Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Tabbar.__proto__ || Object.getPrototypeOf(Tabbar)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp3", "anonymousState__temp4", "anonymousState__temp5", "tabbar", "loopArray98", "memberMsg", "show", "IMGCDNURL", "notredirect"], _this.anonymousFunc0Map = {}, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Tabbar.__proto__ || Object.getPrototypeOf(Tabbar)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp3", "anonymousState__temp4", "anonymousState__temp5", "tabbar", "loopArray90", "memberMsg", "show", "IMGCDNURL", "notredirect"], _this.anonymousFunc0Map = {}, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Tabbar, [{
@@ -184,7 +184,7 @@ var Tabbar = (_temp2 = _class = function (_Taro$Component) {
         'tabbar-publish-items': true,
         'tabbar-publish-items-active': active
       }) : null;
-      var loopArray98 = tabbar.list.map(function (item, __index0) {
+      var loopArray90 = tabbar.list.map(function (item, __index0) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
@@ -193,7 +193,7 @@ var Tabbar = (_temp2 = _class = function (_Taro$Component) {
           'common-footer-tabbar-list-active': item.$original.id === tabbar.key
         });
 
-        var _$indexKey = "jfzzz" + __index0;
+        var _$indexKey = "hdzzz" + __index0;
 
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return changeTabbarAction(item.$original);
@@ -210,7 +210,7 @@ var Tabbar = (_temp2 = _class = function (_Taro$Component) {
         anonymousState__temp4: anonymousState__temp4,
         anonymousState__temp5: anonymousState__temp5,
         tabbar: tabbar,
-        loopArray98: loopArray98,
+        loopArray90: loopArray90,
         memberMsg: memberMsg,
         show: show,
         IMGCDNURL: _index3.IMGCDNURL
@@ -293,9 +293,9 @@ function getMsg() {
   !*** ./src/components/tabbar/index.scss ***!
   \******************************************/
 /*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-// extracted by mini-css-extract-plugin
+throw new Error("Module build failed (from ./node_modules/@tarojs/mini-runner/node_modules/mini-css-extract-plugin/dist/loader.js):\nModuleBuildError: Module build failed (from ./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js):\nError: ENOENT: no such file or directory, open '/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules/@tarojs/mini-runner/node_modules/css-loader/dist/runtime/api.js'\n    at runLoaders (/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules/@tarojs/mini-runner/node_modules/webpack/lib/NormalModule.js:316:20)\n    at /Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules/loader-runner/lib/LoaderRunner.js:367:11\n    at Array.<anonymous> (/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules/loader-runner/lib/LoaderRunner.js:203:19)\n    at Storage.finished (/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules/enhanced-resolve/lib/CachedInputFileSystem.js:55:16)\n    at ReadFileContext.provider (/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules/enhanced-resolve/lib/CachedInputFileSystem.js:91:9)\n    at ReadFileContext.callback (/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules/graceful-fs/graceful-fs.js:123:16)\n    at FSReqCallback.readFileAfterOpen [as oncomplete] (fs.js:242:13)");
 
 /***/ }),
 

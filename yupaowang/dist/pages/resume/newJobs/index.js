@@ -1,1 +1,0 @@
-(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["pages/resume/newJobs/index"],[],[["./src/pages/resume/newJobs/index.tsx","runtime","taro","vendors","common"]]]);

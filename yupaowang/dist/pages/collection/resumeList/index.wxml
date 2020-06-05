@@ -1,7 +1,0 @@
-<block wx:if="{{$taroCompReady}}">
-    <view class="recruit-container">
-        <view class="recruit-lists-containerbox">
-            <collection-resume-list compid="{{$compid__88}}"></collection-resume-list>
-        </view>
-    </view>
-</block>
