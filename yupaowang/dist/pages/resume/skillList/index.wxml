@@ -1,0 +1,44 @@
+<block wx:if="{{$taroCompReady}}">
+    <view>
+        <view wx:key="id" class="skilleight" wx:for="{{loopArray89}}" wx:for-item="item" wx:for-index="i">
+            <block wx:if="{{item.$original.check == '1'}}">
+                <image class="audit" src="{{IMGCDNURL + 'lpy/review.png'}}"></image>
+            </block>
+            <block wx:if="{{item.$original.check == '0'}}">
+                <image class="audit" src="{{IMGCDNURL + 'lpy/notthrough.png'}}"></image>
+            </block>
+            <block wx:if="{{item.$original.check == '2'}}">
+                <view class="editor" bindtap="anonymousFunc0" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">编辑</view>
+            </block>
+            <block wx:if="{{item.$original.check == '0'}}">
+                <view class="editorone" bindtap="anonymousFunc1" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey2}}">待修改</view>
+            </block>
+            <view class="skilleightzong">
+                <view>
+                    <image src="{{IMGCDNURL + 'lpy/newresume-experience-item.png'}}" class="skilleightone"></image>
+                </view>
+                <view class="skilleightall">
+                    <view class="skilleighttwo"><text class="skilleighttwo-text">{{item.$original.name}}</text>
+                    </view>
+                    <view class="skillcertificate"><text>{{item.$original.certificate_time}}</text>
+                    </view>
+                    <view class="skilleightfive">
+                        <view class="skilleightfiveline">
+                            <view class="temimage">
+                                <image class="skilleightfive-image" src="{{v.$original}}" wx:key="$loopState__temp2" bindtap="anonymousFunc2" wx:for="{{item.$anonymousCallee__17}}" wx:for-item="v" wx:for-index="i" data-e-tap-so="this" data-e-tap-a-a="{{v._$indexKey3}}"></image>
+                            </view>
+                        </view>
+                    </view>
+                    <block wx:if="{{item.$original.check == '0'}}">
+                        <view class="resson">未通过原因：{{item.$original.fail_case}}</view>
+                    </block>
+                </view>
+            </view>
+        </view>
+        <block wx:if="{{data.length < 3 && resume_uuid !== ''}}">
+            <view class="footer-box">
+                <button class="footer">添加技能经验</button>
+            </view>
+        </block>
+    </view>
+</block>

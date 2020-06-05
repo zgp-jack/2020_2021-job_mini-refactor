@@ -227,9 +227,9 @@ module.exports = __webpack_require__.p + "pages/home/index.wxml";
   !*** ./src/pages/home/index.scss ***!
   \***********************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/@tarojs/mini-runner/node_modules/mini-css-extract-plugin/dist/loader.js):\nModuleBuildError: Module build failed (from ./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js):\nError: ENOENT: no such file or directory, open '/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules/@tarojs/mini-runner/node_modules/css-loader/dist/runtime/api.js'\n    at runLoaders (/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules/@tarojs/mini-runner/node_modules/webpack/lib/NormalModule.js:316:20)\n    at /Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules/loader-runner/lib/LoaderRunner.js:367:11\n    at Array.<anonymous> (/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules/loader-runner/lib/LoaderRunner.js:203:19)\n    at Storage.finished (/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules/enhanced-resolve/lib/CachedInputFileSystem.js:55:16)\n    at ReadFileContext.provider (/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules/enhanced-resolve/lib/CachedInputFileSystem.js:91:9)\n    at ReadFileContext.callback (/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules/graceful-fs/graceful-fs.js:123:16)\n    at FSReqCallback.readFileAfterOpen [as oncomplete] (fs.js:242:13)");
+// extracted by mini-css-extract-plugin
 
 /***/ }),
 
@@ -283,4 +283,4 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ })
 
-},[["./src/pages/home/index.tsx","runtime","taro","common"]]]);
+},[["./src/pages/home/index.tsx","runtime","taro","vendors","common"]]]);

@@ -1,0 +1,28 @@
+<block wx:if="{{$taroCompReady}}">
+    <view class="rankingRules-content">
+        <block wx:if="{{isLogin}}">
+            <auth></auth>
+        </block>
+        <view class="rankingRules-top">
+            <view class="rankingRules-top-ranking">我的排名点：<text class="rankingRules-top-ranking-num">{{data.resume_info.sort_flag}}</text>
+            </view>
+            <view class="rankingRules-top-careful">注：找活名片只有审核通过后，才会在列表展示。排名点越高，排名越靠前。</view>
+        </view>
+        <view class="rankingRules-list">
+            <view class="rankingRules-list-box" wx:key="$loopState__temp2" wx:for="{{loopArray112}}" wx:for-item="v" wx:for-index="index">
+                <view class="rankingRules-list-content">
+                    <image class="rankingRules-list-content-img" src="{{v.$original.img_url}}"></image>
+                    <view class="rankingRules-list-content-box">
+                        <view>{{v.$original.type_name}}</view>
+                        <view class="rankingRules-list-content-box-text">{{v.$original.description}}</view>
+                    </view>
+                    <view class="rankingRules-list-content-buttonBox" bindtap="anonymousFunc0" data-e-tap-so="this" data-e-tap-a-a="{{v._$indexKey}}">{{v.$original.button_words}}</view>
+                </view>
+            </view>
+        </view>
+        <view class="rankingRules-Tips">
+            <view class="rankingRules-Tips-title">温馨提示</view>
+            <view class="rankingRules-Tips-text" wx:key="$loopState__temp4" wx:for="{{loopArray113}}" wx:for-item="v" wx:for-index="index">{{v.$original}}</view>
+        </view>
+    </view>
+</block>

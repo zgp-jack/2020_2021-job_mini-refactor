@@ -1,0 +1,46 @@
+<block wx:if="{{$taroCompReady}}">
+    <view class="recruit-lists-container" style="{{anonymousState__temp}}">
+        <block wx:if="{{!data.length}}">
+            <nodata compid="{{$compid__80}}"></nodata>
+        </block>
+        <block wx:if="{{data}}">
+            <block wx:key="id" wx:for="{{loopArray80}}" wx:for-item="item" wx:for-index="__index0">
+                <view class="recruit-list-item" bindtap="anonymousFunc0" wx:key="id" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">
+                    <block wx:if="{{item.$original.is_end == '2'}}">
+                        <image class="recruit-findend-img" src="{{IMGCDNURL + 'newlist-jobfindend.png'}}"></image>
+                    </block>
+                    <view class="recruit-list-header">
+                        <view class="recruit-list-title overwords">{{item.$original.title}}</view>
+                    </view>
+                    <view class="recruit-list-body">
+                        <image class="recruit-list-user" src="{{item.$original.header_img}}"></image>
+                        <view class="recruit-list-body-content">
+                            <view class="recruit-body-header"><text class="recruit-list-username">{{item.$original.user_name}}</text>
+                                <block wx:if="{{item.$original.is_end !== '2'}}">
+                                    <image class="recruit-list-finding" src="{{IMGCDNURL + 'newlist-jobfinding.png'}}"></image>
+                                </block>
+                            </view>
+                            <view class="recruit-list-words">
+                                <view class="recruit-words-text">{{item.$original.detail}}</view>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="recruit-list-footer">
+                        <view class="recruit-list-loctxt overwords">{{item.$original.time}}</view>
+                        <button size="mini" class="recruit-list-button" bindtap="anonymousFunc1" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey2}}">取消收藏</button>
+                    </view>
+                </view>
+            </block>
+        </block>
+        <block wx:if="{{data.length && recruitNoMoreData}}">
+            <view class="recruit-lists-noData">没有更多数据了</view>
+        </block>
+        <at-modal compid="{{$compid__81}}">
+            <at-modal-header>温馨提示</at-modal-header>
+            <at-modal-content>{{modalContent}}</at-modal-content>
+            <at-modal-action>
+                <button bindtap="anonymousFunc2">确定</button>
+            </at-modal-action>
+        </at-modal>
+    </view>
+</block>

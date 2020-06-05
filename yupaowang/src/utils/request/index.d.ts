@@ -1163,3 +1163,27 @@ export interface resumesIntroduce {
   errcode: number,
   errmsg: string
 }
+// 找活置顶省
+export interface resumesTopAreas extends Result{
+  data: resumesTopAreasData,
+}
+export interface resumesTopAreasData {
+  provinces: resumesTopAreasDataPro[],
+}
+export interface resumesTopAreasDataPro{
+  id: string
+  letter: string
+  name: string
+  pid: string
+  click: boolean
+}
+// 找活置顶
+export interface resumesTopConfig extends Result{
+  data: resumesTopConfigData,
+}
+export interface resumesTopConfigData{
+  top_rules:string[],
+  max_number:number,
+  max_top_days:number,
+  province_integral:number,
+}

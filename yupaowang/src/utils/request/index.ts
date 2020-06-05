@@ -940,3 +940,49 @@ export function resumesDelProjectAction(data): Promise<Inter.Result> {
     data,
   })
 }
+// 找活置顶获取省
+export function resumesTopAreasAction(): Promise<Inter.resumesTopAreas> {
+  return doRequestAction({
+    url: api.resumesTopAreasUrl,
+    method: 'POST',
+    failToast: true,
+  })
+}
+
+// 找活置顶内容
+export function resumesTopConfigAction(): Promise<Inter.resumesTopConfig> {
+  return doRequestAction({
+    url: api.resumesTopConfigUrl,
+    method: 'POST',
+    failToast: true,
+  })
+}
+
+// 找活置顶
+export function resumesDoTopAction(data): Promise<Inter.Result> {
+  return doRequestAction({
+    url: api.resumesDoTopUrl,
+    method: 'POST',
+    failToast: true,
+    data,
+  })
+}
+
+// 找活页面置顶修改
+export function resumesChangeTopStatusAction(data): Promise<Inter.Result> {
+  return doRequestAction({
+    url: api.resumesChangeTopStatusUrl,
+    method: 'POST',
+    failToast: true,
+    data,
+  })
+}
+// 找活名片头像修改
+export function resumesEditImgAction(data): Promise<Inter.Result> {
+  return doRequestAction({
+    url: api.resumesEditImgUrl,
+    method: 'POST',
+    failToast: true,
+    data,
+  })
+}

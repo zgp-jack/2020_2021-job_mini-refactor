@@ -1,0 +1,193 @@
+<block wx:if="{{$taroCompReady}}">
+    <view class="detailInfo">
+        <wechat-notice></wechat-notice>
+        <view class="detailInfo-head">
+            <view class="detailInfo-head-titleBox">
+                <view class="detailInfo-head-titleBox-title">{{data.title}}</view>
+                <view class="detailInfo-head-titleBox-time">发布时间: {{data.time}}</view>
+            </view>
+            <view class="detailInfo-userContent">
+                <image class="detailInfo-userContent-image" src="{{data.image}}"></image>
+                <view class="detailInfo-userContent-content">
+                    <view class="detailInfo-userContent-content-list">{{data.user_name}}</view>
+                    <view class="detailInfo-userContent-content-list">{{phone}}</view>
+                </view>
+                <block>
+                    <block wx:if="{{resCode === 'own'}}">
+                        <view></view>
+                    </block>
+                    <block wx:else>
+                        <block>
+                            <block wx:if="{{resCode === 'end'}}">
+                                <view class="detailInfo-userContent-buttonBox-">
+                                    <button class="detailInfo-userContent-button-end">已招到</button>
+                                </view>
+                            </block>
+                            <block wx:else>
+                                <block>
+                                    <block wx:if="{{editPhone}}">
+                                        <view class="detailInfo-userContent-buttonBox">
+                                            <button class="detailInfo-userContent-button" bindtap="anonymousFunc0">查看完整电话</button>
+                                        </view>
+                                    </block>
+                                    <block wx:else>
+                                        <view class="detailInfo-userContent-buttonBox">
+                                            <view class="detailInfo-userContent-button-call" bindtap="anonymousFunc1">点击拨打</view>
+                                            <view class="detailInfo-userContent-button-complaint" bindtap="anonymousFunc2">投诉</view>
+                                        </view>
+                                    </block>
+                                </block>
+                            </block>
+                        </block>
+                    </block>
+                </block>
+            </view>
+        </view>
+        <view class="detailInfo-tips-box">
+            <view class="detailInfo-tips">联系我时请说明是在“<text class="detailInfo-tips-color">鱼泡网</text>”上看到的</view>
+        </view>
+        <view class="detailInfo-prompt-content">
+            <view class="detailInfo-prompt-content-title">
+                <icon type="info" color="#F94046" size="15" class="detailInfo-prompt-content-title-icon"></icon>
+                <view class="detailInfo-prompt-content-title-tips">鱼泡提示</view>
+            </view>
+            <view>
+                <view bindtap="anonymousFunc3"><text class="detailInfo-prompt-content-blued">《防骗指南》</text>：此信息由鱼泡网用户提供，但联系时仍需注意识信息真伪。</view>
+                <view bindtap="anonymousFunc4">
+                    <view>关注“鱼泡网”微信公众号接收新工作提醒 <text class="detailInfo-prompt-content-blued">如何关注</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="detailInfo-project-content">
+            <view class="detailInfo-project-content-title">项目描述:</view>
+            <view class="detailInfo-project-content-classifyName-box">
+                <view wx:key="$loopState__temp2" class="detailInfo-project-content-classifyName" wx:for="{{loopArray140}}" wx:for-item="v" wx:for-index="i">{{v.$original}}</view>
+            </view>
+            <view class="detailInfo-project-content-detail">{{data.detail}}</view>
+            <block wx:if="{{data.view_images.length > 0}}">
+                <view class="detailInfo-project-content-image-box">
+                    <image src="{{v.$original}}" wx:key="$loopState__temp4" class="detailInfo-project-content-image" bindtap="anonymousFunc5" wx:for="{{loopArray141}}" wx:for-item="v" wx:for-index="i" data-e-tap-so="this" data-e-tap-a-a="{{v._$indexKey}}"></image>
+                </view>
+            </block>
+            <view class="detailInfo-project-content-address">项目地址:
+                <block>
+                    <block wx:if="{{data.location}}">
+                        <view class="detailInfo-project-content-address-color">{{data.show_full_address}}</view>
+                    </block>
+                    <block wx:else><text class="detailInfo-project-content-address-color">{{data.show_full_address}}</text>
+                    </block>
+                </block>
+                <block wx:if="{{data.location}}">
+                    <view class="detailInfo-project-content-map" bindtap="anonymousFunc6">查看地图</view>
+                </block>
+            </view>
+        </view>
+        <view class="detailInfo-Image-box">
+            <image src="{{IMGCDNURL + 'download.png'}}" class="detailInfo-Image" bindtap="anonymousFunc7"></image>
+        </view>
+        <block>
+            <block wx:if="{{resCode === 'own'}}">
+                <block>
+                    <block wx:if="{{data.is_check === 1 || again}}">
+                        <view class="detailInfo-userfooter">
+                            <view class="detailInfo-userfooter-examine">
+                                <image class="detailInfo-userfooter-examine-image" src="{{IMGCDNURL + 'published-info.png'}}"></image>提示:人工审核中，该信息仅自己可见。</view>
+                        </view>
+                    </block>
+                    <block wx:else>
+                        <block>
+                            <block wx:if="{{data.is_check === 2}}">
+                                <view class="detailInfo-edit">
+                                    <view class="detailInfo-edit-box">
+                                        <view class="detailInfo-edit-list">修改</view>
+                                        <view class="{{stopHiring || data.is_end === 1 ? 'detailInfo-edit-list' : 'detailInfo-edit-list-none'}}" bindtap="anonymousFunc8">停止招工</view>
+                                        <block>
+                                            <block wx:if="{{data.has_top && data.top_info.is_top == '1'}}">
+                                                <view class="detailInfo-edit-list-edit" bindtap="anonymousFunc9">修改置顶</view>
+                                            </block>
+                                            <block wx:else>
+                                                <block>
+                                                    <block wx:if="{{stopHiring || data.is_end === 2}}">
+                                                        <view class="detailInfo-edit-list" bindtap="anonymousFunc10">重新招工</view>
+                                                    </block>
+                                                    <block wx:else>
+                                                        <view class="detailInfo-edit-list" bindtap="anonymousFunc11">我要置顶</view>
+                                                    </block>
+                                                </block>
+                                            </block>
+                                        </block>
+                                    </view>
+                                </view>
+                            </block>
+                            <block wx:else>
+                                <view class="detailInfo-edit">
+                                    <view class="detailInfo-edit-box">
+                                        <view class="detailInfo-edit-list">修改</view>
+                                    </view>
+                                </view>
+                            </block>
+                        </block>
+                    </block>
+                </block>
+            </block>
+            <block wx:else>
+                <view class="detailInfo-footer-content">
+                    <view class="detailInfo-footer-content-box">
+                        <view class="detailInfo-footer-content-box-list" bindtap="anonymousFunc12">
+                            <view>
+                                <image src="{{isCollection === 1 ? IMGCDNURL + 'job-collect-active.png' : IMGCDNURL + 'job-collect-normal.png'}}" class="detailInfo-footer-content-box-image"></image>
+                            </view>
+                            <view class="detailInfo-footer-content-box-text">{{isCollection === 0 ? '收藏' : '已收藏'}}</view>
+                        </view>
+                        <view class="detailInfo-footer-content-box-list" bindtap="anonymousFunc13">
+                            <view>
+                                <image src="{{IMGCDNURL + 'newjobinfo-complain.png'}}" class="detailInfo-footer-content-box-image"></image>
+                            </view>
+                            <view class="detailInfo-footer-content-box-text">投诉</view>
+                        </view>
+                        <view class="detailInfo-footer-content-box-list">
+                            <view>
+                                <image src="{{IMGCDNURL + 'newjobinfo-share.png'}}" class="detailInfo-footer-content-box-image"></image>
+                            </view>
+                            <view class="detailInfo-footer-content-box-text">分享</view>
+                        </view>
+                        <view>
+                            <block>
+                                <block wx:if="{{resCode === 'end'}}">
+                                    <button class="detailInfo-footer-content-box-button">已招到</button>
+                                </block>
+                                <block wx:else>
+                                    <block>
+                                        <block wx:if="{{editPhone}}">
+                                            <button class="detailInfo-footer-content-box-button" bindtap="anonymousFunc14">查看完整电话</button>
+                                        </block>
+                                        <block wx:else>
+                                            <button class="detailInfo-footer-content-box-button" bindtap="anonymousFunc15">拨打电话</button>
+                                        </block>
+                                    </block>
+                                </block>
+                            </block>
+                        </view>
+                    </view>
+                </view>
+            </block>
+        </block>
+        <collection-recruit-list compid="{{$compid__119}}"></collection-recruit-list>
+        <block wx:if="{{complaintModal}}">
+            <view class="tabber-complaintModal">
+                <view class="tabber-complaintModal-content">
+                    <view class="tabber-complaintModal-content-title">投诉信息</view>
+                    <view class="tabber-complaintModal-content-tips">请输入投诉内容</view>
+                    <view class="tabber-complaintModal-content-textareaBox">
+                        <textarea class="tabber-complaintModal-content-textarea" placeholder="请填写5~100字，必须含有汉字。（恶意投诉会被封号，请谨慎投诉！）" value="{{textarea}}" maxlength="{{100}}" bindinput="anonymousFunc16"></textarea>
+                    </view>
+                    <view class="tabber-complaintModal-footer">
+                        <view class="tabber-complaintModal-footer-cancel" bindtap="anonymousFunc17">取消</view>
+                        <view class="tabber-complaintModal-footer-cancel" bindtap="anonymousFunc18">确定</view>
+                    </view>
+                </view>
+            </view>
+        </block>
+    </view>
+</block>

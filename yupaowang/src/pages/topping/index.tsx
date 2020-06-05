@@ -1,13 +1,16 @@
 import Taro, { Config, useEffect, useState, createContext,useRouter } from '@tarojs/taro'
-import { View, Picker, Text, Image } from '@tarojs/components'
-import { jobTopConfigAction, jobDoTopAction, jobGetTopAreasAction, jobChangeTopAreasAction } from '../../utils/request/index'
+import { View, Picker, Text, Image, Input } from '@tarojs/components'
+import { jobTopConfigAction, jobDoTopAction, jobGetTopAreasAction, jobChangeTopAreasAction, resumesTopConfigAction, resumesDoTopAction } from '../../utils/request/index'
 import { SERVERPHONE, IMGCDNURL  } from '../../config'
 import { UserInfo } from '../../config/store'
 import './index.scss'
+import Msg from '../../utils/msg'
 
 interface Distruction{
   AreParams: ParamsType,
   setAreParams: (city: areDataChildrenType[], province: areDataChildrenType[], whole: areDataChildrenType[]) => void,
+  provinceParams: areDataChildrenType[],
+  setProvinceParams: (province: areDataChildrenType[]) => void,
 }
 interface ParamsType {
   city: areDataChildrenType[],
@@ -15,7 +18,7 @@ interface ParamsType {
   whole: areDataChildrenType[],
 }
 interface areDataChildrenType {
-  ad_name: string
+  ad_name?: string
   id: string
   name: string
   pid: string,
@@ -23,7 +26,7 @@ interface areDataChildrenType {
   listName?: string
 }
 interface DataType {
-  top_rules:[],
+  top_rules:string[],
 }
 interface CityType {
   max_city:number,
@@ -36,12 +39,17 @@ interface User {
   uuid: string,
   login: boolean
 }
+interface BasicsType{
+  max_number:number,
+  province_integral:number,
+  max_top_days:number
+}
 
 export const context = createContext<Distruction>({} as Distruction)
 
 export default function Topping() {
   const router: Taro.RouterInfo = useRouter();
-  let { id,type } = router.params;
+  let { id,type,rec } = router.params;
   // 获取userInfo
   let userInfo: User = Taro.getStorageSync(UserInfo)
   const [data, setData] = useState<DataType>({
@@ -67,6 +75,7 @@ export default function Topping() {
     province: [],
     whole:[]
   })
+  const [province, setProvince] = useState<areDataChildrenType[]>([])
   // 到期时间
   const [endTime,setEndTime ] = useState<string>('')
   // 到期时间时间戳
@@ -77,6 +86,15 @@ export default function Topping() {
   const [newTime,setNewTime] = useState<string>('')
   // 修改时最大积分
   const [maxNum,setMaxNum] = useState<number>(0)
+  // 找活省份最大的长度
+  const [provinceNum, setProvinceNum ] = useState<number>(0)
+  // 找活天数
+  const [recDay, setRecDay] = useState<string>('1')
+  const [basics, setBasics] = useState <BasicsType>({
+    max_number: 0,
+    province_integral: 0,
+    max_top_days:0,
+  })
   // 修改超过最大就显示消耗积分
   useEffect(()=>{
     if(type){
@@ -99,23 +117,45 @@ export default function Topping() {
         }
       })
     }
-    jobTopConfigAction().then(res=>{
-      if(res.errcode === 'ok'){
-        setData({ top_rules: res.data.top_rules })
-        setCity({ max_city: res.data.max_city, max_province: res.data.max_province })
+    // 找活
+    if(rec){
+      resumesTopConfigAction().then(res=>{
+        if (res.errcode === 'ok') {
+        console.log(res);
+        setData({top_rules:res.data.top_rules})
         let array: string[] = []
         for (let i = 0; i < res.data.max_top_days; i++) {
           array.push(i + 1 + "天")
         }
         setList(array)
+          setBasics({ province_integral: res.data.province_integral, max_number: res.data.max_number, max_top_days:res.data.max_top_days})
       }else{
-        Taro.showModal({
-          title: '温馨提示',
-          content: res.errmsg,
-          showCancel: false,
-        })
-      }
-    })
+          Taro.showModal({
+            title: '温馨提示',
+            content: res.errmsg,
+            showCancel: false,
+          })
+        }
+      })
+    }else{
+      jobTopConfigAction().then(res=>{
+        if(res.errcode === 'ok'){
+          setData({ top_rules: res.data.top_rules })
+          setCity({ max_city: res.data.max_city, max_province: res.data.max_province })
+          let array: string[] = []
+          for (let i = 0; i < res.data.max_top_days; i++) {
+            array.push(i + 1 + "天")
+          }
+          setList(array)
+        }else{
+          Taro.showModal({
+            title: '温馨提示',
+            content: res.errmsg,
+            showCancel: false,
+          })
+        }
+      })
+    }
   },[])
   const getMyDate = (str)=> {
     const oDate = new Date(str),
@@ -396,6 +436,26 @@ export default function Topping() {
   const value: Distruction = {
     AreParams: params,
     setAreParams: (city: areDataChildrenType[], province: areDataChildrenType[], whole: areDataChildrenType[], ) => transferFun({ city, province, whole }),
+    provinceParams: province,
+    setProvinceParams: (province: areDataChildrenType[]) => modifyFun(province)
+  }
+  const modifyFun = (province)=>{
+    console.log(province,'xxxx')
+    setProvince(province);
+    // 设置积分
+    recIntegral(province);
+  }
+  const recIntegral = (province)=>{
+    console.log(basics.province_integral);
+    console.log(recDay);
+    console.log(province)
+    let num = 0;
+    if (province.length){
+      num = basics.province_integral * province.length * parseInt(recDay);
+    }else{
+      num = 0;
+    }
+    setNum(num);
   }
   // 删除
   const handleDel = (v)=>{
@@ -496,11 +556,147 @@ export default function Topping() {
     setdisplayTime(false);
     setParamsDay(0)
   }
+  const handleJump = ()=>{
+    if(!rec){
+      userRouteJump(`/pages/topping/distruction/index?max_city=${city.max_city}&max_province=${city.max_province}`)
+    }else{
+      userRouteJump(`/pages/topping/recruit/index?max_number=${basics.max_number}`)
+    }
+  }
+  const handleRecDay = (e:any)=>{
+    let reg = /^\d{0,2}$/;
+    if (!reg.test(e.detail.value)) {
+      Taro.showModal({
+        title: '温馨提示',
+        content: '只能输入整数，请重新输入',
+        showCancel: false,
+        success() {
+          setRecDay('');
+        }
+      })
+      return
+    }
+    let num = 0;
+    if (e.detail.value){
+      num = basics.province_integral * province.length * parseInt(e.detail.value);
+    }else{
+      num =0;
+    }
+    setRecDay(e.detail.value)
+    setNum(num)
+  }
+  const handleRecDel = (v)=>{
+    const list = JSON.parse(JSON.stringify(province));
+    list.map((val,i)=>{
+      if(val.id === v.id){
+        list.splice(i,1)
+      }
+      return val;
+    })
+    console.log(recDay,'222222')
+    let num = 0;
+    num = list.length * basics.province_integral * parseInt(recDay);
+    console.log(list);
+    console.log(num,'num')
+    setProvince(list);
+    setNum(num);
+  }
+  // 找活置顶
+  const handleRecTopping = ()=>{
+    if (!province.length){
+      Taro.showModal({
+        title: '温馨提示',
+        content: '请选择您的置顶城市',
+        showCancel: false,
+      })
+      return
+    }
+    if (!parseInt(recDay) || parseInt(recDay) == 0 ){
+      Taro.showModal({
+        title: '温馨提示',
+        content: '输入的置顶天数不能为0或者为空',
+        showCancel: false,
+      })
+      return
+    }
+    if(parseInt(recDay)>basics.max_top_days){
+      Msg(`最多可置顶${basics.max_top_days}天！`);
+      return;
+    }
+    const provinces = (province.map(v=>v.id)).join(',');
+    console.log(provinces,'xxx')
+    let params={
+      days: parseInt(recDay),
+      citys: 0,
+      provinces,
+    }
+    resumesDoTopAction(params).then(res=>{
+      if(res.errcode === 'ok'){
+        Taro.showModal({
+          title: '温馨提示',
+          content: res.errmsg,
+          showCancel: false,
+          success() {
+            Taro.navigateBack({
+              delta: 1
+            })
+          }
+        })
+      } else if (res.errcode ==='resume_null'){
+        Taro.showModal({
+          title: '温馨提示',
+          content: res.errmsg,
+          // showCancel: false,
+          success() {
+            Taro.navigateTo({
+              url: `pages/resume/newJobs/index`,
+            })
+          }
+        })
+        return
+        //获取积分
+      } else if (res.errcode === 'get_integral'){
+        Taro.showModal({
+          title: '温馨提示',
+          content: res.errmsg,
+          success() {
+            Taro.navigateTo({
+              url: `/pages/getintegral/index`,
+            })
+          }
+        })
+        return
+      }else{
+        Taro.showModal({
+          title: '温馨提示',
+          content: res.errmsg,
+          showCancel: false,
+          success() {
+            Taro.navigateBack({
+              delta: 1
+            })
+          }
+        })
+        return
+      }
+    })
+  }
+  console.log(province,'province');
+  console.log(province.length,'provlesdas')
   return(
     <context.Provider value={value}>
     <View className='topping'>
       <View className='topping-title'>当前选择置顶范围：</View>
       <View className='topping-list-box'>
+        {/* 找活 */}
+        {province && province.map(v=>(
+            <View className='topping-list' onClick={() => handleRecDel(v)}>
+              {v.name}
+              <Image src={`${IMGCDNURL}lpy/delete.png`} className='topping-list-image' />
+            </View>
+          ))
+        }
+        {/* 招工 */}
           {params && params.city.map(v=>(
             <View className='topping-list' onClick={() => handleDel(v)}>
             {v.name}
@@ -520,14 +716,26 @@ export default function Topping() {
           </View>
         ))}
         {/* 判断省市有值不超过3和2的情况 */}
+        {!rec ? <View>
           {((params.city.length || params.province.length) && (params.city.length < 3 || params.province.length < 2)) &&
             <View onClick={handleAddJump} className='topping-list-add'>添加更多</View>
           }
           {!params.city.length && !params.province.length && !params.whole.length  &&
-          <View className='topping-change-btnBox' onClick={() => userRouteJump(`/pages/topping/distruction/index?max_city=${city.max_city}&max_province=${city.max_province}`)}><View className='topping-change-btnBox-btn'>点击选择置顶范围></View></View>
+          <View className='topping-change-btnBox' onClick={handleJump}><View className='topping-change-btnBox-btn'>点击选择置顶范围></View></View>
         }
+        </View>:
+        // 找活
+        <View>
+        {!province.length && 
+        <View className='topping-change-btnBox' onClick={handleJump}><View className='topping-change-btnBox-btn'>点击选择置顶范围></View></View>
+        }
+        {province.length && province.length<basics.max_number &&
+          <View onClick={handleJump} className='topping-list-add'>添加更多</View>
+        }
+        </View>}
       </View>
       <View className='topping-day'>请选择置顶天数：</View>
+        {!rec ?<View>
         {type ? <View className='topping-edit-list'>
           <View className='topping-edit-list-box'>
             <View className='topping-edit-list-box-time'>当前到期时间: {endTime}</View>
@@ -556,14 +764,25 @@ export default function Topping() {
         </View>
         <View className='topping-input-box-list'>消耗积分:<View className='topping-input-box-list-num'>{num}分</View></View>
       </View>
-    }
-      <View className='topping-confirm-btnBox'><View className='topping-confirm-btnBox-btn' onClick={handleTopping}>确定置顶</View></View>
+    }</View>:
+    //找活
+    <View>
+      <View className='topping-input-box'>
+        <View className='topping-input-box-list'>置顶天数:
+          <Input className='topping-input-box-list-input' value={recDay} onInput={(e)=>{handleRecDay(e)}} maxLength={2} placeholder='请输入置顶天数'/>
+        </View>
+        <View className='topping-input-box-list'>消耗积分:<View className='topping-input-box-list-num'>{num}分</View></View>
+      </View>
+    </View>}
+        <View className='topping-confirm-btnBox'><View className='topping-confirm-btnBox-btn' onClick={rec ? handleRecTopping : handleTopping }>确定置顶</View></View>
       <View>
         <View className='topping-toprule'>置顶规则</View>
         {data.top_rules.map((v,i)=>(
           <View key={i + i} className='topping-toprule-list'>{v}</View>
         ))}
-        <View className='topping-toprule-phone' onClick={() => { Taro.makePhoneCall({ phoneNumber: SERVERPHONE }) }}>{SERVERPHONE}</View>
+        {!rec && 
+          <View className='topping-toprule-phone' onClick={() => { Taro.makePhoneCall({ phoneNumber: SERVERPHONE }) }}>{SERVERPHONE}</View>
+        }
       </View>
     </View>
     </context.Provider>

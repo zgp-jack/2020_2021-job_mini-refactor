@@ -1,0 +1,18 @@
+<block wx:if="{{$taroCompReady}}">
+    <view class="userinfoadd-container">
+        <view class="publish-list-item"><text class="pulish-list-title">姓名</text>
+            <input class="publish-list-input" type="text" placeholder="请输入您的姓名" value="{{userInfo.username}}" bindinput="anonymousFunc0" />
+        </view>
+        <view class="publish-list-item"><text class="pulish-list-title">手机号</text>
+            <input class="publish-list-input" type="number" placeholder="请输入您的手机号" value="{{userInfo.tel}}" bindinput="anonymousFunc1" />
+        </view>
+        <view class="publish-list-item publish-list-item-code"><text class="pulish-list-title">验证码</text>
+            <input class="publish-list-input" type="number" placeholder="请输入验证码" value="{{userInfo.code}}" bindinput="anonymousFunc2" />
+            <view class="publish-code-btn" bindtap="anonymousFunc3">{{text}}</view>
+        </view>
+        <view class="publish-list-item"><text class="pulish-list-title">密码</text>
+            <input class="publish-list-input" password="{{disPass}}" type="text" placeholder="请输入密码" value="{{userInfo.pwd}}" bindinput="anonymousFunc4" /><text class="{{anonymousState__temp}}" bindtap="anonymousFunc5"></text>
+        </view>
+        <view class="user-submit-btn" bindtap="anonymousFunc6">确认提交</view>
+    </view>
+</block>

@@ -1,0 +1,38 @@
+<block wx:if="{{$taroCompReady}}">
+    <view class="course-content">
+        <view class="course-tab">
+            <block wx:if="{{!tab.length}}">
+                <nodata></nodata>
+            </block>
+            <view class="course-tab-box" wx:key="id" bindtap="anonymousFunc0" wx:for="{{loopArray114}}" wx:for-item="item" wx:for-index="__index0" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">
+                <view class="course-tab-content">
+                    <view class="{{item.$loopState__temp2}}">
+                        <view class="course-tab-img">
+                            <image class="course-tab-img-box" src="{{item.$original.id === highlight ? item.$original.activeIcon : item.$original.icon}}"></image>
+                        </view><text class="{{item.$loopState__temp4}}">{{item.$original.text}}</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="course-atAccordion-box">
+            <block wx:if="{{highlight === 1}}">
+                <view>
+                    <at-accordion wx:for="{{loopArray115}}" wx:for-item="item" wx:for-index="__index1" compid="{{item.$compid__101}}">
+                        <at-list compid="{{item.$compid__102}}">
+                            <video class="course-atAccordion-box-video" src="{{item.$original.video_url}}"></video>
+                        </at-list>
+                    </at-accordion>
+                </view>
+            </block>
+            <block wx:if="{{highlight === 2}}">
+                <view>
+                    <at-accordion wx:for="{{loopArray116}}" wx:for-item="item" wx:for-index="__index2" compid="{{item.$compid__103}}">
+                        <at-list compid="{{item.$compid__104}}">
+                            <video class="course-atAccordion-box-video" src="{{item.$original.video_url}}" controls="{{true}}"></video>
+                        </at-list>
+                    </at-accordion>
+                </view>
+            </block>
+        </view>
+    </view>
+</block>

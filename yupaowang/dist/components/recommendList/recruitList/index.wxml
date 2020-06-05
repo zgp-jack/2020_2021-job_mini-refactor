@@ -1,0 +1,22 @@
+<block wx:if="{{$taroCompReady}}">
+    <view>
+        <view class="header"><text class="header-text">相关推荐</text>
+        </view>
+        <view wx:key="id" class="recruitListBox" bindtap="anonymousFunc0" wx:for="{{loopArray102}}" wx:for-item="v" wx:for-index="__index0" data-e-tap-so="this" data-e-tap-a-a="{{v._$indexKey}}">
+            <view class="recruitListBox-title">{{v.$original.title}}</view>
+            <view class="recruitListBox-content">
+                <image src="{{v.$original.image}}" class="recruitListBox-content-img"></image>
+                <view class="recruitListBox-content-box">
+                    <view class="recruitListBox-content-name">{{v.$original.user_name}}</view>
+                    <view class="recruitListBox-content-details">{{v.$original.detail}}</view>
+                </view>
+            </view>
+            <view class="recruitListBox-footer">
+                <view>
+                    <image class="recruitListBox-footer-image" src="{{IMGCDNURL + 'newlist-jobposi.png'}}"></image>{{v.$original.show_address}}</view>
+                <view>{{v.$original.time}}</view>
+            </view>
+        </view>
+        <view class="recruitListBox-last">查看更多招工信息</view>
+    </view>
+</block>

@@ -1,0 +1,220 @@
+<block wx:if="{{$taroCompReady}}">
+    <view class="preview">
+        <view class="cardcolore">
+            <view class="header">注:分享名片 让您的名片排名更靠前</view>
+        </view>
+        <view class="findingnamecardthree">
+            <view class="findingnamecardthreemobile">
+                <view>
+                    <image class="findingnamecardthree-image" src="{{IMGCDNURL + 'newresume-catimg.png'}}"></image><text>基础信息</text>
+                    <image class="findingnamecardthree-image" src="{{IMGCDNURL + 'newresume-catimg.png'}}"></image>
+                </view>
+            </view>
+        </view>
+        <view class="cardcolore">
+            <block wx:if="{{checkpan}}">
+                <image class="audit" src="{{IMGCDNURL + 'lpy/notthrough.png'}}"></image>
+            </block>
+            <view class="cardtwo">
+                <view class="cardonetwof">
+                    <block wx:if="{{checkone}}">
+                        <image class="checkone" src="{{IMGCDNURL + 'lpy/audit.png'}}"></image>
+                    </block>
+                    <view class="cardtwosonone">
+                        <view class="cardtwosononeimg">
+                            <view class="oimg">
+                                <image class="oim-image" src="{{headerimg}}"></image>
+                            </view>
+                            <view class="oimgone"><text class="otext">{{data.info.username}}</text>
+                                <block wx:if="{{data.info.authentication === '2'}}">
+                                    <image src="{{IMGCDNURL + 'new-list-realname-icon.png'}}"></image>
+                                </block>
+                                <block wx:if="{{data.info.certificate_show === 1}}">
+                                    <image src="{{IMGCDNURL + 'new-list-jnzs-icon.png?t=1'}}"></image>
+                                </block>
+                                <view class="otextone"><text>{{sex}}</text>
+                                    <block wx:if="{{age}}"><text class="{{sex ? 'ochange' : ''}}">{{age}}</text>
+                                    </block><text class="{{age ? 'ochange' : ''}}">{{data.info.nation}}</text>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="lineone">
+                        <view class="linezo">
+                            <view class="cardotext"><text class="oworkotext">手机</text><text class="workotextone">{{telephone}}</text>
+                            </view>
+                            <block wx:if="{{data.introduces.hometown != '0'}}">
+                                <view class="cardotext"><text class="oworkotext">我的家乡</text><text class="workotextone">{{data.introduces.hometown}}</text>
+                                </view>
+                            </block>
+                            <view class="cworkotype ({{occupations.length == 0?'skillcss':''}})">
+                                <view class="ocworkotype">工种</view>
+                                <view class="ocworkotypeoo">
+                                    <block wx:if="{{data.info.miniInfoOccupations.length}}">
+                                        <view class="ocworkotyp">
+                                            <view class="ocworkotyptu" wx:key="$loopState__temp2" wx:for="{{loopArray124}}" wx:for-item="v" wx:for-index="i">{{v.$original}}</view>
+                                        </view>
+                                    </block>
+                                    <block wx:if="{{data.info.miniInfoOccupations.length === 0}}"><text class="workotextone">暂未填写</text>
+                                    </block>
+                                </view>
+                            </view>
+                            <block wx:if="{{data.introduces.experience_str !== ''}}">
+                                <view class="cardotext"><text class="oworkotext">工龄</text><text class="workotextone">{{data.introduces.experience_str}}</text>
+                                </view>
+                            </block>
+                            <block wx:if="{{data.introduces.prof_degree_str !== ''}}">
+                                <view class="cardotext"><text class="oworkotext">熟练度</text><text class="workotextone">{{data.introduces.prof_degree_str}}</text>
+                                </view>
+                            </block>
+                            <block wx:if="{{data.introduces.type_str !== ''}}">
+                                <view class="cardotext"><text class="oworkotext">人员构成</text><text class="workotextone">{{data.introduces.type_str}}</text>
+                                </view>
+                            </block>
+                            <block wx:if="{{data.introduces.number_people !== '1' && data.introduces.number_people !== '0'}}">
+                                <view class="cardotext"><text class="oworkotext">队伍人数</text><text class="workotextone">{{data.introduces.number_people}}</text>
+                                </view>
+                            </block>
+                            <block wx:if="{{data.info.address !== ''}}">
+                                <view class="cardotext"><text class="oworkotext">所在地区</text><text class="workotextone">{{data.info.address}}</text>
+                                </view>
+                            </block>
+                            <block wx:if="{{data.introduces.tags.length}}">
+                                <view class="cardotext"><text class="oworkotext">标签</text>
+                                    <view class="alllabletu">
+                                        <view wx:key="$loopState__temp4" class="labletu" wx:for="{{loopArray125}}" wx:for-item="v" wx:for-index="i">{{v.$original.label_name}}</view>
+                                    </view>
+                                </view>
+                            </block>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <block wx:if="{{data.info.introduce}}">
+            <view>
+                <view class="findingnamecardthree">
+                    <view class="findingnamecardthreemobile">
+                        <view>
+                            <image class="findingnamecardthree-image" src="{{IMGCDNURL + 'newresume-catimg.png'}}"></image><text>自我介绍</text>
+                            <image class="findingnamecardthree-image" src="{{IMGCDNURL + 'newresume-catimg.png'}}"></image>
+                        </view>
+                    </view>
+                </view>
+                <view class="cardcolore">
+                    <view class="introcardtwo">
+                        <view class="introcontent">{{data.info.introduce}}</view>
+                    </view>
+                </view>
+            </view>
+        </block>
+        <block wx:if="{{data.project.length}}">
+            <view>
+                <view class="findingnamecardthree">
+                    <view class="findingnamecardthreemobile">
+                        <view>
+                            <image class="findingnamecardthree-image" src="{{IMGCDNURL + 'newresume-catimg.png'}}"></image><text>项目经验</text>
+                            <image class="findingnamecardthree-image" src="{{IMGCDNURL + 'newresume-catimg.png'}}"></image>
+                        </view>
+                    </view>
+                </view>
+                <view class="cardcolore">
+                    <view class="cardsix">
+                        <view class="cardsixzong" wx:key="$loopState__temp6" wx:for="{{loopArray126}}" wx:for-item="item" wx:for-index="i">
+                            <block wx:if="{{item.$original.check == 1}}">
+                                <image class="checkfour" src="{{IMGCDNURL + 'lpy/audit.png'}}"></image>
+                            </block>
+                            <block wx:if="{{item.$original.check == 0}}">
+                                <image class="audit" src="{{IMGCDNURL + 'lpy/notthrough.png'}}"></image>
+                            </block>
+                            <view>
+                                <image class="cardsixone" src="{{IMGCDNURL + 'lpy/newresume-experience-item.png'}}"></image>
+                            </view>
+                            <view class="cardsixall">
+                                <view class="cardsixtwo"><text>{{item.$original.project_name}}</text>
+                                </view>
+                                <view class="cardsixthreeborder">
+                                    <view class="cardsixthree"><text class="cardsixthree-text">{{item.$original.start_time}}-{{item.$original.completiontime == "zhijin" ? "至今" : item.$original.completion_time}}</text>
+                                        <block wx:if="{{item.$original.city_name}}"><text class="cardsixthree-text">{{item.$original.province_name}}-{{item.$original.city_name}}</text>
+                                        </block><text class="cardsixthree-text">{{item.$original.province_name}}</text>
+                                    </view>
+                                    <view class="cardsixfour"><text class="cardsixthree-text">{{item.$original.detail}}</text>
+                                    </view>
+                                    <view class="cardsixfive">
+                                        <image class="cardsixfive-image" src="{{v.$original}}" wx:key="$loopState__temp8" wx:for="{{item.$anonymousCallee__27}}" wx:for-item="v" wx:for-index="i"></image>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                        <view class="cardsixsixall">
+                            <view class="cardsixsix">
+                                <view class="more" bindtap="anonymousFunc0">更多项目经验
+                                    <view class="more-view">
+                                        <image src="{{IMGCDNURL + 'lpy/downward.png'}}" class="down"></image>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </block>
+        <block wx:if="{{data.certificates.length}}">
+            <view>
+                <view class="findingnamecardthree">
+                    <view class="findingnamecardthreemobile">
+                        <view>
+                            <image class="findingnamecardthree-image" src="{{IMGCDNURL + 'newresume-catimg.png'}}"></image><text>职业技能</text>
+                            <image class="findingnamecardthree-image" src="{{IMGCDNURL + 'newresume-catimg.png'}}"></image>
+                        </view>
+                    </view>
+                </view>
+                <view class="cardcolore">
+                    <view class="cardsix">
+                        <view class="cardsixzong" wx:key="id" wx:for="{{loopArray127}}" wx:for-item="item" wx:for-index="_anonIdx2">
+                            <block wx:if="{{item.$original.check == 1 && data.content.show_tips == 1}}">
+                                <image class="checkthree" src="{{IMGCDNURL + 'lpy/audit.png'}}"></image>
+                            </block>
+                            <block wx:if="{{item.$original.check == 0}}">
+                                <image class="audit" src="{{IMGCDNURL + 'lpy/notthrough.png'}}"></image>
+                            </block>
+                            <block wx:if="{{item.$original.check == 1 && data.content.show_tips == 0}}">
+                                <image class="audit" src="{{IMGCDNURL + 'lpy/review.png'}}"></image>
+                            </block>
+                            <view>
+                                <image src="{{IMGCDNURL + 'lpy/newresume-experience-item.png'}}" class="cardsixone"></image>
+                            </view>
+                            <view class="cardsixall">
+                                <view class="cardsixtwo"><text>{{item.$original.name}}</text>
+                                </view>
+                                <view class="cardsixthreeborder">
+                                    <view class="cardsixthree"><text class="cardsixthree-text">{{item.$original.certificate_time}}</text>
+                                        <block wx:if="{{item.$original.city_name}}"><text class="cardsixthree-text">{{item.$original.province_name}}-{{item.$original.city_name}}</text>
+                                        </block><text class="cardsixthree-text">{{item.$original.province_name}}</text>
+                                    </view>
+                                </view>
+                                <view class="cardsixfour"><text class="cardsixthree-text">{{item.$original.detail}}</text>
+                                </view>
+                                <view class="cardsixfive">
+                                    <image class="cardsixfive-image" src="{{v.$original}}" wx:key="$loopState__temp10" wx:for="{{item.$anonymousCallee__28}}" wx:for-item="v" wx:for-index="i"></image>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="cardsixsixall">
+                        <view class="cardsixsix">
+                            <view class="more" bindtap="anonymousFunc1">更多技能证书
+                                <view class="more-view">
+                                    <image src="{{IMGCDNURL + 'lpy/downward.png'}}" class="down"></image>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </block>
+        <view class="btn-box">
+            <view class="btn">分享</view>
+        </view>
+    </view>
+</block>

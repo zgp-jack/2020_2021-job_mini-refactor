@@ -1,0 +1,32 @@
+<block wx:if="{{$taroCompReady}}">
+    <view class="feedback-content">
+        <wechat-notice></wechat-notice>
+        <view class="feedback-content-middle">
+            <view class="feedback-content-middle-box">
+                <textarea class="feedback-content-middle-textarea" value="{{textarea}}" bindinput="anonymousFunc0" maxlength="{{500}}" placeholder="请填写您对鱼泡的建议或意见"></textarea>
+                <view class="feedback-wordsTotal">
+                    <words-total compid="{{$compid__69}}"></words-total>
+                </view>
+                <view class="feedback-content-middle-imgBox">
+                    <block wx:if="{{image.item}}">
+                        <image-view compid="{{$compid__70}}"></image-view>
+                    </block>
+                </view>
+            </view>
+        </view>
+        <view class="feedback-content-middle-from">
+            <at-input compid="{{$compid__71}}"></at-input>
+            <at-input compid="{{$compid__72}}"></at-input>
+            <block wx:if="{{isShow}}">
+                <view>
+                    <at-input compid="{{$compid__73}}">
+                        <button disabled="{{disabled}}" class="feedback-content-code" bindtap="anonymousFunc4">{{text}}</button>
+                    </at-input>
+                </view>
+            </block>
+        </view>
+        <view>
+            <button class="feedback-content-button" bindtap="anonymousFunc5">反馈意见</button>
+        </view>
+    </view>
+</block>

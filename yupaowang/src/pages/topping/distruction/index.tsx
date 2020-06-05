@@ -24,11 +24,19 @@ interface areDataType{
   index?:number
 }
 interface areDataChildrenType{
-  ad_name: string
+  ad_name?: string
   id: string
   name: string
   pid: string,
   click:boolean,
+  listName?: string
+}
+interface areDataChildrenType {
+  ad_name?: string
+  id: string
+  name: string
+  pid: string,
+  click: boolean,
   listName?: string
 }
 interface searchDataType {

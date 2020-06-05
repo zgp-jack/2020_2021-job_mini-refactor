@@ -4,7 +4,7 @@
             <view class="profession-header">{{title}}</view>
             <scroll-view scroll-y="{{true}}" class="profession-body">
                 <block wx:if="{{data}}">
-                    <view class="profession-list-item" wx:key="id" wx:for="{{loopArray94}}" wx:for-item="item" wx:for-index="i">
+                    <view class="profession-list-item" wx:key="id" wx:for="{{loopArray93}}" wx:for-item="item" wx:for-index="i">
                         <view class="profession-list-title">{{item.$original.name}}</view>
                         <view class="profession-list-content">
                             <view class="prosession-item overwords" bindtap="anonymousFunc0" wx:key="id" wx:for="{{item.$anonymousCallee__19}}" wx:for-item="d" wx:for-index="k" data-e-tap-so="this" data-e-tap-a-a="{{d._$indexKey}}">{{d.$original.name}}

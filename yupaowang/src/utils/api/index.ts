@@ -166,3 +166,13 @@ export const resumesIntroduceUrl: string = REQUESTURL +'resumes/introduce/'
 export const resumesEditEndUrl: string = REQUESTURL +'resumes/edit-end/'
 // 删除项目经验
 export const resumesDelProjectUrl: string = REQUESTURL +'resumes/del-project/'
+// 找活置顶获取省
+export const resumesTopAreasUrl: string = REQUESTURL +'resumes/top-areas/'
+// 找活置顶内容
+export const resumesTopConfigUrl: string = REQUESTURL +'resumes/top-config/'
+// 置顶找活
+export const resumesDoTopUrl: string = REQUESTURL +'resumes/do-top/'
+// 找活页面置顶修改
+export const resumesChangeTopStatusUrl: string = REQUESTURL +'resumes/change-top-status/'
+// 修改找活名片里的头像
+export const resumesEditImgUrl: string = REQUESTURL +'resumes/edit-img/'

@@ -126,7 +126,8 @@
   color: #09f;
 }
 .topselect_box {
-  width: 30%;
+  // width: 30%;
+  width: 100%;
   height: 70%;
   border-radius: 14px;
   position: relative;
@@ -1011,4 +1012,9 @@
   text-align: center;
   line-height: 74px;
   border-radius: 8px;
+}
+
+.headerimg{
+  height: 49px;
+  width: 49px;
 }

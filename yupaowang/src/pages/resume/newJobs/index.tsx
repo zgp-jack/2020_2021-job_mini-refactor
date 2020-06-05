@@ -1,14 +1,23 @@
 import Taro, { Config, useState, useDidShow, createContext } from '@tarojs/taro'
 import { View, Text, Image, Button } from '@tarojs/components'
-import { AtModal, AtModalHeader, AtModalContent, AtModalAction } from "taro-ui"
-import { resumeListAction, jobRecommendListAction, resumesGetDataAction, resumesEditEndAction } from '../../../utils/request/index'
+import { AtModal} from "taro-ui"
+import { resumeListAction, jobRecommendListAction, resumesGetDataAction, resumesEditEndAction, resumesChangeTopStatusAction, resumesEditImgAction } from '../../../utils/request/index'
+import Msg from '../../../utils/msg'
+import UploadImgAction from '../../../utils/upload'
 import { IMGCDNURL } from '../../../config'
-import { ResumeTopStr, resumesGetData } from '../../../utils/request/index.d'
+import { ResumeTopStr, resumesGetData, resumeListDataTopStatus } from '../../../utils/request/index.d'
 import CollectionRecruitList  from '../../../components/recommendList'
 import { UserInfo } from '../../../config/store'
 import { AREABEIJING } from '../../../models/area'
 import './index.scss'
 
+export interface ImageDataType {
+  item: ImageItem[]
+}
+export interface ImageItem {
+  url: string,
+  httpurl: string
+}
 interface introducesType {
   experience: string,
   type_str: string,
@@ -31,6 +40,7 @@ interface DataType {
     note:string,
     is_end:string,
     check:string,
+    uuid:string,
   },
   resume_top:{
     is_top:number,
@@ -50,6 +60,7 @@ interface DataType {
   fail_certificate:number,
   fail_project:number,
   popup_text:string[],
+  top_status: resumeListDataTopStatus[]
 }
 interface introducesTags {
   label_name:string,
@@ -100,6 +111,7 @@ export default function NewJob() {
       note:'',
       is_end:'',
       check:'',
+      uuid:'',
       occupations:[],
     },
     resume_top:{
@@ -127,6 +139,7 @@ export default function NewJob() {
     certificate_count:0,
     fail_project:0,
     popup_text:[],
+    top_status:[],
   })
   const [showcomplete, setShowcomplete ] = useState<boolean>(true)
   const [showtopone, setShowtopone] = useState<boolean>(false)
@@ -207,14 +220,21 @@ export default function NewJob() {
   const [tips,setTips] = useState<boolean>(false);
   // 置顶提示
   const [toppingModal, setToppingModal] = useState<boolean>(false)
+  // 置顶的当前索引
+  const [indextop, setIndextop] = useState<number>(0)
   useDidShow(()=>{
     resumeListAction().then(res=>{
       console.log(res);
       if(res.errcode == "200"){
         Taro.setStorageSync("introinfo", res.data.info)
-        setData({ info: res.data.info, resume_top: res.data.resume_top, content: res.data.content, introduces: res.data.introduces, certificate_count: res.data.certificate_count, fail_certificate: res.data.fail_certificate, fail_project: res.data.fail_project, popup_text: res.data.popup_text })
+        setData({ info: res.data.info, resume_top: res.data.resume_top, content: res.data.content, introduces: res.data.introduces, certificate_count: res.data.certificate_count, fail_certificate: res.data.fail_certificate, fail_project: res.data.fail_project, popup_text: res.data.popup_text, top_status: res.data.top_status })
         const list = res.data.status.map(v=>v.name);
-        console.log(list)
+        // 置顶当前索引
+        if(res.data.resume_top.is_top == 1){
+          setIndextop(0)
+        } else if (res.data.resume_top.is_top == 0){
+          setIndextop(1)
+        }
         // 设置我的工作状态
         if(res.data.info.is_end === '2'){
           setIndex(1);
@@ -411,7 +431,7 @@ export default function NewJob() {
     }else{
       // 置顶
       Taro.navigateTo({
-        url: `pages/topping/index`,
+        url: `/pages/topping/index?rec=1`,
       })
     }
   }
@@ -489,6 +509,111 @@ export default function NewJob() {
       return
     }
   }
+  // 设置置顶状态
+  const handleToppStatus = ()=>{
+    let nowtime = new Date().getTime();
+    let endtime = data.resume_top.end_time_str;
+    if (nowtime > endtime) {
+      Taro.showModal({
+        title: '温馨提示',
+        content: '您的置顶已过期',
+        showCancel: false,
+      })
+      return
+    }
+    // 获取滑动值
+    const sheetList = data.top_status.map(v => v.name)
+    const sheetListId = data.top_status.map(v => v.id);
+    //获取当前是否可以置顶
+    let contentom = data.resume_top.top_tips_string
+    Taro.showActionSheet({
+      itemList: sheetList,
+      success(res:any) {
+        // 当前值一样就不发动请求
+        if (indextop == res.tapIndex) {
+          return
+        }
+        if(indextop == 1 && data.resume_top.is_show_tips == 1){
+          Taro.showModal({
+            title: '温馨提示',
+            content: contentom,
+            showCancel: false,
+          })
+          return
+        }
+        setIndextop(res.tapIndex);
+        let params={
+          uuid: data.info.uuid,
+        };
+        resumesChangeTopStatusAction(params).then(res=>{
+          if(res.errcode === 'ok'){
+            
+          }
+          Taro.showModal({
+            title: '温馨提示',
+            content: res.errmsg,
+            showCancel: false,
+          })
+        })
+      }
+    })
+  }
+  const handelEditTopp = ()=>{
+    let nowtime = new Date().getTime();
+    let endtime = data.resume_top.end_time_str;
+    let contentom = data.resume_top.top_tips_string
+    if (nowtime > endtime) {
+      Taro.showModal({
+        title: '温馨提示',
+        content: '您的置顶已过期',
+        showCancel: false,
+      })
+      return
+    }
+    if (data.resume_top.is_show_tips == 1) {
+      Taro.showModal({
+        title: '温馨提示',
+        content: contentom,
+        showCancel: false,
+      })
+      return
+    }
+  }
+  // 修改头像
+  const userUploadAvatar = () => {
+    if (data.info.check == '1'){
+      Taro.showModal({
+        title: '温馨提示',
+        content: '信息审核中，请稍后再试',
+        showCancel: false,
+      })
+      return
+    }
+    UploadImgAction().then(res => {
+      if (res.errcode == 'ok') {
+        let params ={
+          image: res.url
+        }
+        resumesEditImgAction(params).then(data=>{
+          if(data.errcode === '200'){
+            Msg('保存成功')
+          }
+
+        })
+        // userChangeAvatar(res.url).then(data => {
+        //   Msg(data.errmsg)
+        //   if (data.errcode == 'ok') {
+        //     setHeaderImg(res.httpurl)
+        //   }
+        // })
+      } else {
+        Msg(res.errmsg)
+      }
+    }).catch(() => {
+      Msg('网络错误，上传失败')
+    })
+
+  }
   return (
     <context.Provider value={value}>
     <View className='newJob'>
@@ -528,27 +653,28 @@ export default function NewJob() {
             {data.resume_top.has_top == 0 && <Text>未置顶</Text>}
             </Text>
           </View>
-          <View className='ranking-go' onClick={handleTopping}>马上去置顶>></View>
-        </View>
-        {/* wx: if="{{ has_top != 0 && resume_top.is_top != 2}}" */}
-        {
-          data.resume_top.has_top !=0 && data.resume_top.is_top!= 2 &&
-          <View>
-            <View className='topselect_box' >
-              <View className='select'>
-                {/*  wx: if="{{ has_top == 0 || resume_top.is_top == 0}}" */}
-                {data.resume_top.has_top == 0  || data.resume_top.is_top == 0 && 
-                <Text className="select_text">未置顶</Text>
-                }
-                {/* wx: if="{{ resume_top.is_top == 1 }}" */}
-                {data.resume_top.is_top == 1 && 
-                <Text className='select_text'>置顶中</Text>
-                }
-                <Image className='select_img' src={`${IMGCDNURL}select.png`} />
+          {data.resume_top.has_top == 0 || data.resume_top.is_top == 2 && 
+            <View className='ranking-go' onClick={handleTopping}>马上去置顶>></View>
+          }
+          {
+            data.resume_top.has_top != 0 && data.resume_top.is_top != 2 &&
+            <View>
+              <View className='topselect_box' >
+                <View className='select' onClick={handleToppStatus}>
+                  {/*  wx: if="{{ has_top == 0 || resume_top.is_top == 0}}" */}
+                  {data.resume_top.has_top == 0 || data.resume_top.is_top == 0 &&
+                    <Text className="select_text">未置顶</Text>
+                  }
+                  {/* wx: if="{{ resume_top.is_top == 1 }}" */}
+                  {data.resume_top.is_top == 1 &&
+                    <Text className='select_text'>置顶中</Text>
+                  }
+                  <Image className='select_img' src={`${IMGCDNURL}select.png`} />
+                </View>
               </View>
             </View>
-          </View>
-        }
+          }
+        </View>
         {/* wx: if="{{ has_top != 0 && resume_top.is_top != 2}}" */}
         {data.resume_top.has_top !=0 && data.resume_top.is_top !=2 &&
         <View className="toptime" >
@@ -563,7 +689,7 @@ export default function NewJob() {
         }
         {data.resume_top.has_top != 0 && data.resume_top.is_top != 2 &&
           <View className="toptime">
-            <View>
+            <View className='toptime-view'>
               <Text>置顶时间：</Text>
               <Text>{data.resume_top.start_time_str } ~ { data.resume_top.end_time_str }</Text>
           </View>
@@ -571,7 +697,7 @@ export default function NewJob() {
         }
         {data.resume_top.has_top != 0 && data.resume_top.is_top != 2 &&
         <View className="topdetail">
-          <Text>点击修改找活置顶信息>></Text>
+          <Text onClick={handelEditTopp}>点击修改找活置顶信息>></Text>
         </View>
         }
       </View>
@@ -658,7 +784,8 @@ export default function NewJob() {
                 <View className="cardtwosonone">
                   <View className="cardtwosononeimg">
                     <View className='oimg'>
-                      <Image className='oimg-image' src={headerimg}></Image>
+                      {/* <ImageView images={image.item} max={1} userUploadImg={userUploadImg} /> */}
+                      <Image className='oimg-image' src={headerimg} onClick={() => userUploadAvatar()}></Image>
                     </View>
                     <View className="oimgone">
                       <Text className="otext">{data.info.username}</Text>

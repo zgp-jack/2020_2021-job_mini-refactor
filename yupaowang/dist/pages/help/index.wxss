@@ -1,0 +1,55 @@
+.at-accordion__info__title {
+  white-space: normal; }
+.help-text {
+  display: flex;
+  padding: 20rpx 25rpx 20rpx 60rpx;
+  align-items: center;
+  font-size: 30rpx;
+  color: #999999;
+  background: #fff;
+  line-height-step: 10rpx; }
+.at-accordion__info__title {
+  font-size: 28rpx;
+  font-weight: 400;
+  display: inline-block;
+  padding-top: 10rpx; }
+.help-button-box .help-button {
+  position: fixed;
+  bottom: 0;
+  width: 98%;
+  background: #0099ff;
+  color: #fff;
+  text-align: center;
+  margin: 1%;
+  height: 90rpx;
+  line-height: 90rpx;
+  box-shadow: 0 0 0 5rpx #fff; }
+.recruit-lists-containerbox {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  top: 5;
+  height: calc(100% - 10rpx);
+  margin-bottom: 100rpx; }
+.help-content {
+  height: 100vh;
+  margin-bottom: 200rpx; }
+.help-content-text {
+  height: 200rpx;
+  width: 100%; }
+.help-noData {
+  position: relative;
+  width: 100%;
+  text-align: center;
+  line-height: 50rpx;
+  margin-top: 30rpx;
+  font-size: 28rpx;
+  color: #666; }
+.at-accordion__header {
+  align-items: flex-start; }
+.at-accordion__icon {
+  margin-top: 12rpx; }
+.BootomNoneBox {
+  height: 50PX; }
+.topNoneBox {
+  height: 10PX; }
