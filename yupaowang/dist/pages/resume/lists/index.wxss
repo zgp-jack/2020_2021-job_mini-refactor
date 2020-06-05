@@ -1,0 +1,53 @@
+.overwords {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis; }
+.showMore {
+  position: relative;
+  width: 100%;
+  padding: 20rpx 0;
+  text-align: center;
+  font-size: 26rpx;
+  color: #525252; }
+.clearfix:after {
+  content: "";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+  font-size: 0; }
+.clearfix {
+  zoom: 1; }
+.recruit-container {
+  position: relative;
+  width: 100%; }
+.recruit-container .recruit-fiexd-header {
+    position: fixed;
+    z-index: 20;
+    width: 100%;
+    left: 0;
+    top: 0; }
+.recruit-container .recruit-lists-containerbox {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    top: 180rpx;
+    height: calc(100% - 180rpx);
+    z-index: 3; }
+.recruit-container .publish-list-btn {
+    position: fixed;
+    width: 280rpx;
+    line-height: 80rpx;
+    border-radius: 50rpx;
+    background-color: #0099ff;
+    text-align: center;
+    color: white;
+    bottom: 150rpx;
+    left: 50%;
+    margin-left: -140rpx;
+    z-index: 10;
+    font-size: 30rpx;
+    font-weight: bold;
+    letter-spacing: 5rpx;
+    box-shadow: 0 0 10rpx #e7e6e4; }

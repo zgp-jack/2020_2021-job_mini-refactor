@@ -1,0 +1,17 @@
+<block wx:if="{{$taroCompReady}}">
+    <view>
+        <block wx:if="{{tabKey === HOME}}">
+            <home></home>
+        </block>
+        <block wx:if="{{tabKey === RECRUIT}}">
+            <recruit></recruit>
+        </block>
+        <block wx:if="{{tabKey === RESUME}}">
+            <resume></resume>
+        </block>
+        <block wx:if="{{tabKey === MEMBER}}">
+            <member></member>
+        </block>
+        <tabbar compid="{{$compid__62}}"></tabbar>
+    </view>
+</block>

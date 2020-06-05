@@ -69,7 +69,7 @@ var RecruitMap = (_temp2 = _class = function (_Taro$Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = RecruitMap.__proto__ || Object.getPrototypeOf(RecruitMap)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray111", "loopArray112", "$compid__106", "smAreaText", "showHistory", "histroyList", "lists", "IMGCDNURL", "showCity", "area"], _this.anonymousFunc4Map = {}, _this.anonymousFunc5Map = {}, _this.customComponents = ["Cities"], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = RecruitMap.__proto__ || Object.getPrototypeOf(RecruitMap)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray119", "loopArray120", "$compid__111", "smAreaText", "showHistory", "histroyList", "lists", "IMGCDNURL", "showCity", "area"], _this.anonymousFunc4Map = {}, _this.anonymousFunc5Map = {}, _this.customComponents = ["Cities"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(RecruitMap, [{
@@ -90,10 +90,10 @@ var RecruitMap = (_temp2 = _class = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__106"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__111"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__106 = _genCompid2[0],
-          $compid__106 = _genCompid2[1];
+          $prevCompid__111 = _genCompid2[0],
+          $compid__111 = _genCompid2[1];
 
       // 城市数据
 
@@ -311,13 +311,13 @@ var RecruitMap = (_temp2 = _class = function (_Taro$Component) {
         return userCloseMap();
       };
 
-      var loopArray111 = showHistory ? histroyList.map(function (item, index) {
+      var loopArray119 = showHistory ? histroyList.map(function (item, index) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
         var $loopState__temp2 = showHistory ? index + index : null;
 
-        var _$indexKey = "jdzzz" + index;
+        var _$indexKey = "bbfzz" + index;
 
         _this2.anonymousFunc4Map[_$indexKey] = function () {
           return userClickAreaItem(item.$original);
@@ -329,13 +329,13 @@ var RecruitMap = (_temp2 = _class = function (_Taro$Component) {
           $original: item.$original
         };
       }) : [];
-      var loopArray112 = lists.map(function (item, index) {
+      var loopArray120 = lists.map(function (item, index) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
         var $loopState__temp4 = index + index;
 
-        var _$indexKey2 = "jezzz" + index;
+        var _$indexKey2 = "bbgzz" + index;
 
         _this2.anonymousFunc5Map[_$indexKey2] = function () {
           return userClickAreaItem(item.$original);
@@ -353,11 +353,11 @@ var RecruitMap = (_temp2 = _class = function (_Taro$Component) {
         "userLoc": userLoc,
         "userChangeCity": userChangeCity,
         "userTapCityBtn": userTapCityBtn
-      }, $compid__106, $prevCompid__106);
+      }, $compid__111, $prevCompid__111);
       Object.assign(this.__state, {
-        loopArray111: loopArray111,
-        loopArray112: loopArray112,
-        $compid__106: $compid__106,
+        loopArray119: loopArray119,
+        loopArray120: loopArray120,
+        $compid__111: $compid__111,
         smAreaText: smAreaText,
         showHistory: showHistory,
         histroyList: histroyList,
@@ -440,9 +440,9 @@ module.exports = __webpack_require__.p + "pages/map/recruit/index.wxml";
   !*** ./src/pages/map/recruit/index.scss ***!
   \******************************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/@tarojs/mini-runner/node_modules/mini-css-extract-plugin/dist/loader.js):\nModuleBuildError: Module build failed (from ./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js):\nError: ENOENT: no such file or directory, open '/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules/@tarojs/mini-runner/node_modules/css-loader/dist/runtime/api.js'\n    at runLoaders (/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules/@tarojs/mini-runner/node_modules/webpack/lib/NormalModule.js:316:20)\n    at /Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules/loader-runner/lib/LoaderRunner.js:367:11\n    at Array.<anonymous> (/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules/loader-runner/lib/LoaderRunner.js:203:19)\n    at Storage.finished (/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules/enhanced-resolve/lib/CachedInputFileSystem.js:55:16)\n    at ReadFileContext.provider (/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules/enhanced-resolve/lib/CachedInputFileSystem.js:91:9)\n    at ReadFileContext.callback (/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules/graceful-fs/graceful-fs.js:123:16)\n    at FSReqCallback.readFileAfterOpen [as oncomplete] (fs.js:242:13)");
+// extracted by mini-css-extract-plugin
 
 /***/ }),
 

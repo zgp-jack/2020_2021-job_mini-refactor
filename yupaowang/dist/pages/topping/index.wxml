@@ -1,0 +1,79 @@
+<block wx:if="{{$taroCompReady}}">
+    <block>
+        <view class="topping">
+            <view class="topping-title">当前选择置顶范围：</view>
+            <view class="topping-list-box">
+                <block wx:if="{{params}}">
+                    <view class="topping-list" bindtap="anonymousFunc0" wx:for="{{loopArray130}}" wx:for-item="v" wx:for-index="__index0" data-e-tap-so="this" data-e-tap-a-a="{{v._$indexKey}}">{{v.$original.name}}
+                        <image src="{{IMGCDNURL + 'lpy/delete.png'}}" class="topping-list-image"></image>
+                    </view>
+                </block>
+                <block wx:if="{{params}}">
+                    <view class="topping-list" bindtap="anonymousFunc1" wx:for="{{loopArray131}}" wx:for-item="v" wx:for-index="__index1" data-e-tap-so="this" data-e-tap-a-a="{{v._$indexKey2}}">{{v.$original.name}}
+                        <image src="{{IMGCDNURL + 'lpy/delete.png'}}" class="topping-list-image"></image>
+                    </view>
+                </block>
+                <block wx:if="{{params}}">
+                    <view class="topping-list" bindtap="anonymousFunc2" wx:for="{{loopArray132}}" wx:for-item="v" wx:for-index="__index2" data-e-tap-so="this" data-e-tap-a-a="{{v._$indexKey3}}">{{v.$original.name}}
+                        <image src="{{IMGCDNURL + 'lpy/delete.png'}}" class="topping-list-image"></image>
+                    </view>
+                </block>
+                <block wx:if="{{(params.city.length || params.province.length) && (params.city.length < 3 || params.province.length < 2)}}">
+                    <view bindtap="anonymousFunc3" class="topping-list-add">添加更多</view>
+                </block>
+                <block wx:if="{{!params.city.length && !params.province.length && !params.whole.length}}">
+                    <view class="topping-change-btnBox" bindtap="anonymousFunc4">
+                        <view class="topping-change-btnBox-btn">点击选择置顶范围></view>
+                    </view>
+                </block>
+            </view>
+            <view class="topping-day">请选择置顶天数：</view>
+            <block>
+                <block wx:if="{{type}}">
+                    <view class="topping-edit-list">
+                        <view class="topping-edit-list-box">
+                            <view class="topping-edit-list-box-time">当前到期时间: {{endTime}}</view>
+                            <view class="topping-edit-list-box-day">
+                                <picker mode="selector" range="{{list}}" value="{{0}}" bindchange="anonymousFunc5"><text class="topping-edit-list-box-input">{{editData}}</text>
+                                </picker>
+                            </view>
+                        </view>
+                        <block wx:if="{{displayTime}}">
+                            <view>
+                                <view class="topping-edit-list-box">
+                                    <view class="topping-edit-list-box-time">最新到期时间:<text class="topping-edit-list-box-time-edit"> {{newTime}}</text>
+                                    </view>
+                                    <view class="topping-edit-list-box-cancel" bindtap="anonymousFunc6">取消</view>
+                                </view>
+                            </view>
+                        </block>
+                        <block wx:if="{{num !== 0}}">
+                            <view class="topping-input-box-list">消耗积分:
+                                <view class="topping-input-box-list-num">{{num}}分</view>
+                            </view>
+                        </block>
+                    </view>
+                </block>
+                <block wx:else>
+                    <view class="topping-input-box">
+                        <view class="topping-input-box-list">置顶天数:
+                            <picker mode="selector" range="{{list}}" value="{{0}}" bindchange="anonymousFunc7"><text class="topping-input-box-list-input">{{day}}</text>
+                            </picker>
+                        </view>
+                        <view class="topping-input-box-list">消耗积分:
+                            <view class="topping-input-box-list-num">{{num}}分</view>
+                        </view>
+                    </view>
+                </block>
+            </block>
+            <view class="topping-confirm-btnBox">
+                <view class="topping-confirm-btnBox-btn" bindtap="anonymousFunc8">确定置顶</view>
+            </view>
+            <view>
+                <view class="topping-toprule">置顶规则</view>
+                <view wx:key="$loopState__temp2" class="topping-toprule-list" wx:for="{{loopArray133}}" wx:for-item="v" wx:for-index="i">{{v.$original}}</view>
+                <view class="topping-toprule-phone" bindtap="anonymousFunc9">{{SERVERPHONE}}</view>
+            </view>
+        </view>
+    </block>
+</block>

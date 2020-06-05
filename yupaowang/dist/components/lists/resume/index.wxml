@@ -1,0 +1,24 @@
+<block wx:if="{{$taroCompReady}}">
+    <view class="resume-list-container" style="{{anonymousState__temp}}">
+        <block wx:for="{{loopArray110}}" wx:for-item="item" wx:for-index="__index1">
+            <view class="resume-list-item" wx:key="id" bindtap="anonymousFunc0" wx:for="{{item.$anonymousCallee__25}}" wx:for-item="d" wx:for-index="__index0" data-e-tap-so="this" data-e-tap-a-a="{{d._$indexKey}}">
+                <view class="resume-list-header">
+                    <image class="resume-list-user" src="{{d.$original.headerimg}}"></image>
+                    <view class="resume-list-userinfo">
+                        <view class="resume-list-userinfo-detail"><text class="resume-userinfo-name">{{d.$original.username}}</text><text class="resume-userinfo-sex">男</text><text class="resume-userinfo-age">{{d.$original.birthday}}岁</text>
+                        </view><text class="resume-list-type">{{d.$original.type}}</text>
+                        <view class="resume-otherinfo"><text class="resume-otherinfo-text">{{d.$original.nation}}</text><text class="resume-otherinfo-text">{{d.$original.experience}}</text>
+                        </view>
+                    </view>
+                </view>
+                <view class="resume-list-works"><text class="resume-list-words-text" wx:for="{{d.$original.occupations}}" wx:for-item="i" wx:for-index="_anonIdx2">{{i}}</text>
+                </view>
+                <view class="resume-list-content overwords">{{d.$original.introduce}}</view>
+                <view class="resume-list-footer">
+                    <image class="resume-list-loc" src="{{IMGCDNURL + 'lpy/biaoqian.png'}}"></image>
+                    <view class="resume-list-loctxt overwords">{{d.$original.show_address}}</view><text class="resume-list-time">{{d.$original.prof_degree}}</text>
+                </view>
+            </view>
+        </block>
+    </view>
+</block>

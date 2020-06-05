@@ -1,0 +1,27 @@
+<block wx:if="{{$taroCompReady}}">
+    <view>
+        <block wx:if="{{!data.item.length}}">
+            <nodata></nodata>
+        </block>
+        <view class="system-lists" wx:key="id" bindtap="anonymousFunc0" wx:for="{{loopArray89}}" wx:for-item="item" wx:for-index="__index0" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">
+            <view class="system-lists-top">
+                <view class="system-num">
+                    <image src="{{item.$original.image_url}}" class="system-num-img"></image>
+                    <block wx:if="{{item.$original.read_time == 0}}"><text class="msgNumber"></text>
+                    </block>
+                </view>
+                <view class="system-title">
+                    <view class="msgflex"><text class="msgflex-text"> {{item.$original.type_name}} </text>
+                        <image src="{{IMGCDNURL + 'new-center-rightarrow.png'}}" class="rightarrow"></image>
+                    </view>
+                    <view class="system-deail">{{item.$original.description}}</view>
+                </view>
+            </view>
+            <view class="system-bottom"><text class="system-deail"> 查看详情 </text><text class="system-deail">  {{item.$original.time}} </text>
+            </view>
+        </view>
+        <block wx:if="{{!isDown && data.item.length}}">
+            <view class="system-noData">没有更多数据了</view>
+        </block>
+    </view>
+</block>

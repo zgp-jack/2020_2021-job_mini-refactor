@@ -1,0 +1,31 @@
+<block wx:if="{{$taroCompReady}}">
+    <view class="collection-content">
+        <auth></auth>
+        <view class="collection-tab">
+            <view class="collection-tab-box" wx:key="id" bindtap="anonymousFunc0" wx:for="{{loopArray77}}" wx:for-item="item" wx:for-index="__index0" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">
+                <view class="collection-tab-content">
+                    <view class="{{item.$loopState__temp2}}">
+                        <view class="collection-tab-img">
+                            <block>
+                                <block wx:if="{{current === 1}}">
+                                    <image src="{{item.$original.icon}}"></image>
+                                </block>
+                                <block wx:else>
+                                    <image src="{{item.$original.activeIcon}}"></image>
+                                </block>
+                            </block>
+                        </view><text class="{{item.$loopState__temp4}}">{{item.$original.text}}</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <block>
+            <block wx:if="{{current === 1}}">
+                <recruit-list compid="{{$compid__64}}"></recruit-list>
+            </block>
+            <block wx:else>
+                <resume-list compid="{{$compid__65}}"></resume-list>
+            </block>
+        </block>
+    </view>
+</block>

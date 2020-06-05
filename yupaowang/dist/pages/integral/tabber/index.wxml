@@ -1,0 +1,99 @@
+<block wx:if="{{$taroCompReady}}">
+    <view class="tabber-content">
+        <view class="tabber-content-box">
+            <view class="tabber-content-box-time">
+                <picker mode="date" fields="month" value="{{time}}" start="{{start}}" end="{{end}}" bindchange="anonymousFunc0"><text class="tabber-content-box-time-text">{{showTime}}</text>
+                    <image class="tabber-content-box-time-img" src="{{IMGCDNURL + 'lpy/integral/select2.png'}}"></image>
+                </picker>
+            </view>
+            <view class="tabber-content-box-selector">
+                <picker mode="selector" range="{{initInfo === '0' ? sourceList : consumeList}}" value="{{startType}}" bindchange="anonymousFunc1"><text class="tabber-content-box-selector-text">{{title}}</text>
+                    <image class="tabber-content-box-selector-img" src="{{IMGCDNURL + 'lpy/integral/select1.png'}}"></image>
+                </picker>
+            </view>
+        </view>
+        <view class="tabber-content-box-numBox">
+            <view>{{initInfo === '0' ? '获取积分：' : '消耗积分：'}}<text class="tabber-content-box-num-color">{{initInfo === '0' ? num.get : num.expend}}</text>
+            </view>
+            <view bindtap="anonymousFunc2" class="tabber-content-box-numBox-num">{{initInfo === '0' ? '消耗积分：' : '获取积分：'}}<text class="tabber-content-box-num-color">{{initInfo === '0' ? num.expend : num.get}}</text>
+            </view>
+        </view>
+        <view class="integral-content">
+            <block wx:if="{{!data.lists.length}}">
+                <nodata compid="{{$compid__118}}"></nodata>
+            </block>
+            <view wx:key="$loopState__temp2" bindtap="anonymousFunc3" wx:for="{{loopArray138}}" wx:for-item="item" wx:for-index="index" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">
+                <view class="integral-list">
+                    <view class="integral-list-time"><text class="integral-time-year">{{item.$original.y_m}}</text><text class="integral-time-day">{{item.$original.day}}</text>
+                    </view>
+                    <view class="integral-list-item">
+                        <view class="integral-list-title overwords">{{item.$original.type_name}}</view>
+                        <view class="integral-list-words overwords">{{initInfo === '0' ? item.$original.ext : item.$original.title}}</view>
+                        <view class="integral-item-time">时间：{{item.$original.his}}<text>{{initInfo === '0' ? item.$original.source_integral_string : item.$original.tips}}</text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <block wx:if="{{data.next_page === 0 && data.lists.length}}">
+            <view class="integral-noData">没有更多数据了</view>
+        </block>
+        <block wx:if="{{initInfo === '1' && modal && modalData}}">
+            <view class="tabber-Modal">
+                <view class="tabber-Modal-content">
+                    <view bindtap="anonymousFunc4" class="tabber-Modal-content-close"></view>
+                    <view class="tabber-Modal-content-scroll">
+                        <block wx:if="{{modalData.expend_type !== 2}}">
+                            <view class="tabber-Modal-content-flexBox">
+                                <view class="tabber-Modal-content-flexBox-left">项目名称</view>
+                                <view class="tabber-Modal-content-flexBox-right">{{modalData.title}}</view>
+                            </view>
+                        </block>
+                        <view class="tabber-Modal-content-flexBox">
+                            <view>电话</view>
+                            <view class="tabber-content-box-num-color">{{modalData.user_mobile}}({{modalData.user_name}})
+                                <view bindtap="anonymousFunc5" class="tabber-Modal-content-flexBox-phone">拨打</view>
+                                <block wx:if="{{modalData.show_complain !== 0}}">
+                                    <view class="tabber-Modal-content-flexBox-complaint" bindtap="anonymousFunc6">投诉</view>
+                                </block>
+                            </view>
+                        </view>
+                        <block wx:if="{{modalData.expend_type === 2}}">
+                            <view>
+                                <view class="tabber-Modal-content-flexBox">
+                                    <view>规模</view>
+                                    <view class="tabber-content-box-num-color">{{modalData.team_composition_words}}</view>
+                                </view>
+                                <view class="tabber-Modal-content-flexBox">
+                                    <view>接活省份</view>
+                                    <view class="tabber-content-box-num-color">{{modalData.showProvinceList}}</view>
+                                </view>
+                            </view>
+                        </block>
+                        <view class="tabber-Modal-content-flexBox-classifyName"><text wx:key="$loopState__temp4" class="tabber-Modal-content-flexBox-classifyName-data" wx:for="{{loopArray139}}" wx:for-item="v" wx:for-index="i">[{{v.$original}}]</text>
+                        </view>
+                        <view class="clear"></view>
+                        <view class="tabber-Modal-content-flexBox-last">
+                            <view>{{modalData.detail}}</view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </block>
+        <block wx:if="{{complaintModal}}">
+            <view class="tabber-complaintModal">
+                <view class="tabber-complaintModal-content">
+                    <view class="tabber-complaintModal-content-title">投诉信息</view>
+                    <view class="tabber-complaintModal-content-tips">请输入投诉内容</view>
+                    <view class="tabber-complaintModal-content-textareaBox">
+                        <textarea class="tabber-complaintModal-content-textarea" placeholder="请填写5~100字，必须含有汉字。（恶意投诉会被封号，请谨慎投诉！）" value="{{textarea}}" maxlength="{{100}}" bindinput="anonymousFunc7"></textarea>
+                    </view>
+                    <view class="tabber-complaintModal-footer">
+                        <view class="tabber-complaintModal-footer-cancel" bindtap="anonymousFunc8">取消</view>
+                        <view class="tabber-complaintModal-footer-cancel" bindtap="anonymousFunc9">确定</view>
+                    </view>
+                </view>
+            </view>
+        </block>
+    </view>
+</block>

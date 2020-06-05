@@ -1,4 +1,4 @@
-import Taro, { useState, useEffect } from '@tarojs/taro'
+import Taro, { useState, useEffect, memo } from '@tarojs/taro'
 import { View, Image, Block, ScrollView } from '@tarojs/components'
 import { IMGCDNURL } from '../../config'
 import { AtDrawer } from 'taro-ui'
@@ -14,9 +14,7 @@ interface ConditionProps {
   data: ConditionData[]
 }
 
-export default function Condition({ data }: ConditionProps ){
-
-  console.log(data)
+function Condition({ data }: ConditionProps ){
 
   // * 当前展开项id
   const [current, setCurrent] = useState<string>('')
@@ -101,3 +99,5 @@ export default function Condition({ data }: ConditionProps ){
     </Block>
   )
 }
+
+export default memo(Condition)

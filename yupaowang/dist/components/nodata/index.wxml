@@ -1,0 +1,6 @@
+<block wx:if="{{$taroCompReady}}">
+    <view class="nodata-container">
+        <image class="nodata-img" src="{{IMGCDNURL + 'nodata.png'}}"></image>
+        <view class="nodata-text">{{text}}</view>
+    </view>
+</block>

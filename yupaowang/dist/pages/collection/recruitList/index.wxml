@@ -1,0 +1,8 @@
+<block wx:if="{{$taroCompReady}}">
+    <view class="recruit-container">
+        <auth></auth>
+        <view class="recruit-lists-containerbox">
+            <collection-recruit-list compid="{{$compid__81}}"></collection-recruit-list>
+        </view>
+    </view>
+</block>

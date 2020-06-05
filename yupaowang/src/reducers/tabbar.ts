@@ -1,11 +1,13 @@
 import { HOME, RECRUIT, RESUME, MEMBER } from '../constants/tabbar'
+import { ALIYUNCDN, IMGCDNURL } from '../config'
 
 export interface Menu {
   title: string,
   defaultImg: string,
   activeImg: string,
   id: string,
-  msg?: boolean
+  msg?: boolean,
+  click?: string
 }
 
 export interface DEFAULT_MENUS_TYPE {
@@ -17,26 +19,33 @@ const DEFAULT_MENUS: DEFAULT_MENUS_TYPE = {
   list: [
     {
       title: '首页',
-      defaultImg: 'http://cdn.yupao.com/newyupao/images/footer-home.png',
-      activeImg: 'http://cdn.yupao.com/newyupao/images/footer-home-active.png',
+      defaultImg: ALIYUNCDN + '/newyupao/images/footer-home.png',
+      activeImg: ALIYUNCDN + '/newyupao/images/footer-home-active.png',
       id: HOME
     },
     {
       title: '招工',
-      defaultImg: 'http://cdn.yupao.com/newyupao/images/footer-zg.png',
-      activeImg: 'http://cdn.yupao.com/newyupao/images/footer-zg-active.png',
+      defaultImg: ALIYUNCDN + '/newyupao/images/footer-zg.png',
+      activeImg: ALIYUNCDN + '/newyupao/images/footer-zg-active.png',
       id: RECRUIT
     },
     {
+      title: '发布',
+      defaultImg: IMGCDNURL + 'tabbar-publish-icon.png',
+      activeImg: IMGCDNURL + 'tabbar-publish-icon.png',
+      id: '',
+      click: 'openPublishMenu'
+    },
+    {
       title: '找活',
-      defaultImg: 'http://cdn.yupao.com/newyupao/images/footer-zh.png',
-      activeImg: 'http://cdn.yupao.com/newyupao/images/footer-zh-active.png',
+      defaultImg: ALIYUNCDN + '/newyupao/images/footer-zh.png',
+      activeImg: ALIYUNCDN + '/newyupao/images/footer-zh-active.png',
       id: RESUME
     },
     {
       title: '会员',
-      defaultImg: 'http://cdn.yupao.com/newyupao/images/footer-member.png',
-      activeImg: 'http://cdn.yupao.com/newyupao/images/footer-member-active.png',
+      defaultImg: ALIYUNCDN + '/newyupao/images/footer-member.png',
+      activeImg: ALIYUNCDN + '/newyupao/images/footer-member-active.png',
       id: MEMBER,
       msg: true
     }

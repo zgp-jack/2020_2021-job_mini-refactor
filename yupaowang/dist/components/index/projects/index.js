@@ -52,7 +52,7 @@ var Projects = (_temp2 = _class = function (_Taro$Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Projects.__proto__ || Object.getPrototypeOf(Projects)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray93", "FastBarConfig"], _this.anonymousFunc0Map = {}, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Projects.__proto__ || Object.getPrototypeOf(Projects)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray105", "FastBarConfig"], _this.anonymousFunc0Map = {}, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Projects, [{
@@ -84,13 +84,13 @@ var Projects = (_temp2 = _class = function (_Taro$Component) {
           _taroWeapp2.default.navigateTo({ url: item.url });
         }
       };
-      var loopArray93 = _config2.default.map(function (item, index) {
+      var loopArray105 = _config2.default.map(function (item, index) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
         var $loopState__temp2 = index + item.$original.appid;
 
-        var _$indexKey = "hhzzz" + index;
+        var _$indexKey = "babzz" + index;
 
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return FastbarAction(item.$original);
@@ -103,7 +103,7 @@ var Projects = (_temp2 = _class = function (_Taro$Component) {
         };
       });
       Object.assign(this.__state, {
-        loopArray93: loopArray93,
+        loopArray105: loopArray105,
         FastBarConfig: _config2.default
       });
       return this.__state;
@@ -248,9 +248,9 @@ exports.default = FastBarConfig;
   !*** ./src/components/index/projects/index.scss ***!
   \**************************************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/@tarojs/mini-runner/node_modules/mini-css-extract-plugin/dist/loader.js):\nModuleBuildError: Module build failed (from ./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js):\nError: ENOENT: no such file or directory, open '/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules/@tarojs/mini-runner/node_modules/css-loader/dist/runtime/api.js'\n    at runLoaders (/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules/@tarojs/mini-runner/node_modules/webpack/lib/NormalModule.js:316:20)\n    at /Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules/loader-runner/lib/LoaderRunner.js:367:11\n    at Array.<anonymous> (/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules/loader-runner/lib/LoaderRunner.js:203:19)\n    at Storage.finished (/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules/enhanced-resolve/lib/CachedInputFileSystem.js:55:16)\n    at ReadFileContext.provider (/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules/enhanced-resolve/lib/CachedInputFileSystem.js:91:9)\n    at ReadFileContext.callback (/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules/graceful-fs/graceful-fs.js:123:16)\n    at FSReqCallback.readFileAfterOpen [as oncomplete] (fs.js:242:13)");
+// extracted by mini-css-extract-plugin
 
 /***/ }),
 
@@ -304,4 +304,4 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ })
 
-},[["./src/components/index/projects/index.tsx","runtime","taro","common"]]]);
+},[["./src/components/index/projects/index.tsx","runtime","taro","vendors","common"]]]);
