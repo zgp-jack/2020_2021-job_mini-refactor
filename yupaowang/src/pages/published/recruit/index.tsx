@@ -55,13 +55,19 @@ export default function PublishedRecruit(){
       } else {
         setLists([...lists, ...list])
       }
-    })
-    .finally(()=>{
-      if(refresh){
+      if (refresh) {
         setRefresh(false)
         Taro.stopPullDownRefresh()
         Taro.hideNavigationBarLoading()
-      } 
+      }
+      setLoading(false)
+    })
+    .catch(()=>{
+      if (refresh) {
+        setRefresh(false)
+        Taro.stopPullDownRefresh()
+        Taro.hideNavigationBarLoading()
+      }
       setLoading(false)
     })
   }

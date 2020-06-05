@@ -26,7 +26,7 @@ const config = {
   },
   plugins: [],
   defineConstants: {
-    MINI: JSON.stringify(process.env.npm_config_env_mini)
+    MINI: JSON.stringify(process.argv[2])
   },
   mini: {
     postcss: {
@@ -73,10 +73,10 @@ const config = {
     }
   }
 }
-
 module.exports = function (merge) {
   if (process.env.NODE_ENV === 'development') {
     return merge({}, config, require('./dev'))
   }
   return merge({}, config, require('./prod'))
 }
+
