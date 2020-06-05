@@ -68,7 +68,7 @@ var Tabber = (_temp2 = _class = function (_Taro$Component) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Tabber.__proto__ || Object.getPrototypeOf(Tabber)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
       navigationBarTitleText: ''
-    }, _this.$usedState = ["data", "modalData", "loopArray138", "loopArray139", "$compid__118", "time", "start", "end", "IMGCDNURL", "initInfo", "sourceList", "consumeList", "startType", "modal", "complaintModal", "textarea", "showTime", "title", "num"], _this.anonymousFunc3Map = {}, _this.customComponents = ["Nodata"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["data", "modalData", "loopArray137", "loopArray138", "$compid__118", "time", "start", "end", "IMGCDNURL", "initInfo", "sourceList", "consumeList", "startType", "modal", "complaintModal", "textarea", "showTime", "title", "num"], _this.anonymousFunc3Map = {}, _this.customComponents = ["Nodata"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Tabber, [{
@@ -701,7 +701,7 @@ var Tabber = (_temp2 = _class = function (_Taro$Component) {
         return handleSubmit();
       };
 
-      var loopArray138 = data.lists.map(function (item, index) {
+      var loopArray137 = data.lists.map(function (item, index) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
@@ -719,7 +719,7 @@ var Tabber = (_temp2 = _class = function (_Taro$Component) {
           $original: item.$original
         };
       });
-      var loopArray139 = initInfo === '1' && modal && modalData ? modalData.classifyName.map(function (v, i) {
+      var loopArray138 = initInfo === '1' && modal && modalData ? modalData.classifyName.map(function (v, i) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
@@ -735,8 +735,8 @@ var Tabber = (_temp2 = _class = function (_Taro$Component) {
       Object.assign(this.__state, {
         data: data,
         modalData: modalData,
+        loopArray137: loopArray137,
         loopArray138: loopArray138,
-        loopArray139: loopArray139,
         $compid__118: $compid__118,
         time: time,
         start: start,

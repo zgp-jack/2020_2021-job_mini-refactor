@@ -117,7 +117,7 @@ var System = (_temp2 = _class = function (_Taro$Component) {
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = System.__proto__ || Object.getPrototypeOf(System)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
       navigationBarTitleText: '',
       enablePullDownRefresh: true
-    }, _this.$usedState = ["data", "loopArray87", "IMGCDNURL", "isDown"], _this.anonymousFunc0Map = {}, _this.customComponents = ["Nodata"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["data", "loopArray93", "IMGCDNURL", "isDown"], _this.anonymousFunc0Map = {}, _this.customComponents = ["Nodata"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(System, [{
@@ -215,12 +215,12 @@ var System = (_temp2 = _class = function (_Taro$Component) {
         }_taroWeapp2.default.showNavigationBarLoading();
         setPage(_extends({}, initPage, { page: initPage.page + 1 }));
       });
-      var loopArray87 = data.item.map(function (item, __index0) {
+      var loopArray93 = data.item.map(function (item, __index0) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
 
-        var _$indexKey = "ibzzz" + __index0;
+        var _$indexKey = "ihzzz" + __index0;
 
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return userRouteJump(item.$original.type);
@@ -233,7 +233,7 @@ var System = (_temp2 = _class = function (_Taro$Component) {
       });
       Object.assign(this.__state, {
         data: data,
-        loopArray87: loopArray87,
+        loopArray93: loopArray93,
         IMGCDNURL: _index2.IMGCDNURL,
         isDown: isDown
       });

@@ -66,7 +66,7 @@ var DetailInfoPage = (_temp2 = _class = function (_Taro$Component) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = DetailInfoPage.__proto__ || Object.getPrototypeOf(DetailInfoPage)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
       navigationBarTitleText: ''
-    }, _this.$usedState = ["data", "loopArray140", "loopArray141", "$compid__119", "resCode", "editPhone", "IMGCDNURL", "again", "stopHiring", "isCollection", "complaintModal", "textarea", "phone"], _this.anonymousFunc5Map = {}, _this.customComponents = ["WechatNotice", "CollectionRecruitList"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["data", "loopArray139", "loopArray140", "$compid__119", "resCode", "editPhone", "IMGCDNURL", "again", "stopHiring", "isCollection", "complaintModal", "textarea", "phone"], _this.anonymousFunc5Map = {}, _this.customComponents = ["WechatNotice", "CollectionRecruitList"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(DetailInfoPage, [{
@@ -554,7 +554,7 @@ var DetailInfoPage = (_temp2 = _class = function (_Taro$Component) {
         return handleSubmit();
       };
 
-      var loopArray140 = data.classifyName.map(function (v, i) {
+      var loopArray139 = data.classifyName.map(function (v, i) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
@@ -564,7 +564,7 @@ var DetailInfoPage = (_temp2 = _class = function (_Taro$Component) {
           $original: v.$original
         };
       });
-      var loopArray141 = data.view_images.length > 0 ? data.view_images.map(function (v, i) {
+      var loopArray140 = data.view_images.length > 0 ? data.view_images.map(function (v, i) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
@@ -588,8 +588,8 @@ var DetailInfoPage = (_temp2 = _class = function (_Taro$Component) {
       }, $compid__119, $prevCompid__119);
       Object.assign(this.__state, {
         data: data,
+        loopArray139: loopArray139,
         loopArray140: loopArray140,
-        loopArray141: loopArray141,
         $compid__119: $compid__119,
         resCode: resCode,
         editPhone: editPhone,

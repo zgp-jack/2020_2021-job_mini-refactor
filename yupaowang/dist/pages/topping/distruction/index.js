@@ -64,7 +64,7 @@ var Distruction = (_temp2 = _class = function (_Taro$Component) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Distruction.__proto__ || Object.getPrototypeOf(Distruction)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
       navigationBarTitleText: '招工置顶'
-    }, _this.$usedState = ["searchData", "history", "data", "are", "loopArray506", "loopArray507", "loopArray508", "loopArray509", "clickInput", "inputVal", "onInput", "IMGCDNURL"], _this.anonymousFunc2Map = {}, _this.anonymousFunc4Map = {}, _this.anonymousFunc5Map = {}, _this.anonymousFunc6Map = {}, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["searchData", "history", "data", "are", "loopArray133", "loopArray134", "loopArray135", "loopArray136", "clickInput", "inputVal", "onInput", "IMGCDNURL"], _this.anonymousFunc2Map = {}, _this.anonymousFunc4Map = {}, _this.anonymousFunc5Map = {}, _this.anonymousFunc6Map = {}, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Distruction, [{
@@ -614,12 +614,12 @@ var Distruction = (_temp2 = _class = function (_Taro$Component) {
 
       this.anonymousFunc3 = handleCloseHistory;
       this.anonymousFunc8 = handleClick;
-      var loopArray506 = searchData.list.length > 0 ? searchData.list.map(function (v, __index2) {
+      var loopArray133 = searchData.list.length > 0 ? searchData.list.map(function (v, __index2) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
 
-        var _$indexKey = "ecazz" + __index2;
+        var _$indexKey = "bcjzz" + __index2;
 
         _this2.anonymousFunc2Map[_$indexKey] = function () {
           return handleSeach(v.$original);
@@ -630,12 +630,12 @@ var Distruction = (_temp2 = _class = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray507 = clickInput && !onInput && history.historylist.length > 0 ? history.historylist.map(function (v, __index4) {
+      var loopArray134 = clickInput && !onInput && history.historylist.length > 0 ? history.historylist.map(function (v, __index4) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
 
-        var _$indexKey2 = "ecbzz" + __index4;
+        var _$indexKey2 = "bdazz" + __index4;
 
         _this2.anonymousFunc4Map[_$indexKey2] = function () {
           return handleSeach(v.$original);
@@ -646,12 +646,12 @@ var Distruction = (_temp2 = _class = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray508 = data.item.map(function (v, __index5) {
+      var loopArray135 = data.item.map(function (v, __index5) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
 
-        var _$indexKey3 = "ecczz" + __index5;
+        var _$indexKey3 = "bdbzz" + __index5;
 
         _this2.anonymousFunc5Map[_$indexKey3] = function () {
           handleAllAre(v.$original, 1);
@@ -662,15 +662,15 @@ var Distruction = (_temp2 = _class = function (_Taro$Component) {
           $original: v.$original
         };
       });
-      var loopArray509 = are.areData.map(function (v, __index7) {
+      var loopArray136 = are.areData.map(function (v, __index7) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
-        var $anonymousCallee__65 = v.$original.children.map(function (val, index) {
+        var $anonymousCallee__29 = v.$original.children.map(function (val, index) {
           val = {
             $original: (0, _taroWeapp.internal_get_original)(val)
           };
-          var _$indexKey4 = 'ecdzz' + __index7 + '-' + index;
+          var _$indexKey4 = 'bdczz' + __index7 + '-' + index;
 
           _this2.anonymousFunc6Map[_$indexKey4] = function () {
             return handleAllAre(val.$original, 0);
@@ -682,7 +682,7 @@ var Distruction = (_temp2 = _class = function (_Taro$Component) {
           };
         });
         return {
-          $anonymousCallee__65: $anonymousCallee__65,
+          $anonymousCallee__29: $anonymousCallee__29,
           $original: v.$original
         };
       });
@@ -691,10 +691,10 @@ var Distruction = (_temp2 = _class = function (_Taro$Component) {
         history: history,
         data: data,
         are: are,
-        loopArray506: loopArray506,
-        loopArray507: loopArray507,
-        loopArray508: loopArray508,
-        loopArray509: loopArray509,
+        loopArray133: loopArray133,
+        loopArray134: loopArray134,
+        loopArray135: loopArray135,
+        loopArray136: loopArray136,
         clickInput: clickInput,
         inputVal: inputVal,
         onInput: onInput,

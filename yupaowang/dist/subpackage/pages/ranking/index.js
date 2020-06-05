@@ -56,7 +56,7 @@ var RankingRules = (_temp2 = _class = function (_Taro$Component) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = RankingRules.__proto__ || Object.getPrototypeOf(RankingRules)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
       navigationBarTitleText: '排名规则'
-    }, _this.$usedState = ["data", "loopArray112", "loopArray113", "isLogin"], _this.anonymousFunc0Map = {}, _this.customComponents = ["Auth"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["data", "loopArray115", "loopArray116", "isLogin"], _this.anonymousFunc0Map = {}, _this.customComponents = ["Auth"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(RankingRules, [{
@@ -136,13 +136,13 @@ var RankingRules = (_temp2 = _class = function (_Taro$Component) {
       var resumesAddClickLog = function resumesAddClickLog(click_type) {
         (0, _index.resumesAddClickLogAction)(click_type);
       };
-      var loopArray112 = data.sort_rule_lists.map(function (v, index) {
+      var loopArray115 = data.sort_rule_lists.map(function (v, index) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
         var $loopState__temp2 = index + index;
 
-        var _$indexKey = "bagzz" + index;
+        var _$indexKey = "bajzz" + index;
 
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           handleBtn(v.$original);
@@ -154,7 +154,7 @@ var RankingRules = (_temp2 = _class = function (_Taro$Component) {
           $original: v.$original
         };
       });
-      var loopArray113 = data.warm_tips.map(function (v, index) {
+      var loopArray116 = data.warm_tips.map(function (v, index) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
@@ -166,8 +166,8 @@ var RankingRules = (_temp2 = _class = function (_Taro$Component) {
       });
       Object.assign(this.__state, {
         data: data,
-        loopArray112: loopArray112,
-        loopArray113: loopArray113,
+        loopArray115: loopArray115,
+        loopArray116: loopArray116,
         isLogin: isLogin
       });
       return this.__state;

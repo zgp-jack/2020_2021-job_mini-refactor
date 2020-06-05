@@ -60,7 +60,7 @@ var Help = (_temp2 = _class = function (_Taro$Component) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Help.__proto__ || Object.getPrototypeOf(Help)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
       navigationBarTitleText: '帮助中心'
-    }, _this.$usedState = ["data", "loopArray77", "refresh", "isDown"], _this.anonymousFunc2Map = {}, _this.customComponents = ["Nodata", "AtAccordion", "AtList"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["data", "loopArray79", "refresh", "isDown"], _this.anonymousFunc2Map = {}, _this.customComponents = ["Nodata", "AtAccordion", "AtList"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Help, [{
@@ -200,19 +200,19 @@ var Help = (_temp2 = _class = function (_Taro$Component) {
         return userRouteJump("/pages/feedback/index?username=" + userData.username + "&phone=" + userData.phone);
       };
 
-      var loopArray77 = data.item.map(function (item, __index2) {
+      var loopArray79 = data.item.map(function (item, __index2) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
         var $loopState__temp2 = { value: 'help', color: '#09f', size: '15' };
 
-        var _$indexKey = "hazzz" + __index2;
+        var _$indexKey = "hczzz" + __index2;
 
         _this2.anonymousFunc2Map[_$indexKey] = function () {
           handleShow(item.$original.id);
         };
 
-        var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "hbzzzzzzzz" + __index2, true),
+        var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "hdzzzzzzzz" + __index2, true),
             _genCompid2 = _slicedToArray(_genCompid, 2),
             $prevCompid__64 = _genCompid2[0],
             $compid__64 = _genCompid2[1];
@@ -224,7 +224,7 @@ var Help = (_temp2 = _class = function (_Taro$Component) {
           "title": item.$original.question
         }, $compid__64, $prevCompid__64);
 
-        var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "hczzzzzzzz" + __index2, true),
+        var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "hezzzzzzzz" + __index2, true),
             _genCompid4 = _slicedToArray(_genCompid3, 2),
             $prevCompid__65 = _genCompid4[0],
             $compid__65 = _genCompid4[1];
@@ -242,7 +242,7 @@ var Help = (_temp2 = _class = function (_Taro$Component) {
       });
       Object.assign(this.__state, {
         data: data,
-        loopArray77: loopArray77,
+        loopArray79: loopArray79,
         refresh: refresh,
         isDown: isDown
       });

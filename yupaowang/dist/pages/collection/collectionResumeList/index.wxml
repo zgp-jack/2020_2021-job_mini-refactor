@@ -4,7 +4,7 @@
             <nodata compid="{{$compid__83}}"></nodata>
         </block>
         <block wx:if="{{data}}">
-            <block wx:key="id" wx:for="{{loopArray81}}" wx:for-item="item" wx:for-index="__index0">
+            <block wx:key="id" wx:for="{{loopArray84}}" wx:for-item="item" wx:for-index="__index0">
                 <view class="resume-list-item" bindtap="anonymousFunc0" wx:key="id" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">
                     <view class="resume-list-header">
                         <image class="resume-list-user" src="{{item.$original.resume.headerimg}}"></image>

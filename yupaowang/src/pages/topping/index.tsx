@@ -1,6 +1,6 @@
 import Taro, { Config, useEffect, useState, createContext,useRouter } from '@tarojs/taro'
 import { View, Picker, Text, Image, Input } from '@tarojs/components'
-import { jobTopConfigAction, jobDoTopAction, jobGetTopAreasAction, jobChangeTopAreasAction, resumesTopConfigAction, resumesDoTopAction } from '../../utils/request/index'
+import { jobTopConfigAction, jobDoTopAction, jobGetTopAreasAction, jobChangeTopAreasAction, resumesTopConfigV2Action, resumesDoTopAction } from '../../utils/request/index'
 import { SERVERPHONE, IMGCDNURL  } from '../../config'
 import { UserInfo } from '../../config/store'
 import './index.scss'
@@ -119,7 +119,10 @@ export default function Topping() {
     }
     // 找活
     if(rec){
-      resumesTopConfigAction().then(res=>{
+      let params ={
+        interface_version:'v2'
+      }
+      resumesTopConfigV2Action(params).then(res=>{
         if (res.errcode === 'ok') {
         console.log(res);
         setData({top_rules:res.data.top_rules})

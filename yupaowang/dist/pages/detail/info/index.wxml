@@ -62,12 +62,12 @@
         <view class="detailInfo-project-content">
             <view class="detailInfo-project-content-title">项目描述:</view>
             <view class="detailInfo-project-content-classifyName-box">
-                <view wx:key="$loopState__temp2" class="detailInfo-project-content-classifyName" wx:for="{{loopArray140}}" wx:for-item="v" wx:for-index="i">{{v.$original}}</view>
+                <view wx:key="$loopState__temp2" class="detailInfo-project-content-classifyName" wx:for="{{loopArray139}}" wx:for-item="v" wx:for-index="i">{{v.$original}}</view>
             </view>
             <view class="detailInfo-project-content-detail">{{data.detail}}</view>
             <block wx:if="{{data.view_images.length > 0}}">
                 <view class="detailInfo-project-content-image-box">
-                    <image src="{{v.$original}}" wx:key="$loopState__temp4" class="detailInfo-project-content-image" bindtap="anonymousFunc5" wx:for="{{loopArray141}}" wx:for-item="v" wx:for-index="i" data-e-tap-so="this" data-e-tap-a-a="{{v._$indexKey}}"></image>
+                    <image src="{{v.$original}}" wx:key="$loopState__temp4" class="detailInfo-project-content-image" bindtap="anonymousFunc5" wx:for="{{loopArray140}}" wx:for-item="v" wx:for-index="i" data-e-tap-so="this" data-e-tap-a-a="{{v._$indexKey}}"></image>
                 </view>
             </block>
             <view class="detailInfo-project-content-address">项目地址:

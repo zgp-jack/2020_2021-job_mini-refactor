@@ -56,7 +56,7 @@ var RecruitTopping = (_temp2 = _class = function (_Taro$Component) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = RecruitTopping.__proto__ || Object.getPrototypeOf(RecruitTopping)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
       navigationBarTitleText: '找活置顶'
-    }, _this.$usedState = ["are", "loopArray1065"], _this.anonymousFunc0Map = {}, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["are", "loopArray82"], _this.anonymousFunc0Map = {}, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(RecruitTopping, [{
@@ -159,12 +159,12 @@ var RecruitTopping = (_temp2 = _class = function (_Taro$Component) {
         });
       };
       this.anonymousFunc1 = handleSub;
-      var loopArray1065 = are.Item ? are.Item.map(function (v, __index0) {
+      var loopArray82 = are.Item ? are.Item.map(function (v, __index0) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
 
-        var _$indexKey = "ihfzz" + __index0;
+        var _$indexKey = "hhzzz" + __index0;
 
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return handleClick(v.$original);
@@ -177,7 +177,7 @@ var RecruitTopping = (_temp2 = _class = function (_Taro$Component) {
       }) : [];
       Object.assign(this.__state, {
         are: are,
-        loopArray1065: loopArray1065
+        loopArray82: loopArray82
       });
       return this.__state;
     }

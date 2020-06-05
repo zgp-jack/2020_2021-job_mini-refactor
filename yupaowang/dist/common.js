@@ -78,7 +78,7 @@ var PublishRecruit = (_temp2 = _class = function (_Taro$Component) {
       navigationBarBackgroundColor: '#0099ff',
       navigationBarTextStyle: 'white',
       backgroundTextStyle: "dark"
-    }, _this.$usedState = ["model", "$compid__106", "$compid__107", "$compid__108", "showProfession", "phone", "showUpload", "text"], _this.customComponents = ["Auth", "Profession", "WordsTotal", "ImageView"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["model", "$compid__108", "$compid__109", "$compid__110", "showProfession", "phone", "showUpload", "text"], _this.customComponents = ["Auth", "Profession", "WordsTotal", "ImageView"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(PublishRecruit, [{
@@ -97,20 +97,20 @@ var PublishRecruit = (_temp2 = _class = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__106"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__108"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__106 = _genCompid2[0],
-          $compid__106 = _genCompid2[1];
+          $prevCompid__108 = _genCompid2[0],
+          $compid__108 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__107"),
+      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__109"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__107 = _genCompid4[0],
-          $compid__107 = _genCompid4[1];
+          $prevCompid__109 = _genCompid4[0],
+          $compid__109 = _genCompid4[1];
 
-      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__108"),
+      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__110"),
           _genCompid6 = _slicedToArray(_genCompid5, 2),
-          $prevCompid__108 = _genCompid6[0],
-          $compid__108 = _genCompid6[1];
+          $prevCompid__110 = _genCompid6[0],
+          $compid__110 = _genCompid6[1];
 
       // 获取路由参数
 
@@ -288,21 +288,21 @@ var PublishRecruit = (_temp2 = _class = function (_Taro$Component) {
         "data": model && model.classifyTree,
         "onClickItem": this.anonymousFunc0,
         "num": 3
-      }, $compid__106, $prevCompid__106);
+      }, $compid__108, $prevCompid__108);
       _taroWeapp.propsManager.set({
         "num": num
-      }, $compid__107, $prevCompid__107);
+      }, $compid__109, $prevCompid__109);
       showUpload && model && _taroWeapp.propsManager.set({
         "images": model.view_images,
         "max": model.maxImageCount,
         "userUploadImg": userUploadImg,
         "userDelImg": userDelImg
-      }, $compid__108, $prevCompid__108);
+      }, $compid__110, $prevCompid__110);
       Object.assign(this.__state, {
         model: model,
-        $compid__106: $compid__106,
-        $compid__107: $compid__107,
         $compid__108: $compid__108,
+        $compid__109: $compid__109,
+        $compid__110: $compid__110,
         showProfession: showProfession,
         phone: phone,
         showUpload: showUpload,
@@ -449,7 +449,7 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = NewJob.__proto__ || Object.getPrototypeOf(NewJob)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
       navigationBarTitleText: '找活名片'
-    }, _this.$usedState = ["anonymousState__temp", "data", "loopArray1634", "loopArray1635", "loopArray1636", "loopArray1637", "loopArray1638", "loopArray1639", "$compid__393", "$compid__394", "$compid__395", "showtop", "showcomplete", "IMGCDNURL", "showtopone", "showpassre", "passre", "nopassre", "index", "checkstatus", "checkone", "headerimg", "authenticationimg", "certificate_show", "age", "sex", "checkonef", "showskill", "intro", "introne", "ressonone", "selfintrone", "checktwo", "selfintro", "projectlength", "project_count", "project", "proStatus", "skilllength", "skillbooksone", "checkfourf", "isOpened", "selectdata", "popup"], _this.anonymousFunc9Map = {}, _this.anonymousFunc12Map = {}, _this.anonymousFunc13Map = {}, _this.customComponents = ["CollectionRecruitList", "AtModal"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["anonymousState__temp", "data", "loopArray150", "loopArray151", "loopArray152", "loopArray153", "loopArray154", "loopArray155", "$compid__121", "$compid__122", "$compid__123", "showtop", "showcomplete", "IMGCDNURL", "showtopone", "showpassre", "passre", "nopassre", "index", "checkstatus", "checkone", "headerimg", "authenticationimg", "certificate_show", "age", "sex", "checkonef", "showskill", "intro", "introne", "ressonone", "selfintrone", "checktwo", "selfintro", "projectlength", "project_count", "project", "proStatus", "skilllength", "skillbooksone", "checkfourf", "isOpened", "selectdata", "popup"], _this.anonymousFunc10Map = {}, _this.anonymousFunc13Map = {}, _this.anonymousFunc14Map = {}, _this.customComponents = ["CollectionRecruitList", "AtModal"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(NewJob, [{
@@ -470,20 +470,20 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__393"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__121"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__393 = _genCompid2[0],
-          $compid__393 = _genCompid2[1];
+          $prevCompid__121 = _genCompid2[0],
+          $compid__121 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__394"),
+      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__122"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__394 = _genCompid4[0],
-          $compid__394 = _genCompid4[1];
+          $prevCompid__122 = _genCompid4[0],
+          $compid__122 = _genCompid4[1];
 
-      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__395"),
+      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__123"),
           _genCompid6 = _slicedToArray(_genCompid5, 2),
-          $prevCompid__395 = _genCompid6[0],
-          $compid__395 = _genCompid6[1];
+          $prevCompid__123 = _genCompid6[0],
+          $compid__123 = _genCompid6[1];
 
       var userInfoObj = _taroWeapp2.default.getStorageSync(_store.UserInfo);
 
@@ -1223,53 +1223,58 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
       this.anonymousFunc1 = handleTopping;
       this.anonymousFunc2 = handleToppStatus;
       this.anonymousFunc3 = handelEditTopp;
-      this.anonymousFunc4 = handleStatus;
 
-      this.anonymousFunc5 = function () {
+      this.anonymousFunc4 = function () {
+        return userRouteJump("/pages/topping/index?rec=1");
+      };
+
+      this.anonymousFunc5 = handleStatus;
+
+      this.anonymousFunc6 = function () {
         return userUploadAvatar();
       };
 
-      this.anonymousFunc6 = function () {
+      this.anonymousFunc7 = function () {
         return userRouteJump('/subpackage/pages/basics/index');
       };
 
-      this.anonymousFunc7 = function () {
+      this.anonymousFunc8 = function () {
         return userRouteJump('/subpackage/pages/personInfo/index');
       };
 
-      this.anonymousFunc8 = function () {
+      this.anonymousFunc9 = function () {
         return userRouteJump("/subpackage/pages/addProject/index");
       };
 
-      this.anonymousFunc10 = function () {
+      this.anonymousFunc11 = function () {
         return userRouteJump("/pages/resume/projectList/index");
       };
 
-      this.anonymousFunc11 = function () {
+      this.anonymousFunc12 = function () {
         return userRouteJump("/subpackage/pages/addSkill/index");
       };
 
-      this.anonymousFunc14 = function () {
+      this.anonymousFunc15 = function () {
         return userRouteJump("/pages/resume/skillList/index");
       };
 
-      this.anonymousFunc15 = function () {
+      this.anonymousFunc16 = function () {
         return userRouteJump("/pages/resume/preview/index");
       };
 
-      this.anonymousFunc16 = function () {
+      this.anonymousFunc17 = function () {
         setTips(false);
       };
 
-      this.anonymousFunc17 = function () {
+      this.anonymousFunc18 = function () {
         setToppingModal(false);
       };
 
-      this.anonymousFunc18 = function () {
+      this.anonymousFunc19 = function () {
         console.log(1111);
       };
 
-      var loopArray1634 = data.resume_top.has_top != 0 && data.resume_top.is_top != 2 ? data.resume_top.top_provinces_str.map(function (v, i) {
+      var loopArray150 = data.resume_top.has_top != 0 && data.resume_top.is_top != 2 ? data.resume_top.top_provinces_str.map(function (v, i) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
@@ -1279,7 +1284,7 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray1635 = !showskill ? data.info.occupations.map(function (v, i) {
+      var loopArray151 = !showskill ? data.info.occupations.map(function (v, i) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
@@ -1289,7 +1294,7 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray1636 = showskill ? data.info.occupations.map(function (v, i) {
+      var loopArray152 = showskill ? data.info.occupations.map(function (v, i) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
@@ -1299,7 +1304,7 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray1637 = selfintrone ? data.introduces.tags.map(function (v, i) {
+      var loopArray153 = selfintrone ? data.introduces.tags.map(function (v, i) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
@@ -1309,18 +1314,18 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray1638 = projectlength != 0 ? project.map(function (item, __index9) {
+      var loopArray154 = projectlength != 0 ? project.map(function (item, __index10) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
 
-        var _$indexKey = "bbjjz" + __index9;
+        var _$indexKey = "bdjzz" + __index10;
 
-        _this2.anonymousFunc9Map[_$indexKey] = function () {
+        _this2.anonymousFunc10Map[_$indexKey] = function () {
           return userRouteJump("/subpackage/pages/addProject/index?type=0");
         };
 
-        var $anonymousCallee__212 = projectlength != 0 ? item.$original.image.map(function (v, i) {
+        var $anonymousCallee__30 = projectlength != 0 ? item.$original.image.map(function (v, i) {
           v = {
             $original: (0, _taroWeapp.internal_get_original)(v)
           };
@@ -1332,29 +1337,29 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
         }) : [];
         return {
           _$indexKey: _$indexKey,
-          $anonymousCallee__212: $anonymousCallee__212,
+          $anonymousCallee__30: $anonymousCallee__30,
           $original: item.$original
         };
       }) : [];
-      var loopArray1639 = skilllength != 0 ? skillbooksone.map(function (item, i) {
+      var loopArray155 = skilllength != 0 ? skillbooksone.map(function (item, i) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
         var $loopState__temp13 = skillbooksone ? i + i : null;
 
-        var _$indexKey2 = "bcaaz" + i;
+        var _$indexKey2 = "beazz" + i;
 
-        _this2.anonymousFunc12Map[_$indexKey2] = function () {
+        _this2.anonymousFunc13Map[_$indexKey2] = function () {
           return userRouteJump("/subpackage/pages/addSkill/index?type=" + i);
         };
 
-        var _$indexKey3 = "bcabz" + i;
+        var _$indexKey3 = "bebzz" + i;
 
-        _this2.anonymousFunc13Map[_$indexKey3] = function () {
+        _this2.anonymousFunc14Map[_$indexKey3] = function () {
           return userRouteJump("/subpackage/pages/addSkill/index?type=" + i);
         };
 
-        var $anonymousCallee__213 = skilllength != 0 ? item.$original.image.map(function (v, i) {
+        var $anonymousCallee__31 = skilllength != 0 ? item.$original.image.map(function (v, i) {
           v = {
             $original: (0, _taroWeapp.internal_get_original)(v)
           };
@@ -1368,34 +1373,34 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
           $loopState__temp13: $loopState__temp13,
           _$indexKey2: _$indexKey2,
           _$indexKey3: _$indexKey3,
-          $anonymousCallee__213: $anonymousCallee__213,
+          $anonymousCallee__31: $anonymousCallee__31,
           $original: item.$original
         };
       }) : [];
       _taroWeapp.propsManager.set({
         "type": 1,
         "data": recData
-      }, $compid__393, $prevCompid__393);
+      }, $compid__121, $prevCompid__121);
       _taroWeapp.propsManager.set({
         "isOpened": tips,
         "className": "AtModal"
-      }, $compid__394, $prevCompid__394);
+      }, $compid__122, $prevCompid__122);
       _taroWeapp.propsManager.set({
         "isOpened": toppingModal,
         "className": "AtModal"
-      }, $compid__395, $prevCompid__395);
+      }, $compid__123, $prevCompid__123);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
         data: data,
-        loopArray1634: loopArray1634,
-        loopArray1635: loopArray1635,
-        loopArray1636: loopArray1636,
-        loopArray1637: loopArray1637,
-        loopArray1638: loopArray1638,
-        loopArray1639: loopArray1639,
-        $compid__393: $compid__393,
-        $compid__394: $compid__394,
-        $compid__395: $compid__395,
+        loopArray150: loopArray150,
+        loopArray151: loopArray151,
+        loopArray152: loopArray152,
+        loopArray153: loopArray153,
+        loopArray154: loopArray154,
+        loopArray155: loopArray155,
+        $compid__121: $compid__121,
+        $compid__122: $compid__122,
+        $compid__123: $compid__123,
         showtop: showtop,
         showcomplete: showcomplete,
         IMGCDNURL: _index6.IMGCDNURL,
@@ -1479,8 +1484,13 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
     }
   }, {
     key: "anonymousFunc9",
-    value: function anonymousFunc9(_$indexKey) {
-      var _anonymousFunc9Map;
+    value: function anonymousFunc9(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc10",
+    value: function anonymousFunc10(_$indexKey) {
+      var _anonymousFunc10Map;
 
       ;
 
@@ -1488,12 +1498,7 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
         e[_key2 - 1] = arguments[_key2];
       }
 
-      return this.anonymousFunc9Map[_$indexKey] && (_anonymousFunc9Map = this.anonymousFunc9Map)[_$indexKey].apply(_anonymousFunc9Map, e);
-    }
-  }, {
-    key: "anonymousFunc10",
-    value: function anonymousFunc10(e) {
-      ;
+      return this.anonymousFunc10Map[_$indexKey] && (_anonymousFunc10Map = this.anonymousFunc10Map)[_$indexKey].apply(_anonymousFunc10Map, e);
     }
   }, {
     key: "anonymousFunc11",
@@ -1502,8 +1507,13 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
     }
   }, {
     key: "anonymousFunc12",
-    value: function anonymousFunc12(_$indexKey2) {
-      var _anonymousFunc12Map;
+    value: function anonymousFunc12(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc13",
+    value: function anonymousFunc13(_$indexKey2) {
+      var _anonymousFunc13Map;
 
       ;
 
@@ -1511,12 +1521,12 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
         e[_key3 - 1] = arguments[_key3];
       }
 
-      return this.anonymousFunc12Map[_$indexKey2] && (_anonymousFunc12Map = this.anonymousFunc12Map)[_$indexKey2].apply(_anonymousFunc12Map, e);
+      return this.anonymousFunc13Map[_$indexKey2] && (_anonymousFunc13Map = this.anonymousFunc13Map)[_$indexKey2].apply(_anonymousFunc13Map, e);
     }
   }, {
-    key: "anonymousFunc13",
-    value: function anonymousFunc13(_$indexKey3) {
-      var _anonymousFunc13Map;
+    key: "anonymousFunc14",
+    value: function anonymousFunc14(_$indexKey3) {
+      var _anonymousFunc14Map;
 
       ;
 
@@ -1524,12 +1534,7 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
         e[_key4 - 1] = arguments[_key4];
       }
 
-      return this.anonymousFunc13Map[_$indexKey3] && (_anonymousFunc13Map = this.anonymousFunc13Map)[_$indexKey3].apply(_anonymousFunc13Map, e);
-    }
-  }, {
-    key: "anonymousFunc14",
-    value: function anonymousFunc14(e) {
-      ;
+      return this.anonymousFunc14Map[_$indexKey3] && (_anonymousFunc14Map = this.anonymousFunc14Map)[_$indexKey3].apply(_anonymousFunc14Map, e);
     }
   }, {
     key: "anonymousFunc15",
@@ -1551,10 +1556,15 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
     value: function anonymousFunc18(e) {
       ;
     }
+  }, {
+    key: "anonymousFunc19",
+    value: function anonymousFunc19(e) {
+      ;
+    }
   }]);
 
   return NewJob;
-}(_taroWeapp2.default.Component), _class.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6", "anonymousFunc7", "anonymousFunc8", "anonymousFunc9", "anonymousFunc10", "anonymousFunc11", "anonymousFunc12", "anonymousFunc13", "anonymousFunc14", "anonymousFunc15", "anonymousFunc16", "anonymousFunc17", "anonymousFunc18"], _class.$$componentPath = "pages/resume/newJobs/index", _temp2);
+}(_taroWeapp2.default.Component), _class.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6", "anonymousFunc7", "anonymousFunc8", "anonymousFunc9", "anonymousFunc10", "anonymousFunc11", "anonymousFunc12", "anonymousFunc13", "anonymousFunc14", "anonymousFunc15", "anonymousFunc16", "anonymousFunc17", "anonymousFunc18", "anonymousFunc19"], _class.$$componentPath = "pages/resume/newJobs/index", _temp2);
 
 
 NewJob.config = { navigationBarTitleText: '找活名片' };
@@ -1629,7 +1639,7 @@ var Topping = (_temp2 = _class = function (_Taro$Component) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Topping.__proto__ || Object.getPrototypeOf(Topping)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
       navigationBarTitleText: '招工置顶'
-    }, _this.$usedState = ["params", "data", "loopArray1191", "loopArray1192", "loopArray1193", "loopArray1194", "loopArray1195", "province", "IMGCDNURL", "rec", "basics", "type", "list", "displayTime", "num", "recDay", "endTime", "editData", "newTime", "day", "SERVERPHONE"], _this.anonymousFunc0Map = {}, _this.anonymousFunc1Map = {}, _this.anonymousFunc2Map = {}, _this.anonymousFunc3Map = {}, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["params", "data", "loopArray201", "loopArray202", "loopArray203", "loopArray204", "loopArray205", "province", "IMGCDNURL", "rec", "basics", "type", "list", "displayTime", "num", "recDay", "endTime", "editData", "newTime", "day", "SERVERPHONE"], _this.anonymousFunc0Map = {}, _this.anonymousFunc1Map = {}, _this.anonymousFunc2Map = {}, _this.anonymousFunc3Map = {}, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Topping, [{
@@ -1808,7 +1818,10 @@ var Topping = (_temp2 = _class = function (_Taro$Component) {
         }
         // 找活
         if (rec) {
-          (0, _index.resumesTopConfigAction)().then(function (res) {
+          var _params = {
+            interface_version: 'v2'
+          };
+          (0, _index.resumesTopConfigV2Action)(_params).then(function (res) {
             if (res.errcode === 'ok') {
               console.log(res);
               setData({ top_rules: res.data.top_rules });
@@ -2412,12 +2425,12 @@ var Topping = (_temp2 = _class = function (_Taro$Component) {
         _taroWeapp2.default.makePhoneCall({ phoneNumber: _index2.SERVERPHONE });
       };
 
-      var loopArray1191 = province ? province.map(function (v, __index0) {
+      var loopArray201 = province ? province.map(function (v, __index0) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
 
-        var _$indexKey = "jhgzz" + __index0;
+        var _$indexKey = "bhizz" + __index0;
 
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return handleRecDel(v.$original);
@@ -2428,12 +2441,12 @@ var Topping = (_temp2 = _class = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray1192 = params ? params.city.map(function (v, __index1) {
+      var loopArray202 = params ? params.city.map(function (v, __index1) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
 
-        var _$indexKey2 = "jhhzz" + __index1;
+        var _$indexKey2 = "bhjzz" + __index1;
 
         _this2.anonymousFunc1Map[_$indexKey2] = function () {
           return handleDel(v.$original);
@@ -2444,12 +2457,12 @@ var Topping = (_temp2 = _class = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray1193 = params ? params.province.map(function (v, __index2) {
+      var loopArray203 = params ? params.province.map(function (v, __index2) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
 
-        var _$indexKey3 = "jhizz" + __index2;
+        var _$indexKey3 = "biazz" + __index2;
 
         _this2.anonymousFunc2Map[_$indexKey3] = function () {
           return handleDel(v.$original);
@@ -2460,12 +2473,12 @@ var Topping = (_temp2 = _class = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray1194 = params ? params.whole.map(function (v, __index3) {
+      var loopArray204 = params ? params.whole.map(function (v, __index3) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
 
-        var _$indexKey4 = "jhjzz" + __index3;
+        var _$indexKey4 = "bibzz" + __index3;
 
         _this2.anonymousFunc3Map[_$indexKey4] = function () {
           return handleDel(v.$original);
@@ -2476,7 +2489,7 @@ var Topping = (_temp2 = _class = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray1195 = data.top_rules.map(function (v, i) {
+      var loopArray205 = data.top_rules.map(function (v, i) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
@@ -2489,11 +2502,11 @@ var Topping = (_temp2 = _class = function (_Taro$Component) {
       Object.assign(this.__state, {
         params: params,
         data: data,
-        loopArray1191: loopArray1191,
-        loopArray1192: loopArray1192,
-        loopArray1193: loopArray1193,
-        loopArray1194: loopArray1194,
-        loopArray1195: loopArray1195,
+        loopArray201: loopArray201,
+        loopArray202: loopArray202,
+        loopArray203: loopArray203,
+        loopArray204: loopArray204,
+        loopArray205: loopArray205,
         province: province,
         IMGCDNURL: _index2.IMGCDNURL,
         rec: rec,
@@ -6116,7 +6129,7 @@ __webpack_require__.r(__webpack_exports__);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.resumesEditImgUrl = exports.resumesChangeTopStatusUrl = exports.resumesDoTopUrl = exports.resumesTopConfigUrl = exports.resumesTopAreasUrl = exports.resumesDelProjectUrl = exports.resumesEditEndUrl = exports.resumesIntroduceUrl = exports.resumesGetDataUrl = exports.checkAdcodeUrl = exports.addResumeUrl = exports.resumesProjectUrl = exports.resumesCertificateUrl = exports.delCertificateUrl = exports.jobRecommendListUrl = exports.resumeListUrl = exports.resumeCollectUrl = exports.resumeSupportUrl = exports.resumesGetTelUrl = exports.recommendListUrl = exports.resumeDetailUrl = exports.jobUpdateTopStatusUrl = exports.jobChangeTopAreasUrl = exports.jobGetTopAreasUrl = exports.jobDoTopUrl = exports.jobTopHotAreasUrl = exports.jobTopConfigUrl = exports.jobEndStatusUrl = exports.jobGetTelUrl = exports.jobNoUserInfoUrl = exports.jobInfoUrl = exports.publishComplainUrl = exports.integralUseInfoUrl = exports.integralExpendListsUrl = exports.integralExpendConfigUrl = exports.integralSourceListsUrl = exports.integralSourceConfigUrl = exports.messagesTypeUrl = exports.userMessagesUrl = exports.resumesAddClickLog = exports.resumesSortUrl = exports.newsInfoUrl = exports.newsTypesUrl = exports.newListUrl = exports.helpUrl = exports.feedbackSubmissionUrl = exports.feedbackUrl = exports.requestActionUrl = exports.ResumeCancelCollection = exports.recruitCancelCollection = exports.getCollectionResumeList = exports.getCollectionRecruitList = exports.userChangeRecruitStatus = exports.userGetPublishedRecruitList = exports.userChangePhone = exports.userUpdateName = exports.userChangeAvatar = exports.postUserAddInfo = exports.getIdcardAuthInfo = exports.postUserAuthInfo = exports.getUserAuthInfo = exports.getMemberMsgNumber = exports.getMemberInfo = exports.CheckMineAuthInfo = exports.CheckAuth = exports.GetUsedInfo = exports.GetUserPhoneCode = exports.PublishUsedInfo = exports.GetUsedInfoModel = exports.GetRechargeOrder = exports.GetRechargeOpenid = exports.GetRechargeList = exports.GetUserInviteLink = exports.CheckAdcodeValid = exports.GetAllAreas = exports.PublishRecruitInfo = exports.GetPublisRecruitView = exports.GetIntegralList = exports.GetTabbarMsg = exports.GetListFilterData = exports.GetWechatNotice = exports.GetFleamarketlist = exports.GetResumelist = exports.GetRecruitlist = exports.GetAllListItem = exports.GetBannerNotice = exports.GetUserInfo = exports.GetUserSessionKey = undefined;
+exports.resumesTopConfigV2Url = exports.resumesEditImgUrl = exports.resumesChangeTopStatusUrl = exports.resumesDoTopUrl = exports.resumesTopConfigUrl = exports.resumesTopAreasUrl = exports.resumesDelProjectUrl = exports.resumesEditEndUrl = exports.resumesIntroduceUrl = exports.resumesGetDataUrl = exports.checkAdcodeUrl = exports.addResumeUrl = exports.resumesProjectUrl = exports.resumesCertificateUrl = exports.delCertificateUrl = exports.jobRecommendListUrl = exports.resumeListUrl = exports.resumeCollectUrl = exports.resumeSupportUrl = exports.resumesGetTelUrl = exports.recommendListUrl = exports.resumeDetailUrl = exports.jobUpdateTopStatusUrl = exports.jobChangeTopAreasUrl = exports.jobGetTopAreasUrl = exports.jobDoTopUrl = exports.jobTopHotAreasUrl = exports.jobTopConfigUrl = exports.jobEndStatusUrl = exports.jobGetTelUrl = exports.jobNoUserInfoUrl = exports.jobInfoUrl = exports.publishComplainUrl = exports.integralUseInfoUrl = exports.integralExpendListsUrl = exports.integralExpendConfigUrl = exports.integralSourceListsUrl = exports.integralSourceConfigUrl = exports.messagesTypeUrl = exports.userMessagesUrl = exports.resumesAddClickLog = exports.resumesSortUrl = exports.newsInfoUrl = exports.newsTypesUrl = exports.newListUrl = exports.helpUrl = exports.feedbackSubmissionUrl = exports.feedbackUrl = exports.requestActionUrl = exports.ResumeCancelCollection = exports.recruitCancelCollection = exports.getCollectionResumeList = exports.getCollectionRecruitList = exports.userChangeRecruitStatus = exports.userGetPublishedRecruitList = exports.userChangePhone = exports.userUpdateName = exports.userChangeAvatar = exports.postUserAddInfo = exports.getIdcardAuthInfo = exports.postUserAuthInfo = exports.getUserAuthInfo = exports.getMemberMsgNumber = exports.getMemberInfo = exports.CheckMineAuthInfo = exports.CheckAuth = exports.GetUsedInfo = exports.GetUserPhoneCode = exports.PublishUsedInfo = exports.GetUsedInfoModel = exports.GetRechargeOrder = exports.GetRechargeOpenid = exports.GetRechargeList = exports.GetUserInviteLink = exports.CheckAdcodeValid = exports.GetAllAreas = exports.PublishRecruitInfo = exports.GetPublisRecruitView = exports.GetIntegralList = exports.GetTabbarMsg = exports.GetListFilterData = exports.GetWechatNotice = exports.GetFleamarketlist = exports.GetResumelist = exports.GetRecruitlist = exports.GetAllListItem = exports.GetBannerNotice = exports.GetUserInfo = exports.GetUserSessionKey = undefined;
 
 var _index = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
 
@@ -6296,6 +6309,8 @@ var resumesDoTopUrl = exports.resumesDoTopUrl = _index.REQUESTURL + 'resumes/do-
 var resumesChangeTopStatusUrl = exports.resumesChangeTopStatusUrl = _index.REQUESTURL + 'resumes/change-top-status/';
 // 修改找活名片里的头像
 var resumesEditImgUrl = exports.resumesEditImgUrl = _index.REQUESTURL + 'resumes/edit-img/';
+// 找活置顶配置接口v2
+var resumesTopConfigV2Url = exports.resumesTopConfigV2Url = _index.REQUESTURL + '/resumes/top-config/';
 
 /***/ }),
 
@@ -6580,6 +6595,7 @@ exports.resumesTopConfigAction = resumesTopConfigAction;
 exports.resumesDoTopAction = resumesDoTopAction;
 exports.resumesChangeTopStatusAction = resumesChangeTopStatusAction;
 exports.resumesEditImgAction = resumesEditImgAction;
+exports.resumesTopConfigV2Action = resumesTopConfigV2Action;
 
 var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
@@ -7454,6 +7470,15 @@ function resumesChangeTopStatusAction(data) {
 function resumesEditImgAction(data) {
   return doRequestAction({
     url: api.resumesEditImgUrl,
+    method: 'POST',
+    failToast: true,
+    data: data
+  });
+}
+//找活置顶配置
+function resumesTopConfigV2Action(data) {
+  return doRequestAction({
+    url: api.resumesTopConfigV2Url,
     method: 'POST',
     failToast: true,
     data: data

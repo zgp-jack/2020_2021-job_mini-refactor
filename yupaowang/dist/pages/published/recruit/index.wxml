@@ -1,11 +1,11 @@
 <block wx:if="{{$taroCompReady}}">
     <view class="user-published-container">
         <view class="user-published-header">
-            <view bindtap="anonymousFunc0" class="{{item.$loopState__temp2}}" wx:for="{{loopArray122}}" wx:for-item="item" wx:for-index="__index0" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}"><text class="published-item-title">{{item.$original.title}}</text>
+            <view bindtap="anonymousFunc0" class="{{item.$loopState__temp2}}" wx:for="{{loopArray126}}" wx:for-item="item" wx:for-index="__index0" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}"><text class="published-item-title">{{item.$original.title}}</text>
             </view>
         </view>
         <scroll-view class="user-published-body" scroll-y="{{true}}" refresher-enabled="{{true}}" refresher-triggered="{{refresh}}" bindrefresherrefresh="anonymousFunc1" lower-threshold="{{200}}" bindscrolltolower="anonymousFunc2">
-            <view class="user-published-item" wx:key="id" wx:for="{{loopArray123}}" wx:for-item="item" wx:for-index="index">
+            <view class="user-published-item" wx:key="id" wx:for="{{loopArray127}}" wx:for-item="item" wx:for-index="index">
                 <block wx:if="{{item.$original.is_check == '1'}}">
                     <image class="published-status-img" src="{{IMGCDNURL + 'published-recruit-checking.png'}}"></image>
                 </block>

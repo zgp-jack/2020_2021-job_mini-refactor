@@ -50,7 +50,7 @@ var ImageView = (_temp2 = _class = function (_Taro$Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ImageView.__proto__ || Object.getPrototypeOf(ImageView)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray94", "images", "bool", "max", "userUploadImg", "userDelImg"], _this.anonymousFunc0Map = {}, _this.anonymousFunc1Map = {}, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ImageView.__proto__ || Object.getPrototypeOf(ImageView)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray96", "images", "bool", "max", "userUploadImg", "userDelImg"], _this.anonymousFunc0Map = {}, _this.anonymousFunc1Map = {}, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(ImageView, [{
@@ -83,19 +83,19 @@ var ImageView = (_temp2 = _class = function (_Taro$Component) {
         return userUploadImg && userUploadImg(-1);
       };
 
-      var loopArray94 = images ? images.map(function (item, index) {
+      var loopArray96 = images ? images.map(function (item, index) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
         var $loopState__temp2 = images ? index + 'a' : null;
 
-        var _$indexKey = "jbzzz" + index;
+        var _$indexKey = "jdzzz" + index;
 
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return userUploadImg && userUploadImg(index);
         };
 
-        var _$indexKey2 = "jczzz" + index;
+        var _$indexKey2 = "jezzz" + index;
 
         _this2.anonymousFunc1Map[_$indexKey2] = function (e) {
           e.stopPropagation();userDelImg && userDelImg(index);
@@ -109,7 +109,7 @@ var ImageView = (_temp2 = _class = function (_Taro$Component) {
         };
       }) : [];
       Object.assign(this.__state, {
-        loopArray94: loopArray94,
+        loopArray96: loopArray96,
         images: images,
         bool: bool,
         max: max

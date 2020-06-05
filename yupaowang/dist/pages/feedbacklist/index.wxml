@@ -3,11 +3,11 @@
         <auth></auth>
         <wechat-notice></wechat-notice>
         <block wx:if="{{!lists.item.length}}">
-            <nodata compid="{{$compid__68}}"></nodata>
+            <nodata compid="{{$compid__66}}"></nodata>
         </block>
         <view class="recruit-lists-containerbox">
             <block wx:if="{{lists.item}}">
-                <block wx:key="id" wx:for="{{loopArray79}}" wx:for-item="item" wx:for-index="__index1">
+                <block wx:key="id" wx:for="{{loopArray80}}" wx:for-item="item" wx:for-index="__index1">
                     <view class="feedback-body-content">
                         <view class="superior">
                             <view class="superior-text"><text>问</text>

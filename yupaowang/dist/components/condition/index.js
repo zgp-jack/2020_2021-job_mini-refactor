@@ -60,7 +60,7 @@ var Condition = (_temp2 = _class = function (_Taro$Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Condition.__proto__ || Object.getPrototypeOf(Condition)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "loopArray95", "loopArray96", "$compid__97", "data", "IMGCDNURL", "AREAS", "childAreaList", "scrollTop"], _this.anonymousFunc0Map = {}, _this.anonymousFunc2Map = {}, _this.customComponents = ["AtDrawer"], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Condition.__proto__ || Object.getPrototypeOf(Condition)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "loopArray98", "loopArray99", "$compid__97", "data", "IMGCDNURL", "AREAS", "childAreaList", "scrollTop"], _this.anonymousFunc0Map = {}, _this.anonymousFunc2Map = {}, _this.customComponents = ["AtDrawer"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Condition, [{
@@ -148,12 +148,12 @@ var Condition = (_temp2 = _class = function (_Taro$Component) {
         return onScrollAction(e);
       };
 
-      var loopArray95 = data ? data.map(function (item, __index0) {
+      var loopArray98 = data ? data.map(function (item, __index0) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
 
-        var _$indexKey = "jdzzz" + __index0;
+        var _$indexKey = "jgzzz" + __index0;
 
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return conditionItemClick(item.$original.id);
@@ -164,7 +164,7 @@ var Condition = (_temp2 = _class = function (_Taro$Component) {
           $original: item.$original
         };
       }) : [];
-      var loopArray96 = _area2.default.map(function (item, index) {
+      var loopArray99 = _area2.default.map(function (item, index) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
@@ -173,7 +173,7 @@ var Condition = (_temp2 = _class = function (_Taro$Component) {
           'drawer-list-item-active': index === areaIndex
         });
 
-        var _$indexKey2 = "jezzz" + index;
+        var _$indexKey2 = "jhzzz" + index;
 
         _this2.anonymousFunc2Map[_$indexKey2] = function () {
           return changeAreaIndex(index);
@@ -192,8 +192,8 @@ var Condition = (_temp2 = _class = function (_Taro$Component) {
       }, $compid__97, $prevCompid__97);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
-        loopArray95: loopArray95,
-        loopArray96: loopArray96,
+        loopArray98: loopArray98,
+        loopArray99: loopArray99,
         $compid__97: $compid__97,
         data: data,
         IMGCDNURL: _index.IMGCDNURL,

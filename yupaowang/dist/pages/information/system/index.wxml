@@ -3,7 +3,7 @@
         <block wx:if="{{!data.item.length}}">
             <nodata></nodata>
         </block>
-        <view class="system-lists" wx:key="id" bindtap="anonymousFunc0" wx:for="{{loopArray87}}" wx:for-item="item" wx:for-index="__index0" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">
+        <view class="system-lists" wx:key="id" bindtap="anonymousFunc0" wx:for="{{loopArray93}}" wx:for-item="item" wx:for-index="__index0" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">
             <view class="system-lists-top">
                 <view class="system-num">
                     <image src="{{item.$original.image_url}}" class="system-num-img"></image>

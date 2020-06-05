@@ -66,7 +66,7 @@ var UsedPublish = (_temp2 = _class = function (_Taro$Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = UsedPublish.__proto__ || Object.getPrototypeOf(UsedPublish)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["initModel", "loopArray82", "loopArray83", "$compid__91", "$compid__92", "parentCurrent", "model", "classifyName", "areaProvince", "areaCity", "pIndex", "cIndex", "cityName", "userTel", "text"], _this.anonymousFunc1Map = {}, _this.anonymousFunc2Map = {}, _this.customComponents = ["AtDrawer", "WordsTotal"], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = UsedPublish.__proto__ || Object.getPrototypeOf(UsedPublish)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["initModel", "loopArray85", "loopArray86", "$compid__91", "$compid__92", "parentCurrent", "model", "classifyName", "areaProvince", "areaCity", "pIndex", "cIndex", "cityName", "userTel", "text"], _this.anonymousFunc1Map = {}, _this.anonymousFunc2Map = {}, _this.customComponents = ["AtDrawer", "WordsTotal"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(UsedPublish, [{
@@ -223,7 +223,7 @@ var UsedPublish = (_temp2 = _class = function (_Taro$Component) {
         return vaildPublishModelInfo();
       };
 
-      var loopArray82 = initModel ? initModel.classifyTree.map(function (item, index) {
+      var loopArray85 = initModel ? initModel.classifyTree.map(function (item, index) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
@@ -232,7 +232,7 @@ var UsedPublish = (_temp2 = _class = function (_Taro$Component) {
           'drawer-list-item-active': index === parentCurrent
         }) : null;
 
-        var _$indexKey = "hjzzz" + index;
+        var _$indexKey = "iczzz" + index;
 
         _this2.anonymousFunc1Map[_$indexKey] = function () {
           return useClickClassifyParentId(index);
@@ -244,7 +244,7 @@ var UsedPublish = (_temp2 = _class = function (_Taro$Component) {
           $original: item.$original
         };
       }) : [];
-      var loopArray83 = initModel ? initModel.classifyTree[parentCurrent].attributes.map(function (item, k) {
+      var loopArray86 = initModel ? initModel.classifyTree[parentCurrent].attributes.map(function (item, k) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
@@ -253,7 +253,7 @@ var UsedPublish = (_temp2 = _class = function (_Taro$Component) {
           'drawer-list-item-active': k == childCurrent && item.$original.id == model.attribute_id
         }) : null;
 
-        var _$indexKey2 = "iazzz" + k;
+        var _$indexKey2 = "idzzz" + k;
 
         _this2.anonymousFunc2Map[_$indexKey2] = function () {
           return useClickClassifyChildId(k);
@@ -274,8 +274,8 @@ var UsedPublish = (_temp2 = _class = function (_Taro$Component) {
       }, $compid__92, $prevCompid__92);
       Object.assign(this.__state, {
         initModel: initModel,
-        loopArray82: loopArray82,
-        loopArray83: loopArray83,
+        loopArray85: loopArray85,
+        loopArray86: loopArray86,
         $compid__91: $compid__91,
         $compid__92: $compid__92,
         parentCurrent: parentCurrent,

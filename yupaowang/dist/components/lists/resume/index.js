@@ -50,7 +50,7 @@ var ResumeList = (_temp2 = _class = function (_Taro$Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ResumeList.__proto__ || Object.getPrototypeOf(ResumeList)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "loopArray109", "data", "IMGCDNURL", "bottom"], _this.anonymousFunc0Map = {}, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ResumeList.__proto__ || Object.getPrototypeOf(ResumeList)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "loopArray111", "data", "IMGCDNURL", "bottom"], _this.anonymousFunc0Map = {}, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(ResumeList, [{
@@ -83,15 +83,15 @@ var ResumeList = (_temp2 = _class = function (_Taro$Component) {
         });
       };
       var anonymousState__temp = (0, _taroWeapp.internal_inline_style)(bottom ? '' : 'padding-bottom:0');
-      var loopArray109 = data.map(function (item, __index1) {
+      var loopArray111 = data.map(function (item, __index1) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
-        var $anonymousCallee__24 = item.$original.map(function (d, __index0) {
+        var $anonymousCallee__23 = item.$original.map(function (d, __index0) {
           d = {
             $original: (0, _taroWeapp.internal_get_original)(d)
           };
-          var _$indexKey = "baezz" + __index1 + "-" + __index0;
+          var _$indexKey = "bagzz" + __index1 + "-" + __index0;
 
           _this2.anonymousFunc0Map[_$indexKey] = function () {
             return userRouteJump("/pages/resume/detail/index?id=" + d.$original.id);
@@ -103,13 +103,13 @@ var ResumeList = (_temp2 = _class = function (_Taro$Component) {
           };
         });
         return {
-          $anonymousCallee__24: $anonymousCallee__24,
+          $anonymousCallee__23: $anonymousCallee__23,
           $original: item.$original
         };
       });
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
-        loopArray109: loopArray109,
+        loopArray111: loopArray111,
         data: data,
         IMGCDNURL: _index.IMGCDNURL
       });

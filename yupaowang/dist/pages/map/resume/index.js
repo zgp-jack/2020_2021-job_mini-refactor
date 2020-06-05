@@ -74,7 +74,7 @@ var ResumeMap = (_temp2 = _class = function (_Taro$Component) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ResumeMap.__proto__ || Object.getPrototypeOf(ResumeMap)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
       navigationBarTitleText: '地址选择'
-    }, _this.$usedState = ["loopArray118", "loopArray119", "$compid__109", "smAreaText", "showHistory", "histroyList", "lists", "IMGCDNURL", "showCity", "area"], _this.anonymousFunc4Map = {}, _this.anonymousFunc5Map = {}, _this.customComponents = ["Cities"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["loopArray122", "loopArray123", "$compid__111", "smAreaText", "showHistory", "histroyList", "lists", "IMGCDNURL", "showCity", "area"], _this.anonymousFunc4Map = {}, _this.anonymousFunc5Map = {}, _this.customComponents = ["Cities"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(ResumeMap, [{
@@ -95,10 +95,10 @@ var ResumeMap = (_temp2 = _class = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__109"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__111"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__109 = _genCompid2[0],
-          $compid__109 = _genCompid2[1];
+          $prevCompid__111 = _genCompid2[0],
+          $compid__111 = _genCompid2[1];
 
       // 城市数据
 
@@ -317,13 +317,13 @@ var ResumeMap = (_temp2 = _class = function (_Taro$Component) {
         return userCloseMap();
       };
 
-      var loopArray118 = showHistory ? histroyList.map(function (item, index) {
+      var loopArray122 = showHistory ? histroyList.map(function (item, index) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
         var $loopState__temp2 = showHistory ? index + index : null;
 
-        var _$indexKey = "bbezz" + index;
+        var _$indexKey = "bbizz" + index;
 
         _this2.anonymousFunc4Map[_$indexKey] = function () {
           return userClickAreaItem(item.$original);
@@ -335,13 +335,13 @@ var ResumeMap = (_temp2 = _class = function (_Taro$Component) {
           $original: item.$original
         };
       }) : [];
-      var loopArray119 = lists.map(function (item, index) {
+      var loopArray123 = lists.map(function (item, index) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
         var $loopState__temp4 = index + index;
 
-        var _$indexKey2 = "bbfzz" + index;
+        var _$indexKey2 = "bbjzz" + index;
 
         _this2.anonymousFunc5Map[_$indexKey2] = function () {
           return userClickAreaItem(item.$original);
@@ -359,11 +359,11 @@ var ResumeMap = (_temp2 = _class = function (_Taro$Component) {
         "userLoc": userLoc,
         "userChangeCity": userChangeCity,
         "userTapCityBtn": userTapCityBtn
-      }, $compid__109, $prevCompid__109);
+      }, $compid__111, $prevCompid__111);
       Object.assign(this.__state, {
-        loopArray118: loopArray118,
-        loopArray119: loopArray119,
-        $compid__109: $compid__109,
+        loopArray122: loopArray122,
+        loopArray123: loopArray123,
+        $compid__111: $compid__111,
         smAreaText: smAreaText,
         showHistory: showHistory,
         histroyList: histroyList,

@@ -273,6 +273,13 @@
           "pathName": "subpackage/pages/personInfo/index",
           "query": "",
           "scene": null
+        },
+        {
+          "id": 32,
+          "name": "找活置顶范围",
+          "pathName": "pages/topping/recruit/index",
+          "query": "",
+          "scene": null
         }
       ]
     }

@@ -66,7 +66,7 @@ var BasicsPage = (_temp2 = _class = function (_Taro$Component) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = BasicsPage.__proto__ || Object.getPrototypeOf(BasicsPage)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
       navigationBarTitleText: '基础信息'
-    }, _this.$usedState = ["$compid__114", "$compid__115", "showProfession", "formData", "sexList", "nationCurrent", "isCode", "text"], _this.customComponents = ["Profession", "WordsTotal"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["$compid__116", "$compid__117", "showProfession", "formData", "sexList", "nationCurrent", "isCode", "text"], _this.customComponents = ["Profession", "WordsTotal"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(BasicsPage, [{
@@ -85,15 +85,15 @@ var BasicsPage = (_temp2 = _class = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__114"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__116"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__114 = _genCompid2[0],
-          $compid__114 = _genCompid2[1];
+          $prevCompid__116 = _genCompid2[0],
+          $compid__116 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__115"),
+      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__117"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__115 = _genCompid4[0],
-          $compid__115 = _genCompid4[1];
+          $prevCompid__117 = _genCompid4[0],
+          $compid__117 = _genCompid4[1];
 
       // const { basicsCity } = useContext(context);
       // 验证码
@@ -446,13 +446,13 @@ var BasicsPage = (_temp2 = _class = function (_Taro$Component) {
         "data": model && model.classifyTree,
         "onClickItem": this.anonymousFunc0,
         "num": 3
-      }, $compid__114, $prevCompid__114);
+      }, $compid__116, $prevCompid__116);
       _taroWeapp.propsManager.set({
         "num": num
-      }, $compid__115, $prevCompid__115);
+      }, $compid__117, $prevCompid__117);
       Object.assign(this.__state, {
-        $compid__114: $compid__114,
-        $compid__115: $compid__115,
+        $compid__116: $compid__116,
+        $compid__117: $compid__117,
         showProfession: showProfession,
         formData: formData,
         sexList: sexList,

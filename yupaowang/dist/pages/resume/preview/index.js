@@ -56,7 +56,7 @@ var Preview = (_temp2 = _class = function (_Taro$Component) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Preview.__proto__ || Object.getPrototypeOf(Preview)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
       navigationBarTitleText: '找活名片'
-    }, _this.$usedState = ["data", "loopArray124", "loopArray125", "loopArray126", "loopArray127", "IMGCDNURL", "checkpan", "checkone", "headerimg", "age", "sex", "project", "skillbooksone", "telephone"], _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["data", "loopArray128", "loopArray129", "loopArray130", "loopArray131", "IMGCDNURL", "checkpan", "checkone", "headerimg", "age", "sex", "project", "skillbooksone", "telephone"], _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Preview, [{
@@ -188,7 +188,7 @@ var Preview = (_temp2 = _class = function (_Taro$Component) {
         return _taroWeapp2.default.navigateTo({ url: "/pages/resume/skillList/index" });
       };
 
-      var loopArray124 = data.info.miniInfoOccupations.length ? data.info.miniInfoOccupations.map(function (v, i) {
+      var loopArray128 = data.info.miniInfoOccupations.length ? data.info.miniInfoOccupations.map(function (v, i) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
@@ -198,7 +198,7 @@ var Preview = (_temp2 = _class = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray125 = data.introduces.tags.length ? data.introduces.tags.map(function (v, i) {
+      var loopArray129 = data.introduces.tags.length ? data.introduces.tags.map(function (v, i) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
@@ -208,7 +208,7 @@ var Preview = (_temp2 = _class = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray126 = data.project.length ? project.map(function (item, i) {
+      var loopArray130 = data.project.length ? project.map(function (item, i) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
@@ -229,7 +229,7 @@ var Preview = (_temp2 = _class = function (_Taro$Component) {
           $original: item.$original
         };
       }) : [];
-      var loopArray127 = data.certificates.length ? skillbooksone.map(function (item, _anonIdx) {
+      var loopArray131 = data.certificates.length ? skillbooksone.map(function (item, _anonIdx) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
@@ -250,10 +250,10 @@ var Preview = (_temp2 = _class = function (_Taro$Component) {
       }) : [];
       Object.assign(this.__state, {
         data: data,
-        loopArray124: loopArray124,
-        loopArray125: loopArray125,
-        loopArray126: loopArray126,
-        loopArray127: loopArray127,
+        loopArray128: loopArray128,
+        loopArray129: loopArray129,
+        loopArray130: loopArray130,
+        loopArray131: loopArray131,
         IMGCDNURL: _index2.IMGCDNURL,
         checkpan: checkpan,
         checkone: checkone,

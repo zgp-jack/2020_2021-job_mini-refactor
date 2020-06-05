@@ -64,7 +64,7 @@ var ResumeDetail = (_temp2 = _class = function (_Taro$Component) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ResumeDetail.__proto__ || Object.getPrototypeOf(ResumeDetail)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
       navigationBarTitleText: '找活名片'
-    }, _this.$usedState = ["data", "loopArray142", "loopArray144", "loopArray145", "$compid__120", "IMGCDNURL", "examine", "onoff", "praise", "collect", "shownewtips", "complaintModal", "textarea", "phone"], _this.customComponents = ["CollectionRecruitList"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["data", "loopArray141", "loopArray143", "loopArray144", "$compid__120", "IMGCDNURL", "examine", "onoff", "praise", "collect", "shownewtips", "complaintModal", "textarea", "phone"], _this.customComponents = ["CollectionRecruitList"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(ResumeDetail, [{
@@ -327,7 +327,7 @@ var ResumeDetail = (_temp2 = _class = function (_Taro$Component) {
         return handleSubmit();
       };
 
-      var loopArray142 = data.info.occupations.length ? data.info.occupations.map(function (v, i) {
+      var loopArray141 = data.info.occupations.length ? data.info.occupations.map(function (v, i) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
@@ -337,7 +337,7 @@ var ResumeDetail = (_temp2 = _class = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray144 = data.project.length ? data.project[0].image.map(function (v, i) {
+      var loopArray143 = data.project.length ? data.project[0].image.map(function (v, i) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
@@ -347,7 +347,7 @@ var ResumeDetail = (_temp2 = _class = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray145 = data.certificates.length ? data.certificates[0].image.map(function (val, i) {
+      var loopArray144 = data.certificates.length ? data.certificates[0].image.map(function (val, i) {
         val = {
           $original: (0, _taroWeapp.internal_get_original)(val)
         };
@@ -363,9 +363,9 @@ var ResumeDetail = (_temp2 = _class = function (_Taro$Component) {
       }, $compid__120, $prevCompid__120);
       Object.assign(this.__state, {
         data: data,
-        loopArray142: loopArray142,
+        loopArray141: loopArray141,
+        loopArray143: loopArray143,
         loopArray144: loopArray144,
-        loopArray145: loopArray145,
         $compid__120: $compid__120,
         IMGCDNURL: _index2.IMGCDNURL,
         examine: examine,

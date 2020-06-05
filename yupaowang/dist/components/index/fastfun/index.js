@@ -52,7 +52,7 @@ var Fastfun = (_temp2 = _class = function (_Taro$Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Fastfun.__proto__ || Object.getPrototypeOf(Fastfun)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray107", "Config"], _this.anonymousFunc0Map = {}, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Fastfun.__proto__ || Object.getPrototypeOf(Fastfun)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray109", "Config"], _this.anonymousFunc0Map = {}, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Fastfun, [{
@@ -79,13 +79,13 @@ var Fastfun = (_temp2 = _class = function (_Taro$Component) {
           url: url
         });
       };
-      var loopArray107 = _config2.default.map(function (item, index) {
+      var loopArray109 = _config2.default.map(function (item, index) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
         var $loopState__temp2 = index + index;
 
-        var _$indexKey = "baczz" + index;
+        var _$indexKey = "baezz" + index;
 
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return userRouteJump(item.$original.url);
@@ -98,7 +98,7 @@ var Fastfun = (_temp2 = _class = function (_Taro$Component) {
         };
       });
       Object.assign(this.__state, {
-        loopArray107: loopArray107,
+        loopArray109: loopArray109,
         Config: _config2.default
       });
       return this.__state;

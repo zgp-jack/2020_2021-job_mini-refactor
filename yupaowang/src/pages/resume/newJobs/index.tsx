@@ -707,7 +707,7 @@ export default function NewJob() {
           <View className='findingnamemobile'>
             <Image className='findingnamecardthree-image' src={`${IMGCDNURL}lpy/jichu.png`} />
           </View>
-          <View className="findingnamemobileone">
+            <View className="findingnamemobileone" onClick={() => userRouteJump(`/pages/topping/index?rec=1`)}>
             <Text>基础信息</Text>
           </View>
         </View>

@@ -3,7 +3,7 @@
         <view class="recruitTopping-header">请选择置顶范围（省）：</view>
         <view class="recruitTopping-content">
             <block wx:if="{{are.Item}}">
-                <view class="{{v.$original.click ? 'recruitTopping-content-list-click' : 'recruitTopping-content-list'}}" wx:key="id" bindtap="anonymousFunc0" wx:for="{{loopArray1065}}" wx:for-item="v" wx:for-index="__index0" data-e-tap-so="this" data-e-tap-a-a="{{v._$indexKey}}">{{v.$original.name}}</view>
+                <view class="{{v.$original.click ? 'recruitTopping-content-list-click' : 'recruitTopping-content-list'}}" wx:key="id" bindtap="anonymousFunc0" wx:for="{{loopArray82}}" wx:for-item="v" wx:for-index="__index0" data-e-tap-so="this" data-e-tap-a-a="{{v._$indexKey}}">{{v.$original.name}}</view>
             </block>
         </view>
         <view class="recruitTopping-footer">

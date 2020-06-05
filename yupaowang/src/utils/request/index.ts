@@ -986,3 +986,12 @@ export function resumesEditImgAction(data): Promise<Inter.Result> {
     data,
   })
 }
+//找活置顶配置
+export function resumesTopConfigV2Action(data): Promise<Inter.resumesTopConfig> {
+  return doRequestAction({
+    url: api.resumesTopConfigV2Url,
+    method: 'POST',
+    failToast: true,
+    data,
+  })
+}
