@@ -177,7 +177,7 @@ export default function usePublishViewInfo(InitParams: InitRecruitView){
       Msg('请选择您的详细地址!')
       return
     }
-    if (!isVaildVal(data.user_name, 3)) {
+    if (!isVaildVal(data.user_name, 2)) {
       Msg('请正确输入2~6字中文姓名!')
       return
     }

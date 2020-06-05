@@ -25,11 +25,13 @@
     "dev:rn": "npm run build:rn -- --watch",
     "dev:qq": "npm run build:qq -- --watch",
     "dev:quickapp": "npm run build:quickapp -- --watch",
-    "jizhao": "npm run build:weapp --env.mini=jizhao -- --watch",
-    "yupao": "npm run build:weapp --env.mini=yupao -- --watch",
-    "gdzg": "npm run build:weapp --env.mini=gdzg -- --watch",
-    "hangong": "npm run build:weapp --env.mini=hangong -- --watch",
-    "zhuangxiu": "npm run build:weapp --env.mini=zhuangxiu -- --watch"
+    "dev": "npm run build:weapp jizhao -- --watch",
+    "build": "taro build jizhao --type weapp ",
+    "jizhao": "npm run build:weapp jizhao -- --watch",
+    "yupao": "npm run build:weapp yupao -- --watch",
+    "gdzg": "npm run build:weapp gdzg -- --watch",
+    "hangong": "npm run build:weapp hangong -- --watch",
+    "zhuangxiu": "npm run build:weapp zhuangxiu -- --watch"
   },
   "author": "",
   "license": "MIT",
