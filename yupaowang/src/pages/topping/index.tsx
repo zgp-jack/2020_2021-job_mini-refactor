@@ -1,6 +1,6 @@
-import Taro, { Config, useEffect, useState, createContext,useRouter } from '@tarojs/taro'
+import Taro, { Config, useEffect, useState, createContext,useRouter, useContext } from '@tarojs/taro'
 import { View, Picker, Text, Image, Input } from '@tarojs/components'
-import { jobTopConfigAction, jobDoTopAction, jobGetTopAreasAction, jobChangeTopAreasAction, resumesTopConfigV2Action, resumesDoTopAction } from '../../utils/request/index'
+import { jobTopConfigAction, jobDoTopAction, jobGetTopAreasAction, jobChangeTopAreasAction, resumesTopConfigV2Action, resumesDoTopAction, resumesDoTopV2Action, resumesUpdateTopResumeAction } from '../../utils/request/index'
 import { SERVERPHONE, IMGCDNURL  } from '../../config'
 import { UserInfo } from '../../config/store'
 import './index.scss'
@@ -9,8 +9,8 @@ import Msg from '../../utils/msg'
 interface Distruction{
   AreParams: ParamsType,
   setAreParams: (city: areDataChildrenType[], province: areDataChildrenType[], whole: areDataChildrenType[]) => void,
-  provinceParams: areDataChildrenType[],
-  setProvinceParams: (province: areDataChildrenType[]) => void,
+  provinceParams?: areDataChildrenType[],
+  setProvinceParams?: (province: areDataChildrenType[]) => void,
 }
 interface ParamsType {
   city: areDataChildrenType[],
@@ -42,14 +42,22 @@ interface User {
 interface BasicsType{
   max_number:number,
   province_integral:number,
-  max_top_days:number
+  max_top_days:number,
+  max_city: number,
+  max_province: number,
 }
 
-export const context = createContext<Distruction>({} as Distruction)
+export const contextItem = createContext<Distruction>({} as Distruction)
 
 export default function Topping() {
+  // console.log(context,'context');
+  // 获取找活名片的数据
+  //console.log(context,'xxx')
+  // const { resumeTop } = useContext(context)
+  // console.log(resumeTop)
+  // console.log(resumeTop);
   const router: Taro.RouterInfo = useRouter();
-  let { id,type,rec } = router.params;
+  let { id, type, rec, areaData, endTimes, endTimeStr } = router.params;
   // 获取userInfo
   let userInfo: User = Taro.getStorageSync(UserInfo)
   const [data, setData] = useState<DataType>({
@@ -94,28 +102,32 @@ export default function Topping() {
     max_number: 0,
     province_integral: 0,
     max_top_days:0,
+    max_city:0,
+    max_province:0,
   })
   // 修改超过最大就显示消耗积分
   useEffect(()=>{
     if(type){
-      const val = {
-        job_id:id,
-        time: userInfo.tokenTime
-      }
-      jobGetTopAreasAction(val).then(res=>{
-        if(res.errcode === 'ok'){
-          setParams({city:res.data.top_city,province:res.data.top_province,whole:res.data.top_country})
-          setEndTime(res.data.end_time_string)
-          setEnd(res.data.end_time)
-          setMaxNum(res.data.max_price)
-        }else{
-          Taro.showModal({
-            title: '温馨提示',
-            content: res.errmsg,
-            showCancel: false,
-          })
+      if(!rec){
+        const val = {
+          job_id:id,
+          time: userInfo.tokenTime
         }
-      })
+        jobGetTopAreasAction(val).then(res=>{
+          if(res.errcode === 'ok'){
+            setParams({city:res.data.top_city,province:res.data.top_province,whole:res.data.top_country})
+            setEndTime(res.data.end_time_string)
+            setEnd(res.data.end_time)
+            setMaxNum(res.data.max_price)
+          }else{
+            Taro.showModal({
+              title: '温馨提示',
+              content: res.errmsg,
+              showCancel: false,
+            })
+          }
+        })
+      }
     }
     // 找活
     if(rec){
@@ -124,14 +136,45 @@ export default function Topping() {
       }
       resumesTopConfigV2Action(params).then(res=>{
         if (res.errcode === 'ok') {
-        console.log(res);
         setData({top_rules:res.data.top_rules})
         let array: string[] = []
         for (let i = 0; i < res.data.max_top_days; i++) {
           array.push(i + 1 + "天")
         }
+        if(type){
+          if (areaData){
+            const areList = JSON.parse(areaData);
+            let city:any=[];
+            let province:any=[];
+            let whole:any=[];
+            let recDay: any = Math.ceil((parseInt(endTimes) - (new Date().getTime()/1000)) / 86400);
+            let maxPrice = 0;
+            areList.map((v)=>{
+              if (v.pid === '1'){
+                city.push(v);
+              }else if(v.pid === '0'){
+                whole.push(v);
+              }else{
+                province.push(v)
+              }
+            })
+            if (city || province){
+              maxPrice = (city.length * 20 + province.length * 20) * recDay;
+            } else if (whole){
+              maxPrice = recDay * res.data.country_integral
+            }
+            setParams({ city, province, whole})
+            setEndTime(endTimeStr)
+            setEnd(parseInt(endTimes))
+            setMaxNum(maxPrice)
+          }
+          // console.log(resumeTop,'resumeTop');
+        }
         setList(array)
-          setBasics({ province_integral: res.data.province_integral, max_number: res.data.max_number, max_top_days:res.data.max_top_days})
+        setCity({ max_city: res.data.max_city, max_province: res.data.max_province })
+        setBasics({ province_integral: res.data.province_integral, max_number: res.data.max_number, max_top_days:res.data.max_top_days,
+          max_province: res.data.max_province, max_city: res.data.max_city
+        })
       }else{
           Taro.showModal({
             title: '温馨提示',
@@ -181,7 +224,6 @@ export default function Topping() {
   const handleClick = (e:any)=>{
     setDay(list[e.detail.value])
     if(type){
-      console.log('dsadsadasdaddsadasdsad')
       // 增加时间 新增天数*新的单价
       // 修改地区 单价比原单价大，差价*天数，
       // 时间和城市都改变了 新单价大于原单价 ：新价-旧价*剩余天数+新价格*新增天数 新单价小于原单价：旧价格*新增天数
@@ -195,7 +237,12 @@ export default function Topping() {
       // 获取旧价格
       const oldPrice = maxNum;
       // 获取价格
-      const newPrice = params.whole.length ? 500 * 1 : (params.city.length * 10 + params.province.length * 20) * 1;
+      let newPrice;
+      if(rec){
+        newPrice = params.whole.length ? 500 * 1 : (params.city.length * 20 + params.province.length * 20) * 1;
+      }else{
+        newPrice = params.whole.length ? 500 * 1 : (params.city.length * 10 + params.province.length * 20) * 1;
+      }
       // const newPrice = (params.city.length * 10 + params.province.length * 20) * 1;
       // 时间差
       let remDay: any = (end - new Date().getTime()/1000) / 86400;
@@ -206,11 +253,17 @@ export default function Topping() {
         money = newPrice * (parseInt(e.detail.value) + 1);
       }else{
         if (newPrice - oldPrice > 0) {
-          money = Math.round((newPrice - oldPrice) * remDay + newPrice * (parseInt(e.detail.value) + 1))
+          if(rec){
+            money = Math.round((newPrice - oldPrice) * remDay + ((params.city.length * 20 + params.province.length * 20) * (parseInt(e.detail.value) + 1)))
+          }else{
+            console.log((newPrice - oldPrice) * remDay);
+            money = Math.round((newPrice - oldPrice) * remDay + newPrice * (parseInt(e.detail.value) + 1))
+          }
         } else {
           money = oldPrice * (parseInt(e.detail.value) + 1)
         }
       }
+      console.log(money,'xdsadasda')
       setNum(money);
     }else{
       if(params){
@@ -218,7 +271,11 @@ export default function Topping() {
         if(params.whole.length){
           numData = 500 * (parseInt(e.detail.value) + 1);
         }else{
-          numData = (params.city.length * 10 + params.province.length * 20) * (parseInt(e.detail.value)+1);
+          if(rec){
+            numData = (params.city.length * 20 + params.province.length * 20) * (parseInt(e.detail.value)+1);
+          }else{
+            numData = (params.city.length * 10 + params.province.length * 20) * (parseInt(e.detail.value) + 1);
+          }
         }
         setNum(numData);
       }
@@ -244,7 +301,6 @@ export default function Topping() {
       })
       return
     }
-    console.log(country_ids.toString())
     const detail = {
       is_country: country_ids.toString(),
       mid: userInfo.userId,
@@ -255,7 +311,7 @@ export default function Topping() {
       time: userInfo.tokenTime,
     }
     const editDetail = {
-      is_country: country_ids.toString(),
+      is_country: params.whole.length?1:0,
       mid: userInfo.userId,
       province_ids: province_ids.toString(),
       city_ids: city_ids.toString(),
@@ -264,79 +320,158 @@ export default function Topping() {
       time: userInfo.tokenTime,
       update_integral: num,
     }
+    // console.log(321312321);
+    // console.log(editDetail,'editDetail');
+    // return
     if(type){
-      jobChangeTopAreasAction(editDetail).then(res=>{
-        if(res.errcode === 'ok'){
-          Taro.showModal({
-            title: '温馨提示',
-            content: res.errmsg,
-            showCancel: false,
-            success: () => {
-              Taro.navigateBack({
-                delta: 1
-              })
-            }
-          })
-          return
-        } else if (res.errcode === 'get_integral'){
-          Taro.showModal({
-            title: '温馨提示',
-            content: res.errmsg,
-            showCancel: true,
-            success(res) {
-              if (res.confirm == true) {
-                Taro.navigateTo({
-                  // 前往积分页面
-                  url: `/pages/getintegral/index`,
-                })
-              }
-            }
-          })
-          return
-        } else if (res.errcode === 'auth_forbid'){
-          Taro.showModal({
-            title: '温馨提示',
-            content: res.errmsg,
-            cancelText: '取消',
-            confirmText: '去实名',
-            success(res) {
-              if (res.cancel) {
+      if(rec){
+        console.log(32312);
+        resumesUpdateTopResumeAction(editDetail).then(res=>{
+          if (res.errcode === 'ok') {
+            Taro.showModal({
+              title: '温馨提示',
+              content: res.errmsg,
+              showCancel: false,
+              success: () => {
                 Taro.navigateBack({
                   delta: 1
                 })
-              } else if (res.confirm) {
-                let backtwo = "backtwo"
-                Taro.redirectTo({
-                  url: `/pages/realname/index?backtwo=${backtwo}`
+              }
+            })
+            return
+          } else if (res.errcode === 'get_integral') {
+            Taro.showModal({
+              title: '温馨提示',
+              content: res.errmsg,
+              showCancel: true,
+              success(res) {
+                if (res.confirm == true) {
+                  Taro.navigateTo({
+                    // 前往积分页面
+                    url: `/pages/getintegral/index`,
+                  })
+                }
+              }
+            })
+            return
+          } else if (res.errcode === 'auth_forbid') {
+            Taro.showModal({
+              title: '温馨提示',
+              content: res.errmsg,
+              cancelText: '取消',
+              confirmText: '去实名',
+              success(res) {
+                if (res.cancel) {
+                  Taro.navigateBack({
+                    delta: 1
+                  })
+                } else if (res.confirm) {
+                  let backtwo = "backtwo"
+                  Taro.redirectTo({
+                    url: `/pages/realname/index?backtwo=${backtwo}`
+                  })
+                }
+              }
+            })
+            return
+          } else if (res.errcode == "member_forbid") {
+            Taro.showModal({
+              title: '温馨提示',
+              content: "mydata.errmsg",
+              cancelText: "取消",
+              confirmText: "联系客服",
+              success(res) {
+                if (res.confirm) {
+                  let tel = SERVERPHONE;
+                  Taro.makePhoneCall({
+                    phoneNumber: tel,
+                  })
+                }
+              }
+            })
+            return;
+          } else {
+            Taro.showToast({
+              title: res.errmsg,
+              icon: "none",
+              duration: 1500
+            })
+          }
+        })
+      }else{
+        jobChangeTopAreasAction(editDetail).then(res=>{
+          if(res.errcode === 'ok'){
+            Taro.showModal({
+              title: '温馨提示',
+              content: res.errmsg,
+              showCancel: false,
+              success: () => {
+                Taro.navigateBack({
+                  delta: 1
                 })
               }
-            }
-          })
-          return
-        } else if (res.errcode == "member_forbid"){
-          Taro.showModal({
-            title: '温馨提示',
-            content: "mydata.errmsg",
-            cancelText: "取消",
-            confirmText: "联系客服",
-            success(res) {
-              if (res.confirm) {
-                let tel = SERVERPHONE;
-                Taro.makePhoneCall({
-                  phoneNumber: tel,
-                })
+            })
+            return
+          } else if (res.errcode === 'get_integral'){
+            Taro.showModal({
+              title: '温馨提示',
+              content: res.errmsg,
+              showCancel: true,
+              success(res) {
+                if (res.confirm == true) {
+                  Taro.navigateTo({
+                    // 前往积分页面
+                    url: `/pages/getintegral/index`,
+                  })
+                }
               }
-            }
-          })
-          return;
-        }else{
-          Taro.showToast({
-            title: res.errmsg,
-            icon: "none",
-            duration: 1500
-          })
-        }
-      })
+            })
+            return
+          } else if (res.errcode === 'auth_forbid'){
+            Taro.showModal({
+              title: '温馨提示',
+              content: res.errmsg,
+              cancelText: '取消',
+              confirmText: '去实名',
+              success(res) {
+                if (res.cancel) {
+                  Taro.navigateBack({
+                    delta: 1
+                  })
+                } else if (res.confirm) {
+                  let backtwo = "backtwo"
+                  Taro.redirectTo({
+                    url: `/pages/realname/index?backtwo=${backtwo}`
+                  })
+                }
+              }
+            })
+            return
+          } else if (res.errcode == "member_forbid"){
+            Taro.showModal({
+              title: '温馨提示',
+              content: "mydata.errmsg",
+              cancelText: "取消",
+              confirmText: "联系客服",
+              success(res) {
+                if (res.confirm) {
+                  let tel = SERVERPHONE;
+                  Taro.makePhoneCall({
+                    phoneNumber: tel,
+                  })
+                }
+              }
+            })
+            return;
+          }else{
+            Taro.showToast({
+              title: res.errmsg,
+              icon: "none",
+              duration: 1500
+            })
+          }
+        })
+      }
     }else{
       if (!province_ids || !city_ids) {
         Taro.showModal({
@@ -354,20 +489,37 @@ export default function Topping() {
         })
         return
       }
-      jobDoTopAction(detail).then(res=>{
-        if (res.errcode === 'ok'){
-          Taro.showModal({
-            title: '温馨提示',
-            content: res.errmsg,
-            showCancel: false,
-            success: () => {
-              Taro.navigateBack({
-                delta: 1
-              })
-            }
-          })
-        }
-      })
+      if (rec) {
+        resumesDoTopV2Action(detail).then(res => {
+          if (res.errcode === 'ok') {
+            Taro.showModal({
+              title: '温馨提示',
+              content: res.errmsg,
+              showCancel: false,
+              success: () => {
+                Taro.navigateBack({
+                  delta: 1
+                })
+              }
+            })
+          }
+        })
+      }else{
+        jobDoTopAction(detail).then(res=>{
+          if (res.errcode === 'ok'){
+            Taro.showModal({
+              title: '温馨提示',
+              content: res.errmsg,
+              showCancel: false,
+              success: () => {
+                Taro.navigateBack({
+                  delta: 1
+                })
+              }
+            })
+          }
+        })
+      }
     }
   }
   const handleAddJump = ()=>{
@@ -388,14 +540,26 @@ export default function Topping() {
     //     setNum(numData);
     //   }
     // }else{
+    // console.log(city.length,'cityleng')
+    // console.log(province.length,'provincelenken')
     if (city || province || whole){
       if(type){
         // 获取旧价格
         const oldPrice = maxNum;
         // 获取价格
-        const newPrice = whole.length ? 500 * 1 : (city.length * 10 + province.length * 20) * 1;
         // 时间差
-        let remDay: any = (end - new Date().getTime()/1000) / 86400;
+        let remDay: any = (end - new Date().getTime() / 1000) / 86400;
+        let newPrice;
+        if(rec){
+          newPrice = whole.length ? 500 * 1 : (city.length * 20 + province.length * 20) * 1;
+        }else{
+         newPrice = whole.length ? 500 * 1 : (city.length * 10 + province.length * 20) * 1;
+        }
+        console.log(newPrice,'最新价格')
+        // console.log(end,'end');
+        // console.log(Math.round(new Date().getTime() / 1000));
+        // console.log((end - (Math.round(new Date().getTime() / 1000))) / 86400)
+        console.log(paramsDay,'paramsDay')
         // 修改区域
         const changeCity = true; //修改区域
         // 只改变时间
@@ -407,12 +571,32 @@ export default function Topping() {
         } else if (paramsDay === 0 && changeCity) {
           // 剩余天数
           if (newPrice > oldPrice) {
-            money = Math.round((newPrice - oldPrice) * remDay);
+            if(rec){
+              // 新的大于旧的金额
+              // 新的减去旧的再*天数
+              // money = Math.round((newPrice - oldPrice));
+              // console.log(money,'moneymoneymoney')
+              // console.log(remDay,'xxxx')
+              // money = newPrice - oldPrice - moneys;
+              money = Math.round((newPrice - oldPrice) * remDay);
+            }else{
+              money = Math.round((newPrice - oldPrice) * remDay);
+            }
+            console.log(remDay,'newPrice > oldPrice')
           }
         } else {
           // 时间变了，城市变了
           if (newPrice - oldPrice > 0) {
-            money = Math.round((newPrice - oldPrice) * remDay + newPrice * paramsDay)
+            // console.log(newPrice - oldPrice,'newPrice - oldPrice');
+            // console.log(remDay,'remDay');
+            // console.log(newPrice * paramsDay,'newPrice * paramsDay')
+            if(rec){
+              money = Math.round(newPrice - oldPrice + ((city.length * 20 + province.length * 20) * paramsDay) )
+              console.log(money,'价格是')
+              // money = Math.round(newPrice - oldPrice + oldPrice * paramsDay + newPrice * paramsDay)
+            }else{
+              money = Math.round((newPrice - oldPrice) * remDay + newPrice * paramsDay)
+            }
           } else {
             money = oldPrice * paramsDay
           }
@@ -423,13 +607,21 @@ export default function Topping() {
         } else {
           num = num;
         }
+        console.log(oldPrice,'oldPrice');
+        console.log(newPrice,'newPrice');
+        console.log(remDay,'remDay')
+        console.log(money,'money')
         setNum(money);
       }else{
         let numData = 0;
         if(whole.length){
           numData = 500 * (paramsDay)
         }else{
-          numData = (city.length * 10 + province.length * 20) * (paramsDay)
+          if(rec){
+            numData = (city.length * 20 + province.length * 20) * (paramsDay)
+          }else{
+            numData = (city.length * 10 + province.length * 20) * (paramsDay)
+          }
         }
         setNum(numData);
       }
@@ -439,8 +631,8 @@ export default function Topping() {
   const value: Distruction = {
     AreParams: params,
     setAreParams: (city: areDataChildrenType[], province: areDataChildrenType[], whole: areDataChildrenType[], ) => transferFun({ city, province, whole }),
-    provinceParams: province,
-    setProvinceParams: (province: areDataChildrenType[]) => modifyFun(province)
+    // provinceParams: province,
+    // setProvinceParams: (province: areDataChildrenType[]) => modifyFun(province)
   }
   const modifyFun = (province)=>{
     console.log(province,'xxxx')
@@ -462,12 +654,25 @@ export default function Topping() {
   }
   // 删除
   const handleDel = (v)=>{
+    console.log(v);
+    if(rec){
+      if (v.pid === '1') {
+        params.city.map((val, i) => {
+          if (val.id === v.id) {
+            params.city.splice(i, 1)
+          }
+        })
+        console.log(params, 'xxxx');
+        setParams({ city: params.city, province: params.province, whole: params.whole })
+      }
+    }
     if(v.pid === '1'){
       params.province.map((val,i)=>{
         if(val.id === v.id){
           params.province.splice(i,1)
         }
       })
+      console.log(params,'xxxx');
       setParams({ city:params.city,province:params.province,whole:params.whole})
     }else if(v.pid === '0'){
       params.whole.map((val, i) => {
@@ -489,7 +694,13 @@ export default function Topping() {
     // 获取旧价格
     const oldPrice = maxNum;
     // 获取价格
-    const newPrice = params.whole.length ? 500 * 1 : (params.city.length * 10 + params.province.length * 20) * 1;
+    let newPrice;
+    if(rec){
+      newPrice = params.whole.length ? 500 * 1 : (params.city.length * 20 + params.province.length * 20) * 1;
+    }else{
+      newPrice = params.whole.length ? 500 * 1 : (params.city.length * 10 + params.province.length * 20) * 1;
+    }
+    console.log(newPrice,'删除价格')
     // const newPrice = (params.city.length * 10 + params.province.length * 20) * 1;
     // 时间差
     let remDay: any = (end - new Date().getTime()/1000) / 86400;
@@ -563,7 +774,7 @@ export default function Topping() {
     if(!rec){
       userRouteJump(`/pages/topping/distruction/index?max_city=${city.max_city}&max_province=${city.max_province}`)
     }else{
-      userRouteJump(`/pages/topping/recruit/index?max_number=${basics.max_number}`)
+      userRouteJump(`/pages/topping/distruction/index?max_city=${basics.max_city}&max_province=${basics.max_province}`)
     }
   }
   const handleRecDay = (e:any)=>{
@@ -606,7 +817,11 @@ export default function Topping() {
   }
   // 找活置顶
   const handleRecTopping = ()=>{
-    if (!province.length){
+    const province_ids = params.province.map((v) => v.id);
+    const city_ids = params.city.map((v) => v.id);
+    const country_ids = params.whole.map((v) => v.id);
+    const provinces = [...province_ids, ...city_ids, ...country_ids];
+    if (!province_ids.length && !city_ids.length && !country_ids.length) {
       Taro.showModal({
         title: '温馨提示',
         content: '请选择您的置顶城市',
@@ -626,74 +841,85 @@ export default function Topping() {
       Msg(`最多可置顶${basics.max_top_days}天！`);
       return;
     }
-    const provinces = (province.map(v=>v.id)).join(',');
-    console.log(provinces,'xxx')
-    let params={
-      days: parseInt(recDay),
+    // const provinces = (province.map(v=>v.id)).join(',');
+    // const citys = (city.map(v => v.id)).join(',');
+    // console.log(provinces,'xxx')
+    // let params={
+    //   days: parseInt(recDay),
+    //   citys: 0,
+    //   provinces,
+    // }
+    let details = {
+      days: paramsDay,
       citys: 0,
       provinces,
     }
-    resumesDoTopAction(params).then(res=>{
-      if(res.errcode === 'ok'){
-        Taro.showModal({
-          title: '温馨提示',
-          content: res.errmsg,
-          showCancel: false,
-          success() {
-            Taro.navigateBack({
-              delta: 1
-            })
-          }
-        })
-      } else if (res.errcode ==='resume_null'){
-        Taro.showModal({
-          title: '温馨提示',
-          content: res.errmsg,
-          // showCancel: false,
-          success() {
-            Taro.navigateTo({
-              url: `pages/resume/newJobs/index`,
-            })
-          }
-        })
-        return
-        //获取积分
-      } else if (res.errcode === 'get_integral'){
-        Taro.showModal({
-          title: '温馨提示',
-          content: res.errmsg,
-          success() {
-            Taro.navigateTo({
-              url: `/pages/getintegral/index`,
-            })
-          }
-        })
-        return
-      }else{
-        Taro.showModal({
-          title: '温馨提示',
-          content: res.errmsg,
-          showCancel: false,
-          success() {
-            Taro.navigateBack({
-              delta: 1
-            })
-          }
-        })
-        return
-      }
-    })
+    // console.log(details,'111s')
+    // return;
+    if(type){
+
+    }else{
+      resumesDoTopAction(details).then(res=>{
+        if(res.errcode === 'ok'){
+          Taro.showModal({
+            title: '温馨提示',
+            content: res.errmsg,
+            showCancel: false,
+            success() {
+              Taro.navigateBack({
+                delta: 1
+              })
+            }
+          })
+        } else if (res.errcode ==='resume_null'){
+          Taro.showModal({
+            title: '温馨提示',
+            content: res.errmsg,
+            // showCancel: false,
+            success() {
+              Taro.navigateTo({
+                url: `pages/resume/newJobs/index`,
+              })
+            }
+          })
+          return
+          //获取积分
+        } else if (res.errcode === 'get_integral'){
+          Taro.showModal({
+            title: '温馨提示',
+            content: res.errmsg,
+            success() {
+              Taro.navigateTo({
+                url: `/pages/getintegral/index`,
+              })
+            }
+          })
+          return
+        }else{
+          Taro.showModal({
+            title: '温馨提示',
+            content: res.errmsg,
+            showCancel: false,
+            success() {
+              Taro.navigateBack({
+                delta: 1
+              })
+            }
+          })
+          return
+        }
+      })
+    }
   }
-  console.log(province,'province');
-  console.log(province.length,'provlesdas')
+  console.log(paramsDay,'aramsDayaaas')
   return(
-    <context.Provider value={value}>
+    <contextItem.Provider value={value}>
     <View className='topping'>
       <View className='topping-title'>当前选择置顶范围：</View>
       <View className='topping-list-box'>
         {/* 找活 */}
         {province && province.map(v=>(
-            <View className='topping-list' onClick={() => handleRecDel(v)}>
+          <View className='topping-list' onClick={() => handleDel(v)}>
               {v.name}
               <Image src={`${IMGCDNURL}lpy/delete.png`} className='topping-list-image' />
             </View>
@@ -729,16 +955,25 @@ export default function Topping() {
         </View>:
         // 找活
         <View>
-        {!province.length && 
-        <View className='topping-change-btnBox' onClick={handleJump}><View className='topping-change-btnBox-btn'>点击选择置顶范围></View></View>
-        }
-        {province.length && province.length<basics.max_number &&
-          <View onClick={handleJump} className='topping-list-add'>添加更多</View>
-        }
-        </View>}
+          {((params.city.length || params.province.length) && (params.city.length < basics.max_city || params.province.length < basics.max_province)) &&
+            <View onClick={handleAddJump} className='topping-list-add'>添加更多</View>
+          }
+          {!params.city.length && !params.province.length && !params.whole.length &&
+            <View className='topping-change-btnBox' onClick={handleJump}><View className='topping-change-btnBox-btn'>点击选择置顶范围></View></View>
+          }
+        </View>
+        // <View>
+        // {!province.length && 
+        // <View className='topping-change-btnBox' onClick={handleJump}><View className='topping-change-btnBox-btn'>点击选择置顶范围></View></View>
+        // }
+        // {province.length && province.length<basics.max_number &&
+        //   <View onClick={handleJump} className='topping-list-add'>添加更多</View>
+        // }
+        // </View>
+      }
       </View>
       <View className='topping-day'>请选择置顶天数：</View>
-        {!rec ?<View>
+        {/* {!rec ?<View> */}
         {type ? <View className='topping-edit-list'>
           <View className='topping-edit-list-box'>
             <View className='topping-edit-list-box-time'>当前到期时间: {endTime}</View>
@@ -767,8 +1002,9 @@ export default function Topping() {
         </View>
         <View className='topping-input-box-list'>消耗积分:<View className='topping-input-box-list-num'>{num}分</View></View>
       </View>
-    }</View>:
-    //找活
+    }
+    {/* </View>: */}
+    {/* //找活
     <View>
       <View className='topping-input-box'>
         <View className='topping-input-box-list'>置顶天数:
@@ -776,19 +1012,19 @@ export default function Topping() {
         </View>
         <View className='topping-input-box-list'>消耗积分:<View className='topping-input-box-list-num'>{num}分</View></View>
       </View>
-    </View>}
-        <View className='topping-confirm-btnBox'><View className='topping-confirm-btnBox-btn' onClick={rec ? handleRecTopping : handleTopping }>确定置顶</View></View>
+    </View>} */}
+        <View className='topping-confirm-btnBox'><View className='topping-confirm-btnBox-btn' onClick={handleTopping }>确定置顶</View></View>
       <View>
         <View className='topping-toprule'>置顶规则</View>
         {data.top_rules.map((v,i)=>(
           <View key={i + i} className='topping-toprule-list'>{v}</View>
         ))}
-        {!rec && 
+        {/* {!rec &&  */}
           <View className='topping-toprule-phone' onClick={() => { Taro.makePhoneCall({ phoneNumber: SERVERPHONE }) }}>{SERVERPHONE}</View>
-        }
+        {/* } */}
       </View>
     </View>
-    </context.Provider>
+    </contextItem.Provider>
   )
 }
 

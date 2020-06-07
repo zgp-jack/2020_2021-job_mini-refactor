@@ -1,4 +1,4 @@
-import Taro, { useState, useEffect, Config, useDidShow, useContext } from '@tarojs/taro'
+import Taro, { useState, useEffect, Config, createContext, useContext } from '@tarojs/taro'
 import { View, Form, Text, Picker, Input, Textarea, Button } from '@tarojs/components'
 import { ProfessionRecruitData } from '../../../components/profession/index.d'
 import { addResumeAction, getPublishRecruitView, getUserAuthInfo, checkAdcodeAction} from '../../../utils/request/index'
@@ -10,6 +10,8 @@ import WordsTotal from '../../../components/wordstotal'
 import { MAPKEY } from '../../../config'
 import { userAuthLoction } from '../../../utils/helper'
 import { context } from '../../../pages/resume/newJobs'
+import { UserLocationPromiss, AREABEIJING } from '../../../models/area'
+import { UserLastPublishArea, UserLocationCity } from '../../../config/store'
 import useCode from '../../../hooks/code'
 import { isPhone } from '../../../utils/v'
 import './index.scss'
@@ -36,10 +38,36 @@ export interface InitRecruitView {
   infoId: string
 }
 
+// 发布招工 最后发布地区
+export interface UserLastPublishRecruitArea {
+  location: string,
+  adcode: string,
+  title: string,
+  info: string
+}
+// context类型
+export interface Injected {
+  area: string, // 城市名称
+  setArea: (city: string) => void, //设置城市名称
+  setAreaInfo?: (item: UserLastPublishRecruitArea) => void, // 用户点击的小地址信息
+  setPublishArea?: (val: string) => void //设置最后一次点击 城市的名字
+}
+
+export const contextItem = createContext<Injected>({} as Injected)
 export default function BasicsPage() {
-  // const { basicsCity } = useContext(context);
+  const { area } = useContext(context);
   // 验证码
   const { text, userGetCode } = useCode()
+  // 当前显示城市
+  const [areas, setArea] = useState<string>(AREABEIJING.name)
+  // 选择详细地址信息
+  const [areaInfo, setAreaInfo] = useState<UserLastPublishRecruitArea>({
+    title: '',
+    adcode: '',
+    location: '',
+    info: ''
+  })
+
   const sexList = ['男', '女'];
   const [nationCurrent, setNationCurrent] =useState<string[]>([])
   const [allNationCurrent,setAllNationCurrent]= useState<any[]>([])
@@ -75,6 +103,25 @@ export default function BasicsPage() {
   // })
   // 获取数据
   useEffect(()=>{
+    // 设置城市
+    let userLoctionCity: UserLocationPromiss = Taro.getStorageSync(UserLocationCity)
+    if (userLoctionCity) {
+      setArea(userLoctionCity.city)
+    } else {
+      userAuthLoction().then(res => {
+        setArea(res.city)
+      }).then(() => {
+        setArea(AREABEIJING.name)
+      })
+    }
+    // 设置地址
+    let userLastPublishArea: UserLastPublishRecruitArea = Taro.getStorageSync(UserLastPublishArea)
+    if (userLastPublishArea) {
+      setAreaInfo(userLastPublishArea)
+    }
+    // if (area){
+    //   setArea(area)
+    // }
     // if (basicsCity){
     //   console.log(basicsCity,'basicsCitybasicsCitybasicsCity')
     //   setFormData({ ...formData, are: basicsCity,});
@@ -283,7 +330,18 @@ export default function BasicsPage() {
 
     // })
   }
+  // 需要传递的值
+  const value: Injected = {
+    area: areas,
+    setArea: (city: string) => setArea(city),
+    setAreaInfo: (item: UserLastPublishRecruitArea) => setAreaInfo(item),
+    setPublishArea: (val: string) => {
+      if (!model) return
+      setModel({ ...model, address: val })
+    }
+  }
   return (
+    <contextItem.Provider value={value}>
     <View>
       {showProfession &&
         <Profession
@@ -434,6 +492,7 @@ export default function BasicsPage() {
         <Button className='footer-btn' onClick={handleSubmit}>保存资料</Button>
       </View>
     </View>
+    </contextItem.Provider>
   )
 }
 

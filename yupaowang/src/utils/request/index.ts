@@ -995,3 +995,22 @@ export function resumesTopConfigV2Action(data): Promise<Inter.resumesTopConfig> 
     data,
   })
 }
+// 找活置顶v2
+export function resumesDoTopV2Action(data): Promise<Inter.Result> {
+  return doRequestAction({
+    url: api.resumesDoTopV2Url,
+    method: 'POST',
+    failToast: true,
+    data,
+  })
+}
+
+// 修改找活置顶
+export function resumesUpdateTopResumeAction(data): Promise<Inter.Result> {
+  return doRequestAction({
+    url: api.resumesUpdateTopResumeUrl,
+    method: 'POST',
+    failToast: true,
+    data,
+  })
+}

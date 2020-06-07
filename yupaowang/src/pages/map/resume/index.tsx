@@ -1,6 +1,6 @@
 import Taro, { useEffect, useState, useContext, Config } from '@tarojs/taro'
 import { View, Text, Image, Input } from '@tarojs/components'
-// import { context } from '../../resume/newJobs';
+import  { contextItem }  from '../../../subpackage/pages/basics';
 import { context } from '../../recruit/publish'
 import { getAllAreas, checkAdcodeValid } from '../../../utils/request'
 import { AllAreasDataItem } from '../../../utils/request/index.d'
@@ -18,7 +18,6 @@ const PI = Math.PI;  // 数学 PI 常亮
 let EARTH_RADIUS = 6378137.0; // 地球半径
 
 export default function ResumeMap() {
-
   // 城市数据
   const [areas, setAreas] = useState<AllAreasDataItem[][]>([])
 

@@ -72,7 +72,7 @@ var Feedback = (_temp2 = _class = function (_Taro$Component) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Feedback.__proto__ || Object.getPrototypeOf(Feedback)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
       navigationBarTitleText: '鱼泡网-意见反馈'
-    }, _this.$usedState = ["$compid__69", "$compid__70", "$compid__71", "$compid__72", "$compid__73", "textarea", "image", "isShow", "disabled", "text"], _this.customComponents = ["WechatNotice", "WordsTotal", "ImageView", "AtInput"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["$compid__68", "$compid__69", "$compid__70", "$compid__71", "$compid__72", "textarea", "image", "isShow", "disabled", "text"], _this.customComponents = ["WechatNotice", "WordsTotal", "ImageView", "AtInput"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Feedback, [{
@@ -91,30 +91,30 @@ var Feedback = (_temp2 = _class = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__69"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__68"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__69 = _genCompid2[0],
-          $compid__69 = _genCompid2[1];
+          $prevCompid__68 = _genCompid2[0],
+          $compid__68 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__70"),
+      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__69"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__70 = _genCompid4[0],
-          $compid__70 = _genCompid4[1];
+          $prevCompid__69 = _genCompid4[0],
+          $compid__69 = _genCompid4[1];
 
-      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__71"),
+      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__70"),
           _genCompid6 = _slicedToArray(_genCompid5, 2),
-          $prevCompid__71 = _genCompid6[0],
-          $compid__71 = _genCompid6[1];
+          $prevCompid__70 = _genCompid6[0],
+          $compid__70 = _genCompid6[1];
 
-      var _genCompid7 = (0, _taroWeapp.genCompid)(__prefix + "$compid__72"),
+      var _genCompid7 = (0, _taroWeapp.genCompid)(__prefix + "$compid__71"),
           _genCompid8 = _slicedToArray(_genCompid7, 2),
-          $prevCompid__72 = _genCompid8[0],
-          $compid__72 = _genCompid8[1];
+          $prevCompid__71 = _genCompid8[0],
+          $compid__71 = _genCompid8[1];
 
-      var _genCompid9 = (0, _taroWeapp.genCompid)(__prefix + "$compid__73"),
+      var _genCompid9 = (0, _taroWeapp.genCompid)(__prefix + "$compid__72"),
           _genCompid10 = _slicedToArray(_genCompid9, 2),
-          $prevCompid__73 = _genCompid10[0],
-          $compid__73 = _genCompid10[1];
+          $prevCompid__72 = _genCompid10[0],
+          $compid__72 = _genCompid10[1];
 
       var router = (0, _taroWeapp.useRouter)();
       var _router$params = router.params,
@@ -276,12 +276,12 @@ var Feedback = (_temp2 = _class = function (_Taro$Component) {
       this.anonymousFunc5 = handleSubmission;
       _taroWeapp.propsManager.set({
         "num": num
-      }, $compid__69, $prevCompid__69);
+      }, $compid__68, $prevCompid__68);
       image.item && _taroWeapp.propsManager.set({
         "images": image.item,
         "max": 9,
         "userUploadImg": userUploadImg
-      }, $compid__70, $prevCompid__70);
+      }, $compid__69, $prevCompid__69);
       _taroWeapp.propsManager.set({
         "name": "name",
         "title": "\u8054\u7CFB\u4EBA",
@@ -289,7 +289,7 @@ var Feedback = (_temp2 = _class = function (_Taro$Component) {
         "placeholder": "\u8BF7\u8F93\u5165\u4F60\u7684\u540D\u5B57",
         "value": name,
         "onChange": this.anonymousFunc1
-      }, $compid__71, $prevCompid__71);
+      }, $compid__70, $prevCompid__70);
       _taroWeapp.propsManager.set({
         "name": "phone",
         "title": "\u8054\u7CFB\u7535\u8BDD",
@@ -298,7 +298,7 @@ var Feedback = (_temp2 = _class = function (_Taro$Component) {
         "maxLength": 11,
         "value": uphone,
         "onChange": this.anonymousFunc2
-      }, $compid__72, $prevCompid__72);
+      }, $compid__71, $prevCompid__71);
       isShow && _taroWeapp.propsManager.set({
         "clear": true,
         "title": "\u9A8C\u8BC1\u7801",
@@ -308,13 +308,13 @@ var Feedback = (_temp2 = _class = function (_Taro$Component) {
         "name": "code",
         "value": code,
         "onChange": this.anonymousFunc3
-      }, $compid__73, $prevCompid__73);
+      }, $compid__72, $prevCompid__72);
       Object.assign(this.__state, {
+        $compid__68: $compid__68,
         $compid__69: $compid__69,
         $compid__70: $compid__70,
         $compid__71: $compid__71,
         $compid__72: $compid__72,
-        $compid__73: $compid__73,
         textarea: textarea,
         image: image,
         isShow: isShow,

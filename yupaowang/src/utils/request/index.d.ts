@@ -1033,7 +1033,8 @@ export interface ResumeTop {
   top_tips_string: string,
   top_provinces_str: ResumeTopStr[],
   start_time_str: number,
-  end_time_str: number,
+  end_time_str: string,
+  end_time:string,
 }
 export interface ResumeTopStr {
   name:string,
@@ -1186,4 +1187,8 @@ export interface resumesTopConfigData{
   max_number:number,
   max_top_days:number,
   province_integral:number,
+  max_province:number,
+  max_city:number,
+  special_ids:[],
+  country_integral:number,
 }

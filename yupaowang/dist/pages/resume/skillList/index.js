@@ -56,7 +56,7 @@ var SkillList = (_temp2 = _class = function (_Taro$Component) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SkillList.__proto__ || Object.getPrototypeOf(SkillList)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
       navigationBarTitleText: '技能证书'
-    }, _this.$usedState = ["loopArray95", "data", "IMGCDNURL", "resume_uuid"], _this.anonymousFunc0Map = {}, _this.anonymousFunc1Map = {}, _this.anonymousFunc2Map = {}, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["loopArray94", "data", "IMGCDNURL", "resume_uuid"], _this.anonymousFunc0Map = {}, _this.anonymousFunc1Map = {}, _this.anonymousFunc2Map = {}, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(SkillList, [{
@@ -120,29 +120,29 @@ var SkillList = (_temp2 = _class = function (_Taro$Component) {
           url: url
         });
       };
-      var loopArray95 = data.map(function (item, i) {
+      var loopArray94 = data.map(function (item, i) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
 
-        var _$indexKey = "jazzz" + i;
+        var _$indexKey = "iizzz" + i;
 
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return userRouteJump("/subpackage/pages/addSkill/index?type=" + i);
         };
 
-        var _$indexKey2 = "jbzzz" + i;
+        var _$indexKey2 = "ijzzz" + i;
 
         _this2.anonymousFunc1Map[_$indexKey2] = function () {
           return userRouteJump("/subpackage/pages/addSkill/index?type=" + i);
         };
 
-        var $anonymousCallee__18 = item.$original.image.map(function (v, i) {
+        var $anonymousCallee__17 = item.$original.image.map(function (v, i) {
           v = {
             $original: (0, _taroWeapp.internal_get_original)(v)
           };
           var $loopState__temp2 = i + i;
-          var _$indexKey3 = "jczzz" + i + "-" + i;
+          var _$indexKey3 = "jazzz" + i + "-" + i;
 
           _this2.anonymousFunc2Map[_$indexKey3] = function () {
             return handleImg(v.$original);
@@ -157,12 +157,12 @@ var SkillList = (_temp2 = _class = function (_Taro$Component) {
         return {
           _$indexKey: _$indexKey,
           _$indexKey2: _$indexKey2,
-          $anonymousCallee__18: $anonymousCallee__18,
+          $anonymousCallee__17: $anonymousCallee__17,
           $original: item.$original
         };
       });
       Object.assign(this.__state, {
-        loopArray95: loopArray95,
+        loopArray94: loopArray94,
         data: data,
         IMGCDNURL: _index2.IMGCDNURL,
         resume_uuid: resume_uuid

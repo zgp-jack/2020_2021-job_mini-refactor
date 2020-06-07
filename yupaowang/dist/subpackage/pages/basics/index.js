@@ -13,6 +13,9 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.contextItem = undefined;
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
@@ -32,11 +35,19 @@ var _index2 = __webpack_require__(/*! ../../../utils/msg/index */ "./src/utils/m
 
 var _index3 = _interopRequireDefault(_index2);
 
-var _index4 = __webpack_require__(/*! ../../../hooks/code/index */ "./src/hooks/code/index.ts");
+var _index4 = __webpack_require__(/*! ../../../utils/helper/index */ "./src/utils/helper/index.ts");
 
-var _index5 = _interopRequireDefault(_index4);
+var _index5 = __webpack_require__(/*! ../../../pages/resume/newJobs/index */ "./src/pages/resume/newJobs/index.tsx");
 
-var _index6 = __webpack_require__(/*! ../../../utils/v/index */ "./src/utils/v/index.ts");
+var _area = __webpack_require__(/*! ../../../models/area */ "./src/models/area.ts");
+
+var _store = __webpack_require__(/*! ../../../config/store */ "./src/config/store.ts");
+
+var _index6 = __webpack_require__(/*! ../../../hooks/code/index */ "./src/hooks/code/index.ts");
+
+var _index7 = _interopRequireDefault(_index6);
+
+var _index8 = __webpack_require__(/*! ../../../utils/v/index */ "./src/utils/v/index.ts");
 
 __webpack_require__(/*! ./index.scss */ "./src/subpackage/pages/basics/index.scss");
 
@@ -49,6 +60,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var contextItem = exports.contextItem = (0, _taroWeapp.createContext)({});
 
 var BasicsPage = (_temp2 = _class = function (_Taro$Component) {
   _inherits(BasicsPage, _Taro$Component);
@@ -95,63 +108,83 @@ var BasicsPage = (_temp2 = _class = function (_Taro$Component) {
           $prevCompid__117 = _genCompid4[0],
           $compid__117 = _genCompid4[1];
 
-      // const { basicsCity } = useContext(context);
+      var _useContext = (0, _taroWeapp.useContext)(_index5.context),
+          area = _useContext.area;
       // 验证码
 
 
-      var _useCode = (0, _index5.default)(),
+      var _useCode = (0, _index7.default)(),
           text = _useCode.text,
           userGetCode = _useCode.userGetCode;
+      // 当前显示城市
+
+
+      var _useState = (0, _taroWeapp.useState)(_area.AREABEIJING.name),
+          _useState2 = _slicedToArray(_useState, 2),
+          areas = _useState2[0],
+          _setArea = _useState2[1];
+      // 选择详细地址信息
+
+
+      var _useState3 = (0, _taroWeapp.useState)({
+        title: '',
+        adcode: '',
+        location: '',
+        info: ''
+      }),
+          _useState4 = _slicedToArray(_useState3, 2),
+          areaInfo = _useState4[0],
+          _setAreaInfo = _useState4[1];
 
       var sexList = ['男', '女'];
 
-      var _useState = (0, _taroWeapp.useState)([]),
-          _useState2 = _slicedToArray(_useState, 2),
-          nationCurrent = _useState2[0],
-          setNationCurrent = _useState2[1];
-
-      var _useState3 = (0, _taroWeapp.useState)([]),
-          _useState4 = _slicedToArray(_useState3, 2),
-          allNationCurrent = _useState4[0],
-          setAllNationCurrent = _useState4[1];
-
-      var _useState5 = (0, _taroWeapp.useState)(),
+      var _useState5 = (0, _taroWeapp.useState)([]),
           _useState6 = _slicedToArray(_useState5, 2),
-          model = _useState6[0],
-          setModel = _useState6[1];
+          nationCurrent = _useState6[0],
+          setNationCurrent = _useState6[1];
 
-      var _useState7 = (0, _taroWeapp.useState)(false),
+      var _useState7 = (0, _taroWeapp.useState)([]),
           _useState8 = _slicedToArray(_useState7, 2),
-          showProfession = _useState8[0],
-          setShowProssion = _useState8[1];
-      // 进来时的电话做验证码判断
+          allNationCurrent = _useState8[0],
+          setAllNationCurrent = _useState8[1];
 
-
-      var _useState9 = (0, _taroWeapp.useState)(''),
+      var _useState9 = (0, _taroWeapp.useState)(),
           _useState10 = _slicedToArray(_useState9, 2),
-          oldTel = _useState10[0],
-          setOldTel = _useState10[1];
+          model = _useState10[0],
+          setModel = _useState10[1];
 
-      var _useState11 = (0, _taroWeapp.useState)(0),
+      var _useState11 = (0, _taroWeapp.useState)(false),
           _useState12 = _slicedToArray(_useState11, 2),
-          num = _useState12[0],
-          setNum = _useState12[1];
-      // 省
+          showProfession = _useState12[0],
+          setShowProssion = _useState12[1];
+      // 进来时的电话做验证码判断
 
 
       var _useState13 = (0, _taroWeapp.useState)(''),
           _useState14 = _slicedToArray(_useState13, 2),
-          province = _useState14[0],
-          setProvince = _useState14[1];
+          oldTel = _useState14[0],
+          setOldTel = _useState14[1];
+
+      var _useState15 = (0, _taroWeapp.useState)(0),
+          _useState16 = _slicedToArray(_useState15, 2),
+          num = _useState16[0],
+          setNum = _useState16[1];
+      // 省
+
+
+      var _useState17 = (0, _taroWeapp.useState)(''),
+          _useState18 = _slicedToArray(_useState17, 2),
+          province = _useState18[0],
+          setProvince = _useState18[1];
       // 市
 
 
-      var _useState15 = (0, _taroWeapp.useState)(''),
-          _useState16 = _slicedToArray(_useState15, 2),
-          city = _useState16[0],
-          setCity = _useState16[1];
+      var _useState19 = (0, _taroWeapp.useState)(''),
+          _useState20 = _slicedToArray(_useState19, 2),
+          city = _useState20[0],
+          setCity = _useState20[1];
 
-      var _useState17 = (0, _taroWeapp.useState)({
+      var _useState21 = (0, _taroWeapp.useState)({
         name: '',
         sex: '',
         time: '',
@@ -167,9 +200,9 @@ var BasicsPage = (_temp2 = _class = function (_Taro$Component) {
         classifies: [],
         nationCurrentName: ''
       }),
-          _useState18 = _slicedToArray(_useState17, 2),
-          formData = _useState18[0],
-          setFormData = _useState18[1];
+          _useState22 = _slicedToArray(_useState21, 2),
+          formData = _useState22[0],
+          setFormData = _useState22[1];
       // useDidShow(() => {
       //   if (basicsCity){
       //     setFormData({ ...formData, are: basicsCity, });
@@ -179,6 +212,25 @@ var BasicsPage = (_temp2 = _class = function (_Taro$Component) {
 
 
       (0, _taroWeapp.useEffect)(function () {
+        // 设置城市
+        var userLoctionCity = _taroWeapp2.default.getStorageSync(_store.UserLocationCity);
+        if (userLoctionCity) {
+          _setArea(userLoctionCity.city);
+        } else {
+          (0, _index4.userAuthLoction)().then(function (res) {
+            _setArea(res.city);
+          }).then(function () {
+            _setArea(_area.AREABEIJING.name);
+          });
+        }
+        // 设置地址
+        var userLastPublishArea = _taroWeapp2.default.getStorageSync(_store.UserLastPublishArea);
+        if (userLastPublishArea) {
+          _setAreaInfo(userLastPublishArea);
+        }
+        // if (area){
+        //   setArea(area)
+        // }
         // if (basicsCity){
         //   console.log(basicsCity,'basicsCitybasicsCitybasicsCity')
         //   setFormData({ ...formData, are: basicsCity,});
@@ -230,10 +282,10 @@ var BasicsPage = (_temp2 = _class = function (_Taro$Component) {
       }, []);
       // 验证码
 
-      var _useState19 = (0, _taroWeapp.useState)(false),
-          _useState20 = _slicedToArray(_useState19, 2),
-          isCode = _useState20[0],
-          setIsCode = _useState20[1];
+      var _useState23 = (0, _taroWeapp.useState)(false),
+          _useState24 = _slicedToArray(_useState23, 2),
+          isCode = _useState24[0],
+          setIsCode = _useState24[1];
       // 用户填写表单
 
 
@@ -327,7 +379,7 @@ var BasicsPage = (_temp2 = _class = function (_Taro$Component) {
       // 用户点击发送短信
       var userSendCode = function userSendCode() {
         var tel = formData.phone;
-        var flag = (0, _index6.isPhone)(tel);
+        var flag = (0, _index8.isPhone)(tel);
         if (flag) {
           userGetCode(tel);
         } else (0, _index3.default)('请先输入正确的手机号');
@@ -393,6 +445,22 @@ var BasicsPage = (_temp2 = _class = function (_Taro$Component) {
         // myAmapFun.getRegeo({
         // })
       };
+      // 需要传递的值
+      var value = {
+        area: areas,
+        setArea: function setArea(city) {
+          return _setArea(city);
+        },
+        setAreaInfo: function setAreaInfo(item) {
+          return _setAreaInfo(item);
+        },
+        setPublishArea: function setPublishArea(val) {
+          if (!model) {
+            return;
+          }setModel(_extends({}, model, { address: val }));
+        }
+      };
+      contextItem.Provider(value);
 
       this.anonymousFunc0 = function (i, k, id) {
         return userClickProfession(i, k, id);

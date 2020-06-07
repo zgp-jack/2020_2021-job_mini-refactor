@@ -29,7 +29,6 @@ export interface Injected {
 export const context = createContext<Injected>({} as Injected)
 
 export default function PublishRecruit() {
-
   // 获取路由参数
   const router: RouterInfo = useRouter()
   const id: string = router.params.id || ''

@@ -78,7 +78,7 @@ var PublishRecruit = (_temp2 = _class = function (_Taro$Component) {
       navigationBarBackgroundColor: '#0099ff',
       navigationBarTextStyle: 'white',
       backgroundTextStyle: "dark"
-    }, _this.$usedState = ["model", "$compid__108", "$compid__109", "$compid__110", "showProfession", "phone", "showUpload", "text"], _this.customComponents = ["Auth", "Profession", "WordsTotal", "ImageView"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["model", "$compid__110", "$compid__111", "$compid__112", "showProfession", "phone", "showUpload", "text"], _this.customComponents = ["Auth", "Profession", "WordsTotal", "ImageView"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(PublishRecruit, [{
@@ -97,20 +97,20 @@ var PublishRecruit = (_temp2 = _class = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__108"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__110"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__108 = _genCompid2[0],
-          $compid__108 = _genCompid2[1];
+          $prevCompid__110 = _genCompid2[0],
+          $compid__110 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__109"),
+      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__111"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__109 = _genCompid4[0],
-          $compid__109 = _genCompid4[1];
+          $prevCompid__111 = _genCompid4[0],
+          $compid__111 = _genCompid4[1];
 
-      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__110"),
+      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__112"),
           _genCompid6 = _slicedToArray(_genCompid5, 2),
-          $prevCompid__110 = _genCompid6[0],
-          $compid__110 = _genCompid6[1];
+          $prevCompid__112 = _genCompid6[0],
+          $compid__112 = _genCompid6[1];
 
       // 获取路由参数
 
@@ -288,21 +288,21 @@ var PublishRecruit = (_temp2 = _class = function (_Taro$Component) {
         "data": model && model.classifyTree,
         "onClickItem": this.anonymousFunc0,
         "num": 3
-      }, $compid__108, $prevCompid__108);
+      }, $compid__110, $prevCompid__110);
       _taroWeapp.propsManager.set({
         "num": num
-      }, $compid__109, $prevCompid__109);
+      }, $compid__111, $prevCompid__111);
       showUpload && model && _taroWeapp.propsManager.set({
         "images": model.view_images,
         "max": model.maxImageCount,
         "userUploadImg": userUploadImg,
         "userDelImg": userDelImg
-      }, $compid__110, $prevCompid__110);
+      }, $compid__112, $prevCompid__112);
       Object.assign(this.__state, {
         model: model,
-        $compid__108: $compid__108,
-        $compid__109: $compid__109,
         $compid__110: $compid__110,
+        $compid__111: $compid__111,
+        $compid__112: $compid__112,
         showProfession: showProfession,
         phone: phone,
         showUpload: showUpload,
@@ -421,6 +421,8 @@ var _store = __webpack_require__(/*! ../../../config/store */ "./src/config/stor
 
 var _area = __webpack_require__(/*! ../../../models/area */ "./src/models/area.ts");
 
+var _index7 = __webpack_require__(/*! ../../../utils/helper/index */ "./src/utils/helper/index.ts");
+
 __webpack_require__(/*! ./index.scss */ "./src/pages/resume/newJobs/index.scss");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -508,9 +510,10 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
           has_top: 0,
           top_provinces_str: [],
           start_time_str: 0,
-          end_time_str: 0,
+          end_time_str: '',
           top_tips_string: '',
-          is_show_tips: 0
+          is_show_tips: 0,
+          end_time: ''
         },
         content: {
           show_tips: 0,
@@ -727,15 +730,20 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
           _useState74 = _slicedToArray(_useState73, 2),
           isOpened = _useState74[0],
           setIsOpened = _useState74[1];
-      // 工作状态列表
-
 
       var _useState75 = (0, _taroWeapp.useState)(),
           _useState76 = _slicedToArray(_useState75, 2),
-          statusList = _useState76[0],
-          setStatusList = _useState76[1];
+          resumeTop = _useState76[0],
+          setResumeTop = _useState76[1];
+      // 工作状态列表
 
-      var _useState77 = (0, _taroWeapp.useState)({
+
+      var _useState77 = (0, _taroWeapp.useState)(),
+          _useState78 = _slicedToArray(_useState77, 2),
+          statusList = _useState78[0],
+          setStatusList = _useState78[1];
+
+      var _useState79 = (0, _taroWeapp.useState)({
         gender: [],
         label: [],
         nation: [],
@@ -743,13 +751,13 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
         prof_degree: [],
         type: []
       }),
-          _useState78 = _slicedToArray(_useState77, 2),
-          publicList = _useState78[0],
-          setPublicList = _useState78[1];
+          _useState80 = _slicedToArray(_useState79, 2),
+          publicList = _useState80[0],
+          setPublicList = _useState80[1];
       // 人员信息
 
 
-      var _useState79 = (0, _taroWeapp.useState)({
+      var _useState81 = (0, _taroWeapp.useState)({
         experience: '',
         type_str: '',
         hometown: '',
@@ -757,67 +765,66 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
         number_people: '',
         tags: []
       }),
-          _useState80 = _slicedToArray(_useState79, 2),
-          userInfo = _useState80[0],
-          setUserInfo = _useState80[1];
+          _useState82 = _slicedToArray(_useState81, 2),
+          userInfo = _useState82[0],
+          setUserInfo = _useState82[1];
       // 选择详细地址信息
 
 
-      var _useState81 = (0, _taroWeapp.useState)({
+      var _useState83 = (0, _taroWeapp.useState)({
         title: '',
         adcode: '',
         location: '',
         info: ''
       }),
-          _useState82 = _slicedToArray(_useState81, 2),
-          areaInfo = _useState82[0],
-          _setAreaInfo = _useState82[1];
+          _useState84 = _slicedToArray(_useState83, 2),
+          areaInfo = _useState84[0],
+          _setAreaInfo = _useState84[1];
       //设置基础信息所在区域
 
 
-      var _useState83 = (0, _taroWeapp.useState)(''),
-          _useState84 = _slicedToArray(_useState83, 2),
-          basicsCity = _useState84[0],
-          setBasicsCity = _useState84[1];
+      var _useState85 = (0, _taroWeapp.useState)(''),
+          _useState86 = _slicedToArray(_useState85, 2),
+          basicsCity = _useState86[0],
+          setBasicsCity = _useState86[1];
       // 修改还是更多项目经验
 
 
-      var _useState85 = (0, _taroWeapp.useState)('0'),
-          _useState86 = _slicedToArray(_useState85, 2),
-          proStatus = _useState86[0],
-          setProStatus = _useState86[1];
+      var _useState87 = (0, _taroWeapp.useState)('0'),
+          _useState88 = _slicedToArray(_useState87, 2),
+          proStatus = _useState88[0],
+          setProStatus = _useState88[1];
       // 提示内容
 
 
-      var _useState87 = (0, _taroWeapp.useState)(''),
-          _useState88 = _slicedToArray(_useState87, 2),
-          popup = _useState88[0],
-          setPopup = _useState88[1];
-      // 提示弹窗
-
-
-      var _useState89 = (0, _taroWeapp.useState)(false),
+      var _useState89 = (0, _taroWeapp.useState)(''),
           _useState90 = _slicedToArray(_useState89, 2),
-          tips = _useState90[0],
-          setTips = _useState90[1];
-      // 置顶提示
+          popup = _useState90[0],
+          setPopup = _useState90[1];
+      // 提示弹窗
 
 
       var _useState91 = (0, _taroWeapp.useState)(false),
           _useState92 = _slicedToArray(_useState91, 2),
-          toppingModal = _useState92[0],
-          setToppingModal = _useState92[1];
+          tips = _useState92[0],
+          setTips = _useState92[1];
+      // 置顶提示
+
+
+      var _useState93 = (0, _taroWeapp.useState)(false),
+          _useState94 = _slicedToArray(_useState93, 2),
+          toppingModal = _useState94[0],
+          setToppingModal = _useState94[1];
       // 置顶的当前索引
 
 
-      var _useState93 = (0, _taroWeapp.useState)(0),
-          _useState94 = _slicedToArray(_useState93, 2),
-          indextop = _useState94[0],
-          setIndextop = _useState94[1];
+      var _useState95 = (0, _taroWeapp.useState)(0),
+          _useState96 = _slicedToArray(_useState95, 2),
+          indextop = _useState96[0],
+          setIndextop = _useState96[1];
 
       (0, _taroWeapp.useDidShow)(function () {
         (0, _index.resumeListAction)().then(function (res) {
-          console.log(res);
           if (res.errcode == "200") {
             _taroWeapp2.default.setStorageSync("introinfo", res.data.info);
             setData({ info: res.data.info, resume_top: res.data.resume_top, content: res.data.content, introduces: res.data.introduces, certificate_count: res.data.certificate_count, fail_certificate: res.data.fail_certificate, fail_project: res.data.fail_project, popup_text: res.data.popup_text, top_status: res.data.top_status });
@@ -834,8 +841,19 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
             if (res.data.info.is_end === '2') {
               setIndex(1);
             }
+            setResumeTop(res.data.resume_top);
             // 设置城市
-            _setArea(res.data.info.city);
+            var userLoctionCity = _taroWeapp2.default.getStorageSync(_store.UserLocationCity);
+            _setArea(userLoctionCity.city);
+            if (userLoctionCity) {
+              _setArea(userLoctionCity.city);
+            } else {
+              (0, _index7.userAuthLoction)().then(function (res) {
+                _setArea(res.city);
+              }).then(function () {
+                _setArea(_area.AREABEIJING.name);
+              });
+            }
             //状态列表
             setStatusList(res.data.status);
             setUserInfo(res.data.introduces);
@@ -986,7 +1004,6 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
         });
         // 给子页面提供公用数据
         (0, _index.resumesGetDataAction)().then(function (res) {
-          console.log(res, '公用数据');
           setPublicList(res);
         });
       });
@@ -1028,7 +1045,6 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
           });
         }
       };
-      console.log(area, 'area23123');
       // 需要传递的值
       var value = {
         area: area,
@@ -1051,8 +1067,11 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
         // 修改技能证书
         skillData: skillData,
         // 修改项目经验
-        projectData: projectData
+        projectData: projectData,
+        // 置顶数据
+        resumeTop: resumeTop
       };
+      console.log(resumeTop, 'resumeTop');
       //设置工作状态
       var handleStatus = function handleStatus() {
         if (data.info.check === '2') {
@@ -1110,8 +1129,8 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
       };
       // 设置置顶状态
       var handleToppStatus = function handleToppStatus() {
-        var nowtime = new Date().getTime();
-        var endtime = data.resume_top.end_time_str;
+        var nowtime = getMyDate(new Date().getTime());
+        var endtime = getMyDate(parseInt(data.resume_top.end_time) * 1000);
         if (nowtime > endtime) {
           _taroWeapp2.default.showModal({
             title: '温馨提示',
@@ -1159,10 +1178,27 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
           }
         });
       };
+      var getMyDate = function getMyDate(str) {
+        var oDate = new Date(str),
+            oYear = oDate.getFullYear(),
+            oMonth = oDate.getMonth() + 1,
+            oDay = oDate.getDate(),
+            oHour = oDate.getHours(),
+            oMin = oDate.getMinutes(),
+            oSen = oDate.getSeconds(),
+            oTime = oYear + '-' + addZero(oMonth) + '-' + addZero(oDay) + ' ' + addZero(oHour) + ':' + addZero(oMin);
+        return oTime;
+      };
+      var addZero = function addZero(num) {
+        if (parseInt(num) < 10) {
+          num = '0' + num;
+        }
+        return num;
+      };
       var handelEditTopp = function handelEditTopp() {
-        var nowtime = new Date().getTime();
-        var endtime = data.resume_top.end_time_str;
+        var nowtime = getMyDate(new Date().getTime());
         var contentom = data.resume_top.top_tips_string;
+        var endtime = getMyDate(parseInt(data.resume_top.end_time) * 1000);
         if (nowtime > endtime) {
           _taroWeapp2.default.showModal({
             title: '温馨提示',
@@ -1179,6 +1215,12 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
           });
           return;
         }
+        var area = JSON.stringify(data.resume_top.top_provinces_str);
+        var endTime = data.resume_top.end_time;
+        var endTimeStr = data.resume_top.end_time_str;
+        // const maxnumber = data.resume_top.max_number;
+        // const firstprovincenum = data.resume_top.first_province_num;
+        userRouteJump("/pages/topping/index?rec=1&type=1&areaData=" + area + "&endTimes=" + endTime + "&endTimeStr=" + endTimeStr);
       };
       // 修改头像
       var userUploadAvatar = function userUploadAvatar() {
@@ -1213,6 +1255,7 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
           (0, _index3.default)('网络错误，上传失败');
         });
       };
+      console.log(value, 'value');
       context.Provider(value);
       var anonymousState__temp = "width:" + parseInt(data.info.progress) + "%";
 
@@ -1587,7 +1630,7 @@ Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.context = undefined;
+exports.contextItem = undefined;
 
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
@@ -1615,13 +1658,15 @@ var _index4 = _interopRequireDefault(_index3);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var context = exports.context = (0, _taroWeapp.createContext)({});
+var contextItem = exports.contextItem = (0, _taroWeapp.createContext)({});
 
 var Topping = (_temp2 = _class = function (_Taro$Component) {
   _inherits(Topping, _Taro$Component);
@@ -1639,7 +1684,7 @@ var Topping = (_temp2 = _class = function (_Taro$Component) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Topping.__proto__ || Object.getPrototypeOf(Topping)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
       navigationBarTitleText: '招工置顶'
-    }, _this.$usedState = ["params", "data", "loopArray201", "loopArray202", "loopArray203", "loopArray204", "loopArray205", "province", "IMGCDNURL", "rec", "basics", "type", "list", "displayTime", "num", "recDay", "endTime", "editData", "newTime", "day", "SERVERPHONE"], _this.anonymousFunc0Map = {}, _this.anonymousFunc1Map = {}, _this.anonymousFunc2Map = {}, _this.anonymousFunc3Map = {}, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["params", "data", "loopArray145", "loopArray146", "loopArray147", "loopArray148", "loopArray149", "province", "IMGCDNURL", "rec", "basics", "type", "list", "displayTime", "num", "endTime", "editData", "newTime", "day", "SERVERPHONE"], _this.anonymousFunc0Map = {}, _this.anonymousFunc1Map = {}, _this.anonymousFunc2Map = {}, _this.anonymousFunc3Map = {}, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Topping, [{
@@ -1660,11 +1705,20 @@ var Topping = (_temp2 = _class = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
+      // console.log(context,'context');
+      // 获取找活名片的数据
+      //console.log(context,'xxx')
+      // const { resumeTop } = useContext(context)
+      // console.log(resumeTop)
+      // console.log(resumeTop);
       var router = (0, _taroWeapp.useRouter)();
       var _router$params = router.params,
           id = _router$params.id,
           type = _router$params.type,
-          rec = _router$params.rec;
+          rec = _router$params.rec,
+          areaData = _router$params.areaData,
+          endTimes = _router$params.endTimes,
+          endTimeStr = _router$params.endTimeStr;
       // 获取userInfo
 
       var userInfo = _taroWeapp2.default.getStorageSync(_store.UserInfo);
@@ -1787,7 +1841,9 @@ var Topping = (_temp2 = _class = function (_Taro$Component) {
       var _useState33 = (0, _taroWeapp.useState)({
         max_number: 0,
         province_integral: 0,
-        max_top_days: 0
+        max_top_days: 0,
+        max_city: 0,
+        max_province: 0
       }),
           _useState34 = _slicedToArray(_useState33, 2),
           basics = _useState34[0],
@@ -1797,24 +1853,26 @@ var Topping = (_temp2 = _class = function (_Taro$Component) {
 
       (0, _taroWeapp.useEffect)(function () {
         if (type) {
-          var val = {
-            job_id: id,
-            time: userInfo.tokenTime
-          };
-          (0, _index.jobGetTopAreasAction)(val).then(function (res) {
-            if (res.errcode === 'ok') {
-              setParams({ city: res.data.top_city, province: res.data.top_province, whole: res.data.top_country });
-              setEndTime(res.data.end_time_string);
-              setEnd(res.data.end_time);
-              setMaxNum(res.data.max_price);
-            } else {
-              _taroWeapp2.default.showModal({
-                title: '温馨提示',
-                content: res.errmsg,
-                showCancel: false
-              });
-            }
-          });
+          if (!rec) {
+            var val = {
+              job_id: id,
+              time: userInfo.tokenTime
+            };
+            (0, _index.jobGetTopAreasAction)(val).then(function (res) {
+              if (res.errcode === 'ok') {
+                setParams({ city: res.data.top_city, province: res.data.top_province, whole: res.data.top_country });
+                setEndTime(res.data.end_time_string);
+                setEnd(res.data.end_time);
+                setMaxNum(res.data.max_price);
+              } else {
+                _taroWeapp2.default.showModal({
+                  title: '温馨提示',
+                  content: res.errmsg,
+                  showCancel: false
+                });
+              }
+            });
+          }
         }
         // 找活
         if (rec) {
@@ -1823,14 +1881,44 @@ var Topping = (_temp2 = _class = function (_Taro$Component) {
           };
           (0, _index.resumesTopConfigV2Action)(_params).then(function (res) {
             if (res.errcode === 'ok') {
-              console.log(res);
               setData({ top_rules: res.data.top_rules });
               var array = [];
               for (var i = 0; i < res.data.max_top_days; i++) {
                 array.push(i + 1 + "天");
               }
+              if (type) {
+                if (areaData) {
+                  var areList = JSON.parse(areaData);
+                  var _city = [];
+                  var _province = [];
+                  var whole = [];
+                  var _recDay = Math.ceil((parseInt(endTimes) - new Date().getTime() / 1000) / 86400);
+                  var maxPrice = 0;
+                  areList.map(function (v) {
+                    if (v.pid === '1') {
+                      _city.push(v);
+                    } else if (v.pid === '0') {
+                      whole.push(v);
+                    } else {
+                      _province.push(v);
+                    }
+                  });
+                  {
+                    maxPrice = (_city.length * 20 + _province.length * 20) * _recDay;
+                  }
+
+                  setParams({ city: _city, province: _province, whole: whole });
+                  setEndTime(endTimeStr);
+                  setEnd(parseInt(endTimes));
+                  setMaxNum(maxPrice);
+                }
+                // console.log(resumeTop,'resumeTop');
+              }
               setList(array);
-              setBasics({ province_integral: res.data.province_integral, max_number: res.data.max_number, max_top_days: res.data.max_top_days });
+              setCity({ max_city: res.data.max_city, max_province: res.data.max_province });
+              setBasics({ province_integral: res.data.province_integral, max_number: res.data.max_number, max_top_days: res.data.max_top_days,
+                max_province: res.data.max_province, max_city: res.data.max_city
+              });
             } else {
               _taroWeapp2.default.showModal({
                 title: '温馨提示',
@@ -1879,7 +1967,6 @@ var Topping = (_temp2 = _class = function (_Taro$Component) {
       var handleClick = function handleClick(e) {
         setDay(list[e.detail.value]);
         if (type) {
-          console.log('dsadsadasdaddsadasdsad');
           // 增加时间 新增天数*新的单价
           // 修改地区 单价比原单价大，差价*天数，
           // 时间和城市都改变了 新单价大于原单价 ：新价-旧价*剩余天数+新价格*新增天数 新单价小于原单价：旧价格*新增天数
@@ -1893,7 +1980,12 @@ var Topping = (_temp2 = _class = function (_Taro$Component) {
           // 获取旧价格
           var oldPrice = maxNum;
           // 获取价格
-          var newPrice = params.whole.length ? 500 : (params.city.length * 10 + params.province.length * 20) * 1;
+          var newPrice = undefined;
+          if (rec) {
+            newPrice = params.whole.length ? 500 : (params.city.length * 20 + params.province.length * 20) * 1;
+          } else {
+            newPrice = params.whole.length ? 500 : (params.city.length * 10 + params.province.length * 20) * 1;
+          }
           // const newPrice = (params.city.length * 10 + params.province.length * 20) * 1;
           // 时间差
           var remDay = (end - new Date().getTime() / 1000) / 86400;
@@ -1904,11 +1996,17 @@ var Topping = (_temp2 = _class = function (_Taro$Component) {
             money = newPrice * (parseInt(e.detail.value) + 1);
           } else {
             if (newPrice - oldPrice > 0) {
-              money = Math.round((newPrice - oldPrice) * remDay + newPrice * (parseInt(e.detail.value) + 1));
+              if (rec) {
+                money = Math.round((newPrice - oldPrice) * remDay + (params.city.length * 20 + params.province.length * 20) * (parseInt(e.detail.value) + 1));
+              } else {
+                console.log((newPrice - oldPrice) * remDay);
+                money = Math.round((newPrice - oldPrice) * remDay + newPrice * (parseInt(e.detail.value) + 1));
+              }
             } else {
               money = oldPrice * (parseInt(e.detail.value) + 1);
             }
           }
+          console.log(money, 'xdsadasda');
           setNum(money);
         } else {
           if (params) {
@@ -1916,7 +2014,11 @@ var Topping = (_temp2 = _class = function (_Taro$Component) {
             if (params.whole.length) {
               numData = 500 * (parseInt(e.detail.value) + 1);
             } else {
-              numData = (params.city.length * 10 + params.province.length * 20) * (parseInt(e.detail.value) + 1);
+              if (rec) {
+                numData = (params.city.length * 20 + params.province.length * 20) * (parseInt(e.detail.value) + 1);
+              } else {
+                numData = (params.city.length * 10 + params.province.length * 20) * (parseInt(e.detail.value) + 1);
+              }
             }
             setNum(numData);
           }
@@ -1948,7 +2050,6 @@ var Topping = (_temp2 = _class = function (_Taro$Component) {
           });
           return;
         }
-        console.log(country_ids.toString());
         var detail = {
           is_country: country_ids.toString(),
           mid: userInfo.userId,
@@ -1959,7 +2060,7 @@ var Topping = (_temp2 = _class = function (_Taro$Component) {
           time: userInfo.tokenTime
         };
         var editDetail = {
-          is_country: country_ids.toString(),
+          is_country: params.whole.length ? 1 : 0,
           mid: userInfo.userId,
           province_ids: province_ids.toString(),
           city_ids: city_ids.toString(),
@@ -1968,79 +2069,158 @@ var Topping = (_temp2 = _class = function (_Taro$Component) {
           time: userInfo.tokenTime,
           update_integral: num
         };
+        // console.log(321312321);
+        // console.log(editDetail,'editDetail');
+        // return
         if (type) {
-          (0, _index.jobChangeTopAreasAction)(editDetail).then(function (res) {
-            if (res.errcode === 'ok') {
-              _taroWeapp2.default.showModal({
-                title: '温馨提示',
-                content: res.errmsg,
-                showCancel: false,
-                success: function success() {
-                  _taroWeapp2.default.navigateBack({
-                    delta: 1
-                  });
-                }
-              });
-              return;
-            } else if (res.errcode === 'get_integral') {
-              _taroWeapp2.default.showModal({
-                title: '温馨提示',
-                content: res.errmsg,
-                showCancel: true,
-                success: function success(res) {
-                  if (res.confirm == true) {
-                    _taroWeapp2.default.navigateTo({
-                      // 前往积分页面
-                      url: "/pages/getintegral/index"
-                    });
-                  }
-                }
-              });
-              return;
-            } else if (res.errcode === 'auth_forbid') {
-              _taroWeapp2.default.showModal({
-                title: '温馨提示',
-                content: res.errmsg,
-                cancelText: '取消',
-                confirmText: '去实名',
-                success: function success(res) {
-                  if (res.cancel) {
+          if (rec) {
+            console.log(32312);
+            (0, _index.resumesUpdateTopResumeAction)(editDetail).then(function (res) {
+              if (res.errcode === 'ok') {
+                _taroWeapp2.default.showModal({
+                  title: '温馨提示',
+                  content: res.errmsg,
+                  showCancel: false,
+                  success: function success() {
                     _taroWeapp2.default.navigateBack({
                       delta: 1
                     });
-                  } else if (res.confirm) {
-                    var backtwo = "backtwo";
-                    _taroWeapp2.default.redirectTo({
-                      url: "/pages/realname/index?backtwo=" + backtwo
+                  }
+                });
+                return;
+              } else if (res.errcode === 'get_integral') {
+                _taroWeapp2.default.showModal({
+                  title: '温馨提示',
+                  content: res.errmsg,
+                  showCancel: true,
+                  success: function success(res) {
+                    if (res.confirm == true) {
+                      _taroWeapp2.default.navigateTo({
+                        // 前往积分页面
+                        url: "/pages/getintegral/index"
+                      });
+                    }
+                  }
+                });
+                return;
+              } else if (res.errcode === 'auth_forbid') {
+                _taroWeapp2.default.showModal({
+                  title: '温馨提示',
+                  content: res.errmsg,
+                  cancelText: '取消',
+                  confirmText: '去实名',
+                  success: function success(res) {
+                    if (res.cancel) {
+                      _taroWeapp2.default.navigateBack({
+                        delta: 1
+                      });
+                    } else if (res.confirm) {
+                      var backtwo = "backtwo";
+                      _taroWeapp2.default.redirectTo({
+                        url: "/pages/realname/index?backtwo=" + backtwo
+                      });
+                    }
+                  }
+                });
+                return;
+              } else if (res.errcode == "member_forbid") {
+                _taroWeapp2.default.showModal({
+                  title: '温馨提示',
+                  content: "mydata.errmsg",
+                  cancelText: "取消",
+                  confirmText: "联系客服",
+                  success: function success(res) {
+                    if (res.confirm) {
+                      var tel = _index2.SERVERPHONE;
+                      _taroWeapp2.default.makePhoneCall({
+                        phoneNumber: tel
+                      });
+                    }
+                  }
+                });
+                return;
+              } else {
+                _taroWeapp2.default.showToast({
+                  title: res.errmsg,
+                  icon: "none",
+                  duration: 1500
+                });
+              }
+            });
+          } else {
+            (0, _index.jobChangeTopAreasAction)(editDetail).then(function (res) {
+              if (res.errcode === 'ok') {
+                _taroWeapp2.default.showModal({
+                  title: '温馨提示',
+                  content: res.errmsg,
+                  showCancel: false,
+                  success: function success() {
+                    _taroWeapp2.default.navigateBack({
+                      delta: 1
                     });
                   }
-                }
-              });
-              return;
-            } else if (res.errcode == "member_forbid") {
-              _taroWeapp2.default.showModal({
-                title: '温馨提示',
-                content: "mydata.errmsg",
-                cancelText: "取消",
-                confirmText: "联系客服",
-                success: function success(res) {
-                  if (res.confirm) {
-                    var tel = _index2.SERVERPHONE;
-                    _taroWeapp2.default.makePhoneCall({
-                      phoneNumber: tel
-                    });
+                });
+                return;
+              } else if (res.errcode === 'get_integral') {
+                _taroWeapp2.default.showModal({
+                  title: '温馨提示',
+                  content: res.errmsg,
+                  showCancel: true,
+                  success: function success(res) {
+                    if (res.confirm == true) {
+                      _taroWeapp2.default.navigateTo({
+                        // 前往积分页面
+                        url: "/pages/getintegral/index"
+                      });
+                    }
                   }
-                }
-              });
-              return;
-            } else {
-              _taroWeapp2.default.showToast({
-                title: res.errmsg,
-                icon: "none",
-                duration: 1500
-              });
-            }
-          });
+                });
+                return;
+              } else if (res.errcode === 'auth_forbid') {
+                _taroWeapp2.default.showModal({
+                  title: '温馨提示',
+                  content: res.errmsg,
+                  cancelText: '取消',
+                  confirmText: '去实名',
+                  success: function success(res) {
+                    if (res.cancel) {
+                      _taroWeapp2.default.navigateBack({
+                        delta: 1
+                      });
+                    } else if (res.confirm) {
+                      var backtwo = "backtwo";
+                      _taroWeapp2.default.redirectTo({
+                        url: "/pages/realname/index?backtwo=" + backtwo
+                      });
+                    }
+                  }
+                });
+                return;
+              } else if (res.errcode == "member_forbid") {
+                _taroWeapp2.default.showModal({
+                  title: '温馨提示',
+                  content: "mydata.errmsg",
+                  cancelText: "取消",
+                  confirmText: "联系客服",
+                  success: function success(res) {
+                    if (res.confirm) {
+                      var tel = _index2.SERVERPHONE;
+                      _taroWeapp2.default.makePhoneCall({
+                        phoneNumber: tel
+                      });
+                    }
+                  }
+                });
+                return;
+              } else {
+                _taroWeapp2.default.showToast({
+                  title: res.errmsg,
+                  icon: "none",
+                  duration: 1500
+                });
+              }
+            });
+          }
         } else {
           if (!province_ids || !city_ids) {
             _taroWeapp2.default.showModal({
@@ -2058,20 +2238,37 @@ var Topping = (_temp2 = _class = function (_Taro$Component) {
             });
             return;
           }
-          (0, _index.jobDoTopAction)(detail).then(function (res) {
-            if (res.errcode === 'ok') {
-              _taroWeapp2.default.showModal({
-                title: '温馨提示',
-                content: res.errmsg,
-                showCancel: false,
-                success: function success() {
-                  _taroWeapp2.default.navigateBack({
-                    delta: 1
-                  });
-                }
-              });
-            }
-          });
+          if (rec) {
+            (0, _index.resumesDoTopV2Action)(detail).then(function (res) {
+              if (res.errcode === 'ok') {
+                _taroWeapp2.default.showModal({
+                  title: '温馨提示',
+                  content: res.errmsg,
+                  showCancel: false,
+                  success: function success() {
+                    _taroWeapp2.default.navigateBack({
+                      delta: 1
+                    });
+                  }
+                });
+              }
+            });
+          } else {
+            (0, _index.jobDoTopAction)(detail).then(function (res) {
+              if (res.errcode === 'ok') {
+                _taroWeapp2.default.showModal({
+                  title: '温馨提示',
+                  content: res.errmsg,
+                  showCancel: false,
+                  success: function success() {
+                    _taroWeapp2.default.navigateBack({
+                      delta: 1
+                    });
+                  }
+                });
+              }
+            });
+          }
         }
       };
       var handleAddJump = function handleAddJump() {
@@ -2095,14 +2292,26 @@ var Topping = (_temp2 = _class = function (_Taro$Component) {
         //     setNum(numData);
         //   }
         // }else{
+        // console.log(city.length,'cityleng')
+        // console.log(province.length,'provincelenken')
         if (city || province || whole) {
           if (type) {
             // 获取旧价格
             var oldPrice = maxNum;
             // 获取价格
-            var newPrice = whole.length ? 500 : (city.length * 10 + province.length * 20) * 1;
             // 时间差
             var remDay = (end - new Date().getTime() / 1000) / 86400;
+            var newPrice = undefined;
+            if (rec) {
+              newPrice = whole.length ? 500 : (city.length * 20 + province.length * 20) * 1;
+            } else {
+              newPrice = whole.length ? 500 : (city.length * 10 + province.length * 20) * 1;
+            }
+            console.log(newPrice, '最新价格');
+            // console.log(end,'end');
+            // console.log(Math.round(new Date().getTime() / 1000));
+            // console.log((end - (Math.round(new Date().getTime() / 1000))) / 86400)
+            console.log(paramsDay, 'paramsDay');
             // 修改区域
             var changeCity = true; //修改区域
             // 只改变时间
@@ -2114,12 +2323,32 @@ var Topping = (_temp2 = _class = function (_Taro$Component) {
             } else if (paramsDay === 0 && changeCity) {
               // 剩余天数
               if (newPrice > oldPrice) {
-                money = Math.round((newPrice - oldPrice) * remDay);
+                if (rec) {
+                  // 新的大于旧的金额
+                  // 新的减去旧的再*天数
+                  // money = Math.round((newPrice - oldPrice));
+                  // console.log(money,'moneymoneymoney')
+                  // console.log(remDay,'xxxx')
+                  // money = newPrice - oldPrice - moneys;
+                  money = Math.round((newPrice - oldPrice) * remDay);
+                } else {
+                  money = Math.round((newPrice - oldPrice) * remDay);
+                }
+                console.log(remDay, 'newPrice > oldPrice');
               }
             } else {
               // 时间变了，城市变了
               if (newPrice - oldPrice > 0) {
-                money = Math.round((newPrice - oldPrice) * remDay + newPrice * paramsDay);
+                // console.log(newPrice - oldPrice,'newPrice - oldPrice');
+                // console.log(remDay,'remDay');
+                // console.log(newPrice * paramsDay,'newPrice * paramsDay')
+                if (rec) {
+                  money = Math.round(newPrice - oldPrice + (city.length * 20 + province.length * 20) * paramsDay);
+                  console.log(money, '价格是');
+                  // money = Math.round(newPrice - oldPrice + oldPrice * paramsDay + newPrice * paramsDay)
+                } else {
+                  money = Math.round((newPrice - oldPrice) * remDay + newPrice * paramsDay);
+                }
               } else {
                 money = oldPrice * paramsDay;
               }
@@ -2130,13 +2359,21 @@ var Topping = (_temp2 = _class = function (_Taro$Component) {
             } else {
               _num = _num;
             }
+            console.log(oldPrice, 'oldPrice');
+            console.log(newPrice, 'newPrice');
+            console.log(remDay, 'remDay');
+            console.log(money, 'money');
             setNum(money);
           } else {
             var numData = 0;
             if (whole.length) {
               numData = 500 * paramsDay;
             } else {
-              numData = (city.length * 10 + province.length * 20) * paramsDay;
+              if (rec) {
+                numData = (city.length * 20 + province.length * 20) * paramsDay;
+              } else {
+                numData = (city.length * 10 + province.length * 20) * paramsDay;
+              }
             }
             setNum(numData);
           }
@@ -2147,10 +2384,6 @@ var Topping = (_temp2 = _class = function (_Taro$Component) {
         AreParams: params,
         setAreParams: function setAreParams(city, province, whole) {
           return transferFun({ city: city, province: province, whole: whole });
-        },
-        provinceParams: province,
-        setProvinceParams: function setProvinceParams(province) {
-          return modifyFun(province);
         }
       };
       var modifyFun = function modifyFun(province) {
@@ -2173,12 +2406,25 @@ var Topping = (_temp2 = _class = function (_Taro$Component) {
       };
       // 删除
       var handleDel = function handleDel(v) {
+        console.log(v);
+        if (rec) {
+          if (v.pid === '1') {
+            params.city.map(function (val, i) {
+              if (val.id === v.id) {
+                params.city.splice(i, 1);
+              }
+            });
+            console.log(params, 'xxxx');
+            setParams({ city: params.city, province: params.province, whole: params.whole });
+          }
+        }
         if (v.pid === '1') {
           params.province.map(function (val, i) {
             if (val.id === v.id) {
               params.province.splice(i, 1);
             }
           });
+          console.log(params, 'xxxx');
           setParams({ city: params.city, province: params.province, whole: params.whole });
         } else if (v.pid === '0') {
           params.whole.map(function (val, i) {
@@ -2200,7 +2446,13 @@ var Topping = (_temp2 = _class = function (_Taro$Component) {
         // 获取旧价格
         var oldPrice = maxNum;
         // 获取价格
-        var newPrice = params.whole.length ? 500 : (params.city.length * 10 + params.province.length * 20) * 1;
+        var newPrice = void 0;
+        if (rec) {
+          newPrice = params.whole.length ? 500 : (params.city.length * 20 + params.province.length * 20) * 1;
+        } else {
+          newPrice = params.whole.length ? 500 : (params.city.length * 10 + params.province.length * 20) * 1;
+        }
+        console.log(newPrice, '删除价格');
         // const newPrice = (params.city.length * 10 + params.province.length * 20) * 1;
         // 时间差
         var remDay = (end - new Date().getTime() / 1000) / 86400;
@@ -2274,7 +2526,7 @@ var Topping = (_temp2 = _class = function (_Taro$Component) {
         if (!rec) {
           userRouteJump("/pages/topping/distruction/index?max_city=" + city.max_city + "&max_province=" + city.max_province);
         } else {
-          userRouteJump("/pages/topping/recruit/index?max_number=" + basics.max_number);
+          userRouteJump("/pages/topping/distruction/index?max_city=" + basics.max_city + "&max_province=" + basics.max_province);
         }
       };
       var handleRecDay = function handleRecDay(e) {
@@ -2317,7 +2569,17 @@ var Topping = (_temp2 = _class = function (_Taro$Component) {
       };
       // 找活置顶
       var handleRecTopping = function handleRecTopping() {
-        if (!province.length) {
+        var province_ids = params.province.map(function (v) {
+          return v.id;
+        });
+        var city_ids = params.city.map(function (v) {
+          return v.id;
+        });
+        var country_ids = params.whole.map(function (v) {
+          return v.id;
+        });
+        var provinces = [].concat(_toConsumableArray(province_ids), _toConsumableArray(city_ids), _toConsumableArray(country_ids));
+        if (!province_ids.length && !city_ids.length && !country_ids.length) {
           _taroWeapp2.default.showModal({
             title: '温馨提示',
             content: '请选择您的置顶城市',
@@ -2337,72 +2599,79 @@ var Topping = (_temp2 = _class = function (_Taro$Component) {
           (0, _index4.default)("\u6700\u591A\u53EF\u7F6E\u9876" + basics.max_top_days + "\u5929\uFF01");
           return;
         }
-        var provinces = province.map(function (v) {
-          return v.id;
-        }).join(',');
-        console.log(provinces, 'xxx');
-        var params = {
-          days: parseInt(recDay),
+        // const provinces = (province.map(v=>v.id)).join(',');
+        // const citys = (city.map(v => v.id)).join(',');
+        // console.log(provinces,'xxx')
+        // let params={
+        //   days: parseInt(recDay),
+        //   citys: 0,
+        //   provinces,
+        // }
+        var details = {
+          days: paramsDay,
           citys: 0,
           provinces: provinces
         };
-        (0, _index.resumesDoTopAction)(params).then(function (res) {
-          if (res.errcode === 'ok') {
-            _taroWeapp2.default.showModal({
-              title: '温馨提示',
-              content: res.errmsg,
-              showCancel: false,
-              success: function success() {
-                _taroWeapp2.default.navigateBack({
-                  delta: 1
-                });
-              }
-            });
-          } else if (res.errcode === 'resume_null') {
-            _taroWeapp2.default.showModal({
-              title: '温馨提示',
-              content: res.errmsg,
-              // showCancel: false,
-              success: function success() {
-                _taroWeapp2.default.navigateTo({
-                  url: "pages/resume/newJobs/index"
-                });
-              }
-            });
-            return;
-            //获取积分
-          } else if (res.errcode === 'get_integral') {
-            _taroWeapp2.default.showModal({
-              title: '温馨提示',
-              content: res.errmsg,
-              success: function success() {
-                _taroWeapp2.default.navigateTo({
-                  url: "/pages/getintegral/index"
-                });
-              }
-            });
-            return;
-          } else {
-            _taroWeapp2.default.showModal({
-              title: '温馨提示',
-              content: res.errmsg,
-              showCancel: false,
-              success: function success() {
-                _taroWeapp2.default.navigateBack({
-                  delta: 1
-                });
-              }
-            });
-            return;
-          }
-        });
+        // console.log(details,'111s')
+        // return;
+        if (!type) {
+          (0, _index.resumesDoTopAction)(details).then(function (res) {
+            if (res.errcode === 'ok') {
+              _taroWeapp2.default.showModal({
+                title: '温馨提示',
+                content: res.errmsg,
+                showCancel: false,
+                success: function success() {
+                  _taroWeapp2.default.navigateBack({
+                    delta: 1
+                  });
+                }
+              });
+            } else if (res.errcode === 'resume_null') {
+              _taroWeapp2.default.showModal({
+                title: '温馨提示',
+                content: res.errmsg,
+                // showCancel: false,
+                success: function success() {
+                  _taroWeapp2.default.navigateTo({
+                    url: "pages/resume/newJobs/index"
+                  });
+                }
+              });
+              return;
+              //获取积分
+            } else if (res.errcode === 'get_integral') {
+              _taroWeapp2.default.showModal({
+                title: '温馨提示',
+                content: res.errmsg,
+                success: function success() {
+                  _taroWeapp2.default.navigateTo({
+                    url: "/pages/getintegral/index"
+                  });
+                }
+              });
+              return;
+            } else {
+              _taroWeapp2.default.showModal({
+                title: '温馨提示',
+                content: res.errmsg,
+                showCancel: false,
+                success: function success() {
+                  _taroWeapp2.default.navigateBack({
+                    delta: 1
+                  });
+                }
+              });
+              return;
+            }
+          });
+        }
       };
-      console.log(province, 'province');
-      console.log(province.length, 'provlesdas');
-      context.Provider(value);
+      console.log(paramsDay, 'aramsDayaaas');
+      contextItem.Provider(value);
       this.anonymousFunc4 = handleAddJump;
       this.anonymousFunc5 = handleJump;
-      this.anonymousFunc6 = handleJump;
+      this.anonymousFunc6 = handleAddJump;
       this.anonymousFunc7 = handleJump;
 
       this.anonymousFunc8 = function (e) {
@@ -2415,25 +2684,21 @@ var Topping = (_temp2 = _class = function (_Taro$Component) {
         return handleClick(e);
       };
 
-      this.anonymousFunc11 = function (e) {
-        handleRecDay(e);
-      };
+      this.anonymousFunc11 = handleTopping;
 
-      this.anonymousFunc12 = rec ? handleRecTopping : handleTopping;
-
-      this.anonymousFunc13 = function () {
+      this.anonymousFunc12 = function () {
         _taroWeapp2.default.makePhoneCall({ phoneNumber: _index2.SERVERPHONE });
       };
 
-      var loopArray201 = province ? province.map(function (v, __index0) {
+      var loopArray145 = province ? province.map(function (v, __index0) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
 
-        var _$indexKey = "bhizz" + __index0;
+        var _$indexKey = "bdfzz" + __index0;
 
         _this2.anonymousFunc0Map[_$indexKey] = function () {
-          return handleRecDel(v.$original);
+          return handleDel(v.$original);
         };
 
         return {
@@ -2441,12 +2706,12 @@ var Topping = (_temp2 = _class = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray202 = params ? params.city.map(function (v, __index1) {
+      var loopArray146 = params ? params.city.map(function (v, __index1) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
 
-        var _$indexKey2 = "bhjzz" + __index1;
+        var _$indexKey2 = "bdgzz" + __index1;
 
         _this2.anonymousFunc1Map[_$indexKey2] = function () {
           return handleDel(v.$original);
@@ -2457,12 +2722,12 @@ var Topping = (_temp2 = _class = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray203 = params ? params.province.map(function (v, __index2) {
+      var loopArray147 = params ? params.province.map(function (v, __index2) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
 
-        var _$indexKey3 = "biazz" + __index2;
+        var _$indexKey3 = "bdhzz" + __index2;
 
         _this2.anonymousFunc2Map[_$indexKey3] = function () {
           return handleDel(v.$original);
@@ -2473,12 +2738,12 @@ var Topping = (_temp2 = _class = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray204 = params ? params.whole.map(function (v, __index3) {
+      var loopArray148 = params ? params.whole.map(function (v, __index3) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
 
-        var _$indexKey4 = "bibzz" + __index3;
+        var _$indexKey4 = "bdizz" + __index3;
 
         _this2.anonymousFunc3Map[_$indexKey4] = function () {
           return handleDel(v.$original);
@@ -2489,7 +2754,7 @@ var Topping = (_temp2 = _class = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray205 = data.top_rules.map(function (v, i) {
+      var loopArray149 = data.top_rules.map(function (v, i) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
@@ -2502,11 +2767,11 @@ var Topping = (_temp2 = _class = function (_Taro$Component) {
       Object.assign(this.__state, {
         params: params,
         data: data,
-        loopArray201: loopArray201,
-        loopArray202: loopArray202,
-        loopArray203: loopArray203,
-        loopArray204: loopArray204,
-        loopArray205: loopArray205,
+        loopArray145: loopArray145,
+        loopArray146: loopArray146,
+        loopArray147: loopArray147,
+        loopArray148: loopArray148,
+        loopArray149: loopArray149,
         province: province,
         IMGCDNURL: _index2.IMGCDNURL,
         rec: rec,
@@ -2515,7 +2780,6 @@ var Topping = (_temp2 = _class = function (_Taro$Component) {
         list: list,
         displayTime: displayTime,
         num: num,
-        recDay: recDay,
         endTime: endTime,
         editData: editData,
         newTime: newTime,
@@ -2621,15 +2885,10 @@ var Topping = (_temp2 = _class = function (_Taro$Component) {
     value: function anonymousFunc12(e) {
       ;
     }
-  }, {
-    key: "anonymousFunc13",
-    value: function anonymousFunc13(e) {
-      ;
-    }
   }]);
 
   return Topping;
-}(_taroWeapp2.default.Component), _class.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6", "anonymousFunc7", "anonymousFunc8", "anonymousFunc9", "anonymousFunc10", "anonymousFunc11", "anonymousFunc12", "anonymousFunc13"], _class.$$componentPath = "pages/topping/index", _temp2);
+}(_taroWeapp2.default.Component), _class.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6", "anonymousFunc7", "anonymousFunc8", "anonymousFunc9", "anonymousFunc10", "anonymousFunc11", "anonymousFunc12"], _class.$$componentPath = "pages/topping/index", _temp2);
 
 
 Topping.config = { navigationBarTitleText: '招工置顶' };
@@ -3453,6 +3712,7 @@ function usePublishViewInfo(InitParams) {
     });
   }, [login]);
   function initUserAreaInfo(data) {
+    console.log(InitParams.infoId, 'InitParams.infoId');
     //  设置地区名字
     if (InitParams.infoId) {
       setArea(data.default_search_name.name);
@@ -3547,7 +3807,7 @@ function usePublishViewInfo(InitParams) {
       (0, _index4.default)('请选择您的详细地址!');
       return;
     }
-    if (!(0, _index5.isVaildVal)(data.user_name, 3)) {
+    if (!(0, _index5.isVaildVal)(data.user_name, 2)) {
       (0, _index4.default)('请正确输入2~6字中文姓名!');
       return;
     }
@@ -6129,7 +6389,7 @@ __webpack_require__.r(__webpack_exports__);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.resumesTopConfigV2Url = exports.resumesEditImgUrl = exports.resumesChangeTopStatusUrl = exports.resumesDoTopUrl = exports.resumesTopConfigUrl = exports.resumesTopAreasUrl = exports.resumesDelProjectUrl = exports.resumesEditEndUrl = exports.resumesIntroduceUrl = exports.resumesGetDataUrl = exports.checkAdcodeUrl = exports.addResumeUrl = exports.resumesProjectUrl = exports.resumesCertificateUrl = exports.delCertificateUrl = exports.jobRecommendListUrl = exports.resumeListUrl = exports.resumeCollectUrl = exports.resumeSupportUrl = exports.resumesGetTelUrl = exports.recommendListUrl = exports.resumeDetailUrl = exports.jobUpdateTopStatusUrl = exports.jobChangeTopAreasUrl = exports.jobGetTopAreasUrl = exports.jobDoTopUrl = exports.jobTopHotAreasUrl = exports.jobTopConfigUrl = exports.jobEndStatusUrl = exports.jobGetTelUrl = exports.jobNoUserInfoUrl = exports.jobInfoUrl = exports.publishComplainUrl = exports.integralUseInfoUrl = exports.integralExpendListsUrl = exports.integralExpendConfigUrl = exports.integralSourceListsUrl = exports.integralSourceConfigUrl = exports.messagesTypeUrl = exports.userMessagesUrl = exports.resumesAddClickLog = exports.resumesSortUrl = exports.newsInfoUrl = exports.newsTypesUrl = exports.newListUrl = exports.helpUrl = exports.feedbackSubmissionUrl = exports.feedbackUrl = exports.requestActionUrl = exports.ResumeCancelCollection = exports.recruitCancelCollection = exports.getCollectionResumeList = exports.getCollectionRecruitList = exports.userChangeRecruitStatus = exports.userGetPublishedRecruitList = exports.userChangePhone = exports.userUpdateName = exports.userChangeAvatar = exports.postUserAddInfo = exports.getIdcardAuthInfo = exports.postUserAuthInfo = exports.getUserAuthInfo = exports.getMemberMsgNumber = exports.getMemberInfo = exports.CheckMineAuthInfo = exports.CheckAuth = exports.GetUsedInfo = exports.GetUserPhoneCode = exports.PublishUsedInfo = exports.GetUsedInfoModel = exports.GetRechargeOrder = exports.GetRechargeOpenid = exports.GetRechargeList = exports.GetUserInviteLink = exports.CheckAdcodeValid = exports.GetAllAreas = exports.PublishRecruitInfo = exports.GetPublisRecruitView = exports.GetIntegralList = exports.GetTabbarMsg = exports.GetListFilterData = exports.GetWechatNotice = exports.GetFleamarketlist = exports.GetResumelist = exports.GetRecruitlist = exports.GetAllListItem = exports.GetBannerNotice = exports.GetUserInfo = exports.GetUserSessionKey = undefined;
+exports.resumesUpdateTopResumeUrl = exports.resumesDoTopV2Url = exports.resumesTopConfigV2Url = exports.resumesEditImgUrl = exports.resumesChangeTopStatusUrl = exports.resumesDoTopUrl = exports.resumesTopConfigUrl = exports.resumesTopAreasUrl = exports.resumesDelProjectUrl = exports.resumesEditEndUrl = exports.resumesIntroduceUrl = exports.resumesGetDataUrl = exports.checkAdcodeUrl = exports.addResumeUrl = exports.resumesProjectUrl = exports.resumesCertificateUrl = exports.delCertificateUrl = exports.jobRecommendListUrl = exports.resumeListUrl = exports.resumeCollectUrl = exports.resumeSupportUrl = exports.resumesGetTelUrl = exports.recommendListUrl = exports.resumeDetailUrl = exports.jobUpdateTopStatusUrl = exports.jobChangeTopAreasUrl = exports.jobGetTopAreasUrl = exports.jobDoTopUrl = exports.jobTopHotAreasUrl = exports.jobTopConfigUrl = exports.jobEndStatusUrl = exports.jobGetTelUrl = exports.jobNoUserInfoUrl = exports.jobInfoUrl = exports.publishComplainUrl = exports.integralUseInfoUrl = exports.integralExpendListsUrl = exports.integralExpendConfigUrl = exports.integralSourceListsUrl = exports.integralSourceConfigUrl = exports.messagesTypeUrl = exports.userMessagesUrl = exports.resumesAddClickLog = exports.resumesSortUrl = exports.newsInfoUrl = exports.newsTypesUrl = exports.newListUrl = exports.helpUrl = exports.feedbackSubmissionUrl = exports.feedbackUrl = exports.requestActionUrl = exports.ResumeCancelCollection = exports.recruitCancelCollection = exports.getCollectionResumeList = exports.getCollectionRecruitList = exports.userChangeRecruitStatus = exports.userGetPublishedRecruitList = exports.userChangePhone = exports.userUpdateName = exports.userChangeAvatar = exports.postUserAddInfo = exports.getIdcardAuthInfo = exports.postUserAuthInfo = exports.getUserAuthInfo = exports.getMemberMsgNumber = exports.getMemberInfo = exports.CheckMineAuthInfo = exports.CheckAuth = exports.GetUsedInfo = exports.GetUserPhoneCode = exports.PublishUsedInfo = exports.GetUsedInfoModel = exports.GetRechargeOrder = exports.GetRechargeOpenid = exports.GetRechargeList = exports.GetUserInviteLink = exports.CheckAdcodeValid = exports.GetAllAreas = exports.PublishRecruitInfo = exports.GetPublisRecruitView = exports.GetIntegralList = exports.GetTabbarMsg = exports.GetListFilterData = exports.GetWechatNotice = exports.GetFleamarketlist = exports.GetResumelist = exports.GetRecruitlist = exports.GetAllListItem = exports.GetBannerNotice = exports.GetUserInfo = exports.GetUserSessionKey = undefined;
 
 var _index = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
 
@@ -6311,6 +6571,10 @@ var resumesChangeTopStatusUrl = exports.resumesChangeTopStatusUrl = _index.REQUE
 var resumesEditImgUrl = exports.resumesEditImgUrl = _index.REQUESTURL + 'resumes/edit-img/';
 // 找活置顶配置接口v2
 var resumesTopConfigV2Url = exports.resumesTopConfigV2Url = _index.REQUESTURL + '/resumes/top-config/';
+// 找活置顶v2
+var resumesDoTopV2Url = exports.resumesDoTopV2Url = _index.REQUESTURL + '/resumes/do-top-v2/';
+// 修改找活置顶
+var resumesUpdateTopResumeUrl = exports.resumesUpdateTopResumeUrl = _index.REQUESTURL + '/resumes/update-top-resume/';
 
 /***/ }),
 
@@ -6596,6 +6860,8 @@ exports.resumesDoTopAction = resumesDoTopAction;
 exports.resumesChangeTopStatusAction = resumesChangeTopStatusAction;
 exports.resumesEditImgAction = resumesEditImgAction;
 exports.resumesTopConfigV2Action = resumesTopConfigV2Action;
+exports.resumesDoTopV2Action = resumesDoTopV2Action;
+exports.resumesUpdateTopResumeAction = resumesUpdateTopResumeAction;
 
 var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
@@ -7479,6 +7745,24 @@ function resumesEditImgAction(data) {
 function resumesTopConfigV2Action(data) {
   return doRequestAction({
     url: api.resumesTopConfigV2Url,
+    method: 'POST',
+    failToast: true,
+    data: data
+  });
+}
+// 找活置顶v2
+function resumesDoTopV2Action(data) {
+  return doRequestAction({
+    url: api.resumesDoTopV2Url,
+    method: 'POST',
+    failToast: true,
+    data: data
+  });
+}
+// 修改找活置顶
+function resumesUpdateTopResumeAction(data) {
+  return doRequestAction({
+    url: api.resumesUpdateTopResumeUrl,
     method: 'POST',
     failToast: true,
     data: data

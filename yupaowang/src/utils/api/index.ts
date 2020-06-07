@@ -178,3 +178,7 @@ export const resumesChangeTopStatusUrl: string = REQUESTURL +'resumes/change-top
 export const resumesEditImgUrl: string = REQUESTURL +'resumes/edit-img/'
 // 找活置顶配置接口v2
 export const resumesTopConfigV2Url : string = REQUESTURL +'/resumes/top-config/'
+// 找活置顶v2
+export const resumesDoTopV2Url: string = REQUESTURL +'/resumes/do-top-v2/';
+// 修改找活置顶
+export const resumesUpdateTopResumeUrl : string = REQUESTURL +'/resumes/update-top-resume/'

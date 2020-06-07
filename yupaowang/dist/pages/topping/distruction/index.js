@@ -85,7 +85,7 @@ var Distruction = (_temp2 = _class = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _useContext = (0, _taroWeapp.useContext)(_index3.context),
+      var _useContext = (0, _taroWeapp.useContext)(_index3.contextItem),
           AreParams = _useContext.AreParams,
           setAreParams = _useContext.setAreParams;
 

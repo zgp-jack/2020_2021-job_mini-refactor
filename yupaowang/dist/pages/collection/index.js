@@ -69,7 +69,7 @@ var Collection = (_temp2 = _class = function (_Taro$Component) {
       navigationBarBackgroundColor: '#0099ff',
       navigationBarTextStyle: 'white',
       backgroundTextStyle: "dark"
-    }, _this.$usedState = ["loopArray81", "$compid__67", "$compid__68", "tab", "current"], _this.anonymousFunc0Map = {}, _this.customComponents = ["Auth", "RecruitList", "ResumeList"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["loopArray79", "$compid__64", "$compid__65", "tab", "current"], _this.anonymousFunc0Map = {}, _this.customComponents = ["Auth", "RecruitList", "ResumeList"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Collection, [{
@@ -90,15 +90,15 @@ var Collection = (_temp2 = _class = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__67"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__64"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__67 = _genCompid2[0],
-          $compid__67 = _genCompid2[1];
+          $prevCompid__64 = _genCompid2[0],
+          $compid__64 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__68"),
+      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__65"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__68 = _genCompid4[0],
-          $compid__68 = _genCompid4[1];
+          $prevCompid__65 = _genCompid4[0],
+          $compid__65 = _genCompid4[1];
 
       // 默认table
 
@@ -131,12 +131,12 @@ var Collection = (_temp2 = _class = function (_Taro$Component) {
       (0, _taroWeapp.usePullDownRefresh)(function () {
         setInitPage(initPage + 1);
       });
-      var loopArray81 = tab.map(function (item, __index0) {
+      var loopArray79 = tab.map(function (item, __index0) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
 
-        var _$indexKey = "hgzzz" + __index0;
+        var _$indexKey = "hczzz" + __index0;
 
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return handleTable(item.$original.id);
@@ -159,15 +159,15 @@ var Collection = (_temp2 = _class = function (_Taro$Component) {
       current === 1 && _taroWeapp.propsManager.set({
         "bottom": bottom,
         "initPage": initPage
-      }, $compid__67, $prevCompid__67);
+      }, $compid__64, $prevCompid__64);
       !(current === 1) && _taroWeapp.propsManager.set({
         "bottom": bottom,
         "initPage": initPage
-      }, $compid__68, $prevCompid__68);
+      }, $compid__65, $prevCompid__65);
       Object.assign(this.__state, {
-        loopArray81: loopArray81,
-        $compid__67: $compid__67,
-        $compid__68: $compid__68,
+        loopArray79: loopArray79,
+        $compid__64: $compid__64,
+        $compid__65: $compid__65,
         tab: tab,
         current: current
       });

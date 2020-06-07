@@ -5,7 +5,7 @@ import { jobTopHotAreasData } from '../../../utils/request/index.d'
 import AREAS from '../../../models/area'
 import { SearchList } from '../../../config/store'
 import { IMGCDNURL } from '../../../config';
-import { context } from '../index'
+import { contextItem } from '../index'
 import './index.scss'
 
 interface DataType {
@@ -53,7 +53,7 @@ interface ParamsType {
 }
 
 export default function Distruction() {
-  const { AreParams, setAreParams } = useContext(context);
+  const { AreParams, setAreParams } = useContext(contextItem);
   const router: Taro.RouterInfo = useRouter()
   let { max_city, max_province  } = router.params;
   // 热门城市

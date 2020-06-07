@@ -9,7 +9,7 @@
                 </view>
             </block>
         </view>
-        <at-drawer compid="{{$compid__97}}">
+        <at-drawer compid="{{$compid__98}}">
             <view class="common-drawer-item">
                 <scroll-view class="drawer-full-lists" scroll-y="{{true}}">
                     <view class="{{item.$loopState__temp3}}" wx:key="id" bindtap="anonymousFunc2" wx:for="{{loopArray99}}" wx:for-item="item" wx:for-index="index" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey2}}">{{item.$original.name}}</view>

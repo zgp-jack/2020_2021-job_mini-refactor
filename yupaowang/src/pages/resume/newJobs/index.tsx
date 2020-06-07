@@ -7,8 +7,9 @@ import UploadImgAction from '../../../utils/upload'
 import { IMGCDNURL } from '../../../config'
 import { ResumeTopStr, resumesGetData, resumeListDataTopStatus } from '../../../utils/request/index.d'
 import CollectionRecruitList  from '../../../components/recommendList'
-import { UserInfo } from '../../../config/store'
+import { UserInfo, UserLocationCity, UserLastPublishArea } from '../../../config/store'
 import { AREABEIJING } from '../../../models/area'
+import { userAuthLoction } from '../../../utils/helper'
 import './index.scss'
 
 export interface ImageDataType {
@@ -47,9 +48,10 @@ interface DataType {
     has_top: number,
     top_provinces_str: ResumeTopStr[],
     start_time_str:number,
-    end_time_str:number,
+    end_time_str:string,
     top_tips_string:string,
-    is_show_tips:number
+    is_show_tips:number,
+    end_time:string,
   },
   content:{
     show_tips:number,
@@ -65,9 +67,6 @@ interface DataType {
 interface introducesTags {
   label_name:string,
 }
-// interface CertificatesObj {
-//   check:string
-// }
 // 最后发布地区
 export interface UserLastPublishRecruitArea {
   location: string,
@@ -82,6 +81,7 @@ interface Injected {
   publicList: resumesGetData,//公用值
   skillData:any,//修改技能证书
   projectData:any, //修改项目经验 
+  resumeTop:any,//找活置顶
   // basicsCity:string,//选择区域
   setArea: (city: string) => void, //设置城市名称
   setAreaInfo?: (item: UserLastPublishRecruitArea) => void, // 用户点击的小地址信息
@@ -93,6 +93,14 @@ interface User {
   token: string,
   uuid: string,
   login: boolean
+}
+
+// 用户定位返回信息
+interface UserLocationPromiss {
+  province: string,
+  city: string,
+  adcode: string,
+  citycode: string
 }
 export const context = createContext<Injected>({} as Injected)
 
@@ -119,9 +127,10 @@ export default function NewJob() {
       has_top: 0,
       top_provinces_str:[],
       start_time_str:0,
-      end_time_str:0,
+      end_time_str:'',
       top_tips_string:'',
       is_show_tips:0,
+      end_time:'',
     },
     content:{
       show_tips:0,
@@ -184,6 +193,7 @@ export default function NewJob() {
   const [area, setArea] = useState<string>(AREABEIJING.name)
   // 工作状态
   const [isOpened, setIsOpened] = useState<boolean>(false)
+  const [resumeTop, setResumeTop] = useState<any>()
   // 工作状态列表
   const [statusList, setStatusList] = useState<any>()
   const [publicList, setPublicList] = useState<resumesGetData>({
@@ -224,7 +234,6 @@ export default function NewJob() {
   const [indextop, setIndextop] = useState<number>(0)
   useDidShow(()=>{
     resumeListAction().then(res=>{
-      console.log(res);
       if(res.errcode == "200"){
         Taro.setStorageSync("introinfo", res.data.info)
         setData({ info: res.data.info, resume_top: res.data.resume_top, content: res.data.content, introduces: res.data.introduces, certificate_count: res.data.certificate_count, fail_certificate: res.data.fail_certificate, fail_project: res.data.fail_project, popup_text: res.data.popup_text, top_status: res.data.top_status })
@@ -239,8 +248,19 @@ export default function NewJob() {
         if(res.data.info.is_end === '2'){
           setIndex(1);
         }
+        setResumeTop(res.data.resume_top);
         // 设置城市
-        setArea(res.data.info.city);
+        let userLoctionCity: UserLocationPromiss = Taro.getStorageSync(UserLocationCity)
+        setArea(userLoctionCity.city);
+        if (userLoctionCity) {
+          setArea(userLoctionCity.city)
+        } else {
+          userAuthLoction().then(res => {
+            setArea(res.city)
+          }).then(() => {
+            setArea(AREABEIJING.name)
+          })
+        }
         //状态列表
         setStatusList(res.data.status);
         setUserInfo(res.data.introduces)
@@ -392,7 +412,6 @@ export default function NewJob() {
     });
     // 给子页面提供公用数据
     resumesGetDataAction().then(res=>{
-      console.log(res,'公用数据')
       setPublicList(res);
     })
   })
@@ -435,7 +454,6 @@ export default function NewJob() {
       })
     }
   }
-  console.log(area,'area23123')
   // 需要传递的值
   const value:Injected = {
     area: area,
@@ -455,9 +473,12 @@ export default function NewJob() {
     skillData: skillData,
     // 修改项目经验
     projectData: projectData,
+    // 置顶数据
+    resumeTop,
     // 所在区域
     // basicsCity: basicsCity,
   }
+  console.log(resumeTop,'resumeTop')
   //设置工作状态
   const handleStatus = ()=>{
     if (data.info.check === '2'){
@@ -511,8 +532,8 @@ export default function NewJob() {
   }
   // 设置置顶状态
   const handleToppStatus = ()=>{
-    let nowtime = new Date().getTime();
-    let endtime = data.resume_top.end_time_str;
+    let nowtime = getMyDate(new Date().getTime());
+    const endtime = getMyDate(parseInt(data.resume_top.end_time) * 1000);
     if (nowtime > endtime) {
       Taro.showModal({
         title: '温馨提示',
@@ -558,10 +579,28 @@ export default function NewJob() {
       }
     })
   }
+  const getMyDate = (str) => {
+    const oDate = new Date(str),
+      oYear = oDate.getFullYear(),
+      oMonth = oDate.getMonth() + 1,
+      oDay = oDate.getDate(),
+      oHour = oDate.getHours(),
+      oMin = oDate.getMinutes(),
+      oSen = oDate.getSeconds(),
+      oTime = oYear + '-' + addZero(oMonth) + '-' + addZero(oDay) + ' ' + addZero(oHour) + ':' +
+        addZero(oMin);
+    return oTime;
+  }
+  const addZero = (num) => {
+    if (parseInt(num) < 10) {
+      num = '0' + num;
+    }
+    return num;
+  }
   const handelEditTopp = ()=>{
-    let nowtime = new Date().getTime();
-    let endtime = data.resume_top.end_time_str;
+    let nowtime = getMyDate(new Date().getTime());
     let contentom = data.resume_top.top_tips_string
+    const endtime = getMyDate(parseInt(data.resume_top.end_time) * 1000);
     if (nowtime > endtime) {
       Taro.showModal({
         title: '温馨提示',
@@ -578,6 +617,12 @@ export default function NewJob() {
       })
       return
     }
+    const area = JSON.stringify(data.resume_top.top_provinces_str);
+    const endTime = data.resume_top.end_time;
+    const endTimeStr = data.resume_top.end_time_str
+    // const maxnumber = data.resume_top.max_number;
+    // const firstprovincenum = data.resume_top.first_province_num;
+    userRouteJump(`/pages/topping/index?rec=1&type=1&areaData=${area}&endTimes=${endTime}&endTimeStr=${endTimeStr}`)
   }
   // 修改头像
   const userUploadAvatar = () => {
@@ -614,6 +659,7 @@ export default function NewJob() {
     })
 
   }
+  console.log(value,'value')
   return (
     <context.Provider value={value}>
     <View className='newJob'>

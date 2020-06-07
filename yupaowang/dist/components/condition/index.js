@@ -60,7 +60,7 @@ var Condition = (_temp2 = _class = function (_Taro$Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Condition.__proto__ || Object.getPrototypeOf(Condition)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "loopArray98", "loopArray99", "$compid__97", "data", "IMGCDNURL", "AREAS", "childAreaList", "scrollTop"], _this.anonymousFunc0Map = {}, _this.anonymousFunc2Map = {}, _this.customComponents = ["AtDrawer"], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Condition.__proto__ || Object.getPrototypeOf(Condition)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "loopArray98", "loopArray99", "$compid__98", "data", "IMGCDNURL", "AREAS", "childAreaList", "scrollTop"], _this.anonymousFunc0Map = {}, _this.anonymousFunc2Map = {}, _this.customComponents = ["AtDrawer"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Condition, [{
@@ -81,10 +81,10 @@ var Condition = (_temp2 = _class = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__97"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__98"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__97 = _genCompid2[0],
-          $compid__97 = _genCompid2[1];
+          $prevCompid__98 = _genCompid2[0],
+          $compid__98 = _genCompid2[1];
 
       var data = this.__props.data;
 
@@ -189,12 +189,12 @@ var Condition = (_temp2 = _class = function (_Taro$Component) {
         "show": anonymousState__temp,
         "mask": true,
         "onClose": this.anonymousFunc1
-      }, $compid__97, $prevCompid__97);
+      }, $compid__98, $prevCompid__98);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
         loopArray98: loopArray98,
         loopArray99: loopArray99,
-        $compid__97: $compid__97,
+        $compid__98: $compid__98,
         data: data,
         IMGCDNURL: _index.IMGCDNURL,
         AREAS: _area2.default,

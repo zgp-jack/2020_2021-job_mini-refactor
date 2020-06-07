@@ -167,7 +167,13 @@ var PublishedRecruit = (_temp2 = _class = function (_Taro$Component) {
           } else {
             setLists([].concat(_toConsumableArray(lists), _toConsumableArray(list)));
           }
-        }).finally(function () {
+          if (refresh) {
+            setRefresh(false);
+            _taroWeapp2.default.stopPullDownRefresh();
+            _taroWeapp2.default.hideNavigationBarLoading();
+          }
+          setLoading(false);
+        }).catch(function () {
           if (refresh) {
             setRefresh(false);
             _taroWeapp2.default.stopPullDownRefresh();

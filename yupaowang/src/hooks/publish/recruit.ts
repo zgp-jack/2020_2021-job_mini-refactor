@@ -82,6 +82,7 @@ export default function usePublishViewInfo(InitParams: InitRecruitView){
   }, [login])
 
   function initUserAreaInfo(data: any){
+    console.log(InitParams.infoId,'InitParams.infoId')
     //  设置地区名字
     if (InitParams.infoId){
       setArea(data.default_search_name.name)
