@@ -1150,7 +1150,8 @@ export interface resumesGetDataOccupation{
   letter: string
   name: string
   not_auth: string
-  pid: string
+  pid: string,
+  children:any[],
 }
 export interface resumesGetDataProfDegree{
   id: string

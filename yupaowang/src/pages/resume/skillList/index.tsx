@@ -1,4 +1,4 @@
-import Taro, { Config, useState, useDidShow } from '@tarojs/taro'
+import Taro, { Config, useState, useDidShow, useRouter } from '@tarojs/taro'
 import { View, Text, Image, Button } from '@tarojs/components'
 import { resumeListAction } from '../../../utils/request/index'
 import { IMGCDNURL } from '../../../config'
@@ -13,6 +13,8 @@ interface DataType {
   image:[]
 }
 export default function SkillList() {
+  const router: Taro.RouterInfo = useRouter()
+  let { id } = router.params;
   // 刷新一次
   const [refresh, setRefresh] = useState<boolean>(false)
   // 数据
@@ -49,8 +51,8 @@ export default function SkillList() {
         <View key={item.id} className='skilleight'>
           {item.check == '1' && <Image className='audit' src={`${IMGCDNURL}lpy/review.png`} />}
           {item.check == '0' && <Image className='audit' src={`${IMGCDNURL}lpy/notthrough.png`} />}
-          {item.check == '2' && <View className='editor' onClick={() => userRouteJump(`/subpackage/pages/addSkill/index?type=${i}`)}>编辑</View>}
-          {item.check == '0' && <View className='editorone' onClick={() => userRouteJump(`/subpackage/pages/addSkill/index?type=${i}`)}>待修改</View>}
+          {item.check == '2' && <View className='editor' onClick={() => userRouteJump(`/subpackage/pages/addSkill/index?type=${i}&id=${id}`)}>编辑</View>}
+          {item.check == '0' && <View className='editorone' onClick={() => userRouteJump(`/subpackage/pages/addSkill/index?type=${i}&id=${id}`)}>待修改</View>}
           <View className="skilleightzong">
             <View>
               <Image src={`${IMGCDNURL}lpy/newresume-experience-item.png`} className='skilleightone' />

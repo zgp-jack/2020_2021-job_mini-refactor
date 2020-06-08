@@ -104,7 +104,7 @@ export default function ResumeDetail() {
       console.log(res);
       if(res.errcode === 'ok'){
         console.log(res);
-        // Taro.setStorageSync("introinfo", res.info)
+        Taro.setStorageSync("introinfo", res.info)
         setDate({ certificates: res.certificates,info:res.info,operation:res.operation,project:res.project})
         setPhone(res.info.tel);
         setExamine(false)

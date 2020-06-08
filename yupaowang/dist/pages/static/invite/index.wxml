@@ -3,7 +3,7 @@
         <scroll-view class="invite-ScrollView" scroll-x="{{true}}" upper-threshold="{{50}}" lower-threshold="{{50}}" enable-flex="{{true}}" scroll-left="{{scrollLeft}}" scroll-with-animation="{{true}}" bindscroll="anonymousFunc0">
             <view class="invite-tab">
                 <block wx:if="{{tab.item}}">
-                    <view wx:key="index" class="invite-tab-box" bindtap="anonymousFunc1" wx:for="{{loopArray91}}" wx:for-item="item" wx:for-index="i" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">
+                    <view wx:key="index" class="invite-tab-box" bindtap="anonymousFunc1" wx:for="{{loopArray88}}" wx:for-item="item" wx:for-index="i" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">
                         <view class="{{item.$loopState__temp2}}">{{item.$original.name}}</view>
                     </view>
                 </block>
@@ -14,7 +14,7 @@
         </block>
         <view class="invite-content-box">
             <block wx:if="{{list}}">
-                <view wx:key="id" class="invite-content" bindtap="anonymousFunc2" wx:for="{{loopArray92}}" wx:for-item="v" wx:for-index="__index2" data-e-tap-so="this" data-e-tap-a-a="{{v._$indexKey2}}">
+                <view wx:key="id" class="invite-content" bindtap="anonymousFunc2" wx:for="{{loopArray89}}" wx:for-item="v" wx:for-index="__index2" data-e-tap-so="this" data-e-tap-a-a="{{v._$indexKey2}}">
                     <view>
                         <image class="invite-content-img" src="{{v.$original.cover_img}}"></image>
                     </view>

@@ -66,7 +66,7 @@ export default function Preview() {
   useEffect(()=>{
     resumeListAction().then(res=>{
       console.log(res);
-      
+      Taro.setStorageSync("introinfo", res.data.info)
       setSex(res.data.info.gender == '1'?'男':'女')
       setCheckpan(res.data.info.check == '0' ? true : false)
       setCheckone(res.data.info.check == '0' ? true : false)

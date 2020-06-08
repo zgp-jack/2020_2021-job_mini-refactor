@@ -1,7 +1,7 @@
-import Taro, { useEffect, useState, useContext, Config } from '@tarojs/taro'
+import Taro, { useEffect, useState, createContext, Config, useRouter, getCurrentPages } from '@tarojs/taro'
 import { View, Text, Image, Input } from '@tarojs/components'
-import  { contextItem }  from '../../../subpackage/pages/basics';
-import { context } from '../../recruit/publish'
+// import { context }  from '../../../subpackage/pages/basics';
+// import { context } from '../../recruit/publish'
 import { getAllAreas, checkAdcodeValid } from '../../../utils/request'
 import { AllAreasDataItem } from '../../../utils/request/index.d'
 import { IMGCDNURL, UserPublishAreaHistoryMaxNum } from '../../../config'
@@ -17,22 +17,39 @@ import './index.scss'
 const PI = Math.PI;  // 数学 PI 常亮
 let EARTH_RADIUS = 6378137.0; // 地球半径
 
+interface UserLastPublishRecruitArea {
+  location: string,
+  adcode: string,
+  title: string,
+  info: string
+}
+interface Injected {
+  publishArea:string,
+  location: string,
+  adcode:string
+}
+interface ResumeMapType{
+  publishArea:string,
+  location: string,
+  adcode:string
+}
+export const contextItem = createContext<Injected>({} as Injected)
 export default function ResumeMap() {
+  const router: Taro.RouterInfo = useRouter()
+  let { areaItem } = router.params;
+  // console.log(context,'context');
+  // console.log(contextItem,'contextItem')
+  const [area, setArea] = useState<string>(areaItem)
   // 城市数据
   const [areas, setAreas] = useState<AllAreasDataItem[][]>([])
-
-  // 获取城市数据
-  useEffect(() => {
-    let areas: AllAreasDataItem[][] = Taro.getStorageSync(Areas)
-    if (areas) setAreas(areas)
-    else getAllAreas().then(res => {
-      // 存入缓存
-      // Taro.setStorageSync(Areas, res)
-      setAreas(res)
-    })
-
-  }, [])
-
+  // 选择详细地址信息
+  const [areaInfo, setAreaInfo] = useState<UserLastPublishRecruitArea>({
+    title: '',
+    adcode: '',
+    location: '',
+    info: ''
+  })
+  const [location, setLocation] = useState<string>('')
   // 用户定位城市
   const [userLoc, setUserLoc] = useState<AllAreasDataItem>({
     id: '',
@@ -43,8 +60,8 @@ export default function ResumeMap() {
   // 是否显示城市
   const [showCity, setShowCity] = useState<boolean>(false)
   // 使用发布招工hook处理数据
-  const { area, setArea, setAreaInfo, setPublishArea } = useContext(context)
-
+  // const { area, setArea, setAreaInfo, setPublishArea } = useContext(context)
+  const [publishArea,setPublishArea] = useState<string>('')
   // 详细地址的输入框
   const [smAreaText, setSmAreaText] = useState<string>('')
   // 关键词地区列表
@@ -53,7 +70,19 @@ export default function ResumeMap() {
   const [histroyList, setHistoryList] = useState<InputPoiListTips[]>([])
   // 显示关键词列表还是历史记录
   const [showHistory, setShowHistory] = useState<boolean>(false)
+  // 设置adcode
+  const [adcode, setAdcode] = useState<string>('')
+  // 获取城市数据
+  useEffect(() => {
+    let areas: AllAreasDataItem[][] = Taro.getStorageSync(Areas)
+    if (areas) setAreas(areas)
+    else getAllAreas().then(res => {
+      // 存入缓存
+      Taro.setStorageSync(Areas, res)
+      setAreas(res)
+    })
 
+  }, [])
   // 初始化用户定位信息
   const initUserLocationCity = () => {
     let userLoc: UserLocationPromiss = Taro.getStorageSync(UserLocationCity)
@@ -66,7 +95,7 @@ export default function ResumeMap() {
         city: data.name
       }
       console.log(data,'data')
-      // setArea(data.name)
+      setArea(data.name)
       setUserLoc(userLocData)
     }
   }
@@ -171,7 +200,9 @@ export default function ResumeMap() {
   const userClickAreaItem = (item: InputPoiListTips) => {
     checkAdcodeValid(item.adcode).then(res => {
       if (res.errcode == "ok") {
-        console.log(item)
+        // console.log(item,'xxxx')
+        setLocation(item.location)
+        setAdcode(item.adcode)
         if (setAreaInfo) {
           setUserPublishAreaHistoryItem(item)
           setAreaInfo({
@@ -189,8 +220,13 @@ export default function ResumeMap() {
       Msg("网络错误，请求失败！")
     })
   }
-
+  const value: ResumeMapType = {
+    publishArea,
+    location,
+    adcode,
+  }
   return (
+    <contextItem.Provider value={value}>
     <View className='publishrecruit-container'>
       <View className='mapinfo-header'>
         <View className='mapinfo-header-area' onClick={() => userTapCityBtn(true)}>{area}</View>
@@ -251,6 +287,7 @@ export default function ResumeMap() {
         </View>
       }
     </View>
+    </contextItem.Provider>
   )
 }
 ResumeMap.config = {

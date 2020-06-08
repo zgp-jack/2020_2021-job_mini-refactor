@@ -52,7 +52,7 @@ var RecruitListPage = (_temp2 = _class = function (_Taro$Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = RecruitListPage.__proto__ || Object.getPrototypeOf(RecruitListPage)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray109", "data", "IMGCDNURL"], _this.anonymousFunc0Map = {}, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = RecruitListPage.__proto__ || Object.getPrototypeOf(RecruitListPage)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray103", "data", "IMGCDNURL"], _this.anonymousFunc0Map = {}, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(RecruitListPage, [{
@@ -82,12 +82,12 @@ var RecruitListPage = (_temp2 = _class = function (_Taro$Component) {
           url: url
         });
       };
-      var loopArray109 = data.map(function (v, __index0) {
+      var loopArray103 = data.map(function (v, __index0) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
 
-        var _$indexKey = "baezz" + __index0;
+        var _$indexKey = "baazz" + __index0;
 
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return userRouteJump("/pages/detail/info/index?id=" + v.$original.id);
@@ -99,7 +99,7 @@ var RecruitListPage = (_temp2 = _class = function (_Taro$Component) {
         };
       });
       Object.assign(this.__state, {
-        loopArray109: loopArray109,
+        loopArray103: loopArray103,
         data: data,
         IMGCDNURL: _index.IMGCDNURL
       });

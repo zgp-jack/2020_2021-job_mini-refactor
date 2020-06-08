@@ -4,7 +4,7 @@
         </view>
         <view class="notice-container"><text class="notice-tips">鱼泡资讯：</text>
             <view class="notice-lists">
-                <swiper-news compid="{{$compid__97}}"></swiper-news>
+                <swiper-news compid="{{$compid__98}}"></swiper-news>
             </view>
         </view>
     </view>

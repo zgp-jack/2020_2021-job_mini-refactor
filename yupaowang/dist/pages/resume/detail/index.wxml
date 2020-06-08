@@ -62,7 +62,7 @@
                             <view class="cworkotype"><text class="ocworkotype">工种</text>
                                 <view class="ocworkotypeoo">
                                     <view class="ocworkotyp">
-                                        <view class="ocworkotyptu" wx:key="$loopState__temp2" wx:for="{{loopArray141}}" wx:for-item="v" wx:for-index="i">{{v.$original}}</view>
+                                        <view class="ocworkotyptu" wx:key="$loopState__temp2" wx:for="{{loopArray137}}" wx:for-item="v" wx:for-index="i">{{v.$original}}</view>
                                     </view>
                                 </view>
                             </view>
@@ -134,7 +134,7 @@
                         <view class="resumeDetail-experience-content-list">{{data.project[0].detail}}</view>
                     </view>
                     <view class="resumeDetail-experience-img-box">
-                        <image class="resumeDetail-experience-img" wx:key="$loopState__temp4" src="{{v.$original}}" wx:for="{{loopArray143}}" wx:for-item="v" wx:for-index="i"></image>
+                        <image class="resumeDetail-experience-img" wx:key="$loopState__temp4" src="{{v.$original}}" wx:for="{{loopArray139}}" wx:for-item="v" wx:for-index="i"></image>
                     </view>
                     <view class="resumeDetail-more-box">
                         <view class="resumeDetail-more">更多项目经验
@@ -160,7 +160,7 @@
                     <view class="resumeDetail-experience-content">
                         <view class="resumeDetail-experience-content-list">{{data.certificates[0].certificate_time}}</view>
                         <view>
-                            <image wx:key="$loopState__temp6" src="{{val.$original}}" class="resumeDetail-skill-image" wx:for="{{loopArray144}}" wx:for-item="val" wx:for-index="i"></image>
+                            <image wx:key="$loopState__temp6" src="{{val.$original}}" class="resumeDetail-skill-image" wx:for="{{loopArray140}}" wx:for-item="val" wx:for-index="i"></image>
                         </view>
                     </view>
                     <view class="resumeDetail-more-box">
@@ -171,7 +171,7 @@
                 </view>
             </block>
         </view>
-        <collection-recruit-list compid="{{$compid__120}}"></collection-recruit-list>
+        <collection-recruit-list compid="{{$compid__117}}"></collection-recruit-list>
         <view class="resumeDetail-footer">
             <view class="resumeDetail-footer-box" bindtap="anonymousFunc3">
                 <image class="bossimg" src="{{praise === 0 ? IMGCDNURL + 'newresume-footer-star.png' : IMGCDNURL + 'newresume-footer-star-active.png'}}"></image>

@@ -69,7 +69,7 @@ var Collection = (_temp2 = _class = function (_Taro$Component) {
       navigationBarBackgroundColor: '#0099ff',
       navigationBarTextStyle: 'white',
       backgroundTextStyle: "dark"
-    }, _this.$usedState = ["loopArray79", "$compid__64", "$compid__65", "tab", "current"], _this.anonymousFunc0Map = {}, _this.customComponents = ["Auth", "RecruitList", "ResumeList"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["loopArray78", "$compid__64", "$compid__65", "tab", "current"], _this.anonymousFunc0Map = {}, _this.customComponents = ["Auth", "RecruitList", "ResumeList"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Collection, [{
@@ -131,12 +131,12 @@ var Collection = (_temp2 = _class = function (_Taro$Component) {
       (0, _taroWeapp.usePullDownRefresh)(function () {
         setInitPage(initPage + 1);
       });
-      var loopArray79 = tab.map(function (item, __index0) {
+      var loopArray78 = tab.map(function (item, __index0) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
 
-        var _$indexKey = "hczzz" + __index0;
+        var _$indexKey = "hbzzz" + __index0;
 
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return handleTable(item.$original.id);
@@ -165,7 +165,7 @@ var Collection = (_temp2 = _class = function (_Taro$Component) {
         "initPage": initPage
       }, $compid__65, $prevCompid__65);
       Object.assign(this.__state, {
-        loopArray79: loopArray79,
+        loopArray78: loopArray78,
         $compid__64: $compid__64,
         $compid__65: $compid__65,
         tab: tab,

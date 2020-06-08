@@ -64,7 +64,7 @@ var ResumeDetail = (_temp2 = _class = function (_Taro$Component) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ResumeDetail.__proto__ || Object.getPrototypeOf(ResumeDetail)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
       navigationBarTitleText: '找活名片'
-    }, _this.$usedState = ["data", "loopArray141", "loopArray143", "loopArray144", "$compid__120", "IMGCDNURL", "examine", "onoff", "praise", "collect", "shownewtips", "complaintModal", "textarea", "phone"], _this.customComponents = ["CollectionRecruitList"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["data", "loopArray137", "loopArray139", "loopArray140", "$compid__117", "IMGCDNURL", "examine", "onoff", "praise", "collect", "shownewtips", "complaintModal", "textarea", "phone"], _this.customComponents = ["CollectionRecruitList"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(ResumeDetail, [{
@@ -83,10 +83,10 @@ var ResumeDetail = (_temp2 = _class = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__120"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__117"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__120 = _genCompid2[0],
-          $compid__120 = _genCompid2[1];
+          $prevCompid__117 = _genCompid2[0],
+          $compid__117 = _genCompid2[1];
 
       var userInfo = _taroWeapp2.default.getStorageSync(_store.UserInfo);
 
@@ -189,7 +189,7 @@ var ResumeDetail = (_temp2 = _class = function (_Taro$Component) {
           console.log(res);
           if (res.errcode === 'ok') {
             console.log(res);
-            // Taro.setStorageSync("introinfo", res.info)
+            _taroWeapp2.default.setStorageSync("introinfo", res.info);
             setDate({ certificates: res.certificates, info: res.info, operation: res.operation, project: res.project });
             setPhone(res.info.tel);
             setExamine(false);
@@ -327,7 +327,7 @@ var ResumeDetail = (_temp2 = _class = function (_Taro$Component) {
         return handleSubmit();
       };
 
-      var loopArray141 = data.info.occupations.length ? data.info.occupations.map(function (v, i) {
+      var loopArray137 = data.info.occupations.length ? data.info.occupations.map(function (v, i) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
@@ -337,7 +337,7 @@ var ResumeDetail = (_temp2 = _class = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray143 = data.project.length ? data.project[0].image.map(function (v, i) {
+      var loopArray139 = data.project.length ? data.project[0].image.map(function (v, i) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
@@ -347,7 +347,7 @@ var ResumeDetail = (_temp2 = _class = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray144 = data.certificates.length ? data.certificates[0].image.map(function (val, i) {
+      var loopArray140 = data.certificates.length ? data.certificates[0].image.map(function (val, i) {
         val = {
           $original: (0, _taroWeapp.internal_get_original)(val)
         };
@@ -360,13 +360,13 @@ var ResumeDetail = (_temp2 = _class = function (_Taro$Component) {
       _taroWeapp.propsManager.set({
         "data": list.item,
         "type": 2
-      }, $compid__120, $prevCompid__120);
+      }, $compid__117, $prevCompid__117);
       Object.assign(this.__state, {
         data: data,
-        loopArray141: loopArray141,
-        loopArray143: loopArray143,
-        loopArray144: loopArray144,
-        $compid__120: $compid__120,
+        loopArray137: loopArray137,
+        loopArray139: loopArray139,
+        loopArray140: loopArray140,
+        $compid__117: $compid__117,
         IMGCDNURL: _index2.IMGCDNURL,
         examine: examine,
         onoff: onoff,

@@ -2,7 +2,7 @@
     <view>
         <view class="header"><text class="header-text">相关推荐</text>
         </view>
-        <view wx:key="id" class="recruitListBox" bindtap="anonymousFunc0" wx:for="{{loopArray109}}" wx:for-item="v" wx:for-index="__index0" data-e-tap-so="this" data-e-tap-a-a="{{v._$indexKey}}">
+        <view wx:key="id" class="recruitListBox" bindtap="anonymousFunc0" wx:for="{{loopArray103}}" wx:for-item="v" wx:for-index="__index0" data-e-tap-so="this" data-e-tap-a-a="{{v._$indexKey}}">
             <view class="recruitListBox-title">{{v.$original.title}}</view>
             <view class="recruitListBox-content">
                 <image src="{{v.$original.image}}" class="recruitListBox-content-img"></image>

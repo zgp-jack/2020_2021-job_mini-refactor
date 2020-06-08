@@ -134,6 +134,7 @@ export default function RecruitMap(){
 
   // 小地址存入缓存，生成历史记录
   const setUserPublishAreaHistoryItem = (item: InputPoiListTips) => {
+    console.log(item,'itemitemitem')
     let userPublishAreaHistory: InputPoiListTips[] = Taro.getStorageSync(UserPublishAreaHistory)
     if (userPublishAreaHistory) {
       let isset: number = userPublishAreaHistory.findIndex(data => {
@@ -169,7 +170,6 @@ export default function RecruitMap(){
   const userClickAreaItem = (item: InputPoiListTips) => {
     checkAdcodeValid(item.adcode).then(res => {
       if (res.errcode == "ok") {
-        console.log(item)
         if (setAreaInfo) {
           setUserPublishAreaHistoryItem(item)
           setAreaInfo({

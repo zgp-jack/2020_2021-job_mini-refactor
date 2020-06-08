@@ -13,7 +13,6 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.contextItem = undefined;
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -37,17 +36,19 @@ var _index3 = _interopRequireDefault(_index2);
 
 var _index4 = __webpack_require__(/*! ../../../utils/helper/index */ "./src/utils/helper/index.ts");
 
-var _index5 = __webpack_require__(/*! ../../../pages/resume/newJobs/index */ "./src/pages/resume/newJobs/index.tsx");
+var _index5 = __webpack_require__(/*! ../../../pages/map/resume/index */ "./src/pages/map/resume/index.tsx");
+
+var _index6 = __webpack_require__(/*! ../../../pages/resume/newJobs/index */ "./src/pages/resume/newJobs/index.tsx");
 
 var _area = __webpack_require__(/*! ../../../models/area */ "./src/models/area.ts");
 
 var _store = __webpack_require__(/*! ../../../config/store */ "./src/config/store.ts");
 
-var _index6 = __webpack_require__(/*! ../../../hooks/code/index */ "./src/hooks/code/index.ts");
+var _index7 = __webpack_require__(/*! ../../../hooks/code/index */ "./src/hooks/code/index.ts");
 
-var _index7 = _interopRequireDefault(_index6);
+var _index8 = _interopRequireDefault(_index7);
 
-var _index8 = __webpack_require__(/*! ../../../utils/v/index */ "./src/utils/v/index.ts");
+var _index9 = __webpack_require__(/*! ../../../utils/v/index */ "./src/utils/v/index.ts");
 
 __webpack_require__(/*! ./index.scss */ "./src/subpackage/pages/basics/index.scss");
 
@@ -61,7 +62,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var contextItem = exports.contextItem = (0, _taroWeapp.createContext)({});
+var userListChooseCity = _taroWeapp2.default.getStorageSync(_store.UserListChooseCity);
+// export const contextItem = createContext<Injected>({} as Injected)
 
 var BasicsPage = (_temp2 = _class = function (_Taro$Component) {
   _inherits(BasicsPage, _Taro$Component);
@@ -79,7 +81,7 @@ var BasicsPage = (_temp2 = _class = function (_Taro$Component) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = BasicsPage.__proto__ || Object.getPrototypeOf(BasicsPage)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
       navigationBarTitleText: '基础信息'
-    }, _this.$usedState = ["$compid__116", "$compid__117", "showProfession", "formData", "sexList", "nationCurrent", "isCode", "text"], _this.customComponents = ["Profession", "WordsTotal"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["anonymousState__temp", "$compid__230", "$compid__231", "showProfession", "formData", "sexList", "nationCurrent", "isCode", "text"], _this.customComponents = ["Profession", "WordsTotal"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(BasicsPage, [{
@@ -98,22 +100,27 @@ var BasicsPage = (_temp2 = _class = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__116"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__230"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__116 = _genCompid2[0],
-          $compid__116 = _genCompid2[1];
+          $prevCompid__230 = _genCompid2[0],
+          $compid__230 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__117"),
+      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__231"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__117 = _genCompid4[0],
-          $compid__117 = _genCompid4[1];
+          $prevCompid__231 = _genCompid4[0],
+          $compid__231 = _genCompid4[1];
 
-      var _useContext = (0, _taroWeapp.useContext)(_index5.context),
-          area = _useContext.area;
+      var _useContext = (0, _taroWeapp.useContext)(_index5.contextItem),
+          publishArea = _useContext.publishArea,
+          location = _useContext.location,
+          adcode = _useContext.adcode;
+
+      var _useContext2 = (0, _taroWeapp.useContext)(_index6.context),
+          publicList = _useContext2.publicList;
       // 验证码
 
 
-      var _useCode = (0, _index7.default)(),
+      var _useCode = (0, _index8.default)(),
           text = _useCode.text,
           userGetCode = _useCode.userGetCode;
       // 当前显示城市
@@ -136,82 +143,134 @@ var BasicsPage = (_temp2 = _class = function (_Taro$Component) {
           areaInfo = _useState4[0],
           _setAreaInfo = _useState4[1];
 
-      var sexList = ['男', '女'];
-
-      var _useState5 = (0, _taroWeapp.useState)([]),
+      var _useState5 = (0, _taroWeapp.useState)(''),
           _useState6 = _slicedToArray(_useState5, 2),
-          nationCurrent = _useState6[0],
-          setNationCurrent = _useState6[1];
+          adcodes = _useState6[0],
+          setAdcodes = _useState6[1];
+
+      var sexList = ['男', '女'];
 
       var _useState7 = (0, _taroWeapp.useState)([]),
           _useState8 = _slicedToArray(_useState7, 2),
-          allNationCurrent = _useState8[0],
-          setAllNationCurrent = _useState8[1];
+          nationCurrent = _useState8[0],
+          setNationCurrent = _useState8[1];
 
-      var _useState9 = (0, _taroWeapp.useState)(),
+      var _useState9 = (0, _taroWeapp.useState)([]),
           _useState10 = _slicedToArray(_useState9, 2),
-          model = _useState10[0],
-          setModel = _useState10[1];
+          allNationCurrent = _useState10[0],
+          setAllNationCurrent = _useState10[1];
+      // 工种
 
-      var _useState11 = (0, _taroWeapp.useState)(false),
+
+      var _useState11 = (0, _taroWeapp.useState)([]),
           _useState12 = _slicedToArray(_useState11, 2),
-          showProfession = _useState12[0],
-          setShowProssion = _useState12[1];
-      // 进来时的电话做验证码判断
+          occupation = _useState12[0],
+          setoccupation = _useState12[1];
+      // 点击的工种
 
 
-      var _useState13 = (0, _taroWeapp.useState)(''),
+      var _useState13 = (0, _taroWeapp.useState)([]),
           _useState14 = _slicedToArray(_useState13, 2),
-          oldTel = _useState14[0],
-          setOldTel = _useState14[1];
+          clickOccupation = _useState14[0],
+          setClickOccupation = _useState14[1];
 
-      var _useState15 = (0, _taroWeapp.useState)(0),
+      var _useState15 = (0, _taroWeapp.useState)(),
           _useState16 = _slicedToArray(_useState15, 2),
-          num = _useState16[0],
-          setNum = _useState16[1];
-      // 省
+          model = _useState16[0],
+          setModel = _useState16[1];
 
-
-      var _useState17 = (0, _taroWeapp.useState)(''),
+      var _useState17 = (0, _taroWeapp.useState)(false),
           _useState18 = _slicedToArray(_useState17, 2),
-          province = _useState18[0],
-          setProvince = _useState18[1];
-      // 市
+          showProfession = _useState18[0],
+          setShowProssion = _useState18[1];
+      // 进来时的电话做验证码判断
 
 
       var _useState19 = (0, _taroWeapp.useState)(''),
           _useState20 = _slicedToArray(_useState19, 2),
-          city = _useState20[0],
-          setCity = _useState20[1];
+          oldTel = _useState20[0],
+          setOldTel = _useState20[1];
 
-      var _useState21 = (0, _taroWeapp.useState)({
+      var _useState21 = (0, _taroWeapp.useState)(0),
+          _useState22 = _slicedToArray(_useState21, 2),
+          num = _useState22[0],
+          setNum = _useState22[1];
+      // 省
+
+
+      var _useState23 = (0, _taroWeapp.useState)(''),
+          _useState24 = _slicedToArray(_useState23, 2),
+          province = _useState24[0],
+          setProvince = _useState24[1];
+      // 市
+
+
+      var _useState25 = (0, _taroWeapp.useState)(''),
+          _useState26 = _slicedToArray(_useState25, 2),
+          city = _useState26[0],
+          setCity = _useState26[1];
+      //设置latitude
+
+
+      var _useState27 = (0, _taroWeapp.useState)(''),
+          _useState28 = _slicedToArray(_useState27, 2),
+          lat = _useState28[0],
+          setLat = _useState28[1];
+      // 设置longitude
+
+
+      var _useState29 = (0, _taroWeapp.useState)(''),
+          _useState30 = _slicedToArray(_useState29, 2),
+          lng = _useState30[0],
+          setLng = _useState30[1];
+
+      var _useState31 = (0, _taroWeapp.useState)(''),
+          _useState32 = _slicedToArray(_useState31, 2),
+          occupationsId = _useState32[0],
+          setOccupationsId = _useState32[1];
+
+      var _useState33 = (0, _taroWeapp.useState)({
         name: '',
         sex: '',
         time: '',
         nation: '',
         work: [],
-        workItem: '',
+        workItem: [],
         are: '',
         phone: '',
         code: '',
         details: '',
         classifyTree: [],
-        maxClassifyCount: 0,
+        maxClassifyCount: 3,
         classifies: [],
         nationCurrentName: ''
       }),
-          _useState22 = _slicedToArray(_useState21, 2),
-          formData = _useState22[0],
-          setFormData = _useState22[1];
-      // useDidShow(() => {
-      //   if (basicsCity){
-      //     setFormData({ ...formData, are: basicsCity, });
-      //   }
-      // })
+          _useState34 = _slicedToArray(_useState33, 2),
+          formData = _useState34[0],
+          setFormData = _useState34[1];
+
+      (0, _taroWeapp.useDidShow)(function () {
+        // 点击设置地区
+        if (publishArea && location && adcode) {
+          setLat(location ? location.split(",")[1] : '');
+          setLng(location ? location.split(",")[0] : '');
+          setAdcodes(adcode);
+          setFormData(_extends({}, formData, { are: publishArea }));
+        }
+      });
       // 获取数据
-
-
       (0, _taroWeapp.useEffect)(function () {
+        if (publicList) {
+          console.log(publicList, 'v');
+          // 民族
+          var nameList = publicList.nation.map(function (v) {
+            return v.mz_name;
+          });
+          setNationCurrent(nameList);
+          setAllNationCurrent(publicList.nation);
+          // 工种
+          setoccupation(publicList.occupation);
+        }
         // 设置城市
         var userLoctionCity = _taroWeapp2.default.getStorageSync(_store.UserLocationCity);
         if (userLoctionCity) {
@@ -253,39 +312,61 @@ var BasicsPage = (_temp2 = _class = function (_Taro$Component) {
             // 自我介绍
             details: useInfo.introduce,
             // 所属工种
-            workItem: useInfo.occupations.toString(),
-            // 所在地区
+            workItem: useInfo.occupations,
+            // 所在地区s
             are: useInfo.address
           };
+          // console.log(useInfo.occupation,'xxx')
+          var arr = JSON.parse(JSON.stringify(publicList.occupation));
+          console.log(arr, 'xxx');
+          var clckArr = useInfo.occupations_id.split(",");
+          console.log(clckArr, 'clckArrclckArr');
+          var arrList = arr.map(function (v) {
+            v.children.map(function (val) {
+              clckArr.map(function (item) {
+                if (val.id === item) {
+                  val.is_check = true;
+                }
+                return item;
+              });
+              return val;
+            });
+            return v;
+          });
+          setoccupation(arrList);
+          setOccupationsId(useInfo.occupations_id);
+          setClickOccupation(clckArr);
+          setLat(useInfo.location ? useInfo.location.split(",")[1] : '');
+          setLng(useInfo.location ? useInfo.location.split(",")[0] : '');
           setProvince(useInfo.province);
           setCity(useInfo.city);
           setOldTel(useInfo.tel);
           setFormData(cache);
+          setAdcodes(useInfo.ad_code);
           setNum(useInfo.introduce.length);
         }
-        var params = {
-          type: 'job',
-          infoId: ''
-        };
-        // 获取工种
-        (0, _index.getPublishRecruitView)(params).then(function (res) {
-          setModel(res);
-        });
-        // 获取民族
-        (0, _index.getUserAuthInfo)().then(function (res) {
-          var nameList = res.authData.nation.map(function (v) {
-            return v.mz_name;
-          });
-          setNationCurrent(nameList);
-          setAllNationCurrent(res.authData.nation);
-        });
+        // const params = {
+        //   type:'job',
+        //   infoId:''
+        // }
+        // // 获取工种
+        // getPublishRecruitView(params).then(res=>{
+        //   console.log(res,'xxxx')
+        //   setModel(res);
+        // });
+        // // 获取民族
+        // getUserAuthInfo().then(res=>{
+        //   const nameList = res.authData.nation.map(v=>v.mz_name);
+        //   setNationCurrent(nameList);
+        //   setAllNationCurrent(res.authData.nation);
+        // })
       }, []);
       // 验证码
 
-      var _useState23 = (0, _taroWeapp.useState)(false),
-          _useState24 = _slicedToArray(_useState23, 2),
-          isCode = _useState24[0],
-          setIsCode = _useState24[1];
+      var _useState35 = (0, _taroWeapp.useState)(false),
+          _useState36 = _slicedToArray(_useState35, 2),
+          isCode = _useState36[0],
+          setIsCode = _useState36[1];
       // 用户填写表单
 
 
@@ -318,6 +399,13 @@ var BasicsPage = (_temp2 = _class = function (_Taro$Component) {
           setNum(value.length);
         }
       };
+      var Modal = function Modal(content) {
+        _taroWeapp2.default.showModal({
+          title: '温馨提示',
+          content: content,
+          showCancel: false
+        });
+      };
       var handleSubmit = function handleSubmit() {
         var nation = void 0;
         for (var i = 0; i < allNationCurrent.length; i++) {
@@ -325,61 +413,106 @@ var BasicsPage = (_temp2 = _class = function (_Taro$Component) {
             nation = allNationCurrent[i].mz_id;
           }
         }
+        if (!(0, _index9.isVaildVal)(formData.name, 2, 5)) {
+          Modal('请填写真实姓名，2-5字，必须含有汉字');
+          return;
+        }
+        if (!formData.sex) {
+          (0, _index3.default)('请选择性别');
+          return;
+        }
+        if (!formData.time) {
+          (0, _index3.default)('请选择出生日期');
+          return;
+        }
+        if (!nation) {
+          (0, _index3.default)('请选择名族');
+          return;
+        }
+        if (!clickOccupation) {
+          Modal('请选择您的工种');
+          return;
+        }
+        if (!formData.are) {
+          (0, _index3.default)('请选择地区');
+          return;
+        }
+        if (!formData.phone) {
+          Modal('请选择您的工种');
+          return;
+        }
+        if (isCode) {
+          if (!formData.code) {
+            Modal('请正确填写验证码');
+            return;
+          }
+        }
+        if (!(0, _index9.isVaildVal)(formData.details, 15, 500)) {
+          Modal('请填写真实自我介绍，15-500字，必须含有汉字');
+          return;
+        }
         var params = {
           code: formData.code,
           username: formData.name,
           tel: formData.phone,
-          gender: String(sexList.indexOf(formData.sex)),
+          gender: String(sexList.indexOf(formData.sex) + 1),
           nation: String(nation),
           birthday: formData.time,
-          occupations: formData.workItem,
+          occupations: clickOccupation,
           province: province,
           city: city,
           introduce: formData.details,
-          // lat: this.data.latitude,
-          // lng: this.data.longitude,
-          address: formData.are
+          lat: String(lat),
+          lng: String(lng),
+          address: formData.are,
+          adcode: adcodes
         };
-        console.log(params);
-        // addResumeAction(params).then(res=>{
-        //   console.log(res);
-        // })
+        (0, _index.addResumeAction)(params).then(function (res) {
+          if (res.errcode == '200') {
+            _taroWeapp2.default.navigateBack({
+              delta: 1
+            });
+          } else {
+            (0, _index3.default)(res.errmsg);
+          }
+        });
       };
       var closeProfession = function closeProfession() {
         setShowProssion(false);
       };
       // 点击工种
-      var userClickProfession = function userClickProfession(i, k, id) {
-        console.log(i, 'i');
-        console.log(k, 'k');
-        console.log(id, 'id');
-        if (!model) {
+      var userClickProfession = function userClickProfession(i, k, id, name) {
+        console.log(i, k, id, name);
+        if (!occupation) {
           return;
-        }var works = JSON.parse(JSON.stringify(model.classifyTree));
+        }var works = JSON.parse(JSON.stringify(occupation));
         var check = works[i].children[k].is_check;
-        console.log(works, 'works');
-        console.log(check, 'check');
+        console.log(works);
         if (!check) {
-          var max = model.maxClassifyCount;
-          var _num = model.classifies.length;
+          var max = 3;
+          var _num = clickOccupation.length;
           if (_num >= max) {
-            (0, _index3.default)('工种最多可以选择' + max + '个');
+            (0, _index3.default)("\u5DE5\u79CD\u6700\u591A\u53EF\u4EE5\u9009\u62E93\u4E2A");
             return;
           }
         }
         works[i].children[k].is_check = !check;
-        var classifyArr = JSON.parse(JSON.stringify(model.classifies));
+        var classifyArr = JSON.parse(JSON.stringify(clickOccupation));
         var newArr = check ? classifyArr.filter(function (item) {
           return item !== id;
         }) : [].concat(_toConsumableArray(classifyArr), [id]);
-        console.log(works, 'works');
-        console.log(newArr, 'newArr');
-        // setModel({ ...model, classifyTree: works, classifies: newArr })
+        var newNameArr = check ? formData.workItem.filter(function (item) {
+          return item !== name;
+        }) : [].concat(_toConsumableArray(formData.workItem), [name]);
+        setFormData(_extends({}, formData, { workItem: newNameArr }));
+        setoccupation(works);
+        console.log(newArr, 'xxxx');
+        setClickOccupation(newArr);
       };
       // 用户点击发送短信
       var userSendCode = function userSendCode() {
         var tel = formData.phone;
-        var flag = (0, _index8.isPhone)(tel);
+        var flag = (0, _index9.isPhone)(tel);
         if (flag) {
           userGetCode(tel);
         } else (0, _index3.default)('请先输入正确的手机号');
@@ -388,7 +521,7 @@ var BasicsPage = (_temp2 = _class = function (_Taro$Component) {
       var userChooseArea = function userChooseArea() {
         if (!model) {
           return;
-        }var url = '/pages/map/resume/index';
+        }var url = "/pages/map/resume/index?areaItem=" + areas;
         _taroWeapp2.default.navigateTo({
           url: url
         });
@@ -396,7 +529,6 @@ var BasicsPage = (_temp2 = _class = function (_Taro$Component) {
       // 获取当前位置
       var handleLocation = function handleLocation(e) {
         e.stopPropagation();
-        console.log(3123213213);
         _taroWeapp2.default.getSetting({
           success: function success(res) {
             if (res.authSetting['scope.userLocation'] != undefined && res.authSetting['scope.userLocation'] != true) {
@@ -436,14 +568,20 @@ var BasicsPage = (_temp2 = _class = function (_Taro$Component) {
         });
       };
       var getLocation = function getLocation() {
-        // userAuthLoction().then(res=>{
-        //   console.log(res,'resssssssss');
-        // })
-        // let myAmapFun = new amapFile.AMapWX({
-        //   key: MAPKEY,
-        // }); //key注册高德地图开发者
-        // myAmapFun.getRegeo({
-        // })
+        (0, _index4.recSerAuthLoction)().then(function (gpsLocation) {
+          resetLocationSearch(gpsLocation);
+        }).catch(function () {
+          // 拒绝授权默认全国
+          _taroWeapp2.default.setStorageSync(_store.UserListChooseCity, _area.AREACHINA);
+          // setLists([])
+          // setSearchData({ ...searchData, page: 1, area_id: AREACHINA.id })
+        });
+      };
+      var resetLocationSearch = function resetLocationSearch(data) {
+        setFormData(_extends({}, formData, { are: data[0].name }));
+        setLat(data[0].latitude);
+        setLng(data[0].longitude);
+        setAdcodes(data[0].regeocodeData.addressComponent.adcode);
       };
       // 需要传递的值
       var value = {
@@ -460,10 +598,9 @@ var BasicsPage = (_temp2 = _class = function (_Taro$Component) {
           }setModel(_extends({}, model, { address: val }));
         }
       };
-      contextItem.Provider(value);
 
-      this.anonymousFunc0 = function (i, k, id) {
-        return userClickProfession(i, k, id);
+      this.anonymousFunc0 = function (i, k, id, name) {
+        return userClickProfession(i, k, id, name);
       };
 
       this.anonymousFunc1 = function (e) {
@@ -485,6 +622,8 @@ var BasicsPage = (_temp2 = _class = function (_Taro$Component) {
       this.anonymousFunc5 = function () {
         setShowProssion(true);
       };
+
+      var anonymousState__temp = formData && formData.workItem.toString();
 
       this.anonymousFunc6 = function () {
         return userChooseArea();
@@ -511,16 +650,17 @@ var BasicsPage = (_temp2 = _class = function (_Taro$Component) {
       this.anonymousFunc12 = handleSubmit;
       showProfession && _taroWeapp.propsManager.set({
         "closeProfession": closeProfession,
-        "data": model && model.classifyTree,
+        "data": occupation,
         "onClickItem": this.anonymousFunc0,
         "num": 3
-      }, $compid__116, $prevCompid__116);
+      }, $compid__230, $prevCompid__230);
       _taroWeapp.propsManager.set({
         "num": num
-      }, $compid__117, $prevCompid__117);
+      }, $compid__231, $prevCompid__231);
       Object.assign(this.__state, {
-        $compid__116: $compid__116,
-        $compid__117: $compid__117,
+        anonymousState__temp: anonymousState__temp,
+        $compid__230: $compid__230,
+        $compid__231: $compid__231,
         showProfession: showProfession,
         formData: formData,
         sexList: sexList,

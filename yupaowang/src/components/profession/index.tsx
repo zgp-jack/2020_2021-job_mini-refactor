@@ -11,7 +11,7 @@ interface PROPS {
   num: number,
   title?: string,
   footerTitle?: string,
-  onClickItem: (i:number,k:number,id:string) => void,
+  onClickItem: (i:number,k:number,id:string,name:string) => void,
   closeProfession: () => void
 }
 
@@ -27,7 +27,7 @@ export default function Profession({ data, title = '选择工种', footerTitle =
                 <View className='profession-list-title'>{ item.name }</View>
                 <View className='profession-list-content'>
                   {item.children.map((d,k)=>(
-                    <View className='prosession-item overwords' onClick={() => onClickItem(i,k,d.id)} key={ d.id }>
+                    <View className='prosession-item overwords' onClick={() => onClickItem(i,k,d.id,d.name)} key={ d.id }>
                       { d.name }
                       <View className={classnames({
                         'at-icon': true,

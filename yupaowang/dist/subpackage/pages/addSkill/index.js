@@ -68,7 +68,7 @@ var AddSkillPage = (_temp2 = _class = function (_Taro$Component) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AddSkillPage.__proto__ || Object.getPrototypeOf(AddSkillPage)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
       navigationBarTitleText: '新增技能证书'
-    }, _this.$usedState = ["$compid__105", "val", "extraText", "image", "type"], _this.customComponents = ["ImageView"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["$compid__337", "val", "extraText", "image", "type"], _this.customComponents = ["ImageView"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(AddSkillPage, [{
@@ -87,17 +87,22 @@ var AddSkillPage = (_temp2 = _class = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__105"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__337"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__105 = _genCompid2[0],
-          $compid__105 = _genCompid2[1];
+          $prevCompid__337 = _genCompid2[0],
+          $compid__337 = _genCompid2[1];
 
       var router = (0, _taroWeapp.useRouter)();
 
       var _useContext = (0, _taroWeapp.useContext)(_index5.context),
           skillData = _useContext.skillData;
+      // const { area } = useContext(contextItem);
+      // console.log(area,'contextItemcontextItemcontextItem')
 
-      var type = router.params.type;
+
+      var _router$params = router.params,
+          type = _router$params.type,
+          id = _router$params.id;
 
       var _useState = (0, _taroWeapp.useState)(''),
           _useState2 = _slicedToArray(_useState, 2),
@@ -125,26 +130,30 @@ var AddSkillPage = (_temp2 = _class = function (_Taro$Component) {
         _taroWeapp2.default.setNavigationBarTitle({
           title: '修改技能证书'
         });
-        if (skillData) {
-          var data = skillData[type];
-          setVal(data.name);
-          setExtraText(data.certificate_time);
-          var arr = [];
-          for (var i = 0; i < data.image.length; i++) {
-            for (var j = 0; j < data.images.length; j++) {
-              var obj = {
-                httpurl: '',
-                url: ''
-              };
-              if (i === j) {
-                obj.httpurl = data.image[i];
-                obj.url = data.images[i];
-                arr.push(obj);
+        console.log(type, 'xxx');
+        console.log(skillData, 'skillData');
+        if (type) {
+          if (skillData) {
+            var data = skillData[type];
+            setVal(data.name);
+            setExtraText(data.certificate_time);
+            var arr = [];
+            for (var i = 0; i < data.image.length; i++) {
+              for (var j = 0; j < data.images.length; j++) {
+                var obj = {
+                  httpurl: '',
+                  url: ''
+                };
+                if (i === j) {
+                  obj.httpurl = data.image[i];
+                  obj.url = data.images[i];
+                  arr.push(obj);
+                }
               }
             }
+            setImage({ item: arr });
+            setUuid(data.uuid);
           }
-          setImage({ item: arr });
-          setUuid(data.uuid);
         }
       }, []);
       // 用户上传图片
@@ -197,18 +206,23 @@ var AddSkillPage = (_temp2 = _class = function (_Taro$Component) {
           return;
         }
         var params = void 0;
+        var images = image.item.map(function (item) {
+          return item.url;
+        });
         if (type) {
           params = {
-            image: image.item,
+            image: images,
             name: val,
             certificate_time: extraText,
-            certificate_uuid: uuid
+            certificate_uuid: uuid,
+            resume_uuid: id
           };
         } else {
           params = {
-            image: image.item,
+            image: images,
             name: val,
-            certificate_time: extraText
+            certificate_time: extraText,
+            resume_uuid: id
           };
         }
         (0, _index6.resumesCertificateAction)(params).then(function (res) {
@@ -246,7 +260,7 @@ var AddSkillPage = (_temp2 = _class = function (_Taro$Component) {
       };
 
       this.anonymousFunc0 = function (e) {
-        setVal(e.toString());
+        setVal(e.detail.value);
       };
 
       this.anonymousFunc1 = function (e) {
@@ -260,9 +274,9 @@ var AddSkillPage = (_temp2 = _class = function (_Taro$Component) {
         "images": image.item,
         "max": 3,
         "userUploadImg": userUploadImg
-      }, $compid__105, $prevCompid__105);
+      }, $compid__337, $prevCompid__337);
       Object.assign(this.__state, {
-        $compid__105: $compid__105,
+        $compid__337: $compid__337,
         val: val,
         extraText: extraText,
         image: image,

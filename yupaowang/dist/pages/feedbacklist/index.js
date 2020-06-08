@@ -64,7 +64,7 @@ var FeedbackList = (_temp2 = _class = function (_Taro$Component) {
       navigationBarBackgroundColor: '#0099ff',
       navigationBarTextStyle: 'white',
       backgroundTextStyle: 'dark'
-    }, _this.$usedState = ["lists", "loopArray81", "$compid__73", "isDown"], _this.anonymousFunc0Map = {}, _this.customComponents = ["Auth", "WechatNotice", "Nodata"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["lists", "loopArray80", "$compid__73", "isDown"], _this.anonymousFunc0Map = {}, _this.customComponents = ["Auth", "WechatNotice", "Nodata"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(FeedbackList, [{
@@ -192,7 +192,7 @@ var FeedbackList = (_temp2 = _class = function (_Taro$Component) {
         return userRouteJump("/pages/feedback/index?username=" + userData.username + "&phone=" + userData.phone);
       };
 
-      var loopArray81 = lists.item ? lists.item.map(function (item, __index1) {
+      var loopArray80 = lists.item ? lists.item.map(function (item, __index1) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
@@ -201,7 +201,7 @@ var FeedbackList = (_temp2 = _class = function (_Taro$Component) {
             $original: (0, _taroWeapp.internal_get_original)(v)
           };
           var $loopState__temp2 = item.$original.images ? index + index : null;
-          var _$indexKey = "hgzzz" + __index1 + "-" + index;
+          var _$indexKey = "hfzzz" + __index1 + "-" + index;
 
           _this2.anonymousFunc0Map[_$indexKey] = function () {
             handleImg(v.$original);
@@ -223,7 +223,7 @@ var FeedbackList = (_temp2 = _class = function (_Taro$Component) {
       }, $compid__73, $prevCompid__73);
       Object.assign(this.__state, {
         lists: lists,
-        loopArray81: loopArray81,
+        loopArray80: loopArray80,
         $compid__73: $compid__73,
         isDown: isDown
       });

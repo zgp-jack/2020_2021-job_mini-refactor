@@ -863,8 +863,18 @@ export function resumesCertificateAction(data): Promise<Inter.Result> {
 
 // 新增项目
 export function resumesProjectAction(data): Promise<Inter.Result> {
+  // 获取用户信息
+  let userInfo: User = Taro.getStorageSync(UserInfo)
   return doRequestAction({
     url: api.resumesProjectUrl,
+    header: {
+      version: '1.0.1',
+      'content-type': 'application/x-www-form-urlencoded',
+      mid: userInfo.userId,
+      uuid: userInfo.uuid,
+      token: userInfo.token,
+      time: userInfo.tokenTime,
+    },
     method: 'POST',
     failToast: true,
     data,

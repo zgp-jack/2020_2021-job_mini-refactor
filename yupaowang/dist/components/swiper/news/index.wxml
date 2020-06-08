@@ -1,6 +1,6 @@
 <block wx:if="{{$taroCompReady}}">
     <swiper class="home-swipernewsbox" vertical="{{swiper.vertical}}" circular="{{swiper.circular}}" indicator-dots="{{swiper.indicatorDots}}" autoplay="{{swiper.autoplay}}">
-        <swiper-item class="home-swipernews-item" wx:key="$loopState__temp2" wx:for="{{loopArray107}}" wx:for-item="item" wx:for-index="index">
+        <swiper-item class="home-swipernews-item" wx:key="$loopState__temp2" wx:for="{{loopArray105}}" wx:for-item="item" wx:for-index="index">
             <view class="home-swipernews-text overwords">{{item.$original.title}}</view>
         </swiper-item>
     </swiper>

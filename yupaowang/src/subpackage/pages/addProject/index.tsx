@@ -47,8 +47,10 @@ interface User {
 }
 export default function AddProjectPage() {
   const router: Taro.RouterInfo = useRouter()
-  let { type } = router.params;
+  let { type, id } = router.params;
   const { projectData } = useContext(context);
+  // const { area } = useContext(contextItem);
+  // console.log(area,'areaareaarea')
   let userInfo: User = Taro.getStorageSync(UserInfo)
   // 默认字数
   const [num, setNum] = useState<number>(0)
@@ -69,11 +71,6 @@ export default function AddProjectPage() {
   //修改项目id
   const [project_uuid, setProject_uuid] = useState<string>('')
   useEffect(()=>{
-    if (type){
-      Taro.setNavigationBarTitle({
-        title: '修改项目经验'
-      })
-    }
     let data:string[] = [];
     let lastData:string[] = [];
     let allChildren:any = [];
@@ -121,9 +118,13 @@ export default function AddProjectPage() {
       // 省和第一个市
       setMultiArray([data, lastData])
     }
+    if (type) {
+      Taro.setNavigationBarTitle({
+        title: '修改项目经验'
+      })
     // 内容回填
     if (projectData) {
-      console.log(projectData)
+      console.log(projectData,'projectDataprojectDataprojectData')
       let arr: any = [];
       setImage({ item: arr })
       const list = projectData[type];
@@ -171,6 +172,8 @@ export default function AddProjectPage() {
       setMultiArray([data, lastCity])
       seMultiIndexvalue(list.province_name+list.city_name)
     }
+  }
+
   }, [edit])
   // 用户上传图片
   const userUploadImg = (i: number = -1) => {
@@ -280,7 +283,7 @@ export default function AddProjectPage() {
       province: String(allpro.split(",")[0]),
       city: String(allpro.split(",")[1]),
       image: images,
-      resume_uuid:userInfo.uuid,
+      resume_uuid: id,
       project_uuid,
     }
     console.log(params);
@@ -299,6 +302,7 @@ export default function AddProjectPage() {
           setName('')
           // 保存
         }else{
+          Msg(res.errmsg);
           Taro.navigateBack({
             delta: 1
           })

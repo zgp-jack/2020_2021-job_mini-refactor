@@ -42,6 +42,7 @@ interface DataType {
     is_end:string,
     check:string,
     uuid:string,
+    user_uuid:string,
   },
   resume_top:{
     is_top:number,
@@ -120,6 +121,7 @@ export default function NewJob() {
       is_end:'',
       check:'',
       uuid:'',
+      user_uuid:'',
       occupations:[],
     },
     resume_top:{
@@ -249,6 +251,9 @@ export default function NewJob() {
           setIndex(1);
         }
         setResumeTop(res.data.resume_top);
+        // 都通过的情况下，并且正在招人，并且未置顶，提示前往置顶，暂不提示15天内不再提示
+        // 没有未通过并且正在找，当前状态未置并且不再15天内
+
         // 设置城市
         let userLoctionCity: UserLocationPromiss = Taro.getStorageSync(UserLocationCity)
         setArea(userLoctionCity.city);
@@ -659,7 +664,7 @@ export default function NewJob() {
     })
 
   }
-  console.log(value,'value')
+  console.log(proStatus,'proStatus')
   return (
     <context.Provider value={value}>
     <View className='newJob'>
@@ -872,7 +877,7 @@ export default function NewJob() {
                           <View className="ocworkotyp">
                             <View className='ocworkotyptu'>
                               {data.info.occupations && data.info.occupations.map((v, i) => (
-                                    <View key={i + i}>{v}</View>
+                                <View className='ocworkotyptu-list' key={i + i}>{v}</View>
                                   ))}
                             </View>
                           </View>
@@ -1016,7 +1021,7 @@ export default function NewJob() {
             <Text>项目经验</Text>
           </View>
           {projectlength != 0 && projectlength < project_count &&
-            <View className="cardthreeone" onClick={() => userRouteJump(`/subpackage/pages/addProject/index`)}>
+              <View className="cardthreeone" onClick={() => userRouteJump(`/subpackage/pages/addProject/index?id=${data.info.uuid}`)}>
               添加
             </View>}
         </View>
@@ -1094,13 +1099,13 @@ export default function NewJob() {
             ))}
           <View className="cardsixsixall">
             <View className="cardsixsix">
-                <View className="more" onClick={() => userRouteJump(`/pages/resume/projectList/index`)}>
+                <View className="more" onClick={() => userRouteJump(`/pages/resume/projectList/index?id=${data.info.uuid}`)}>
                   {proStatus == '0' ? '更多项目经验':'修改项目经验'}
                 <View className='more-view'>
                   <Image src={`${IMGCDNURL}lpy/downward.png`} className="down"/>
                 </View>
               </View>
-                {proStatus !== '0' && <Text className='num'>{data.fail_project}</Text>}
+                {data.fail_project !== 0 && <Text className='num'>{data.fail_project}</Text>}
             </View>
           </View>
           </View>}
@@ -1116,7 +1121,7 @@ export default function NewJob() {
           </View>
           {
             skilllength !=0 && skilllength < data.certificate_count &&
-            <View className='cardthreeone' onClick={() => userRouteJump(`/subpackage/pages/addSkill/index`)}> 添加 </View>
+              <View className='cardthreeone' onClick={() => userRouteJump(`/subpackage/pages/addSkill/index?id=${data.info.uuid}`)}> 添加 </View>
           }
         </View>
       </View>
@@ -1173,19 +1178,19 @@ export default function NewJob() {
           <View className="cardeightsixall">
             <View className="cardeightsix">
               {checkfourf != '0' && 
-                  <View className="more" onClick={() => userRouteJump(`/pages/resume/skillList/index`)}>
+                  <View className="more" onClick={() => userRouteJump(`/pages/resume/skillList/index?id=${data.info.uuid}`)}>
                   更多技能证书
                   <View className='more-view'>
                   <Image src={`${IMGCDNURL}lpy/downward.png`} className="down"/>
                   </View>
                 </View>
               }
-              {checkfourf == '0' && <View className='more'>
+                {checkfourf == '0' && <View className='more' onClick={() => userRouteJump(`/pages/resume/skillList/index?id=${data.info.uuid}`)}>
                 修改技能证书
                 <View className='more-view'>
                   <Image src={`${IMGCDNURL}lpy/downward.png`} className="down"/>
                 </View>
-                  <Text className='num'>{data.fail_certificate}</Text>
+                  { data.fail_certificate > 0 && <Text className='num'>{data.fail_certificate}</Text> }
               </View>}
             </View>
           </View>
@@ -1220,9 +1225,9 @@ export default function NewJob() {
             <View className='content-toppding'>马上去置顶提升找活名片排名，让更多老板看到您的找活名片</View>
           {/* <View className='buttontext' onClick={() => { setTips(false) }}>确定</View> */}
             <View className='content-btn-box'>
+              {/* 都通过的情况下，并且正在招人，并且未置顶，提示前往置顶，暂不提示15天内不再提示 */}
               <View className='content-btn-left' onClick={() => { setToppingModal(false)}}>稍后再说</View>
-              {/* ======= */}
-              <View className='content-btn-right' onClick={()=>{console.log(1111)}}>去置顶</View>
+              <View className='content-btn-right' onClick={() => userRouteJump(`/pages/topping/index?rec=1`)}>去置顶</View>
           </View>
         </View>
       </AtModal>

@@ -6,6 +6,8 @@ import Msg from '../../../utils/msg'
 import { context } from '../../../pages/resume/newJobs'
 import { resumesCertificateAction, delCertificateAction } from '../../../utils/request/index'
 import './index.scss'
+// import { contextItem }  from '../../../subpackage/pages/basics';
+
 
 export interface ImageDataType {
   item: ImageItem[]
@@ -17,7 +19,9 @@ export interface ImageItem {
 export default function AddSkillPage() {
   const router: Taro.RouterInfo = useRouter()
   const { skillData } = useContext(context);
-  let { type } = router.params;
+  // const { area } = useContext(contextItem);
+  // console.log(area,'contextItemcontextItemcontextItem')
+  let { type,id } = router.params;
   const [val,setVal] = useState<string>('')
   const [extraText, setExtraText] = useState<string>('')
   const [image, setImage] = useState<ImageDataType>({
@@ -28,26 +32,30 @@ export default function AddSkillPage() {
     Taro.setNavigationBarTitle({
       title: '修改技能证书'
     })
-    if (skillData){
-      const data = skillData[type];
-      setVal(data.name);
-      setExtraText(data.certificate_time);
-      let arr:any=[];
-      for (let i = 0; i < data.image.length;i++){
-        for (let j = 0; j < data.images.length;j++){
-          let obj= {
-            httpurl:'',
-            url:'',
-          };
-          if(i === j){
-            obj.httpurl = data.image[i];
-            obj.url = data.images[i]
-            arr.push(obj);
+    console.log(type,'xxx')
+    console.log(skillData,'skillData')
+    if (type){
+      if (skillData){
+        const data = skillData[type];
+        setVal(data.name);
+        setExtraText(data.certificate_time);
+        let arr:any=[];
+        for (let i = 0; i < data.image.length;i++){
+          for (let j = 0; j < data.images.length;j++){
+            let obj= {
+              httpurl:'',
+              url:'',
+            };
+            if(i === j){
+              obj.httpurl = data.image[i];
+              obj.url = data.images[i]
+              arr.push(obj);
+            }
           }
         }
+        setImage({item:arr})
+        setUuid(data.uuid)
       }
-      setImage({item:arr})
-      setUuid(data.uuid)
     }
   },[])
   // 用户上传图片
@@ -98,18 +106,21 @@ export default function AddSkillPage() {
       return;
     }
     let params;
+    let images: string[] = image.item.map(item => item.url)
     if(type){
       params = {
-      image: image.item,
+      image: images,
       name: val,
       certificate_time: extraText,
       certificate_uuid: uuid,
+      resume_uuid:id,
     }
     }else{
       params = {
-        image: image.item,
+        image: images,
         name: val,
         certificate_time: extraText,
+        resume_uuid:id
       }
     }
     resumesCertificateAction(params).then(res=>{
@@ -157,7 +168,7 @@ export default function AddSkillPage() {
               type='text'
               placeholder='请输入您的职业技能名称'
               value={val}
-              onInput={(e) => { setVal(e.toString()) }}
+              onInput={(e) => { setVal(e.detail.value) }}
             />
           </View>
         </View>

@@ -1,5 +1,479 @@
 (wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["common"],{
 
+/***/ "./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js?!./src/pages/map/resume/index.tsx?taro&type=script&parse=PAGE&":
+/*!******************************************************************************************************************************************************!*\
+  !*** ./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js??ref--6-0!./src/pages/map/resume/index.tsx?taro&type=script&parse=PAGE& ***!
+  \******************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.contextItem = undefined;
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+
+var _class, _temp2;
+
+// import { context }  from '../../../subpackage/pages/basics';
+// import { context } from '../../recruit/publish'
+
+
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
+
+var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
+
+var _index = __webpack_require__(/*! ../../../utils/request/index */ "./src/utils/request/index.ts");
+
+var _index2 = __webpack_require__(/*! ../../../config/index */ "./src/config/index.ts");
+
+var _store = __webpack_require__(/*! ../../../config/store */ "./src/config/store.ts");
+
+var _area = __webpack_require__(/*! ../../../models/area */ "./src/models/area.ts");
+
+var _index3 = __webpack_require__(/*! ../../../utils/helper/index */ "./src/utils/helper/index.ts");
+
+var _index4 = __webpack_require__(/*! ../../../utils/msg/index */ "./src/utils/msg/index.ts");
+
+var _index5 = _interopRequireDefault(_index4);
+
+__webpack_require__(/*! ./index.scss */ "./src/pages/map/resume/index.scss");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var PI = Math.PI; // 数学 PI 常亮
+var EARTH_RADIUS = 6378137.0; // 地球半径
+var contextItem = exports.contextItem = (0, _taroWeapp.createContext)({});
+
+var ResumeMap = (_temp2 = _class = function (_Taro$Component) {
+  _inherits(ResumeMap, _Taro$Component);
+
+  function ResumeMap() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
+    _classCallCheck(this, ResumeMap);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ResumeMap.__proto__ || Object.getPrototypeOf(ResumeMap)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
+      navigationBarTitleText: '地址选择'
+    }, _this.$usedState = ["loopArray122", "loopArray123", "$compid__112", "smAreaText", "showHistory", "histroyList", "lists", "IMGCDNURL", "showCity", "area"], _this.anonymousFunc4Map = {}, _this.anonymousFunc5Map = {}, _this.customComponents = ["Cities"], _temp), _possibleConstructorReturn(_this, _ret);
+  }
+
+  _createClass(ResumeMap, [{
+    key: "_constructor",
+    value: function _constructor(props) {
+      _get(ResumeMap.prototype.__proto__ || Object.getPrototypeOf(ResumeMap.prototype), "_constructor", this).call(this, props);
+
+      this.$$refs = new _taroWeapp2.default.RefsArray();
+    }
+  }, {
+    key: "_createData",
+    value: function _createData() {
+      var _this2 = this;
+
+      this.__state = arguments[0] || this.state || {};
+      this.__props = arguments[1] || this.props || {};
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
+      ;
+
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__112"),
+          _genCompid2 = _slicedToArray(_genCompid, 2),
+          $prevCompid__112 = _genCompid2[0],
+          $compid__112 = _genCompid2[1];
+
+      var router = (0, _taroWeapp.useRouter)();
+      var areaItem = router.params.areaItem;
+      // console.log(context,'context');
+      // console.log(contextItem,'contextItem')
+
+      var _useState = (0, _taroWeapp.useState)(areaItem),
+          _useState2 = _slicedToArray(_useState, 2),
+          area = _useState2[0],
+          setArea = _useState2[1];
+      // 城市数据
+
+
+      var _useState3 = (0, _taroWeapp.useState)([]),
+          _useState4 = _slicedToArray(_useState3, 2),
+          areas = _useState4[0],
+          setAreas = _useState4[1];
+      // 选择详细地址信息
+
+
+      var _useState5 = (0, _taroWeapp.useState)({
+        title: '',
+        adcode: '',
+        location: '',
+        info: ''
+      }),
+          _useState6 = _slicedToArray(_useState5, 2),
+          areaInfo = _useState6[0],
+          setAreaInfo = _useState6[1];
+
+      var _useState7 = (0, _taroWeapp.useState)(''),
+          _useState8 = _slicedToArray(_useState7, 2),
+          location = _useState8[0],
+          setLocation = _useState8[1];
+      // 用户定位城市
+
+
+      var _useState9 = (0, _taroWeapp.useState)({
+        id: '',
+        pid: '',
+        city: '',
+        ad_name: ''
+      }),
+          _useState10 = _slicedToArray(_useState9, 2),
+          userLoc = _useState10[0],
+          setUserLoc = _useState10[1];
+      // 是否显示城市
+
+
+      var _useState11 = (0, _taroWeapp.useState)(false),
+          _useState12 = _slicedToArray(_useState11, 2),
+          showCity = _useState12[0],
+          setShowCity = _useState12[1];
+      // 使用发布招工hook处理数据
+      // const { area, setArea, setAreaInfo, setPublishArea } = useContext(context)
+
+
+      var _useState13 = (0, _taroWeapp.useState)(''),
+          _useState14 = _slicedToArray(_useState13, 2),
+          publishArea = _useState14[0],
+          setPublishArea = _useState14[1];
+      // 详细地址的输入框
+
+
+      var _useState15 = (0, _taroWeapp.useState)(''),
+          _useState16 = _slicedToArray(_useState15, 2),
+          smAreaText = _useState16[0],
+          setSmAreaText = _useState16[1];
+      // 关键词地区列表
+
+
+      var _useState17 = (0, _taroWeapp.useState)([]),
+          _useState18 = _slicedToArray(_useState17, 2),
+          lists = _useState18[0],
+          setLists = _useState18[1];
+      // 关键词地区列表的历史记录
+
+
+      var _useState19 = (0, _taroWeapp.useState)([]),
+          _useState20 = _slicedToArray(_useState19, 2),
+          histroyList = _useState20[0],
+          setHistoryList = _useState20[1];
+      // 显示关键词列表还是历史记录
+
+
+      var _useState21 = (0, _taroWeapp.useState)(false),
+          _useState22 = _slicedToArray(_useState21, 2),
+          showHistory = _useState22[0],
+          setShowHistory = _useState22[1];
+      // 设置adcode
+
+
+      var _useState23 = (0, _taroWeapp.useState)(''),
+          _useState24 = _slicedToArray(_useState23, 2),
+          adcode = _useState24[0],
+          setAdcode = _useState24[1];
+      // 获取城市数据
+
+
+      (0, _taroWeapp.useEffect)(function () {
+        var areas = _taroWeapp2.default.getStorageSync(_store.Areas);
+        if (areas) {
+          setAreas(areas);
+        } else (0, _index.getAllAreas)().then(function (res) {
+          // 存入缓存
+          _taroWeapp2.default.setStorageSync(_store.Areas, res);
+          setAreas(res);
+        });
+      }, []);
+      // 初始化用户定位信息
+      var initUserLocationCity = function initUserLocationCity() {
+        var userLoc = _taroWeapp2.default.getStorageSync(_store.UserLocationCity);
+        if (userLoc) {
+          var data = (0, _area.getCityInfo)(userLoc, 1);
+          var userLocData = {
+            id: data.id,
+            pid: data.pid,
+            ad_name: data.ad_name,
+            city: data.name
+          };
+          console.log(data, 'data');
+          setArea(data.name);
+          setUserLoc(userLocData);
+        }
+      };
+      // 初始化所需数据
+      (0, _taroWeapp.useEffect)(function () {
+        if (!area) {
+          initUserLocationCity();
+        }initUserPublishAreaHistory();
+      }, []);
+      // 用户切换城市
+      var userChangeCity = function userChangeCity(city) {
+        setArea(city);
+      };
+      // 用户点击取消 返回上一页
+      var userCloseMap = function userCloseMap() {
+        _taroWeapp2.default.navigateBack();
+      };
+      var getRad = function getRad(d) {
+        return parseFloat(d) * PI / 180.0;
+      };
+      // 根据经纬度计算距离
+      var getGreatCircleDistance = function getGreatCircleDistance(l, loc) {
+        if (!l) {
+          return '';
+        }var arr1 = l.split(",");
+        var arr2 = loc.split(",");
+        var radLat1 = getRad(arr1[0]);
+        var radLat2 = getRad(arr2[0]);
+        var a = radLat1 - radLat2;
+        var b = getRad(arr1[1]) - getRad(arr2[1]);
+        var s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a / 2), 2) + Math.cos(radLat1) * Math.cos(radLat2) * Math.pow(Math.sin(b / 2), 2)));
+        s = s * EARTH_RADIUS;
+        s = parseInt((Math.round(s * 10000) / 10000.0).toFixed(2));
+        var distance = s < 1000 ? s + "米" : (s / 1000).toFixed(1) + "千米";
+        return distance;
+      };
+      // 获取关键词地区列表
+      (0, _taroWeapp.useEffect)(function () {
+        (0, _index3.getAmapPoiList)(area + smAreaText).then(function (data) {
+          var loc = _taroWeapp2.default.getStorageSync(_store.UserLocation);
+          var lists = data.filter(function (item) {
+            return item.name && item.adcode && typeof item.location === 'string';
+          });
+          lists.forEach(function (item) {
+            item.distance = getGreatCircleDistance(loc, item.location);
+          });
+          setLists(lists);
+        });
+      }, [smAreaText, area]);
+      // 用户点击城市选择
+      var userTapCityBtn = function userTapCityBtn(b) {
+        setShowCity(b);
+      };
+      // 用户输入小地区名字
+      var userEnterPosition = function userEnterPosition(e) {
+        var value = e.detail.value;
+        setSmAreaText(value);
+        setShowHistory(value ? false : true);
+      };
+      // 小地址存入缓存，生成历史记录
+      var setUserPublishAreaHistoryItem = function setUserPublishAreaHistoryItem(item) {
+        var userPublishAreaHistory = _taroWeapp2.default.getStorageSync(_store.UserPublishAreaHistory);
+        if (userPublishAreaHistory) {
+          var isset = userPublishAreaHistory.findIndex(function (data) {
+            return data.location === item.location && data.name === item.name && data.adcode == item.adcode;
+          });
+          userPublishAreaHistory.unshift(item);
+          if (isset !== -1) {
+            userPublishAreaHistory.splice(isset, 1);
+          }
+          userPublishAreaHistory.splice(_index2.UserPublishAreaHistoryMaxNum);
+          setHistoryList(userPublishAreaHistory);
+          _taroWeapp2.default.setStorageSync(_store.UserPublishAreaHistory, userPublishAreaHistory);
+        } else {
+          setHistoryList([item]);
+          _taroWeapp2.default.setStorageSync(_store.UserPublishAreaHistory, [item]);
+        }
+      };
+      // 初始化用户点击小地区的历史记录
+      var initUserPublishAreaHistory = function initUserPublishAreaHistory() {
+        var userPublishAreaHistory = _taroWeapp2.default.getStorageSync(_store.UserPublishAreaHistory) || [];
+        setHistoryList(userPublishAreaHistory);
+      };
+      // 用户点击输入框
+      var userClickInputAction = function userClickInputAction(e) {
+        var value = e.detail.value;
+        if (value) {
+          return;
+        }setShowHistory(true);
+      };
+      // 用户选择小地区 检测adcode
+      var userClickAreaItem = function userClickAreaItem(item) {
+        (0, _index.checkAdcodeValid)(item.adcode).then(function (res) {
+          if (res.errcode == "ok") {
+            // console.log(item,'xxxx')
+            setLocation(item.location);
+            setAdcode(item.adcode);
+            if (setAreaInfo) {
+              setUserPublishAreaHistoryItem(item);
+              setAreaInfo({
+                title: item.name,
+                location: item.location,
+                adcode: item.adcode,
+                info: item.district
+              });
+              setPublishArea && setPublishArea(item.name);
+            }
+            _taroWeapp2.default.navigateBack();
+          } else (0, _index4.ShowActionModal)({ msg: res.errmsg });
+        }).catch(function () {
+          (0, _index5.default)("网络错误，请求失败！");
+        });
+      };
+      var value = {
+        publishArea: publishArea,
+        location: location,
+        adcode: adcode
+      };
+      contextItem.Provider(value);
+
+      this.anonymousFunc0 = function () {
+        return userTapCityBtn(true);
+      };
+
+      this.anonymousFunc1 = function (e) {
+        return userClickInputAction(e);
+      };
+
+      this.anonymousFunc2 = function (e) {
+        return userEnterPosition(e);
+      };
+
+      this.anonymousFunc3 = function () {
+        return userCloseMap();
+      };
+
+      var loopArray122 = showHistory ? histroyList.map(function (item, index) {
+        item = {
+          $original: (0, _taroWeapp.internal_get_original)(item)
+        };
+        var $loopState__temp2 = showHistory ? index + index : null;
+
+        var _$indexKey = "bbizz" + index;
+
+        _this2.anonymousFunc4Map[_$indexKey] = function () {
+          return userClickAreaItem(item.$original);
+        };
+
+        return {
+          $loopState__temp2: $loopState__temp2,
+          _$indexKey: _$indexKey,
+          $original: item.$original
+        };
+      }) : [];
+      var loopArray123 = lists.map(function (item, index) {
+        item = {
+          $original: (0, _taroWeapp.internal_get_original)(item)
+        };
+        var $loopState__temp4 = index + index;
+
+        var _$indexKey2 = "bbjzz" + index;
+
+        _this2.anonymousFunc5Map[_$indexKey2] = function () {
+          return userClickAreaItem(item.$original);
+        };
+
+        return {
+          $loopState__temp4: $loopState__temp4,
+          _$indexKey2: _$indexKey2,
+          $original: item.$original
+        };
+      });
+      showCity && _taroWeapp.propsManager.set({
+        "data": areas,
+        "area": area,
+        "userLoc": userLoc,
+        "userChangeCity": userChangeCity,
+        "userTapCityBtn": userTapCityBtn
+      }, $compid__112, $prevCompid__112);
+      Object.assign(this.__state, {
+        loopArray122: loopArray122,
+        loopArray123: loopArray123,
+        $compid__112: $compid__112,
+        smAreaText: smAreaText,
+        showHistory: showHistory,
+        histroyList: histroyList,
+        lists: lists,
+        IMGCDNURL: _index2.IMGCDNURL,
+        showCity: showCity,
+        area: area
+      });
+      return this.__state;
+    }
+  }, {
+    key: "anonymousFunc0",
+    value: function anonymousFunc0(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc1",
+    value: function anonymousFunc1(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc2",
+    value: function anonymousFunc2(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc3",
+    value: function anonymousFunc3(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc4",
+    value: function anonymousFunc4(_$indexKey) {
+      var _anonymousFunc4Map;
+
+      ;
+
+      for (var _len2 = arguments.length, e = Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
+        e[_key2 - 1] = arguments[_key2];
+      }
+
+      return this.anonymousFunc4Map[_$indexKey] && (_anonymousFunc4Map = this.anonymousFunc4Map)[_$indexKey].apply(_anonymousFunc4Map, e);
+    }
+  }, {
+    key: "anonymousFunc5",
+    value: function anonymousFunc5(_$indexKey2) {
+      var _anonymousFunc5Map;
+
+      ;
+
+      for (var _len3 = arguments.length, e = Array(_len3 > 1 ? _len3 - 1 : 0), _key3 = 1; _key3 < _len3; _key3++) {
+        e[_key3 - 1] = arguments[_key3];
+      }
+
+      return this.anonymousFunc5Map[_$indexKey2] && (_anonymousFunc5Map = this.anonymousFunc5Map)[_$indexKey2].apply(_anonymousFunc5Map, e);
+    }
+  }]);
+
+  return ResumeMap;
+}(_taroWeapp2.default.Component), _class.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5"], _class.$$componentPath = "pages/map/resume/index", _temp2);
+
+
+ResumeMap.config = { navigationBarTitleText: '地址选择' };
+exports.default = ResumeMap;
+
+Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(ResumeMap, true));
+
+/***/ }),
+
 /***/ "./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js?!./src/pages/recruit/publish/index.tsx?taro&type=script&parse=PAGE&":
 /*!***********************************************************************************************************************************************************!*\
   !*** ./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js??ref--6-0!./src/pages/recruit/publish/index.tsx?taro&type=script&parse=PAGE& ***!
@@ -78,7 +552,7 @@ var PublishRecruit = (_temp2 = _class = function (_Taro$Component) {
       navigationBarBackgroundColor: '#0099ff',
       navigationBarTextStyle: 'white',
       backgroundTextStyle: "dark"
-    }, _this.$usedState = ["model", "$compid__110", "$compid__111", "$compid__112", "showProfession", "phone", "showUpload", "text"], _this.customComponents = ["Auth", "Profession", "WordsTotal", "ImageView"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["model", "$compid__108", "$compid__109", "$compid__110", "showProfession", "phone", "showUpload", "text"], _this.customComponents = ["Auth", "Profession", "WordsTotal", "ImageView"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(PublishRecruit, [{
@@ -97,20 +571,20 @@ var PublishRecruit = (_temp2 = _class = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__110"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__108"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__110 = _genCompid2[0],
-          $compid__110 = _genCompid2[1];
+          $prevCompid__108 = _genCompid2[0],
+          $compid__108 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__111"),
+      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__109"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__111 = _genCompid4[0],
-          $compid__111 = _genCompid4[1];
+          $prevCompid__109 = _genCompid4[0],
+          $compid__109 = _genCompid4[1];
 
-      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__112"),
+      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__110"),
           _genCompid6 = _slicedToArray(_genCompid5, 2),
-          $prevCompid__112 = _genCompid6[0],
-          $compid__112 = _genCompid6[1];
+          $prevCompid__110 = _genCompid6[0],
+          $compid__110 = _genCompid6[1];
 
       // 获取路由参数
 
@@ -288,21 +762,21 @@ var PublishRecruit = (_temp2 = _class = function (_Taro$Component) {
         "data": model && model.classifyTree,
         "onClickItem": this.anonymousFunc0,
         "num": 3
-      }, $compid__110, $prevCompid__110);
+      }, $compid__108, $prevCompid__108);
       _taroWeapp.propsManager.set({
         "num": num
-      }, $compid__111, $prevCompid__111);
+      }, $compid__109, $prevCompid__109);
       showUpload && model && _taroWeapp.propsManager.set({
         "images": model.view_images,
         "max": model.maxImageCount,
         "userUploadImg": userUploadImg,
         "userDelImg": userDelImg
-      }, $compid__112, $prevCompid__112);
+      }, $compid__110, $prevCompid__110);
       Object.assign(this.__state, {
         model: model,
+        $compid__108: $compid__108,
+        $compid__109: $compid__109,
         $compid__110: $compid__110,
-        $compid__111: $compid__111,
-        $compid__112: $compid__112,
         showProfession: showProfession,
         phone: phone,
         showUpload: showUpload,
@@ -451,7 +925,7 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = NewJob.__proto__ || Object.getPrototypeOf(NewJob)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
       navigationBarTitleText: '找活名片'
-    }, _this.$usedState = ["anonymousState__temp", "data", "loopArray150", "loopArray151", "loopArray152", "loopArray153", "loopArray154", "loopArray155", "$compid__121", "$compid__122", "$compid__123", "showtop", "showcomplete", "IMGCDNURL", "showtopone", "showpassre", "passre", "nopassre", "index", "checkstatus", "checkone", "headerimg", "authenticationimg", "certificate_show", "age", "sex", "checkonef", "showskill", "intro", "introne", "ressonone", "selfintrone", "checktwo", "selfintro", "projectlength", "project_count", "project", "proStatus", "skilllength", "skillbooksone", "checkfourf", "isOpened", "selectdata", "popup"], _this.anonymousFunc10Map = {}, _this.anonymousFunc13Map = {}, _this.anonymousFunc14Map = {}, _this.customComponents = ["CollectionRecruitList", "AtModal"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["anonymousState__temp", "data", "loopArray354", "loopArray355", "loopArray356", "loopArray357", "loopArray358", "loopArray359", "$compid__377", "$compid__378", "$compid__379", "showtop", "showcomplete", "IMGCDNURL", "showtopone", "showpassre", "passre", "nopassre", "index", "checkstatus", "checkone", "headerimg", "authenticationimg", "certificate_show", "age", "sex", "checkonef", "showskill", "intro", "introne", "ressonone", "selfintrone", "checktwo", "selfintro", "projectlength", "project_count", "project", "skilllength", "skillbooksone", "checkfourf", "isOpened", "selectdata", "proStatus", "popup"], _this.anonymousFunc10Map = {}, _this.anonymousFunc13Map = {}, _this.anonymousFunc14Map = {}, _this.customComponents = ["CollectionRecruitList", "AtModal"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(NewJob, [{
@@ -472,20 +946,20 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__121"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__377"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__121 = _genCompid2[0],
-          $compid__121 = _genCompid2[1];
+          $prevCompid__377 = _genCompid2[0],
+          $compid__377 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__122"),
+      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__378"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__122 = _genCompid4[0],
-          $compid__122 = _genCompid4[1];
+          $prevCompid__378 = _genCompid4[0],
+          $compid__378 = _genCompid4[1];
 
-      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__123"),
+      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__379"),
           _genCompid6 = _slicedToArray(_genCompid5, 2),
-          $prevCompid__123 = _genCompid6[0],
-          $compid__123 = _genCompid6[1];
+          $prevCompid__379 = _genCompid6[0],
+          $compid__379 = _genCompid6[1];
 
       var userInfoObj = _taroWeapp2.default.getStorageSync(_store.UserInfo);
 
@@ -503,6 +977,7 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
           is_end: '',
           check: '',
           uuid: '',
+          user_uuid: '',
           occupations: []
         },
         resume_top: {
@@ -842,6 +1317,8 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
               setIndex(1);
             }
             setResumeTop(res.data.resume_top);
+            // 都通过的情况下，并且正在招人，并且未置顶，提示前往置顶，暂不提示15天内不再提示
+            // 没有未通过并且正在找，当前状态未置并且不再15天内
             // 设置城市
             var userLoctionCity = _taroWeapp2.default.getStorageSync(_store.UserLocationCity);
             _setArea(userLoctionCity.city);
@@ -1255,7 +1732,7 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
           (0, _index3.default)('网络错误，上传失败');
         });
       };
-      console.log(value, 'value');
+      console.log(proStatus, 'proStatus');
       context.Provider(value);
       var anonymousState__temp = "width:" + parseInt(data.info.progress) + "%";
 
@@ -1286,38 +1763,42 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
       };
 
       this.anonymousFunc9 = function () {
-        return userRouteJump("/subpackage/pages/addProject/index");
+        return userRouteJump("/subpackage/pages/addProject/index?id=" + data.info.uuid);
       };
 
       this.anonymousFunc11 = function () {
-        return userRouteJump("/pages/resume/projectList/index");
+        return userRouteJump("/pages/resume/projectList/index?id=" + data.info.uuid);
       };
 
       this.anonymousFunc12 = function () {
-        return userRouteJump("/subpackage/pages/addSkill/index");
+        return userRouteJump("/subpackage/pages/addSkill/index?id=" + data.info.uuid);
       };
 
       this.anonymousFunc15 = function () {
-        return userRouteJump("/pages/resume/skillList/index");
+        return userRouteJump("/pages/resume/skillList/index?id=" + data.info.uuid);
       };
 
       this.anonymousFunc16 = function () {
-        return userRouteJump("/pages/resume/preview/index");
+        return userRouteJump("/pages/resume/skillList/index?id=" + data.info.uuid);
       };
 
       this.anonymousFunc17 = function () {
-        setTips(false);
+        return userRouteJump("/pages/resume/preview/index");
       };
 
       this.anonymousFunc18 = function () {
-        setToppingModal(false);
+        setTips(false);
       };
 
       this.anonymousFunc19 = function () {
-        console.log(1111);
+        setToppingModal(false);
       };
 
-      var loopArray150 = data.resume_top.has_top != 0 && data.resume_top.is_top != 2 ? data.resume_top.top_provinces_str.map(function (v, i) {
+      this.anonymousFunc20 = function () {
+        return userRouteJump("/pages/topping/index?rec=1");
+      };
+
+      var loopArray354 = data.resume_top.has_top != 0 && data.resume_top.is_top != 2 ? data.resume_top.top_provinces_str.map(function (v, i) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
@@ -1327,7 +1808,7 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray151 = !showskill ? data.info.occupations.map(function (v, i) {
+      var loopArray355 = !showskill ? data.info.occupations.map(function (v, i) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
@@ -1337,7 +1818,7 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray152 = showskill ? data.info.occupations.map(function (v, i) {
+      var loopArray356 = showskill ? data.info.occupations.map(function (v, i) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
@@ -1347,7 +1828,7 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray153 = selfintrone ? data.introduces.tags.map(function (v, i) {
+      var loopArray357 = selfintrone ? data.introduces.tags.map(function (v, i) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
@@ -1357,18 +1838,18 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray154 = projectlength != 0 ? project.map(function (item, __index10) {
+      var loopArray358 = projectlength != 0 ? project.map(function (item, __index10) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
 
-        var _$indexKey = "bdjzz" + __index10;
+        var _$indexKey = "chjzz" + __index10;
 
         _this2.anonymousFunc10Map[_$indexKey] = function () {
           return userRouteJump("/subpackage/pages/addProject/index?type=0");
         };
 
-        var $anonymousCallee__30 = projectlength != 0 ? item.$original.image.map(function (v, i) {
+        var $anonymousCallee__116 = projectlength != 0 ? item.$original.image.map(function (v, i) {
           v = {
             $original: (0, _taroWeapp.internal_get_original)(v)
           };
@@ -1380,29 +1861,29 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
         }) : [];
         return {
           _$indexKey: _$indexKey,
-          $anonymousCallee__30: $anonymousCallee__30,
+          $anonymousCallee__116: $anonymousCallee__116,
           $original: item.$original
         };
       }) : [];
-      var loopArray155 = skilllength != 0 ? skillbooksone.map(function (item, i) {
+      var loopArray359 = skilllength != 0 ? skillbooksone.map(function (item, i) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
         var $loopState__temp13 = skillbooksone ? i + i : null;
 
-        var _$indexKey2 = "beazz" + i;
+        var _$indexKey2 = "ciazz" + i;
 
         _this2.anonymousFunc13Map[_$indexKey2] = function () {
           return userRouteJump("/subpackage/pages/addSkill/index?type=" + i);
         };
 
-        var _$indexKey3 = "bebzz" + i;
+        var _$indexKey3 = "cibzz" + i;
 
         _this2.anonymousFunc14Map[_$indexKey3] = function () {
           return userRouteJump("/subpackage/pages/addSkill/index?type=" + i);
         };
 
-        var $anonymousCallee__31 = skilllength != 0 ? item.$original.image.map(function (v, i) {
+        var $anonymousCallee__117 = skilllength != 0 ? item.$original.image.map(function (v, i) {
           v = {
             $original: (0, _taroWeapp.internal_get_original)(v)
           };
@@ -1416,34 +1897,34 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
           $loopState__temp13: $loopState__temp13,
           _$indexKey2: _$indexKey2,
           _$indexKey3: _$indexKey3,
-          $anonymousCallee__31: $anonymousCallee__31,
+          $anonymousCallee__117: $anonymousCallee__117,
           $original: item.$original
         };
       }) : [];
       _taroWeapp.propsManager.set({
         "type": 1,
         "data": recData
-      }, $compid__121, $prevCompid__121);
+      }, $compid__377, $prevCompid__377);
       _taroWeapp.propsManager.set({
         "isOpened": tips,
         "className": "AtModal"
-      }, $compid__122, $prevCompid__122);
+      }, $compid__378, $prevCompid__378);
       _taroWeapp.propsManager.set({
         "isOpened": toppingModal,
         "className": "AtModal"
-      }, $compid__123, $prevCompid__123);
+      }, $compid__379, $prevCompid__379);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
         data: data,
-        loopArray150: loopArray150,
-        loopArray151: loopArray151,
-        loopArray152: loopArray152,
-        loopArray153: loopArray153,
-        loopArray154: loopArray154,
-        loopArray155: loopArray155,
-        $compid__121: $compid__121,
-        $compid__122: $compid__122,
-        $compid__123: $compid__123,
+        loopArray354: loopArray354,
+        loopArray355: loopArray355,
+        loopArray356: loopArray356,
+        loopArray357: loopArray357,
+        loopArray358: loopArray358,
+        loopArray359: loopArray359,
+        $compid__377: $compid__377,
+        $compid__378: $compid__378,
+        $compid__379: $compid__379,
         showtop: showtop,
         showcomplete: showcomplete,
         IMGCDNURL: _index6.IMGCDNURL,
@@ -1470,12 +1951,12 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
         projectlength: projectlength,
         project_count: project_count,
         project: project,
-        proStatus: proStatus,
         skilllength: skilllength,
         skillbooksone: skillbooksone,
         checkfourf: checkfourf,
         isOpened: isOpened,
         selectdata: selectdata,
+        proStatus: proStatus,
         popup: popup
       });
       return this.__state;
@@ -1604,10 +2085,15 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
     value: function anonymousFunc19(e) {
       ;
     }
+  }, {
+    key: "anonymousFunc20",
+    value: function anonymousFunc20(e) {
+      ;
+    }
   }]);
 
   return NewJob;
-}(_taroWeapp2.default.Component), _class.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6", "anonymousFunc7", "anonymousFunc8", "anonymousFunc9", "anonymousFunc10", "anonymousFunc11", "anonymousFunc12", "anonymousFunc13", "anonymousFunc14", "anonymousFunc15", "anonymousFunc16", "anonymousFunc17", "anonymousFunc18", "anonymousFunc19"], _class.$$componentPath = "pages/resume/newJobs/index", _temp2);
+}(_taroWeapp2.default.Component), _class.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6", "anonymousFunc7", "anonymousFunc8", "anonymousFunc9", "anonymousFunc10", "anonymousFunc11", "anonymousFunc12", "anonymousFunc13", "anonymousFunc14", "anonymousFunc15", "anonymousFunc16", "anonymousFunc17", "anonymousFunc18", "anonymousFunc19", "anonymousFunc20"], _class.$$componentPath = "pages/resume/newJobs/index", _temp2);
 
 
 NewJob.config = { navigationBarTitleText: '找活名片' };
@@ -1684,7 +2170,7 @@ var Topping = (_temp2 = _class = function (_Taro$Component) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Topping.__proto__ || Object.getPrototypeOf(Topping)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
       navigationBarTitleText: '招工置顶'
-    }, _this.$usedState = ["params", "data", "loopArray145", "loopArray146", "loopArray147", "loopArray148", "loopArray149", "province", "IMGCDNURL", "rec", "basics", "type", "list", "displayTime", "num", "endTime", "editData", "newTime", "day", "SERVERPHONE"], _this.anonymousFunc0Map = {}, _this.anonymousFunc1Map = {}, _this.anonymousFunc2Map = {}, _this.anonymousFunc3Map = {}, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["params", "data", "loopArray143", "loopArray144", "loopArray145", "loopArray146", "loopArray147", "province", "IMGCDNURL", "rec", "basics", "type", "list", "displayTime", "num", "endTime", "editData", "newTime", "day", "SERVERPHONE"], _this.anonymousFunc0Map = {}, _this.anonymousFunc1Map = {}, _this.anonymousFunc2Map = {}, _this.anonymousFunc3Map = {}, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Topping, [{
@@ -2690,12 +3176,12 @@ var Topping = (_temp2 = _class = function (_Taro$Component) {
         _taroWeapp2.default.makePhoneCall({ phoneNumber: _index2.SERVERPHONE });
       };
 
-      var loopArray145 = province ? province.map(function (v, __index0) {
+      var loopArray143 = province ? province.map(function (v, __index0) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
 
-        var _$indexKey = "bdfzz" + __index0;
+        var _$indexKey = "bddzz" + __index0;
 
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return handleDel(v.$original);
@@ -2706,12 +3192,12 @@ var Topping = (_temp2 = _class = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray146 = params ? params.city.map(function (v, __index1) {
+      var loopArray144 = params ? params.city.map(function (v, __index1) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
 
-        var _$indexKey2 = "bdgzz" + __index1;
+        var _$indexKey2 = "bdezz" + __index1;
 
         _this2.anonymousFunc1Map[_$indexKey2] = function () {
           return handleDel(v.$original);
@@ -2722,12 +3208,12 @@ var Topping = (_temp2 = _class = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray147 = params ? params.province.map(function (v, __index2) {
+      var loopArray145 = params ? params.province.map(function (v, __index2) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
 
-        var _$indexKey3 = "bdhzz" + __index2;
+        var _$indexKey3 = "bdfzz" + __index2;
 
         _this2.anonymousFunc2Map[_$indexKey3] = function () {
           return handleDel(v.$original);
@@ -2738,12 +3224,12 @@ var Topping = (_temp2 = _class = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray148 = params ? params.whole.map(function (v, __index3) {
+      var loopArray146 = params ? params.whole.map(function (v, __index3) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
 
-        var _$indexKey4 = "bdizz" + __index3;
+        var _$indexKey4 = "bdgzz" + __index3;
 
         _this2.anonymousFunc3Map[_$indexKey4] = function () {
           return handleDel(v.$original);
@@ -2754,7 +3240,7 @@ var Topping = (_temp2 = _class = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray149 = data.top_rules.map(function (v, i) {
+      var loopArray147 = data.top_rules.map(function (v, i) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
@@ -2767,11 +3253,11 @@ var Topping = (_temp2 = _class = function (_Taro$Component) {
       Object.assign(this.__state, {
         params: params,
         data: data,
+        loopArray143: loopArray143,
+        loopArray144: loopArray144,
         loopArray145: loopArray145,
         loopArray146: loopArray146,
         loopArray147: loopArray147,
-        loopArray148: loopArray148,
-        loopArray149: loopArray149,
         province: province,
         IMGCDNURL: _index2.IMGCDNURL,
         rec: rec,
@@ -3146,6 +3632,17 @@ var UserUpdateInfo = (_temp2 = _class = function (_Taro$Component) {
 exports.default = UserUpdateInfo;
 
 Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(UserUpdateInfo, true));
+
+/***/ }),
+
+/***/ "./node_modules/file-loader/dist/cjs.js?name=[path][name].wxml&context=/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/src!./node_modules/@tarojs/mini-runner/dist/loaders/miniTemplateLoader.js!./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js?!./src/pages/map/resume/index.tsx?taro&type=template&parse=PAGE&":
+/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/file-loader/dist/cjs.js?name=[path][name].wxml&context=/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/src!./node_modules/@tarojs/mini-runner/dist/loaders/miniTemplateLoader.js!./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js??ref--6-0!./src/pages/map/resume/index.tsx?taro&type=template&parse=PAGE& ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "pages/map/resume/index.wxml";
 
 /***/ }),
 
@@ -6132,6 +6629,67 @@ exports.default = AREAS;
 
 /***/ }),
 
+/***/ "./src/pages/map/resume/index.scss":
+/*!*****************************************!*\
+  !*** ./src/pages/map/resume/index.scss ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
+/***/ "./src/pages/map/resume/index.tsx":
+/*!****************************************!*\
+  !*** ./src/pages/map/resume/index.tsx ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _index_tsx_taro_type_template_parse_PAGE___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.tsx?taro&type=template&parse=PAGE& */ "./src/pages/map/resume/index.tsx?taro&type=template&parse=PAGE&");
+/* harmony import */ var _index_tsx_taro_type_script_parse_PAGE___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./index.tsx?taro&type=script&parse=PAGE& */ "./src/pages/map/resume/index.tsx?taro&type=script&parse=PAGE&");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _index_tsx_taro_type_script_parse_PAGE___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _index_tsx_taro_type_script_parse_PAGE___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+
+
+
+
+/***/ }),
+
+/***/ "./src/pages/map/resume/index.tsx?taro&type=script&parse=PAGE&":
+/*!*********************************************************************!*\
+  !*** ./src/pages/map/resume/index.tsx?taro&type=script&parse=PAGE& ***!
+  \*********************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_script_parse_PAGE___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js??ref--6-0!./index.tsx?taro&type=script&parse=PAGE& */ "./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js?!./src/pages/map/resume/index.tsx?taro&type=script&parse=PAGE&");
+/* harmony import */ var _node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_script_parse_PAGE___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_script_parse_PAGE___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_script_parse_PAGE___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_script_parse_PAGE___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_script_parse_PAGE___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./src/pages/map/resume/index.tsx?taro&type=template&parse=PAGE&":
+/*!***********************************************************************!*\
+  !*** ./src/pages/map/resume/index.tsx?taro&type=template&parse=PAGE& ***!
+  \***********************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _file_loader_name_path_name_wxml_context_Users_zhangyibo_TaroTs_YuPaoWang_yupaowang_src_node_modules_tarojs_mini_runner_dist_loaders_miniTemplateLoader_js_node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_template_parse_PAGE___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!file-loader?name=[path][name].wxml&context=/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/src!../../../../node_modules/@tarojs/mini-runner/dist/loaders/miniTemplateLoader.js!../../../../node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js??ref--6-0!./index.tsx?taro&type=template&parse=PAGE& */ "./node_modules/file-loader/dist/cjs.js?name=[path][name].wxml&context=/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/src!./node_modules/@tarojs/mini-runner/dist/loaders/miniTemplateLoader.js!./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js?!./src/pages/map/resume/index.tsx?taro&type=template&parse=PAGE&");
+/* harmony import */ var _file_loader_name_path_name_wxml_context_Users_zhangyibo_TaroTs_YuPaoWang_yupaowang_src_node_modules_tarojs_mini_runner_dist_loaders_miniTemplateLoader_js_node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_template_parse_PAGE___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_file_loader_name_path_name_wxml_context_Users_zhangyibo_TaroTs_YuPaoWang_yupaowang_src_node_modules_tarojs_mini_runner_dist_loaders_miniTemplateLoader_js_node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_template_parse_PAGE___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _file_loader_name_path_name_wxml_context_Users_zhangyibo_TaroTs_YuPaoWang_yupaowang_src_node_modules_tarojs_mini_runner_dist_loaders_miniTemplateLoader_js_node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_template_parse_PAGE___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _file_loader_name_path_name_wxml_context_Users_zhangyibo_TaroTs_YuPaoWang_yupaowang_src_node_modules_tarojs_mini_runner_dist_loaders_miniTemplateLoader_js_node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_template_parse_PAGE___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+
+
+/***/ }),
+
 /***/ "./src/pages/recruit/publish/index.scss":
 /*!**********************************************!*\
   !*** ./src/pages/recruit/publish/index.scss ***!
@@ -6600,6 +7158,7 @@ exports.getAmapPoiList = getAmapPoiList;
 exports.userJumpPage = userJumpPage;
 exports.getPointNumber = getPointNumber;
 exports.getSystemInfo = getSystemInfo;
+exports.recSerAuthLoction = recSerAuthLoction;
 
 var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
@@ -6671,6 +7230,20 @@ function getPointNumber(p, n) {
 function getSystemInfo() {
   var system = _taroWeapp2.default.getSystemInfoSync();
   return system.platform;
+}
+// 找活基础页面获取定位
+function recSerAuthLoction() {
+  return new Promise(function (resolve, reject) {
+    var GDMAP = new _amapWx2.default.AMapWX({ key: _index.MAPKEY });
+    GDMAP.getRegeo({
+      success: function success(data) {
+        resolve(data);
+      },
+      fail: function fail() {
+        reject();
+      }
+    });
+  });
 }
 
 /***/ }),
@@ -7625,8 +8198,18 @@ function resumesCertificateAction(data) {
 }
 // 新增项目
 function resumesProjectAction(data) {
+  // 获取用户信息
+  var userInfo = _taroWeapp2.default.getStorageSync(_store.UserInfo);
   return doRequestAction({
     url: api.resumesProjectUrl,
+    header: {
+      version: '1.0.1',
+      'content-type': 'application/x-www-form-urlencoded',
+      mid: userInfo.userId,
+      uuid: userInfo.uuid,
+      token: userInfo.token,
+      time: userInfo.tokenTime
+    },
     method: 'POST',
     failToast: true,
     data: data

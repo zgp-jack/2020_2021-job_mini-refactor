@@ -77,7 +77,7 @@ var PublishedRecruit = (_temp2 = _class = function (_Taro$Component) {
       navigationBarBackgroundColor: '#0099ff',
       navigationBarTextStyle: 'white',
       backgroundTextStyle: "dark"
-    }, _this.$usedState = ["loopArray126", "loopArray127", "HeaderList", "refresh", "lists", "IMGCDNURL", "more", "searchData"], _this.anonymousFunc0Map = {}, _this.anonymousFunc3Map = {}, _this.anonymousFunc4Map = {}, _this.anonymousFunc5Map = {}, _this.anonymousFunc6Map = {}, _this.anonymousFunc7Map = {}, _this.customComponents = ["Nodata"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["loopArray124", "loopArray125", "HeaderList", "refresh", "lists", "IMGCDNURL", "more", "searchData"], _this.anonymousFunc0Map = {}, _this.anonymousFunc3Map = {}, _this.anonymousFunc4Map = {}, _this.anonymousFunc5Map = {}, _this.anonymousFunc6Map = {}, _this.anonymousFunc7Map = {}, _this.customComponents = ["Nodata"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(PublishedRecruit, [{
@@ -320,12 +320,12 @@ var PublishedRecruit = (_temp2 = _class = function (_Taro$Component) {
         return getNextPageData();
       };
 
-      var loopArray126 = _config2.default.map(function (item, __index0) {
+      var loopArray124 = _config2.default.map(function (item, __index0) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
 
-        var _$indexKey = "bcczz" + __index0;
+        var _$indexKey = "bcazz" + __index0;
 
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return userChangePublishedItem(item.$original.id);
@@ -341,36 +341,36 @@ var PublishedRecruit = (_temp2 = _class = function (_Taro$Component) {
           $original: item.$original
         };
       });
-      var loopArray127 = lists.map(function (item, index) {
+      var loopArray125 = lists.map(function (item, index) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
 
-        var _$indexKey2 = "bcdzz" + index;
+        var _$indexKey2 = "bcbzz" + index;
 
         _this2.anonymousFunc3Map[_$indexKey2] = function () {
           return userRouteJump("/pages/detail/info/index?id=" + item.$original.id);
         };
 
-        var _$indexKey3 = "bcezz" + index;
+        var _$indexKey3 = "bcczz" + index;
 
         _this2.anonymousFunc4Map[_$indexKey3] = function () {
           return userStopRecruit(item.$original.id, index);
         };
 
-        var _$indexKey4 = "bcfzz" + index;
+        var _$indexKey4 = "bcdzz" + index;
 
         _this2.anonymousFunc5Map[_$indexKey4] = function () {
           return handlCancel(item.$original.id);
         };
 
-        var _$indexKey5 = "bcgzz" + index;
+        var _$indexKey5 = "bcezz" + index;
 
         _this2.anonymousFunc6Map[_$indexKey5] = function () {
           return handleTopping(item.$original);
         };
 
-        var _$indexKey6 = "bchzz" + index;
+        var _$indexKey6 = "bcfzz" + index;
 
         _this2.anonymousFunc7Map[_$indexKey6] = function () {
           return userRouteJump("/pages/topping/index?id=" + item.$original.id + "&type=1");
@@ -386,8 +386,8 @@ var PublishedRecruit = (_temp2 = _class = function (_Taro$Component) {
         };
       });
       Object.assign(this.__state, {
-        loopArray126: loopArray126,
-        loopArray127: loopArray127,
+        loopArray124: loopArray124,
+        loopArray125: loopArray125,
         HeaderList: _config2.default,
         refresh: refresh,
         lists: lists,

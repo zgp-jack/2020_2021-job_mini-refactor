@@ -37,7 +37,7 @@
         </form>
         <view class="personInfo-label">
             <view class="personInfo-label-title">为自己贴个标签，让老板更懂你(可选3个):</view>
-            <view class="personInfo-label-list-box"><text class="{{v.$original.click ? 'personInfo-label-list-click' : 'personInfo-label-list'}}" wx:key="id" bindtap="anonymousFunc6" wx:for="{{loopArray132}}" wx:for-item="v" wx:for-index="__index6" data-e-tap-so="this" data-e-tap-a-a="{{v._$indexKey}}">{{v.$original.label_name}}</text>
+            <view class="personInfo-label-list-box"><text class="{{v.$original.click ? 'personInfo-label-list-click' : 'personInfo-label-list'}}" wx:key="id" bindtap="anonymousFunc6" wx:for="{{loopArray130}}" wx:for-item="v" wx:for-index="__index6" data-e-tap-so="this" data-e-tap-a-a="{{v._$indexKey}}">{{v.$original.label_name}}</text>
             </view>
         </view>
         <view class="personInfo-footer">

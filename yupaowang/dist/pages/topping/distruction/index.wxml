@@ -9,7 +9,7 @@
                 <block>
                     <block wx:if="{{searchData.list.length > 0}}">
                         <view class="distruction-top-seach-list-box">
-                            <view bindtap="anonymousFunc2" class="distruction-top-seach-list" wx:for="{{loopArray133}}" wx:for-item="v" wx:for-index="__index2" data-e-tap-so="this" data-e-tap-a-a="{{v._$indexKey}}">{{v.$original.listName}}</view>
+                            <view bindtap="anonymousFunc2" class="distruction-top-seach-list" wx:for="{{loopArray131}}" wx:for-item="v" wx:for-index="__index2" data-e-tap-so="this" data-e-tap-a-a="{{v._$indexKey}}">{{v.$original.listName}}</view>
                         </view>
                     </block>
                     <block wx:else>
@@ -26,7 +26,7 @@
                         <image bindtap="anonymousFunc3" src="../../../images/laji.png" class="distruction-head-click-seachList-head-image"></image>
                     </view>
                     <view class="distruction-head-click-seachList-list-box">
-                        <view wx:key="id" class="distruction-head-click-seachList-list" bindtap="anonymousFunc4" wx:for="{{loopArray134}}" wx:for-item="v" wx:for-index="__index4" data-e-tap-so="this" data-e-tap-a-a="{{v._$indexKey2}}">{{v.$original.name}}</view>
+                        <view wx:key="id" class="distruction-head-click-seachList-list" bindtap="anonymousFunc4" wx:for="{{loopArray132}}" wx:for-item="v" wx:for-index="__index4" data-e-tap-so="this" data-e-tap-a-a="{{v._$indexKey2}}">{{v.$original.name}}</view>
                     </view>
                 </view>
             </block>
@@ -35,13 +35,13 @@
         <view class="distruction-content">
             <view class="distruction-content-title">热门城市</view>
             <view class="distruction-content-box">
-                <view bindtap="anonymousFunc5" class="{{v.$original.click ? 'distruction-content-box-list-click' : 'distruction-content-box-list'}}" wx:key="id" wx:for="{{loopArray135}}" wx:for-item="v" wx:for-index="__index5" data-e-tap-so="this" data-e-tap-a-a="{{v._$indexKey3}}">{{v.$original.name}}
+                <view bindtap="anonymousFunc5" class="{{v.$original.click ? 'distruction-content-box-list-click' : 'distruction-content-box-list'}}" wx:key="id" wx:for="{{loopArray133}}" wx:for-item="v" wx:for-index="__index5" data-e-tap-so="this" data-e-tap-a-a="{{v._$indexKey3}}">{{v.$original.name}}
                     <image class="{{v.$original.pid === '0' ? 'distruction-content-are-content-box-list-img' : 'distruction-content-are-content-box-list-noneimg'}}" src="{{IMGCDNURL + 'lpy/recruit/settop-hot.png'}}"></image>
                 </view>
             </view>
         </view>
         <view class="distruction-content-are-content">
-            <view class="distruction-content-are-content-box" wx:for="{{loopArray136}}" wx:for-item="v" wx:for-index="__index7">
+            <view class="distruction-content-are-content-box" wx:for="{{loopArray134}}" wx:for-item="v" wx:for-index="__index7">
                 <view class="distruction-content-are-content-box-title">{{v.$original.ad_name}}</view>
                 <view class="distruction-content-are-content-box-list">
                     <view bindtap="anonymousFunc6" class="{{val.$original.click ? 'distruction-content-are-content-box-list-item-click' : 'distruction-content-are-content-box-list-item'}}" wx:for="{{v.$anonymousCallee__29}}" wx:for-item="val" wx:for-index="index" data-e-tap-so="this" data-e-tap-a-a="{{val._$indexKey4}}">{{index == 0 && v.$original.index != 0 ? "全省置顶" : val.$original.name}}

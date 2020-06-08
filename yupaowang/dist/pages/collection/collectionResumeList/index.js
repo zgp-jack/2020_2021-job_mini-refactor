@@ -52,7 +52,7 @@ var CollectionResumeList = (_temp2 = _class = function (_Taro$Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = CollectionResumeList.__proto__ || Object.getPrototypeOf(CollectionResumeList)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "loopArray84", "$compid__82", "$compid__83", "data", "IMGCDNURL", "recruitNoMoreData", "modalContent", "bottom", "onHandlerClick"], _this.anonymousFunc0Map = {}, _this.anonymousFunc1Map = {}, _this.customComponents = ["Nodata", "AtModal", "AtModalHeader", "AtModalContent", "AtModalAction"], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = CollectionResumeList.__proto__ || Object.getPrototypeOf(CollectionResumeList)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "loopArray82", "$compid__83", "$compid__84", "data", "IMGCDNURL", "recruitNoMoreData", "modalContent", "bottom", "onHandlerClick"], _this.anonymousFunc0Map = {}, _this.anonymousFunc1Map = {}, _this.customComponents = ["Nodata", "AtModal", "AtModalHeader", "AtModalContent", "AtModalAction"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(CollectionResumeList, [{
@@ -73,15 +73,15 @@ var CollectionResumeList = (_temp2 = _class = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__82"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__83"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__82 = _genCompid2[0],
-          $compid__82 = _genCompid2[1];
+          $prevCompid__83 = _genCompid2[0],
+          $compid__83 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__83"),
+      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__84"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__83 = _genCompid4[0],
-          $compid__83 = _genCompid4[1];
+          $prevCompid__84 = _genCompid4[0],
+          $compid__84 = _genCompid4[1];
 
       var _props = this.__props,
           _props$data = _props.data,
@@ -123,18 +123,18 @@ var CollectionResumeList = (_temp2 = _class = function (_Taro$Component) {
         setIsOpened(false);
       };
 
-      var loopArray84 = data ? data.map(function (item, __index0) {
+      var loopArray82 = data ? data.map(function (item, __index0) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
 
-        var _$indexKey = "iazzz" + __index0;
+        var _$indexKey = "hizzz" + __index0;
 
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return onHandleClick(item.$original.resume.check);
         };
 
-        var _$indexKey2 = "ibzzz" + __index0;
+        var _$indexKey2 = "hjzzz" + __index0;
 
         _this2.anonymousFunc1Map[_$indexKey2] = function () {
           _this2.__props.onHandlerClick(item.$original.resume_uuid);
@@ -148,15 +148,15 @@ var CollectionResumeList = (_temp2 = _class = function (_Taro$Component) {
       }) : [];
       !data.length && _taroWeapp.propsManager.set({
         "text": "\u6CA1\u6709\u627E\u5230\u76F8\u5173\u7684\u6570\u636E"
-      }, $compid__82, $prevCompid__82);
+      }, $compid__83, $prevCompid__83);
       _taroWeapp.propsManager.set({
         "isOpened": isOpened
-      }, $compid__83, $prevCompid__83);
+      }, $compid__84, $prevCompid__84);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
-        loopArray84: loopArray84,
-        $compid__82: $compid__82,
+        loopArray82: loopArray82,
         $compid__83: $compid__83,
+        $compid__84: $compid__84,
         data: data,
         IMGCDNURL: _index.IMGCDNURL,
         recruitNoMoreData: recruitNoMoreData,

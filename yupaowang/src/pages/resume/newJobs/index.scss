@@ -471,15 +471,19 @@
   font-size: 0;
 }
 .ocworkotyp .ocworkotyptu {
-  color: rgba(42, 42, 42, 1);
   font-size: 28px;
-  display: inline-block;
-  padding: 4px 10px;
-  text-align: center;
   margin-right: 17px;
   margin-bottom: 12px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.ocworkotyptu-list{
+  margin-left: 10px;
   background: rgba(238, 237, 239, 1);
   border-radius: 6px;
+  text-align: center;
+  color: rgba(42, 42, 42, 1);
+  padding: 4px;
 }
 
 .ocworkotyp .ocworkotyptu:nth-last-child(1) {

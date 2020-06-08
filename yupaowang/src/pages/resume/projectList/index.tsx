@@ -1,10 +1,11 @@
-import Taro, { Config, useState, useEffect, useRouter, useDidShow } from '@tarojs/taro'
+import Taro, { Config, useState, useContext, useRouter, useDidShow } from '@tarojs/taro'
 import { View, Text, Image, Block, Button, Textarea } from '@tarojs/components'
 import { resumeListAction } from '../../../utils/request/index'
 import WechatNotice from '../../../components/wechat'
 import { IMGCDNURL, SERVERPHONE } from '../../../config'
 import { isVaildVal } from '../../../utils/v'
 import Msg from '../../../utils/msg'
+import Nodata from '../../../components/nodata'
 import { resumeDetailCertificates, resumeDetailProject, resumeDetailOperation, recommendListDataList } from '../../../utils/request/index.d'
 import './index.scss'
 
@@ -22,6 +23,8 @@ interface DataType {
   image:[],
 }
 export default function ProjectList() {
+  const router: Taro.RouterInfo = useRouter()
+  let { id } = router.params;
   // 刷新一次
   const [refresh, setRefresh] = useState<boolean>(false)
   // 数据
@@ -52,11 +55,11 @@ export default function ProjectList() {
   return(
     <View className='projectList'>
       {data.map((item,i)=>(
-        <View key={item.id} className='skilleight' onClick={() => userRouteJump(`/subpackage/pages/addProject/index?type=${i}`)}>
+        <View key={item.id} className='skilleight' >
           {item.check == '1' && <Image className='audit' src={`${IMGCDNURL}lpy/review.png`}/>}
           {item.check == '0' && <Image className='audit' src={`${IMGCDNURL}lpy/notthrough.png`} />}
-          {item.check == '2' && <View className='editor'>编辑</View>}
-          {item.check == '0' && <View className='editorone'>待修改</View>}
+          {item.check == '2' && <View className='editor' onClick={() => userRouteJump(`/subpackage/pages/addProject/index?type=${i}&id=${id}`)}>编辑</View>}
+          {item.check == '0' && <View className='editorone' onClick={() => userRouteJump(`/subpackage/pages/addProject/index?type=${i}&id=${id}`)}>待修改</View>}
           <View className="skilleightzong">
             <View>
               <Image src={`${IMGCDNURL}lpy/newresume-experience-item.png`} className='skilleightone'/>
@@ -90,9 +93,13 @@ export default function ProjectList() {
           </View>
         </View> 
       ))}
-      <View className='footer-box'>
-        <Button className='footer'>添加项目经验</Button>
-      </View>
+      {!data.length && <Nodata text='暂无相关内容' />}
+      {
+        data.length<5 && 
+        <View className='footer-box'>
+          <Button className='footer' onClick={() => userRouteJump(`/subpackage/pages/addProject/index?id=${id}`)}>添加项目经验</Button>
+        </View>
+      }
     </View>
   )
 }

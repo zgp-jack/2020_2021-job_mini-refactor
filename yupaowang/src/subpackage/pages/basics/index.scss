@@ -51,6 +51,7 @@
   display: block;
   font-size: 30px;
   margin-left: 30px;
+  word-wrap: break-word;
   .publish-input-list {
     position: relative;
     display: inline-block;
@@ -60,6 +61,34 @@
       margin-right: 0;
     }
   }
+}
+.publish-list-textarea{
+  position: relative;
+  width: 100%;
+  height: 125px;
+  display: block;
+  font-size: 30px;
+  margin-left: 30px;
+}
+.publish-list-input-area {
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 125px;
+  line-height: 125px;
+  font-size: 30px;
+  margin-left: 30px;
+}
+.publish-list-input-left{
+  line-height: 125px;
+  height: 125px;
+  // flex: 1;
+  flex-wrap: wrap;
+}
+.publish-list-input-right {
+  width: 150px;
+  text-align: center;
+  color: #09f;
 }
 .footer{
   width: 100%;

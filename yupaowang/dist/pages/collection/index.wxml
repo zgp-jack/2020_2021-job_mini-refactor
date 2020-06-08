@@ -2,7 +2,7 @@
     <view class="collection-content">
         <auth></auth>
         <view class="collection-tab">
-            <view class="collection-tab-box" wx:key="id" bindtap="anonymousFunc0" wx:for="{{loopArray79}}" wx:for-item="item" wx:for-index="__index0" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">
+            <view class="collection-tab-box" wx:key="id" bindtap="anonymousFunc0" wx:for="{{loopArray78}}" wx:for-item="item" wx:for-index="__index0" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">
                 <view class="collection-tab-content">
                     <view class="{{item.$loopState__temp2}}">
                         <view class="collection-tab-img">

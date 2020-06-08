@@ -76,7 +76,7 @@ var AddProjectPage = (_temp2 = _class = function (_Taro$Component) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AddProjectPage.__proto__ || Object.getPrototypeOf(AddProjectPage)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
       navigationBarTitleText: '新增项目经验'
-    }, _this.$usedState = ["$compid__113", "$compid__114", "$compid__115", "startTime", "endTime", "multiIndex", "multiArray", "multiIndexvalue", "textarea", "image", "type"], _this.customComponents = ["AtInput", "WordsTotal", "ImageView"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["$compid__297", "$compid__298", "$compid__299", "startTime", "endTime", "multiIndex", "multiArray", "multiIndexvalue", "textarea", "image", "type"], _this.customComponents = ["AtInput", "WordsTotal", "ImageView"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(AddProjectPage, [{
@@ -95,26 +95,31 @@ var AddProjectPage = (_temp2 = _class = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__113"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__297"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__113 = _genCompid2[0],
-          $compid__113 = _genCompid2[1];
+          $prevCompid__297 = _genCompid2[0],
+          $compid__297 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__114"),
+      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__298"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__114 = _genCompid4[0],
-          $compid__114 = _genCompid4[1];
+          $prevCompid__298 = _genCompid4[0],
+          $compid__298 = _genCompid4[1];
 
-      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__115"),
+      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__299"),
           _genCompid6 = _slicedToArray(_genCompid5, 2),
-          $prevCompid__115 = _genCompid6[0],
-          $compid__115 = _genCompid6[1];
+          $prevCompid__299 = _genCompid6[0],
+          $compid__299 = _genCompid6[1];
 
       var router = (0, _taroWeapp.useRouter)();
-      var type = router.params.type;
+      var _router$params = router.params,
+          type = _router$params.type,
+          id = _router$params.id;
 
       var _useContext = (0, _taroWeapp.useContext)(_index7.context),
           projectData = _useContext.projectData;
+      // const { area } = useContext(contextItem);
+      // console.log(area,'areaareaarea')
+
 
       var userInfo = _taroWeapp2.default.getStorageSync(_store.UserInfo);
       // 默认字数
@@ -194,11 +199,6 @@ var AddProjectPage = (_temp2 = _class = function (_Taro$Component) {
           setProject_uuid = _useState28[1];
 
       (0, _taroWeapp.useEffect)(function () {
-        if (type) {
-          _taroWeapp2.default.setNavigationBarTitle({
-            title: '修改项目经验'
-          });
-        }
         var data = [];
         var lastData = [];
         var allChildren = [];
@@ -246,56 +246,61 @@ var AddProjectPage = (_temp2 = _class = function (_Taro$Component) {
           // 省和第一个市
           setMultiArray([data, lastData]);
         }
-        // 内容回填
-        if (projectData) {
-          console.log(projectData);
-          var arr = [];
-          setImage({ item: arr });
-          var list = projectData[type];
-          for (var _i2 = 0; _i2 < list.image.length; _i2++) {
-            for (var _j2 = 0; _j2 < list.images.length; _j2++) {
-              var obj = {
-                httpurl: '',
-                url: ''
-              };
-              if (_i2 === _j2) {
-                obj.httpurl = list.image[_i2];
-                obj.url = list.images[_i2];
-                arr.push(obj);
+        if (type) {
+          _taroWeapp2.default.setNavigationBarTitle({
+            title: '修改项目经验'
+          });
+          // 内容回填
+          if (projectData) {
+            console.log(projectData, 'projectDataprojectDataprojectData');
+            var arr = [];
+            setImage({ item: arr });
+            var list = projectData[type];
+            for (var _i2 = 0; _i2 < list.image.length; _i2++) {
+              for (var _j2 = 0; _j2 < list.images.length; _j2++) {
+                var obj = {
+                  httpurl: '',
+                  url: ''
+                };
+                if (_i2 === _j2) {
+                  obj.httpurl = list.image[_i2];
+                  obj.url = list.images[_i2];
+                  arr.push(obj);
+                }
               }
             }
-          }
-          setName(list.project_name);
-          setStartTime(list.start_time);
-          setEndTime(list.completion_time);
-          setTextarea(list.detail);
-          setNum(list.detail.length);
-          setProject_uuid(list.uuid);
-          var userArr = [list.province, list.city];
-          var one = 0;
-          var two = 0;
-          // 第一项
-          for (var _i3 = 0; _i3 < _area2.default.length; _i3++) {
-            if (userArr[0] == _area2.default[_i3].id) {
-              // 因为有全国要减1
-              one = _i3 - 1;
-            }
-          }
-          // 第二项
-          for (var _i4 = 0; _i4 < _area2.default.length; _i4++) {
-            for (var _j3 = 0; _j3 < _area2.default[_i4].children.length; _j3++) {
-              if (userArr[1] == _area2.default[_i4].children[_j3].id) {
-                lastCity = _area2.default[_i4].children.map(function (v) {
-                  return v.name;
-                });
-                two = _j3;
+            setName(list.project_name);
+            setStartTime(list.start_time);
+            setEndTime(list.completion_time);
+            setTextarea(list.detail);
+            setNum(list.detail.length);
+            setProject_uuid(list.uuid);
+            var userArr = [list.province, list.city];
+            var one = 0;
+            var two = 0;
+            // 第一项
+            for (var _i3 = 0; _i3 < _area2.default.length; _i3++) {
+              if (userArr[0] == _area2.default[_i3].id) {
+                // 因为有全国要减1
+                one = _i3 - 1;
               }
             }
+            // 第二项
+            for (var _i4 = 0; _i4 < _area2.default.length; _i4++) {
+              for (var _j3 = 0; _j3 < _area2.default[_i4].children.length; _j3++) {
+                if (userArr[1] == _area2.default[_i4].children[_j3].id) {
+                  lastCity = _area2.default[_i4].children.map(function (v) {
+                    return v.name;
+                  });
+                  two = _j3;
+                }
+              }
+            }
+            setMultiIndex([one, two]);
+            setAllpro([list.province, list.city].join(','));
+            setMultiArray([data, lastCity]);
+            seMultiIndexvalue(list.province_name + list.city_name);
           }
-          setMultiIndex([one, two]);
-          setAllpro([list.province, list.city].join(','));
-          setMultiArray([data, lastCity]);
-          seMultiIndexvalue(list.province_name + list.city_name);
         }
       }, [edit]);
       // 用户上传图片
@@ -410,7 +415,7 @@ var AddProjectPage = (_temp2 = _class = function (_Taro$Component) {
           province: String(allpro.split(",")[0]),
           city: String(allpro.split(",")[1]),
           image: images,
-          resume_uuid: userInfo.uuid,
+          resume_uuid: id,
           project_uuid: project_uuid
         };
         console.log(params);
@@ -429,6 +434,7 @@ var AddProjectPage = (_temp2 = _class = function (_Taro$Component) {
               setName('');
               // 保存
             } else {
+              (0, _index5.default)(res.errmsg);
               _taroWeapp2.default.navigateBack({
                 delta: 1
               });
@@ -506,19 +512,19 @@ var AddProjectPage = (_temp2 = _class = function (_Taro$Component) {
         "maxLength": 12,
         "value": name,
         "onChange": this.anonymousFunc0
-      }, $compid__113, $prevCompid__113);
+      }, $compid__297, $prevCompid__297);
       _taroWeapp.propsManager.set({
         "num": num
-      }, $compid__114, $prevCompid__114);
+      }, $compid__298, $prevCompid__298);
       image.item && _taroWeapp.propsManager.set({
         "images": image.item,
         "max": 6,
         "userUploadImg": userUploadImg
-      }, $compid__115, $prevCompid__115);
+      }, $compid__299, $prevCompid__299);
       Object.assign(this.__state, {
-        $compid__113: $compid__113,
-        $compid__114: $compid__114,
-        $compid__115: $compid__115,
+        $compid__297: $compid__297,
+        $compid__298: $compid__298,
+        $compid__299: $compid__299,
         startTime: startTime,
         endTime: endTime,
         multiIndex: multiIndex,

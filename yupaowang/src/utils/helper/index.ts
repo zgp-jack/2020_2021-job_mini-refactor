@@ -69,3 +69,20 @@ export function getSystemInfo(): string{
   let system = Taro.getSystemInfoSync()
   return system.platform
 }
+
+
+// 找活基础页面获取定位
+export function recSerAuthLoction(): Promise<UserLocationPromiss> {
+  return new Promise((resolve, reject) => {
+    const GDMAP = new AMapWX.AMapWX({ key: MAPKEY })
+    GDMAP.getRegeo({
+      success: function (data: any) {
+        resolve(data)
+      },
+      fail: function () {
+        reject()
+      }
+    })
+  })
+
+}
