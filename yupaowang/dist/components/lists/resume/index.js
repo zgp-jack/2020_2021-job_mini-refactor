@@ -50,7 +50,7 @@ var ResumeList = (_temp2 = _class = function (_Taro$Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ResumeList.__proto__ || Object.getPrototypeOf(ResumeList)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "loopArray110", "data", "IMGCDNURL", "bottom"], _this.anonymousFunc0Map = {}, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ResumeList.__proto__ || Object.getPrototypeOf(ResumeList)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "loopArray112", "data", "IMGCDNURL", "bottom"], _this.anonymousFunc0Map = {}, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(ResumeList, [{
@@ -83,7 +83,7 @@ var ResumeList = (_temp2 = _class = function (_Taro$Component) {
         });
       };
       var anonymousState__temp = (0, _taroWeapp.internal_inline_style)(bottom ? '' : 'padding-bottom:0');
-      var loopArray110 = data.map(function (item, __index1) {
+      var loopArray112 = data.map(function (item, __index1) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
@@ -91,10 +91,10 @@ var ResumeList = (_temp2 = _class = function (_Taro$Component) {
           d = {
             $original: (0, _taroWeapp.internal_get_original)(d)
           };
-          var _$indexKey = "bafzz" + __index1 + "-" + __index0;
+          var _$indexKey = "bbdzz" + __index1 + "-" + __index0;
 
           _this2.anonymousFunc0Map[_$indexKey] = function () {
-            return userRouteJump("/pages/resume/detail/index?id=" + d.$original.id);
+            return userRouteJump("/pages/resume/detail/index?uuid=" + d.$original.uuid + "&location=" + d.$original.location);
           };
 
           return {
@@ -109,7 +109,7 @@ var ResumeList = (_temp2 = _class = function (_Taro$Component) {
       });
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
-        loopArray110: loopArray110,
+        loopArray112: loopArray112,
         data: data,
         IMGCDNURL: _index.IMGCDNURL
       });

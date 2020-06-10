@@ -21,6 +21,8 @@ var _createClass = function () { function defineProperties(target, props) { for 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
 var _class, _temp2;
+// import { detailContext } from '../detail';
+
 
 var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
@@ -56,7 +58,7 @@ var SkillList = (_temp2 = _class = function (_Taro$Component) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SkillList.__proto__ || Object.getPrototypeOf(SkillList)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
       navigationBarTitleText: '技能证书'
-    }, _this.$usedState = ["loopArray323", "data", "IMGCDNURL", "resume_uuid"], _this.anonymousFunc0Map = {}, _this.anonymousFunc1Map = {}, _this.anonymousFunc2Map = {}, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["loopArray195", "data", "IMGCDNURL", "preview", "resume_uuid", "detail"], _this.anonymousFunc0Map = {}, _this.anonymousFunc1Map = {}, _this.anonymousFunc2Map = {}, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(SkillList, [{
@@ -78,7 +80,11 @@ var SkillList = (_temp2 = _class = function (_Taro$Component) {
       ;
 
       var router = (0, _taroWeapp.useRouter)();
-      var id = router.params.id;
+      var _router$params = router.params,
+          id = _router$params.id,
+          preview = _router$params.preview,
+          detail = _router$params.detail;
+      // const { certificates } = useContext(detailContext)
       // 刷新一次
 
       var _useState = (0, _taroWeapp.useState)(false),
@@ -103,10 +109,15 @@ var SkillList = (_temp2 = _class = function (_Taro$Component) {
           setRefresh(false);
           return;
         }
+        // if (detail){
+        // if (certificates){}
+        // setData(certificates);
+        // }else{
         (0, _index.resumeListAction)().then(function (res) {
           setData(res.data.certificates);
           setResume_uuid(res.data.info.user_uuid);
         });
+        // }
       });
       // 点击方法
       var handleImg = function handleImg(e) {
@@ -122,29 +133,34 @@ var SkillList = (_temp2 = _class = function (_Taro$Component) {
           url: url
         });
       };
-      var loopArray323 = data.map(function (item, i) {
+
+      this.anonymousFunc3 = function () {
+        return userRouteJump("/pages/resume/addSkill/index?id=" + id);
+      };
+
+      var loopArray195 = data.map(function (item, i) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
 
-        var _$indexKey = "cgbzz" + i;
+        var _$indexKey = "ccjzz" + i;
 
         _this2.anonymousFunc0Map[_$indexKey] = function () {
-          return userRouteJump("/subpackage/pages/addSkill/index?type=" + i + "&id=" + id);
+          return userRouteJump("/pages/resume/addSkill/index?type=" + i + "&id=" + id);
         };
 
-        var _$indexKey2 = "cgczz" + i;
+        var _$indexKey2 = "cdazz" + i;
 
         _this2.anonymousFunc1Map[_$indexKey2] = function () {
-          return userRouteJump("/subpackage/pages/addSkill/index?type=" + i + "&id=" + id);
+          return userRouteJump("/pages/resume/addSkill/index?type=" + i + "&id=" + id);
         };
 
-        var $anonymousCallee__105 = item.$original.image.map(function (v, i) {
+        var $anonymousCallee__55 = item.$original.image.map(function (v, i) {
           v = {
             $original: (0, _taroWeapp.internal_get_original)(v)
           };
           var $loopState__temp2 = i + i;
-          var _$indexKey3 = "cgdzz" + i + "-" + i;
+          var _$indexKey3 = "cdbzz" + i + "-" + i;
 
           _this2.anonymousFunc2Map[_$indexKey3] = function () {
             return handleImg(v.$original);
@@ -159,15 +175,17 @@ var SkillList = (_temp2 = _class = function (_Taro$Component) {
         return {
           _$indexKey: _$indexKey,
           _$indexKey2: _$indexKey2,
-          $anonymousCallee__105: $anonymousCallee__105,
+          $anonymousCallee__55: $anonymousCallee__55,
           $original: item.$original
         };
       });
       Object.assign(this.__state, {
-        loopArray323: loopArray323,
+        loopArray195: loopArray195,
         data: data,
         IMGCDNURL: _index2.IMGCDNURL,
-        resume_uuid: resume_uuid
+        preview: preview,
+        resume_uuid: resume_uuid,
+        detail: detail
       });
       return this.__state;
     }
@@ -210,10 +228,15 @@ var SkillList = (_temp2 = _class = function (_Taro$Component) {
 
       return this.anonymousFunc2Map[_$indexKey3] && (_anonymousFunc2Map = this.anonymousFunc2Map)[_$indexKey3].apply(_anonymousFunc2Map, e);
     }
+  }, {
+    key: "anonymousFunc3",
+    value: function anonymousFunc3(e) {
+      ;
+    }
   }]);
 
   return SkillList;
-}(_taroWeapp2.default.Component), _class.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2"], _class.$$componentPath = "pages/resume/skillList/index", _temp2);
+}(_taroWeapp2.default.Component), _class.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3"], _class.$$componentPath = "pages/resume/skillList/index", _temp2);
 
 
 SkillList.config = { navigationBarTitleText: '技能证书' };

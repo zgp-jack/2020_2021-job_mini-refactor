@@ -163,7 +163,15 @@
   text-align: center;
   line-height: 80rpx;
   background: white; }
-.resumeDetail-recommend-top-text::after,
+.resumeDetail-recommend-top-text::after {
+  position: absolute;
+  display: block;
+  content: '';
+  height: 1rpx;
+  width: 150rpx;
+  background: #E5E5E5;
+  top: 40rpx;
+  right: 15%; }
 .resumeDetail-recommend-top-text::before {
   position: absolute;
   display: block;
@@ -171,7 +179,8 @@
   height: 1rpx;
   width: 150rpx;
   background: #E5E5E5;
-  top: 40rpx; }
+  top: 40rpx;
+  left: 15%; }
 .seemore-recommend-recruit {
   background: white;
   line-height: 100rpx;

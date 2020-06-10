@@ -969,8 +969,10 @@ export interface recommendListDataList{
   occupations:[]
 }
 // 查看完整电话
-export interface resumesGetTel extends Result{
+export interface resumesGetTel{
   tel: string,
+  errcode:number,
+  errmsg:string,
 }
 
 // 赞和分享

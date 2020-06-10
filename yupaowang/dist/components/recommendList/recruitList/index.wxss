@@ -5,7 +5,15 @@
   text-align: center;
   line-height: 80rpx;
   background: white; }
-.header-text::after,
+.header-text::after {
+  position: absolute;
+  display: block;
+  content: '';
+  height: 1rpx;
+  width: 150rpx;
+  background: #E5E5E5;
+  top: 40rpx;
+  right: 15%; }
 .header-text::before {
   position: absolute;
   display: block;
@@ -13,7 +21,8 @@
   height: 1rpx;
   width: 150rpx;
   background: #E5E5E5;
-  top: 40rpx; }
+  top: 40rpx;
+  left: 15%; }
 .recruitListBox {
   width: 100%;
   padding: 20rpx 30rpx;

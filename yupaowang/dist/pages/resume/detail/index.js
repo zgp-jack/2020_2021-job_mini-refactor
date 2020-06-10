@@ -13,6 +13,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.detailContext = undefined;
 
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
@@ -36,8 +37,6 @@ var _index4 = _interopRequireDefault(_index3);
 
 var _index5 = __webpack_require__(/*! ../../../utils/v/index */ "./src/utils/v/index.ts");
 
-var _store = __webpack_require__(/*! ../../../config/store */ "./src/config/store.ts");
-
 __webpack_require__(/*! ./index.scss */ "./src/pages/resume/detail/index.scss");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -47,6 +46,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var detailContext = exports.detailContext = (0, _taroWeapp.createContext)({});
 
 var ResumeDetail = (_temp2 = _class = function (_Taro$Component) {
   _inherits(ResumeDetail, _Taro$Component);
@@ -64,7 +65,7 @@ var ResumeDetail = (_temp2 = _class = function (_Taro$Component) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ResumeDetail.__proto__ || Object.getPrototypeOf(ResumeDetail)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
       navigationBarTitleText: '找活名片'
-    }, _this.$usedState = ["data", "loopArray137", "loopArray139", "loopArray140", "$compid__117", "IMGCDNURL", "examine", "onoff", "praise", "collect", "shownewtips", "complaintModal", "textarea", "phone"], _this.customComponents = ["CollectionRecruitList"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["data", "loopArray178", "loopArray180", "loopArray181", "$compid__139", "IMGCDNURL", "examine", "onoff", "list", "praise", "collect", "shownewtips", "complaintModal", "textarea", "phone"], _this.anonymousFunc3Map = {}, _this.anonymousFunc5Map = {}, _this.customComponents = ["CollectionRecruitList"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(ResumeDetail, [{
@@ -77,18 +78,23 @@ var ResumeDetail = (_temp2 = _class = function (_Taro$Component) {
   }, {
     key: "_createData",
     value: function _createData() {
+      var _this2 = this;
+
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__117"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__139"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__117 = _genCompid2[0],
-          $compid__117 = _genCompid2[1];
+          $prevCompid__139 = _genCompid2[0],
+          $compid__139 = _genCompid2[1];
 
-      var userInfo = _taroWeapp2.default.getStorageSync(_store.UserInfo);
+      var router = (0, _taroWeapp.useRouter)();
+      var _router$params = router.params,
+          uuid = _router$params.uuid,
+          location = _router$params.location;
 
       var _useState = (0, _taroWeapp.useState)({
         certificates: [],
@@ -109,7 +115,12 @@ var ResumeDetail = (_temp2 = _class = function (_Taro$Component) {
           is_read: 0,
           is_end: '',
           certificate_show: 0,
-          tags: []
+          uuid: '',
+          tags: [],
+          show_complain: {
+            show_complain: undefined,
+            tips_message: ''
+          }
         },
         operation: {
           is_collect: 0,
@@ -178,12 +189,19 @@ var ResumeDetail = (_temp2 = _class = function (_Taro$Component) {
           _useState20 = _slicedToArray(_useState19, 2),
           textarea = _useState20[0],
           setTextarea = _useState20[1];
+      // 是否还可以投诉
+
+
+      var _useState21 = (0, _taroWeapp.useState)(false),
+          _useState22 = _slicedToArray(_useState21, 2),
+          iscomplaint = _useState22[0],
+          setIsComplaint = _useState22[1];
 
       (0, _taroWeapp.useEffect)(function () {
         var params = {
-          location: '',
+          location: location,
           // 先写死
-          resume_uuid: userInfo.uuid
+          resume_uuid: uuid
         };
         (0, _index.resumeDetailAction)(params).then(function (res) {
           console.log(res);
@@ -195,6 +213,12 @@ var ResumeDetail = (_temp2 = _class = function (_Taro$Component) {
             setExamine(false);
             setPraise(res.operation.is_zan);
             setCollect(res.operation.is_collect);
+            if (res.info.is_read == 0 && res.info.is_end != '2' && res.operation.status == 0) {
+              seOnoff(true);
+            }
+            // if(res.info.show_complain.show_complain){
+            //   setIsComplaint(true);
+            // }
             var listParams = {
               page: 1,
               type: 1,
@@ -210,16 +234,15 @@ var ResumeDetail = (_temp2 = _class = function (_Taro$Component) {
       // 查看电话
       var handlePhone = function handlePhone() {
         var params = {
-          // 写死
-          resume_uuid: userInfo.uuid
+          resume_uuid: uuid
         };
         (0, _index.resumesGetTelAcrion)(params).then(function (res) {
           console.log(res);
-          if (res.errcode === 'ok') {
+          if (res.errcode === 200) {
             seOnoff(true);
             setPhone(res.tel);
             setShownewtips(false);
-          } else if (res.errcode == "7405") {
+          } else if (res.errcode == 7405) {
             _taroWeapp2.default.showModal({
               title: '温馨提示',
               content: res.errmsg,
@@ -248,7 +271,7 @@ var ResumeDetail = (_temp2 = _class = function (_Taro$Component) {
       // 赞
       var resumeSupport = function resumeSupport() {
         var params = {
-          resume_uuid: userInfo.uuid
+          resume_uuid: uuid
         };
         (0, _index.resumeSupportAction)(params).then(function (res) {
           console.log(res);
@@ -263,7 +286,7 @@ var ResumeDetail = (_temp2 = _class = function (_Taro$Component) {
       // 收藏
       var resumeCollect = function resumeCollect() {
         var params = {
-          resume_uuid: userInfo.uuid
+          resume_uuid: uuid
         };
         (0, _index.resumeCollectAction)(params).then(function (res) {
           if (res.errcode === 'ok') {
@@ -287,47 +310,80 @@ var ResumeDetail = (_temp2 = _class = function (_Taro$Component) {
         }
         var params = {
           content: textarea,
-          type: 'job',
-          infoId: 1590498258556959
+          resume_uuid: data.info.uuid
         };
-        (0, _index.publishComplainAction)(params).then(function () {
-          (0, _index4.default)('提交成功');
+        (0, _index.resumesComplainAction)(params).then(function (res) {
+          (0, _index4.default)(res.errmsg);
+          setIsComplaint(true);
           setComplaintModal(false);
         });
       };
-      console.log(phone, 'xxxx');
+      // 举报
+      var handleComplaint = function handleComplaint() {
+        if (iscomplaint || !data.info.show_complain.show_complain) {
+          _taroWeapp2.default.showModal({
+            title: '温馨提示',
+            content: '您已投诉该信息,请勿重复提交！',
+            showCancel: false
+          });
+        } else {
+          setComplaintModal(true);
+        }
+      };
+      // 点击方法
+      var handleImg = function handleImg(e) {
+        _taroWeapp2.default.previewImage({
+          current: e,
+          urls: [e]
+        });
+      };
+      // 传递的值
+      var value = {
+        project: data.project,
+        certificates: data.certificates
+      };
+      console.log(value, 'xxxx');
+      detailContext.Provider(value);
       this.anonymousFunc0 = handlePhone;
 
       this.anonymousFunc1 = function () {
-        console.log(31321312);
+        return _taroWeapp2.default.makePhoneCall({ phoneNumber: phone });
       };
 
       this.anonymousFunc2 = function () {
-        setComplaintModal(true);
+        return handleComplaint();
       };
 
-      this.anonymousFunc3 = resumeSupport;
-      this.anonymousFunc4 = resumeCollect;
+      this.anonymousFunc4 = function () {
+        return _taroWeapp2.default.navigateTo({ url: "/pages/resume/projectList/index?preview=1&detail=1" });
+      };
 
-      this.anonymousFunc5 = function () {
+      this.anonymousFunc6 = function () {
+        return _taroWeapp2.default.navigateTo({ url: "/pages/resume/skillList/index?preview=1&detail=1" });
+      };
+
+      this.anonymousFunc7 = resumeSupport;
+      this.anonymousFunc8 = resumeCollect;
+
+      this.anonymousFunc9 = function () {
         setShownewtips(false);
       };
 
-      this.anonymousFunc6 = handleTellPhone;
+      this.anonymousFunc10 = handleTellPhone;
 
-      this.anonymousFunc7 = function (e) {
+      this.anonymousFunc11 = function (e) {
         return handleTextarea(e);
       };
 
-      this.anonymousFunc8 = function () {
+      this.anonymousFunc12 = function () {
         setComplaintModal(false);
       };
 
-      this.anonymousFunc9 = function () {
+      this.anonymousFunc13 = function () {
         return handleSubmit();
       };
 
-      var loopArray137 = data.info.occupations.length ? data.info.occupations.map(function (v, i) {
+      var loopArray178 = data.info.occupations.length ? data.info.occupations.map(function (v, i) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
@@ -337,39 +393,56 @@ var ResumeDetail = (_temp2 = _class = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray139 = data.project.length ? data.project[0].image.map(function (v, i) {
+      var loopArray180 = data.project.length ? data.project[0].image.map(function (v, i) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
         var $loopState__temp4 = data.project.length ? i + i : null;
+
+        var _$indexKey = "biizz" + i;
+
+        _this2.anonymousFunc3Map[_$indexKey] = function () {
+          return handleImg(v.$original);
+        };
+
         return {
           $loopState__temp4: $loopState__temp4,
+          _$indexKey: _$indexKey,
           $original: v.$original
         };
       }) : [];
-      var loopArray140 = data.certificates.length ? data.certificates[0].image.map(function (val, i) {
+      var loopArray181 = data.certificates.length ? data.certificates[0].image.map(function (val, i) {
         val = {
           $original: (0, _taroWeapp.internal_get_original)(val)
         };
         var $loopState__temp6 = data.certificates.length ? i + i : null;
+
+        var _$indexKey2 = "bijzz" + i;
+
+        _this2.anonymousFunc5Map[_$indexKey2] = function () {
+          return handleImg(val.$original);
+        };
+
         return {
           $loopState__temp6: $loopState__temp6,
+          _$indexKey2: _$indexKey2,
           $original: val.$original
         };
       }) : [];
-      _taroWeapp.propsManager.set({
+      list.item.length && _taroWeapp.propsManager.set({
         "data": list.item,
         "type": 2
-      }, $compid__117, $prevCompid__117);
+      }, $compid__139, $prevCompid__139);
       Object.assign(this.__state, {
         data: data,
-        loopArray137: loopArray137,
-        loopArray139: loopArray139,
-        loopArray140: loopArray140,
-        $compid__117: $compid__117,
+        loopArray178: loopArray178,
+        loopArray180: loopArray180,
+        loopArray181: loopArray181,
+        $compid__139: $compid__139,
         IMGCDNURL: _index2.IMGCDNURL,
         examine: examine,
         onoff: onoff,
+        list: list,
         praise: praise,
         collect: collect,
         shownewtips: shownewtips,
@@ -396,8 +469,16 @@ var ResumeDetail = (_temp2 = _class = function (_Taro$Component) {
     }
   }, {
     key: "anonymousFunc3",
-    value: function anonymousFunc3(e) {
+    value: function anonymousFunc3(_$indexKey) {
+      var _anonymousFunc3Map;
+
       ;
+
+      for (var _len2 = arguments.length, e = Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
+        e[_key2 - 1] = arguments[_key2];
+      }
+
+      return this.anonymousFunc3Map[_$indexKey] && (_anonymousFunc3Map = this.anonymousFunc3Map)[_$indexKey].apply(_anonymousFunc3Map, e);
     }
   }, {
     key: "anonymousFunc4",
@@ -406,8 +487,16 @@ var ResumeDetail = (_temp2 = _class = function (_Taro$Component) {
     }
   }, {
     key: "anonymousFunc5",
-    value: function anonymousFunc5(e) {
+    value: function anonymousFunc5(_$indexKey2) {
+      var _anonymousFunc5Map;
+
       ;
+
+      for (var _len3 = arguments.length, e = Array(_len3 > 1 ? _len3 - 1 : 0), _key3 = 1; _key3 < _len3; _key3++) {
+        e[_key3 - 1] = arguments[_key3];
+      }
+
+      return this.anonymousFunc5Map[_$indexKey2] && (_anonymousFunc5Map = this.anonymousFunc5Map)[_$indexKey2].apply(_anonymousFunc5Map, e);
     }
   }, {
     key: "anonymousFunc6",
@@ -429,10 +518,30 @@ var ResumeDetail = (_temp2 = _class = function (_Taro$Component) {
     value: function anonymousFunc9(e) {
       ;
     }
+  }, {
+    key: "anonymousFunc10",
+    value: function anonymousFunc10(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc11",
+    value: function anonymousFunc11(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc12",
+    value: function anonymousFunc12(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc13",
+    value: function anonymousFunc13(e) {
+      ;
+    }
   }]);
 
   return ResumeDetail;
-}(_taroWeapp2.default.Component), _class.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6", "anonymousFunc7", "anonymousFunc8", "anonymousFunc9"], _class.$$componentPath = "pages/resume/detail/index", _temp2);
+}(_taroWeapp2.default.Component), _class.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6", "anonymousFunc7", "anonymousFunc8", "anonymousFunc9", "anonymousFunc10", "anonymousFunc11", "anonymousFunc12", "anonymousFunc13"], _class.$$componentPath = "pages/resume/detail/index", _temp2);
 
 
 ResumeDetail.config = { navigationBarTitleText: '找活名片' };

@@ -272,6 +272,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  padding: 0 22px;
 }
 .cardonesonone {
   font-size: 30px;
@@ -415,6 +416,16 @@
   margin-bottom: 8px;
   margin-top: 18px;
 }
+.linezo::before {
+  position: absolute;
+  content: '';
+  left: 14px;
+  top: 0;
+  width: 1px;
+  height: 100%;
+  background: #dcdcdc;
+  transform: scaleX(0.7);
+}
 .cworkotype {
   position: relative;
   width: 100%;
@@ -426,8 +437,8 @@
 .cworkotype::before {
   position: absolute;
   content: '';
-  width: 11px;
-  height: 11px;
+  width: 23px;
+  height: 23px;
   background: url(http://cdn.yupao.com/miniprogram/images/newjobinfo-steps.png?t=11) no-repeat;
   background-size: 100% 100%;
   left: 14px;
@@ -483,7 +494,7 @@
   border-radius: 6px;
   text-align: center;
   color: rgba(42, 42, 42, 1);
-  padding: 4px;
+  padding: 5px;
 }
 
 .ocworkotyp .ocworkotyptu:nth-last-child(1) {
@@ -521,8 +532,8 @@
 .cardotext::before {
   position: absolute;
   content: '';
-  width: 11px;
-  height: 11px;
+  width: 23px;
+  height: 23px;
   background: url(http://cdn.yupao.com/miniprogram/images/newjobinfo-steps.png?t=11) no-repeat;
   background-size: 100% 100%;
   left: 14px;
@@ -1022,3 +1033,4 @@
   height: 49px;
   width: 49px;
 }
+

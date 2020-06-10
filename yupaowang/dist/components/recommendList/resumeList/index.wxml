@@ -29,6 +29,6 @@
                 </view>
             </view>
         </block>
-        <view class="seemore-recommend-recruit">查看更多找活信息</view>
+        <view class="seemore-recommend-recruit" bindtap="anonymousFunc1">查看更多找活信息</view>
     </view>
 </block>

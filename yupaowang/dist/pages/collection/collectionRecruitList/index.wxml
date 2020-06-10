@@ -1,10 +1,10 @@
 <block wx:if="{{$taroCompReady}}">
     <view class="recruit-lists-container" style="{{anonymousState__temp}}">
         <block wx:if="{{!data.length}}">
-            <nodata compid="{{$compid__80}}"></nodata>
+            <nodata compid="{{$compid__81}}"></nodata>
         </block>
         <block wx:if="{{data}}">
-            <block wx:key="id" wx:for="{{loopArray81}}" wx:for-item="item" wx:for-index="__index0">
+            <block wx:key="id" wx:for="{{loopArray82}}" wx:for-item="item" wx:for-index="__index0">
                 <view class="recruit-list-item" bindtap="anonymousFunc0" wx:key="id" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">
                     <block wx:if="{{item.$original.is_end == '2'}}">
                         <image class="recruit-findend-img" src="{{IMGCDNURL + 'newlist-jobfindend.png'}}"></image>
@@ -35,7 +35,7 @@
         <block wx:if="{{data.length && recruitNoMoreData}}">
             <view class="recruit-lists-noData">没有更多数据了</view>
         </block>
-        <at-modal compid="{{$compid__81}}">
+        <at-modal compid="{{$compid__82}}">
             <at-modal-header>温馨提示</at-modal-header>
             <at-modal-content>{{modalContent}}</at-modal-content>
             <at-modal-action>

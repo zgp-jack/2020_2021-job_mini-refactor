@@ -50,7 +50,7 @@ var RecruitList = (_temp2 = _class = function (_Taro$Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = RecruitList.__proto__ || Object.getPrototypeOf(RecruitList)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "loopArray109", "data", "IMGCDNURL", "bottom"], _this.anonymousFunc0Map = {}, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = RecruitList.__proto__ || Object.getPrototypeOf(RecruitList)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "loopArray111", "data", "IMGCDNURL", "bottom"], _this.anonymousFunc0Map = {}, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(RecruitList, [{
@@ -83,7 +83,7 @@ var RecruitList = (_temp2 = _class = function (_Taro$Component) {
         });
       };
       var anonymousState__temp = (0, _taroWeapp.internal_inline_style)(bottom ? '' : 'padding-bottom:0');
-      var loopArray109 = data ? data.map(function (item, __index1) {
+      var loopArray111 = data ? data.map(function (item, __index1) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
@@ -91,7 +91,7 @@ var RecruitList = (_temp2 = _class = function (_Taro$Component) {
           d = {
             $original: (0, _taroWeapp.internal_get_original)(d)
           };
-          var _$indexKey = "baezz" + __index1 + "-" + __index0;
+          var _$indexKey = "bbczz" + __index1 + "-" + __index0;
 
           _this2.anonymousFunc0Map[_$indexKey] = function () {
             return userRouteJump("/pages/detail/info/index?id=" + d.$original.id);
@@ -109,7 +109,7 @@ var RecruitList = (_temp2 = _class = function (_Taro$Component) {
       }) : [];
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
-        loopArray109: loopArray109,
+        loopArray111: loopArray111,
         data: data,
         IMGCDNURL: _index.IMGCDNURL
       });

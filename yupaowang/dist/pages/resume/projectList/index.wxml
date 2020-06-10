@@ -1,17 +1,21 @@
 <block wx:if="{{$taroCompReady}}">
     <view class="projectList">
-        <view wx:key="id" class="skilleight" wx:for="{{loopArray213}}" wx:for-item="item" wx:for-index="i">
+        <view wx:key="id" class="skilleight" wx:for="{{loopArray197}}" wx:for-item="item" wx:for-index="i">
             <block wx:if="{{item.$original.check == '1'}}">
                 <image class="audit" src="{{IMGCDNURL + 'lpy/review.png'}}"></image>
             </block>
             <block wx:if="{{item.$original.check == '0'}}">
                 <image class="audit" src="{{IMGCDNURL + 'lpy/notthrough.png'}}"></image>
             </block>
-            <block wx:if="{{item.$original.check == '2'}}">
-                <view class="editor" bindtap="anonymousFunc0" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">编辑</view>
-            </block>
-            <block wx:if="{{item.$original.check == '0'}}">
-                <view class="editorone" bindtap="anonymousFunc1" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey2}}">待修改</view>
+            <block wx:if="{{!preview}}">
+                <view>
+                    <block wx:if="{{item.$original.check == '2'}}">
+                        <view class="editor" bindtap="anonymousFunc0" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">编辑</view>
+                    </block>
+                    <block wx:if="{{item.$original.check == '0'}}">
+                        <view class="editorone" bindtap="anonymousFunc1" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey2}}">待修改</view>
+                    </block>
+                </view>
             </block>
             <view class="skilleightzong">
                 <view>
@@ -29,7 +33,7 @@
                     <view class="skilleightfive">
                         <view class="skilleightfiveline">
                             <view class="temimage">
-                                <image class="skilleightfive-image" src="{{v.$original}}" wx:key="$loopState__temp2" bindtap="anonymousFunc2" wx:for="{{item.$anonymousCallee__67}}" wx:for-item="v" wx:for-index="i" data-e-tap-so="this" data-e-tap-a-a="{{v._$indexKey3}}"></image>
+                                <image class="skilleightfive-image" src="{{v.$original}}" wx:key="$loopState__temp2" bindtap="anonymousFunc2" wx:for="{{item.$anonymousCallee__57}}" wx:for-item="v" wx:for-index="i" data-e-tap-so="this" data-e-tap-a-a="{{v._$indexKey3}}"></image>
                             </view>
                         </view>
                     </view>
@@ -40,9 +44,9 @@
             </view>
         </view>
         <block wx:if="{{!data.length}}">
-            <nodata compid="{{$compid__281}}"></nodata>
+            <nodata compid="{{$compid__151}}"></nodata>
         </block>
-        <block wx:if="{{data.length < 5}}">
+        <block wx:if="{{data.length < 5 && !detail}}">
             <view class="footer-box">
                 <button class="footer" bindtap="anonymousFunc3">添加项目经验</button>
             </view>

@@ -52,7 +52,7 @@ var RecruitListPage = (_temp2 = _class = function (_Taro$Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = RecruitListPage.__proto__ || Object.getPrototypeOf(RecruitListPage)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray103", "data", "IMGCDNURL"], _this.anonymousFunc0Map = {}, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = RecruitListPage.__proto__ || Object.getPrototypeOf(RecruitListPage)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray105", "data", "IMGCDNURL", "occupations", "city"], _this.anonymousFunc0Map = {}, _this.customComponents = ["Nodata"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(RecruitListPage, [{
@@ -72,8 +72,13 @@ var RecruitListPage = (_temp2 = _class = function (_Taro$Component) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var _props$data = this.__props.data,
-          data = _props$data === undefined ? [] : _props$data;
+      var _props = this.__props,
+          _props$data = _props.data,
+          data = _props$data === undefined ? [] : _props$data,
+          _props$occupations = _props.occupations,
+          occupations = _props$occupations === undefined ? '' : _props$occupations,
+          _props$city = _props.city,
+          city = _props$city === undefined ? '' : _props$city;
 
       // 用户页面跳转
 
@@ -82,12 +87,17 @@ var RecruitListPage = (_temp2 = _class = function (_Taro$Component) {
           url: url
         });
       };
-      var loopArray103 = data.map(function (v, __index0) {
+
+      this.anonymousFunc1 = function () {
+        return userRouteJump("/pages/resume/recList/index?city=" + city + "&occupations=" + occupations);
+      };
+
+      var loopArray105 = data.map(function (v, __index0) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
 
-        var _$indexKey = "baazz" + __index0;
+        var _$indexKey = "baizz" + __index0;
 
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return userRouteJump("/pages/detail/info/index?id=" + v.$original.id);
@@ -99,7 +109,7 @@ var RecruitListPage = (_temp2 = _class = function (_Taro$Component) {
         };
       });
       Object.assign(this.__state, {
-        loopArray103: loopArray103,
+        loopArray105: loopArray105,
         data: data,
         IMGCDNURL: _index.IMGCDNURL
       });
@@ -118,10 +128,15 @@ var RecruitListPage = (_temp2 = _class = function (_Taro$Component) {
 
       return this.anonymousFunc0Map[_$indexKey] && (_anonymousFunc0Map = this.anonymousFunc0Map)[_$indexKey].apply(_anonymousFunc0Map, e);
     }
+  }, {
+    key: "anonymousFunc1",
+    value: function anonymousFunc1(e) {
+      ;
+    }
   }]);
 
   return RecruitListPage;
-}(_taroWeapp2.default.Component), _class.$$events = ["anonymousFunc0"], _class.$$componentPath = "components/recommendList/recruitList/index", _temp2);
+}(_taroWeapp2.default.Component), _class.$$events = ["anonymousFunc0", "anonymousFunc1"], _class.$$componentPath = "components/recommendList/recruitList/index", _temp2);
 exports.default = RecruitListPage;
 
 Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(RecruitListPage));

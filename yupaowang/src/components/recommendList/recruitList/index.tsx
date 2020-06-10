@@ -8,10 +8,12 @@ import './index.scss'
 
 
 interface PROPS {
-  data:any[]
+  data:any[],
+  occupations?:string,
+  city?:string
 }
 // 招工
-export default function RecruitListPage({data=[]}:PROPS) {
+export default function RecruitListPage({ data = [], occupations='', city=''}:PROPS) {
   // 用户页面跳转
   const userRouteJump = (url: string) => {
     Taro.navigateTo({
@@ -23,6 +25,7 @@ export default function RecruitListPage({data=[]}:PROPS) {
       <View className='header'>
         <Text className='header-text'>相关推荐</Text>
       </View>
+      {!data.length && <Nodata/>}
       {data.map((v:any)=>(
         <View key={v.id} className='recruitListBox' onClick={() => userRouteJump(`/pages/detail/info/index?id=${v.id}`)}>
           {/* 标题 */}
@@ -44,7 +47,7 @@ export default function RecruitListPage({data=[]}:PROPS) {
           </View>
         </View>
       ))}
-      <View className='recruitListBox-last'>查看更多招工信息</View>
+      <View className='recruitListBox-last' onClick={() => userRouteJump(`/pages/resume/recList/index?city=${city}&occupations=${occupations}`)}>查看更多招工信息</View>
     </View>
   )
 }

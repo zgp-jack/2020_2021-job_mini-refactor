@@ -182,3 +182,5 @@ export const resumesTopConfigV2Url : string = REQUESTURL +'/resumes/top-config/'
 export const resumesDoTopV2Url: string = REQUESTURL +'/resumes/do-top-v2/';
 // 修改找活置顶
 export const resumesUpdateTopResumeUrl : string = REQUESTURL +'/resumes/update-top-resume/'
+// 找活投诉
+export const resumesComplainUrl: string = REQUESTURL +'resumes/complain/'

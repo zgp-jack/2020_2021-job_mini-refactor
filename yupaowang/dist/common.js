@@ -75,7 +75,7 @@ var ResumeMap = (_temp2 = _class = function (_Taro$Component) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ResumeMap.__proto__ || Object.getPrototypeOf(ResumeMap)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
       navigationBarTitleText: '地址选择'
-    }, _this.$usedState = ["loopArray122", "loopArray123", "$compid__112", "smAreaText", "showHistory", "histroyList", "lists", "IMGCDNURL", "showCity", "area"], _this.anonymousFunc4Map = {}, _this.anonymousFunc5Map = {}, _this.customComponents = ["Cities"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["loopArray124", "loopArray125", "$compid__114", "smAreaText", "showHistory", "histroyList", "lists", "IMGCDNURL", "showCity", "area"], _this.anonymousFunc4Map = {}, _this.anonymousFunc5Map = {}, _this.customComponents = ["Cities"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(ResumeMap, [{
@@ -96,10 +96,10 @@ var ResumeMap = (_temp2 = _class = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__112"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__114"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__112 = _genCompid2[0],
-          $compid__112 = _genCompid2[1];
+          $prevCompid__114 = _genCompid2[0],
+          $compid__114 = _genCompid2[1];
 
       var router = (0, _taroWeapp.useRouter)();
       var areaItem = router.params.areaItem;
@@ -358,13 +358,13 @@ var ResumeMap = (_temp2 = _class = function (_Taro$Component) {
         return userCloseMap();
       };
 
-      var loopArray122 = showHistory ? histroyList.map(function (item, index) {
+      var loopArray124 = showHistory ? histroyList.map(function (item, index) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
         var $loopState__temp2 = showHistory ? index + index : null;
 
-        var _$indexKey = "bbizz" + index;
+        var _$indexKey = "bcgzz" + index;
 
         _this2.anonymousFunc4Map[_$indexKey] = function () {
           return userClickAreaItem(item.$original);
@@ -376,13 +376,13 @@ var ResumeMap = (_temp2 = _class = function (_Taro$Component) {
           $original: item.$original
         };
       }) : [];
-      var loopArray123 = lists.map(function (item, index) {
+      var loopArray125 = lists.map(function (item, index) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
         var $loopState__temp4 = index + index;
 
-        var _$indexKey2 = "bbjzz" + index;
+        var _$indexKey2 = "bchzz" + index;
 
         _this2.anonymousFunc5Map[_$indexKey2] = function () {
           return userClickAreaItem(item.$original);
@@ -400,11 +400,11 @@ var ResumeMap = (_temp2 = _class = function (_Taro$Component) {
         "userLoc": userLoc,
         "userChangeCity": userChangeCity,
         "userTapCityBtn": userTapCityBtn
-      }, $compid__112, $prevCompid__112);
+      }, $compid__114, $prevCompid__114);
       Object.assign(this.__state, {
-        loopArray122: loopArray122,
-        loopArray123: loopArray123,
-        $compid__112: $compid__112,
+        loopArray124: loopArray124,
+        loopArray125: loopArray125,
+        $compid__114: $compid__114,
         smAreaText: smAreaText,
         showHistory: showHistory,
         histroyList: histroyList,
@@ -552,7 +552,7 @@ var PublishRecruit = (_temp2 = _class = function (_Taro$Component) {
       navigationBarBackgroundColor: '#0099ff',
       navigationBarTextStyle: 'white',
       backgroundTextStyle: "dark"
-    }, _this.$usedState = ["model", "$compid__108", "$compid__109", "$compid__110", "showProfession", "phone", "showUpload", "text"], _this.customComponents = ["Auth", "Profession", "WordsTotal", "ImageView"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["model", "$compid__110", "$compid__111", "$compid__112", "showProfession", "phone", "showUpload", "text"], _this.customComponents = ["Auth", "Profession", "WordsTotal", "ImageView"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(PublishRecruit, [{
@@ -571,20 +571,20 @@ var PublishRecruit = (_temp2 = _class = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__108"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__110"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__108 = _genCompid2[0],
-          $compid__108 = _genCompid2[1];
+          $prevCompid__110 = _genCompid2[0],
+          $compid__110 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__109"),
+      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__111"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__109 = _genCompid4[0],
-          $compid__109 = _genCompid4[1];
+          $prevCompid__111 = _genCompid4[0],
+          $compid__111 = _genCompid4[1];
 
-      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__110"),
+      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__112"),
           _genCompid6 = _slicedToArray(_genCompid5, 2),
-          $prevCompid__110 = _genCompid6[0],
-          $compid__110 = _genCompid6[1];
+          $prevCompid__112 = _genCompid6[0],
+          $compid__112 = _genCompid6[1];
 
       // 获取路由参数
 
@@ -762,21 +762,21 @@ var PublishRecruit = (_temp2 = _class = function (_Taro$Component) {
         "data": model && model.classifyTree,
         "onClickItem": this.anonymousFunc0,
         "num": 3
-      }, $compid__108, $prevCompid__108);
+      }, $compid__110, $prevCompid__110);
       _taroWeapp.propsManager.set({
         "num": num
-      }, $compid__109, $prevCompid__109);
+      }, $compid__111, $prevCompid__111);
       showUpload && model && _taroWeapp.propsManager.set({
         "images": model.view_images,
         "max": model.maxImageCount,
         "userUploadImg": userUploadImg,
         "userDelImg": userDelImg
-      }, $compid__110, $prevCompid__110);
+      }, $compid__112, $prevCompid__112);
       Object.assign(this.__state, {
         model: model,
-        $compid__108: $compid__108,
-        $compid__109: $compid__109,
         $compid__110: $compid__110,
+        $compid__111: $compid__111,
+        $compid__112: $compid__112,
         showProfession: showProfession,
         phone: phone,
         showUpload: showUpload,
@@ -925,7 +925,7 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = NewJob.__proto__ || Object.getPrototypeOf(NewJob)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
       navigationBarTitleText: '找活名片'
-    }, _this.$usedState = ["anonymousState__temp", "data", "loopArray354", "loopArray355", "loopArray356", "loopArray357", "loopArray358", "loopArray359", "$compid__377", "$compid__378", "$compid__379", "showtop", "showcomplete", "IMGCDNURL", "showtopone", "showpassre", "passre", "nopassre", "index", "checkstatus", "checkone", "headerimg", "authenticationimg", "certificate_show", "age", "sex", "checkonef", "showskill", "intro", "introne", "ressonone", "selfintrone", "checktwo", "selfintro", "projectlength", "project_count", "project", "skilllength", "skillbooksone", "checkfourf", "isOpened", "selectdata", "proStatus", "popup"], _this.anonymousFunc10Map = {}, _this.anonymousFunc13Map = {}, _this.anonymousFunc14Map = {}, _this.customComponents = ["CollectionRecruitList", "AtModal"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["anonymousState__temp", "data", "loopArray150", "loopArray151", "loopArray152", "loopArray153", "loopArray154", "loopArray155", "$compid__123", "$compid__124", "$compid__125", "showtop", "showcomplete", "IMGCDNURL", "showtopone", "showpassre", "passre", "nopassre", "index", "checkstatus", "checkone", "headerimg", "authenticationimg", "certificate_show", "age", "sex", "checkonef", "showskill", "intro", "introne", "ressonone", "selfintrone", "checktwo", "selfintro", "projectlength", "project_count", "project", "skilllength", "skillbooksone", "checkfourf", "recData", "isOpened", "selectdata", "proStatus", "popup"], _this.anonymousFunc10Map = {}, _this.anonymousFunc13Map = {}, _this.anonymousFunc14Map = {}, _this.customComponents = ["CollectionRecruitList", "AtModal"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(NewJob, [{
@@ -946,20 +946,20 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__377"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__123"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__377 = _genCompid2[0],
-          $compid__377 = _genCompid2[1];
+          $prevCompid__123 = _genCompid2[0],
+          $compid__123 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__378"),
+      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__124"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__378 = _genCompid4[0],
-          $compid__378 = _genCompid4[1];
+          $prevCompid__124 = _genCompid4[0],
+          $compid__124 = _genCompid4[1];
 
-      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__379"),
+      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__125"),
           _genCompid6 = _slicedToArray(_genCompid5, 2),
-          $prevCompid__379 = _genCompid6[0],
-          $compid__379 = _genCompid6[1];
+          $prevCompid__125 = _genCompid6[0],
+          $compid__125 = _genCompid6[1];
 
       var userInfoObj = _taroWeapp2.default.getStorageSync(_store.UserInfo);
 
@@ -978,6 +978,8 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
           check: '',
           uuid: '',
           user_uuid: '',
+          city: '',
+          occupations_id: '',
           occupations: []
         },
         resume_top: {
@@ -1301,6 +1303,10 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
       (0, _taroWeapp.useDidShow)(function () {
         (0, _index.resumeListAction)().then(function (res) {
           if (res.errcode == "200") {
+            // 有info.uuid就去掉完善资料
+            if (res.data.info.uuid) {
+              setShowtop(true);
+            }
             _taroWeapp2.default.setStorageSync("introinfo", res.data.info);
             setData({ info: res.data.info, resume_top: res.data.resume_top, content: res.data.content, introduces: res.data.introduces, certificate_count: res.data.certificate_count, fail_certificate: res.data.fail_certificate, fail_project: res.data.fail_project, popup_text: res.data.popup_text, top_status: res.data.top_status });
             var list = res.data.status.map(function (v) {
@@ -1319,6 +1325,41 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
             setResumeTop(res.data.resume_top);
             // 都通过的情况下，并且正在招人，并且未置顶，提示前往置顶，暂不提示15天内不再提示
             // 没有未通过并且正在找，当前状态未置并且不再15天内
+            // 获取存储时间
+            var toppingTime = _taroWeapp2.default.getStorageSync('toptimer');
+            var newTime = new Date().getTime();
+            var failProject = '0';
+            res.data.project.map(function (v) {
+              failProject = v.check;
+              if (v.check === '0') {
+                failProject = '0';
+                return;
+              }
+            });
+            var failCertificate = '0';
+            res.data.certificates.map(function (v) {
+              failCertificate = v.check;
+              if (v.check === '0') {
+                failCertificate = '0';
+                return;
+              }
+            });
+            var onoff = res.data.resume_top.is_top !== 0 && res.data.resume_top.is_top !== 1 || res.data.resume_top.has_top == 0;
+            var top_onoff = res.data.info.check == '0' || res.data.introduces.check == '0' || failProject === '0' || failCertificate === '0';
+            var day = (newTime - toppingTime) / 86400000;
+            console.log(toppingTime, 'toppingTimetoppingTimetoppingTime');
+            // 没有置顶时间 ，没有审核失败， 有uuid 就是资料完善了的，
+            if (!toppingTime && !top_onoff && res.data.info.uuid && onoff && res.data.info.check !== '1' && index === 0) {
+              console.log('dsadasdasd');
+              setToppingModal(true);
+              _taroWeapp2.default.setStorageSync("toptimer", newTime);
+            }
+            {
+              if (day >= 15 && !top_onoff && res.data.info.uuid && onoff && res.data.info.check !== '1' && index === 0) {
+                setToppingModal(true);
+                _taroWeapp2.default.setStorageSync("toptimer", newTime);
+              }
+            }
             // 设置城市
             var userLoctionCity = _taroWeapp2.default.getStorageSync(_store.UserLocationCity);
             _setArea(userLoctionCity.city);
@@ -1484,6 +1525,7 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
           setPublicList(res);
         });
       });
+      console.log(index, 'index');
       // 用户页面跳转
       var userRouteJump = function userRouteJump(url) {
         _taroWeapp2.default.navigateTo({
@@ -1491,7 +1533,7 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
         });
       };
       var handleTopping = function handleTopping() {
-        if (showtop) {
+        if (!showtop) {
           // 跳去基础信息页面
           _taroWeapp2.default.showModal({
             title: '温馨提示',
@@ -1569,7 +1611,7 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
               var type = sheetListId[res.tapIndex];
               var params = {
                 type: type,
-                resume_uuid: userInfoObj.uuid
+                resume_uuid: data.info.uuid
               };
               (0, _index.resumesEditEndAction)(params).then(function (res) {
                 if (res.errcode == 'ok') {
@@ -1586,6 +1628,9 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
                   });
                 }
               });
+            },
+            fail: function fail(res) {
+              console.log(res);
             }
           });
         } else if (data.info.check === '1') {
@@ -1755,7 +1800,7 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
       };
 
       this.anonymousFunc7 = function () {
-        return userRouteJump('/subpackage/pages/basics/index');
+        return userRouteJump('/pages/resume/basics/index');
       };
 
       this.anonymousFunc8 = function () {
@@ -1763,7 +1808,7 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
       };
 
       this.anonymousFunc9 = function () {
-        return userRouteJump("/subpackage/pages/addProject/index?id=" + data.info.uuid);
+        return userRouteJump("/pages/resume/addProject/index?id=" + data.info.uuid);
       };
 
       this.anonymousFunc11 = function () {
@@ -1771,7 +1816,7 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
       };
 
       this.anonymousFunc12 = function () {
-        return userRouteJump("/subpackage/pages/addSkill/index?id=" + data.info.uuid);
+        return userRouteJump("/pages/resume/addSkill/index?id=" + data.info.uuid);
       };
 
       this.anonymousFunc15 = function () {
@@ -1798,7 +1843,7 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
         return userRouteJump("/pages/topping/index?rec=1");
       };
 
-      var loopArray354 = data.resume_top.has_top != 0 && data.resume_top.is_top != 2 ? data.resume_top.top_provinces_str.map(function (v, i) {
+      var loopArray150 = data.resume_top.has_top != 0 && data.resume_top.is_top != 2 ? data.resume_top.top_provinces_str.map(function (v, i) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
@@ -1808,7 +1853,7 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray355 = !showskill ? data.info.occupations.map(function (v, i) {
+      var loopArray151 = !showskill ? data.info.occupations.map(function (v, i) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
@@ -1818,7 +1863,7 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray356 = showskill ? data.info.occupations.map(function (v, i) {
+      var loopArray152 = showskill ? data.info.occupations.map(function (v, i) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
@@ -1828,7 +1873,7 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray357 = selfintrone ? data.introduces.tags.map(function (v, i) {
+      var loopArray153 = selfintrone ? data.introduces.tags.map(function (v, i) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
@@ -1838,18 +1883,18 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray358 = projectlength != 0 ? project.map(function (item, __index10) {
+      var loopArray154 = projectlength != 0 ? project.map(function (item, __index10) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
 
-        var _$indexKey = "chjzz" + __index10;
+        var _$indexKey = "bejzz" + __index10;
 
         _this2.anonymousFunc10Map[_$indexKey] = function () {
-          return userRouteJump("/subpackage/pages/addProject/index?type=0");
+          return userRouteJump("/pages/resume/addProject/index?type=0");
         };
 
-        var $anonymousCallee__116 = projectlength != 0 ? item.$original.image.map(function (v, i) {
+        var $anonymousCallee__30 = projectlength != 0 ? item.$original.image.map(function (v, i) {
           v = {
             $original: (0, _taroWeapp.internal_get_original)(v)
           };
@@ -1861,29 +1906,29 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
         }) : [];
         return {
           _$indexKey: _$indexKey,
-          $anonymousCallee__116: $anonymousCallee__116,
+          $anonymousCallee__30: $anonymousCallee__30,
           $original: item.$original
         };
       }) : [];
-      var loopArray359 = skilllength != 0 ? skillbooksone.map(function (item, i) {
+      var loopArray155 = skilllength != 0 ? skillbooksone.map(function (item, i) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
         var $loopState__temp13 = skillbooksone ? i + i : null;
 
-        var _$indexKey2 = "ciazz" + i;
+        var _$indexKey2 = "bfazz" + i;
 
         _this2.anonymousFunc13Map[_$indexKey2] = function () {
-          return userRouteJump("/subpackage/pages/addSkill/index?type=" + i);
+          return userRouteJump("/pages/resume/addSkill/index?type=" + i);
         };
 
-        var _$indexKey3 = "cibzz" + i;
+        var _$indexKey3 = "bfbzz" + i;
 
         _this2.anonymousFunc14Map[_$indexKey3] = function () {
-          return userRouteJump("/subpackage/pages/addSkill/index?type=" + i);
+          return userRouteJump("/pages/resume/addSkill/index?type=" + i);
         };
 
-        var $anonymousCallee__117 = skilllength != 0 ? item.$original.image.map(function (v, i) {
+        var $anonymousCallee__31 = skilllength != 0 ? item.$original.image.map(function (v, i) {
           v = {
             $original: (0, _taroWeapp.internal_get_original)(v)
           };
@@ -1897,34 +1942,34 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
           $loopState__temp13: $loopState__temp13,
           _$indexKey2: _$indexKey2,
           _$indexKey3: _$indexKey3,
-          $anonymousCallee__117: $anonymousCallee__117,
+          $anonymousCallee__31: $anonymousCallee__31,
           $original: item.$original
         };
       }) : [];
-      _taroWeapp.propsManager.set({
+      recData.length && _taroWeapp.propsManager.set({
         "type": 1,
         "data": recData
-      }, $compid__377, $prevCompid__377);
+      }, $compid__123, $prevCompid__123);
       _taroWeapp.propsManager.set({
         "isOpened": tips,
         "className": "AtModal"
-      }, $compid__378, $prevCompid__378);
+      }, $compid__124, $prevCompid__124);
       _taroWeapp.propsManager.set({
         "isOpened": toppingModal,
         "className": "AtModal"
-      }, $compid__379, $prevCompid__379);
+      }, $compid__125, $prevCompid__125);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
         data: data,
-        loopArray354: loopArray354,
-        loopArray355: loopArray355,
-        loopArray356: loopArray356,
-        loopArray357: loopArray357,
-        loopArray358: loopArray358,
-        loopArray359: loopArray359,
-        $compid__377: $compid__377,
-        $compid__378: $compid__378,
-        $compid__379: $compid__379,
+        loopArray150: loopArray150,
+        loopArray151: loopArray151,
+        loopArray152: loopArray152,
+        loopArray153: loopArray153,
+        loopArray154: loopArray154,
+        loopArray155: loopArray155,
+        $compid__123: $compid__123,
+        $compid__124: $compid__124,
+        $compid__125: $compid__125,
         showtop: showtop,
         showcomplete: showcomplete,
         IMGCDNURL: _index6.IMGCDNURL,
@@ -1954,6 +1999,7 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
         skilllength: skilllength,
         skillbooksone: skillbooksone,
         checkfourf: checkfourf,
+        recData: recData,
         isOpened: isOpened,
         selectdata: selectdata,
         proStatus: proStatus,
@@ -2170,7 +2216,7 @@ var Topping = (_temp2 = _class = function (_Taro$Component) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Topping.__proto__ || Object.getPrototypeOf(Topping)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
       navigationBarTitleText: '招工置顶'
-    }, _this.$usedState = ["params", "data", "loopArray143", "loopArray144", "loopArray145", "loopArray146", "loopArray147", "province", "IMGCDNURL", "rec", "basics", "type", "list", "displayTime", "num", "endTime", "editData", "newTime", "day", "SERVERPHONE"], _this.anonymousFunc0Map = {}, _this.anonymousFunc1Map = {}, _this.anonymousFunc2Map = {}, _this.anonymousFunc3Map = {}, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["params", "data", "loopArray145", "loopArray146", "loopArray147", "loopArray148", "loopArray149", "province", "IMGCDNURL", "rec", "basics", "type", "list", "displayTime", "num", "endTime", "editData", "newTime", "day", "SERVERPHONE"], _this.anonymousFunc0Map = {}, _this.anonymousFunc1Map = {}, _this.anonymousFunc2Map = {}, _this.anonymousFunc3Map = {}, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Topping, [{
@@ -2362,6 +2408,9 @@ var Topping = (_temp2 = _class = function (_Taro$Component) {
         }
         // 找活
         if (rec) {
+          _taroWeapp2.default.setNavigationBarTitle({
+            title: '找活置顶'
+          });
           var _params = {
             interface_version: 'v2'
           };
@@ -3176,12 +3225,12 @@ var Topping = (_temp2 = _class = function (_Taro$Component) {
         _taroWeapp2.default.makePhoneCall({ phoneNumber: _index2.SERVERPHONE });
       };
 
-      var loopArray143 = province ? province.map(function (v, __index0) {
+      var loopArray145 = province ? province.map(function (v, __index0) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
 
-        var _$indexKey = "bddzz" + __index0;
+        var _$indexKey = "befzz" + __index0;
 
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return handleDel(v.$original);
@@ -3192,12 +3241,12 @@ var Topping = (_temp2 = _class = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray144 = params ? params.city.map(function (v, __index1) {
+      var loopArray146 = params ? params.city.map(function (v, __index1) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
 
-        var _$indexKey2 = "bdezz" + __index1;
+        var _$indexKey2 = "begzz" + __index1;
 
         _this2.anonymousFunc1Map[_$indexKey2] = function () {
           return handleDel(v.$original);
@@ -3208,12 +3257,12 @@ var Topping = (_temp2 = _class = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray145 = params ? params.province.map(function (v, __index2) {
+      var loopArray147 = params ? params.province.map(function (v, __index2) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
 
-        var _$indexKey3 = "bdfzz" + __index2;
+        var _$indexKey3 = "behzz" + __index2;
 
         _this2.anonymousFunc2Map[_$indexKey3] = function () {
           return handleDel(v.$original);
@@ -3224,12 +3273,12 @@ var Topping = (_temp2 = _class = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray146 = params ? params.whole.map(function (v, __index3) {
+      var loopArray148 = params ? params.whole.map(function (v, __index3) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
 
-        var _$indexKey4 = "bdgzz" + __index3;
+        var _$indexKey4 = "beizz" + __index3;
 
         _this2.anonymousFunc3Map[_$indexKey4] = function () {
           return handleDel(v.$original);
@@ -3240,7 +3289,7 @@ var Topping = (_temp2 = _class = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray147 = data.top_rules.map(function (v, i) {
+      var loopArray149 = data.top_rules.map(function (v, i) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
@@ -3253,11 +3302,11 @@ var Topping = (_temp2 = _class = function (_Taro$Component) {
       Object.assign(this.__state, {
         params: params,
         data: data,
-        loopArray143: loopArray143,
-        loopArray144: loopArray144,
         loopArray145: loopArray145,
         loopArray146: loopArray146,
         loopArray147: loopArray147,
+        loopArray148: loopArray148,
+        loopArray149: loopArray149,
         province: province,
         IMGCDNURL: _index2.IMGCDNURL,
         rec: rec,
@@ -3890,6 +3939,8 @@ var UserPublishAreaHistory = exports.UserPublishAreaHistory = 'userPublishAreaHi
 var SearchList = exports.SearchList = 'searchList';
 // 高德api的userlocation
 var UserLocation = exports.UserLocation = 'userLocation';
+// 找活名片info信息
+var Introinfo = exports.Introinfo = 'introinfo';
 
 /***/ }),
 
@@ -6947,7 +6998,7 @@ __webpack_require__.r(__webpack_exports__);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.resumesUpdateTopResumeUrl = exports.resumesDoTopV2Url = exports.resumesTopConfigV2Url = exports.resumesEditImgUrl = exports.resumesChangeTopStatusUrl = exports.resumesDoTopUrl = exports.resumesTopConfigUrl = exports.resumesTopAreasUrl = exports.resumesDelProjectUrl = exports.resumesEditEndUrl = exports.resumesIntroduceUrl = exports.resumesGetDataUrl = exports.checkAdcodeUrl = exports.addResumeUrl = exports.resumesProjectUrl = exports.resumesCertificateUrl = exports.delCertificateUrl = exports.jobRecommendListUrl = exports.resumeListUrl = exports.resumeCollectUrl = exports.resumeSupportUrl = exports.resumesGetTelUrl = exports.recommendListUrl = exports.resumeDetailUrl = exports.jobUpdateTopStatusUrl = exports.jobChangeTopAreasUrl = exports.jobGetTopAreasUrl = exports.jobDoTopUrl = exports.jobTopHotAreasUrl = exports.jobTopConfigUrl = exports.jobEndStatusUrl = exports.jobGetTelUrl = exports.jobNoUserInfoUrl = exports.jobInfoUrl = exports.publishComplainUrl = exports.integralUseInfoUrl = exports.integralExpendListsUrl = exports.integralExpendConfigUrl = exports.integralSourceListsUrl = exports.integralSourceConfigUrl = exports.messagesTypeUrl = exports.userMessagesUrl = exports.resumesAddClickLog = exports.resumesSortUrl = exports.newsInfoUrl = exports.newsTypesUrl = exports.newListUrl = exports.helpUrl = exports.feedbackSubmissionUrl = exports.feedbackUrl = exports.requestActionUrl = exports.ResumeCancelCollection = exports.recruitCancelCollection = exports.getCollectionResumeList = exports.getCollectionRecruitList = exports.userChangeRecruitStatus = exports.userGetPublishedRecruitList = exports.userChangePhone = exports.userUpdateName = exports.userChangeAvatar = exports.postUserAddInfo = exports.getIdcardAuthInfo = exports.postUserAuthInfo = exports.getUserAuthInfo = exports.getMemberMsgNumber = exports.getMemberInfo = exports.CheckMineAuthInfo = exports.CheckAuth = exports.GetUsedInfo = exports.GetUserPhoneCode = exports.PublishUsedInfo = exports.GetUsedInfoModel = exports.GetRechargeOrder = exports.GetRechargeOpenid = exports.GetRechargeList = exports.GetUserInviteLink = exports.CheckAdcodeValid = exports.GetAllAreas = exports.PublishRecruitInfo = exports.GetPublisRecruitView = exports.GetIntegralList = exports.GetTabbarMsg = exports.GetListFilterData = exports.GetWechatNotice = exports.GetFleamarketlist = exports.GetResumelist = exports.GetRecruitlist = exports.GetAllListItem = exports.GetBannerNotice = exports.GetUserInfo = exports.GetUserSessionKey = undefined;
+exports.resumesComplainUrl = exports.resumesUpdateTopResumeUrl = exports.resumesDoTopV2Url = exports.resumesTopConfigV2Url = exports.resumesEditImgUrl = exports.resumesChangeTopStatusUrl = exports.resumesDoTopUrl = exports.resumesTopConfigUrl = exports.resumesTopAreasUrl = exports.resumesDelProjectUrl = exports.resumesEditEndUrl = exports.resumesIntroduceUrl = exports.resumesGetDataUrl = exports.checkAdcodeUrl = exports.addResumeUrl = exports.resumesProjectUrl = exports.resumesCertificateUrl = exports.delCertificateUrl = exports.jobRecommendListUrl = exports.resumeListUrl = exports.resumeCollectUrl = exports.resumeSupportUrl = exports.resumesGetTelUrl = exports.recommendListUrl = exports.resumeDetailUrl = exports.jobUpdateTopStatusUrl = exports.jobChangeTopAreasUrl = exports.jobGetTopAreasUrl = exports.jobDoTopUrl = exports.jobTopHotAreasUrl = exports.jobTopConfigUrl = exports.jobEndStatusUrl = exports.jobGetTelUrl = exports.jobNoUserInfoUrl = exports.jobInfoUrl = exports.publishComplainUrl = exports.integralUseInfoUrl = exports.integralExpendListsUrl = exports.integralExpendConfigUrl = exports.integralSourceListsUrl = exports.integralSourceConfigUrl = exports.messagesTypeUrl = exports.userMessagesUrl = exports.resumesAddClickLog = exports.resumesSortUrl = exports.newsInfoUrl = exports.newsTypesUrl = exports.newListUrl = exports.helpUrl = exports.feedbackSubmissionUrl = exports.feedbackUrl = exports.requestActionUrl = exports.ResumeCancelCollection = exports.recruitCancelCollection = exports.getCollectionResumeList = exports.getCollectionRecruitList = exports.userChangeRecruitStatus = exports.userGetPublishedRecruitList = exports.userChangePhone = exports.userUpdateName = exports.userChangeAvatar = exports.postUserAddInfo = exports.getIdcardAuthInfo = exports.postUserAuthInfo = exports.getUserAuthInfo = exports.getMemberMsgNumber = exports.getMemberInfo = exports.CheckMineAuthInfo = exports.CheckAuth = exports.GetUsedInfo = exports.GetUserPhoneCode = exports.PublishUsedInfo = exports.GetUsedInfoModel = exports.GetRechargeOrder = exports.GetRechargeOpenid = exports.GetRechargeList = exports.GetUserInviteLink = exports.CheckAdcodeValid = exports.GetAllAreas = exports.PublishRecruitInfo = exports.GetPublisRecruitView = exports.GetIntegralList = exports.GetTabbarMsg = exports.GetListFilterData = exports.GetWechatNotice = exports.GetFleamarketlist = exports.GetResumelist = exports.GetRecruitlist = exports.GetAllListItem = exports.GetBannerNotice = exports.GetUserInfo = exports.GetUserSessionKey = undefined;
 
 var _index = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
 
@@ -7133,6 +7184,8 @@ var resumesTopConfigV2Url = exports.resumesTopConfigV2Url = _index.REQUESTURL + 
 var resumesDoTopV2Url = exports.resumesDoTopV2Url = _index.REQUESTURL + '/resumes/do-top-v2/';
 // 修改找活置顶
 var resumesUpdateTopResumeUrl = exports.resumesUpdateTopResumeUrl = _index.REQUESTURL + '/resumes/update-top-resume/';
+// 找活投诉
+var resumesComplainUrl = exports.resumesComplainUrl = _index.REQUESTURL + 'resumes/complain/';
 
 /***/ }),
 
@@ -7435,6 +7488,7 @@ exports.resumesEditImgAction = resumesEditImgAction;
 exports.resumesTopConfigV2Action = resumesTopConfigV2Action;
 exports.resumesDoTopV2Action = resumesDoTopV2Action;
 exports.resumesUpdateTopResumeAction = resumesUpdateTopResumeAction;
+exports.resumesComplainAction = resumesComplainAction;
 
 var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
@@ -8346,6 +8400,15 @@ function resumesDoTopV2Action(data) {
 function resumesUpdateTopResumeAction(data) {
   return doRequestAction({
     url: api.resumesUpdateTopResumeUrl,
+    method: 'POST',
+    failToast: true,
+    data: data
+  });
+}
+// 找活投诉
+function resumesComplainAction(data) {
+  return doRequestAction({
+    url: api.resumesComplainUrl,
     method: 'POST',
     failToast: true,
     data: data

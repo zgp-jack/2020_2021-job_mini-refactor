@@ -66,10 +66,10 @@ var _App = function (_BaseComponent) {
       //"pages/map/realname/index", // 用户实名选择地址
       "pages/userinfo/index/index", "pages/userinfo/add/index", "pages/userinfo/phone/index", "pages/published/recruit/index", "pages/collection/index", "pages/help/index", "pages/feedbacklist/index", "pages/feedback/index", "pages/static/invite/index", "pages/information/mymessage/index", "pages/information/system/index", 'pages/integral/tabber/index', 'pages/detail/info/index', 'pages/topping/index', 'pages/topping/distruction/index',
       // 'pages/topping/recruit/index',//置顶找活范围
-      'pages/resume/detail/index', 'pages/resume/skillList/index', 'pages/resume/projectList/index', 'pages/resume/newJobs/index', 'pages/resume/preview/index'],
+      'pages/resume/detail/index', 'pages/resume/skillList/index', 'pages/resume/projectList/index', 'pages/resume/addProject/index', 'pages/resume/addSkill/index', 'pages/resume/basics/index', 'pages/resume/newJobs/index', 'pages/resume/recList/index', 'pages/resume/preview/index'],
       subPackages: [{
         root: 'subpackage/pages/',
-        pages: ['checkauth/index', 'about/index', 'report/index', 'notice/index', 'download/index', 'ranking/index', 'course/index', 'anti-fraud/index', 'addProject/index', 'addSkill/index', 'basics/index', 'personInfo/index']
+        pages: ['checkauth/index', 'about/index', 'report/index', 'notice/index', 'download/index', 'ranking/index', 'course/index', 'anti-fraud/index', 'personInfo/index']
       }],
       window: {
         backgroundTextStyle: 'light',

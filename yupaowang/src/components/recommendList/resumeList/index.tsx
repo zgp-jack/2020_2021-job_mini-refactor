@@ -18,6 +18,11 @@ export default function ResumeListPage({ data = [{}, {}, {}] }: PROPS) {
       url: url
     })
   }
+  const handleLast = ()=>{
+    Taro.navigateBack({
+      delta: 1
+    })
+  }
   return(
     <View className='resume-list-container'>
       <View className='resumeDetail-recommend'>
@@ -58,7 +63,7 @@ export default function ResumeListPage({ data = [{}, {}, {}] }: PROPS) {
             </View>
         </Block>
       ))}
-      <View className="seemore-recommend-recruit">查看更多找活信息</View>
+      <View className="seemore-recommend-recruit" onClick={()=>handleLast()}>查看更多找活信息</View>
     </View>
   )
 }

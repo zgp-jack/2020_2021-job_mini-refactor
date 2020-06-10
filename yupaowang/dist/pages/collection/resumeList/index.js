@@ -56,7 +56,7 @@ var ResumeList = (_temp2 = _class = function (_Taro$Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ResumeList.__proto__ || Object.getPrototypeOf(ResumeList)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__82", "bottom", "initPage"], _this.customComponents = ["CollectionResumeList"], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ResumeList.__proto__ || Object.getPrototypeOf(ResumeList)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__83", "bottom", "initPage"], _this.customComponents = ["CollectionResumeList"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(ResumeList, [{
@@ -75,10 +75,10 @@ var ResumeList = (_temp2 = _class = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__82"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__83"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__82 = _genCompid2[0],
-          $compid__82 = _genCompid2[1];
+          $prevCompid__83 = _genCompid2[0],
+          $compid__83 = _genCompid2[1];
 
       var _props = this.__props,
           bottom = _props.bottom,
@@ -162,9 +162,9 @@ var ResumeList = (_temp2 = _class = function (_Taro$Component) {
         "data": resLists,
         "onHandlerClick": this.anonymousFunc0,
         "recruitNoMoreData": recruitNoMoreData
-      }, $compid__82, $prevCompid__82);
+      }, $compid__83, $prevCompid__83);
       Object.assign(this.__state, {
-        $compid__82: $compid__82
+        $compid__83: $compid__83
       });
       return this.__state;
     }

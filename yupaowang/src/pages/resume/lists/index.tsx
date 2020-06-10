@@ -53,7 +53,12 @@ export default function Recruit() {
   const getNextPageData = () => {
     setSearchData({ ...searchData, page: searchData.page + 1 })
   }
-
+  // 用户页面跳转
+  const userRouteJump = (url: string) => {
+    Taro.navigateTo({
+      url: url
+    })
+  }
   return (
     <View className='recruit-container'>
       <View className='recruit-fiexd-header'>
@@ -73,6 +78,7 @@ export default function Recruit() {
         <WechatNotice />
         <ResumeList data={ lists } />
       </ScrollView>
+      <View className='publish-list-btn' onClick={() => userRouteJump(`/pages/resume/newJobs/index`)}>发布找活</View>
     </View>
   )
 }

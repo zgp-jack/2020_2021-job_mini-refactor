@@ -27,10 +27,10 @@
                             </view>
                             <view class="oimgone"><text class="otext">{{data.info.username}}</text>
                                 <block wx:if="{{data.info.authentication === '2'}}">
-                                    <image src="{{IMGCDNURL + 'new-list-realname-icon.png'}}"></image>
+                                    <image class="iconImage" src="{{IMGCDNURL + 'new-list-realname-icon.png'}}"></image>
                                 </block>
                                 <block wx:if="{{data.info.certificate_show === 1}}">
-                                    <image src="{{IMGCDNURL + 'new-list-jnzs-icon.png?t=1'}}"></image>
+                                    <image class="iconImage" src="{{IMGCDNURL + 'new-list-jnzs-icon.png?t=1'}}"></image>
                                 </block>
                                 <view class="otextone"><text>{{sex}}</text>
                                     <block wx:if="{{age}}"><text class="{{sex ? 'ochange' : ''}}">{{age}}</text>
@@ -52,7 +52,7 @@
                                 <view class="ocworkotypeoo">
                                     <block wx:if="{{data.info.miniInfoOccupations.length}}">
                                         <view class="ocworkotyp">
-                                            <view class="ocworkotyptu" wx:key="$loopState__temp2" wx:for="{{loopArray126}}" wx:for-item="v" wx:for-index="i">{{v.$original}}</view>
+                                            <view class="ocworkotyptu" wx:key="$loopState__temp2" wx:for="{{loopArray128}}" wx:for-item="v" wx:for-index="i">{{v.$original}}</view>
                                         </view>
                                     </block>
                                     <block wx:if="{{data.info.miniInfoOccupations.length === 0}}"><text class="workotextone">暂未填写</text>
@@ -82,7 +82,7 @@
                             <block wx:if="{{data.introduces.tags.length}}">
                                 <view class="cardotext"><text class="oworkotext">标签</text>
                                     <view class="alllabletu">
-                                        <view wx:key="$loopState__temp4" class="labletu" wx:for="{{loopArray127}}" wx:for-item="v" wx:for-index="i">{{v.$original.label_name}}</view>
+                                        <view wx:key="$loopState__temp4" class="labletu" wx:for="{{loopArray129}}" wx:for-item="v" wx:for-index="i">{{v.$original.label_name}}</view>
                                     </view>
                                 </view>
                             </block>
@@ -120,7 +120,7 @@
                 </view>
                 <view class="cardcolore">
                     <view class="cardsix">
-                        <view class="cardsixzong" wx:key="$loopState__temp6" wx:for="{{loopArray128}}" wx:for-item="item" wx:for-index="i">
+                        <view class="cardsixzong" wx:key="$loopState__temp6" wx:for="{{loopArray130}}" wx:for-item="item" wx:for-index="i">
                             <block wx:if="{{item.$original.check == 1}}">
                                 <image class="checkfour" src="{{IMGCDNURL + 'lpy/audit.png'}}"></image>
                             </block>
@@ -141,14 +141,14 @@
                                     <view class="cardsixfour"><text class="cardsixthree-text">{{item.$original.detail}}</text>
                                     </view>
                                     <view class="cardsixfive">
-                                        <image class="cardsixfive-image" src="{{v.$original}}" wx:key="$loopState__temp8" wx:for="{{item.$anonymousCallee__27}}" wx:for-item="v" wx:for-index="i"></image>
+                                        <image class="cardsixfive-image" src="{{v.$original}}" wx:key="$loopState__temp8" bindtap="anonymousFunc0" wx:for="{{item.$anonymousCallee__27}}" wx:for-item="v" wx:for-index="i" data-e-tap-so="this" data-e-tap-a-a="{{v._$indexKey}}"></image>
                                     </view>
                                 </view>
                             </view>
                         </view>
                         <view class="cardsixsixall">
                             <view class="cardsixsix">
-                                <view class="more" bindtap="anonymousFunc0">更多项目经验
+                                <view class="more" bindtap="anonymousFunc1">更多项目经验
                                     <view class="more-view">
                                         <image src="{{IMGCDNURL + 'lpy/downward.png'}}" class="down"></image>
                                     </view>
@@ -171,7 +171,7 @@
                 </view>
                 <view class="cardcolore">
                     <view class="cardsix">
-                        <view class="cardsixzong" wx:key="id" wx:for="{{loopArray129}}" wx:for-item="item" wx:for-index="_anonIdx2">
+                        <view class="cardsixzong" wx:key="id" wx:for="{{loopArray131}}" wx:for-item="item" wx:for-index="__index3">
                             <block wx:if="{{item.$original.check == 1 && data.content.show_tips == 1}}">
                                 <image class="checkthree" src="{{IMGCDNURL + 'lpy/audit.png'}}"></image>
                             </block>
@@ -196,14 +196,14 @@
                                 <view class="cardsixfour"><text class="cardsixthree-text">{{item.$original.detail}}</text>
                                 </view>
                                 <view class="cardsixfive">
-                                    <image class="cardsixfive-image" src="{{v.$original}}" wx:key="$loopState__temp10" wx:for="{{item.$anonymousCallee__28}}" wx:for-item="v" wx:for-index="i"></image>
+                                    <image class="cardsixfive-image" src="{{v.$original}}" wx:key="$loopState__temp10" bindtap="anonymousFunc2" wx:for="{{item.$anonymousCallee__28}}" wx:for-item="v" wx:for-index="i" data-e-tap-so="this" data-e-tap-a-a="{{v._$indexKey2}}"></image>
                                 </view>
                             </view>
                         </view>
                     </view>
                     <view class="cardsixsixall">
                         <view class="cardsixsix">
-                            <view class="more" bindtap="anonymousFunc1">更多技能证书
+                            <view class="more" bindtap="anonymousFunc4">更多技能证书
                                 <view class="more-view">
                                     <image src="{{IMGCDNURL + 'lpy/downward.png'}}" class="down"></image>
                                 </view>

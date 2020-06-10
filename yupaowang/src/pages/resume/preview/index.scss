@@ -8,7 +8,11 @@
   margin-top: 20px;
   padding-bottom: 20px;
 }
-
+.iconImage {
+  width: 120px;
+  height: 30px;
+  margin-left: 14px;
+}
 .header {
   width: 93%;
   margin: 0 auto;
@@ -114,11 +118,22 @@
   margin-bottom: 8px;
   margin-top: 18px;
 }
+.linezo::before {
+  position: absolute;
+  content: '';
+  left: 14px;
+  top: 0;
+  width: 1px;
+  height: 100%;
+  background: #dcdcdc;
+  transform: scaleX(0.7);
+}
 .cardotext {
   position: relative;
   width: 100%;
   display: flex;
   vertical-align: baseline;
+  margin-bottom: 6px;
 }
 .oworkotext {
   width: 20.5%;

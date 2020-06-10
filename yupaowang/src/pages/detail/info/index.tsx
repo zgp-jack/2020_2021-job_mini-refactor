@@ -506,7 +506,9 @@ export default function DetailInfoPage() {
         </View>
       }
       {/* 相关推荐 */}
+      {recommend.length && 
       <CollectionRecruitList data={recommend} type={1}/>
+      }
       {/* 投诉 */}
       {complaintModal &&
         <View className='tabber-complaintModal'>

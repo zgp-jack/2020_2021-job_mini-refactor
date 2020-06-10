@@ -95,6 +95,13 @@ export default function Preview() {
       }
     })
   },[])
+  // 点击图片
+  const handleImg = (e: string) => {
+    Taro.previewImage({
+      current: e,
+      urls: [e]
+    })
+  }
   return (
     <View className='preview'>
       {/* 顶部 */}
@@ -130,8 +137,8 @@ export default function Preview() {
                 </View>
                 <View className="oimgone">
                   <Text className="otext">{data.info.username }</Text>
-                  {data.info.authentication === '2' && <Image src={`${IMGCDNURL}new-list-realname-icon.png`}/>}
-                  {data.info.certificate_show === 1 && <Image src={`${IMGCDNURL}new-list-jnzs-icon.png?t=1`}/> }
+                  {data.info.authentication === '2' && <Image className='iconImage' src={`${IMGCDNURL}new-list-realname-icon.png`}/>}
+                  {data.info.certificate_show === 1 && <Image className='iconImage' src={`${IMGCDNURL}new-list-jnzs-icon.png?t=1`}/> }
                   <View className="otextone">
                     <Text>{ sex }</Text>
                     {age && 
@@ -276,7 +283,7 @@ export default function Preview() {
                     </View>
                     <View className="cardsixfive">
                       {item.image.map((v, i) => (
-                        <Image className='cardsixfive-image' src={v} key={i + i} />
+                        <Image className='cardsixfive-image' src={v} key={i + i} onClick={() => handleImg(v)}/>
                       ))}
                     </View>
                   </View>
@@ -285,7 +292,7 @@ export default function Preview() {
             ))}
             <View className="cardsixsixall">
               <View className="cardsixsix">
-                <View className="more" onClick={() => Taro.navigateTo({ url:`/pages/resume/projectList/index`})}>
+                <View className="more" onClick={() => Taro.navigateTo({ url:`/pages/resume/projectList/index?preview=1`})}>
                   更多项目经验
                 <View className='more-view'>
                     <Image src={`${IMGCDNURL}lpy/downward.png`} className="down" />
@@ -357,7 +364,7 @@ export default function Preview() {
                   <View className="cardsixfive">
                     {/* wx: for="{{ item.image }}" */}
                     {item.image.map((v, i) => (
-                      <Image className='cardsixfive-image' src={v} key={i + i} />
+                      <Image className='cardsixfive-image' src={v} key={i + i} onClick={() => handleImg(v)}/>
                     ))}
                   </View>
                 </View>
@@ -366,7 +373,7 @@ export default function Preview() {
           </View>
           <View className="cardsixsixall">
             <View className="cardsixsix">
-              <View className="more" onClick={() => Taro.navigateTo({ url:`/pages/resume/skillList/index`})}>
+              <View className="more" onClick={() => Taro.navigateTo({ url:`/pages/resume/skillList/index?preview=1`})}>
                 更多技能证书
                 <View className='more-view'>
                   <Image src={`${IMGCDNURL}lpy/downward.png`} className="down" />

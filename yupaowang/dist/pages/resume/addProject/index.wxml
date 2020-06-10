@@ -1,7 +1,7 @@
 <block wx:if="{{$taroCompReady}}">
     <view class="addProjectPage">
         <view class="content">
-            <at-input compid="{{$compid__297}}"></at-input>
+            <at-input compid="{{$compid__115}}"></at-input>
             <view class="publish-recruit-card">
                 <picker mode="date" bindchange="anonymousFunc1" value="{{startTime}}">
                     <view class="publish-list-item"><text class="pulish-list-title">开工时间</text>:
@@ -28,13 +28,13 @@
                     <view>项目详情:</view>
                     <textarea class="feedback-content-middle-textarea" value="{{textarea}}" bindinput="anonymousFunc5" maxlength="{{500}}" placeholder="主要描述工作中的项目情况..."></textarea>
                     <view class="feedback-wordsTotal">
-                        <words-total compid="{{$compid__298}}"></words-total>
+                        <words-total compid="{{$compid__116}}"></words-total>
                     </view>
                 </view>
             </view>
             <view class="feedback-content-middle-imgBox">
                 <block wx:if="{{image.item}}">
-                    <image-view compid="{{$compid__299}}"></image-view>
+                    <image-view compid="{{$compid__117}}"></image-view>
                 </block>
             </view>
         </view>

@@ -1,7 +1,8 @@
-import Taro, { Config, useState, useDidShow, useRouter } from '@tarojs/taro'
+import Taro, { Config, useState, useDidShow, useRouter, useContext } from '@tarojs/taro'
 import { View, Text, Image, Button } from '@tarojs/components'
 import { resumeListAction } from '../../../utils/request/index'
 import { IMGCDNURL } from '../../../config'
+// import { detailContext } from '../detail';
 import './index.scss'
 
 interface DataType {
@@ -14,7 +15,8 @@ interface DataType {
 }
 export default function SkillList() {
   const router: Taro.RouterInfo = useRouter()
-  let { id } = router.params;
+  let { id, preview, detail } = router.params;
+  // const { certificates } = useContext(detailContext)
   // 刷新一次
   const [refresh, setRefresh] = useState<boolean>(false)
   // 数据
@@ -26,10 +28,15 @@ export default function SkillList() {
       setRefresh(false)
       return
     }
-    resumeListAction().then(res => {
-      setData(res.data.certificates)
-      setResume_uuid(res.data.info.user_uuid);
-    })
+    // if (detail){
+      // if (certificates){}
+      // setData(certificates);
+    // }else{
+      resumeListAction().then(res => {
+        setData(res.data.certificates)
+        setResume_uuid(res.data.info.user_uuid);
+      })
+    // }
   })
   // 点击方法
   const handleImg = (e: string) => {
@@ -51,8 +58,12 @@ export default function SkillList() {
         <View key={item.id} className='skilleight'>
           {item.check == '1' && <Image className='audit' src={`${IMGCDNURL}lpy/review.png`} />}
           {item.check == '0' && <Image className='audit' src={`${IMGCDNURL}lpy/notthrough.png`} />}
-          {item.check == '2' && <View className='editor' onClick={() => userRouteJump(`/subpackage/pages/addSkill/index?type=${i}&id=${id}`)}>编辑</View>}
-          {item.check == '0' && <View className='editorone' onClick={() => userRouteJump(`/subpackage/pages/addSkill/index?type=${i}&id=${id}`)}>待修改</View>}
+          {!preview  && 
+            <View>
+            {item.check == '2' && <View className='editor' onClick={() => userRouteJump(`/pages/resume/addSkill/index?type=${i}&id=${id}`)}>编辑</View>}
+            {item.check == '0' && <View className='editorone' onClick={() => userRouteJump(`/pages/resume/addSkill/index?type=${i}&id=${id}`)}>待修改</View>}
+            </View>
+          }
           <View className="skilleightzong">
             <View>
               <Image src={`${IMGCDNURL}lpy/newresume-experience-item.png`} className='skilleightone' />
@@ -82,9 +93,9 @@ export default function SkillList() {
           </View>
         </View>
       ))}
-      {data.length < 3 && resume_uuid !== '' && 
+      {data.length < 3 && resume_uuid !== '' && !detail &&
       <View className='footer-box'>
-        <Button className='footer'>添加技能经验</Button>
+        <Button className='footer' onClick={() => userRouteJump(`/pages/resume/addSkill/index?id=${id}`)}>添加技能经验</Button>
       </View>
     }
     </View>

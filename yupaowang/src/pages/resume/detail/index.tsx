@@ -1,6 +1,6 @@
-import Taro, { Config, useState, useEffect, useRouter, useDidShow } from '@tarojs/taro'
+import Taro, { Config, useState, useEffect, useRouter, createContext } from '@tarojs/taro'
 import { View, Text, Image, Block, Textarea } from '@tarojs/components'
-import { resumeDetailAction, recommendListAction, resumesGetTelAcrion, resumeSupportAction, resumeCollectAction, publishComplainAction } from '../../../utils/request/index'
+import { resumeDetailAction, recommendListAction, resumesGetTelAcrion, resumeSupportAction, resumeCollectAction, publishComplainAction, resumesComplainAction } from '../../../utils/request/index'
 import { IMGCDNURL } from '../../../config'
 import Msg from '../../../utils/msg'
 import { resumeDetailCertificates, resumeDetailProject, resumeDetailOperation, recommendListDataList } from '../../../utils/request/index.d'
@@ -32,7 +32,13 @@ interface resumeDetailInfo{
   is_read:number,
   is_end:string,
   certificate_show:number,
+  uuid:string,
+  show_complain: ShowComplain,
   tags: resumeDetailInfoTages[],
+}
+interface ShowComplain{
+  show_complain: number|undefined,
+  tips_message: string,
 }
 interface resumeDetailInfoTages{
   id:number,
@@ -41,15 +47,14 @@ interface resumeDetailInfoTages{
 interface ListType{
   item: recommendListDataList[],
 }
-interface User {
-  userId: number,
-  tokenTime: number,
-  token: string,
-  uuid: string,
-  login: boolean
+interface Injected{
+  project: resumeDetailProject[],
+  certificates: resumeDetailCertificates[],
 }
+export const detailContext = createContext<Injected>({} as Injected)
 export default function ResumeDetail() {
-  let userInfo: User = Taro.getStorageSync(UserInfo)
+  const router: Taro.RouterInfo = useRouter()
+  let { uuid, location } = router.params;
   const [data, setDate] = useState<DataType>({
     certificates:[],
     info:{
@@ -69,7 +74,12 @@ export default function ResumeDetail() {
       is_read:0,
       is_end:'',
       certificate_show:0,
+      uuid:'',
       tags: [],
+      show_complain:{
+        show_complain: undefined,
+        tips_message: '',
+      },
     },
     operation:{
       is_collect: 0,
@@ -94,11 +104,13 @@ export default function ResumeDetail() {
   // 投诉
   const [complaintModal, setComplaintModal ] = useState<boolean>(false)
   const [textarea, setTextarea] = useState<string>('')
+  // 是否还可以投诉
+  const [iscomplaint, setIsComplaint] = useState<boolean>(false)
   useEffect(()=>{
     const params = {
-      location:'',
+      location:location,
       // 先写死
-      resume_uuid: userInfo.uuid
+      resume_uuid: uuid
     }
     resumeDetailAction(params).then(res=>{
       console.log(res);
@@ -110,6 +122,12 @@ export default function ResumeDetail() {
         setExamine(false)
         setPraise(res.operation.is_zan)
         setCollect(res.operation.is_collect)
+        if (res.info.is_read == 0 && res.info.is_end != '2' && res.operation.status == 0){
+          seOnoff(true)
+        }
+        // if(res.info.show_complain.show_complain){
+        //   setIsComplaint(true);
+        // }
         const listParams = {
           page: 1,
           type: 1,
@@ -125,16 +143,15 @@ export default function ResumeDetail() {
   // 查看电话
   const handlePhone =()=>{
     const params = {
-      // 写死
-      resume_uuid: userInfo.uuid
+      resume_uuid: uuid
     }
     resumesGetTelAcrion(params).then(res=>{
       console.log(res);
-      if(res.errcode === 'ok'){
+      if(res.errcode === 200){
         seOnoff(true)
         setPhone(res.tel)
         setShownewtips(false);
-      } else if (res.errcode == "7405") {
+      } else if (res.errcode == 7405) {
         Taro.showModal({
           title: '温馨提示',
           content: res.errmsg,
@@ -163,7 +180,7 @@ export default function ResumeDetail() {
   // 赞
   const resumeSupport = ()=>{
     let params = {
-      resume_uuid: userInfo.uuid
+      resume_uuid: uuid
     }
     resumeSupportAction(params).then(res=>{
       console.log(res)
@@ -178,7 +195,7 @@ export default function ResumeDetail() {
   // 收藏
   const resumeCollect = ()=>{
     let params = {
-      resume_uuid: userInfo.uuid
+      resume_uuid: uuid
     }
     resumeCollectAction(params).then(res=>{
       if (res.errcode === 'ok') {
@@ -202,16 +219,42 @@ export default function ResumeDetail() {
     }
     const params = {
       content: textarea,
-      type: 'job',
-      infoId: 1590498258556959
+      resume_uuid: data.info.uuid,
     };
-    publishComplainAction(params).then(() => {
-      Msg('提交成功')
+    resumesComplainAction(params).then((res) => {
+      Msg(res.errmsg)
+      setIsComplaint(true)
       setComplaintModal(false);
     })
   }
-  console.log(phone,'xxxx')
+  // 举报
+  const handleComplaint = ()=>{
+    if (iscomplaint || !data.info.show_complain.show_complain){
+      Taro.showModal({
+        title: '温馨提示',
+        content: '您已投诉该信息,请勿重复提交！',
+        showCancel: false,
+      })
+    }else{
+      setComplaintModal(true)
+    }
+  }
+  // 点击方法
+  const handleImg = (e: string) => {
+    Taro.previewImage({
+      current: e,
+      urls: [e]
+    })
+  }
+  // 传递的值
+
+  const value:Injected = {
+    project: data.project,
+    certificates:data.certificates
+  }
+  console.log(value,'xxxx')
   return(
+    <detailContext.Provider value={value}>
     <View className='resumeDetail'>
       {/* 顶部 */}
       <View className='resumeDetail-cardcolore'>
@@ -247,14 +290,26 @@ export default function ResumeDetail() {
               <Text className='oworkotext'>手机</Text>
               <Text className='workotextone'>{phone}</Text>
             {examine || !onoff && data.info.is_read === 1 && data.info.is_end !='2' && data.operation.status === 0  &&
-                <Text className='clioktel' onClick={handlePhone}>查看完整电话</Text>
-          }
-            {!examine && onoff || data.info.is_read == 0 && data.info.is_end != '2' && !examine && data.operation.status == 0 && 
-              <Text className='cliok'>
-              <Text className='resumeDetail-basics-list-tel' onClick={()=>{console.log(31321312)}}>点击拨打</Text>
-              <Text className='resumeDetail-basics-list-report' onClick={() => { setComplaintModal(true)}}>举报</Text>
-            </Text>
+              <Text className='clioktel' onClick={handlePhone}>查看完整电话</Text>
             }
+          {onoff && 
+          <View className='flex'>
+            <Text className='resumeDetail-basics-list-tel' onClick={() => Taro.makePhoneCall({ phoneNumber: phone })}>点击拨打</Text>
+            <Text className='clioktelList-right' onClick={() => handleComplaint()}>举报</Text>
+          </View>
+          }
+          {/* {onoff &&
+            <Text className='clioktel-left' onClick={() => Taro.makePhoneCall({ phoneNumber: phone })}>点击拨打</Text>
+          }
+          {onoff &&
+            <Text className='clioktelList-right' onClick={() => setComplaintModal(true)}>举报</Text>
+          } */}
+          {/* { onoff &&
+              <Text className='cliok'>
+                <Text className='resumeDetail-basics-list-tel' onClick={() => Taro.makePhoneCall({ phoneNumber: phone })}>点击拨打</Text>
+                <Text className='resumeDetail-basics-list-report' onClick={() => { setComplaintModal(true)}}>举报</Text>
+              </Text>
+            } */}
           </View>
           </View>
             <View className='cardotext-position'>
@@ -348,6 +403,7 @@ export default function ResumeDetail() {
         {data.info.introduce||'暂未填写'}
       </View>
       {/* 项目经验 */}
+      {data.project.length &&
       <View className="resumeDetail-findingnamecardthree">
         <View className="resumeDetail-findingnamecardthreemobile">
           <View>
@@ -357,8 +413,9 @@ export default function ResumeDetail() {
           </View>
         </View>
       </View>
-      <View className='resumeDetail-experience'>
-        {data.project.length &&
+      }
+      {data.project.length &&
+        <View className='resumeDetail-experience'>
           <View>
           <View className='resumeDetail-experience-title'><Image className='resumeDetail-image' src={`${IMGCDNURL}lpy/newresume-experience-item.png`} />{data.project[0].project_name}</View>
             <View className='resumeDetail-experience-content'>
@@ -367,16 +424,15 @@ export default function ResumeDetail() {
             </View>
           <View className="resumeDetail-experience-img-box">
               {data.project[0].image.map((v,i)=>(
-                <Image className='resumeDetail-experience-img' key={i+i} src={v}/>
+                <Image className='resumeDetail-experience-img' key={i + i} src={v} onClick={() => handleImg(v)}/>
               ))}
             </View>
           <View className='resumeDetail-more-box'>
-            <View className='resumeDetail-more'>更多项目经验
+            <View className='resumeDetail-more' onClick={() => Taro.navigateTo({ url: `/pages/resume/projectList/index?preview=1&detail=1` })}>更多项目经验
                 <Image src={`${IMGCDNURL}lpy/downward.png`} className="down"/>
               </View>
             </View>
           </View>
-        }
         {/* {data.project.map((v)=>(
           <View key={v.id}>
             <View className='resumeDetail-experience-title'><Image className='resumeDetail-image' src={`${IMGCDNURL}lpy/newresume-experience-item.png`}/>{v.project_name}</View>
@@ -387,7 +443,10 @@ export default function ResumeDetail() {
           </View>
         ))} */}
       </View>
+        }
+
       {/* 职业技能 */}
+      {data.certificates.length &&
       <View className="resumeDetail-findingnamecardthree">
         <View className="resumeDetail-findingnamecardthreemobile">
           <View>
@@ -397,8 +456,9 @@ export default function ResumeDetail() {
           </View>
         </View>
       </View>
-      <View className='resumeDetail-skill'>
-        {data.certificates.length &&
+      }
+      {data.certificates.length &&
+        <View className='resumeDetail-skill'>
           <View>
             <View className='resumeDetail-experience-title'>
               <Image className='resumeDetail-image' src={`${IMGCDNURL}lpy/newresume-experience-item.png`} />
@@ -408,25 +468,27 @@ export default function ResumeDetail() {
             <View className='resumeDetail-experience-content-list'>{data.certificates[0].certificate_time}</View>
               <View>
               {data.certificates[0].image.map((val, i) => (
-                  <Image key={i + i} src={val} className='resumeDetail-skill-image' />
+                <Image key={i + i} src={val} className='resumeDetail-skill-image' onClick={() => handleImg(val)}/>
                 ))}
               </View>
             </View>
           <View className='resumeDetail-more-box'>
-            <View className='resumeDetail-more'>
+              <View className='resumeDetail-more' onClick={() => Taro.navigateTo({ url: `/pages/resume/skillList/index?preview=1&detail=1` })}>
                 更多技能证书
                 <Image src={`${IMGCDNURL}lpy/downward.png`} className="down" />
               </View>
             </View>
         </View>
-        }
       </View>
+        }
       {/* 相关推荐 */}
       {/* <View className='resumeDetail-recommend'>
         <View className='resumeDetail-recommend-top'>
           <Text className='resumeDetail-recommend-top-text'>相关推荐</Text></View>
       </View> */}
+      {list.item.length &&
       <CollectionRecruitList data={list.item} type={2}/>
+      }
       {/* <View className='resume-list-container'>
       {list.item.map(item=>(
         <Block key={item.id}>
@@ -528,6 +590,7 @@ export default function ResumeDetail() {
         </View>
       }
     </View>
+    </detailContext.Provider>
   )
 }
 

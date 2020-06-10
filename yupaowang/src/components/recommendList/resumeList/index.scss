@@ -203,7 +203,16 @@
   line-height: 80px;
   background: white;
 }
-.resumeDetail-recommend-top-text::after,
+.resumeDetail-recommend-top-text::after{
+  position: absolute;
+  display: block;
+  content: '';
+  height: 1px;
+  width: 150px;
+  background: #E5E5E5;
+  top: 40px;
+  right: 15%
+}
 .resumeDetail-recommend-top-text::before {
   position: absolute;
   display: block;
@@ -212,6 +221,7 @@
   width: 150px;
   background: #E5E5E5;
   top: 40px;
+  left: 15%
 }
 
 .seemore-recommend-recruit {

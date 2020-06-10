@@ -56,7 +56,7 @@ var Recruit = (_temp2 = _class = function (_Taro$Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Recruit.__proto__ || Object.getPrototypeOf(Recruit)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "$compid__94", "$compid__95", "$compid__96", "refresh"], _this.customComponents = ["Search", "Condition", "WechatNotice", "ResumeList"], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Recruit.__proto__ || Object.getPrototypeOf(Recruit)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "$compid__97", "$compid__98", "$compid__99", "refresh"], _this.customComponents = ["Search", "Condition", "WechatNotice", "ResumeList"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Recruit, [{
@@ -75,20 +75,20 @@ var Recruit = (_temp2 = _class = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__94"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__97"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__94 = _genCompid2[0],
-          $compid__94 = _genCompid2[1];
+          $prevCompid__97 = _genCompid2[0],
+          $compid__97 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__95"),
+      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__98"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__95 = _genCompid4[0],
-          $compid__95 = _genCompid4[1];
+          $prevCompid__98 = _genCompid4[0],
+          $compid__98 = _genCompid4[1];
 
-      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__96"),
+      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__99"),
           _genCompid6 = _slicedToArray(_genCompid5, 2),
-          $prevCompid__96 = _genCompid6[0],
-          $compid__96 = _genCompid6[1];
+          $prevCompid__99 = _genCompid6[0],
+          $compid__99 = _genCompid6[1];
 
       // * 筛选数据
 
@@ -145,6 +145,12 @@ var Recruit = (_temp2 = _class = function (_Taro$Component) {
       var getNextPageData = function getNextPageData() {
         setSearchData(_extends({}, searchData, { page: searchData.page + 1 }));
       };
+      // 用户页面跳转
+      var userRouteJump = function userRouteJump(url) {
+        _taroWeapp2.default.navigateTo({
+          url: url
+        });
+      };
 
       this.anonymousFunc0 = function () {
         return pullDownAction();
@@ -155,21 +161,26 @@ var Recruit = (_temp2 = _class = function (_Taro$Component) {
       };
 
       var anonymousState__temp = (0, _taroWeapp.internal_inline_style)({ height: '8px' });
+
+      this.anonymousFunc2 = function () {
+        return userRouteJump("/pages/resume/newJobs/index");
+      };
+
       _taroWeapp.propsManager.set({
         "placeholder": "\u627E\u5DE5\u4EBA\uFF0C\u627E\u961F\u4F0D\uFF0C\u627E\u73ED\u7EC4",
         "value": ""
-      }, $compid__94, $prevCompid__94);
+      }, $compid__97, $prevCompid__97);
       _taroWeapp.propsManager.set({
         "data": DEFAULT_CONDITION
-      }, $compid__95, $prevCompid__95);
+      }, $compid__98, $prevCompid__98);
       _taroWeapp.propsManager.set({
         "data": lists
-      }, $compid__96, $prevCompid__96);
+      }, $compid__99, $prevCompid__99);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
-        $compid__94: $compid__94,
-        $compid__95: $compid__95,
-        $compid__96: $compid__96,
+        $compid__97: $compid__97,
+        $compid__98: $compid__98,
+        $compid__99: $compid__99,
         refresh: refresh
       });
       return this.__state;
@@ -184,10 +195,15 @@ var Recruit = (_temp2 = _class = function (_Taro$Component) {
     value: function anonymousFunc1(e) {
       ;
     }
+  }, {
+    key: "anonymousFunc2",
+    value: function anonymousFunc2(e) {
+      ;
+    }
   }]);
 
   return Recruit;
-}(_taroWeapp2.default.Component), _class.$$events = ["anonymousFunc0", "anonymousFunc1"], _class.$$componentPath = "pages/resume/lists/index", _temp2);
+}(_taroWeapp2.default.Component), _class.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2"], _class.$$componentPath = "pages/resume/lists/index", _temp2);
 exports.default = Recruit;
 
 Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(Recruit));

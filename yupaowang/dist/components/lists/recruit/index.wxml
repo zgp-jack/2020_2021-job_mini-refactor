@@ -1,7 +1,7 @@
 <block wx:if="{{$taroCompReady}}">
     <view class="recruit-lists-container" style="{{anonymousState__temp}}">
         <block wx:if="{{data}}">
-            <block wx:for="{{loopArray109}}" wx:for-item="item" wx:for-index="__index1">
+            <block wx:for="{{loopArray111}}" wx:for-item="item" wx:for-index="__index1">
                 <block wx:if="{{item.$original}}">
                     <view class="recruit-list-item" wx:key="id" bindtap="anonymousFunc0" wx:for="{{item.$anonymousCallee__22}}" wx:for-item="d" wx:for-index="__index0" data-e-tap-so="this" data-e-tap-a-a="{{d._$indexKey}}">
                         <block wx:if="{{d.$original.top}}">

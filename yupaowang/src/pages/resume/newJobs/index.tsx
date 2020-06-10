@@ -43,6 +43,8 @@ interface DataType {
     check:string,
     uuid:string,
     user_uuid:string,
+    city:string,
+    occupations_id:string
   },
   resume_top:{
     is_top:number,
@@ -122,6 +124,8 @@ export default function NewJob() {
       check:'',
       uuid:'',
       user_uuid:'',
+      city:'',
+      occupations_id:'',
       occupations:[],
     },
     resume_top:{
@@ -237,6 +241,10 @@ export default function NewJob() {
   useDidShow(()=>{
     resumeListAction().then(res=>{
       if(res.errcode == "200"){
+        // 有info.uuid就去掉完善资料
+        if (res.data.info.uuid){
+          setShowtop(true)
+        }
         Taro.setStorageSync("introinfo", res.data.info)
         setData({ info: res.data.info, resume_top: res.data.resume_top, content: res.data.content, introduces: res.data.introduces, certificate_count: res.data.certificate_count, fail_certificate: res.data.fail_certificate, fail_project: res.data.fail_project, popup_text: res.data.popup_text, top_status: res.data.top_status })
         const list = res.data.status.map(v=>v.name);
@@ -253,7 +261,40 @@ export default function NewJob() {
         setResumeTop(res.data.resume_top);
         // 都通过的情况下，并且正在招人，并且未置顶，提示前往置顶，暂不提示15天内不再提示
         // 没有未通过并且正在找，当前状态未置并且不再15天内
-
+        // 获取存储时间
+        const toppingTime = Taro.getStorageSync('toptimer');
+        const newTime = new Date().getTime();
+        let failProject = '0'; 
+        res.data.project.map((v)=>{
+          failProject = v.check;
+          if (v.check === '0'){
+            failProject = '0'
+            return
+          }
+        })
+        let failCertificate = '0';
+        res.data.certificates.map((v) => {
+          failCertificate = v.check;
+          if (v.check === '0') {
+            failCertificate = '0'
+            return
+          }
+        })
+        const onoff = (res.data.resume_top.is_top !== 0 && res.data.resume_top.is_top !== 1) || res.data.resume_top.has_top == 0;
+        const top_onoff = res.data.info.check == '0' || res.data.introduces.check == '0' || failProject === '0' || failCertificate === '0';
+        const day = (newTime - toppingTime) / 86400000;
+        console.log(toppingTime,'toppingTimetoppingTimetoppingTime')
+        // 没有置顶时间 ，没有审核失败， 有uuid 就是资料完善了的，
+        if (!toppingTime && !top_onoff && res.data.info.uuid && onoff && res.data.info.check !== '1' && index ===0){
+          console.log('dsadasdasd')
+          setToppingModal(true);
+          Taro.setStorageSync("toptimer", newTime)
+        }{
+          if (day >= 15 && !top_onoff && res.data.info.uuid && onoff && res.data.info.check !== '1' && index === 0){
+            setToppingModal(true);
+            Taro.setStorageSync("toptimer", newTime)
+          }
+        }
         // 设置城市
         let userLoctionCity: UserLocationPromiss = Taro.getStorageSync(UserLocationCity)
         setArea(userLoctionCity.city);
@@ -420,6 +461,7 @@ export default function NewJob() {
       setPublicList(res);
     })
   })
+  console.log(index,'index')
   // 用户页面跳转
   const userRouteJump = (url: string) => {
     Taro.navigateTo({
@@ -427,7 +469,7 @@ export default function NewJob() {
     })
   }
   const handleTopping = ()=>{
-    if (showtop){
+    if (!showtop){
       // 跳去基础信息页面
       Taro.showModal({
         title: '温馨提示',
@@ -500,7 +542,7 @@ export default function NewJob() {
           const type = sheetListId[res.tapIndex];
           const params = {
             type,
-            resume_uuid:userInfoObj.uuid
+            resume_uuid:data.info.uuid
           }
           resumesEditEndAction(params).then(res => {
             if (res.errcode == 'ok') {
@@ -517,6 +559,9 @@ export default function NewJob() {
               })
             }
           })
+        },
+        fail(res) {
+          console.log(res);
         }
       })
     } else if (data.info.check === '1'){
@@ -668,7 +713,7 @@ export default function NewJob() {
   return (
     <context.Provider value={value}>
     <View className='newJob'>
-      {showtop && <View className='heard'>请完善以下信息</View>}
+      {!showtop && <View className='heard'>请完善以下信息</View>}
       <View className='card'>
         <View className="card-otext">
           <Text>名片完善度：</Text>
@@ -858,7 +903,7 @@ export default function NewJob() {
                   </View>
                   {!checkone && checkonef != '0' &&
                     <View className="cardtwosontwo">
-                  <Text onClick={() => userRouteJump('/subpackage/pages/basics/index')}>编辑</Text>
+                    <Text onClick={() => userRouteJump('/pages/resume/basics/index')}>编辑</Text>
                     </View>
                   }
                   {checkonef == '0' &&
@@ -923,7 +968,7 @@ export default function NewJob() {
         }
         </View>
       {/*   没有信息 */}
-      {showtop && 
+      {!showtop && 
       <View className="cardcolore">
         <View className="findingnamecardtwo">
       <Text className="findingnamecardtwothree">您还没有完善基础信息</Text>
@@ -1021,7 +1066,7 @@ export default function NewJob() {
             <Text>项目经验</Text>
           </View>
           {projectlength != 0 && projectlength < project_count &&
-              <View className="cardthreeone" onClick={() => userRouteJump(`/subpackage/pages/addProject/index?id=${data.info.uuid}`)}>
+              <View className="cardthreeone" onClick={() => userRouteJump(`/pages/resume/addProject/index?id=${data.info.uuid}`)}>
               添加
             </View>}
         </View>
@@ -1048,7 +1093,7 @@ export default function NewJob() {
                 {/* wx: if="{{ item.check == 2 }}" */}
                 {/* bindtap="editor" data-uid="{{ item }}" */}
                 {item.check == 2 && 
-                <View className="editor" onClick={() => userRouteJump(`/subpackage/pages/addProject/index?type=0`)}>编辑</View>
+                <View className="editor" onClick={() => userRouteJump(`/pages/resume/addProject/index?type=0`)}>编辑</View>
                 }
                 {item.check == 0 &&
                   <View className="editor">待修改</View>
@@ -1121,7 +1166,7 @@ export default function NewJob() {
           </View>
           {
             skilllength !=0 && skilllength < data.certificate_count &&
-              <View className='cardthreeone' onClick={() => userRouteJump(`/subpackage/pages/addSkill/index?id=${data.info.uuid}`)}> 添加 </View>
+              <View className='cardthreeone' onClick={() => userRouteJump(`/pages/resume/addSkill/index?id=${data.info.uuid}`)}> 添加 </View>
           }
         </View>
       </View>
@@ -1147,8 +1192,8 @@ export default function NewJob() {
               <View className='cardeightzong'>
                 <Image src={item.audit} className='checkfour'/>
                 {/* wx: if="{{ item.check == 2 }}" */}
-                {item.check == 2 && <View className="editor" onClick={() => userRouteJump(`/subpackage/pages/addSkill/index?type=${i}`)}>编辑</View> }
-                {item.check == 0 && <View className="editor" onClick={() => userRouteJump(`/subpackage/pages/addSkill/index?type=${i}`)}>待修改</View>}
+                {item.check == 2 && <View className="editor" onClick={() => userRouteJump(`/pages/resume/addSkill/index?type=${i}`)}>编辑</View> }
+                {item.check == 0 && <View className="editor" onClick={() => userRouteJump(`/pages/resume/addSkill/index?type=${i}`)}>待修改</View>}
                 {item.check == 0 && <Image className="audit" src={`${IMGCDNURL}lpy/notthrough.png`}/> }
                 {/* {item.check == 1 && <Image className="audit" src={`${IMGCDNURL}lpy/review.png`} />} */}
                 <View>
@@ -1197,7 +1242,9 @@ export default function NewJob() {
           </View>
         }
       </View>
-      <CollectionRecruitList type={1} data={recData}/>
+        {recData.length && 
+        <CollectionRecruitList type={1} data={recData} />
+        }
       {/* 底部 */}
       {showtopone && !isOpened &&
         <View className="cardnine">

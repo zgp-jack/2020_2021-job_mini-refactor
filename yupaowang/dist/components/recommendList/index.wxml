@@ -2,12 +2,12 @@
     <view>
         <block wx:if="{{type === 1}}">
             <view>
-                <recruit-list-page compid="{{$compid__99}}"></recruit-list-page>
+                <recruit-list-page compid="{{$compid__102}}"></recruit-list-page>
             </view>
         </block>
         <block wx:if="{{type === 2}}">
             <view>
-                <resume-list-page compid="{{$compid__100}}"></resume-list-page>
+                <resume-list-page compid="{{$compid__103}}"></resume-list-page>
             </view>
         </block>
     </view>

@@ -56,7 +56,7 @@ var Preview = (_temp2 = _class = function (_Taro$Component) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Preview.__proto__ || Object.getPrototypeOf(Preview)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
       navigationBarTitleText: '找活名片'
-    }, _this.$usedState = ["data", "loopArray126", "loopArray127", "loopArray128", "loopArray129", "IMGCDNURL", "checkpan", "checkone", "headerimg", "age", "sex", "project", "skillbooksone", "telephone"], _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["data", "loopArray128", "loopArray129", "loopArray130", "loopArray131", "IMGCDNURL", "checkpan", "checkone", "headerimg", "age", "sex", "project", "skillbooksone", "telephone"], _this.anonymousFunc0Map = {}, _this.anonymousFunc2Map = {}, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Preview, [{
@@ -69,6 +69,8 @@ var Preview = (_temp2 = _class = function (_Taro$Component) {
   }, {
     key: "_createData",
     value: function _createData() {
+      var _this2 = this;
+
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
       var __isRunloopRef = arguments[2];
@@ -180,16 +182,23 @@ var Preview = (_temp2 = _class = function (_Taro$Component) {
           }
         });
       }, []);
-
-      this.anonymousFunc0 = function () {
-        return _taroWeapp2.default.navigateTo({ url: "/pages/resume/projectList/index" });
+      // 点击图片
+      var handleImg = function handleImg(e) {
+        _taroWeapp2.default.previewImage({
+          current: e,
+          urls: [e]
+        });
       };
 
       this.anonymousFunc1 = function () {
-        return _taroWeapp2.default.navigateTo({ url: "/pages/resume/skillList/index" });
+        return _taroWeapp2.default.navigateTo({ url: "/pages/resume/projectList/index?preview=1" });
       };
 
-      var loopArray126 = data.info.miniInfoOccupations.length ? data.info.miniInfoOccupations.map(function (v, i) {
+      this.anonymousFunc4 = function () {
+        return _taroWeapp2.default.navigateTo({ url: "/pages/resume/skillList/index?preview=1" });
+      };
+
+      var loopArray128 = data.info.miniInfoOccupations.length ? data.info.miniInfoOccupations.map(function (v, i) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
@@ -199,7 +208,7 @@ var Preview = (_temp2 = _class = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray127 = data.introduces.tags.length ? data.introduces.tags.map(function (v, i) {
+      var loopArray129 = data.introduces.tags.length ? data.introduces.tags.map(function (v, i) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
@@ -209,7 +218,7 @@ var Preview = (_temp2 = _class = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray128 = data.project.length ? project.map(function (item, i) {
+      var loopArray130 = data.project.length ? project.map(function (item, i) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
@@ -219,8 +228,15 @@ var Preview = (_temp2 = _class = function (_Taro$Component) {
             $original: (0, _taroWeapp.internal_get_original)(v)
           };
           var $loopState__temp8 = data.project.length ? i + i : null;
+          var _$indexKey = "bdezz" + i + "-" + i;
+
+          _this2.anonymousFunc0Map[_$indexKey] = function () {
+            return handleImg(v.$original);
+          };
+
           return {
             $loopState__temp8: $loopState__temp8,
+            _$indexKey: _$indexKey,
             $original: v.$original
           };
         }) : [];
@@ -230,7 +246,7 @@ var Preview = (_temp2 = _class = function (_Taro$Component) {
           $original: item.$original
         };
       }) : [];
-      var loopArray129 = data.certificates.length ? skillbooksone.map(function (item, _anonIdx) {
+      var loopArray131 = data.certificates.length ? skillbooksone.map(function (item, __index3) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
@@ -239,8 +255,15 @@ var Preview = (_temp2 = _class = function (_Taro$Component) {
             $original: (0, _taroWeapp.internal_get_original)(v)
           };
           var $loopState__temp10 = data.certificates.length ? i + i : null;
+          var _$indexKey2 = "bdfzz" + __index3 + "-" + i;
+
+          _this2.anonymousFunc2Map[_$indexKey2] = function () {
+            return handleImg(v.$original);
+          };
+
           return {
             $loopState__temp10: $loopState__temp10,
+            _$indexKey2: _$indexKey2,
             $original: v.$original
           };
         }) : [];
@@ -251,10 +274,10 @@ var Preview = (_temp2 = _class = function (_Taro$Component) {
       }) : [];
       Object.assign(this.__state, {
         data: data,
-        loopArray126: loopArray126,
-        loopArray127: loopArray127,
         loopArray128: loopArray128,
         loopArray129: loopArray129,
+        loopArray130: loopArray130,
+        loopArray131: loopArray131,
         IMGCDNURL: _index2.IMGCDNURL,
         checkpan: checkpan,
         checkone: checkone,
@@ -269,18 +292,44 @@ var Preview = (_temp2 = _class = function (_Taro$Component) {
     }
   }, {
     key: "anonymousFunc0",
-    value: function anonymousFunc0(e) {
+    value: function anonymousFunc0(_$indexKey) {
+      var _anonymousFunc0Map;
+
       ;
+
+      for (var _len2 = arguments.length, e = Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
+        e[_key2 - 1] = arguments[_key2];
+      }
+
+      return this.anonymousFunc0Map[_$indexKey] && (_anonymousFunc0Map = this.anonymousFunc0Map)[_$indexKey].apply(_anonymousFunc0Map, e);
     }
   }, {
     key: "anonymousFunc1",
     value: function anonymousFunc1(e) {
       ;
     }
+  }, {
+    key: "anonymousFunc2",
+    value: function anonymousFunc2(_$indexKey2) {
+      var _anonymousFunc2Map;
+
+      ;
+
+      for (var _len3 = arguments.length, e = Array(_len3 > 1 ? _len3 - 1 : 0), _key3 = 1; _key3 < _len3; _key3++) {
+        e[_key3 - 1] = arguments[_key3];
+      }
+
+      return this.anonymousFunc2Map[_$indexKey2] && (_anonymousFunc2Map = this.anonymousFunc2Map)[_$indexKey2].apply(_anonymousFunc2Map, e);
+    }
+  }, {
+    key: "anonymousFunc4",
+    value: function anonymousFunc4(e) {
+      ;
+    }
   }]);
 
   return Preview;
-}(_taroWeapp2.default.Component), _class.$$events = ["anonymousFunc0", "anonymousFunc1"], _class.$$componentPath = "pages/resume/preview/index", _temp2);
+}(_taroWeapp2.default.Component), _class.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc4"], _class.$$componentPath = "pages/resume/preview/index", _temp2);
 
 
 Preview.config = { navigationBarTitleText: '找活名片' };

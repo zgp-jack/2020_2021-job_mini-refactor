@@ -1024,3 +1024,13 @@ export function resumesUpdateTopResumeAction(data): Promise<Inter.Result> {
     data,
   })
 }
+
+// 找活投诉
+export function resumesComplainAction(data): Promise<Inter.Result> {
+  return doRequestAction({
+    url: api.resumesComplainUrl,
+    method: 'POST',
+    failToast: true,
+    data,
+  })
+}

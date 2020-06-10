@@ -18,3 +18,5 @@ export const UserPublishAreaHistory: string = 'userPublishAreaHistory'
 export const SearchList: string = 'searchList'
 // 高德api的userlocation
 export const UserLocation: string = 'userLocation'
+// 找活名片info信息
+export const Introinfo: string = 'introinfo'

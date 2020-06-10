@@ -6,6 +6,10 @@
   box-shadow: 0 0 1rpx #e7e6e4;
   margin-top: 20rpx;
   padding-bottom: 20rpx; }
+.iconImage {
+  width: 120rpx;
+  height: 30rpx;
+  margin-left: 14rpx; }
 .header {
   width: 93%;
   margin: 0 auto;
@@ -93,11 +97,22 @@
   position: relative;
   margin-bottom: 8rpx;
   margin-top: 18rpx; }
+.linezo::before {
+  position: absolute;
+  content: '';
+  left: 14rpx;
+  top: 0;
+  width: 1rpx;
+  height: 100%;
+  background: #dcdcdc;
+  -webkit-transform: scaleX(0.7);
+          transform: scaleX(0.7); }
 .cardotext {
   position: relative;
   width: 100%;
   display: flex;
-  vertical-align: baseline; }
+  vertical-align: baseline;
+  margin-bottom: 6rpx; }
 .oworkotext {
   width: 20.5%;
   margin: 0;

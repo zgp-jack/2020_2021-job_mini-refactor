@@ -131,6 +131,9 @@ export default function Topping() {
     }
     // 找活
     if(rec){
+      Taro.setNavigationBarTitle({
+        title: '找活置顶'
+      });
       let params ={
         interface_version:'v2'
       }

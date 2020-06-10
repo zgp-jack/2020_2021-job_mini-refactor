@@ -4,22 +4,22 @@
             <view class="topping-title">当前选择置顶范围：</view>
             <view class="topping-list-box">
                 <block wx:if="{{province}}">
-                    <view class="topping-list" bindtap="anonymousFunc0" wx:for="{{loopArray143}}" wx:for-item="v" wx:for-index="__index0" data-e-tap-so="this" data-e-tap-a-a="{{v._$indexKey}}">{{v.$original.name}}
+                    <view class="topping-list" bindtap="anonymousFunc0" wx:for="{{loopArray145}}" wx:for-item="v" wx:for-index="__index0" data-e-tap-so="this" data-e-tap-a-a="{{v._$indexKey}}">{{v.$original.name}}
                         <image src="{{IMGCDNURL + 'lpy/delete.png'}}" class="topping-list-image"></image>
                     </view>
                 </block>
                 <block wx:if="{{params}}">
-                    <view class="topping-list" bindtap="anonymousFunc1" wx:for="{{loopArray144}}" wx:for-item="v" wx:for-index="__index1" data-e-tap-so="this" data-e-tap-a-a="{{v._$indexKey2}}">{{v.$original.name}}
+                    <view class="topping-list" bindtap="anonymousFunc1" wx:for="{{loopArray146}}" wx:for-item="v" wx:for-index="__index1" data-e-tap-so="this" data-e-tap-a-a="{{v._$indexKey2}}">{{v.$original.name}}
                         <image src="{{IMGCDNURL + 'lpy/delete.png'}}" class="topping-list-image"></image>
                     </view>
                 </block>
                 <block wx:if="{{params}}">
-                    <view class="topping-list" bindtap="anonymousFunc2" wx:for="{{loopArray145}}" wx:for-item="v" wx:for-index="__index2" data-e-tap-so="this" data-e-tap-a-a="{{v._$indexKey3}}">{{v.$original.name}}
+                    <view class="topping-list" bindtap="anonymousFunc2" wx:for="{{loopArray147}}" wx:for-item="v" wx:for-index="__index2" data-e-tap-so="this" data-e-tap-a-a="{{v._$indexKey3}}">{{v.$original.name}}
                         <image src="{{IMGCDNURL + 'lpy/delete.png'}}" class="topping-list-image"></image>
                     </view>
                 </block>
                 <block wx:if="{{params}}">
-                    <view class="topping-list" bindtap="anonymousFunc3" wx:for="{{loopArray146}}" wx:for-item="v" wx:for-index="__index3" data-e-tap-so="this" data-e-tap-a-a="{{v._$indexKey4}}">{{v.$original.name}}
+                    <view class="topping-list" bindtap="anonymousFunc3" wx:for="{{loopArray148}}" wx:for-item="v" wx:for-index="__index3" data-e-tap-so="this" data-e-tap-a-a="{{v._$indexKey4}}">{{v.$original.name}}
                         <image src="{{IMGCDNURL + 'lpy/delete.png'}}" class="topping-list-image"></image>
                     </view>
                 </block>
@@ -94,7 +94,7 @@
             </view>
             <view>
                 <view class="topping-toprule">置顶规则</view>
-                <view wx:key="$loopState__temp2" class="topping-toprule-list" wx:for="{{loopArray147}}" wx:for-item="v" wx:for-index="i">{{v.$original}}</view>
+                <view wx:key="$loopState__temp2" class="topping-toprule-list" wx:for="{{loopArray149}}" wx:for-item="v" wx:for-index="i">{{v.$original}}</view>
                 <view class="topping-toprule-phone" bindtap="anonymousFunc12">{{SERVERPHONE}}</view>
             </view>
         </view>

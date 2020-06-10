@@ -14,7 +14,7 @@ interface PROPS {
 // 招工详情就是招工
 // 找活详情就去就是找活
 
-export default function CollectionRecruitList({data=[],type}: PROPS) {
+export default function CollectionRecruitList({ data = [], type}: PROPS) {
   return(
     <View>
       {/* type === 1 招工 */}

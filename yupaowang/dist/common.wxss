@@ -23,6 +23,191 @@
 .clearfix {
   zoom: 1; }
 
+.publish-recruit-container {
+  position: relative;
+  padding: 20rpx; }
+
+.publish-recruit-container .publish-recruit-card {
+    position: relative;
+    width: 100%;
+    padding: 10rpx 20rpx;
+    border-radius: 10rpx;
+    background-color: white;
+    margin-bottom: 15rpx;
+    box-shadow: 0 0 10rpx #e7e6e4; }
+
+.publish-recruit-container .publish-recruit-card .publish-list-item {
+      position: relative;
+      width: 100%;
+      min-height: 110rpx;
+      padding: 15rpx 0;
+      padding-left: 180rpx;
+      border-bottom: 1rpx solid #dcdcdc; }
+
+.publish-recruit-container .publish-recruit-card .publish-list-item .pulish-list-title {
+        position: absolute;
+        width: 140rpx;
+        left: 0;
+        top: 15rpx;
+        display: block;
+        text-align: justify;
+        line-height: 80rpx;
+        font-weight: bold;
+        font-size: 30rpx; }
+
+.publish-recruit-container .publish-recruit-card .publish-list-item .pulish-list-title::after {
+          content: '.';
+          width: 100%;
+          display: inline-block;
+          overflow: hidden;
+          height: 0; }
+
+.publish-recruit-container .publish-recruit-card .publish-list-item .publish-list-input {
+        position: relative;
+        padding: 20rpx 0;
+        width: 100%;
+        line-height: 45rpx;
+        min-height: 80rpx;
+        display: block;
+        font-size: 30rpx; }
+
+.publish-recruit-container .publish-recruit-card .publish-list-item .publish-list-input .publish-input-list {
+          position: relative;
+          display: inline-block;
+          margin-right: 20rpx; }
+
+.publish-recruit-container .publish-recruit-card .publish-list-item .publish-list-input .publish-input-list:nth-last-child(1) {
+            margin-right: 0; }
+
+.publish-recruit-container .publish-recruit-card .publish-list-item-code .publish-list-input {
+      padding-right: 300rpx; }
+
+.publish-recruit-container .publish-recruit-card .publish-list-item-code .publish-code-btn {
+      position: absolute;
+      line-height: 70rpx;
+      border-radius: 10rpx;
+      background-color: #0099ff;
+      color: white;
+      font-size: 28rpx;
+      text-align: center;
+      right: 0;
+      top: 20rpx;
+      width: 250rpx; }
+
+.publish-recruit-container .publish-recruit-card .publish-list-textarea {
+      position: relative;
+      padding-top: 25rpx; }
+
+.publish-recruit-container .publish-recruit-card .publish-list-textarea .publish-textarea-title {
+        position: relative;
+        font-size: 30rpx;
+        font-weight: bold;
+        text-align: justify;
+        display: block;
+        width: 140rpx;
+        height: 60rpx; }
+
+.publish-recruit-container .publish-recruit-card .publish-list-textarea .publish-textarea-title::after {
+          content: '.';
+          width: 100%;
+          display: inline-block;
+          overflow: hidden;
+          height: 0; }
+
+.publish-recruit-container .publish-recruit-card .publish-list-textarea .publish-textarea {
+        position: relative;
+        width: 100%;
+        display: block;
+        height: 200rpx;
+        font-size: 30rpx;
+        line-height: 40rpx;
+        padding-bottom: 60rpx; }
+
+.publish-recruit-container .publish-recruit-card .publish-upload-header {
+      position: relative; }
+
+.publish-recruit-container .publish-recruit-card .publish-upload-header .publish-upload-title {
+        position: relative;
+        text-align: center;
+        padding: 20rpx 0;
+        border-bottom: 1rpx dashed #dcdcdc; }
+
+.publish-recruit-container .publish-recruit-card .publish-upload-header .publish-upload-title .publish-upload-red {
+          position: relative;
+          padding-right: 60rpx;
+          color: #333;
+          font-size: 34rpx;
+          display: inline-block; }
+
+.publish-recruit-container .publish-recruit-card .publish-upload-header .publish-upload-title .publish-upload-red .publish-upload-wbg {
+            position: absolute;
+            top: 2rpx;
+            right: 10rpx;
+            display: inline-block;
+            width: 40rpx;
+            height: 40rpx;
+            background: url("http://cdn.yupao.com/miniprogram/images/upload-bg.png") no-repeat;
+            background-size: 100% 100%; }
+
+.publish-recruit-container .publish-recruit-card .publish-upload-header .publish-upload-title .publish-upload-red .publish-upload-wbg .publish-upload-ibg {
+              position: absolute;
+              display: block;
+              width: 16rpx;
+              height: 16rpx;
+              bottom: 10rpx;
+              left: 12rpx;
+              background: url("http://cdn.yupao.com/miniprogram/images/upload-down.png") no-repeat;
+              background-size: 100% 100%;
+              -webkit-transform-origin: center;
+                      transform-origin: center;
+              transition: 0.5s; }
+
+.publish-recruit-container .publish-recruit-card .publish-upload-header .publish-upload-title .publish-upload-smtips {
+          color: #ff0000;
+          font-size: 34rpx; }
+
+.publish-recruit-container .publish-recruit-card .publish-upload-header .publish-upload-tips {
+        font-size: 26rpx;
+        padding: 15rpx 0;
+        color: #999999;
+        text-align: center; }
+
+.publish-recruit-container .publish-recruit-btn {
+    position: relative;
+    width: 70%;
+    line-height: 85rpx;
+    background-color: #0099ff;
+    color: white;
+    text-align: center;
+    margin: 30rpx auto;
+    font-size: 30rpx;
+    border-radius: 3rpx; }
+
+.overwords {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis; }
+
+.showMore {
+  position: relative;
+  width: 100%;
+  padding: 20rpx 0;
+  text-align: center;
+  font-size: 26rpx;
+  color: #525252; }
+
+.clearfix:after {
+  content: "";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+  font-size: 0; }
+
+.clearfix {
+  zoom: 1; }
+
 page, .publishrecruit-container {
   position: relative;
   width: 100%;
@@ -439,7 +624,8 @@ page, .publishrecruit-container {
   height: 80rpx;
   display: flex;
   flex-direction: row;
-  justify-content: space-between; }
+  justify-content: space-between;
+  padding: 0 22rpx; }
 
 .cardonesonone {
   font-size: 30rpx;
@@ -578,6 +764,17 @@ page, .publishrecruit-container {
   margin-bottom: 8rpx;
   margin-top: 18rpx; }
 
+.linezo::before {
+  position: absolute;
+  content: '';
+  left: 14rpx;
+  top: 0;
+  width: 1rpx;
+  height: 100%;
+  background: #dcdcdc;
+  -webkit-transform: scaleX(0.7);
+          transform: scaleX(0.7); }
+
 .cworkotype {
   position: relative;
   width: 100%;
@@ -589,8 +786,8 @@ page, .publishrecruit-container {
 .cworkotype::before {
   position: absolute;
   content: '';
-  width: 11rpx;
-  height: 11rpx;
+  width: 23rpx;
+  height: 23rpx;
   background: url(http://cdn.yupao.com/miniprogram/images/newjobinfo-steps.png?t=11) no-repeat;
   background-size: 100% 100%;
   left: 14rpx;
@@ -644,7 +841,7 @@ page, .publishrecruit-container {
   border-radius: 6rpx;
   text-align: center;
   color: #2a2a2a;
-  padding: 4rpx; }
+  padding: 5rpx; }
 
 .ocworkotyp .ocworkotyptu:nth-last-child(1) {
   margin-right: 0; }
@@ -678,8 +875,8 @@ page, .publishrecruit-container {
 .cardotext::before {
   position: absolute;
   content: '';
-  width: 11rpx;
-  height: 11rpx;
+  width: 23rpx;
+  height: 23rpx;
   background: url(http://cdn.yupao.com/miniprogram/images/newjobinfo-steps.png?t=11) no-repeat;
   background-size: 100% 100%;
   left: 14rpx;
@@ -1154,191 +1351,6 @@ page, .publishrecruit-container {
 .headerimg {
   height: 49rpx;
   width: 49rpx; }
-
-.overwords {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis; }
-
-.showMore {
-  position: relative;
-  width: 100%;
-  padding: 20rpx 0;
-  text-align: center;
-  font-size: 26rpx;
-  color: #525252; }
-
-.clearfix:after {
-  content: "";
-  display: block;
-  clear: both;
-  visibility: hidden;
-  line-height: 0;
-  height: 0;
-  font-size: 0; }
-
-.clearfix {
-  zoom: 1; }
-
-.publish-recruit-container {
-  position: relative;
-  padding: 20rpx; }
-
-.publish-recruit-container .publish-recruit-card {
-    position: relative;
-    width: 100%;
-    padding: 10rpx 20rpx;
-    border-radius: 10rpx;
-    background-color: white;
-    margin-bottom: 15rpx;
-    box-shadow: 0 0 10rpx #e7e6e4; }
-
-.publish-recruit-container .publish-recruit-card .publish-list-item {
-      position: relative;
-      width: 100%;
-      min-height: 110rpx;
-      padding: 15rpx 0;
-      padding-left: 180rpx;
-      border-bottom: 1rpx solid #dcdcdc; }
-
-.publish-recruit-container .publish-recruit-card .publish-list-item .pulish-list-title {
-        position: absolute;
-        width: 140rpx;
-        left: 0;
-        top: 15rpx;
-        display: block;
-        text-align: justify;
-        line-height: 80rpx;
-        font-weight: bold;
-        font-size: 30rpx; }
-
-.publish-recruit-container .publish-recruit-card .publish-list-item .pulish-list-title::after {
-          content: '.';
-          width: 100%;
-          display: inline-block;
-          overflow: hidden;
-          height: 0; }
-
-.publish-recruit-container .publish-recruit-card .publish-list-item .publish-list-input {
-        position: relative;
-        padding: 20rpx 0;
-        width: 100%;
-        line-height: 45rpx;
-        min-height: 80rpx;
-        display: block;
-        font-size: 30rpx; }
-
-.publish-recruit-container .publish-recruit-card .publish-list-item .publish-list-input .publish-input-list {
-          position: relative;
-          display: inline-block;
-          margin-right: 20rpx; }
-
-.publish-recruit-container .publish-recruit-card .publish-list-item .publish-list-input .publish-input-list:nth-last-child(1) {
-            margin-right: 0; }
-
-.publish-recruit-container .publish-recruit-card .publish-list-item-code .publish-list-input {
-      padding-right: 300rpx; }
-
-.publish-recruit-container .publish-recruit-card .publish-list-item-code .publish-code-btn {
-      position: absolute;
-      line-height: 70rpx;
-      border-radius: 10rpx;
-      background-color: #0099ff;
-      color: white;
-      font-size: 28rpx;
-      text-align: center;
-      right: 0;
-      top: 20rpx;
-      width: 250rpx; }
-
-.publish-recruit-container .publish-recruit-card .publish-list-textarea {
-      position: relative;
-      padding-top: 25rpx; }
-
-.publish-recruit-container .publish-recruit-card .publish-list-textarea .publish-textarea-title {
-        position: relative;
-        font-size: 30rpx;
-        font-weight: bold;
-        text-align: justify;
-        display: block;
-        width: 140rpx;
-        height: 60rpx; }
-
-.publish-recruit-container .publish-recruit-card .publish-list-textarea .publish-textarea-title::after {
-          content: '.';
-          width: 100%;
-          display: inline-block;
-          overflow: hidden;
-          height: 0; }
-
-.publish-recruit-container .publish-recruit-card .publish-list-textarea .publish-textarea {
-        position: relative;
-        width: 100%;
-        display: block;
-        height: 200rpx;
-        font-size: 30rpx;
-        line-height: 40rpx;
-        padding-bottom: 60rpx; }
-
-.publish-recruit-container .publish-recruit-card .publish-upload-header {
-      position: relative; }
-
-.publish-recruit-container .publish-recruit-card .publish-upload-header .publish-upload-title {
-        position: relative;
-        text-align: center;
-        padding: 20rpx 0;
-        border-bottom: 1rpx dashed #dcdcdc; }
-
-.publish-recruit-container .publish-recruit-card .publish-upload-header .publish-upload-title .publish-upload-red {
-          position: relative;
-          padding-right: 60rpx;
-          color: #333;
-          font-size: 34rpx;
-          display: inline-block; }
-
-.publish-recruit-container .publish-recruit-card .publish-upload-header .publish-upload-title .publish-upload-red .publish-upload-wbg {
-            position: absolute;
-            top: 2rpx;
-            right: 10rpx;
-            display: inline-block;
-            width: 40rpx;
-            height: 40rpx;
-            background: url("http://cdn.yupao.com/miniprogram/images/upload-bg.png") no-repeat;
-            background-size: 100% 100%; }
-
-.publish-recruit-container .publish-recruit-card .publish-upload-header .publish-upload-title .publish-upload-red .publish-upload-wbg .publish-upload-ibg {
-              position: absolute;
-              display: block;
-              width: 16rpx;
-              height: 16rpx;
-              bottom: 10rpx;
-              left: 12rpx;
-              background: url("http://cdn.yupao.com/miniprogram/images/upload-down.png") no-repeat;
-              background-size: 100% 100%;
-              -webkit-transform-origin: center;
-                      transform-origin: center;
-              transition: 0.5s; }
-
-.publish-recruit-container .publish-recruit-card .publish-upload-header .publish-upload-title .publish-upload-smtips {
-          color: #ff0000;
-          font-size: 34rpx; }
-
-.publish-recruit-container .publish-recruit-card .publish-upload-header .publish-upload-tips {
-        font-size: 26rpx;
-        padding: 15rpx 0;
-        color: #999999;
-        text-align: center; }
-
-.publish-recruit-container .publish-recruit-btn {
-    position: relative;
-    width: 70%;
-    line-height: 85rpx;
-    background-color: #0099ff;
-    color: white;
-    text-align: center;
-    margin: 30rpx auto;
-    font-size: 30rpx;
-    border-radius: 3rpx; }
 
 .overwords {
   overflow: hidden;

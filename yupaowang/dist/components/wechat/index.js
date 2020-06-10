@@ -64,7 +64,7 @@ var WechatNotice = (_temp2 = _class = function (_Taro$Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = WechatNotice.__proto__ || Object.getPrototypeOf(WechatNotice)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__98", "wechatNoticeData"], _this.customComponents = ["SwiperNews"], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = WechatNotice.__proto__ || Object.getPrototypeOf(WechatNotice)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__101", "wechatNoticeData"], _this.customComponents = ["SwiperNews"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(WechatNotice, [{
@@ -83,10 +83,10 @@ var WechatNotice = (_temp2 = _class = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__98"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__101"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__98 = _genCompid2[0],
-          $compid__98 = _genCompid2[1];
+          $prevCompid__101 = _genCompid2[0],
+          $compid__101 = _genCompid2[1];
 
       var _useState = (0, _taroWeapp.useState)({
         vertical: true,
@@ -118,9 +118,9 @@ var WechatNotice = (_temp2 = _class = function (_Taro$Component) {
       }, []);
       _taroWeapp.propsManager.set({
         "data": swiperNews
-      }, $compid__98, $prevCompid__98);
+      }, $compid__101, $prevCompid__101);
       Object.assign(this.__state, {
-        $compid__98: $compid__98,
+        $compid__101: $compid__101,
         wechatNoticeData: wechatNoticeData
       });
       return this.__state;
