@@ -22,9 +22,6 @@ var _get = function get(object, property, receiver) { if (object === null) objec
 
 var _class, _temp2;
 
-// import { detailContext } from '../detail';
-
-
 var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
 var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
@@ -59,7 +56,7 @@ var ProjectList = (_temp2 = _class = function (_Taro$Component) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ProjectList.__proto__ || Object.getPrototypeOf(ProjectList)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
       navigationBarTitleText: '项目经验'
-    }, _this.$usedState = ["loopArray197", "$compid__151", "data", "IMGCDNURL", "preview", "detail"], _this.anonymousFunc0Map = {}, _this.anonymousFunc1Map = {}, _this.anonymousFunc2Map = {}, _this.customComponents = ["Nodata"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["loopArray94", "$compid__98", "data", "IMGCDNURL", "preview", "detail"], _this.anonymousFunc0Map = {}, _this.anonymousFunc1Map = {}, _this.anonymousFunc2Map = {}, _this.customComponents = ["Nodata"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(ProjectList, [{
@@ -80,17 +77,19 @@ var ProjectList = (_temp2 = _class = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__151"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__98"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__151 = _genCompid2[0],
-          $compid__151 = _genCompid2[1];
+          $prevCompid__98 = _genCompid2[0],
+          $compid__98 = _genCompid2[1];
 
       var router = (0, _taroWeapp.useRouter)();
+      // 获取传递过来的参数
       var _router$params = router.params,
           id = _router$params.id,
           preview = _router$params.preview,
-          detail = _router$params.detail;
-      // const { project } = useContext(detailContext)
+          detail = _router$params.detail,
+          location = _router$params.location,
+          uuid = _router$params.uuid;
       // 刷新一次
 
       var _useState = (0, _taroWeapp.useState)(false),
@@ -110,15 +109,21 @@ var ProjectList = (_temp2 = _class = function (_Taro$Component) {
           setRefresh(false);
           return;
         }
-        // if (detail){
-        // if (project){
-        //   setData(project);
-        // }
-        // }else{
-        (0, _index.resumeListAction)().then(function (res) {
-          setData(res.data.project);
-        });
-        // }
+        if (detail) {
+          var params = {
+            location: location,
+            resume_uuid: uuid
+          };
+          (0, _index.resumeDetailAction)(params).then(function (res) {
+            if (res.errcode === 'ok') {
+              setData(res.project);
+            }
+          });
+        } else {
+          (0, _index.resumeListAction)().then(function (res) {
+            setData(res.data.project);
+          });
+        }
       });
       // 点击方法
       var handleImg = function handleImg(e) {
@@ -139,29 +144,29 @@ var ProjectList = (_temp2 = _class = function (_Taro$Component) {
         return userRouteJump("/pages/resume/addProject/index?id=" + id);
       };
 
-      var loopArray197 = data.map(function (item, i) {
+      var loopArray94 = data.map(function (item, i) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
 
-        var _$indexKey = "cdfzz" + i;
+        var _$indexKey = "jgzzz" + i;
 
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return userRouteJump("/pages/resume/addProject/index?type=" + i + "&id=" + id);
         };
 
-        var _$indexKey2 = "cdgzz" + i;
+        var _$indexKey2 = "jhzzz" + i;
 
         _this2.anonymousFunc1Map[_$indexKey2] = function () {
           return userRouteJump("/pages/resume/addProject/index?type=" + i + "&id=" + id);
         };
 
-        var $anonymousCallee__57 = item.$original.image.map(function (v, i) {
+        var $anonymousCallee__18 = item.$original.image.map(function (v, i) {
           v = {
             $original: (0, _taroWeapp.internal_get_original)(v)
           };
           var $loopState__temp2 = i + i;
-          var _$indexKey3 = "cdhzz" + i + "-" + i;
+          var _$indexKey3 = "jizzz" + i + "-" + i;
 
           _this2.anonymousFunc2Map[_$indexKey3] = function () {
             return handleImg(v.$original);
@@ -176,16 +181,16 @@ var ProjectList = (_temp2 = _class = function (_Taro$Component) {
         return {
           _$indexKey: _$indexKey,
           _$indexKey2: _$indexKey2,
-          $anonymousCallee__57: $anonymousCallee__57,
+          $anonymousCallee__18: $anonymousCallee__18,
           $original: item.$original
         };
       });
       !data.length && _taroWeapp.propsManager.set({
         "text": "\u6682\u65E0\u76F8\u5173\u5185\u5BB9"
-      }, $compid__151, $prevCompid__151);
+      }, $compid__98, $prevCompid__98);
       Object.assign(this.__state, {
-        loopArray197: loopArray197,
-        $compid__151: $compid__151,
+        loopArray94: loopArray94,
+        $compid__98: $compid__98,
         data: data,
         IMGCDNURL: _index2.IMGCDNURL,
         preview: preview,

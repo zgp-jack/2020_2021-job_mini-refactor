@@ -32,11 +32,13 @@ var _index2 = __webpack_require__(/*! ../../../utils/helper/index */ "./src/util
 
 var _index3 = __webpack_require__(/*! ../../../config/index */ "./src/config/index.ts");
 
-var _index4 = __webpack_require__(/*! ../../../utils/v/index */ "./src/utils/v/index.ts");
+var _index4 = __webpack_require__(/*! ../../../utils/subscribeToNews/index */ "./src/utils/subscribeToNews/index.ts");
 
-var _index5 = __webpack_require__(/*! ../../../utils/msg/index */ "./src/utils/msg/index.ts");
+var _index5 = __webpack_require__(/*! ../../../utils/v/index */ "./src/utils/v/index.ts");
 
-var _index6 = _interopRequireDefault(_index5);
+var _index6 = __webpack_require__(/*! ../../../utils/msg/index */ "./src/utils/msg/index.ts");
+
+var _index7 = _interopRequireDefault(_index6);
 
 __webpack_require__(/*! ./index.scss */ "./src/pages/integral/tabber/index.scss");
 
@@ -68,7 +70,7 @@ var Tabber = (_temp2 = _class = function (_Taro$Component) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Tabber.__proto__ || Object.getPrototypeOf(Tabber)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
       navigationBarTitleText: ''
-    }, _this.$usedState = ["data", "modalData", "loopArray137", "loopArray138", "$compid__118", "time", "start", "end", "IMGCDNURL", "initInfo", "sourceList", "consumeList", "startType", "modal", "complaintModal", "textarea", "showTime", "title", "num"], _this.anonymousFunc3Map = {}, _this.customComponents = ["Nodata"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["data", "modalData", "loopArray137", "loopArray138", "$compid__121", "$compid__122", "time", "start", "end", "IMGCDNURL", "initInfo", "sourceList", "consumeList", "startType", "modal", "complaintModal", "showTime", "title", "num"], _this.anonymousFunc3Map = {}, _this.customComponents = ["Nodata", "Report"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Tabber, [{
@@ -89,10 +91,15 @@ var Tabber = (_temp2 = _class = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__118"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__121"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__118 = _genCompid2[0],
-          $compid__118 = _genCompid2[1];
+          $prevCompid__121 = _genCompid2[0],
+          $compid__121 = _genCompid2[1];
+
+      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__122"),
+          _genCompid4 = _slicedToArray(_genCompid3, 2),
+          $prevCompid__122 = _genCompid4[0],
+          $compid__122 = _genCompid4[1];
 
       var router = (0, _taroWeapp.useRouter)();
       var _router$params = router.params,
@@ -651,8 +658,8 @@ var Tabber = (_temp2 = _class = function (_Taro$Component) {
       };
       // 提交投诉
       var handleSubmit = function handleSubmit() {
-        if (!(0, _index4.isVaildVal)(textarea, 15, 500)) {
-          (0, _index6.default)('输入内容不少于15个字且必须包含文字');
+        if (!(0, _index5.isVaildVal)(textarea, 15, 500)) {
+          (0, _index7.default)('输入内容不少于15个字且必须包含文字');
           return false;
         }
         var params = {
@@ -660,10 +667,18 @@ var Tabber = (_temp2 = _class = function (_Taro$Component) {
           type: 'job',
           infoId: complaintId
         };
-        (0, _index.publishComplainAction)(params).then(function () {
-          (0, _index6.default)('提交成功');
-          setComplaintModal(false);
-          setModal(false);
+        (0, _index.publishComplainAction)(params).then(function (res) {
+          if (res.errcode === 'ok') {
+            (0, _index4.SubscribeToNews)('complain', function () {
+              (0, _index6.SubPopup)({
+                tips: res.errmsg,
+                callback: function callback() {
+                  setComplaintModal(false);
+                  setModal(false);
+                }
+              });
+            });
+          }
         });
       };
 
@@ -689,25 +704,13 @@ var Tabber = (_temp2 = _class = function (_Taro$Component) {
         return handleComplaint(modalData.id);
       };
 
-      this.anonymousFunc7 = function (e) {
-        return handleTextarea(e);
-      };
-
-      this.anonymousFunc8 = function () {
-        setComplaintModal(false);
-      };
-
-      this.anonymousFunc9 = function () {
-        return handleSubmit();
-      };
-
       var loopArray137 = data.lists.map(function (item, index) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
         var $loopState__temp2 = index + index;
 
-        var _$indexKey = "bebzz" + index;
+        var _$indexKey = "bedzz" + index;
 
         _this2.anonymousFunc3Map[_$indexKey] = function () {
           return handleModal(item.$original.id);
@@ -731,13 +734,21 @@ var Tabber = (_temp2 = _class = function (_Taro$Component) {
       }) : [];
       !data.lists.length && _taroWeapp.propsManager.set({
         "text": initInfo === '0' ? '暂无积分来源记录' : '暂无积分消耗记录'
-      }, $compid__118, $prevCompid__118);
+      }, $compid__121, $prevCompid__121);
+      complaintModal && _taroWeapp.propsManager.set({
+        "display": complaintModal,
+        "textarea": textarea,
+        "handleTextarea": handleTextarea,
+        "setComplaintModal": setComplaintModal,
+        "handleSubmit": handleSubmit
+      }, $compid__122, $prevCompid__122);
       Object.assign(this.__state, {
         data: data,
         modalData: modalData,
         loopArray137: loopArray137,
         loopArray138: loopArray138,
-        $compid__118: $compid__118,
+        $compid__121: $compid__121,
+        $compid__122: $compid__122,
         time: time,
         start: start,
         end: end,
@@ -748,7 +759,6 @@ var Tabber = (_temp2 = _class = function (_Taro$Component) {
         startType: startType,
         modal: modal,
         complaintModal: complaintModal,
-        textarea: textarea,
         showTime: showTime,
         title: title,
         num: num
@@ -798,25 +808,10 @@ var Tabber = (_temp2 = _class = function (_Taro$Component) {
     value: function anonymousFunc6(e) {
       ;
     }
-  }, {
-    key: 'anonymousFunc7',
-    value: function anonymousFunc7(e) {
-      ;
-    }
-  }, {
-    key: 'anonymousFunc8',
-    value: function anonymousFunc8(e) {
-      ;
-    }
-  }, {
-    key: 'anonymousFunc9',
-    value: function anonymousFunc9(e) {
-      ;
-    }
   }]);
 
   return Tabber;
-}(_taroWeapp2.default.Component), _class.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6", "anonymousFunc7", "anonymousFunc8", "anonymousFunc9"], _class.$$componentPath = "pages/integral/tabber/index", _temp2);
+}(_taroWeapp2.default.Component), _class.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6"], _class.$$componentPath = "pages/integral/tabber/index", _temp2);
 
 
 Tabber.config = { navigationBarTitleText: '' };

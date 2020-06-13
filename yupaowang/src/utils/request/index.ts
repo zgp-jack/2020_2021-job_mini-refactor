@@ -1034,3 +1034,13 @@ export function resumesComplainAction(data): Promise<Inter.Result> {
     data,
   })
 }
+
+// 消息推送
+export function leavingMessageAction(data): Promise<Inter.Result> {
+  return doRequestAction({
+    url: api.leavingMessageUrl,
+    method: 'POST',
+    failToast: true,
+    data,
+  })
+}

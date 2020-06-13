@@ -16,6 +16,7 @@ interface PROPS {
 }
 
 export default function Profession({ data, title = '选择工种', footerTitle = '确定', closeProfession, onClickItem}: PROPS){
+  console.log(data,'datadatadata')
   return (
     <View className='profession-container'>
       <View className='profession-content'>

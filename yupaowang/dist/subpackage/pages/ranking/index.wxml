@@ -16,7 +16,14 @@
                         <view>{{v.$original.type_name}}</view>
                         <view class="rankingRules-list-content-box-text">{{v.$original.description}}</view>
                     </view>
-                    <view class="rankingRules-list-content-buttonBox" bindtap="anonymousFunc0" data-e-tap-so="this" data-e-tap-a-a="{{v._$indexKey}}">{{v.$original.button_words}}</view>
+                    <block>
+                        <block wx:if="{{v.$original.is_share != 1 && !showbutton}}">
+                            <view class="{{v.$original.jump.need_jump == 0 ? 'rankingRules-list-content-buttonBox-none' : 'rankingRules-list-content-buttonBox'}}" bindtap="anonymousFunc0" data-e-tap-so="this" data-e-tap-a-a="{{v._$indexKey}}">{{v.$original.button_words}}</view>
+                        </block>
+                        <block wx:else>
+                            <view class="rankingRules-list-content-buttonBox" bindtap="anonymousFunc1" data-e-tap-so="this" data-e-tap-a-a="{{v._$indexKey2}}">{{v.$original.button_words}}</view>
+                        </block>
+                    </block>
                 </view>
             </view>
         </view>

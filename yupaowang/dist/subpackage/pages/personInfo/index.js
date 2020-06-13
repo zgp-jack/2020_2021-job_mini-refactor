@@ -30,9 +30,13 @@ var _area = __webpack_require__(/*! ../../../models/area */ "./src/models/area.t
 
 var _area2 = _interopRequireDefault(_area);
 
-var _index = __webpack_require__(/*! ../../../utils/request/index */ "./src/utils/request/index.ts");
+var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/redux/index.js");
 
-var _index2 = __webpack_require__(/*! ../../../pages/resume/newJobs/index */ "./src/pages/resume/newJobs/index.tsx");
+var _index = __webpack_require__(/*! ../../../utils/msg/index */ "./src/utils/msg/index.ts");
+
+var _index2 = __webpack_require__(/*! ../../../utils/subscribeToNews/index */ "./src/utils/subscribeToNews/index.ts");
+
+var _index3 = __webpack_require__(/*! ../../../utils/request/index */ "./src/utils/request/index.ts");
 
 __webpack_require__(/*! ./index.scss */ "./src/subpackage/pages/personInfo/index.scss");
 
@@ -60,7 +64,7 @@ var PersonInfo = (_temp2 = _class = function (_Taro$Component) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = PersonInfo.__proto__ || Object.getPrototypeOf(PersonInfo)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
       navigationBarTitleText: '人员信息'
-    }, _this.$usedState = ["loopArray132", "formData", "multiIndex", "multiArray", "proficiencyIndex", "proficiency", "userIndex", "personnel", "ranks", "label"], _this.anonymousFunc6Map = {}, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["loopArray245", "formData", "multiIndex", "multiArray", "proficiencyIndex", "proficiency", "userIndex", "personnel", "ranks", "label"], _this.anonymousFunc6Map = {}, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(PersonInfo, [{
@@ -81,9 +85,15 @@ var PersonInfo = (_temp2 = _class = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _useContext = (0, _taroWeapp.useContext)(_index2.context),
-          userInfo = _useContext.userInfo,
-          publicList = _useContext.publicList;
+      var router = (0, _taroWeapp.useRouter)();
+      // 判断是新增还是编辑
+      var type = router.params.type;
+      // 获取存入的公用内容
+
+      var useSelectorItem = (0, _redux.useSelector)(function (state) {
+        return state;
+      });
+      // const userInfo:any=[];
 
       var _useState = (0, _taroWeapp.useState)({
         age: '',
@@ -179,16 +189,18 @@ var PersonInfo = (_temp2 = _class = function (_Taro$Component) {
           setUserIndex = _useState30[1];
 
       (0, _taroWeapp.useEffect)(function () {
-        if (publicList) {
-          var proficiencyList = publicList.prof_degree.map(function (v) {
+        var AllItem = JSON.parse(JSON.stringify(useSelectorItem.Personnel));
+        if (AllItem) {
+          console.log(AllItem);
+          var proficiencyList = AllItem.prof_degree && AllItem.prof_degree.map(function (v) {
             return v.name;
           });
           setProficiency(proficiencyList);
-          var _personnel = publicList.type.map(function (v) {
+          var _personnel = AllItem.type && AllItem.type.map(function (v) {
             return v.name;
           });
           setPersonnel(_personnel);
-          var labelList = publicList.label.map(function (v) {
+          var labelList = AllItem.label && AllItem.label.map(function (v) {
             v.click = false;return v;
           });
           setLabel(labelList);
@@ -236,61 +248,64 @@ var PersonInfo = (_temp2 = _class = function (_Taro$Component) {
           // 省和第一个市
           setMultiArray([data, lastData]);
         }
+        console.log(useSelectorItem, 'xxxxs');
         //内容回填
-        if (userInfo) {
-          var tagList = publicList.label.map(function (v) {
-            userInfo.tags.map(function (val) {
-              if (v.id === val.id) {
-                v.click = true;
-              }
-              return val;
+        if (type) {
+          var allItem = JSON.parse(JSON.stringify(useSelectorItem));
+          if (allItem.Myresume) {
+            var tagList = allItem.Personnel.label.map(function (v) {
+              allItem.Myresume.info.tags.map(function (val) {
+                if (v.id === val.id) {
+                  v.click = true;
+                }
+                return val;
+              });
+              return v;
             });
-            return v;
-          });
-          setLabel(tagList);
-          setTag(userInfo.tags);
-          if (userInfo.type !== '1') {
-            setRanks(true);
-          }
-          setFormData({
-            age: userInfo.experience,
-            proficiency: userInfo.prof_degree_str,
-            personnel: userInfo.type_str,
-            address: userInfo.hometown,
-            type: userInfo.number_people
-          });
-          var userArr = userInfo.hometown_id.split(",");
-          var one = 0;
-          var two = 0;
-          // 第一项
-          for (var _i2 = 0; _i2 < _area2.default.length; _i2++) {
-            if (userArr[0] == _area2.default[_i2].id) {
-              // 因为有全国要减1
-              one = _i2 - 1;
+            setLabel(tagList);
+            setTag(allItem.Myresume.info.tags);
+            if (allItem.Myresume.info.type !== '1') {
+              setRanks(true);
             }
-          }
-          // 第二项
-          for (var _i3 = 0; _i3 < _area2.default.length; _i3++) {
-            for (var _j2 = 0; _j2 < _area2.default[_i3].children.length; _j2++) {
-              if (userArr[1] == _area2.default[_i3].children[_j2].id) {
-                lastCity = _area2.default[_i3].children.map(function (v) {
-                  return v.name;
-                });
-                two = _j2;
+            console.log(allItem.Myresume);
+            setFormData({
+              age: allItem.Myresume.introduces.experience,
+              proficiency: allItem.Myresume.introduces.prof_degree_str,
+              personnel: allItem.Myresume.introduces.type_str,
+              address: allItem.Myresume.introduces.hometown,
+              type: allItem.Myresume.introduces.number_people
+            });
+            var userArr = allItem.Myresume.introduces.hometown_id && allItem.Myresume.introduces.hometown_id.split(",");
+            var one = 0;
+            var two = 0;
+            // 第一项
+            for (var _i2 = 0; _i2 < _area2.default.length; _i2++) {
+              if (userArr[0] == _area2.default[_i2].id) {
+                // 因为有全国要减1
+                one = _i2 - 1;
               }
             }
+            // 第二项
+            for (var _i3 = 0; _i3 < _area2.default.length; _i3++) {
+              for (var _j2 = 0; _j2 < _area2.default[_i3].children.length; _j2++) {
+                if (userArr[1] == _area2.default[_i3].children[_j2].id) {
+                  lastCity = _area2.default[_i3].children.map(function (v) {
+                    return v.name;
+                  });
+                  two = _j2;
+                }
+              }
+            }
+            setMultiIndex([one, two]);
+            setAllpro(allItem.Myresume.introduces.hometown_id.split(","));
+            if (allItem.Myresume.introduces.prof_degree > 0) {
+              setProficiencyIndex(parseInt(allItem.Myresume.introduces.prof_degree) - 1);
+            } else {
+              setProficiencyIndex(parseInt(allItem.Myresume.introduces.prof_degree));
+            }
+            setUserIndex(parseInt(allItem.Myresume.introduces.prof_degree));
+            setMultiArray([data, lastCity]);
           }
-          setMultiIndex([one, two]);
-          console.log(userInfo.hometown_id.split(","), 'userInfo.hometown_id.split(",")');
-          setAllpro(userInfo.hometown_id.split(","));
-          if (userInfo.prof_degree > 0) {
-            setProficiencyIndex(parseInt(userInfo.prof_degree) - 1);
-          } else {
-            setProficiencyIndex(parseInt(userInfo.prof_degree));
-          }
-          setUserIndex(parseInt(userInfo.prof_degree));
-          console.log(data, 'xxxx');
-          setMultiArray([data, lastCity]);
         }
       }, [edit]);
       var userEnterFrom = function userEnterFrom(e, key) {
@@ -338,6 +353,7 @@ var PersonInfo = (_temp2 = _class = function (_Taro$Component) {
       };
       // 第一列滑动
       var handlebindcolumnchange = function handlebindcolumnchange(e) {
+        console.log(e.detail.column, 'xx');
         var obj = {
           multiArray: multiArray,
           multiIndex: multiIndex
@@ -408,16 +424,25 @@ var PersonInfo = (_temp2 = _class = function (_Taro$Component) {
         console.log();
         console.log(params);
         // return;
-        (0, _index.resumesIntroduceAction)(params).then(function (res) {
+        (0, _index3.resumesIntroduceAction)(params).then(function (res) {
           if (res.errcode === 200) {
             _taroWeapp2.default.showModal({
               title: '温馨提示',
               content: res.errmsg,
               showCancel: false,
               success: function success() {
-                _taroWeapp2.default.navigateBack({
-                  delta: 1
-                });
+                if (res.errcode === 200) {
+                  (0, _index2.SubscribeToNews)("resume", function () {
+                    (0, _index.SubPopup)({
+                      tips: res.errmsg,
+                      callback: function callback() {
+                        _taroWeapp2.default.navigateBack({
+                          delta: 1
+                        });
+                      }
+                    });
+                  });
+                }
               }
             });
             return;
@@ -457,12 +482,12 @@ var PersonInfo = (_temp2 = _class = function (_Taro$Component) {
       };
 
       this.anonymousFunc7 = handleSubmit;
-      var loopArray132 = label.map(function (v, __index6) {
+      var loopArray245 = label.map(function (v, __index6) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
 
-        var _$indexKey = "bdgzz" + __index6;
+        var _$indexKey = "cabzz" + __index6;
 
         _this2.anonymousFunc6Map[_$indexKey] = function () {
           return handleText(v.$original);
@@ -474,7 +499,7 @@ var PersonInfo = (_temp2 = _class = function (_Taro$Component) {
         };
       });
       Object.assign(this.__state, {
-        loopArray132: loopArray132,
+        loopArray245: loopArray245,
         formData: formData,
         multiIndex: multiIndex,
         multiArray: multiArray,

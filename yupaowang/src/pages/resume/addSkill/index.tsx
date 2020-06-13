@@ -2,8 +2,10 @@ import Taro, { useState, useEffect, Config, useContext, useRouter } from '@taroj
 import { View, Text, Picker, Input } from '@tarojs/components'
 import ImageView from '../../../components/imageview'
 import UploadImgAction from '../../../utils/upload'
-import Msg from '../../../utils/msg'
-import { context } from '../../../pages/resume/newJobs'
+import { useSelector } from '@tarojs/redux'
+import Msg, { SubPopup } from '../../../utils/msg'
+import { SubscribeToNews } from '../../../utils/subscribeToNews';
+// import { context } from '../../../pages/resume/newJobs'
 import { resumesCertificateAction, delCertificateAction } from '../../../utils/request/index'
 import './index.scss'
 // import { contextItem }  from '../../../subpackage/pages/basics';
@@ -18,25 +20,36 @@ export interface ImageItem {
 }
 export default function AddSkillPage() {
   const router: Taro.RouterInfo = useRouter()
-  const { skillData } = useContext(context);
+  // 获取存入的公用内容
+  const useSelectorItem = useSelector<any, any>(state => state)
+  // 传递过来的数据
+  // const skillData:any=[]
+  // const { skillData } = useContext(context);
   // const { area } = useContext(contextItem);
   // console.log(area,'contextItemcontextItemcontextItem')
+  //  url传递过来的数据
   let { type,id } = router.params;
+  console.log(id,'xxx')
+  // 证书名称
   const [val,setVal] = useState<string>('')
+  // 领取证书时间
   const [extraText, setExtraText] = useState<string>('')
+  // 图片
   const [image, setImage] = useState<ImageDataType>({
     item: [],
   })
+  // uuid
   const [uuid, setUuid] = useState<string>('')
   useEffect(()=>{
     Taro.setNavigationBarTitle({
       title: '修改技能证书'
     })
     console.log(type,'xxx')
-    console.log(skillData,'skillData')
+    // console.log(skillData,'skillData')
     if (type){
-      if (skillData){
-        const data = skillData[type];
+      const AllData = JSON.parse(JSON.stringify(useSelectorItem.Myresume));
+      if (AllData){
+        const data = AllData.certificates[type];
         setVal(data.name);
         setExtraText(data.certificate_time);
         let arr:any=[];
@@ -53,6 +66,8 @@ export default function AddSkillPage() {
             }
           }
         }
+        console.log(data,'xxx')
+        console.log(data.uuid)
         setImage({item:arr})
         setUuid(data.uuid)
       }
@@ -125,8 +140,15 @@ export default function AddSkillPage() {
     }
     resumesCertificateAction(params).then(res=>{
       if(res.errcode === 'ok'){
-        Taro.navigateBack({
-          delta: 1
+        SubscribeToNews('resume', () => {
+          SubPopup({
+            tips: res.errmsg,
+            callback: () => {
+            Taro.navigateBack({
+                delta: 1
+              })
+            }
+          })
         })
       }else{
         Msg(res.errmsg);

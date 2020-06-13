@@ -1,9 +1,6 @@
-import Taro, { useState } from '@tarojs/taro'
-import { View, Text, Image, Block, Button } from '@tarojs/components'
-import { AtModal, AtModalHeader, AtModalContent, AtModalAction } from 'taro-ui'
-import { CollectionRecruitListDataList } from '../../../utils/request/index.d'
+import Taro from '@tarojs/taro'
+import { View, Text, Image, Block } from '@tarojs/components'
 import { IMGCDNURL } from '../../../config'
-import Nodata from '../../../components/nodata'
 import './index.scss'
 
 interface PROPS {
@@ -11,7 +8,7 @@ interface PROPS {
 }
 
 // 找活
-export default function ResumeListPage({ data = [{}, {}, {}] }: PROPS) {
+export default function ResumeListPage({ data = [] }: PROPS) {
   // 用户页面跳转
   const userRouteJump = (url: string) => {
     Taro.navigateTo({
@@ -31,7 +28,8 @@ export default function ResumeListPage({ data = [{}, {}, {}] }: PROPS) {
       </View>
       {data.map(item => (
         <Block key={item.id}>
-          <View className='resume-list-item' key={item.id} onClick={() => userRouteJump(`/pages/resume/detail/index?id=${item.id}`)}>
+          {/* uuid, location */}
+          <View className='resume-list-item' key={item.id} onClick={() => userRouteJump(`/pages/resume/detail/index?uuid=${item.uuid}&location=${item.location}`)}>
               <View className='resume-list-header'>
                 <Image className='resume-list-user' src={item.headerimg} />
                 <View className='resume-list-userinfo'>

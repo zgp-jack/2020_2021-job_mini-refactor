@@ -60,7 +60,7 @@ var Condition = (_temp2 = _class = function (_Taro$Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Condition.__proto__ || Object.getPrototypeOf(Condition)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "loopArray97", "loopArray98", "$compid__100", "data", "IMGCDNURL", "AREAS", "childAreaList", "scrollTop"], _this.anonymousFunc0Map = {}, _this.anonymousFunc2Map = {}, _this.customComponents = ["AtDrawer"], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Condition.__proto__ || Object.getPrototypeOf(Condition)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "loopArray96", "loopArray97", "$compid__103", "data", "IMGCDNURL", "AREAS", "childAreaList", "scrollTop"], _this.anonymousFunc0Map = {}, _this.anonymousFunc2Map = {}, _this.customComponents = ["AtDrawer"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Condition, [{
@@ -81,10 +81,10 @@ var Condition = (_temp2 = _class = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__100"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__103"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__100 = _genCompid2[0],
-          $compid__100 = _genCompid2[1];
+          $prevCompid__103 = _genCompid2[0],
+          $compid__103 = _genCompid2[1];
 
       var data = this.__props.data;
 
@@ -148,7 +148,7 @@ var Condition = (_temp2 = _class = function (_Taro$Component) {
         return onScrollAction(e);
       };
 
-      var loopArray97 = data ? data.map(function (item, __index0) {
+      var loopArray96 = data ? data.map(function (item, __index0) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
@@ -164,7 +164,7 @@ var Condition = (_temp2 = _class = function (_Taro$Component) {
           $original: item.$original
         };
       }) : [];
-      var loopArray98 = _area2.default.map(function (item, index) {
+      var loopArray97 = _area2.default.map(function (item, index) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
@@ -189,12 +189,12 @@ var Condition = (_temp2 = _class = function (_Taro$Component) {
         "show": anonymousState__temp,
         "mask": true,
         "onClose": this.anonymousFunc1
-      }, $compid__100, $prevCompid__100);
+      }, $compid__103, $prevCompid__103);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
+        loopArray96: loopArray96,
         loopArray97: loopArray97,
-        loopArray98: loopArray98,
-        $compid__100: $compid__100,
+        $compid__103: $compid__103,
         data: data,
         IMGCDNURL: _index.IMGCDNURL,
         AREAS: _area2.default,

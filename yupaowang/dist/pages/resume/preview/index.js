@@ -77,52 +77,65 @@ var Preview = (_temp2 = _class = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
+      // 左上角图片
+
       var _useState = (0, _taroWeapp.useState)(false),
           _useState2 = _slicedToArray(_useState, 2),
           checkpan = _useState2[0],
           setCheckpan = _useState2[1];
+      // 图片审核中
+
 
       var _useState3 = (0, _taroWeapp.useState)(false),
           _useState4 = _slicedToArray(_useState3, 2),
           checkone = _useState4[0],
           setCheckone = _useState4[1];
+      // 头像
+
 
       var _useState5 = (0, _taroWeapp.useState)(''),
           _useState6 = _slicedToArray(_useState5, 2),
           headerimg = _useState6[0],
           setHeaderimg = _useState6[1];
+      // 性别
+
 
       var _useState7 = (0, _taroWeapp.useState)('未填写'),
           _useState8 = _slicedToArray(_useState7, 2),
           sex = _useState8[0],
           setSex = _useState8[1];
+      // 年龄
+
 
       var _useState9 = (0, _taroWeapp.useState)(''),
           _useState10 = _slicedToArray(_useState9, 2),
           age = _useState10[0],
           setAge = _useState10[1];
+      // 电话
+
 
       var _useState11 = (0, _taroWeapp.useState)('未填写'),
           _useState12 = _slicedToArray(_useState11, 2),
           telephone = _useState12[0],
           settelephone = _useState12[1];
+      // 项目
 
-      var _useState13 = (0, _taroWeapp.useState)(0),
+
+      var _useState13 = (0, _taroWeapp.useState)([]),
           _useState14 = _slicedToArray(_useState13, 2),
-          projectlength = _useState14[0],
-          setProjectlength = _useState14[1];
+          project = _useState14[0],
+          setProject = _useState14[1];
+      // 技能
+
 
       var _useState15 = (0, _taroWeapp.useState)([]),
           _useState16 = _slicedToArray(_useState15, 2),
-          project = _useState16[0],
-          setProject = _useState16[1];
+          skillbooksone = _useState16[0],
+          setSkillbooksone = _useState16[1];
+      // 总数据
 
-      var _useState17 = (0, _taroWeapp.useState)([]),
-          _useState18 = _slicedToArray(_useState17, 2),
-          skillbooksone = _useState18[0],
-          setSkillbooksone = _useState18[1];
 
-      var _useState19 = (0, _taroWeapp.useState)({
+      var _useState17 = (0, _taroWeapp.useState)({
         info: {
           username: '未填写',
           authentication: '',
@@ -146,39 +159,54 @@ var Preview = (_temp2 = _class = function (_Taro$Component) {
           show_tips: 0
         }
       }),
-          _useState20 = _slicedToArray(_useState19, 2),
-          data = _useState20[0],
-          setData = _useState20[1];
+          _useState18 = _slicedToArray(_useState17, 2),
+          data = _useState18[0],
+          setData = _useState18[1];
 
       (0, _taroWeapp.useEffect)(function () {
         (0, _index.resumeListAction)().then(function (res) {
-          console.log(res);
-          _taroWeapp2.default.setStorageSync("introinfo", res.data.info);
-          setSex(res.data.info.gender == '1' ? '男' : '女');
-          setCheckpan(res.data.info.check == '0' ? true : false);
-          setCheckone(res.data.info.check == '0' ? true : false);
-          setHeaderimg(res.data.info.headerimg);
-          setData({ info: res.data.info, introduces: res.data.introduces, project: res.data.project, certificates: res.data.certificates, content: res.data.content });
-          settelephone(res.data.info.tel);
-          if (res.data.project.length === 0) {
-            setProjectlength(0);
-            setProject([]);
-            setSkillbooksone([]);
-          } else {
-            setSkillbooksone([res.data.certificates[0]]);
-            if (res.data.project) {
-              if (new Date(res.data.project[0].completion_time).getTime() / 86400000 < new Date().getTime() / 86400000) {
-                setProjectlength(res.data.project.length >= 1 ? res.data.project.length : 0);
-                var item = res.data.project[0];
-                item.completiontime = 'zhijing';
-                setProject([item]);
+          if (res.errcode === 200) {
+            var date = new Date();
+            var dateo = date.getTime();
+            var dateone = new Date(dateo);
+            if (res.data.info.birthday) {
+              if (dateone.getFullYear() - (res.data.info.birthday.split("-")[0] - 0) == 0) {
+                setAge('');
               } else {
-                var _item = res.data.project[0];
-                _item.completiontime = 'zhijin';
-                setProjectlength(res.data.project.length >= 1 ? res.data.project.length : 0);
-                setProject([_item]);
+                setAge(dateone.getFullYear() - (res.data.info.birthday.split("-")[0] - 0) + "岁");
               }
             }
+            // Taro.setStorageSync("introinfo", res.data.info)
+            setSex(res.data.info.gender == '1' ? '男' : '女');
+            setCheckpan(res.data.info.check == '0' ? true : false);
+            setCheckone(res.data.info.check == '0' ? true : false);
+            setHeaderimg(res.data.info.headerimg);
+            setData({ info: res.data.info, introduces: res.data.introduces, project: res.data.project, certificates: res.data.certificates, content: res.data.content });
+            settelephone(res.data.info.tel);
+            if (res.data.project.length === 0) {
+              setProject([]);
+              setSkillbooksone([]);
+            } else {
+              setSkillbooksone([res.data.certificates[0]]);
+              if (res.data.project) {
+                if (new Date(res.data.project[0].completion_time).getTime() / 86400000 < new Date().getTime() / 86400000) {
+                  var item = res.data.project[0];
+                  item.completiontime = 'zhijing';
+                  setProject([item]);
+                } else {
+                  var _item = res.data.project[0];
+                  _item.completiontime = 'zhijin';
+                  setProject([_item]);
+                }
+              }
+            }
+          } else {
+            _taroWeapp2.default.showModal({
+              title: '温馨提示',
+              content: res.errmsg,
+              showCancel: false
+            });
+            return;
           }
         });
       }, []);
@@ -228,7 +256,7 @@ var Preview = (_temp2 = _class = function (_Taro$Component) {
             $original: (0, _taroWeapp.internal_get_original)(v)
           };
           var $loopState__temp8 = data.project.length ? i + i : null;
-          var _$indexKey = "bdezz" + i + "-" + i;
+          var _$indexKey = "bdgzz" + i + "-" + i;
 
           _this2.anonymousFunc0Map[_$indexKey] = function () {
             return handleImg(v.$original);
@@ -255,7 +283,7 @@ var Preview = (_temp2 = _class = function (_Taro$Component) {
             $original: (0, _taroWeapp.internal_get_original)(v)
           };
           var $loopState__temp10 = data.certificates.length ? i + i : null;
-          var _$indexKey2 = "bdfzz" + __index3 + "-" + i;
+          var _$indexKey2 = "bdhzz" + __index3 + "-" + i;
 
           _this2.anonymousFunc2Map[_$indexKey2] = function () {
             return handleImg(v.$original);

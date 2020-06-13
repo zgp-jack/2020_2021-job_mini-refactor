@@ -97,7 +97,7 @@ var RecruitListPage = (_temp2 = _class = function (_Taro$Component) {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
 
-        var _$indexKey = "baizz" + __index0;
+        var _$indexKey = "bajzz" + __index0;
 
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return userRouteJump("/pages/detail/info/index?id=" + v.$original.id);

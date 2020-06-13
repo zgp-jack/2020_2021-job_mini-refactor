@@ -1,8 +1,7 @@
-import Taro, { Config, useState, useDidShow, useRouter, useContext } from '@tarojs/taro'
+import Taro, { Config, useState, useDidShow, useRouter } from '@tarojs/taro'
 import { View, Text, Image, Button } from '@tarojs/components'
-import { resumeListAction } from '../../../utils/request/index'
+import { resumeListAction, resumeDetailAction } from '../../../utils/request/index'
 import { IMGCDNURL } from '../../../config'
-// import { detailContext } from '../detail';
 import './index.scss'
 
 interface DataType {
@@ -15,12 +14,13 @@ interface DataType {
 }
 export default function SkillList() {
   const router: Taro.RouterInfo = useRouter()
-  let { id, preview, detail } = router.params;
-  // const { certificates } = useContext(detailContext)
+  // 获取传递参数
+  let { id, preview, detail, location, uuid } = router.params;
   // 刷新一次
   const [refresh, setRefresh] = useState<boolean>(false)
   // 数据
   const [data, setData] = useState<DataType[]>([])
+  // 设置uuid
   const [resume_uuid, setResume_uuid] = useState<string>('')
 
   useDidShow(() => {
@@ -28,15 +28,22 @@ export default function SkillList() {
       setRefresh(false)
       return
     }
-    // if (detail){
-      // if (certificates){}
-      // setData(certificates);
-    // }else{
+    if (detail){
+      const params = {
+        location: location,
+        resume_uuid: uuid
+      }
+      resumeDetailAction(params).then(res => {
+        if (res.errcode === 'ok') {
+          setData(res.certificates)
+        }
+      })
+    }else{
       resumeListAction().then(res => {
         setData(res.data.certificates)
         setResume_uuid(res.data.info.user_uuid);
       })
-    // }
+    }
   })
   // 点击方法
   const handleImg = (e: string) => {

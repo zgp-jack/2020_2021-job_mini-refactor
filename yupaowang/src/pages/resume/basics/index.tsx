@@ -1,86 +1,32 @@
-import Taro, { useState, useEffect, Config, createContext, useContext, useDidShow } from '@tarojs/taro'
+import Taro, { useState, useEffect, Config, useContext, useDidShow } from '@tarojs/taro'
 import { View, Form, Text, Picker, Input, Textarea, Button } from '@tarojs/components'
 import { ProfessionRecruitData } from '../../../components/profession/index.d'
-import { addResumeAction, getPublishRecruitView, getUserAuthInfo, checkAdcodeAction} from '../../../utils/request/index'
+import { addResumeAction} from '../../../utils/request/index'
 import Profession from '../../../components/profession'
-import useRealname from '../../../hooks/realname'
-import usePublishViewInfo from '../../../hooks/publish/recruit'
-import Msg from '../../../utils/msg'
+import Msg, { SubPopup } from '../../../utils/msg'
 import WordsTotal from '../../../components/wordstotal'
-import { MAPKEY } from '../../../config'
 import { userAuthLoction, recSerAuthLoction } from '../../../utils/helper'
 import { contextItem } from '../../../pages/map/resume'
-import { context } from '../../../pages/resume/newJobs';
+// import { context } from '../../../pages/resume/newJobs';
+// import { getPublicList } from '../../../actions/publicList';
+import { ModelType, UserLastPublishRecruitArea  } from './index.d'
 import { UserLocationPromiss, AREABEIJING, AREACHINA } from '../../../models/area'
 import { UserLastPublishArea, UserLocationCity, UserListChooseCity } from '../../../config/store'
 import useCode from '../../../hooks/code'
+import { useSelector } from '@tarojs/redux'
 import { isPhone, isVaildVal } from '../../../utils/v'
+import { SubscribeToNews } from '../../../utils/subscribeToNews';
 import './index.scss'
 
-interface ModelType {
-  name:string,
-  sex:string,
-  time:string,
-  nation:string,
-  work:[],
-  workItem:string[],
-  are:string,
-  phone:string,
-  details:string,
-  classifyTree:[],
-  maxClassifyCount:number,
-  classifies:any[],
-  code:string,
-  nationCurrentName:string,
-}
-// 初始化获取信息类型
-export interface InitRecruitView {
-  type: string,
-  infoId: string
-}
-
-// 发布招工 最后发布地区
-export interface UserLastPublishRecruitArea {
-  location: string,
-  adcode: string,
-  title: string,
-  info: string
-}
-// context类型
-export interface Injected {
-  area: string, // 城市名称
-  setArea: (city: string) => void, //设置城市名称
-  setAreaInfo?: (item: UserLastPublishRecruitArea) => void, // 用户点击的小地址信息
-  setPublishArea?: (val: string) => void //设置最后一次点击 城市的名字
-}
-// interface OccupationType {
-//   has_children: number,
-//   id: string,
-//   letter: string,
-//   name: string,
-//   not_auth: string,
-//   pid: string,
-//   children: OccupationTypeChildren[],
-// }
-// interface OccupationTypeChildren{
-//   has_children: number,
-//   id: string,
-//   letter: string,
-//   name: string,
-//   not_auth: string,
-//   pid: string,
-// }
-interface ChildItems {
-  id: string,
-  pid: string,
-  name: string,
-  ad_name: string
-}
-let userListChooseCity: ChildItems = Taro.getStorageSync(UserListChooseCity)
-// export const contextItem = createContext<Injected>({} as Injected)
 export default function BasicsPage() {
+  // 获取存入的公用内容
+  const useSelectorItem = useSelector<any,any>(state=>state)
+  console.log(useSelectorItem,'dadasd')
+  //选择地址传过来的内容
   const { publishArea, location, adcode } = useContext(contextItem);
-  const { publicList } = useContext(context);
+  //公用数据，工种，民族
+  // const publicList:any=[];
+  // const { publicList } = useContext(context);
   // 验证码
   const { text, userGetCode } = useCode()
   // 当前显示城市
@@ -92,18 +38,22 @@ export default function BasicsPage() {
     location: '',
     info: ''
   })
+  // 地区需要的值
   const [adcodes, setAdcodes] = useState<string>('')
   const sexList = ['男', '女'];
+  // 民族（选择框使用的）
   const [nationCurrent, setNationCurrent] =useState<string[]>([])
+  // 民族
   const [allNationCurrent,setAllNationCurrent]= useState<any[]>([])
   // 工种
   const [occupation, setoccupation] = useState<any>([])
   // 点击的工种
   const [clickOccupation, setClickOccupation] = useState<any[]>([])
-  const [model, setModel] =useState<any>()
+  // 工种弹框
   const [showProfession, setShowProssion] = useState<boolean>(false)
   // 进来时的电话做验证码判断
   const [oldTel,setOldTel] = useState<string>('')
+  // 详情字数
   const [num, setNum] = useState<number>(0)
   // 省
   const [province, setProvince] = useState<string>('')
@@ -113,7 +63,7 @@ export default function BasicsPage() {
   const [lat,setLat] = useState<string>('')
   // 设置longitude
   const [lng,setLng] = useState<string>('')
-  const [occupationsId, setOccupationsId] = useState<string>('')
+  // const [occupationsId, setOccupationsId] = useState<string>('')
   const [formData, setFormData] = useState <ModelType>({
     name: '',
     sex: '',
@@ -142,14 +92,17 @@ export default function BasicsPage() {
   
   // 获取数据
   useEffect(()=>{
-    if (publicList){
-      console.log(publicList,'v')
+    // console.log((getPublicList()),'xxxxs');
+    console.log(useSelectorItem,'xxx111')
+    const data = JSON.parse(JSON.stringify(useSelectorItem.Personnel));
+    if (useSelectorItem.Personnel){
+      console.log(useSelectorItem)
       // 民族
-      const nameList = publicList.nation.map(v=>v.mz_name);
+      const nameList = data.nation.length && data.nation.map(v=>v.mz_name);
       setNationCurrent(nameList);
-      setAllNationCurrent(publicList.nation);
+      setAllNationCurrent(data.nation);
       // 工种
-      setoccupation(publicList.occupation)
+      setoccupation(data.occupation)
     }
     // 设置城市
     let userLoctionCity: UserLocationPromiss = Taro.getStorageSync(UserLocationCity)
@@ -177,7 +130,6 @@ export default function BasicsPage() {
     // 获取缓存信息
     const useInfo = Taro.getStorageSync('introinfo');
     if (useInfo){
-      console.log(useInfo,'useInfo');
       let cache:any={
         // 姓名
         name: useInfo.username,
@@ -190,41 +142,43 @@ export default function BasicsPage() {
         // 民族
         nationCurrentName: useInfo.nation,
         // 自我介绍
-        details:useInfo.introduce,
+        details: useInfo.introduce,
         // 所属工种
-        workItem: useInfo.occupations,
+        workItem: useInfo.occupations ? useInfo.occupations:[],
         // 所在地区s
         are: useInfo.address,
         // 自我介绍
       };
       // console.log(useInfo.occupation,'xxx')
-      const arr = JSON.parse(JSON.stringify(publicList.occupation));
+      const arr = JSON.parse(JSON.stringify(useSelectorItem.Personnel.occupation));
       console.log(arr,'xxx')
-      let clckArr = useInfo.occupations_id.split(",")
-      console.log(clckArr,'clckArrclckArr')
-      const arrList = arr.map((v)=>{
-        v.children.map((val)=>{
-          clckArr.map((item)=>{
-            if (val.id === item){
-              val.is_check = true;
-            }
-            return item;
+      let clckArr, arrList;
+      if (useInfo.occupations_id){
+        clckArr = useInfo.occupations_id.split(",");
+        arrList = arr.map((v)=>{
+          v.children.map((val)=>{
+            clckArr.map((item)=>{
+              if (val.id === item){
+                val.is_check = true;
+              }
+              return item;
+            })
+            return val;
           })
-          return val;
+          return v;
         })
-        return v;
-      })
+      }
       setoccupation(arrList)
-      setOccupationsId(useInfo.occupations_id);
+      // setOccupationsId(useInfo.occupations_id);
       setClickOccupation(clckArr)
       setLat(useInfo.location ? useInfo.location.split(",")[1]:'')
       setLng(useInfo.location ? useInfo.location.split(",")[0] : '')
-      setProvince(useInfo.province);
-      setCity(useInfo.city)
-      setOldTel(useInfo.tel);
+      setProvince(useInfo.province ? useInfo.province:'');
+      setCity(useInfo.city ? useInfo.city:'')
+      setOldTel(useInfo.tel ? useInfo.tel:'');
       setFormData(cache);
-      setAdcodes(useInfo.ad_code)
-      setNum(useInfo.introduce.length)
+      setAdcodes(useInfo.ad_code ? useInfo.ad_code:'')
+      setNum(useInfo.introduce?useInfo.introduce.length:0)
     }
     // const params = {
     //   type:'job',
@@ -344,11 +298,18 @@ export default function BasicsPage() {
     }
     addResumeAction(params).then(res=>{
       if(res.errcode == '200' ){
-        Taro.navigateBack({
-          delta: 1
+        SubscribeToNews("resume",()=>{
+          SubPopup({
+            tips: res.errmsg, 
+            callback: ()=>{
+              Taro.navigateBack({
+                delta: 1
+              })
+            }
+          })
         })
       }else{
-        Msg(res.errmsg)
+        SubPopup({ tips: res.errmsg})
       }
     })
   }
@@ -358,20 +319,21 @@ export default function BasicsPage() {
   // 点击工种
   const userClickProfession = (i: number, k: number, id: string, name:string) => {
     console.log(i,k,id,name);
+    console.log(clickOccupation,'clickOccupation')
     if (!occupation) return
     let works: ProfessionRecruitData[] = JSON.parse(JSON.stringify(occupation))
     let check: boolean = works[i].children[k].is_check
     console.log(works);
     if (!check) {
       let max: number = 3
-      let num: number = clickOccupation.length;
+      let num: number = clickOccupation?clickOccupation.length:0;
       if (num >= max) {
         Msg('工种最多可以选择' + max + '个')
         return
       }
     }
     works[i].children[k].is_check = !check
-    let classifyArr = JSON.parse(JSON.stringify(clickOccupation))
+    let classifyArr = JSON.parse(JSON.stringify(clickOccupation ? clickOccupation:[]))
     let newArr: string[] = (check) ? classifyArr.filter(item => item !== id) : [...classifyArr, id]
     let newNameArr: string[] = (check) ? formData.workItem.filter(item => item !== name) : [...formData.workItem, name]
     setFormData({ ...formData, workItem: newNameArr})
@@ -388,7 +350,7 @@ export default function BasicsPage() {
   }
    // 选择地址
   const userChooseArea = ()=> {
-    if(!model) return
+    if (!areas) return
     let url = `/pages/map/resume/index?areaItem=${areas}`
     Taro.navigateTo({
       url: url
@@ -452,18 +414,8 @@ export default function BasicsPage() {
     setLng(data[0].longitude)
     setAdcodes(data[0].regeocodeData.addressComponent.adcode)
   }
-  // 需要传递的值
-  const value: Injected = {
-    area: areas,
-    setArea: (city: string) => setArea(city),
-    setAreaInfo: (item: UserLastPublishRecruitArea) => setAreaInfo(item),
-    setPublishArea: (val: string) => {
-      if (!model) return
-      setModel({ ...model, address: val })
-    }
-  }
+  console.log(occupation,'xxx')
   return (
-    // <contextItem.Provider value={value}>
     <View>
       {showProfession &&
         <Profession
@@ -618,7 +570,6 @@ export default function BasicsPage() {
         <Button className='footer-btn' onClick={handleSubmit}>保存资料</Button>
       </View>
     </View>
-    // </contextItem.Provider>
   )
 }
 

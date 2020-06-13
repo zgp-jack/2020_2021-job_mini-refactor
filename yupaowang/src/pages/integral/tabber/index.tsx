@@ -1,12 +1,14 @@
 import Taro, { Config, useState, useEffect, useReachBottom, useRouter } from '@tarojs/taro'
-import { View, Text, Picker, Image, Textarea } from '@tarojs/components'
+import { View, Text, Picker, Image } from '@tarojs/components'
 import { integralSourceConfigAction, integralSourceListsAction, integralExpendListsAction, integralExpendConfigAction, integralUseInfoAction, publishComplainAction } from '../../../utils/request/index'
 import { getSystemInfo } from '../../../utils/helper/index'
 import { IMGCDNURL } from '../../../config'
 import Nodata from '../../../components/nodata'
 import { integralSourceListsDataSum, integralSourceListsDataLists, integralUseInfoData, integralSourceConfigDataType  } from '../../../utils/request/index.d'
+import { SubscribeToNews } from '../../../utils/subscribeToNews';
+import  Report  from '../../../components/report';
 import { isVaildVal } from '../../../utils/v'
-import Msg from '../../../utils/msg'
+import Msg, { SubPopup } from '../../../utils/msg'
 import './index.scss'
 
 interface ParamsType {
@@ -75,7 +77,7 @@ export default function Tabber() {
   // 弹窗内容
   const [modalData, setModalData] = useState<integralUseInfoData>()
   // 投诉
-  const [complaintModal, setComplaintModal] = useState<Boolean>(false)
+  const [complaintModal, setComplaintModal] = useState<boolean>(false)
   // 投诉id 
   const [complaintId, setComplaintId ] = useState<string>('')
   // textarea
@@ -460,10 +462,18 @@ export default function Tabber() {
       type:'job',
       infoId:complaintId
     };
-    publishComplainAction(params).then(()=>{
-      Msg('提交成功')
-      setComplaintModal(false);
-      setModal(false);
+    publishComplainAction(params).then((res)=>{
+      if(res.errcode === 'ok' ){
+        SubscribeToNews('complain',()=>{
+          SubPopup({
+            tips: res.errmsg,
+            callback: () => {
+            setComplaintModal(false);
+            setModal(false);
+            }
+            })
+        })
+      }
     })
   }
   return (
@@ -550,26 +560,9 @@ export default function Tabber() {
         </View>
       </View>
       }
-      {complaintModal &&
-        <View className='tabber-complaintModal'>
-          <View className='tabber-complaintModal-content'>
-            <View className='tabber-complaintModal-content-title'>投诉信息</View>
-            <View className='tabber-complaintModal-content-tips'>请输入投诉内容</View>
-            <View className='tabber-complaintModal-content-textareaBox'>
-              <Textarea
-                className='tabber-complaintModal-content-textarea'
-                placeholder='请填写5~100字，必须含有汉字。（恶意投诉会被封号，请谨慎投诉！）'
-                value={textarea}
-                maxlength={100}
-                onInput={(e) => handleTextarea(e)}
-              />
-            </View>
-            <View className='tabber-complaintModal-footer'>
-              <View className='tabber-complaintModal-footer-cancel' onClick={()=>{setComplaintModal(false)}}>取消</View>
-            <View className='tabber-complaintModal-footer-cancel' onClick={() => handleSubmit()}>确定</View>
-            </View>
-          </View>
-        </View>
+      {/* 投诉 */}
+      {complaintModal && <Report display={complaintModal} textarea={textarea} handleTextarea={handleTextarea} setComplaintModal={setComplaintModal}
+        handleSubmit={handleSubmit} />
       }
     </View>
   )

@@ -1,60 +1,25 @@
-import Taro, { Config, useState, useEffect, useRouter, createContext } from '@tarojs/taro'
-import { View, Text, Image, Block, Textarea } from '@tarojs/components'
-import { resumeDetailAction, recommendListAction, resumesGetTelAcrion, resumeSupportAction, resumeCollectAction, publishComplainAction, resumesComplainAction } from '../../../utils/request/index'
+import Taro, { Config, useState, useRouter, createContext, useDidShow, useEffect } from '@tarojs/taro'
+import { View, Text, Image } from '@tarojs/components'
+import { resumeDetailAction, recommendListAction, resumesGetTelAcrion, resumeSupportAction, resumeCollectAction, resumesComplainAction } from '../../../utils/request/index'
 import { IMGCDNURL } from '../../../config'
-import Msg from '../../../utils/msg'
-import { resumeDetailCertificates, resumeDetailProject, resumeDetailOperation, recommendListDataList } from '../../../utils/request/index.d'
+import Msg, { SubPopup } from '../../../utils/msg'
+import { DataType, ListType, Injected } from './index.d'
 import CollectionRecruitList  from '../../../components/recommendList/index'
 import { isVaildVal } from '../../../utils/v'
-import { UserInfo } from '../../../config/store'
+import Report from '../../../components/report';
+import { useSelector } from '@tarojs/redux'
+import Auth from '../../../components/auth'
+import { SubscribeToNews } from '../../../utils/subscribeToNews';
 import './index.scss'
 
-interface DataType {
-  certificates: resumeDetailCertificates[],
-  info:resumeDetailInfo,
-  project: resumeDetailProject[],
-  operation: resumeDetailOperation,
-}
-interface resumeDetailInfo{
-  introduce:string,
-  headerimg:string,
-  nation:string,
-  username:string,
-  tel:string,
-  hometown:string,
-  occupations:[],
-  experience:string,
-  prof_degree_str:string,
-  type_str:string,
-  number_people:string,
-  address:string,
-  authentication:string,
-  is_read:number,
-  is_end:string,
-  certificate_show:number,
-  uuid:string,
-  show_complain: ShowComplain,
-  tags: resumeDetailInfoTages[],
-}
-interface ShowComplain{
-  show_complain: number|undefined,
-  tips_message: string,
-}
-interface resumeDetailInfoTages{
-  id:number,
-  label_name:string,
-}
-interface ListType{
-  item: recommendListDataList[],
-}
-interface Injected{
-  project: resumeDetailProject[],
-  certificates: resumeDetailCertificates[],
-}
 export const detailContext = createContext<Injected>({} as Injected)
 export default function ResumeDetail() {
+  // 获取用户是否登录
+  const login = useSelector<any, boolean>(state => state.User['login'])
   const router: Taro.RouterInfo = useRouter()
+  //获取uuid和location,location需要修改，用一个共同的，最外层使用的
   let { uuid, location } = router.params;
+  //总数据
   const [data, setDate] = useState<DataType>({
     certificates:[],
     info:{
@@ -75,7 +40,10 @@ export default function ResumeDetail() {
       is_end:'',
       certificate_show:0,
       uuid:'',
+      gender:'',
       tags: [],
+      distance:'',
+      location:'',
       show_complain:{
         show_complain: undefined,
         tips_message: '',
@@ -99,24 +67,41 @@ export default function ResumeDetail() {
   const [phone,setPhone ] = useState<string>('')
   // 弹框
   const [shownewtips, setShownewtips] = useState<boolean>(false)
+  // 收藏
   const [collect, setCollect ] = useState<number>(0)
+  // 赞
   const [praise, setPraise] = useState<number>(0)
+  // 年龄
+  const [age, setAge] = useState<string>('')
   // 投诉
   const [complaintModal, setComplaintModal ] = useState<boolean>(false)
+  // 投诉内容
   const [textarea, setTextarea] = useState<string>('')
   // 是否还可以投诉
   const [iscomplaint, setIsComplaint] = useState<boolean>(false)
-  useEffect(()=>{
+  // 点赞获取电话号码分享收藏需要先登陆
+  const [isAuth, setIsAuth] = useState<boolean>(false)
+  const [clickType,setClickType] = useState<string>('');
+  const getDataList = ()=>{
     const params = {
       location:location,
-      // 先写死
       resume_uuid: uuid
     }
     resumeDetailAction(params).then(res=>{
       console.log(res);
       if(res.errcode === 'ok'){
         console.log(res);
-        Taro.setStorageSync("introinfo", res.info)
+        const date = new Date();
+        const dateo = date.getTime()
+        const dateone = new Date(dateo);
+        if (res.info.birthday) {
+          if (dateone.getFullYear() - parseInt(res.info.birthday) == 0) {
+            setAge('')
+          } else {
+            setAge(dateone.getFullYear() - parseInt(res.info.birthday) + "岁")
+          }
+        }
+        // Taro.setStorageSync("introinfo", res.info)
         setDate({ certificates: res.certificates,info:res.info,operation:res.operation,project:res.project})
         setPhone(res.info.tel);
         setExamine(false)
@@ -125,28 +110,49 @@ export default function ResumeDetail() {
         if (res.info.is_read == 0 && res.info.is_end != '2' && res.operation.status == 0){
           seOnoff(true)
         }
-        // if(res.info.show_complain.show_complain){
-        //   setIsComplaint(true);
-        // }
         const listParams = {
           page: 1,
           type: 1,
           area_id: res.info.city,
           occupations: res.info.occupations_id,
+          uuid: res.info.uuid,
         }
         recommendListAction(listParams).then(res => {
           setList({ item: res.data.list })
         })
       }
     })
-  },[])
+  }
+  useDidShow(() => {
+    getDataList();
+  })
+  useEffect(() => {
+    console.log(313213)
+    console.log(login)
+    if (!login) return;
+    console.log(clickType, 'sss')
+    // 授权获取内容
+    if (clickType){
+      if (clickType === 'support'){
+        resumeSupport();
+      } else if (clickType === 'collect'){
+        resumeCollect();
+      } else if (clickType === 'phone'){
+        handlePhone();
+      }
+    }
+  }, [login])
   // 查看电话
   const handlePhone =()=>{
+    if (!login){
+      setClickType('phone')
+      setIsAuth(true)
+      return
+    }
     const params = {
       resume_uuid: uuid
     }
     resumesGetTelAcrion(params).then(res=>{
-      console.log(res);
       if(res.errcode === 200){
         seOnoff(true)
         setPhone(res.tel)
@@ -172,18 +178,21 @@ export default function ResumeDetail() {
   }
   // 拨打电话
   const handleTellPhone = ()=>{
-    console.log(321321);
     Taro.makePhoneCall({
       phoneNumber: phone,
     })
   }
   // 赞
   const resumeSupport = ()=>{
+    setClickType('support')
+    if (!login) {
+      setIsAuth(true)
+      return
+    }
     let params = {
       resume_uuid: uuid
     }
     resumeSupportAction(params).then(res=>{
-      console.log(res)
       if(res.errcode === 'ok'){
         Msg(res.errmsg)
         setPraise(res.show);
@@ -194,6 +203,11 @@ export default function ResumeDetail() {
   }
   // 收藏
   const resumeCollect = ()=>{
+    if (!login) {
+      setClickType('collect')
+      setIsAuth(true)
+      return
+    }
     let params = {
       resume_uuid: uuid
     }
@@ -222,9 +236,17 @@ export default function ResumeDetail() {
       resume_uuid: data.info.uuid,
     };
     resumesComplainAction(params).then((res) => {
-      Msg(res.errmsg)
-      setIsComplaint(true)
-      setComplaintModal(false);
+      if (res.errcode === 'ok') {
+        SubscribeToNews('complain', () => {
+          SubPopup({
+            tips: res.errmsg,
+            callback: () => {
+              setIsComplaint(true)
+              setComplaintModal(false);
+            }
+          })
+        })
+      }
     })
   }
   // 举报
@@ -247,14 +269,25 @@ export default function ResumeDetail() {
     })
   }
   // 传递的值
-
   const value:Injected = {
     project: data.project,
     certificates:data.certificates
   }
   console.log(value,'xxxx')
+  const handleMap = ()=>{
+    let locArr = data.info.location.split(",");
+    Taro.openLocation({
+      latitude: parseFloat(locArr[1]),
+      longitude: parseFloat(locArr[0]),
+      name: data.info.address,
+      address: data.info.address,
+      scale: 18
+    })
+  }
+  console.log(isAuth,'isAuthx')
   return(
     <detailContext.Provider value={value}>
+      {isAuth && <Auth />}
     <View className='resumeDetail'>
       {/* 顶部 */}
       <View className='resumeDetail-cardcolore'>
@@ -280,7 +313,7 @@ export default function ResumeDetail() {
               {data.info.authentication === '2' && <Image className='resumeDetail-basics-img' src={`${IMGCDNURL}new-list-realname-icon.png`}/>}
               {data.info.certificate_show === 1 && <Image className='resumeDetail-basics-img' src={`${IMGCDNURL}new-list-jnzs-icon.png`} />}
             </View>
-            <View>女 30岁 {data.info.nation}</View>
+              <View>{data.info.gender && (data.info.gender === '1'?'男':'女') } {age} {data.info.nation}</View>
           </View>
         </View>
         <View className='lineone'>
@@ -370,7 +403,14 @@ export default function ResumeDetail() {
           {data.info.address &&
             <View className='cardotext'>
               <Text className='oworkotext'>所在地区</Text>:
-            <Text className='workotextone'>{data.info.address}</Text>
+            <Text className='workotextone-address'>{data.info.address}</Text>
+            {/* 地图 */}
+            {data.info.distance && 
+            <View onClick={handleMap}>
+              <Image className='workotextone-address-img' src={`${IMGCDNURL}lpy/biaoqian.png`}/>
+              {data.info.distance}
+            </View>
+            }
           </View>
           }
           </View>
@@ -428,7 +468,7 @@ export default function ResumeDetail() {
               ))}
             </View>
           <View className='resumeDetail-more-box'>
-            <View className='resumeDetail-more' onClick={() => Taro.navigateTo({ url: `/pages/resume/projectList/index?preview=1&detail=1` })}>更多项目经验
+              <View className='resumeDetail-more' onClick={() => Taro.navigateTo({ url: `/pages/resume/projectList/index?preview=1&detail=1&location=${location}&uuid=${uuid}` })}>更多项目经验
                 <Image src={`${IMGCDNURL}lpy/downward.png`} className="down"/>
               </View>
             </View>
@@ -473,7 +513,7 @@ export default function ResumeDetail() {
               </View>
             </View>
           <View className='resumeDetail-more-box'>
-              <View className='resumeDetail-more' onClick={() => Taro.navigateTo({ url: `/pages/resume/skillList/index?preview=1&detail=1` })}>
+              <View className='resumeDetail-more' onClick={() => Taro.navigateTo({ url: `/pages/resume/skillList/index?preview=1&detail=1&location=${location}&uuid=${uuid}` })}>
                 更多技能证书
                 <Image src={`${IMGCDNURL}lpy/downward.png`} className="down" />
               </View>
@@ -568,27 +608,9 @@ export default function ResumeDetail() {
         </View>
         }
         {/* 投诉 */}
-      {complaintModal &&
-        <View className='tabber-complaintModal'>
-          <View className='tabber-complaintModal-content'>
-            <View className='tabber-complaintModal-content-title'>投诉信息</View>
-            <View className='tabber-complaintModal-content-tips'>请输入投诉内容</View>
-            <View className='tabber-complaintModal-content-textareaBox'>
-              <Textarea
-                className='tabber-complaintModal-content-textarea'
-                placeholder='请填写5~100字，必须含有汉字。（恶意投诉会被封号，请谨慎投诉！）'
-                value={textarea}
-                maxlength={100}
-                onInput={(e) => handleTextarea(e)}
-              />
-            </View>
-            <View className='tabber-complaintModal-footer'>
-              <View className='tabber-complaintModal-footer-cancel' onClick={() => { setComplaintModal(false) }}>取消</View>
-              <View className='tabber-complaintModal-footer-cancel' onClick={() => handleSubmit()}>确定</View>
-            </View>
-          </View>
-        </View>
-      }
+        {complaintModal && <Report display={complaintModal} textarea={textarea} handleTextarea={handleTextarea} setComplaintModal={setComplaintModal} 
+          handleSubmit={handleSubmit}/>
+        }
     </View>
     </detailContext.Provider>
   )

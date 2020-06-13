@@ -64,7 +64,7 @@ var FeedbackList = (_temp2 = _class = function (_Taro$Component) {
       navigationBarBackgroundColor: '#0099ff',
       navigationBarTextStyle: 'white',
       backgroundTextStyle: 'dark'
-    }, _this.$usedState = ["lists", "loopArray81", "$compid__74", "isDown"], _this.anonymousFunc0Map = {}, _this.customComponents = ["Auth", "WechatNotice", "Nodata"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["lists", "loopArray81", "$compid__77", "isDown"], _this.anonymousFunc0Map = {}, _this.customComponents = ["Auth", "WechatNotice", "Nodata"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(FeedbackList, [{
@@ -85,10 +85,10 @@ var FeedbackList = (_temp2 = _class = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__74"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__77"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__74 = _genCompid2[0],
-          $compid__74 = _genCompid2[1];
+          $prevCompid__77 = _genCompid2[0],
+          $compid__77 = _genCompid2[1];
 
       // * 标记是否是在刷新状态
 
@@ -201,7 +201,7 @@ var FeedbackList = (_temp2 = _class = function (_Taro$Component) {
             $original: (0, _taroWeapp.internal_get_original)(v)
           };
           var $loopState__temp2 = item.$original.images ? index + index : null;
-          var _$indexKey = "ibzzz" + __index1 + "-" + index;
+          var _$indexKey = "iczzz" + __index1 + "-" + index;
 
           _this2.anonymousFunc0Map[_$indexKey] = function () {
             handleImg(v.$original);
@@ -220,11 +220,11 @@ var FeedbackList = (_temp2 = _class = function (_Taro$Component) {
       }) : [];
       !lists.item.length && _taroWeapp.propsManager.set({
         "text": "\u6682\u65E0\u76F8\u5173\u6570\u636E\u53CD\u9988"
-      }, $compid__74, $prevCompid__74);
+      }, $compid__77, $prevCompid__77);
       Object.assign(this.__state, {
         lists: lists,
         loopArray81: loopArray81,
-        $compid__74: $compid__74,
+        $compid__77: $compid__77,
         isDown: isDown
       });
       return this.__state;

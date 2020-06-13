@@ -1,12 +1,10 @@
-import Taro, { Config, useState, useContext, useRouter, useDidShow } from '@tarojs/taro'
+import Taro, { Config, useState, useRouter, useDidShow } from '@tarojs/taro'
 import { View, Text, Image, Button } from '@tarojs/components'
-import { resumeListAction } from '../../../utils/request/index'
+import { resumeListAction, resumeDetailAction } from '../../../utils/request/index'
 import { IMGCDNURL } from '../../../config'
 import Nodata from '../../../components/nodata'
-// import { detailContext } from '../detail';
 import './index.scss'
 
-// console.log(detailContext,'vdetailContext')
 interface DataType {
   id:string,
   project_name:string,
@@ -22,8 +20,8 @@ interface DataType {
 }
 export default function ProjectList() {
   const router: Taro.RouterInfo = useRouter()
-  let { id, preview, detail } = router.params;
-  // const { project } = useContext(detailContext)
+  // 获取传递过来的参数
+  let { id, preview, detail,location, uuid } = router.params;
   // 刷新一次
   const [refresh, setRefresh] = useState<boolean>(false)
   // 数据
@@ -33,15 +31,21 @@ export default function ProjectList() {
       setRefresh(false)
       return
     }
-    // if (detail){
-      // if (project){
-      //   setData(project);
-      // }
-    // }else{
+    if (detail){
+      const params = {
+        location: location,
+        resume_uuid: uuid
+      }
+      resumeDetailAction(params).then(res => {
+        if(res.errcode ==='ok'){
+          setData(res.project)
+        }
+      })
+    }else{
       resumeListAction().then(res => {
         setData(res.data.project)
       })
-    // }
+    }
   })
   // 点击方法
   const handleImg = (e: string) => {

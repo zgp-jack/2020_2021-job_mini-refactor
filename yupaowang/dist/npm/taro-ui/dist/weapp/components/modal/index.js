@@ -62,7 +62,7 @@ var AtModal = (_temp2 = _class = function (_AtComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AtModal.__proto__ || Object.getPrototypeOf(AtModal)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["_$isRenderAction", "_$anonymousState__temp", "$compid__109", "title", "content", "isWEB", "cancelText", "confirmText", "rootClass", "_isOpened", "isOpened", "className", "closeOnClickOverlay", "children"], _this.handleClickOverlay = function () {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AtModal.__proto__ || Object.getPrototypeOf(AtModal)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["_$isRenderAction", "_$anonymousState__temp", "$compid__112", "title", "content", "isWEB", "cancelText", "confirmText", "rootClass", "_isOpened", "isOpened", "className", "closeOnClickOverlay", "children"], _this.handleClickOverlay = function () {
       if (_this.props.closeOnClickOverlay) {
         _this.setState({
           _isOpened: false
@@ -123,10 +123,10 @@ var AtModal = (_temp2 = _class = function (_AtComponent) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__109"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__112"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__109 = _genCompid2[0],
-          $compid__109 = _genCompid2[1];
+          $prevCompid__112 = _genCompid2[0],
+          $compid__112 = _genCompid2[1];
 
       var _state = this.__state,
           _isOpened = _state._isOpened,
@@ -147,12 +147,12 @@ var AtModal = (_temp2 = _class = function (_AtComponent) {
         } : null : null;
         _$isRenderAction && _taroWeapp.propsManager.set({
           "isSimple": true
-        }, $compid__109, $prevCompid__109);
+        }, $compid__112, $prevCompid__112);
       }
       Object.assign(this.__state, {
         _$isRenderAction: _$isRenderAction,
         _$anonymousState__temp: _$anonymousState__temp,
-        $compid__109: $compid__109,
+        $compid__112: $compid__112,
         title: title,
         content: content,
         cancelText: cancelText,

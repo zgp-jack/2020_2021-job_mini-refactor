@@ -1,5 +1,5 @@
-import Taro, { useEffect, useState } from '@tarojs/taro'
-import { View, Input, Text, Image } from '@tarojs/components'
+import Taro from '@tarojs/taro'
+import { View } from '@tarojs/components'
 import RecruitListPage from './recruitList/index';
 import ResumeListPage  from './resumeList/index'
 import './index.scss'

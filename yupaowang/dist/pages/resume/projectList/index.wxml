@@ -1,6 +1,6 @@
 <block wx:if="{{$taroCompReady}}">
     <view class="projectList">
-        <view wx:key="id" class="skilleight" wx:for="{{loopArray197}}" wx:for-item="item" wx:for-index="i">
+        <view wx:key="id" class="skilleight" wx:for="{{loopArray94}}" wx:for-item="item" wx:for-index="i">
             <block wx:if="{{item.$original.check == '1'}}">
                 <image class="audit" src="{{IMGCDNURL + 'lpy/review.png'}}"></image>
             </block>
@@ -33,7 +33,7 @@
                     <view class="skilleightfive">
                         <view class="skilleightfiveline">
                             <view class="temimage">
-                                <image class="skilleightfive-image" src="{{v.$original}}" wx:key="$loopState__temp2" bindtap="anonymousFunc2" wx:for="{{item.$anonymousCallee__57}}" wx:for-item="v" wx:for-index="i" data-e-tap-so="this" data-e-tap-a-a="{{v._$indexKey3}}"></image>
+                                <image class="skilleightfive-image" src="{{v.$original}}" wx:key="$loopState__temp2" bindtap="anonymousFunc2" wx:for="{{item.$anonymousCallee__18}}" wx:for-item="v" wx:for-index="i" data-e-tap-so="this" data-e-tap-a-a="{{v._$indexKey3}}"></image>
                             </view>
                         </view>
                     </view>
@@ -44,7 +44,7 @@
             </view>
         </view>
         <block wx:if="{{!data.length}}">
-            <nodata compid="{{$compid__151}}"></nodata>
+            <nodata compid="{{$compid__98}}"></nodata>
         </block>
         <block wx:if="{{data.length < 5 && !detail}}">
             <view class="footer-box">

@@ -17,8 +17,8 @@
         <view class="course-atAccordion-box">
             <block wx:if="{{highlight === 1}}">
                 <view>
-                    <at-accordion wx:for="{{loopArray118}}" wx:for-item="item" wx:for-index="__index1" compid="{{item.$compid__104}}">
-                        <at-list compid="{{item.$compid__105}}">
+                    <at-accordion wx:for="{{loopArray118}}" wx:for-item="item" wx:for-index="__index1" compid="{{item.$compid__107}}">
+                        <at-list compid="{{item.$compid__108}}">
                             <video class="course-atAccordion-box-video" src="{{item.$original.video_url}}"></video>
                         </at-list>
                     </at-accordion>
@@ -26,8 +26,8 @@
             </block>
             <block wx:if="{{highlight === 2}}">
                 <view>
-                    <at-accordion wx:for="{{loopArray119}}" wx:for-item="item" wx:for-index="__index2" compid="{{item.$compid__106}}">
-                        <at-list compid="{{item.$compid__107}}">
+                    <at-accordion wx:for="{{loopArray119}}" wx:for-item="item" wx:for-index="__index2" compid="{{item.$compid__109}}">
+                        <at-list compid="{{item.$compid__110}}">
                             <video class="course-atAccordion-box-video" src="{{item.$original.video_url}}" controls="{{true}}"></video>
                         </at-list>
                     </at-accordion>

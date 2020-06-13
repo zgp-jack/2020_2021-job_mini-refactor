@@ -18,9 +18,9 @@ export default function ResumeList({ data, bottom = true }: PROPS){
   }
   return (
     <View className='resume-list-container' style={ bottom ? '' : 'padding-bottom:0' }>
-      {data.map((item)=>(
+      {data && data.map((item)=>(
         <Block>
-          {item.map((d)=>(
+          {item && item.map((d)=>(
             <View className='resume-list-item' key={d.id} onClick={() => userRouteJump(`/pages/resume/detail/index?uuid=${d.uuid}&location=${d.location}`)}>
               <View className='resume-list-header'>
                 <Image className='resume-list-user' src={ d.headerimg } />

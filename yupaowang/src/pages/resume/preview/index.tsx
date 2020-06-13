@@ -1,44 +1,28 @@
-import Taro, { Config, useState, useEffect, useRouter, useDidShow } from '@tarojs/taro'
-import { View, Text, Image, Block, Button, Textarea } from '@tarojs/components'
+import Taro, { Config, useState, useEffect} from '@tarojs/taro'
+import { View, Text, Image} from '@tarojs/components'
 import { resumeListAction } from '../../../utils/request/index'
-import { IMGCDNURL, SERVERPHONE } from '../../../config'
-
+import { IMGCDNURL } from '../../../config'
+import { DataType } from './index.d'
 import './index.scss'
 
-interface DataType {
-  info:{
-    username:string,
-    authentication:string,
-    certificate_show:number,
-    nation: string,
-    address: string,
-    introduce:string,
-    miniInfoOccupations:[],
-  },
-  introduces:{
-    hometown:string,
-    experience_str:string,
-    prof_degree_str:string,
-    type_str:string,
-    number_people:string,
-    tags:any[],
-  },
-  project:any[],
-  certificates:any[],
-  content:{
-    show_tips:number,
-  }
-}
 export default function Preview() {
+  // 左上角图片
   const [checkpan, setCheckpan] = useState<boolean>(false)
+  // 图片审核中
   const [checkone, setCheckone] = useState<boolean>(false)
+  // 头像
   const [headerimg, setHeaderimg] = useState<string>('')
+  // 性别
   const [sex,setSex] = useState<string>('未填写')
+  // 年龄
   const [age, setAge] = useState<string>('')
+  // 电话
   const [telephone, settelephone] = useState<string|number>('未填写')
-  const [projectlength, setProjectlength] = useState<number>(0)
+  // 项目
   const [project, setProject] = useState<any>([])
+  // 技能
   const [skillbooksone, setSkillbooksone] = useState<any>([])
+  // 总数据
   const [data,setData]= useState<DataType>({
     info:{
       username:'未填写',
@@ -65,33 +49,48 @@ export default function Preview() {
   })
   useEffect(()=>{
     resumeListAction().then(res=>{
-      console.log(res);
-      Taro.setStorageSync("introinfo", res.data.info)
-      setSex(res.data.info.gender == '1'?'男':'女')
-      setCheckpan(res.data.info.check == '0' ? true : false)
-      setCheckone(res.data.info.check == '0' ? true : false)
-      setHeaderimg(res.data.info.headerimg);
-      setData({ info: res.data.info, introduces: res.data.introduces, project: res.data.project, certificates: res.data.certificates,content:res.data.content})
-      settelephone(res.data.info.tel);
-      if (res.data.project.length === 0) {
-        setProjectlength(0)
-        setProject([])
-        setSkillbooksone([])
-      } else {
-        setSkillbooksone([res.data.certificates[0]])
-        if (res.data.project) {
-          if (new Date(res.data.project[0].completion_time).getTime() / 86400000 < new Date().getTime() / 86400000) {
-            setProjectlength(res.data.project.length >= 1 ? res.data.project.length : 0)
-            const item = res.data.project[0];
-            item.completiontime = 'zhijing';
-            setProject([item])
+      if(res.errcode === 200 ){
+        const date = new Date();
+        const dateo = date.getTime()
+        const dateone = new Date(dateo);
+        if (res.data.info.birthday) {
+          if (dateone.getFullYear() - (res.data.info.birthday.split("-")[0] - 0) == 0) {
+            setAge('')
           } else {
-            const item = res.data.project[0];
-            item.completiontime = 'zhijin';
-            setProjectlength(res.data.project.length >= 1 ? res.data.project.length : 0)
-            setProject([item])
+            setAge(dateone.getFullYear() - (res.data.info.birthday.split("-")[0] - 0) + "岁")
           }
         }
+        // Taro.setStorageSync("introinfo", res.data.info)
+        setSex(res.data.info.gender == '1'?'男':'女')
+        setCheckpan(res.data.info.check == '0' ? true : false)
+        setCheckone(res.data.info.check == '0' ? true : false)
+        setHeaderimg(res.data.info.headerimg);
+        setData({ info: res.data.info, introduces: res.data.introduces, project: res.data.project, certificates: res.data.certificates,content:res.data.content})
+        settelephone(res.data.info.tel);
+        if (res.data.project.length === 0) {
+          setProject([])
+          setSkillbooksone([])
+        } else {
+          setSkillbooksone([res.data.certificates[0]])
+          if (res.data.project) {
+            if (new Date(res.data.project[0].completion_time).getTime() / 86400000 < new Date().getTime() / 86400000) {
+              const item = res.data.project[0];
+              item.completiontime = 'zhijing';
+              setProject([item])
+            } else {
+              const item = res.data.project[0];
+              item.completiontime = 'zhijin';
+              setProject([item])
+            }
+          }
+        }
+      }else{
+        Taro.showModal({
+          title: '温馨提示',
+          content: res.errmsg,
+          showCancel: false,
+        })
+        return
       }
     })
   },[])

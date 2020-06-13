@@ -1,1 +1,1 @@
-{"usingComponents":{"collection-recruit-list":"../../../components/recommendList/index"},"navigationBarTitleText":"找活名片"}
+{"usingComponents":{"auth":"../../../components/auth/index","collection-recruit-list":"../../../components/recommendList/index","report":"../../../components/report/index"},"navigationBarTitleText":"找活名片"}

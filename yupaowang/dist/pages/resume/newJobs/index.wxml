@@ -1,5 +1,6 @@
 <block wx:if="{{$taroCompReady}}">
     <block>
+        <auth></auth>
         <view class="newJob">
             <block wx:if="{{!showtop}}">
                 <view class="heard">请完善以下信息</view>
@@ -13,7 +14,7 @@
                 <block>
                     <block wx:if="{{showcomplete}}">
                         <view class="isline">
-                            <button class="isline-shareliveone">名片越完善 找活越容易,马上去完善>></button><text class="isline-sontwoview">浏览次数</text>
+                            <button class="isline-shareliveone" bindtap="anonymousFunc0">名片越完善 找活越容易,马上去完善>></button><text class="isline-sontwoview">浏览次数</text>
                         </view>
                     </block>
                     <block wx:else>
@@ -26,7 +27,7 @@
                     <view>
                         <image class="ranking-img" src="{{IMGCDNURL + 'lpy/biaptu.png'}}"></image><text>我的排名点：{{data.info.sort_flag}}</text>
                     </view>
-                    <view class="ranking-go" bindtap="anonymousFunc0">马上去提升排名>></view>
+                    <view class="ranking-go" bindtap="anonymousFunc1">马上去提升排名>></view>
                 </view>
                 <view class="{{data.resume_top.is_top === 2 || data.resume_top.has_top == 0 ? 'ranking' : 'ranking-last'}}">
                     <view>
@@ -36,18 +37,13 @@
     </block>
     </text>
     </view>
-    <block>
-        <block wx:if="{{data.resume_top.has_top == 0}}">{{data.resume_top.has_top == 0}}</block>
-        <block wx:else>
-            <block wx:if="{{data.resume_top.is_top == 2}}">
-                <view class="ranking-go" bindtap="anonymousFunc1">马上去置顶>></view>
-            </block>
-        </block>
+    <block wx:if="{{data.resume_top.has_top == 0}}">
+        <view class="ranking-go" bindtap="anonymousFunc2">马上去置顶>></view>
     </block>
     <block wx:if="{{data.resume_top.has_top != 0 && data.resume_top.is_top != 2}}">
         <view>
             <view class="topselect_box">
-                <view class="select" bindtap="anonymousFunc2">
+                <view class="select" bindtap="anonymousFunc3">
                     <block>
                         <block wx:if="{{data.resume_top.has_top == 0}}">{{data.resume_top.has_top == 0}}</block>
                         <block wx:else>
@@ -66,7 +62,7 @@
     <block wx:if="{{data.resume_top.has_top != 0 && data.resume_top.is_top != 2}}">
         <view class="toptime">
             <view class="toptime-view"><text>置顶地区</text>
-                <block wx:if="{{data.resume_top.top_provinces_str}}"><text class="proviceop" wx:key="$loopState__temp3" wx:for="{{loopArray150}}" wx:for-item="v" wx:for-index="i">{{v.$original.name}}</text>
+                <block wx:if="{{data.resume_top.top_provinces_str.length}}"><text class="proviceop" wx:key="$loopState__temp3" wx:for="{{loopArray234}}" wx:for-item="v" wx:for-index="i">{{v.$original.name}}</text>
                 </block>
             </view>
         </view>
@@ -78,7 +74,7 @@
         </view>
     </block>
     <block wx:if="{{data.resume_top.has_top != 0 && data.resume_top.is_top != 2}}">
-        <view class="topdetail"><text bindtap="anonymousFunc3">点击修改找活置顶信息>></text>
+        <view class="topdetail"><text bindtap="anonymousFunc4">点击修改找活置顶信息>></text>
         </view>
     </block>
     </view>
@@ -87,7 +83,7 @@
             <view class="findingnamemobile">
                 <image class="findingnamecardthree-image" src="{{IMGCDNURL + 'lpy/jichu.png'}}"></image>
             </view>
-            <view class="findingnamemobileone" bindtap="anonymousFunc4"><text>基础信息</text>
+            <view class="findingnamemobileone" bindtap="anonymousFunc5"><text>基础信息</text>
             </view>
         </view>
     </view>
@@ -102,14 +98,12 @@
                 <block wx:if="{{showpassre}}">
                     <view class="select_box">
                         <block wx:if="{{passre && nopassre}}">
-                            <view class="select" bindtap="anonymousFunc5">
+                            <view class="select" bindtap="anonymousFunc6">
                                 <block wx:if="{{index == 0}}"><text class="select_text">{{selectdata[index]}}</text>
                                 </block>
                                 <block wx:if="{{index == 1}}"><text class="select_text">{{selectdata[index]}}</text>
                                 </block>
-                                <block wx:if="{{checkstatus}}">
-                                    <image class="select-img" src="{{IMGCDNURL + 'select.png'}}"></image>
-                                </block>
+                                <image class="select-img" src="{{IMGCDNURL + 'select.png'}}"></image>
                             </view>
                         </block>
                         <block wx:if="{{!passre && nopassre}}">
@@ -124,8 +118,8 @@
                 </block>
             </view>
         </block>
-        <view class="cardcolore">
-            <block wx:if="{{showtopone}}">
+        <block wx:if="{{showtopone}}">
+            <view class="cardcolore">
                 <view class="cardtwo">
                     <image class="link" src="{{IMGCDNURL + 'lpy/newresume-linktag.png'}}"></image>
                     <image class="linkone" src="{{IMGCDNURL + 'lpy/newresume-linktag.png'}}"></image>
@@ -136,7 +130,7 @@
                         <view class="cardtwosonone">
                             <view class="cardtwosononeimg">
                                 <view class="oimg">
-                                    <image class="oimg-image" src="{{headerimg}}" bindtap="anonymousFunc6"></image>
+                                    <image class="oimg-image" src="{{headerimg}}" bindtap="anonymousFunc7"></image>
                                 </view>
                                 <view class="oimgone"><text class="otext">{{data.info.username}}</text>
                                     <block wx:if="{{authenticationimg == '2'}}">
@@ -152,7 +146,7 @@
                                 </view>
                             </view>
                             <block wx:if="{{!checkone && checkonef != '0'}}">
-                                <view class="cardtwosontwo"><text bindtap="anonymousFunc7">编辑</text>
+                                <view class="cardtwosontwo"><text bindtap="anonymousFunc8">编辑</text>
                                 </view>
                             </block>
                             <block wx:if="{{checkonef == '0'}}">
@@ -169,7 +163,7 @@
                                             <view class="ocworkotyp">
                                                 <view class="ocworkotyptu">
                                                     <block wx:if="{{data.info.occupations}}">
-                                                        <view class="ocworkotyptu-list" wx:key="$loopState__temp5" wx:for="{{loopArray151}}" wx:for-item="v" wx:for-index="i">{{v.$original}}</view>
+                                                        <view class="ocworkotyptu-list" wx:key="$loopState__temp5" wx:for="{{loopArray235}}" wx:for-item="v" wx:for-index="i">{{v.$original}}</view>
                                                     </block>
                                                 </view>
                                             </view>
@@ -178,7 +172,7 @@
                                             <view class="ocworkotyp">
                                                 <view class="oimg">
                                                     <block wx:if="{{data.info.occupations}}">
-                                                        <view class="oimg" wx:key="$loopState__temp7" wx:for="{{loopArray152}}" wx:for-item="v" wx:for-index="i">{{v.$original}}</view>
+                                                        <view class="oimg" wx:key="$loopState__temp7" wx:for="{{loopArray236}}" wx:for-item="v" wx:for-index="i">{{v.$original}}</view>
                                                     </block>
                                                 </view>
                                             </view>
@@ -201,8 +195,8 @@
                         </block>
                     </view>
                 </view>
-            </block>
-        </view>
+            </view>
+        </block>
         <block wx:if="{{ressonone}}">
             <view class="cardcoloreno">
                 <view class="nopass"><text class="nopass-text">个人资料审核失败原因：</text> {{data.info.note}}</view>
@@ -212,27 +206,29 @@
     <block wx:if="{{!showtop}}">
         <view class="cardcolore">
             <view class="findingnamecardtwo"><text class="findingnamecardtwothree">您还没有完善基础信息</text>
-                <view class="findingnamecardtwofour">去完善</view>
+                <view class="findingnamecardtwofour" bindtap="anonymousFunc9">去完善</view>
             </view>
         </view>
     </block>
-    <block wx:if="{{selfintrone}}">
-        <view class="findingnamecardthree">
-            <view class="findingnamecardthreemobile">
-                <view class="findingnamemobile">
-                    <image class="findingnamecardthree-image" src="{{IMGCDNURL + 'lpy/newresume-description.png'}}"></image>
-                </view>
-                <view class="findingnamemobileone"><text>人员信息</text>
-                </view>
-                <block wx:if="{{!checktwo && checkonef != '0'}}">
-                    <view class="cardthreeone" bindtap="anonymousFunc8">编辑</view>
-                </block>
-                <block wx:if="{{!checktwo && checkonef == '0'}}">
-                    <view class="cardthreeone">待修改</view>
-                </block>
+    <view class="findingnamecardthree">
+        <view class="findingnamecardthreemobile">
+            <view class="findingnamemobile">
+                <image class="findingnamecardthree-image" src="{{IMGCDNURL + 'lpy/newresume-description.png'}}"></image>
             </view>
+            <view class="findingnamemobileone"><text>人员信息</text>
+            </view>
+            <block wx:if="{{selfintrone}}">
+                <view>
+                    <block wx:if="{{!checktwo && checkonef != '0'}}">
+                        <view class="cardthreeone" bindtap="anonymousFunc10">编辑</view>
+                    </block>
+                    <block wx:if="{{!checktwo && checkonef == '0'}}">
+                        <view class="cardthreeone">待修改</view>
+                    </block>
+                </view>
+            </block>
         </view>
-    </block>
+    </view>
     <block wx:if="{{selfintrone}}">
         <view class="cardcolore">
             <view class="cardtwoif">
@@ -255,7 +251,7 @@
                         </block>
                         <view class="cardotext"><text class="oworkotext">标签</text>
                             <view class="alllabletu">
-                                <block wx:if="{{data.introduces.tags}}"><text class="labletu" wx:key="$loopState__temp9" wx:for="{{loopArray153}}" wx:for-item="v" wx:for-index="i">{{v.$original.label_name}}</text>
+                                <block wx:if="{{data.introduces.tags}}"><text class="labletu" wx:key="$loopState__temp9" wx:for="{{loopArray237}}" wx:for-item="v" wx:for-index="i">{{v.$original.label_name}}</text>
                                 </block>
                             </view>
                         </view>
@@ -267,7 +263,7 @@
     <block wx:if="{{selfintro}}">
         <view class="cardcolore">
             <view class="findingnamecardtwo"><text class="findingnamecardtwothree">完善人员信息，能让老板充分了解您或您的队伍</text>
-                <view class="findingnamecardtwofour">去完善</view>
+                <view class="findingnamecardtwofour" bindtap="anonymousFunc11">去完善</view>
             </view>
         </view>
     </block>
@@ -279,27 +275,27 @@
             <view class="findingnamemobileone"><text>项目经验</text>
             </view>
             <block wx:if="{{projectlength != 0 && projectlength < project_count}}">
-                <view class="cardthreeone" bindtap="anonymousFunc9">添加</view>
+                <view class="cardthreeone" bindtap="anonymousFunc12">添加</view>
             </block>
         </view>
     </view>
     <block wx:if="{{projectlength == 0}}">
         <view class="cardcolore">
             <view class="findingnamecardtwo"><text class="findingnamecardtwothree">添加项目经验，可提升老板对您的信任程度</text>
-                <view class="findingnamecardeighttwo">添加项目经验</view>
+                <view class="findingnamecardeighttwo" bindtap="anonymousFunc13">添加项目经验</view>
             </view>
         </view>
     </block>
-    <view class="cardcolore">
-        <block wx:if="{{projectlength != 0}}">
+    <block wx:if="{{projectlength != 0}}">
+        <view class="cardcolore">
             <view class="cardsix">
                 <block wx:if="{{project}}">
-                    <view class="cardsixzong" wx:key="id" wx:for="{{loopArray154}}" wx:for-item="item" wx:for-index="__index10">
+                    <view class="cardsixzong" wx:key="id" wx:for="{{loopArray238}}" wx:for-item="item" wx:for-index="__index14">
                         <block wx:if="{{item.$original.check == 1 && data.content.show_tips == 1}}">
                             <image class="checkthree" src="{{IMGCDNURL + 'lpy/audit.png'}}"></image>
                         </block>
                         <block wx:if="{{item.$original.check == 2}}">
-                            <view class="editor" bindtap="anonymousFunc10" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">编辑</view>
+                            <view class="editor" bindtap="anonymousFunc14" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">编辑</view>
                         </block>
                         <block wx:if="{{item.$original.check == 0}}">
                             <view class="editor">待修改</view>
@@ -326,7 +322,7 @@
                             </view>
                             <view class="cardsixfive">
                                 <block wx:if="{{item.$original.image}}">
-                                    <image class="cardsixfive-image" src="{{v.$original}}" wx:key="$loopState__temp11" wx:for="{{item.$anonymousCallee__30}}" wx:for-item="v" wx:for-index="i"></image>
+                                    <image class="cardsixfive-image" src="{{v.$original}}" wx:key="$loopState__temp11" wx:for="{{item.$anonymousCallee__58}}" wx:for-item="v" wx:for-index="i"></image>
                                 </block>
                             </view>
                             <block wx:if="{{item.$original.check == 0}}">
@@ -337,7 +333,7 @@
                 </block>
                 <view class="cardsixsixall">
                     <view class="cardsixsix">
-                        <view class="more" bindtap="anonymousFunc11">{{proStatus == '0' ? '更多项目经验' : '修改项目经验'}}
+                        <view class="more" bindtap="anonymousFunc15">{{proStatus !== '0' ? '更多项目经验' : '修改项目经验'}}
                             <view class="more-view">
                                 <image src="{{IMGCDNURL + 'lpy/downward.png'}}" class="down"></image>
                             </view>
@@ -347,8 +343,8 @@
                     </view>
                 </view>
             </view>
-        </block>
-    </view>
+        </view>
+    </block>
     <view class="findingnamecardthree">
         <view class="findingnamecardthreemobile">
             <view class="findingnamemobile">
@@ -357,32 +353,32 @@
             <view class="findingnamemobileone"><text>职业技能</text>
             </view>
             <block wx:if="{{skilllength != 0 && skilllength < data.certificate_count}}">
-                <view class="cardthreeone" bindtap="anonymousFunc12">添加</view>
+                <view class="cardthreeone" bindtap="anonymousFunc16">添加</view>
             </block>
         </view>
     </view>
     <block wx:if="{{skilllength == 0}}">
         <view class="cardcolore">
             <view class="findingnamecardtwo"><text class="findingnamecardtwothree">添加职业技能，用实力证明您的能力</text>
-                <view class="findingnamecardeighttwo">添加职业技能</view>
+                <view class="findingnamecardeighttwo" bindtap="anonymousFunc17">添加职业技能</view>
             </view>
         </view>
     </block>
-    <view class="cardcolore">
-        <block wx:if="{{skilllength != 0}}">
+    <block wx:if="{{skilllength != 0}}">
+        <view class="cardcolore">
             <view class="cardeight">
                 <block wx:if="{{skillbooksone}}">
-                    <view class="cardeightzong" wx:key="$loopState__temp13" wx:for="{{loopArray155}}" wx:for-item="item" wx:for-index="i">
+                    <view class="cardeightzong" wx:key="$loopState__temp13" wx:for="{{loopArray239}}" wx:for-item="item" wx:for-index="i">
                         <block wx:if="{{item.$original.check == 1 && data.content.show_tips == 1}}">
                             <image class="checkfour" src="{{IMGCDNURL + 'lpy/audit.png'}}"></image>
                         </block>
                         <view class="cardeightzong">
                             <image src="{{item.$original.audit}}" class="checkfour"></image>
                             <block wx:if="{{item.$original.check == 2}}">
-                                <view class="editor" bindtap="anonymousFunc13" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey2}}">编辑</view>
+                                <view class="editor" bindtap="anonymousFunc18" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey2}}">编辑</view>
                             </block>
                             <block wx:if="{{item.$original.check == 0}}">
-                                <view class="editor" bindtap="anonymousFunc14" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey3}}">待修改</view>
+                                <view class="editor" bindtap="anonymousFunc19" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey3}}">待修改</view>
                             </block>
                             <block wx:if="{{item.$original.check == 0}}">
                                 <image class="audit" src="{{IMGCDNURL + 'lpy/notthrough.png'}}"></image>
@@ -397,7 +393,7 @@
                                 </view>
                                 <view class="cardeightfive">
                                     <block wx:if="{{item.$original.image}}">
-                                        <image class="cardeightfive-image" src="{{v.$original}}" wx:key="$loopState__temp15" wx:for="{{item.$anonymousCallee__31}}" wx:for-item="v" wx:for-index="i"></image>
+                                        <image class="cardeightfive-image" src="{{v.$original}}" wx:key="$loopState__temp15" wx:for="{{item.$anonymousCallee__59}}" wx:for-item="v" wx:for-index="i"></image>
                                     </block>
                                 </view>
                                 <block wx:if="{{item.$original.check == 0}}">
@@ -410,14 +406,14 @@
                 <view class="cardeightsixall">
                     <view class="cardeightsix">
                         <block wx:if="{{checkfourf != '0'}}">
-                            <view class="more" bindtap="anonymousFunc15">更多技能证书
+                            <view class="more" bindtap="anonymousFunc20">更多技能证书
                                 <view class="more-view">
                                     <image src="{{IMGCDNURL + 'lpy/downward.png'}}" class="down"></image>
                                 </view>
                             </view>
                         </block>
                         <block wx:if="{{checkfourf == '0'}}">
-                            <view class="more" bindtap="anonymousFunc16">修改技能证书
+                            <view class="more" bindtap="anonymousFunc21">修改技能证书
                                 <view class="more-view">
                                     <image src="{{IMGCDNURL + 'lpy/downward.png'}}" class="down"></image>
                                 </view>
@@ -428,27 +424,27 @@
                     </view>
                 </view>
             </view>
-        </block>
-    </view>
-    <block wx:if="{{recData.length}}">
-        <collection-recruit-list compid="{{$compid__123}}"></collection-recruit-list>
+        </view>
     </block>
-    <block wx:if="{{showtopone && !isOpened}}">
+    <block wx:if="{{recData.length}}">
+        <collection-recruit-list compid="{{$compid__181}}"></collection-recruit-list>
+    </block>
+    <block wx:if="{{showtopone}}">
         <view class="cardnine">
-            <button class="cardnineone" bindtap="anonymousFunc17">
+            <button class="cardnineone" bindtap="anonymousFunc22">
                 <image class="cardnineone-image" src="{{IMGCDNURL + 'lpy/bottom-one.png'}}"></image>预览</button>
             <button class="cardnineone">
                 <image class="cardnineone-image" src="{{IMGCDNURL + 'lpy/bottom-two.png'}}"></image>分享</button>
         </view>
     </block>
-    <at-modal compid="{{$compid__124}}">
+    <at-modal compid="{{$compid__182}}">
         <view class="content">
             <view class="content-otext">提示</view>
             <view class="content-text">您的<text class="popup">{{popup}}</text>未审核通过,请修改后再进行提交</view>
-            <view class="buttontext" bindtap="anonymousFunc18">确定</view>
+            <view class="buttontext" bindtap="anonymousFunc23">确定</view>
         </view>
     </at-modal>
-    <at-modal compid="{{$compid__125}}">
+    <at-modal compid="{{$compid__183}}">
         <view class="content">
             <view>
                 <image src="{{IMGCDNURL + 'lpy/resume-settop-daytips.png'}}" class="content-image"></image>
@@ -456,8 +452,8 @@
             <view class="content-otext">提示</view>
             <view class="content-toppding">马上去置顶提升找活名片排名，让更多老板看到您的找活名片</view>
             <view class="content-btn-box">
-                <view class="content-btn-left" bindtap="anonymousFunc19">稍后再说</view>
-                <view class="content-btn-right" bindtap="anonymousFunc20">去置顶</view>
+                <view class="content-btn-left" bindtap="anonymousFunc24">稍后再说</view>
+                <view class="content-btn-right" bindtap="anonymousFunc25">去置顶</view>
             </view>
         </view>
     </at-modal>

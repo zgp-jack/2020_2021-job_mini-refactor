@@ -1,10 +1,10 @@
-import Taro, { useEffect, useState, useContext, Config } from '@tarojs/taro'
-import { View, Text, Image, Input, Form, Picker } from '@tarojs/components'
-import { AtInput, AtList, AtListItem } from 'taro-ui';
-import Msg, { ShowActionModal } from '../../../utils/msg'
+import Taro, { useEffect, useState, Config,useRouter } from '@tarojs/taro'
+import { View, Text, Input, Form, Picker } from '@tarojs/components'
 import AREAS from '../../../models/area'
+import { useSelector } from '@tarojs/redux'
+import { SubPopup } from '../../../utils/msg'
+import { SubscribeToNews  } from '../../../utils/subscribeToNews';
 import { resumesIntroduceAction } from '../../../utils/request/index'
-import { context } from '../../../pages/resume/newJobs'
 import './index.scss'
 
 interface ModelType {
@@ -15,7 +15,12 @@ interface ModelType {
   type:string,
 }
 export default function PersonInfo() {
-  const { userInfo,publicList } = useContext(context);
+  const router: Taro.RouterInfo = useRouter()
+  // 判断是新增还是编辑
+  let { type } = router.params
+  // 获取存入的公用内容
+  const useSelectorItem = useSelector<any, any>(state => state)
+  // const userInfo:any=[];
   const [formData, setFormData] = useState<ModelType>({
     age:'',
     proficiency:'',
@@ -44,12 +49,14 @@ export default function PersonInfo() {
   // 人员构成位置
   const [userIndex, setUserIndex] = useState<number>(0);
   useEffect(()=>{
-    if (publicList){
-      const proficiencyList = publicList.prof_degree.map(v=>v.name);
+    const AllItem = JSON.parse(JSON.stringify(useSelectorItem.Personnel));
+    if (AllItem){
+      console.log(AllItem)
+      const proficiencyList = AllItem.prof_degree && AllItem.prof_degree.map(v=>v.name);
       setProficiency(proficiencyList);
-      const personnel = publicList.type.map(v=>v.name);
+      const personnel = AllItem.type && AllItem.type.map(v=>v.name);
       setPersonnel(personnel);
-      const labelList = publicList.label.map(v=>{v.click = false; return v});
+      const labelList = AllItem.label && AllItem.label.map(v=>{v.click = false; return v});
       setLabel(labelList);
     }
     let data: string[] = [];
@@ -95,10 +102,13 @@ export default function PersonInfo() {
       // 省和第一个市
       setMultiArray([data, lastData])
     }
+    console.log(useSelectorItem,'xxxxs')
     //内容回填
-    if (userInfo) {
-      const tagList = publicList.label.map(v => {
-        userInfo.tags.map(val => {
+    if (type){
+      const allItem = JSON.parse(JSON.stringify(useSelectorItem))
+      if (allItem.Myresume) {
+        const tagList = allItem.Personnel.label.map(v => {
+          allItem.Myresume.info.tags.map(val => {
           if (v.id === val.id) {
             v.click = true;
           }
@@ -107,18 +117,19 @@ export default function PersonInfo() {
         return v;
       })
       setLabel(tagList);
-      setTag(userInfo.tags);
-      if (userInfo.type !== '1') {
+      setTag(allItem.Myresume.info.tags);
+        if (allItem.Myresume.info.type !== '1') {
         setRanks(true);
       }
+      console.log(allItem.Myresume)
       setFormData({
-        age: userInfo.experience,
-        proficiency: userInfo.prof_degree_str,
-        personnel: userInfo.type_str,
-        address: userInfo.hometown,
-        type: userInfo.number_people,
+        age: allItem.Myresume.introduces.experience,
+        proficiency: allItem.Myresume.introduces.prof_degree_str,
+        personnel: allItem.Myresume.introduces.type_str,
+        address: allItem.Myresume.introduces.hometown,
+        type: allItem.Myresume.introduces.number_people,
       })
-      const userArr= userInfo.hometown_id.split(",");
+      const userArr = allItem.Myresume.introduces.hometown_id && allItem.Myresume.introduces.hometown_id.split(",");
       let one = 0;
       let two = 0;
       // 第一项
@@ -139,17 +150,16 @@ export default function PersonInfo() {
         }
       }
       setMultiIndex([one, two])
-      console.log(userInfo.hometown_id.split(","),'userInfo.hometown_id.split(",")')
-      setAllpro(userInfo.hometown_id.split(","))
-      if (userInfo.prof_degree > 0) {
-        setProficiencyIndex(parseInt(userInfo.prof_degree) - 1)
+      setAllpro(allItem.Myresume.introduces.hometown_id.split(","))
+        if (allItem.Myresume.introduces.prof_degree > 0) {
+          setProficiencyIndex(parseInt(allItem.Myresume.introduces.prof_degree) - 1)
       } else {
-        setProficiencyIndex(parseInt(userInfo.prof_degree))
+          setProficiencyIndex(parseInt(allItem.Myresume.introduces.prof_degree))
       }
-      setUserIndex(parseInt(userInfo.prof_degree))
-      console.log(data,'xxxx')
+        setUserIndex(parseInt(allItem.Myresume.introduces.prof_degree))
       setMultiArray([data, lastCity])
     }
+  }
   }, [edit])
   const userEnterFrom = (e:any,key:string)=>{
     let value;
@@ -196,6 +206,7 @@ export default function PersonInfo() {
   }
   // 第一列滑动
   const handlebindcolumnchange = (e) => {
+    console.log(e.detail.column,'xx')
     let obj = {
       multiArray,
       multiIndex
@@ -271,9 +282,18 @@ export default function PersonInfo() {
           content: res.errmsg,
           showCancel: false,
           success() { 
-            Taro.navigateBack({
-              delta: 1
-            })
+            if(res.errcode === 200){
+              SubscribeToNews("resume", () => {
+                SubPopup({
+                  tips: res.errmsg,
+                  callback: () => {
+                    Taro.navigateBack({
+                      delta: 1
+                    })
+                  }
+                })
+              })
+            }
           }
         })
         return

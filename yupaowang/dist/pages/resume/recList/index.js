@@ -36,6 +36,8 @@ var _index2 = __webpack_require__(/*! ../../../config/index */ "./src/config/ind
 
 var _store = __webpack_require__(/*! ../../../config/store */ "./src/config/store.ts");
 
+var _tabbar = __webpack_require__(/*! ../../../constants/tabbar */ "./src/constants/tabbar.ts");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
@@ -84,7 +86,9 @@ var RecListPage = (_temp2 = _class = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var userInfo = _taroWeapp2.default.getStorageSync(_store.Introinfo);
+      // 获取缓存数据
+      var IntroinfoList = _taroWeapp2.default.getStorageSync(_store.Introinfo);
+      // 获取数据
 
       var _useState = (0, _taroWeapp.useState)({
         item: []
@@ -101,10 +105,10 @@ var RecListPage = (_temp2 = _class = function (_Taro$Component) {
           setIsDown = _useState4[1];
 
       var _useState5 = (0, _taroWeapp.useState)({
-        area_id: userInfo.city,
-        classify_id: userInfo.occupations_id,
+        area_id: IntroinfoList.city,
+        classify_id: IntroinfoList.occupations_id,
         page: 1,
-        type: 2
+        type: 1
       }),
           _useState6 = _slicedToArray(_useState5, 2),
           search = _useState6[0],
@@ -134,23 +138,23 @@ var RecListPage = (_temp2 = _class = function (_Taro$Component) {
       var getNextPageData = function getNextPageData() {
         if (!isDown) {
           return;
-        }setSearch(_extends({}, search, { page: search.page + 1 }));
+        }setSearch(_extends({}, search, { page: search.page + 1, type: 2 }));
       };
-      console.log(isDown);
-      console.log(data.item.length);
 
       this.anonymousFunc0 = function () {
         return getNextPageData();
       };
 
-      this.anonymousFunc2 = function () {};
+      this.anonymousFunc2 = function () {
+        return _taroWeapp2.default.reLaunch({ url: '/pages/index/index?type=' + _tabbar.RESUME });
+      };
 
       var loopArray95 = data.item.map(function (v, __index1) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
 
-        var _$indexKey = "jizzz" + __index1;
+        var _$indexKey = "jjzzz" + __index1;
 
         _this2.anonymousFunc1Map[_$indexKey] = function () {
           return userRouteJump("/pages/detail/info/index?id=" + v.$original.id);

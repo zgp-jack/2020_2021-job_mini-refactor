@@ -4,13 +4,15 @@ import { AtInput} from 'taro-ui';
 import ImageView from '../../../components/imageview'
 import UploadImgAction from '../../../utils/upload'
 import WordsTotal from '../../../components/wordstotal'
+import Msg, { SubPopup } from '../../../utils/msg'
+import { SubscribeToNews } from '../../../utils/subscribeToNews';
 import { resumesProjectAction, resumesDelProjectAction } from '../../../utils/request/index'
 import AREAS from '../../../models/area'
-import Msg from '../../../utils/msg'
 import { isVaildVal } from '../../../utils/v'
-import { UserInfo } from '../../../config/store'
-import { context } from '../../../pages/resume/newJobs'
+// import { context } from '../../../pages/resume/newJobs'
+import { useSelector } from '@tarojs/redux'
 import './index.scss'
+
 export interface ImageDataType {
   item: ImageItem[]
 }
@@ -38,35 +40,44 @@ export interface ChildItems {
   label:string,
   level:number,
 }
-interface User {
-  userId: number,
-  tokenTime: number,
-  token: string,
-  uuid: string,
-  login: boolean
-}
+
 export default function AddProjectPage() {
   const router: Taro.RouterInfo = useRouter()
+  // 获取存入的公用内容
+  const useSelectorItem = useSelector<any, any>(state => state)
+  // url传递过来的值
   let { type, id } = router.params;
-  const { projectData } = useContext(context);
+  // const projectData:any=[];
+  // const { projectData } = useContext(context);
   // const { area } = useContext(contextItem);
   // console.log(area,'areaareaarea')
-  let userInfo: User = Taro.getStorageSync(UserInfo)
   // 默认字数
   const [num, setNum] = useState<number>(0)
+  //项目名称
   const [name,setName]= useState<string>('')
+  // 开工时间
   const [startTime, setStartTime] = useState<string>('')
+  // endTime
   const [endTime, setEndTime] = useState<string>('')
+  // 项目详情
   const [textarea, setTextarea] = useState<string>('')
+  // 图片
   const [image, setImage] = useState<ImageDataType>({
     item: [],
   })
+  // 所有的省，市
   const [multiArrayone, setMultiArrayone] = useState<any[][]>([])
+  // 省和第一个市
   const [multiArray, setMultiArray] = useState<any[][]>([])
+  // 省和市的值
   const [multiIndex, setMultiIndex] = useState<number[]>([0,0])
+  // 修改值
   const [edit, setEdit] = useState<number>(0)
+  // 省
   const [allprovinces, setAllprovinces] = useState<any[]>([])
+  // 省和市中文
   const [multiIndexvalue, seMultiIndexvalue] = useState<string>('')
+  // 选择后省和市中文
   const [allpro, setAllpro] = useState<string>('')
   //修改项目id
   const [project_uuid, setProject_uuid] = useState<string>('')
@@ -107,8 +118,10 @@ export default function AddProjectPage() {
         }
       }
     }
+    console.log(provice,'provice')
     setAllprovinces(provice)
     // 所有的省，市
+    console.log([data, allChildren])
     setMultiArrayone([data, allChildren])
     //省市obj
     // setObjectMultiArray([provice,city]);
@@ -123,11 +136,12 @@ export default function AddProjectPage() {
         title: '修改项目经验'
       })
     // 内容回填
-    if (projectData) {
-      console.log(projectData,'projectDataprojectDataprojectData')
+      const dataItem = JSON.parse(JSON.stringify(useSelectorItem.Myresume));
+      if (dataItem.project) {
+      console.log(data);
       let arr: any = [];
       setImage({ item: arr })
-      const list = projectData[type];
+        const list = dataItem.project[type];
       for (let i = 0; i < list.image.length; i++) {
         for (let j = 0; j < list.images.length; j++) {
           let obj = {
@@ -201,7 +215,9 @@ export default function AddProjectPage() {
       multiArray,
       multiIndex
     }
+    console.log(e,'e')
     obj.multiIndex[e.detail.column] = e.detail.value;
+    console.log(obj.multiIndex[e.detail.column],'obj.multiIndex[e.detail.column]s')
     switch (e.detail.column) {
       case 0:
         switch (obj.multiIndex[0]) {
@@ -212,6 +228,8 @@ export default function AddProjectPage() {
         obj.multiIndex[1] = 0;
         break;
     }
+    console.log(obj.multiArray,'obj.multiArray');
+    console.log(obj.multiIndex,'obj.multiIndex')
     setMultiArray(obj.multiArray);
     setMultiIndex(obj.multiIndex);
     // 修改值
@@ -289,24 +307,31 @@ export default function AddProjectPage() {
     console.log(params);
     resumesProjectAction(params).then(res => {
       if (res.errcode === 'ok') {
-        // 保存继续添加
-        if(type === 0 ){
-          setStartTime('请选择开工时间');
-          setEndTime('请选择完工时间');
-          setTextarea('');
-          setImage({ item: [] });
-          setNum(0)
-          seMultiIndexvalue('')
-          // setAddress('请选择所在地区')
-          setAllpro('')
-          setName('')
-          // 保存
-        }else{
-          Msg(res.errmsg);
-          Taro.navigateBack({
-            delta: 1
+        SubscribeToNews('resume', () => {
+          SubPopup({
+            tips: res.errmsg,
+            callback: () => {
+              // 保存继续添加
+              if (type === 0) {
+                setStartTime('请选择开工时间');
+                setEndTime('请选择完工时间');
+                setTextarea('');
+                setImage({ item: [] });
+                setNum(0)
+                seMultiIndexvalue('')
+                // setAddress('请选择所在地区')
+                setAllpro('')
+                setName('')
+                // 保存
+              } else {
+                Msg(res.errmsg);
+                Taro.navigateBack({
+                  delta: 1
+                })
+              }
+            }
           })
-        }
+        })
       } else {
         Msg(res.errmsg);
       }
@@ -335,6 +360,7 @@ export default function AddProjectPage() {
       }
     })
   }
+  console.log(multiArray,'xxv')
   return (
     <View className='addProjectPage'>
     <View className='content'>

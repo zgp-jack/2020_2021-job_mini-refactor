@@ -1328,9 +1328,13 @@ var _msg = __webpack_require__(/*! ./msg */ "./src/reducers/msg.ts");
 
 var _msg2 = _interopRequireDefault(_msg);
 
-var _project = __webpack_require__(/*! ./project */ "./src/reducers/project.ts");
+var _personnel = __webpack_require__(/*! ./personnel */ "./src/reducers/personnel.ts");
 
-var _project2 = _interopRequireDefault(_project);
+var _personnel2 = _interopRequireDefault(_personnel);
+
+var _resume = __webpack_require__(/*! ./resume */ "./src/reducers/resume.ts");
+
+var _resume2 = _interopRequireDefault(_resume);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1339,7 +1343,8 @@ exports.default = (0, _redux.combineReducers)({
   WechatNotice: _wechat_notice2.default,
   User: _user2.default,
   msg: _msg2.default,
-  project: _project2.default
+  Personnel: _personnel2.default,
+  Myresume: _resume2.default
 });
 
 /***/ }),
@@ -1384,10 +1389,10 @@ function msg() {
 
 /***/ }),
 
-/***/ "./src/reducers/project.ts":
-/*!*********************************!*\
-  !*** ./src/reducers/project.ts ***!
-  \*********************************/
+/***/ "./src/reducers/personnel.ts":
+/*!***********************************!*\
+  !*** ./src/reducers/personnel.ts ***!
+  \***********************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1400,24 +1405,65 @@ Object.defineProperty(exports, "__esModule", {
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-exports.default = project;
+exports.default = Personnel;
 
-var _msg = __webpack_require__(/*! ../constants/msg */ "./src/constants/msg.ts");
+var _personnel = __webpack_require__(/*! ../constants/personnel */ "./src/constants/personnel.ts");
 
 // 内容的参数
 var DEFAULT_STATE = {
-  jobNumber: 0,
-  messageNumber: 0
+  data: {}
 };
-function project() {
+function Personnel() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : DEFAULT_STATE;
   var action = arguments[1];
 
   switch (action.type) {
-    case _msg.GET:
+    case _personnel.GETDATA:
       return state;
-    case _msg.SET:
-      return _extends({}, state, action.data);
+    case _personnel.SETDATA:
+      state = _extends({}, state, action.data);
+      return state;
+    default:
+      return state;
+  }
+}
+
+/***/ }),
+
+/***/ "./src/reducers/resume.ts":
+/*!********************************!*\
+  !*** ./src/reducers/resume.ts ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+exports.default = Myresume;
+
+var _resume = __webpack_require__(/*! ../constants/resume */ "./src/constants/resume.ts");
+
+// 内容的参数
+var DEFAULT_STATE = {
+  data: {}
+};
+function Myresume() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : DEFAULT_STATE;
+  var action = arguments[1];
+
+  switch (action.type) {
+    case _resume.GETLIST:
+      return state;
+    case _resume.SETLIST:
+      state = _extends({}, state, action.data);
+      return state;
     default:
       return state;
   }

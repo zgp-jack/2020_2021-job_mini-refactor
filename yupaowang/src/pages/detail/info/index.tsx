@@ -1,11 +1,13 @@
 import Taro, { Config, useState, useRouter, useDidShow } from '@tarojs/taro'
-import { View, Text, Image, Icon, Button, Textarea } from '@tarojs/components'
+import { View, Text, Image, Icon, Button } from '@tarojs/components'
 import { jobInfoAction, publishComplainAction, jobGetTelAction, recruitListCancelCollectionAction, jobEndStatusAction, jobUpdateTopStatusAction, jobNoUserInfoAction, jobRecommendListAction } from '../../../utils/request/index'
 import WechatNotice from '../../../components/wechat'
 import { IMGCDNURL, SERVERPHONE } from '../../../config'
 import { useSelector } from '@tarojs/redux'
 import { isVaildVal } from '../../../utils/v'
-import Msg from '../../../utils/msg'
+import  Report  from '../../../components/report'
+import Msg, { SubPopup } from '../../../utils/msg'
+import { SubscribeToNews } from '../../../utils/subscribeToNews';
 import  CollectionRecruitList from '../../../components/recommendList/index'
 import { UserInfo } from '../../../config/store'
 import './index.scss'
@@ -77,7 +79,7 @@ export default function DetailInfoPage() {
     }
   })
   // 投诉
-  const [complaintModal, setComplaintModal] = useState<Boolean>(false)
+  const [complaintModal, setComplaintModal] = useState<boolean>(false)
   // textarea
   const [textarea, setTextarea] = useState<string>('')
   // 刷新一次
@@ -218,10 +220,24 @@ export default function DetailInfoPage() {
       type: 'job',
       infoId: data.id
     };
-    publishComplainAction(params).then(() => {
-      Msg('提交成功')
-      setComplaintModal(false);
-      setComplaint(true)
+    // publishComplainAction(params).then((res) => {
+      
+    //   Msg('提交成功')
+    //   setComplaintModal(false);
+    //   setComplaint(true)
+    // })
+    publishComplainAction(params).then((res) => {
+      if (res.errcode === 'ok') {
+        SubscribeToNews('complain', () => {
+          SubPopup({
+            tips: res.errmsg,
+            callback: () => {
+              setComplaintModal(false);
+              setComplaint(true)
+            }
+          })
+        })
+      }
     })
   }
   // 获取电话
@@ -510,26 +526,8 @@ export default function DetailInfoPage() {
       <CollectionRecruitList data={recommend} type={1}/>
       }
       {/* 投诉 */}
-      {complaintModal &&
-        <View className='tabber-complaintModal'>
-          <View className='tabber-complaintModal-content'>
-          <View className='tabber-complaintModal-content-title'>投诉信息</View>
-            <View className='tabber-complaintModal-content-tips'>请输入投诉内容</View>
-            <View className='tabber-complaintModal-content-textareaBox'>
-              <Textarea
-                className='tabber-complaintModal-content-textarea'
-                placeholder='请填写5~100字，必须含有汉字。（恶意投诉会被封号，请谨慎投诉！）'
-                value={textarea}
-                maxlength={100}
-                onInput={(e) => handleTextarea(e)}
-              />
-            </View>
-            <View className='tabber-complaintModal-footer'>
-              <View className='tabber-complaintModal-footer-cancel' onClick={() => { setComplaintModal(false) }}>取消</View>
-              <View className='tabber-complaintModal-footer-cancel' onClick={() => handleSubmit()}>确定</View>
-            </View>
-          </View>
-        </View>
+      {complaintModal && <Report display={complaintModal} textarea={textarea} handleTextarea={handleTextarea} setComplaintModal={setComplaintModal}
+        handleSubmit={handleSubmit} />
       }
     </View>
   )

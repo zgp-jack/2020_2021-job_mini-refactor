@@ -48,3 +48,15 @@ export function successMsg(msg: string = '') {
     'type': 'success',
   })
 }
+
+
+export function SubPopup(obj) {
+  Taro.showModal({
+    title: obj.title || '温馨提示',
+    content: obj.tips,
+    showCancel: obj.hasOwnProperty('cancel') ? obj.cancel : false,
+    success() {
+      obj.callback ? obj.callback() : "";
+    }
+  })
+}

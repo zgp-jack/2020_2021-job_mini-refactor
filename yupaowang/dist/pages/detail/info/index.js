@@ -38,6 +38,8 @@ var _index4 = __webpack_require__(/*! ../../../utils/msg/index */ "./src/utils/m
 
 var _index5 = _interopRequireDefault(_index4);
 
+var _index6 = __webpack_require__(/*! ../../../utils/subscribeToNews/index */ "./src/utils/subscribeToNews/index.ts");
+
 var _store = __webpack_require__(/*! ../../../config/store */ "./src/config/store.ts");
 
 __webpack_require__(/*! ./index.scss */ "./src/pages/detail/info/index.scss");
@@ -66,7 +68,7 @@ var DetailInfoPage = (_temp2 = _class = function (_Taro$Component) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = DetailInfoPage.__proto__ || Object.getPrototypeOf(DetailInfoPage)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
       navigationBarTitleText: ''
-    }, _this.$usedState = ["data", "loopArray139", "loopArray140", "$compid__119", "resCode", "editPhone", "IMGCDNURL", "again", "stopHiring", "isCollection", "recommend", "complaintModal", "textarea", "phone"], _this.anonymousFunc5Map = {}, _this.customComponents = ["WechatNotice", "CollectionRecruitList"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["data", "loopArray139", "loopArray140", "$compid__123", "$compid__124", "resCode", "editPhone", "IMGCDNURL", "again", "stopHiring", "isCollection", "recommend", "complaintModal", "phone"], _this.anonymousFunc5Map = {}, _this.customComponents = ["WechatNotice", "CollectionRecruitList", "Report"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(DetailInfoPage, [{
@@ -87,10 +89,15 @@ var DetailInfoPage = (_temp2 = _class = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__119"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__123"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__119 = _genCompid2[0],
-          $compid__119 = _genCompid2[1];
+          $prevCompid__123 = _genCompid2[0],
+          $compid__123 = _genCompid2[1];
+
+      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__124"),
+          _genCompid4 = _slicedToArray(_genCompid3, 2),
+          $prevCompid__124 = _genCompid4[0],
+          $compid__124 = _genCompid4[1];
 
       var router = (0, _taroWeapp.useRouter)();
       var id = router.params.id;
@@ -334,10 +341,23 @@ var DetailInfoPage = (_temp2 = _class = function (_Taro$Component) {
           type: 'job',
           infoId: data.id
         };
-        (0, _index.publishComplainAction)(params).then(function () {
-          (0, _index5.default)('提交成功');
-          setComplaintModal(false);
-          setComplaint(true);
+        // publishComplainAction(params).then((res) => {
+        //   Msg('提交成功')
+        //   setComplaintModal(false);
+        //   setComplaint(true)
+        // })
+        (0, _index.publishComplainAction)(params).then(function (res) {
+          if (res.errcode === 'ok') {
+            (0, _index6.SubscribeToNews)('complain', function () {
+              (0, _index4.SubPopup)({
+                tips: res.errmsg,
+                callback: function callback() {
+                  setComplaintModal(false);
+                  setComplaint(true);
+                }
+              });
+            });
+          }
         });
       };
       // 获取电话
@@ -542,18 +562,6 @@ var DetailInfoPage = (_temp2 = _class = function (_Taro$Component) {
         _taroWeapp2.default.makePhoneCall({ phoneNumber: data.tel_str });
       };
 
-      this.anonymousFunc16 = function (e) {
-        return handleTextarea(e);
-      };
-
-      this.anonymousFunc17 = function () {
-        setComplaintModal(false);
-      };
-
-      this.anonymousFunc18 = function () {
-        return handleSubmit();
-      };
-
       var loopArray139 = data.classifyName.map(function (v, i) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
@@ -570,7 +578,7 @@ var DetailInfoPage = (_temp2 = _class = function (_Taro$Component) {
         };
         var $loopState__temp4 = data.view_images.length > 0 ? i + i : null;
 
-        var _$indexKey = "beczz" + i;
+        var _$indexKey = "beezz" + i;
 
         _this2.anonymousFunc5Map[_$indexKey] = function () {
           return handleImage(v.$original);
@@ -585,12 +593,20 @@ var DetailInfoPage = (_temp2 = _class = function (_Taro$Component) {
       recommend.length && _taroWeapp.propsManager.set({
         "data": recommend,
         "type": 1
-      }, $compid__119, $prevCompid__119);
+      }, $compid__123, $prevCompid__123);
+      complaintModal && _taroWeapp.propsManager.set({
+        "display": complaintModal,
+        "textarea": textarea,
+        "handleTextarea": handleTextarea,
+        "setComplaintModal": setComplaintModal,
+        "handleSubmit": handleSubmit
+      }, $compid__124, $prevCompid__124);
       Object.assign(this.__state, {
         data: data,
         loopArray139: loopArray139,
         loopArray140: loopArray140,
-        $compid__119: $compid__119,
+        $compid__123: $compid__123,
+        $compid__124: $compid__124,
         resCode: resCode,
         editPhone: editPhone,
         IMGCDNURL: _index2.IMGCDNURL,
@@ -599,7 +615,6 @@ var DetailInfoPage = (_temp2 = _class = function (_Taro$Component) {
         isCollection: isCollection,
         recommend: recommend,
         complaintModal: complaintModal,
-        textarea: textarea,
         phone: phone
       });
       return this.__state;
@@ -692,25 +707,10 @@ var DetailInfoPage = (_temp2 = _class = function (_Taro$Component) {
     value: function anonymousFunc15(e) {
       ;
     }
-  }, {
-    key: "anonymousFunc16",
-    value: function anonymousFunc16(e) {
-      ;
-    }
-  }, {
-    key: "anonymousFunc17",
-    value: function anonymousFunc17(e) {
-      ;
-    }
-  }, {
-    key: "anonymousFunc18",
-    value: function anonymousFunc18(e) {
-      ;
-    }
   }]);
 
   return DetailInfoPage;
-}(_taroWeapp2.default.Component), _class.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6", "anonymousFunc7", "anonymousFunc8", "anonymousFunc9", "anonymousFunc10", "anonymousFunc11", "anonymousFunc12", "anonymousFunc13", "anonymousFunc14", "anonymousFunc15", "anonymousFunc16", "anonymousFunc17", "anonymousFunc18"], _class.$$componentPath = "pages/detail/info/index", _temp2);
+}(_taroWeapp2.default.Component), _class.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6", "anonymousFunc7", "anonymousFunc8", "anonymousFunc9", "anonymousFunc10", "anonymousFunc11", "anonymousFunc12", "anonymousFunc13", "anonymousFunc14", "anonymousFunc15"], _class.$$componentPath = "pages/detail/info/index", _temp2);
 
 
 DetailInfoPage.config = { navigationBarTitleText: '' };

@@ -75,7 +75,7 @@ var ResumeMap = (_temp2 = _class = function (_Taro$Component) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ResumeMap.__proto__ || Object.getPrototypeOf(ResumeMap)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
       navigationBarTitleText: '地址选择'
-    }, _this.$usedState = ["loopArray124", "loopArray125", "$compid__114", "smAreaText", "showHistory", "histroyList", "lists", "IMGCDNURL", "showCity", "area"], _this.anonymousFunc4Map = {}, _this.anonymousFunc5Map = {}, _this.customComponents = ["Cities"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["loopArray124", "loopArray125", "$compid__117", "smAreaText", "showHistory", "histroyList", "lists", "IMGCDNURL", "showCity", "area"], _this.anonymousFunc4Map = {}, _this.anonymousFunc5Map = {}, _this.customComponents = ["Cities"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(ResumeMap, [{
@@ -96,10 +96,10 @@ var ResumeMap = (_temp2 = _class = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__114"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__117"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__114 = _genCompid2[0],
-          $compid__114 = _genCompid2[1];
+          $prevCompid__117 = _genCompid2[0],
+          $compid__117 = _genCompid2[1];
 
       var router = (0, _taroWeapp.useRouter)();
       var areaItem = router.params.areaItem;
@@ -364,7 +364,7 @@ var ResumeMap = (_temp2 = _class = function (_Taro$Component) {
         };
         var $loopState__temp2 = showHistory ? index + index : null;
 
-        var _$indexKey = "bcgzz" + index;
+        var _$indexKey = "bcizz" + index;
 
         _this2.anonymousFunc4Map[_$indexKey] = function () {
           return userClickAreaItem(item.$original);
@@ -382,7 +382,7 @@ var ResumeMap = (_temp2 = _class = function (_Taro$Component) {
         };
         var $loopState__temp4 = index + index;
 
-        var _$indexKey2 = "bchzz" + index;
+        var _$indexKey2 = "bcjzz" + index;
 
         _this2.anonymousFunc5Map[_$indexKey2] = function () {
           return userClickAreaItem(item.$original);
@@ -400,11 +400,11 @@ var ResumeMap = (_temp2 = _class = function (_Taro$Component) {
         "userLoc": userLoc,
         "userChangeCity": userChangeCity,
         "userTapCityBtn": userTapCityBtn
-      }, $compid__114, $prevCompid__114);
+      }, $compid__117, $prevCompid__117);
       Object.assign(this.__state, {
         loopArray124: loopArray124,
         loopArray125: loopArray125,
-        $compid__114: $compid__114,
+        $compid__117: $compid__117,
         smAreaText: smAreaText,
         showHistory: showHistory,
         histroyList: histroyList,
@@ -552,7 +552,7 @@ var PublishRecruit = (_temp2 = _class = function (_Taro$Component) {
       navigationBarBackgroundColor: '#0099ff',
       navigationBarTextStyle: 'white',
       backgroundTextStyle: "dark"
-    }, _this.$usedState = ["model", "$compid__110", "$compid__111", "$compid__112", "showProfession", "phone", "showUpload", "text"], _this.customComponents = ["Auth", "Profession", "WordsTotal", "ImageView"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["model", "$compid__113", "$compid__114", "$compid__115", "showProfession", "phone", "showUpload", "text"], _this.customComponents = ["Auth", "Profession", "WordsTotal", "ImageView"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(PublishRecruit, [{
@@ -571,20 +571,20 @@ var PublishRecruit = (_temp2 = _class = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__110"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__113"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__110 = _genCompid2[0],
-          $compid__110 = _genCompid2[1];
+          $prevCompid__113 = _genCompid2[0],
+          $compid__113 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__111"),
+      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__114"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__111 = _genCompid4[0],
-          $compid__111 = _genCompid4[1];
+          $prevCompid__114 = _genCompid4[0],
+          $compid__114 = _genCompid4[1];
 
-      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__112"),
+      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__115"),
           _genCompid6 = _slicedToArray(_genCompid5, 2),
-          $prevCompid__112 = _genCompid6[0],
-          $compid__112 = _genCompid6[1];
+          $prevCompid__115 = _genCompid6[0],
+          $compid__115 = _genCompid6[1];
 
       // 获取路由参数
 
@@ -762,21 +762,21 @@ var PublishRecruit = (_temp2 = _class = function (_Taro$Component) {
         "data": model && model.classifyTree,
         "onClickItem": this.anonymousFunc0,
         "num": 3
-      }, $compid__110, $prevCompid__110);
+      }, $compid__113, $prevCompid__113);
       _taroWeapp.propsManager.set({
         "num": num
-      }, $compid__111, $prevCompid__111);
+      }, $compid__114, $prevCompid__114);
       showUpload && model && _taroWeapp.propsManager.set({
         "images": model.view_images,
         "max": model.maxImageCount,
         "userUploadImg": userUploadImg,
         "userDelImg": userDelImg
-      }, $compid__112, $prevCompid__112);
+      }, $compid__115, $prevCompid__115);
       Object.assign(this.__state, {
         model: model,
-        $compid__110: $compid__110,
-        $compid__111: $compid__111,
-        $compid__112: $compid__112,
+        $compid__113: $compid__113,
+        $compid__114: $compid__114,
+        $compid__115: $compid__115,
         showProfession: showProfession,
         phone: phone,
         showUpload: showUpload,
@@ -849,1303 +849,6 @@ PublishRecruit.config = { navigationBarTitleText: '发布招工', navigationBarB
 exports.default = PublishRecruit;
 
 Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(PublishRecruit, true));
-
-/***/ }),
-
-/***/ "./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js?!./src/pages/resume/newJobs/index.tsx?taro&type=script&parse=PAGE&":
-/*!**********************************************************************************************************************************************************!*\
-  !*** ./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js??ref--6-0!./src/pages/resume/newJobs/index.tsx?taro&type=script&parse=PAGE& ***!
-  \**********************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.context = undefined;
-
-var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
-
-var _class, _temp2;
-
-var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
-
-var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
-
-var _index = __webpack_require__(/*! ../../../utils/request/index */ "./src/utils/request/index.ts");
-
-var _index2 = __webpack_require__(/*! ../../../utils/msg/index */ "./src/utils/msg/index.ts");
-
-var _index3 = _interopRequireDefault(_index2);
-
-var _index4 = __webpack_require__(/*! ../../../utils/upload/index */ "./src/utils/upload/index.tsx");
-
-var _index5 = _interopRequireDefault(_index4);
-
-var _index6 = __webpack_require__(/*! ../../../config/index */ "./src/config/index.ts");
-
-var _store = __webpack_require__(/*! ../../../config/store */ "./src/config/store.ts");
-
-var _area = __webpack_require__(/*! ../../../models/area */ "./src/models/area.ts");
-
-var _index7 = __webpack_require__(/*! ../../../utils/helper/index */ "./src/utils/helper/index.ts");
-
-__webpack_require__(/*! ./index.scss */ "./src/pages/resume/newJobs/index.scss");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var context = exports.context = (0, _taroWeapp.createContext)({});
-
-var NewJob = (_temp2 = _class = function (_Taro$Component) {
-  _inherits(NewJob, _Taro$Component);
-
-  function NewJob() {
-    var _ref;
-
-    var _temp, _this, _ret;
-
-    _classCallCheck(this, NewJob);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = NewJob.__proto__ || Object.getPrototypeOf(NewJob)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
-      navigationBarTitleText: '找活名片'
-    }, _this.$usedState = ["anonymousState__temp", "data", "loopArray150", "loopArray151", "loopArray152", "loopArray153", "loopArray154", "loopArray155", "$compid__123", "$compid__124", "$compid__125", "showtop", "showcomplete", "IMGCDNURL", "showtopone", "showpassre", "passre", "nopassre", "index", "checkstatus", "checkone", "headerimg", "authenticationimg", "certificate_show", "age", "sex", "checkonef", "showskill", "intro", "introne", "ressonone", "selfintrone", "checktwo", "selfintro", "projectlength", "project_count", "project", "skilllength", "skillbooksone", "checkfourf", "recData", "isOpened", "selectdata", "proStatus", "popup"], _this.anonymousFunc10Map = {}, _this.anonymousFunc13Map = {}, _this.anonymousFunc14Map = {}, _this.customComponents = ["CollectionRecruitList", "AtModal"], _temp), _possibleConstructorReturn(_this, _ret);
-  }
-
-  _createClass(NewJob, [{
-    key: "_constructor",
-    value: function _constructor(props) {
-      _get(NewJob.prototype.__proto__ || Object.getPrototypeOf(NewJob.prototype), "_constructor", this).call(this, props);
-
-      this.$$refs = new _taroWeapp2.default.RefsArray();
-    }
-  }, {
-    key: "_createData",
-    value: function _createData() {
-      var _this2 = this;
-
-      this.__state = arguments[0] || this.state || {};
-      this.__props = arguments[1] || this.props || {};
-      var __isRunloopRef = arguments[2];
-      var __prefix = this.$prefix;
-      ;
-
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__123"),
-          _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__123 = _genCompid2[0],
-          $compid__123 = _genCompid2[1];
-
-      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__124"),
-          _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__124 = _genCompid4[0],
-          $compid__124 = _genCompid4[1];
-
-      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__125"),
-          _genCompid6 = _slicedToArray(_genCompid5, 2),
-          $prevCompid__125 = _genCompid6[0],
-          $compid__125 = _genCompid6[1];
-
-      var userInfoObj = _taroWeapp2.default.getStorageSync(_store.UserInfo);
-
-      var _useState = (0, _taroWeapp.useState)({
-        info: {
-          progress: '0',
-          view_num: '0',
-          sort_flag: '',
-          username: '',
-          nation: '',
-          tel: '',
-          address: '',
-          introduce: '',
-          note: '',
-          is_end: '',
-          check: '',
-          uuid: '',
-          user_uuid: '',
-          city: '',
-          occupations_id: '',
-          occupations: []
-        },
-        resume_top: {
-          is_top: 0,
-          has_top: 0,
-          top_provinces_str: [],
-          start_time_str: 0,
-          end_time_str: '',
-          top_tips_string: '',
-          is_show_tips: 0,
-          end_time: ''
-        },
-        content: {
-          show_tips: 0,
-          check_tips_string: ''
-        },
-        introduces: {
-          experience: '',
-          type_str: '未填写',
-          hometown: '未填写',
-          prof_degree_str: '未填写',
-          number_people: '未填写',
-          tags: []
-        },
-        fail_certificate: 0,
-        certificate_count: 0,
-        fail_project: 0,
-        popup_text: [],
-        top_status: []
-      }),
-          _useState2 = _slicedToArray(_useState, 2),
-          data = _useState2[0],
-          setData = _useState2[1];
-
-      var _useState3 = (0, _taroWeapp.useState)(true),
-          _useState4 = _slicedToArray(_useState3, 2),
-          showcomplete = _useState4[0],
-          setShowcomplete = _useState4[1];
-
-      var _useState5 = (0, _taroWeapp.useState)(false),
-          _useState6 = _slicedToArray(_useState5, 2),
-          showtopone = _useState6[0],
-          setShowtopone = _useState6[1];
-
-      var _useState7 = (0, _taroWeapp.useState)(true),
-          _useState8 = _slicedToArray(_useState7, 2),
-          passre = _useState8[0],
-          setPassre = _useState8[1];
-
-      var _useState9 = (0, _taroWeapp.useState)(true),
-          _useState10 = _slicedToArray(_useState9, 2),
-          nopassre = _useState10[0],
-          setNopassre = _useState10[1];
-
-      var _useState11 = (0, _taroWeapp.useState)(false),
-          _useState12 = _slicedToArray(_useState11, 2),
-          showpassre = _useState12[0],
-          setShowpassre = _useState12[1];
-
-      var _useState13 = (0, _taroWeapp.useState)(0),
-          _useState14 = _slicedToArray(_useState13, 2),
-          index = _useState14[0],
-          setIndex = _useState14[1];
-
-      var _useState15 = (0, _taroWeapp.useState)([]),
-          _useState16 = _slicedToArray(_useState15, 2),
-          selectdata = _useState16[0],
-          setSelectdata = _useState16[1];
-
-      var _useState17 = (0, _taroWeapp.useState)(false),
-          _useState18 = _slicedToArray(_useState17, 2),
-          showtop = _useState18[0],
-          setShowtop = _useState18[1];
-
-      var _useState19 = (0, _taroWeapp.useState)(false),
-          _useState20 = _slicedToArray(_useState19, 2),
-          checkone = _useState20[0],
-          setCheckone = _useState20[1];
-
-      var _useState21 = (0, _taroWeapp.useState)(''),
-          _useState22 = _slicedToArray(_useState21, 2),
-          headerimg = _useState22[0],
-          setHeaderimg = _useState22[1];
-
-      var _useState23 = (0, _taroWeapp.useState)(''),
-          _useState24 = _slicedToArray(_useState23, 2),
-          authenticationimg = _useState24[0],
-          setAuthenticationimg = _useState24[1];
-
-      var _useState25 = (0, _taroWeapp.useState)(0),
-          _useState26 = _slicedToArray(_useState25, 2),
-          certificate_show = _useState26[0],
-          setCertificate_show = _useState26[1];
-
-      var _useState27 = (0, _taroWeapp.useState)('未填写'),
-          _useState28 = _slicedToArray(_useState27, 2),
-          sex = _useState28[0],
-          setSex = _useState28[1];
-
-      var _useState29 = (0, _taroWeapp.useState)(''),
-          _useState30 = _slicedToArray(_useState29, 2),
-          age = _useState30[0],
-          setAge = _useState30[1];
-
-      var _useState31 = (0, _taroWeapp.useState)('4568'),
-          _useState32 = _slicedToArray(_useState31, 2),
-          checkonef = _useState32[0],
-          setCheckonef = _useState32[1];
-
-      var _useState33 = (0, _taroWeapp.useState)(true),
-          _useState34 = _slicedToArray(_useState33, 2),
-          showskill = _useState34[0],
-          setShowskill = _useState34[1];
-
-      var _useState35 = (0, _taroWeapp.useState)([]),
-          _useState36 = _slicedToArray(_useState35, 2),
-          occupations = _useState36[0],
-          setOccupations = _useState36[1];
-
-      var _useState37 = (0, _taroWeapp.useState)(true),
-          _useState38 = _slicedToArray(_useState37, 2),
-          checkstatus = _useState38[0],
-          setCheckstatus = _useState38[1];
-
-      var _useState39 = (0, _taroWeapp.useState)(true),
-          _useState40 = _slicedToArray(_useState39, 2),
-          intro = _useState40[0],
-          setIntro = _useState40[1];
-
-      var _useState41 = (0, _taroWeapp.useState)(false),
-          _useState42 = _slicedToArray(_useState41, 2),
-          introne = _useState42[0],
-          serIntrone = _useState42[1];
-      // 显示没有数据完善人员信息
-
-
-      var _useState43 = (0, _taroWeapp.useState)(true),
-          _useState44 = _slicedToArray(_useState43, 2),
-          selfintro = _useState44[0],
-          setselfintro = _useState44[1];
-      // 个人资料审核
-
-
-      var _useState45 = (0, _taroWeapp.useState)(false),
-          _useState46 = _slicedToArray(_useState45, 2),
-          ressonone = _useState46[0],
-          setRessonone = _useState46[1];
-
-      var _useState47 = (0, _taroWeapp.useState)(true),
-          _useState48 = _slicedToArray(_useState47, 2),
-          showdetail = _useState48[0],
-          setShowdetail = _useState48[1];
-
-      var _useState49 = (0, _taroWeapp.useState)(false),
-          _useState50 = _slicedToArray(_useState49, 2),
-          checktwo = _useState50[0],
-          setChecktwo = _useState50[1];
-
-      var _useState51 = (0, _taroWeapp.useState)(false),
-          _useState52 = _slicedToArray(_useState51, 2),
-          selfintrone = _useState52[0],
-          setSelfintrone = _useState52[1];
-
-      var _useState53 = (0, _taroWeapp.useState)(0),
-          _useState54 = _slicedToArray(_useState53, 2),
-          projectlength = _useState54[0],
-          setProjectlength = _useState54[1];
-
-      var _useState55 = (0, _taroWeapp.useState)(0),
-          _useState56 = _slicedToArray(_useState55, 2),
-          project_count = _useState56[0],
-          setProject_count = _useState56[1];
-
-      var _useState57 = (0, _taroWeapp.useState)([]),
-          _useState58 = _slicedToArray(_useState57, 2),
-          project = _useState58[0],
-          setProject = _useState58[1];
-
-      var _useState59 = (0, _taroWeapp.useState)(0),
-          _useState60 = _slicedToArray(_useState59, 2),
-          skilllength = _useState60[0],
-          setSkilllength = _useState60[1];
-
-      var _useState61 = (0, _taroWeapp.useState)('0'),
-          _useState62 = _slicedToArray(_useState61, 2),
-          checkfourf = _useState62[0],
-          setCheckfourf = _useState62[1];
-      // 传递修改技能证书
-
-
-      var _useState63 = (0, _taroWeapp.useState)(),
-          _useState64 = _slicedToArray(_useState63, 2),
-          skillData = _useState64[0],
-          setSkillData = _useState64[1];
-      // 传递修改项目经验
-
-
-      var _useState65 = (0, _taroWeapp.useState)(),
-          _useState66 = _slicedToArray(_useState65, 2),
-          projectData = _useState66[0],
-          setProjectData = _useState66[1];
-      // 技能证书
-
-
-      var _useState67 = (0, _taroWeapp.useState)([]),
-          _useState68 = _slicedToArray(_useState67, 2),
-          skillbooksone = _useState68[0],
-          setSkillbooksone = _useState68[1];
-      // 推荐的列表
-
-
-      var _useState69 = (0, _taroWeapp.useState)([]),
-          _useState70 = _slicedToArray(_useState69, 2),
-          recData = _useState70[0],
-          setRecData = _useState70[1];
-
-      var _useState71 = (0, _taroWeapp.useState)(_area.AREABEIJING.name),
-          _useState72 = _slicedToArray(_useState71, 2),
-          area = _useState72[0],
-          _setArea = _useState72[1];
-      // 工作状态
-
-
-      var _useState73 = (0, _taroWeapp.useState)(false),
-          _useState74 = _slicedToArray(_useState73, 2),
-          isOpened = _useState74[0],
-          setIsOpened = _useState74[1];
-
-      var _useState75 = (0, _taroWeapp.useState)(),
-          _useState76 = _slicedToArray(_useState75, 2),
-          resumeTop = _useState76[0],
-          setResumeTop = _useState76[1];
-      // 工作状态列表
-
-
-      var _useState77 = (0, _taroWeapp.useState)(),
-          _useState78 = _slicedToArray(_useState77, 2),
-          statusList = _useState78[0],
-          setStatusList = _useState78[1];
-
-      var _useState79 = (0, _taroWeapp.useState)({
-        gender: [],
-        label: [],
-        nation: [],
-        occupation: [],
-        prof_degree: [],
-        type: []
-      }),
-          _useState80 = _slicedToArray(_useState79, 2),
-          publicList = _useState80[0],
-          setPublicList = _useState80[1];
-      // 人员信息
-
-
-      var _useState81 = (0, _taroWeapp.useState)({
-        experience: '',
-        type_str: '',
-        hometown: '',
-        prof_degree_str: '',
-        number_people: '',
-        tags: []
-      }),
-          _useState82 = _slicedToArray(_useState81, 2),
-          userInfo = _useState82[0],
-          setUserInfo = _useState82[1];
-      // 选择详细地址信息
-
-
-      var _useState83 = (0, _taroWeapp.useState)({
-        title: '',
-        adcode: '',
-        location: '',
-        info: ''
-      }),
-          _useState84 = _slicedToArray(_useState83, 2),
-          areaInfo = _useState84[0],
-          _setAreaInfo = _useState84[1];
-      //设置基础信息所在区域
-
-
-      var _useState85 = (0, _taroWeapp.useState)(''),
-          _useState86 = _slicedToArray(_useState85, 2),
-          basicsCity = _useState86[0],
-          setBasicsCity = _useState86[1];
-      // 修改还是更多项目经验
-
-
-      var _useState87 = (0, _taroWeapp.useState)('0'),
-          _useState88 = _slicedToArray(_useState87, 2),
-          proStatus = _useState88[0],
-          setProStatus = _useState88[1];
-      // 提示内容
-
-
-      var _useState89 = (0, _taroWeapp.useState)(''),
-          _useState90 = _slicedToArray(_useState89, 2),
-          popup = _useState90[0],
-          setPopup = _useState90[1];
-      // 提示弹窗
-
-
-      var _useState91 = (0, _taroWeapp.useState)(false),
-          _useState92 = _slicedToArray(_useState91, 2),
-          tips = _useState92[0],
-          setTips = _useState92[1];
-      // 置顶提示
-
-
-      var _useState93 = (0, _taroWeapp.useState)(false),
-          _useState94 = _slicedToArray(_useState93, 2),
-          toppingModal = _useState94[0],
-          setToppingModal = _useState94[1];
-      // 置顶的当前索引
-
-
-      var _useState95 = (0, _taroWeapp.useState)(0),
-          _useState96 = _slicedToArray(_useState95, 2),
-          indextop = _useState96[0],
-          setIndextop = _useState96[1];
-
-      (0, _taroWeapp.useDidShow)(function () {
-        (0, _index.resumeListAction)().then(function (res) {
-          if (res.errcode == "200") {
-            // 有info.uuid就去掉完善资料
-            if (res.data.info.uuid) {
-              setShowtop(true);
-            }
-            _taroWeapp2.default.setStorageSync("introinfo", res.data.info);
-            setData({ info: res.data.info, resume_top: res.data.resume_top, content: res.data.content, introduces: res.data.introduces, certificate_count: res.data.certificate_count, fail_certificate: res.data.fail_certificate, fail_project: res.data.fail_project, popup_text: res.data.popup_text, top_status: res.data.top_status });
-            var list = res.data.status.map(function (v) {
-              return v.name;
-            });
-            // 置顶当前索引
-            if (res.data.resume_top.is_top == 1) {
-              setIndextop(0);
-            } else if (res.data.resume_top.is_top == 0) {
-              setIndextop(1);
-            }
-            // 设置我的工作状态
-            if (res.data.info.is_end === '2') {
-              setIndex(1);
-            }
-            setResumeTop(res.data.resume_top);
-            // 都通过的情况下，并且正在招人，并且未置顶，提示前往置顶，暂不提示15天内不再提示
-            // 没有未通过并且正在找，当前状态未置并且不再15天内
-            // 获取存储时间
-            var toppingTime = _taroWeapp2.default.getStorageSync('toptimer');
-            var newTime = new Date().getTime();
-            var failProject = '0';
-            res.data.project.map(function (v) {
-              failProject = v.check;
-              if (v.check === '0') {
-                failProject = '0';
-                return;
-              }
-            });
-            var failCertificate = '0';
-            res.data.certificates.map(function (v) {
-              failCertificate = v.check;
-              if (v.check === '0') {
-                failCertificate = '0';
-                return;
-              }
-            });
-            var onoff = res.data.resume_top.is_top !== 0 && res.data.resume_top.is_top !== 1 || res.data.resume_top.has_top == 0;
-            var top_onoff = res.data.info.check == '0' || res.data.introduces.check == '0' || failProject === '0' || failCertificate === '0';
-            var day = (newTime - toppingTime) / 86400000;
-            console.log(toppingTime, 'toppingTimetoppingTimetoppingTime');
-            // 没有置顶时间 ，没有审核失败， 有uuid 就是资料完善了的，
-            if (!toppingTime && !top_onoff && res.data.info.uuid && onoff && res.data.info.check !== '1' && index === 0) {
-              console.log('dsadasdasd');
-              setToppingModal(true);
-              _taroWeapp2.default.setStorageSync("toptimer", newTime);
-            }
-            {
-              if (day >= 15 && !top_onoff && res.data.info.uuid && onoff && res.data.info.check !== '1' && index === 0) {
-                setToppingModal(true);
-                _taroWeapp2.default.setStorageSync("toptimer", newTime);
-              }
-            }
-            // 设置城市
-            var userLoctionCity = _taroWeapp2.default.getStorageSync(_store.UserLocationCity);
-            _setArea(userLoctionCity.city);
-            if (userLoctionCity) {
-              _setArea(userLoctionCity.city);
-            } else {
-              (0, _index7.userAuthLoction)().then(function (res) {
-                _setArea(res.city);
-              }).then(function () {
-                _setArea(_area.AREABEIJING.name);
-              });
-            }
-            //状态列表
-            setStatusList(res.data.status);
-            setUserInfo(res.data.introduces);
-            setSelectdata(list);
-            if (res.data.info.uuid && res.data.info.is_introduces != '0' && res.data.project.length != 0 && res.data.certificates.length != 0) {
-              setShowcomplete(false);
-            } else {
-              setShowcomplete(true);
-            }
-            if (res.data.info.uuid) {
-              setShowtopone(true);
-            } else {
-              setShowtopone(false);
-            }
-            setShowpassre(true);
-            // 设置提示的内容
-            var popupData = '';
-            for (var i = 0; i < res.data.popup_text.length; i++) {
-              if (res.data.popup_text.length - 1 == i) {
-                popupData += res.data.popup_text[i];
-              } else {
-                popupData += res.data.popup_text[i] + "、";
-              }
-            }
-            setPopup(popupData);
-            // 判断技能证书全部遍历一次有失败就显示
-            var skillType = undefined;
-            res.data.certificates.map(function (v) {
-              if (v.check === '1') {
-                setCheckfourf(v.check);
-                skillType = v.check;
-                return;
-              }
-              skillType = v.check;
-              setCheckfourf(v.check);
-            });
-            // 项目经验遍历有失败就显示修改
-            var projectType = undefined;
-            res.data.project.map(function (v) {
-              if (v.check === '1') {
-                setProStatus(v.check);
-                projectType = v.check;
-                return;
-              }
-              projectType = v.check;
-              setProStatus(v.check);
-            });
-            // 设置提示弹窗
-            if (skillType === '0' || projectType === '0' || res.data.info.check === '0' || res.data.introduces.check === '0') {
-              setTips(true);
-            }
-            // 人员信息
-            if (res.data.is_introduces == '1') {
-              setselfintro(false);
-              setSelfintrone(true);
-            } else if (res.data.is_introduces == '0') {
-              setselfintro(true);
-              setSelfintrone(true);
-            }
-            if (res.data.info.check == "0") {
-              setPassre(false);
-              setRessonone(false);
-            }
-            if (res.data.info.check == "1") {
-              setNopassre(false);
-              setRessonone(false);
-            }
-            if (res.data.info.check == '1') {
-              setCheckone(true);
-              setChecktwo(true);
-            } else {
-              setCheckone(false);
-              setChecktwo(false);
-            }
-            if (res.data.certificates.length === 0) {
-              setSkilllength(0);
-            } else {
-              setSkilllength(res.data.certificates.length >= 1 ? res.data.certificates.length : 0);
-            }
-            if (showdetail) {
-              if (res.data.info.check == "0") {
-                setRessonone(true);
-              }
-              setShowdetail(false);
-            }
-            if (res.data.project.length === 0) {
-              setProjectlength(0);
-              setProject([]);
-              setSkillbooksone([]);
-            } else {
-              setSkillbooksone([res.data.certificates[0]]);
-              if (res.data.project) {
-                if (new Date(res.data.project[0].completion_time).getTime() / 86400000 < new Date().getTime() / 86400000) {
-                  setProjectlength(res.data.project.length >= 1 ? res.data.project.length : 0);
-                  var item = res.data.project[0];
-                  item.completiontime = 'zhijing';
-                  setProject([item]);
-                } else {
-                  var _item = res.data.project[0];
-                  _item.completiontime = 'zhijin';
-                  setProjectlength(res.data.project.length >= 1 ? res.data.project.length : 0);
-                  setProject([_item]);
-                }
-              }
-            }
-            // 修改技能证书
-            setSkillData(res.data.certificates);
-            // 修改项目经验
-            setProjectData(res.data.project);
-            setProject_count(res.data.project_count);
-            setIntro(false);
-            serIntrone(true);
-            setHeaderimg(res.data.info.headerimg);
-            setShowskill(false);
-            setCheckonef(res.data.info.check);
-            setAuthenticationimg(res.data.info.authentication);
-            setCertificate_show(res.data.info.certificate_show);
-            setSex(res.data.info.gender == "1" ? "男" : "女");
-            var date = new Date();
-            var dateo = date.getTime();
-            var dateone = new Date(dateo);
-            if (res.data.info.birthday) {
-              if (dateone.getFullYear() - (res.data.info.birthday.split("-")[0] - 0) == 0) {
-                setAge('');
-              } else {
-                setAge(dateone.getFullYear() - (res.data.info.birthday.split("-")[0] - 0) + "岁");
-              }
-            }
-            // 推荐列表
-            var paramsList = {
-              area_id: res.data.info.city,
-              classify_id: res.data.info.occupations_id,
-              job_ids: '',
-              page: 1,
-              type: 1
-            };
-            (0, _index.jobRecommendListAction)(paramsList).then(function (res) {
-              setRecData(res.data.list);
-            });
-          } else {
-            _taroWeapp2.default.showModal({
-              title: '温馨提示',
-              content: res.errmsg,
-              showCancel: false
-            });
-            return;
-          }
-        });
-        // 给子页面提供公用数据
-        (0, _index.resumesGetDataAction)().then(function (res) {
-          setPublicList(res);
-        });
-      });
-      console.log(index, 'index');
-      // 用户页面跳转
-      var userRouteJump = function userRouteJump(url) {
-        _taroWeapp2.default.navigateTo({
-          url: url
-        });
-      };
-      var handleTopping = function handleTopping() {
-        if (!showtop) {
-          // 跳去基础信息页面
-          _taroWeapp2.default.showModal({
-            title: '温馨提示',
-            content: data.resume_top.top_tips_string,
-            confirmText: "\u53BB\u6DFB\u52A0",
-            success: function success(res) {
-              if (res.confirm) {
-                // 跳转
-                _taroWeapp2.default.navigateTo({
-                  url: '/pages/clients-looking-for-work/essential-information/esinformation'
-                });
-                // that.toperfect()
-              } else if (res.cancel) {}
-            }
-          });
-          return;
-        } else if (data.resume_top.is_show_tips === 1) {
-          _taroWeapp2.default.showModal({
-            title: '温馨提示',
-            content: data.resume_top.top_tips_string,
-            showCancel: false
-          });
-          return;
-        } else {
-          // 置顶
-          _taroWeapp2.default.navigateTo({
-            url: "/pages/topping/index?rec=1"
-          });
-        }
-      };
-      // 需要传递的值
-      var value = {
-        area: area,
-        setArea: function setArea(city) {
-          return _setArea(city);
-        },
-        setAreaInfo: function setAreaInfo(item) {
-          return _setAreaInfo(item);
-        },
-        setPublishArea: function setPublishArea(val) {
-          console.log(val, 'val');
-          // console.log(areaInfo,'areaInfo');
-          // if (!model) return
-          // setModel({ ...model, address: val })
-          // setBasicsCity(val);
-        },
-        userInfo: userInfo,
-        // 公用值
-        publicList: publicList,
-        // 修改技能证书
-        skillData: skillData,
-        // 修改项目经验
-        projectData: projectData,
-        // 置顶数据
-        resumeTop: resumeTop
-      };
-      console.log(resumeTop, 'resumeTop');
-      //设置工作状态
-      var handleStatus = function handleStatus() {
-        if (data.info.check === '2') {
-          console.log(1111);
-          var sheetList = statusList.map(function (v) {
-            return v.name;
-          });
-          var sheetListId = statusList.map(function (v) {
-            return v.id;
-          });
-          _taroWeapp2.default.showActionSheet({
-            itemList: sheetList,
-            success: function success(res) {
-              if (index == res.tapIndex) {
-                return;
-              }
-              setIndex(res.tapIndex);
-              var type = sheetListId[res.tapIndex];
-              var params = {
-                type: type,
-                resume_uuid: data.info.uuid
-              };
-              (0, _index.resumesEditEndAction)(params).then(function (res) {
-                if (res.errcode == 'ok') {
-                  _taroWeapp2.default.showModal({
-                    title: '温馨提示',
-                    content: res.errmsg,
-                    showCancel: false
-                  });
-                } else {
-                  _taroWeapp2.default.showModal({
-                    title: '温馨提示',
-                    content: res.errmsg,
-                    showCancel: false
-                  });
-                }
-              });
-            },
-            fail: function fail(res) {
-              console.log(res);
-            }
-          });
-        } else if (data.info.check === '1') {
-          _taroWeapp2.default.showModal({
-            title: '温馨提示',
-            content: "审核中请耐心等待",
-            showCancel: false
-          });
-          return;
-        } else if (data.info.check === '0') {
-          _taroWeapp2.default.showModal({
-            title: '温馨提示',
-            content: "审核未通过，请修改信息",
-            showCancel: false
-          });
-          return;
-        }
-      };
-      // 设置置顶状态
-      var handleToppStatus = function handleToppStatus() {
-        var nowtime = getMyDate(new Date().getTime());
-        var endtime = getMyDate(parseInt(data.resume_top.end_time) * 1000);
-        if (nowtime > endtime) {
-          _taroWeapp2.default.showModal({
-            title: '温馨提示',
-            content: '您的置顶已过期',
-            showCancel: false
-          });
-          return;
-        }
-        // 获取滑动值
-        var sheetList = data.top_status.map(function (v) {
-          return v.name;
-        });
-        var sheetListId = data.top_status.map(function (v) {
-          return v.id;
-        });
-        //获取当前是否可以置顶
-        var contentom = data.resume_top.top_tips_string;
-        _taroWeapp2.default.showActionSheet({
-          itemList: sheetList,
-          success: function success(res) {
-            // 当前值一样就不发动请求
-            if (indextop == res.tapIndex) {
-              return;
-            }
-            if (indextop == 1 && data.resume_top.is_show_tips == 1) {
-              _taroWeapp2.default.showModal({
-                title: '温馨提示',
-                content: contentom,
-                showCancel: false
-              });
-              return;
-            }
-            setIndextop(res.tapIndex);
-            var params = {
-              uuid: data.info.uuid
-            };
-            (0, _index.resumesChangeTopStatusAction)(params).then(function (res) {
-              if (res.errcode === 'ok') {}
-              _taroWeapp2.default.showModal({
-                title: '温馨提示',
-                content: res.errmsg,
-                showCancel: false
-              });
-            });
-          }
-        });
-      };
-      var getMyDate = function getMyDate(str) {
-        var oDate = new Date(str),
-            oYear = oDate.getFullYear(),
-            oMonth = oDate.getMonth() + 1,
-            oDay = oDate.getDate(),
-            oHour = oDate.getHours(),
-            oMin = oDate.getMinutes(),
-            oSen = oDate.getSeconds(),
-            oTime = oYear + '-' + addZero(oMonth) + '-' + addZero(oDay) + ' ' + addZero(oHour) + ':' + addZero(oMin);
-        return oTime;
-      };
-      var addZero = function addZero(num) {
-        if (parseInt(num) < 10) {
-          num = '0' + num;
-        }
-        return num;
-      };
-      var handelEditTopp = function handelEditTopp() {
-        var nowtime = getMyDate(new Date().getTime());
-        var contentom = data.resume_top.top_tips_string;
-        var endtime = getMyDate(parseInt(data.resume_top.end_time) * 1000);
-        if (nowtime > endtime) {
-          _taroWeapp2.default.showModal({
-            title: '温馨提示',
-            content: '您的置顶已过期',
-            showCancel: false
-          });
-          return;
-        }
-        if (data.resume_top.is_show_tips == 1) {
-          _taroWeapp2.default.showModal({
-            title: '温馨提示',
-            content: contentom,
-            showCancel: false
-          });
-          return;
-        }
-        var area = JSON.stringify(data.resume_top.top_provinces_str);
-        var endTime = data.resume_top.end_time;
-        var endTimeStr = data.resume_top.end_time_str;
-        // const maxnumber = data.resume_top.max_number;
-        // const firstprovincenum = data.resume_top.first_province_num;
-        userRouteJump("/pages/topping/index?rec=1&type=1&areaData=" + area + "&endTimes=" + endTime + "&endTimeStr=" + endTimeStr);
-      };
-      // 修改头像
-      var userUploadAvatar = function userUploadAvatar() {
-        if (data.info.check == '1') {
-          _taroWeapp2.default.showModal({
-            title: '温馨提示',
-            content: '信息审核中，请稍后再试',
-            showCancel: false
-          });
-          return;
-        }
-        (0, _index5.default)().then(function (res) {
-          if (res.errcode == 'ok') {
-            var params = {
-              image: res.url
-            };
-            (0, _index.resumesEditImgAction)(params).then(function (data) {
-              if (data.errcode === '200') {
-                (0, _index3.default)('保存成功');
-              }
-            });
-            // userChangeAvatar(res.url).then(data => {
-            //   Msg(data.errmsg)
-            //   if (data.errcode == 'ok') {
-            //     setHeaderImg(res.httpurl)
-            //   }
-            // })
-          } else {
-            (0, _index3.default)(res.errmsg);
-          }
-        }).catch(function () {
-          (0, _index3.default)('网络错误，上传失败');
-        });
-      };
-      console.log(proStatus, 'proStatus');
-      context.Provider(value);
-      var anonymousState__temp = "width:" + parseInt(data.info.progress) + "%";
-
-      this.anonymousFunc0 = function () {
-        return userRouteJump("/subpackage/pages/ranking/index");
-      };
-
-      this.anonymousFunc1 = handleTopping;
-      this.anonymousFunc2 = handleToppStatus;
-      this.anonymousFunc3 = handelEditTopp;
-
-      this.anonymousFunc4 = function () {
-        return userRouteJump("/pages/topping/index?rec=1");
-      };
-
-      this.anonymousFunc5 = handleStatus;
-
-      this.anonymousFunc6 = function () {
-        return userUploadAvatar();
-      };
-
-      this.anonymousFunc7 = function () {
-        return userRouteJump('/pages/resume/basics/index');
-      };
-
-      this.anonymousFunc8 = function () {
-        return userRouteJump('/subpackage/pages/personInfo/index');
-      };
-
-      this.anonymousFunc9 = function () {
-        return userRouteJump("/pages/resume/addProject/index?id=" + data.info.uuid);
-      };
-
-      this.anonymousFunc11 = function () {
-        return userRouteJump("/pages/resume/projectList/index?id=" + data.info.uuid);
-      };
-
-      this.anonymousFunc12 = function () {
-        return userRouteJump("/pages/resume/addSkill/index?id=" + data.info.uuid);
-      };
-
-      this.anonymousFunc15 = function () {
-        return userRouteJump("/pages/resume/skillList/index?id=" + data.info.uuid);
-      };
-
-      this.anonymousFunc16 = function () {
-        return userRouteJump("/pages/resume/skillList/index?id=" + data.info.uuid);
-      };
-
-      this.anonymousFunc17 = function () {
-        return userRouteJump("/pages/resume/preview/index");
-      };
-
-      this.anonymousFunc18 = function () {
-        setTips(false);
-      };
-
-      this.anonymousFunc19 = function () {
-        setToppingModal(false);
-      };
-
-      this.anonymousFunc20 = function () {
-        return userRouteJump("/pages/topping/index?rec=1");
-      };
-
-      var loopArray150 = data.resume_top.has_top != 0 && data.resume_top.is_top != 2 ? data.resume_top.top_provinces_str.map(function (v, i) {
-        v = {
-          $original: (0, _taroWeapp.internal_get_original)(v)
-        };
-        var $loopState__temp3 = data.resume_top.top_provinces_str ? i + i : null;
-        return {
-          $loopState__temp3: $loopState__temp3,
-          $original: v.$original
-        };
-      }) : [];
-      var loopArray151 = !showskill ? data.info.occupations.map(function (v, i) {
-        v = {
-          $original: (0, _taroWeapp.internal_get_original)(v)
-        };
-        var $loopState__temp5 = data.info.occupations ? i + i : null;
-        return {
-          $loopState__temp5: $loopState__temp5,
-          $original: v.$original
-        };
-      }) : [];
-      var loopArray152 = showskill ? data.info.occupations.map(function (v, i) {
-        v = {
-          $original: (0, _taroWeapp.internal_get_original)(v)
-        };
-        var $loopState__temp7 = data.info.occupations ? i + i : null;
-        return {
-          $loopState__temp7: $loopState__temp7,
-          $original: v.$original
-        };
-      }) : [];
-      var loopArray153 = selfintrone ? data.introduces.tags.map(function (v, i) {
-        v = {
-          $original: (0, _taroWeapp.internal_get_original)(v)
-        };
-        var $loopState__temp9 = data.introduces.tags ? i + i : null;
-        return {
-          $loopState__temp9: $loopState__temp9,
-          $original: v.$original
-        };
-      }) : [];
-      var loopArray154 = projectlength != 0 ? project.map(function (item, __index10) {
-        item = {
-          $original: (0, _taroWeapp.internal_get_original)(item)
-        };
-
-        var _$indexKey = "bejzz" + __index10;
-
-        _this2.anonymousFunc10Map[_$indexKey] = function () {
-          return userRouteJump("/pages/resume/addProject/index?type=0");
-        };
-
-        var $anonymousCallee__30 = projectlength != 0 ? item.$original.image.map(function (v, i) {
-          v = {
-            $original: (0, _taroWeapp.internal_get_original)(v)
-          };
-          var $loopState__temp11 = item.$original.image ? i + i : null;
-          return {
-            $loopState__temp11: $loopState__temp11,
-            $original: v.$original
-          };
-        }) : [];
-        return {
-          _$indexKey: _$indexKey,
-          $anonymousCallee__30: $anonymousCallee__30,
-          $original: item.$original
-        };
-      }) : [];
-      var loopArray155 = skilllength != 0 ? skillbooksone.map(function (item, i) {
-        item = {
-          $original: (0, _taroWeapp.internal_get_original)(item)
-        };
-        var $loopState__temp13 = skillbooksone ? i + i : null;
-
-        var _$indexKey2 = "bfazz" + i;
-
-        _this2.anonymousFunc13Map[_$indexKey2] = function () {
-          return userRouteJump("/pages/resume/addSkill/index?type=" + i);
-        };
-
-        var _$indexKey3 = "bfbzz" + i;
-
-        _this2.anonymousFunc14Map[_$indexKey3] = function () {
-          return userRouteJump("/pages/resume/addSkill/index?type=" + i);
-        };
-
-        var $anonymousCallee__31 = skilllength != 0 ? item.$original.image.map(function (v, i) {
-          v = {
-            $original: (0, _taroWeapp.internal_get_original)(v)
-          };
-          var $loopState__temp15 = item.$original.image ? i + i : null;
-          return {
-            $loopState__temp15: $loopState__temp15,
-            $original: v.$original
-          };
-        }) : [];
-        return {
-          $loopState__temp13: $loopState__temp13,
-          _$indexKey2: _$indexKey2,
-          _$indexKey3: _$indexKey3,
-          $anonymousCallee__31: $anonymousCallee__31,
-          $original: item.$original
-        };
-      }) : [];
-      recData.length && _taroWeapp.propsManager.set({
-        "type": 1,
-        "data": recData
-      }, $compid__123, $prevCompid__123);
-      _taroWeapp.propsManager.set({
-        "isOpened": tips,
-        "className": "AtModal"
-      }, $compid__124, $prevCompid__124);
-      _taroWeapp.propsManager.set({
-        "isOpened": toppingModal,
-        "className": "AtModal"
-      }, $compid__125, $prevCompid__125);
-      Object.assign(this.__state, {
-        anonymousState__temp: anonymousState__temp,
-        data: data,
-        loopArray150: loopArray150,
-        loopArray151: loopArray151,
-        loopArray152: loopArray152,
-        loopArray153: loopArray153,
-        loopArray154: loopArray154,
-        loopArray155: loopArray155,
-        $compid__123: $compid__123,
-        $compid__124: $compid__124,
-        $compid__125: $compid__125,
-        showtop: showtop,
-        showcomplete: showcomplete,
-        IMGCDNURL: _index6.IMGCDNURL,
-        showtopone: showtopone,
-        showpassre: showpassre,
-        passre: passre,
-        nopassre: nopassre,
-        index: index,
-        checkstatus: checkstatus,
-        checkone: checkone,
-        headerimg: headerimg,
-        authenticationimg: authenticationimg,
-        certificate_show: certificate_show,
-        age: age,
-        sex: sex,
-        checkonef: checkonef,
-        showskill: showskill,
-        intro: intro,
-        introne: introne,
-        ressonone: ressonone,
-        selfintrone: selfintrone,
-        checktwo: checktwo,
-        selfintro: selfintro,
-        projectlength: projectlength,
-        project_count: project_count,
-        project: project,
-        skilllength: skilllength,
-        skillbooksone: skillbooksone,
-        checkfourf: checkfourf,
-        recData: recData,
-        isOpened: isOpened,
-        selectdata: selectdata,
-        proStatus: proStatus,
-        popup: popup
-      });
-      return this.__state;
-    }
-  }, {
-    key: "anonymousFunc0",
-    value: function anonymousFunc0(e) {
-      ;
-    }
-  }, {
-    key: "anonymousFunc1",
-    value: function anonymousFunc1(e) {
-      ;
-    }
-  }, {
-    key: "anonymousFunc2",
-    value: function anonymousFunc2(e) {
-      ;
-    }
-  }, {
-    key: "anonymousFunc3",
-    value: function anonymousFunc3(e) {
-      ;
-    }
-  }, {
-    key: "anonymousFunc4",
-    value: function anonymousFunc4(e) {
-      ;
-    }
-  }, {
-    key: "anonymousFunc5",
-    value: function anonymousFunc5(e) {
-      ;
-    }
-  }, {
-    key: "anonymousFunc6",
-    value: function anonymousFunc6(e) {
-      ;
-    }
-  }, {
-    key: "anonymousFunc7",
-    value: function anonymousFunc7(e) {
-      ;
-    }
-  }, {
-    key: "anonymousFunc8",
-    value: function anonymousFunc8(e) {
-      ;
-    }
-  }, {
-    key: "anonymousFunc9",
-    value: function anonymousFunc9(e) {
-      ;
-    }
-  }, {
-    key: "anonymousFunc10",
-    value: function anonymousFunc10(_$indexKey) {
-      var _anonymousFunc10Map;
-
-      ;
-
-      for (var _len2 = arguments.length, e = Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
-        e[_key2 - 1] = arguments[_key2];
-      }
-
-      return this.anonymousFunc10Map[_$indexKey] && (_anonymousFunc10Map = this.anonymousFunc10Map)[_$indexKey].apply(_anonymousFunc10Map, e);
-    }
-  }, {
-    key: "anonymousFunc11",
-    value: function anonymousFunc11(e) {
-      ;
-    }
-  }, {
-    key: "anonymousFunc12",
-    value: function anonymousFunc12(e) {
-      ;
-    }
-  }, {
-    key: "anonymousFunc13",
-    value: function anonymousFunc13(_$indexKey2) {
-      var _anonymousFunc13Map;
-
-      ;
-
-      for (var _len3 = arguments.length, e = Array(_len3 > 1 ? _len3 - 1 : 0), _key3 = 1; _key3 < _len3; _key3++) {
-        e[_key3 - 1] = arguments[_key3];
-      }
-
-      return this.anonymousFunc13Map[_$indexKey2] && (_anonymousFunc13Map = this.anonymousFunc13Map)[_$indexKey2].apply(_anonymousFunc13Map, e);
-    }
-  }, {
-    key: "anonymousFunc14",
-    value: function anonymousFunc14(_$indexKey3) {
-      var _anonymousFunc14Map;
-
-      ;
-
-      for (var _len4 = arguments.length, e = Array(_len4 > 1 ? _len4 - 1 : 0), _key4 = 1; _key4 < _len4; _key4++) {
-        e[_key4 - 1] = arguments[_key4];
-      }
-
-      return this.anonymousFunc14Map[_$indexKey3] && (_anonymousFunc14Map = this.anonymousFunc14Map)[_$indexKey3].apply(_anonymousFunc14Map, e);
-    }
-  }, {
-    key: "anonymousFunc15",
-    value: function anonymousFunc15(e) {
-      ;
-    }
-  }, {
-    key: "anonymousFunc16",
-    value: function anonymousFunc16(e) {
-      ;
-    }
-  }, {
-    key: "anonymousFunc17",
-    value: function anonymousFunc17(e) {
-      ;
-    }
-  }, {
-    key: "anonymousFunc18",
-    value: function anonymousFunc18(e) {
-      ;
-    }
-  }, {
-    key: "anonymousFunc19",
-    value: function anonymousFunc19(e) {
-      ;
-    }
-  }, {
-    key: "anonymousFunc20",
-    value: function anonymousFunc20(e) {
-      ;
-    }
-  }]);
-
-  return NewJob;
-}(_taroWeapp2.default.Component), _class.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6", "anonymousFunc7", "anonymousFunc8", "anonymousFunc9", "anonymousFunc10", "anonymousFunc11", "anonymousFunc12", "anonymousFunc13", "anonymousFunc14", "anonymousFunc15", "anonymousFunc16", "anonymousFunc17", "anonymousFunc18", "anonymousFunc19", "anonymousFunc20"], _class.$$componentPath = "pages/resume/newJobs/index", _temp2);
-
-
-NewJob.config = { navigationBarTitleText: '找活名片' };
-exports.default = NewJob;
-
-Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(NewJob, true));
 
 /***/ }),
 
@@ -3230,7 +1933,7 @@ var Topping = (_temp2 = _class = function (_Taro$Component) {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
 
-        var _$indexKey = "befzz" + __index0;
+        var _$indexKey = "behzz" + __index0;
 
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return handleDel(v.$original);
@@ -3246,7 +1949,7 @@ var Topping = (_temp2 = _class = function (_Taro$Component) {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
 
-        var _$indexKey2 = "begzz" + __index1;
+        var _$indexKey2 = "beizz" + __index1;
 
         _this2.anonymousFunc1Map[_$indexKey2] = function () {
           return handleDel(v.$original);
@@ -3262,7 +1965,7 @@ var Topping = (_temp2 = _class = function (_Taro$Component) {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
 
-        var _$indexKey3 = "behzz" + __index2;
+        var _$indexKey3 = "bejzz" + __index2;
 
         _this2.anonymousFunc2Map[_$indexKey3] = function () {
           return handleDel(v.$original);
@@ -3278,7 +1981,7 @@ var Topping = (_temp2 = _class = function (_Taro$Component) {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
 
-        var _$indexKey4 = "beizz" + __index3;
+        var _$indexKey4 = "bfazz" + __index3;
 
         _this2.anonymousFunc3Map[_$indexKey4] = function () {
           return handleDel(v.$original);
@@ -3706,17 +2409,6 @@ module.exports = __webpack_require__.p + "pages/recruit/publish/index.wxml";
 
 /***/ }),
 
-/***/ "./node_modules/file-loader/dist/cjs.js?name=[path][name].wxml&context=/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/src!./node_modules/@tarojs/mini-runner/dist/loaders/miniTemplateLoader.js!./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js?!./src/pages/resume/newJobs/index.tsx?taro&type=template&parse=PAGE&":
-/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/file-loader/dist/cjs.js?name=[path][name].wxml&context=/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/src!./node_modules/@tarojs/mini-runner/dist/loaders/miniTemplateLoader.js!./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js??ref--6-0!./src/pages/resume/newJobs/index.tsx?taro&type=template&parse=PAGE& ***!
-  \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "pages/resume/newJobs/index.wxml";
-
-/***/ }),
-
 /***/ "./node_modules/file-loader/dist/cjs.js?name=[path][name].wxml&context=/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/src!./node_modules/@tarojs/mini-runner/dist/loaders/miniTemplateLoader.js!./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js?!./src/pages/topping/index.tsx?taro&type=template&parse=PAGE&":
 /*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/file-loader/dist/cjs.js?name=[path][name].wxml&context=/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/src!./node_modules/@tarojs/mini-runner/dist/loaders/miniTemplateLoader.js!./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js??ref--6-0!./src/pages/topping/index.tsx?taro&type=template&parse=PAGE& ***!
@@ -3962,6 +2654,42 @@ var SET = exports.SET = 'set';
 
 /***/ }),
 
+/***/ "./src/constants/personnel.ts":
+/*!************************************!*\
+  !*** ./src/constants/personnel.ts ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var GETDATA = exports.GETDATA = 'getdata';
+var SETDATA = exports.SETDATA = 'setdata';
+
+/***/ }),
+
+/***/ "./src/constants/resume.ts":
+/*!*********************************!*\
+  !*** ./src/constants/resume.ts ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var GETLIST = exports.GETLIST = 'getlist';
+var SETLIST = exports.SETLIST = 'setlist';
+
+/***/ }),
+
 /***/ "./src/constants/tabbar.ts":
 /*!*********************************!*\
   !*** ./src/constants/tabbar.ts ***!
@@ -4141,9 +2869,11 @@ var _index3 = __webpack_require__(/*! ../../utils/msg/index */ "./src/utils/msg/
 
 var _index4 = _interopRequireDefault(_index3);
 
+var _index5 = __webpack_require__(/*! ../../utils/subscribeToNews/index */ "./src/utils/subscribeToNews/index.ts");
+
 var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/redux/index.js");
 
-var _index5 = __webpack_require__(/*! ../../utils/v/index */ "./src/utils/v/index.ts");
+var _index6 = __webpack_require__(/*! ../../utils/v/index */ "./src/utils/v/index.ts");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -4343,7 +3073,7 @@ function usePublishViewInfo(InitParams) {
   function userPublishRecruitAction() {
     var data = getPublishedInfo();
     if (!data) return;
-    if (!(0, _index5.isVaildVal)(data.title, 3)) {
+    if (!(0, _index6.isVaildVal)(data.title, 3)) {
       (0, _index4.default)('请正确输入3~12字中文标题!');
       return;
     }
@@ -4355,11 +3085,11 @@ function usePublishViewInfo(InitParams) {
       (0, _index4.default)('请选择您的详细地址!');
       return;
     }
-    if (!(0, _index5.isVaildVal)(data.user_name, 2)) {
+    if (!(0, _index6.isVaildVal)(data.user_name, 2)) {
       (0, _index4.default)('请正确输入2~6字中文姓名!');
       return;
     }
-    if (!(0, _index5.isPhone)(data.user_mobile)) {
+    if (!(0, _index6.isPhone)(data.user_mobile)) {
       (0, _index4.default)('手机号输入有误!');
       return;
     }
@@ -4369,7 +3099,7 @@ function usePublishViewInfo(InitParams) {
         return;
       }
     }
-    if (!(0, _index5.isVaildVal)(data.detail, 15)) {
+    if (!(0, _index6.isVaildVal)(data.detail, 15)) {
       (0, _index4.default)('请正确输入15~500字招工详情!');
       return;
     }
@@ -4392,8 +3122,15 @@ function usePublishViewInfo(InitParams) {
         msg: res.errmsg,
         success: function success() {
           if (res.errcode == 'ok') {
-            _taroWeapp2.default.reLaunch({
-              url: '/pages/published/recruit/index'
+            (0, _index5.SubscribeToNews)("recruit", function () {
+              (0, _index3.SubPopup)({
+                tips: res.errmsg,
+                callback: function callback() {
+                  _taroWeapp2.default.reLaunch({
+                    url: '/pages/published/recruit/index'
+                  });
+                }
+              });
             });
           }
         }
@@ -6802,67 +5539,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/pages/resume/newJobs/index.scss":
-/*!*********************************************!*\
-  !*** ./src/pages/resume/newJobs/index.scss ***!
-  \*********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
-
-/***/ }),
-
-/***/ "./src/pages/resume/newJobs/index.tsx":
-/*!********************************************!*\
-  !*** ./src/pages/resume/newJobs/index.tsx ***!
-  \********************************************/
-/*! no static exports found */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _index_tsx_taro_type_template_parse_PAGE___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.tsx?taro&type=template&parse=PAGE& */ "./src/pages/resume/newJobs/index.tsx?taro&type=template&parse=PAGE&");
-/* harmony import */ var _index_tsx_taro_type_script_parse_PAGE___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./index.tsx?taro&type=script&parse=PAGE& */ "./src/pages/resume/newJobs/index.tsx?taro&type=script&parse=PAGE&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _index_tsx_taro_type_script_parse_PAGE___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _index_tsx_taro_type_script_parse_PAGE___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-
-
-
-
-/***/ }),
-
-/***/ "./src/pages/resume/newJobs/index.tsx?taro&type=script&parse=PAGE&":
-/*!*************************************************************************!*\
-  !*** ./src/pages/resume/newJobs/index.tsx?taro&type=script&parse=PAGE& ***!
-  \*************************************************************************/
-/*! no static exports found */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_script_parse_PAGE___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js??ref--6-0!./index.tsx?taro&type=script&parse=PAGE& */ "./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js?!./src/pages/resume/newJobs/index.tsx?taro&type=script&parse=PAGE&");
-/* harmony import */ var _node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_script_parse_PAGE___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_script_parse_PAGE___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_script_parse_PAGE___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_script_parse_PAGE___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
- /* harmony default export */ __webpack_exports__["default"] = (_node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_script_parse_PAGE___WEBPACK_IMPORTED_MODULE_0___default.a); 
-
-/***/ }),
-
-/***/ "./src/pages/resume/newJobs/index.tsx?taro&type=template&parse=PAGE&":
-/*!***************************************************************************!*\
-  !*** ./src/pages/resume/newJobs/index.tsx?taro&type=template&parse=PAGE& ***!
-  \***************************************************************************/
-/*! no static exports found */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _file_loader_name_path_name_wxml_context_Users_zhangyibo_TaroTs_YuPaoWang_yupaowang_src_node_modules_tarojs_mini_runner_dist_loaders_miniTemplateLoader_js_node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_template_parse_PAGE___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!file-loader?name=[path][name].wxml&context=/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/src!../../../../node_modules/@tarojs/mini-runner/dist/loaders/miniTemplateLoader.js!../../../../node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js??ref--6-0!./index.tsx?taro&type=template&parse=PAGE& */ "./node_modules/file-loader/dist/cjs.js?name=[path][name].wxml&context=/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/src!./node_modules/@tarojs/mini-runner/dist/loaders/miniTemplateLoader.js!./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js?!./src/pages/resume/newJobs/index.tsx?taro&type=template&parse=PAGE&");
-/* harmony import */ var _file_loader_name_path_name_wxml_context_Users_zhangyibo_TaroTs_YuPaoWang_yupaowang_src_node_modules_tarojs_mini_runner_dist_loaders_miniTemplateLoader_js_node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_template_parse_PAGE___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_file_loader_name_path_name_wxml_context_Users_zhangyibo_TaroTs_YuPaoWang_yupaowang_src_node_modules_tarojs_mini_runner_dist_loaders_miniTemplateLoader_js_node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_template_parse_PAGE___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _file_loader_name_path_name_wxml_context_Users_zhangyibo_TaroTs_YuPaoWang_yupaowang_src_node_modules_tarojs_mini_runner_dist_loaders_miniTemplateLoader_js_node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_template_parse_PAGE___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _file_loader_name_path_name_wxml_context_Users_zhangyibo_TaroTs_YuPaoWang_yupaowang_src_node_modules_tarojs_mini_runner_dist_loaders_miniTemplateLoader_js_node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_template_parse_PAGE___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-
-
-/***/ }),
-
 /***/ "./src/pages/topping/index.scss":
 /*!**************************************!*\
   !*** ./src/pages/topping/index.scss ***!
@@ -6998,7 +5674,7 @@ __webpack_require__.r(__webpack_exports__);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.resumesComplainUrl = exports.resumesUpdateTopResumeUrl = exports.resumesDoTopV2Url = exports.resumesTopConfigV2Url = exports.resumesEditImgUrl = exports.resumesChangeTopStatusUrl = exports.resumesDoTopUrl = exports.resumesTopConfigUrl = exports.resumesTopAreasUrl = exports.resumesDelProjectUrl = exports.resumesEditEndUrl = exports.resumesIntroduceUrl = exports.resumesGetDataUrl = exports.checkAdcodeUrl = exports.addResumeUrl = exports.resumesProjectUrl = exports.resumesCertificateUrl = exports.delCertificateUrl = exports.jobRecommendListUrl = exports.resumeListUrl = exports.resumeCollectUrl = exports.resumeSupportUrl = exports.resumesGetTelUrl = exports.recommendListUrl = exports.resumeDetailUrl = exports.jobUpdateTopStatusUrl = exports.jobChangeTopAreasUrl = exports.jobGetTopAreasUrl = exports.jobDoTopUrl = exports.jobTopHotAreasUrl = exports.jobTopConfigUrl = exports.jobEndStatusUrl = exports.jobGetTelUrl = exports.jobNoUserInfoUrl = exports.jobInfoUrl = exports.publishComplainUrl = exports.integralUseInfoUrl = exports.integralExpendListsUrl = exports.integralExpendConfigUrl = exports.integralSourceListsUrl = exports.integralSourceConfigUrl = exports.messagesTypeUrl = exports.userMessagesUrl = exports.resumesAddClickLog = exports.resumesSortUrl = exports.newsInfoUrl = exports.newsTypesUrl = exports.newListUrl = exports.helpUrl = exports.feedbackSubmissionUrl = exports.feedbackUrl = exports.requestActionUrl = exports.ResumeCancelCollection = exports.recruitCancelCollection = exports.getCollectionResumeList = exports.getCollectionRecruitList = exports.userChangeRecruitStatus = exports.userGetPublishedRecruitList = exports.userChangePhone = exports.userUpdateName = exports.userChangeAvatar = exports.postUserAddInfo = exports.getIdcardAuthInfo = exports.postUserAuthInfo = exports.getUserAuthInfo = exports.getMemberMsgNumber = exports.getMemberInfo = exports.CheckMineAuthInfo = exports.CheckAuth = exports.GetUsedInfo = exports.GetUserPhoneCode = exports.PublishUsedInfo = exports.GetUsedInfoModel = exports.GetRechargeOrder = exports.GetRechargeOpenid = exports.GetRechargeList = exports.GetUserInviteLink = exports.CheckAdcodeValid = exports.GetAllAreas = exports.PublishRecruitInfo = exports.GetPublisRecruitView = exports.GetIntegralList = exports.GetTabbarMsg = exports.GetListFilterData = exports.GetWechatNotice = exports.GetFleamarketlist = exports.GetResumelist = exports.GetRecruitlist = exports.GetAllListItem = exports.GetBannerNotice = exports.GetUserInfo = exports.GetUserSessionKey = undefined;
+exports.leavingMessageUrl = exports.resumesComplainUrl = exports.resumesUpdateTopResumeUrl = exports.resumesDoTopV2Url = exports.resumesTopConfigV2Url = exports.resumesEditImgUrl = exports.resumesChangeTopStatusUrl = exports.resumesDoTopUrl = exports.resumesTopConfigUrl = exports.resumesTopAreasUrl = exports.resumesDelProjectUrl = exports.resumesEditEndUrl = exports.resumesIntroduceUrl = exports.resumesGetDataUrl = exports.checkAdcodeUrl = exports.addResumeUrl = exports.resumesProjectUrl = exports.resumesCertificateUrl = exports.delCertificateUrl = exports.jobRecommendListUrl = exports.resumeListUrl = exports.resumeCollectUrl = exports.resumeSupportUrl = exports.resumesGetTelUrl = exports.recommendListUrl = exports.resumeDetailUrl = exports.jobUpdateTopStatusUrl = exports.jobChangeTopAreasUrl = exports.jobGetTopAreasUrl = exports.jobDoTopUrl = exports.jobTopHotAreasUrl = exports.jobTopConfigUrl = exports.jobEndStatusUrl = exports.jobGetTelUrl = exports.jobNoUserInfoUrl = exports.jobInfoUrl = exports.publishComplainUrl = exports.integralUseInfoUrl = exports.integralExpendListsUrl = exports.integralExpendConfigUrl = exports.integralSourceListsUrl = exports.integralSourceConfigUrl = exports.messagesTypeUrl = exports.userMessagesUrl = exports.resumesAddClickLog = exports.resumesSortUrl = exports.newsInfoUrl = exports.newsTypesUrl = exports.newListUrl = exports.helpUrl = exports.feedbackSubmissionUrl = exports.feedbackUrl = exports.requestActionUrl = exports.ResumeCancelCollection = exports.recruitCancelCollection = exports.getCollectionResumeList = exports.getCollectionRecruitList = exports.userChangeRecruitStatus = exports.userGetPublishedRecruitList = exports.userChangePhone = exports.userUpdateName = exports.userChangeAvatar = exports.postUserAddInfo = exports.getIdcardAuthInfo = exports.postUserAuthInfo = exports.getUserAuthInfo = exports.getMemberMsgNumber = exports.getMemberInfo = exports.CheckMineAuthInfo = exports.CheckAuth = exports.GetUsedInfo = exports.GetUserPhoneCode = exports.PublishUsedInfo = exports.GetUsedInfoModel = exports.GetRechargeOrder = exports.GetRechargeOpenid = exports.GetRechargeList = exports.GetUserInviteLink = exports.CheckAdcodeValid = exports.GetAllAreas = exports.PublishRecruitInfo = exports.GetPublisRecruitView = exports.GetIntegralList = exports.GetTabbarMsg = exports.GetListFilterData = exports.GetWechatNotice = exports.GetFleamarketlist = exports.GetResumelist = exports.GetRecruitlist = exports.GetAllListItem = exports.GetBannerNotice = exports.GetUserInfo = exports.GetUserSessionKey = undefined;
 
 var _index = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
 
@@ -7186,6 +5862,8 @@ var resumesDoTopV2Url = exports.resumesDoTopV2Url = _index.REQUESTURL + '/resume
 var resumesUpdateTopResumeUrl = exports.resumesUpdateTopResumeUrl = _index.REQUESTURL + '/resumes/update-top-resume/';
 // 找活投诉
 var resumesComplainUrl = exports.resumesComplainUrl = _index.REQUESTURL + 'resumes/complain/';
+// 消息推送
+var leavingMessageUrl = exports.leavingMessageUrl = _index.REQUESTURL + 'leaving-message/add-subscribe-msg/';
 
 /***/ }),
 
@@ -7319,6 +5997,7 @@ exports.ShowActionModal = ShowActionModal;
 exports.errMsg = errMsg;
 exports.warnMsg = warnMsg;
 exports.successMsg = successMsg;
+exports.SubPopup = SubPopup;
 
 var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
@@ -7375,6 +6054,16 @@ function successMsg() {
   _taroWeapp2.default.atMessage({
     'message': msg,
     'type': 'success'
+  });
+}
+function SubPopup(obj) {
+  _taroWeapp2.default.showModal({
+    title: obj.title || '温馨提示',
+    content: obj.tips,
+    showCancel: obj.hasOwnProperty('cancel') ? obj.cancel : false,
+    success: function success() {
+      obj.callback ? obj.callback() : "";
+    }
   });
 }
 
@@ -7489,6 +6178,7 @@ exports.resumesTopConfigV2Action = resumesTopConfigV2Action;
 exports.resumesDoTopV2Action = resumesDoTopV2Action;
 exports.resumesUpdateTopResumeAction = resumesUpdateTopResumeAction;
 exports.resumesComplainAction = resumesComplainAction;
+exports.leavingMessageAction = leavingMessageAction;
 
 var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
@@ -8414,6 +7104,15 @@ function resumesComplainAction(data) {
     data: data
   });
 }
+// 消息推送
+function leavingMessageAction(data) {
+  return doRequestAction({
+    url: api.leavingMessageUrl,
+    method: 'POST',
+    failToast: true,
+    data: data
+  });
+}
 
 /***/ }),
 
@@ -8535,6 +7234,107 @@ function AMapWX(a) {
       a.fail({ errCode: "0", errMsg: b.errMsg || "" });
     } });
 }, module.exports.AMapWX = AMapWX;
+
+/***/ }),
+
+/***/ "./src/utils/subscribeToNews/index.ts":
+/*!********************************************!*\
+  !*** ./src/utils/subscribeToNews/index.ts ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.SubscribeToNews = SubscribeToNews;
+
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
+
+var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
+
+var _store = __webpack_require__(/*! ../../config/store */ "./src/config/store.ts");
+
+var _index = __webpack_require__(/*! ../request/index */ "./src/utils/request/index.ts");
+
+var _temp_ids = __webpack_require__(/*! ./temp_ids */ "./src/utils/subscribeToNews/temp_ids.ts");
+
+var _temp_ids2 = _interopRequireDefault(_temp_ids);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// 消息推送
+function SubscribeToNews(type, callback) {
+  var userInfo = _taroWeapp2.default.getStorageSync(_store.UserInfo);
+  if (_taroWeapp2.default.canIUse('requestSubscribeMessage') === true) {
+    _taroWeapp2.default.requestSubscribeMessage({
+      tmplIds: [_temp_ids2.default[type].id],
+      success: function success(res) {
+        callback();
+        if (res.errMsg == "requestSubscribeMessage:ok") {
+          var status = res[_temp_ids2.default[type].id];
+          if (status == "accept") {
+            var params = {
+              userId: userInfo.userId,
+              token: userInfo.token,
+              tokenTime: userInfo.tokenTime,
+              type: _temp_ids2.default[type].type
+            };
+            (0, _index.leavingMessageAction)(params);
+          }
+        }
+      }
+    });
+  } else {
+    callback();
+  }
+}
+
+/***/ }),
+
+/***/ "./src/utils/subscribeToNews/temp_ids.ts":
+/*!***********************************************!*\
+  !*** ./src/utils/subscribeToNews/temp_ids.ts ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var TmplId = {
+  msg: {
+    id: "z5y8OFD9gs0SY0sT7FZwiWsrzT3rNp3CJFH7yhv7dUE",
+    type: 1
+  },
+  pay: {
+    id: "vpEpkHfo5tlmGB8oZXq-qVU3ySmsxTzPrgNsv_2l6Go",
+    type: 0
+  },
+  complain: {
+    id: "uZcoNQz86gAr3P4DYtgt85PnVgMcN_Je27TeHdKhz14",
+    type: 5
+  },
+  auth: {
+    id: "6Kda5y-LXhIySRw-ouD94xMnndZplmvfsmmAZ9kbKp4",
+    type: 6
+  },
+  recruit: {
+    id: "G68JCpxsyIcKPrZcQWdHTG63T2JpJIz9gXGgKLv1T0A",
+    type: 3
+  },
+  resume: {
+    id: "G68JCpxsyIcKPrZcQWdHTG63T2JpJIz9gXGgKLv1T0A",
+    type: 4
+  }
+};
+exports.default = TmplId;
 
 /***/ }),
 

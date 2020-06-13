@@ -29,6 +29,8 @@
   display: flex;
   position: relative;
   padding-right: 150px;
+  padding-left: 10px;
+  margin-bottom: 10px;
 }
 .card-otext-lang {
   margin-top: 14px;
@@ -495,6 +497,7 @@
   text-align: center;
   color: rgba(42, 42, 42, 1);
   padding: 5px;
+  margin-bottom: 10px;
 }
 
 .ocworkotyp .ocworkotyptu:nth-last-child(1) {

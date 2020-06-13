@@ -7,7 +7,8 @@ import ImageView from '../../components/imageview'
 import UploadImgAction from '../../utils/upload'
 import userCode from '../../hooks/code'
 import { feedbackSubmissionAction } from '../../utils/request/index'
-import Msg, { ShowActionModal} from '../../utils/msg'
+import Msg, { ShowActionModal, SubPopup} from '../../utils/msg'
+import { SubscribeToNews } from '../../utils/subscribeToNews';
 import { isVaildVal, isPhone } from '../../utils/v'
 import './index.scss'
 
@@ -103,13 +104,15 @@ export default function Feedback() {
     }
     feedbackSubmissionAction(params).then(res =>{
       if(res.errcode == 'ok'){
-        ShowActionModal({ 
-          msg: res.errmsg,
-          success: function () {
-            Taro.navigateBack({
-              delta: 1
-            })
-          }
+        SubscribeToNews('msg', () => {
+          ShowActionModal({ 
+            msg: res.errmsg,
+            success: function () {
+              Taro.navigateBack({
+                delta: 1
+              })
+            }
+          })
         })
       }else{
         Msg(res.errmsg)

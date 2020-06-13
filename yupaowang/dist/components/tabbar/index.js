@@ -66,7 +66,7 @@ var Tabbar = (_temp2 = _class = function (_Taro$Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Tabbar.__proto__ || Object.getPrototypeOf(Tabbar)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp3", "anonymousState__temp4", "anonymousState__temp5", "tabbar", "loopArray96", "memberMsg", "show", "IMGCDNURL", "notredirect"], _this.anonymousFunc0Map = {}, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Tabbar.__proto__ || Object.getPrototypeOf(Tabbar)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp3", "anonymousState__temp4", "anonymousState__temp5", "tabbar", "loopArray99", "memberMsg", "show", "IMGCDNURL", "notredirect"], _this.anonymousFunc0Map = {}, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Tabbar, [{
@@ -184,7 +184,7 @@ var Tabbar = (_temp2 = _class = function (_Taro$Component) {
         'tabbar-publish-items': true,
         'tabbar-publish-items-active': active
       }) : null;
-      var loopArray96 = tabbar.list.map(function (item, __index0) {
+      var loopArray99 = tabbar.list.map(function (item, __index0) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
@@ -193,7 +193,7 @@ var Tabbar = (_temp2 = _class = function (_Taro$Component) {
           'common-footer-tabbar-list-active': item.$original.id === tabbar.key
         });
 
-        var _$indexKey = "jjzzz" + __index0;
+        var _$indexKey = "baczz" + __index0;
 
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return changeTabbarAction(item.$original);
@@ -210,7 +210,7 @@ var Tabbar = (_temp2 = _class = function (_Taro$Component) {
         anonymousState__temp4: anonymousState__temp4,
         anonymousState__temp5: anonymousState__temp5,
         tabbar: tabbar,
-        loopArray96: loopArray96,
+        loopArray99: loopArray99,
         memberMsg: memberMsg,
         show: show,
         IMGCDNURL: _index3.IMGCDNURL

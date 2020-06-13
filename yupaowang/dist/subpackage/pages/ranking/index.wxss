@@ -80,3 +80,14 @@
   font-weight: 400;
   color: white;
   text-align: center; }
+.rankingRules-list-content-buttonBox-none {
+  width: 97rpx;
+  height: 44rpx;
+  line-height: 44rpx;
+  background: #D2D2D4;
+  color: white;
+  box-shadow: 0 2rpx 2rpx 0 rgba(141, 204, 246, 0.51);
+  border-radius: 8rpx;
+  font-size: 22rpx;
+  font-weight: 400;
+  text-align: center; }

@@ -56,7 +56,7 @@ var RankingRules = (_temp2 = _class = function (_Taro$Component) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = RankingRules.__proto__ || Object.getPrototypeOf(RankingRules)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
       navigationBarTitleText: '排名规则'
-    }, _this.$usedState = ["data", "loopArray115", "loopArray116", "isLogin"], _this.anonymousFunc0Map = {}, _this.customComponents = ["Auth"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["data", "loopArray115", "loopArray116", "isLogin", "showbutton"], _this.anonymousFunc0Map = {}, _this.anonymousFunc1Map = {}, _this.customComponents = ["Auth"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(RankingRules, [{
@@ -77,34 +77,54 @@ var RankingRules = (_temp2 = _class = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
+      var UserInfo = _taroWeapp2.default.getStorageSync('UserInfo');
       // 获取用户是否登录
       var login = (0, _redux.useSelector)(function (state) {
         return state.User['login'];
       });
+
+      var _useState = (0, _taroWeapp.useState)(true),
+          _useState2 = _slicedToArray(_useState, 2),
+          showbutton = _useState2[0],
+          setShowbutton = _useState2[1];
       // 判断是否需要出现登陆
 
-      var _useState = (0, _taroWeapp.useState)(false),
-          _useState2 = _slicedToArray(_useState, 2),
-          isLogin = _useState2[0],
-          setIsLogin = _useState2[1];
 
-      var _useState3 = (0, _taroWeapp.useState)({
+      var _useState3 = (0, _taroWeapp.useState)(false),
+          _useState4 = _slicedToArray(_useState3, 2),
+          isLogin = _useState4[0],
+          setIsLogin = _useState4[1];
+
+      var _useState5 = (0, _taroWeapp.useState)({
         warm_tips: [],
+        resume_data: {
+          info: {
+            uuid: ''
+          }
+        },
         sort_rule_lists: [],
         resume_info: {
           has_resume: 0,
           sort_flag: 0
         }
       }),
-          _useState4 = _slicedToArray(_useState3, 2),
-          data = _useState4[0],
-          setData = _useState4[1];
+          _useState6 = _slicedToArray(_useState5, 2),
+          data = _useState6[0],
+          setData = _useState6[1];
 
-      (0, _taroWeapp.useEffect)(function () {
+      (0, _taroWeapp.useDidShow)(function () {
+        if (!UserInfo) {
+          setShowbutton(false);
+        }
         (0, _index.resumesSortAction)().then(function (res) {
           setData(res.data);
         });
-      }, []);
+      });
+      // useEffect(()=>{
+      //   resumesSortAction().then(res=>{
+      //     setData(res.data)
+      //   })
+      // }, [])
       var handleBtn = function handleBtn(v) {
         // if (v.share_type && v.share_type == 'invite_friend'){
         // }
@@ -115,42 +135,79 @@ var RankingRules = (_temp2 = _class = function (_Taro$Component) {
         // 日志请求
         resumesAddClickLog(v.click_type);
         // 名片信息
+        // console.log(v.jump.mini_path,'地址');
+        // console.log(v.jump.need_jump,'need_jump')
+        // return;
         if (data.resume_info.has_resume == 1 && v.jump.need_jump == 1) {
-          console.log(v.jump.mini_path + "?rankjump=rankjump");
-          // Taro.navigateTo({
-          //   url: v.jump.mini_path + `?rankjump=rankjump`,
-          // })
-          // 技能证书
-          if (v.jump.mini_path == '/pages/clients-looking-for-work/new-project-experience/projectexperience' || v.jump.mini_path == '/pages/clients-looking-for-work/addcertificate/addcertificate') {} else if (!(v.jump.mini_path == '/pages/clients-looking-for-work/finding-name-card/findingnamecard')) {
+          // 到新增找活
+          if (v.jump.mini_path = '/pages/clients-looking-for-work/finding-name-card/findingnamecard') {
             _taroWeapp2.default.navigateTo({
-              url: v.jump.mini_path + "?ranktype=ranking"
+              url: "/pages/resume/newJobs/index"
+            });
+            // 项目
+          } else if (v.jump.mini_path == '/pages/clients-looking-for-work/all-project-experience/allexperience') {
+            _taroWeapp2.default.navigateTo({
+              url: "/pages/resume/projectList/index?id=" + data.resume_data.info.uuid
+            });
+            // 技能
+          } else if (v.jump.mini_path == '/pages/clients-looking-for-work/all-skills-certificate/skillscertificate') {
+            _taroWeapp2.default.navigateTo({
+              url: "/pages/resume/skillList/index?id=" + data.resume_data.info.uuid
+            });
+            // 充值
+          } else if (v.jump.mini_path == '/pages/recharge/recharge') {
+            _taroWeapp2.default.navigateTo({
+              url: "/pages/recharge/index"
+            });
+            // 实名
+          } else {
+            _taroWeapp2.default.navigateTo({
+              url: "/pages/realname/index"
             });
           }
           // 充值
         } else if (data.resume_info.has_resume == 0 && v.jump.mini_path == '/pages/recharge/recharge' && v.jump.need_jump == 1) {
+          _taroWeapp2.default.navigateTo({
+            url: "/pages/recharge/index"
+          });
           // 真实姓名
         } else if (data.resume_info.has_resume == 0 && v.jump.mini_path == '/pages/realname/realname' && v.jump.need_jump == 1) {
+          _taroWeapp2.default.navigateTo({
+            url: "/pages/realname/index"
+          });
           // 名片信息
-        } else if (v.jump.need_jump == 1) {}
+        } else if (v.jump.need_jump == 1) {
+          _taroWeapp2.default.navigateTo({
+            url: "/pages/resume/newJobs/index"
+          });
+        }
       };
       var resumesAddClickLog = function resumesAddClickLog(click_type) {
         (0, _index.resumesAddClickLogAction)(click_type);
       };
+      console.log(showbutton);
       var loopArray115 = data.sort_rule_lists.map(function (v, index) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
         var $loopState__temp2 = index + index;
 
-        var _$indexKey = "bbfzz" + index;
+        var _$indexKey = "bbgzz" + index;
 
         _this2.anonymousFunc0Map[_$indexKey] = function () {
+          handleBtn(v.$original);
+        };
+
+        var _$indexKey2 = "bbhzz" + index;
+
+        _this2.anonymousFunc1Map[_$indexKey2] = function () {
           handleBtn(v.$original);
         };
 
         return {
           $loopState__temp2: $loopState__temp2,
           _$indexKey: _$indexKey,
+          _$indexKey2: _$indexKey2,
           $original: v.$original
         };
       });
@@ -168,7 +225,8 @@ var RankingRules = (_temp2 = _class = function (_Taro$Component) {
         data: data,
         loopArray115: loopArray115,
         loopArray116: loopArray116,
-        isLogin: isLogin
+        isLogin: isLogin,
+        showbutton: showbutton
       });
       return this.__state;
     }
@@ -185,10 +243,23 @@ var RankingRules = (_temp2 = _class = function (_Taro$Component) {
 
       return this.anonymousFunc0Map[_$indexKey] && (_anonymousFunc0Map = this.anonymousFunc0Map)[_$indexKey].apply(_anonymousFunc0Map, e);
     }
+  }, {
+    key: 'anonymousFunc1',
+    value: function anonymousFunc1(_$indexKey2) {
+      var _anonymousFunc1Map;
+
+      ;
+
+      for (var _len3 = arguments.length, e = Array(_len3 > 1 ? _len3 - 1 : 0), _key3 = 1; _key3 < _len3; _key3++) {
+        e[_key3 - 1] = arguments[_key3];
+      }
+
+      return this.anonymousFunc1Map[_$indexKey2] && (_anonymousFunc1Map = this.anonymousFunc1Map)[_$indexKey2].apply(_anonymousFunc1Map, e);
+    }
   }]);
 
   return RankingRules;
-}(_taroWeapp2.default.Component), _class.$$events = ["anonymousFunc0"], _class.$$componentPath = "subpackage/pages/ranking/index", _temp2);
+}(_taroWeapp2.default.Component), _class.$$events = ["anonymousFunc0", "anonymousFunc1"], _class.$$componentPath = "subpackage/pages/ranking/index", _temp2);
 
 
 RankingRules.config = { navigationBarTitleText: '排名规则' };

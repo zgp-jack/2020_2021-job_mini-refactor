@@ -3,12 +3,14 @@ import tabbar from './tabbar'
 import WechatNotice from './wechat_notice'
 import User from './user'
 import msg from './msg'
-import project from './project'
+import Personnel from './personnel'
+import Myresume from './resume'
 
 export default combineReducers({
   tabbar,
   WechatNotice,
   User,
   msg,
-  project,
+  Personnel,
+  Myresume,
 })

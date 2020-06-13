@@ -23,6 +23,8 @@ var _createClass = function () { function defineProperties(target, props) { for 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
 var _class, _temp2;
+// import { context } from '../../../pages/resume/newJobs'
+
 
 var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
@@ -32,21 +34,21 @@ var _index = __webpack_require__(/*! ../../../utils/upload/index */ "./src/utils
 
 var _index2 = _interopRequireDefault(_index);
 
-var _index3 = __webpack_require__(/*! ../../../utils/request/index */ "./src/utils/request/index.ts");
+var _index3 = __webpack_require__(/*! ../../../utils/msg/index */ "./src/utils/msg/index.ts");
+
+var _index4 = _interopRequireDefault(_index3);
+
+var _index5 = __webpack_require__(/*! ../../../utils/subscribeToNews/index */ "./src/utils/subscribeToNews/index.ts");
+
+var _index6 = __webpack_require__(/*! ../../../utils/request/index */ "./src/utils/request/index.ts");
 
 var _area = __webpack_require__(/*! ../../../models/area */ "./src/models/area.ts");
 
 var _area2 = _interopRequireDefault(_area);
 
-var _index4 = __webpack_require__(/*! ../../../utils/msg/index */ "./src/utils/msg/index.ts");
+var _index7 = __webpack_require__(/*! ../../../utils/v/index */ "./src/utils/v/index.ts");
 
-var _index5 = _interopRequireDefault(_index4);
-
-var _index6 = __webpack_require__(/*! ../../../utils/v/index */ "./src/utils/v/index.ts");
-
-var _store = __webpack_require__(/*! ../../../config/store */ "./src/config/store.ts");
-
-var _index7 = __webpack_require__(/*! ../newJobs/index */ "./src/pages/resume/newJobs/index.tsx");
+var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/redux/index.js");
 
 __webpack_require__(/*! ./index.scss */ "./src/pages/resume/addProject/index.scss");
 
@@ -76,7 +78,7 @@ var AddProjectPage = (_temp2 = _class = function (_Taro$Component) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AddProjectPage.__proto__ || Object.getPrototypeOf(AddProjectPage)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
       navigationBarTitleText: '新增项目经验'
-    }, _this.$usedState = ["$compid__115", "$compid__116", "$compid__117", "startTime", "endTime", "multiIndex", "multiArray", "multiIndexvalue", "textarea", "image", "type"], _this.customComponents = ["AtInput", "WordsTotal", "ImageView"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["$compid__239", "$compid__240", "$compid__241", "startTime", "endTime", "multiIndex", "multiArray", "multiIndexvalue", "textarea", "image", "type"], _this.customComponents = ["AtInput", "WordsTotal", "ImageView"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(AddProjectPage, [{
@@ -95,59 +97,70 @@ var AddProjectPage = (_temp2 = _class = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__115"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__239"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__115 = _genCompid2[0],
-          $compid__115 = _genCompid2[1];
+          $prevCompid__239 = _genCompid2[0],
+          $compid__239 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__116"),
+      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__240"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__116 = _genCompid4[0],
-          $compid__116 = _genCompid4[1];
+          $prevCompid__240 = _genCompid4[0],
+          $compid__240 = _genCompid4[1];
 
-      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__117"),
+      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__241"),
           _genCompid6 = _slicedToArray(_genCompid5, 2),
-          $prevCompid__117 = _genCompid6[0],
-          $compid__117 = _genCompid6[1];
+          $prevCompid__241 = _genCompid6[0],
+          $compid__241 = _genCompid6[1];
 
       var router = (0, _taroWeapp.useRouter)();
+      // 获取存入的公用内容
+      var useSelectorItem = (0, _redux.useSelector)(function (state) {
+        return state;
+      });
+      // url传递过来的值
       var _router$params = router.params,
           type = _router$params.type,
           id = _router$params.id;
-
-      var _useContext = (0, _taroWeapp.useContext)(_index7.context),
-          projectData = _useContext.projectData;
+      // const projectData:any=[];
+      // const { projectData } = useContext(context);
       // const { area } = useContext(contextItem);
       // console.log(area,'areaareaarea')
-
-
-      var userInfo = _taroWeapp2.default.getStorageSync(_store.UserInfo);
       // 默认字数
 
       var _useState = (0, _taroWeapp.useState)(0),
           _useState2 = _slicedToArray(_useState, 2),
           num = _useState2[0],
           setNum = _useState2[1];
+      //项目名称
+
 
       var _useState3 = (0, _taroWeapp.useState)(''),
           _useState4 = _slicedToArray(_useState3, 2),
           name = _useState4[0],
           setName = _useState4[1];
+      // 开工时间
+
 
       var _useState5 = (0, _taroWeapp.useState)(''),
           _useState6 = _slicedToArray(_useState5, 2),
           startTime = _useState6[0],
           setStartTime = _useState6[1];
+      // endTime
+
 
       var _useState7 = (0, _taroWeapp.useState)(''),
           _useState8 = _slicedToArray(_useState7, 2),
           endTime = _useState8[0],
           setEndTime = _useState8[1];
+      // 项目详情
+
 
       var _useState9 = (0, _taroWeapp.useState)(''),
           _useState10 = _slicedToArray(_useState9, 2),
           textarea = _useState10[0],
           setTextarea = _useState10[1];
+      // 图片
+
 
       var _useState11 = (0, _taroWeapp.useState)({
         item: []
@@ -155,36 +168,50 @@ var AddProjectPage = (_temp2 = _class = function (_Taro$Component) {
           _useState12 = _slicedToArray(_useState11, 2),
           image = _useState12[0],
           setImage = _useState12[1];
+      // 所有的省，市
+
 
       var _useState13 = (0, _taroWeapp.useState)([]),
           _useState14 = _slicedToArray(_useState13, 2),
           multiArrayone = _useState14[0],
           setMultiArrayone = _useState14[1];
+      // 省和第一个市
+
 
       var _useState15 = (0, _taroWeapp.useState)([]),
           _useState16 = _slicedToArray(_useState15, 2),
           multiArray = _useState16[0],
           setMultiArray = _useState16[1];
+      // 省和市的值
+
 
       var _useState17 = (0, _taroWeapp.useState)([0, 0]),
           _useState18 = _slicedToArray(_useState17, 2),
           multiIndex = _useState18[0],
           setMultiIndex = _useState18[1];
+      // 修改值
+
 
       var _useState19 = (0, _taroWeapp.useState)(0),
           _useState20 = _slicedToArray(_useState19, 2),
           edit = _useState20[0],
           setEdit = _useState20[1];
+      // 省
+
 
       var _useState21 = (0, _taroWeapp.useState)([]),
           _useState22 = _slicedToArray(_useState21, 2),
           allprovinces = _useState22[0],
           setAllprovinces = _useState22[1];
+      // 省和市中文
+
 
       var _useState23 = (0, _taroWeapp.useState)(''),
           _useState24 = _slicedToArray(_useState23, 2),
           multiIndexvalue = _useState24[0],
           seMultiIndexvalue = _useState24[1];
+      // 选择后省和市中文
+
 
       var _useState25 = (0, _taroWeapp.useState)(''),
           _useState26 = _slicedToArray(_useState25, 2),
@@ -235,8 +262,10 @@ var AddProjectPage = (_temp2 = _class = function (_Taro$Component) {
             }
           }
         }
+        console.log(provice, 'provice');
         setAllprovinces(provice);
         // 所有的省，市
+        console.log([data, allChildren]);
         setMultiArrayone([data, allChildren]);
         //省市obj
         // setObjectMultiArray([provice,city]);
@@ -251,11 +280,12 @@ var AddProjectPage = (_temp2 = _class = function (_Taro$Component) {
             title: '修改项目经验'
           });
           // 内容回填
-          if (projectData) {
-            console.log(projectData, 'projectDataprojectDataprojectData');
+          var dataItem = JSON.parse(JSON.stringify(useSelectorItem.Myresume));
+          if (dataItem.project) {
+            console.log(data);
             var arr = [];
             setImage({ item: arr });
-            var list = projectData[type];
+            var list = dataItem.project[type];
             for (var _i2 = 0; _i2 < list.image.length; _i2++) {
               for (var _j2 = 0; _j2 < list.images.length; _j2++) {
                 var obj = {
@@ -331,7 +361,9 @@ var AddProjectPage = (_temp2 = _class = function (_Taro$Component) {
           multiArray: multiArray,
           multiIndex: multiIndex
         };
+        console.log(e, 'e');
         obj.multiIndex[e.detail.column] = e.detail.value;
+        console.log(obj.multiIndex[e.detail.column], 'obj.multiIndex[e.detail.column]s');
         switch (e.detail.column) {
           case 0:
             switch (obj.multiIndex[0]) {
@@ -342,6 +374,8 @@ var AddProjectPage = (_temp2 = _class = function (_Taro$Component) {
             obj.multiIndex[1] = 0;
             break;
         }
+        console.log(obj.multiArray, 'obj.multiArray');
+        console.log(obj.multiIndex, 'obj.multiIndex');
         setMultiArray(obj.multiArray);
         setMultiIndex(obj.multiIndex);
         // 修改值
@@ -362,7 +396,7 @@ var AddProjectPage = (_temp2 = _class = function (_Taro$Component) {
       };
       // 继续
       var handlContinue = function handlContinue(type) {
-        if (!(0, _index6.isVaildVal)(name, 3, 12)) {
+        if (!(0, _index7.isVaildVal)(name, 3, 12)) {
           _taroWeapp2.default.showModal({
             title: '温馨提示',
             content: '请填写真实证书名称，3-12字，必须含有汉字',
@@ -396,7 +430,7 @@ var AddProjectPage = (_temp2 = _class = function (_Taro$Component) {
           });
           return;
         }
-        if (!(0, _index6.isVaildVal)(textarea, 15, 500)) {
+        if (!(0, _index7.isVaildVal)(textarea, 15, 500)) {
           _taroWeapp2.default.showModal({
             title: '温馨提示',
             content: '请填写真实项目介绍，15-500字，必须含有汉字',
@@ -419,28 +453,35 @@ var AddProjectPage = (_temp2 = _class = function (_Taro$Component) {
           project_uuid: project_uuid
         };
         console.log(params);
-        (0, _index3.resumesProjectAction)(params).then(function (res) {
+        (0, _index6.resumesProjectAction)(params).then(function (res) {
           if (res.errcode === 'ok') {
-            // 保存继续添加
-            if (type === 0) {
-              setStartTime('请选择开工时间');
-              setEndTime('请选择完工时间');
-              setTextarea('');
-              setImage({ item: [] });
-              setNum(0);
-              seMultiIndexvalue('');
-              // setAddress('请选择所在地区')
-              setAllpro('');
-              setName('');
-              // 保存
-            } else {
-              (0, _index5.default)(res.errmsg);
-              _taroWeapp2.default.navigateBack({
-                delta: 1
+            (0, _index5.SubscribeToNews)('resume', function () {
+              (0, _index3.SubPopup)({
+                tips: res.errmsg,
+                callback: function callback() {
+                  // 保存继续添加
+                  if (type === 0) {
+                    setStartTime('请选择开工时间');
+                    setEndTime('请选择完工时间');
+                    setTextarea('');
+                    setImage({ item: [] });
+                    setNum(0);
+                    seMultiIndexvalue('');
+                    // setAddress('请选择所在地区')
+                    setAllpro('');
+                    setName('');
+                    // 保存
+                  } else {
+                    (0, _index4.default)(res.errmsg);
+                    _taroWeapp2.default.navigateBack({
+                      delta: 1
+                    });
+                  }
+                }
               });
-            }
+            });
           } else {
-            (0, _index5.default)(res.errmsg);
+            (0, _index4.default)(res.errmsg);
           }
         });
       };
@@ -454,19 +495,20 @@ var AddProjectPage = (_temp2 = _class = function (_Taro$Component) {
               var params = {
                 project_uuid: project_uuid
               };
-              (0, _index3.resumesDelProjectAction)(params).then(function (res) {
+              (0, _index6.resumesDelProjectAction)(params).then(function (res) {
                 if (res.errcode == 'ok') {
                   _taroWeapp2.default.navigateBack({
                     delta: 1
                   });
                 } else {
-                  (0, _index5.default)(res.errmsg);
+                  (0, _index4.default)(res.errmsg);
                 }
               });
             }
           }
         });
       };
+      console.log(multiArray, 'xxv');
 
       this.anonymousFunc0 = function (e) {
         setName(e.toString());
@@ -512,19 +554,19 @@ var AddProjectPage = (_temp2 = _class = function (_Taro$Component) {
         "maxLength": 12,
         "value": name,
         "onChange": this.anonymousFunc0
-      }, $compid__115, $prevCompid__115);
+      }, $compid__239, $prevCompid__239);
       _taroWeapp.propsManager.set({
         "num": num
-      }, $compid__116, $prevCompid__116);
+      }, $compid__240, $prevCompid__240);
       image.item && _taroWeapp.propsManager.set({
         "images": image.item,
         "max": 6,
         "userUploadImg": userUploadImg
-      }, $compid__117, $prevCompid__117);
+      }, $compid__241, $prevCompid__241);
       Object.assign(this.__state, {
-        $compid__115: $compid__115,
-        $compid__116: $compid__116,
-        $compid__117: $compid__117,
+        $compid__239: $compid__239,
+        $compid__240: $compid__240,
+        $compid__241: $compid__241,
         startTime: startTime,
         endTime: endTime,
         multiIndex: multiIndex,

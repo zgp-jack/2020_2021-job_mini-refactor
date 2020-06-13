@@ -83,15 +83,15 @@ var ResumeList = (_temp2 = _class = function (_Taro$Component) {
         });
       };
       var anonymousState__temp = (0, _taroWeapp.internal_inline_style)(bottom ? '' : 'padding-bottom:0');
-      var loopArray112 = data.map(function (item, __index1) {
+      var loopArray112 = data ? data.map(function (item, __index1) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
-        var $anonymousCallee__24 = item.$original.map(function (d, __index0) {
+        var $anonymousCallee__24 = item.$original ? item.$original.map(function (d, __index0) {
           d = {
             $original: (0, _taroWeapp.internal_get_original)(d)
           };
-          var _$indexKey = "bbdzz" + __index1 + "-" + __index0;
+          var _$indexKey = "bbezz" + __index1 + "-" + __index0;
 
           _this2.anonymousFunc0Map[_$indexKey] = function () {
             return userRouteJump("/pages/resume/detail/index?uuid=" + d.$original.uuid + "&location=" + d.$original.location);
@@ -101,12 +101,12 @@ var ResumeList = (_temp2 = _class = function (_Taro$Component) {
             _$indexKey: _$indexKey,
             $original: d.$original
           };
-        });
+        }) : [];
         return {
           $anonymousCallee__24: $anonymousCallee__24,
           $original: item.$original
         };
-      });
+      }) : [];
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
         loopArray112: loopArray112,

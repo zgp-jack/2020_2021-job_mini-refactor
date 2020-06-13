@@ -20,7 +20,8 @@
 .clearfix {
   zoom: 1; }
 .addProjectPage {
-  overflow-y: scroll; }
+  overflow-y: scroll;
+  margin-bottom: 100rpx; }
 .content {
   width: 93%;
   margin: 0 auto; }

@@ -588,6 +588,13 @@ export interface resumesSortData {
   warm_tips:[],
   sort_rule_lists: resumesSortDataList[],
   resume_info: resumesSortDataIfo,
+  resume_data: resumesSortDataObj,
+}
+export interface resumesSortDataObj{
+  info: resumesSortDataObjInfo
+}
+export interface resumesSortDataObjInfo{
+  uuid:string
 }
 export interface resumesSortDataIfo {
   has_resume:number,
@@ -1002,8 +1009,10 @@ export interface jobRecommendListDataList{
 }
 
 //完善找活
-export interface resumeList extends Result{
+export interface resumeList{
   data: resumeListData,
+  errcode:number,
+  errmsg: string
 }
 export interface resumeListData {
   certificate_count: number,

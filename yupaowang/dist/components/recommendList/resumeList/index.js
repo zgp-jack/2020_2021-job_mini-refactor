@@ -73,7 +73,7 @@ var ResumeListPage = (_temp2 = _class = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
       var _props$data = this.__props.data,
-          data = _props$data === undefined ? [{}, {}, {}] : _props$data;
+          data = _props$data === undefined ? [] : _props$data;
 
       // 用户页面跳转
 
@@ -97,10 +97,10 @@ var ResumeListPage = (_temp2 = _class = function (_Taro$Component) {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
 
-        var _$indexKey = "bajzz" + __index0;
+        var _$indexKey = "bbazz" + __index0;
 
         _this2.anonymousFunc0Map[_$indexKey] = function () {
-          return userRouteJump("/pages/resume/detail/index?id=" + item.$original.id);
+          return userRouteJump("/pages/resume/detail/index?uuid=" + item.$original.uuid + "&location=" + item.$original.location);
         };
 
         var $anonymousCallee__21 = item.$original.occupations.map(function (v, i) {

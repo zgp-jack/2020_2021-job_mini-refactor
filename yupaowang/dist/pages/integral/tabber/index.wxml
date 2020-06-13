@@ -20,7 +20,7 @@
         </view>
         <view class="integral-content">
             <block wx:if="{{!data.lists.length}}">
-                <nodata compid="{{$compid__118}}"></nodata>
+                <nodata compid="{{$compid__121}}"></nodata>
             </block>
             <view wx:key="$loopState__temp2" bindtap="anonymousFunc3" wx:for="{{loopArray137}}" wx:for-item="item" wx:for-index="index" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">
                 <view class="integral-list">
@@ -81,19 +81,7 @@
             </view>
         </block>
         <block wx:if="{{complaintModal}}">
-            <view class="tabber-complaintModal">
-                <view class="tabber-complaintModal-content">
-                    <view class="tabber-complaintModal-content-title">投诉信息</view>
-                    <view class="tabber-complaintModal-content-tips">请输入投诉内容</view>
-                    <view class="tabber-complaintModal-content-textareaBox">
-                        <textarea class="tabber-complaintModal-content-textarea" placeholder="请填写5~100字，必须含有汉字。（恶意投诉会被封号，请谨慎投诉！）" value="{{textarea}}" maxlength="{{100}}" bindinput="anonymousFunc7"></textarea>
-                    </view>
-                    <view class="tabber-complaintModal-footer">
-                        <view class="tabber-complaintModal-footer-cancel" bindtap="anonymousFunc8">取消</view>
-                        <view class="tabber-complaintModal-footer-cancel" bindtap="anonymousFunc9">确定</view>
-                    </view>
-                </view>
-            </view>
+            <report compid="{{$compid__122}}"></report>
         </block>
     </view>
 </block>

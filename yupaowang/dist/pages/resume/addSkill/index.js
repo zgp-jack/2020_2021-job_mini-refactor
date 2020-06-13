@@ -23,6 +23,8 @@ var _createClass = function () { function defineProperties(target, props) { for 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
 var _class, _temp2;
+// import { context } from '../../../pages/resume/newJobs'
+
 
 var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
@@ -32,11 +34,13 @@ var _index = __webpack_require__(/*! ../../../utils/upload/index */ "./src/utils
 
 var _index2 = _interopRequireDefault(_index);
 
+var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/redux/index.js");
+
 var _index3 = __webpack_require__(/*! ../../../utils/msg/index */ "./src/utils/msg/index.ts");
 
 var _index4 = _interopRequireDefault(_index3);
 
-var _index5 = __webpack_require__(/*! ../newJobs/index */ "./src/pages/resume/newJobs/index.tsx");
+var _index5 = __webpack_require__(/*! ../../../utils/subscribeToNews/index */ "./src/utils/subscribeToNews/index.ts");
 
 var _index6 = __webpack_require__(/*! ../../../utils/request/index */ "./src/utils/request/index.ts");
 
@@ -68,7 +72,7 @@ var AddSkillPage = (_temp2 = _class = function (_Taro$Component) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AddSkillPage.__proto__ || Object.getPrototypeOf(AddSkillPage)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
       navigationBarTitleText: '新增技能证书'
-    }, _this.$usedState = ["$compid__95", "val", "extraText", "image", "type"], _this.customComponents = ["ImageView"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["$compid__153", "val", "extraText", "image", "type"], _this.customComponents = ["ImageView"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(AddSkillPage, [{
@@ -87,32 +91,42 @@ var AddSkillPage = (_temp2 = _class = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__95"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__153"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__95 = _genCompid2[0],
-          $compid__95 = _genCompid2[1];
+          $prevCompid__153 = _genCompid2[0],
+          $compid__153 = _genCompid2[1];
 
       var router = (0, _taroWeapp.useRouter)();
-
-      var _useContext = (0, _taroWeapp.useContext)(_index5.context),
-          skillData = _useContext.skillData;
+      // 获取存入的公用内容
+      var useSelectorItem = (0, _redux.useSelector)(function (state) {
+        return state;
+      });
+      // 传递过来的数据
+      // const skillData:any=[]
+      // const { skillData } = useContext(context);
       // const { area } = useContext(contextItem);
       // console.log(area,'contextItemcontextItemcontextItem')
-
-
+      //  url传递过来的数据
       var _router$params = router.params,
           type = _router$params.type,
           id = _router$params.id;
+
+      console.log(id, 'xxx');
+      // 证书名称
 
       var _useState = (0, _taroWeapp.useState)(''),
           _useState2 = _slicedToArray(_useState, 2),
           val = _useState2[0],
           setVal = _useState2[1];
+      // 领取证书时间
+
 
       var _useState3 = (0, _taroWeapp.useState)(''),
           _useState4 = _slicedToArray(_useState3, 2),
           extraText = _useState4[0],
           setExtraText = _useState4[1];
+      // 图片
+
 
       var _useState5 = (0, _taroWeapp.useState)({
         item: []
@@ -120,6 +134,8 @@ var AddSkillPage = (_temp2 = _class = function (_Taro$Component) {
           _useState6 = _slicedToArray(_useState5, 2),
           image = _useState6[0],
           setImage = _useState6[1];
+      // uuid
+
 
       var _useState7 = (0, _taroWeapp.useState)(''),
           _useState8 = _slicedToArray(_useState7, 2),
@@ -131,10 +147,11 @@ var AddSkillPage = (_temp2 = _class = function (_Taro$Component) {
           title: '修改技能证书'
         });
         console.log(type, 'xxx');
-        console.log(skillData, 'skillData');
+        // console.log(skillData,'skillData')
         if (type) {
-          if (skillData) {
-            var data = skillData[type];
+          var AllData = JSON.parse(JSON.stringify(useSelectorItem.Myresume));
+          if (AllData) {
+            var data = AllData.certificates[type];
             setVal(data.name);
             setExtraText(data.certificate_time);
             var arr = [];
@@ -151,6 +168,8 @@ var AddSkillPage = (_temp2 = _class = function (_Taro$Component) {
                 }
               }
             }
+            console.log(data, 'xxx');
+            console.log(data.uuid);
             setImage({ item: arr });
             setUuid(data.uuid);
           }
@@ -227,8 +246,15 @@ var AddSkillPage = (_temp2 = _class = function (_Taro$Component) {
         }
         (0, _index6.resumesCertificateAction)(params).then(function (res) {
           if (res.errcode === 'ok') {
-            _taroWeapp2.default.navigateBack({
-              delta: 1
+            (0, _index5.SubscribeToNews)('resume', function () {
+              (0, _index3.SubPopup)({
+                tips: res.errmsg,
+                callback: function callback() {
+                  _taroWeapp2.default.navigateBack({
+                    delta: 1
+                  });
+                }
+              });
             });
           } else {
             (0, _index4.default)(res.errmsg);
@@ -274,9 +300,9 @@ var AddSkillPage = (_temp2 = _class = function (_Taro$Component) {
         "images": image.item,
         "max": 3,
         "userUploadImg": userUploadImg
-      }, $compid__95, $prevCompid__95);
+      }, $compid__153, $prevCompid__153);
       Object.assign(this.__state, {
-        $compid__95: $compid__95,
+        $compid__153: $compid__153,
         val: val,
         extraText: extraText,
         image: image,

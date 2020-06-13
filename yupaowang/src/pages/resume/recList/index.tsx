@@ -1,27 +1,30 @@
-import Taro, { useState, Config, useEffect, usePullDownRefresh } from '@tarojs/taro'
+import Taro, { useState, Config, useEffect } from '@tarojs/taro'
 import { View, Image, ScrollView } from '@tarojs/components';
 import { jobRecommendListAction } from '../../../utils/request/index';
 import { jobRecommendListDataList } from '../../../utils/request/index.d'
 import './index.scss'
 import { IMGCDNURL } from '../../../config'
 import { Introinfo } from '../../../config/store';
+import { RESUME } from '../../../constants/tabbar'
 import Nodata from '../../../components/nodata';
 
 interface DataType{
   item: jobRecommendListDataList[]
 }
 export default function RecListPage() {
-  const userInfo = Taro.getStorageSync(Introinfo);
+  // 获取缓存数据
+  const IntroinfoList = Taro.getStorageSync(Introinfo);
+  // 获取数据
   const [data,setData]=useState<DataType>({
     item:[]
   })
   // 是够能加载更多
   const [isDown, setIsDown] = useState<boolean>(true)
   const [search,setSearch] = useState<any>({
-    area_id: userInfo.city,
-    classify_id: userInfo.occupations_id,
+    area_id: IntroinfoList.city,
+    classify_id: IntroinfoList.occupations_id,
     page:1,
-    type:2,
+    type:1,
   })
   useEffect(()=>{
     getListData();
@@ -46,10 +49,8 @@ export default function RecListPage() {
   }
   const getNextPageData = ()=>{
     if (!isDown) return;
-    setSearch({...search,page:search.page+1})
+    setSearch({...search,page:search.page+1,type:2})
   }
-  console.log(isDown)
-  console.log(data.item.length)
   return(
     <View className='content'>
       {!data.item.length && <Nodata />}
@@ -85,8 +86,10 @@ export default function RecListPage() {
         </View>
       ))}
       {!isDown && data.item.length && 
-        <View className='footer' onClick={()=>{}}><View className='footer-btn'>查看更多</View></View>
-        }
+        <View className='footer' onClick={() => Taro.reLaunch({ url: '/pages/index/index?type=' + RESUME })}>
+          <View className='footer-btn'>查看更多</View>
+        </View>
+      }
       </ScrollView>
       </View>
     </View>

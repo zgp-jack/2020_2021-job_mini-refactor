@@ -38,7 +38,7 @@
             </view>
             <block wx:if="{{showCity}}">
                 <view class="mapinfo-citys">
-                    <cities compid="{{$compid__114}}"></cities>
+                    <cities compid="{{$compid__117}}"></cities>
                 </view>
             </block>
         </view>

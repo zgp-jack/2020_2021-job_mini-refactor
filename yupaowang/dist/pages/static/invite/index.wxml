@@ -10,7 +10,7 @@
             </view>
         </scroll-view>
         <block wx:if="{{!list.length}}">
-            <nodata compid="{{$compid__94}}"></nodata>
+            <nodata compid="{{$compid__97}}"></nodata>
         </block>
         <view class="invite-content-box">
             <block wx:if="{{list}}">

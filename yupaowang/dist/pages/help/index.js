@@ -60,7 +60,7 @@ var Help = (_temp2 = _class = function (_Taro$Component) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Help.__proto__ || Object.getPrototypeOf(Help)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
       navigationBarTitleText: '帮助中心'
-    }, _this.$usedState = ["data", "loopArray80", "refresh", "isDown"], _this.anonymousFunc2Map = {}, _this.customComponents = ["Nodata", "AtAccordion", "AtList"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["data", "loopArray79", "refresh", "isDown"], _this.anonymousFunc2Map = {}, _this.customComponents = ["Nodata", "AtAccordion", "AtList"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Help, [{
@@ -200,7 +200,7 @@ var Help = (_temp2 = _class = function (_Taro$Component) {
         return userRouteJump("/pages/feedback/index?username=" + userData.username + "&phone=" + userData.phone);
       };
 
-      var loopArray80 = data.item.map(function (item, __index2) {
+      var loopArray79 = data.item.map(function (item, __index2) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
@@ -214,35 +214,35 @@ var Help = (_temp2 = _class = function (_Taro$Component) {
 
         var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "hjzzzzzzzz" + __index2, true),
             _genCompid2 = _slicedToArray(_genCompid, 2),
-            $prevCompid__67 = _genCompid2[0],
-            $compid__67 = _genCompid2[1];
+            $prevCompid__75 = _genCompid2[0],
+            $compid__75 = _genCompid2[1];
 
         _taroWeapp.propsManager.set({
           "icon": $loopState__temp2,
           "open": item.$original.isShow,
           "onClick": _this2.anonymousFunc2.bind(_this2, _$indexKey),
           "title": item.$original.question
-        }, $compid__67, $prevCompid__67);
+        }, $compid__75, $prevCompid__75);
 
         var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "iazzzzzzzz" + __index2, true),
             _genCompid4 = _slicedToArray(_genCompid3, 2),
-            $prevCompid__68 = _genCompid4[0],
-            $compid__68 = _genCompid4[1];
+            $prevCompid__76 = _genCompid4[0],
+            $compid__76 = _genCompid4[1];
 
         _taroWeapp.propsManager.set({
           "hasBorder": false
-        }, $compid__68, $prevCompid__68);
+        }, $compid__76, $prevCompid__76);
         return {
           $loopState__temp2: $loopState__temp2,
           _$indexKey: _$indexKey,
-          $compid__67: $compid__67,
-          $compid__68: $compid__68,
+          $compid__75: $compid__75,
+          $compid__76: $compid__76,
           $original: item.$original
         };
       });
       Object.assign(this.__state, {
         data: data,
-        loopArray80: loopArray80,
+        loopArray79: loopArray79,
         refresh: refresh,
         isDown: isDown
       });

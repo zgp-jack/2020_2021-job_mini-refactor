@@ -6,11 +6,13 @@
 	"setting": {
 		"urlCheck": false,
 		"es6": false,
+		"enhance": false,
 		"postcss": false,
 		"preloadBackgroundData": false,
 		"minified": false,
 		"newFeature": true,
 		"coverView": true,
+		"nodeModules": true,
 		"autoAudits": false,
 		"showShadowRootInWxmlPanel": true,
 		"scopeDataCheck": false,
@@ -21,8 +23,7 @@
 			"ignore": [],
 			"disablePlugins": [],
 			"outputPath": ""
-		},
-		"nodeModules": true
+		}
 	},
 	"compileType": "miniprogram",
 	"simulatorType": "wechat",
@@ -131,7 +132,7 @@
 				{
 					"id": 11,
 					"name": "排名规则",
-					"pathName": "pages/ranking/index",
+					"pathName": "subpackage/pages/ranking/index",
 					"query": "",
 					"scene": null
 				},

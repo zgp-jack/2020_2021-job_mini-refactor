@@ -184,3 +184,5 @@ export const resumesDoTopV2Url: string = REQUESTURL +'/resumes/do-top-v2/';
 export const resumesUpdateTopResumeUrl : string = REQUESTURL +'/resumes/update-top-resume/'
 // 找活投诉
 export const resumesComplainUrl: string = REQUESTURL +'resumes/complain/'
+// 消息推送
+export const leavingMessageUrl: string = REQUESTURL +'leaving-message/add-subscribe-msg/'

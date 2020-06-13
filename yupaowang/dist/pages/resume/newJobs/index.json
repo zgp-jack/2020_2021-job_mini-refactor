@@ -1,1 +1,1 @@
-{"usingComponents":{"collection-recruit-list":"../../../components/recommendList/index","at-modal":"../../../npm/taro-ui/dist/weapp/components/modal/index"},"navigationBarTitleText":"找活名片"}
+{"usingComponents":{"auth":"../../../components/auth/index","collection-recruit-list":"../../../components/recommendList/index","at-modal":"../../../npm/taro-ui/dist/weapp/components/modal/index"},"navigationBarTitleText":"找活名片"}

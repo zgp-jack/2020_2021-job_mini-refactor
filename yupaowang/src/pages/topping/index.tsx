@@ -1,5 +1,5 @@
-import Taro, { Config, useEffect, useState, createContext,useRouter, useContext } from '@tarojs/taro'
-import { View, Picker, Text, Image, Input } from '@tarojs/components'
+import Taro, { Config, useEffect, useState, createContext,useRouter } from '@tarojs/taro'
+import { View, Picker, Text, Image } from '@tarojs/components'
 import { jobTopConfigAction, jobDoTopAction, jobGetTopAreasAction, jobChangeTopAreasAction, resumesTopConfigV2Action, resumesDoTopAction, resumesDoTopV2Action, resumesUpdateTopResumeAction } from '../../utils/request/index'
 import { SERVERPHONE, IMGCDNURL  } from '../../config'
 import { UserInfo } from '../../config/store'
