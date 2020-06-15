@@ -5732,7 +5732,7 @@ var getUserAuthInfo = exports.getUserAuthInfo = _index.REQUESTURL + 'user/auth-v
 // 提交用户实名认证信息
 var postUserAuthInfo = exports.postUserAuthInfo = _index.REQUESTURL + 'user/do-auth/';
 // 实名认证识别身份证接口
-var getIdcardAuthInfo = exports.getIdcardAuthInfo = _index.REQUESTURL + 'index/authid-card/';
+var getIdcardAuthInfo = exports.getIdcardAuthInfo = _index.PROREQUESTURL + 'index/authid-card/';
 // 用户完善资料
 var postUserAddInfo = exports.postUserAddInfo = _index.REQUESTURL + 'user/bind-tel/';
 // 用户修改头像

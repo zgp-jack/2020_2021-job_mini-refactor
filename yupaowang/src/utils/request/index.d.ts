@@ -383,14 +383,16 @@ export interface UserAuthInfoMemberExtData {
   id_card_img: string,
   id_card_img_path: string,
   idcard_check_failure_reason: string,
-  nation_id: string,
+  nation_id: string|number,
   notionality: string,
   note: string,
   note_status: string,
   sex: string,
   source: string,
   user_id: string,
-  user_name: string
+  user_name: string,
+  nationId?:string,
+  nationality?:string
 }
 
 export interface UserAuthInfoNationData {

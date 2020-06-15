@@ -289,6 +289,13 @@
 					"pathName": "pages/resume/recList/index",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "实名认证",
+					"pathName": "pages/realname/index",
+					"query": "",
+					"scene": null
 				}
 			]
 		}

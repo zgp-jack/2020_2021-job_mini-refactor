@@ -1,13 +1,15 @@
-import Taro, { useState, useEffect } from '@tarojs/taro'
+import Taro, { useState, useEffect, useDidShow} from '@tarojs/taro'
 import { UserAuthInfoData, UserAuthInfoMemberExtData } from '../../utils/request/index.d'
 import { PostUserAuthInfo } from '../index.d'
 import { getUserAuthInfo, postUserAuthInfo } from '../../utils/request'
 import { useSelector } from '@tarojs/redux'
-import Msg, { ShowActionModal } from '../../utils/msg'
+import Msg, { ShowActionModal, SubPopup } from '../../utils/msg'
 import { CameraAndAlbum } from '../../utils/upload'
+import UploadImgAction from '../../utils/upload'
 import { getIdcardAuthInfo } from '../../utils/api'
 import { IMGCDNURL } from '../../config'
 import { getLongAreaAdname } from '../../models/area'
+import { SubscribeToNews } from '../../utils/subscribeToNews';
 
 interface SexTypeArr {
   id: string,
@@ -37,15 +39,22 @@ export default function useRealname(){
   const [checkDegree, setCheckDegree] = useState<boolean>(false)
   // 声明父组件传值地区名字
   const [area, setArea] = useState<string>('')
-
-
   useEffect(()=>{
     if(!login) return
     getUserAuthInfo().then(data=>{
       if(data.errcode == 'ok'){
+        if (data.authData.member && data.authData.member.is_check === '0') {
+          Taro.showModal({
+            title: '审核失败',
+            content: data.authData.memberExt.idcard_check_failure_reason,
+            showCancel: false,
+            success: function (res) { }
+          })
+        }
         let initData: UserAuthInfoData = data.authData
+        console.log(initData.member,'initData.member')
         setInitModel(initData)
-        let nationId: string = initData.memberExt.nation_id || ''
+        let nationId: string|number = initData.memberExt.nation_id || ''
         let nationName: string = ''
         let nationCurrent: number = 0
         if(nationId){
@@ -97,12 +106,58 @@ export default function useRealname(){
 
   const userPostAuthInfo = ()=> {
     console.log(model)
+    const item = JSON.parse(JSON.stringify(model))
+    const modelItem = JSON.parse(JSON.stringify(initModel))
+    console.log(sexCurrent,'sexCurrent');
+    console.log(modelItem.nation[nationCurrent].mz_name,'nationCurrentnationCurrent');
+    console.log(nationCurrent,'nationCurrent')
+    // 判断大于18小于65
+    let age;
+    if (item.age<18 || item.age>65){
+      const newData = new Date().getFullYear();
+      let birth = modelItem.memberExt.birthday.substring(0, 4)
+      age = newData - birth
+      console.log(age,'12312312321')
+    }else{
+      age = item.age;
+    }
+    console.log(age)
+    let params = {
+      username: item.username,
+      age:age,
+      nation_id: nationCurrent+1,
+      nationality: modelItem.nation[nationCurrent].mz_name,
+      idCard: item.idCard,
+      idCardImg: item.idCardImg,
+      handImg: item.handImg,
+      tel: item.tel,
+      code: item.code,
+      address: item.address,
+      birthday: modelItem.memberExt.birthday,
+      gender: sexCurrent+1
+    }
+    console.log(params)
+    // return;
+    postUserAuthInfo(params).then(res=>{
+      console.log(res);
+      SubscribeToNews('auth', () => {
+        SubPopup({
+          tips: res.errmsg,
+          callback: () => {
+            Taro.navigateBack({
+              delta: 1
+            })
+          }
+        })
+      })
+    })
   }
-
   const userUploadIdcard = (type: number = 2)=> {
+    const modelObj = JSON.parse(JSON.stringify(model));
     //type = 1 证明 type = 2 手持  
     let url: string = type == 1 ? getIdcardAuthInfo : ''
     if(!initModel) return
+    if(type === 1){
     CameraAndAlbum(url).then(data => {
       if(data.errcode == 'ok'){
         let memberExt: UserAuthInfoMemberExtData = JSON.parse(JSON.stringify(initModel.memberExt))
@@ -133,10 +188,74 @@ export default function useRealname(){
             setInitModel({...initModel, memberExt: memberExt})
           }
         }
+        // 生日
+        let birthall;
+        if (memberExt.birthday) {
+          let birth = memberExt.birthday.substring(0, 4)
+          let birthtwo = memberExt.birthday.substring(4, 6)
+          let birththree = memberExt.birthday.substring(6, 8)
+          if (memberExt.birthday != "") {
+            birthall = birth + "-" + birthtwo + "-" + birththree;
+          } else {
+            birthall = ""
+          }
+        }
+        // 性别
+        let sexIndex;
+        sexArray.map((v,i)=>{
+          // let sexItem;
+          if (memberExt.sex === v.name){
+            // sexItem = v;
+            sexIndex = i;
+          }
+        })
+        setSexCurrent(sexIndex);
+        setSexName(memberExt.sex)
+        const dataItem = {
+          username: memberExt.user_name ? memberExt.user_name : '',
+          age: memberExt.age || '',
+          nation_id: memberExt.nationId,
+          nationality: memberExt.nationality,
+          idCard: memberExt.id_card || '',
+          idCardImg: memberExt.id_card_img || '',
+          handImg: memberExt.hand_img || '',
+          tel: modelObj.tel || '',
+          code: '',
+          address: memberExt.address,
+          birthday: birthall || '',
+          gender: sexIndex && sexIndex != -1 ? sexIndex : "",
+        }
+        memberExt.birthday = birthall;
+        setInitModel({ ...initModel, memberExt: memberExt })
+        setModel(dataItem)
+        setInitModel({ ...initModel, memberExt: memberExt })
       }else{
         Msg(data.errmsg)
       }
     })
+    }else{
+      let memberExt: UserAuthInfoMemberExtData = JSON.parse(JSON.stringify(initModel.memberExt))
+      // memberExt.hand_img = 
+      UploadImgAction().then(res => {
+        let imageItem = {
+          url: res.url,
+          httpurl: res.httpurl
+        }
+        console.log(imageItem);
+        memberExt.hand_img = imageItem.url
+        memberExt.hand_img_path = imageItem.httpurl
+        // if (i === -1) {
+        //   setImage({ ...image, item: [...image.item, imageItem] })
+        // } else {
+        //   image.item[i] = imageItem
+        //   setImage({ ...image })
+        // }
+        const item = JSON.parse(JSON.stringify(model))
+        item.handImg = imageItem.url;
+        setModel(item)
+      })
+      setInitModel({ ...initModel, memberExt: memberExt })
+    }
   }
 
   return {

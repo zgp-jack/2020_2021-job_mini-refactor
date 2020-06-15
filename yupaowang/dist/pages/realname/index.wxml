@@ -12,7 +12,7 @@
                     </view>
                     <view class="realname-card-item" bindtap="anonymousFunc1">
                         <view class="realname-card-img">
-                            <image class="realname-card-upimg" src="{{model && model.idCardImg ? ALIYUNCDN + (model && model.handImg) : IMGCDNURL + 'lpy/auth/idcard-z.png'}}"></image>
+                            <image class="realname-card-upimg" src="{{model && model.handImg ? ALIYUNCDN + (model && model.handImg) : IMGCDNURL + 'lpy/auth/idcard-z.png'}}"></image>
                         </view>
                         <view class="realname-card-title">手持身份证照</view>
                     </view>
@@ -58,7 +58,7 @@
                     </picker>
                 </view>
                 <view class="publish-list-item"><text class="pulish-list-title">身份证号</text>
-                    <input class="publish-list-input" type="text" placeholder="请输入身份证号码" bindinput="anonymousFunc6" value="{{model && model.idCard}}" />
+                    <input class="publish-list-input" type="text" placeholder="请输入身份证号码" maxlength="{{18}}" bindinput="anonymousFunc6" value="{{model && model.idCard}}" />
                 </view>
                 <view class="publish-list-item"><text class="pulish-list-title">详细地址</text>
                     <input class="publish-list-input" type="text" disabled="{{true}}" placeholder="请选择详细地址" bindtap="anonymousFunc7" value="{{model && model.address}}" />

@@ -69,7 +69,9 @@ var RealName = (_temp2 = _class = function (_Taro$Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = RealName.__proto__ || Object.getPrototypeOf(RealName)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["model", "ALIYUNCDN", "IMGCDNURL", "sexCurrent", "sexArray", "sexName", "initModel", "startDate", "endDate", "nationCurrent", "checkDegree", "text"], _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = RealName.__proto__ || Object.getPrototypeOf(RealName)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
+      navigationBarTitleText: '鱼泡网-实名认证'
+    }, _this.$usedState = ["model", "ALIYUNCDN", "IMGCDNURL", "sexCurrent", "sexArray", "sexName", "initModel", "startDate", "endDate", "nationCurrent", "checkDegree", "text"], _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(RealName, [{
@@ -142,8 +144,8 @@ var RealName = (_temp2 = _class = function (_Taro$Component) {
         setModel(modelInfo);
       };
       // 用户上传身份证照片
-      var userUploadIdcardImg = function userUploadIdcardImg() {
-        userUploadIdcard(1);
+      var userUploadIdcardImg = function userUploadIdcardImg(type) {
+        userUploadIdcard(type);
       };
       // 用户选择生日
       var userChangeBirthday = function userChangeBirthday(e) {
@@ -184,14 +186,16 @@ var RealName = (_temp2 = _class = function (_Taro$Component) {
           url: '/pages/map/realname/index'
         });
       };
+      console.log(model, 'model');
+      console.log(initModel, 'initModel');
       context.Provider(value);
 
       this.anonymousFunc0 = function () {
-        return userUploadIdcardImg();
+        return userUploadIdcardImg(1);
       };
 
       this.anonymousFunc1 = function () {
-        return userUploadIdcardImg();
+        return userUploadIdcardImg(2);
       };
 
       this.anonymousFunc2 = function (e) {
@@ -314,6 +318,9 @@ var RealName = (_temp2 = _class = function (_Taro$Component) {
 
   return RealName;
 }(_taroWeapp2.default.Component), _class.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6", "anonymousFunc7", "anonymousFunc8", "anonymousFunc9", "anonymousFunc10", "anonymousFunc11"], _class.$$componentPath = "pages/realname/index", _temp2);
+
+
+RealName.config = { navigationBarTitleText: '鱼泡网-实名认证' };
 exports.default = RealName;
 
 Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(RealName, true));
@@ -365,15 +372,19 @@ var _index3 = _interopRequireDefault(_index2);
 
 var _index4 = __webpack_require__(/*! ../../utils/upload/index */ "./src/utils/upload/index.tsx");
 
-var _index5 = __webpack_require__(/*! ../../utils/api/index */ "./src/utils/api/index.ts");
+var _index5 = _interopRequireDefault(_index4);
 
-var _index6 = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
+var _index6 = __webpack_require__(/*! ../../utils/api/index */ "./src/utils/api/index.ts");
+
+var _index7 = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
 
 var _area2 = __webpack_require__(/*! ../../models/area */ "./src/models/area.ts");
 
+var _index8 = __webpack_require__(/*! ../../utils/subscribeToNews/index */ "./src/utils/subscribeToNews/index.ts");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var cardInfoFailImg = _index6.IMGCDNURL + 'lpy/auth/upload-fail-tips.png';
+var cardInfoFailImg = _index7.IMGCDNURL + 'lpy/auth/upload-fail-tips.png';
 // 声明性别选项与下标
 var sexArray = [{ id: '1', name: '男' }, { id: '2', name: '女' }];
 function useRealname() {
@@ -441,7 +452,16 @@ function useRealname() {
     if (!login) return;
     (0, _index.getUserAuthInfo)().then(function (data) {
       if (data.errcode == 'ok') {
+        if (data.authData.member && data.authData.member.is_check === '0') {
+          _taroWeapp2.default.showModal({
+            title: '审核失败',
+            content: data.authData.memberExt.idcard_check_failure_reason,
+            showCancel: false,
+            success: function success(res) {}
+          });
+        }
         var initData = data.authData;
+        console.log(initData.member, 'initData.member');
         setInitModel(initData);
         var nationId = initData.memberExt.nation_id || '';
         var nationName = '';
@@ -496,46 +516,157 @@ function useRealname() {
   }, [login]);
   var userPostAuthInfo = function userPostAuthInfo() {
     console.log(model);
+    var item = JSON.parse(JSON.stringify(model));
+    var modelItem = JSON.parse(JSON.stringify(initModel));
+    console.log(sexCurrent, 'sexCurrent');
+    console.log(modelItem.nation[nationCurrent].mz_name, 'nationCurrentnationCurrent');
+    console.log(nationCurrent, 'nationCurrent');
+    // 判断大于18小于65
+    var age = void 0;
+    if (item.age < 18 || item.age > 65) {
+      var newData = new Date().getFullYear();
+      var birth = modelItem.memberExt.birthday.substring(0, 4);
+      age = newData - birth;
+      console.log(age, '12312312321');
+    } else {
+      age = item.age;
+    }
+    console.log(age);
+    var params = {
+      username: item.username,
+      age: age,
+      nation_id: nationCurrent + 1,
+      nationality: modelItem.nation[nationCurrent].mz_name,
+      idCard: item.idCard,
+      idCardImg: item.idCardImg,
+      handImg: item.handImg,
+      tel: item.tel,
+      code: item.code,
+      address: item.address,
+      birthday: modelItem.memberExt.birthday,
+      gender: sexCurrent + 1
+    };
+    console.log(params);
+    // return;
+    (0, _index.postUserAuthInfo)(params).then(function (res) {
+      console.log(res);
+      (0, _index8.SubscribeToNews)('auth', function () {
+        (0, _index2.SubPopup)({
+          tips: res.errmsg,
+          callback: function callback() {
+            _taroWeapp2.default.navigateBack({
+              delta: 1
+            });
+          }
+        });
+      });
+    });
   };
   var userUploadIdcard = function userUploadIdcard() {
     var type = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 2;
 
+    var modelObj = JSON.parse(JSON.stringify(model));
     //type = 1 证明 type = 2 手持  
-    var url = type == 1 ? _index5.getIdcardAuthInfo : '';
+    var url = type == 1 ? _index6.getIdcardAuthInfo : '';
     if (!initModel) return;
-    (0, _index4.CameraAndAlbum)(url).then(function (data) {
-      if (data.errcode == 'ok') {
-        var memberExt = JSON.parse(JSON.stringify(initModel.memberExt));
-        if (type == 1) {
-          memberExt.id_card_img = data.url;
-          memberExt.id_card_img_path = data.httpurl;
+    if (type === 1) {
+      (0, _index4.CameraAndAlbum)(url).then(function (data) {
+        if (data.errcode == 'ok') {
+          var memberExt = JSON.parse(JSON.stringify(initModel.memberExt));
+          if (type == 1) {
+            memberExt.id_card_img = data.url;
+            memberExt.id_card_img_path = data.httpurl;
+            setInitModel(_extends({}, initModel, { memberExt: memberExt }));
+          } else {
+            memberExt.hand_img = data.url;
+            memberExt.hand_img_path = data.httpurl;
+            (0, _index3.default)(data.errmsg);
+            return;
+          }
+          if (data.card_info) {
+            setShowForm(true);
+            var cardData = data.card_info;
+            if (data.card_info.success) {
+              memberExt.nation_id = cardData.nation_id || '';
+              memberExt.birthday = cardData.birth || '';
+              memberExt.address = cardData.address || '';
+              memberExt.sex = cardData.sex || '';
+              //memberExt.
+              memberExt.id_card = cardData.num || '', memberExt.user_name = cardData.name || '';
+            } else {
+              (0, _index3.default)(data.card_info.tips_message);
+              memberExt.id_card_img_path = cardInfoFailImg;
+              setInitModel(_extends({}, initModel, { memberExt: memberExt }));
+            }
+          }
+          // 生日
+          var birthall = void 0;
+          if (memberExt.birthday) {
+            var birth = memberExt.birthday.substring(0, 4);
+            var birthtwo = memberExt.birthday.substring(4, 6);
+            var birththree = memberExt.birthday.substring(6, 8);
+            if (memberExt.birthday != "") {
+              birthall = birth + "-" + birthtwo + "-" + birththree;
+            } else {
+              birthall = "";
+            }
+          }
+          // 性别
+          var sexIndex = void 0;
+          sexArray.map(function (v, i) {
+            // let sexItem;
+            if (memberExt.sex === v.name) {
+              // sexItem = v;
+              sexIndex = i;
+            }
+          });
+          setSexCurrent(sexIndex);
+          setSexName(memberExt.sex);
+          var dataItem = {
+            username: memberExt.user_name ? memberExt.user_name : '',
+            age: memberExt.age || '',
+            nation_id: memberExt.nationId,
+            nationality: memberExt.nationality,
+            idCard: memberExt.id_card || '',
+            idCardImg: memberExt.id_card_img || '',
+            handImg: memberExt.hand_img || '',
+            tel: modelObj.tel || '',
+            code: '',
+            address: memberExt.address,
+            birthday: birthall || '',
+            gender: sexIndex && sexIndex != -1 ? sexIndex : ""
+          };
+          memberExt.birthday = birthall;
+          setInitModel(_extends({}, initModel, { memberExt: memberExt }));
+          setModel(dataItem);
           setInitModel(_extends({}, initModel, { memberExt: memberExt }));
         } else {
-          memberExt.hand_img = data.url;
-          memberExt.hand_img_path = data.httpurl;
           (0, _index3.default)(data.errmsg);
-          return;
         }
-        if (data.card_info) {
-          setShowForm(true);
-          var cardData = data.card_info;
-          if (data.card_info.success) {
-            memberExt.nation_id = cardData.nation_id || '';
-            memberExt.birthday = cardData.birth || '';
-            memberExt.address = cardData.address || '';
-            memberExt.sex = cardData.sex || '';
-            //memberExt.
-            memberExt.id_card = cardData.num || '', memberExt.user_name = cardData.name || '';
-          } else {
-            (0, _index3.default)(data.card_info.tips_message);
-            memberExt.id_card_img_path = cardInfoFailImg;
-            setInitModel(_extends({}, initModel, { memberExt: memberExt }));
-          }
-        }
-      } else {
-        (0, _index3.default)(data.errmsg);
-      }
-    });
+      });
+    } else {
+      var memberExt = JSON.parse(JSON.stringify(initModel.memberExt));
+      // memberExt.hand_img = 
+      (0, _index5.default)().then(function (res) {
+        var imageItem = {
+          url: res.url,
+          httpurl: res.httpurl
+        };
+        console.log(imageItem);
+        memberExt.hand_img = imageItem.url;
+        memberExt.hand_img_path = imageItem.httpurl;
+        // if (i === -1) {
+        //   setImage({ ...image, item: [...image.item, imageItem] })
+        // } else {
+        //   image.item[i] = imageItem
+        //   setImage({ ...image })
+        // }
+        var item = JSON.parse(JSON.stringify(model));
+        item.handImg = imageItem.url;
+        setModel(item);
+      });
+      setInitModel(_extends({}, initModel, { memberExt: memberExt }));
+    }
   };
   return {
     initModel: initModel,

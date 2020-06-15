@@ -16,8 +16,8 @@ export interface InitUsedModelInfoParams {
 export interface PostUserAuthInfo {
   username: string,
   age: string,
-  nation_id: string,
-  nationality: string,
+  nation_id?: string|number,
+  nationality?: string,
   idCard: string,
   idCardImg: string,
   handImg: string,
@@ -25,5 +25,5 @@ export interface PostUserAuthInfo {
   code: string,
   address: string,
   birthday: string,
-  gender: string
+  gender: string|number
 }

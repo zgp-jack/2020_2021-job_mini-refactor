@@ -1,4 +1,4 @@
-import Taro, { createContext } from '@tarojs/taro'
+import Taro, { Config,createContext } from '@tarojs/taro'
 import { View, Text, Input, Image, Button, Picker } from '@tarojs/components'
 import { ALIYUNCDN, IMGCDNURL } from '../../config'
 import useRealname from '../../hooks/realname'
@@ -48,8 +48,8 @@ export default function RealName(){
   }
 
   // 用户上传身份证照片
-  const userUploadIdcardImg = ()=> {
-    userUploadIdcard(1)
+  const userUploadIdcardImg = (type:number)=> {
+    userUploadIdcard(type)
   }
 
   // 用户选择生日
@@ -86,22 +86,23 @@ export default function RealName(){
       url: '/pages/map/realname/index'
     })
   }
-
+  console.log(model,'model')
+  console.log(initModel,'initModel')
   return (
     <context.Provider value={ value }>
     <View className='realname-container'>
       <View className='realname-cardimgbox'>
         <View className='realname-card-title'>请拍摄并上传你的身份证照片</View>
         <View className='realname-card-imgs clearfix'>
-          <View className='realname-card-item' onClick={() => userUploadIdcardImg()}>
+          <View className='realname-card-item' onClick={() => userUploadIdcardImg(1)}>
             <View className='realname-card-img'>
               <Image className='realname-card-upimg' src={(model && model.idCardImg) ? (ALIYUNCDN + (model && model.idCardImg)) : IMGCDNURL + 'lpy/auth/idcard-l.png' } />
             </View>
             <View className='realname-card-title'>身份证正面照</View>
           </View>
-          <View className='realname-card-item' onClick={() => userUploadIdcardImg()}>
+          <View className='realname-card-item' onClick={() => userUploadIdcardImg(2)}>
             <View className='realname-card-img'>
-              <Image className='realname-card-upimg' src={(model && model.idCardImg) ? (ALIYUNCDN + (model && model.handImg)) : IMGCDNURL + 'lpy/auth/idcard-z.png' } />
+                <Image className='realname-card-upimg' src={(model && model.handImg) ? (ALIYUNCDN + (model && model.handImg)) : IMGCDNURL + 'lpy/auth/idcard-z.png' } />
             </View>
             <View className='realname-card-title'>手持身份证照</View>
           </View>
@@ -183,6 +184,7 @@ export default function RealName(){
             className='publish-list-input'
             type='text'
             placeholder='请输入身份证号码'
+            maxLength={18}
             onInput={(e) => userEnterFormInfo('idCard', e)}
             value={ model&&model.idCard }
           />
@@ -230,3 +232,7 @@ export default function RealName(){
     </context.Provider>
   )
 }
+
+RealName.config = {
+  navigationBarTitleText: '鱼泡网-实名认证',
+} as Config

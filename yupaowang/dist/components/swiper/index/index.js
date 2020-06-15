@@ -52,7 +52,7 @@ var SwiperComponent = (_temp2 = _class = function (_Taro$Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SwiperComponent.__proto__ || Object.getPrototypeOf(SwiperComponent)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["swiper", "loopArray109", "data"], _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SwiperComponent.__proto__ || Object.getPrototypeOf(SwiperComponent)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["swiper", "loopArray107", "data"], _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(SwiperComponent, [{
@@ -74,7 +74,7 @@ var SwiperComponent = (_temp2 = _class = function (_Taro$Component) {
 
 
       var swiper = _extends({}, _index.DEFAULT_PROPS, data);
-      var loopArray109 = swiper.lists.map(function (item, index) {
+      var loopArray107 = swiper.lists.map(function (item, index) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
@@ -86,7 +86,7 @@ var SwiperComponent = (_temp2 = _class = function (_Taro$Component) {
       });
       Object.assign(this.__state, {
         swiper: swiper,
-        loopArray109: loopArray109
+        loopArray107: loopArray107
       });
       return this.__state;
     }

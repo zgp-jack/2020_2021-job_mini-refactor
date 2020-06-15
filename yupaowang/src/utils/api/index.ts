@@ -1,4 +1,4 @@
-import { REQUESTURL } from '../../config'
+import { REQUESTURL, PROREQUESTURL } from '../../config'
 
 // 获取用户session_key
 export const GetUserSessionKey: string = REQUESTURL + 'user/user-info/'
@@ -59,7 +59,7 @@ export const getUserAuthInfo: string = REQUESTURL + 'user/auth-view/'
 // 提交用户实名认证信息
 export const postUserAuthInfo: string = REQUESTURL + 'user/do-auth/'
 // 实名认证识别身份证接口
-export const getIdcardAuthInfo: string = REQUESTURL + 'index/authid-card/'
+export const getIdcardAuthInfo: string = PROREQUESTURL + 'index/authid-card/'
 // 用户完善资料
 export const postUserAddInfo: string = REQUESTURL + 'user/bind-tel/'
 // 用户修改头像
