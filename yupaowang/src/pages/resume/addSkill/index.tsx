@@ -1,14 +1,13 @@
-import Taro, { useState, useEffect, Config, useContext, useRouter } from '@tarojs/taro'
+import Taro, { useState, useEffect, Config, useRouter } from '@tarojs/taro'
 import { View, Text, Picker, Input } from '@tarojs/components'
 import ImageView from '../../../components/imageview'
 import UploadImgAction from '../../../utils/upload'
 import { useSelector } from '@tarojs/redux'
 import Msg, { SubPopup } from '../../../utils/msg'
 import { SubscribeToNews } from '../../../utils/subscribeToNews';
-// import { context } from '../../../pages/resume/newJobs'
+import { isVaildVal } from '../../../utils/v'
 import { resumesCertificateAction, delCertificateAction } from '../../../utils/request/index'
 import './index.scss'
-// import { contextItem }  from '../../../subpackage/pages/basics';
 
 
 export interface ImageDataType {
@@ -105,7 +104,7 @@ export default function AddSkillPage() {
   }
   // 确定保存
   const handelSubmit = (state:number)=>{
-    if (num > maxNum){
+    if (num >= maxNum){
       Taro.showModal({
         title: '温馨提示',
         content: `最多只能添加${maxNum}个技能证书`,
@@ -113,7 +112,7 @@ export default function AddSkillPage() {
       })
       return;
     } 
-    if (!val){
+    if (!isVaildVal(val, 3, 12)){
       Taro.showModal({
         title: '温馨提示',
         content: '请填写真实证书名称，3-12字，必须含有汉字',

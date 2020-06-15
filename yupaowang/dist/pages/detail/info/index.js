@@ -68,7 +68,7 @@ var DetailInfoPage = (_temp2 = _class = function (_Taro$Component) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = DetailInfoPage.__proto__ || Object.getPrototypeOf(DetailInfoPage)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
       navigationBarTitleText: ''
-    }, _this.$usedState = ["data", "loopArray143", "loopArray144", "$compid__125", "$compid__126", "resCode", "editPhone", "IMGCDNURL", "again", "stopHiring", "isCollection", "recommend", "complaintModal", "phone"], _this.anonymousFunc5Map = {}, _this.customComponents = ["WechatNotice", "CollectionRecruitList", "Report"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["data", "loopArray139", "loopArray140", "$compid__123", "$compid__124", "resCode", "editPhone", "IMGCDNURL", "again", "stopHiring", "isCollection", "recommend", "complaintModal", "phone"], _this.anonymousFunc5Map = {}, _this.customComponents = ["WechatNotice", "CollectionRecruitList", "Report"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(DetailInfoPage, [{
@@ -89,15 +89,15 @@ var DetailInfoPage = (_temp2 = _class = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__125"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__123"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__125 = _genCompid2[0],
-          $compid__125 = _genCompid2[1];
+          $prevCompid__123 = _genCompid2[0],
+          $compid__123 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__126"),
+      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__124"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__126 = _genCompid4[0],
-          $compid__126 = _genCompid4[1];
+          $prevCompid__124 = _genCompid4[0],
+          $compid__124 = _genCompid4[1];
 
       var router = (0, _taroWeapp.useRouter)();
       var id = router.params.id;
@@ -562,7 +562,7 @@ var DetailInfoPage = (_temp2 = _class = function (_Taro$Component) {
         _taroWeapp2.default.makePhoneCall({ phoneNumber: data.tel_str });
       };
 
-      var loopArray143 = data.classifyName.map(function (v, i) {
+      var loopArray139 = data.classifyName.map(function (v, i) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
@@ -572,13 +572,13 @@ var DetailInfoPage = (_temp2 = _class = function (_Taro$Component) {
           $original: v.$original
         };
       });
-      var loopArray144 = data.view_images.length > 0 ? data.view_images.map(function (v, i) {
+      var loopArray140 = data.view_images.length > 0 ? data.view_images.map(function (v, i) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
         var $loopState__temp4 = data.view_images.length > 0 ? i + i : null;
 
-        var _$indexKey = "behzz" + i;
+        var _$indexKey = "befzz" + i;
 
         _this2.anonymousFunc5Map[_$indexKey] = function () {
           return handleImage(v.$original);
@@ -593,20 +593,20 @@ var DetailInfoPage = (_temp2 = _class = function (_Taro$Component) {
       recommend.length && _taroWeapp.propsManager.set({
         "data": recommend,
         "type": 1
-      }, $compid__125, $prevCompid__125);
+      }, $compid__123, $prevCompid__123);
       complaintModal && _taroWeapp.propsManager.set({
         "display": complaintModal,
         "textarea": textarea,
         "handleTextarea": handleTextarea,
         "setComplaintModal": setComplaintModal,
         "handleSubmit": handleSubmit
-      }, $compid__126, $prevCompid__126);
+      }, $compid__124, $prevCompid__124);
       Object.assign(this.__state, {
         data: data,
-        loopArray143: loopArray143,
-        loopArray144: loopArray144,
-        $compid__125: $compid__125,
-        $compid__126: $compid__126,
+        loopArray139: loopArray139,
+        loopArray140: loopArray140,
+        $compid__123: $compid__123,
+        $compid__124: $compid__124,
         resCode: resCode,
         editPhone: editPhone,
         IMGCDNURL: _index2.IMGCDNURL,

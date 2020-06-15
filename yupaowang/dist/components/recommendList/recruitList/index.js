@@ -52,7 +52,7 @@ var RecruitListPage = (_temp2 = _class = function (_Taro$Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = RecruitListPage.__proto__ || Object.getPrototypeOf(RecruitListPage)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray105", "data", "IMGCDNURL", "occupations", "city"], _this.anonymousFunc0Map = {}, _this.customComponents = ["Nodata"], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = RecruitListPage.__proto__ || Object.getPrototypeOf(RecruitListPage)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray106", "data", "IMGCDNURL", "occupations", "city"], _this.anonymousFunc0Map = {}, _this.customComponents = ["Nodata"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(RecruitListPage, [{
@@ -92,12 +92,12 @@ var RecruitListPage = (_temp2 = _class = function (_Taro$Component) {
         return userRouteJump("/pages/resume/recList/index?city=" + city + "&occupations=" + occupations);
       };
 
-      var loopArray105 = data.map(function (v, __index0) {
+      var loopArray106 = data.map(function (v, __index0) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
 
-        var _$indexKey = "bbazz" + __index0;
+        var _$indexKey = "bbbzz" + __index0;
 
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return userRouteJump("/pages/detail/info/index?id=" + v.$original.id);
@@ -109,7 +109,7 @@ var RecruitListPage = (_temp2 = _class = function (_Taro$Component) {
         };
       });
       Object.assign(this.__state, {
-        loopArray105: loopArray105,
+        loopArray106: loopArray106,
         data: data,
         IMGCDNURL: _index.IMGCDNURL
       });

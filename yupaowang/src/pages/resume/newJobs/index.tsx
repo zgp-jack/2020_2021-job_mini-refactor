@@ -6,8 +6,8 @@ import Msg from '../../../utils/msg'
 import { useSelector, useDispatch } from '@tarojs/redux'
 import UploadImgAction from '../../../utils/upload'
 import { IMGCDNURL } from '../../../config'
-import { resumesGetData } from '../../../utils/request/index.d'
-import { Injected, DataType, introducesType, UserLocationPromiss, UserLastPublishRecruitArea } from './index.d'
+// import { resumesGetData } from '../../../utils/request/index.d'
+import { Injected, DataType, UserLocationPromiss } from './index.d'
 import CollectionRecruitList from '../../../components/recommendList'
 import { UserLocationCity } from '../../../config/store'
 import { AREABEIJING } from '../../../models/area'
@@ -122,9 +122,9 @@ export default function NewJob() {
   // 判断是修改还是新增技能
   const [checkfourf, setCheckfourf] = useState<string>('0')
   // 传递修改技能证书
-  const [skillData, setSkillData] = useState<any[]>()
+  // const [skillData, setSkillData] = useState<any[]>()
   // 传递修改项目经验
-  const [projectData, setProjectData] = useState<any[]>()
+  // const [projectData, setProjectData] = useState<any[]>()
   // 技能证书
   const [skillbooksone, setSkillbooksone] = useState<any>([])
   // 推荐的列表
@@ -137,30 +137,30 @@ export default function NewJob() {
   // 工作状态列表
   const [statusList, setStatusList] = useState<any>()
   // 共用数据通过content传递给后面的子页面
-  const [publicList, setPublicList] = useState<resumesGetData>({
-    gender: [],
-    label: [],
-    nation: [],
-    occupation: [],
-    prof_degree: [],
-    type: []
-  })
-  // 人员信息
-  const [userInfo, setUserInfo] = useState<introducesType>({
-    experience: '',
-    type_str: '',
-    hometown: '',
-    prof_degree_str: '',
-    number_people: '',
-    tags: [],
-  })
+  // const [publicList, setPublicList] = useState<resumesGetData>({
+  //   gender: [],
+  //   label: [],
+  //   nation: [],
+  //   occupation: [],
+  //   prof_degree: [],
+  //   type: []
+  // })
+  // // 人员信息
+  // const [userInfo, setUserInfo] = useState<introducesType>({
+  //   experience: '',
+  //   type_str: '',
+  //   hometown: '',
+  //   prof_degree_str: '',
+  //   number_people: '',
+  //   tags: [],
+  // })
   // 选择详细地址信息
-  const [areaInfo, setAreaInfo] = useState<UserLastPublishRecruitArea>({
-    title: '',
-    adcode: '',
-    location: '',
-    info: ''
-  })
+  // const [areaInfo, setAreaInfo] = useState<UserLastPublishRecruitArea>({
+  //   title: '',
+  //   adcode: '',
+  //   location: '',
+  //   info: ''
+  // })
   //设置基础信息所在区域
   // const [basicsCity, setBasicsCity] = useState<string>('')
   // 修改还是更多项目经验
@@ -431,7 +431,7 @@ export default function NewJob() {
     });
     // 给子页面提供公用数据
     resumesGetDataAction().then(res => {
-      setPublicList(res);
+      // setPublicList(res);
       // console.log(res,'setPublicListAction')
       dispatch(setPersonnelAction(res))
     })
@@ -479,20 +479,20 @@ export default function NewJob() {
   const value: Injected = {
     area: area,
     setArea: (city: string) => setArea(city),
-    setAreaInfo: (item: UserLastPublishRecruitArea) => setAreaInfo(item),
-    setPublishArea: (val: string) => {
-      // console.log(areaInfo,'areaInfo');
-      // if (!model) return
-      // setModel({ ...model, address: val })
-      // setBasicsCity(val);
-    },
-    userInfo: userInfo,
+    // setAreaInfo: (item: UserLastPublishRecruitArea) => setAreaInfo(item),
+    // setPublishArea: (val: string) => {
+    // console.log(areaInfo,'areaInfo');
+    // if (!model) return
+    // setModel({ ...model, address: val })
+    // setBasicsCity(val);
+    // },
+    // userInfo: userInfo,
     // 公用值
-    publicList: publicList,
+    // publicList: publicList,
     // 修改技能证书
-    skillData: skillData,
+    // skillData: skillData,
     // 修改项目经验
-    projectData: projectData,
+    // projectData: projectData,
     // 置顶数据
     resumeTop,
     // 所在区域
@@ -687,7 +687,7 @@ export default function NewJob() {
         title: '温馨提示',
         content: '您未完善基础信息填写,请先填写基础信息',
         showCancel: false,
-        success(res) {
+        success() {
           Taro.navigateTo({
             url: '/pages/resume/basics/index',
           })

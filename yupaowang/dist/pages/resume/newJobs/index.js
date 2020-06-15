@@ -79,7 +79,7 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = NewJob.__proto__ || Object.getPrototypeOf(NewJob)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
       navigationBarTitleText: '找活名片'
-    }, _this.$usedState = ["anonymousState__temp", "data", "loopArray162", "loopArray163", "loopArray164", "loopArray165", "loopArray166", "loopArray167", "$compid__169", "$compid__170", "$compid__171", "showtop", "showcomplete", "IMGCDNURL", "showtopone", "showpassre", "passre", "nopassre", "index", "checkone", "headerimg", "authenticationimg", "certificate_show", "age", "sex", "checkonef", "showskill", "intro", "introne", "ressonone", "selfintrone", "checktwo", "selfintro", "projectlength", "project_count", "project", "skilllength", "skillbooksone", "checkfourf", "recData", "selectdata", "proStatus", "popup"], _this.anonymousFunc16Map = {}, _this.anonymousFunc17Map = {}, _this.anonymousFunc21Map = {}, _this.anonymousFunc22Map = {}, _this.customComponents = ["Auth", "CollectionRecruitList", "AtModal"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["anonymousState__temp", "data", "loopArray150", "loopArray151", "loopArray152", "loopArray153", "loopArray154", "loopArray155", "$compid__129", "$compid__130", "$compid__131", "showtop", "showcomplete", "IMGCDNURL", "showtopone", "showpassre", "passre", "nopassre", "index", "checkone", "headerimg", "authenticationimg", "certificate_show", "age", "sex", "checkonef", "showskill", "intro", "introne", "ressonone", "selfintrone", "checktwo", "selfintro", "projectlength", "project_count", "project", "skilllength", "skillbooksone", "checkfourf", "recData", "selectdata", "proStatus", "popup"], _this.anonymousFunc16Map = {}, _this.anonymousFunc17Map = {}, _this.anonymousFunc21Map = {}, _this.anonymousFunc22Map = {}, _this.customComponents = ["Auth", "CollectionRecruitList", "AtModal"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(NewJob, [{
@@ -100,20 +100,20 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__169"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__129"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__169 = _genCompid2[0],
-          $compid__169 = _genCompid2[1];
+          $prevCompid__129 = _genCompid2[0],
+          $compid__129 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__170"),
+      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__130"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__170 = _genCompid4[0],
-          $compid__170 = _genCompid4[1];
+          $prevCompid__130 = _genCompid4[0],
+          $compid__130 = _genCompid4[1];
 
-      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__171"),
+      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__131"),
           _genCompid6 = _slicedToArray(_genCompid5, 2),
-          $prevCompid__171 = _genCompid6[0],
-          $compid__171 = _genCompid6[1];
+          $prevCompid__131 = _genCompid6[0],
+          $compid__131 = _genCompid6[1];
 
       var dispatch = (0, _redux.useDispatch)();
       // 获取用户是否登录
@@ -353,137 +353,112 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
           checkfourf = _useState56[0],
           setCheckfourf = _useState56[1];
       // 传递修改技能证书
-
-
-      var _useState57 = (0, _taroWeapp.useState)(),
-          _useState58 = _slicedToArray(_useState57, 2),
-          skillData = _useState58[0],
-          setSkillData = _useState58[1];
+      // const [skillData, setSkillData] = useState<any[]>()
       // 传递修改项目经验
-
-
-      var _useState59 = (0, _taroWeapp.useState)(),
-          _useState60 = _slicedToArray(_useState59, 2),
-          projectData = _useState60[0],
-          setProjectData = _useState60[1];
+      // const [projectData, setProjectData] = useState<any[]>()
       // 技能证书
 
 
-      var _useState61 = (0, _taroWeapp.useState)([]),
-          _useState62 = _slicedToArray(_useState61, 2),
-          skillbooksone = _useState62[0],
-          setSkillbooksone = _useState62[1];
+      var _useState57 = (0, _taroWeapp.useState)([]),
+          _useState58 = _slicedToArray(_useState57, 2),
+          skillbooksone = _useState58[0],
+          setSkillbooksone = _useState58[1];
       // 推荐的列表
 
 
-      var _useState63 = (0, _taroWeapp.useState)([]),
-          _useState64 = _slicedToArray(_useState63, 2),
-          recData = _useState64[0],
-          setRecData = _useState64[1];
+      var _useState59 = (0, _taroWeapp.useState)([]),
+          _useState60 = _slicedToArray(_useState59, 2),
+          recData = _useState60[0],
+          setRecData = _useState60[1];
       // 设置默认地址
 
 
-      var _useState65 = (0, _taroWeapp.useState)(_area.AREABEIJING.name),
-          _useState66 = _slicedToArray(_useState65, 2),
-          area = _useState66[0],
-          _setArea = _useState66[1];
+      var _useState61 = (0, _taroWeapp.useState)(_area.AREABEIJING.name),
+          _useState62 = _slicedToArray(_useState61, 2),
+          area = _useState62[0],
+          _setArea = _useState62[1];
       // 工作状态
       // const [isOpened, setIsOpened] = useState<boolean>(false)
 
 
-      var _useState67 = (0, _taroWeapp.useState)(),
-          _useState68 = _slicedToArray(_useState67, 2),
-          resumeTop = _useState68[0],
-          setResumeTop = _useState68[1];
+      var _useState63 = (0, _taroWeapp.useState)(),
+          _useState64 = _slicedToArray(_useState63, 2),
+          resumeTop = _useState64[0],
+          setResumeTop = _useState64[1];
       // 工作状态列表
 
 
-      var _useState69 = (0, _taroWeapp.useState)(),
-          _useState70 = _slicedToArray(_useState69, 2),
-          statusList = _useState70[0],
-          setStatusList = _useState70[1];
+      var _useState65 = (0, _taroWeapp.useState)(),
+          _useState66 = _slicedToArray(_useState65, 2),
+          statusList = _useState66[0],
+          setStatusList = _useState66[1];
       // 共用数据通过content传递给后面的子页面
-
-
-      var _useState71 = (0, _taroWeapp.useState)({
-        gender: [],
-        label: [],
-        nation: [],
-        occupation: [],
-        prof_degree: [],
-        type: []
-      }),
-          _useState72 = _slicedToArray(_useState71, 2),
-          publicList = _useState72[0],
-          setPublicList = _useState72[1];
-      // 人员信息
-
-
-      var _useState73 = (0, _taroWeapp.useState)({
-        experience: '',
-        type_str: '',
-        hometown: '',
-        prof_degree_str: '',
-        number_people: '',
-        tags: []
-      }),
-          _useState74 = _slicedToArray(_useState73, 2),
-          userInfo = _useState74[0],
-          setUserInfo = _useState74[1];
+      // const [publicList, setPublicList] = useState<resumesGetData>({
+      //   gender: [],
+      //   label: [],
+      //   nation: [],
+      //   occupation: [],
+      //   prof_degree: [],
+      //   type: []
+      // })
+      // // 人员信息
+      // const [userInfo, setUserInfo] = useState<introducesType>({
+      //   experience: '',
+      //   type_str: '',
+      //   hometown: '',
+      //   prof_degree_str: '',
+      //   number_people: '',
+      //   tags: [],
+      // })
       // 选择详细地址信息
-
-
-      var _useState75 = (0, _taroWeapp.useState)({
-        title: '',
-        adcode: '',
-        location: '',
-        info: ''
-      }),
-          _useState76 = _slicedToArray(_useState75, 2),
-          areaInfo = _useState76[0],
-          _setAreaInfo = _useState76[1];
+      // const [areaInfo, setAreaInfo] = useState<UserLastPublishRecruitArea>({
+      //   title: '',
+      //   adcode: '',
+      //   location: '',
+      //   info: ''
+      // })
       //设置基础信息所在区域
       // const [basicsCity, setBasicsCity] = useState<string>('')
       // 修改还是更多项目经验
 
 
-      var _useState77 = (0, _taroWeapp.useState)('0'),
-          _useState78 = _slicedToArray(_useState77, 2),
-          proStatus = _useState78[0],
-          setProStatus = _useState78[1];
+      var _useState67 = (0, _taroWeapp.useState)('0'),
+          _useState68 = _slicedToArray(_useState67, 2),
+          proStatus = _useState68[0],
+          setProStatus = _useState68[1];
       // 提示内容
 
 
-      var _useState79 = (0, _taroWeapp.useState)(''),
-          _useState80 = _slicedToArray(_useState79, 2),
-          popup = _useState80[0],
-          setPopup = _useState80[1];
+      var _useState69 = (0, _taroWeapp.useState)(''),
+          _useState70 = _slicedToArray(_useState69, 2),
+          popup = _useState70[0],
+          setPopup = _useState70[1];
       // 提示弹窗
 
 
-      var _useState81 = (0, _taroWeapp.useState)(false),
-          _useState82 = _slicedToArray(_useState81, 2),
-          tips = _useState82[0],
-          setTips = _useState82[1];
+      var _useState71 = (0, _taroWeapp.useState)(false),
+          _useState72 = _slicedToArray(_useState71, 2),
+          tips = _useState72[0],
+          setTips = _useState72[1];
       // 置顶提示
 
 
-      var _useState83 = (0, _taroWeapp.useState)(false),
-          _useState84 = _slicedToArray(_useState83, 2),
-          toppingModal = _useState84[0],
-          setToppingModal = _useState84[1];
+      var _useState73 = (0, _taroWeapp.useState)(false),
+          _useState74 = _slicedToArray(_useState73, 2),
+          toppingModal = _useState74[0],
+          setToppingModal = _useState74[1];
       // 置顶的当前索引
 
 
-      var _useState85 = (0, _taroWeapp.useState)(0),
-          _useState86 = _slicedToArray(_useState85, 2),
-          indextop = _useState86[0],
-          setIndextop = _useState86[1];
+      var _useState75 = (0, _taroWeapp.useState)(0),
+          _useState76 = _slicedToArray(_useState75, 2),
+          indextop = _useState76[0],
+          setIndextop = _useState76[1];
 
-      var _useState87 = (0, _taroWeapp.useState)(0),
-          _useState88 = _slicedToArray(_useState87, 2),
-          frequency = _useState88[0],
-          setFrequency = _useState88[1];
+      var _useState77 = (0, _taroWeapp.useState)(0),
+          _useState78 = _slicedToArray(_useState77, 2),
+          frequency = _useState78[0],
+          setFrequency = _useState78[1];
 
       (0, _taroWeapp.useDidShow)(function () {
         if (!login) {
@@ -747,7 +722,7 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
         });
         // 给子页面提供公用数据
         (0, _index.resumesGetDataAction)().then(function (res) {
-          setPublicList(res);
+          // setPublicList(res);
           // console.log(res,'setPublicListAction')
           dispatch((0, _personnel.setPersonnelAction)(res));
         });
@@ -796,22 +771,20 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
         setArea: function setArea(city) {
           return _setArea(city);
         },
-        setAreaInfo: function setAreaInfo(item) {
-          return _setAreaInfo(item);
-        },
-        setPublishArea: function setPublishArea(val) {
-          // console.log(areaInfo,'areaInfo');
-          // if (!model) return
-          // setModel({ ...model, address: val })
-          // setBasicsCity(val);
-        },
-        userInfo: userInfo,
+        // setAreaInfo: (item: UserLastPublishRecruitArea) => setAreaInfo(item),
+        // setPublishArea: (val: string) => {
+        // console.log(areaInfo,'areaInfo');
+        // if (!model) return
+        // setModel({ ...model, address: val })
+        // setBasicsCity(val);
+        // },
+        // userInfo: userInfo,
         // 公用值
-        publicList: publicList,
+        // publicList: publicList,
         // 修改技能证书
-        skillData: skillData,
+        // skillData: skillData,
         // 修改项目经验
-        projectData: projectData,
+        // projectData: projectData,
         // 置顶数据
         resumeTop: resumeTop
       };
@@ -1007,7 +980,7 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
             title: '温馨提示',
             content: '您未完善基础信息填写,请先填写基础信息',
             showCancel: false,
-            success: function success(res) {
+            success: function success() {
               _taroWeapp2.default.navigateTo({
                 url: '/pages/resume/basics/index'
               });
@@ -1114,7 +1087,7 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
         return userRouteJump("/pages/topping/index?rec=1");
       };
 
-      var loopArray162 = data.resume_top.has_top != 0 && data.resume_top.is_top != 2 ? data.resume_top.top_provinces_str.map(function (v, i) {
+      var loopArray150 = data.resume_top.has_top != 0 && data.resume_top.is_top != 2 ? data.resume_top.top_provinces_str.map(function (v, i) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
@@ -1124,7 +1097,7 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray163 = !showskill ? data.info.occupations.map(function (v, i) {
+      var loopArray151 = !showskill ? data.info.occupations.map(function (v, i) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
@@ -1134,7 +1107,7 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray164 = showskill ? data.info.occupations.map(function (v, i) {
+      var loopArray152 = showskill ? data.info.occupations.map(function (v, i) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
@@ -1144,7 +1117,7 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray165 = selfintrone ? data.introduces.tags.map(function (v, i) {
+      var loopArray153 = selfintrone ? data.introduces.tags.map(function (v, i) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
@@ -1154,24 +1127,24 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray166 = projectlength != 0 ? project.map(function (item, __index16) {
+      var loopArray154 = projectlength != 0 ? project.map(function (item, __index16) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
 
-        var _$indexKey = "bgazz" + __index16;
+        var _$indexKey = "bfczz" + __index16;
 
         _this2.anonymousFunc16Map[_$indexKey] = function () {
           return userRouteJump("/pages/resume/addProject/index?type=0&id=" + data.info.uuid);
         };
 
-        var _$indexKey2 = "bgbzz" + __index16;
+        var _$indexKey2 = "bfdzz" + __index16;
 
         _this2.anonymousFunc17Map[_$indexKey2] = function () {
           return userRouteJump("/pages/resume/addProject/index?type=0&id=" + data.info.uuid);
         };
 
-        var $anonymousCallee__34 = projectlength != 0 ? item.$original.image.map(function (v, i) {
+        var $anonymousCallee__30 = projectlength != 0 ? item.$original.image.map(function (v, i) {
           v = {
             $original: (0, _taroWeapp.internal_get_original)(v)
           };
@@ -1184,29 +1157,29 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
         return {
           _$indexKey: _$indexKey,
           _$indexKey2: _$indexKey2,
-          $anonymousCallee__34: $anonymousCallee__34,
+          $anonymousCallee__30: $anonymousCallee__30,
           $original: item.$original
         };
       }) : [];
-      var loopArray167 = skilllength != 0 ? skillbooksone.map(function (item, i) {
+      var loopArray155 = skilllength != 0 ? skillbooksone.map(function (item, i) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
         var $loopState__temp13 = skillbooksone ? i + i : null;
 
-        var _$indexKey3 = "bgczz" + i;
+        var _$indexKey3 = "bfezz" + i;
 
         _this2.anonymousFunc21Map[_$indexKey3] = function () {
           return userRouteJump("/pages/resume/addSkill/index?type=" + i + "&id=" + data.info.uuid);
         };
 
-        var _$indexKey4 = "bgdzz" + i;
+        var _$indexKey4 = "bffzz" + i;
 
         _this2.anonymousFunc22Map[_$indexKey4] = function () {
           return userRouteJump("/pages/resume/addSkill/index?type=" + i + "&id=" + data.info.uuid);
         };
 
-        var $anonymousCallee__35 = skilllength != 0 ? item.$original.image.map(function (v, i) {
+        var $anonymousCallee__31 = skilllength != 0 ? item.$original.image.map(function (v, i) {
           v = {
             $original: (0, _taroWeapp.internal_get_original)(v)
           };
@@ -1220,34 +1193,34 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
           $loopState__temp13: $loopState__temp13,
           _$indexKey3: _$indexKey3,
           _$indexKey4: _$indexKey4,
-          $anonymousCallee__35: $anonymousCallee__35,
+          $anonymousCallee__31: $anonymousCallee__31,
           $original: item.$original
         };
       }) : [];
       recData.length && _taroWeapp.propsManager.set({
         "type": 1,
         "data": recData
-      }, $compid__169, $prevCompid__169);
+      }, $compid__129, $prevCompid__129);
       _taroWeapp.propsManager.set({
         "isOpened": tips,
         "className": "AtModal"
-      }, $compid__170, $prevCompid__170);
+      }, $compid__130, $prevCompid__130);
       _taroWeapp.propsManager.set({
         "isOpened": toppingModal,
         "className": "AtModal"
-      }, $compid__171, $prevCompid__171);
+      }, $compid__131, $prevCompid__131);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
         data: data,
-        loopArray162: loopArray162,
-        loopArray163: loopArray163,
-        loopArray164: loopArray164,
-        loopArray165: loopArray165,
-        loopArray166: loopArray166,
-        loopArray167: loopArray167,
-        $compid__169: $compid__169,
-        $compid__170: $compid__170,
-        $compid__171: $compid__171,
+        loopArray150: loopArray150,
+        loopArray151: loopArray151,
+        loopArray152: loopArray152,
+        loopArray153: loopArray153,
+        loopArray154: loopArray154,
+        loopArray155: loopArray155,
+        $compid__129: $compid__129,
+        $compid__130: $compid__130,
+        $compid__131: $compid__131,
         showtop: showtop,
         showcomplete: showcomplete,
         IMGCDNURL: _index6.IMGCDNURL,

@@ -67,15 +67,15 @@ export interface UserLastPublishRecruitArea {
 
 export interface Injected {
   area: string, // 城市名称
-  userInfo: any, // 个人信息
-  publicList: resumesGetData,//公用值
-  skillData: any,//修改技能证书
-  projectData: any, //修改项目经验 
+  // userInfo: any, // 个人信息
+  // publicList: resumesGetData,//公用值
+  // skillData: any,//修改技能证书
+  // projectData: any, //修改项目经验 
   resumeTop: any,//找活置顶
   // basicsCity:string,//选择区域
   setArea: (city: string) => void, //设置城市名称
-  setAreaInfo?: (item: UserLastPublishRecruitArea) => void, // 用户点击的小地址信息
-  setPublishArea?: (val: string) => void //设置最后一次点击 城市的名字
+  // setAreaInfo?: (item: UserLastPubslishRecruitArea) => void, // 用户点击的小地址信息
+  // setPublishArea?: (val: string) => void //设置最后一次点击 城市的名字
 }
 
 // 用户定位返回信息

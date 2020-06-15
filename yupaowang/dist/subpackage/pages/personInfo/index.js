@@ -119,76 +119,73 @@ var PersonInfo = (_temp2 = _class = function (_Taro$Component) {
           _useState6 = _slicedToArray(_useState5, 2),
           allprovinces = _useState6[0],
           setAllprovinces = _useState6[1];
+      // const [multiIndexvalue, seMultiIndexvalue] = useState<string>('请选择所在地区')
 
-      var _useState7 = (0, _taroWeapp.useState)('请选择所在地区'),
+
+      var _useState7 = (0, _taroWeapp.useState)(''),
           _useState8 = _slicedToArray(_useState7, 2),
-          multiIndexvalue = _useState8[0],
-          seMultiIndexvalue = _useState8[1];
+          allpro = _useState8[0],
+          setAllpro = _useState8[1];
 
-      var _useState9 = (0, _taroWeapp.useState)(''),
+      var _useState9 = (0, _taroWeapp.useState)([]),
           _useState10 = _slicedToArray(_useState9, 2),
-          allpro = _useState10[0],
-          setAllpro = _useState10[1];
+          multiArrayone = _useState10[0],
+          setMultiArrayone = _useState10[1];
 
       var _useState11 = (0, _taroWeapp.useState)([]),
           _useState12 = _slicedToArray(_useState11, 2),
-          multiArrayone = _useState12[0],
-          setMultiArrayone = _useState12[1];
+          multiArray = _useState12[0],
+          setMultiArray = _useState12[1];
 
-      var _useState13 = (0, _taroWeapp.useState)([]),
+      var _useState13 = (0, _taroWeapp.useState)(0),
           _useState14 = _slicedToArray(_useState13, 2),
-          multiArray = _useState14[0],
-          setMultiArray = _useState14[1];
-
-      var _useState15 = (0, _taroWeapp.useState)(0),
-          _useState16 = _slicedToArray(_useState15, 2),
-          edit = _useState16[0],
-          setEdit = _useState16[1];
+          edit = _useState14[0],
+          setEdit = _useState14[1];
       // 熟练度
+
+
+      var _useState15 = (0, _taroWeapp.useState)([]),
+          _useState16 = _slicedToArray(_useState15, 2),
+          proficiency = _useState16[0],
+          setProficiency = _useState16[1];
+      // 人员构成
 
 
       var _useState17 = (0, _taroWeapp.useState)([]),
           _useState18 = _slicedToArray(_useState17, 2),
-          proficiency = _useState18[0],
-          setProficiency = _useState18[1];
-      // 人员构成
+          personnel = _useState18[0],
+          setPersonnel = _useState18[1];
+      // 标签
 
 
       var _useState19 = (0, _taroWeapp.useState)([]),
           _useState20 = _slicedToArray(_useState19, 2),
-          personnel = _useState20[0],
-          setPersonnel = _useState20[1];
-      // 标签
-
+          label = _useState20[0],
+          setLabel = _useState20[1];
 
       var _useState21 = (0, _taroWeapp.useState)([]),
           _useState22 = _slicedToArray(_useState21, 2),
-          label = _useState22[0],
-          setLabel = _useState22[1];
+          tag = _useState22[0],
+          setTag = _useState22[1];
 
-      var _useState23 = (0, _taroWeapp.useState)([]),
+      var _useState23 = (0, _taroWeapp.useState)(false),
           _useState24 = _slicedToArray(_useState23, 2),
-          tag = _useState24[0],
-          setTag = _useState24[1];
-
-      var _useState25 = (0, _taroWeapp.useState)(false),
-          _useState26 = _slicedToArray(_useState25, 2),
-          ranks = _useState26[0],
-          setRanks = _useState26[1];
+          ranks = _useState24[0],
+          setRanks = _useState24[1];
       //熟练度位置
+
+
+      var _useState25 = (0, _taroWeapp.useState)(0),
+          _useState26 = _slicedToArray(_useState25, 2),
+          proficiencyIndex = _useState26[0],
+          setProficiencyIndex = _useState26[1];
+      // 人员构成位置
 
 
       var _useState27 = (0, _taroWeapp.useState)(0),
           _useState28 = _slicedToArray(_useState27, 2),
-          proficiencyIndex = _useState28[0],
-          setProficiencyIndex = _useState28[1];
-      // 人员构成位置
-
-
-      var _useState29 = (0, _taroWeapp.useState)(0),
-          _useState30 = _slicedToArray(_useState29, 2),
-          userIndex = _useState30[0],
-          setUserIndex = _useState30[1];
+          userIndex = _useState28[0],
+          setUserIndex = _useState28[1];
 
       (0, _taroWeapp.useEffect)(function () {
         var AllItem = JSON.parse(JSON.stringify(useSelectorItem.Personnel));
@@ -341,7 +338,7 @@ var PersonInfo = (_temp2 = _class = function (_Taro$Component) {
         var allpro = '';
         if (allprovinces[multiIndex[0]].children.length != 0) {
           allpro = allprovinces[multiIndex[0]].id + "," + allprovinces[multiIndex[0]].children[multiIndex[1]].id;
-          seMultiIndexvalue(allprovinces[multiIndex[0]].name + allprovinces[multiIndex[0]].children[multiIndex[1]].name);
+          // seMultiIndexvalue(allprovinces[multiIndex[0]].name + allprovinces[multiIndex[0]].children[multiIndex[1]].name)
           var value = allprovinces[multiIndex[0]].name + allprovinces[multiIndex[0]].children[multiIndex[1]].name;
           var key = 'address';
           var state = JSON.parse(JSON.stringify(formData));
@@ -349,7 +346,7 @@ var PersonInfo = (_temp2 = _class = function (_Taro$Component) {
           setFormData(state);
         } else {
           allpro = allprovinces[multiIndex[0]].id + "," + allprovinces[multiIndex[0]].id;
-          seMultiIndexvalue(allprovinces[multiIndex[0]].name);
+          // seMultiIndexvalue(allprovinces[multiIndex[0]].name)
           var _state = JSON.parse(JSON.stringify(formData));
           var _value = allprovinces[multiIndex[0]].name;
           var _key2 = 'address';

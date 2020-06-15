@@ -2,7 +2,7 @@
     <view class="recruit-container">
         <auth></auth>
         <view class="recruit-lists-containerbox">
-            <collection-recruit-list compid="{{$compid__78}}"></collection-recruit-list>
+            <collection-recruit-list compid="{{$compid__83}}"></collection-recruit-list>
         </view>
     </view>
 </block>

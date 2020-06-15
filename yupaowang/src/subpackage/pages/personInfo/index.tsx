@@ -31,7 +31,7 @@ export default function PersonInfo() {
   // 家乡
   const [multiIndex, setMultiIndex] = useState<number[]>([0, 0])
   const [allprovinces, setAllprovinces] = useState<any[]>([])
-  const [multiIndexvalue, seMultiIndexvalue] = useState<string>('请选择所在地区')
+  // const [multiIndexvalue, seMultiIndexvalue] = useState<string>('请选择所在地区')
   const [allpro, setAllpro] = useState<string>('')
   const [multiArrayone, setMultiArrayone] = useState<any[][]>([])
   const [multiArray, setMultiArray] = useState<any[][]>([])
@@ -192,7 +192,7 @@ export default function PersonInfo() {
     let allpro = '';
     if (allprovinces[multiIndex[0]].children.length != 0) {
       allpro = allprovinces[multiIndex[0]].id + "," + allprovinces[multiIndex[0]].children[multiIndex[1]].id
-      seMultiIndexvalue(allprovinces[multiIndex[0]].name + allprovinces[multiIndex[0]].children[multiIndex[1]].name)
+      // seMultiIndexvalue(allprovinces[multiIndex[0]].name + allprovinces[multiIndex[0]].children[multiIndex[1]].name)
       let value = allprovinces[multiIndex[0]].name + allprovinces[multiIndex[0]].children[multiIndex[1]].name;
       let key = 'address'
       const state: ModelType = JSON.parse(JSON.stringify(formData))
@@ -200,7 +200,7 @@ export default function PersonInfo() {
       setFormData(state);
     } else {
       allpro = allprovinces[multiIndex[0]].id + "," + allprovinces[multiIndex[0]].id
-      seMultiIndexvalue(allprovinces[multiIndex[0]].name)
+      // seMultiIndexvalue(allprovinces[multiIndex[0]].name)
       const state: ModelType = JSON.parse(JSON.stringify(formData))
       let value = allprovinces[multiIndex[0]].name;
       let key = 'address'

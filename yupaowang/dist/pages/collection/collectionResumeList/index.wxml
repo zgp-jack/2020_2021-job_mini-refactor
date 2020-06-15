@@ -1,7 +1,7 @@
 <block wx:if="{{$taroCompReady}}">
     <view class="resume-list-container" style="{{anonymousState__temp}}">
         <block wx:if="{{!data.length}}">
-            <nodata compid="{{$compid__90}}"></nodata>
+            <nodata compid="{{$compid__87}}"></nodata>
         </block>
         <block wx:if="{{data}}">
             <block wx:key="id" wx:for="{{loopArray83}}" wx:for-item="item" wx:for-index="__index0">
@@ -30,7 +30,7 @@
         <block wx:if="{{data.length && recruitNoMoreData}}">
             <view class="resume-lists-noData">没有更多数据了</view>
         </block>
-        <at-modal compid="{{$compid__91}}">
+        <at-modal compid="{{$compid__88}}">
             <at-modal-header>温馨提示</at-modal-header>
             <at-modal-content>{{modalContent}}</at-modal-content>
             <at-modal-action>

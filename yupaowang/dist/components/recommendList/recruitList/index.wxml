@@ -5,7 +5,7 @@
         <block wx:if="{{!data.length}}">
             <nodata></nodata>
         </block>
-        <view wx:key="id" class="recruitListBox" bindtap="anonymousFunc0" wx:for="{{loopArray105}}" wx:for-item="v" wx:for-index="__index0" data-e-tap-so="this" data-e-tap-a-a="{{v._$indexKey}}">
+        <view wx:key="id" class="recruitListBox" bindtap="anonymousFunc0" wx:for="{{loopArray106}}" wx:for-item="v" wx:for-index="__index0" data-e-tap-so="this" data-e-tap-a-a="{{v._$indexKey}}">
             <view class="recruitListBox-title">{{v.$original.title}}</view>
             <view class="recruitListBox-content">
                 <image src="{{v.$original.image}}" class="recruitListBox-content-img"></image>

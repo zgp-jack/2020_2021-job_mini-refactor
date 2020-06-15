@@ -3,7 +3,7 @@
         <auth></auth>
         <wechat-notice></wechat-notice>
         <block wx:if="{{!lists.item.length}}">
-            <nodata compid="{{$compid__77}}"></nodata>
+            <nodata compid="{{$compid__72}}"></nodata>
         </block>
         <view class="recruit-lists-containerbox">
             <block wx:if="{{lists.item}}">

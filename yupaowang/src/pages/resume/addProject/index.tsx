@@ -1,4 +1,4 @@
-import Taro, { useState, useEffect, Config, useRouter, useContext } from '@tarojs/taro'
+import Taro, { useState, useEffect, Config, useRouter } from '@tarojs/taro'
 import { View, Picker, Textarea, Input, Text } from '@tarojs/components'
 import { AtInput} from 'taro-ui';
 import ImageView from '../../../components/imageview'
@@ -9,7 +9,6 @@ import { SubscribeToNews } from '../../../utils/subscribeToNews';
 import { resumesProjectAction, resumesDelProjectAction } from '../../../utils/request/index'
 import AREAS from '../../../models/area'
 import { isVaildVal } from '../../../utils/v'
-// import { context } from '../../../pages/resume/newJobs'
 import { useSelector } from '@tarojs/redux'
 import './index.scss'
 

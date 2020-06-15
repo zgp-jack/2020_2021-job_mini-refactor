@@ -23,8 +23,6 @@ var _createClass = function () { function defineProperties(target, props) { for 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
 var _class, _temp2;
-// import { context } from '../../../pages/resume/newJobs'
-
 
 var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
@@ -42,7 +40,9 @@ var _index4 = _interopRequireDefault(_index3);
 
 var _index5 = __webpack_require__(/*! ../../../utils/subscribeToNews/index */ "./src/utils/subscribeToNews/index.ts");
 
-var _index6 = __webpack_require__(/*! ../../../utils/request/index */ "./src/utils/request/index.ts");
+var _index6 = __webpack_require__(/*! ../../../utils/v/index */ "./src/utils/v/index.ts");
+
+var _index7 = __webpack_require__(/*! ../../../utils/request/index */ "./src/utils/request/index.ts");
 
 __webpack_require__(/*! ./index.scss */ "./src/pages/resume/addSkill/index.scss");
 
@@ -72,7 +72,7 @@ var AddSkillPage = (_temp2 = _class = function (_Taro$Component) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AddSkillPage.__proto__ || Object.getPrototypeOf(AddSkillPage)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
       navigationBarTitleText: '新增技能证书'
-    }, _this.$usedState = ["$compid__165", "val", "extraText", "image", "type", "num", "maxNum"], _this.customComponents = ["ImageView"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["$compid__99", "val", "extraText", "image", "type", "num", "maxNum"], _this.customComponents = ["ImageView"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(AddSkillPage, [{
@@ -91,10 +91,10 @@ var AddSkillPage = (_temp2 = _class = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__165"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__99"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__165 = _genCompid2[0],
-          $compid__165 = _genCompid2[1];
+          $prevCompid__99 = _genCompid2[0],
+          $compid__99 = _genCompid2[1];
 
       var router = (0, _taroWeapp.useRouter)();
       // 获取存入的公用内容
@@ -219,7 +219,7 @@ var AddSkillPage = (_temp2 = _class = function (_Taro$Component) {
       };
       // 确定保存
       var handelSubmit = function handelSubmit(state) {
-        if (num > maxNum) {
+        if (num >= maxNum) {
           _taroWeapp2.default.showModal({
             title: '温馨提示',
             content: "\u6700\u591A\u53EA\u80FD\u6DFB\u52A0" + maxNum + "\u4E2A\u6280\u80FD\u8BC1\u4E66",
@@ -227,7 +227,7 @@ var AddSkillPage = (_temp2 = _class = function (_Taro$Component) {
           });
           return;
         }
-        if (!val) {
+        if (!(0, _index6.isVaildVal)(val, 3, 12)) {
           _taroWeapp2.default.showModal({
             title: '温馨提示',
             content: '请填写真实证书名称，3-12字，必须含有汉字',
@@ -271,7 +271,7 @@ var AddSkillPage = (_temp2 = _class = function (_Taro$Component) {
             resume_uuid: id
           };
         }
-        (0, _index6.resumesCertificateAction)(params).then(function (res) {
+        (0, _index7.resumesCertificateAction)(params).then(function (res) {
           if (res.errcode === 'ok') {
             (0, _index5.SubscribeToNews)('resume', function () {
               (0, _index3.SubPopup)({
@@ -305,7 +305,7 @@ var AddSkillPage = (_temp2 = _class = function (_Taro$Component) {
               var params = {
                 certificate_uuid: uuid
               };
-              (0, _index6.delCertificateAction)(params).then(function (res) {
+              (0, _index7.delCertificateAction)(params).then(function (res) {
                 if (res.errcode == "ok") {
                   _taroWeapp2.default.navigateBack({
                     delta: 1
@@ -342,9 +342,9 @@ var AddSkillPage = (_temp2 = _class = function (_Taro$Component) {
         "images": image.item,
         "max": 3,
         "userUploadImg": userUploadImg
-      }, $compid__165, $prevCompid__165);
+      }, $compid__99, $prevCompid__99);
       Object.assign(this.__state, {
-        $compid__165: $compid__165,
+        $compid__99: $compid__99,
         val: val,
         extraText: extraText,
         image: image,

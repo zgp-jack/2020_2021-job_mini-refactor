@@ -1,6 +1,6 @@
 <block wx:if="{{$taroCompReady}}">
     <view class="home-fastbar-container clearfix">
-        <view class="home-fastbar-item" wx:key="$loopState__temp2" bindtap="anonymousFunc0" wx:for="{{loopArray109}}" wx:for-item="item" wx:for-index="index" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">
+        <view class="home-fastbar-item" wx:key="$loopState__temp2" bindtap="anonymousFunc0" wx:for="{{loopArray108}}" wx:for-item="item" wx:for-index="index" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">
             <image class="home-fastbar-img" src="{{item.$original.img}}"></image><text class="home-fastbar-text overwords">{{item.$original.text}}</text>
         </view>
     </view>

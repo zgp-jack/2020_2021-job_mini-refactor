@@ -9,9 +9,9 @@ import { userAuthLoction, recSerAuthLoction } from '../../../utils/helper'
 import { contextItem } from '../../../pages/map/resume'
 // import { context } from '../../../pages/resume/newJobs';
 // import { getPublicList } from '../../../actions/publicList';
-import { ModelType, UserLastPublishRecruitArea  } from './index.d'
+import { ModelType  } from './index.d'
 import { UserLocationPromiss, AREABEIJING, AREACHINA } from '../../../models/area'
-import { UserLastPublishArea, UserLocationCity, UserListChooseCity } from '../../../config/store'
+import { UserLocationCity, UserListChooseCity } from '../../../config/store'
 import useCode from '../../../hooks/code'
 import { useSelector } from '@tarojs/redux'
 import { isPhone, isVaildVal } from '../../../utils/v'
@@ -32,12 +32,12 @@ export default function BasicsPage() {
   // 当前显示城市
   const [areas, setArea] = useState<string>(AREABEIJING.name)
   // 选择详细地址信息
-  const [areaInfo, setAreaInfo] = useState<UserLastPublishRecruitArea>({
-    title: '',
-    adcode: '',
-    location: '',
-    info: ''
-  })
+  // const [areaInfo, setAreaInfo] = useState<UserLastPublishRecruitArea>({
+  //   title: '',
+  //   adcode: '',
+  //   location: '',
+  //   info: ''
+  // })
   // 地区需要的值
   const [adcodes, setAdcodes] = useState<string>('')
   const sexList = ['男', '女'];
@@ -80,15 +80,7 @@ export default function BasicsPage() {
     classifies: [],
     nationCurrentName:'',
   })
-  useDidShow(() => {
-    // 点击设置地区
-    if (publishArea && location && adcode) {
-      setLat(location ? location.split(",")[1] : '')
-      setLng(location ? location.split(",")[0] : '')
-      setAdcodes(adcode)
-      setFormData({ ...formData, are: publishArea })
-    }
-  })
+  
   
   // 获取数据
   useEffect(()=>{
@@ -116,10 +108,10 @@ export default function BasicsPage() {
       })
     }
     // 设置地址
-    let userLastPublishArea: UserLastPublishRecruitArea = Taro.getStorageSync(UserLastPublishArea)
-    if (userLastPublishArea) {
-      setAreaInfo(userLastPublishArea)
-    }
+    // let userLastPublishArea: UserLastPublishRecruitArea = Taro.getStorageSync(UserLastPublishArea)
+    // if (userLastPublishArea) {
+    //   setAreaInfo(userLastPublishArea)
+    // }
     // if (area){
     //   setArea(area)
     // }
@@ -130,6 +122,7 @@ export default function BasicsPage() {
     // 获取缓存信息
     const useInfo = Taro.getStorageSync('introinfo');
     if (useInfo){
+      if (publishArea && location && adcode) return;
       let cache:any={
         // 姓名
         name: useInfo.username,
@@ -169,7 +162,7 @@ export default function BasicsPage() {
         })
       }
       setoccupation(arrList)
-      // setOccupationsId(useInfo.occupations_id);
+      // setOccupationsId(useInfo.occupations_id)
       setClickOccupation(clckArr)
       setLat(useInfo.location ? useInfo.location.split(",")[1]:'')
       setLng(useInfo.location ? useInfo.location.split(",")[0] : '')
@@ -196,6 +189,19 @@ export default function BasicsPage() {
     //   setAllNationCurrent(res.authData.nation);
     // })
   },[])
+  useDidShow(() => {
+    console.log(publishArea , location ,adcode)
+    // 点击设置地区
+    if (publishArea && location && adcode) {
+      setLat(location ? location.split(",")[1] : '')
+      setLng(location ? location.split(",")[0] : '')
+      setAdcodes(adcode)
+      setFormData({ ...formData, are: publishArea })
+      setArea(publishArea)
+      // set
+    }
+
+  })
   // 验证码
   const [isCode, setIsCode] = useState<boolean>(false);
   // 用户填写表单
