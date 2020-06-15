@@ -12,6 +12,6 @@
         <block wx:if="{{tabKey === MEMBER}}">
             <member></member>
         </block>
-        <tabbar compid="{{$compid__67}}"></tabbar>
+        <tabbar compid="{{$compid__66}}"></tabbar>
     </view>
 </block>

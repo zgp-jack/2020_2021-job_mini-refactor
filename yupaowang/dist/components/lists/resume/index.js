@@ -91,7 +91,7 @@ var ResumeList = (_temp2 = _class = function (_Taro$Component) {
           d = {
             $original: (0, _taroWeapp.internal_get_original)(d)
           };
-          var _$indexKey = "bbezz" + __index1 + "-" + __index0;
+          var _$indexKey = "bbfzz" + __index1 + "-" + __index0;
 
           _this2.anonymousFunc0Map[_$indexKey] = function () {
             return userRouteJump("/pages/resume/detail/index?uuid=" + d.$original.uuid + "&location=" + d.$original.location);

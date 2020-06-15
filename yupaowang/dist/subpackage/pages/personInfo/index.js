@@ -34,9 +34,11 @@ var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/re
 
 var _index = __webpack_require__(/*! ../../../utils/msg/index */ "./src/utils/msg/index.ts");
 
-var _index2 = __webpack_require__(/*! ../../../utils/subscribeToNews/index */ "./src/utils/subscribeToNews/index.ts");
+var _index2 = _interopRequireDefault(_index);
 
-var _index3 = __webpack_require__(/*! ../../../utils/request/index */ "./src/utils/request/index.ts");
+var _index3 = __webpack_require__(/*! ../../../utils/subscribeToNews/index */ "./src/utils/subscribeToNews/index.ts");
+
+var _index4 = __webpack_require__(/*! ../../../utils/request/index */ "./src/utils/request/index.ts");
 
 __webpack_require__(/*! ./index.scss */ "./src/subpackage/pages/personInfo/index.scss");
 
@@ -64,7 +66,7 @@ var PersonInfo = (_temp2 = _class = function (_Taro$Component) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = PersonInfo.__proto__ || Object.getPrototypeOf(PersonInfo)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
       navigationBarTitleText: '人员信息'
-    }, _this.$usedState = ["loopArray245", "formData", "multiIndex", "multiArray", "proficiencyIndex", "proficiency", "userIndex", "personnel", "ranks", "label"], _this.anonymousFunc6Map = {}, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["loopArray132", "formData", "multiIndex", "multiArray", "proficiencyIndex", "proficiency", "userIndex", "personnel", "ranks", "label"], _this.anonymousFunc6Map = {}, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(PersonInfo, [{
@@ -248,7 +250,6 @@ var PersonInfo = (_temp2 = _class = function (_Taro$Component) {
           // 省和第一个市
           setMultiArray([data, lastData]);
         }
-        console.log(useSelectorItem, 'xxxxs');
         //内容回填
         if (type) {
           var allItem = JSON.parse(JSON.stringify(useSelectorItem));
@@ -267,7 +268,6 @@ var PersonInfo = (_temp2 = _class = function (_Taro$Component) {
             if (allItem.Myresume.info.type !== '1') {
               setRanks(true);
             }
-            console.log(allItem.Myresume);
             setFormData({
               age: allItem.Myresume.introduces.experience,
               proficiency: allItem.Myresume.introduces.prof_degree_str,
@@ -296,15 +296,24 @@ var PersonInfo = (_temp2 = _class = function (_Taro$Component) {
                 }
               }
             }
-            setMultiIndex([one, two]);
-            setAllpro(allItem.Myresume.introduces.hometown_id.split(","));
-            if (allItem.Myresume.introduces.prof_degree > 0) {
-              setProficiencyIndex(parseInt(allItem.Myresume.introduces.prof_degree) - 1);
-            } else {
-              setProficiencyIndex(parseInt(allItem.Myresume.introduces.prof_degree));
+            // 每次选择选择地址都要重新刷新一次，修改的时候刷新了一次就不再刷新，不然会一直覆盖设置的值
+            console.log(allItem.Myresume.introduces.prof_degree, 'allItem.Myresume.introduces.prof_degree');
+            console.log(allItem.Myresume, 'allItem.Myresume');
+            if (edit < 1) {
+              setMultiIndex([one, two]);
+              setAllpro(allItem.Myresume.introduces.hometown_id.split(","));
+              if (allItem.Myresume.introduces.prof_degree > 0) {
+                setProficiencyIndex(parseInt(allItem.Myresume.introduces.prof_degree) - 1);
+              } else {
+                setProficiencyIndex(parseInt(allItem.Myresume.introduces.prof_degree));
+              }
+              if (allItem.Myresume.introduces.prof_degree > 0) {
+                setUserIndex(parseInt(allItem.Myresume.introduces.type) + 1);
+              } else {
+                setUserIndex(parseInt(allItem.Myresume.introduces.type));
+              }
+              setMultiArray([data, lastCity]);
             }
-            setUserIndex(parseInt(allItem.Myresume.introduces.prof_degree));
-            setMultiArray([data, lastCity]);
           }
         }
       }, [edit]);
@@ -314,7 +323,6 @@ var PersonInfo = (_temp2 = _class = function (_Taro$Component) {
           value = proficiency[e.detail.value];
         } else if (key === 'personnel') {
           value = personnel[e.detail.value];
-          console.log(e.detail.value, 'value');
           if (e.detail.value !== '0') {
             setRanks(true);
           } else {
@@ -348,12 +356,10 @@ var PersonInfo = (_temp2 = _class = function (_Taro$Component) {
           _state[_key2] = _value;
           setFormData(_state);
         }
-        console.log(allpro, 'xxxxx');
         setAllpro(allpro);
       };
       // 第一列滑动
       var handlebindcolumnchange = function handlebindcolumnchange(e) {
-        console.log(e.detail.column, 'xx');
         var obj = {
           multiArray: multiArray,
           multiIndex: multiIndex
@@ -369,11 +375,8 @@ var PersonInfo = (_temp2 = _class = function (_Taro$Component) {
             obj.multiIndex[1] = 0;
             break;
         }
-        console.log(obj, 'obj');
         setMultiArray(obj.multiArray);
         setMultiIndex(obj.multiIndex);
-        console.log(obj.multiArray, 'obj.multiArray');
-        console.log(obj.multiIndex, 'obj.multiIndex');
         // 修改值
         setEdit(edit + 1);
       };
@@ -404,9 +407,7 @@ var PersonInfo = (_temp2 = _class = function (_Taro$Component) {
       };
       var handleSubmit = function handleSubmit() {
         var number_people = personnel.indexOf(formData.personnel);
-        console.log(number_people, 'xxx');
         var prof_degree = proficiency.indexOf(formData.proficiency);
-        console.log(prof_degree, '1111');
         var tags = tag.map(function (v) {
           return v.id;
         }).toString();
@@ -421,31 +422,57 @@ var PersonInfo = (_temp2 = _class = function (_Taro$Component) {
           tags: tags,
           type: number_people + 1
         };
-        console.log();
-        console.log(params);
+        if (!allpro) {}
+        console.log(params, 'parsadsa');
+        if (!formData.age) {
+          _taroWeapp2.default.showModal({
+            title: '温馨提示',
+            content: '请输入您的工龄',
+            showCancel: false
+          });
+          return;
+        }
+        if (!allpro) {
+          (0, _index2.default)('请选择家乡');
+          return;
+        }
+        if (!formData.proficiency) {
+          (0, _index2.default)('请选择熟练度');
+          return;
+        }
+        // 人员构成
+        var strone = /^[0-9]{1,4}$/ig;
+        // let strone = /[^0-9]/g;
+        if (!formData.personnel) {
+          (0, _index2.default)('请选择人员构成');
+          return;
+        }
+        if (number_people > 0) {
+          if (!strone.test(formData.type)) {
+            if (~~formData.type - 0 <= 1) {
+              _taroWeapp2.default.showModal({
+                title: '温馨提示',
+                content: '请输入您的队伍人数不得少于2人',
+                showCancel: false
+              });
+            }
+          }
+          return;
+        }
+        // console.log(params);
         // return;
-        (0, _index3.resumesIntroduceAction)(params).then(function (res) {
+        (0, _index4.resumesIntroduceAction)(params).then(function (res) {
           if (res.errcode === 200) {
-            _taroWeapp2.default.showModal({
-              title: '温馨提示',
-              content: res.errmsg,
-              showCancel: false,
-              success: function success() {
-                if (res.errcode === 200) {
-                  (0, _index2.SubscribeToNews)("resume", function () {
-                    (0, _index.SubPopup)({
-                      tips: res.errmsg,
-                      callback: function callback() {
-                        _taroWeapp2.default.navigateBack({
-                          delta: 1
-                        });
-                      }
-                    });
+            (0, _index3.SubscribeToNews)("resume", function () {
+              (0, _index.SubPopup)({
+                tips: res.errmsg,
+                callback: function callback() {
+                  _taroWeapp2.default.navigateBack({
+                    delta: 1
                   });
                 }
-              }
+              });
             });
-            return;
           } else {
             _taroWeapp2.default.showModal({
               title: '温馨提示',
@@ -482,12 +509,12 @@ var PersonInfo = (_temp2 = _class = function (_Taro$Component) {
       };
 
       this.anonymousFunc7 = handleSubmit;
-      var loopArray245 = label.map(function (v, __index6) {
+      var loopArray132 = label.map(function (v, __index6) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
 
-        var _$indexKey = "cabzz" + __index6;
+        var _$indexKey = "bdjzz" + __index6;
 
         _this2.anonymousFunc6Map[_$indexKey] = function () {
           return handleText(v.$original);
@@ -499,7 +526,7 @@ var PersonInfo = (_temp2 = _class = function (_Taro$Component) {
         };
       });
       Object.assign(this.__state, {
-        loopArray245: loopArray245,
+        loopArray132: loopArray132,
         formData: formData,
         multiIndex: multiIndex,
         multiArray: multiArray,

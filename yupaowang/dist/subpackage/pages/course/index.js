@@ -155,7 +155,7 @@ var Course = (_temp2 = _class = function (_Taro$Component) {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
 
-        var _$indexKey = "bbizz" + __index0;
+        var _$indexKey = "bbjzz" + __index0;
 
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           handleClick(item.$original.id);
@@ -180,13 +180,13 @@ var Course = (_temp2 = _class = function (_Taro$Component) {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
 
-        var _$indexKey2 = "bbjzz" + __index1;
+        var _$indexKey2 = "bcazz" + __index1;
 
         _this2.anonymousFunc1Map[_$indexKey2] = function () {
           bossIsShow(item.$original.id);
         };
 
-        var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "bcbzzzzzzz" + __index1, true),
+        var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "bcczzzzzzz" + __index1, true),
             _genCompid2 = _slicedToArray(_genCompid, 2),
             $prevCompid__107 = _genCompid2[0],
             $compid__107 = _genCompid2[1];
@@ -197,7 +197,7 @@ var Course = (_temp2 = _class = function (_Taro$Component) {
           "title": item.$original.title
         }, $compid__107, $prevCompid__107);
 
-        var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "bcczzzzzzz" + __index1, true),
+        var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "bcdzzzzzzz" + __index1, true),
             _genCompid4 = _slicedToArray(_genCompid3, 2),
             $prevCompid__108 = _genCompid4[0],
             $compid__108 = _genCompid4[1];
@@ -217,13 +217,13 @@ var Course = (_temp2 = _class = function (_Taro$Component) {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
 
-        var _$indexKey3 = "bcazz" + __index2;
+        var _$indexKey3 = "bcbzz" + __index2;
 
         _this2.anonymousFunc2Map[_$indexKey3] = function () {
           workerMasterIsShow(item.$original.id);
         };
 
-        var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "bcdzzzzzzz" + __index2, true),
+        var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "bcezzzzzzz" + __index2, true),
             _genCompid6 = _slicedToArray(_genCompid5, 2),
             $prevCompid__109 = _genCompid6[0],
             $compid__109 = _genCompid6[1];
@@ -234,7 +234,7 @@ var Course = (_temp2 = _class = function (_Taro$Component) {
           "title": item.$original.title
         }, $compid__109, $prevCompid__109);
 
-        var _genCompid7 = (0, _taroWeapp.genCompid)(__prefix + "bcezzzzzzz" + __index2, true),
+        var _genCompid7 = (0, _taroWeapp.genCompid)(__prefix + "bcfzzzzzzz" + __index2, true),
             _genCompid8 = _slicedToArray(_genCompid7, 2),
             $prevCompid__110 = _genCompid8[0],
             $compid__110 = _genCompid8[1];

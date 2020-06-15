@@ -317,7 +317,7 @@ var RecruitMap = (_temp2 = _class = function (_Taro$Component) {
         };
         var $loopState__temp2 = showHistory ? index + index : null;
 
-        var _$indexKey = "bcgzz" + index;
+        var _$indexKey = "bchzz" + index;
 
         _this2.anonymousFunc4Map[_$indexKey] = function () {
           return userClickAreaItem(item.$original);
@@ -335,7 +335,7 @@ var RecruitMap = (_temp2 = _class = function (_Taro$Component) {
         };
         var $loopState__temp4 = index + index;
 
-        var _$indexKey2 = "bchzz" + index;
+        var _$indexKey2 = "bcizz" + index;
 
         _this2.anonymousFunc5Map[_$indexKey2] = function () {
           return userClickAreaItem(item.$original);

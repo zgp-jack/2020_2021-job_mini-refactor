@@ -125,7 +125,7 @@ var Mymessage = (_temp2 = _class = function (_Taro$Component) {
         };
         var $loopState__temp2 = index + index;
 
-        var _$indexKey = "ijzzz" + index;
+        var _$indexKey = "jazzz" + index;
 
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return userRouteJump("/pages/information/system/index?type=" + item.$original.type);

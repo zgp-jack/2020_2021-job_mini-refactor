@@ -232,7 +232,7 @@ var UsedPublish = (_temp2 = _class = function (_Taro$Component) {
           'drawer-list-item-active': index === parentCurrent
         }) : null;
 
-        var _$indexKey = "ihzzz" + index;
+        var _$indexKey = "iizzz" + index;
 
         _this2.anonymousFunc1Map[_$indexKey] = function () {
           return useClickClassifyParentId(index);
@@ -253,7 +253,7 @@ var UsedPublish = (_temp2 = _class = function (_Taro$Component) {
           'drawer-list-item-active': k == childCurrent && item.$original.id == model.attribute_id
         }) : null;
 
-        var _$indexKey2 = "iizzz" + k;
+        var _$indexKey2 = "ijzzz" + k;
 
         _this2.anonymousFunc2Map[_$indexKey2] = function () {
           return useClickClassifyChildId(k);

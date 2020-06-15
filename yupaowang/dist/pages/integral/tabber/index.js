@@ -710,7 +710,7 @@ var Tabber = (_temp2 = _class = function (_Taro$Component) {
         };
         var $loopState__temp2 = index + index;
 
-        var _$indexKey = "bedzz" + index;
+        var _$indexKey = "beezz" + index;
 
         _this2.anonymousFunc3Map[_$indexKey] = function () {
           return handleModal(item.$original.id);

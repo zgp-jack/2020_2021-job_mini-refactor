@@ -152,13 +152,13 @@ var SkillList = (_temp2 = _class = function (_Taro$Component) {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
 
-        var _$indexKey = "jdzzz" + i;
+        var _$indexKey = "jezzz" + i;
 
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return userRouteJump("/pages/resume/addSkill/index?type=" + i + "&id=" + id);
         };
 
-        var _$indexKey2 = "jezzz" + i;
+        var _$indexKey2 = "jfzzz" + i;
 
         _this2.anonymousFunc1Map[_$indexKey2] = function () {
           return userRouteJump("/pages/resume/addSkill/index?type=" + i + "&id=" + id);
@@ -169,7 +169,7 @@ var SkillList = (_temp2 = _class = function (_Taro$Component) {
             $original: (0, _taroWeapp.internal_get_original)(v)
           };
           var $loopState__temp2 = i + i;
-          var _$indexKey3 = "jfzzz" + i + "-" + i;
+          var _$indexKey3 = "jgzzz" + i + "-" + i;
 
           _this2.anonymousFunc2Map[_$indexKey3] = function () {
             return handleImg(v.$original);

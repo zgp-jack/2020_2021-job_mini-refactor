@@ -16,7 +16,7 @@
         </view>
         <view class="feedback-content-middle-imgBox">
             <block wx:if="{{image.item}}">
-                <image-view compid="{{$compid__153}}"></image-view>
+                <image-view compid="{{$compid__165}}"></image-view>
             </block>
         </view>
         <view class="footer">
@@ -25,10 +25,17 @@
                     <view class="left" bindtap="anonymousFunc2">删除</view>
                 </block>
                 <block wx:else>
-                    <view class="left" bindtap="anonymousFunc3">取消</view>
+                    <block>
+                        <block wx:if="{{num >= maxNum}}">
+                            <view class="left" bindtap="anonymousFunc3">取消</view>
+                        </block>
+                        <block wx:else>
+                            <view class="left" bindtap="anonymousFunc4">保存 继续添加</view>
+                        </block>
+                    </block>
                 </block>
             </block>
-            <view class="right" bindtap="anonymousFunc4">确认保存</view>
+            <view class="right" bindtap="anonymousFunc5">确认保存</view>
         </view>
     </view>
 </block>

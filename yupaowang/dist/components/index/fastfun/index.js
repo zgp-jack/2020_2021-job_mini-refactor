@@ -85,7 +85,7 @@ var Fastfun = (_temp2 = _class = function (_Taro$Component) {
         };
         var $loopState__temp2 = index + index;
 
-        var _$indexKey = "bbczz" + index;
+        var _$indexKey = "bbdzz" + index;
 
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return userRouteJump(item.$original.url);

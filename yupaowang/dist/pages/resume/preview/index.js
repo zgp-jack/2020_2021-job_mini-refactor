@@ -256,7 +256,7 @@ var Preview = (_temp2 = _class = function (_Taro$Component) {
             $original: (0, _taroWeapp.internal_get_original)(v)
           };
           var $loopState__temp8 = data.project.length ? i + i : null;
-          var _$indexKey = "bdgzz" + i + "-" + i;
+          var _$indexKey = "bdhzz" + i + "-" + i;
 
           _this2.anonymousFunc0Map[_$indexKey] = function () {
             return handleImg(v.$original);
@@ -283,7 +283,7 @@ var Preview = (_temp2 = _class = function (_Taro$Component) {
             $original: (0, _taroWeapp.internal_get_original)(v)
           };
           var $loopState__temp10 = data.certificates.length ? i + i : null;
-          var _$indexKey2 = "bdhzz" + __index3 + "-" + i;
+          var _$indexKey2 = "bdizz" + __index3 + "-" + i;
 
           _this2.anonymousFunc2Map[_$indexKey2] = function () {
             return handleImg(v.$original);

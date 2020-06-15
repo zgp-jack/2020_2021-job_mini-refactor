@@ -193,7 +193,7 @@ var Tabbar = (_temp2 = _class = function (_Taro$Component) {
           'common-footer-tabbar-list-active': item.$original.id === tabbar.key
         });
 
-        var _$indexKey = "baczz" + __index0;
+        var _$indexKey = "badzz" + __index0;
 
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return changeTabbarAction(item.$original);

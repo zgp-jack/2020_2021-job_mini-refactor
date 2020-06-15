@@ -874,7 +874,7 @@ export default function NewJob() {
                     }
                     {checkonef == '0' &&
                       <View className="cardtwosontwo">
-                        <Text>待修改</Text>
+                    <Text onClick={() => userRouteJump('/pages/resume/basics/index')}>待修改</Text>
                       </View>
                     }
                   </View>
@@ -957,7 +957,7 @@ export default function NewJob() {
                   <View className="cardthreeone" onClick={() => userRouteJump('/subpackage/pages/personInfo/index?type=1')}>编辑</View>
                 }
                 {!checktwo && checkonef == '0' &&
-                  <View className="cardthreeone" >待修改</View>
+                <View className="cardthreeone" onClick={() => userRouteJump('/subpackage/pages/personInfo/index?type=1')} >待修改</View>
                 }
               </View>
               }
@@ -1061,10 +1061,10 @@ export default function NewJob() {
                   {/* wx: if="{{ item.check == 2 }}" */}
                   {/* bindtap="editor" data-uid="{{ item }}" */}
                   {item.check == 2 &&
-                    <View className="editor" onClick={() => userRouteJump(`/pages/resume/addProject/index?type=0`)}>编辑</View>
+                    <View className="editor" onClick={() => userRouteJump(`/pages/resume/addProject/index?type=0&id=${data.info.uuid}`)}>编辑</View>
                   }
                   {item.check == 0 &&
-                    <View className="editor">待修改</View>
+                    <View className="editor" onClick={() => userRouteJump(`/pages/resume/addProject/index?type=0&id=${data.info.uuid}`)}>待修改</View>
                   }
                   {/* wx: if="{{ item.check == 0 }}" */}
                   {item.check == 0 &&

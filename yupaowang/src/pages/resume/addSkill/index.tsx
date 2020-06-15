@@ -40,13 +40,22 @@ export default function AddSkillPage() {
   })
   // uuid
   const [uuid, setUuid] = useState<string>('')
+  // 设置技能证书数量
+  const [num, setNum] = useState<number>(0)
+  // 最大数量
+  const [maxNum,setMaxNum] = useState<number>(3);
   useEffect(()=>{
-    Taro.setNavigationBarTitle({
-      title: '修改技能证书'
-    })
-    console.log(type,'xxx')
     // console.log(skillData,'skillData')
+    // 设置技能长度
+    if (useSelectorItem.Myresume){
+      const listNum = useSelectorItem.Myresume.certificates.length ? useSelectorItem.Myresume.certificates.length:0;
+      setNum(listNum);
+      setMaxNum(useSelectorItem.Myresume.certificate_count)
+    }
     if (type){
+      Taro.setNavigationBarTitle({
+        title: '修改技能证书'
+      })
       const AllData = JSON.parse(JSON.stringify(useSelectorItem.Myresume));
       if (AllData){
         const data = AllData.certificates[type];
@@ -95,7 +104,15 @@ export default function AddSkillPage() {
     })
   }
   // 确定保存
-  const handelSubmit = ()=>{
+  const handelSubmit = (state:number)=>{
+    if (num > maxNum){
+      Taro.showModal({
+        title: '温馨提示',
+        content: `最多只能添加${maxNum}个技能证书`,
+        showCancel: false,
+      })
+      return;
+    } 
     if (!val){
       Taro.showModal({
         title: '温馨提示',
@@ -144,9 +161,16 @@ export default function AddSkillPage() {
           SubPopup({
             tips: res.errmsg,
             callback: () => {
-            Taro.navigateBack({
-                delta: 1
-              })
+              if(state === 0){
+                setVal('');
+                setExtraText('')
+                setImage({item:[]})
+                setNum(num+1)
+              }else{
+                Taro.navigateBack({
+                    delta: 1
+                  })
+              }
             }
           })
         })
@@ -222,9 +246,12 @@ export default function AddSkillPage() {
       <View className='footer'>
         {type ? 
           <View className='left' onClick={handleDel}>删除</View>:
-          <View className='left' onClick={handleCanle}>取消</View>
+          (num >= maxNum ?
+          <View className='left' onClick={handleCanle}>取消</View>:
+          <View className='left' onClick={() => handelSubmit(0)}>保存 继续添加</View>
+          )
         }
-        <View className='right' onClick={handelSubmit}>确认保存</View>
+        <View className='right' onClick={() => handelSubmit(1)}>确认保存</View>
       </View>
     </View>
   )

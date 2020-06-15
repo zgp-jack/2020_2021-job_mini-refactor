@@ -619,7 +619,7 @@ var Distruction = (_temp2 = _class = function (_Taro$Component) {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
 
-        var _$indexKey = "bdjzz" + __index2;
+        var _$indexKey = "beazz" + __index2;
 
         _this2.anonymousFunc2Map[_$indexKey] = function () {
           return handleSeach(v.$original);
@@ -635,7 +635,7 @@ var Distruction = (_temp2 = _class = function (_Taro$Component) {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
 
-        var _$indexKey2 = "beazz" + __index4;
+        var _$indexKey2 = "bebzz" + __index4;
 
         _this2.anonymousFunc4Map[_$indexKey2] = function () {
           return handleSeach(v.$original);
@@ -651,7 +651,7 @@ var Distruction = (_temp2 = _class = function (_Taro$Component) {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
 
-        var _$indexKey3 = "bebzz" + __index5;
+        var _$indexKey3 = "beczz" + __index5;
 
         _this2.anonymousFunc5Map[_$indexKey3] = function () {
           handleAllAre(v.$original, 1);
@@ -670,7 +670,7 @@ var Distruction = (_temp2 = _class = function (_Taro$Component) {
           val = {
             $original: (0, _taroWeapp.internal_get_original)(val)
           };
-          var _$indexKey4 = 'beczz' + __index7 + '-' + index;
+          var _$indexKey4 = 'bedzz' + __index7 + '-' + index;
 
           _this2.anonymousFunc6Map[_$indexKey4] = function () {
             return handleAllAre(val.$original, 0);

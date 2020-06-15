@@ -72,7 +72,7 @@ var AddSkillPage = (_temp2 = _class = function (_Taro$Component) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AddSkillPage.__proto__ || Object.getPrototypeOf(AddSkillPage)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
       navigationBarTitleText: '新增技能证书'
-    }, _this.$usedState = ["$compid__153", "val", "extraText", "image", "type"], _this.customComponents = ["ImageView"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["$compid__165", "val", "extraText", "image", "type", "num", "maxNum"], _this.customComponents = ["ImageView"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(AddSkillPage, [{
@@ -91,10 +91,10 @@ var AddSkillPage = (_temp2 = _class = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__153"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__165"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__153 = _genCompid2[0],
-          $compid__153 = _genCompid2[1];
+          $prevCompid__165 = _genCompid2[0],
+          $compid__165 = _genCompid2[1];
 
       var router = (0, _taroWeapp.useRouter)();
       // 获取存入的公用内容
@@ -141,14 +141,33 @@ var AddSkillPage = (_temp2 = _class = function (_Taro$Component) {
           _useState8 = _slicedToArray(_useState7, 2),
           uuid = _useState8[0],
           setUuid = _useState8[1];
+      // 设置技能证书数量
+
+
+      var _useState9 = (0, _taroWeapp.useState)(0),
+          _useState10 = _slicedToArray(_useState9, 2),
+          num = _useState10[0],
+          setNum = _useState10[1];
+      // 最大数量
+
+
+      var _useState11 = (0, _taroWeapp.useState)(3),
+          _useState12 = _slicedToArray(_useState11, 2),
+          maxNum = _useState12[0],
+          setMaxNum = _useState12[1];
 
       (0, _taroWeapp.useEffect)(function () {
-        _taroWeapp2.default.setNavigationBarTitle({
-          title: '修改技能证书'
-        });
-        console.log(type, 'xxx');
         // console.log(skillData,'skillData')
+        // 设置技能长度
+        if (useSelectorItem.Myresume) {
+          var listNum = useSelectorItem.Myresume.certificates.length ? useSelectorItem.Myresume.certificates.length : 0;
+          setNum(listNum);
+          setMaxNum(useSelectorItem.Myresume.certificate_count);
+        }
         if (type) {
+          _taroWeapp2.default.setNavigationBarTitle({
+            title: '修改技能证书'
+          });
           var AllData = JSON.parse(JSON.stringify(useSelectorItem.Myresume));
           if (AllData) {
             var data = AllData.certificates[type];
@@ -199,7 +218,15 @@ var AddSkillPage = (_temp2 = _class = function (_Taro$Component) {
         });
       };
       // 确定保存
-      var handelSubmit = function handelSubmit() {
+      var handelSubmit = function handelSubmit(state) {
+        if (num > maxNum) {
+          _taroWeapp2.default.showModal({
+            title: '温馨提示',
+            content: "\u6700\u591A\u53EA\u80FD\u6DFB\u52A0" + maxNum + "\u4E2A\u6280\u80FD\u8BC1\u4E66",
+            showCancel: false
+          });
+          return;
+        }
         if (!val) {
           _taroWeapp2.default.showModal({
             title: '温馨提示',
@@ -250,9 +277,16 @@ var AddSkillPage = (_temp2 = _class = function (_Taro$Component) {
               (0, _index3.SubPopup)({
                 tips: res.errmsg,
                 callback: function callback() {
-                  _taroWeapp2.default.navigateBack({
-                    delta: 1
-                  });
+                  if (state === 0) {
+                    setVal('');
+                    setExtraText('');
+                    setImage({ item: [] });
+                    setNum(num + 1);
+                  } else {
+                    _taroWeapp2.default.navigateBack({
+                      delta: 1
+                    });
+                  }
                 }
               });
             });
@@ -295,18 +329,28 @@ var AddSkillPage = (_temp2 = _class = function (_Taro$Component) {
 
       this.anonymousFunc2 = handleDel;
       this.anonymousFunc3 = handleCanle;
-      this.anonymousFunc4 = handelSubmit;
+
+      this.anonymousFunc4 = function () {
+        return handelSubmit(0);
+      };
+
+      this.anonymousFunc5 = function () {
+        return handelSubmit(1);
+      };
+
       image.item && _taroWeapp.propsManager.set({
         "images": image.item,
         "max": 3,
         "userUploadImg": userUploadImg
-      }, $compid__153, $prevCompid__153);
+      }, $compid__165, $prevCompid__165);
       Object.assign(this.__state, {
-        $compid__153: $compid__153,
+        $compid__165: $compid__165,
         val: val,
         extraText: extraText,
         image: image,
-        type: type
+        type: type,
+        num: num,
+        maxNum: maxNum
       });
       return this.__state;
     }
@@ -335,10 +379,15 @@ var AddSkillPage = (_temp2 = _class = function (_Taro$Component) {
     value: function anonymousFunc4(e) {
       ;
     }
+  }, {
+    key: "anonymousFunc5",
+    value: function anonymousFunc5(e) {
+      ;
+    }
   }]);
 
   return AddSkillPage;
-}(_taroWeapp2.default.Component), _class.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4"], _class.$$componentPath = "pages/resume/addSkill/index", _temp2);
+}(_taroWeapp2.default.Component), _class.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5"], _class.$$componentPath = "pages/resume/addSkill/index", _temp2);
 
 
 AddSkillPage.config = { navigationBarTitleText: '新增技能证书' };

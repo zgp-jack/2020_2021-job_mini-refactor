@@ -96,7 +96,7 @@ var Profession = (_temp2 = _class = function (_Taro$Component) {
           d = {
             $original: (0, _taroWeapp.internal_get_original)(d)
           };
-          var _$indexKey = 'badzz' + i + '-' + k;
+          var _$indexKey = 'baezz' + i + '-' + k;
 
           _this2.anonymousFunc0Map[_$indexKey] = function () {
             return _this2.__props.onClickItem(i, k, d.$original.id, d.$original.name);

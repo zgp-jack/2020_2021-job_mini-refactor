@@ -69,7 +69,7 @@ var ResumeDetail = (_temp2 = _class = function (_Taro$Component) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ResumeDetail.__proto__ || Object.getPrototypeOf(ResumeDetail)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
       navigationBarTitleText: '找活名片'
-    }, _this.$usedState = ["data", "loopArray141", "loopArray143", "loopArray144", "$compid__125", "$compid__126", "isAuth", "IMGCDNURL", "examine", "onoff", "list", "praise", "collect", "shownewtips", "complaintModal", "age", "phone"], _this.anonymousFunc4Map = {}, _this.anonymousFunc6Map = {}, _this.customComponents = ["Auth", "CollectionRecruitList", "Report"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["data", "loopArray139", "loopArray141", "loopArray142", "$compid__123", "$compid__124", "isAuth", "IMGCDNURL", "examine", "onoff", "list", "praise", "collect", "shownewtips", "complaintModal", "age", "phone"], _this.anonymousFunc4Map = {}, _this.anonymousFunc6Map = {}, _this.customComponents = ["Auth", "CollectionRecruitList", "Report"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(ResumeDetail, [{
@@ -90,15 +90,15 @@ var ResumeDetail = (_temp2 = _class = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__125"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__123"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__125 = _genCompid2[0],
-          $compid__125 = _genCompid2[1];
+          $prevCompid__123 = _genCompid2[0],
+          $compid__123 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__126"),
+      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__124"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__126 = _genCompid4[0],
-          $compid__126 = _genCompid4[1];
+          $prevCompid__124 = _genCompid4[0],
+          $compid__124 = _genCompid4[1];
 
       // 获取用户是否登录
 
@@ -475,7 +475,7 @@ var ResumeDetail = (_temp2 = _class = function (_Taro$Component) {
       };
 
       this.anonymousFunc11 = handleTellPhone;
-      var loopArray141 = data.info.occupations.length ? data.info.occupations.map(function (v, i) {
+      var loopArray139 = data.info.occupations.length ? data.info.occupations.map(function (v, i) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
@@ -485,7 +485,7 @@ var ResumeDetail = (_temp2 = _class = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray143 = data.project.length ? data.project[0].image.map(function (v, i) {
+      var loopArray141 = data.project.length ? data.project[0].image.map(function (v, i) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
@@ -503,7 +503,7 @@ var ResumeDetail = (_temp2 = _class = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray144 = data.certificates.length ? data.certificates[0].image.map(function (val, i) {
+      var loopArray142 = data.certificates.length ? data.certificates[0].image.map(function (val, i) {
         val = {
           $original: (0, _taroWeapp.internal_get_original)(val)
         };
@@ -524,21 +524,21 @@ var ResumeDetail = (_temp2 = _class = function (_Taro$Component) {
       list.item.length && _taroWeapp.propsManager.set({
         "data": list.item,
         "type": 2
-      }, $compid__125, $prevCompid__125);
+      }, $compid__123, $prevCompid__123);
       complaintModal && _taroWeapp.propsManager.set({
         "display": complaintModal,
         "textarea": textarea,
         "handleTextarea": handleTextarea,
         "setComplaintModal": setComplaintModal,
         "handleSubmit": handleSubmit
-      }, $compid__126, $prevCompid__126);
+      }, $compid__124, $prevCompid__124);
       Object.assign(this.__state, {
         data: data,
+        loopArray139: loopArray139,
         loopArray141: loopArray141,
-        loopArray143: loopArray143,
-        loopArray144: loopArray144,
-        $compid__125: $compid__125,
-        $compid__126: $compid__126,
+        loopArray142: loopArray142,
+        $compid__123: $compid__123,
+        $compid__124: $compid__124,
         isAuth: isAuth,
         IMGCDNURL: _index2.IMGCDNURL,
         examine: examine,

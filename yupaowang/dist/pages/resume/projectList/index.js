@@ -149,13 +149,13 @@ var ProjectList = (_temp2 = _class = function (_Taro$Component) {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
 
-        var _$indexKey = "jgzzz" + i;
+        var _$indexKey = "jhzzz" + i;
 
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return userRouteJump("/pages/resume/addProject/index?type=" + i + "&id=" + id);
         };
 
-        var _$indexKey2 = "jhzzz" + i;
+        var _$indexKey2 = "jizzz" + i;
 
         _this2.anonymousFunc1Map[_$indexKey2] = function () {
           return userRouteJump("/pages/resume/addProject/index?type=" + i + "&id=" + id);
@@ -166,7 +166,7 @@ var ProjectList = (_temp2 = _class = function (_Taro$Component) {
             $original: (0, _taroWeapp.internal_get_original)(v)
           };
           var $loopState__temp2 = i + i;
-          var _$indexKey3 = "jizzz" + i + "-" + i;
+          var _$indexKey3 = "jjzzz" + i + "-" + i;
 
           _this2.anonymousFunc2Map[_$indexKey3] = function () {
             return handleImg(v.$original);

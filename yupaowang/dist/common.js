@@ -364,7 +364,7 @@ var ResumeMap = (_temp2 = _class = function (_Taro$Component) {
         };
         var $loopState__temp2 = showHistory ? index + index : null;
 
-        var _$indexKey = "bcizz" + index;
+        var _$indexKey = "bcjzz" + index;
 
         _this2.anonymousFunc4Map[_$indexKey] = function () {
           return userClickAreaItem(item.$original);
@@ -382,7 +382,7 @@ var ResumeMap = (_temp2 = _class = function (_Taro$Component) {
         };
         var $loopState__temp4 = index + index;
 
-        var _$indexKey2 = "bcjzz" + index;
+        var _$indexKey2 = "bdazz" + index;
 
         _this2.anonymousFunc5Map[_$indexKey2] = function () {
           return userClickAreaItem(item.$original);
@@ -1933,7 +1933,7 @@ var Topping = (_temp2 = _class = function (_Taro$Component) {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
 
-        var _$indexKey = "behzz" + __index0;
+        var _$indexKey = "beizz" + __index0;
 
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return handleDel(v.$original);
@@ -1949,7 +1949,7 @@ var Topping = (_temp2 = _class = function (_Taro$Component) {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
 
-        var _$indexKey2 = "beizz" + __index1;
+        var _$indexKey2 = "bejzz" + __index1;
 
         _this2.anonymousFunc1Map[_$indexKey2] = function () {
           return handleDel(v.$original);
@@ -1965,7 +1965,7 @@ var Topping = (_temp2 = _class = function (_Taro$Component) {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
 
-        var _$indexKey3 = "bejzz" + __index2;
+        var _$indexKey3 = "bfazz" + __index2;
 
         _this2.anonymousFunc2Map[_$indexKey3] = function () {
           return handleDel(v.$original);
@@ -1981,7 +1981,7 @@ var Topping = (_temp2 = _class = function (_Taro$Component) {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
 
-        var _$indexKey4 = "bfazz" + __index3;
+        var _$indexKey4 = "bfbzz" + __index3;
 
         _this2.anonymousFunc3Map[_$indexKey4] = function () {
           return handleDel(v.$original);
@@ -3118,23 +3118,18 @@ function usePublishViewInfo(InitParams) {
     // 拼接小地址的描述
     data.address += '@@@@@' + areaInfo.info;
     (0, _index.publishRecruitInfo)(data).then(function (res) {
-      (0, _index3.ShowActionModal)({
-        msg: res.errmsg,
-        success: function success() {
-          if (res.errcode == 'ok') {
-            (0, _index5.SubscribeToNews)("recruit", function () {
-              (0, _index3.SubPopup)({
-                tips: res.errmsg,
-                callback: function callback() {
-                  _taroWeapp2.default.reLaunch({
-                    url: '/pages/published/recruit/index'
-                  });
-                }
+      if (res.errcode == 'ok') {
+        (0, _index5.SubscribeToNews)("recruit", function () {
+          (0, _index3.SubPopup)({
+            tips: res.errmsg,
+            callback: function callback() {
+              _taroWeapp2.default.reLaunch({
+                url: '/pages/published/recruit/index'
               });
-            });
-          }
-        }
-      });
+            }
+          });
+        });
+      }
     });
   }
   return {

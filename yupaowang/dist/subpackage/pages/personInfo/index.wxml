@@ -9,7 +9,7 @@
             <view class="publish-recruit-card">
                 <picker mode="multiSelector" bindchange="anonymousFunc1" value="{{multiIndex}}" range="{{multiArray}}" bindcolumnchange="anonymousFunc2">
                     <view class="publish-list-item"><text class="pulish-list-title">所在地区</text>:
-                        <input class="publish-list-input" type="text" placeholder="请选择你的家乡" value="{{formData && formData.address}}" />
+                        <input class="publish-list-input" type="text" disabled="{{true}}" placeholder="请选择你的家乡" value="{{formData && formData.address}}" />
                     </view>
                 </picker>
             </view>
@@ -30,14 +30,14 @@
             <block wx:if="{{ranks}}">
                 <view class="publish-recruit-card">
                     <view class="publish-list-item"><text class="pulish-list-title">队伍人数</text>:
-                        <input class="publish-list-input" type="text" placeholder="请输入队伍人数" value="{{formData && formData.type}}" bindinput="anonymousFunc5" />
+                        <input class="publish-list-input" type="number" maxlength="{{4}}" placeholder="请输入队伍人数" value="{{formData && formData.type}}" bindinput="anonymousFunc5" />
                     </view>
                 </view>
             </block>
         </form>
         <view class="personInfo-label">
             <view class="personInfo-label-title">为自己贴个标签，让老板更懂你(可选3个):</view>
-            <view class="personInfo-label-list-box"><text class="{{v.$original.click ? 'personInfo-label-list-click' : 'personInfo-label-list'}}" wx:key="id" bindtap="anonymousFunc6" wx:for="{{loopArray245}}" wx:for-item="v" wx:for-index="__index6" data-e-tap-so="this" data-e-tap-a-a="{{v._$indexKey}}">{{v.$original.label_name}}</text>
+            <view class="personInfo-label-list-box"><text class="{{v.$original.click ? 'personInfo-label-list-click' : 'personInfo-label-list'}}" wx:key="id" bindtap="anonymousFunc6" wx:for="{{loopArray132}}" wx:for-item="v" wx:for-index="__index6" data-e-tap-so="this" data-e-tap-a-a="{{v._$indexKey}}">{{v.$original.label_name}}</text>
             </view>
         </view>
         <view class="personInfo-footer">

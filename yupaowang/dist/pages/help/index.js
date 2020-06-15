@@ -206,37 +206,37 @@ var Help = (_temp2 = _class = function (_Taro$Component) {
         };
         var $loopState__temp2 = { value: 'help', color: '#09f', size: '15' };
 
-        var _$indexKey = "hizzz" + __index2;
+        var _$indexKey = "hjzzz" + __index2;
 
         _this2.anonymousFunc2Map[_$indexKey] = function () {
           handleShow(item.$original.id);
         };
 
-        var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "hjzzzzzzzz" + __index2, true),
+        var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "iazzzzzzzz" + __index2, true),
             _genCompid2 = _slicedToArray(_genCompid, 2),
-            $prevCompid__75 = _genCompid2[0],
-            $compid__75 = _genCompid2[1];
+            $prevCompid__68 = _genCompid2[0],
+            $compid__68 = _genCompid2[1];
 
         _taroWeapp.propsManager.set({
           "icon": $loopState__temp2,
           "open": item.$original.isShow,
           "onClick": _this2.anonymousFunc2.bind(_this2, _$indexKey),
           "title": item.$original.question
-        }, $compid__75, $prevCompid__75);
+        }, $compid__68, $prevCompid__68);
 
-        var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "iazzzzzzzz" + __index2, true),
+        var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "ibzzzzzzzz" + __index2, true),
             _genCompid4 = _slicedToArray(_genCompid3, 2),
-            $prevCompid__76 = _genCompid4[0],
-            $compid__76 = _genCompid4[1];
+            $prevCompid__69 = _genCompid4[0],
+            $compid__69 = _genCompid4[1];
 
         _taroWeapp.propsManager.set({
           "hasBorder": false
-        }, $compid__76, $prevCompid__76);
+        }, $compid__69, $prevCompid__69);
         return {
           $loopState__temp2: $loopState__temp2,
           _$indexKey: _$indexKey,
-          $compid__75: $compid__75,
-          $compid__76: $compid__76,
+          $compid__68: $compid__68,
+          $compid__69: $compid__69,
           $original: item.$original
         };
       });

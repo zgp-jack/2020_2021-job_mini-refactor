@@ -325,7 +325,7 @@ var PublishedRecruit = (_temp2 = _class = function (_Taro$Component) {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
 
-        var _$indexKey = "bdazz" + __index0;
+        var _$indexKey = "bdbzz" + __index0;
 
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return userChangePublishedItem(item.$original.id);
@@ -346,31 +346,31 @@ var PublishedRecruit = (_temp2 = _class = function (_Taro$Component) {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
 
-        var _$indexKey2 = "bdbzz" + index;
+        var _$indexKey2 = "bdczz" + index;
 
         _this2.anonymousFunc3Map[_$indexKey2] = function () {
           return userRouteJump("/pages/detail/info/index?id=" + item.$original.id);
         };
 
-        var _$indexKey3 = "bdczz" + index;
+        var _$indexKey3 = "bddzz" + index;
 
         _this2.anonymousFunc4Map[_$indexKey3] = function () {
           return userStopRecruit(item.$original.id, index);
         };
 
-        var _$indexKey4 = "bddzz" + index;
+        var _$indexKey4 = "bdezz" + index;
 
         _this2.anonymousFunc5Map[_$indexKey4] = function () {
           return handlCancel(item.$original.id);
         };
 
-        var _$indexKey5 = "bdezz" + index;
+        var _$indexKey5 = "bdfzz" + index;
 
         _this2.anonymousFunc6Map[_$indexKey5] = function () {
           return handleTopping(item.$original);
         };
 
-        var _$indexKey6 = "bdfzz" + index;
+        var _$indexKey6 = "bdgzz" + index;
 
         _this2.anonymousFunc7Map[_$indexKey6] = function () {
           return userRouteJump("/pages/topping/index?id=" + item.$original.id + "&type=1");

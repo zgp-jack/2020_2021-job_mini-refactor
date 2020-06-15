@@ -154,7 +154,7 @@ var RecListPage = (_temp2 = _class = function (_Taro$Component) {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
 
-        var _$indexKey = "jjzzz" + __index1;
+        var _$indexKey = "baazz" + __index1;
 
         _this2.anonymousFunc1Map[_$indexKey] = function () {
           return userRouteJump("/pages/detail/info/index?id=" + v.$original.id);

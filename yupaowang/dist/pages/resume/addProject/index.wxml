@@ -1,25 +1,25 @@
 <block wx:if="{{$taroCompReady}}">
     <view class="addProjectPage">
         <view class="content">
-            <at-input compid="{{$compid__239}}"></at-input>
+            <at-input compid="{{$compid__118}}"></at-input>
             <view class="publish-recruit-card">
                 <picker mode="date" bindchange="anonymousFunc1" value="{{startTime}}">
                     <view class="publish-list-item"><text class="pulish-list-title">开工时间</text>:
-                        <input class="publish-list-input" type="text" placeholder="请选择开工时间" value="{{startTime}}" />
+                        <input class="publish-list-input" type="text" disabled="{{true}}" placeholder="请选择开工时间" value="{{startTime}}" />
                     </view>
                 </picker>
             </view>
             <view class="publish-recruit-card">
                 <picker mode="date" bindchange="anonymousFunc2" value="{{endTime}}">
                     <view class="publish-list-item"><text class="pulish-list-title">完工时间</text>:
-                        <input class="publish-list-input" type="text" placeholder="请选择完工时间" value="{{endTime}}" />
+                        <input class="publish-list-input" type="text" disabled="{{true}}" placeholder="请选择完工时间" value="{{endTime}}" />
                     </view>
                 </picker>
             </view>
             <view class="publish-recruit-card">
                 <picker mode="multiSelector" bindchange="anonymousFunc3" value="{{multiIndex}}" range="{{multiArray}}" bindcolumnchange="anonymousFunc4">
                     <view class="publish-list-item"><text class="pulish-list-title">所在地区</text>:
-                        <input class="publish-list-input" type="text" placeholder="请选择你的所在地区" value="{{multiIndexvalue}}" />
+                        <input class="publish-list-input" type="text" disabled="{{true}}" placeholder="请选择你的所在地区" value="{{multiIndexvalue}}" />
                     </view>
                 </picker>
             </view>
@@ -28,13 +28,13 @@
                     <view>项目详情:</view>
                     <textarea class="feedback-content-middle-textarea" value="{{textarea}}" bindinput="anonymousFunc5" maxlength="{{500}}" placeholder="主要描述工作中的项目情况..."></textarea>
                     <view class="feedback-wordsTotal">
-                        <words-total compid="{{$compid__240}}"></words-total>
+                        <words-total compid="{{$compid__119}}"></words-total>
                     </view>
                 </view>
             </view>
             <view class="feedback-content-middle-imgBox">
                 <block wx:if="{{image.item}}">
-                    <image-view compid="{{$compid__241}}"></image-view>
+                    <image-view compid="{{$compid__120}}"></image-view>
                 </block>
             </view>
         </view>

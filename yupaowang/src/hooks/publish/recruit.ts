@@ -212,23 +212,18 @@ export default function usePublishViewInfo(InitParams: InitRecruitView){
     // 拼接小地址的描述
     data.address += '@@@@@' + areaInfo.info
     publishRecruitInfo(data).then(res=>{
-      ShowActionModal({
-        msg: res.errmsg,
-        success: () => {
-          if(res.errcode == 'ok'){
-            SubscribeToNews("recruit", () => {
-              SubPopup({
-                tips: res.errmsg,
-                callback: () => {
-                  Taro.reLaunch({
-                    url: '/pages/published/recruit/index'
-                  })
-                }
+      if(res.errcode == 'ok'){
+        SubscribeToNews("recruit", () => {
+          SubPopup({
+            tips: res.errmsg,
+            callback: () => {
+              Taro.reLaunch({
+                url: '/pages/published/recruit/index'
               })
-            })
-          }
-        }
-      })
+            }
+          })
+        })
+      }
     })
   }
 

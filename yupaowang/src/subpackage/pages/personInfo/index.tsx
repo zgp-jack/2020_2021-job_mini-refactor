@@ -2,7 +2,7 @@ import Taro, { useEffect, useState, Config,useRouter } from '@tarojs/taro'
 import { View, Text, Input, Form, Picker } from '@tarojs/components'
 import AREAS from '../../../models/area'
 import { useSelector } from '@tarojs/redux'
-import { SubPopup } from '../../../utils/msg'
+import Msg, { SubPopup } from '../../../utils/msg'
 import { SubscribeToNews  } from '../../../utils/subscribeToNews';
 import { resumesIntroduceAction } from '../../../utils/request/index'
 import './index.scss'
@@ -102,7 +102,6 @@ export default function PersonInfo() {
       // 省和第一个市
       setMultiArray([data, lastData])
     }
-    console.log(useSelectorItem,'xxxxs')
     //内容回填
     if (type){
       const allItem = JSON.parse(JSON.stringify(useSelectorItem))
@@ -121,7 +120,6 @@ export default function PersonInfo() {
         if (allItem.Myresume.info.type !== '1') {
         setRanks(true);
       }
-      console.log(allItem.Myresume)
       setFormData({
         age: allItem.Myresume.introduces.experience,
         proficiency: allItem.Myresume.introduces.prof_degree_str,
@@ -149,15 +147,24 @@ export default function PersonInfo() {
           }
         }
       }
-      setMultiIndex([one, two])
-      setAllpro(allItem.Myresume.introduces.hometown_id.split(","))
+      // 每次选择选择地址都要重新刷新一次，修改的时候刷新了一次就不再刷新，不然会一直覆盖设置的值
+        console.log(allItem.Myresume.introduces.prof_degree,'allItem.Myresume.introduces.prof_degree')
+        console.log(allItem.Myresume,'allItem.Myresume')
+      if(edit<1){
+        setMultiIndex([one, two])
+        setAllpro(allItem.Myresume.introduces.hometown_id.split(","))
         if (allItem.Myresume.introduces.prof_degree > 0) {
           setProficiencyIndex(parseInt(allItem.Myresume.introduces.prof_degree) - 1)
       } else {
           setProficiencyIndex(parseInt(allItem.Myresume.introduces.prof_degree))
       }
-        setUserIndex(parseInt(allItem.Myresume.introduces.prof_degree))
+        if (allItem.Myresume.introduces.prof_degree > 0) {
+          setUserIndex(parseInt(allItem.Myresume.introduces.type)+1)
+        } else {
+          setUserIndex(parseInt(allItem.Myresume.introduces.type))
+        }
       setMultiArray([data, lastCity])
+      }
     }
   }
   }, [edit])
@@ -167,7 +174,6 @@ export default function PersonInfo() {
       value = proficiency[e.detail.value]
     } else if (key === 'personnel'){
       value = personnel[e.detail.value];
-      console.log(e.detail.value,'value');
       if (e.detail.value !== '0'){
         setRanks(true)
       }else{
@@ -201,12 +207,10 @@ export default function PersonInfo() {
       state[key] = value;
       setFormData(state);
     }
-    console.log(allpro,'xxxxx');
     setAllpro(allpro);
   }
   // 第一列滑动
   const handlebindcolumnchange = (e) => {
-    console.log(e.detail.column,'xx')
     let obj = {
       multiArray,
       multiIndex
@@ -222,11 +226,8 @@ export default function PersonInfo() {
         obj.multiIndex[1] = 0;
         break;
     }
-    console.log(obj,'obj');
     setMultiArray(obj.multiArray);
     setMultiIndex(obj.multiIndex);
-    console.log(obj.multiArray,'obj.multiArray');
-    console.log(obj.multiIndex,'obj.multiIndex')
     // 修改值
     setEdit(edit + 1);
   }
@@ -257,9 +258,7 @@ export default function PersonInfo() {
   }
   const handleSubmit = ()=>{
     const number_people = personnel.indexOf(formData.personnel);
-    console.log(number_people,'xxx')
     const prof_degree = proficiency.indexOf(formData.proficiency);
-    console.log(prof_degree,'1111')
     const tags = (tag.map(v =>v.id)).toString();
     const params = {
       experience: formData.age,
@@ -272,31 +271,57 @@ export default function PersonInfo() {
       tags,
       type: number_people + 1,
     };
-    console.log()
-    console.log(params);
+    if (!allpro){}
+    console.log(params,'parsadsa')
+    if (!formData.age){
+      Taro.showModal({
+        title: '温馨提示',
+        content: '请输入您的工龄',
+        showCancel: false,
+        })
+      return;
+    }
+    if (!allpro) { 
+      Msg('请选择家乡')
+      return;
+    }
+    if (!formData.proficiency){
+      Msg('请选择熟练度')
+      return;
+    }
+    // 人员构成
+    let strone = /^[0-9]{1,4}$/ig;
+    // let strone = /[^0-9]/g;
+    if (!formData.personnel) {
+      Msg('请选择人员构成')
+      return;
+    }
+    if (number_people >0) {
+      if (!strone.test(formData.type)){
+        if (~~formData.type - 0 <= 1){
+          Taro.showModal({
+            title: '温馨提示',
+            content: '请输入您的队伍人数不得少于2人',
+            showCancel: false,
+          })
+        }
+      }
+      return;
+    }
+    // console.log(params);
     // return;
     resumesIntroduceAction(params).then(res=>{
       if (res.errcode === 200) {
-        Taro.showModal({
-          title: '温馨提示',
-          content: res.errmsg,
-          showCancel: false,
-          success() { 
-            if(res.errcode === 200){
-              SubscribeToNews("resume", () => {
-                SubPopup({
-                  tips: res.errmsg,
-                  callback: () => {
-                    Taro.navigateBack({
-                      delta: 1
-                    })
-                  }
-                })
+        SubscribeToNews("resume", () => {
+          SubPopup({
+            tips: res.errmsg,
+            callback: () => {
+              Taro.navigateBack({
+                delta: 1
               })
             }
-          }
+          })
         })
-        return
       }else{
         Taro.showModal({
           title: '温馨提示',
@@ -335,6 +360,7 @@ export default function PersonInfo() {
             :<Input
               className='publish-list-input'
               type='text'
+              disabled
               placeholder='请选择你的家乡'
               value={formData && formData.address}
               // onInput={(e) => userEnterFrom(e, 'name')}
@@ -388,7 +414,8 @@ export default function PersonInfo() {
               <Text className='pulish-list-title'>队伍人数</Text>
               :<Input
                 className='publish-list-input'
-                type='text'
+                type='number'
+                maxLength={4}
                 placeholder='请输入队伍人数'
                 value={formData && formData.type}
                 onInput={(e) => userEnterFrom(e, 'type')}

@@ -131,7 +131,9 @@ export default function AddProjectPage() {
       // 省和第一个市
       setMultiArray([data, lastData])
     }
-    if (type) {
+
+    // 每次修改后就刷新内容，第一次后就不再把值赋上去
+    if (type && edit < 1) {
       Taro.setNavigationBarTitle({
         title: '修改项目经验'
       })
@@ -384,6 +386,7 @@ export default function AddProjectPage() {
             :<Input
               className='publish-list-input'
               type='text'
+              disabled
               placeholder='请选择开工时间'
               value={startTime}
             />
@@ -401,6 +404,7 @@ export default function AddProjectPage() {
             :<Input
               className='publish-list-input'
               type='text'
+              disabled
               placeholder='请选择完工时间'
               value={endTime}
             />
@@ -420,6 +424,7 @@ export default function AddProjectPage() {
               :<Input
                 className='publish-list-input'
                 type='text'
+                disabled
                 placeholder='请选择你的所在地区'
                 value={multiIndexvalue}
               />

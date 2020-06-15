@@ -192,13 +192,13 @@ var RankingRules = (_temp2 = _class = function (_Taro$Component) {
         };
         var $loopState__temp2 = index + index;
 
-        var _$indexKey = "bbgzz" + index;
+        var _$indexKey = "bbhzz" + index;
 
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           handleBtn(v.$original);
         };
 
-        var _$indexKey2 = "bbhzz" + index;
+        var _$indexKey2 = "bbizz" + index;
 
         _this2.anonymousFunc1Map[_$indexKey2] = function () {
           handleBtn(v.$original);
