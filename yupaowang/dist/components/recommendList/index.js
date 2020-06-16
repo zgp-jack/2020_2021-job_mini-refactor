@@ -55,7 +55,7 @@ var CollectionRecruitList = (_temp2 = _class = function (_Taro$Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = CollectionRecruitList.__proto__ || Object.getPrototypeOf(CollectionRecruitList)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__105", "$compid__106", "type", "data"], _this.customComponents = ["RecruitListPage", "ResumeListPage"], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = CollectionRecruitList.__proto__ || Object.getPrototypeOf(CollectionRecruitList)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__106", "$compid__107", "type", "data"], _this.customComponents = ["RecruitListPage", "ResumeListPage"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(CollectionRecruitList, [{
@@ -74,15 +74,15 @@ var CollectionRecruitList = (_temp2 = _class = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__105"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__106"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__105 = _genCompid2[0],
-          $compid__105 = _genCompid2[1];
+          $prevCompid__106 = _genCompid2[0],
+          $compid__106 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__106"),
+      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__107"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__106 = _genCompid4[0],
-          $compid__106 = _genCompid4[1];
+          $prevCompid__107 = _genCompid4[0],
+          $compid__107 = _genCompid4[1];
 
       var _props = this.__props,
           _props$data = _props.data,
@@ -91,13 +91,13 @@ var CollectionRecruitList = (_temp2 = _class = function (_Taro$Component) {
 
       type === 1 && _taroWeapp.propsManager.set({
         "data": data
-      }, $compid__105, $prevCompid__105);
+      }, $compid__106, $prevCompid__106);
       type === 2 && _taroWeapp.propsManager.set({
         "data": data
-      }, $compid__106, $prevCompid__106);
+      }, $compid__107, $prevCompid__107);
       Object.assign(this.__state, {
-        $compid__105: $compid__105,
         $compid__106: $compid__106,
+        $compid__107: $compid__107,
         type: type
       });
       return this.__state;

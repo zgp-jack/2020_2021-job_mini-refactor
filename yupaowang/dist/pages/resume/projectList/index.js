@@ -56,7 +56,7 @@ var ProjectList = (_temp2 = _class = function (_Taro$Component) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ProjectList.__proto__ || Object.getPrototypeOf(ProjectList)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
       navigationBarTitleText: '项目经验'
-    }, _this.$usedState = ["loopArray94", "$compid__98", "data", "IMGCDNURL", "preview", "detail"], _this.anonymousFunc0Map = {}, _this.anonymousFunc1Map = {}, _this.anonymousFunc2Map = {}, _this.customComponents = ["Nodata"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["loopArray96", "$compid__99", "data", "IMGCDNURL", "preview", "detail"], _this.anonymousFunc0Map = {}, _this.anonymousFunc1Map = {}, _this.anonymousFunc2Map = {}, _this.customComponents = ["Nodata"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(ProjectList, [{
@@ -77,10 +77,10 @@ var ProjectList = (_temp2 = _class = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__98"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__99"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__98 = _genCompid2[0],
-          $compid__98 = _genCompid2[1];
+          $prevCompid__99 = _genCompid2[0],
+          $compid__99 = _genCompid2[1];
 
       var router = (0, _taroWeapp.useRouter)();
       // 获取传递过来的参数
@@ -144,18 +144,18 @@ var ProjectList = (_temp2 = _class = function (_Taro$Component) {
         return userRouteJump("/pages/resume/addProject/index?id=" + id);
       };
 
-      var loopArray94 = data.map(function (item, i) {
+      var loopArray96 = data.map(function (item, i) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
 
-        var _$indexKey = "jhzzz" + i;
+        var _$indexKey = "baazz" + i;
 
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return userRouteJump("/pages/resume/addProject/index?type=" + i + "&id=" + id);
         };
 
-        var _$indexKey2 = "jizzz" + i;
+        var _$indexKey2 = "babzz" + i;
 
         _this2.anonymousFunc1Map[_$indexKey2] = function () {
           return userRouteJump("/pages/resume/addProject/index?type=" + i + "&id=" + id);
@@ -166,7 +166,7 @@ var ProjectList = (_temp2 = _class = function (_Taro$Component) {
             $original: (0, _taroWeapp.internal_get_original)(v)
           };
           var $loopState__temp2 = i + i;
-          var _$indexKey3 = "jjzzz" + i + "-" + i;
+          var _$indexKey3 = "baczz" + i + "-" + i;
 
           _this2.anonymousFunc2Map[_$indexKey3] = function () {
             return handleImg(v.$original);
@@ -187,10 +187,10 @@ var ProjectList = (_temp2 = _class = function (_Taro$Component) {
       });
       !data.length && _taroWeapp.propsManager.set({
         "text": "\u6682\u65E0\u76F8\u5173\u5185\u5BB9"
-      }, $compid__98, $prevCompid__98);
+      }, $compid__99, $prevCompid__99);
       Object.assign(this.__state, {
-        loopArray94: loopArray94,
-        $compid__98: $compid__98,
+        loopArray96: loopArray96,
+        $compid__99: $compid__99,
         data: data,
         IMGCDNURL: _index2.IMGCDNURL,
         preview: preview,

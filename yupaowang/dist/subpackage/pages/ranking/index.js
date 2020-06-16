@@ -56,7 +56,7 @@ var RankingRules = (_temp2 = _class = function (_Taro$Component) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = RankingRules.__proto__ || Object.getPrototypeOf(RankingRules)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
       navigationBarTitleText: '排名规则'
-    }, _this.$usedState = ["data", "loopArray115", "loopArray116", "isLogin", "showbutton"], _this.anonymousFunc0Map = {}, _this.anonymousFunc1Map = {}, _this.customComponents = ["Auth"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["data", "loopArray117", "loopArray118", "isLogin", "showbutton"], _this.anonymousFunc0Map = {}, _this.anonymousFunc1Map = {}, _this.customComponents = ["Auth"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(RankingRules, [{
@@ -186,19 +186,19 @@ var RankingRules = (_temp2 = _class = function (_Taro$Component) {
         (0, _index.resumesAddClickLogAction)(click_type);
       };
       console.log(showbutton);
-      var loopArray115 = data.sort_rule_lists.map(function (v, index) {
+      var loopArray117 = data.sort_rule_lists.map(function (v, index) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
         var $loopState__temp2 = index + index;
 
-        var _$indexKey = "bbhzz" + index;
+        var _$indexKey = "bcazz" + index;
 
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           handleBtn(v.$original);
         };
 
-        var _$indexKey2 = "bbizz" + index;
+        var _$indexKey2 = "bcbzz" + index;
 
         _this2.anonymousFunc1Map[_$indexKey2] = function () {
           handleBtn(v.$original);
@@ -211,7 +211,7 @@ var RankingRules = (_temp2 = _class = function (_Taro$Component) {
           $original: v.$original
         };
       });
-      var loopArray116 = data.warm_tips.map(function (v, index) {
+      var loopArray118 = data.warm_tips.map(function (v, index) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
@@ -223,8 +223,8 @@ var RankingRules = (_temp2 = _class = function (_Taro$Component) {
       });
       Object.assign(this.__state, {
         data: data,
-        loopArray115: loopArray115,
-        loopArray116: loopArray116,
+        loopArray117: loopArray117,
+        loopArray118: loopArray118,
         isLogin: isLogin,
         showbutton: showbutton
       });

@@ -5,7 +5,7 @@
         </block>
         <view class="content-box">
             <scroll-view class="recruit-lists-containerbox" scroll-y="{{true}}" lower-threshold="{{200}}" refresher-enabled="{{true}}" bindscrolltolower="anonymousFunc0">
-                <view wx:key="id" class="recruitListBox" bindtap="anonymousFunc1" wx:for="{{loopArray95}}" wx:for-item="v" wx:for-index="__index1" data-e-tap-so="this" data-e-tap-a-a="{{v._$indexKey}}">
+                <view wx:key="id" class="recruitListBox" bindtap="anonymousFunc1" wx:for="{{loopArray97}}" wx:for-item="v" wx:for-index="__index1" data-e-tap-so="this" data-e-tap-a-a="{{v._$indexKey}}">
                     <view class="recruitListBox-title">{{v.$original.title}}</view>
                     <view class="recruitListBox-content">
                         <image src="{{v.$original.image}}" class="recruitListBox-content-img"></image>

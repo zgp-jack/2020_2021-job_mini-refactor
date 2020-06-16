@@ -1,6 +1,6 @@
 <block wx:if="{{$taroCompReady}}">
     <view class="projectList">
-        <view wx:key="id" class="skilleight" wx:for="{{loopArray94}}" wx:for-item="item" wx:for-index="i">
+        <view wx:key="id" class="skilleight" wx:for="{{loopArray96}}" wx:for-item="item" wx:for-index="i">
             <block wx:if="{{item.$original.check == '1'}}">
                 <image class="audit" src="{{IMGCDNURL + 'lpy/review.png'}}"></image>
             </block>
@@ -44,7 +44,7 @@
             </view>
         </view>
         <block wx:if="{{!data.length}}">
-            <nodata compid="{{$compid__98}}"></nodata>
+            <nodata compid="{{$compid__99}}"></nodata>
         </block>
         <block wx:if="{{data.length < 5 && !detail}}">
             <view class="footer-box">

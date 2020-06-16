@@ -65,7 +65,7 @@ var RecListPage = (_temp2 = _class = function (_Taro$Component) {
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = RecListPage.__proto__ || Object.getPrototypeOf(RecListPage)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
       navigationBarTitleText: '项目经验',
       enablePullDownRefresh: true
-    }, _this.$usedState = ["data", "loopArray95", "IMGCDNURL", "isDown"], _this.anonymousFunc1Map = {}, _this.customComponents = ["Nodata"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["data", "loopArray97", "IMGCDNURL", "isDown"], _this.anonymousFunc1Map = {}, _this.customComponents = ["Nodata"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(RecListPage, [{
@@ -149,12 +149,12 @@ var RecListPage = (_temp2 = _class = function (_Taro$Component) {
         return _taroWeapp2.default.reLaunch({ url: '/pages/index/index?type=' + _tabbar.RESUME });
       };
 
-      var loopArray95 = data.item.map(function (v, __index1) {
+      var loopArray97 = data.item.map(function (v, __index1) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
 
-        var _$indexKey = "baazz" + __index1;
+        var _$indexKey = "badzz" + __index1;
 
         _this2.anonymousFunc1Map[_$indexKey] = function () {
           return userRouteJump("/pages/detail/info/index?id=" + v.$original.id);
@@ -167,7 +167,7 @@ var RecListPage = (_temp2 = _class = function (_Taro$Component) {
       });
       Object.assign(this.__state, {
         data: data,
-        loopArray95: loopArray95,
+        loopArray97: loopArray97,
         IMGCDNURL: _index2.IMGCDNURL,
         isDown: isDown
       });

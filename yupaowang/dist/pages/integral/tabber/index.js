@@ -70,7 +70,7 @@ var Tabber = (_temp2 = _class = function (_Taro$Component) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Tabber.__proto__ || Object.getPrototypeOf(Tabber)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
       navigationBarTitleText: ''
-    }, _this.$usedState = ["data", "modalData", "loopArray137", "loopArray138", "$compid__121", "$compid__122", "time", "start", "end", "IMGCDNURL", "initInfo", "sourceList", "consumeList", "startType", "modal", "complaintModal", "showTime", "title", "num"], _this.anonymousFunc3Map = {}, _this.customComponents = ["Nodata", "Report"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["data", "modalData", "loopArray141", "loopArray142", "$compid__123", "$compid__124", "time", "start", "end", "IMGCDNURL", "initInfo", "sourceList", "consumeList", "startType", "modal", "complaintModal", "showTime", "title", "num"], _this.anonymousFunc3Map = {}, _this.customComponents = ["Nodata", "Report"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Tabber, [{
@@ -91,15 +91,15 @@ var Tabber = (_temp2 = _class = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__121"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__123"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__121 = _genCompid2[0],
-          $compid__121 = _genCompid2[1];
+          $prevCompid__123 = _genCompid2[0],
+          $compid__123 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__122"),
+      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__124"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__122 = _genCompid4[0],
-          $compid__122 = _genCompid4[1];
+          $prevCompid__124 = _genCompid4[0],
+          $compid__124 = _genCompid4[1];
 
       var router = (0, _taroWeapp.useRouter)();
       var _router$params = router.params,
@@ -704,13 +704,13 @@ var Tabber = (_temp2 = _class = function (_Taro$Component) {
         return handleComplaint(modalData.id);
       };
 
-      var loopArray137 = data.lists.map(function (item, index) {
+      var loopArray141 = data.lists.map(function (item, index) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
         var $loopState__temp2 = index + index;
 
-        var _$indexKey = "beezz" + index;
+        var _$indexKey = "bfazz" + index;
 
         _this2.anonymousFunc3Map[_$indexKey] = function () {
           return handleModal(item.$original.id);
@@ -722,7 +722,7 @@ var Tabber = (_temp2 = _class = function (_Taro$Component) {
           $original: item.$original
         };
       });
-      var loopArray138 = initInfo === '1' && modal && modalData ? modalData.classifyName.map(function (v, i) {
+      var loopArray142 = initInfo === '1' && modal && modalData ? modalData.classifyName.map(function (v, i) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
@@ -734,21 +734,21 @@ var Tabber = (_temp2 = _class = function (_Taro$Component) {
       }) : [];
       !data.lists.length && _taroWeapp.propsManager.set({
         "text": initInfo === '0' ? '暂无积分来源记录' : '暂无积分消耗记录'
-      }, $compid__121, $prevCompid__121);
+      }, $compid__123, $prevCompid__123);
       complaintModal && _taroWeapp.propsManager.set({
         "display": complaintModal,
         "textarea": textarea,
         "handleTextarea": handleTextarea,
         "setComplaintModal": setComplaintModal,
         "handleSubmit": handleSubmit
-      }, $compid__122, $prevCompid__122);
+      }, $compid__124, $prevCompid__124);
       Object.assign(this.__state, {
         data: data,
         modalData: modalData,
-        loopArray137: loopArray137,
-        loopArray138: loopArray138,
-        $compid__121: $compid__121,
-        $compid__122: $compid__122,
+        loopArray141: loopArray141,
+        loopArray142: loopArray142,
+        $compid__123: $compid__123,
+        $compid__124: $compid__124,
         time: time,
         start: start,
         end: end,

@@ -1,4 +1,4 @@
-import Taro, { useState, useEffect, useDidShow} from '@tarojs/taro'
+import Taro, { useState, useEffect} from '@tarojs/taro'
 import { UserAuthInfoData, UserAuthInfoMemberExtData } from '../../utils/request/index.d'
 import { PostUserAuthInfo } from '../index.d'
 import { getUserAuthInfo, postUserAuthInfo } from '../../utils/request'
@@ -38,9 +38,12 @@ export default function useRealname(){
   // 展示电话号码选项
   const [checkDegree, setCheckDegree] = useState<boolean>(false)
   // 声明父组件传值地区名字
-  const [area, setArea] = useState<string>('')
+  const [RealnameArea, setRealnameArea] = useState<string>('')
   useEffect(()=>{
     if(!login) return
+    // if (publishArea && location && adcode ){
+    //   console.log(publishArea, location, adcode)
+    // }
     getUserAuthInfo().then(data=>{
       if(data.errcode == 'ok'){
         if (data.authData.member && data.authData.member.is_check === '0') {
@@ -48,11 +51,9 @@ export default function useRealname(){
             title: '审核失败',
             content: data.authData.memberExt.idcard_check_failure_reason,
             showCancel: false,
-            success: function (res) { }
           })
         }
         let initData: UserAuthInfoData = data.authData
-        console.log(initData.member,'initData.member')
         setInitModel(initData)
         let nationId: string|number = initData.memberExt.nation_id || ''
         let nationName: string = ''
@@ -78,7 +79,7 @@ export default function useRealname(){
         }
         // 设置地图显示的名称
         let area: string = getLongAreaAdname(modelData.address)
-        setArea(area)
+        setRealnameArea(area)
         // 是否展示电话号
         if (initData.member && initData.member.check_degree == '2') setCheckDegree(true)
         // 性别下标
@@ -275,7 +276,7 @@ export default function useRealname(){
     setNationCurrent,
     setInitModel,
     checkDegree,
-    area,
-    setArea
+    RealnameArea,
+    setRealnameArea
   }
 }

@@ -4,7 +4,7 @@
             <nodata compid="{{$compid__84}}"></nodata>
         </block>
         <block wx:if="{{data}}">
-            <block wx:key="id" wx:for="{{loopArray82}}" wx:for-item="item" wx:for-index="__index0">
+            <block wx:key="id" wx:for="{{loopArray84}}" wx:for-item="item" wx:for-index="__index0">
                 <view class="recruit-list-item" bindtap="anonymousFunc0" wx:key="id" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">
                     <block wx:if="{{item.$original.is_end == '2'}}">
                         <image class="recruit-findend-img" src="{{IMGCDNURL + 'newlist-jobfindend.png'}}"></image>

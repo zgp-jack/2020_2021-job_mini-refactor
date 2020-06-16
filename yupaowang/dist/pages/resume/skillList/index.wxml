@@ -1,6 +1,6 @@
 <block wx:if="{{$taroCompReady}}">
     <view>
-        <view wx:key="id" class="skilleight" wx:for="{{loopArray93}}" wx:for-item="item" wx:for-index="i">
+        <view wx:key="id" class="skilleight" wx:for="{{loopArray95}}" wx:for-item="item" wx:for-index="i">
             <block wx:if="{{item.$original.check == '1'}}">
                 <image class="audit" src="{{IMGCDNURL + 'lpy/review.png'}}"></image>
             </block>

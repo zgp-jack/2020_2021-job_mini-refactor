@@ -1,7 +1,7 @@
 <block wx:if="{{$taroCompReady}}">
     <block>
         <view class="common-footer-tabbar">
-            <view class="{{item.$loopState__temp2}}" wx:key="id" bindtap="anonymousFunc0" wx:for="{{loopArray99}}" wx:for-item="item" wx:for-index="__index0" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">
+            <view class="{{item.$loopState__temp2}}" wx:key="id" bindtap="anonymousFunc0" wx:for="{{loopArray101}}" wx:for-item="item" wx:for-index="__index0" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">
                 <image class="commmon-footer-tabbar-img" src="{{item.$original.id === tabbar.key ? item.$original.activeImg : item.$original.defaultImg}}"></image><text class="commmon-footer-tabbar-text">{{item.$original.title}}</text>
                 <block wx:if="{{item.$original.msg && memberMsg}}"><text class="footermsg">{{memberMsg > 9 ? '9+' : memberMsg}}</text>
                 </block>

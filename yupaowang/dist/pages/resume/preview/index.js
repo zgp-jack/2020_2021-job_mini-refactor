@@ -56,7 +56,7 @@ var Preview = (_temp2 = _class = function (_Taro$Component) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Preview.__proto__ || Object.getPrototypeOf(Preview)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
       navigationBarTitleText: '找活名片'
-    }, _this.$usedState = ["data", "loopArray128", "loopArray129", "loopArray130", "loopArray131", "IMGCDNURL", "checkpan", "checkone", "headerimg", "age", "sex", "project", "skillbooksone", "telephone"], _this.anonymousFunc0Map = {}, _this.anonymousFunc2Map = {}, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["data", "loopArray132", "loopArray133", "loopArray134", "loopArray135", "IMGCDNURL", "checkpan", "checkone", "headerimg", "age", "sex", "project", "skillbooksone", "telephone"], _this.anonymousFunc0Map = {}, _this.anonymousFunc2Map = {}, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Preview, [{
@@ -226,7 +226,7 @@ var Preview = (_temp2 = _class = function (_Taro$Component) {
         return _taroWeapp2.default.navigateTo({ url: "/pages/resume/skillList/index?preview=1" });
       };
 
-      var loopArray128 = data.info.miniInfoOccupations.length ? data.info.miniInfoOccupations.map(function (v, i) {
+      var loopArray132 = data.info.miniInfoOccupations.length ? data.info.miniInfoOccupations.map(function (v, i) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
@@ -236,7 +236,7 @@ var Preview = (_temp2 = _class = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray129 = data.introduces.tags.length ? data.introduces.tags.map(function (v, i) {
+      var loopArray133 = data.introduces.tags.length ? data.introduces.tags.map(function (v, i) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
@@ -246,7 +246,7 @@ var Preview = (_temp2 = _class = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray130 = data.project.length ? project.map(function (item, i) {
+      var loopArray134 = data.project.length ? project.map(function (item, i) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
@@ -256,7 +256,7 @@ var Preview = (_temp2 = _class = function (_Taro$Component) {
             $original: (0, _taroWeapp.internal_get_original)(v)
           };
           var $loopState__temp8 = data.project.length ? i + i : null;
-          var _$indexKey = "bdhzz" + i + "-" + i;
+          var _$indexKey = "bedzz" + i + "-" + i;
 
           _this2.anonymousFunc0Map[_$indexKey] = function () {
             return handleImg(v.$original);
@@ -274,7 +274,7 @@ var Preview = (_temp2 = _class = function (_Taro$Component) {
           $original: item.$original
         };
       }) : [];
-      var loopArray131 = data.certificates.length ? skillbooksone.map(function (item, __index3) {
+      var loopArray135 = data.certificates.length ? skillbooksone.map(function (item, __index3) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
@@ -283,7 +283,7 @@ var Preview = (_temp2 = _class = function (_Taro$Component) {
             $original: (0, _taroWeapp.internal_get_original)(v)
           };
           var $loopState__temp10 = data.certificates.length ? i + i : null;
-          var _$indexKey2 = "bdizz" + __index3 + "-" + i;
+          var _$indexKey2 = "beezz" + __index3 + "-" + i;
 
           _this2.anonymousFunc2Map[_$indexKey2] = function () {
             return handleImg(v.$original);
@@ -302,10 +302,10 @@ var Preview = (_temp2 = _class = function (_Taro$Component) {
       }) : [];
       Object.assign(this.__state, {
         data: data,
-        loopArray128: loopArray128,
-        loopArray129: loopArray129,
-        loopArray130: loopArray130,
-        loopArray131: loopArray131,
+        loopArray132: loopArray132,
+        loopArray133: loopArray133,
+        loopArray134: loopArray134,
+        loopArray135: loopArray135,
         IMGCDNURL: _index2.IMGCDNURL,
         checkpan: checkpan,
         checkone: checkone,

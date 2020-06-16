@@ -1,7 +1,7 @@
 <block wx:if="{{$taroCompReady}}">
     <view class="resume-list-container" style="{{anonymousState__temp}}">
         <block wx:if="{{data}}">
-            <block wx:for="{{loopArray112}}" wx:for-item="item" wx:for-index="__index1">
+            <block wx:for="{{loopArray114}}" wx:for-item="item" wx:for-index="__index1">
                 <block wx:if="{{item.$original}}">
                     <view class="resume-list-item" wx:key="id" bindtap="anonymousFunc0" wx:for="{{item.$anonymousCallee__24}}" wx:for-item="d" wx:for-index="__index0" data-e-tap-so="this" data-e-tap-a-a="{{d._$indexKey}}">
                         <view class="resume-list-header">

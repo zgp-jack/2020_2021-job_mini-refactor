@@ -64,7 +64,7 @@ var InvitePage = (_temp2 = _class = function (_Taro$Component) {
       navigationBarBackgroundColor: '#0099ff',
       navigationBarTextStyle: 'white',
       backgroundTextStyle: 'dark'
-    }, _this.$usedState = ["tab", "loopArray89", "loopArray90", "$compid__97", "scrollLeft", "list", "pull"], _this.anonymousFunc1Map = {}, _this.anonymousFunc2Map = {}, _this.customComponents = ["Nodata"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["tab", "loopArray91", "loopArray92", "$compid__98", "scrollLeft", "list", "pull"], _this.anonymousFunc1Map = {}, _this.anonymousFunc2Map = {}, _this.customComponents = ["Nodata"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(InvitePage, [{
@@ -85,10 +85,10 @@ var InvitePage = (_temp2 = _class = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__97"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__98"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__97 = _genCompid2[0],
-          $compid__97 = _genCompid2[1];
+          $prevCompid__98 = _genCompid2[0],
+          $compid__98 = _genCompid2[1];
 
       // 默认table
 
@@ -194,12 +194,12 @@ var InvitePage = (_temp2 = _class = function (_Taro$Component) {
         console.log(e);
       };
 
-      var loopArray89 = tab.item ? tab.item.map(function (item, i) {
+      var loopArray91 = tab.item ? tab.item.map(function (item, i) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
 
-        var _$indexKey = "jazzz" + i;
+        var _$indexKey = "jdzzz" + i;
 
         _this2.anonymousFunc1Map[_$indexKey] = function () {
           handleTable(item.$original.index, item.$original.name, i);
@@ -214,12 +214,12 @@ var InvitePage = (_temp2 = _class = function (_Taro$Component) {
           $original: item.$original
         };
       }) : [];
-      var loopArray90 = list ? list.map(function (v, __index2) {
+      var loopArray92 = list ? list.map(function (v, __index2) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
 
-        var _$indexKey2 = "jbzzz" + __index2;
+        var _$indexKey2 = "jezzz" + __index2;
 
         _this2.anonymousFunc2Map[_$indexKey2] = function () {
           return userRouteJump("/subpackage/pages/notice/index?id=" + v.$original.id);
@@ -232,12 +232,12 @@ var InvitePage = (_temp2 = _class = function (_Taro$Component) {
       }) : [];
       !list.length && _taroWeapp.propsManager.set({
         "text": noData
-      }, $compid__97, $prevCompid__97);
+      }, $compid__98, $prevCompid__98);
       Object.assign(this.__state, {
         tab: tab,
-        loopArray89: loopArray89,
-        loopArray90: loopArray90,
-        $compid__97: $compid__97,
+        loopArray91: loopArray91,
+        loopArray92: loopArray92,
+        $compid__98: $compid__98,
         scrollLeft: scrollLeft,
         list: list,
         pull: pull

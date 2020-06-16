@@ -52,7 +52,7 @@ var CollectionRecruitList = (_temp2 = _class = function (_Taro$Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = CollectionRecruitList.__proto__ || Object.getPrototypeOf(CollectionRecruitList)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "loopArray82", "$compid__84", "$compid__85", "data", "IMGCDNURL", "recruitNoMoreData", "modalContent", "bottom", "onHandlerClick"], _this.anonymousFunc0Map = {}, _this.anonymousFunc1Map = {}, _this.customComponents = ["Nodata", "AtModal", "AtModalHeader", "AtModalContent", "AtModalAction"], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = CollectionRecruitList.__proto__ || Object.getPrototypeOf(CollectionRecruitList)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "loopArray84", "$compid__84", "$compid__85", "data", "IMGCDNURL", "recruitNoMoreData", "modalContent", "bottom", "onHandlerClick"], _this.anonymousFunc0Map = {}, _this.anonymousFunc1Map = {}, _this.customComponents = ["Nodata", "AtModal", "AtModalHeader", "AtModalContent", "AtModalAction"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(CollectionRecruitList, [{
@@ -123,18 +123,18 @@ var CollectionRecruitList = (_temp2 = _class = function (_Taro$Component) {
         setIsOpened(false);
       };
 
-      var loopArray82 = data ? data.map(function (item, __index0) {
+      var loopArray84 = data ? data.map(function (item, __index0) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
 
-        var _$indexKey = "iezzz" + __index0;
+        var _$indexKey = "ihzzz" + __index0;
 
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           onHandleClick(item.$original.is_check);
         };
 
-        var _$indexKey2 = "ifzzz" + __index0;
+        var _$indexKey2 = "iizzz" + __index0;
 
         _this2.anonymousFunc1Map[_$indexKey2] = function () {
           _this2.__props.onHandlerClick(item.$original.id);
@@ -154,7 +154,7 @@ var CollectionRecruitList = (_temp2 = _class = function (_Taro$Component) {
       }, $compid__85, $prevCompid__85);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
-        loopArray82: loopArray82,
+        loopArray84: loopArray84,
         $compid__84: $compid__84,
         $compid__85: $compid__85,
         data: data,

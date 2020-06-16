@@ -1,4 +1,4 @@
-import Taro, { Config,createContext } from '@tarojs/taro'
+import Taro, { Config, createContext, useDidShow } from '@tarojs/taro'
 import { View, Text, Input, Image, Button, Picker } from '@tarojs/components'
 import { ALIYUNCDN, IMGCDNURL } from '../../config'
 import useRealname from '../../hooks/realname'
@@ -7,22 +7,23 @@ import useCode from '../../hooks/code'
 import { UserAuthInfoMemberExtData } from '../../utils/request/index.d'
 import { isPhone } from '../../utils/v'
 import Msg from '../../utils/msg'
-import { Injected } from '../recruit/publish'
+// import { Injected } from '../recruit/publish'
 import './index.scss'
 
+export interface Injected {
+  RealnameArea: string,
+  setRealnameArea: (city: string) => void,
+}
 export const context = createContext<Injected>({} as Injected)
 
 export default function RealName(){
-
   // 使用 实名hook 与 获取短信验证码hook
-  const { checkDegree, userUploadIdcard, sexArray, sexCurrent, setSexCurrent, setSexName, sexName, nationCurrent, initModel, setNationCurrent, setInitModel, model, setModel, userPostAuthInfo, area, setArea } = useRealname()
+  const { checkDegree, userUploadIdcard, sexArray, sexCurrent, setSexCurrent, setSexName, sexName, nationCurrent, initModel, setNationCurrent, setInitModel, model, setModel, userPostAuthInfo, RealnameArea, setRealnameArea } = useRealname()
   const { text, userGetCode } = useCode()
-
   const value: Injected = {
-    area: area,
-    setArea: (city: string) => setArea(city)
+    RealnameArea: RealnameArea,
+    setRealnameArea: (city: string) => setRealnameArea(city)
   }
-
   // 初始化生日选择时间
   const date = new Date()
   const year: number = date.getFullYear()
@@ -39,7 +40,13 @@ export default function RealName(){
     setSexName(sexArray[current].name)
     if(model) setModel({...model, gender: id})
   }
-
+  useDidShow(()=>{
+    if (RealnameArea){
+      const modelItem = JSON.parse(JSON.stringify(model));
+      modelItem.address = RealnameArea;
+      setModel(modelItem);
+    }
+  })
   // 用户填写信息
   const userEnterFormInfo = (title: string, e: any)=> {
     let modelInfo: PostUserAuthInfo = JSON.parse(JSON.stringify(model))
@@ -82,12 +89,11 @@ export default function RealName(){
 
   // 用户选择地区
   const userChooseArea = ()=> {
+    if (!RealnameArea) return
     Taro.navigateTo({
-      url: '/pages/map/realname/index'
+      url: `/pages/map/realname/index`
     })
   }
-  console.log(model,'model')
-  console.log(initModel,'initModel')
   return (
     <context.Provider value={ value }>
     <View className='realname-container'>

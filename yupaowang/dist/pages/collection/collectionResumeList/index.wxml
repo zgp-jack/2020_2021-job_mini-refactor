@@ -1,10 +1,10 @@
 <block wx:if="{{$taroCompReady}}">
     <view class="resume-list-container" style="{{anonymousState__temp}}">
         <block wx:if="{{!data.length}}">
-            <nodata compid="{{$compid__87}}"></nodata>
+            <nodata compid="{{$compid__88}}"></nodata>
         </block>
         <block wx:if="{{data}}">
-            <block wx:key="id" wx:for="{{loopArray83}}" wx:for-item="item" wx:for-index="__index0">
+            <block wx:key="id" wx:for="{{loopArray85}}" wx:for-item="item" wx:for-index="__index0">
                 <view class="resume-list-item" bindtap="anonymousFunc0" wx:key="id" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">
                     <view class="resume-list-header">
                         <image class="resume-list-user" src="{{item.$original.resume.headerimg}}"></image>
@@ -30,7 +30,7 @@
         <block wx:if="{{data.length && recruitNoMoreData}}">
             <view class="resume-lists-noData">没有更多数据了</view>
         </block>
-        <at-modal compid="{{$compid__88}}">
+        <at-modal compid="{{$compid__89}}">
             <at-modal-header>温馨提示</at-modal-header>
             <at-modal-content>{{modalContent}}</at-modal-content>
             <at-modal-action>

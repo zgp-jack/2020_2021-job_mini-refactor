@@ -16,7 +16,7 @@
         </view>
         <view class="feedback-content-middle-imgBox">
             <block wx:if="{{image.item}}">
-                <image-view compid="{{$compid__99}}"></image-view>
+                <image-view compid="{{$compid__100}}"></image-view>
             </block>
         </view>
         <view class="footer">

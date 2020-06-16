@@ -20,9 +20,9 @@
         </view>
         <view class="integral-content">
             <block wx:if="{{!data.lists.length}}">
-                <nodata compid="{{$compid__121}}"></nodata>
+                <nodata compid="{{$compid__123}}"></nodata>
             </block>
-            <view wx:key="$loopState__temp2" bindtap="anonymousFunc3" wx:for="{{loopArray137}}" wx:for-item="item" wx:for-index="index" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">
+            <view wx:key="$loopState__temp2" bindtap="anonymousFunc3" wx:for="{{loopArray141}}" wx:for-item="item" wx:for-index="index" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">
                 <view class="integral-list">
                     <view class="integral-list-time"><text class="integral-time-year">{{item.$original.y_m}}</text><text class="integral-time-day">{{item.$original.day}}</text>
                     </view>
@@ -70,7 +70,7 @@
                                 </view>
                             </view>
                         </block>
-                        <view class="tabber-Modal-content-flexBox-classifyName"><text wx:key="$loopState__temp4" class="tabber-Modal-content-flexBox-classifyName-data" wx:for="{{loopArray138}}" wx:for-item="v" wx:for-index="i">[{{v.$original}}]</text>
+                        <view class="tabber-Modal-content-flexBox-classifyName"><text wx:key="$loopState__temp4" class="tabber-Modal-content-flexBox-classifyName-data" wx:for="{{loopArray142}}" wx:for-item="v" wx:for-index="i">[{{v.$original}}]</text>
                         </view>
                         <view class="clear"></view>
                         <view class="tabber-Modal-content-flexBox-last">
@@ -81,7 +81,7 @@
             </view>
         </block>
         <block wx:if="{{complaintModal}}">
-            <report compid="{{$compid__122}}"></report>
+            <report compid="{{$compid__124}}"></report>
         </block>
     </view>
 </block>

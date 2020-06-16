@@ -296,6 +296,13 @@
           "pathName": "pages/realname/index",
           "query": "",
           "scene": null
+        },
+        {
+          "id": 35,
+          "name": "我的招工信息",
+          "pathName": "pages/published/recruit/index",
+          "query": "",
+          "scene": null
         }
       ]
     }

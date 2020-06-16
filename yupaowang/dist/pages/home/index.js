@@ -58,7 +58,7 @@ var Home = (_temp2 = _class = function (_Taro$Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Home.__proto__ || Object.getPrototypeOf(Home)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__78", "$compid__79", "$compid__80", "$compid__81", "$compid__82", "IMGCDNURL"], _this.customComponents = ["SwiperComponent", "Projects", "Fastfun", "SwiperNews", "RecruitList", "ResumeList", "UsedList", "About"], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Home.__proto__ || Object.getPrototypeOf(Home)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__79", "$compid__80", "$compid__81", "$compid__82", "$compid__83", "IMGCDNURL"], _this.customComponents = ["SwiperComponent", "Projects", "Fastfun", "SwiperNews", "RecruitList", "ResumeList", "UsedList", "About"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Home, [{
@@ -77,30 +77,30 @@ var Home = (_temp2 = _class = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__78"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__79"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__78 = _genCompid2[0],
-          $compid__78 = _genCompid2[1];
+          $prevCompid__79 = _genCompid2[0],
+          $compid__79 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__79"),
+      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__80"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__79 = _genCompid4[0],
-          $compid__79 = _genCompid4[1];
+          $prevCompid__80 = _genCompid4[0],
+          $compid__80 = _genCompid4[1];
 
-      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__80"),
+      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__81"),
           _genCompid6 = _slicedToArray(_genCompid5, 2),
-          $prevCompid__80 = _genCompid6[0],
-          $compid__80 = _genCompid6[1];
+          $prevCompid__81 = _genCompid6[0],
+          $compid__81 = _genCompid6[1];
 
-      var _genCompid7 = (0, _taroWeapp.genCompid)(__prefix + "$compid__81"),
+      var _genCompid7 = (0, _taroWeapp.genCompid)(__prefix + "$compid__82"),
           _genCompid8 = _slicedToArray(_genCompid7, 2),
-          $prevCompid__81 = _genCompid8[0],
-          $compid__81 = _genCompid8[1];
+          $prevCompid__82 = _genCompid8[0],
+          $compid__82 = _genCompid8[1];
 
-      var _genCompid9 = (0, _taroWeapp.genCompid)(__prefix + "$compid__82"),
+      var _genCompid9 = (0, _taroWeapp.genCompid)(__prefix + "$compid__83"),
           _genCompid10 = _slicedToArray(_genCompid9, 2),
-          $prevCompid__82 = _genCompid10[0],
-          $compid__82 = _genCompid10[1];
+          $prevCompid__83 = _genCompid10[0],
+          $compid__83 = _genCompid10[1];
 
       // * 获取列表数据的data
 
@@ -170,28 +170,28 @@ var Home = (_temp2 = _class = function (_Taro$Component) {
 
       _taroWeapp.propsManager.set({
         "data": swiper
-      }, $compid__78, $prevCompid__78);
+      }, $compid__79, $prevCompid__79);
       _taroWeapp.propsManager.set({
         "data": notice
-      }, $compid__79, $prevCompid__79);
+      }, $compid__80, $prevCompid__80);
       _taroWeapp.propsManager.set({
         "data": lists.recruit,
         "bottom": false
-      }, $compid__80, $prevCompid__80);
+      }, $compid__81, $prevCompid__81);
       _taroWeapp.propsManager.set({
         "data": lists.resume,
         "bottom": false
-      }, $compid__81, $prevCompid__81);
+      }, $compid__82, $prevCompid__82);
       _taroWeapp.propsManager.set({
         "data": lists.fleamarket,
         "bottom": false
-      }, $compid__82, $prevCompid__82);
+      }, $compid__83, $prevCompid__83);
       Object.assign(this.__state, {
-        $compid__78: $compid__78,
         $compid__79: $compid__79,
         $compid__80: $compid__80,
         $compid__81: $compid__81,
         $compid__82: $compid__82,
+        $compid__83: $compid__83,
         IMGCDNURL: _index.IMGCDNURL
       });
       return this.__state;

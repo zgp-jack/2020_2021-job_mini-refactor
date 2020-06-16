@@ -2,7 +2,6 @@ import Taro, { useState, useContext, useEffect } from '@tarojs/taro'
 import { View, Text, Image, Input, Block } from '@tarojs/components'
 import { IMGCDNURL, UserPublishAreaHistoryMaxNum } from '../../../config'
 import Cities from '../../../components/citys'
-import { IPROPS } from '../../../components/citys'
 import { UserLocationCity, UserPublishAreaHistory } from '../../../config/store'
 import { UserLocationPromiss, getCityInfo, ChildItems } from '../../../models/area'
 import { getAmapPoiList } from '../../../utils/helper'
@@ -10,16 +9,15 @@ import { InputPoiListTips } from '../../../utils/helper/index.d'
 import { context } from '../../recruit/publish'
 import { checkAdcodeValid } from '../../../utils/request'
 import { AllAreasDataItem } from '../../../utils/request/index.d'
-import { Injected } from '../../recruit/publish'
 import './index.scss'
 import Msg, { ShowActionModal } from '../../../utils/msg'
 
 // interface PROPS extends IPROPS{
 //   context: Taro.Context<Injected>
 // }
-
 export default function MapComponent({ data }){
-
+  // console.log(data,'data')
+  // console.log(contextItem,'contextItem');
   // 用户定位城市
   const [userLoc, setUserLoc] = useState<AllAreasDataItem>({
     id: '',
@@ -31,6 +29,7 @@ export default function MapComponent({ data }){
   const [showCity, setShowCity] = useState<boolean>(false)
   // 使用发布招工hook处理数据
   const { area, setArea, setAreaInfo, setPublishArea } = useContext(context)
+  // const { area, setArea } = useContext(contextItem);
   // 详细地址的输入框
   const [smAreaText, setSmAreaText] = useState<string>('')
   // 关键词地区列表
@@ -45,6 +44,7 @@ export default function MapComponent({ data }){
     let userLoc: UserLocationPromiss = Taro.getStorageSync(UserLocationCity)
     if(userLoc){
       let data: ChildItems = getCityInfo(userLoc,1)
+      console.log(data,'datadatadatadata')
       let userLocData: AllAreasDataItem = {
         id: data.id,
         pid: data.pid,

@@ -80,7 +80,7 @@ var BasicsPage = (_temp2 = _class = function (_Taro$Component) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = BasicsPage.__proto__ || Object.getPrototypeOf(BasicsPage)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
       navigationBarTitleText: '基础信息'
-    }, _this.$usedState = ["anonymousState__temp", "$compid__127", "$compid__128", "showProfession", "formData", "sexList", "nationCurrent", "isCode", "text"], _this.customComponents = ["Profession", "WordsTotal"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["anonymousState__temp", "$compid__206", "$compid__207", "showProfession", "formData", "sexList", "nationCurrent", "isCode", "text"], _this.customComponents = ["Profession", "WordsTotal"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(BasicsPage, [{
@@ -99,15 +99,15 @@ var BasicsPage = (_temp2 = _class = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__127"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__206"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__127 = _genCompid2[0],
-          $compid__127 = _genCompid2[1];
+          $prevCompid__206 = _genCompid2[0],
+          $compid__206 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__128"),
+      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__207"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__128 = _genCompid4[0],
-          $compid__128 = _genCompid4[1];
+          $prevCompid__207 = _genCompid4[0],
+          $compid__207 = _genCompid4[1];
 
       // 获取存入的公用内容
 
@@ -544,7 +544,7 @@ var BasicsPage = (_temp2 = _class = function (_Taro$Component) {
       var userChooseArea = function userChooseArea() {
         if (!areas) {
           return;
-        }var url = "/pages/map/resume/index?areaItem=" + areas;
+        }var url = "/pages/map/resume/index";
         _taroWeapp2.default.navigateTo({
           url: url
         });
@@ -662,14 +662,14 @@ var BasicsPage = (_temp2 = _class = function (_Taro$Component) {
         "data": occupation,
         "onClickItem": this.anonymousFunc0,
         "num": 3
-      }, $compid__127, $prevCompid__127);
+      }, $compid__206, $prevCompid__206);
       _taroWeapp.propsManager.set({
         "num": num
-      }, $compid__128, $prevCompid__128);
+      }, $compid__207, $prevCompid__207);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
-        $compid__127: $compid__127,
-        $compid__128: $compid__128,
+        $compid__206: $compid__206,
+        $compid__207: $compid__207,
         showProfession: showProfession,
         formData: formData,
         sexList: sexList,

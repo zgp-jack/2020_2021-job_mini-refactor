@@ -66,7 +66,7 @@ var UsedPublish = (_temp2 = _class = function (_Taro$Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = UsedPublish.__proto__ || Object.getPrototypeOf(UsedPublish)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["initModel", "loopArray84", "loopArray85", "$compid__95", "$compid__96", "parentCurrent", "model", "classifyName", "areaProvince", "areaCity", "pIndex", "cIndex", "cityName", "userTel", "text"], _this.anonymousFunc1Map = {}, _this.anonymousFunc2Map = {}, _this.customComponents = ["AtDrawer", "WordsTotal"], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = UsedPublish.__proto__ || Object.getPrototypeOf(UsedPublish)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["initModel", "loopArray86", "loopArray87", "$compid__96", "$compid__97", "parentCurrent", "model", "classifyName", "areaProvince", "areaCity", "pIndex", "cIndex", "cityName", "userTel", "text"], _this.anonymousFunc1Map = {}, _this.anonymousFunc2Map = {}, _this.customComponents = ["AtDrawer", "WordsTotal"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(UsedPublish, [{
@@ -87,15 +87,15 @@ var UsedPublish = (_temp2 = _class = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__95"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__96"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__95 = _genCompid2[0],
-          $compid__95 = _genCompid2[1];
+          $prevCompid__96 = _genCompid2[0],
+          $compid__96 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__96"),
+      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__97"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__96 = _genCompid4[0],
-          $compid__96 = _genCompid4[1];
+          $prevCompid__97 = _genCompid4[0],
+          $compid__97 = _genCompid4[1];
 
       var router = (0, _taroWeapp.useRouter)();
       var _router$params$id = router.params.id,
@@ -223,7 +223,7 @@ var UsedPublish = (_temp2 = _class = function (_Taro$Component) {
         return vaildPublishModelInfo();
       };
 
-      var loopArray84 = initModel ? initModel.classifyTree.map(function (item, index) {
+      var loopArray86 = initModel ? initModel.classifyTree.map(function (item, index) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
@@ -232,7 +232,7 @@ var UsedPublish = (_temp2 = _class = function (_Taro$Component) {
           'drawer-list-item-active': index === parentCurrent
         }) : null;
 
-        var _$indexKey = "iizzz" + index;
+        var _$indexKey = "jbzzz" + index;
 
         _this2.anonymousFunc1Map[_$indexKey] = function () {
           return useClickClassifyParentId(index);
@@ -244,7 +244,7 @@ var UsedPublish = (_temp2 = _class = function (_Taro$Component) {
           $original: item.$original
         };
       }) : [];
-      var loopArray85 = initModel ? initModel.classifyTree[parentCurrent].attributes.map(function (item, k) {
+      var loopArray87 = initModel ? initModel.classifyTree[parentCurrent].attributes.map(function (item, k) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
@@ -253,7 +253,7 @@ var UsedPublish = (_temp2 = _class = function (_Taro$Component) {
           'drawer-list-item-active': k == childCurrent && item.$original.id == model.attribute_id
         }) : null;
 
-        var _$indexKey2 = "ijzzz" + k;
+        var _$indexKey2 = "jczzz" + k;
 
         _this2.anonymousFunc2Map[_$indexKey2] = function () {
           return useClickClassifyChildId(k);
@@ -268,16 +268,16 @@ var UsedPublish = (_temp2 = _class = function (_Taro$Component) {
       _taroWeapp.propsManager.set({
         "show": showDrawer,
         "onClose": this.anonymousFunc0
-      }, $compid__95, $prevCompid__95);
+      }, $compid__96, $prevCompid__96);
       _taroWeapp.propsManager.set({
         "num": 0
-      }, $compid__96, $prevCompid__96);
+      }, $compid__97, $prevCompid__97);
       Object.assign(this.__state, {
         initModel: initModel,
-        loopArray84: loopArray84,
-        loopArray85: loopArray85,
-        $compid__95: $compid__95,
+        loopArray86: loopArray86,
+        loopArray87: loopArray87,
         $compid__96: $compid__96,
+        $compid__97: $compid__97,
         parentCurrent: parentCurrent,
         model: model,
         classifyName: classifyName,

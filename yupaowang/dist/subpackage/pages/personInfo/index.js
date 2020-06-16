@@ -66,7 +66,7 @@ var PersonInfo = (_temp2 = _class = function (_Taro$Component) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = PersonInfo.__proto__ || Object.getPrototypeOf(PersonInfo)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
       navigationBarTitleText: '人员信息'
-    }, _this.$usedState = ["loopArray132", "formData", "multiIndex", "multiArray", "proficiencyIndex", "proficiency", "userIndex", "personnel", "ranks", "label"], _this.anonymousFunc6Map = {}, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["loopArray136", "formData", "multiIndex", "multiArray", "proficiencyIndex", "proficiency", "userIndex", "personnel", "ranks", "label"], _this.anonymousFunc6Map = {}, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(PersonInfo, [{
@@ -506,12 +506,12 @@ var PersonInfo = (_temp2 = _class = function (_Taro$Component) {
       };
 
       this.anonymousFunc7 = handleSubmit;
-      var loopArray132 = label.map(function (v, __index6) {
+      var loopArray136 = label.map(function (v, __index6) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
 
-        var _$indexKey = "bdjzz" + __index6;
+        var _$indexKey = "befzz" + __index6;
 
         _this2.anonymousFunc6Map[_$indexKey] = function () {
           return handleText(v.$original);
@@ -523,7 +523,7 @@ var PersonInfo = (_temp2 = _class = function (_Taro$Component) {
         };
       });
       Object.assign(this.__state, {
-        loopArray132: loopArray132,
+        loopArray136: loopArray136,
         formData: formData,
         multiIndex: multiIndex,
         multiArray: multiArray,

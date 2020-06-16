@@ -69,7 +69,7 @@ var Collection = (_temp2 = _class = function (_Taro$Component) {
       navigationBarBackgroundColor: '#0099ff',
       navigationBarTextStyle: 'white',
       backgroundTextStyle: "dark"
-    }, _this.$usedState = ["loopArray81", "$compid__76", "$compid__77", "tab", "current"], _this.anonymousFunc0Map = {}, _this.customComponents = ["Auth", "RecruitList", "ResumeList"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["loopArray82", "$compid__70", "$compid__71", "tab", "current"], _this.anonymousFunc0Map = {}, _this.customComponents = ["Auth", "RecruitList", "ResumeList"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Collection, [{
@@ -90,15 +90,15 @@ var Collection = (_temp2 = _class = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__76"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__70"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__76 = _genCompid2[0],
-          $compid__76 = _genCompid2[1];
+          $prevCompid__70 = _genCompid2[0],
+          $compid__70 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__77"),
+      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__71"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__77 = _genCompid4[0],
-          $compid__77 = _genCompid4[1];
+          $prevCompid__71 = _genCompid4[0],
+          $compid__71 = _genCompid4[1];
 
       // 默认table
 
@@ -131,7 +131,7 @@ var Collection = (_temp2 = _class = function (_Taro$Component) {
       (0, _taroWeapp.usePullDownRefresh)(function () {
         setInitPage(initPage + 1);
       });
-      var loopArray81 = tab.map(function (item, __index0) {
+      var loopArray82 = tab.map(function (item, __index0) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
@@ -159,15 +159,15 @@ var Collection = (_temp2 = _class = function (_Taro$Component) {
       current === 1 && _taroWeapp.propsManager.set({
         "bottom": bottom,
         "initPage": initPage
-      }, $compid__76, $prevCompid__76);
+      }, $compid__70, $prevCompid__70);
       !(current === 1) && _taroWeapp.propsManager.set({
         "bottom": bottom,
         "initPage": initPage
-      }, $compid__77, $prevCompid__77);
+      }, $compid__71, $prevCompid__71);
       Object.assign(this.__state, {
-        loopArray81: loopArray81,
-        $compid__76: $compid__76,
-        $compid__77: $compid__77,
+        loopArray82: loopArray82,
+        $compid__70: $compid__70,
+        $compid__71: $compid__71,
         tab: tab,
         current: current
       });

@@ -62,7 +62,7 @@ var Course = (_temp2 = _class = function (_Taro$Component) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Course.__proto__ || Object.getPrototypeOf(Course)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
       navigationBarTitleText: '鱼泡网-使用教程'
-    }, _this.$usedState = ["bossData", "workerMaster", "loopArray117", "loopArray118", "loopArray119", "tab", "highlight"], _this.anonymousFunc0Map = {}, _this.anonymousFunc1Map = {}, _this.anonymousFunc2Map = {}, _this.customComponents = ["Nodata", "AtAccordion", "AtList"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["bossData", "workerMaster", "loopArray119", "loopArray120", "loopArray121", "tab", "highlight"], _this.anonymousFunc0Map = {}, _this.anonymousFunc1Map = {}, _this.anonymousFunc2Map = {}, _this.customComponents = ["Nodata", "AtAccordion", "AtList"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Course, [{
@@ -150,12 +150,12 @@ var Course = (_temp2 = _class = function (_Taro$Component) {
         });
         setWorkerMaster(workerMasterData);
       };
-      var loopArray117 = tab.map(function (item, __index0) {
+      var loopArray119 = tab.map(function (item, __index0) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
 
-        var _$indexKey = "bbjzz" + __index0;
+        var _$indexKey = "bcczz" + __index0;
 
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           handleClick(item.$original.id);
@@ -175,86 +175,86 @@ var Course = (_temp2 = _class = function (_Taro$Component) {
           $original: item.$original
         };
       });
-      var loopArray118 = highlight === 1 ? bossData.item.map(function (item, __index1) {
+      var loopArray120 = highlight === 1 ? bossData.item.map(function (item, __index1) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
 
-        var _$indexKey2 = "bcazz" + __index1;
+        var _$indexKey2 = "bcdzz" + __index1;
 
         _this2.anonymousFunc1Map[_$indexKey2] = function () {
           bossIsShow(item.$original.id);
         };
 
-        var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "bcczzzzzzz" + __index1, true),
+        var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "bcfzzzzzzz" + __index1, true),
             _genCompid2 = _slicedToArray(_genCompid, 2),
-            $prevCompid__107 = _genCompid2[0],
-            $compid__107 = _genCompid2[1];
+            $prevCompid__108 = _genCompid2[0],
+            $compid__108 = _genCompid2[1];
 
         highlight === 1 && _taroWeapp.propsManager.set({
           "open": item.$original.isShow,
           "onClick": _this2.anonymousFunc1.bind(_this2, _$indexKey2),
           "title": item.$original.title
-        }, $compid__107, $prevCompid__107);
+        }, $compid__108, $prevCompid__108);
 
-        var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "bcdzzzzzzz" + __index1, true),
+        var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "bcgzzzzzzz" + __index1, true),
             _genCompid4 = _slicedToArray(_genCompid3, 2),
-            $prevCompid__108 = _genCompid4[0],
-            $compid__108 = _genCompid4[1];
+            $prevCompid__109 = _genCompid4[0],
+            $compid__109 = _genCompid4[1];
 
         highlight === 1 && _taroWeapp.propsManager.set({
           "hasBorder": false
-        }, $compid__108, $prevCompid__108);
+        }, $compid__109, $prevCompid__109);
         return {
           _$indexKey2: _$indexKey2,
-          $compid__107: $compid__107,
           $compid__108: $compid__108,
+          $compid__109: $compid__109,
           $original: item.$original
         };
       }) : [];
-      var loopArray119 = highlight === 2 ? workerMaster.item.map(function (item, __index2) {
+      var loopArray121 = highlight === 2 ? workerMaster.item.map(function (item, __index2) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
 
-        var _$indexKey3 = "bcbzz" + __index2;
+        var _$indexKey3 = "bcezz" + __index2;
 
         _this2.anonymousFunc2Map[_$indexKey3] = function () {
           workerMasterIsShow(item.$original.id);
         };
 
-        var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "bcezzzzzzz" + __index2, true),
+        var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "bchzzzzzzz" + __index2, true),
             _genCompid6 = _slicedToArray(_genCompid5, 2),
-            $prevCompid__109 = _genCompid6[0],
-            $compid__109 = _genCompid6[1];
+            $prevCompid__110 = _genCompid6[0],
+            $compid__110 = _genCompid6[1];
 
         highlight === 2 && _taroWeapp.propsManager.set({
           "open": item.$original.isShow,
           "onClick": _this2.anonymousFunc2.bind(_this2, _$indexKey3),
           "title": item.$original.title
-        }, $compid__109, $prevCompid__109);
+        }, $compid__110, $prevCompid__110);
 
-        var _genCompid7 = (0, _taroWeapp.genCompid)(__prefix + "bcfzzzzzzz" + __index2, true),
+        var _genCompid7 = (0, _taroWeapp.genCompid)(__prefix + "bcizzzzzzz" + __index2, true),
             _genCompid8 = _slicedToArray(_genCompid7, 2),
-            $prevCompid__110 = _genCompid8[0],
-            $compid__110 = _genCompid8[1];
+            $prevCompid__111 = _genCompid8[0],
+            $compid__111 = _genCompid8[1];
 
         highlight === 2 && _taroWeapp.propsManager.set({
           "hasBorder": false
-        }, $compid__110, $prevCompid__110);
+        }, $compid__111, $prevCompid__111);
         return {
           _$indexKey3: _$indexKey3,
-          $compid__109: $compid__109,
           $compid__110: $compid__110,
+          $compid__111: $compid__111,
           $original: item.$original
         };
       }) : [];
       Object.assign(this.__state, {
         bossData: bossData,
         workerMaster: workerMaster,
-        loopArray117: loopArray117,
-        loopArray118: loopArray118,
         loopArray119: loopArray119,
+        loopArray120: loopArray120,
+        loopArray121: loopArray121,
         tab: tab,
         highlight: highlight
       });

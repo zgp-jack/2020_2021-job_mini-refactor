@@ -4,7 +4,7 @@
             <block wx:if="{{!tab.length}}">
                 <nodata></nodata>
             </block>
-            <view class="course-tab-box" wx:key="id" bindtap="anonymousFunc0" wx:for="{{loopArray117}}" wx:for-item="item" wx:for-index="__index0" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">
+            <view class="course-tab-box" wx:key="id" bindtap="anonymousFunc0" wx:for="{{loopArray119}}" wx:for-item="item" wx:for-index="__index0" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">
                 <view class="course-tab-content">
                     <view class="{{item.$loopState__temp2}}">
                         <view class="course-tab-img">
@@ -17,8 +17,8 @@
         <view class="course-atAccordion-box">
             <block wx:if="{{highlight === 1}}">
                 <view>
-                    <at-accordion wx:for="{{loopArray118}}" wx:for-item="item" wx:for-index="__index1" compid="{{item.$compid__107}}">
-                        <at-list compid="{{item.$compid__108}}">
+                    <at-accordion wx:for="{{loopArray120}}" wx:for-item="item" wx:for-index="__index1" compid="{{item.$compid__108}}">
+                        <at-list compid="{{item.$compid__109}}">
                             <video class="course-atAccordion-box-video" src="{{item.$original.video_url}}"></video>
                         </at-list>
                     </at-accordion>
@@ -26,8 +26,8 @@
             </block>
             <block wx:if="{{highlight === 2}}">
                 <view>
-                    <at-accordion wx:for="{{loopArray119}}" wx:for-item="item" wx:for-index="__index2" compid="{{item.$compid__109}}">
-                        <at-list compid="{{item.$compid__110}}">
+                    <at-accordion wx:for="{{loopArray121}}" wx:for-item="item" wx:for-index="__index2" compid="{{item.$compid__110}}">
+                        <at-list compid="{{item.$compid__111}}">
                             <video class="course-atAccordion-box-video" src="{{item.$original.video_url}}" controls="{{true}}"></video>
                         </at-list>
                     </at-accordion>

@@ -1,4 +1,4 @@
-import Taro, { useEffect, useState, createContext, Config, useRouter, getCurrentPages } from '@tarojs/taro'
+import Taro, { useEffect, useState, createContext, Config } from '@tarojs/taro'
 import { View, Text, Image, Input } from '@tarojs/components'
 // import { context }  from '../../../subpackage/pages/basics';
 // import { context } from '../../recruit/publish'
@@ -35,11 +35,11 @@ interface ResumeMapType{
 }
 export const contextItem = createContext<Injected>({} as Injected)
 export default function ResumeMap() {
-  const router: Taro.RouterInfo = useRouter()
-  let { areaItem } = router.params;
+  // const router: Taro.RouterInfo = useRouter()
+  // let { areaItem } = router.params;
   // console.log(context,'context');
   // console.log(contextItem,'contextItem')
-  const [area, setArea] = useState<string>(areaItem)
+  const [area, setArea] = useState<string>('')
   // 城市数据
   const [areas, setAreas] = useState<AllAreasDataItem[][]>([])
   // 选择详细地址信息

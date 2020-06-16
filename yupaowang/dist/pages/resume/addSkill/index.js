@@ -72,7 +72,7 @@ var AddSkillPage = (_temp2 = _class = function (_Taro$Component) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AddSkillPage.__proto__ || Object.getPrototypeOf(AddSkillPage)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
       navigationBarTitleText: '新增技能证书'
-    }, _this.$usedState = ["$compid__99", "val", "extraText", "image", "type", "num", "maxNum"], _this.customComponents = ["ImageView"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["$compid__100", "val", "extraText", "image", "type", "num", "maxNum"], _this.customComponents = ["ImageView"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(AddSkillPage, [{
@@ -91,10 +91,10 @@ var AddSkillPage = (_temp2 = _class = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__99"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__100"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__99 = _genCompid2[0],
-          $compid__99 = _genCompid2[1];
+          $prevCompid__100 = _genCompid2[0],
+          $compid__100 = _genCompid2[1];
 
       var router = (0, _taroWeapp.useRouter)();
       // 获取存入的公用内容
@@ -342,9 +342,9 @@ var AddSkillPage = (_temp2 = _class = function (_Taro$Component) {
         "images": image.item,
         "max": 3,
         "userUploadImg": userUploadImg
-      }, $compid__99, $prevCompid__99);
+      }, $compid__100, $prevCompid__100);
       Object.assign(this.__state, {
-        $compid__99: $compid__99,
+        $compid__100: $compid__100,
         val: val,
         extraText: extraText,
         image: image,

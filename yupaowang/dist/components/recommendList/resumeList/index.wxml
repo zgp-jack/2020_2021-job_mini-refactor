@@ -4,7 +4,7 @@
             <view class="resumeDetail-recommend-top"><text class="resumeDetail-recommend-top-text">相关推荐</text>
             </view>
         </view>
-        <block wx:key="id" wx:for="{{loopArray106}}" wx:for-item="item" wx:for-index="__index0">
+        <block wx:key="id" wx:for="{{loopArray110}}" wx:for-item="item" wx:for-index="__index0">
             <view class="resume-list-item" wx:key="id" bindtap="anonymousFunc0" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">
                 <view class="resume-list-header">
                     <image class="resume-list-user" src="{{item.$original.headerimg}}"></image>

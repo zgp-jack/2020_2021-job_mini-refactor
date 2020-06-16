@@ -60,7 +60,7 @@ var Mymessage = (_temp2 = _class = function (_Taro$Component) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Mymessage.__proto__ || Object.getPrototypeOf(Mymessage)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
       navigationBarTitleText: '鱼泡网-我的信息'
-    }, _this.$usedState = ["data", "loopArray91", "IMGCDNURL"], _this.anonymousFunc0Map = {}, _this.customComponents = ["Auth", "Nodata"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["data", "loopArray93", "IMGCDNURL"], _this.anonymousFunc0Map = {}, _this.customComponents = ["Auth", "Nodata"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Mymessage, [{
@@ -119,13 +119,13 @@ var Mymessage = (_temp2 = _class = function (_Taro$Component) {
           url: url
         });
       };
-      var loopArray91 = data.item.map(function (item, index) {
+      var loopArray93 = data.item.map(function (item, index) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
         var $loopState__temp2 = index + index;
 
-        var _$indexKey = "jczzz" + index;
+        var _$indexKey = "jfzzz" + index;
 
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return userRouteJump("/pages/information/system/index?type=" + item.$original.type);
@@ -139,7 +139,7 @@ var Mymessage = (_temp2 = _class = function (_Taro$Component) {
       });
       Object.assign(this.__state, {
         data: data,
-        loopArray91: loopArray91,
+        loopArray93: loopArray93,
         IMGCDNURL: _index2.IMGCDNURL
       });
       return this.__state;

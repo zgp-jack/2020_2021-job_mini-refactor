@@ -357,7 +357,7 @@ export default function BasicsPage() {
    // 选择地址
   const userChooseArea = ()=> {
     if (!areas) return
-    let url = `/pages/map/resume/index?areaItem=${areas}`
+    let url = `/pages/map/resume/index`
     Taro.navigateTo({
       url: url
     })
