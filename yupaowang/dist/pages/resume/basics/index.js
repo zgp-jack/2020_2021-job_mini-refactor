@@ -80,7 +80,7 @@ var BasicsPage = (_temp2 = _class = function (_Taro$Component) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = BasicsPage.__proto__ || Object.getPrototypeOf(BasicsPage)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
       navigationBarTitleText: '基础信息'
-    }, _this.$usedState = ["anonymousState__temp", "$compid__206", "$compid__207", "showProfession", "formData", "sexList", "nationCurrent", "isCode", "text"], _this.customComponents = ["Profession", "WordsTotal"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["anonymousState__temp", "$compid__170", "$compid__171", "showProfession", "formData", "sexList", "nationCurrent", "isCode", "text"], _this.customComponents = ["Profession", "WordsTotal"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(BasicsPage, [{
@@ -99,15 +99,15 @@ var BasicsPage = (_temp2 = _class = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__206"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__170"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__206 = _genCompid2[0],
-          $compid__206 = _genCompid2[1];
+          $prevCompid__170 = _genCompid2[0],
+          $compid__170 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__207"),
+      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__171"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__207 = _genCompid4[0],
-          $compid__207 = _genCompid4[1];
+          $prevCompid__171 = _genCompid4[0],
+          $compid__171 = _genCompid4[1];
 
       // 获取存入的公用内容
 
@@ -230,10 +230,17 @@ var BasicsPage = (_temp2 = _class = function (_Taro$Component) {
           _useState26 = _slicedToArray(_useState25, 2),
           lng = _useState26[0],
           setLng = _useState26[1];
+      // 民族索引
+
+
+      var _useState27 = (0, _taroWeapp.useState)(0),
+          _useState28 = _slicedToArray(_useState27, 2),
+          nation_id = _useState28[0],
+          setnation_id = _useState28[1];
       // const [occupationsId, setOccupationsId] = useState<string>('')
 
 
-      var _useState27 = (0, _taroWeapp.useState)({
+      var _useState29 = (0, _taroWeapp.useState)({
         name: '',
         sex: '',
         time: '',
@@ -249,9 +256,9 @@ var BasicsPage = (_temp2 = _class = function (_Taro$Component) {
         classifies: [],
         nationCurrentName: ''
       }),
-          _useState28 = _slicedToArray(_useState27, 2),
-          formData = _useState28[0],
-          setFormData = _useState28[1];
+          _useState30 = _slicedToArray(_useState29, 2),
+          formData = _useState30[0],
+          setFormData = _useState30[1];
       // 获取数据
 
 
@@ -296,6 +303,7 @@ var BasicsPage = (_temp2 = _class = function (_Taro$Component) {
         // 获取缓存信息
         var useInfo = _taroWeapp2.default.getStorageSync('introinfo');
         if (useInfo) {
+          console.log(useInfo);
           if (publishArea && location && adcode) {
             return;
           }var cache = {
@@ -316,6 +324,7 @@ var BasicsPage = (_temp2 = _class = function (_Taro$Component) {
             // 所在地区s
             are: useInfo.address
           };
+          setnation_id(useInfo.nation_id ? useInfo.nation_id > 0 ? useInfo.nation_id - 1 : 0 : 0);
           // console.log(useInfo.occupation,'xxx')
           var arr = JSON.parse(JSON.stringify(useSelectorItem.Personnel.occupation));
           console.log(arr, 'xxx');
@@ -378,10 +387,10 @@ var BasicsPage = (_temp2 = _class = function (_Taro$Component) {
       });
       // 验证码
 
-      var _useState29 = (0, _taroWeapp.useState)(false),
-          _useState30 = _slicedToArray(_useState29, 2),
-          isCode = _useState30[0],
-          setIsCode = _useState30[1];
+      var _useState31 = (0, _taroWeapp.useState)(false),
+          _useState32 = _slicedToArray(_useState31, 2),
+          isCode = _useState32[0],
+          setIsCode = _useState32[1];
       // 用户填写表单
 
 
@@ -662,14 +671,14 @@ var BasicsPage = (_temp2 = _class = function (_Taro$Component) {
         "data": occupation,
         "onClickItem": this.anonymousFunc0,
         "num": 3
-      }, $compid__206, $prevCompid__206);
+      }, $compid__170, $prevCompid__170);
       _taroWeapp.propsManager.set({
         "num": num
-      }, $compid__207, $prevCompid__207);
+      }, $compid__171, $prevCompid__171);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
-        $compid__206: $compid__206,
-        $compid__207: $compid__207,
+        $compid__170: $compid__170,
+        $compid__171: $compid__171,
         showProfession: showProfession,
         formData: formData,
         sexList: sexList,

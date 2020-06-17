@@ -5,8 +5,8 @@
         </block>
         <scroll-view class="recruit-lists-containerbox" scroll-y="{{true}}" lower-threshold="{{200}}" refresher-enabled="{{true}}" refresher-triggered="{{refresh}}" bindrefresherrefresh="anonymousFunc0" bindscrolltolower="anonymousFunc1">
             <view class="topNoneBox"></view>
-            <at-accordion wx:key="id" wx:for="{{loopArray83}}" wx:for-item="item" wx:for-index="__index2" compid="{{item.$compid__77}}">
-                <at-list compid="{{item.$compid__78}}"><text class="help-text">{{item.$original.answer}}</text>
+            <at-accordion wx:key="id" wx:for="{{loopArray82}}" wx:for-item="item" wx:for-index="__index2" compid="{{item.$compid__76}}">
+                <at-list compid="{{item.$compid__77}}"><text class="help-text">{{item.$original.answer}}</text>
                 </at-list>
             </at-accordion>
             <block wx:if="{{!isDown && data.item.length}}">

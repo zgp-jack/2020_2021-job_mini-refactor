@@ -64,7 +64,7 @@ var InvitePage = (_temp2 = _class = function (_Taro$Component) {
       navigationBarBackgroundColor: '#0099ff',
       navigationBarTextStyle: 'white',
       backgroundTextStyle: 'dark'
-    }, _this.$usedState = ["tab", "loopArray91", "loopArray92", "$compid__98", "scrollLeft", "list", "pull"], _this.anonymousFunc1Map = {}, _this.anonymousFunc2Map = {}, _this.customComponents = ["Nodata"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["tab", "loopArray93", "loopArray94", "$compid__98", "scrollLeft", "list", "pull"], _this.anonymousFunc1Map = {}, _this.anonymousFunc2Map = {}, _this.customComponents = ["Nodata"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(InvitePage, [{
@@ -194,12 +194,12 @@ var InvitePage = (_temp2 = _class = function (_Taro$Component) {
         console.log(e);
       };
 
-      var loopArray91 = tab.item ? tab.item.map(function (item, i) {
+      var loopArray93 = tab.item ? tab.item.map(function (item, i) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
 
-        var _$indexKey = "jdzzz" + i;
+        var _$indexKey = "jfzzz" + i;
 
         _this2.anonymousFunc1Map[_$indexKey] = function () {
           handleTable(item.$original.index, item.$original.name, i);
@@ -214,12 +214,12 @@ var InvitePage = (_temp2 = _class = function (_Taro$Component) {
           $original: item.$original
         };
       }) : [];
-      var loopArray92 = list ? list.map(function (v, __index2) {
+      var loopArray94 = list ? list.map(function (v, __index2) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
 
-        var _$indexKey2 = "jezzz" + __index2;
+        var _$indexKey2 = "jgzzz" + __index2;
 
         _this2.anonymousFunc2Map[_$indexKey2] = function () {
           return userRouteJump("/subpackage/pages/notice/index?id=" + v.$original.id);
@@ -235,8 +235,8 @@ var InvitePage = (_temp2 = _class = function (_Taro$Component) {
       }, $compid__98, $prevCompid__98);
       Object.assign(this.__state, {
         tab: tab,
-        loopArray91: loopArray91,
-        loopArray92: loopArray92,
+        loopArray93: loopArray93,
+        loopArray94: loopArray94,
         $compid__98: $compid__98,
         scrollLeft: scrollLeft,
         list: list,

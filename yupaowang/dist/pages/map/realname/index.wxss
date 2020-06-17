@@ -1,9 +1,7 @@
-@import "../../../common.wxss";
 .overwords {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis; }
-
 .showMore {
   position: relative;
   width: 100%;
@@ -11,7 +9,6 @@
   text-align: center;
   font-size: 26rpx;
   color: #525252; }
-
 .clearfix:after {
   content: "";
   display: block;
@@ -20,16 +17,13 @@
   line-height: 0;
   height: 0;
   font-size: 0; }
-
 .clearfix {
   zoom: 1; }
-
 page,
 .publishrecruit-container {
   position: relative;
   width: 100%;
   height: 100%; }
-
 .mapinfo-header {
   position: fixed;
   padding-left: 20rpx;
@@ -43,7 +37,6 @@ page,
   top: 0;
   border-bottom: 1rpx solid #dcdcdc;
   box-shadow: 0 0 10rpx #e7e6e4; }
-
 .mapinfo-header .mapinfo-header-area {
     position: relative;
     display: table-cell;
@@ -51,7 +44,6 @@ page,
     white-space: nowrap;
     line-height: 100rpx;
     padding-right: 40rpx; }
-
 .mapinfo-header .mapinfo-header-area::after {
       display: block;
       width: 20rpx;
@@ -64,13 +56,11 @@ page,
               transform: rotate(135deg);
       right: 20rpx;
       top: 33rpx; }
-
 .mapinfo-header .mapinfo-header-inputbox {
     position: relative;
     display: table-cell;
     height: 100%;
     vertical-align: middle; }
-
 .mapinfo-header .mapinfo-header-inputbox .mapinfo-header-input {
       position: relative;
       display: block;
@@ -82,14 +72,12 @@ page,
       padding: 0 10rpx;
       padding-right: 70rpx;
       font-size: 30rpx; }
-
 .mapinfo-header .mapinfo-header-inputbox .mapinfo-header-clear {
       position: absolute;
       right: 20rpx;
       top: 0;
       line-height: 100rpx;
       font-size: 30rpx; }
-
 .mapinfo-header .mapinfo-header-close {
     position: absolute;
     right: 20rpx;
@@ -97,18 +85,15 @@ page,
     line-height: 100rpx;
     top: 0;
     color: #969494; }
-
 .mapinfo-container {
   position: relative;
   padding-top: 115rpx;
   min-height: 100%;
   height: 100%; }
-
 .mapinfo-container .location-lists {
     position: relative;
     min-height: 100%;
     background-color: white; }
-
 .mapinfo-container .location-lists .history-title {
       position: relative;
       font-size: 26rpx;
@@ -117,34 +102,28 @@ page,
       border-bottom: 1rpx solid #dcdcdc;
       line-height: 60rpx;
       padding: 20rpx; }
-
 .mapinfo-container .location-lists .location-list-item {
       position: relative;
       padding: 10rpx 20rpx;
       border-bottom: 1rpx solid #dcdcdc; }
-
 .mapinfo-container .location-lists .location-list-item:nth-last-child(1) {
         border-bottom: none; }
-
 .mapinfo-container .location-lists .location-list-item .location-list-header {
         position: relative;
         padding-right: 200rpx;
         line-height: 70rpx;
         font-size: 32rpx;
         color: #333; }
-
 .mapinfo-container .location-lists .location-list-item .location-list-header text {
           position: absolute;
           right: 0;
           top: 0; }
-
 .mapinfo-container .location-lists .location-list-item .location-list-content {
         position: relative;
         padding-bottom: 10rpx;
         line-height: 50rpx;
         font-size: 28rpx;
         color: #666; }
-
 .mapinfo-container .location-lists .location-nodata {
       position: relative;
       padding: 120rpx 0;
@@ -153,19 +132,16 @@ page,
       flex-direction: column;
       justify-content: center;
       align-items: center; }
-
 .mapinfo-container .location-lists .location-nodata .location-nodata-img {
         position: relative;
         display: block;
         width: 300rpx;
         height: 300rpx; }
-
 .mapinfo-container .location-lists .location-nodata .location-nodata-text {
         position: relative;
         font-size: 28rpx;
         color: #333;
         margin-top: 20rpx; }
-
 .mapinfo-citys {
   position: fixed;
   width: 100%;
@@ -174,4 +150,3 @@ page,
   left: 0;
   top: 0;
   z-index: 20; }
-

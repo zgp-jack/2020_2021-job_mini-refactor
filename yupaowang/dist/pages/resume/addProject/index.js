@@ -76,7 +76,7 @@ var AddProjectPage = (_temp2 = _class = function (_Taro$Component) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AddProjectPage.__proto__ || Object.getPrototypeOf(AddProjectPage)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
       navigationBarTitleText: '新增项目经验'
-    }, _this.$usedState = ["$compid__120", "$compid__121", "$compid__122", "startTime", "endTime", "multiIndex", "multiArray", "multiIndexvalue", "textarea", "image", "type"], _this.customComponents = ["AtInput", "WordsTotal", "ImageView"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["$compid__175", "$compid__176", "$compid__177", "startTime", "endTime", "multiIndex", "multiArray", "multiIndexvalue", "textarea", "image", "type"], _this.customComponents = ["AtInput", "WordsTotal", "ImageView"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(AddProjectPage, [{
@@ -95,20 +95,20 @@ var AddProjectPage = (_temp2 = _class = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__120"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__175"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__120 = _genCompid2[0],
-          $compid__120 = _genCompid2[1];
+          $prevCompid__175 = _genCompid2[0],
+          $compid__175 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__121"),
+      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__176"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__121 = _genCompid4[0],
-          $compid__121 = _genCompid4[1];
+          $prevCompid__176 = _genCompid4[0],
+          $compid__176 = _genCompid4[1];
 
-      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__122"),
+      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__177"),
           _genCompid6 = _slicedToArray(_genCompid5, 2),
-          $prevCompid__122 = _genCompid6[0],
-          $compid__122 = _genCompid6[1];
+          $prevCompid__177 = _genCompid6[0],
+          $compid__177 = _genCompid6[1];
 
       var router = (0, _taroWeapp.useRouter)();
       // 获取存入的公用内容
@@ -469,6 +469,7 @@ var AddProjectPage = (_temp2 = _class = function (_Taro$Component) {
                     // setAddress('请选择所在地区')
                     setAllpro('');
                     setName('');
+                    setMultiIndex([0, 0]);
                     // 保存
                   } else {
                     (0, _index4.default)(res.errmsg);
@@ -553,19 +554,19 @@ var AddProjectPage = (_temp2 = _class = function (_Taro$Component) {
         "maxLength": 12,
         "value": name,
         "onChange": this.anonymousFunc0
-      }, $compid__120, $prevCompid__120);
+      }, $compid__175, $prevCompid__175);
       _taroWeapp.propsManager.set({
         "num": num
-      }, $compid__121, $prevCompid__121);
+      }, $compid__176, $prevCompid__176);
       image.item && _taroWeapp.propsManager.set({
         "images": image.item,
         "max": 6,
         "userUploadImg": userUploadImg
-      }, $compid__122, $prevCompid__122);
+      }, $compid__177, $prevCompid__177);
       Object.assign(this.__state, {
-        $compid__120: $compid__120,
-        $compid__121: $compid__121,
-        $compid__122: $compid__122,
+        $compid__175: $compid__175,
+        $compid__176: $compid__176,
+        $compid__177: $compid__177,
         startTime: startTime,
         endTime: endTime,
         multiIndex: multiIndex,

@@ -1,7 +1,7 @@
 <block wx:if="{{$taroCompReady}}">
     <view>
         <block wx:if="{{showProfession}}">
-            <profession compid="{{$compid__206}}"></profession>
+            <profession compid="{{$compid__170}}"></profession>
         </block>
         <view class="header">注: 资料越完善，找活越容易</view>
         <form class="formBox">
@@ -60,7 +60,7 @@
                     <textarea class="textarea" placeholder="请简要介绍你所从事的行业以及工作经验..." value="{{formData && formData.details}}" bindinput="anonymousFunc11" maxlength="{{500}}"></textarea>
                 </view>
                 <view>
-                    <words-total compid="{{$compid__207}}"></words-total>
+                    <words-total compid="{{$compid__171}}"></words-total>
                 </view>
             </view>
         </form>

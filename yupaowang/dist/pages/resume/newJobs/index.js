@@ -79,7 +79,7 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = NewJob.__proto__ || Object.getPrototypeOf(NewJob)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
       navigationBarTitleText: '找活名片'
-    }, _this.$usedState = ["anonymousState__temp", "data", "loopArray154", "loopArray155", "loopArray156", "loopArray157", "loopArray158", "loopArray159", "$compid__131", "$compid__132", "$compid__133", "showtop", "showcomplete", "IMGCDNURL", "showtopone", "showpassre", "passre", "nopassre", "index", "checkone", "headerimg", "authenticationimg", "certificate_show", "age", "sex", "checkonef", "showskill", "intro", "introne", "ressonone", "selfintrone", "checktwo", "selfintro", "projectlength", "project_count", "project", "skilllength", "skillbooksone", "checkfourf", "recData", "selectdata", "proStatus", "popup"], _this.anonymousFunc16Map = {}, _this.anonymousFunc17Map = {}, _this.anonymousFunc21Map = {}, _this.anonymousFunc22Map = {}, _this.customComponents = ["Auth", "CollectionRecruitList", "AtModal"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["anonymousState__temp", "data", "loopArray226", "loopArray227", "loopArray228", "loopArray229", "loopArray230", "loopArray231", "$compid__181", "$compid__182", "$compid__183", "showtop", "showcomplete", "IMGCDNURL", "showtopone", "showpassre", "passre", "nopassre", "index", "checkone", "headerimg", "authenticationimg", "certificate_show", "age", "sex", "checkonef", "showskill", "intro", "introne", "ressonone", "selfintrone", "checktwo", "selfintro", "projectlength", "project_count", "project", "skilllength", "skillbooksone", "checkfourf", "recData", "selectdata", "proStatus", "popup"], _this.anonymousFunc16Map = {}, _this.anonymousFunc17Map = {}, _this.anonymousFunc21Map = {}, _this.anonymousFunc22Map = {}, _this.customComponents = ["Auth", "CollectionRecruitList", "AtModal"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(NewJob, [{
@@ -100,20 +100,20 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__131"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__181"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__131 = _genCompid2[0],
-          $compid__131 = _genCompid2[1];
+          $prevCompid__181 = _genCompid2[0],
+          $compid__181 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__132"),
+      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__182"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__132 = _genCompid4[0],
-          $compid__132 = _genCompid4[1];
+          $prevCompid__182 = _genCompid4[0],
+          $compid__182 = _genCompid4[1];
 
-      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__133"),
+      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__183"),
           _genCompid6 = _slicedToArray(_genCompid5, 2),
-          $prevCompid__133 = _genCompid6[0],
-          $compid__133 = _genCompid6[1];
+          $prevCompid__183 = _genCompid6[0],
+          $compid__183 = _genCompid6[1];
 
       var dispatch = (0, _redux.useDispatch)();
       // 获取用户是否登录
@@ -576,26 +576,47 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
             setPopup(popupData);
             // 判断技能证书全部遍历一次有失败就显示
             var skillType = undefined;
-            res.data.certificates.map(function (v) {
-              if (v.check === '1') {
-                setCheckfourf(v.check);
-                skillType = v.check;
-                return;
+            for (var _i = 0; _i < res.data.certificates.length; _i++) {
+              if (res.data.certificates[_i].check == 1) {
+                skillType = res.data.certificates[_i].check.check;
+                setCheckfourf(res.data.certificates[_i].check.check);
               }
-              skillType = v.check;
-              setCheckfourf(v.check);
-            });
+              if (res.data.certificates[_i].check == 0) {
+                skillType = res.data.certificates[_i].check.check;
+                setCheckfourf(res.data.certificates[_i].check.check);
+                break;
+              }
+              if (res.data.certificates[_i].check == 2) {
+                skillType = res.data.certificates[_i].check.check;
+                setCheckfourf(res.data.certificates[_i].check.check);
+              }
+            }
             // 项目经验遍历有失败就显示修改
             var projectType = undefined;
-            res.data.project.map(function (v) {
-              if (v.check === '1') {
-                setProStatus(v.check);
-                projectType = v.check;
-                return;
+            for (var _i2 = 0; _i2 < res.data.project.length; _i2++) {
+              if (res.data.project[_i2].check == 1) {
+                projectType = res.data.project[_i2].check.check;
+                setProStatus(res.data.project[_i2].check.check);
               }
-              projectType = v.check;
-              setProStatus(v.check);
-            });
+              if (res.data.project[_i2].check == 0) {
+                projectType = res.data.project[_i2].check.check;
+                setProStatus(res.data.project[_i2].check.check);
+                break;
+              }
+              if (res.data.project[_i2].check == 2) {
+                projectType = res.data.project[_i2].check.check;
+                setProStatus(res.data.project[_i2].check.check);
+              }
+            }
+            // res.data.project.map((v) => {
+            //   if (v.check === '1') {
+            //     setProStatus(v.check);
+            //     projectType = v.check;
+            //     return;
+            //   }
+            //   projectType = v.check;
+            //   setProStatus(v.check);
+            // })
             console.log(projectType, 'projectType');
             // 设置提示弹窗
             if (skillType === '0' || projectType === '0' || res.data.info.check === '0' || res.data.introduces.check === '0') {
@@ -1032,15 +1053,15 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
       };
 
       this.anonymousFunc11 = function () {
-        return userRouteJump('/subpackage/pages/personInfo/index?type=1');
+        return userRouteJump('/pages/resume/personInfo/index?type=1');
       };
 
       this.anonymousFunc12 = function () {
-        return userRouteJump('/subpackage/pages/personInfo/index?type=1');
+        return userRouteJump('/pages/resume/personInfo/index?type=1');
       };
 
       this.anonymousFunc13 = function () {
-        return handlePerfect('/subpackage/pages/personInfo/index');
+        return handlePerfect('/pages/resume/personInfo/index');
       };
 
       this.anonymousFunc14 = function () {
@@ -1087,7 +1108,7 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
         return userRouteJump("/pages/topping/index?rec=1");
       };
 
-      var loopArray154 = data.resume_top.has_top != 0 && data.resume_top.is_top != 2 ? data.resume_top.top_provinces_str.map(function (v, i) {
+      var loopArray226 = data.resume_top.has_top != 0 && data.resume_top.is_top != 2 ? data.resume_top.top_provinces_str.map(function (v, i) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
@@ -1097,7 +1118,7 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray155 = !showskill ? data.info.occupations.map(function (v, i) {
+      var loopArray227 = !showskill ? data.info.occupations.map(function (v, i) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
@@ -1107,7 +1128,7 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray156 = showskill ? data.info.occupations.map(function (v, i) {
+      var loopArray228 = showskill ? data.info.occupations.map(function (v, i) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
@@ -1117,7 +1138,7 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray157 = selfintrone ? data.introduces.tags.map(function (v, i) {
+      var loopArray229 = selfintrone ? data.introduces.tags.map(function (v, i) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
@@ -1127,24 +1148,24 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray158 = projectlength != 0 ? project.map(function (item, __index16) {
+      var loopArray230 = projectlength != 0 ? project.map(function (item, __index16) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
 
-        var _$indexKey = "bfizz" + __index16;
+        var _$indexKey = "cagzz" + __index16;
 
         _this2.anonymousFunc16Map[_$indexKey] = function () {
           return userRouteJump("/pages/resume/addProject/index?type=0&id=" + data.info.uuid);
         };
 
-        var _$indexKey2 = "bfjzz" + __index16;
+        var _$indexKey2 = "cahzz" + __index16;
 
         _this2.anonymousFunc17Map[_$indexKey2] = function () {
           return userRouteJump("/pages/resume/addProject/index?type=0&id=" + data.info.uuid);
         };
 
-        var $anonymousCallee__30 = projectlength != 0 ? item.$original.image.map(function (v, i) {
+        var $anonymousCallee__54 = projectlength != 0 ? item.$original.image.map(function (v, i) {
           v = {
             $original: (0, _taroWeapp.internal_get_original)(v)
           };
@@ -1157,29 +1178,29 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
         return {
           _$indexKey: _$indexKey,
           _$indexKey2: _$indexKey2,
-          $anonymousCallee__30: $anonymousCallee__30,
+          $anonymousCallee__54: $anonymousCallee__54,
           $original: item.$original
         };
       }) : [];
-      var loopArray159 = skilllength != 0 ? skillbooksone.map(function (item, i) {
+      var loopArray231 = skilllength != 0 ? skillbooksone.map(function (item, i) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
         var $loopState__temp13 = skillbooksone ? i + i : null;
 
-        var _$indexKey3 = "bgazz" + i;
+        var _$indexKey3 = "caizz" + i;
 
         _this2.anonymousFunc21Map[_$indexKey3] = function () {
           return userRouteJump("/pages/resume/addSkill/index?type=" + i + "&id=" + data.info.uuid);
         };
 
-        var _$indexKey4 = "bgbzz" + i;
+        var _$indexKey4 = "cajzz" + i;
 
         _this2.anonymousFunc22Map[_$indexKey4] = function () {
           return userRouteJump("/pages/resume/addSkill/index?type=" + i + "&id=" + data.info.uuid);
         };
 
-        var $anonymousCallee__31 = skilllength != 0 ? item.$original.image.map(function (v, i) {
+        var $anonymousCallee__55 = skilllength != 0 ? item.$original.image.map(function (v, i) {
           v = {
             $original: (0, _taroWeapp.internal_get_original)(v)
           };
@@ -1193,34 +1214,34 @@ var NewJob = (_temp2 = _class = function (_Taro$Component) {
           $loopState__temp13: $loopState__temp13,
           _$indexKey3: _$indexKey3,
           _$indexKey4: _$indexKey4,
-          $anonymousCallee__31: $anonymousCallee__31,
+          $anonymousCallee__55: $anonymousCallee__55,
           $original: item.$original
         };
       }) : [];
       recData.length && _taroWeapp.propsManager.set({
         "type": 1,
         "data": recData
-      }, $compid__131, $prevCompid__131);
+      }, $compid__181, $prevCompid__181);
       _taroWeapp.propsManager.set({
         "isOpened": tips,
         "className": "AtModal"
-      }, $compid__132, $prevCompid__132);
+      }, $compid__182, $prevCompid__182);
       _taroWeapp.propsManager.set({
         "isOpened": toppingModal,
         "className": "AtModal"
-      }, $compid__133, $prevCompid__133);
+      }, $compid__183, $prevCompid__183);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
         data: data,
-        loopArray154: loopArray154,
-        loopArray155: loopArray155,
-        loopArray156: loopArray156,
-        loopArray157: loopArray157,
-        loopArray158: loopArray158,
-        loopArray159: loopArray159,
-        $compid__131: $compid__131,
-        $compid__132: $compid__132,
-        $compid__133: $compid__133,
+        loopArray226: loopArray226,
+        loopArray227: loopArray227,
+        loopArray228: loopArray228,
+        loopArray229: loopArray229,
+        loopArray230: loopArray230,
+        loopArray231: loopArray231,
+        $compid__181: $compid__181,
+        $compid__182: $compid__182,
+        $compid__183: $compid__183,
         showtop: showtop,
         showcomplete: showcomplete,
         IMGCDNURL: _index6.IMGCDNURL,

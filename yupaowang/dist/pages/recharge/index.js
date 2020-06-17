@@ -70,7 +70,7 @@ var Recharge = (_temp2 = _class = function (_Taro$Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Recharge.__proto__ || Object.getPrototypeOf(Recharge)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray81", "lists", "integral", "current", "price"], _this.anonymousFunc0Map = {}, _this.customComponents = ["AtMessage"], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Recharge.__proto__ || Object.getPrototypeOf(Recharge)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray80", "lists", "integral", "current", "price"], _this.anonymousFunc0Map = {}, _this.customComponents = ["AtMessage"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Recharge, [{
@@ -191,12 +191,12 @@ var Recharge = (_temp2 = _class = function (_Taro$Component) {
         return userRechargeAction();
       };
 
-      var loopArray81 = lists.map(function (item, index) {
+      var loopArray80 = lists.map(function (item, index) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
 
-        var _$indexKey = "iczzz" + index;
+        var _$indexKey = "ibzzz" + index;
 
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return userChooseItem(index);
@@ -213,7 +213,7 @@ var Recharge = (_temp2 = _class = function (_Taro$Component) {
         };
       });
       Object.assign(this.__state, {
-        loopArray81: loopArray81,
+        loopArray80: loopArray80,
         lists: lists,
         integral: integral,
         current: current,

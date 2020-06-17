@@ -51,6 +51,8 @@ class App extends Component {
       'pages/resume/newJobs/index',//新增
       'pages/resume/recList/index', //更多招工信息
       'pages/resume/preview/index', // 预览
+      'pages/resume/personInfo/index',//人员信息
+      
     ],
     subPackages: [
       {
@@ -64,7 +66,6 @@ class App extends Component {
           'ranking/index',//排名规则
           'course/index',//使用教程
           'anti-fraud/index', //防骗指南
-          'personInfo/index',//人员信息
         ]
       },
     ],

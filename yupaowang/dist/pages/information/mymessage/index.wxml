@@ -4,7 +4,7 @@
         <block wx:if="{{!data.item.length}}">
             <nodata></nodata>
         </block>
-        <view class="messsage-lists" wx:key="$loopState__temp2" bindtap="anonymousFunc0" wx:for="{{loopArray93}}" wx:for-item="item" wx:for-index="index" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">
+        <view class="messsage-lists" wx:key="$loopState__temp2" bindtap="anonymousFunc0" wx:for="{{loopArray91}}" wx:for-item="item" wx:for-index="index" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">
             <view class="messsage-lists-top">
                 <view class="messsage-num">
                     <image src="{{item.$original.imageUrl}}" class="messsage-num-img"></image>

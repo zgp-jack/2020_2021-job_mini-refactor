@@ -323,6 +323,7 @@ export default function AddProjectPage() {
                 // setAddress('请选择所在地区')
                 setAllpro('')
                 setName('')
+                setMultiIndex([0,0])
                 // 保存
               } else {
                 Msg(res.errmsg);

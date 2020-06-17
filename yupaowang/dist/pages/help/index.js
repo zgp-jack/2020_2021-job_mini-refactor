@@ -60,7 +60,7 @@ var Help = (_temp2 = _class = function (_Taro$Component) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Help.__proto__ || Object.getPrototypeOf(Help)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
       navigationBarTitleText: '帮助中心'
-    }, _this.$usedState = ["data", "loopArray83", "refresh", "isDown"], _this.anonymousFunc2Map = {}, _this.customComponents = ["Nodata", "AtAccordion", "AtList"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["data", "loopArray82", "refresh", "isDown"], _this.anonymousFunc2Map = {}, _this.customComponents = ["Nodata", "AtAccordion", "AtList"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Help, [{
@@ -200,49 +200,49 @@ var Help = (_temp2 = _class = function (_Taro$Component) {
         return userRouteJump("/pages/feedback/index?username=" + userData.username + "&phone=" + userData.phone);
       };
 
-      var loopArray83 = data.item.map(function (item, __index2) {
+      var loopArray82 = data.item.map(function (item, __index2) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
         var $loopState__temp2 = { value: 'help', color: '#09f', size: '15' };
 
-        var _$indexKey = "iezzz" + __index2;
+        var _$indexKey = "idzzz" + __index2;
 
         _this2.anonymousFunc2Map[_$indexKey] = function () {
           handleShow(item.$original.id);
         };
 
-        var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "ifzzzzzzzz" + __index2, true),
+        var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "iezzzzzzzz" + __index2, true),
             _genCompid2 = _slicedToArray(_genCompid, 2),
-            $prevCompid__77 = _genCompid2[0],
-            $compid__77 = _genCompid2[1];
+            $prevCompid__76 = _genCompid2[0],
+            $compid__76 = _genCompid2[1];
 
         _taroWeapp.propsManager.set({
           "icon": $loopState__temp2,
           "open": item.$original.isShow,
           "onClick": _this2.anonymousFunc2.bind(_this2, _$indexKey),
           "title": item.$original.question
-        }, $compid__77, $prevCompid__77);
+        }, $compid__76, $prevCompid__76);
 
-        var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "igzzzzzzzz" + __index2, true),
+        var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "ifzzzzzzzz" + __index2, true),
             _genCompid4 = _slicedToArray(_genCompid3, 2),
-            $prevCompid__78 = _genCompid4[0],
-            $compid__78 = _genCompid4[1];
+            $prevCompid__77 = _genCompid4[0],
+            $compid__77 = _genCompid4[1];
 
         _taroWeapp.propsManager.set({
           "hasBorder": false
-        }, $compid__78, $prevCompid__78);
+        }, $compid__77, $prevCompid__77);
         return {
           $loopState__temp2: $loopState__temp2,
           _$indexKey: _$indexKey,
+          $compid__76: $compid__76,
           $compid__77: $compid__77,
-          $compid__78: $compid__78,
           $original: item.$original
         };
       });
       Object.assign(this.__state, {
         data: data,
-        loopArray83: loopArray83,
+        loopArray82: loopArray82,
         refresh: refresh,
         isDown: isDown
       });

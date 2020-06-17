@@ -1,7 +1,7 @@
 <block wx:if="{{$taroCompReady}}">
     <view class="recruit-lists-container" style="{{anonymousState__temp}}">
         <block wx:if="{{!data.length}}">
-            <nodata compid="{{$compid__84}}"></nodata>
+            <nodata compid="{{$compid__85}}"></nodata>
         </block>
         <block wx:if="{{data}}">
             <block wx:key="id" wx:for="{{loopArray84}}" wx:for-item="item" wx:for-index="__index0">
@@ -35,7 +35,7 @@
         <block wx:if="{{data.length && recruitNoMoreData}}">
             <view class="recruit-lists-noData">没有更多数据了</view>
         </block>
-        <at-modal compid="{{$compid__85}}">
+        <at-modal compid="{{$compid__86}}">
             <at-modal-header>温馨提示</at-modal-header>
             <at-modal-content>{{modalContent}}</at-modal-content>
             <at-modal-action>

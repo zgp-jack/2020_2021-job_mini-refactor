@@ -1,4 +1,4 @@
-import Taro, { Config, useState, useDidShow, createContext,useEffect } from '@tarojs/taro'
+import Taro, { Config, useState, useDidShow, createContext, useEffect } from '@tarojs/taro'
 import { View, Text, Image, Button } from '@tarojs/components'
 import { AtModal } from "taro-ui"
 import { resumeListAction, jobRecommendListAction, resumesGetDataAction, resumesEditEndAction, resumesChangeTopStatusAction, resumesEditImgAction } from '../../../utils/request/index'
@@ -176,15 +176,15 @@ export default function NewJob() {
   const [frequency, setFrequency] = useState<number>(0)
   useDidShow(() => {
     if (!login) return
-    if (frequency>0){
+    if (frequency > 0) {
       getDataList();
     }
   })
-  useEffect(()=>{
+  useEffect(() => {
     if (!login) return
     getDataList();
   }, [login])
-  const getDataList = ()=>{
+  const getDataList = () => {
     resumeListAction().then(res => {
       if (res.errcode == 200) {
         // 存redux给子页面用
@@ -285,27 +285,48 @@ export default function NewJob() {
         setPopup(popupData)
         // 判断技能证书全部遍历一次有失败就显示
         let skillType;
-        res.data.certificates.map((v) => {
-          if (v.check === '1') {
-            setCheckfourf(v.check);
-            skillType = v.check;
-            return;
+        for (let i = 0; i < res.data.certificates.length; i++) {
+          if (res.data.certificates[i].check == 1) {
+            skillType = res.data.certificates[i].check.check;
+            setCheckfourf(res.data.certificates[i].check.check);
           }
-          skillType = v.check;
-          setCheckfourf(v.check);
-        })
+          if (res.data.certificates[i].check == 0) {
+            skillType = res.data.certificates[i].check.check;
+            setCheckfourf(res.data.certificates[i].check.check);
+            break
+          }
+          if (res.data.certificates[i].check == 2) {
+            skillType = res.data.certificates[i].check.check;
+            setCheckfourf(res.data.certificates[i].check.check);
+          }
+        }
         // 项目经验遍历有失败就显示修改
         let projectType;
-        res.data.project.map((v) => {
-          if (v.check === '1') {
-            setProStatus(v.check);
-            projectType = v.check;
-            return;
+        for (let i = 0; i < res.data.project.length; i++) {
+          if (res.data.project[i].check == 1) {
+            projectType = res.data.project[i].check.check;
+            setProStatus(res.data.project[i].check.check);
           }
-          projectType = v.check;
-          setProStatus(v.check);
-        })
-        console.log(projectType,'projectType')
+          if (res.data.project[i].check == 0) {
+            projectType = res.data.project[i].check.check;
+            setProStatus(res.data.project[i].check.check);
+            break
+          }
+          if (res.data.project[i].check == 2) {
+            projectType = res.data.project[i].check.check;
+            setProStatus(res.data.project[i].check.check);
+          }
+        }
+        // res.data.project.map((v) => {
+        //   if (v.check === '1') {
+        //     setProStatus(v.check);
+        //     projectType = v.check;
+        //     return;
+        //   }
+        //   projectType = v.check;
+        //   setProStatus(v.check);
+        // })
+        console.log(projectType, 'projectType')
         // 设置提示弹窗
         if (skillType === '0' || projectType === '0' || res.data.info.check === '0' || res.data.introduces.check === '0') {
           setTips(true)
@@ -681,8 +702,8 @@ export default function NewJob() {
 
   }
   // 人员信息完善
-  const handlePerfect = (url)=>{
-    if(!data.info.uuid){
+  const handlePerfect = (url) => {
+    if (!data.info.uuid) {
       Taro.showModal({
         title: '温馨提示',
         content: '您未完善基础信息填写,请先填写基础信息',
@@ -694,13 +715,13 @@ export default function NewJob() {
         }
       })
       return
-    }else{
+    } else {
       Taro.navigateTo({
         url,
       })
     }
   }
-  console.log(passre, nopassre,'nopassre,nopassre')
+  console.log(passre, nopassre, 'nopassre,nopassre')
   return (
     <context.Provider value={value}>
       <Auth />
@@ -874,7 +895,7 @@ export default function NewJob() {
                     }
                     {checkonef == '0' &&
                       <View className="cardtwosontwo">
-                    <Text onClick={() => userRouteJump('/pages/resume/basics/index')}>待修改</Text>
+                        <Text onClick={() => userRouteJump('/pages/resume/basics/index')}>待修改</Text>
                       </View>
                     }
                   </View>
@@ -944,25 +965,25 @@ export default function NewJob() {
           </View>
         }
         {/* 人员信息 */}
-          <View className='findingnamecardthree'>
-            <View className='findingnamecardthreemobile'>
-              <View className='findingnamemobile'>
-                <Image className='findingnamecardthree-image' src={`${IMGCDNURL}lpy/newresume-description.png`} />
-              </View>
-              <View className="findingnamemobileone">
-                <Text>人员信息</Text>
-              </View>
+        <View className='findingnamecardthree'>
+          <View className='findingnamecardthreemobile'>
+            <View className='findingnamemobile'>
+              <Image className='findingnamecardthree-image' src={`${IMGCDNURL}lpy/newresume-description.png`} />
+            </View>
+            <View className="findingnamemobileone">
+              <Text>人员信息</Text>
+            </View>
             {selfintrone && <View>
-                {!checktwo && checkonef != '0' &&
-                  <View className="cardthreeone" onClick={() => userRouteJump('/subpackage/pages/personInfo/index?type=1')}>编辑</View>
-                }
-                {!checktwo && checkonef == '0' &&
-                <View className="cardthreeone" onClick={() => userRouteJump('/subpackage/pages/personInfo/index?type=1')} >待修改</View>
-                }
-              </View>
+              {!checktwo && checkonef != '0' &&
+                <View className="cardthreeone" onClick={() => userRouteJump('/pages/resume/personInfo/index?type=1')}>编辑</View>
+              }
+              {!checktwo && checkonef == '0' &&
+                <View className="cardthreeone" onClick={() => userRouteJump('/pages/resume/personInfo/index?type=1')} >待修改</View>
               }
             </View>
+            }
           </View>
+        </View>
         {/* 有信息 */}
         {selfintrone &&
           <View className='cardcolore'>
@@ -1020,7 +1041,7 @@ export default function NewJob() {
           <View className="cardcolore">
             <View className="findingnamecardtwo">
               <Text className="findingnamecardtwothree">完善人员信息，能让老板充分了解您或您的队伍</Text>
-            <View className="findingnamecardtwofour" onClick={()=>handlePerfect('/subpackage/pages/personInfo/index')}>去完善</View>
+              <View className="findingnamecardtwofour" onClick={() => handlePerfect('/pages/resume/personInfo/index')}>去完善</View>
             </View>
           </View>
         }
@@ -1044,7 +1065,7 @@ export default function NewJob() {
           <View className="cardcolore">
             <View className="findingnamecardtwo">
               <Text className="findingnamecardtwothree">添加项目经验，可提升老板对您的信任程度</Text>
-            <View className="findingnamecardeighttwo" onClick={() => handlePerfect(`/pages/resume/addProject/index?id=${data.info.uuid}`)}>添加项目经验</View>
+              <View className="findingnamecardeighttwo" onClick={() => handlePerfect(`/pages/resume/addProject/index?id=${data.info.uuid}`)}>添加项目经验</View>
             </View>
           </View>
         }
@@ -1143,7 +1164,7 @@ export default function NewJob() {
           <View className="cardcolore">
             <View className="findingnamecardtwo">
               <Text className="findingnamecardtwothree">添加职业技能，用实力证明您的能力</Text>
-            <View className="findingnamecardeighttwo" onClick={() => handlePerfect(`/pages/resume/addSkill/index?id=${data.info.uuid}`)}>添加职业技能</View>
+              <View className="findingnamecardeighttwo" onClick={() => handlePerfect(`/pages/resume/addSkill/index?id=${data.info.uuid}`)}>添加职业技能</View>
             </View>
           </View>
         }
@@ -1203,8 +1224,8 @@ export default function NewJob() {
                 <View className='more-view'>
                       <Image src={`${IMGCDNURL}lpy/downward.png`} className="down" />
                     </View>
-                    {data.fail_certificate > 0 && <Text className='num'>{data.fail_certificate}</Text>}
                   </View>}
+                    {data.fail_certificate > 0 && <Text className='num'>{data.fail_certificate}</Text>}
                 </View>
               </View>
             </View>

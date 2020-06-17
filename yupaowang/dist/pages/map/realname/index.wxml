@@ -13,14 +13,14 @@
                 </block>
                 <block>
                     <block wx:if="{{showHistory}}">
-                        <view class="location-list-item" wx:key="$loopState__temp2" bindtap="anonymousFunc4" wx:for="{{loopArray274}}" wx:for-item="item" wx:for-index="index" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">
+                        <view class="location-list-item" wx:key="$loopState__temp2" bindtap="anonymousFunc4" wx:for="{{loopArray127}}" wx:for-item="item" wx:for-index="index" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">
                             <view class="location-list-header overwords">{{item.$original.name}}<text>{{item.$original.distance}}</text>
                             </view>
                             <view class="location-list-content">{{item.$original.district}}</view>
                         </view>
                     </block>
                     <block wx:else>
-                        <view class="location-list-item" wx:key="$loopState__temp4" bindtap="anonymousFunc5" wx:for="{{loopArray275}}" wx:for-item="item" wx:for-index="index" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey2}}">
+                        <view class="location-list-item" wx:key="$loopState__temp4" bindtap="anonymousFunc5" wx:for="{{loopArray128}}" wx:for-item="item" wx:for-index="index" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey2}}">
                             <view class="location-list-header overwords">{{item.$original.name}}<text>{{item.$original.distance}}</text>
                             </view>
                             <view class="location-list-content">{{item.$original.district}}</view>
@@ -37,7 +37,7 @@
         </view>
         <block wx:if="{{showCity}}">
             <view class="mapinfo-citys">
-                <cities compid="{{$compid__219}}"></cities>
+                <cities compid="{{$compid__117}}"></cities>
             </view>
         </block>
     </view>

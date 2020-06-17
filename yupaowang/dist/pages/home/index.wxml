@@ -8,30 +8,30 @@
             </view>
             <image bindtap="anonymousFunc0" class="home-header-app" src="{{IMGCDNURL + 'loadapp.png'}}"></image>
         </view>
-        <swiper-component compid="{{$compid__79}}"></swiper-component>
+        <swiper-component compid="{{$compid__80}}"></swiper-component>
         <projects></projects>
         <fastfun></fastfun>
         <view class="home-information-container">
             <image class="home-infomation-img" src="{{IMGCDNURL + 'notice.png'}}"></image>
             <view class="home-infomation-news">
-                <swiper-news compid="{{$compid__80}}"></swiper-news>
+                <swiper-news compid="{{$compid__81}}"></swiper-news>
             </view>
         </view>
         <view class="home-all-lists">
             <view class="home-lists-item">
                 <view class="home-lists-item-header"><text class="home-lists-item-title">最新招工信息</text><text class="home-lists-item-more">更多</text>
                 </view>
-                <recruit-list compid="{{$compid__81}}"></recruit-list>
+                <recruit-list compid="{{$compid__82}}"></recruit-list>
             </view>
             <view class="home-lists-item">
                 <view class="home-lists-item-header"><text class="home-lists-item-title">最新找活信息</text><text class="home-lists-item-more">更多</text>
                 </view>
-                <resume-list compid="{{$compid__82}}"></resume-list>
+                <resume-list compid="{{$compid__83}}"></resume-list>
             </view>
             <view class="home-lists-item">
                 <view class="home-lists-item-header"><text class="home-lists-item-title">最新二手交易信息</text><text class="home-lists-item-more">更多</text>
                 </view>
-                <used-list compid="{{$compid__83}}"></used-list>
+                <used-list compid="{{$compid__84}}"></used-list>
             </view>
         </view>
         <about></about>

@@ -63,6 +63,8 @@ export default function BasicsPage() {
   const [lat,setLat] = useState<string>('')
   // 设置longitude
   const [lng,setLng] = useState<string>('')
+  // 民族索引
+  const [nation_id, setnation_id] =useState<number>(0)
   // const [occupationsId, setOccupationsId] = useState<string>('')
   const [formData, setFormData] = useState <ModelType>({
     name: '',
@@ -122,6 +124,7 @@ export default function BasicsPage() {
     // 获取缓存信息
     const useInfo = Taro.getStorageSync('introinfo');
     if (useInfo){
+      console.log(useInfo);
       if (publishArea && location && adcode) return;
       let cache:any={
         // 姓名
@@ -142,6 +145,7 @@ export default function BasicsPage() {
         are: useInfo.address,
         // 自我介绍
       };
+      setnation_id(useInfo.nation_id ? (useInfo.nation_id > 0 ? useInfo.nation_id-1:0):0)
       // console.log(useInfo.occupation,'xxx')
       const arr = JSON.parse(JSON.stringify(useSelectorItem.Personnel.occupation));
       console.log(arr,'xxx')

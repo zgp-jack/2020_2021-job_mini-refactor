@@ -75,7 +75,7 @@ var ResumeMap = (_temp2 = _class = function (_Taro$Component) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ResumeMap.__proto__ || Object.getPrototypeOf(ResumeMap)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
       navigationBarTitleText: '地址选择'
-    }, _this.$usedState = ["loopArray254", "loopArray255", "$compid__209", "smAreaText", "showHistory", "histroyList", "lists", "IMGCDNURL", "showCity", "area"], _this.anonymousFunc4Map = {}, _this.anonymousFunc5Map = {}, _this.customComponents = ["Cities"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["loopArray125", "loopArray126", "$compid__116", "smAreaText", "showHistory", "histroyList", "lists", "IMGCDNURL", "showCity", "area"], _this.anonymousFunc4Map = {}, _this.anonymousFunc5Map = {}, _this.customComponents = ["Cities"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(ResumeMap, [{
@@ -96,10 +96,10 @@ var ResumeMap = (_temp2 = _class = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__209"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__116"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__209 = _genCompid2[0],
-          $compid__209 = _genCompid2[1];
+          $prevCompid__116 = _genCompid2[0],
+          $compid__116 = _genCompid2[1];
 
       // const router: Taro.RouterInfo = useRouter()
       // let { areaItem } = router.params;
@@ -358,13 +358,13 @@ var ResumeMap = (_temp2 = _class = function (_Taro$Component) {
         return userCloseMap();
       };
 
-      var loopArray254 = showHistory ? histroyList.map(function (item, index) {
+      var loopArray125 = showHistory ? histroyList.map(function (item, index) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
         var $loopState__temp2 = showHistory ? index + index : null;
 
-        var _$indexKey = "ceizz" + index;
+        var _$indexKey = "bdbzz" + index;
 
         _this2.anonymousFunc4Map[_$indexKey] = function () {
           return userClickAreaItem(item.$original);
@@ -376,13 +376,13 @@ var ResumeMap = (_temp2 = _class = function (_Taro$Component) {
           $original: item.$original
         };
       }) : [];
-      var loopArray255 = lists.map(function (item, index) {
+      var loopArray126 = lists.map(function (item, index) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
         var $loopState__temp4 = index + index;
 
-        var _$indexKey2 = "cejzz" + index;
+        var _$indexKey2 = "bdczz" + index;
 
         _this2.anonymousFunc5Map[_$indexKey2] = function () {
           return userClickAreaItem(item.$original);
@@ -400,11 +400,11 @@ var ResumeMap = (_temp2 = _class = function (_Taro$Component) {
         "userLoc": userLoc,
         "userChangeCity": userChangeCity,
         "userTapCityBtn": userTapCityBtn
-      }, $compid__209, $prevCompid__209);
+      }, $compid__116, $prevCompid__116);
       Object.assign(this.__state, {
-        loopArray254: loopArray254,
-        loopArray255: loopArray255,
-        $compid__209: $compid__209,
+        loopArray125: loopArray125,
+        loopArray126: loopArray126,
+        $compid__116: $compid__116,
         smAreaText: smAreaText,
         showHistory: showHistory,
         histroyList: histroyList,
@@ -888,7 +888,7 @@ var PublishRecruit = (_temp2 = _class = function (_Taro$Component) {
       navigationBarBackgroundColor: '#0099ff',
       navigationBarTextStyle: 'white',
       backgroundTextStyle: "dark"
-    }, _this.$usedState = ["model", "$compid__159", "$compid__160", "$compid__161", "showProfession", "phone", "showUpload", "text"], _this.customComponents = ["Auth", "Profession", "WordsTotal", "ImageView"], _temp), _possibleConstructorReturn(_this, _ret);
+    }, _this.$usedState = ["model", "$compid__112", "$compid__113", "$compid__114", "showProfession", "phone", "showUpload", "text"], _this.customComponents = ["Auth", "Profession", "WordsTotal", "ImageView"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(PublishRecruit, [{
@@ -907,20 +907,20 @@ var PublishRecruit = (_temp2 = _class = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__159"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__112"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__159 = _genCompid2[0],
-          $compid__159 = _genCompid2[1];
+          $prevCompid__112 = _genCompid2[0],
+          $compid__112 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__160"),
+      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__113"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__160 = _genCompid4[0],
-          $compid__160 = _genCompid4[1];
+          $prevCompid__113 = _genCompid4[0],
+          $compid__113 = _genCompid4[1];
 
-      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__161"),
+      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__114"),
           _genCompid6 = _slicedToArray(_genCompid5, 2),
-          $prevCompid__161 = _genCompid6[0],
-          $compid__161 = _genCompid6[1];
+          $prevCompid__114 = _genCompid6[0],
+          $compid__114 = _genCompid6[1];
 
       // 获取路由参数
 
@@ -1098,21 +1098,21 @@ var PublishRecruit = (_temp2 = _class = function (_Taro$Component) {
         "data": model && model.classifyTree,
         "onClickItem": this.anonymousFunc0,
         "num": 3
-      }, $compid__159, $prevCompid__159);
+      }, $compid__112, $prevCompid__112);
       _taroWeapp.propsManager.set({
         "num": num
-      }, $compid__160, $prevCompid__160);
+      }, $compid__113, $prevCompid__113);
       showUpload && model && _taroWeapp.propsManager.set({
         "images": model.view_images,
         "max": model.maxImageCount,
         "userUploadImg": userUploadImg,
         "userDelImg": userDelImg
-      }, $compid__161, $prevCompid__161);
+      }, $compid__114, $prevCompid__114);
       Object.assign(this.__state, {
         model: model,
-        $compid__159: $compid__159,
-        $compid__160: $compid__160,
-        $compid__161: $compid__161,
+        $compid__112: $compid__112,
+        $compid__113: $compid__113,
+        $compid__114: $compid__114,
         showProfession: showProfession,
         phone: phone,
         showUpload: showUpload,
