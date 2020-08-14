@@ -1,0 +1,99 @@
+.overwords {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis; }
+
+.showMore {
+  position: relative;
+  width: 100%;
+  padding: 20rpx 0;
+  text-align: center;
+  font-size: 26rpx;
+  color: #525252; }
+
+.clearfix:after {
+  content: "";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+  font-size: 0; }
+
+.clearfix {
+  zoom: 1; }
+
+.getintegral-container {
+  position: relative;
+  width: 100%;
+  padding: 20rpx; }
+  .getintegral-container .getintegral-header {
+    position: relative;
+    padding: 20rpx;
+    background-color: white;
+    line-height: 50rpx;
+    color: #7f7e7e;
+    font-size: 28rpx;
+    box-shadow: 0 0 10rpx #e7e6e4; }
+    .getintegral-container .getintegral-header .getintegral-notice {
+      position: relative;
+      display: inline-block;
+      color: #f86e09; }
+    .getintegral-container .getintegral-header .getintegral-tel {
+      color: #0099ff; }
+    .getintegral-container .getintegral-header .getintegral-tel-copy {
+      background-color: #0099ff;
+      color: white;
+      padding: 0 10rpx;
+      border-radius: 8rpx;
+      display: inline-block;
+      justify-content: center;
+      margin-left: 15rpx;
+      font-size: 26rpx; }
+  .getintegral-container .getintegral-body {
+    padding: 0 20rpx;
+    margin-top: 15rpx;
+    box-shadow: 0 0 10rpx #e7e6e4;
+    border-radius: 5rpx;
+    background-color: white; }
+    .getintegral-container .getintegral-body .getintegral-title {
+      position: relative;
+      line-height: 100rpx;
+      font-size: 28rpx;
+      padding-left: 30rpx; }
+      .getintegral-container .getintegral-body .getintegral-title::before {
+        position: absolute;
+        content: '';
+        width: 10rpx;
+        height: 10rpx;
+        background-color: #0099ff;
+        border-radius: 50%;
+        left: 10rpx;
+        top: 50%;
+        margin-top: -5rpx; }
+    .getintegral-container .getintegral-body .getintegral-item {
+      position: relative;
+      padding: 30rpx 220rpx 30rpx 0;
+      border-top: 1rpx solid #dcdcdc; }
+      .getintegral-container .getintegral-body .getintegral-item .getintegral-item-title {
+        color: #333;
+        font-size: 30rpx; }
+      .getintegral-container .getintegral-body .getintegral-item .getintegral-item-content {
+        position: relative;
+        margin-top: 10rpx;
+        font-size: 26rpx;
+        color: #b4b4b4;
+        line-height: 40rpx; }
+      .getintegral-container .getintegral-body .getintegral-item .getintegral-item-btn {
+        position: absolute;
+        background-color: #0099ff;
+        color: white;
+        right: 0;
+        top: 40rpx;
+        width: 180rpx;
+        height: 70rpx;
+        line-height: 70rpx;
+        font-size: 28rpx;
+        text-align: center;
+        border-radius: 10rpx; }
+

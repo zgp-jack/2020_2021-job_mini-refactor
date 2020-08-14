@@ -1,0 +1,7 @@
+<block s-if="{{$taroCompReady}}">
+    <swiper class="index-swiper-container" vertical="{{swiper.vertical}}" circular="{{swiper.circular}}" indicator-dots="{{swiper.indicatorDots}}" autoplay="{{swiper.autoplay}}">
+        <swiper-item class="index-swiper-item" s-key="loopState__temp2" s-for="loopArray6" s-for-item="item" s-for-index="index">
+            <image class="index-swiper-img" src="{{item.privateOriginal.banner}}"></image>
+        </swiper-item>
+    </swiper>
+</block>

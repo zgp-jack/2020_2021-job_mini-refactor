@@ -1,0 +1,40 @@
+<block s-if="{{$taroCompReady}}">
+    <view class="recruit-lists-container" style="{{anonymousState__temp}}">
+        <block s-if="{{data}}">
+            <block s-for="loopArray10" s-for-item="item" s-for-index="__index1">
+                <block s-if="{{item.privateOriginal}}">
+                    <view class="recruit-list-item" s-key="privateOriginal.id" bindtap="anonymousFunc0" s-for="item.anonymousCallee__0" s-for-item="d" s-for-index="__index0" data-e-tap-so="this" data-e-tap-a-a="{{d._$indexKey}}">
+                        <block s-if="{{d.privateOriginal.top}}">
+                            <image class="list-toprecruit-img" src="{{IMGCDNURL + 'newlist-jobzd.png'}}"></image>
+                        </block>
+                        <block s-if="{{d.privateOriginal.is_end == 2}}">
+                            <image class="recruit-findend-img" src="{{IMGCDNURL + 'newlist-jobfindend.png'}}"></image>
+                        </block>
+                        <view class="recruit-list-header">
+                            <view class="recruit-list-title overwords">{{d.privateOriginal.title}}</view>
+                            <block s-if="{{d.privateOriginal.top}}"><text class="recruit-list-settop">我要置顶</text>
+                            </block>
+                        </view>
+                        <view class="recruit-list-body">
+                            <image class="recruit-list-user" src="{{d.privateOriginal.image}}"></image>
+                            <view class="recruit-list-body-content">
+                                <view class="recruit-body-header"><text class="recruit-list-username">{{d.privateOriginal.user_name}}</text>
+                                    <block s-if="{{d.privateOriginal.is_end !== 2}}">
+                                        <image class="recruit-list-finding" src="{{IMGCDNURL + 'newlist-jobfinding.png'}}"></image>
+                                    </block>
+                                </view>
+                                <view class="recruit-list-words">
+                                    <view class="recruit-words-text">{{d.privateOriginal.detail}}</view>
+                                </view>
+                            </view>
+                        </view>
+                        <view class="recruit-list-footer">
+                            <image class="recruit-list-loc" src="{{IMGCDNURL + 'newlist-jobposi.png'}}"></image>
+                            <view class="recruit-list-loctxt overwords">{{d.privateOriginal.show_address}}</view><text class="recruit-list-time">{{d.privateOriginal.time}}</text>
+                        </view>
+                    </view>
+                </block>
+            </block>
+        </block>
+    </view>
+</block>

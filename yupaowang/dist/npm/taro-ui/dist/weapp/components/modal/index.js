@@ -1,9 +1,9 @@
-(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["npm/taro-ui/dist/weapp/components/modal/index"],{
+(swan["webpackJsonp"] = swan["webpackJsonp"] || []).push([["npm/taro-ui/dist/weapp/components/modal/index"],{
 
-/***/ "./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js?!./node_modules/taro-ui/dist/weapp/components/modal/index.tsx?taro&type=script&parse=COMPONENT&":
-/*!***************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js??ref--6-0!./node_modules/taro-ui/dist/weapp/components/modal/index.tsx?taro&type=script&parse=COMPONENT& ***!
-  \***************************************************************************************************************************************************************************************/
+/***/ "./node_modules/taro-ui/dist/weapp/components/modal/index.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/taro-ui/dist/weapp/components/modal/index.js ***!
+  \*******************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -22,19 +22,23 @@ var _get = function get(object, property, receiver) { if (object === null) objec
 
 var _class, _temp2;
 
-var _classnames = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
 
-var _classnames2 = _interopRequireDefault(_classnames);
+var _taroSwan2 = _interopRequireDefault(_taroSwan);
 
 var _propTypes = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
+var _classnames = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
 
-var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
+var _classnames2 = _interopRequireDefault(_classnames);
 
-var _component = __webpack_require__(/*! ../../common/component */ "./node_modules/taro-ui/dist/weapp/common/component.tsx");
+var _isFunction2 = __webpack_require__(/*! lodash/isFunction */ "./node_modules/lodash/isFunction.js");
+
+var _isFunction3 = _interopRequireDefault(_isFunction2);
+
+var _component = __webpack_require__(/*! ../../common/component */ "./node_modules/taro-ui/dist/weapp/common/component.js");
 
 var _component2 = _interopRequireDefault(_component);
 
@@ -62,23 +66,23 @@ var AtModal = (_temp2 = _class = function (_AtComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AtModal.__proto__ || Object.getPrototypeOf(AtModal)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["_$isRenderAction", "_$anonymousState__temp", "$compid__122", "title", "content", "isWEB", "cancelText", "confirmText", "rootClass", "_isOpened", "isOpened", "className", "closeOnClickOverlay", "children"], _this.handleClickOverlay = function () {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AtModal.__proto__ || Object.getPrototypeOf(AtModal)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["_$isRenderAction", "_$anonymousState__temp", "$compid__36", "title", "content", "isWEB", "cancelText", "confirmText", "rootClass", "_isOpened", "isOpened", "closeOnClickOverlay", "className", "children"], _this.handleClickOverlay = function () {
       if (_this.props.closeOnClickOverlay) {
         _this.setState({
           _isOpened: false
         }, _this.handleClose);
       }
-    }, _this.handleClose = function (event) {
-      if (typeof _this.props.onClose === 'function') {
-        _this.props.onClose(event);
+    }, _this.handleClose = function () {
+      if ((0, _isFunction3.default)(_this.props.onClose)) {
+        _this.props.onClose();
       }
-    }, _this.handleCancel = function (event) {
-      if (typeof _this.props.onCancel === 'function') {
-        _this.props.onCancel(event);
+    }, _this.handleCancel = function () {
+      if ((0, _isFunction3.default)(_this.props.onCancel)) {
+        _this.props.onCancel();
       }
-    }, _this.handleConfirm = function (event) {
-      if (typeof _this.props.onConfirm === 'function') {
-        _this.props.onConfirm(event);
+    }, _this.handleConfirm = function () {
+      if ((0, _isFunction3.default)(_this.props.onConfirm)) {
+        _this.props.onConfirm();
       }
     }, _this.handleTouchMove = function (e) {
       e.stopPropagation();
@@ -88,24 +92,26 @@ var AtModal = (_temp2 = _class = function (_AtComponent) {
   _createClass(AtModal, [{
     key: '_constructor',
     value: function _constructor(props) {
-      _get(AtModal.prototype.__proto__ || Object.getPrototypeOf(AtModal.prototype), '_constructor', this).call(this, props);
+      _get(AtModal.prototype.__proto__ || Object.getPrototypeOf(AtModal.prototype), '_constructor', this).apply(this, arguments);
 
       var isOpened = props.isOpened;
 
       this.state = {
         _isOpened: isOpened,
-        isWEB: _taroWeapp2.default.getEnv() === _taroWeapp2.default.ENV_TYPE.WEB
+        isWEB: _taroSwan2.default.getEnv() === _taroSwan2.default.ENV_TYPE.WEB
       };
-      this.$$refs = new _taroWeapp2.default.RefsArray();
+      this.$$refs = new _taroSwan2.default.RefsArray();
     }
   }, {
     key: 'componentWillReceiveProps',
     value: function componentWillReceiveProps(nextProps) {
       var isOpened = nextProps.isOpened;
 
+
       if (this.props.isOpened !== isOpened) {
         (0, _utils.handleTouchScroll)(isOpened);
       }
+
       if (isOpened !== this.state._isOpened) {
         this.setState({
           _isOpened: isOpened
@@ -115,18 +121,18 @@ var AtModal = (_temp2 = _class = function (_AtComponent) {
   }, {
     key: '_createData',
     value: function _createData() {
-      var _$isRenderAction, _$anonymousState__temp;
-
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__122"),
+      var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__36"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__122 = _genCompid2[0],
-          $compid__122 = _genCompid2[1];
+          $prevCompid__36 = _genCompid2[0],
+          $compid__36 = _genCompid2[1];
+
+      var _$isRenderAction, _$anonymousState__temp;
 
       var _state = this.__state,
           _isOpened = _state._isOpened,
@@ -140,19 +146,19 @@ var AtModal = (_temp2 = _class = function (_AtComponent) {
       var rootClass = (0, _classnames2.default)('at-modal', {
         'at-modal--active': _isOpened
       }, this.__props.className);
+
       if (title || content) {
         _$isRenderAction = cancelText || confirmText;
-        _$anonymousState__temp = content ? isWEB ? {
-          __html: content.replace(/\n/g, '<br/>')
-        } : null : null;
-        _$isRenderAction && _taroWeapp.propsManager.set({
+        _$anonymousState__temp = content ? isWEB ? { __html: content.replace(/\n/g, '<br/>') } : null : null;
+        _$isRenderAction && _taroSwan.propsManager.set({
           "isSimple": true
-        }, $compid__122, $prevCompid__122);
+        }, $compid__36, $prevCompid__36);
       }
+
       Object.assign(this.__state, {
         _$isRenderAction: _$isRenderAction,
         _$anonymousState__temp: _$anonymousState__temp,
-        $compid__122: $compid__122,
+        $compid__36: $compid__36,
         title: title,
         content: content,
         cancelText: cancelText,
@@ -164,13 +170,13 @@ var AtModal = (_temp2 = _class = function (_AtComponent) {
   }]);
 
   return AtModal;
-}(_component2.default), _class.$$events = ["handleClickOverlay", "handleCancel", "handleConfirm", "handleTouchMove"], _class.$$componentPath = "node_modules/taro-ui/dist/weapp/components/modal/index", _temp2);
+}(_component2.default), _class.$$events = ["handleClickOverlay", "handleCancel", "handleConfirm", "handleTouchMove"], _class.$$componentPath = 'Users/axin/codes/\u9C7C\u6CE1\u7F51/\u5C0F\u7A0B\u5E8FTS\u91CD\u6784\u9879\u76EE/TaroTs-YuPaoWang/yupaowang/node_modules/taro-ui/dist/weapp/components/modal/index', _temp2);
 
 
 AtModal.defaultProps = {
-  isOpened: false,
   closeOnClickOverlay: true
 };
+
 AtModal.propTypes = {
   title: _propTypes2.default.string,
   isOpened: _propTypes2.default.bool,
@@ -184,69 +190,8 @@ AtModal.propTypes = {
 };
 exports.default = AtModal;
 
-Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(AtModal));
-
-/***/ }),
-
-/***/ "./node_modules/file-loader/dist/cjs.js?name=[path][name].wxml&context=/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules&outputPath=npm!./node_modules/@tarojs/mini-runner/dist/loaders/miniTemplateLoader.js!./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js?!./node_modules/taro-ui/dist/weapp/components/modal/index.tsx?taro&type=template&parse=COMPONENT&":
-/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/file-loader/dist/cjs.js?name=[path][name].wxml&context=/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules&outputPath=npm!./node_modules/@tarojs/mini-runner/dist/loaders/miniTemplateLoader.js!./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js??ref--6-0!./node_modules/taro-ui/dist/weapp/components/modal/index.tsx?taro&type=template&parse=COMPONENT& ***!
-  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "npm/taro-ui/dist/weapp/components/modal/index.wxml";
-
-/***/ }),
-
-/***/ "./node_modules/taro-ui/dist/weapp/components/modal/index.tsx":
-/*!********************************************************************!*\
-  !*** ./node_modules/taro-ui/dist/weapp/components/modal/index.tsx ***!
-  \********************************************************************/
-/*! no static exports found */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _index_tsx_taro_type_template_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.tsx?taro&type=template&parse=COMPONENT& */ "./node_modules/taro-ui/dist/weapp/components/modal/index.tsx?taro&type=template&parse=COMPONENT&");
-/* harmony import */ var _index_tsx_taro_type_script_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./index.tsx?taro&type=script&parse=COMPONENT& */ "./node_modules/taro-ui/dist/weapp/components/modal/index.tsx?taro&type=script&parse=COMPONENT&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _index_tsx_taro_type_script_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _index_tsx_taro_type_script_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-
-
-
-
-/***/ }),
-
-/***/ "./node_modules/taro-ui/dist/weapp/components/modal/index.tsx?taro&type=script&parse=COMPONENT&":
-/*!******************************************************************************************************!*\
-  !*** ./node_modules/taro-ui/dist/weapp/components/modal/index.tsx?taro&type=script&parse=COMPONENT& ***!
-  \******************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_script_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js??ref--6-0!./index.tsx?taro&type=script&parse=COMPONENT& */ "./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js?!./node_modules/taro-ui/dist/weapp/components/modal/index.tsx?taro&type=script&parse=COMPONENT&");
-/* harmony import */ var _tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_script_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_script_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_script_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_script_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
- /* harmony default export */ __webpack_exports__["default"] = (_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_script_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0___default.a); 
-
-/***/ }),
-
-/***/ "./node_modules/taro-ui/dist/weapp/components/modal/index.tsx?taro&type=template&parse=COMPONENT&":
-/*!********************************************************************************************************!*\
-  !*** ./node_modules/taro-ui/dist/weapp/components/modal/index.tsx?taro&type=template&parse=COMPONENT& ***!
-  \********************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _file_loader_name_path_name_wxml_context_Users_zhangyibo_TaroTs_YuPaoWang_yupaowang_node_modules_outputPath_npm_tarojs_mini_runner_dist_loaders_miniTemplateLoader_js_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_template_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!file-loader?name=[path][name].wxml&context=/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules&outputPath=npm!../../../../../@tarojs/mini-runner/dist/loaders/miniTemplateLoader.js!../../../../../@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js??ref--6-0!./index.tsx?taro&type=template&parse=COMPONENT& */ "./node_modules/file-loader/dist/cjs.js?name=[path][name].wxml&context=/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules&outputPath=npm!./node_modules/@tarojs/mini-runner/dist/loaders/miniTemplateLoader.js!./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js?!./node_modules/taro-ui/dist/weapp/components/modal/index.tsx?taro&type=template&parse=COMPONENT&");
-/* harmony import */ var _file_loader_name_path_name_wxml_context_Users_zhangyibo_TaroTs_YuPaoWang_yupaowang_node_modules_outputPath_npm_tarojs_mini_runner_dist_loaders_miniTemplateLoader_js_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_template_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_file_loader_name_path_name_wxml_context_Users_zhangyibo_TaroTs_YuPaoWang_yupaowang_node_modules_outputPath_npm_tarojs_mini_runner_dist_loaders_miniTemplateLoader_js_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_template_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _file_loader_name_path_name_wxml_context_Users_zhangyibo_TaroTs_YuPaoWang_yupaowang_node_modules_outputPath_npm_tarojs_mini_runner_dist_loaders_miniTemplateLoader_js_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_template_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _file_loader_name_path_name_wxml_context_Users_zhangyibo_TaroTs_YuPaoWang_yupaowang_node_modules_outputPath_npm_tarojs_mini_runner_dist_loaders_miniTemplateLoader_js_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_template_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-
+Component(__webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js").default.createComponent(AtModal));
 
 /***/ })
 
-},[["./node_modules/taro-ui/dist/weapp/components/modal/index.tsx","runtime","taro","vendors"]]]);
+},[["./node_modules/taro-ui/dist/weapp/components/modal/index.js","runtime","vendors"]]]);

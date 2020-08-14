@@ -1,0 +1,117 @@
+.overwords {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis; }
+
+.showMore {
+  position: relative;
+  width: 100%;
+  padding: 20rpx 0;
+  text-align: center;
+  font-size: 26rpx;
+  color: #525252; }
+
+.clearfix:after {
+  content: "";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+  font-size: 0; }
+
+.clearfix {
+  zoom: 1; }
+
+.home-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 150rpx; }
+  .home-container .home-header {
+    position: relative;
+    width: 100%;
+    height: 100rpx;
+    padding: 20rpx;
+    background-color: white; }
+    .home-container .home-header .home-header-logo {
+      position: relative;
+      width: 135rpx;
+      height: 60rpx;
+      display: block; }
+    .home-container .home-header .home-header-area {
+      position: absolute;
+      left: 160rpx;
+      top: 20rpx;
+      height: 60rpx;
+      padding: 0 10rpx;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center; }
+      .home-container .home-header .home-header-area .home-header-loc {
+        width: 18rpx;
+        height: 25rpx; }
+      .home-container .home-header .home-header-area .home-header-text {
+        font-size: 30rpx;
+        margin: 0 10rpx; }
+      .home-container .home-header .home-header-area .home-header-select {
+        width: 20rpx;
+        height: 20rpx; }
+    .home-container .home-header .home-header-app {
+      position: absolute;
+      width: 220rpx;
+      height: 60rpx;
+      display: block;
+      right: 20rpx;
+      top: 20rpx; }
+  .home-container .home-information-container {
+    position: relative;
+    margin-top: 15rpx;
+    background-color: white;
+    height: 80rpx;
+    padding: 20rpx; }
+    .home-container .home-information-container .home-infomation-img {
+      position: relative;
+      display: block;
+      width: 150rpx;
+      height: 40rpx; }
+    .home-container .home-information-container .home-infomation-news {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      padding-left: 190rpx;
+      padding-right: 20rpx;
+      left: 0;
+      top: 0; }
+  .home-container .home-all-lists {
+    position: relative;
+    margin-top: 15rpx;
+    width: 100%; }
+    .home-container .home-all-lists .home-lists-item {
+      position: relative;
+      width: 100%;
+      margin-bottom: 15rpx; }
+      .home-container .home-all-lists .home-lists-item .home-lists-item-header {
+        position: relative;
+        line-height: 80rpx;
+        padding-right: 20rpx;
+        padding-left: 40rpx;
+        background-color: white; }
+        .home-container .home-all-lists .home-lists-item .home-lists-item-header .home-lists-item-title {
+          font-size: 30rpx;
+          font-weight: bold; }
+          .home-container .home-all-lists .home-lists-item .home-lists-item-header .home-lists-item-title::before {
+            content: '';
+            position: absolute;
+            width: 6rpx;
+            height: 40rpx;
+            left: 20rpx;
+            top: 20rpx;
+            display: block;
+            background-color: #0099ff; }
+        .home-container .home-all-lists .home-lists-item .home-lists-item-header .home-lists-item-more {
+          position: absolute;
+          font-size: 28rpx;
+          right: 20rpx;
+          top: 0; }
+

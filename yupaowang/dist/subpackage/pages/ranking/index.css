@@ -1,0 +1,111 @@
+.rankingRules-content {
+  height: 100%; }
+
+.rankingRules-top {
+  margin: 0 auto;
+  background: white;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  padding: 20rpx 32rpx;
+  font-size: 0;
+  border-bottom: 1rpx solid #e9e8e8;
+  z-index: 2; }
+
+.rankingRules-list {
+  margin-top: 200rpx;
+  background: #fff; }
+
+.rankingRules-top-ranking {
+  font-size: 30rpx;
+  padding-bottom: 10rpx;
+  color: #656668; }
+
+.rankingRules-top-ranking-num {
+  color: #0099ff;
+  font-weight: bold; }
+
+.rankingRules-top-careful {
+  font-size: 26rpx;
+  color: #f87a14; }
+
+.rankingRules-Tips {
+  width: 100%;
+  background: white;
+  margin-top: 14rpx;
+  margin-bottom: 80rpx;
+  padding: 20rpx 50rpx; }
+
+.rankingRules-Tips-title {
+  margin-bottom: 12rpx;
+  font-size: 28rpx;
+  font-weight: 400;
+  color: #333333; }
+
+.rankingRules-Tips-text {
+  font-size: 26rpx;
+  font-weight: 400;
+  color: #999999;
+  line-height: 50rpx; }
+
+.rankingRules-list-content {
+  display: flex;
+  align-items: center; }
+
+.rankingRules-list-content-img {
+  height: 66rpx;
+  width: 66rpx; }
+
+.rankingRules-list-content-box {
+  flex: 1;
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+  font-size: 28rpx; }
+
+.rankingRules-list-content-box-text {
+  font-size: 26rpx;
+  color: #999999; }
+
+.rankingRules-list-content-button-disabled {
+  width: 150rpx;
+  background: #0099ff;
+  color: white;
+  font-size: 30rpx;
+  padding: 12rpx 0;
+  line-height: 40rpx;
+  border-radius: 12rpx;
+  text-align: center; }
+
+.rankingRules-list-box {
+  width: 94%;
+  border-bottom: 1rpx dashed #d1d1d1;
+  padding: 26rpx 0;
+  margin: auto; }
+
+.rankingRules-list-box:last-child {
+  border-bottom: none; }
+
+.rankingRules-list-content-buttonBox {
+  width: 97rpx;
+  height: 44rpx;
+  line-height: 44rpx;
+  background: #0099ff;
+  box-shadow: 0 2rpx 2rpx 0 rgba(141, 204, 246, 0.51);
+  border-radius: 8rpx;
+  font-size: 22rpx;
+  font-weight: 400;
+  color: white;
+  text-align: center; }
+
+.rankingRules-list-content-buttonBox-none {
+  width: 97rpx;
+  height: 44rpx;
+  line-height: 44rpx;
+  background: #D2D2D4;
+  color: white;
+  box-shadow: 0 2rpx 2rpx 0 rgba(141, 204, 246, 0.51);
+  border-radius: 8rpx;
+  font-size: 22rpx;
+  font-weight: 400;
+  text-align: center; }
+

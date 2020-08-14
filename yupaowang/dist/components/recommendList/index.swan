@@ -1,0 +1,14 @@
+<block s-if="{{$taroCompReady}}">
+    <view>
+        <block s-if="{{type === 1}}">
+            <view>
+                <recruit-list-page compid="{{$compid__53}}"></recruit-list-page>
+            </view>
+        </block>
+        <block s-if="{{type === 2}}">
+            <view>
+                <resume-list-page compid="{{$compid__54}}"></resume-list-page>
+            </view>
+        </block>
+    </view>
+</block>

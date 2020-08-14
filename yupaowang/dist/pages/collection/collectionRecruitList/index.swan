@@ -1,0 +1,46 @@
+<block s-if="{{$taroCompReady}}">
+    <view class="recruit-lists-container" style="{{anonymousState__temp}}">
+        <block s-if="{{!data.length}}">
+            <nodata compid="{{$compid__34}}"></nodata>
+        </block>
+        <block s-if="{{data}}">
+            <block s-key="privateOriginal.id" s-for="loopArray39" s-for-item="item" s-for-index="__index0">
+                <view class="recruit-list-item" bindtap="anonymousFunc0" s-key="privateOriginal.id" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">
+                    <block s-if="{{item.privateOriginal.is_end == '2'}}">
+                        <image class="recruit-findend-img" src="{{IMGCDNURL + 'newlist-jobfindend.png'}}"></image>
+                    </block>
+                    <view class="recruit-list-header">
+                        <view class="recruit-list-title overwords">{{item.privateOriginal.title}}</view>
+                    </view>
+                    <view class="recruit-list-body">
+                        <image class="recruit-list-user" src="{{item.privateOriginal.header_img}}"></image>
+                        <view class="recruit-list-body-content">
+                            <view class="recruit-body-header"><text class="recruit-list-username">{{item.privateOriginal.user_name}}</text>
+                                <block s-if="{{item.privateOriginal.is_end !== '2'}}">
+                                    <image class="recruit-list-finding" src="{{IMGCDNURL + 'newlist-jobfinding.png'}}"></image>
+                                </block>
+                            </view>
+                            <view class="recruit-list-words">
+                                <view class="recruit-words-text">{{item.privateOriginal.detail}}</view>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="recruit-list-footer">
+                        <view class="recruit-list-loctxt overwords">{{item.privateOriginal.time}}</view>
+                        <button size="mini" class="recruit-list-button" bindtap="anonymousFunc1" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey2}}">取消收藏</button>
+                    </view>
+                </view>
+            </block>
+        </block>
+        <block s-if="{{data.length && recruitNoMoreData}}">
+            <view class="recruit-lists-noData">没有更多数据了</view>
+        </block>
+        <at-modal compid="{{$compid__35}}">
+            <at-modal-header>温馨提示</at-modal-header>
+            <at-modal-content>{{modalContent}}</at-modal-content>
+            <at-modal-action>
+                <button bindtap="anonymousFunc2">确定</button>
+            </at-modal-action>
+        </at-modal>
+    </view>
+</block>

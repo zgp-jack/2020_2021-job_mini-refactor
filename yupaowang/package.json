@@ -18,13 +18,23 @@
     "build:qq": "taro build --type qq",
     "build:quickapp": "taro build --type quickapp",
     "dev:weapp": "npm run build:weapp -- --watch",
-    "dev:swan": "npm run build:swan -- --watch",
+    "dev:swan": "npm run build:swan jizhao -- --watch",
     "dev:alipay": "npm run build:alipay -- --watch",
     "dev:tt": "npm run build:tt -- --watch",
     "dev:h5": "npm run build:h5 -- --watch",
     "dev:rn": "npm run build:rn -- --watch",
     "dev:qq": "npm run build:qq -- --watch",
     "dev:quickapp": "npm run build:quickapp -- --watch",
+
+
+    "dev-baidu": "npm run build:swan jizhao -- --watch",
+    "build-baidu": "taro build jizhao --type swan ",
+
+
+
+
+
+    
     "dev": "npm run build:weapp jizhao -- --watch",
     "build": "taro build jizhao --type weapp ",
     "jizhao": "npm run build:weapp jizhao -- --watch",

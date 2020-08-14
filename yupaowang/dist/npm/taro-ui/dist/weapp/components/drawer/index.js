@@ -1,9 +1,9 @@
-(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["npm/taro-ui/dist/weapp/components/drawer/index"],{
+(swan["webpackJsonp"] = swan["webpackJsonp"] || []).push([["npm/taro-ui/dist/weapp/components/drawer/index"],{
 
-/***/ "./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js?!./node_modules/taro-ui/dist/weapp/components/drawer/index.tsx?taro&type=script&parse=COMPONENT&":
-/*!****************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js??ref--6-0!./node_modules/taro-ui/dist/weapp/components/drawer/index.tsx?taro&type=script&parse=COMPONENT& ***!
-  \****************************************************************************************************************************************************************************************/
+/***/ "./node_modules/taro-ui/dist/weapp/components/drawer/index.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/taro-ui/dist/weapp/components/drawer/index.js ***!
+  \********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -22,19 +22,19 @@ var _get = function get(object, property, receiver) { if (object === null) objec
 
 var _class, _temp2;
 
-var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
+var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
 
-var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
-
-var _classnames = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
-
-var _classnames2 = _interopRequireDefault(_classnames);
+var _taroSwan2 = _interopRequireDefault(_taroSwan);
 
 var _propTypes = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _component = __webpack_require__(/*! ../../common/component */ "./node_modules/taro-ui/dist/weapp/common/component.tsx");
+var _classnames = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _component = __webpack_require__(/*! ../../common/component */ "./node_modules/taro-ui/dist/weapp/common/component.js");
 
 var _component2 = _interopRequireDefault(_component);
 
@@ -60,18 +60,18 @@ var AtDrawer = (_temp2 = _class = function (_AtComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AtDrawer.__proto__ || Object.getPrototypeOf(AtDrawer)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "anonymousState__temp3", "loopArray136", "_show", "items", "animShow", "mask", "width", "right", "className", "show", "children"], _this.customComponents = ["AtList", "AtListItem"], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AtDrawer.__proto__ || Object.getPrototypeOf(AtDrawer)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "anonymousState__temp3", "loopArray16", "_show", "items", "animShow", "mask", "width", "right", "className", "show", "children"], _this.customComponents = ["AtList", "AtListItem"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(AtDrawer, [{
     key: '_constructor',
     value: function _constructor(props) {
-      _get(AtDrawer.prototype.__proto__ || Object.getPrototypeOf(AtDrawer.prototype), '_constructor', this).call(this, props);
+      _get(AtDrawer.prototype.__proto__ || Object.getPrototypeOf(AtDrawer.prototype), '_constructor', this).apply(this, arguments);
       this.state = {
         animShow: false,
         _show: props.show
       };
-      this.$$refs = new _taroWeapp2.default.RefsArray();
+      this.$$refs = new _taroSwan2.default.RefsArray();
     }
   }, {
     key: 'componentDidMount',
@@ -84,9 +84,9 @@ var AtDrawer = (_temp2 = _class = function (_AtComponent) {
     }
   }, {
     key: 'onItemClick',
-    value: function onItemClick(index) {
+    value: function onItemClick(index, e) {
       this.props.onItemClick && this.props.onItemClick(index);
-      this.animHide();
+      this.animHide(e, index);
     }
   }, {
     key: 'onHide',
@@ -100,13 +100,14 @@ var AtDrawer = (_temp2 = _class = function (_AtComponent) {
   }, {
     key: 'animHide',
     value: function animHide() {
-      var _this3 = this;
+      var _this3 = this,
+          _arguments = arguments;
 
       this.setState({
         animShow: false
       });
       setTimeout(function () {
-        _this3.onHide();
+        _this3.onHide.apply(_this3, _arguments);
       }, 300);
     }
   }, {
@@ -124,7 +125,7 @@ var AtDrawer = (_temp2 = _class = function (_AtComponent) {
   }, {
     key: 'onMaskClick',
     value: function onMaskClick() {
-      this.animHide();
+      this.animHide.apply(this, arguments);
     }
   }, {
     key: 'componentWillReceiveProps',
@@ -132,7 +133,7 @@ var AtDrawer = (_temp2 = _class = function (_AtComponent) {
       var show = nextProps.show;
 
       if (show !== this.state._show) {
-        show ? this.animShow() : this.animHide();
+        show ? this.animShow() : this.animHide.apply(this, arguments);
       }
     }
   }, {
@@ -156,6 +157,7 @@ var AtDrawer = (_temp2 = _class = function (_AtComponent) {
           _show = _state._show;
 
       var rootClassName = ['at-drawer'];
+
       var maskStyle = {
         display: mask ? 'block' : 'none',
         opacity: animShow ? 1 : 0
@@ -164,41 +166,43 @@ var AtDrawer = (_temp2 = _class = function (_AtComponent) {
         width: width,
         transition: animShow ? 'all 225ms cubic-bezier(0, 0, 0.2, 1)' : 'all 195ms cubic-bezier(0.4, 0, 0.6, 1)'
       };
+
       var classObject = {
         'at-drawer--show': animShow,
         'at-drawer--right': right,
         'at-drawer--left': !right
       };
+
       var anonymousState__temp = _show ? (0, _classnames2.default)(rootClassName, classObject, this.__props.className) : null;
-      var anonymousState__temp2 = _show ? (0, _taroWeapp.internal_inline_style)(maskStyle) : null;
-      var anonymousState__temp3 = _show ? (0, _taroWeapp.internal_inline_style)(listStyle) : null;
-      var loopArray136 = !!items && items.length ? items.map(function (name, index) {
+      var anonymousState__temp2 = _show ? (0, _taroSwan.internal_inline_style)(maskStyle) : null;
+      var anonymousState__temp3 = _show ? (0, _taroSwan.internal_inline_style)(listStyle) : null;
+      var loopArray16 = items.length ? items.map(function (name, index) {
         name = {
-          $original: (0, _taroWeapp.internal_get_original)(name)
+          privateOriginal: (0, _taroSwan.internal_get_original)(name)
         };
-        var $loopState__temp5 = !!items && items.length ? name.$original + "-" + index : null;
+        var loopState__temp5 = _show ? items.length ? name.privateOriginal + "-" + index : null : null;
 
-        var _genCompid = (0, _taroWeapp.genCompid)(__prefix + 'befzzzzzzz' + index, true),
+        var _genCompid = (0, _taroSwan.genCompid)(__prefix + 'bgzzzzzzzz' + index, true),
             _genCompid2 = _slicedToArray(_genCompid, 2),
-            $prevCompid__121 = _genCompid2[0],
-            $compid__121 = _genCompid2[1];
+            $prevCompid__14 = _genCompid2[0],
+            $compid__14 = _genCompid2[1];
 
-        _show && !!items && items.length && _taroWeapp.propsManager.set({
+        _show && items.length && _taroSwan.propsManager.set({
           "onClick": _this5.onItemClick.bind(_this5, index),
-          "title": name.$original,
+          "title": name.privateOriginal,
           "arrow": "right"
-        }, $compid__121, $prevCompid__121);
+        }, $compid__14, $prevCompid__14);
         return {
-          $loopState__temp5: $loopState__temp5,
-          $compid__121: $compid__121,
-          $original: name.$original
+          loopState__temp5: loopState__temp5,
+          $compid__14: $compid__14,
+          privateOriginal: name.privateOriginal
         };
       }) : [];
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
         anonymousState__temp2: anonymousState__temp2,
         anonymousState__temp3: anonymousState__temp3,
-        loopArray136: loopArray136,
+        loopArray16: loopArray16,
         items: items
       });
       return this.__state;
@@ -206,7 +210,7 @@ var AtDrawer = (_temp2 = _class = function (_AtComponent) {
   }]);
 
   return AtDrawer;
-}(_component2.default), _class.$$events = ["onMaskClick"], _class.$$componentPath = "node_modules/taro-ui/dist/weapp/components/drawer/index", _temp2);
+}(_component2.default), _class.$$events = ["onMaskClick"], _class.$$componentPath = 'Users/axin/codes/\u9C7C\u6CE1\u7F51/\u5C0F\u7A0B\u5E8FTS\u91CD\u6784\u9879\u76EE/TaroTs-YuPaoWang/yupaowang/node_modules/taro-ui/dist/weapp/components/drawer/index', _temp2);
 
 
 AtDrawer.defaultProps = {
@@ -218,6 +222,7 @@ AtDrawer.defaultProps = {
   onItemClick: function onItemClick() {},
   onClose: function onClose() {}
 };
+
 AtDrawer.propTypes = {
   show: _propTypes2.default.bool,
   mask: _propTypes2.default.bool,
@@ -228,69 +233,8 @@ AtDrawer.propTypes = {
 };
 exports.default = AtDrawer;
 
-Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(AtDrawer));
-
-/***/ }),
-
-/***/ "./node_modules/file-loader/dist/cjs.js?name=[path][name].wxml&context=/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules&outputPath=npm!./node_modules/@tarojs/mini-runner/dist/loaders/miniTemplateLoader.js!./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js?!./node_modules/taro-ui/dist/weapp/components/drawer/index.tsx?taro&type=template&parse=COMPONENT&":
-/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/file-loader/dist/cjs.js?name=[path][name].wxml&context=/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules&outputPath=npm!./node_modules/@tarojs/mini-runner/dist/loaders/miniTemplateLoader.js!./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js??ref--6-0!./node_modules/taro-ui/dist/weapp/components/drawer/index.tsx?taro&type=template&parse=COMPONENT& ***!
-  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "npm/taro-ui/dist/weapp/components/drawer/index.wxml";
-
-/***/ }),
-
-/***/ "./node_modules/taro-ui/dist/weapp/components/drawer/index.tsx":
-/*!*********************************************************************!*\
-  !*** ./node_modules/taro-ui/dist/weapp/components/drawer/index.tsx ***!
-  \*********************************************************************/
-/*! no static exports found */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _index_tsx_taro_type_template_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.tsx?taro&type=template&parse=COMPONENT& */ "./node_modules/taro-ui/dist/weapp/components/drawer/index.tsx?taro&type=template&parse=COMPONENT&");
-/* harmony import */ var _index_tsx_taro_type_script_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./index.tsx?taro&type=script&parse=COMPONENT& */ "./node_modules/taro-ui/dist/weapp/components/drawer/index.tsx?taro&type=script&parse=COMPONENT&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _index_tsx_taro_type_script_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _index_tsx_taro_type_script_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-
-
-
-
-/***/ }),
-
-/***/ "./node_modules/taro-ui/dist/weapp/components/drawer/index.tsx?taro&type=script&parse=COMPONENT&":
-/*!*******************************************************************************************************!*\
-  !*** ./node_modules/taro-ui/dist/weapp/components/drawer/index.tsx?taro&type=script&parse=COMPONENT& ***!
-  \*******************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_script_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js??ref--6-0!./index.tsx?taro&type=script&parse=COMPONENT& */ "./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js?!./node_modules/taro-ui/dist/weapp/components/drawer/index.tsx?taro&type=script&parse=COMPONENT&");
-/* harmony import */ var _tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_script_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_script_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_script_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_script_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
- /* harmony default export */ __webpack_exports__["default"] = (_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_script_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0___default.a); 
-
-/***/ }),
-
-/***/ "./node_modules/taro-ui/dist/weapp/components/drawer/index.tsx?taro&type=template&parse=COMPONENT&":
-/*!*********************************************************************************************************!*\
-  !*** ./node_modules/taro-ui/dist/weapp/components/drawer/index.tsx?taro&type=template&parse=COMPONENT& ***!
-  \*********************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _file_loader_name_path_name_wxml_context_Users_zhangyibo_TaroTs_YuPaoWang_yupaowang_node_modules_outputPath_npm_tarojs_mini_runner_dist_loaders_miniTemplateLoader_js_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_template_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!file-loader?name=[path][name].wxml&context=/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules&outputPath=npm!../../../../../@tarojs/mini-runner/dist/loaders/miniTemplateLoader.js!../../../../../@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js??ref--6-0!./index.tsx?taro&type=template&parse=COMPONENT& */ "./node_modules/file-loader/dist/cjs.js?name=[path][name].wxml&context=/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules&outputPath=npm!./node_modules/@tarojs/mini-runner/dist/loaders/miniTemplateLoader.js!./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js?!./node_modules/taro-ui/dist/weapp/components/drawer/index.tsx?taro&type=template&parse=COMPONENT&");
-/* harmony import */ var _file_loader_name_path_name_wxml_context_Users_zhangyibo_TaroTs_YuPaoWang_yupaowang_node_modules_outputPath_npm_tarojs_mini_runner_dist_loaders_miniTemplateLoader_js_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_template_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_file_loader_name_path_name_wxml_context_Users_zhangyibo_TaroTs_YuPaoWang_yupaowang_node_modules_outputPath_npm_tarojs_mini_runner_dist_loaders_miniTemplateLoader_js_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_template_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _file_loader_name_path_name_wxml_context_Users_zhangyibo_TaroTs_YuPaoWang_yupaowang_node_modules_outputPath_npm_tarojs_mini_runner_dist_loaders_miniTemplateLoader_js_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_template_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _file_loader_name_path_name_wxml_context_Users_zhangyibo_TaroTs_YuPaoWang_yupaowang_node_modules_outputPath_npm_tarojs_mini_runner_dist_loaders_miniTemplateLoader_js_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_template_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-
+Component(__webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js").default.createComponent(AtDrawer));
 
 /***/ })
 
-},[["./node_modules/taro-ui/dist/weapp/components/drawer/index.tsx","runtime","taro","vendors"]]]);
+},[["./node_modules/taro-ui/dist/weapp/components/drawer/index.js","runtime","vendors"]]]);

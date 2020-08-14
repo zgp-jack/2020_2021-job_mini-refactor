@@ -1,0 +1,17 @@
+<block s-if="{{$taroCompReady}}">
+    <view>
+        <block s-if="{{tabKey === HOME}}">
+            <home></home>
+        </block>
+        <block s-if="{{tabKey === RECRUIT}}">
+            <recruit></recruit>
+        </block>
+        <block s-if="{{tabKey === RESUME}}">
+            <resume></resume>
+        </block>
+        <block s-if="{{tabKey === MEMBER}}">
+            <member></member>
+        </block>
+        <tabbar compid="{{$compid__4}}"></tabbar>
+    </view>
+</block>

@@ -294,6 +294,7 @@ export default function DetailInfoPage() {
   // 收藏
   const collection = ()=>{
     recruitListCancelCollectionAction(data.id.toString()).then(res=>{
+      Msg(res.errmsg)
       if (res.action === 'add'){
         setIsCollection(1)
       }else{

@@ -1,9 +1,20 @@
-(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["pages/integral/tabber/index"],{
+(swan["webpackJsonp"] = swan["webpackJsonp"] || []).push([["pages/integral/tabber/index"],{
 
-/***/ "./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js?!./src/pages/integral/tabber/index.tsx?taro&type=script&parse=PAGE&":
-/*!***********************************************************************************************************************************************************!*\
-  !*** ./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js??ref--6-0!./src/pages/integral/tabber/index.tsx?taro&type=script&parse=PAGE& ***!
-  \***********************************************************************************************************************************************************/
+/***/ "./src/pages/integral/tabber/index.scss":
+/*!**********************************************!*\
+  !*** ./src/pages/integral/tabber/index.scss ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
+/***/ "./src/pages/integral/tabber/index.tsx":
+/*!*********************************************!*\
+  !*** ./src/pages/integral/tabber/index.tsx ***!
+  \*********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -20,11 +31,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _class, _temp2;
+var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
 
-var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
-
-var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
+var _taroSwan2 = _interopRequireDefault(_taroSwan);
 
 var _index = __webpack_require__(/*! ../../../utils/request/index */ "./src/utils/request/index.ts");
 
@@ -54,31 +63,29 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 // 只用temp和source
 
-var Tabber = (_temp2 = _class = function (_Taro$Component) {
+var Tabber = function (_Taro$Component) {
   _inherits(Tabber, _Taro$Component);
 
   function Tabber() {
-    var _ref;
-
-    var _temp, _this, _ret;
-
     _classCallCheck(this, Tabber);
 
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
+    var _this = _possibleConstructorReturn(this, (Tabber.__proto__ || Object.getPrototypeOf(Tabber)).apply(this, arguments));
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Tabber.__proto__ || Object.getPrototypeOf(Tabber)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
+    _this.config = {
       navigationBarTitleText: ''
-    }, _this.$usedState = ["data", "modalData", "loopArray141", "loopArray142", "$compid__123", "$compid__124", "time", "start", "end", "IMGCDNURL", "initInfo", "sourceList", "consumeList", "startType", "modal", "complaintModal", "showTime", "title", "num"], _this.anonymousFunc3Map = {}, _this.customComponents = ["Nodata", "Report"], _temp), _possibleConstructorReturn(_this, _ret);
+    };
+
+    _this.$usedState = ["data", "modalData", "loopArray47", "loopArray48", "$compid__49", "$compid__50", "time", "start", "end", "IMGCDNURL", "initInfo", "sourceList", "consumeList", "startType", "modal", "complaintModal", "showTime", "title", "num"];
+    _this.anonymousFunc3Map = {};
+    _this.customComponents = ["Nodata", "Report"];
+    return _this;
   }
 
   _createClass(Tabber, [{
     key: '_constructor',
     value: function _constructor(props) {
       _get(Tabber.prototype.__proto__ || Object.getPrototypeOf(Tabber.prototype), '_constructor', this).call(this, props);
-
-      this.$$refs = new _taroWeapp2.default.RefsArray();
+      this.$$refs = new _taroSwan2.default.RefsArray();
     }
   }, {
     key: '_createData',
@@ -91,100 +98,100 @@ var Tabber = (_temp2 = _class = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__123"),
+      var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__49"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__123 = _genCompid2[0],
-          $compid__123 = _genCompid2[1];
+          $prevCompid__49 = _genCompid2[0],
+          $compid__49 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__124"),
+      var _genCompid3 = (0, _taroSwan.genCompid)(__prefix + "$compid__50"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__124 = _genCompid4[0],
-          $compid__124 = _genCompid4[1];
+          $prevCompid__50 = _genCompid4[0],
+          $compid__50 = _genCompid4[1];
 
-      var router = (0, _taroWeapp.useRouter)();
+      var router = (0, _taroSwan.useRouter)();
       var _router$params = router.params,
           info = _router$params.info,
           office = _router$params.office;
       // 切换
 
-      var _useState = (0, _taroWeapp.useState)(false),
+      var _useState = (0, _taroSwan.useState)(false),
           _useState2 = _slicedToArray(_useState, 2),
           changeType = _useState2[0],
           setChangeType = _useState2[1];
       // 标识是第一次
 
 
-      var _useState3 = (0, _taroWeapp.useState)(false),
+      var _useState3 = (0, _taroSwan.useState)(false),
           _useState4 = _slicedToArray(_useState3, 2),
           first = _useState4[0],
           setFirst = _useState4[1];
       // 是来源还是消耗
 
 
-      var _useState5 = (0, _taroWeapp.useState)(info),
+      var _useState5 = (0, _taroSwan.useState)(info),
           _useState6 = _slicedToArray(_useState5, 2),
           initInfo = _useState6[0],
           setInitInfo = _useState6[1];
       // 分类原始内容
 
 
-      var _useState7 = (0, _taroWeapp.useState)([]),
+      var _useState7 = (0, _taroSwan.useState)([]),
           _useState8 = _slicedToArray(_useState7, 2),
           initList = _useState8[0],
           setInitList = _useState8[1];
       // 第一次显示内容
 
 
-      var _useState9 = (0, _taroWeapp.useState)(''),
+      var _useState9 = (0, _taroSwan.useState)(''),
           _useState10 = _slicedToArray(_useState9, 2),
           title = _useState10[0],
           setTitle = _useState10[1];
       // start时间
 
 
-      var _useState11 = (0, _taroWeapp.useState)(''),
+      var _useState11 = (0, _taroSwan.useState)(''),
           _useState12 = _slicedToArray(_useState11, 2),
           start = _useState12[0],
           setStart = _useState12[1];
       // end时间
 
 
-      var _useState13 = (0, _taroWeapp.useState)(''),
+      var _useState13 = (0, _taroSwan.useState)(''),
           _useState14 = _slicedToArray(_useState13, 2),
           end = _useState14[0],
           setEnd = _useState14[1];
       // 默认日期
 
 
-      var _useState15 = (0, _taroWeapp.useState)(''),
+      var _useState15 = (0, _taroSwan.useState)(''),
           _useState16 = _slicedToArray(_useState15, 2),
           time = _useState16[0],
           setTime = _useState16[1];
       // 显示时间
 
 
-      var _useState17 = (0, _taroWeapp.useState)(''),
+      var _useState17 = (0, _taroSwan.useState)(''),
           _useState18 = _slicedToArray(_useState17, 2),
           showTime = _useState18[0],
           setShowTime = _useState18[1];
       // 设置类型
 
 
-      var _useState19 = (0, _taroWeapp.useState)('0'),
+      var _useState19 = (0, _taroSwan.useState)('0'),
           _useState20 = _slicedToArray(_useState19, 2),
           sourceType = _useState20[0],
           setSourceType = _useState20[1];
       // 消耗
 
 
-      var _useState21 = (0, _taroWeapp.useState)('0'),
+      var _useState21 = (0, _taroSwan.useState)('0'),
           _useState22 = _slicedToArray(_useState21, 2),
           consumeType = _useState22[0],
           setConsumeType = _useState22[1];
       // 数据
 
 
-      var _useState23 = (0, _taroWeapp.useState)({
+      var _useState23 = (0, _taroSwan.useState)({
         lists: [],
         next_page: 0,
         stime: '0',
@@ -196,7 +203,7 @@ var Tabber = (_temp2 = _class = function (_Taro$Component) {
       // 默认积分
 
 
-      var _useState25 = (0, _taroWeapp.useState)({
+      var _useState25 = (0, _taroSwan.useState)({
         get: 0,
         expend: 0
       }),
@@ -206,42 +213,42 @@ var Tabber = (_temp2 = _class = function (_Taro$Component) {
       // 弹窗
 
 
-      var _useState27 = (0, _taroWeapp.useState)(false),
+      var _useState27 = (0, _taroSwan.useState)(false),
           _useState28 = _slicedToArray(_useState27, 2),
           modal = _useState28[0],
           setModal = _useState28[1];
       // 弹窗内容
 
 
-      var _useState29 = (0, _taroWeapp.useState)(),
+      var _useState29 = (0, _taroSwan.useState)(),
           _useState30 = _slicedToArray(_useState29, 2),
           modalData = _useState30[0],
           setModalData = _useState30[1];
       // 投诉
 
 
-      var _useState31 = (0, _taroWeapp.useState)(false),
+      var _useState31 = (0, _taroSwan.useState)(false),
           _useState32 = _slicedToArray(_useState31, 2),
           complaintModal = _useState32[0],
           setComplaintModal = _useState32[1];
       // 投诉id 
 
 
-      var _useState33 = (0, _taroWeapp.useState)(''),
+      var _useState33 = (0, _taroSwan.useState)(''),
           _useState34 = _slicedToArray(_useState33, 2),
           complaintId = _useState34[0],
           setComplaintId = _useState34[1];
       // textarea
 
 
-      var _useState35 = (0, _taroWeapp.useState)(''),
+      var _useState35 = (0, _taroSwan.useState)(''),
           _useState36 = _slicedToArray(_useState35, 2),
           textarea = _useState36[0],
           setTextarea = _useState36[1];
       // 需要传递的参数
 
 
-      var _useState37 = (0, _taroWeapp.useState)({
+      var _useState37 = (0, _taroSwan.useState)({
         y: '0',
         m: '0',
         stime: '0',
@@ -256,14 +263,14 @@ var Tabber = (_temp2 = _class = function (_Taro$Component) {
       // 没有下一页
 
 
-      var _useState39 = (0, _taroWeapp.useState)(false),
+      var _useState39 = (0, _taroSwan.useState)(false),
           _useState40 = _slicedToArray(_useState39, 2),
           nextPage = _useState40[0],
           setNextPage = _useState40[1];
       // 搜索来源记录
 
 
-      var _useState41 = (0, _taroWeapp.useState)({
+      var _useState41 = (0, _taroSwan.useState)({
         time: '',
         sortType: '0',
         flag: false,
@@ -275,7 +282,7 @@ var Tabber = (_temp2 = _class = function (_Taro$Component) {
       // 搜索消耗记录
 
 
-      var _useState43 = (0, _taroWeapp.useState)({
+      var _useState43 = (0, _taroSwan.useState)({
         time: '',
         sortType: '0',
         flag: false,
@@ -287,42 +294,42 @@ var Tabber = (_temp2 = _class = function (_Taro$Component) {
       // 下拉框开始位置
 
 
-      var _useState45 = (0, _taroWeapp.useState)(0),
+      var _useState45 = (0, _taroSwan.useState)(0),
           _useState46 = _slicedToArray(_useState45, 2),
           startType = _useState46[0],
           setStartType = _useState46[1];
       // 来源分类list
 
 
-      var _useState47 = (0, _taroWeapp.useState)([]),
+      var _useState47 = (0, _taroSwan.useState)([]),
           _useState48 = _slicedToArray(_useState47, 2),
           sourceList = _useState48[0],
           setSourceList = _useState48[1];
       // 消耗分类list
 
 
-      var _useState49 = (0, _taroWeapp.useState)([]),
+      var _useState49 = (0, _taroSwan.useState)([]),
           _useState50 = _slicedToArray(_useState49, 2),
           consumeList = _useState50[0],
           setConsumeList = _useState50[1];
       // 来源是否获取到list
 
 
-      var _useState51 = (0, _taroWeapp.useState)(false),
+      var _useState51 = (0, _taroSwan.useState)(false),
           _useState52 = _slicedToArray(_useState51, 2),
           issource = _useState52[0],
           setIssource = _useState52[1];
       // 积分是否获取到list
 
 
-      var _useState53 = (0, _taroWeapp.useState)(false),
+      var _useState53 = (0, _taroSwan.useState)(false),
           _useState54 = _slicedToArray(_useState53, 2),
           isconsume = _useState54[0],
           setIsconsume = _useState54[1];
 
-      (0, _taroWeapp.useEffect)(function () {
+      (0, _taroSwan.useEffect)(function () {
         var navigationBarTitleText = initInfo === '0' ? '鱼泡网-积分来源记录' : '鱼泡网-积分消耗记录';
-        _taroWeapp2.default.setNavigationBarTitle({ title: navigationBarTitleText });
+        _taroSwan2.default.setNavigationBarTitle({ title: navigationBarTitleText });
         // 获取现在时间
         var newTime = new Date();
         var nowyear = newTime.getFullYear();
@@ -384,7 +391,7 @@ var Tabber = (_temp2 = _class = function (_Taro$Component) {
           }
         }
       }, [initInfo]);
-      (0, _taroWeapp.useEffect)(function () {
+      (0, _taroSwan.useEffect)(function () {
         if (params.flag) {
           if (initInfo === '0') {
             integralSourceLists();
@@ -556,7 +563,7 @@ var Tabber = (_temp2 = _class = function (_Taro$Component) {
         setParams(params);
       };
       // 是否加载更多
-      (0, _taroWeapp.useReachBottom)(function () {
+      (0, _taroSwan.useReachBottom)(function () {
         // 没有内容
         if (data.next_page === 0) {
           setNextPage(true);
@@ -635,7 +642,7 @@ var Tabber = (_temp2 = _class = function (_Taro$Component) {
       var handleModal = function handleModal(userId) {
         (0, _index.integralUseInfoAction)(userId).then(function (res) {
           if (res.errcode === 'deleted') {
-            _taroWeapp2.default.showModal({
+            _taroSwan2.default.showModal({
               title: '温馨提示',
               content: res.errmsg,
               showCancel: false
@@ -681,74 +688,64 @@ var Tabber = (_temp2 = _class = function (_Taro$Component) {
           }
         });
       };
-
       this.anonymousFunc0 = function (e) {
         return handleClckTime(e);
       };
-
       this.anonymousFunc1 = function (e) {
         return handleClick(e);
       };
-
       this.anonymousFunc2 = handleJump;
-
       this.anonymousFunc4 = function () {
         setModal(false);
       };
-
       this.anonymousFunc5 = function () {
-        _taroWeapp2.default.makePhoneCall({ phoneNumber: modalData.user_mobile });
+        _taroSwan2.default.makePhoneCall({ phoneNumber: modalData.user_mobile });
       };
-
       this.anonymousFunc6 = function () {
         return handleComplaint(modalData.id);
       };
-
-      var loopArray141 = data.lists.map(function (item, index) {
+      var loopArray47 = data.lists.map(function (item, index) {
         item = {
-          $original: (0, _taroWeapp.internal_get_original)(item)
+          privateOriginal: (0, _taroSwan.internal_get_original)(item)
         };
-        var $loopState__temp2 = index + index;
-
-        var _$indexKey = "bfazz" + index;
-
+        var loopState__temp2 = index + index;
+        var _$indexKey = "fdzzz" + index;
         _this2.anonymousFunc3Map[_$indexKey] = function () {
-          return handleModal(item.$original.id);
+          return handleModal(item.privateOriginal.id);
         };
-
         return {
-          $loopState__temp2: $loopState__temp2,
+          loopState__temp2: loopState__temp2,
           _$indexKey: _$indexKey,
-          $original: item.$original
+          privateOriginal: item.privateOriginal
         };
       });
-      var loopArray142 = initInfo === '1' && modal && modalData ? modalData.classifyName.map(function (v, i) {
+      var loopArray48 = initInfo === '1' && modal && modalData ? modalData.classifyName.map(function (v, i) {
         v = {
-          $original: (0, _taroWeapp.internal_get_original)(v)
+          privateOriginal: (0, _taroSwan.internal_get_original)(v)
         };
-        var $loopState__temp4 = initInfo === '1' && modal && modalData ? i + i : null;
+        var loopState__temp4 = initInfo === '1' && modal && modalData ? i + i : null;
         return {
-          $loopState__temp4: $loopState__temp4,
-          $original: v.$original
+          loopState__temp4: loopState__temp4,
+          privateOriginal: v.privateOriginal
         };
       }) : [];
-      !data.lists.length && _taroWeapp.propsManager.set({
+      !data.lists.length && _taroSwan.propsManager.set({
         "text": initInfo === '0' ? '暂无积分来源记录' : '暂无积分消耗记录'
-      }, $compid__123, $prevCompid__123);
-      complaintModal && _taroWeapp.propsManager.set({
+      }, $compid__49, $prevCompid__49);
+      complaintModal && _taroSwan.propsManager.set({
         "display": complaintModal,
         "textarea": textarea,
         "handleTextarea": handleTextarea,
         "setComplaintModal": setComplaintModal,
         "handleSubmit": handleSubmit
-      }, $compid__124, $prevCompid__124);
+      }, $compid__50, $prevCompid__50);
       Object.assign(this.__state, {
         data: data,
         modalData: modalData,
-        loopArray141: loopArray141,
-        loopArray142: loopArray142,
-        $compid__123: $compid__123,
-        $compid__124: $compid__124,
+        loopArray47: loopArray47,
+        loopArray48: loopArray48,
+        $compid__49: $compid__49,
+        $compid__50: $compid__50,
         time: time,
         start: start,
         end: end,
@@ -787,8 +784,8 @@ var Tabber = (_temp2 = _class = function (_Taro$Component) {
 
       ;
 
-      for (var _len2 = arguments.length, e = Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
-        e[_key2 - 1] = arguments[_key2];
+      for (var _len = arguments.length, e = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+        e[_key - 1] = arguments[_key];
       }
 
       return this.anonymousFunc3Map[_$indexKey] && (_anonymousFunc3Map = this.anonymousFunc3Map)[_$indexKey].apply(_anonymousFunc3Map, e);
@@ -811,86 +808,15 @@ var Tabber = (_temp2 = _class = function (_Taro$Component) {
   }]);
 
   return Tabber;
-}(_taroWeapp2.default.Component), _class.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6"], _class.$$componentPath = "pages/integral/tabber/index", _temp2);
+}(_taroSwan2.default.Component);
 
-
+Tabber.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6"];
+Tabber.$$componentPath = "pages/integral/tabber/index";
 Tabber.config = { navigationBarTitleText: '' };
 exports.default = Tabber;
 
-Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(Tabber, true));
-
-/***/ }),
-
-/***/ "./node_modules/file-loader/dist/cjs.js?name=[path][name].wxml&context=/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/src!./node_modules/@tarojs/mini-runner/dist/loaders/miniTemplateLoader.js!./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js?!./src/pages/integral/tabber/index.tsx?taro&type=template&parse=PAGE&":
-/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/file-loader/dist/cjs.js?name=[path][name].wxml&context=/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/src!./node_modules/@tarojs/mini-runner/dist/loaders/miniTemplateLoader.js!./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js??ref--6-0!./src/pages/integral/tabber/index.tsx?taro&type=template&parse=PAGE& ***!
-  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "pages/integral/tabber/index.wxml";
-
-/***/ }),
-
-/***/ "./src/pages/integral/tabber/index.scss":
-/*!**********************************************!*\
-  !*** ./src/pages/integral/tabber/index.scss ***!
-  \**********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
-
-/***/ }),
-
-/***/ "./src/pages/integral/tabber/index.tsx":
-/*!*********************************************!*\
-  !*** ./src/pages/integral/tabber/index.tsx ***!
-  \*********************************************/
-/*! no static exports found */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _index_tsx_taro_type_template_parse_PAGE___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.tsx?taro&type=template&parse=PAGE& */ "./src/pages/integral/tabber/index.tsx?taro&type=template&parse=PAGE&");
-/* harmony import */ var _index_tsx_taro_type_script_parse_PAGE___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./index.tsx?taro&type=script&parse=PAGE& */ "./src/pages/integral/tabber/index.tsx?taro&type=script&parse=PAGE&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _index_tsx_taro_type_script_parse_PAGE___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _index_tsx_taro_type_script_parse_PAGE___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-
-
-
-
-/***/ }),
-
-/***/ "./src/pages/integral/tabber/index.tsx?taro&type=script&parse=PAGE&":
-/*!**************************************************************************!*\
-  !*** ./src/pages/integral/tabber/index.tsx?taro&type=script&parse=PAGE& ***!
-  \**************************************************************************/
-/*! no static exports found */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_script_parse_PAGE___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js??ref--6-0!./index.tsx?taro&type=script&parse=PAGE& */ "./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js?!./src/pages/integral/tabber/index.tsx?taro&type=script&parse=PAGE&");
-/* harmony import */ var _node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_script_parse_PAGE___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_script_parse_PAGE___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_script_parse_PAGE___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_script_parse_PAGE___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
- /* harmony default export */ __webpack_exports__["default"] = (_node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_script_parse_PAGE___WEBPACK_IMPORTED_MODULE_0___default.a); 
-
-/***/ }),
-
-/***/ "./src/pages/integral/tabber/index.tsx?taro&type=template&parse=PAGE&":
-/*!****************************************************************************!*\
-  !*** ./src/pages/integral/tabber/index.tsx?taro&type=template&parse=PAGE& ***!
-  \****************************************************************************/
-/*! no static exports found */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _file_loader_name_path_name_wxml_context_Users_zhangyibo_TaroTs_YuPaoWang_yupaowang_src_node_modules_tarojs_mini_runner_dist_loaders_miniTemplateLoader_js_node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_template_parse_PAGE___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!file-loader?name=[path][name].wxml&context=/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/src!../../../../node_modules/@tarojs/mini-runner/dist/loaders/miniTemplateLoader.js!../../../../node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js??ref--6-0!./index.tsx?taro&type=template&parse=PAGE& */ "./node_modules/file-loader/dist/cjs.js?name=[path][name].wxml&context=/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/src!./node_modules/@tarojs/mini-runner/dist/loaders/miniTemplateLoader.js!./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js?!./src/pages/integral/tabber/index.tsx?taro&type=template&parse=PAGE&");
-/* harmony import */ var _file_loader_name_path_name_wxml_context_Users_zhangyibo_TaroTs_YuPaoWang_yupaowang_src_node_modules_tarojs_mini_runner_dist_loaders_miniTemplateLoader_js_node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_template_parse_PAGE___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_file_loader_name_path_name_wxml_context_Users_zhangyibo_TaroTs_YuPaoWang_yupaowang_src_node_modules_tarojs_mini_runner_dist_loaders_miniTemplateLoader_js_node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_template_parse_PAGE___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _file_loader_name_path_name_wxml_context_Users_zhangyibo_TaroTs_YuPaoWang_yupaowang_src_node_modules_tarojs_mini_runner_dist_loaders_miniTemplateLoader_js_node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_template_parse_PAGE___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _file_loader_name_path_name_wxml_context_Users_zhangyibo_TaroTs_YuPaoWang_yupaowang_src_node_modules_tarojs_mini_runner_dist_loaders_miniTemplateLoader_js_node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_template_parse_PAGE___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-
+Page(__webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js").default.createComponent(Tabber, true));
 
 /***/ })
 
-},[["./src/pages/integral/tabber/index.tsx","runtime","taro","vendors","common"]]]);
+},[["./src/pages/integral/tabber/index.tsx","runtime","vendors"]]]);

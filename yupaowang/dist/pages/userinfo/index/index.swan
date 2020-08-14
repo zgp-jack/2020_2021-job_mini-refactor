@@ -1,0 +1,35 @@
+<block s-if="{{$taroCompReady}}">
+    <block>
+        <block>
+            <view class="user-updatainfo-container">
+                <view class="user-updatainfo-item clearfix" bindtap="anonymousFunc0">
+                    <view class="user-updatainfo-left">头像</view>
+                    <image class="user-updatainfo-right user-updatainfo-avatar" src="{{headerImg}}"></image>
+                </view>
+                <view class="user-updatainfo-item clearfix" bindtap="anonymousFunc1">
+                    <view class="user-updatainfo-left">姓名</view>
+                    <view class="user-updatainfo-right">{{name}}</view>
+                </view>
+                <view class="user-updatainfo-item clearfix">
+                    <view class="user-updatainfo-left">修改密码</view>
+                    <view class="user-updatainfo-right"></view>
+                </view>
+                <view class="user-updatainfo-item clearfix" bindtap="anonymousFunc2">
+                    <view class="user-updatainfo-left">手机号</view>
+                    <view class="user-updatainfo-right">{{uphone}}</view>
+                </view>
+            </view>
+            <block s-if="{{showModal}}">
+                <view class="yupao-common-enterbox">
+                    <view class="yupao-common-enter"><text class="yupao-enter-title">修改姓名</text><text class="yupao-enter-tips">请输入您的姓名</text>
+                        <view class="yupao-enter-body">
+                            <input class="yupao-enter-wrap yupao-enter-input" value="{= newName =}" placeholder="请输入您的姓名" bindinput="anonymousFunc3" />
+                        </view>
+                        <view class="yupao-enter-footer clearfix"><text bindtap="anonymousFunc4">取消</text><text bindtap="anonymousFunc5">确定</text>
+                        </view>
+                    </view>
+                </view>
+            </block>
+        </block>
+    </block>
+</block>

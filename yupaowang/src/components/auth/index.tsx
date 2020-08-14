@@ -8,6 +8,7 @@ import Msg, { errMsg } from '../../utils/msg'
 import { useDispatch, useSelector } from '@tarojs/redux'
 import { setUserInfo } from '../../actions/user'
 import { UserInfo } from '../../config/store'
+import { userCancelAuth as userCancelAuthAction } from '../../utils/helper'
 import './index.scss'
 
 export interface AuthData {
@@ -36,7 +37,12 @@ export default function Auth({ page = false, callback, userCancelAuth }: PROPS){
 
   // 取消授权
   const cancelAuth = ()=> {
-    userCancelAuth&&userCancelAuth()
+    if(userCancelAuth){
+      userCancelAuth()
+    }else{
+      userCancelAuthAction()
+    }
+    
   }
 
   // 用户确认授权

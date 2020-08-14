@@ -1,0 +1,19 @@
+<block s-if="{{$taroCompReady}}">
+    <view>
+        <block s-if="{{display}}">
+            <view class="tabber-complaintModal">
+                <view class="tabber-complaintModal-content">
+                    <view class="tabber-complaintModal-content-title">投诉信息</view>
+                    <view class="tabber-complaintModal-content-tips">请输入投诉内容</view>
+                    <view class="tabber-complaintModal-content-textareaBox">
+                        <textarea class="tabber-complaintModal-content-textarea" placeholder="请填写5~100字，必须含有汉字。（恶意投诉会被封号，请谨慎投诉！）" value="{= textarea =}" maxlength="{{100}}" bindinput="anonymousFunc0"></textarea>
+                    </view>
+                    <view class="tabber-complaintModal-footer">
+                        <view class="tabber-complaintModal-footer-cancel" bindtap="anonymousFunc1">取消</view>
+                        <view class="tabber-complaintModal-footer-cancel" bindtap="anonymousFunc2">确定</view>
+                    </view>
+                </view>
+            </view>
+        </block>
+    </view>
+</block>

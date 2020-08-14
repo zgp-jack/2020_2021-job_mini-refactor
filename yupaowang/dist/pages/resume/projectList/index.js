@@ -1,9 +1,20 @@
-(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["pages/resume/projectList/index"],{
+(swan["webpackJsonp"] = swan["webpackJsonp"] || []).push([["pages/resume/projectList/index"],{
 
-/***/ "./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js?!./src/pages/resume/projectList/index.tsx?taro&type=script&parse=PAGE&":
-/*!**************************************************************************************************************************************************************!*\
-  !*** ./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js??ref--6-0!./src/pages/resume/projectList/index.tsx?taro&type=script&parse=PAGE& ***!
-  \**************************************************************************************************************************************************************/
+/***/ "./src/pages/resume/projectList/index.scss":
+/*!*************************************************!*\
+  !*** ./src/pages/resume/projectList/index.scss ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
+/***/ "./src/pages/resume/projectList/index.tsx":
+/*!************************************************!*\
+  !*** ./src/pages/resume/projectList/index.tsx ***!
+  \************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -20,11 +31,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _class, _temp2;
+var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
 
-var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
-
-var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
+var _taroSwan2 = _interopRequireDefault(_taroSwan);
 
 var _index = __webpack_require__(/*! ../../../utils/request/index */ "./src/utils/request/index.ts");
 
@@ -40,31 +49,31 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var ProjectList = (_temp2 = _class = function (_Taro$Component) {
+var ProjectList = function (_Taro$Component) {
   _inherits(ProjectList, _Taro$Component);
 
   function ProjectList() {
-    var _ref;
-
-    var _temp, _this, _ret;
-
     _classCallCheck(this, ProjectList);
 
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
+    var _this = _possibleConstructorReturn(this, (ProjectList.__proto__ || Object.getPrototypeOf(ProjectList)).apply(this, arguments));
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ProjectList.__proto__ || Object.getPrototypeOf(ProjectList)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
+    _this.config = {
       navigationBarTitleText: '项目经验'
-    }, _this.$usedState = ["loopArray96", "$compid__99", "data", "IMGCDNURL", "preview", "detail"], _this.anonymousFunc0Map = {}, _this.anonymousFunc1Map = {}, _this.anonymousFunc2Map = {}, _this.customComponents = ["Nodata"], _temp), _possibleConstructorReturn(_this, _ret);
+    };
+
+    _this.$usedState = ["loopArray67", "$compid__57", "data", "IMGCDNURL", "preview", "detail"];
+    _this.anonymousFunc0Map = {};
+    _this.anonymousFunc1Map = {};
+    _this.anonymousFunc2Map = {};
+    _this.customComponents = ["Nodata"];
+    return _this;
   }
 
   _createClass(ProjectList, [{
     key: "_constructor",
     value: function _constructor(props) {
       _get(ProjectList.prototype.__proto__ || Object.getPrototypeOf(ProjectList.prototype), "_constructor", this).call(this, props);
-
-      this.$$refs = new _taroWeapp2.default.RefsArray();
+      this.$$refs = new _taroSwan2.default.RefsArray();
     }
   }, {
     key: "_createData",
@@ -77,12 +86,12 @@ var ProjectList = (_temp2 = _class = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__99"),
+      var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__57"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__99 = _genCompid2[0],
-          $compid__99 = _genCompid2[1];
+          $prevCompid__57 = _genCompid2[0],
+          $compid__57 = _genCompid2[1];
 
-      var router = (0, _taroWeapp.useRouter)();
+      var router = (0, _taroSwan.useRouter)();
       // 获取传递过来的参数
       var _router$params = router.params,
           id = _router$params.id,
@@ -92,19 +101,19 @@ var ProjectList = (_temp2 = _class = function (_Taro$Component) {
           uuid = _router$params.uuid;
       // 刷新一次
 
-      var _useState = (0, _taroWeapp.useState)(false),
+      var _useState = (0, _taroSwan.useState)(false),
           _useState2 = _slicedToArray(_useState, 2),
           refresh = _useState2[0],
           setRefresh = _useState2[1];
       // 数据
 
 
-      var _useState3 = (0, _taroWeapp.useState)([]),
+      var _useState3 = (0, _taroSwan.useState)([]),
           _useState4 = _slicedToArray(_useState3, 2),
           data = _useState4[0],
           setData = _useState4[1];
 
-      (0, _taroWeapp.useDidShow)(function () {
+      (0, _taroSwan.useDidShow)(function () {
         if (refresh) {
           setRefresh(false);
           return;
@@ -127,7 +136,7 @@ var ProjectList = (_temp2 = _class = function (_Taro$Component) {
       });
       // 点击方法
       var handleImg = function handleImg(e) {
-        _taroWeapp2.default.previewImage({
+        _taroSwan2.default.previewImage({
           current: e,
           urls: [e]
         });
@@ -135,62 +144,53 @@ var ProjectList = (_temp2 = _class = function (_Taro$Component) {
       };
       // 用户页面跳转
       var userRouteJump = function userRouteJump(url) {
-        _taroWeapp2.default.navigateTo({
+        _taroSwan2.default.navigateTo({
           url: url
         });
       };
-
       this.anonymousFunc3 = function () {
         return userRouteJump("/pages/resume/addProject/index?id=" + id);
       };
-
-      var loopArray96 = data.map(function (item, i) {
+      var loopArray67 = data.map(function (item, i) {
         item = {
-          $original: (0, _taroWeapp.internal_get_original)(item)
+          privateOriginal: (0, _taroSwan.internal_get_original)(item)
         };
-
-        var _$indexKey = "baazz" + i;
-
+        var _$indexKey = "hazzz" + i;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return userRouteJump("/pages/resume/addProject/index?type=" + i + "&id=" + id);
         };
-
-        var _$indexKey2 = "babzz" + i;
-
+        var _$indexKey2 = "hbzzz" + i;
         _this2.anonymousFunc1Map[_$indexKey2] = function () {
           return userRouteJump("/pages/resume/addProject/index?type=" + i + "&id=" + id);
         };
-
-        var $anonymousCallee__18 = item.$original.image.map(function (v, i) {
+        var anonymousCallee__11 = item.privateOriginal.image.map(function (v, i) {
           v = {
-            $original: (0, _taroWeapp.internal_get_original)(v)
+            privateOriginal: (0, _taroSwan.internal_get_original)(v)
           };
-          var $loopState__temp2 = i + i;
-          var _$indexKey3 = "baczz" + i + "-" + i;
-
+          var loopState__temp2 = i + i;
+          var _$indexKey3 = "hczzz" + i + "-" + i;
           _this2.anonymousFunc2Map[_$indexKey3] = function () {
-            return handleImg(v.$original);
+            return handleImg(v.privateOriginal);
           };
-
           return {
-            $loopState__temp2: $loopState__temp2,
+            loopState__temp2: loopState__temp2,
             _$indexKey3: _$indexKey3,
-            $original: v.$original
+            privateOriginal: v.privateOriginal
           };
         });
         return {
           _$indexKey: _$indexKey,
           _$indexKey2: _$indexKey2,
-          $anonymousCallee__18: $anonymousCallee__18,
-          $original: item.$original
+          anonymousCallee__11: anonymousCallee__11,
+          privateOriginal: item.privateOriginal
         };
       });
-      !data.length && _taroWeapp.propsManager.set({
+      !data.length && _taroSwan.propsManager.set({
         "text": "\u6682\u65E0\u76F8\u5173\u5185\u5BB9"
-      }, $compid__99, $prevCompid__99);
+      }, $compid__57, $prevCompid__57);
       Object.assign(this.__state, {
-        loopArray96: loopArray96,
-        $compid__99: $compid__99,
+        loopArray67: loopArray67,
+        $compid__57: $compid__57,
         data: data,
         IMGCDNURL: _index2.IMGCDNURL,
         preview: preview,
@@ -205,8 +205,8 @@ var ProjectList = (_temp2 = _class = function (_Taro$Component) {
 
       ;
 
-      for (var _len2 = arguments.length, e = Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
-        e[_key2 - 1] = arguments[_key2];
+      for (var _len = arguments.length, e = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+        e[_key - 1] = arguments[_key];
       }
 
       return this.anonymousFunc0Map[_$indexKey] && (_anonymousFunc0Map = this.anonymousFunc0Map)[_$indexKey].apply(_anonymousFunc0Map, e);
@@ -218,8 +218,8 @@ var ProjectList = (_temp2 = _class = function (_Taro$Component) {
 
       ;
 
-      for (var _len3 = arguments.length, e = Array(_len3 > 1 ? _len3 - 1 : 0), _key3 = 1; _key3 < _len3; _key3++) {
-        e[_key3 - 1] = arguments[_key3];
+      for (var _len2 = arguments.length, e = Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
+        e[_key2 - 1] = arguments[_key2];
       }
 
       return this.anonymousFunc1Map[_$indexKey2] && (_anonymousFunc1Map = this.anonymousFunc1Map)[_$indexKey2].apply(_anonymousFunc1Map, e);
@@ -231,8 +231,8 @@ var ProjectList = (_temp2 = _class = function (_Taro$Component) {
 
       ;
 
-      for (var _len4 = arguments.length, e = Array(_len4 > 1 ? _len4 - 1 : 0), _key4 = 1; _key4 < _len4; _key4++) {
-        e[_key4 - 1] = arguments[_key4];
+      for (var _len3 = arguments.length, e = Array(_len3 > 1 ? _len3 - 1 : 0), _key3 = 1; _key3 < _len3; _key3++) {
+        e[_key3 - 1] = arguments[_key3];
       }
 
       return this.anonymousFunc2Map[_$indexKey3] && (_anonymousFunc2Map = this.anonymousFunc2Map)[_$indexKey3].apply(_anonymousFunc2Map, e);
@@ -245,86 +245,15 @@ var ProjectList = (_temp2 = _class = function (_Taro$Component) {
   }]);
 
   return ProjectList;
-}(_taroWeapp2.default.Component), _class.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3"], _class.$$componentPath = "pages/resume/projectList/index", _temp2);
+}(_taroSwan2.default.Component);
 
-
+ProjectList.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3"];
+ProjectList.$$componentPath = "pages/resume/projectList/index";
 ProjectList.config = { navigationBarTitleText: '项目经验' };
 exports.default = ProjectList;
 
-Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(ProjectList, true));
-
-/***/ }),
-
-/***/ "./node_modules/file-loader/dist/cjs.js?name=[path][name].wxml&context=/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/src!./node_modules/@tarojs/mini-runner/dist/loaders/miniTemplateLoader.js!./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js?!./src/pages/resume/projectList/index.tsx?taro&type=template&parse=PAGE&":
-/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/file-loader/dist/cjs.js?name=[path][name].wxml&context=/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/src!./node_modules/@tarojs/mini-runner/dist/loaders/miniTemplateLoader.js!./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js??ref--6-0!./src/pages/resume/projectList/index.tsx?taro&type=template&parse=PAGE& ***!
-  \************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "pages/resume/projectList/index.wxml";
-
-/***/ }),
-
-/***/ "./src/pages/resume/projectList/index.scss":
-/*!*************************************************!*\
-  !*** ./src/pages/resume/projectList/index.scss ***!
-  \*************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
-
-/***/ }),
-
-/***/ "./src/pages/resume/projectList/index.tsx":
-/*!************************************************!*\
-  !*** ./src/pages/resume/projectList/index.tsx ***!
-  \************************************************/
-/*! no static exports found */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _index_tsx_taro_type_template_parse_PAGE___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.tsx?taro&type=template&parse=PAGE& */ "./src/pages/resume/projectList/index.tsx?taro&type=template&parse=PAGE&");
-/* harmony import */ var _index_tsx_taro_type_script_parse_PAGE___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./index.tsx?taro&type=script&parse=PAGE& */ "./src/pages/resume/projectList/index.tsx?taro&type=script&parse=PAGE&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _index_tsx_taro_type_script_parse_PAGE___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _index_tsx_taro_type_script_parse_PAGE___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-
-
-
-
-/***/ }),
-
-/***/ "./src/pages/resume/projectList/index.tsx?taro&type=script&parse=PAGE&":
-/*!*****************************************************************************!*\
-  !*** ./src/pages/resume/projectList/index.tsx?taro&type=script&parse=PAGE& ***!
-  \*****************************************************************************/
-/*! no static exports found */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_script_parse_PAGE___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js??ref--6-0!./index.tsx?taro&type=script&parse=PAGE& */ "./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js?!./src/pages/resume/projectList/index.tsx?taro&type=script&parse=PAGE&");
-/* harmony import */ var _node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_script_parse_PAGE___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_script_parse_PAGE___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_script_parse_PAGE___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_script_parse_PAGE___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
- /* harmony default export */ __webpack_exports__["default"] = (_node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_script_parse_PAGE___WEBPACK_IMPORTED_MODULE_0___default.a); 
-
-/***/ }),
-
-/***/ "./src/pages/resume/projectList/index.tsx?taro&type=template&parse=PAGE&":
-/*!*******************************************************************************!*\
-  !*** ./src/pages/resume/projectList/index.tsx?taro&type=template&parse=PAGE& ***!
-  \*******************************************************************************/
-/*! no static exports found */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _file_loader_name_path_name_wxml_context_Users_zhangyibo_TaroTs_YuPaoWang_yupaowang_src_node_modules_tarojs_mini_runner_dist_loaders_miniTemplateLoader_js_node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_template_parse_PAGE___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!file-loader?name=[path][name].wxml&context=/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/src!../../../../node_modules/@tarojs/mini-runner/dist/loaders/miniTemplateLoader.js!../../../../node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js??ref--6-0!./index.tsx?taro&type=template&parse=PAGE& */ "./node_modules/file-loader/dist/cjs.js?name=[path][name].wxml&context=/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/src!./node_modules/@tarojs/mini-runner/dist/loaders/miniTemplateLoader.js!./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js?!./src/pages/resume/projectList/index.tsx?taro&type=template&parse=PAGE&");
-/* harmony import */ var _file_loader_name_path_name_wxml_context_Users_zhangyibo_TaroTs_YuPaoWang_yupaowang_src_node_modules_tarojs_mini_runner_dist_loaders_miniTemplateLoader_js_node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_template_parse_PAGE___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_file_loader_name_path_name_wxml_context_Users_zhangyibo_TaroTs_YuPaoWang_yupaowang_src_node_modules_tarojs_mini_runner_dist_loaders_miniTemplateLoader_js_node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_template_parse_PAGE___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _file_loader_name_path_name_wxml_context_Users_zhangyibo_TaroTs_YuPaoWang_yupaowang_src_node_modules_tarojs_mini_runner_dist_loaders_miniTemplateLoader_js_node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_template_parse_PAGE___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _file_loader_name_path_name_wxml_context_Users_zhangyibo_TaroTs_YuPaoWang_yupaowang_src_node_modules_tarojs_mini_runner_dist_loaders_miniTemplateLoader_js_node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_template_parse_PAGE___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-
+Page(__webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js").default.createComponent(ProjectList, true));
 
 /***/ })
 
-},[["./src/pages/resume/projectList/index.tsx","runtime","taro","vendors","common"]]]);
+},[["./src/pages/resume/projectList/index.tsx","runtime","vendors"]]]);

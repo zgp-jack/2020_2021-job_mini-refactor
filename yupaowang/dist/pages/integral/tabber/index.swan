@@ -1,0 +1,87 @@
+<block s-if="{{$taroCompReady}}">
+    <view class="tabber-content">
+        <view class="tabber-content-box">
+            <view class="tabber-content-box-time">
+                <picker mode="date" fields="month" value="{{time}}" start="{{start}}" end="{{end}}" bindchange="anonymousFunc0"><text class="tabber-content-box-time-text">{{showTime}}</text>
+                    <image class="tabber-content-box-time-img" src="{{IMGCDNURL + 'lpy/integral/select2.png'}}"></image>
+                </picker>
+            </view>
+            <view class="tabber-content-box-selector">
+                <picker mode="selector" range="{{initInfo === '0' ? sourceList : consumeList}}" value="{{startType}}" bindchange="anonymousFunc1"><text class="tabber-content-box-selector-text">{{title}}</text>
+                    <image class="tabber-content-box-selector-img" src="{{IMGCDNURL + 'lpy/integral/select1.png'}}"></image>
+                </picker>
+            </view>
+        </view>
+        <view class="tabber-content-box-numBox">
+            <view>{{initInfo === '0' ? '获取积分：' : '消耗积分：'}}<text class="tabber-content-box-num-color">{{initInfo === '0' ? num.get : num.expend}}</text>
+            </view>
+            <view bindtap="anonymousFunc2" class="tabber-content-box-numBox-num">{{initInfo === '0' ? '消耗积分：' : '获取积分：'}}<text class="tabber-content-box-num-color">{{initInfo === '0' ? num.expend : num.get}}</text>
+            </view>
+        </view>
+        <view class="integral-content">
+            <block s-if="{{!data.lists.length}}">
+                <nodata compid="{{$compid__49}}"></nodata>
+            </block>
+            <view s-key="loopState__temp2" bindtap="anonymousFunc3" s-for="loopArray47" s-for-item="item" s-for-index="index" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">
+                <view class="integral-list">
+                    <view class="integral-list-time"><text class="integral-time-year">{{item.privateOriginal.y_m}}</text><text class="integral-time-day">{{item.privateOriginal.day}}</text>
+                    </view>
+                    <view class="integral-list-item">
+                        <view class="integral-list-title overwords">{{item.privateOriginal.type_name}}</view>
+                        <view class="integral-list-words overwords">{{initInfo === '0' ? item.privateOriginal.ext : item.privateOriginal.title}}</view>
+                        <view class="integral-item-time">时间：{{item.privateOriginal.his}}<text>{{initInfo === '0' ? item.privateOriginal.source_integral_string : item.privateOriginal.tips}}</text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <block s-if="{{data.next_page === 0 && data.lists.length}}">
+            <view class="integral-noData">没有更多数据了</view>
+        </block>
+        <block s-if="{{initInfo === '1' && modal && modalData}}">
+            <view class="tabber-Modal">
+                <view class="tabber-Modal-content">
+                    <view bindtap="anonymousFunc4" class="tabber-Modal-content-close"></view>
+                    <view class="tabber-Modal-content-scroll">
+                        <block s-if="{{modalData.expend_type !== 2}}">
+                            <view class="tabber-Modal-content-flexBox">
+                                <view class="tabber-Modal-content-flexBox-left">项目名称</view>
+                                <view class="tabber-Modal-content-flexBox-right">{{modalData.title}}</view>
+                            </view>
+                        </block>
+                        <view class="tabber-Modal-content-flexBox">
+                            <view>电话</view>
+                            <view class="tabber-content-box-num-color">{{modalData.user_mobile}}({{modalData.user_name}})
+                                <view bindtap="anonymousFunc5" class="tabber-Modal-content-flexBox-phone">拨打</view>
+                                <block s-if="{{modalData.show_complain !== 0}}">
+                                    <view class="tabber-Modal-content-flexBox-complaint" bindtap="anonymousFunc6">投诉</view>
+                                </block>
+                            </view>
+                        </view>
+                        <block s-if="{{modalData.expend_type === 2}}">
+                            <view>
+                                <view class="tabber-Modal-content-flexBox">
+                                    <view>规模</view>
+                                    <view class="tabber-content-box-num-color">{{modalData.team_composition_words}}</view>
+                                </view>
+                                <view class="tabber-Modal-content-flexBox">
+                                    <view>接活省份</view>
+                                    <view class="tabber-content-box-num-color">{{modalData.showProvinceList}}</view>
+                                </view>
+                            </view>
+                        </block>
+                        <view class="tabber-Modal-content-flexBox-classifyName"><text s-key="loopState__temp4" class="tabber-Modal-content-flexBox-classifyName-data" s-for="loopArray48" s-for-item="v" s-for-index="i">[{{v.privateOriginal}}]</text>
+                        </view>
+                        <view class="clear"></view>
+                        <view class="tabber-Modal-content-flexBox-last">
+                            <view>{{modalData.detail}}</view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </block>
+        <block s-if="{{complaintModal}}">
+            <report compid="{{$compid__50}}"></report>
+        </block>
+    </view>
+</block>

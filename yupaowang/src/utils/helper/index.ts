@@ -87,3 +87,7 @@ export function recSerAuthLoction(): Promise<UserLocationPromiss> {
 
 }
 
+// 用户取消授权
+export function userCancelAuth():void{
+  Taro.navigateBack()
+}

@@ -1,0 +1,31 @@
+<block s-if="{{$taroCompReady}}">
+    <view class="content">
+        <block s-if="{{!data.item.length}}">
+            <nodata></nodata>
+        </block>
+        <view class="content-box">
+            <scroll-view class="recruit-lists-containerbox" scroll-y="{{true}}" lower-threshold="{{200}}" refresher-enabled="{{true}}" bindscrolltolower="anonymousFunc0">
+                <view s-key="privateOriginal.id" class="recruitListBox" bindtap="anonymousFunc1" s-for="loopArray74" s-for-item="v" s-for-index="__index1" data-e-tap-so="this" data-e-tap-a-a="{{v._$indexKey}}">
+                    <view class="recruitListBox-title">{{v.privateOriginal.title}}</view>
+                    <view class="recruitListBox-content">
+                        <image src="{{v.privateOriginal.image}}" class="recruitListBox-content-img"></image>
+                        <view class="recruitListBox-content-box">
+                            <view class="recruitListBox-content-name">{{v.privateOriginal.user_name}}</view>
+                            <view class="recruitListBox-content-details">{{v.privateOriginal.detail}}</view>
+                        </view>
+                    </view>
+                    <view class="recruitListBox-footer">
+                        <view>
+                            <image class="recruitListBox-footer-image" src="{{IMGCDNURL + 'newlist-jobposi.png'}}"></image>{{v.privateOriginal.show_address}}</view>
+                        <view>{{v.privateOriginal.time}}</view>
+                    </view>
+                </view>
+                <block s-if="{{!isDown && data.item.length}}">
+                    <view class="footer" bindtap="anonymousFunc2">
+                        <view class="footer-btn">查看更多</view>
+                    </view>
+                </block>
+            </scroll-view>
+        </view>
+    </view>
+</block>

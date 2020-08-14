@@ -1,0 +1,462 @@
+<block s-if="{{$taroCompReady}}">
+    <block>
+        <auth></auth>
+        <view class="newJob">
+            <block s-if="{{!showtop}}">
+                <view class="heard">请完善以下信息</view>
+            </block>
+            <view class="card">
+                <view class="card-otext"><text>名片完善度：</text>
+                    <view class="card-otext-lang">
+                        <view class="card-otext-lang-olang" style="{{anonymousState__temp}}"></view>
+                    </view><text class="card-otext-olangw">{{data.info.progress}}%</text><text class="card-otext-num">{{data.info.view_num}}</text>
+                </view>
+                <block>
+                    <block s-if="{{showcomplete}}">
+                        <view class="isline">
+                            <button class="isline-shareliveone" bindtap="anonymousFunc0">名片越完善 找活越容易,马上去完善>></button><text class="isline-sontwoview">浏览次数</text>
+                        </view>
+                    </block>
+                    <block s-else>
+                        <view>
+                            <button class="isline-shareliveone">分享找活名片,可提升名片排名度</button><text class="isline-sontwoview">浏览次数</text>
+                        </view>
+                    </block>
+                </block>
+                <view class="ranking">
+                    <view>
+                        <image class="ranking-img" src="{{IMGCDNURL + 'lpy/biaptu.png'}}"></image><text>我的排名点：{{data.info.sort_flag}}</text>
+                    </view>
+                    <view class="ranking-go" bindtap="anonymousFunc1">马上去提升排名>></view>
+                </view>
+                <view class="{{data.resume_top.is_top === 2 || data.resume_top.has_top == 0 ? 'ranking' : 'ranking-last'}}">
+                    <view>
+                        <image class="ranking-img" src="{{IMGCDNURL + 'lpy/personaltop.png'}}"></image><text>我的置顶:<block s-if="{{data.resume_top.is_top === 2}}"><text>置顶已过期</text>
+    </block>
+    <block s-if="{{data.resume_top.has_top == 0}}"><text>未置顶</text>
+    </block>
+    </text>
+    </view>
+    <block s-if="{{data.resume_top.has_top == 0}}">
+        <view class="ranking-go" bindtap="anonymousFunc2">马上去置顶>></view>
+    </block>
+    <block s-if="{{data.resume_top.has_top != 0 && data.resume_top.is_top != 2}}">
+        <view>
+            <view class="topselect_box">
+                <view class="select" bindtap="anonymousFunc3">
+                    <block>
+                        <block s-if="{{data.resume_top.has_top == 0}}">{{data.resume_top.has_top == 0}}</block>
+                        <block s-else>
+                            <block s-if="{{data.resume_top.is_top == 0}}"><text class="select_text">未置顶</text>
+                            </block>
+                        </block>
+                    </block>
+                    <block s-if="{{data.resume_top.is_top == 1}}"><text class="select_text">置顶中</text>
+                    </block>
+                    <image class="select_img" src="{{IMGCDNURL + 'select.png'}}"></image>
+                </view>
+            </view>
+        </view>
+    </block>
+    </view>
+    <block s-if="{{data.resume_top.has_top != 0 && data.resume_top.is_top != 2}}">
+        <view class="toptime">
+            <view class="toptime-view"><text>置顶地区</text>
+                <block s-if="{{data.resume_top.top_provinces_str.length}}"><text class="proviceop" s-key="loopState__temp3" s-for="loopArray68" s-for-item="v" s-for-index="i">{{v.privateOriginal.name}}</text>
+                </block>
+            </view>
+        </view>
+    </block>
+    <block s-if="{{data.resume_top.has_top != 0 && data.resume_top.is_top != 2}}">
+        <view class="toptime">
+            <view class="toptime-view"><text>置顶时间：</text><text>{{data.resume_top.start_time_str}} ~ {{data.resume_top.end_time_str}}</text>
+            </view>
+        </view>
+    </block>
+    <block s-if="{{data.resume_top.has_top != 0 && data.resume_top.is_top != 2}}">
+        <view class="topdetail"><text bindtap="anonymousFunc4">点击修改找活置顶信息>></text>
+        </view>
+    </block>
+    </view>
+    <view class="findingnamecardthree">
+        <view class="findingnamecardthreemobile">
+            <view class="findingnamemobile">
+                <image class="findingnamecardthree-image" src="{{IMGCDNURL + 'lpy/jichu.png'}}"></image>
+            </view>
+            <view class="findingnamemobileone" bindtap="anonymousFunc5"><text>基础信息</text>
+            </view>
+        </view>
+    </view>
+    <view>
+        <block s-if="{{showtopone}}">
+            <view class="cardoneson">
+                <view class="cardonesonone">
+                    <view class="cardonesonone-view">
+                        <image class="cardonesonone-image" src="{{IMGCDNURL + 'lpy/workdetail.png'}}"></image>
+                    </view><text class="cardonesonone-text">我的工作状态：</text>
+                </view>
+                <block s-if="{{showpassre}}">
+                    <view class="select_box">
+                        <block s-if="{{passre && nopassre}}">
+                            <view class="select" bindtap="anonymousFunc6">
+                                <block s-if="{{index == 0}}"><text class="select_text">{{selectdata[index]}}</text>
+                                </block>
+                                <block s-if="{{index == 1}}"><text class="select_text">{{selectdata[index]}}</text>
+                                </block>
+                                <image class="select-img" src="{{IMGCDNURL + 'select.png'}}"></image>
+                            </view>
+                        </block>
+                        <block s-if="{{!passre && nopassre}}">
+                            <view class="select"><text class="select_text">审核未通过</text>
+                            </view>
+                        </block>
+                        <block s-if="{{passre && !nopassre}}">
+                            <view class="select"><text class="select_text">人工审核中</text>
+                            </view>
+                        </block>
+                    </view>
+                </block>
+            </view>
+        </block>
+        <block s-if="{{showtopone}}">
+            <view class="cardcolore">
+                <view class="cardtwo">
+                    <image class="link" src="{{IMGCDNURL + 'lpy/newresume-linktag.png'}}"></image>
+                    <image class="linkone" src="{{IMGCDNURL + 'lpy/newresume-linktag.png'}}"></image>
+                    <view class="cardonetwof">
+                        <block s-if="{{checkone && data.content.show_tips == 1}}">
+                            <image class="checkone" src="{{IMGCDNURL + 'lpy/audit.png'}}"></image>
+                        </block>
+                        <view class="cardtwosonone">
+                            <view class="cardtwosononeimg">
+                                <view class="oimg">
+                                    <image class="oimg-image" src="{{headerimg}}" bindtap="anonymousFunc7"></image>
+                                </view>
+                                <view class="oimgone"><text class="otext">{{data.info.username}}</text>
+                                    <block s-if="{{authenticationimg == '2'}}">
+                                        <image class="iconImage" src="{{IMGCDNURL + 'new-list-realname-icon.png'}}"></image>
+                                    </block>
+                                    <block s-if="{{certificate_show == 1}}">
+                                        <image class="iconImage" src="{{IMGCDNURL + 'new-list-jnzs-icon.png?t=1'}}"></image>
+                                    </block>
+                                    <view class="otextone"><text>{{sex}}</text>
+                                        <block s-if="{{age}}"><text class="{{sex ? 'ochange' : ''}}">{{age}}</text>
+                                        </block><text class="{{age ? 'ochange' : ''}}">{{data.info.nation}}</text>
+                                    </view>
+                                </view>
+                            </view>
+                            <block s-if="{{!checkone && checkonef != '0'}}">
+                                <view class="cardtwosontwo"><text bindtap="anonymousFunc8">编辑</text>
+                                </view>
+                            </block>
+                            <block s-if="{{checkonef == '0'}}">
+                                <view class="cardtwosontwo"><text bindtap="anonymousFunc9">待修改</text>
+                                </view>
+                            </block>
+                        </view>
+                        <view class="lineone">
+                            <view class="linezo">
+                                <view class="cworkotype">
+                                    <view class="ocworkotype">工种</view>
+                                    <view class="ocworkotypeoo">
+                                        <block s-if="{{!showskill}}">
+                                            <view class="ocworkotyp">
+                                                <view class="ocworkotyptu">
+                                                    <block s-if="{{data.info.occupations}}">
+                                                        <view class="ocworkotyptu-list" s-key="loopState__temp5" s-for="loopArray69" s-for-item="v" s-for-index="i">{{v.privateOriginal}}</view>
+                                                    </block>
+                                                </view>
+                                            </view>
+                                        </block>
+                                        <block s-if="{{showskill}}">
+                                            <view class="ocworkotyp">
+                                                <view class="oimg">
+                                                    <block s-if="{{data.info.occupations}}">
+                                                        <view class="oimg" s-key="loopState__temp7" s-for="loopArray70" s-for-item="v" s-for-index="i">{{v.privateOriginal}}</view>
+                                                    </block>
+                                                </view>
+                                            </view>
+                                        </block>
+                                    </view>
+                                </view>
+                                <view class="cardotext"><text class="oworkotext">手机</text><text class="workotextone">{{data.info.tel}}</text>
+                                </view>
+                                <view class="cardotext"><text class="oworkotext">所在地区</text><text class="workotextone">{{data.info.address}}</text>
+                                </view>
+                                <view class="cardotext"><text class="oworkotext">自我介绍</text>
+                                </view>
+                            </view>
+                        </view>
+                        <block s-if="{{intro}}">
+                            <view class="content">{{data.info.introduce}}</view>
+                        </block>
+                        <block s-if="{{introne}}">
+                            <view class="contentone">{{data.info.introduce}}</view>
+                        </block>
+                    </view>
+                </view>
+            </view>
+        </block>
+        <block s-if="{{ressonone}}">
+            <view class="cardcoloreno">
+                <view class="nopass"><text class="nopass-text">个人资料审核失败原因：</text> {{data.info.note}}</view>
+            </view>
+        </block>
+    </view>
+    <block s-if="{{!showtop}}">
+        <view class="cardcolore">
+            <view class="findingnamecardtwo"><text class="findingnamecardtwothree">您还没有完善基础信息</text>
+                <view class="findingnamecardtwofour" bindtap="anonymousFunc10">去完善</view>
+            </view>
+        </view>
+    </block>
+    <view class="findingnamecardthree">
+        <view class="findingnamecardthreemobile">
+            <view class="findingnamemobile">
+                <image class="findingnamecardthree-image" src="{{IMGCDNURL + 'lpy/newresume-description.png'}}"></image>
+            </view>
+            <view class="findingnamemobileone"><text>人员信息</text>
+            </view>
+            <block s-if="{{selfintrone}}">
+                <view>
+                    <block s-if="{{!checktwo && checkonef != '0'}}">
+                        <view class="cardthreeone" bindtap="anonymousFunc11">编辑</view>
+                    </block>
+                    <block s-if="{{!checktwo && checkonef == '0'}}">
+                        <view class="cardthreeone" bindtap="anonymousFunc12">待修改</view>
+                    </block>
+                </view>
+            </block>
+        </view>
+    </view>
+    <block s-if="{{selfintrone}}">
+        <view class="cardcolore">
+            <view class="cardtwoif">
+                <block s-if="{{checktwo && data.content.show_tips == 1}}">
+                    <image class="checktwo" src="{{IMGCDNURL + 'lpy/audit.png'}}"></image>
+                </block>
+                <view class="lineone">
+                    <view class="linezo">
+                        <view class="cardotext"><text class="oworkotext">工龄</text><text class="workotextone">{{data.introduces.experience}}年</text>
+                        </view>
+                        <view class="cardotext"><text class="oworkotext">人员构成</text><text class="workotextone">{{data.introduces.type_str}}</text>
+                        </view>
+                        <view class="cardotext"><text class="oworkotext">我的家乡</text><text class="workotextone">{{data.introduces.hometown}}</text>
+                        </view>
+                        <view class="cardotext"><text class="oworkotext">熟练度</text><text class="workotextone">{{data.introduces.prof_degree_str}}</text>
+                        </view>
+                        <block s-if="{{data.introduces.number_people !== '1'}}">
+                            <view class="cardotext"><text class="oworkotext">队伍人数</text><text class="workotextone">{{data.introduces.number_people}}</text>
+                            </view>
+                        </block>
+                        <view class="cardotext"><text class="oworkotext">标签</text>
+                            <view class="alllabletu">
+                                <block s-if="{{data.introduces.tags}}"><text class="labletu" s-key="loopState__temp9" s-for="loopArray71" s-for-item="v" s-for-index="i">{{v.privateOriginal.label_name}}</text>
+                                </block>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </block>
+    <block s-if="{{selfintro}}">
+        <view class="cardcolore">
+            <view class="findingnamecardtwo"><text class="findingnamecardtwothree">完善人员信息，能让老板充分了解您或您的队伍</text>
+                <view class="findingnamecardtwofour" bindtap="anonymousFunc13">去完善</view>
+            </view>
+        </view>
+    </block>
+    <view class="findingnamecardthree">
+        <view class="findingnamecardthreemobile">
+            <view class="findingnamemobile">
+                <image class="findingnamecardthree-image" src="{{IMGCDNURL + 'lpy/newresume-experience.png'}}"></image>
+            </view>
+            <view class="findingnamemobileone"><text>项目经验</text>
+            </view>
+            <block s-if="{{projectlength != 0 && projectlength < project_count}}">
+                <view class="cardthreeone" bindtap="anonymousFunc14">添加</view>
+            </block>
+        </view>
+    </view>
+    <block s-if="{{projectlength == 0}}">
+        <view class="cardcolore">
+            <view class="findingnamecardtwo"><text class="findingnamecardtwothree">添加项目经验，可提升老板对您的信任程度</text>
+                <view class="findingnamecardeighttwo" bindtap="anonymousFunc15">添加项目经验</view>
+            </view>
+        </view>
+    </block>
+    <block s-if="{{projectlength != 0}}">
+        <view class="cardcolore">
+            <view class="cardsix">
+                <block s-if="{{project}}">
+                    <view class="cardsixzong" s-key="privateOriginal.id" s-for="loopArray72" s-for-item="item" s-for-index="__index16">
+                        <block s-if="{{item.privateOriginal.check == 1 && data.content.show_tips == 1}}">
+                            <image class="checkthree" src="{{IMGCDNURL + 'lpy/audit.png'}}"></image>
+                        </block>
+                        <block s-if="{{item.privateOriginal.check == 2}}">
+                            <view class="editor" bindtap="anonymousFunc16" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">编辑</view>
+                        </block>
+                        <block s-if="{{item.privateOriginal.check == 0}}">
+                            <view class="editor" bindtap="anonymousFunc17" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey2}}">待修改</view>
+                        </block>
+                        <block s-if="{{item.privateOriginal.check == 0}}">
+                            <image class="audit" src="{{IMGCDNURL + 'lpy/notthrough.png'}}"></image>
+                        </block>
+                        <block s-if="{{item.privateOriginal.check == 1 && data.content.show_tips == 0}}">
+                            <image class="audit" src="{{IMGCDNURL + 'lpy/review.png'}}"></image>
+                        </block>
+                        <view>
+                            <image src="{{IMGCDNURL + 'lpy/newresume-experience-item.png'}}" class="cardsixone"></image>
+                        </view>
+                        <view class="cardsixall">
+                            <view class="cardsixtwo"><text>{{item.privateOriginal.project_name}}</text>
+                            </view>
+                            <view class="cardsixthreeborder">
+                                <view class="cardsixthree"><text class="cardsixthree-text">{{item.privateOriginal.start_time}}-{{item.privateOriginal.completiontime == "zhijin" ? "至今" : item.privateOriginal.completion_time}}</text>
+                                    <block s-if="{{item.privateOriginal.city_name}}"><text class="cardsixthree-text">{{item.privateOriginal.province_name}}-{{item.privateOriginal.city_name}}</text>
+                                    </block><text class="cardsixthree-text">{{item.privateOriginal.province_name}}</text>
+                                </view>
+                            </view>
+                            <view class="cardsixfour"><text class="cardsixthree-text">{{item.privateOriginal.detail}}</text>
+                            </view>
+                            <view class="cardsixfive">
+                                <block s-if="{{item.privateOriginal.image}}">
+                                    <image class="cardsixfive-image" src="{{v.privateOriginal}}" s-key="loopState__temp11" s-for="item.anonymousCallee__12" s-for-item="v" s-for-index="i"></image>
+                                </block>
+                            </view>
+                            <block s-if="{{item.privateOriginal.check == 0}}">
+                                <view class="resson">未通过原因：{{item.privateOriginal.fail_case}}</view>
+                            </block>
+                        </view>
+                    </view>
+                </block>
+                <view class="cardsixsixall">
+                    <view class="cardsixsix">
+                        <view class="more" bindtap="anonymousFunc18">{{proStatus !== '0' ? '更多项目经验' : '修改项目经验'}}
+                            <view class="more-view">
+                                <image src="{{IMGCDNURL + 'lpy/downward.png'}}" class="down"></image>
+                            </view>
+                        </view>
+                        <block s-if="{{data.fail_project !== 0}}"><text class="num">{{data.fail_project}}</text>
+                        </block>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </block>
+    <view class="findingnamecardthree">
+        <view class="findingnamecardthreemobile">
+            <view class="findingnamemobile">
+                <image class="findingnamecardthree-image" src="{{IMGCDNURL + 'lpy/newresume-skill.png'}}"></image>
+            </view>
+            <view class="findingnamemobileone"><text>职业技能</text>
+            </view>
+            <block s-if="{{skilllength != 0 && skilllength < data.certificate_count}}">
+                <view class="cardthreeone" bindtap="anonymousFunc19">添加</view>
+            </block>
+        </view>
+    </view>
+    <block s-if="{{skilllength == 0}}">
+        <view class="cardcolore">
+            <view class="findingnamecardtwo"><text class="findingnamecardtwothree">添加职业技能，用实力证明您的能力</text>
+                <view class="findingnamecardeighttwo" bindtap="anonymousFunc20">添加职业技能</view>
+            </view>
+        </view>
+    </block>
+    <block s-if="{{skilllength != 0}}">
+        <view class="cardcolore">
+            <view class="cardeight">
+                <block s-if="{{skillbooksone}}">
+                    <view class="cardeightzong" s-key="loopState__temp13" s-for="loopArray73" s-for-item="item" s-for-index="i">
+                        <block s-if="{{item.privateOriginal.check == 1 && data.content.show_tips == 1}}">
+                            <image class="checkfour" src="{{IMGCDNURL + 'lpy/audit.png'}}"></image>
+                        </block>
+                        <view class="cardeightzong">
+                            <image src="{{item.privateOriginal.audit}}" class="checkfour"></image>
+                            <block s-if="{{item.privateOriginal.check == 2}}">
+                                <view class="editor" bindtap="anonymousFunc21" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey3}}">编辑</view>
+                            </block>
+                            <block s-if="{{item.privateOriginal.check == 0}}">
+                                <view class="editor" bindtap="anonymousFunc22" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey4}}">待修改</view>
+                            </block>
+                            <block s-if="{{item.privateOriginal.check == 0}}">
+                                <image class="audit" src="{{IMGCDNURL + 'lpy/notthrough.png'}}"></image>
+                            </block>
+                            <view>
+                                <image src="{{IMGCDNURL + 'lpy/newresume-experience-item.png'}}" class="cardeightone"></image>
+                            </view>
+                            <view class="cardeightall">
+                                <view class="cardeighttwo"><text class="cardeighttwo-title">{{item.privateOriginal.name}}</text>
+                                </view>
+                                <view class="certificatetime"><text class="cardeighttwo-text">{{item.privateOriginal.certificate_time}}</text>
+                                </view>
+                                <view class="cardeightfive">
+                                    <block s-if="{{item.privateOriginal.image}}">
+                                        <image class="cardeightfive-image" src="{{v.privateOriginal}}" s-key="loopState__temp15" s-for="item.anonymousCallee__13" s-for-item="v" s-for-index="i"></image>
+                                    </block>
+                                </view>
+                                <block s-if="{{item.privateOriginal.check == 0}}">
+                                    <view class="resson">未通过原因：{{item.privateOriginal.fail_case}}</view>
+                                </block>
+                            </view>
+                        </view>
+                    </view>
+                </block>
+                <view class="cardeightsixall">
+                    <view class="cardeightsix">
+                        <block s-if="{{checkfourf != '0'}}">
+                            <view class="more" bindtap="anonymousFunc23">更多技能证书
+                                <view class="more-view">
+                                    <image src="{{IMGCDNURL + 'lpy/downward.png'}}" class="down"></image>
+                                </view>
+                            </view>
+                        </block>
+                        <block s-if="{{checkfourf == '0'}}">
+                            <view class="more" bindtap="anonymousFunc24">修改技能证书
+                                <view class="more-view">
+                                    <image src="{{IMGCDNURL + 'lpy/downward.png'}}" class="down"></image>
+                                </view>
+                            </view>
+                        </block>
+                        <block s-if="{{data.fail_certificate > 0}}"><text class="num">{{data.fail_certificate}}</text>
+                        </block>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </block>
+    <block s-if="{{recData.length}}">
+        <collection-recruit-list compid="{{$compid__64}}"></collection-recruit-list>
+    </block>
+    <block s-if="{{showtopone}}">
+        <view class="cardnine">
+            <button class="cardnineone" bindtap="anonymousFunc25">
+                <image class="cardnineone-image" src="{{IMGCDNURL + 'lpy/bottom-one.png'}}"></image>预览</button>
+            <button class="cardnineone">
+                <image class="cardnineone-image" src="{{IMGCDNURL + 'lpy/bottom-two.png'}}"></image>分享</button>
+        </view>
+    </block>
+    <at-modal compid="{{$compid__65}}">
+        <view class="content">
+            <view class="content-otext">提示</view>
+            <view class="content-text">您的<text class="popup">{{popup}}</text>未审核通过,请修改后再进行提交</view>
+            <view class="buttontext" bindtap="anonymousFunc26">确定</view>
+        </view>
+    </at-modal>
+    <at-modal compid="{{$compid__66}}">
+        <view class="content">
+            <view>
+                <image src="{{IMGCDNURL + 'lpy/resume-settop-daytips.png'}}" class="content-image"></image>
+            </view>
+            <view class="content-otext">提示</view>
+            <view class="content-toppding">马上去置顶提升找活名片排名，让更多老板看到您的找活名片</view>
+            <view class="content-btn-box">
+                <view class="content-btn-left" bindtap="anonymousFunc27">稍后再说</view>
+                <view class="content-btn-right" bindtap="anonymousFunc28">去置顶</view>
+            </view>
+        </view>
+    </at-modal>
+    </view>
+</block>
+</block>

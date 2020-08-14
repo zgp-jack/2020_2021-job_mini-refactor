@@ -1,0 +1,25 @@
+<block s-if="{{$taroCompReady}}">
+    <block>
+        <view class="recruit-condition-box">
+            <block s-if="{{data}}">
+                <view class="recruit-condition-item" s-key="privateOriginal.id" bindtap="anonymousFunc0" s-for="loopArray13" s-for-item="item" s-for-index="__index0" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">
+                    <view class="recruit-condition-content overwords">{{item.privateOriginal.text}}
+                        <image class="recruit-condition-select" src="{{IMGCDNURL + 'select.png'}}"></image>
+                    </view>
+                </view>
+            </block>
+        </view>
+        <at-drawer compid="{{$compid__13}}">
+            <view class="common-drawer-item">
+                <scroll-view class="drawer-full-lists" scroll-y="{{true}}">
+                    <view class="{{item.loopState__temp3}}" s-key="privateOriginal.id" bindtap="anonymousFunc2" s-for="loopArray14" s-for-item="item" s-for-index="index" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey2}}">{{item.privateOriginal.name}}</view>
+                </scroll-view>
+                <block s-if="{{childAreaList.length}}">
+                    <scroll-view class="drawer-full-lists drawer-half-lists" scroll-y="{{true}}" scroll-top="{= scrollTop =}" bindscroll="anonymousFunc3">
+                        <view class="drawer-list-item overwords" s-for="childAreaList" s-for-item="item" s-for-index="_anonIdx2">{{item.name}}</view>
+                    </scroll-view>
+                </block>
+            </view>
+        </at-drawer>
+    </block>
+</block>

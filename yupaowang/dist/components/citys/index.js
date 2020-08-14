@@ -1,9 +1,20 @@
-(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["components/citys/index"],{
+(swan["webpackJsonp"] = swan["webpackJsonp"] || []).push([["components/citys/index"],{
 
-/***/ "./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js?!./src/components/citys/index.tsx?taro&type=script&parse=COMPONENT&":
-/*!***********************************************************************************************************************************************************!*\
-  !*** ./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js??ref--6-0!./src/components/citys/index.tsx?taro&type=script&parse=COMPONENT& ***!
-  \***********************************************************************************************************************************************************/
+/***/ "./src/components/citys/index.scss":
+/*!*****************************************!*\
+  !*** ./src/components/citys/index.scss ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
+/***/ "./src/components/citys/index.tsx":
+/*!****************************************!*\
+  !*** ./src/components/citys/index.tsx ***!
+  \****************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -20,11 +31,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _class, _temp2;
+var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
 
-var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
-
-var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
+var _taroSwan2 = _interopRequireDefault(_taroSwan);
 
 var _index = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
 
@@ -46,29 +55,27 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Cities = (_temp2 = _class = function (_Taro$Component) {
+var Cities = function (_Taro$Component) {
   _inherits(Cities, _Taro$Component);
 
   function Cities() {
-    var _ref;
-
-    var _temp, _this, _ret;
-
     _classCallCheck(this, Cities);
 
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
+    var _this = _possibleConstructorReturn(this, (Cities.__proto__ || Object.getPrototypeOf(Cities)).apply(this, arguments));
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Cities.__proto__ || Object.getPrototypeOf(Cities)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["loopArray104", "loopArray105", "loopArray106", "text", "IMGCDNURL", "userLoc", "recentlyCities", "data", "show", "inputCity", "area", "parent", "userTapCityBtn", "userChangeCity"], _this.anonymousFunc4Map = {}, _this.anonymousFunc5Map = {}, _this.anonymousFunc6Map = {}, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
+    _this.$usedState = ["loopArray23", "loopArray24", "loopArray25", "text", "IMGCDNURL", "userLoc", "recentlyCities", "data", "show", "inputCity", "area", "parent", "userTapCityBtn", "userChangeCity"];
+    _this.anonymousFunc4Map = {};
+    _this.anonymousFunc5Map = {};
+    _this.anonymousFunc6Map = {};
+    _this.customComponents = [];
+    return _this;
   }
 
   _createClass(Cities, [{
     key: "_constructor",
     value: function _constructor(props) {
       _get(Cities.prototype.__proto__ || Object.getPrototypeOf(Cities.prototype), "_constructor", this).call(this, props);
-
-      this.$$refs = new _taroWeapp2.default.RefsArray();
+      this.$$refs = new _taroSwan2.default.RefsArray();
     }
   }, {
     key: "_createData",
@@ -89,34 +96,33 @@ var Cities = (_temp2 = _class = function (_Taro$Component) {
           userChangeCity = _props.userChangeCity,
           area = _props.area,
           userLoc = _props.userLoc;
-
       // 最近访问城市数据
 
-      var _useState = (0, _taroWeapp.useState)([]),
+      var _useState = (0, _taroSwan.useState)([]),
           _useState2 = _slicedToArray(_useState, 2),
           recentlyCities = _useState2[0],
           setRecentlyCities = _useState2[1];
       // 是否显示input过滤城市
 
 
-      var _useState3 = (0, _taroWeapp.useState)(false),
+      var _useState3 = (0, _taroSwan.useState)(false),
           _useState4 = _slicedToArray(_useState3, 2),
           show = _useState4[0],
           setShow = _useState4[1];
       // 输入框内容
 
 
-      var _useState5 = (0, _taroWeapp.useState)(''),
+      var _useState5 = (0, _taroSwan.useState)(''),
           _useState6 = _slicedToArray(_useState5, 2),
           text = _useState6[0],
           setText = _useState6[1];
 
-      var _useState7 = (0, _taroWeapp.useState)([]),
+      var _useState7 = (0, _taroSwan.useState)([]),
           _useState8 = _slicedToArray(_useState7, 2),
           inputCity = _useState8[0],
           setInputCity = _useState8[1];
 
-      var _useState9 = (0, _taroWeapp.useState)([]),
+      var _useState9 = (0, _taroSwan.useState)([]),
           _useState10 = _slicedToArray(_useState9, 2),
           saveAreaData = _useState10[0],
           setSaveAreaData = _useState10[1];
@@ -124,7 +130,7 @@ var Cities = (_temp2 = _class = function (_Taro$Component) {
 
 
       var userTapCity = function userTapCity(city) {
-        var historyCities = _taroWeapp2.default.getStorageSync(_store.HistoryCities);
+        var historyCities = _taroSwan2.default.getStorageSync(_store.HistoryCities);
         if (historyCities) {
           var id = city.id;
           var result = historyCities.findIndex(function (item) {
@@ -132,13 +138,14 @@ var Cities = (_temp2 = _class = function (_Taro$Component) {
           });
           if (result !== -1) {
             historyCities.splice(result, 1);
-          }historyCities.unshift(city);
+          }
+          historyCities.unshift(city);
           historyCities.splice(_index.MAXCACHECITYNUM);
         } else {
           historyCities = [city];
         }
         // 储存最新的用户点击历史城市数据
-        _taroWeapp2.default.setStorageSync(_store.HistoryCities, historyCities);
+        _taroSwan2.default.setStorageSync(_store.HistoryCities, historyCities);
         userChangeCity && userChangeCity(city.city);
         userTapCityBtn(false);
         //userRecentlyCities()
@@ -151,7 +158,7 @@ var Cities = (_temp2 = _class = function (_Taro$Component) {
       };
       // 用户最新选择城市
       var userRecentlyCities = function userRecentlyCities() {
-        var historyCities = _taroWeapp2.default.getStorageSync(_store.HistoryCities);
+        var historyCities = _taroSwan2.default.getStorageSync(_store.HistoryCities);
         if (historyCities) {
           if (userLoc.id) {
             historyCities.splice(_index.MAXCACHECITYNUM - 1);
@@ -162,7 +169,7 @@ var Cities = (_temp2 = _class = function (_Taro$Component) {
         setRecentlyCities([]);
       };
       // 初始化城市数据
-      (0, _taroWeapp.useEffect)(function () {
+      (0, _taroSwan.useEffect)(function () {
         // 初始化用户定位城市
         userRecentlyCities();
         var copyArr = (0, _index2.objDeepCopy)(_area2.default);
@@ -218,89 +225,76 @@ var Cities = (_temp2 = _class = function (_Taro$Component) {
         setText('');
         setShow(false);
       };
-
       this.anonymousFunc0 = function () {
         return onInputFocus();
       };
-
       this.anonymousFunc1 = function (e) {
         return userEnterCity(e);
       };
-
       this.anonymousFunc2 = function () {
         return userClearContent();
       };
-
       this.anonymousFunc3 = function () {
         return userTapCityBtn(false);
       };
-
-      var loopArray104 = recentlyCities.map(function (item, __index4) {
+      var loopArray23 = recentlyCities.map(function (item, __index4) {
         item = {
-          $original: (0, _taroWeapp.internal_get_original)(item)
+          privateOriginal: (0, _taroSwan.internal_get_original)(item)
         };
-        var $loopState__temp2 = 'rec' + item.$original.id;
-
-        var _$indexKey = "bbazz" + __index4;
-
+        var loopState__temp2 = 'rec' + item.privateOriginal.id;
+        var _$indexKey = "cdzzz" + __index4;
         _this2.anonymousFunc4Map[_$indexKey] = function () {
-          return userTapCity(item.$original);
+          return userTapCity(item.privateOriginal);
         };
-
         return {
-          $loopState__temp2: $loopState__temp2,
+          loopState__temp2: loopState__temp2,
           _$indexKey: _$indexKey,
-          $original: item.$original
+          privateOriginal: item.privateOriginal
         };
       });
-      var loopArray105 = data.map(function (item, index) {
+      var loopArray24 = data.map(function (item, index) {
         item = {
-          $original: (0, _taroWeapp.internal_get_original)(item)
+          privateOriginal: (0, _taroSwan.internal_get_original)(item)
         };
-        var $loopState__temp4 = index + item.$original[0].id;
-        var $anonymousCallee__20 = item.$original.map(function (d, key) {
+        var loopState__temp4 = index + item.privateOriginal[0].id;
+        var anonymousCallee__6 = item.privateOriginal.map(function (d, key) {
           d = {
-            $original: (0, _taroWeapp.internal_get_original)(d)
+            privateOriginal: (0, _taroSwan.internal_get_original)(d)
           };
-          var $loopState__temp6 = key + d.$original.id;
-          var _$indexKey2 = "bbbzz" + index + "-" + key;
-
+          var loopState__temp6 = key + d.privateOriginal.id;
+          var _$indexKey2 = "cezzz" + index + "-" + key;
           _this2.anonymousFunc5Map[_$indexKey2] = function () {
-            return userTapCity(d.$original);
+            return userTapCity(d.privateOriginal);
           };
-
           return {
-            $loopState__temp6: $loopState__temp6,
+            loopState__temp6: loopState__temp6,
             _$indexKey2: _$indexKey2,
-            $original: d.$original
+            privateOriginal: d.privateOriginal
           };
         });
         return {
-          $loopState__temp4: $loopState__temp4,
-          $anonymousCallee__20: $anonymousCallee__20,
-          $original: item.$original
+          loopState__temp4: loopState__temp4,
+          anonymousCallee__6: anonymousCallee__6,
+          privateOriginal: item.privateOriginal
         };
       });
-      var loopArray106 = show ? inputCity.map(function (item, __index6) {
+      var loopArray25 = show ? inputCity.map(function (item, __index6) {
         item = {
-          $original: (0, _taroWeapp.internal_get_original)(item)
+          privateOriginal: (0, _taroSwan.internal_get_original)(item)
         };
-
-        var _$indexKey3 = "bbczz" + __index6;
-
+        var _$indexKey3 = "cfzzz" + __index6;
         _this2.anonymousFunc6Map[_$indexKey3] = function () {
-          return userTapInputCity(item.$original);
+          return userTapInputCity(item.privateOriginal);
         };
-
         return {
           _$indexKey3: _$indexKey3,
-          $original: item.$original
+          privateOriginal: item.privateOriginal
         };
       }) : [];
       Object.assign(this.__state, {
-        loopArray104: loopArray104,
-        loopArray105: loopArray105,
-        loopArray106: loopArray106,
+        loopArray23: loopArray23,
+        loopArray24: loopArray24,
+        loopArray25: loopArray25,
         text: text,
         IMGCDNURL: _index.IMGCDNURL,
         userLoc: userLoc,
@@ -339,8 +333,8 @@ var Cities = (_temp2 = _class = function (_Taro$Component) {
 
       ;
 
-      for (var _len2 = arguments.length, e = Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
-        e[_key2 - 1] = arguments[_key2];
+      for (var _len = arguments.length, e = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+        e[_key - 1] = arguments[_key];
       }
 
       return this.anonymousFunc4Map[_$indexKey] && (_anonymousFunc4Map = this.anonymousFunc4Map)[_$indexKey].apply(_anonymousFunc4Map, e);
@@ -352,8 +346,8 @@ var Cities = (_temp2 = _class = function (_Taro$Component) {
 
       ;
 
-      for (var _len3 = arguments.length, e = Array(_len3 > 1 ? _len3 - 1 : 0), _key3 = 1; _key3 < _len3; _key3++) {
-        e[_key3 - 1] = arguments[_key3];
+      for (var _len2 = arguments.length, e = Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
+        e[_key2 - 1] = arguments[_key2];
       }
 
       return this.anonymousFunc5Map[_$indexKey2] && (_anonymousFunc5Map = this.anonymousFunc5Map)[_$indexKey2].apply(_anonymousFunc5Map, e);
@@ -365,8 +359,8 @@ var Cities = (_temp2 = _class = function (_Taro$Component) {
 
       ;
 
-      for (var _len4 = arguments.length, e = Array(_len4 > 1 ? _len4 - 1 : 0), _key4 = 1; _key4 < _len4; _key4++) {
-        e[_key4 - 1] = arguments[_key4];
+      for (var _len3 = arguments.length, e = Array(_len3 > 1 ? _len3 - 1 : 0), _key3 = 1; _key3 < _len3; _key3++) {
+        e[_key3 - 1] = arguments[_key3];
       }
 
       return this.anonymousFunc6Map[_$indexKey3] && (_anonymousFunc6Map = this.anonymousFunc6Map)[_$indexKey3].apply(_anonymousFunc6Map, e);
@@ -374,83 +368,14 @@ var Cities = (_temp2 = _class = function (_Taro$Component) {
   }]);
 
   return Cities;
-}(_taroWeapp2.default.Component), _class.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6"], _class.$$componentPath = "components/citys/index", _temp2);
+}(_taroSwan2.default.Component);
+
+Cities.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6"];
+Cities.$$componentPath = "components/citys/index";
 exports.default = Cities;
 
-Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(Cities));
-
-/***/ }),
-
-/***/ "./node_modules/file-loader/dist/cjs.js?name=[path][name].wxml&context=/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/src!./node_modules/@tarojs/mini-runner/dist/loaders/miniTemplateLoader.js!./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js?!./src/components/citys/index.tsx?taro&type=template&parse=COMPONENT&":
-/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/file-loader/dist/cjs.js?name=[path][name].wxml&context=/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/src!./node_modules/@tarojs/mini-runner/dist/loaders/miniTemplateLoader.js!./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js??ref--6-0!./src/components/citys/index.tsx?taro&type=template&parse=COMPONENT& ***!
-  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "components/citys/index.wxml";
-
-/***/ }),
-
-/***/ "./src/components/citys/index.scss":
-/*!*****************************************!*\
-  !*** ./src/components/citys/index.scss ***!
-  \*****************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
-
-/***/ }),
-
-/***/ "./src/components/citys/index.tsx":
-/*!****************************************!*\
-  !*** ./src/components/citys/index.tsx ***!
-  \****************************************/
-/*! no static exports found */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _index_tsx_taro_type_template_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.tsx?taro&type=template&parse=COMPONENT& */ "./src/components/citys/index.tsx?taro&type=template&parse=COMPONENT&");
-/* harmony import */ var _index_tsx_taro_type_script_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./index.tsx?taro&type=script&parse=COMPONENT& */ "./src/components/citys/index.tsx?taro&type=script&parse=COMPONENT&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _index_tsx_taro_type_script_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _index_tsx_taro_type_script_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-
-
-
-
-/***/ }),
-
-/***/ "./src/components/citys/index.tsx?taro&type=script&parse=COMPONENT&":
-/*!**************************************************************************!*\
-  !*** ./src/components/citys/index.tsx?taro&type=script&parse=COMPONENT& ***!
-  \**************************************************************************/
-/*! no static exports found */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_script_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js??ref--6-0!./index.tsx?taro&type=script&parse=COMPONENT& */ "./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js?!./src/components/citys/index.tsx?taro&type=script&parse=COMPONENT&");
-/* harmony import */ var _node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_script_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_script_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_script_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_script_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
- /* harmony default export */ __webpack_exports__["default"] = (_node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_script_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0___default.a); 
-
-/***/ }),
-
-/***/ "./src/components/citys/index.tsx?taro&type=template&parse=COMPONENT&":
-/*!****************************************************************************!*\
-  !*** ./src/components/citys/index.tsx?taro&type=template&parse=COMPONENT& ***!
-  \****************************************************************************/
-/*! no static exports found */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _file_loader_name_path_name_wxml_context_Users_zhangyibo_TaroTs_YuPaoWang_yupaowang_src_node_modules_tarojs_mini_runner_dist_loaders_miniTemplateLoader_js_node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_template_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!file-loader?name=[path][name].wxml&context=/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/src!../../../node_modules/@tarojs/mini-runner/dist/loaders/miniTemplateLoader.js!../../../node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js??ref--6-0!./index.tsx?taro&type=template&parse=COMPONENT& */ "./node_modules/file-loader/dist/cjs.js?name=[path][name].wxml&context=/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/src!./node_modules/@tarojs/mini-runner/dist/loaders/miniTemplateLoader.js!./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js?!./src/components/citys/index.tsx?taro&type=template&parse=COMPONENT&");
-/* harmony import */ var _file_loader_name_path_name_wxml_context_Users_zhangyibo_TaroTs_YuPaoWang_yupaowang_src_node_modules_tarojs_mini_runner_dist_loaders_miniTemplateLoader_js_node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_template_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_file_loader_name_path_name_wxml_context_Users_zhangyibo_TaroTs_YuPaoWang_yupaowang_src_node_modules_tarojs_mini_runner_dist_loaders_miniTemplateLoader_js_node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_template_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _file_loader_name_path_name_wxml_context_Users_zhangyibo_TaroTs_YuPaoWang_yupaowang_src_node_modules_tarojs_mini_runner_dist_loaders_miniTemplateLoader_js_node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_template_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _file_loader_name_path_name_wxml_context_Users_zhangyibo_TaroTs_YuPaoWang_yupaowang_src_node_modules_tarojs_mini_runner_dist_loaders_miniTemplateLoader_js_node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_template_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-
+Component(__webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js").default.createComponent(Cities));
 
 /***/ })
 
-},[["./src/components/citys/index.tsx","runtime","taro","vendors","common"]]]);
+},[["./src/components/citys/index.tsx","runtime","vendors"]]]);

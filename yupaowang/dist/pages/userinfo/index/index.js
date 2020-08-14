@@ -1,1 +1,1 @@
-(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["pages/userinfo/index/index"],[],[["./src/pages/userinfo/index/index.tsx","runtime","taro","vendors","common"]]]);
+(swan["webpackJsonp"] = swan["webpackJsonp"] || []).push([["pages/userinfo/index/index"],[],[["./src/pages/userinfo/index/index.tsx","runtime","vendors"]]]);

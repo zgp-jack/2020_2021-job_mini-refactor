@@ -7,7 +7,7 @@ export const MINICONFIG = require(`./minis/${MINIVERSION}.ts`)
 
 // * 全局请求接口域名
 // * 测试站
-export const DEVREQUESTURL: string = 'http://miniapitest.zhaogong.vrtbbs.com/'  
+export const DEVREQUESTURL: string = 'https://miniapi.zhaogong.vrtbbs.com/'  
 // * 正式站
 export const PROREQUESTURL: string = 'https://newyupaomini.54xiaoshuo.com/' 
 // * 当前测试

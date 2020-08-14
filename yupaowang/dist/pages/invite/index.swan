@@ -1,0 +1,22 @@
+<block s-if="{{$taroCompReady}}">
+    <view>
+        <auth></auth>
+        <view class="invite-container">
+            <view class="invite-item invite-item-icon">
+                <view class="invite-header">
+                    <image class="invite-img" src="{{IMGCDNURL + 'invite-way1.png'}}"></image>
+                    <view class="invite-text">点击右上角三个点，或点击下方(点击分享)按钮，分享鱼泡网到微信建筑群、焊工群、微信好友，工友点击你分享的链接来到鱼泡网。</view>
+                </view>
+                <button class="invite-btn" open-type="share">点击分享</button>
+            </view>
+            <view class="invite-item">
+                <view class="invite-header">
+                    <image class="invite-img" src="{{IMGCDNURL + 'invite-way2.png'}}"></image>
+                    <view class="invite-text">点击下方（复制专属邀请链接），发到QQ群、论坛、贴吧，工友通过你的专享邀请链接来到鱼泡网。</view>
+                    <input class="invite-input" value="{= link =}" />
+                </view>
+                <button class="invite-btn" bindtap="anonymousFunc0">复制专属邀请链接</button>
+            </view>
+        </view>
+    </view>
+</block>

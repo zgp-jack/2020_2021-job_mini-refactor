@@ -1,0 +1,4 @@
+<block s-if="{{$taroCompReady}}">
+    <view class="{{'words-total-box ' + classname}}">{{num}}<text>/{{total}}</text>
+    </view>
+</block>

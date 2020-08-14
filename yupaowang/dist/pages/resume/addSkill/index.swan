@@ -1,0 +1,41 @@
+<block s-if="{{$taroCompReady}}">
+    <view>
+        <view class="content">
+            <view class="publish-recruit-card">
+                <view class="publish-list-item"><text class="pulish-list-title">职业技能</text>:
+                    <input class="publish-list-input" type="text" placeholder="请输入您的职业技能名称" value="{= val =}" bindinput="anonymousFunc0" />
+                </view>
+            </view>
+            <view class="publish-recruit-card">
+                <picker mode="date" bindchange="anonymousFunc1" value="{{extraText}}">
+                    <view class="publish-list-item"><text class="pulish-list-title">领取证书时间</text>:
+                        <input class="publish-list-input" type="text" disabled="{{true}}" placeholder="请选择领取证书时间" value="{= extraText =}" />
+                    </view>
+                </picker>
+            </view>
+        </view>
+        <view class="feedback-content-middle-imgBox">
+            <block s-if="{{image.item}}">
+                <image-view compid="{{$compid__61}}"></image-view>
+            </block>
+        </view>
+        <view class="footer">
+            <block>
+                <block s-if="{{type}}">
+                    <view class="left" bindtap="anonymousFunc2">删除</view>
+                </block>
+                <block s-else>
+                    <block>
+                        <block s-if="{{num >= maxNum}}">
+                            <view class="left" bindtap="anonymousFunc3">取消</view>
+                        </block>
+                        <block s-else>
+                            <view class="left" bindtap="anonymousFunc4">保存 继续添加</view>
+                        </block>
+                    </block>
+                </block>
+            </block>
+            <view class="right" bindtap="anonymousFunc5">确认保存</view>
+        </view>
+    </view>
+</block>

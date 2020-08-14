@@ -1,0 +1,19 @@
+<block s-if="{{$taroCompReady}}">
+    <block s-if="{{_show}}">
+        <view class="{{anonymousState__temp}}">
+            <view class="at-drawer__mask" style="{{anonymousState__temp2}}" bindtap="onMaskClick" data-e-tap-so="this"></view>
+            <view class="at-drawer__content" style="{{anonymousState__temp3}}">
+                <block>
+                    <block s-if="{{items.length}}">
+                        <at-list>
+                            <at-list-item s-key="loopState__temp5" data-index="{{index}}" s-for="loopArray16" s-for-item="name" s-for-index="index" compid="{{name.$compid__14}}"></at-list-item>
+                        </at-list>
+                    </block>
+                    <block s-else>
+                        <slot></slot>
+                    </block>
+                </block>
+            </view>
+        </view>
+    </block>
+</block>

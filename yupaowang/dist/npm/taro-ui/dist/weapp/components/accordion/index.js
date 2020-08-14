@@ -1,9 +1,9 @@
-(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["npm/taro-ui/dist/weapp/components/accordion/index"],{
+(swan["webpackJsonp"] = swan["webpackJsonp"] || []).push([["npm/taro-ui/dist/weapp/components/accordion/index"],{
 
-/***/ "./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js?!./node_modules/taro-ui/dist/weapp/components/accordion/index.tsx?taro&type=script&parse=COMPONENT&":
-/*!*******************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js??ref--6-0!./node_modules/taro-ui/dist/weapp/components/accordion/index.tsx?taro&type=script&parse=COMPONENT& ***!
-  \*******************************************************************************************************************************************************************************************/
+/***/ "./node_modules/taro-ui/dist/weapp/components/accordion/index.js":
+/*!***********************************************************************!*\
+  !*** ./node_modules/taro-ui/dist/weapp/components/accordion/index.js ***!
+  \***********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -20,19 +20,19 @@ var _get = function get(object, property, receiver) { if (object === null) objec
 
 var _class, _temp2;
 
-var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
+var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
 
-var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
-
-var _classnames = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
-
-var _classnames2 = _interopRequireDefault(_classnames);
+var _taroSwan2 = _interopRequireDefault(_taroSwan);
 
 var _propTypes = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _component = __webpack_require__(/*! ../../common/component */ "./node_modules/taro-ui/dist/weapp/common/component.tsx");
+var _classnames = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _component = __webpack_require__(/*! ../../common/component */ "./node_modules/taro-ui/dist/weapp/common/component.js");
 
 var _component2 = _interopRequireDefault(_component);
 
@@ -49,6 +49,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 (0, _utils.initTestEnv)();
+
 // 文档
 
 var AtAccordion = (_temp2 = _class = function (_AtComponent) {
@@ -70,21 +71,20 @@ var AtAccordion = (_temp2 = _class = function (_AtComponent) {
 
       if (!_this.isCompleted) {
         return;
-      }_this.props.onClick && _this.props.onClick(!open, event);
+      }_this.props.onClick(!open, event);
     }, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(AtAccordion, [{
     key: '_constructor',
-    value: function _constructor(props) {
-      _get(AtAccordion.prototype.__proto__ || Object.getPrototypeOf(AtAccordion.prototype), '_constructor', this).call(this, props);
-
+    value: function _constructor() {
+      _get(AtAccordion.prototype.__proto__ || Object.getPrototypeOf(AtAccordion.prototype), '_constructor', this).apply(this, arguments);
       this.isCompleted = true;
       this.startOpen = false;
       this.state = {
-        wrapperHeight: 0
+        wrapperHeight: ''
       };
-      this.$$refs = new _taroWeapp2.default.RefsArray();
+      this.$$refs = new _taroSwan2.default.RefsArray();
     }
   }, {
     key: 'toggleWithAnimation',
@@ -99,7 +99,7 @@ var AtAccordion = (_temp2 = _class = function (_AtComponent) {
         return;
       }this.isCompleted = false;
       (0, _utils.delayQuerySelector)(this, '.at-accordion__body', 0).then(function (rect) {
-        var height = parseInt(rect[0].height.toString());
+        var height = parseInt(rect[0].height);
         var startHeight = open ? height : 0;
         var endHeight = open ? 0 : height;
         _this2.startOpen = false;
@@ -123,7 +123,7 @@ var AtAccordion = (_temp2 = _class = function (_AtComponent) {
     key: 'componentWillReceiveProps',
     value: function componentWillReceiveProps(nextProps) {
       if (nextProps.open !== this.props.open) {
-        this.startOpen = !!nextProps.open && !!nextProps.isAnimation;
+        this.startOpen = nextProps.open && nextProps.isAnimation;
         this.toggleWithAnimation();
       }
     }
@@ -148,6 +148,7 @@ var AtAccordion = (_temp2 = _class = function (_AtComponent) {
           note = _props2.note;
       var wrapperHeight = this.__state.wrapperHeight;
 
+
       var rootCls = (0, _classnames2.default)('at-accordion', className);
       var prefixClass = icon && icon.prefixClass || 'at-icon';
       var iconCls = (0, _classnames2.default)((_classNames = {}, _defineProperty(_classNames, prefixClass, true), _defineProperty(_classNames, prefixClass + "-" + (icon && icon.value), icon && icon.value), _defineProperty(_classNames, 'at-accordion__icon', true), _classNames));
@@ -165,12 +166,14 @@ var AtAccordion = (_temp2 = _class = function (_AtComponent) {
         fontSize: icon && icon.size + "px" || ''
       };
       var contentStyle = { height: wrapperHeight + "px" };
+
       if (this.isCompleted) {
         contentStyle.height = '';
       }
-      var anonymousState__temp = (0, _taroWeapp.internal_inline_style)(customStyle);
-      var anonymousState__temp2 = icon && icon.value ? (0, _taroWeapp.internal_inline_style)(iconStyle) : null;
-      var anonymousState__temp3 = (0, _taroWeapp.internal_inline_style)(contentStyle);
+
+      var anonymousState__temp = (0, _taroSwan.internal_inline_style)(customStyle);
+      var anonymousState__temp2 = icon && icon.value ? (0, _taroSwan.internal_inline_style)(iconStyle) : null;
+      var anonymousState__temp3 = (0, _taroSwan.internal_inline_style)(contentStyle);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
         anonymousState__temp2: anonymousState__temp2,
@@ -189,7 +192,7 @@ var AtAccordion = (_temp2 = _class = function (_AtComponent) {
   }]);
 
   return AtAccordion;
-}(_component2.default), _class.$$events = ["handleClick"], _class.$$componentPath = "node_modules/taro-ui/dist/weapp/components/accordion/index", _temp2);
+}(_component2.default), _class.$$events = ["handleClick"], _class.$$componentPath = 'Users/axin/codes/\u9C7C\u6CE1\u7F51/\u5C0F\u7A0B\u5E8FTS\u91CD\u6784\u9879\u76EE/TaroTs-YuPaoWang/yupaowang/node_modules/taro-ui/dist/weapp/components/accordion/index', _temp2);
 
 
 AtAccordion.defaultProps = {
@@ -198,11 +201,12 @@ AtAccordion.defaultProps = {
   className: '',
   title: '',
   note: '',
-  icon: { value: '' },
+  icon: {},
   hasBorder: true,
   isAnimation: true,
   onClick: function onClick() {}
 };
+
 AtAccordion.propTypes = {
   customStyle: _propTypes2.default.oneOfType([_propTypes2.default.object, _propTypes2.default.string]),
   className: _propTypes2.default.oneOfType([_propTypes2.default.array, _propTypes2.default.string]),
@@ -216,69 +220,8 @@ AtAccordion.propTypes = {
 };
 exports.default = AtAccordion;
 
-Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(AtAccordion));
-
-/***/ }),
-
-/***/ "./node_modules/file-loader/dist/cjs.js?name=[path][name].wxml&context=/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules&outputPath=npm!./node_modules/@tarojs/mini-runner/dist/loaders/miniTemplateLoader.js!./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js?!./node_modules/taro-ui/dist/weapp/components/accordion/index.tsx?taro&type=template&parse=COMPONENT&":
-/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/file-loader/dist/cjs.js?name=[path][name].wxml&context=/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules&outputPath=npm!./node_modules/@tarojs/mini-runner/dist/loaders/miniTemplateLoader.js!./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js??ref--6-0!./node_modules/taro-ui/dist/weapp/components/accordion/index.tsx?taro&type=template&parse=COMPONENT& ***!
-  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "npm/taro-ui/dist/weapp/components/accordion/index.wxml";
-
-/***/ }),
-
-/***/ "./node_modules/taro-ui/dist/weapp/components/accordion/index.tsx":
-/*!************************************************************************!*\
-  !*** ./node_modules/taro-ui/dist/weapp/components/accordion/index.tsx ***!
-  \************************************************************************/
-/*! no static exports found */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _index_tsx_taro_type_template_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.tsx?taro&type=template&parse=COMPONENT& */ "./node_modules/taro-ui/dist/weapp/components/accordion/index.tsx?taro&type=template&parse=COMPONENT&");
-/* harmony import */ var _index_tsx_taro_type_script_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./index.tsx?taro&type=script&parse=COMPONENT& */ "./node_modules/taro-ui/dist/weapp/components/accordion/index.tsx?taro&type=script&parse=COMPONENT&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _index_tsx_taro_type_script_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _index_tsx_taro_type_script_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-
-
-
-
-/***/ }),
-
-/***/ "./node_modules/taro-ui/dist/weapp/components/accordion/index.tsx?taro&type=script&parse=COMPONENT&":
-/*!**********************************************************************************************************!*\
-  !*** ./node_modules/taro-ui/dist/weapp/components/accordion/index.tsx?taro&type=script&parse=COMPONENT& ***!
-  \**********************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_script_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js??ref--6-0!./index.tsx?taro&type=script&parse=COMPONENT& */ "./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js?!./node_modules/taro-ui/dist/weapp/components/accordion/index.tsx?taro&type=script&parse=COMPONENT&");
-/* harmony import */ var _tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_script_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_script_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_script_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_script_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
- /* harmony default export */ __webpack_exports__["default"] = (_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_script_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0___default.a); 
-
-/***/ }),
-
-/***/ "./node_modules/taro-ui/dist/weapp/components/accordion/index.tsx?taro&type=template&parse=COMPONENT&":
-/*!************************************************************************************************************!*\
-  !*** ./node_modules/taro-ui/dist/weapp/components/accordion/index.tsx?taro&type=template&parse=COMPONENT& ***!
-  \************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _file_loader_name_path_name_wxml_context_Users_zhangyibo_TaroTs_YuPaoWang_yupaowang_node_modules_outputPath_npm_tarojs_mini_runner_dist_loaders_miniTemplateLoader_js_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_template_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!file-loader?name=[path][name].wxml&context=/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules&outputPath=npm!../../../../../@tarojs/mini-runner/dist/loaders/miniTemplateLoader.js!../../../../../@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js??ref--6-0!./index.tsx?taro&type=template&parse=COMPONENT& */ "./node_modules/file-loader/dist/cjs.js?name=[path][name].wxml&context=/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules&outputPath=npm!./node_modules/@tarojs/mini-runner/dist/loaders/miniTemplateLoader.js!./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js?!./node_modules/taro-ui/dist/weapp/components/accordion/index.tsx?taro&type=template&parse=COMPONENT&");
-/* harmony import */ var _file_loader_name_path_name_wxml_context_Users_zhangyibo_TaroTs_YuPaoWang_yupaowang_node_modules_outputPath_npm_tarojs_mini_runner_dist_loaders_miniTemplateLoader_js_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_template_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_file_loader_name_path_name_wxml_context_Users_zhangyibo_TaroTs_YuPaoWang_yupaowang_node_modules_outputPath_npm_tarojs_mini_runner_dist_loaders_miniTemplateLoader_js_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_template_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _file_loader_name_path_name_wxml_context_Users_zhangyibo_TaroTs_YuPaoWang_yupaowang_node_modules_outputPath_npm_tarojs_mini_runner_dist_loaders_miniTemplateLoader_js_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_template_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _file_loader_name_path_name_wxml_context_Users_zhangyibo_TaroTs_YuPaoWang_yupaowang_node_modules_outputPath_npm_tarojs_mini_runner_dist_loaders_miniTemplateLoader_js_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_template_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-
+Component(__webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js").default.createComponent(AtAccordion));
 
 /***/ })
 
-},[["./node_modules/taro-ui/dist/weapp/components/accordion/index.tsx","runtime","taro","vendors"]]]);
+},[["./node_modules/taro-ui/dist/weapp/components/accordion/index.js","runtime","vendors"]]]);

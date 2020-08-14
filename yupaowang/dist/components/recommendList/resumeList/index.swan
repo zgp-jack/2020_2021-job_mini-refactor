@@ -1,0 +1,34 @@
+<block s-if="{{$taroCompReady}}">
+    <view class="resume-list-container">
+        <view class="resumeDetail-recommend">
+            <view class="resumeDetail-recommend-top"><text class="resumeDetail-recommend-top-text">相关推荐</text>
+            </view>
+        </view>
+        <block s-key="privateOriginal.id" s-for="loopArray52" s-for-item="item" s-for-index="__index0">
+            <view class="resume-list-item" s-key="privateOriginal.id" bindtap="anonymousFunc0" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">
+                <view class="resume-list-header">
+                    <image class="resume-list-user" src="{{item.privateOriginal.headerimg}}"></image>
+                    <view class="resume-list-userinfo">
+                        <view class="resume-list-userinfo-detail"><text class="resume-userinfo-name">{{item.privateOriginal.username}}</text><text class="resume-userinfo-birthday">{{item.privateOriginal.birthday}}岁</text>
+                            <block s-if="{{item.privateOriginal.certificate == 1}}">
+                                <image class="resume-userinfo-img" src="{{IMGCDNURL + 'newresume-infolist-jnz.png?t=1'}}"></image>
+                            </block>
+                        </view><text class="resume-list-type">{{item.privateOriginal.type}}</text>
+                        <view class="resume-otherinfo"><text class="resume-otherinfo-text">{{item.privateOriginal.nation}}</text><text class="resume-otherinfo-text">{{item.privateOriginal.experience}}</text>
+                        </view>
+                    </view>
+                </view>
+                <view class="resume-list-works"><text class="resume-list-words-text" s-key="loopState__temp2" s-for="item.anonymousCallee__8" s-for-item="v" s-for-index="i">{{v.privateOriginal}}</text>
+                </view>
+                <view class="resume-list-content overwords">{{item.privateOriginal.introduce}}</view>
+                <view class="resume-list-footer">
+                    <view class="resume-list-footer-flex">
+                        <image class="resume-list-loc" src="{{IMGCDNURL + 'lpy/biaoqian.png'}}"></image>
+                        <view class="resume-list-loctxt overwords">{{item.privateOriginal.show_address}}</view>
+                    </view><text class="resume-list-time">{{item.privateOriginal.prof_degree}}</text>
+                </view>
+            </view>
+        </block>
+        <view class="seemore-recommend-recruit" bindtap="anonymousFunc1">查看更多找活信息</view>
+    </view>
+</block>

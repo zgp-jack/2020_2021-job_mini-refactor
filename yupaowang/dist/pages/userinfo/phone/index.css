@@ -1,0 +1,124 @@
+.overwords {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis; }
+
+.showMore {
+  position: relative;
+  width: 100%;
+  padding: 20rpx 0;
+  text-align: center;
+  font-size: 26rpx;
+  color: #525252; }
+
+.clearfix:after {
+  content: "";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+  font-size: 0; }
+
+.clearfix {
+  zoom: 1; }
+
+.publish-list-item {
+  position: relative;
+  width: 100%;
+  min-height: 110rpx;
+  padding: 15rpx 0;
+  padding-left: 200rpx;
+  border-bottom: 1rpx solid #dcdcdc; }
+  .publish-list-item .pulish-list-title {
+    position: absolute;
+    width: 140rpx;
+    left: 0;
+    top: 15rpx;
+    display: block;
+    text-align: justify;
+    line-height: 80rpx;
+    font-weight: bold;
+    font-size: 30rpx; }
+    .publish-list-item .pulish-list-title::after {
+      content: '.';
+      width: 100%;
+      display: inline-block;
+      overflow: hidden;
+      height: 0; }
+  .publish-list-item .publish-list-input {
+    position: relative;
+    padding: 20rpx 0;
+    width: 100%;
+    line-height: 45rpx;
+    min-height: 80rpx;
+    display: block;
+    font-size: 30rpx; }
+    .publish-list-item .publish-list-input .publish-input-list {
+      position: relative;
+      display: inline-block;
+      margin-right: 20rpx; }
+      .publish-list-item .publish-list-input .publish-input-list:nth-last-child(1) {
+        margin-right: 0; }
+
+.publish-list-item-code .publish-list-input {
+  padding-right: 300rpx; }
+
+.publish-list-item-code .publish-code-btn {
+  position: absolute;
+  line-height: 70rpx;
+  border-radius: 10rpx;
+  background-color: #0099ff;
+  color: white;
+  font-size: 28rpx;
+  text-align: center;
+  right: 0;
+  top: 20rpx;
+  width: 250rpx; }
+
+.publish-list-textarea {
+  position: relative;
+  padding-top: 25rpx; }
+  .publish-list-textarea .publish-textarea-title {
+    position: relative;
+    font-size: 30rpx;
+    font-weight: bold;
+    text-align: justify;
+    display: block;
+    width: 140rpx;
+    height: 60rpx; }
+    .publish-list-textarea .publish-textarea-title::after {
+      content: '.';
+      width: 100%;
+      display: inline-block;
+      overflow: hidden;
+      height: 0; }
+  .publish-list-textarea .publish-textarea {
+    position: relative;
+    width: 100%;
+    display: block;
+    height: 200rpx;
+    font-size: 30rpx;
+    line-height: 40rpx;
+    padding-bottom: 60rpx; }
+
+.user-submit-btn {
+  position: relative;
+  width: 80%;
+  margin: 30rpx auto;
+  line-height: 80rpx;
+  text-align: center;
+  background-color: #0099ff;
+  color: white;
+  border-radius: 5rpx;
+  font-size: 30rpx;
+  letter-spacing: 3rpx; }
+
+.userchangephone-container {
+  position: relative; }
+  .userchangephone-container .userchangephone-body {
+    background: white;
+    padding: 0 20rpx; }
+    .userchangephone-container .userchangephone-body .publish-list-item:nth-last-child(1) {
+      border-bottom: 0; }
+

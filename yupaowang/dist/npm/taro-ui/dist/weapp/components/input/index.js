@@ -1,9 +1,9 @@
-(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["npm/taro-ui/dist/weapp/components/input/index"],{
+(swan["webpackJsonp"] = swan["webpackJsonp"] || []).push([["npm/taro-ui/dist/weapp/components/input/index"],{
 
-/***/ "./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js?!./node_modules/taro-ui/dist/weapp/components/input/index.tsx?taro&type=script&parse=COMPONENT&":
-/*!***************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js??ref--6-0!./node_modules/taro-ui/dist/weapp/components/input/index.tsx?taro&type=script&parse=COMPONENT& ***!
-  \***************************************************************************************************************************************************************************************/
+/***/ "./node_modules/taro-ui/dist/weapp/components/input/index.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/taro-ui/dist/weapp/components/input/index.js ***!
+  \*******************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -20,19 +20,19 @@ var _get = function get(object, property, receiver) { if (object === null) objec
 
 var _class, _temp2;
 
-var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
+var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
 
-var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
-
-var _classnames = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
-
-var _classnames2 = _interopRequireDefault(_classnames);
+var _taroSwan2 = _interopRequireDefault(_taroSwan);
 
 var _propTypes = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _component = __webpack_require__(/*! ../../common/component */ "./node_modules/taro-ui/dist/weapp/common/component.tsx");
+var _classnames = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _component = __webpack_require__(/*! ../../common/component */ "./node_modules/taro-ui/dist/weapp/common/component.js");
 
 var _component2 = _interopRequireDefault(_component);
 
@@ -51,13 +51,13 @@ function getInputProps(props) {
     disabled: props.disabled,
     password: false
   };
+
   switch (actualProps.type) {
     case 'phone':
       actualProps.type = 'number';
       actualProps.maxLength = 11;
       break;
     case 'password':
-      actualProps.type = 'text';
       actualProps.password = true;
       break;
     default:
@@ -83,51 +83,31 @@ var AtInput = (_temp2 = _class = function (_AtComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AtInput.__proto__ || Object.getPrototypeOf(AtInput)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "rootCls", "containerCls", "overlayCls", "title", "required", "name", "type", "password", "placeholderStyle", "placeholderCls", "placeholder", "cursorSpacing", "maxLength", "autoFocus", "focus", "value", "confirmType", "cursor", "selectionStart", "selectionEnd", "adjustPosition", "clear", "error", "className", "customStyle", "border", "placeholderClass", "editable", "children"], _this.handleInput = function (event) {
-      return _this.props.onChange(event.detail.value, event);
-    }, _this.handleFocus = function (event) {
-      if (typeof _this.props.onFocus === 'function') {
-        _this.props.onFocus(event.detail.value, event);
-      }
-    }, _this.handleBlur = function (event) {
-      if (typeof _this.props.onBlur === 'function') {
-        _this.props.onBlur(event.detail.value, event);
-      }
-      if (event.type === 'blur' && !_this.inputClearing) {
-        // fix # 583 AtInput 不触发 onChange 的问题
-        _this.props.onChange(event.detail.value, event);
-      }
-      // 还原状态
-      _this.inputClearing = false;
-    }, _this.handleConfirm = function (event) {
-      if (typeof _this.props.onConfirm === 'function') {
-        _this.props.onConfirm(event.detail.value, event);
-      }
-    }, _this.handleClick = function (event) {
-      if (!_this.props.editable && typeof _this.props.onClick === 'function') {
-        _this.props.onClick(event);
-      }
-    }, _this.handleClearValue = function (event) {
-      _this.inputClearing = true;
-      _this.props.onChange('', event);
-    }, _this.handleKeyboardHeightChange = function (event) {
-      if (typeof _this.props.onKeyboardHeightChange === 'function') {
-        _this.props.onKeyboardHeightChange(event);
-      }
-    }, _this.handleErrorClick = function (event) {
-      if (typeof _this.props.onErrorClick === 'function') {
-        _this.props.onErrorClick(event);
-      }
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AtInput.__proto__ || Object.getPrototypeOf(AtInput)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "rootCls", "containerCls", "overlayCls", "title", "name", "type", "password", "placeholderStyle", "placeholderCls", "placeholder", "cursorSpacing", "maxLength", "autoFocus", "focus", "value", "confirmType", "cursor", "selectionStart", "selectionEnd", "adjustPosition", "clear", "error", "editable", "className", "customStyle", "border", "placeholderClass", "children"], _this.onInput = function (event) {
+      return _this.props.onChange(event.target.value, event);
+    }, _this.onFocus = function (event) {
+      return _this.props.onFocus(event.target.value, event);
+    }, _this.onBlur = function (event) {
+      _this.props.onBlur(event.target.value, event);
+      // fix # 583 AtInput 不触发 onChange 的问题
+      _this.props.onChange(event.target.value, event);
+    }, _this.onConfirm = function (event) {
+      return _this.props.onConfirm(event.target.value, event);
+    }, _this.onClick = function () {
+      return !_this.props.editable && _this.props.onClick();
+    }, _this.clearValue = function () {
+      return _this.props.onChange('');
+    }, _this.onErrorClick = function () {
+      return _this.props.onErrorClick();
     }, _this.customComponents = [], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(AtInput, [{
     key: '_constructor',
-    value: function _constructor() {
-      _get(AtInput.prototype.__proto__ || Object.getPrototypeOf(AtInput.prototype), '_constructor', this).apply(this, arguments);
-      // TODO: 有待考证是否为合理方式处理 #840
-      this.inputClearing = false;
-      this.$$refs = new _taroWeapp2.default.RefsArray();
+    value: function _constructor(props) {
+      _get(AtInput.prototype.__proto__ || Object.getPrototypeOf(AtInput.prototype), '_constructor', this).call(this, props);
+
+      this.$$refs = new _taroSwan2.default.RefsArray();
     }
   }, {
     key: '_createData',
@@ -157,8 +137,7 @@ var AtInput = (_temp2 = _class = function (_AtComponent) {
           placeholderClass = _props.placeholderClass,
           autoFocus = _props.autoFocus,
           focus = _props.focus,
-          value = _props.value,
-          required = _props.required;
+          value = _props.value;
 
       var _getInputProps = getInputProps(this.__props),
           type = _getInputProps.type,
@@ -177,14 +156,14 @@ var AtInput = (_temp2 = _class = function (_AtComponent) {
         'at-input__overlay--hidden': !disabled
       });
       var placeholderCls = (0, _classnames2.default)('placeholder', placeholderClass);
-      var anonymousState__temp = (0, _taroWeapp.internal_inline_style)(customStyle);
+
+      var anonymousState__temp = (0, _taroSwan.internal_inline_style)(customStyle);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
         rootCls: rootCls,
         containerCls: containerCls,
         overlayCls: overlayCls,
         title: title,
-        required: required,
         name: name,
         type: type,
         password: password,
@@ -209,7 +188,7 @@ var AtInput = (_temp2 = _class = function (_AtComponent) {
   }]);
 
   return AtInput;
-}(_component2.default), _class.$$events = ["handleClick", "handleInput", "handleFocus", "handleBlur", "handleConfirm", "handleKeyboardHeightChange", "handleClearValue", "handleErrorClick"], _class.$$componentPath = "node_modules/taro-ui/dist/weapp/components/input/index", _temp2);
+}(_component2.default), _class.$$events = ["onClick", "onInput", "onFocus", "onBlur", "onConfirm", "clearValue", "onErrorClick"], _class.$$componentPath = 'Users/axin/codes/\u9C7C\u6CE1\u7F51/\u5C0F\u7A0B\u5E8FTS\u91CD\u6784\u9879\u76EE/TaroTs-YuPaoWang/yupaowang/node_modules/taro-ui/dist/weapp/components/input/index', _temp2);
 
 
 AtInput.defaultProps = {
@@ -222,7 +201,7 @@ AtInput.defaultProps = {
   placeholderClass: '',
   title: '',
   cursorSpacing: 50,
-  confirmType: 'done',
+  confirmType: '完成',
   cursor: 0,
   selectionStart: -1,
   selectionEnd: -1,
@@ -236,7 +215,6 @@ AtInput.defaultProps = {
   clear: false,
   autoFocus: false,
   focus: false,
-  required: false,
   onChange: function onChange() {},
   onFocus: function onFocus() {},
   onBlur: function onBlur() {},
@@ -244,6 +222,7 @@ AtInput.defaultProps = {
   onErrorClick: function onErrorClick() {},
   onClick: function onClick() {}
 };
+
 AtInput.propTypes = {
   className: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.array]),
   customStyle: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.object]),
@@ -266,6 +245,7 @@ AtInput.propTypes = {
   editable: _propTypes2.default.bool,
   error: _propTypes2.default.bool,
   clear: _propTypes2.default.bool,
+  backgroundColor: _propTypes2.default.string,
   autoFocus: _propTypes2.default.bool,
   focus: _propTypes2.default.bool,
   onChange: _propTypes2.default.func,
@@ -273,74 +253,12 @@ AtInput.propTypes = {
   onBlur: _propTypes2.default.func,
   onConfirm: _propTypes2.default.func,
   onErrorClick: _propTypes2.default.func,
-  onClick: _propTypes2.default.func,
-  required: _propTypes2.default.bool
+  onClick: _propTypes2.default.func
 };
 exports.default = AtInput;
 
-Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(AtInput));
-
-/***/ }),
-
-/***/ "./node_modules/file-loader/dist/cjs.js?name=[path][name].wxml&context=/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules&outputPath=npm!./node_modules/@tarojs/mini-runner/dist/loaders/miniTemplateLoader.js!./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js?!./node_modules/taro-ui/dist/weapp/components/input/index.tsx?taro&type=template&parse=COMPONENT&":
-/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/file-loader/dist/cjs.js?name=[path][name].wxml&context=/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules&outputPath=npm!./node_modules/@tarojs/mini-runner/dist/loaders/miniTemplateLoader.js!./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js??ref--6-0!./node_modules/taro-ui/dist/weapp/components/input/index.tsx?taro&type=template&parse=COMPONENT& ***!
-  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "npm/taro-ui/dist/weapp/components/input/index.wxml";
-
-/***/ }),
-
-/***/ "./node_modules/taro-ui/dist/weapp/components/input/index.tsx":
-/*!********************************************************************!*\
-  !*** ./node_modules/taro-ui/dist/weapp/components/input/index.tsx ***!
-  \********************************************************************/
-/*! no static exports found */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _index_tsx_taro_type_template_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.tsx?taro&type=template&parse=COMPONENT& */ "./node_modules/taro-ui/dist/weapp/components/input/index.tsx?taro&type=template&parse=COMPONENT&");
-/* harmony import */ var _index_tsx_taro_type_script_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./index.tsx?taro&type=script&parse=COMPONENT& */ "./node_modules/taro-ui/dist/weapp/components/input/index.tsx?taro&type=script&parse=COMPONENT&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _index_tsx_taro_type_script_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _index_tsx_taro_type_script_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-
-
-
-
-/***/ }),
-
-/***/ "./node_modules/taro-ui/dist/weapp/components/input/index.tsx?taro&type=script&parse=COMPONENT&":
-/*!******************************************************************************************************!*\
-  !*** ./node_modules/taro-ui/dist/weapp/components/input/index.tsx?taro&type=script&parse=COMPONENT& ***!
-  \******************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_script_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js??ref--6-0!./index.tsx?taro&type=script&parse=COMPONENT& */ "./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js?!./node_modules/taro-ui/dist/weapp/components/input/index.tsx?taro&type=script&parse=COMPONENT&");
-/* harmony import */ var _tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_script_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_script_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_script_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_script_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
- /* harmony default export */ __webpack_exports__["default"] = (_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_script_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0___default.a); 
-
-/***/ }),
-
-/***/ "./node_modules/taro-ui/dist/weapp/components/input/index.tsx?taro&type=template&parse=COMPONENT&":
-/*!********************************************************************************************************!*\
-  !*** ./node_modules/taro-ui/dist/weapp/components/input/index.tsx?taro&type=template&parse=COMPONENT& ***!
-  \********************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _file_loader_name_path_name_wxml_context_Users_zhangyibo_TaroTs_YuPaoWang_yupaowang_node_modules_outputPath_npm_tarojs_mini_runner_dist_loaders_miniTemplateLoader_js_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_template_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!file-loader?name=[path][name].wxml&context=/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules&outputPath=npm!../../../../../@tarojs/mini-runner/dist/loaders/miniTemplateLoader.js!../../../../../@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js??ref--6-0!./index.tsx?taro&type=template&parse=COMPONENT& */ "./node_modules/file-loader/dist/cjs.js?name=[path][name].wxml&context=/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/node_modules&outputPath=npm!./node_modules/@tarojs/mini-runner/dist/loaders/miniTemplateLoader.js!./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js?!./node_modules/taro-ui/dist/weapp/components/input/index.tsx?taro&type=template&parse=COMPONENT&");
-/* harmony import */ var _file_loader_name_path_name_wxml_context_Users_zhangyibo_TaroTs_YuPaoWang_yupaowang_node_modules_outputPath_npm_tarojs_mini_runner_dist_loaders_miniTemplateLoader_js_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_template_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_file_loader_name_path_name_wxml_context_Users_zhangyibo_TaroTs_YuPaoWang_yupaowang_node_modules_outputPath_npm_tarojs_mini_runner_dist_loaders_miniTemplateLoader_js_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_template_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _file_loader_name_path_name_wxml_context_Users_zhangyibo_TaroTs_YuPaoWang_yupaowang_node_modules_outputPath_npm_tarojs_mini_runner_dist_loaders_miniTemplateLoader_js_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_template_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _file_loader_name_path_name_wxml_context_Users_zhangyibo_TaroTs_YuPaoWang_yupaowang_node_modules_outputPath_npm_tarojs_mini_runner_dist_loaders_miniTemplateLoader_js_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_template_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-
+Component(__webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js").default.createComponent(AtInput));
 
 /***/ })
 
-},[["./node_modules/taro-ui/dist/weapp/components/input/index.tsx","runtime","taro","vendors"]]]);
+},[["./node_modules/taro-ui/dist/weapp/components/input/index.js","runtime","vendors"]]]);

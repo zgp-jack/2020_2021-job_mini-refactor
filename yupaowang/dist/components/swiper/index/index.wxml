@@ -1,7 +1,0 @@
-<block wx:if="{{$taroCompReady}}">
-    <swiper class="index-swiper-container" vertical="{{swiper.vertical}}" circular="{{swiper.circular}}" indicator-dots="{{swiper.indicatorDots}}" autoplay="{{swiper.autoplay}}">
-        <swiper-item class="index-swiper-item" wx:key="$loopState__temp2" wx:for="{{loopArray109}}" wx:for-item="item" wx:for-index="index">
-            <image class="index-swiper-img" src="{{item.$original.banner}}"></image>
-        </swiper-item>
-    </swiper>
-</block>

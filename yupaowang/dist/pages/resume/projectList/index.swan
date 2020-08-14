@@ -1,0 +1,55 @@
+<block s-if="{{$taroCompReady}}">
+    <view class="projectList">
+        <view s-key="privateOriginal.id" class="skilleight" s-for="loopArray67" s-for-item="item" s-for-index="i">
+            <block s-if="{{item.privateOriginal.check == '1'}}">
+                <image class="audit" src="{{IMGCDNURL + 'lpy/review.png'}}"></image>
+            </block>
+            <block s-if="{{item.privateOriginal.check == '0'}}">
+                <image class="audit" src="{{IMGCDNURL + 'lpy/notthrough.png'}}"></image>
+            </block>
+            <block s-if="{{!preview}}">
+                <view>
+                    <block s-if="{{item.privateOriginal.check == '2'}}">
+                        <view class="editor" bindtap="anonymousFunc0" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">编辑</view>
+                    </block>
+                    <block s-if="{{item.privateOriginal.check == '0'}}">
+                        <view class="editorone" bindtap="anonymousFunc1" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey2}}">待修改</view>
+                    </block>
+                </view>
+            </block>
+            <view class="skilleightzong">
+                <view>
+                    <image src="{{IMGCDNURL + 'lpy/newresume-experience-item.png'}}" class="skilleightone"></image>
+                </view>
+                <view class="skilleightall">
+                    <view class="project"><text class="project-text">{{item.privateOriginal.project_name}}</text>
+                    </view>
+                    <view class="skilleighttwo"><text class="skilleighttwo-text">{{item.privateOriginal.start_time}}-{{item.privateOriginal.completiontime == 'zhijin' ? "至今" : item.privateOriginal.completion_time}}</text>
+                        <block s-if="{{!item.privateOriginal.city_name}}"><text class="skilleighttwo-text">{{item.privateOriginal.province_name}}</text>
+                        </block>
+                    </view>
+                    <view class="description"><text class="description-text">{{item.privateOriginal.detail}}</text>
+                    </view>
+                    <view class="skilleightfive">
+                        <view class="skilleightfiveline">
+                            <view class="temimage">
+                                <image class="skilleightfive-image" src="{{v.privateOriginal}}" s-key="loopState__temp2" bindtap="anonymousFunc2" s-for="item.anonymousCallee__11" s-for-item="v" s-for-index="i" data-e-tap-so="this" data-e-tap-a-a="{{v._$indexKey3}}"></image>
+                            </view>
+                        </view>
+                    </view>
+                    <block s-if="{{item.privateOriginal.check == '0'}}">
+                        <view class="resson">未通过原因：{{item.privateOriginal.fail_case}}</view>
+                    </block>
+                </view>
+            </view>
+        </view>
+        <block s-if="{{!data.length}}">
+            <nodata compid="{{$compid__57}}"></nodata>
+        </block>
+        <block s-if="{{data.length < 5 && !detail}}">
+            <view class="footer-box">
+                <button class="footer" bindtap="anonymousFunc3">添加项目经验</button>
+            </view>
+        </block>
+    </view>
+</block>

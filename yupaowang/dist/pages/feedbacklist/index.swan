@@ -1,0 +1,46 @@
+<block s-if="{{$taroCompReady}}">
+    <view>
+        <auth></auth>
+        <wechat-notice></wechat-notice>
+        <block s-if="{{!lists.item.length}}">
+            <nodata compid="{{$compid__42}}"></nodata>
+        </block>
+        <view class="recruit-lists-containerbox">
+            <block s-if="{{lists.item}}">
+                <block s-key="privateOriginal.id" s-for="loopArray42" s-for-item="item" s-for-index="__index1">
+                    <view class="feedback-body-content">
+                        <view class="superior">
+                            <view class="superior-text"><text>问</text>
+                            </view>
+                            <view class="superior-content"><text>{{item.privateOriginal.content}}</text>
+                            </view>
+                        </view>
+                        <view class="species">
+                            <block s-if="{{item.privateOriginal.images}}">
+                                <view class="species-box" s-key="loopState__temp2" bindtap="anonymousFunc0" s-for="item.anonymousCallee__7" s-for-item="v" s-for-index="index" data-e-tap-so="this" data-e-tap-a-a="{{v._$indexKey}}">
+                                    <image class="species-box-img" src="{{v.privateOriginal}}"></image>
+                                </view>
+                            </block>
+                        </view>
+                        <view class="species-text">{{item.privateOriginal.ask_time}}</view>
+                        <block s-if="{{item.privateOriginal.is_answer}}">
+                            <view class="superior-data">
+                                <view class="superiordati">答</view>
+                                <view class="superioredase">
+                                    <block s-if="{{item.privateOriginal.send_msg}}"><text>{{item.privateOriginal.send_msg}}</text>
+                                    </block>
+                                </view>
+                            </view>
+                        </block>
+                    </view>
+                </block>
+            </block>
+            <block s-if="{{!isDown && lists.item.length}}">
+                <view class="feedback-noData">没有更多数据了</view>
+            </block>
+        </view>
+        <view class="feedback-bttonBox">
+            <button class="feedback-bttonBox-botton" bindtap="anonymousFunc2">我要提意见</button>
+        </view>
+    </view>
+</block>

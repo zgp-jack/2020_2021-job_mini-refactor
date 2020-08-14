@@ -9,6 +9,7 @@ import { RecruitModelInfo, UserLastPublishRecruitArea } from '../index.d'
 import UploadImgAction from '../../../utils/upload'
 import ImageView from '../../../components/imageview'
 import Msg from '../../../utils/msg'
+import { userCancelAuth } from '../../../utils/helper'
 import Auth from '../../../components/auth'
 import './index.scss'
 

@@ -1,0 +1,20 @@
+<block s-if="{{$taroCompReady}}">
+    <view class="help-content">
+        <block s-if="{{!data.item.length}}">
+            <nodata></nodata>
+        </block>
+        <scroll-view class="recruit-lists-containerbox" scroll-y="{{true}}" lower-threshold="{{200}}" refresher-enabled="{{true}}" refresher-triggered="{{refresh}}" bindrefresherrefresh="anonymousFunc0" bindscrolltolower="anonymousFunc1">
+            <view class="topNoneBox"></view>
+            <at-accordion s-key="privateOriginal.id" s-for="loopArray41" s-for-item="item" s-for-index="__index2" compid="{{item.$compid__40}}">
+                <at-list compid="{{item.$compid__41}}"><text class="help-text">{{item.privateOriginal.answer}}</text>
+                </at-list>
+            </at-accordion>
+            <block s-if="{{!isDown && data.item.length}}">
+                <view class="help-noData">没有更多数据了</view>
+            </block>
+            <view class="BootomNoneBox"></view>
+        </scroll-view>
+        <view class="help-button-box" bindtap="anonymousFunc3"><text class="help-button">意见反馈</text>
+        </view>
+    </view>
+</block>

@@ -1,0 +1,27 @@
+<block s-if="{{$taroCompReady}}">
+    <block>
+        <view class="common-footer-tabbar">
+            <view class="{{item.loopState__temp2}}" s-key="privateOriginal.id" bindtap="anonymousFunc0" s-for="loopArray17" s-for-item="item" s-for-index="__index0" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">
+                <image class="commmon-footer-tabbar-img" src="{{item.privateOriginal.id === tabbar.key ? item.privateOriginal.activeImg : item.privateOriginal.defaultImg}}"></image><text class="commmon-footer-tabbar-text">{{item.privateOriginal.title}}</text>
+                <block s-if="{{item.privateOriginal.msg && memberMsg}}"><text class="footermsg">{{memberMsg > 9 ? '9+' : memberMsg}}</text>
+                </block>
+            </view>
+        </view>
+        <block s-if="{{show}}">
+            <view class="{{anonymousState__temp3}}" bindtap="anonymousFunc1">
+                <image class="{{anonymousState__temp4}}" src="{{IMGCDNURL + 'publish.png'}}"></image>
+                <view class="{{anonymousState__temp5}}">
+                    <view class="tabbar-publish-item">
+                        <image class="tabbar-publih-item-img" src="{{IMGCDNURL + 'publish-recruit.png'}}"></image><text class="tabbar-publih-item-text">发布招工</text>
+                    </view>
+                    <view class="tabbar-publish-item">
+                        <image class="tabbar-publih-item-img" src="{{IMGCDNURL + 'publish-card.png'}}"></image><text class="tabbar-publih-item-text">发布找活</text>
+                    </view>
+                    <view class="tabbar-publish-item">
+                        <image class="tabbar-publih-item-img" src="{{IMGCDNURL + 'publish-used.png'}}"></image><text class="tabbar-publih-item-text">二手交易</text>
+                    </view>
+                </view>
+            </view>
+        </block>
+    </block>
+</block>

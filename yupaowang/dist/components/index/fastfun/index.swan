@@ -1,0 +1,7 @@
+<block s-if="{{$taroCompReady}}">
+    <view class="home-fastfun clearfix">
+        <view class="home-fastfun-item" s-key="loopState__temp2" bindtap="anonymousFunc0" s-for="loopArray8" s-for-item="item" s-for-index="index" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">
+            <image class="home-fastfun-img" src="{{item.privateOriginal.img}}"></image><text class="home-fastfun-text">{{item.privateOriginal.text}}</text>
+        </view>
+    </view>
+</block>

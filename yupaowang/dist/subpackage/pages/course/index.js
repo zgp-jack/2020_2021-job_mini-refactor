@@ -1,9 +1,20 @@
-(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["subpackage/pages/course/index"],{
+(swan["webpackJsonp"] = swan["webpackJsonp"] || []).push([["subpackage/pages/course/index"],{
 
-/***/ "./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js?!./src/subpackage/pages/course/index.tsx?taro&type=script&parse=PAGE&":
-/*!*************************************************************************************************************************************************************!*\
-  !*** ./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js??ref--6-0!./src/subpackage/pages/course/index.tsx?taro&type=script&parse=PAGE& ***!
-  \*************************************************************************************************************************************************************/
+/***/ "./src/subpackage/pages/course/index.scss":
+/*!************************************************!*\
+  !*** ./src/subpackage/pages/course/index.scss ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
+/***/ "./src/subpackage/pages/course/index.tsx":
+/*!***********************************************!*\
+  !*** ./src/subpackage/pages/course/index.tsx ***!
+  \***********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -20,11 +31,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _class, _temp2;
+var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
 
-var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
-
-var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
+var _taroSwan2 = _interopRequireDefault(_taroSwan);
 
 var _index = __webpack_require__(/*! ../../../config/index */ "./src/config/index.ts");
 
@@ -46,31 +55,31 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Course = (_temp2 = _class = function (_Taro$Component) {
+var Course = function (_Taro$Component) {
   _inherits(Course, _Taro$Component);
 
   function Course() {
-    var _ref;
-
-    var _temp, _this, _ret;
-
     _classCallCheck(this, Course);
 
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
+    var _this = _possibleConstructorReturn(this, (Course.__proto__ || Object.getPrototypeOf(Course)).apply(this, arguments));
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Course.__proto__ || Object.getPrototypeOf(Course)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
+    _this.config = {
       navigationBarTitleText: '鱼泡网-使用教程'
-    }, _this.$usedState = ["bossData", "workerMaster", "loopArray119", "loopArray120", "loopArray121", "tab", "highlight"], _this.anonymousFunc0Map = {}, _this.anonymousFunc1Map = {}, _this.anonymousFunc2Map = {}, _this.customComponents = ["Nodata", "AtAccordion", "AtList"], _temp), _possibleConstructorReturn(_this, _ret);
+    };
+
+    _this.$usedState = ["bossData", "workerMaster", "loopArray3", "loopArray4", "loopArray5", "tab", "highlight"];
+    _this.anonymousFunc0Map = {};
+    _this.anonymousFunc1Map = {};
+    _this.anonymousFunc2Map = {};
+    _this.customComponents = ["Nodata", "AtAccordion", "AtList"];
+    return _this;
   }
 
   _createClass(Course, [{
     key: "_constructor",
     value: function _constructor(props) {
       _get(Course.prototype.__proto__ || Object.getPrototypeOf(Course.prototype), "_constructor", this).call(this, props);
-
-      this.$$refs = new _taroWeapp2.default.RefsArray();
+      this.$$refs = new _taroSwan2.default.RefsArray();
     }
   }, {
     key: "_createData",
@@ -82,10 +91,9 @@ var Course = (_temp2 = _class = function (_Taro$Component) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-
       // 设置高亮
 
-      var _useState = (0, _taroWeapp.useState)(1),
+      var _useState = (0, _taroSwan.useState)(1),
           _useState2 = _slicedToArray(_useState, 2),
           highlight = _useState2[0],
           setHighlight = _useState2[1];
@@ -102,7 +110,7 @@ var Course = (_temp2 = _class = function (_Taro$Component) {
       };
       // 招工老老板
 
-      var _useState3 = (0, _taroWeapp.useState)({
+      var _useState3 = (0, _taroSwan.useState)({
         item: []
       }),
           _useState4 = _slicedToArray(_useState3, 2),
@@ -111,7 +119,7 @@ var Course = (_temp2 = _class = function (_Taro$Component) {
       // 工人师傅
 
 
-      var _useState5 = (0, _taroWeapp.useState)({
+      var _useState5 = (0, _taroSwan.useState)({
         item: []
       }),
           _useState6 = _slicedToArray(_useState5, 2),
@@ -120,9 +128,9 @@ var Course = (_temp2 = _class = function (_Taro$Component) {
       // 请求数据
 
 
-      (0, _taroWeapp.useEffect)(function () {
+      (0, _taroSwan.useEffect)(function () {
         (0, _index2.requestAction)().then(function (res) {
-          _taroWeapp2.default.hideNavigationBarLoading();
+          _taroSwan2.default.hideNavigationBarLoading();
           // 增加默认关闭字段
           for (var i = 0; i < res.masterList.length; i++) {
             res.masterList[i].isShow = false;
@@ -150,111 +158,104 @@ var Course = (_temp2 = _class = function (_Taro$Component) {
         });
         setWorkerMaster(workerMasterData);
       };
-      var loopArray119 = tab.map(function (item, __index0) {
+      var loopArray3 = tab.map(function (item, __index0) {
         item = {
-          $original: (0, _taroWeapp.internal_get_original)(item)
+          privateOriginal: (0, _taroSwan.internal_get_original)(item)
         };
-
-        var _$indexKey = "bcczz" + __index0;
-
+        var _$indexKey = "czzzz" + __index0;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
-          handleClick(item.$original.id);
+          handleClick(item.privateOriginal.id);
         };
-
-        var $loopState__temp2 = (0, _classnames2.default)({
-          'course-tab-border': item.$original.id === highlight,
+        var loopState__temp2 = (0, _classnames2.default)({
+          'course-tab-border': item.privateOriginal.id === highlight,
           'course-tab-content': true
         });
-        var $loopState__temp4 = (0, _classnames2.default)({
-          'course.active-text': item.$original.id === highlight
+        var loopState__temp4 = (0, _classnames2.default)({
+          'course.active-text': item.privateOriginal.id === highlight
         });
         return {
           _$indexKey: _$indexKey,
-          $loopState__temp2: $loopState__temp2,
-          $loopState__temp4: $loopState__temp4,
-          $original: item.$original
+          loopState__temp2: loopState__temp2,
+          loopState__temp4: loopState__temp4,
+          privateOriginal: item.privateOriginal
         };
       });
-      var loopArray120 = highlight === 1 ? bossData.item.map(function (item, __index1) {
+      var loopArray4 = highlight === 1 ? bossData.item.map(function (item, __index1) {
         item = {
-          $original: (0, _taroWeapp.internal_get_original)(item)
+          privateOriginal: (0, _taroSwan.internal_get_original)(item)
         };
-
-        var _$indexKey2 = "bcdzz" + __index1;
-
+        var _$indexKey2 = "dzzzz" + __index1;
         _this2.anonymousFunc1Map[_$indexKey2] = function () {
-          bossIsShow(item.$original.id);
+          bossIsShow(item.privateOriginal.id);
         };
 
-        var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "bcfzzzzzzz" + __index1, true),
+        var _genCompid = (0, _taroSwan.genCompid)(__prefix + "fzzzzzzzzz" + __index1, true),
             _genCompid2 = _slicedToArray(_genCompid, 2),
-            $prevCompid__108 = _genCompid2[0],
-            $compid__108 = _genCompid2[1];
+            $prevCompid__0 = _genCompid2[0],
+            $compid__0 = _genCompid2[1];
 
-        highlight === 1 && _taroWeapp.propsManager.set({
-          "open": item.$original.isShow,
+        highlight === 1 && _taroSwan.propsManager.set({
+          "open": item.privateOriginal.isShow,
           "onClick": _this2.anonymousFunc1.bind(_this2, _$indexKey2),
-          "title": item.$original.title
-        }, $compid__108, $prevCompid__108);
+          "title": item.privateOriginal.title
+        }, $compid__0, $prevCompid__0);
 
-        var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "bcgzzzzzzz" + __index1, true),
+        var _genCompid3 = (0, _taroSwan.genCompid)(__prefix + "gzzzzzzzzz" + __index1, true),
             _genCompid4 = _slicedToArray(_genCompid3, 2),
-            $prevCompid__109 = _genCompid4[0],
-            $compid__109 = _genCompid4[1];
+            $prevCompid__1 = _genCompid4[0],
+            $compid__1 = _genCompid4[1];
 
-        highlight === 1 && _taroWeapp.propsManager.set({
+        highlight === 1 && _taroSwan.propsManager.set({
           "hasBorder": false
-        }, $compid__109, $prevCompid__109);
+        }, $compid__1, $prevCompid__1);
         return {
           _$indexKey2: _$indexKey2,
-          $compid__108: $compid__108,
-          $compid__109: $compid__109,
-          $original: item.$original
+          $compid__0: $compid__0,
+          $compid__1: $compid__1,
+          privateOriginal: item.privateOriginal
         };
       }) : [];
-      var loopArray121 = highlight === 2 ? workerMaster.item.map(function (item, __index2) {
+      var loopArray5 = highlight === 2 ? workerMaster.item.map(function (item, __index2) {
         item = {
-          $original: (0, _taroWeapp.internal_get_original)(item)
+          privateOriginal: (0, _taroSwan.internal_get_original)(item)
         };
-
-        var _$indexKey3 = "bcezz" + __index2;
-
+        var _$indexKey3 = "ezzzz" + __index2;
         _this2.anonymousFunc2Map[_$indexKey3] = function () {
-          workerMasterIsShow(item.$original.id);
+          workerMasterIsShow(item.privateOriginal.id);
         };
 
-        var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "bchzzzzzzz" + __index2, true),
+        var _genCompid5 = (0, _taroSwan.genCompid)(__prefix + "hzzzzzzzzz" + __index2, true),
             _genCompid6 = _slicedToArray(_genCompid5, 2),
-            $prevCompid__110 = _genCompid6[0],
-            $compid__110 = _genCompid6[1];
+            $prevCompid__2 = _genCompid6[0],
+            $compid__2 = _genCompid6[1];
 
-        highlight === 2 && _taroWeapp.propsManager.set({
-          "open": item.$original.isShow,
+        highlight === 2 && _taroSwan.propsManager.set({
+          "open": item.privateOriginal.isShow,
           "onClick": _this2.anonymousFunc2.bind(_this2, _$indexKey3),
-          "title": item.$original.title
-        }, $compid__110, $prevCompid__110);
+          "title": item.privateOriginal.title
+        }, $compid__2, $prevCompid__2);
 
-        var _genCompid7 = (0, _taroWeapp.genCompid)(__prefix + "bcizzzzzzz" + __index2, true),
+        var _genCompid7 = (0, _taroSwan.genCompid)(__prefix + "izzzzzzzzz" + __index2, true),
             _genCompid8 = _slicedToArray(_genCompid7, 2),
-            $prevCompid__111 = _genCompid8[0],
-            $compid__111 = _genCompid8[1];
+            $prevCompid__3 = _genCompid8[0],
+            $compid__3 = _genCompid8[1];
 
-        highlight === 2 && _taroWeapp.propsManager.set({
+        highlight === 2 && _taroSwan.propsManager.set({
           "hasBorder": false
-        }, $compid__111, $prevCompid__111);
+        }, $compid__3, $prevCompid__3);
         return {
           _$indexKey3: _$indexKey3,
-          $compid__110: $compid__110,
-          $compid__111: $compid__111,
-          $original: item.$original
+          $compid__2: $compid__2,
+          $compid__3: $compid__3,
+          privateOriginal: item.privateOriginal
         };
       }) : [];
       Object.assign(this.__state, {
         bossData: bossData,
         workerMaster: workerMaster,
-        loopArray119: loopArray119,
-        loopArray120: loopArray120,
-        loopArray121: loopArray121,
+        loopArray3: loopArray3,
+        loopArray4: loopArray4,
+        loopArray5: loopArray5,
         tab: tab,
         highlight: highlight
       });
@@ -267,8 +268,8 @@ var Course = (_temp2 = _class = function (_Taro$Component) {
 
       ;
 
-      for (var _len2 = arguments.length, e = Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
-        e[_key2 - 1] = arguments[_key2];
+      for (var _len = arguments.length, e = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+        e[_key - 1] = arguments[_key];
       }
 
       return this.anonymousFunc0Map[_$indexKey] && (_anonymousFunc0Map = this.anonymousFunc0Map)[_$indexKey].apply(_anonymousFunc0Map, e);
@@ -280,8 +281,8 @@ var Course = (_temp2 = _class = function (_Taro$Component) {
 
       ;
 
-      for (var _len3 = arguments.length, e = Array(_len3 > 1 ? _len3 - 1 : 0), _key3 = 1; _key3 < _len3; _key3++) {
-        e[_key3 - 1] = arguments[_key3];
+      for (var _len2 = arguments.length, e = Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
+        e[_key2 - 1] = arguments[_key2];
       }
 
       return this.anonymousFunc1Map[_$indexKey2] && (_anonymousFunc1Map = this.anonymousFunc1Map)[_$indexKey2].apply(_anonymousFunc1Map, e);
@@ -293,8 +294,8 @@ var Course = (_temp2 = _class = function (_Taro$Component) {
 
       ;
 
-      for (var _len4 = arguments.length, e = Array(_len4 > 1 ? _len4 - 1 : 0), _key4 = 1; _key4 < _len4; _key4++) {
-        e[_key4 - 1] = arguments[_key4];
+      for (var _len3 = arguments.length, e = Array(_len3 > 1 ? _len3 - 1 : 0), _key3 = 1; _key3 < _len3; _key3++) {
+        e[_key3 - 1] = arguments[_key3];
       }
 
       return this.anonymousFunc2Map[_$indexKey3] && (_anonymousFunc2Map = this.anonymousFunc2Map)[_$indexKey3].apply(_anonymousFunc2Map, e);
@@ -302,86 +303,15 @@ var Course = (_temp2 = _class = function (_Taro$Component) {
   }]);
 
   return Course;
-}(_taroWeapp2.default.Component), _class.$$events = ["anonymousFunc0"], _class.$$componentPath = "subpackage/pages/course/index", _temp2);
+}(_taroSwan2.default.Component);
 
-
+Course.$$events = ["anonymousFunc0"];
+Course.$$componentPath = "subpackage/pages/course/index";
 Course.config = { navigationBarTitleText: '鱼泡网-使用教程' };
 exports.default = Course;
 
-Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(Course, true));
-
-/***/ }),
-
-/***/ "./node_modules/file-loader/dist/cjs.js?name=[path][name].wxml&context=/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/src!./node_modules/@tarojs/mini-runner/dist/loaders/miniTemplateLoader.js!./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js?!./src/subpackage/pages/course/index.tsx?taro&type=template&parse=PAGE&":
-/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/file-loader/dist/cjs.js?name=[path][name].wxml&context=/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/src!./node_modules/@tarojs/mini-runner/dist/loaders/miniTemplateLoader.js!./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js??ref--6-0!./src/subpackage/pages/course/index.tsx?taro&type=template&parse=PAGE& ***!
-  \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "subpackage/pages/course/index.wxml";
-
-/***/ }),
-
-/***/ "./src/subpackage/pages/course/index.scss":
-/*!************************************************!*\
-  !*** ./src/subpackage/pages/course/index.scss ***!
-  \************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
-
-/***/ }),
-
-/***/ "./src/subpackage/pages/course/index.tsx":
-/*!***********************************************!*\
-  !*** ./src/subpackage/pages/course/index.tsx ***!
-  \***********************************************/
-/*! no static exports found */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _index_tsx_taro_type_template_parse_PAGE___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.tsx?taro&type=template&parse=PAGE& */ "./src/subpackage/pages/course/index.tsx?taro&type=template&parse=PAGE&");
-/* harmony import */ var _index_tsx_taro_type_script_parse_PAGE___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./index.tsx?taro&type=script&parse=PAGE& */ "./src/subpackage/pages/course/index.tsx?taro&type=script&parse=PAGE&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _index_tsx_taro_type_script_parse_PAGE___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _index_tsx_taro_type_script_parse_PAGE___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-
-
-
-
-/***/ }),
-
-/***/ "./src/subpackage/pages/course/index.tsx?taro&type=script&parse=PAGE&":
-/*!****************************************************************************!*\
-  !*** ./src/subpackage/pages/course/index.tsx?taro&type=script&parse=PAGE& ***!
-  \****************************************************************************/
-/*! no static exports found */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_script_parse_PAGE___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js??ref--6-0!./index.tsx?taro&type=script&parse=PAGE& */ "./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js?!./src/subpackage/pages/course/index.tsx?taro&type=script&parse=PAGE&");
-/* harmony import */ var _node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_script_parse_PAGE___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_script_parse_PAGE___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_script_parse_PAGE___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_script_parse_PAGE___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
- /* harmony default export */ __webpack_exports__["default"] = (_node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_script_parse_PAGE___WEBPACK_IMPORTED_MODULE_0___default.a); 
-
-/***/ }),
-
-/***/ "./src/subpackage/pages/course/index.tsx?taro&type=template&parse=PAGE&":
-/*!******************************************************************************!*\
-  !*** ./src/subpackage/pages/course/index.tsx?taro&type=template&parse=PAGE& ***!
-  \******************************************************************************/
-/*! no static exports found */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _file_loader_name_path_name_wxml_context_Users_zhangyibo_TaroTs_YuPaoWang_yupaowang_src_node_modules_tarojs_mini_runner_dist_loaders_miniTemplateLoader_js_node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_template_parse_PAGE___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!file-loader?name=[path][name].wxml&context=/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/src!../../../../node_modules/@tarojs/mini-runner/dist/loaders/miniTemplateLoader.js!../../../../node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js??ref--6-0!./index.tsx?taro&type=template&parse=PAGE& */ "./node_modules/file-loader/dist/cjs.js?name=[path][name].wxml&context=/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/src!./node_modules/@tarojs/mini-runner/dist/loaders/miniTemplateLoader.js!./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js?!./src/subpackage/pages/course/index.tsx?taro&type=template&parse=PAGE&");
-/* harmony import */ var _file_loader_name_path_name_wxml_context_Users_zhangyibo_TaroTs_YuPaoWang_yupaowang_src_node_modules_tarojs_mini_runner_dist_loaders_miniTemplateLoader_js_node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_template_parse_PAGE___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_file_loader_name_path_name_wxml_context_Users_zhangyibo_TaroTs_YuPaoWang_yupaowang_src_node_modules_tarojs_mini_runner_dist_loaders_miniTemplateLoader_js_node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_template_parse_PAGE___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _file_loader_name_path_name_wxml_context_Users_zhangyibo_TaroTs_YuPaoWang_yupaowang_src_node_modules_tarojs_mini_runner_dist_loaders_miniTemplateLoader_js_node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_template_parse_PAGE___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _file_loader_name_path_name_wxml_context_Users_zhangyibo_TaroTs_YuPaoWang_yupaowang_src_node_modules_tarojs_mini_runner_dist_loaders_miniTemplateLoader_js_node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_template_parse_PAGE___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-
+Page(__webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js").default.createComponent(Course, true));
 
 /***/ })
 
-},[["./src/subpackage/pages/course/index.tsx","runtime","taro","vendors","common"]]]);
+},[["./src/subpackage/pages/course/index.tsx","runtime","vendors"]]]);

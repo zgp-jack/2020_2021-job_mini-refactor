@@ -1,9 +1,20 @@
-(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["pages/home/index"],{
+(swan["webpackJsonp"] = swan["webpackJsonp"] || []).push([["pages/home/index"],{
 
-/***/ "./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js?!./src/pages/home/index.tsx?taro&type=script&parse=COMPONENT&":
-/*!*****************************************************************************************************************************************************!*\
-  !*** ./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js??ref--6-0!./src/pages/home/index.tsx?taro&type=script&parse=COMPONENT& ***!
-  \*****************************************************************************************************************************************************/
+/***/ "./src/pages/home/index.scss":
+/*!***********************************!*\
+  !*** ./src/pages/home/index.scss ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
+/***/ "./src/pages/home/index.tsx":
+/*!**********************************!*\
+  !*** ./src/pages/home/index.tsx ***!
+  \**********************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -22,11 +33,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _class, _temp2;
+var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
 
-var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
-
-var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
+var _taroSwan2 = _interopRequireDefault(_taroSwan);
 
 __webpack_require__(/*! ./index.scss */ "./src/pages/home/index.scss");
 
@@ -44,29 +53,24 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Home = (_temp2 = _class = function (_Taro$Component) {
+var Home = function (_Taro$Component) {
   _inherits(Home, _Taro$Component);
 
   function Home() {
-    var _ref;
-
-    var _temp, _this, _ret;
-
     _classCallCheck(this, Home);
 
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
+    var _this = _possibleConstructorReturn(this, (Home.__proto__ || Object.getPrototypeOf(Home)).apply(this, arguments));
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Home.__proto__ || Object.getPrototypeOf(Home)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["$compid__80", "$compid__81", "$compid__82", "$compid__83", "$compid__84", "IMGCDNURL"], _this.customComponents = ["SwiperComponent", "Projects", "Fastfun", "SwiperNews", "RecruitList", "ResumeList", "UsedList", "About"], _temp), _possibleConstructorReturn(_this, _ret);
+    _this.$usedState = ["$compid__5", "$compid__6", "$compid__7", "$compid__8", "$compid__9", "IMGCDNURL"];
+    _this.customComponents = ["SwiperComponent", "Projects", "Fastfun", "SwiperNews", "RecruitList", "ResumeList", "UsedList", "About"];
+    return _this;
   }
 
   _createClass(Home, [{
     key: "_constructor",
     value: function _constructor(props) {
       _get(Home.prototype.__proto__ || Object.getPrototypeOf(Home.prototype), "_constructor", this).call(this, props);
-
-      this.$$refs = new _taroWeapp2.default.RefsArray();
+      this.$$refs = new _taroSwan2.default.RefsArray();
     }
   }, {
     key: "_createData",
@@ -77,35 +81,34 @@ var Home = (_temp2 = _class = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__80"),
+      var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__5"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__80 = _genCompid2[0],
-          $compid__80 = _genCompid2[1];
+          $prevCompid__5 = _genCompid2[0],
+          $compid__5 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__81"),
+      var _genCompid3 = (0, _taroSwan.genCompid)(__prefix + "$compid__6"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__81 = _genCompid4[0],
-          $compid__81 = _genCompid4[1];
+          $prevCompid__6 = _genCompid4[0],
+          $compid__6 = _genCompid4[1];
 
-      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__82"),
+      var _genCompid5 = (0, _taroSwan.genCompid)(__prefix + "$compid__7"),
           _genCompid6 = _slicedToArray(_genCompid5, 2),
-          $prevCompid__82 = _genCompid6[0],
-          $compid__82 = _genCompid6[1];
+          $prevCompid__7 = _genCompid6[0],
+          $compid__7 = _genCompid6[1];
 
-      var _genCompid7 = (0, _taroWeapp.genCompid)(__prefix + "$compid__83"),
+      var _genCompid7 = (0, _taroSwan.genCompid)(__prefix + "$compid__8"),
           _genCompid8 = _slicedToArray(_genCompid7, 2),
-          $prevCompid__83 = _genCompid8[0],
-          $compid__83 = _genCompid8[1];
+          $prevCompid__8 = _genCompid8[0],
+          $compid__8 = _genCompid8[1];
 
-      var _genCompid9 = (0, _taroWeapp.genCompid)(__prefix + "$compid__84"),
+      var _genCompid9 = (0, _taroSwan.genCompid)(__prefix + "$compid__9"),
           _genCompid10 = _slicedToArray(_genCompid9, 2),
-          $prevCompid__84 = _genCompid10[0],
-          $compid__84 = _genCompid10[1];
-
+          $prevCompid__9 = _genCompid10[0],
+          $compid__9 = _genCompid10[1];
       // * 获取列表数据的data
 
 
-      var _useState = (0, _taroWeapp.useState)({
+      var _useState = (0, _taroSwan.useState)({
         area: '',
         location: ''
       }),
@@ -115,7 +118,7 @@ var Home = (_temp2 = _class = function (_Taro$Component) {
       // * 轮播图的基本参数配置
 
 
-      var _useState3 = (0, _taroWeapp.useState)({
+      var _useState3 = (0, _taroSwan.useState)({
         lists: []
       }),
           _useState4 = _slicedToArray(_useState3, 2),
@@ -124,7 +127,7 @@ var Home = (_temp2 = _class = function (_Taro$Component) {
       // * 公告列表
 
 
-      var _useState5 = (0, _taroWeapp.useState)({
+      var _useState5 = (0, _taroSwan.useState)({
         vertical: true,
         lists: []
       }),
@@ -134,7 +137,7 @@ var Home = (_temp2 = _class = function (_Taro$Component) {
       // * 数据列表
 
 
-      var _useState7 = (0, _taroWeapp.useState)({
+      var _useState7 = (0, _taroSwan.useState)({
         recruit: [],
         resume: [],
         fleamarket: []
@@ -145,53 +148,51 @@ var Home = (_temp2 = _class = function (_Taro$Component) {
       // 请求轮播数据
 
 
-      (0, _taroWeapp.useEffect)(function () {
+      (0, _taroSwan.useEffect)(function () {
         (0, _index2.getBannerNotice)().then(function (res) {
           setNotice(_extends({}, notice, { lists: [].concat(_toConsumableArray(res.notice)) }));
           setSwiper(_extends({}, swiper, { lists: [].concat(_toConsumableArray(res.banner)) }));
         });
       }, []);
       // 请求列表数据
-      (0, _taroWeapp.useEffect)(function () {
+      (0, _taroSwan.useEffect)(function () {
         (0, _index2.getAllListItem)(filterData).then(function (res) {
           setLists(_extends({}, lists, { recruit: [[].concat(_toConsumableArray(res.job.lists))], resume: [[].concat(_toConsumableArray(res.resume.lists))], fleamarket: [[].concat(_toConsumableArray(res.fleamarket.lists))] }));
         });
       }, [filterData]);
       // 用户页面跳转
       var userRouteJump = function userRouteJump(url) {
-        _taroWeapp2.default.navigateTo({
+        _taroSwan2.default.navigateTo({
           url: url
         });
       };
-
       this.anonymousFunc0 = function () {
         return userRouteJump('/subpackage/pages/download/index');
       };
-
-      _taroWeapp.propsManager.set({
+      _taroSwan.propsManager.set({
         "data": swiper
-      }, $compid__80, $prevCompid__80);
-      _taroWeapp.propsManager.set({
+      }, $compid__5, $prevCompid__5);
+      _taroSwan.propsManager.set({
         "data": notice
-      }, $compid__81, $prevCompid__81);
-      _taroWeapp.propsManager.set({
+      }, $compid__6, $prevCompid__6);
+      _taroSwan.propsManager.set({
         "data": lists.recruit,
         "bottom": false
-      }, $compid__82, $prevCompid__82);
-      _taroWeapp.propsManager.set({
+      }, $compid__7, $prevCompid__7);
+      _taroSwan.propsManager.set({
         "data": lists.resume,
         "bottom": false
-      }, $compid__83, $prevCompid__83);
-      _taroWeapp.propsManager.set({
+      }, $compid__8, $prevCompid__8);
+      _taroSwan.propsManager.set({
         "data": lists.fleamarket,
         "bottom": false
-      }, $compid__84, $prevCompid__84);
+      }, $compid__9, $prevCompid__9);
       Object.assign(this.__state, {
-        $compid__80: $compid__80,
-        $compid__81: $compid__81,
-        $compid__82: $compid__82,
-        $compid__83: $compid__83,
-        $compid__84: $compid__84,
+        $compid__5: $compid__5,
+        $compid__6: $compid__6,
+        $compid__7: $compid__7,
+        $compid__8: $compid__8,
+        $compid__9: $compid__9,
         IMGCDNURL: _index.IMGCDNURL
       });
       return this.__state;
@@ -204,83 +205,14 @@ var Home = (_temp2 = _class = function (_Taro$Component) {
   }]);
 
   return Home;
-}(_taroWeapp2.default.Component), _class.$$events = ["anonymousFunc0"], _class.$$componentPath = "pages/home/index", _temp2);
+}(_taroSwan2.default.Component);
+
+Home.$$events = ["anonymousFunc0"];
+Home.$$componentPath = "pages/home/index";
 exports.default = Home;
 
-Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(Home));
-
-/***/ }),
-
-/***/ "./node_modules/file-loader/dist/cjs.js?name=[path][name].wxml&context=/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/src!./node_modules/@tarojs/mini-runner/dist/loaders/miniTemplateLoader.js!./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js?!./src/pages/home/index.tsx?taro&type=template&parse=COMPONENT&":
-/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/file-loader/dist/cjs.js?name=[path][name].wxml&context=/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/src!./node_modules/@tarojs/mini-runner/dist/loaders/miniTemplateLoader.js!./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js??ref--6-0!./src/pages/home/index.tsx?taro&type=template&parse=COMPONENT& ***!
-  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "pages/home/index.wxml";
-
-/***/ }),
-
-/***/ "./src/pages/home/index.scss":
-/*!***********************************!*\
-  !*** ./src/pages/home/index.scss ***!
-  \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
-
-/***/ }),
-
-/***/ "./src/pages/home/index.tsx":
-/*!**********************************!*\
-  !*** ./src/pages/home/index.tsx ***!
-  \**********************************/
-/*! no static exports found */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _index_tsx_taro_type_template_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.tsx?taro&type=template&parse=COMPONENT& */ "./src/pages/home/index.tsx?taro&type=template&parse=COMPONENT&");
-/* harmony import */ var _index_tsx_taro_type_script_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./index.tsx?taro&type=script&parse=COMPONENT& */ "./src/pages/home/index.tsx?taro&type=script&parse=COMPONENT&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _index_tsx_taro_type_script_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _index_tsx_taro_type_script_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-
-
-
-
-/***/ }),
-
-/***/ "./src/pages/home/index.tsx?taro&type=script&parse=COMPONENT&":
-/*!********************************************************************!*\
-  !*** ./src/pages/home/index.tsx?taro&type=script&parse=COMPONENT& ***!
-  \********************************************************************/
-/*! no static exports found */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_script_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js??ref--6-0!./index.tsx?taro&type=script&parse=COMPONENT& */ "./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js?!./src/pages/home/index.tsx?taro&type=script&parse=COMPONENT&");
-/* harmony import */ var _node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_script_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_script_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_script_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_script_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
- /* harmony default export */ __webpack_exports__["default"] = (_node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_script_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0___default.a); 
-
-/***/ }),
-
-/***/ "./src/pages/home/index.tsx?taro&type=template&parse=COMPONENT&":
-/*!**********************************************************************!*\
-  !*** ./src/pages/home/index.tsx?taro&type=template&parse=COMPONENT& ***!
-  \**********************************************************************/
-/*! no static exports found */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _file_loader_name_path_name_wxml_context_Users_zhangyibo_TaroTs_YuPaoWang_yupaowang_src_node_modules_tarojs_mini_runner_dist_loaders_miniTemplateLoader_js_node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_template_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!file-loader?name=[path][name].wxml&context=/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/src!../../../node_modules/@tarojs/mini-runner/dist/loaders/miniTemplateLoader.js!../../../node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js??ref--6-0!./index.tsx?taro&type=template&parse=COMPONENT& */ "./node_modules/file-loader/dist/cjs.js?name=[path][name].wxml&context=/Users/zhangyibo/TaroTs-YuPaoWang/yupaowang/src!./node_modules/@tarojs/mini-runner/dist/loaders/miniTemplateLoader.js!./node_modules/@tarojs/mini-runner/dist/loaders/wxTransformerLoader.js?!./src/pages/home/index.tsx?taro&type=template&parse=COMPONENT&");
-/* harmony import */ var _file_loader_name_path_name_wxml_context_Users_zhangyibo_TaroTs_YuPaoWang_yupaowang_src_node_modules_tarojs_mini_runner_dist_loaders_miniTemplateLoader_js_node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_template_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_file_loader_name_path_name_wxml_context_Users_zhangyibo_TaroTs_YuPaoWang_yupaowang_src_node_modules_tarojs_mini_runner_dist_loaders_miniTemplateLoader_js_node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_template_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _file_loader_name_path_name_wxml_context_Users_zhangyibo_TaroTs_YuPaoWang_yupaowang_src_node_modules_tarojs_mini_runner_dist_loaders_miniTemplateLoader_js_node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_template_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _file_loader_name_path_name_wxml_context_Users_zhangyibo_TaroTs_YuPaoWang_yupaowang_src_node_modules_tarojs_mini_runner_dist_loaders_miniTemplateLoader_js_node_modules_tarojs_mini_runner_dist_loaders_wxTransformerLoader_js_ref_6_0_index_tsx_taro_type_template_parse_COMPONENT___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-
+Component(__webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js").default.createComponent(Home));
 
 /***/ })
 
-},[["./src/pages/home/index.tsx","runtime","taro","vendors","common"]]]);
+},[["./src/pages/home/index.tsx","runtime","vendors"]]]);
