@@ -16,7 +16,7 @@
         </view>
         <view class="feedback-content-middle-imgBox">
             <block s-if="{{image.item}}">
-                <image-view compid="{{$compid__61}}"></image-view>
+                <image-view compid="{{$compid__63}}"></image-view>
             </block>
         </view>
         <view class="footer">

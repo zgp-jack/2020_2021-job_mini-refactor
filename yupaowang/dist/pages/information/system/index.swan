@@ -3,7 +3,7 @@
         <block s-if="{{!data.item.length}}">
             <nodata></nodata>
         </block>
-        <view class="system-lists" s-key="privateOriginal.id" bindtap="anonymousFunc0" s-for="loopArray46" s-for-item="item" s-for-index="__index0" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">
+        <view class="system-lists" s-key="privateOriginal.id" bindtap="anonymousFunc0" s-for="loopArray49" s-for-item="item" s-for-index="__index0" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">
             <view class="system-lists-top">
                 <view class="system-num">
                     <image src="{{item.privateOriginal.image_url}}" class="system-num-img"></image>

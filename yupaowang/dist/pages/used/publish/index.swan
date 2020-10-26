@@ -1,15 +1,15 @@
 <block s-if="{{$taroCompReady}}">
     <view>
-        <at-drawer compid="{{$compid__28}}">
+        <at-drawer compid="{{$compid__30}}">
             <view class="common-drawer-item">
                 <scroll-view class="drawer-full-lists" scroll-y="{{true}}">
                     <block s-if="{{initModel}}">
-                        <view class="{{item.loopState__temp2}}" s-key="privateOriginal.id" bindtap="anonymousFunc1" s-for="loopArray28" s-for-item="item" s-for-index="index" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">{{item.privateOriginal.name}}</view>
+                        <view class="{{item.loopState__temp2}}" s-key="privateOriginal.id" bindtap="anonymousFunc1" s-for="loopArray31" s-for-item="item" s-for-index="index" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">{{item.privateOriginal.name}}</view>
                     </block>
                 </scroll-view>
                 <block s-if="{{initModel}}">
                     <scroll-view class="drawer-full-lists drawer-half-lists" scroll-y="{{true}}">
-                        <view s-key="privateOriginal.id" class="{{item.loopState__temp4}}" bindtap="anonymousFunc2" s-for="loopArray29" s-for-item="item" s-for-index="k" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey2}}">{{item.privateOriginal.name}}</view>
+                        <view s-key="privateOriginal.id" class="{{item.loopState__temp4}}" bindtap="anonymousFunc2" s-for="loopArray32" s-for-item="item" s-for-index="k" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey2}}">{{item.privateOriginal.name}}</view>
                     </scroll-view>
                 </block>
             </view>
@@ -54,7 +54,7 @@
                     </block>
                     <view class="publish-list-textarea"><text class="publish-textarea-title">招工详情</text>
                         <textarea class="publish-textarea" value="{= model.detail =}" placeholder="{{initModel && initModel.placeholder}}" bindinput="anonymousFunc11"></textarea>
-                        <words-total compid="{{$compid__29}}"></words-total>
+                        <words-total compid="{{$compid__31}}"></words-total>
                     </view>
                 </view>
                 <view class="publish-recruit-btn" bindtap="anonymousFunc12">确认发布</view>

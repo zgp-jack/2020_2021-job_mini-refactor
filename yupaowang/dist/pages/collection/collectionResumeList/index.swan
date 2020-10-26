@@ -1,10 +1,10 @@
 <block s-if="{{$taroCompReady}}">
     <view class="resume-list-container" style="{{anonymousState__temp}}">
         <block s-if="{{!data.length}}">
-            <nodata compid="{{$compid__38}}"></nodata>
+            <nodata compid="{{$compid__40}}"></nodata>
         </block>
         <block s-if="{{data}}">
-            <block s-key="privateOriginal.id" s-for="loopArray40" s-for-item="item" s-for-index="__index0">
+            <block s-key="privateOriginal.id" s-for="loopArray43" s-for-item="item" s-for-index="__index0">
                 <view class="resume-list-item" bindtap="anonymousFunc0" s-key="privateOriginal.id" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">
                     <view class="resume-list-header">
                         <image class="resume-list-user" src="{{item.privateOriginal.resume.headerimg}}"></image>
@@ -30,7 +30,7 @@
         <block s-if="{{data.length && recruitNoMoreData}}">
             <view class="resume-lists-noData">没有更多数据了</view>
         </block>
-        <at-modal compid="{{$compid__39}}">
+        <at-modal compid="{{$compid__41}}">
             <at-modal-header>温馨提示</at-modal-header>
             <at-modal-content>{{modalContent}}</at-modal-content>
             <at-modal-action>

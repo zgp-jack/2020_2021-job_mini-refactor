@@ -1,6 +1,6 @@
 import Taro from '@tarojs/taro'
 import * as api from '../api'
-import { TOKEN } from '../../config'
+import { TOKEN, VERSION } from '../../config'
 import * as Inter from './index.d'
 import Msg from '../msg'
 import { UserOpenid } from '../../config/inter'
@@ -61,9 +61,11 @@ function getRequestHeaderInfo(): RequestHeader{
     mid: userInfo.userId,
     token: userInfo.token,
     time: userInfo.tokenTime,
-    uuid: userInfo.uuid
+    uuid: userInfo.uuid, 
+    version: VERSION
     } : {
       'content-type': 'application/x-www-form-urlencoded',
+      version: VERSION
     }
   return requestHeader
 }
@@ -159,7 +161,7 @@ export function getAllListItem(data: FilterData): Promise<Inter.HomeLists> {
 }
 
 // 获取招工列表
-export function getRecruitList(data: RecruitSearchType): Promise<Inter.RecruitList[]> {
+export function getRecruitList(data: RecruitSearchType): Promise<Inter.RecruitList> {
   return doRequestAction({
     url: api.GetRecruitlist,
     data: data
@@ -192,7 +194,7 @@ export function getWechatNotice(){
 }
 
 // 获取列表页筛选条件
-export function getListFilterData(){
+export function getListFilterData(): Promise<Inter.filterClassifyResult>{
   return doRequestAction({
     url: api.GetListFilterData,
     loading: false
@@ -305,6 +307,16 @@ export function publishUsedInfo(data: UserPublishUsedInfo): Promise<Inter.Publis
 export function getUserPhoneCode(data: Hooks.UserGetCodeData ): Promise<Inter.GetUserPhoneCode> {
   return doRequestAction({
     url: api.GetUserPhoneCode,
+    method: 'POST',
+    data: data,
+    title: '验证码获取中'
+  })
+}
+
+// 获取登录验证码
+export function GetUserLoginPhoneCode(data): Promise<Inter.GetUserPhoneCode> {
+  return doRequestAction({
+    url: api.GetUserLoginPhoneCode,
     method: 'POST',
     data: data,
     title: '验证码获取中'
@@ -1042,5 +1054,25 @@ export function leavingMessageAction(data): Promise<Inter.Result> {
     method: 'POST',
     failToast: true,
     data,
+  })
+}
+
+// 用户验证码登录
+export function userAccountLogin(data): Promise<Inter.userAccountOrCodeResult>{
+  return doRequestAction({
+    url: api.userAccountUrl,
+    method: 'POST',
+    failToast: true,
+    data
+  })
+}
+
+// 用户账号登录
+export function userTelCodeLogin(data): Promise<Inter.userAccountOrCodeResult>{
+  return doRequestAction({
+    url: api.userTelCodeLogin,
+    method: 'POST',
+    failToast: true,
+    data
   })
 }

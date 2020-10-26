@@ -3,7 +3,7 @@ import { View, Text, Form, Input, Textarea, Block } from '@tarojs/components'
 import { ProfessionRecruitData } from '../../../components/profession/index.d'
 import WordsTotal from '../../../components/wordstotal'
 import Profession from '../../../components/profession'
-import userCode from '../../../hooks/code'
+import useCode from '../../../hooks/code'
 import usePublishViewInfo from '../../../hooks/publish/recruit'
 import { RecruitModelInfo, UserLastPublishRecruitArea } from '../index.d'
 import UploadImgAction from '../../../utils/upload'
@@ -49,7 +49,7 @@ export default function PublishRecruit() {
     }
   }
   // 使用自定义验证码hook
-  const { text, userGetCode } = userCode()
+  const { text, userGetCode } = useCode()
 
   // 切换图片上传显示隐藏
   const changeShowUpload = ()=> {

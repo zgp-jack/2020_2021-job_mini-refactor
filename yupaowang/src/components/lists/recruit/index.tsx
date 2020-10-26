@@ -2,10 +2,10 @@ import Taro from '@tarojs/taro'
 import { View, Text, Image, Block } from '@tarojs/components'
 import { IMGCDNURL } from '../../../config'
 import './index.scss'
-import { RecruitList } from '../../../utils/request/index.d'
+import { RecruitListItem } from '../../../utils/request/index.d'
 
 interface PROPS {
-  data: RecruitList[][],
+  data: RecruitListItem[][],
   bottom?: boolean
 }
 

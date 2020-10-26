@@ -3,11 +3,11 @@
         <auth></auth>
         <wechat-notice></wechat-notice>
         <block s-if="{{!lists.item.length}}">
-            <nodata compid="{{$compid__42}}"></nodata>
+            <nodata compid="{{$compid__44}}"></nodata>
         </block>
         <view class="recruit-lists-containerbox">
             <block s-if="{{lists.item}}">
-                <block s-key="privateOriginal.id" s-for="loopArray42" s-for-item="item" s-for-index="__index1">
+                <block s-key="privateOriginal.id" s-for="loopArray45" s-for-item="item" s-for-index="__index1">
                     <view class="feedback-body-content">
                         <view class="superior">
                             <view class="superior-text"><text>问</text>

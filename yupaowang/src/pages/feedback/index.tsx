@@ -5,7 +5,7 @@ import WordsTotal from '../../components/wordstotal'
 import WechatNotice from '../../components/wechat'
 import ImageView from '../../components/imageview'
 import UploadImgAction from '../../utils/upload'
-import userCode from '../../hooks/code'
+import useCode from '../../hooks/code'
 import { feedbackSubmissionAction } from '../../utils/request/index'
 import Msg, { ShowActionModal, SubPopup} from '../../utils/msg'
 import { SubscribeToNews } from '../../utils/subscribeToNews';
@@ -52,7 +52,7 @@ export default function Feedback() {
   // 默认字数
   const [num, setNum] = useState<number>(0)
   // 使用自定义验证码hook
-  const { text, userGetCode, disabled } = userCode()
+  const { text, userGetCode, disabled } = useCode()
   // 用户上传图片
   const userUploadImg = (i: number = -1) => {
     UploadImgAction().then(res => {

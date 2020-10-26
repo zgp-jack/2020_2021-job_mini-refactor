@@ -5,7 +5,7 @@
         <block s-if="{{!data.length}}">
             <nodata></nodata>
         </block>
-        <view s-key="privateOriginal.id" class="recruitListBox" bindtap="anonymousFunc0" s-for="loopArray51" s-for-item="v" s-for-index="__index0" data-e-tap-so="this" data-e-tap-a-a="{{v._$indexKey}}">
+        <view s-key="privateOriginal.id" class="recruitListBox" bindtap="anonymousFunc0" s-for="loopArray54" s-for-item="v" s-for-index="__index0" data-e-tap-so="this" data-e-tap-a-a="{{v._$indexKey}}">
             <view class="recruitListBox-title">{{v.privateOriginal.title}}</view>
             <view class="recruitListBox-content">
                 <image src="{{v.privateOriginal.image}}" class="recruitListBox-content-img"></image>

@@ -9,7 +9,7 @@ export const SendTypeHave: string = 'have'
 export const SendTypeNo: string = 'no'
 
 const title: string = '获取验证码'
-export default function userCode(type?: boolean) {
+export default function useCode(type?: boolean) {
   const [disabled, setDisabled] = useState<boolean>(type === false ? false : !!type)
   const sendType: string = type === false ? SendTypeNo : SendTypeHave
   const [text, setText] = useState<string>(title)
@@ -21,6 +21,7 @@ export default function userCode(type?: boolean) {
       return
     }
     const data: UserGetCodeData = { tel: tel, sendType: sendType }
+    setDisabled(true)
     getUserPhoneCode(data).then(res=>{
       Msg(res.errmsg, 2500)
       if(res.errcode == 'ok'){

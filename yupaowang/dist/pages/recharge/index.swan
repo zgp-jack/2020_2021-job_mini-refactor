@@ -14,7 +14,7 @@
         <view class="recharge-body">
             <view class="recharge-title">请选择充值金额</view>
             <view class="recharge-content clearfix">
-                <view class="recharge-list" s-key="privateOriginal.id" bindtap="anonymousFunc0" s-for="loopArray33" s-for-item="item" s-for-index="index" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">
+                <view class="recharge-list" s-key="privateOriginal.id" bindtap="anonymousFunc0" s-for="loopArray36" s-for-item="item" s-for-index="index" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">
                     <view class="{{item.loopState__temp2}}">
                         <view class="recharge-money">{{item.privateOriginal.price}}元</view>
                         <view class="recharge-num">{{item.privateOriginal.integral}}积分</view>

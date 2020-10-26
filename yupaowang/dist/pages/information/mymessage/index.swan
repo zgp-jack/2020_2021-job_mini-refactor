@@ -4,7 +4,7 @@
         <block s-if="{{!data.item.length}}">
             <nodata></nodata>
         </block>
-        <view class="messsage-lists" s-key="loopState__temp2" bindtap="anonymousFunc0" s-for="loopArray45" s-for-item="item" s-for-index="index" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">
+        <view class="messsage-lists" s-key="loopState__temp2" bindtap="anonymousFunc0" s-for="loopArray48" s-for-item="item" s-for-index="index" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">
             <view class="messsage-lists-top">
                 <view class="messsage-num">
                     <image src="{{item.privateOriginal.imageUrl}}" class="messsage-num-img"></image>

@@ -1,6 +1,6 @@
 <block s-if="{{$taroCompReady}}">
     <view>
-        <view s-key="privateOriginal.id" class="skilleight" s-for="loopArray66" s-for-item="item" s-for-index="i">
+        <view s-key="privateOriginal.id" class="skilleight" s-for="loopArray69" s-for-item="item" s-for-index="i">
             <block s-if="{{item.privateOriginal.check == '1'}}">
                 <image class="audit" src="{{IMGCDNURL + 'lpy/review.png'}}"></image>
             </block>

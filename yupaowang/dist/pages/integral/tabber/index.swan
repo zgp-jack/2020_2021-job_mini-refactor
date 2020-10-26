@@ -20,9 +20,9 @@
         </view>
         <view class="integral-content">
             <block s-if="{{!data.lists.length}}">
-                <nodata compid="{{$compid__49}}"></nodata>
+                <nodata compid="{{$compid__51}}"></nodata>
             </block>
-            <view s-key="loopState__temp2" bindtap="anonymousFunc3" s-for="loopArray47" s-for-item="item" s-for-index="index" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">
+            <view s-key="loopState__temp2" bindtap="anonymousFunc3" s-for="loopArray50" s-for-item="item" s-for-index="index" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">
                 <view class="integral-list">
                     <view class="integral-list-time"><text class="integral-time-year">{{item.privateOriginal.y_m}}</text><text class="integral-time-day">{{item.privateOriginal.day}}</text>
                     </view>
@@ -70,7 +70,7 @@
                                 </view>
                             </view>
                         </block>
-                        <view class="tabber-Modal-content-flexBox-classifyName"><text s-key="loopState__temp4" class="tabber-Modal-content-flexBox-classifyName-data" s-for="loopArray48" s-for-item="v" s-for-index="i">[{{v.privateOriginal}}]</text>
+                        <view class="tabber-Modal-content-flexBox-classifyName"><text s-key="loopState__temp4" class="tabber-Modal-content-flexBox-classifyName-data" s-for="loopArray51" s-for-item="v" s-for-index="i">[{{v.privateOriginal}}]</text>
                         </view>
                         <view class="clear"></view>
                         <view class="tabber-Modal-content-flexBox-last">
@@ -81,7 +81,7 @@
             </view>
         </block>
         <block s-if="{{complaintModal}}">
-            <report compid="{{$compid__50}}"></report>
+            <report compid="{{$compid__52}}"></report>
         </block>
     </view>
 </block>

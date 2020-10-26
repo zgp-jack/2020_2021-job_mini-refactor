@@ -5,21 +5,21 @@
             <view class="feedback-content-middle-box">
                 <textarea class="feedback-content-middle-textarea" value="{= textarea =}" bindinput="anonymousFunc0" maxlength="{{500}}" placeholder="请填写您对鱼泡的建议或意见"></textarea>
                 <view class="feedback-wordsTotal">
-                    <words-total compid="{{$compid__43}}"></words-total>
+                    <words-total compid="{{$compid__45}}"></words-total>
                 </view>
                 <view class="feedback-content-middle-imgBox">
                     <block s-if="{{image.item}}">
-                        <image-view compid="{{$compid__44}}"></image-view>
+                        <image-view compid="{{$compid__46}}"></image-view>
                     </block>
                 </view>
             </view>
         </view>
         <view class="feedback-content-middle-from">
-            <at-input compid="{{$compid__45}}"></at-input>
-            <at-input compid="{{$compid__46}}"></at-input>
+            <at-input compid="{{$compid__47}}"></at-input>
+            <at-input compid="{{$compid__48}}"></at-input>
             <block s-if="{{isShow}}">
                 <view>
-                    <at-input compid="{{$compid__47}}">
+                    <at-input compid="{{$compid__49}}">
                         <button disabled="{{disabled}}" class="feedback-content-code" bindtap="anonymousFunc4">{{text}}</button>
                     </at-input>
                 </view>

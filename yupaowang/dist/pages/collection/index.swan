@@ -2,7 +2,7 @@
     <view class="collection-content">
         <auth></auth>
         <view class="collection-tab">
-            <view class="collection-tab-box" s-key="privateOriginal.id" bindtap="anonymousFunc0" s-for="loopArray38" s-for-item="item" s-for-index="__index0" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">
+            <view class="collection-tab-box" s-key="privateOriginal.id" bindtap="anonymousFunc0" s-for="loopArray41" s-for-item="item" s-for-index="__index0" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">
                 <view class="collection-tab-content">
                     <view class="{{item.loopState__temp2}}">
                         <view class="collection-tab-img">
@@ -21,10 +21,10 @@
         </view>
         <block>
             <block s-if="{{current === 1}}">
-                <recruit-list compid="{{$compid__31}}"></recruit-list>
+                <recruit-list compid="{{$compid__33}}"></recruit-list>
             </block>
             <block s-else>
-                <resume-list compid="{{$compid__32}}"></resume-list>
+                <resume-list compid="{{$compid__34}}"></resume-list>
             </block>
         </block>
     </view>

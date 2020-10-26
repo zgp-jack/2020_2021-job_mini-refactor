@@ -12,7 +12,7 @@ import ResumeList from '../../components/lists/resume'
 import UsedList from '../../components/lists/used'
 import About from '../../components/index/about'
 import { getBannerNotice, getAllListItem } from '../../utils/request'
-import { BannerNoticeBanner, BannerNoticeNotice, RecruitList as RecruitListArr, ResumeList as ResumeListArr, FleamarketList } from '../../utils/request/index.d'
+import { BannerNoticeBanner, BannerNoticeNotice, RecruitListItem, ResumeList as ResumeListArr, FleamarketList } from '../../utils/request/index.d'
 
 export interface FilterData {
   area: string,
@@ -20,7 +20,7 @@ export interface FilterData {
 }
 
 interface AllLists {
-  recruit: RecruitListArr[][],
+  recruit: RecruitListItem[][],
   resume: ResumeListArr[][],
   fleamarket: FleamarketList[][]
 }
@@ -59,7 +59,12 @@ export default function Home(){
   // 请求列表数据
   useEffect(()=>{
     getAllListItem(filterData).then(res=>{
-      setLists({ ...lists, recruit:[[...res.job.lists]],resume: [[...res.resume.lists]], fleamarket: [[...res.fleamarket.lists]]})
+      setLists({ 
+        ...lists, 
+        recruit:[[...res.job.lists]],
+        resume: [[...res.resume.lists]], 
+        fleamarket: [[...res.fleamarket.lists]]
+      })
     })
   },[filterData])
   

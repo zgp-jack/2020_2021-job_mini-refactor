@@ -4,6 +4,7 @@ import WechatNotice from './wechat_notice'
 import User from './user'
 import msg from './msg'
 import Personnel from './personnel'
+import filterClassify from './filter_classify'
 import Myresume from './resume'
 
 export default combineReducers({
@@ -13,4 +14,5 @@ export default combineReducers({
   msg,
   Personnel,
   Myresume,
+  filterClassify
 })

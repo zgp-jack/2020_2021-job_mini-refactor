@@ -26,7 +26,8 @@ const config = {
   },
   plugins: [],
   defineConstants: {
-    MINI: JSON.stringify(process.argv[2])
+    MINI: JSON.stringify(process.argv[2]),
+    ISWEIXIN: JSON.stringify(process.argv[2]) === 'other'
   },
   mini: {
     postcss: {

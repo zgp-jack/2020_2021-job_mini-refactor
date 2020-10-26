@@ -63,7 +63,7 @@
                                 <view class="cworkotype"><text class="ocworkotype">工种</text>
                                     <view class="ocworkotypeoo">
                                         <view class="ocworkotyp">
-                                            <view class="ocworkotyptu" s-key="loopState__temp2" s-for="loopArray62" s-for-item="v" s-for-index="i">{{v.privateOriginal}}</view>
+                                            <view class="ocworkotyptu" s-key="loopState__temp2" s-for="loopArray65" s-for-item="v" s-for-index="i">{{v.privateOriginal}}</view>
                                         </view>
                                     </view>
                                 </view>
@@ -141,7 +141,7 @@
                             <view class="resumeDetail-experience-content-list">{{data.project[0].detail}}</view>
                         </view>
                         <view class="resumeDetail-experience-img-box">
-                            <image class="resumeDetail-experience-img" s-key="loopState__temp4" src="{{v.privateOriginal}}" bindtap="anonymousFunc4" s-for="loopArray64" s-for-item="v" s-for-index="i" data-e-tap-so="this" data-e-tap-a-a="{{v._$indexKey}}"></image>
+                            <image class="resumeDetail-experience-img" s-key="loopState__temp4" src="{{v.privateOriginal}}" bindtap="anonymousFunc4" s-for="loopArray67" s-for-item="v" s-for-index="i" data-e-tap-so="this" data-e-tap-a-a="{{v._$indexKey}}"></image>
                         </view>
                         <view class="resumeDetail-more-box">
                             <view class="resumeDetail-more" bindtap="anonymousFunc5">更多项目经验
@@ -169,7 +169,7 @@
                         <view class="resumeDetail-experience-content">
                             <view class="resumeDetail-experience-content-list">{{data.certificates[0].certificate_time}}</view>
                             <view>
-                                <image s-key="loopState__temp6" src="{{val.privateOriginal}}" class="resumeDetail-skill-image" bindtap="anonymousFunc6" s-for="loopArray65" s-for-item="val" s-for-index="i" data-e-tap-so="this" data-e-tap-a-a="{{val._$indexKey2}}"></image>
+                                <image s-key="loopState__temp6" src="{{val.privateOriginal}}" class="resumeDetail-skill-image" bindtap="anonymousFunc6" s-for="loopArray68" s-for-item="val" s-for-index="i" data-e-tap-so="this" data-e-tap-a-a="{{val._$indexKey2}}"></image>
                             </view>
                         </view>
                         <view class="resumeDetail-more-box">
@@ -181,7 +181,7 @@
                 </view>
             </block>
             <block s-if="{{list.item.length}}">
-                <collection-recruit-list compid="{{$compid__55}}"></collection-recruit-list>
+                <collection-recruit-list compid="{{$compid__57}}"></collection-recruit-list>
             </block>
             <view class="resumeDetail-footer">
                 <view class="resumeDetail-footer-box" bindtap="anonymousFunc8">
@@ -221,7 +221,7 @@
                 </view>
             </block>
             <block s-if="{{complaintModal}}">
-                <report compid="{{$compid__56}}"></report>
+                <report compid="{{$compid__58}}"></report>
             </block>
         </view>
     </block>

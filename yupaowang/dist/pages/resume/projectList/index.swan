@@ -1,6 +1,6 @@
 <block s-if="{{$taroCompReady}}">
     <view class="projectList">
-        <view s-key="privateOriginal.id" class="skilleight" s-for="loopArray67" s-for-item="item" s-for-index="i">
+        <view s-key="privateOriginal.id" class="skilleight" s-for="loopArray70" s-for-item="item" s-for-index="i">
             <block s-if="{{item.privateOriginal.check == '1'}}">
                 <image class="audit" src="{{IMGCDNURL + 'lpy/review.png'}}"></image>
             </block>
@@ -44,7 +44,7 @@
             </view>
         </view>
         <block s-if="{{!data.length}}">
-            <nodata compid="{{$compid__57}}"></nodata>
+            <nodata compid="{{$compid__59}}"></nodata>
         </block>
         <block s-if="{{data.length < 5 && !detail}}">
             <view class="footer-box">

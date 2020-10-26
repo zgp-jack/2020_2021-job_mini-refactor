@@ -20,7 +20,7 @@
                     </at-modal-content>
                 </block>
                 <block s-if="{{_$isRenderAction}}">
-                    <at-modal-action compid="{{$compid__36}}">
+                    <at-modal-action compid="{{$compid__38}}">
                         <block s-if="{{cancelText}}">
                             <button bindtap="handleCancel">{{cancelText}}</button>
                         </block>

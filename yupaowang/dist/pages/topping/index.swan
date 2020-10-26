@@ -4,22 +4,22 @@
             <view class="topping-title">当前选择置顶范围：</view>
             <view class="topping-list-box">
                 <block s-if="{{province}}">
-                    <view class="topping-list" bindtap="anonymousFunc0" s-for="loopArray53" s-for-item="v" s-for-index="__index0" data-e-tap-so="this" data-e-tap-a-a="{{v._$indexKey}}">{{v.privateOriginal.name}}
+                    <view class="topping-list" bindtap="anonymousFunc0" s-for="loopArray56" s-for-item="v" s-for-index="__index0" data-e-tap-so="this" data-e-tap-a-a="{{v._$indexKey}}">{{v.privateOriginal.name}}
                         <image src="{{IMGCDNURL + 'lpy/delete.png'}}" class="topping-list-image"></image>
                     </view>
                 </block>
                 <block s-if="{{params}}">
-                    <view class="topping-list" bindtap="anonymousFunc1" s-for="loopArray54" s-for-item="v" s-for-index="__index1" data-e-tap-so="this" data-e-tap-a-a="{{v._$indexKey2}}">{{v.privateOriginal.name}}
+                    <view class="topping-list" bindtap="anonymousFunc1" s-for="loopArray57" s-for-item="v" s-for-index="__index1" data-e-tap-so="this" data-e-tap-a-a="{{v._$indexKey2}}">{{v.privateOriginal.name}}
                         <image src="{{IMGCDNURL + 'lpy/delete.png'}}" class="topping-list-image"></image>
                     </view>
                 </block>
                 <block s-if="{{params}}">
-                    <view class="topping-list" bindtap="anonymousFunc2" s-for="loopArray55" s-for-item="v" s-for-index="__index2" data-e-tap-so="this" data-e-tap-a-a="{{v._$indexKey3}}">{{v.privateOriginal.name}}
+                    <view class="topping-list" bindtap="anonymousFunc2" s-for="loopArray58" s-for-item="v" s-for-index="__index2" data-e-tap-so="this" data-e-tap-a-a="{{v._$indexKey3}}">{{v.privateOriginal.name}}
                         <image src="{{IMGCDNURL + 'lpy/delete.png'}}" class="topping-list-image"></image>
                     </view>
                 </block>
                 <block s-if="{{params}}">
-                    <view class="topping-list" bindtap="anonymousFunc3" s-for="loopArray56" s-for-item="v" s-for-index="__index3" data-e-tap-so="this" data-e-tap-a-a="{{v._$indexKey4}}">{{v.privateOriginal.name}}
+                    <view class="topping-list" bindtap="anonymousFunc3" s-for="loopArray59" s-for-item="v" s-for-index="__index3" data-e-tap-so="this" data-e-tap-a-a="{{v._$indexKey4}}">{{v.privateOriginal.name}}
                         <image src="{{IMGCDNURL + 'lpy/delete.png'}}" class="topping-list-image"></image>
                     </view>
                 </block>
@@ -94,7 +94,7 @@
             </view>
             <view>
                 <view class="topping-toprule">置顶规则</view>
-                <view s-key="loopState__temp2" class="topping-toprule-list" s-for="loopArray57" s-for-item="v" s-for-index="i">{{v.privateOriginal}}</view>
+                <view s-key="loopState__temp2" class="topping-toprule-list" s-for="loopArray60" s-for-item="v" s-for-index="i">{{v.privateOriginal}}</view>
                 <view class="topping-toprule-phone" bindtap="anonymousFunc12">{{SERVERPHONE}}</view>
             </view>
         </view>

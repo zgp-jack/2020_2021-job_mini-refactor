@@ -4,7 +4,7 @@ import { AtDrawer } from 'taro-ui'
 import WordsTotal from '../../../components/wordstotal'
 import useUsedInfo from '../../../hooks/publish/used'
 import classnames from 'classnames'
-import userCode from '../../../hooks/code'
+import useCode from '../../../hooks/code'
 import '../../recruit/publish/index.scss'
 import './index.scss'
 
@@ -15,7 +15,7 @@ export default function UsedPublish() {
   const { model, setModel, initModel, parentCurrent, setParentCurrent, childCurrent, setChildCurrent, classifyName, setClassiryName, cityName, setCityName, setCIndex, setPIndex, areaProvince, areaCity, cIndex, pIndex, thisCurrentAreaCity, userTel, vaildPublishModelInfo } = useUsedInfo(id)
   const [showDrawer, setShowDrawer] = useState<boolean>(false)
   // 使用自定义验证码hook
-  const { text, userGetCode } = userCode()
+  const { text, userGetCode } = useCode()
 
   // 用户填写信息
   const userEnterFrom = (e: any, key: string) => {

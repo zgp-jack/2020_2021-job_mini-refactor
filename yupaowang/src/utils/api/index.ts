@@ -44,6 +44,8 @@ export const GetUsedInfoModel: string = REQUESTURL + 'publish/view-message/'
 export const PublishUsedInfo: string = REQUESTURL + 'publish/publish-msg/'
 // 用户获取手机验证码
 export const GetUserPhoneCode: string = REQUESTURL + 'index/get-code/'
+// 用户登录获取验证码
+export const GetUserLoginPhoneCode: string = REQUESTURL + 'baidu-auth/get-code/'
 // 获取二手交易详情
 export const GetUsedInfo: string = REQUESTURL + 'fleamarket/fleamarket-info/'
 // 用户实名查询
@@ -186,3 +188,7 @@ export const resumesUpdateTopResumeUrl : string = REQUESTURL +'/resumes/update-t
 export const resumesComplainUrl: string = REQUESTURL +'resumes/complain/'
 // 消息推送
 export const leavingMessageUrl: string = REQUESTURL +'leaving-message/add-subscribe-msg/'
+// 用户账号登录
+export const userAccountUrl: string = REQUESTURL + 'baidu-auth/login/'
+// 用户验证码登录
+export const userTelCodeLogin: string = REQUESTURL + 'baidu-auth/code-login/'

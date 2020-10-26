@@ -1,7 +1,7 @@
 <block s-if="{{$taroCompReady}}">
     <block>
         <view class="common-footer-tabbar">
-            <view class="{{item.loopState__temp2}}" s-key="privateOriginal.id" bindtap="anonymousFunc0" s-for="loopArray17" s-for-item="item" s-for-index="__index0" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">
+            <view class="{{item.loopState__temp2}}" s-key="privateOriginal.id" bindtap="anonymousFunc0" s-for="loopArray20" s-for-item="item" s-for-index="__index0" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">
                 <image class="commmon-footer-tabbar-img" src="{{item.privateOriginal.id === tabbar.key ? item.privateOriginal.activeImg : item.privateOriginal.defaultImg}}"></image><text class="commmon-footer-tabbar-text">{{item.privateOriginal.title}}</text>
                 <block s-if="{{item.privateOriginal.msg && memberMsg}}"><text class="footermsg">{{memberMsg > 9 ? '9+' : memberMsg}}</text>
                 </block>

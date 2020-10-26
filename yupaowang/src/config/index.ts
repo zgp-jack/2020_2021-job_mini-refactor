@@ -1,9 +1,14 @@
 // ? 全局不动配置项 只做导出不做修改
 
+// * 非微信小程序打包统一标识
+export const UNWEIXINSIGN: string = 'other'
+// * 非微信小程序读取该配置项
+export const UNWEIXINCONFIG: string = 'jizhao'
+
 // ! 根据不同编译脚本打包不同小程序
 // * 当前打包版本
 export const MINIVERSION: string = MINI
-export const MINICONFIG = require(`./minis/${MINIVERSION}.ts`)
+export const MINICONFIG = require(`./minis/${MINIVERSION === UNWEIXINSIGN ? UNWEIXINCONFIG : MINIVERSION }.ts`)
 
 // * 全局请求接口域名
 // * 测试站
@@ -21,7 +26,7 @@ export const IMGCDNURL: string = ALIYUNCDN + '/miniprogram/images/'
 // * 公司默认客服电话
 export const SERVERPHONE: string = '400-838-1888'
 // * 小程序当前版本号
-export const VERSION: string = '3.0.0'
+export const VERSION: string = '1.0.5'
 // * 高德地区key
 export const MAPKEY: string = '20f12aae660c04de86f993d3eff590a0'
 // * 授权登录页面

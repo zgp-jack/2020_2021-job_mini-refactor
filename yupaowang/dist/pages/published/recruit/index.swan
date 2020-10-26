@@ -1,11 +1,11 @@
 <block s-if="{{$taroCompReady}}">
     <view class="user-published-container">
         <view class="user-published-header">
-            <view bindtap="anonymousFunc0" class="{{item.loopState__temp2}}" s-for="loopArray36" s-for-item="item" s-for-index="__index0" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}"><text class="published-item-title">{{item.privateOriginal.title}}</text>
+            <view bindtap="anonymousFunc0" class="{{item.loopState__temp2}}" s-for="loopArray39" s-for-item="item" s-for-index="__index0" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}"><text class="published-item-title">{{item.privateOriginal.title}}</text>
             </view>
         </view>
         <scroll-view class="user-published-body" scroll-y="{{true}}" refresher-enabled="{{true}}" refresher-triggered="{{refresh}}" bindrefresherrefresh="anonymousFunc1" lower-threshold="{{200}}" bindscrolltolower="anonymousFunc2">
-            <view class="user-published-item" s-key="privateOriginal.id" s-for="loopArray37" s-for-item="item" s-for-index="index">
+            <view class="user-published-item" s-key="privateOriginal.id" s-for="loopArray40" s-for-item="item" s-for-index="index">
                 <block s-if="{{item.privateOriginal.is_check == '1'}}">
                     <image class="published-status-img" src="{{IMGCDNURL + 'published-recruit-checking.png'}}"></image>
                 </block>

@@ -19,7 +19,8 @@ export interface SearchType {
 }
 
 export default function Fleamarket() {
-
+  // 是否已是最后一页
+  const [isend, setIsend] = useState<boolean>(false)
   // * 配置筛选条件
   const DEFAULT_CONDITION = [
     { id: 'area', text: '全国' },
@@ -41,8 +42,10 @@ export default function Fleamarket() {
 
   // * 请求列表数据
   useEffect(() => {
+    if (isend) return
     getFleamarketList(searchData).then(res => {
       Taro.hideNavigationBarLoading()
+      if (!res.length) setIsend(true)
       if (searchData.page === 1) setLists([[...res]])
       else setLists([...lists, [...res]])
       if (refresh) setRefresh(false)

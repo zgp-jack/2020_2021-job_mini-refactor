@@ -13,7 +13,8 @@ export interface SearchType {
   area_id: string,
   classify_id: string,
   keywords: string,
-  joblisttype: 'newest' | 'recommend',
+  // joblisttype: 'newest' | 'recommend',
+  joblisttype: string,
   token: string,
 }
 

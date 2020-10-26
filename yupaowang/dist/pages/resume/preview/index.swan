@@ -52,7 +52,7 @@
                                 <view class="ocworkotypeoo">
                                     <block s-if="{{data.info.miniInfoOccupations.length}}">
                                         <view class="ocworkotyp">
-                                            <view class="ocworkotyptu" s-key="loopState__temp2" s-for="loopArray75" s-for-item="v" s-for-index="i">{{v.privateOriginal}}</view>
+                                            <view class="ocworkotyptu" s-key="loopState__temp2" s-for="loopArray78" s-for-item="v" s-for-index="i">{{v.privateOriginal}}</view>
                                         </view>
                                     </block>
                                     <block s-if="{{data.info.miniInfoOccupations.length === 0}}"><text class="workotextone">暂未填写</text>
@@ -82,7 +82,7 @@
                             <block s-if="{{data.introduces.tags.length}}">
                                 <view class="cardotext"><text class="oworkotext">标签</text>
                                     <view class="alllabletu">
-                                        <view s-key="loopState__temp4" class="labletu" s-for="loopArray76" s-for-item="v" s-for-index="i">{{v.privateOriginal.label_name}}</view>
+                                        <view s-key="loopState__temp4" class="labletu" s-for="loopArray79" s-for-item="v" s-for-index="i">{{v.privateOriginal.label_name}}</view>
                                     </view>
                                 </view>
                             </block>
@@ -120,7 +120,7 @@
                 </view>
                 <view class="cardcolore">
                     <view class="cardsix">
-                        <view class="cardsixzong" s-key="loopState__temp6" s-for="loopArray77" s-for-item="item" s-for-index="i">
+                        <view class="cardsixzong" s-key="loopState__temp6" s-for="loopArray80" s-for-item="item" s-for-index="i">
                             <block s-if="{{item.privateOriginal.check == 1}}">
                                 <image class="checkfour" src="{{IMGCDNURL + 'lpy/audit.png'}}"></image>
                             </block>
@@ -171,7 +171,7 @@
                 </view>
                 <view class="cardcolore">
                     <view class="cardsix">
-                        <view class="cardsixzong" s-key="privateOriginal.id" s-for="loopArray78" s-for-item="item" s-for-index="__index3">
+                        <view class="cardsixzong" s-key="privateOriginal.id" s-for="loopArray81" s-for-item="item" s-for-index="__index3">
                             <block s-if="{{item.privateOriginal.check == 1 && data.content.show_tips == 1}}">
                                 <image class="checkthree" src="{{IMGCDNURL + 'lpy/audit.png'}}"></image>
                             </block>

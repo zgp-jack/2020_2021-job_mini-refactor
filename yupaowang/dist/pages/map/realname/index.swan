@@ -13,14 +13,14 @@
                 </block>
                 <block>
                     <block s-if="{{showHistory}}">
-                        <view class="location-list-item" s-key="loopState__temp2" bindtap="anonymousFunc4" s-for="loopArray34" s-for-item="item" s-for-index="index" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">
+                        <view class="location-list-item" s-key="loopState__temp2" bindtap="anonymousFunc4" s-for="loopArray37" s-for-item="item" s-for-index="index" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">
                             <view class="location-list-header overwords">{{item.privateOriginal.name}}<text>{{item.privateOriginal.distance}}</text>
                             </view>
                             <view class="location-list-content">{{item.privateOriginal.district}}</view>
                         </view>
                     </block>
                     <block s-else>
-                        <view class="location-list-item" s-key="loopState__temp4" bindtap="anonymousFunc5" s-for="loopArray35" s-for-item="item" s-for-index="index" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey2}}">
+                        <view class="location-list-item" s-key="loopState__temp4" bindtap="anonymousFunc5" s-for="loopArray38" s-for-item="item" s-for-index="index" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey2}}">
                             <view class="location-list-header overwords">{{item.privateOriginal.name}}<text>{{item.privateOriginal.distance}}</text>
                             </view>
                             <view class="location-list-content">{{item.privateOriginal.district}}</view>
@@ -37,7 +37,7 @@
         </view>
         <block s-if="{{showCity}}">
             <view class="mapinfo-citys">
-                <cities compid="{{$compid__30}}"></cities>
+                <cities compid="{{$compid__32}}"></cities>
             </view>
         </block>
     </view>

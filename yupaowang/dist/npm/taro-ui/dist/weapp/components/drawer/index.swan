@@ -6,7 +6,7 @@
                 <block>
                     <block s-if="{{items.length}}">
                         <at-list>
-                            <at-list-item s-key="loopState__temp5" data-index="{{index}}" s-for="loopArray16" s-for-item="name" s-for-index="index" compid="{{name.$compid__14}}"></at-list-item>
+                            <at-list-item s-key="loopState__temp5" data-index="{{index}}" s-for="loopArray19" s-for-item="name" s-for-index="index" compid="{{name.$compid__16}}"></at-list-item>
                         </at-list>
                     </block>
                     <block s-else>

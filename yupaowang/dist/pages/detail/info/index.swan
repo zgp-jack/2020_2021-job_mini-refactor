@@ -62,12 +62,12 @@
         <view class="detailInfo-project-content">
             <view class="detailInfo-project-content-title">项目描述:</view>
             <view class="detailInfo-project-content-classifyName-box">
-                <view s-key="loopState__temp2" class="detailInfo-project-content-classifyName" s-for="loopArray80" s-for-item="v" s-for-index="i">{{v.privateOriginal}}</view>
+                <view s-key="loopState__temp2" class="detailInfo-project-content-classifyName" s-for="loopArray52" s-for-item="v" s-for-index="i">{{v.privateOriginal}}</view>
             </view>
             <view class="detailInfo-project-content-detail">{{data.detail}}</view>
-            <block s-if="{{data.view_images.length > 0}}">
+            <block s-if="{{data.view_images.length}}">
                 <view class="detailInfo-project-content-image-box">
-                    <image src="{{v.privateOriginal}}" s-key="loopState__temp4" class="detailInfo-project-content-image" bindtap="anonymousFunc5" s-for="loopArray81" s-for-item="v" s-for-index="i" data-e-tap-so="this" data-e-tap-a-a="{{v._$indexKey}}"></image>
+                    <image src="{{v.privateOriginal}}" s-key="loopState__temp4" class="detailInfo-project-content-image" bindtap="anonymousFunc5" s-for="loopArray53" s-for-item="v" s-for-index="i" data-e-tap-so="this" data-e-tap-a-a="{{v._$indexKey}}"></image>
                 </view>
             </block>
             <view class="detailInfo-project-content-address">项目地址:
@@ -174,10 +174,10 @@
             </block>
         </block>
         <block s-if="{{recommend.length}}">
-            <collection-recruit-list compid="{{$compid__67}}"></collection-recruit-list>
+            <collection-recruit-list compid="{{$compid__53}}"></collection-recruit-list>
         </block>
         <block s-if="{{complaintModal}}">
-            <report compid="{{$compid__68}}"></report>
+            <report compid="{{$compid__54}}"></report>
         </block>
     </view>
 </block>

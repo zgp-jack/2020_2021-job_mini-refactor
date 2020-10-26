@@ -77,7 +77,7 @@ export interface FleamarketItem {
 }
 
 export interface RecruitItem {
-  lists: RecruitList[],
+  lists: RecruitListItem[],
   title: string
 }
 
@@ -86,8 +86,13 @@ export interface ResumeItem {
   title: string
 }
 
-// 招工列表数据
-export interface RecruitList {
+// 招工列表数据 
+export interface RecruitList extends Result{
+  data: RecruitListItem[]
+}
+
+// 招工列表单项数据
+export interface RecruitListItem{
   id: number,
   detail: string,
   image: string,
@@ -1205,4 +1210,68 @@ export interface resumesTopConfigData{
   max_city:number,
   special_ids:[],
   country_integral:number,
+}
+
+// 用户账号/验证码登录
+export interface userAccountOrCodeResult extends Result{
+  result: {
+    uid: number
+    uuid: string
+    tel: string
+    username: string
+    nickname: string
+    token: {
+      token: string,
+      time: number
+    }
+  },
+}
+
+// 获取工种等筛选数据
+export interface filterClassifyResult extends Result{
+  data: filterClassifyDataResult
+}
+
+// 获取工种等筛选数据Data整合
+export interface filterClassifyDataResult{
+  classTree: filterClassifyResultClassTree[],
+  fleamarketTree: filterClassifyResultFleamarketTree[],
+  staffTree: filterClassifyResultStaffTree[],
+  jobListType: filterClassifyResultJoblistType[],
+  resumeListType: filterClassifyResultJoblistType[]
+}
+
+// 筛选工种数据父类
+export interface filterClassifyResultClassTreeBase {
+  id: number,
+  pid: number,
+  name: string,
+}
+
+// 筛选工种数据
+export interface filterClassifyResultClassTree extends filterClassifyResultClassTreeBase {
+  children: filterClassifyResultClassTreeBase[],
+  has_children: number
+}
+
+
+// 筛选二手交易分类信息数据
+export interface filterClassifyResultFleamarketTree extends filterClassifyResultClassTreeBase {
+  letter: string,
+  has_attribute: number,
+  attributes: Pick<filterClassifyResultClassTreeBase,'id'|'name'>,
+}
+
+// 找活筛选分类信息数据
+export interface filterClassifyResultStaffTree {
+  letter: string,
+  name: string,
+  id: number,
+  has_children: number
+}
+
+// 筛选招工条件数据
+export interface filterClassifyResultJoblistType {
+  type: string,
+  name: string
 }

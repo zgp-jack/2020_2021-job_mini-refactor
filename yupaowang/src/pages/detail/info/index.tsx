@@ -1,4 +1,4 @@
-import Taro, { Config, useState, useRouter, useDidShow } from '@tarojs/taro'
+import Taro, { Config, useState, useRouter, useDidShow, useEffect } from '@tarojs/taro'
 import { View, Text, Image, Icon, Button } from '@tarojs/components'
 import { jobInfoAction, publishComplainAction, jobGetTelAction, recruitListCancelCollectionAction, jobEndStatusAction, jobUpdateTopStatusAction, jobNoUserInfoAction, jobRecommendListAction } from '../../../utils/request/index'
 import WechatNotice from '../../../components/wechat'
@@ -170,22 +170,6 @@ export default function DetailInfoPage() {
         }
       })
     }
-    // jobInfoAction(params).then(res => {
-    //   setRefresh(false)
-    //   setData(res.result);
-    //   setPhone(res.result.tel_str);
-    //   setEditPhone(res.result.show_ajax_btn)
-    //   Taro.setNavigationBarTitle({
-    //     title: res.result.title
-    //   })
-    //   setIsCollection(res.result.is_collect);
-    //   if (userInfo.userId === res.result.user_id) {
-    //     // 判断是自己发布的招工
-    //     setResCode('own')
-    //   } else {
-    //     setResCode(res.errcode)
-    //   }
-    // })
   }
   // 地图
   const handleMap = ()=>{
@@ -447,7 +431,7 @@ export default function DetailInfoPage() {
         ))}
         </View>
         <View className='detailInfo-project-content-detail'>{data.detail}</View>
-        {data.view_images.length>0 && 
+        {data.view_images.length && 
           <View className='detailInfo-project-content-image-box'>
             {data.view_images.map((v,i)=>(
               <Image src={v} key={i + i} className='detailInfo-project-content-image' onClick={()=>handleImage(v)}/>

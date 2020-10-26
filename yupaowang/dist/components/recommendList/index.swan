@@ -2,12 +2,12 @@
     <view>
         <block s-if="{{type === 1}}">
             <view>
-                <recruit-list-page compid="{{$compid__53}}"></recruit-list-page>
+                <recruit-list-page compid="{{$compid__55}}"></recruit-list-page>
             </view>
         </block>
         <block s-if="{{type === 2}}">
             <view>
-                <resume-list-page compid="{{$compid__54}}"></resume-list-page>
+                <resume-list-page compid="{{$compid__56}}"></resume-list-page>
             </view>
         </block>
     </view>

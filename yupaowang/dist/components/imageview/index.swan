@@ -1,7 +1,7 @@
 <block s-if="{{$taroCompReady}}">
     <view class="uploads-imgs-lists clearfix">
         <block s-if="{{images}}">
-            <view class="uploads-img-item" s-key="loopState__temp2" bindtap="anonymousFunc0" s-for="loopArray20" s-for-item="item" s-for-index="index" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">
+            <view class="uploads-img-item" s-key="loopState__temp2" bindtap="anonymousFunc0" s-for="loopArray23" s-for-item="item" s-for-index="index" data-e-tap-so="this" data-e-tap-a-a="{{item._$indexKey}}">
                 <view class="uploads-img-imgbox">
                     <image class="uploads-item-img" src="{{item.privateOriginal.httpurl}}"></image>
                     <block s-if="{{bool}}">

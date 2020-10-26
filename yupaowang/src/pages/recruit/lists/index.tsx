@@ -6,10 +6,11 @@ import WechatNotice from '../../../components/wechat'
 import RecruitList from '../../../components/lists/recruit'
 import { getRecruitList } from '../../../utils/request'
 import { SearchType } from '../index.d'
-import { RecruitList as RecruitListType } from '../../../utils/request/index.d'
+import { RecruitListItem } from '../../../utils/request/index.d'
 import { UserLocationPromiss, ChildItems, AREACHINA, getCityInfo } from '../../../models/area'
 import { UserListChooseCity, UserLocationCity } from '../../../config/store'
 import { userAuthLoction } from '../../../utils/helper'
+import { AreaPickerKey, ClassifyPickerKey, FilterPickerKey } from '../../../config/pages/lists'
 import './index.scss'
 
 interface conditionType {
@@ -23,15 +24,16 @@ export default function Recruit(){
   let userListChooseCity: ChildItems = Taro.getStorageSync(UserListChooseCity)
   // * 配置筛选条件
   const [condition, setCondition] = useState<conditionType[]>([
-    { id: 'area', text: userListChooseCity ? userListChooseCity.name : '全国' },
-    { id: 'work', text: '选择工种' },
-    { id: 'filter', text: '最新' }
+    { id: AreaPickerKey, text: userListChooseCity ? userListChooseCity.name : '全国' },
+    { id: ClassifyPickerKey, text: '选择工种' },
+    { id: FilterPickerKey, text: '最新' }
   ])
-  
+  // * scrollTop 位置 回到顶部
+  const [scrollTop,setScrollTop] = useState<number>(0)
   // * 标记是否是在刷新状态
   const [refresh, setRefresh] = useState<boolean>(false)
   // * 定义列表数组
-  const [lists, setLists] = useState<RecruitListType[][]>([])
+  const [lists, setLists] = useState<RecruitListItem[][]>([])
   // * 定义data
   const [searchData, setSearchData] = useState<SearchType>({
     page: 1,
@@ -87,8 +89,8 @@ export default function Recruit(){
   const getRecruitListAction = ()=> {
     getRecruitList(searchData).then(res => {
       Taro.hideNavigationBarLoading()
-      if (searchData.page === 1) setLists([[...res]])
-      else setLists([...lists, [...res]])
+      if (searchData.page === 1) setLists([[...res.data]])
+      else setLists([...lists, [...res.data]])
       if (refresh) setRefresh(false)
     })
   }
@@ -101,6 +103,7 @@ export default function Recruit(){
 
   // * 触底加载下一页
   const getNextPageData = ()=> {
+    console.log('触底触底')
     Taro.showNavigationBarLoading()
     setSearchData({...searchData, page: searchData.page + 1})
   }
@@ -116,16 +119,31 @@ export default function Recruit(){
     Taro.navigateTo({url: '/pages/recruit/publish/index'})
   }
 
+  // * 更新筛选条件
+  const setSearchDataAction = (type: string, id: string) => {
+    if(type === ClassifyPickerKey){
+      setSearchData({ ...searchData, classify_id: id, page: 1})
+    }else if(type === AreaPickerKey){
+      setSearchData({ ...searchData, area_id: id, page: 1})
+    }else{
+      setSearchData({ ...searchData, joblisttype: id, page: 1 })
+    }
+    setScrollTop(0)
+  }
+
   return (
     <View className='recruit-container'>
       <View className='recruit-fiexd-header'>
         <Search placeholder='找活、找工作' value='' />
-        <Condition data={ condition }  />
+        <Condition data={condition} setSearchData={(type, id) => setSearchDataAction(type, id)} />
       </View>
       <ScrollView 
         className='recruit-lists-containerbox' 
         scrollY
         refresherEnabled
+        scrollTop={scrollTop}
+        onScroll={(e: any) => setScrollTop(e.detail.scrollTop)}
+        scrollWithAnimation
         refresherTriggered={ refresh }
         onRefresherRefresh={() => pullDownAction()}
         lowerThreshold={200} 
