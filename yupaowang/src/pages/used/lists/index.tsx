@@ -1,7 +1,7 @@
 import Taro, { useEffect, useState } from '@tarojs/taro'
 import { View, ScrollView, Block } from '@tarojs/components'
 import Search from '../../../components/search'
-import Condition from '../../../components/condition'
+import Condition from '../../../components/recruitCondition'
 import WechatNotice from '../../../components/wechat'
 import UsedList from '../../../components/lists/used'
 import { getFleamarketList } from '../../../utils/request'

@@ -27,8 +27,11 @@
     "dev:quickapp": "npm run build:quickapp -- --watch",
 
 
-    "dev-baidu": "npm run build:swan jizhao -- --watch",
-    "build-baidu": "taro build jizhao --type swan ",
+    "dev-baidu": "npm run build:swan baidu -- --watch",
+    "build-baidu": "taro build baidu --type swan ",
+
+    "dev-douyin": "npm run build:tt douyin -- --watch",
+    "build-douyin": "taro build douyin --type tt ",
 
 
 

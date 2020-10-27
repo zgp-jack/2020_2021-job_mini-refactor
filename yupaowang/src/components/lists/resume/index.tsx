@@ -32,8 +32,9 @@ export default function ResumeList({ data, bottom = true }: PROPS){
                   </View>
                   <Text className='resume-list-type'>{ d.type }</Text>
                   <View className='resume-otherinfo'>
-                    <Text className='resume-otherinfo-text'>{ d.nation }</Text>
-                    <Text className='resume-otherinfo-text'>{ d.experience }</Text>
+                    {d.nation && <Text className='resume-otherinfo-text'>{d.nation}</Text>}
+                    {d.experience && <Text className='resume-otherinfo-text'>{d.experience}</Text>}
+                    {d.prof_degree && <Text className='resume-otherinfo-text'>{d.prof_degree}</Text>}
                   </View>
                   {/* <View className='resume-list-tags'>
               <Text className='resume-list-tags-item'>任劳任怨</Text>
@@ -51,7 +52,7 @@ export default function ResumeList({ data, bottom = true }: PROPS){
               <View className='resume-list-footer'>
                 <Image className='resume-list-loc' src={IMGCDNURL + 'lpy/biaoqian.png'} />
                 <View className='resume-list-loctxt overwords'>{ d.show_address }</View>
-                <Text className='resume-list-time'>{ d.prof_degree }</Text>
+                <Text className='resume-list-time'>{ d.time }</Text>
               </View>
             </View>
           ))}

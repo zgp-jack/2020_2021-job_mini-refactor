@@ -1,1 +1,166 @@
-(swan.webpackJsonp=swan.webpackJsonp||[]).push([[8],{"183":function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{"value":!0});var r=function(t,e,n){return e&&defineProperties(t.prototype,e),n&&defineProperties(t,n),t};function defineProperties(t,e){for(var n=0;n<e.length;n++){var r=e[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(t,r.key,r)}}var a=n(0),u=_interopRequireDefault(a),i=_interopRequireDefault(n(184));function _interopRequireDefault(t){return t&&t.__esModule?t:{"default":t}}n(185);var o=(function _inherits(t,e){if("function"!=typeof e&&null!==e)throw new TypeError("Super expression must either be null or a function, not "+typeof e);t.prototype=Object.create(e&&e.prototype,{"constructor":{"value":t,"enumerable":!1,"writable":!0,"configurable":!0}}),e&&(Object.setPrototypeOf?Object.setPrototypeOf(t,e):t.__proto__=e)}(Fastfun,u.default.Component),r(Fastfun,[{"key":"_constructor","value":function _constructor(t){(function get(t,e,n){null===t&&(t=Function.prototype);var r=Object.getOwnPropertyDescriptor(t,e);if(void 0===r){var o=Object.getPrototypeOf(t);return null===o?void 0:get(o,e,n)}if("value"in r)return r.value;var a=r.get;return void 0!==a?a.call(n):void 0})(Fastfun.prototype.__proto__||Object.getPrototypeOf(Fastfun.prototype),"_constructor",this).call(this,t),this.$$refs=new u.default.RefsArray}},{"key":"_createData","value":function _createData(t,e,n){var o=this;this.__state=t||this.state||{},this.__props=e||this.props||{},this.$prefix;var r=i.default.map(function(t,e){t={"privateOriginal":(0,a.internal_get_original)(t)};var n=e+e,r="bazzz"+e;return o.anonymousFunc0Map[r]=function(){return function userRouteJump(t){u.default.navigateTo({"url":t})}(t.privateOriginal.url)},{"loopState__temp2":n,"_$indexKey":r,"privateOriginal":t.privateOriginal}});return Object.assign(this.__state,{"loopArray8":r,"Config":i.default}),this.__state}},{"key":"anonymousFunc0","value":function anonymousFunc0(t){for(var e,n=arguments.length,r=Array(1<n?n-1:0),o=1;o<n;o++)r[o-1]=arguments[o];return this.anonymousFunc0Map[t]&&(e=this.anonymousFunc0Map)[t].apply(e,r)}}]),Fastfun);function Fastfun(){!function _classCallCheck(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}(this,Fastfun);var t=function _possibleConstructorReturn(t,e){if(!t)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!e||"object"!=typeof e&&"function"!=typeof e?t:e}(this,(Fastfun.__proto__||Object.getPrototypeOf(Fastfun)).apply(this,arguments));return t.$usedState=["loopArray8","Config"],t.anonymousFunc0Map={},t.customComponents=[],t}o.$$events=["anonymousFunc0"],o.$$componentPath="components/index/fastfun/index",e.default=o,Component(n(0).default.createComponent(o))},"184":function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{"value":!0});var r=n(2),o=[{"url":"/pages/static/invite","img":r.IMGCDNURL+"yqhy.png","text":"邀请好友"},{"url":"pages/query/query","img":r.IMGCDNURL+"smcx.png","text":"实名查询"},{"url":"/pages/static/invite/index","img":r.IMGCDNURL+"index-newzjxm.png","text":"鱼泡动态"}];e.default=o},"185":function(t,e,n){}},[[183,0,1]]]);
+(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["components/index/fastfun/index"],{
+
+/***/ "./src/components/index/fastfun/config.ts":
+/*!************************************************!*\
+  !*** ./src/components/index/fastfun/config.ts ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _index = __webpack_require__(/*! ../../../config/index */ "./src/config/index.ts");
+
+var Config = [{
+  url: '/pages/static/invite',
+  img: _index.IMGCDNURL + 'yqhy.png',
+  text: '邀请好友'
+}, {
+  url: 'pages/query/query',
+  img: _index.IMGCDNURL + 'smcx.png',
+  text: '实名查询'
+}, {
+  url: '/pages/static/invite/index',
+  img: _index.IMGCDNURL + 'index-newzjxm.png',
+  text: '鱼泡动态'
+}];
+exports.default = Config;
+
+/***/ }),
+
+/***/ "./src/components/index/fastfun/index.scss":
+/*!*************************************************!*\
+  !*** ./src/components/index/fastfun/index.scss ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
+/***/ "./src/components/index/fastfun/index.tsx":
+/*!************************************************!*\
+  !*** ./src/components/index/fastfun/index.tsx ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+
+var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+
+var _taroTt2 = _interopRequireDefault(_taroTt);
+
+var _config = __webpack_require__(/*! ./config */ "./src/components/index/fastfun/config.ts");
+
+var _config2 = _interopRequireDefault(_config);
+
+__webpack_require__(/*! ./index.scss */ "./src/components/index/fastfun/index.scss");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Fastfun = function (_Taro$Component) {
+  _inherits(Fastfun, _Taro$Component);
+
+  function Fastfun() {
+    _classCallCheck(this, Fastfun);
+
+    var _this = _possibleConstructorReturn(this, (Fastfun.__proto__ || Object.getPrototypeOf(Fastfun)).apply(this, arguments));
+
+    _this.$usedState = ["loopArray8", "Config"];
+    _this.anonymousFunc0Map = {};
+    _this.customComponents = [];
+    return _this;
+  }
+
+  _createClass(Fastfun, [{
+    key: '_constructor',
+    value: function _constructor(props) {
+      _get(Fastfun.prototype.__proto__ || Object.getPrototypeOf(Fastfun.prototype), '_constructor', this).call(this, props);
+      this.$$refs = new _taroTt2.default.RefsArray();
+    }
+  }, {
+    key: '_createData',
+    value: function _createData() {
+      var _this2 = this;
+
+      this.__state = arguments[0] || this.state || {};
+      this.__props = arguments[1] || this.props || {};
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
+      ;
+      // 用户页面跳转
+      var userRouteJump = function userRouteJump(url) {
+        _taroTt2.default.navigateTo({
+          url: url
+        });
+      };
+      var loopArray8 = _config2.default.map(function (item, index) {
+        item = {
+          $original: (0, _taroTt.internal_get_original)(item)
+        };
+        var $loopState__temp2 = index + index;
+        var _$indexKey = "bazzz" + index;
+        _this2.anonymousFunc0Map[_$indexKey] = function () {
+          return userRouteJump(item.$original.url);
+        };
+        return {
+          $loopState__temp2: $loopState__temp2,
+          _$indexKey: _$indexKey,
+          $original: item.$original
+        };
+      });
+      Object.assign(this.__state, {
+        loopArray8: loopArray8,
+        Config: _config2.default
+      });
+      return this.__state;
+    }
+  }, {
+    key: 'anonymousFunc0',
+    value: function anonymousFunc0(_$indexKey) {
+      var _anonymousFunc0Map;
+
+      ;
+
+      for (var _len = arguments.length, e = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+        e[_key - 1] = arguments[_key];
+      }
+
+      return this.anonymousFunc0Map[_$indexKey] && (_anonymousFunc0Map = this.anonymousFunc0Map)[_$indexKey].apply(_anonymousFunc0Map, e);
+    }
+  }]);
+
+  return Fastfun;
+}(_taroTt2.default.Component);
+
+Fastfun.$$events = ["anonymousFunc0"];
+Fastfun.$$componentPath = "components/index/fastfun/index";
+exports.default = Fastfun;
+
+Component(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(Fastfun));
+
+/***/ })
+
+},[["./src/components/index/fastfun/index.tsx","runtime","vendors"]]]);

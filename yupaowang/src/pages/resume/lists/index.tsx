@@ -1,7 +1,7 @@
 import Taro, { useState, useEffect } from '@tarojs/taro'
 import { View, ScrollView } from '@tarojs/components'
 import Search from '../../../components/search'
-import Condition from '../../../components/condition'
+import ResumeCondition from '../../../components/recruitCondition/'
 import WechatNotice from '../../../components/wechat'
 import ResumeList from '../../../components/lists/resume'
 import { SearchType } from '../index.d'
@@ -18,6 +18,8 @@ export default function Recruit() {
     { id: 'type', text: '队伍' },
     { id: 'filter', text: '推荐' }
   ]
+  // * 搜索数据 备份 
+  const [remark, setRemark] = useState<string>('')
   // * 标记是否是在刷新状态
   const [refresh, setRefresh] = useState<boolean>(false)
   // * 定义列表数组
@@ -62,8 +64,8 @@ export default function Recruit() {
   return (
     <View className='recruit-container'>
       <View className='recruit-fiexd-header'>
-        <Search placeholder='找工人，找队伍，找班组' value='' />
-        <Condition data={DEFAULT_CONDITION} />
+        <Search placeholder='找工人，找队伍，找班组' value='' setRemark={(val: string) => setRemark(val)} setSearchData={()=>{}} />
+        <ResumeCondition data={DEFAULT_CONDITION} setSearchData={()=>{}} />
       </View>
       <ScrollView 
         className='recruit-lists-containerbox'

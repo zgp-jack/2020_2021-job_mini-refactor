@@ -1,7 +1,0 @@
-<block s-if="{{$taroCompReady}}">
-    <view class="recruit-container">
-        <view class="recruit-lists-containerbox">
-            <collection-resume-list compid="{{$compid__39}}"></collection-resume-list>
-        </view>
-    </view>
-</block>

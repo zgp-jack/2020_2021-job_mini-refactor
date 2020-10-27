@@ -1,3 +1,0 @@
-<block s-if="{{$taroCompReady}}">
-    <view class="integral-container">1111</view>
-</block>

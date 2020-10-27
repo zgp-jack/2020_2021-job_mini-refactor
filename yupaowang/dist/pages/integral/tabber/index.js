@@ -1,1 +1,822 @@
-(swan.webpackJsonp=swan.webpackJsonp||[]).push([[52],{"134":function(t,e,a){"use strict";Object.defineProperty(e,"__esModule",{"value":!0});var Te=function(t,e){if(Array.isArray(t))return t;if(Symbol.iterator in Object(t))return function sliceIterator(t,e){var a=[],n=!0,o=!1,i=void 0;try{for(var r,s=t[Symbol.iterator]();!(n=(r=s.next()).done)&&(a.push(r.value),!e||a.length!==e);n=!0);}catch(t){o=!0,i=t}finally{try{!n&&s.return&&s.return()}finally{if(o)throw i}}return a}(t,e);throw new TypeError("Invalid attempt to destructure non-iterable instance")},n=function(t,e,a){return e&&defineProperties(t.prototype,e),a&&defineProperties(t,a),t};function defineProperties(t,e){for(var a=0;a<e.length;a++){var n=e[a];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(t,n.key,n)}}var ke=a(0),Fe=_interopRequireDefault(ke),Ce=a(1),xe=a(9),Ae=a(2),Oe=a(10),we=a(5),Ie=a(3),Me=_interopRequireDefault(Ie);function _interopRequireDefault(t){return t&&t.__esModule?t:{"default":t}}function _toConsumableArray(t){if(Array.isArray(t)){for(var e=0,a=Array(t.length);e<t.length;e++)a[e]=t[e];return a}return Array.from(t)}a(135);var o=(function _inherits(t,e){if("function"!=typeof e&&null!==e)throw new TypeError("Super expression must either be null or a function, not "+typeof e);t.prototype=Object.create(e&&e.prototype,{"constructor":{"value":t,"enumerable":!1,"writable":!0,"configurable":!0}}),e&&(Object.setPrototypeOf?Object.setPrototypeOf(t,e):t.__proto__=e)}(Tabber,Fe.default.Component),n(Tabber,[{"key":"_constructor","value":function _constructor(t){(function get(t,e,a){null===t&&(t=Function.prototype);var n=Object.getOwnPropertyDescriptor(t,e);if(void 0===n){var o=Object.getPrototypeOf(t);return null===o?void 0:get(o,e,a)}if("value"in n)return n.value;var i=n.get;return void 0!==i?i.call(a):void 0})(Tabber.prototype.__proto__||Object.getPrototypeOf(Tabber.prototype),"_constructor",this).call(this,t),this.$$refs=new Fe.default.RefsArray}},{"key":"_createData","value":function _createData(t,e,a){var o=this;this.__state=t||this.state||{},this.__props=e||this.props||{};var n=this.$prefix,i=(0,ke.genCompid)(n+"$compid__51"),r=Te(i,2),s=r[0],u=r[1],l=(0,ke.genCompid)(n+"$compid__52"),c=Te(l,2),f=c[0],p=c[1],y=(0,ke.useRouter)().params,m=y.info,d=y.office,g=(0,ke.useState)(!1),v=Te(g,2),_=v[0],b=v[1],h=(0,ke.useState)(!1),S=Te(h,2),T=S[0],k=S[1],F=(0,ke.useState)(m),C=Te(F,2),x=C[0],A=C[1],O=(0,ke.useState)([]),w=Te(O,2),I=w[0],M=w[1],P=(0,ke.useState)(""),$=Te(P,2),j=$[0],D=$[1],R=(0,ke.useState)(""),L=Te(R,2),E=L[0],N=L[1],B=(0,ke.useState)(""),U=Te(B,2),q=U[0],z=U[1],G=(0,ke.useState)(""),J=Te(G,2),V=J[0],K=J[1],Y=(0,ke.useState)(""),H=Te(Y,2),Q=H[0],W=H[1],X=(0,ke.useState)("0"),Z=Te(X,2),tt=Z[0],et=Z[1],at=(0,ke.useState)("0"),nt=Te(at,2),ot=nt[0],it=nt[1],rt=(0,ke.useState)({"lists":[],"next_page":0,"stime":"0","bak":"0"}),st=Te(rt,2),ut=st[0],lt=st[1],ct=(0,ke.useState)({"get":0,"expend":0}),ft=Te(ct,2),pt=ft[0],yt=ft[1],mt=(0,ke.useState)(!1),dt=Te(mt,2),gt=dt[0],vt=dt[1],_t=(0,ke.useState)(),bt=Te(_t,2),ht=bt[0],St=bt[1],Tt=(0,ke.useState)(!1),kt=Te(Tt,2),Ft=kt[0],Ct=kt[1],xt=(0,ke.useState)(""),At=Te(xt,2),Ot=At[0],wt=At[1],It=(0,ke.useState)(""),Mt=Te(It,2),Pt=Mt[0],$t=Mt[1],jt=(0,ke.useState)({"y":"0","m":"0","stime":"0","type":0,"bak":"0","system_type":(0,xe.getSystemInfo)(),"flag":!1}),Dt=Te(jt,2),Rt=Dt[0],Lt=Dt[1],Et=(0,ke.useState)(!1),Nt=Te(Et,2),Bt=Nt[0],Ut=Nt[1],qt=(0,ke.useState)({"time":"","sortType":"0","flag":!1,"listType":"0"}),zt=Te(qt,2),Gt=zt[0],Jt=zt[1],Vt=(0,ke.useState)({"time":"","sortType":"0","flag":!1,"listType":"0"}),Kt=Te(Vt,2),Yt=Kt[0],Ht=Kt[1],Qt=(0,ke.useState)(0),Wt=Te(Qt,2),Xt=Wt[0],Zt=Wt[1],te=(0,ke.useState)([]),ee=Te(te,2),ae=ee[0],ne=ee[1],oe=(0,ke.useState)([]),ie=Te(oe,2),re=ie[0],se=ie[1],ue=(0,ke.useState)(!1),le=Te(ue,2),ce=le[0],fe=le[1],pe=(0,ke.useState)(!1),ye=Te(pe,2),me=ye[0],de=ye[1];(0,ke.useEffect)(function(){var t="0"===x?"鱼泡网-积分来源记录":"鱼泡网-积分消耗记录";Fe.default.setNavigationBarTitle({"title":t});var e=new Date,a=e.getFullYear(),n=e.getMonth()+1;if(1<=n&&n<=9&&(n="0"+n),z(a+"-"+n),"0"===x)if(ce){if(Gt.flag){var o=Gt.time.split("-"),i={"y":o[0],"m":o[1],"stime":"0","source_type":Gt.sortType,"bak":"0","system_type":(0,xe.getSystemInfo)(),"flag":!0,"office":d};D(ae[Gt.listType]),W(o[0]+"年"+o[1]+"月"),K(Gt.time),Zt(parseInt(Gt.listType)),Lt(i)}}else ve();else if(me){var r=Yt.time.split("-"),s={"y":r[0],"m":r[1],"stime":"0","type":Yt.sortType,"bak":"0","system_type":(0,xe.getSystemInfo)(),"flag":!0};D(re[Yt.listType]),W(r[0]+"年"+r[1]+"月"),K(Yt.time),Zt(parseInt(Yt.listType)),Lt(s)}else ge()},[x]),(0,ke.useEffect)(function(){Rt.flag&&("0"===x?_e:be)()},[Rt]);var ge=function integralExpendConfig(){(0,Ce.integralExpendConfigAction)().then(function(t){N(t.data.min.y+"-"+t.data.min.m);var e=t.data.types.map(function(t){return t.name});M(t.data.types),se(e),de(!0),D("消耗分类");var a=t.data.default.y+"-"+t.data.default.m;K(a),W(t.data.default.y+"年"+t.data.default.m+"月");var n={"y":t.data.default.y,"m":t.data.default.m,"stime":"0","type":0,"bak":"0","system_type":(0,xe.getSystemInfo)(),"flag":!0};Lt(n)})},ve=function integralSourceConfig(){var t={"office":d,"system_type":(0,xe.getSystemInfo)()};(0,Ce.integralSourceConfigAction)(t).then(function(t){N(t.data.min.y+"-"+t.data.min.m);var e=t.data.types.map(function(t){return t.name});M(t.data.types),ne(e),fe(!0),D("来源分类");var a=t.data.default.y+"-"+t.data.default.m;K(a),W(t.data.default.y+"年"+t.data.default.m+"月");var n={"y":t.data.default.y,"m":t.data.default.m,"stime":"0","source_type":0,"bak":"0","system_type":(0,xe.getSystemInfo)(),"flag":!0,"office":d};Lt(n)})},_e=function integralSourceLists(){(0,Ce.integralSourceListsAction)(Rt).then(function(t){Bt||(T||(yt(t.data.sum_data),k(!0)),_?(lt({"lists":[].concat(_toConsumableArray(t.data.lists)),"next_page":t.data.next_page,"stime":t.data.stime,"bak":t.data.bak}),b(!1)):lt({"lists":[].concat(_toConsumableArray(ut.lists),_toConsumableArray(t.data.lists)),"next_page":t.data.next_page,"stime":t.data.stime,"bak":t.data.bak}))})},be=function integralExpendLists(){(0,Ce.integralExpendListsAction)(Rt).then(function(t){Bt||(T||(yt(t.data.sum_data),k(!0)),_?(lt({"lists":[].concat(_toConsumableArray(t.data.lists)),"next_page":t.data.next_page,"stime":t.data.stime,"bak":t.data.bak}),b(!1)):lt({"lists":[].concat(_toConsumableArray(ut.lists),_toConsumableArray(t.data.lists)),"next_page":t.data.next_page,"stime":t.data.stime,"bak":t.data.bak}))})};(0,ke.useReachBottom)(function(){if(0!==ut.next_page){var t=V.split("-"),e=void 0;if("0"===x)for(var a=0;a<I.length;a++)I[a].name===ae[tt]&&(e=I[a].type);else for(var n=0;n<I.length;n++)I[n].name===re[ot]&&(e=I[n].type);var o={"y":t[0],"m":t[1],"stime":ut.stime,"source_type":e,"type":e,"bak":"0","system_type":"","flag":!0};Lt(o)}else Ut(!0)}),this.anonymousFunc0=function(t){return function handleClckTime(t){b(!0),k(!1);var e=t.target.value.split("-");W(e[0]+"年"+e[1]+"月"),K(t.target.value);var a=void 0;if("0"===x)for(var n=0;n<I.length;n++)I[n].name===ae[tt]&&(a=I[n].type);else for(var o=0;o<I.length;o++)I[o].name===re[ot]&&(a=I[o].type);var i={"y":e[0],"m":e[1],"stime":"0","source_type":a,"type":a,"bak":"0","system_type":(0,xe.getSystemInfo)(),"flag":!0};Lt(i)}(t)},this.anonymousFunc1=function(t){return function handleClick(t){b(!0),k(!1);var e=void 0;if("0"===x){et(t.detail.value),D(ae[t.detail.value]);for(var a=0;a<I.length;a++)I[a].name===ae[t.detail.value]&&(e=I[a].type)}else{D(re[t.detail.value]),it(t.detail.value);for(var n=0;n<I.length;n++)I[n].name===re[t.detail.value]&&(e=I[n].type)}var o=V.split("-"),i={"y":o[0],"m":o[1],"stime":"0","type":e,"source_type":e,"bak":"0","system_type":(0,xe.getSystemInfo)(),"flag":!0};Lt(i)}(t)},this.anonymousFunc2=function handleJump(){k(!1),Ut(!1),b(!0);var t=void 0;if("0"===x)for(var e=0;e<I.length;e++)I[e].name===ae[tt]&&(t=I[e].type);else for(var a=0;a<I.length;a++)I[a].name===re[ot]&&(t=I[a].type);"0"===x?(A("1"),Jt({"time":V,"sortType":t,"flag":!0,"listType":tt})):"1"===x&&(A("0"),Ht({"time":V,"sortType":t,"flag":!0,"listType":ot}))},this.anonymousFunc4=function(){vt(!1)},this.anonymousFunc5=function(){Fe.default.makePhoneCall({"phoneNumber":ht.user_mobile})},this.anonymousFunc6=function(){return function handleComplaint(t){Ct(!0),wt(t)}(ht.id)};var he=ut.lists.map(function(t,e){t={"privateOriginal":(0,ke.internal_get_original)(t)};var a=e+e,n="fhzzz"+e;return o.anonymousFunc3Map[n]=function(){return function handleModal(t){(0,Ce.integralUseInfoAction)(t).then(function(t){"deleted"===t.errcode?Fe.default.showModal({"title":"温馨提示","content":t.errmsg,"showCancel":!1}):(St(t.info),vt(!0))})}(t.privateOriginal.id)},{"loopState__temp2":a,"_$indexKey":n,"privateOriginal":t.privateOriginal}}),Se="1"===x&&gt&&ht?ht.classifyName.map(function(t,e){return t={"privateOriginal":(0,ke.internal_get_original)(t)},{"loopState__temp4":"1"===x&&gt&&ht?e+e:null,"privateOriginal":t.privateOriginal}}):[];return ut.lists.length||ke.propsManager.set({"text":"0"===x?"暂无积分来源记录":"暂无积分消耗记录"},u,s),Ft&&ke.propsManager.set({"display":Ft,"textarea":Pt,"handleTextarea":function handleTextarea(t){var e=t.detail.value;$t(e)},"setComplaintModal":Ct,"handleSubmit":function handleSubmit(){if(!(0,we.isVaildVal)(Pt,15,500))return(0,Me.default)("输入内容不少于15个字且必须包含文字"),!1;var t={"content":Pt,"type":"job","infoId":Ot};(0,Ce.publishComplainAction)(t).then(function(t){"ok"===t.errcode&&(0,Oe.SubscribeToNews)("complain",function(){(0,Ie.SubPopup)({"tips":t.errmsg,"callback":function callback(){Ct(!1),vt(!1)}})})})}},p,f),Object.assign(this.__state,{"data":ut,"modalData":ht,"loopArray50":he,"loopArray51":Se,"$compid__51":u,"$compid__52":p,"time":V,"start":E,"end":q,"IMGCDNURL":Ae.IMGCDNURL,"initInfo":x,"sourceList":ae,"consumeList":re,"startType":Xt,"modal":gt,"complaintModal":Ft,"showTime":Q,"title":j,"num":pt}),this.__state}},{"key":"anonymousFunc0","value":function anonymousFunc0(){}},{"key":"anonymousFunc1","value":function anonymousFunc1(){}},{"key":"anonymousFunc2","value":function anonymousFunc2(){}},{"key":"anonymousFunc3","value":function anonymousFunc3(t){for(var e,a=arguments.length,n=Array(1<a?a-1:0),o=1;o<a;o++)n[o-1]=arguments[o];return this.anonymousFunc3Map[t]&&(e=this.anonymousFunc3Map)[t].apply(e,n)}},{"key":"anonymousFunc4","value":function anonymousFunc4(){}},{"key":"anonymousFunc5","value":function anonymousFunc5(){}},{"key":"anonymousFunc6","value":function anonymousFunc6(){}}]),Tabber);function Tabber(){!function _classCallCheck(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}(this,Tabber);var t=function _possibleConstructorReturn(t,e){if(!t)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!e||"object"!=typeof e&&"function"!=typeof e?t:e}(this,(Tabber.__proto__||Object.getPrototypeOf(Tabber)).apply(this,arguments));return t.config={"navigationBarTitleText":""},t.$usedState=["data","modalData","loopArray50","loopArray51","$compid__51","$compid__52","time","start","end","IMGCDNURL","initInfo","sourceList","consumeList","startType","modal","complaintModal","showTime","title","num"],t.anonymousFunc3Map={},t.customComponents=["Nodata","Report"],t}o.$$events=["anonymousFunc0","anonymousFunc1","anonymousFunc2","anonymousFunc3","anonymousFunc4","anonymousFunc5","anonymousFunc6"],o.$$componentPath="pages/integral/tabber/index",o.config={"navigationBarTitleText":""},e.default=o,Page(a(0).default.createComponent(o,!0))},"135":function(t,e,a){}},[[134,0,1]]]);
+(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["pages/integral/tabber/index"],{
+
+/***/ "./src/pages/integral/tabber/index.scss":
+/*!**********************************************!*\
+  !*** ./src/pages/integral/tabber/index.scss ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
+/***/ "./src/pages/integral/tabber/index.tsx":
+/*!*********************************************!*\
+  !*** ./src/pages/integral/tabber/index.tsx ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+
+var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+
+var _taroTt2 = _interopRequireDefault(_taroTt);
+
+var _index = __webpack_require__(/*! ../../../utils/request/index */ "./src/utils/request/index.ts");
+
+var _index2 = __webpack_require__(/*! ../../../utils/helper/index */ "./src/utils/helper/index.ts");
+
+var _index3 = __webpack_require__(/*! ../../../config/index */ "./src/config/index.ts");
+
+var _index4 = __webpack_require__(/*! ../../../utils/subscribeToNews/index */ "./src/utils/subscribeToNews/index.ts");
+
+var _index5 = __webpack_require__(/*! ../../../utils/v/index */ "./src/utils/v/index.ts");
+
+var _index6 = __webpack_require__(/*! ../../../utils/msg/index */ "./src/utils/msg/index.ts");
+
+var _index7 = _interopRequireDefault(_index6);
+
+__webpack_require__(/*! ./index.scss */ "./src/pages/integral/tabber/index.scss");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+// 只用temp和source
+
+var Tabber = function (_Taro$Component) {
+  _inherits(Tabber, _Taro$Component);
+
+  function Tabber() {
+    _classCallCheck(this, Tabber);
+
+    var _this = _possibleConstructorReturn(this, (Tabber.__proto__ || Object.getPrototypeOf(Tabber)).apply(this, arguments));
+
+    _this.config = {
+      navigationBarTitleText: ''
+    };
+
+    _this.$usedState = ["data", "modalData", "loopArray58", "loopArray59", "$compid__54", "$compid__55", "time", "start", "end", "IMGCDNURL", "initInfo", "sourceList", "consumeList", "startType", "modal", "complaintModal", "showTime", "title", "num"];
+    _this.anonymousFunc3Map = {};
+    _this.customComponents = ["Nodata", "Report"];
+    return _this;
+  }
+
+  _createClass(Tabber, [{
+    key: '_constructor',
+    value: function _constructor(props) {
+      _get(Tabber.prototype.__proto__ || Object.getPrototypeOf(Tabber.prototype), '_constructor', this).call(this, props);
+      this.$$refs = new _taroTt2.default.RefsArray();
+    }
+  }, {
+    key: '_createData',
+    value: function _createData() {
+      var _this2 = this;
+
+      this.__state = arguments[0] || this.state || {};
+      this.__props = arguments[1] || this.props || {};
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
+      ;
+
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__54"),
+          _genCompid2 = _slicedToArray(_genCompid, 2),
+          $prevCompid__54 = _genCompid2[0],
+          $compid__54 = _genCompid2[1];
+
+      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__55"),
+          _genCompid4 = _slicedToArray(_genCompid3, 2),
+          $prevCompid__55 = _genCompid4[0],
+          $compid__55 = _genCompid4[1];
+
+      var router = (0, _taroTt.useRouter)();
+      var _router$params = router.params,
+          info = _router$params.info,
+          office = _router$params.office;
+      // 切换
+
+      var _useState = (0, _taroTt.useState)(false),
+          _useState2 = _slicedToArray(_useState, 2),
+          changeType = _useState2[0],
+          setChangeType = _useState2[1];
+      // 标识是第一次
+
+
+      var _useState3 = (0, _taroTt.useState)(false),
+          _useState4 = _slicedToArray(_useState3, 2),
+          first = _useState4[0],
+          setFirst = _useState4[1];
+      // 是来源还是消耗
+
+
+      var _useState5 = (0, _taroTt.useState)(info),
+          _useState6 = _slicedToArray(_useState5, 2),
+          initInfo = _useState6[0],
+          setInitInfo = _useState6[1];
+      // 分类原始内容
+
+
+      var _useState7 = (0, _taroTt.useState)([]),
+          _useState8 = _slicedToArray(_useState7, 2),
+          initList = _useState8[0],
+          setInitList = _useState8[1];
+      // 第一次显示内容
+
+
+      var _useState9 = (0, _taroTt.useState)(''),
+          _useState10 = _slicedToArray(_useState9, 2),
+          title = _useState10[0],
+          setTitle = _useState10[1];
+      // start时间
+
+
+      var _useState11 = (0, _taroTt.useState)(''),
+          _useState12 = _slicedToArray(_useState11, 2),
+          start = _useState12[0],
+          setStart = _useState12[1];
+      // end时间
+
+
+      var _useState13 = (0, _taroTt.useState)(''),
+          _useState14 = _slicedToArray(_useState13, 2),
+          end = _useState14[0],
+          setEnd = _useState14[1];
+      // 默认日期
+
+
+      var _useState15 = (0, _taroTt.useState)(''),
+          _useState16 = _slicedToArray(_useState15, 2),
+          time = _useState16[0],
+          setTime = _useState16[1];
+      // 显示时间
+
+
+      var _useState17 = (0, _taroTt.useState)(''),
+          _useState18 = _slicedToArray(_useState17, 2),
+          showTime = _useState18[0],
+          setShowTime = _useState18[1];
+      // 设置类型
+
+
+      var _useState19 = (0, _taroTt.useState)('0'),
+          _useState20 = _slicedToArray(_useState19, 2),
+          sourceType = _useState20[0],
+          setSourceType = _useState20[1];
+      // 消耗
+
+
+      var _useState21 = (0, _taroTt.useState)('0'),
+          _useState22 = _slicedToArray(_useState21, 2),
+          consumeType = _useState22[0],
+          setConsumeType = _useState22[1];
+      // 数据
+
+
+      var _useState23 = (0, _taroTt.useState)({
+        lists: [],
+        next_page: 0,
+        stime: '0',
+        bak: '0'
+      }),
+          _useState24 = _slicedToArray(_useState23, 2),
+          data = _useState24[0],
+          setData = _useState24[1];
+      // 默认积分
+
+
+      var _useState25 = (0, _taroTt.useState)({
+        get: 0,
+        expend: 0
+      }),
+          _useState26 = _slicedToArray(_useState25, 2),
+          num = _useState26[0],
+          setNum = _useState26[1];
+      // 弹窗
+
+
+      var _useState27 = (0, _taroTt.useState)(false),
+          _useState28 = _slicedToArray(_useState27, 2),
+          modal = _useState28[0],
+          setModal = _useState28[1];
+      // 弹窗内容
+
+
+      var _useState29 = (0, _taroTt.useState)(),
+          _useState30 = _slicedToArray(_useState29, 2),
+          modalData = _useState30[0],
+          setModalData = _useState30[1];
+      // 投诉
+
+
+      var _useState31 = (0, _taroTt.useState)(false),
+          _useState32 = _slicedToArray(_useState31, 2),
+          complaintModal = _useState32[0],
+          setComplaintModal = _useState32[1];
+      // 投诉id 
+
+
+      var _useState33 = (0, _taroTt.useState)(''),
+          _useState34 = _slicedToArray(_useState33, 2),
+          complaintId = _useState34[0],
+          setComplaintId = _useState34[1];
+      // textarea
+
+
+      var _useState35 = (0, _taroTt.useState)(''),
+          _useState36 = _slicedToArray(_useState35, 2),
+          textarea = _useState36[0],
+          setTextarea = _useState36[1];
+      // 需要传递的参数
+
+
+      var _useState37 = (0, _taroTt.useState)({
+        y: '0',
+        m: '0',
+        stime: '0',
+        type: 0,
+        bak: '0',
+        system_type: (0, _index2.getSystemInfo)(),
+        flag: false
+      }),
+          _useState38 = _slicedToArray(_useState37, 2),
+          params = _useState38[0],
+          setParams = _useState38[1];
+      // 没有下一页
+
+
+      var _useState39 = (0, _taroTt.useState)(false),
+          _useState40 = _slicedToArray(_useState39, 2),
+          nextPage = _useState40[0],
+          setNextPage = _useState40[1];
+      // 搜索来源记录
+
+
+      var _useState41 = (0, _taroTt.useState)({
+        time: '',
+        sortType: '0',
+        flag: false,
+        listType: '0'
+      }),
+          _useState42 = _slicedToArray(_useState41, 2),
+          sourceSearch = _useState42[0],
+          setSourceSearch = _useState42[1];
+      // 搜索消耗记录
+
+
+      var _useState43 = (0, _taroTt.useState)({
+        time: '',
+        sortType: '0',
+        flag: false,
+        listType: '0'
+      }),
+          _useState44 = _slicedToArray(_useState43, 2),
+          consumeSearch = _useState44[0],
+          setConsumeSearch = _useState44[1];
+      // 下拉框开始位置
+
+
+      var _useState45 = (0, _taroTt.useState)(0),
+          _useState46 = _slicedToArray(_useState45, 2),
+          startType = _useState46[0],
+          setStartType = _useState46[1];
+      // 来源分类list
+
+
+      var _useState47 = (0, _taroTt.useState)([]),
+          _useState48 = _slicedToArray(_useState47, 2),
+          sourceList = _useState48[0],
+          setSourceList = _useState48[1];
+      // 消耗分类list
+
+
+      var _useState49 = (0, _taroTt.useState)([]),
+          _useState50 = _slicedToArray(_useState49, 2),
+          consumeList = _useState50[0],
+          setConsumeList = _useState50[1];
+      // 来源是否获取到list
+
+
+      var _useState51 = (0, _taroTt.useState)(false),
+          _useState52 = _slicedToArray(_useState51, 2),
+          issource = _useState52[0],
+          setIssource = _useState52[1];
+      // 积分是否获取到list
+
+
+      var _useState53 = (0, _taroTt.useState)(false),
+          _useState54 = _slicedToArray(_useState53, 2),
+          isconsume = _useState54[0],
+          setIsconsume = _useState54[1];
+
+      (0, _taroTt.useEffect)(function () {
+        var navigationBarTitleText = initInfo === '0' ? '鱼泡网-积分来源记录' : '鱼泡网-积分消耗记录';
+        _taroTt2.default.setNavigationBarTitle({ title: navigationBarTitleText });
+        // 获取现在时间
+        var newTime = new Date();
+        var nowyear = newTime.getFullYear();
+        var nowmonth = newTime.getMonth() + 1;
+        if (nowmonth >= 1 && nowmonth <= 9) {
+          nowmonth = "0" + nowmonth;
+        }
+        setEnd(nowyear + "-" + nowmonth);
+        if (initInfo === '0') {
+          if (!issource) {
+            integralSourceConfig();
+          } else {
+            if (sourceSearch.flag) {
+              var date = sourceSearch.time.split('-');
+              var _params = {
+                y: date[0],
+                m: date[1],
+                stime: '0',
+                source_type: sourceSearch.sortType,
+                bak: '0',
+                system_type: (0, _index2.getSystemInfo)(),
+                flag: true,
+                office: office
+              };
+              //设置显示类型名字
+              setTitle(sourceList[sourceSearch.listType]);
+              // 设置显示时间
+              setShowTime(date[0] + '年' + date[1] + '月');
+              // 设置时间
+              setTime(sourceSearch.time);
+              // 设置下拉分类的位置
+              setStartType(parseInt(sourceSearch.listType));
+              setParams(_params);
+            }
+          }
+        } else {
+          if (!isconsume) {
+            integralExpendConfig();
+          } else {
+            var _date = consumeSearch.time.split('-');
+            var _params2 = {
+              y: _date[0],
+              m: _date[1],
+              stime: '0',
+              type: consumeSearch.sortType,
+              bak: '0',
+              system_type: (0, _index2.getSystemInfo)(),
+              flag: true
+            };
+            //设置显示类型名字
+            setTitle(consumeList[consumeSearch.listType]);
+            // 设置显示时间
+            setShowTime(_date[0] + '年' + _date[1] + '月');
+            // 设置时间
+            setTime(consumeSearch.time);
+            // 设置下拉分类的位置
+            setStartType(parseInt(consumeSearch.listType));
+            setParams(_params2);
+          }
+        }
+      }, [initInfo]);
+      (0, _taroTt.useEffect)(function () {
+        if (params.flag) {
+          if (initInfo === '0') {
+            integralSourceLists();
+          } else {
+            integralExpendLists();
+          }
+        }
+      }, [params]);
+      // 积分消耗
+      var integralExpendConfig = function integralExpendConfig() {
+        (0, _index.integralExpendConfigAction)().then(function (res) {
+          setStart(res.data.min.y + '-' + res.data.min.m);
+          var item = res.data.types.map(function (item) {
+            return item.name;
+          });
+          setInitList(res.data.types);
+          setConsumeList(item);
+          setIsconsume(true);
+          setTitle('消耗分类');
+          var time = res.data.default.y + '-' + res.data.default.m;
+          setTime(time);
+          setShowTime(res.data.default.y + '年' + res.data.default.m + '月');
+          var params = {
+            y: res.data.default.y,
+            m: res.data.default.m,
+            stime: '0',
+            type: 0,
+            bak: '0',
+            system_type: (0, _index2.getSystemInfo)(),
+            flag: true
+          };
+          setParams(params);
+        });
+      };
+      // 积分来源分类
+      var integralSourceConfig = function integralSourceConfig() {
+        var params = {
+          office: office,
+          system_type: (0, _index2.getSystemInfo)()
+        };
+        (0, _index.integralSourceConfigAction)(params).then(function (res) {
+          setStart(res.data.min.y + '-' + res.data.min.m);
+          var item = res.data.types.map(function (item) {
+            return item.name;
+          });
+          setInitList(res.data.types);
+          setSourceList(item);
+          setIssource(true);
+          setTitle('来源分类');
+          var date = res.data.default.y + '-' + res.data.default.m;
+          setTime(date);
+          setShowTime(res.data.default.y + '年' + res.data.default.m + '月');
+          var params = {
+            y: res.data.default.y,
+            m: res.data.default.m,
+            stime: '0',
+            source_type: 0,
+            bak: '0',
+            system_type: (0, _index2.getSystemInfo)(),
+            flag: true,
+            office: office
+          };
+          setParams(params);
+        });
+      };
+      // 积分列表
+      var integralSourceLists = function integralSourceLists() {
+        (0, _index.integralSourceListsAction)(params).then(function (res) {
+          if (!nextPage) {
+            if (!first) {
+              setNum(res.data.sum_data);
+              setFirst(true);
+            }
+            if (changeType) {
+              setData({ lists: [].concat(_toConsumableArray(res.data.lists)), next_page: res.data.next_page, stime: res.data.stime, bak: res.data.bak });
+              setChangeType(false);
+            } else {
+              setData({ lists: [].concat(_toConsumableArray(data.lists), _toConsumableArray(res.data.lists)), next_page: res.data.next_page, stime: res.data.stime, bak: res.data.bak });
+            }
+          }
+        });
+      };
+      // 消耗积分列表
+      var integralExpendLists = function integralExpendLists() {
+        (0, _index.integralExpendListsAction)(params).then(function (res) {
+          // 下拉时候不修改
+          // 选择时间/分类/跳转就直接赋值，只有加载更多在追加
+          if (!nextPage) {
+            if (!first) {
+              setNum(res.data.sum_data);
+              setFirst(true);
+            }
+            if (changeType) {
+              setData({ lists: [].concat(_toConsumableArray(res.data.lists)), next_page: res.data.next_page, stime: res.data.stime, bak: res.data.bak });
+              setChangeType(false);
+            } else {
+              setData({ lists: [].concat(_toConsumableArray(data.lists), _toConsumableArray(res.data.lists)), next_page: res.data.next_page, stime: res.data.stime, bak: res.data.bak });
+            }
+          }
+        });
+      };
+      // 点击分类
+      var handleClick = function handleClick(e) {
+        setChangeType(true);
+        setFirst(false);
+        var type = void 0;
+        if (initInfo === '0') {
+          setSourceType(e.detail.value);
+          setTitle(sourceList[e.detail.value]);
+          for (var i = 0; i < initList.length; i++) {
+            if (initList[i].name === sourceList[e.detail.value]) {
+              type = initList[i].type;
+            }
+          }
+        } else {
+          setTitle(consumeList[e.detail.value]);
+          setConsumeType(e.detail.value);
+          for (var _i = 0; _i < initList.length; _i++) {
+            if (initList[_i].name === consumeList[e.detail.value]) {
+              type = initList[_i].type;
+            }
+          }
+        }
+        var date = time.split('-');
+        var params = {
+          y: date[0],
+          m: date[1],
+          stime: '0',
+          type: type,
+          source_type: type,
+          bak: '0',
+          system_type: (0, _index2.getSystemInfo)(),
+          flag: true
+        };
+        setParams(params);
+      };
+      // 时间选择
+      var handleClckTime = function handleClckTime(e) {
+        setChangeType(true);
+        setFirst(false);
+        var date = e.target.value.split('-');
+        setShowTime(date[0] + '年' + date[1] + '月');
+        setTime(e.target.value);
+        var type = void 0;
+        if (initInfo === '0') {
+          for (var i = 0; i < initList.length; i++) {
+            if (initList[i].name === sourceList[sourceType]) {
+              type = initList[i].type;
+            }
+          }
+        } else {
+          for (var _i2 = 0; _i2 < initList.length; _i2++) {
+            if (initList[_i2].name === consumeList[consumeType]) {
+              type = initList[_i2].type;
+            }
+          }
+        }
+        var params = {
+          y: date[0],
+          m: date[1],
+          stime: '0',
+          //来源和消耗传值不同（偷懒都传过去）
+          source_type: type,
+          type: type,
+          bak: '0',
+          system_type: (0, _index2.getSystemInfo)(),
+          flag: true
+        };
+        setParams(params);
+      };
+      // 是否加载更多
+      (0, _taroTt.useReachBottom)(function () {
+        // 没有内容
+        if (data.next_page === 0) {
+          setNextPage(true);
+          return;
+        }
+        // 时间：
+        var date = time.split('-');
+        // 类型
+        var type = void 0;
+        if (initInfo === '0') {
+          for (var i = 0; i < initList.length; i++) {
+            if (initList[i].name === sourceList[sourceType]) {
+              type = initList[i].type;
+            }
+          }
+        } else {
+          for (var _i3 = 0; _i3 < initList.length; _i3++) {
+            if (initList[_i3].name === consumeList[consumeType]) {
+              type = initList[_i3].type;
+            }
+          }
+        }
+        var params = {
+          y: date[0],
+          m: date[1],
+          stime: data.stime,
+          //来源和消耗传值不同（偷懒都传过去）
+          source_type: type,
+          type: type,
+          bak: '0',
+          system_type: '',
+          flag: true
+        };
+        setParams(params);
+      });
+      // 跳转
+      var handleJump = function handleJump() {
+        setFirst(false);
+        setNextPage(false);
+        setChangeType(true);
+        var type = void 0;
+        if (initInfo === '0') {
+          for (var i = 0; i < initList.length; i++) {
+            if (initList[i].name === sourceList[sourceType]) {
+              type = initList[i].type;
+            }
+          }
+        } else {
+          for (var _i4 = 0; _i4 < initList.length; _i4++) {
+            if (initList[_i4].name === consumeList[consumeType]) {
+              type = initList[_i4].type;
+            }
+          }
+        }
+        if (initInfo === '0') {
+          setInitInfo("1");
+          // 存搜索记录
+          setSourceSearch({
+            time: time,
+            sortType: type,
+            flag: true,
+            listType: sourceType
+          });
+        } else if (initInfo === '1') {
+          setInitInfo("0");
+          // 存搜索记录
+          setConsumeSearch({
+            time: time,
+            sortType: type,
+            flag: true,
+            listType: consumeType
+          });
+        }
+      };
+      // 弹窗
+      var handleModal = function handleModal(userId) {
+        (0, _index.integralUseInfoAction)(userId).then(function (res) {
+          if (res.errcode === 'deleted') {
+            _taroTt2.default.showModal({
+              title: '温馨提示',
+              content: res.errmsg,
+              showCancel: false
+            });
+          } else {
+            setModalData(res.info);
+            setModal(true);
+          }
+        });
+      };
+      // 投诉弹窗
+      var handleComplaint = function handleComplaint(id) {
+        setComplaintModal(true);
+        setComplaintId(id);
+      };
+      // 多行输入
+      var handleTextarea = function handleTextarea(e) {
+        var val = e.detail.value;
+        setTextarea(val);
+      };
+      // 提交投诉
+      var handleSubmit = function handleSubmit() {
+        if (!(0, _index5.isVaildVal)(textarea, 15, 500)) {
+          (0, _index7.default)('输入内容不少于15个字且必须包含文字');
+          return false;
+        }
+        var params = {
+          content: textarea,
+          type: 'job',
+          infoId: complaintId
+        };
+        (0, _index.publishComplainAction)(params).then(function (res) {
+          if (res.errcode === 'ok') {
+            (0, _index4.SubscribeToNews)('complain', function () {
+              (0, _index6.SubPopup)({
+                tips: res.errmsg,
+                callback: function callback() {
+                  setComplaintModal(false);
+                  setModal(false);
+                }
+              });
+            });
+          }
+        });
+      };
+      this.anonymousFunc0 = function (e) {
+        return handleClckTime(e);
+      };
+      this.anonymousFunc1 = function (e) {
+        return handleClick(e);
+      };
+      this.anonymousFunc2 = handleJump;
+      this.anonymousFunc4 = function () {
+        setModal(false);
+      };
+      this.anonymousFunc5 = function () {
+        _taroTt2.default.makePhoneCall({ phoneNumber: modalData.user_mobile });
+      };
+      this.anonymousFunc6 = function () {
+        return handleComplaint(modalData.id);
+      };
+      var loopArray58 = data.lists.map(function (item, index) {
+        item = {
+          $original: (0, _taroTt.internal_get_original)(item)
+        };
+        var $loopState__temp2 = index + index;
+        var _$indexKey = "hazzz" + index;
+        _this2.anonymousFunc3Map[_$indexKey] = function () {
+          return handleModal(item.$original.id);
+        };
+        return {
+          $loopState__temp2: $loopState__temp2,
+          _$indexKey: _$indexKey,
+          $original: item.$original
+        };
+      });
+      var loopArray59 = initInfo === '1' && modal && modalData ? modalData.classifyName.map(function (v, i) {
+        v = {
+          $original: (0, _taroTt.internal_get_original)(v)
+        };
+        var $loopState__temp4 = initInfo === '1' && modal && modalData ? i + i : null;
+        return {
+          $loopState__temp4: $loopState__temp4,
+          $original: v.$original
+        };
+      }) : [];
+      !data.lists.length && _taroTt.propsManager.set({
+        "text": initInfo === '0' ? '暂无积分来源记录' : '暂无积分消耗记录'
+      }, $compid__54, $prevCompid__54);
+      complaintModal && _taroTt.propsManager.set({
+        "display": complaintModal,
+        "textarea": textarea,
+        "handleTextarea": handleTextarea,
+        "setComplaintModal": setComplaintModal,
+        "handleSubmit": handleSubmit
+      }, $compid__55, $prevCompid__55);
+      Object.assign(this.__state, {
+        data: data,
+        modalData: modalData,
+        loopArray58: loopArray58,
+        loopArray59: loopArray59,
+        $compid__54: $compid__54,
+        $compid__55: $compid__55,
+        time: time,
+        start: start,
+        end: end,
+        IMGCDNURL: _index3.IMGCDNURL,
+        initInfo: initInfo,
+        sourceList: sourceList,
+        consumeList: consumeList,
+        startType: startType,
+        modal: modal,
+        complaintModal: complaintModal,
+        showTime: showTime,
+        title: title,
+        num: num
+      });
+      return this.__state;
+    }
+  }, {
+    key: 'anonymousFunc0',
+    value: function anonymousFunc0(e) {
+      ;
+    }
+  }, {
+    key: 'anonymousFunc1',
+    value: function anonymousFunc1(e) {
+      ;
+    }
+  }, {
+    key: 'anonymousFunc2',
+    value: function anonymousFunc2(e) {
+      ;
+    }
+  }, {
+    key: 'anonymousFunc3',
+    value: function anonymousFunc3(_$indexKey) {
+      var _anonymousFunc3Map;
+
+      ;
+
+      for (var _len = arguments.length, e = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+        e[_key - 1] = arguments[_key];
+      }
+
+      return this.anonymousFunc3Map[_$indexKey] && (_anonymousFunc3Map = this.anonymousFunc3Map)[_$indexKey].apply(_anonymousFunc3Map, e);
+    }
+  }, {
+    key: 'anonymousFunc4',
+    value: function anonymousFunc4(e) {
+      ;
+    }
+  }, {
+    key: 'anonymousFunc5',
+    value: function anonymousFunc5(e) {
+      ;
+    }
+  }, {
+    key: 'anonymousFunc6',
+    value: function anonymousFunc6(e) {
+      ;
+    }
+  }]);
+
+  return Tabber;
+}(_taroTt2.default.Component);
+
+Tabber.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6"];
+Tabber.$$componentPath = "pages/integral/tabber/index";
+Tabber.config = { navigationBarTitleText: '' };
+exports.default = Tabber;
+
+Page(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(Tabber, true));
+
+/***/ })
+
+},[["./src/pages/integral/tabber/index.tsx","runtime","vendors"]]]);

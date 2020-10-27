@@ -121,7 +121,7 @@ export default function Auth({ page = false, callback, userCancelAuth }: PROPS){
 
   return (
   <Block>
-    {((!login && !page) || page) &&
+    {((!login && !page) || page) && ISWEIXIN &&
     <View>
       <AtMessage />
       <View className='user-auth-container'>

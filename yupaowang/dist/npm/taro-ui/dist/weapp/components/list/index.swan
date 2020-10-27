@@ -1,5 +1,0 @@
-<block s-if="{{$taroCompReady}}">
-    <view class="{{rootClass}}">
-        <slot></slot>
-    </view>
-</block>

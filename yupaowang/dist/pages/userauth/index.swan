@@ -1,5 +1,0 @@
-<block s-if="{{$taroCompReady}}">
-    <block>
-        <auth compid="{{$compid__21}}"></auth>
-    </block>
-</block>

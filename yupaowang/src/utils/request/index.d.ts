@@ -130,7 +130,8 @@ export interface ResumeList {
   birthday: number,
   show_address: string,
   tags: string[],
-  prof_degree: string
+  prof_degree: string,
+  time: string
 }
 
 // 二手列表数据

@@ -4,14 +4,26 @@ import './index.scss'
 
 interface Props {
   placeholder: string,
-  value: string
+  value: string,
+  setRemark: (val: string) => void,
+  setSearchData: () => void
 }
 
-export default function Search({ placeholder, value }: Props){
+export default function Search({ placeholder, value, setSearchData, setRemark }: Props){
+  
   return (
     <View className='search-header-box'>
-      <Input className='search-input' placeholder={ placeholder } value={ value } />
-      <Text className='search-btn'>搜索</Text>
+      <Input 
+        className='search-input' 
+        placeholder={placeholder} 
+        value={value} 
+        onInput={(e) => setRemark(e.detail.value)} 
+        onConfirm={() => setSearchData()} 
+      />
+      <Text 
+        className='search-btn' 
+        onClick={()=>setSearchData()}
+      >搜索</Text>
     </View>
   )
 }

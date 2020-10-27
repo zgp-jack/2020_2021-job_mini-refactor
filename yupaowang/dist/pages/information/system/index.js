@@ -1,1 +1,273 @@
-(swan.webpackJsonp=swan.webpackJsonp||[]).push([[48],{"132":function(t,e,r){"use strict";Object.defineProperty(e,"__esModule",{"value":!0});var T=Object.assign||function(t){for(var e=1;e<arguments.length;e++){var r=arguments[e];for(var n in r)Object.prototype.hasOwnProperty.call(r,n)&&(t[n]=r[n])}return t},x=function(t,e){if(Array.isArray(t))return t;if(Symbol.iterator in Object(t))return function sliceIterator(t,e){var r=[],n=!0,a=!1,o=void 0;try{for(var i,s=t[Symbol.iterator]();!(n=(i=s.next()).done)&&(r.push(i.value),!e||r.length!==e);n=!0);}catch(t){a=!0,o=t}finally{try{!n&&s.return&&s.return()}finally{if(a)throw o}}return r}(t,e);throw new TypeError("Invalid attempt to destructure non-iterable instance")},n=function(t,e,r){return e&&defineProperties(t.prototype,e),r&&defineProperties(t,r),t};function defineProperties(t,e){for(var r=0;r<e.length;r++){var n=e[r];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(t,n.key,n)}}var S=r(0),P=function _interopRequireDefault(t){return t&&t.__esModule?t:{"default":t}}(S),A=r(1),j=r(2),C=r(5);function _toConsumableArray(t){if(Array.isArray(t)){for(var e=0,r=Array(t.length);e<t.length;e++)r[e]=t[e];return r}return Array.from(t)}r(133);var D={"1":{"title":"系统信息","url":"","titleText":"系统提醒"},"2":{"title":"招工信息","url":"","titleText":"招工提醒"},"3":{"title":"名片信息","url":"","titleText":"找活提醒"},"4":{"title":"证书信息","url":"","titleText":"找活提醒"},"5":{"title":"项目信息","url":"","titleText":"找活提醒"},"6":{"title":"投诉招工信息","url":"","titleText":"投诉提醒"},"7":{"title":"留言信息","url":"","titleText":"我的信息-留言"},"8":{"title":"积分管理-充值","url":"","titleText":"系统提醒"},"9":{"title":"实名认证","url":"","titleText":"系统提醒"},"10":{"title":"投诉找活信息","url":"","titleText":"投诉提醒"}},a=(function _inherits(t,e){if("function"!=typeof e&&null!==e)throw new TypeError("Super expression must either be null or a function, not "+typeof e);t.prototype=Object.create(e&&e.prototype,{"constructor":{"value":t,"enumerable":!1,"writable":!0,"configurable":!0}}),e&&(Object.setPrototypeOf?Object.setPrototypeOf(t,e):t.__proto__=e)}(System,P.default.Component),n(System,[{"key":"_constructor","value":function _constructor(t){(function get(t,e,r){null===t&&(t=Function.prototype);var n=Object.getOwnPropertyDescriptor(t,e);if(void 0===n){var a=Object.getPrototypeOf(t);return null===a?void 0:get(a,e,r)}if("value"in n)return n.value;var o=n.get;return void 0!==o?o.call(r):void 0})(System.prototype.__proto__||Object.getPrototypeOf(System.prototype),"_constructor",this).call(this,t),this.$$refs=new P.default.RefsArray}},{"key":"_createData","value":function _createData(t,e,r){var n=this;this.__state=t||this.state||{},this.__props=e||this.props||{},this.$prefix;var a=(0,S.useRouter)().params.type,o=(0,S.useState)({"item":[]}),i=x(o,2),s=i[0],u=i[1],l=(0,S.useState)({"page":1}),c=x(l,2),p=c[0],f=c[1],y=(0,S.useState)(!0),v=x(y,2),m=v[0],h=v[1],g=(0,S.useState)(!1),_=x(g,2),d=_[0],b=_[1];(0,S.useEffect)(function(){b((0,C.isIos)());var t=d?"ios":"android",e=parseInt(a);P.default.setNavigationBarTitle({"title":D[e].titleText}),O(parseInt(a),t)},[p]);var O=function messagesType(t,e){var r={"type":t,"page":p.page,"terminal_type":e};(0,A.messagesTypeAction)(r).then(function(t){P.default.hideNavigationBarLoading(),t.data.lists.length||h(!1),1===p.page?u({"item":[].concat(_toConsumableArray(t.data.lists))}):u({"item":[].concat(_toConsumableArray(s.item),_toConsumableArray(t.data.lists))})})};(0,S.useReachBottom)(function(){m&&(P.default.showNavigationBarLoading(),f(T({},p,{"page":p.page+1})))});var w=s.item.map(function(t,e){t={"privateOriginal":(0,S.internal_get_original)(t)};var r="fgzzz"+e;return n.anonymousFunc0Map[r]=function(){t.privateOriginal.type},{"_$indexKey":r,"privateOriginal":t.privateOriginal}});return Object.assign(this.__state,{"data":s,"loopArray49":w,"IMGCDNURL":j.IMGCDNURL,"isDown":m}),this.__state}},{"key":"anonymousFunc0","value":function anonymousFunc0(t){for(var e,r=arguments.length,n=Array(1<r?r-1:0),a=1;a<r;a++)n[a-1]=arguments[a];return this.anonymousFunc0Map[t]&&(e=this.anonymousFunc0Map)[t].apply(e,n)}}]),System);function System(){!function _classCallCheck(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}(this,System);var t=function _possibleConstructorReturn(t,e){if(!t)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!e||"object"!=typeof e&&"function"!=typeof e?t:e}(this,(System.__proto__||Object.getPrototypeOf(System)).apply(this,arguments));return t.config={"navigationBarTitleText":"","enablePullDownRefresh":!0},t.$usedState=["data","loopArray49","IMGCDNURL","isDown"],t.anonymousFunc0Map={},t.customComponents=["Nodata"],t}a.$$events=["anonymousFunc0"],a.$$componentPath="pages/information/system/index",a.config={"navigationBarTitleText":"","enablePullDownRefresh":!0},e.default=a,Page(r(0).default.createComponent(a,!0))},"133":function(t,e,r){}},[[132,0,1]]]);
+(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["pages/information/system/index"],{
+
+/***/ "./src/pages/information/system/index.scss":
+/*!*************************************************!*\
+  !*** ./src/pages/information/system/index.scss ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
+/***/ "./src/pages/information/system/index.tsx":
+/*!************************************************!*\
+  !*** ./src/pages/information/system/index.tsx ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+
+var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+
+var _taroTt2 = _interopRequireDefault(_taroTt);
+
+var _index = __webpack_require__(/*! ../../../utils/request/index */ "./src/utils/request/index.ts");
+
+var _index2 = __webpack_require__(/*! ../../../config/index */ "./src/config/index.ts");
+
+var _index3 = __webpack_require__(/*! ../../../utils/v/index */ "./src/utils/v/index.ts");
+
+__webpack_require__(/*! ./index.scss */ "./src/pages/information/system/index.scss");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+// 默认跳转路径
+var newmessageinfo = {
+  1: {
+    title: '系统信息',
+    url: '',
+    titleText: '系统提醒'
+  },
+  2: {
+    title: '招工信息',
+    url: '',
+    titleText: '招工提醒'
+  },
+  3: {
+    title: '名片信息',
+    url: '',
+    titleText: '找活提醒'
+  },
+  4: {
+    title: '证书信息',
+    url: '',
+    titleText: '找活提醒'
+  },
+  5: {
+    title: '项目信息',
+    url: '',
+    titleText: '找活提醒'
+  },
+  6: {
+    title: '投诉招工信息',
+    url: '',
+    titleText: '投诉提醒'
+  },
+  7: {
+    title: '留言信息',
+    url: '',
+    titleText: '我的信息-留言'
+  },
+  8: {
+    title: '积分管理-充值',
+    url: '',
+    titleText: '系统提醒'
+  },
+  9: {
+    title: '实名认证',
+    url: '',
+    titleText: '系统提醒'
+  },
+  10: {
+    title: '投诉找活信息',
+    url: '',
+    titleText: '投诉提醒'
+  }
+};
+
+var System = function (_Taro$Component) {
+  _inherits(System, _Taro$Component);
+
+  function System() {
+    _classCallCheck(this, System);
+
+    var _this = _possibleConstructorReturn(this, (System.__proto__ || Object.getPrototypeOf(System)).apply(this, arguments));
+
+    _this.config = {
+      navigationBarTitleText: '',
+      enablePullDownRefresh: true
+    };
+
+    _this.$usedState = ["data", "loopArray57", "IMGCDNURL", "isDown"];
+    _this.anonymousFunc0Map = {};
+    _this.customComponents = ["Nodata"];
+    return _this;
+  }
+
+  _createClass(System, [{
+    key: "_constructor",
+    value: function _constructor(props) {
+      _get(System.prototype.__proto__ || Object.getPrototypeOf(System.prototype), "_constructor", this).call(this, props);
+      this.$$refs = new _taroTt2.default.RefsArray();
+    }
+  }, {
+    key: "_createData",
+    value: function _createData() {
+      var _this2 = this;
+
+      this.__state = arguments[0] || this.state || {};
+      this.__props = arguments[1] || this.props || {};
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
+      ;
+      var router = (0, _taroTt.useRouter)();
+      var type = router.params.type;
+      // 初始数据
+
+      var _useState = (0, _taroTt.useState)({
+        item: []
+      }),
+          _useState2 = _slicedToArray(_useState, 2),
+          data = _useState2[0],
+          setData = _useState2[1];
+      // 初始页数
+
+
+      var _useState3 = (0, _taroTt.useState)({
+        page: 1
+      }),
+          _useState4 = _slicedToArray(_useState3, 2),
+          initPage = _useState4[0],
+          setPage = _useState4[1];
+      // 是够能加载更多
+
+
+      var _useState5 = (0, _taroTt.useState)(true),
+          _useState6 = _slicedToArray(_useState5, 2),
+          isDown = _useState6[0],
+          setIsDown = _useState6[1];
+      // 判断是否是ios
+
+
+      var _useState7 = (0, _taroTt.useState)(false),
+          _useState8 = _slicedToArray(_useState7, 2),
+          ios = _useState8[0],
+          setIos = _useState8[1];
+
+      (0, _taroTt.useEffect)(function () {
+        // 判断是安卓还是苹果
+        setIos((0, _index3.isIos)());
+        var terminal_type = ios ? 'ios' : 'android';
+        var ListType = parseInt(type);
+        _taroTt2.default.setNavigationBarTitle({
+          title: newmessageinfo[ListType].titleText
+        });
+        messagesType(parseInt(type), terminal_type);
+      }, [initPage]);
+      // 请求
+      var messagesType = function messagesType(type, terminal_type) {
+        var params = {
+          type: type,
+          page: initPage.page,
+          terminal_type: terminal_type
+        };
+        (0, _index.messagesTypeAction)(params).then(function (res) {
+          _taroTt2.default.hideNavigationBarLoading();
+          if (!res.data.lists.length) {
+            setIsDown(false);
+          }
+          if (initPage.page === 1) {
+            setData({ item: [].concat(_toConsumableArray(res.data.lists)) });
+          } else {
+            setData({ item: [].concat(_toConsumableArray(data.item), _toConsumableArray(res.data.lists)) });
+          }
+        });
+      };
+      // 用户页面跳转
+      var userRouteJump = function userRouteJump(type) {
+        return;
+        _taroTt2.default.navigateTo({
+          url: newmessageinfo[type].url
+        });
+      };
+      // 上拉加载更多
+      (0, _taroTt.useReachBottom)(function () {
+        if (!isDown) {
+          return;
+        }
+        _taroTt2.default.showNavigationBarLoading();
+        setPage(_extends({}, initPage, { page: initPage.page + 1 }));
+      });
+      var loopArray57 = data.item.map(function (item, __index0) {
+        item = {
+          $original: (0, _taroTt.internal_get_original)(item)
+        };
+        var _$indexKey = "gjzzz" + __index0;
+        _this2.anonymousFunc0Map[_$indexKey] = function () {
+          return userRouteJump(item.$original.type);
+        };
+        return {
+          _$indexKey: _$indexKey,
+          $original: item.$original
+        };
+      });
+      Object.assign(this.__state, {
+        data: data,
+        loopArray57: loopArray57,
+        IMGCDNURL: _index2.IMGCDNURL,
+        isDown: isDown
+      });
+      return this.__state;
+    }
+  }, {
+    key: "anonymousFunc0",
+    value: function anonymousFunc0(_$indexKey) {
+      var _anonymousFunc0Map;
+
+      ;
+
+      for (var _len = arguments.length, e = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+        e[_key - 1] = arguments[_key];
+      }
+
+      return this.anonymousFunc0Map[_$indexKey] && (_anonymousFunc0Map = this.anonymousFunc0Map)[_$indexKey].apply(_anonymousFunc0Map, e);
+    }
+  }]);
+
+  return System;
+}(_taroTt2.default.Component);
+
+System.$$events = ["anonymousFunc0"];
+System.$$componentPath = "pages/information/system/index";
+System.config = { navigationBarTitleText: '', enablePullDownRefresh: true };
+exports.default = System;
+
+Page(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(System, true));
+
+/***/ })
+
+},[["./src/pages/information/system/index.tsx","runtime","vendors"]]]);

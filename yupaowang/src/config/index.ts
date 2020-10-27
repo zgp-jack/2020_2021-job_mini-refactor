@@ -1,14 +1,9 @@
 // ? 全局不动配置项 只做导出不做修改
 
-// * 非微信小程序打包统一标识
-export const UNWEIXINSIGN: string = 'other'
-// * 非微信小程序读取该配置项
-export const UNWEIXINCONFIG: string = 'jizhao'
-
 // ! 根据不同编译脚本打包不同小程序
 // * 当前打包版本
 export const MINIVERSION: string = MINI
-export const MINICONFIG = require(`./minis/${MINIVERSION === UNWEIXINSIGN ? UNWEIXINCONFIG : MINIVERSION }.ts`)
+export const MINICONFIG = require(`./minis/${MINIVERSION}.ts`)
 
 // * 全局请求接口域名
 // * 测试站
@@ -29,16 +24,27 @@ export const SERVERPHONE: string = '400-838-1888'
 export const VERSION: string = '1.0.5'
 // * 高德地区key
 export const MAPKEY: string = '20f12aae660c04de86f993d3eff590a0'
-// * 授权登录页面
-export const  AUTHPATH: string = '/pages/userauth/index'
 // * 最大缓存历史城市数量
 export const MAXCACHECITYNUM: number = 3
 // * 用户发布 选择地址 历史记录 最大数量
 export const UserPublishAreaHistoryMaxNum: number = 10
 // * 小程序tabbar msg统计 定时器请求间隔 1分钟
 export const MemberMsgTimerInterval: number = 1000 * 60
+
+// ! 页面内常用路径配置
+// * 授权登录页面
+export const AUTHPATH: string = '/pages/userauth/index'
+// * 微信外验证码登录
+export const CODEAUTHPATH: string = '/pages/login/index'
 // * 下载App
 export const DownloadApp: string ='https://android.myapp.com/myapp/detail.htm?apkName=io.dcloud.H576E6CC7&amp;ADTAG=mobile'
+
+// ! 所有小程序列表
+// 百度
+export const BAIDU: string = 'baidu'
+// 抖音
+export const DOUYIN: string = 'douyin'
+
 
 // ! 以下内容为每个小程序独立配置  
 // * page-title-global
@@ -49,3 +55,4 @@ export const TOKEN: string = MINICONFIG.TOKEN
 export const UNITID: string = MINICONFIG.UNITID
 // * 小程序邀请key
 export const INVITESOURCE: string = MINICONFIG.INVITESOURCE
+

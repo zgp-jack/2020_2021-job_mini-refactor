@@ -1,7 +1,7 @@
 import Taro, { useEffect, useState } from '@tarojs/taro'
 import { View, ScrollView } from '@tarojs/components'
 import Search from '../../../components/search'
-import Condition from '../../../components/condition'
+import Condition from '../../../components/resumeCondition'
 import WechatNotice from '../../../components/wechat'
 import RecruitList from '../../../components/lists/recruit'
 import { getRecruitList } from '../../../utils/request'
@@ -20,6 +20,8 @@ interface conditionType {
 
 export default function Recruit(){
 
+  // 输入关键词 没搜索 备份
+  const [remark, setRemark] = useState<string>('')
   // * 获取选择城市缓存
   let userListChooseCity: ChildItems = Taro.getStorageSync(UserListChooseCity)
   // * 配置筛选条件
@@ -131,10 +133,16 @@ export default function Recruit(){
     setScrollTop(0)
   }
 
+  // 输入搜索关键词
+  const setSearchValData = () => {
+    setSearchData({ ...searchData, keywords: remark, page: 1 })
+    setScrollTop(0)
+  }
+
   return (
     <View className='recruit-container'>
       <View className='recruit-fiexd-header'>
-        <Search placeholder='找活、找工作' value='' />
+        <Search placeholder='找活、找工作' value='' setRemark={(val: string) => setRemark(val)} setSearchData={()=>setSearchValData()} />
         <Condition data={condition} setSearchData={(type, id) => setSearchDataAction(type, id)} />
       </View>
       <ScrollView 

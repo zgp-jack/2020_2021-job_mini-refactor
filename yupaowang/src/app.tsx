@@ -31,6 +31,7 @@ class App extends Component {
       "pages/userinfo/add/index", // 用户完善资料
       "pages/userinfo/phone/index", // 用户更换手机
       "pages/published/recruit/index", // 已发布招工列表
+      "pages/published/used/index", // 已发布二手交易
       "pages/collection/index", //收藏
       "pages/help/index", //帮助中心
       "pages/feedbacklist/index", //意见反馈列表
@@ -57,7 +58,7 @@ class App extends Component {
     ],
     subPackages: [
       {
-        root: 'subpackage/pages/',
+        root: 'subpackage/pages',
         pages: [
           'checkauth/index',
           'about/index',//关于我们

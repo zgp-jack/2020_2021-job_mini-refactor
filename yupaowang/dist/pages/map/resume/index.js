@@ -1,1 +1,1 @@
-(swan.webpackJsonp=swan.webpackJsonp||[]).push([[58],[],[[89,0,1]]]);
+(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["pages/map/resume/index"],[],[["./src/pages/map/resume/index.tsx","runtime","vendors"]]]);

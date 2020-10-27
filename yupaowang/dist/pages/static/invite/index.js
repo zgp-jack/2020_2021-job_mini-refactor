@@ -1,1 +1,291 @@
-(swan.webpackJsonp=swan.webpackJsonp||[]).push([[76],{"128":function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{"value":!0});var E=function(e,t){if(Array.isArray(e))return e;if(Symbol.iterator in Object(e))return function sliceIterator(e,t){var n=[],a=!0,r=!1,o=void 0;try{for(var i,u=e[Symbol.iterator]();!(a=(i=u.next()).done)&&(n.push(i.value),!t||n.length!==t);a=!0);}catch(e){r=!0,o=e}finally{try{!a&&u.return&&u.return()}finally{if(r)throw o}}return n}(e,t);throw new TypeError("Invalid attempt to destructure non-iterable instance")},a=function(e,t,n){return t&&defineProperties(e.prototype,t),n&&defineProperties(e,n),e};function defineProperties(e,t){for(var n=0;n<t.length;n++){var a=t[n];a.enumerable=a.enumerable||!1,a.configurable=!0,"value"in a&&(a.writable=!0),Object.defineProperty(e,a.key,a)}}var L=n(0),q=_interopRequireDefault(L),J=_interopRequireDefault(n(6)),K=n(1);function _interopRequireDefault(e){return e&&e.__esModule?e:{"default":e}}function _toConsumableArray(e){if(Array.isArray(e)){for(var t=0,n=Array(e.length);t<e.length;t++)n[t]=e[t];return n}return Array.from(e)}n(129);var r=(function _inherits(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{"constructor":{"value":e,"enumerable":!1,"writable":!0,"configurable":!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}(InvitePage,q.default.Component),a(InvitePage,[{"key":"_constructor","value":function _constructor(e){(function get(e,t,n){null===e&&(e=Function.prototype);var a=Object.getOwnPropertyDescriptor(e,t);if(void 0===a){var r=Object.getPrototypeOf(e);return null===r?void 0:get(r,t,n)}if("value"in a)return a.value;var o=a.get;return void 0!==o?o.call(n):void 0})(InvitePage.prototype.__proto__||Object.getPrototypeOf(InvitePage.prototype),"_constructor",this).call(this,e),this.$$refs=new q.default.RefsArray}},{"key":"_createData","value":function _createData(e,t,n){var a=this;this.__state=e||this.state||{},this.__props=t||this.props||{};var r=this.$prefix,o=(0,L.genCompid)(r+"$compid__50"),i=E(o,2),u=i[0],l=i[1],c=(0,L.useState)("-1"),s=E(c,2),p=s[0],f=s[1],y=(0,L.useState)({"page":1}),g=E(y,2),v=g[0],d=g[1],_=(0,L.useState)("暂无相关资讯"),h=E(_,2),m=h[0],b=h[1],O=(0,L.useState)([]),w=E(O,2),P=w[0],A=w[1],F=(0,L.useState)(!0),S=E(F,2),T=S[0],k=S[1],x=(0,L.useState)(0),C=E(x,2),$=C[0],j=C[1],I=(0,L.useState)({"item":[]}),M=E(I,2),B=M[0],R=M[1];(0,L.useEffect)(function(){(0,K.newsTypesAction)().then(function(e){R({"item":e.data})})},[]),(0,L.useEffect)(function(){var t={"page":v.page,"newsType":p};(0,K.newListAction)(t).then(function(e){q.default.hideNavigationBarLoading(),e.data.length||k(!1),A(1===t.page?[].concat(_toConsumableArray(e.data)):[].concat(_toConsumableArray(P),_toConsumableArray(e.data)))})},[p,v]),(0,L.useReachBottom)(function(){T&&d({"page":v.page+1})}),this.anonymousFunc0=function(e){console.log(e)};var D=B.item?B.item.map(function(e,t){e={"privateOriginal":(0,L.internal_get_original)(e)};var n="fdzzz"+t;return a.anonymousFunc1Map[n]=function(){!function handleTable(e,t,n){j(80*n),f(e),b(t),d({"page":1}),k(!0),q.default.pageScrollTo({"scrollTop":0})}(e.privateOriginal.index,e.privateOriginal.name,t)},{"_$indexKey":n,"loopState__temp2":B.item?(0,J.default)({"invite-tab-active":e.privateOriginal.index===p}):null,"privateOriginal":e.privateOriginal}}):[],z=P?P.map(function(e,t){e={"privateOriginal":(0,L.internal_get_original)(e)};var n="fezzz"+t;return a.anonymousFunc2Map[n]=function(){return function userRouteJump(e){q.default.navigateTo({"url":e})}("/subpackage/pages/notice/index?id="+e.privateOriginal.id)},{"_$indexKey2":n,"privateOriginal":e.privateOriginal}}):[];return P.length||L.propsManager.set({"text":m},l,u),Object.assign(this.__state,{"tab":B,"loopArray46":D,"loopArray47":z,"$compid__50":l,"scrollLeft":$,"list":P,"pull":T}),this.__state}},{"key":"anonymousFunc0","value":function anonymousFunc0(){}},{"key":"anonymousFunc1","value":function anonymousFunc1(e){for(var t,n=arguments.length,a=Array(1<n?n-1:0),r=1;r<n;r++)a[r-1]=arguments[r];return this.anonymousFunc1Map[e]&&(t=this.anonymousFunc1Map)[e].apply(t,a)}},{"key":"anonymousFunc2","value":function anonymousFunc2(e){for(var t,n=arguments.length,a=Array(1<n?n-1:0),r=1;r<n;r++)a[r-1]=arguments[r];return this.anonymousFunc2Map[e]&&(t=this.anonymousFunc2Map)[e].apply(t,a)}}]),InvitePage);function InvitePage(){!function _classCallCheck(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,InvitePage);var e=function _possibleConstructorReturn(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}(this,(InvitePage.__proto__||Object.getPrototypeOf(InvitePage)).apply(this,arguments));return e.config={"navigationBarTitleText":"鱼泡网-新闻资讯","enablePullDownRefresh":!0,"navigationBarBackgroundColor":"#0099ff","navigationBarTextStyle":"white","backgroundTextStyle":"dark"},e.$usedState=["tab","loopArray46","loopArray47","$compid__50","scrollLeft","list","pull"],e.anonymousFunc1Map={},e.anonymousFunc2Map={},e.customComponents=["Nodata"],e}r.$$events=["anonymousFunc0","anonymousFunc1","anonymousFunc2"],r.$$componentPath="pages/static/invite/index",r.config={"navigationBarTitleText":"鱼泡网-新闻资讯","enablePullDownRefresh":!0,"navigationBarBackgroundColor":"#0099ff","navigationBarTextStyle":"white","backgroundTextStyle":"dark"},t.default=r,Page(n(0).default.createComponent(r,!0))},"129":function(e,t,n){}},[[128,0,1]]]);
+(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["pages/static/invite/index"],{
+
+/***/ "./src/pages/static/invite/index.scss":
+/*!********************************************!*\
+  !*** ./src/pages/static/invite/index.scss ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
+/***/ "./src/pages/static/invite/index.tsx":
+/*!*******************************************!*\
+  !*** ./src/pages/static/invite/index.tsx ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+
+var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+
+var _taroTt2 = _interopRequireDefault(_taroTt);
+
+var _classnames = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _index = __webpack_require__(/*! ../../../utils/request/index */ "./src/utils/request/index.ts");
+
+__webpack_require__(/*! ./index.scss */ "./src/pages/static/invite/index.scss");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var InvitePage = function (_Taro$Component) {
+  _inherits(InvitePage, _Taro$Component);
+
+  function InvitePage() {
+    _classCallCheck(this, InvitePage);
+
+    var _this = _possibleConstructorReturn(this, (InvitePage.__proto__ || Object.getPrototypeOf(InvitePage)).apply(this, arguments));
+
+    _this.config = {
+      navigationBarTitleText: '鱼泡网-新闻资讯',
+      enablePullDownRefresh: true,
+      navigationBarBackgroundColor: '#0099ff',
+      navigationBarTextStyle: 'white',
+      backgroundTextStyle: 'dark'
+    };
+
+    _this.$usedState = ["tab", "loopArray54", "loopArray55", "$compid__53", "scrollLeft", "list", "pull"];
+    _this.anonymousFunc1Map = {};
+    _this.anonymousFunc2Map = {};
+    _this.customComponents = ["Nodata"];
+    return _this;
+  }
+
+  _createClass(InvitePage, [{
+    key: '_constructor',
+    value: function _constructor(props) {
+      _get(InvitePage.prototype.__proto__ || Object.getPrototypeOf(InvitePage.prototype), '_constructor', this).call(this, props);
+      this.$$refs = new _taroTt2.default.RefsArray();
+    }
+  }, {
+    key: '_createData',
+    value: function _createData() {
+      var _this2 = this;
+
+      this.__state = arguments[0] || this.state || {};
+      this.__props = arguments[1] || this.props || {};
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
+      ;
+
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__53"),
+          _genCompid2 = _slicedToArray(_genCompid, 2),
+          $prevCompid__53 = _genCompid2[0],
+          $compid__53 = _genCompid2[1];
+      // 默认table
+
+
+      var _useState = (0, _taroTt.useState)('-1'),
+          _useState2 = _slicedToArray(_useState, 2),
+          current = _useState2[0],
+          setCurrent = _useState2[1];
+      // 页数
+
+
+      var _useState3 = (0, _taroTt.useState)({
+        page: 1
+      }),
+          _useState4 = _slicedToArray(_useState3, 2),
+          initPage = _useState4[0],
+          setInitPage = _useState4[1];
+      //  没有数据显示内容
+
+
+      var _useState5 = (0, _taroTt.useState)('暂无相关资讯'),
+          _useState6 = _slicedToArray(_useState5, 2),
+          noData = _useState6[0],
+          setNodata = _useState6[1];
+      // 数据
+
+
+      var _useState7 = (0, _taroTt.useState)([]),
+          _useState8 = _slicedToArray(_useState7, 2),
+          list = _useState8[0],
+          setList = _useState8[1];
+      // 能否再上拉
+
+
+      var _useState9 = (0, _taroTt.useState)(true),
+          _useState10 = _slicedToArray(_useState9, 2),
+          pull = _useState10[0],
+          setPull = _useState10[1];
+      // 设置滚动未知
+
+
+      var _useState11 = (0, _taroTt.useState)(0),
+          _useState12 = _slicedToArray(_useState11, 2),
+          scrollLeft = _useState12[0],
+          setScrollLeft = _useState12[1];
+
+      var handleTable = function handleTable(id, name, index) {
+        setScrollLeft(index * 80);
+        setCurrent(id);
+        setNodata(name);
+        setInitPage({ page: 1 });
+        setPull(true);
+        _taroTt2.default.pageScrollTo({
+          scrollTop: 0
+        });
+      };
+
+      var _useState13 = (0, _taroTt.useState)({
+        item: []
+      }),
+          _useState14 = _slicedToArray(_useState13, 2),
+          tab = _useState14[0],
+          setTab = _useState14[1];
+      // 获取新闻类型
+
+
+      (0, _taroTt.useEffect)(function () {
+        (0, _index.newsTypesAction)().then(function (res) {
+          setTab({ item: res.data });
+        });
+      }, []);
+      // 获取新闻列表
+      (0, _taroTt.useEffect)(function () {
+        var params = {
+          page: initPage.page,
+          newsType: current
+        };
+        (0, _index.newListAction)(params).then(function (res) {
+          _taroTt2.default.hideNavigationBarLoading();
+          if (!res.data.length) {
+            setPull(false);
+          }
+          if (params.page === 1) {
+            setList([].concat(_toConsumableArray(res.data)));
+          } else {
+            setList([].concat(_toConsumableArray(list), _toConsumableArray(res.data)));
+          }
+        });
+      }, [current, initPage]);
+      // 用户页面跳转
+      var userRouteJump = function userRouteJump(url) {
+        _taroTt2.default.navigateTo({
+          url: url
+        });
+      };
+      (0, _taroTt.useReachBottom)(function () {
+        if (pull) {
+          setInitPage({ page: initPage.page + 1 });
+        }
+      });
+      this.anonymousFunc0 = function (e) {
+        console.log(e);
+      };
+      var loopArray54 = tab.item ? tab.item.map(function (item, i) {
+        item = {
+          $original: (0, _taroTt.internal_get_original)(item)
+        };
+        var _$indexKey = "ggzzz" + i;
+        _this2.anonymousFunc1Map[_$indexKey] = function () {
+          handleTable(item.$original.index, item.$original.name, i);
+        };
+        var $loopState__temp2 = tab.item ? (0, _classnames2.default)({
+          'invite-tab-active': item.$original.index === current
+        }) : null;
+        return {
+          _$indexKey: _$indexKey,
+          $loopState__temp2: $loopState__temp2,
+          $original: item.$original
+        };
+      }) : [];
+      var loopArray55 = list ? list.map(function (v, __index2) {
+        v = {
+          $original: (0, _taroTt.internal_get_original)(v)
+        };
+        var _$indexKey2 = "ghzzz" + __index2;
+        _this2.anonymousFunc2Map[_$indexKey2] = function () {
+          return userRouteJump("/subpackage/pages/notice/index?id=" + v.$original.id);
+        };
+        return {
+          _$indexKey2: _$indexKey2,
+          $original: v.$original
+        };
+      }) : [];
+      !list.length && _taroTt.propsManager.set({
+        "text": noData
+      }, $compid__53, $prevCompid__53);
+      Object.assign(this.__state, {
+        tab: tab,
+        loopArray54: loopArray54,
+        loopArray55: loopArray55,
+        $compid__53: $compid__53,
+        scrollLeft: scrollLeft,
+        list: list,
+        pull: pull
+      });
+      return this.__state;
+    }
+  }, {
+    key: 'anonymousFunc0',
+    value: function anonymousFunc0(e) {
+      ;
+    }
+  }, {
+    key: 'anonymousFunc1',
+    value: function anonymousFunc1(_$indexKey) {
+      var _anonymousFunc1Map;
+
+      ;
+
+      for (var _len = arguments.length, e = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+        e[_key - 1] = arguments[_key];
+      }
+
+      return this.anonymousFunc1Map[_$indexKey] && (_anonymousFunc1Map = this.anonymousFunc1Map)[_$indexKey].apply(_anonymousFunc1Map, e);
+    }
+  }, {
+    key: 'anonymousFunc2',
+    value: function anonymousFunc2(_$indexKey2) {
+      var _anonymousFunc2Map;
+
+      ;
+
+      for (var _len2 = arguments.length, e = Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
+        e[_key2 - 1] = arguments[_key2];
+      }
+
+      return this.anonymousFunc2Map[_$indexKey2] && (_anonymousFunc2Map = this.anonymousFunc2Map)[_$indexKey2].apply(_anonymousFunc2Map, e);
+    }
+  }]);
+
+  return InvitePage;
+}(_taroTt2.default.Component);
+
+InvitePage.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2"];
+InvitePage.$$componentPath = "pages/static/invite/index";
+InvitePage.config = { navigationBarTitleText: '鱼泡网-新闻资讯', enablePullDownRefresh: true, navigationBarBackgroundColor: '#0099ff', navigationBarTextStyle: 'white', backgroundTextStyle: 'dark' };
+exports.default = InvitePage;
+
+Page(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(InvitePage, true));
+
+/***/ })
+
+},[["./src/pages/static/invite/index.tsx","runtime","vendors"]]]);

@@ -1,1 +1,329 @@
-(swan.webpackJsonp=swan.webpackJsonp||[]).push([[63],{"196":function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{"value":!0});var E=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var o in n)Object.prototype.hasOwnProperty.call(n,o)&&(e[o]=n[o])}return e},I=function(e,t){if(Array.isArray(e))return e;if(Symbol.iterator in Object(e))return function sliceIterator(e,t){var n=[],o=!0,r=!1,a=void 0;try{for(var i,u=e[Symbol.iterator]();!(o=(i=u.next()).done)&&(n.push(i.value),!t||n.length!==t);o=!0);}catch(e){r=!0,a=e}finally{try{!o&&u.return&&u.return()}finally{if(r)throw a}}return n}(e,t);throw new TypeError("Invalid attempt to destructure non-iterable instance")},o=function(e,t,n){return t&&defineProperties(e.prototype,t),n&&defineProperties(e,n),e};function defineProperties(e,t){for(var n=0;n<t.length;n++){var o=t[n];o.enumerable=o.enumerable||!1,o.configurable=!0,"value"in o&&(o.writable=!0),Object.defineProperty(e,o.key,o)}}var K=n(0),U=function _interopRequireDefault(e){return e&&e.__esModule?e:{"default":e}}(K),J=n(1),B=n(8),H=n(7),q=n(9),W=n(33);function _toConsumableArray(e){if(Array.isArray(e)){for(var t=0,n=Array(e.length);t<e.length;t++)n[t]=e[t];return n}return Array.from(e)}n(197);var r=(function _inherits(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{"constructor":{"value":e,"enumerable":!1,"writable":!0,"configurable":!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}(Recruit,U.default.Component),o(Recruit,[{"key":"_constructor","value":function _constructor(e){(function get(e,t,n){null===e&&(e=Function.prototype);var o=Object.getOwnPropertyDescriptor(e,t);if(void 0===o){var r=Object.getPrototypeOf(e);return null===r?void 0:get(r,t,n)}if("value"in o)return o.value;var a=o.get;return void 0!==a?a.call(n):void 0})(Recruit.prototype.__proto__||Object.getPrototypeOf(Recruit.prototype),"_constructor",this).call(this,e),this.$$refs=new U.default.RefsArray}},{"key":"_createData","value":function _createData(e,t,n){function Ma(e){var t=(0,B.getCityInfo)(e);U.default.setStorageSync(H.UserListChooseCity,t),x([]),function editConditionAction(t,e){var n=JSON.parse(JSON.stringify(v)),o=n.findIndex(function(e){return e.id===t}),r=E({},n[o],{"text":e});n[o]=r,b(n)}("area",t.name),M(E({},D,{"page":1,"area_id":t.id}))}this.__state=e||this.state||{},this.__props=t||this.props||{};var o=this.$prefix,r=(0,K.genCompid)(o+"$compid__10"),a=I(r,2),i=a[0],u=a[1],c=(0,K.genCompid)(o+"$compid__11"),s=I(c,2),l=s[0],p=s[1],f=(0,K.genCompid)(o+"$compid__12"),y=I(f,2),d=y[0],_=y[1],h=U.default.getStorageSync(H.UserListChooseCity),g=(0,K.useState)([{"id":W.AreaPickerKey,"text":h?h.name:"全国"},{"id":W.ClassifyPickerKey,"text":"选择工种"},{"id":W.FilterPickerKey,"text":"最新"}]),m=I(g,2),v=m[0],b=m[1],C=(0,K.useState)(0),S=I(C,2),A=S[0],w=S[1],O=(0,K.useState)(!1),P=I(O,2),R=P[0],F=P[1],j=(0,K.useState)([]),k=I(j,2),$=k[0],x=k[1],L=(0,K.useState)({"page":1,"list_type":"job","area_id":h?h.id:"","classify_id":"","keywords":"","joblisttype":"newest","token":""}),T=I(L,2),D=T[0],M=T[1];function Ta(e,t){return function setSearchDataAction(e,t){console.log(e,t),e===W.ClassifyPickerKey?M(E({},D,{"classify_id":t,"page":1})):e===W.AreaPickerKey?M(E({},D,{"area_id":t,"page":1})):M(E({},D,{"joblisttype":t,"page":1})),w(0)}(e,t)}(0,K.useEffect)(function(){!function getRecruitListAction(){(0,J.getRecruitList)(D).then(function(e){U.default.hideNavigationBarLoading(),1===D.page?x([[].concat(_toConsumableArray(e.data))]):x([].concat(_toConsumableArray($),[[].concat(_toConsumableArray(e.data))])),R&&F(!1)})}(),D.area_id||function getUserLocation(){if(h)M(E({},D,{"page":1,"area_id":h.id}));else{var e=U.default.getStorageSync(H.UserLocationCity);if(e)return Ma(e);(0,q.userAuthLoction)().then(function(e){Ma(e)}).catch(function(){U.default.setStorageSync(H.UserListChooseCity,B.AREACHINA),x([]),M(E({},D,{"page":1,"area_id":B.AREACHINA.id}))})}}()},[D]),this.anonymousFunc0=function(e){return w(e.detail.scrollTop)},this.anonymousFunc1=function(){return function pullDownAction(){F(!0),M(E({},D,{"page":1}))}()},this.anonymousFunc2=function(){return function getNextPageData(){console.log("触底触底"),U.default.showNavigationBarLoading(),M(E({},D,{"page":D.page+1}))}()};var N=(0,K.internal_inline_style)({"height":"8px"});return this.anonymousFunc3=function(){return function userPublishRecruit(){U.default.navigateTo({"url":"/pages/recruit/publish/index"})}()},K.propsManager.set({"placeholder":"找活、找工作","value":""},u,i),K.propsManager.set({"data":v,"setSearchData":Ta},p,l),K.propsManager.set({"data":$},_,d),Object.assign(this.__state,{"anonymousState__temp":Ta,"anonymousState__temp2":N,"$compid__10":u,"$compid__11":p,"$compid__12":_,"scrollTop":A,"refresh":R}),this.__state}},{"key":"anonymousFunc0","value":function anonymousFunc0(){}},{"key":"anonymousFunc1","value":function anonymousFunc1(){}},{"key":"anonymousFunc2","value":function anonymousFunc2(){}},{"key":"anonymousFunc3","value":function anonymousFunc3(){}}]),Recruit);function Recruit(){!function _classCallCheck(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,Recruit);var e=function _possibleConstructorReturn(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}(this,(Recruit.__proto__||Object.getPrototypeOf(Recruit)).apply(this,arguments));return e.$usedState=["anonymousState__temp","anonymousState__temp2","$compid__10","$compid__11","$compid__12","scrollTop","refresh"],e.customComponents=["Search","Condition","WechatNotice","RecruitList"],e}r.$$events=["anonymousFunc0","anonymousFunc1","anonymousFunc2","anonymousFunc3"],r.$$componentPath="pages/recruit/lists/index",t.default=r,Component(n(0).default.createComponent(r))},"197":function(e,t,n){}},[[196,0,1]]]);
+(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["pages/recruit/lists/index"],{
+
+/***/ "./src/pages/recruit/lists/index.scss":
+/*!********************************************!*\
+  !*** ./src/pages/recruit/lists/index.scss ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
+/***/ "./src/pages/recruit/lists/index.tsx":
+/*!*******************************************!*\
+  !*** ./src/pages/recruit/lists/index.tsx ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+
+var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+
+var _taroTt2 = _interopRequireDefault(_taroTt);
+
+var _index = __webpack_require__(/*! ../../../utils/request/index */ "./src/utils/request/index.ts");
+
+var _area = __webpack_require__(/*! ../../../models/area */ "./src/models/area.ts");
+
+var _store = __webpack_require__(/*! ../../../config/store */ "./src/config/store.ts");
+
+var _index2 = __webpack_require__(/*! ../../../utils/helper/index */ "./src/utils/helper/index.ts");
+
+var _lists = __webpack_require__(/*! ../../../config/pages/lists */ "./src/config/pages/lists.ts");
+
+__webpack_require__(/*! ./index.scss */ "./src/pages/recruit/lists/index.scss");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Recruit = function (_Taro$Component) {
+  _inherits(Recruit, _Taro$Component);
+
+  function Recruit() {
+    _classCallCheck(this, Recruit);
+
+    var _this = _possibleConstructorReturn(this, (Recruit.__proto__ || Object.getPrototypeOf(Recruit)).apply(this, arguments));
+
+    _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "anonymousState__temp3", "anonymousState__temp4", "$compid__10", "$compid__11", "$compid__12", "scrollTop", "refresh"];
+    _this.customComponents = ["Search", "Condition", "WechatNotice", "RecruitList"];
+    return _this;
+  }
+
+  _createClass(Recruit, [{
+    key: "_constructor",
+    value: function _constructor(props) {
+      _get(Recruit.prototype.__proto__ || Object.getPrototypeOf(Recruit.prototype), "_constructor", this).call(this, props);
+      this.$$refs = new _taroTt2.default.RefsArray();
+    }
+  }, {
+    key: "_createData",
+    value: function _createData() {
+      this.__state = arguments[0] || this.state || {};
+      this.__props = arguments[1] || this.props || {};
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
+      ;
+
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__10"),
+          _genCompid2 = _slicedToArray(_genCompid, 2),
+          $prevCompid__10 = _genCompid2[0],
+          $compid__10 = _genCompid2[1];
+
+      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__11"),
+          _genCompid4 = _slicedToArray(_genCompid3, 2),
+          $prevCompid__11 = _genCompid4[0],
+          $compid__11 = _genCompid4[1];
+
+      var _genCompid5 = (0, _taroTt.genCompid)(__prefix + "$compid__12"),
+          _genCompid6 = _slicedToArray(_genCompid5, 2),
+          $prevCompid__12 = _genCompid6[0],
+          $compid__12 = _genCompid6[1];
+      // 输入关键词 没搜索 备份
+
+
+      var _useState = (0, _taroTt.useState)(''),
+          _useState2 = _slicedToArray(_useState, 2),
+          remark = _useState2[0],
+          setRemark = _useState2[1];
+      // * 获取选择城市缓存
+
+
+      var userListChooseCity = _taroTt2.default.getStorageSync(_store.UserListChooseCity);
+      // * 配置筛选条件
+
+      var _useState3 = (0, _taroTt.useState)([{ id: _lists.AreaPickerKey, text: userListChooseCity ? userListChooseCity.name : '全国' }, { id: _lists.ClassifyPickerKey, text: '选择工种' }, { id: _lists.FilterPickerKey, text: '最新' }]),
+          _useState4 = _slicedToArray(_useState3, 2),
+          condition = _useState4[0],
+          setCondition = _useState4[1];
+      // * scrollTop 位置 回到顶部
+
+
+      var _useState5 = (0, _taroTt.useState)(0),
+          _useState6 = _slicedToArray(_useState5, 2),
+          scrollTop = _useState6[0],
+          setScrollTop = _useState6[1];
+      // * 标记是否是在刷新状态
+
+
+      var _useState7 = (0, _taroTt.useState)(false),
+          _useState8 = _slicedToArray(_useState7, 2),
+          refresh = _useState8[0],
+          setRefresh = _useState8[1];
+      // * 定义列表数组
+
+
+      var _useState9 = (0, _taroTt.useState)([]),
+          _useState10 = _slicedToArray(_useState9, 2),
+          lists = _useState10[0],
+          setLists = _useState10[1];
+      // * 定义data
+
+
+      var _useState11 = (0, _taroTt.useState)({
+        page: 1,
+        list_type: 'job',
+        area_id: userListChooseCity ? userListChooseCity.id : '',
+        classify_id: '',
+        keywords: '',
+        joblisttype: 'newest',
+        token: ''
+      }),
+          _useState12 = _slicedToArray(_useState11, 2),
+          searchData = _useState12[0],
+          setSearchData = _useState12[1];
+      // 更改某一项操作条件
+
+
+      var editConditionAction = function editConditionAction(type, text) {
+        var data = JSON.parse(JSON.stringify(condition));
+        var i = data.findIndex(function (item) {
+          return item.id === type;
+        });
+        var item = _extends({}, data[i], { text: text });
+        data[i] = item;
+        setCondition(data);
+      };
+      // 用户定位之后重新设置搜索条件
+      var resetLocationSearch = function resetLocationSearch(data) {
+        var city = (0, _area.getCityInfo)(data);
+        _taroTt2.default.setStorageSync(_store.UserListChooseCity, city); //第一次默认选中
+        setLists([]);
+        editConditionAction('area', city.name);
+        setSearchData(_extends({}, searchData, { page: 1, area_id: city.id }));
+      };
+      // 用户获取定位
+      var getUserLocation = function getUserLocation() {
+        // 使用用户选择的城市
+        if (userListChooseCity) {
+          setSearchData(_extends({}, searchData, { page: 1, area_id: userListChooseCity.id }));
+        } else {
+          var userLocationCity = _taroTt2.default.getStorageSync(_store.UserLocationCity);
+          if (userLocationCity) {
+            resetLocationSearch(userLocationCity);
+            return;
+          }
+          (0, _index2.userAuthLoction)().then(function (gpsLocation) {
+            resetLocationSearch(gpsLocation);
+          }).catch(function () {
+            // 拒绝授权默认全国
+            _taroTt2.default.setStorageSync(_store.UserListChooseCity, _area.AREACHINA);
+            setLists([]);
+            setSearchData(_extends({}, searchData, { page: 1, area_id: _area.AREACHINA.id }));
+          });
+        }
+      };
+      // 请求列表方法
+      var getRecruitListAction = function getRecruitListAction() {
+        (0, _index.getRecruitList)(searchData).then(function (res) {
+          _taroTt2.default.hideNavigationBarLoading();
+          if (searchData.page === 1) {
+            setLists([[].concat(_toConsumableArray(res.data))]);
+          } else setLists([].concat(_toConsumableArray(lists), [[].concat(_toConsumableArray(res.data))]));
+          if (refresh) {
+            setRefresh(false);
+          }
+        });
+      };
+      // * 请求列表数据
+      (0, _taroTt.useEffect)(function () {
+        getRecruitListAction();
+        if (!searchData.area_id) {
+          getUserLocation();
+        }
+      }, [searchData]);
+      // * 触底加载下一页
+      var getNextPageData = function getNextPageData() {
+        console.log('触底触底');
+        _taroTt2.default.showNavigationBarLoading();
+        setSearchData(_extends({}, searchData, { page: searchData.page + 1 }));
+      };
+      // * 监听下拉刷新
+      var pullDownAction = function pullDownAction() {
+        setRefresh(true);
+        setSearchData(_extends({}, searchData, { page: 1 }));
+      };
+      // * 发布招工
+      var userPublishRecruit = function userPublishRecruit() {
+        _taroTt2.default.navigateTo({ url: '/pages/recruit/publish/index' });
+      };
+      // * 更新筛选条件
+      var setSearchDataAction = function setSearchDataAction(type, id) {
+        if (type === _lists.ClassifyPickerKey) {
+          setSearchData(_extends({}, searchData, { classify_id: id, page: 1 }));
+        } else if (type === _lists.AreaPickerKey) {
+          setSearchData(_extends({}, searchData, { area_id: id, page: 1 }));
+        } else {
+          setSearchData(_extends({}, searchData, { joblisttype: id, page: 1 }));
+        }
+        setScrollTop(0);
+      };
+      // 输入搜索关键词
+      var setSearchValData = function setSearchValData() {
+        setSearchData(_extends({}, searchData, { keywords: remark, page: 1 }));
+        setScrollTop(0);
+      };
+      var anonymousState__temp = function anonymousState__temp(val) {
+        return setRemark(val);
+      };
+      var anonymousState__temp2 = function anonymousState__temp2() {
+        return setSearchValData();
+      };
+      var anonymousState__temp3 = function anonymousState__temp3(type, id) {
+        return setSearchDataAction(type, id);
+      };
+      this.anonymousFunc0 = function (e) {
+        return setScrollTop(e.detail.scrollTop);
+      };
+      this.anonymousFunc1 = function () {
+        return pullDownAction();
+      };
+      this.anonymousFunc2 = function () {
+        return getNextPageData();
+      };
+      var anonymousState__temp4 = (0, _taroTt.internal_inline_style)({ height: '8px' });
+      this.anonymousFunc3 = function () {
+        return userPublishRecruit();
+      };
+      _taroTt.propsManager.set({
+        "placeholder": "\u627E\u6D3B\u3001\u627E\u5DE5\u4F5C",
+        "value": "",
+        "setRemark": anonymousState__temp,
+        "setSearchData": anonymousState__temp2
+      }, $compid__10, $prevCompid__10);
+      _taroTt.propsManager.set({
+        "data": condition,
+        "setSearchData": anonymousState__temp3
+      }, $compid__11, $prevCompid__11);
+      _taroTt.propsManager.set({
+        "data": lists
+      }, $compid__12, $prevCompid__12);
+      Object.assign(this.__state, {
+        anonymousState__temp: anonymousState__temp,
+        anonymousState__temp2: anonymousState__temp2,
+        anonymousState__temp3: anonymousState__temp3,
+        anonymousState__temp4: anonymousState__temp4,
+        $compid__10: $compid__10,
+        $compid__11: $compid__11,
+        $compid__12: $compid__12,
+        scrollTop: scrollTop,
+        refresh: refresh
+      });
+      return this.__state;
+    }
+  }, {
+    key: "anonymousFunc0",
+    value: function anonymousFunc0(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc1",
+    value: function anonymousFunc1(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc2",
+    value: function anonymousFunc2(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc3",
+    value: function anonymousFunc3(e) {
+      ;
+    }
+  }]);
+
+  return Recruit;
+}(_taroTt2.default.Component);
+
+Recruit.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3"];
+Recruit.$$componentPath = "pages/recruit/lists/index";
+exports.default = Recruit;
+
+Component(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(Recruit));
+
+/***/ })
+
+},[["./src/pages/recruit/lists/index.tsx","runtime","vendors"]]]);

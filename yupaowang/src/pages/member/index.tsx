@@ -3,7 +3,7 @@ import { View, Image, Text } from '@tarojs/components'
 import { useSelector } from '@tarojs/redux'
 import { getMemberInfo } from '../../utils/request'
 import { MemberInfo } from '../../utils/request/index.d'
-import { IMGCDNURL, AUTHPATH } from '../../config'
+import { IMGCDNURL, AUTHPATH, CODEAUTHPATH } from '../../config'
 import { ShowActionModal } from '../../utils/msg'
 import { isIos } from '../../utils/v'
 import './index.scss'
@@ -98,7 +98,7 @@ export default function Member(){
             </View>
           </View>
           :
-          <View className='member-userinfo member-userinfo-null' onClick={() => userRouteJump(AUTHPATH)}>
+          <View className='member-userinfo member-userinfo-null' onClick={() => userRouteJump(ISWEIXIN ? AUTHPATH : CODEAUTHPATH)}>
             <View className='member-toauth'>
               <Image className='member-user-nullimg' src={IMGCDNURL + 'userauth-userinfo-null.png' } />
               <Text className='member-user-login'>登录/注册</Text>
@@ -120,7 +120,7 @@ export default function Member(){
             <Text className='member-list-title'>我的找活名片</Text>
             <Text className='member-list-tips'>{model && model.member.resume_status.resume_tips_string }</Text>
           </View>
-          <View className='member-list-item'>
+          <View className='member-list-item' onClick={()=>userRouteJump('/pages/published/used/index')}>
             <Image className='member-list-icon' src={ IMGCDNURL + 'lpy/ucenter/newcenter-used.png'} />
             <Text className='member-list-title'>我的二手交易</Text>
           </View>

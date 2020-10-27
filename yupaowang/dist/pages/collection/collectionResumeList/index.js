@@ -1,1 +1,209 @@
-(swan.webpackJsonp=swan.webpackJsonp||[]).push([[36],{"239":function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{"value":!0});var L=function(e,t){if(Array.isArray(e))return e;if(Symbol.iterator in Object(e))return function sliceIterator(e,t){var n=[],o=!0,r=!1,a=void 0;try{for(var i,u=e[Symbol.iterator]();!(o=(i=u.next()).done)&&(n.push(i.value),!t||n.length!==t);o=!0);}catch(e){r=!0,a=e}finally{try{!o&&u.return&&u.return()}finally{if(r)throw a}}return n}(e,t);throw new TypeError("Invalid attempt to destructure non-iterable instance")},o=function(e,t,n){return t&&defineProperties(e.prototype,t),n&&defineProperties(e,n),e};function defineProperties(e,t){for(var n=0;n<t.length;n++){var o=t[n];o.enumerable=o.enumerable||!1,o.configurable=!0,"value"in o&&(o.writable=!0),Object.defineProperty(e,o.key,o)}}var j=n(0),r=function _interopRequireDefault(e){return e&&e.__esModule?e:{"default":e}}(j),A=n(2);n(240);var a=(function _inherits(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{"constructor":{"value":e,"enumerable":!1,"writable":!0,"configurable":!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}(CollectionResumeList,r.default.Component),o(CollectionResumeList,[{"key":"_constructor","value":function _constructor(e){(function get(e,t,n){null===e&&(e=Function.prototype);var o=Object.getOwnPropertyDescriptor(e,t);if(void 0===o){var r=Object.getPrototypeOf(e);return null===r?void 0:get(r,t,n)}if("value"in o)return o.value;var a=o.get;return void 0!==a?a.call(n):void 0})(CollectionResumeList.prototype.__proto__||Object.getPrototypeOf(CollectionResumeList.prototype),"_constructor",this).call(this,e),this.$$refs=new r.default.RefsArray}},{"key":"_createData","value":function _createData(e,t,n){var r=this;this.__state=e||this.state||{},this.__props=t||this.props||{};var o=this.$prefix,a=(0,j.genCompid)(o+"$compid__40"),i=L(a,2),u=i[0],s=i[1],c=(0,j.genCompid)(o+"$compid__41"),l=L(c,2),p=l[0],f=l[1],y=this.__props,m=y.data,_=void 0===m?[]:m,d=(y.onHandlerClick,y.bottom),v=void 0===d||d,h=y.recruitNoMoreData,b=(0,j.useState)(!1),C=L(b,2),g=C[0],O=C[1],M=(0,j.useState)(""),F=L(M,2),w=F[0],R=F[1],$=(0,j.internal_inline_style)(v?"":"padding-bottom:0");this.anonymousFunc2=function(){O(!1)};var k=_?_.map(function(e,t){e={"privateOriginal":(0,j.internal_get_original)(e)};var n="ehzzz"+t;r.anonymousFunc0Map[n]=function(){return function onHandleClick(e){"2"==e||("0"==e?(O(!0),R("该信息未通过人工审核，审核通过后，即可查看")):"1"==e&&(O(!0),R("该信息正在人工审核中，请稍后再试")))}(e.privateOriginal.resume.check)};var o="eizzz"+t;return r.anonymousFunc1Map[o]=function(){r.__props.onHandlerClick(e.privateOriginal.resume_uuid)},{"_$indexKey":n,"_$indexKey2":o,"privateOriginal":e.privateOriginal}}):[];return _.length||j.propsManager.set({"text":"没有找到相关的数据"},s,u),j.propsManager.set({"isOpened":g},f,p),Object.assign(this.__state,{"anonymousState__temp":$,"loopArray43":k,"$compid__40":s,"$compid__41":f,"data":_,"IMGCDNURL":A.IMGCDNURL,"recruitNoMoreData":h,"modalContent":w}),this.__state}},{"key":"anonymousFunc0","value":function anonymousFunc0(e){for(var t,n=arguments.length,o=Array(1<n?n-1:0),r=1;r<n;r++)o[r-1]=arguments[r];return this.anonymousFunc0Map[e]&&(t=this.anonymousFunc0Map)[e].apply(t,o)}},{"key":"anonymousFunc1","value":function anonymousFunc1(e){for(var t,n=arguments.length,o=Array(1<n?n-1:0),r=1;r<n;r++)o[r-1]=arguments[r];return this.anonymousFunc1Map[e]&&(t=this.anonymousFunc1Map)[e].apply(t,o)}},{"key":"anonymousFunc2","value":function anonymousFunc2(){}}]),CollectionResumeList);function CollectionResumeList(){!function _classCallCheck(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,CollectionResumeList);var e=function _possibleConstructorReturn(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}(this,(CollectionResumeList.__proto__||Object.getPrototypeOf(CollectionResumeList)).apply(this,arguments));return e.$usedState=["anonymousState__temp","loopArray43","$compid__40","$compid__41","data","IMGCDNURL","recruitNoMoreData","modalContent","bottom","onHandlerClick"],e.anonymousFunc0Map={},e.anonymousFunc1Map={},e.customComponents=["Nodata","AtModal","AtModalHeader","AtModalContent","AtModalAction"],e}a.$$events=["anonymousFunc0","anonymousFunc1","anonymousFunc2"],a.$$componentPath="pages/collection/collectionResumeList/index",t.default=a,Component(n(0).default.createComponent(a))},"240":function(e,t,n){}},[[239,0,1]]]);
+(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["pages/collection/collectionResumeList/index"],{
+
+/***/ "./src/pages/collection/collectionResumeList/index.scss":
+/*!**************************************************************!*\
+  !*** ./src/pages/collection/collectionResumeList/index.scss ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
+/***/ "./src/pages/collection/collectionResumeList/index.tsx":
+/*!*************************************************************!*\
+  !*** ./src/pages/collection/collectionResumeList/index.tsx ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+
+var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+
+var _taroTt2 = _interopRequireDefault(_taroTt);
+
+var _index = __webpack_require__(/*! ../../../config/index */ "./src/config/index.ts");
+
+__webpack_require__(/*! ./index.scss */ "./src/pages/collection/collectionResumeList/index.scss");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var CollectionResumeList = function (_Taro$Component) {
+  _inherits(CollectionResumeList, _Taro$Component);
+
+  function CollectionResumeList() {
+    _classCallCheck(this, CollectionResumeList);
+
+    var _this = _possibleConstructorReturn(this, (CollectionResumeList.__proto__ || Object.getPrototypeOf(CollectionResumeList)).apply(this, arguments));
+
+    _this.$usedState = ["anonymousState__temp", "loopArray51", "$compid__43", "$compid__44", "data", "IMGCDNURL", "recruitNoMoreData", "modalContent", "bottom", "onHandlerClick"];
+    _this.anonymousFunc0Map = {};
+    _this.anonymousFunc1Map = {};
+    _this.customComponents = ["Nodata", "AtModal", "AtModalHeader", "AtModalContent", "AtModalAction"];
+    return _this;
+  }
+
+  _createClass(CollectionResumeList, [{
+    key: "_constructor",
+    value: function _constructor(props) {
+      _get(CollectionResumeList.prototype.__proto__ || Object.getPrototypeOf(CollectionResumeList.prototype), "_constructor", this).call(this, props);
+      this.$$refs = new _taroTt2.default.RefsArray();
+    }
+  }, {
+    key: "_createData",
+    value: function _createData() {
+      var _this2 = this;
+
+      this.__state = arguments[0] || this.state || {};
+      this.__props = arguments[1] || this.props || {};
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
+      ;
+
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__43"),
+          _genCompid2 = _slicedToArray(_genCompid, 2),
+          $prevCompid__43 = _genCompid2[0],
+          $compid__43 = _genCompid2[1];
+
+      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__44"),
+          _genCompid4 = _slicedToArray(_genCompid3, 2),
+          $prevCompid__44 = _genCompid4[0],
+          $compid__44 = _genCompid4[1];
+
+      var _props = this.__props,
+          _props$data = _props.data,
+          data = _props$data === undefined ? [] : _props$data,
+          onHandlerClick = _props.onHandlerClick,
+          _props$bottom = _props.bottom,
+          bottom = _props$bottom === undefined ? true : _props$bottom,
+          recruitNoMoreData = _props.recruitNoMoreData;
+      // 定义弹窗
+
+      var _useState = (0, _taroTt.useState)(false),
+          _useState2 = _slicedToArray(_useState, 2),
+          isOpened = _useState2[0],
+          setIsOpened = _useState2[1];
+      // 弹窗内容
+
+
+      var _useState3 = (0, _taroTt.useState)(''),
+          _useState4 = _slicedToArray(_useState3, 2),
+          modalContent = _useState4[0],
+          setModalContent = _useState4[1];
+      // 弹窗
+
+
+      var onHandleClick = function onHandleClick(type) {
+        // 1 审核中 2 通过 0 失败
+        if (type == '2') {} else if (type == '0') {
+          setIsOpened(true);
+          setModalContent('该信息未通过人工审核，审核通过后，即可查看');
+        } else if (type == '1') {
+          setIsOpened(true);
+          setModalContent('该信息正在人工审核中，请稍后再试');
+        }
+      };
+      var anonymousState__temp = (0, _taroTt.internal_inline_style)(bottom ? '' : 'padding-bottom:0');
+      this.anonymousFunc2 = function () {
+        setIsOpened(false);
+      };
+      var loopArray51 = data ? data.map(function (item, __index0) {
+        item = {
+          $original: (0, _taroTt.internal_get_original)(item)
+        };
+        var _$indexKey = "gazzz" + __index0;
+        _this2.anonymousFunc0Map[_$indexKey] = function () {
+          return onHandleClick(item.$original.resume.check);
+        };
+        var _$indexKey2 = "gbzzz" + __index0;
+        _this2.anonymousFunc1Map[_$indexKey2] = function () {
+          _this2.__props.onHandlerClick(item.$original.resume_uuid);
+        };
+        return {
+          _$indexKey: _$indexKey,
+          _$indexKey2: _$indexKey2,
+          $original: item.$original
+        };
+      }) : [];
+      !data.length && _taroTt.propsManager.set({
+        "text": "\u6CA1\u6709\u627E\u5230\u76F8\u5173\u7684\u6570\u636E"
+      }, $compid__43, $prevCompid__43);
+      _taroTt.propsManager.set({
+        "isOpened": isOpened
+      }, $compid__44, $prevCompid__44);
+      Object.assign(this.__state, {
+        anonymousState__temp: anonymousState__temp,
+        loopArray51: loopArray51,
+        $compid__43: $compid__43,
+        $compid__44: $compid__44,
+        data: data,
+        IMGCDNURL: _index.IMGCDNURL,
+        recruitNoMoreData: recruitNoMoreData,
+        modalContent: modalContent
+      });
+      return this.__state;
+    }
+  }, {
+    key: "anonymousFunc0",
+    value: function anonymousFunc0(_$indexKey) {
+      var _anonymousFunc0Map;
+
+      ;
+
+      for (var _len = arguments.length, e = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+        e[_key - 1] = arguments[_key];
+      }
+
+      return this.anonymousFunc0Map[_$indexKey] && (_anonymousFunc0Map = this.anonymousFunc0Map)[_$indexKey].apply(_anonymousFunc0Map, e);
+    }
+  }, {
+    key: "anonymousFunc1",
+    value: function anonymousFunc1(_$indexKey2) {
+      var _anonymousFunc1Map;
+
+      ;
+
+      for (var _len2 = arguments.length, e = Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
+        e[_key2 - 1] = arguments[_key2];
+      }
+
+      return this.anonymousFunc1Map[_$indexKey2] && (_anonymousFunc1Map = this.anonymousFunc1Map)[_$indexKey2].apply(_anonymousFunc1Map, e);
+    }
+  }, {
+    key: "anonymousFunc2",
+    value: function anonymousFunc2(e) {
+      ;
+    }
+  }]);
+
+  return CollectionResumeList;
+}(_taroTt2.default.Component);
+
+CollectionResumeList.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2"];
+CollectionResumeList.$$componentPath = "pages/collection/collectionResumeList/index";
+exports.default = CollectionResumeList;
+
+Component(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(CollectionResumeList));
+
+/***/ })
+
+},[["./src/pages/collection/collectionResumeList/index.tsx","runtime","vendors"]]]);

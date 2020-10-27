@@ -1,1 +1,230 @@
-(swan.webpackJsonp=swan.webpackJsonp||[]).push([[83],{"113":function(e,n,t){"use strict";Object.defineProperty(n,"__esModule",{"value":!0});var m=function(e,n){if(Array.isArray(e))return e;if(Symbol.iterator in Object(e))return function sliceIterator(e,n){var t=[],o=!0,u=!1,r=void 0;try{for(var a,s=e[Symbol.iterator]();!(o=(a=s.next()).done)&&(t.push(a.value),!n||t.length!==n);o=!0);}catch(e){u=!0,r=e}finally{try{!o&&s.return&&s.return()}finally{if(u)throw r}}return t}(e,n);throw new TypeError("Invalid attempt to destructure non-iterable instance")},o=function(e,n,t){return n&&defineProperties(e.prototype,n),t&&defineProperties(e,t),e};function defineProperties(e,n){for(var t=0;t<n.length;t++){var o=n[t];o.enumerable=o.enumerable||!1,o.configurable=!0,"value"in o&&(o.writable=!0),Object.defineProperty(e,o.key,o)}}var _=t(0),h=_interopRequireDefault(_),v=_interopRequireDefault(t(13)),b=t(1);t(114);var F=t(5),k=_interopRequireDefault(t(3)),w=_interopRequireDefault(t(6));function _interopRequireDefault(e){return e&&e.__esModule?e:{"default":e}}var u=(function _inherits(e,n){if("function"!=typeof n&&null!==n)throw new TypeError("Super expression must either be null or a function, not "+typeof n);e.prototype=Object.create(n&&n.prototype,{"constructor":{"value":e,"enumerable":!1,"writable":!0,"configurable":!0}}),n&&(Object.setPrototypeOf?Object.setPrototypeOf(e,n):e.__proto__=n)}(UserInfoAdd,h.default.Component),o(UserInfoAdd,[{"key":"_constructor","value":function _constructor(e){(function get(e,n,t){null===e&&(e=Function.prototype);var o=Object.getOwnPropertyDescriptor(e,n);if(void 0===o){var u=Object.getPrototypeOf(e);return null===u?void 0:get(u,n,t)}if("value"in o)return o.value;var r=o.get;return void 0!==r?r.call(t):void 0})(UserInfoAdd.prototype.__proto__||Object.getPrototypeOf(UserInfoAdd.prototype),"_constructor",this).call(this,e),this.$$refs=new h.default.RefsArray}},{"key":"_createData","value":function _createData(e,n,t){function ka(e,n){var t=e.detail.value,o=JSON.parse(JSON.stringify(y));o[n]=t,p(o)}this.__state=e||this.state||{},this.__props=n||this.props||{},this.$prefix;var o=(0,v.default)(),u=o.text,r=o.userGetCode,a=(0,_.useState)(!0),s=m(a,2),i=s[0],c=s[1],f=(0,_.useState)({"username":"","pwd":"","tel":"","code":""}),l=m(f,2),y=l[0],p=l[1];this.anonymousFunc0=function(e){return ka(e,"username")},this.anonymousFunc1=function(e){return ka(e,"tel")},this.anonymousFunc2=function(e){return ka(e,"code")},this.anonymousFunc3=function(){return r(y.tel)},this.anonymousFunc4=function(e){return ka(e,"pwd")};var d=(0,w.default)({"pass-eyes-icon":!0,"pass-eyes-icon-dis":i});return this.anonymousFunc5=function(){return c(!i)},this.anonymousFunc6=function(){return function userSubmitInfo(){y.username?(0,F.isPhone)(y.tel)?y.code?y.pwd?(0,b.postUserAddInfo)(y).then(function(e){(0,k.default)(e.errmsg),"ok"==e.errcode&&h.default.navigateBack()}):(0,k.default)("请输入您的密码"):(0,k.default)("请输入手机验证码"):(0,k.default)("请输入正确的手机号码"):(0,k.default)("请输入您的用户名")}()},Object.assign(this.__state,{"anonymousState__temp":d,"userInfo":y,"disPass":i,"text":u}),this.__state}},{"key":"anonymousFunc0","value":function anonymousFunc0(){}},{"key":"anonymousFunc1","value":function anonymousFunc1(){}},{"key":"anonymousFunc2","value":function anonymousFunc2(){}},{"key":"anonymousFunc3","value":function anonymousFunc3(){}},{"key":"anonymousFunc4","value":function anonymousFunc4(){}},{"key":"anonymousFunc5","value":function anonymousFunc5(){}},{"key":"anonymousFunc6","value":function anonymousFunc6(){}}]),UserInfoAdd);function UserInfoAdd(){!function _classCallCheck(e,n){if(!(e instanceof n))throw new TypeError("Cannot call a class as a function")}(this,UserInfoAdd);var e=function _possibleConstructorReturn(e,n){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!n||"object"!=typeof n&&"function"!=typeof n?e:n}(this,(UserInfoAdd.__proto__||Object.getPrototypeOf(UserInfoAdd)).apply(this,arguments));return e.$usedState=["anonymousState__temp","userInfo","disPass","text"],e.customComponents=[],e}u.$$events=["anonymousFunc0","anonymousFunc1","anonymousFunc2","anonymousFunc3","anonymousFunc4","anonymousFunc5","anonymousFunc6"],u.$$componentPath="pages/userinfo/add/index",n.default=u,Page(t(0).default.createComponent(u,!0))},"114":function(e,n,t){}},[[113,0,1]]]);
+(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["pages/userinfo/add/index"],{
+
+/***/ "./src/pages/userinfo/add/index.scss":
+/*!*******************************************!*\
+  !*** ./src/pages/userinfo/add/index.scss ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
+/***/ "./src/pages/userinfo/add/index.tsx":
+/*!******************************************!*\
+  !*** ./src/pages/userinfo/add/index.tsx ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+
+var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+
+var _taroTt2 = _interopRequireDefault(_taroTt);
+
+var _index = __webpack_require__(/*! ../../../hooks/code/index */ "./src/hooks/code/index.ts");
+
+var _index2 = _interopRequireDefault(_index);
+
+var _index3 = __webpack_require__(/*! ../../../utils/request/index */ "./src/utils/request/index.ts");
+
+__webpack_require__(/*! ./index.scss */ "./src/pages/userinfo/add/index.scss");
+
+var _index4 = __webpack_require__(/*! ../../../utils/v/index */ "./src/utils/v/index.ts");
+
+var _index5 = __webpack_require__(/*! ../../../utils/msg/index */ "./src/utils/msg/index.ts");
+
+var _index6 = _interopRequireDefault(_index5);
+
+var _classnames = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var UserInfoAdd = function (_Taro$Component) {
+  _inherits(UserInfoAdd, _Taro$Component);
+
+  function UserInfoAdd() {
+    _classCallCheck(this, UserInfoAdd);
+
+    var _this = _possibleConstructorReturn(this, (UserInfoAdd.__proto__ || Object.getPrototypeOf(UserInfoAdd)).apply(this, arguments));
+
+    _this.$usedState = ["anonymousState__temp", "userInfo", "disPass", "text"];
+    _this.customComponents = [];
+    return _this;
+  }
+
+  _createClass(UserInfoAdd, [{
+    key: "_constructor",
+    value: function _constructor(props) {
+      _get(UserInfoAdd.prototype.__proto__ || Object.getPrototypeOf(UserInfoAdd.prototype), "_constructor", this).call(this, props);
+      this.$$refs = new _taroTt2.default.RefsArray();
+    }
+  }, {
+    key: "_createData",
+    value: function _createData() {
+      this.__state = arguments[0] || this.state || {};
+      this.__props = arguments[1] || this.props || {};
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
+      ;
+
+      var _useCode = (0, _index2.default)(),
+          text = _useCode.text,
+          userGetCode = _useCode.userGetCode;
+      // 是否隐藏密码
+
+
+      var _useState = (0, _taroTt.useState)(true),
+          _useState2 = _slicedToArray(_useState, 2),
+          disPass = _useState2[0],
+          setDisPass = _useState2[1];
+      // 声明提交数据
+
+
+      var _useState3 = (0, _taroTt.useState)({
+        username: '',
+        pwd: '',
+        tel: '',
+        code: ''
+      }),
+          _useState4 = _slicedToArray(_useState3, 2),
+          userInfo = _useState4[0],
+          setUserInfo = _useState4[1];
+      // 用户填写表单
+
+
+      var userEnterForm = function userEnterForm(e, title) {
+        var value = e.detail.value;
+
+        var data = JSON.parse(JSON.stringify(userInfo));
+        data[title] = value;
+        setUserInfo(data);
+      };
+      // 用户提交信息
+      var userSubmitInfo = function userSubmitInfo() {
+        if (!userInfo.username) {
+          (0, _index6.default)('请输入您的用户名');
+          return;
+        }
+        if (!(0, _index4.isPhone)(userInfo.tel)) {
+          (0, _index6.default)('请输入正确的手机号码');
+          return;
+        }
+        if (!userInfo.code) {
+          (0, _index6.default)('请输入手机验证码');
+          return;
+        }
+        if (!userInfo.pwd) {
+          (0, _index6.default)('请输入您的密码');
+          return;
+        }
+        (0, _index3.postUserAddInfo)(userInfo).then(function (res) {
+          (0, _index6.default)(res.errmsg);
+          if (res.errcode == 'ok') {
+            _taroTt2.default.navigateBack();
+          }
+        });
+      };
+      this.anonymousFunc0 = function (e) {
+        return userEnterForm(e, 'username');
+      };
+      this.anonymousFunc1 = function (e) {
+        return userEnterForm(e, 'tel');
+      };
+      this.anonymousFunc2 = function (e) {
+        return userEnterForm(e, 'code');
+      };
+      this.anonymousFunc3 = function () {
+        return userGetCode(userInfo.tel);
+      };
+      this.anonymousFunc4 = function (e) {
+        return userEnterForm(e, 'pwd');
+      };
+      var anonymousState__temp = (0, _classnames2.default)({
+        'pass-eyes-icon': true,
+        'pass-eyes-icon-dis': disPass
+      });
+      this.anonymousFunc5 = function () {
+        return setDisPass(!disPass);
+      };
+      this.anonymousFunc6 = function () {
+        return userSubmitInfo();
+      };
+      Object.assign(this.__state, {
+        anonymousState__temp: anonymousState__temp,
+        userInfo: userInfo,
+        disPass: disPass,
+        text: text
+      });
+      return this.__state;
+    }
+  }, {
+    key: "anonymousFunc0",
+    value: function anonymousFunc0(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc1",
+    value: function anonymousFunc1(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc2",
+    value: function anonymousFunc2(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc3",
+    value: function anonymousFunc3(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc4",
+    value: function anonymousFunc4(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc5",
+    value: function anonymousFunc5(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc6",
+    value: function anonymousFunc6(e) {
+      ;
+    }
+  }]);
+
+  return UserInfoAdd;
+}(_taroTt2.default.Component);
+
+UserInfoAdd.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6"];
+UserInfoAdd.$$componentPath = "pages/userinfo/add/index";
+exports.default = UserInfoAdd;
+
+Page(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(UserInfoAdd, true));
+
+/***/ })
+
+},[["./src/pages/userinfo/add/index.tsx","runtime","vendors"]]]);

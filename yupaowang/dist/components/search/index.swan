@@ -1,5 +1,0 @@
-<block s-if="{{$taroCompReady}}">
-    <view class="search-header-box">
-        <input class="search-input" placeholder="{{placeholder}}" value="{= value =}" /><text class="search-btn">搜索</text>
-    </view>
-</block>
