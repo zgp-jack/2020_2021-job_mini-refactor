@@ -1,4 +1,4 @@
-(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["pages/used/lists/index"],{
+(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["pages/used/lists/index"],{
 
 /***/ "./src/pages/used/lists/index.scss":
 /*!*****************************************!*\
@@ -33,9 +33,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
 
 var _index = __webpack_require__(/*! ../../../utils/request/index */ "./src/utils/request/index.ts");
 
@@ -67,8 +67,8 @@ var Fleamarket = function (_Taro$Component) {
       backgroundTextStyle: "dark"
     };
 
-    _this.$usedState = ["anonymousState__temp", "$compid__72", "$compid__73", "$compid__74", "refresh"];
-    _this.customComponents = ["Search", "Condition", "WechatNotice", "UsedList", "Tabbar"];
+    _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "anonymousState__temp3", "anonymousState__temp4", "$compid__28", "$compid__29", "$compid__30", "refresh"];
+    _this.customComponents = ["Search", "UsedCondition", "WechatNotice", "UsedList", "Tabbar"];
     return _this;
   }
 
@@ -76,7 +76,7 @@ var Fleamarket = function (_Taro$Component) {
     key: "_constructor",
     value: function _constructor(props) {
       _get(Fleamarket.prototype.__proto__ || Object.getPrototypeOf(Fleamarket.prototype), "_constructor", this).call(this, props);
-      this.$$refs = new _taroTt2.default.RefsArray();
+      this.$$refs = new _taroWeapp2.default.RefsArray();
     }
   }, {
     key: "_createData",
@@ -87,24 +87,24 @@ var Fleamarket = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__72"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__28"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__72 = _genCompid2[0],
-          $compid__72 = _genCompid2[1];
+          $prevCompid__28 = _genCompid2[0],
+          $compid__28 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__73"),
+      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__29"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__73 = _genCompid4[0],
-          $compid__73 = _genCompid4[1];
+          $prevCompid__29 = _genCompid4[0],
+          $compid__29 = _genCompid4[1];
 
-      var _genCompid5 = (0, _taroTt.genCompid)(__prefix + "$compid__74"),
+      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__30"),
           _genCompid6 = _slicedToArray(_genCompid5, 2),
-          $prevCompid__74 = _genCompid6[0],
-          $compid__74 = _genCompid6[1];
+          $prevCompid__30 = _genCompid6[0],
+          $compid__30 = _genCompid6[1];
       // 是否已是最后一页
 
 
-      var _useState = (0, _taroTt.useState)(false),
+      var _useState = (0, _taroWeapp.useState)(false),
           _useState2 = _slicedToArray(_useState, 2),
           isend = _useState2[0],
           setIsend = _useState2[1];
@@ -114,21 +114,21 @@ var Fleamarket = function (_Taro$Component) {
       var DEFAULT_CONDITION = [{ id: 'area', text: '全国' }, { id: 'classify', text: '选择分类' }];
       // * 标记是否是在刷新状态
 
-      var _useState3 = (0, _taroTt.useState)(false),
+      var _useState3 = (0, _taroWeapp.useState)(false),
           _useState4 = _slicedToArray(_useState3, 2),
           refresh = _useState4[0],
           setRefresh = _useState4[1];
       // * 定义列表数组
 
 
-      var _useState5 = (0, _taroTt.useState)([]),
+      var _useState5 = (0, _taroWeapp.useState)([]),
           _useState6 = _slicedToArray(_useState5, 2),
           lists = _useState6[0],
           setLists = _useState6[1];
       // * 定义data
 
 
-      var _useState7 = (0, _taroTt.useState)({
+      var _useState7 = (0, _taroWeapp.useState)({
         page: 1,
         list_type: 'fleamarket',
         area_id: '',
@@ -142,12 +142,12 @@ var Fleamarket = function (_Taro$Component) {
       // * 请求列表数据
 
 
-      (0, _taroTt.useEffect)(function () {
+      (0, _taroWeapp.useEffect)(function () {
         if (isend) {
           return;
         }
         (0, _index.getFleamarketList)(searchData).then(function (res) {
-          _taroTt2.default.hideNavigationBarLoading();
+          _taroWeapp2.default.hideNavigationBarLoading();
           if (!res.length) {
             setIsend(true);
           }
@@ -161,7 +161,7 @@ var Fleamarket = function (_Taro$Component) {
       }, [searchData]);
       // * 触底加载下一页
       var getNextPageData = function getNextPageData() {
-        _taroTt2.default.showNavigationBarLoading();
+        _taroWeapp2.default.showNavigationBarLoading();
         setSearchData(_extends({}, searchData, { page: searchData.page + 1 }));
       };
       // * 监听下拉刷新
@@ -169,28 +169,37 @@ var Fleamarket = function (_Taro$Component) {
         setRefresh(true);
         setSearchData(_extends({}, searchData, { page: 1 }));
       };
+      var anonymousState__temp = function anonymousState__temp() {};
+      var anonymousState__temp2 = function anonymousState__temp2() {};
+      var anonymousState__temp3 = function anonymousState__temp3() {};
       this.anonymousFunc0 = function () {
         return pullDownAction();
       };
       this.anonymousFunc1 = function () {
         return getNextPageData();
       };
-      var anonymousState__temp = (0, _taroTt.internal_inline_style)({ height: '8px' });
-      _taroTt.propsManager.set({
+      var anonymousState__temp4 = (0, _taroWeapp.internal_inline_style)({ height: '8px' });
+      _taroWeapp.propsManager.set({
         "placeholder": "\u8DF3\u86A4\u5E02\u573A",
-        "value": ""
-      }, $compid__72, $prevCompid__72);
-      _taroTt.propsManager.set({
-        "data": DEFAULT_CONDITION
-      }, $compid__73, $prevCompid__73);
-      _taroTt.propsManager.set({
+        "value": "",
+        "setRemark": anonymousState__temp,
+        "setSearchData": anonymousState__temp2
+      }, $compid__28, $prevCompid__28);
+      _taroWeapp.propsManager.set({
+        "data": DEFAULT_CONDITION,
+        "setSearchData": anonymousState__temp3
+      }, $compid__29, $prevCompid__29);
+      _taroWeapp.propsManager.set({
         "data": lists
-      }, $compid__74, $prevCompid__74);
+      }, $compid__30, $prevCompid__30);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
-        $compid__72: $compid__72,
-        $compid__73: $compid__73,
-        $compid__74: $compid__74,
+        anonymousState__temp2: anonymousState__temp2,
+        anonymousState__temp3: anonymousState__temp3,
+        anonymousState__temp4: anonymousState__temp4,
+        $compid__28: $compid__28,
+        $compid__29: $compid__29,
+        $compid__30: $compid__30,
         refresh: refresh
       });
       return this.__state;
@@ -208,14 +217,14 @@ var Fleamarket = function (_Taro$Component) {
   }]);
 
   return Fleamarket;
-}(_taroTt2.default.Component);
+}(_taroWeapp2.default.Component);
 
 Fleamarket.$$events = ["anonymousFunc0", "anonymousFunc1"];
 Fleamarket.$$componentPath = "pages/used/lists/index";
 Fleamarket.config = { navigationBarTitleText: '二手交易列表', enablePullDownRefresh: false, navigationBarBackgroundColor: '#0099ff', navigationBarTextStyle: 'white', backgroundTextStyle: "dark" };
 exports.default = Fleamarket;
 
-Page(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(Fleamarket, true));
+Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(Fleamarket, true));
 
 /***/ })
 

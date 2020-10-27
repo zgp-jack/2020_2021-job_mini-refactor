@@ -1,7 +1,7 @@
 import Taro, { useEffect, useState } from '@tarojs/taro'
 import { View, ScrollView, Block } from '@tarojs/components'
 import Search from '../../../components/search'
-import Condition from '../../../components/recruitCondition'
+import UsedCondition from '../../../components/condition/used'
 import WechatNotice from '../../../components/wechat'
 import UsedList from '../../../components/lists/used'
 import { getFleamarketList } from '../../../utils/request'
@@ -68,8 +68,8 @@ export default function Fleamarket() {
     <Block>
       <View className='recruit-container'>
         <View className='recruit-fiexd-header'>
-          <Search placeholder='跳蚤市场' value='' />
-          <Condition data={ DEFAULT_CONDITION } />
+          <Search placeholder='跳蚤市场' value='' setRemark={()=>{}} setSearchData={()=>{}}/>
+          <UsedCondition data={ DEFAULT_CONDITION } setSearchData={()=>{}} />
         </View>
         <ScrollView
           className='recruit-lists-containerbox'

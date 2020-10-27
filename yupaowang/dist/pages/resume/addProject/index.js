@@ -1,4 +1,4 @@
-(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["pages/resume/addProject/index"],{
+(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["pages/resume/addProject/index"],{
 
 /***/ "./src/pages/resume/addProject/index.scss":
 /*!************************************************!*\
@@ -33,9 +33,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
 
 var _index = __webpack_require__(/*! ../../../utils/upload/index */ "./src/utils/upload/index.tsx");
 
@@ -81,7 +81,7 @@ var AddProjectPage = function (_Taro$Component) {
       navigationBarTitleText: '新增项目经验'
     };
 
-    _this.$usedState = ["$compid__63", "$compid__64", "$compid__65", "startTime", "endTime", "multiIndex", "multiArray", "multiIndexvalue", "textarea", "image", "type"];
+    _this.$usedState = ["$compid__66", "$compid__67", "$compid__68", "startTime", "endTime", "multiIndex", "multiArray", "multiIndexvalue", "textarea", "image", "type"];
     _this.customComponents = ["AtInput", "WordsTotal", "ImageView"];
     return _this;
   }
@@ -90,7 +90,7 @@ var AddProjectPage = function (_Taro$Component) {
     key: "_constructor",
     value: function _constructor(props) {
       _get(AddProjectPage.prototype.__proto__ || Object.getPrototypeOf(AddProjectPage.prototype), "_constructor", this).call(this, props);
-      this.$$refs = new _taroTt2.default.RefsArray();
+      this.$$refs = new _taroWeapp2.default.RefsArray();
     }
   }, {
     key: "_createData",
@@ -101,22 +101,22 @@ var AddProjectPage = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__63"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__66"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__63 = _genCompid2[0],
-          $compid__63 = _genCompid2[1];
+          $prevCompid__66 = _genCompid2[0],
+          $compid__66 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__64"),
+      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__67"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__64 = _genCompid4[0],
-          $compid__64 = _genCompid4[1];
+          $prevCompid__67 = _genCompid4[0],
+          $compid__67 = _genCompid4[1];
 
-      var _genCompid5 = (0, _taroTt.genCompid)(__prefix + "$compid__65"),
+      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__68"),
           _genCompid6 = _slicedToArray(_genCompid5, 2),
-          $prevCompid__65 = _genCompid6[0],
-          $compid__65 = _genCompid6[1];
+          $prevCompid__68 = _genCompid6[0],
+          $compid__68 = _genCompid6[1];
 
-      var router = (0, _taroTt.useRouter)();
+      var router = (0, _taroWeapp.useRouter)();
       // 获取存入的公用内容
       var useSelectorItem = (0, _redux.useSelector)(function (state) {
         return state;
@@ -131,42 +131,42 @@ var AddProjectPage = function (_Taro$Component) {
       // console.log(area,'areaareaarea')
       // 默认字数
 
-      var _useState = (0, _taroTt.useState)(0),
+      var _useState = (0, _taroWeapp.useState)(0),
           _useState2 = _slicedToArray(_useState, 2),
           num = _useState2[0],
           setNum = _useState2[1];
       //项目名称
 
 
-      var _useState3 = (0, _taroTt.useState)(''),
+      var _useState3 = (0, _taroWeapp.useState)(''),
           _useState4 = _slicedToArray(_useState3, 2),
           name = _useState4[0],
           setName = _useState4[1];
       // 开工时间
 
 
-      var _useState5 = (0, _taroTt.useState)(''),
+      var _useState5 = (0, _taroWeapp.useState)(''),
           _useState6 = _slicedToArray(_useState5, 2),
           startTime = _useState6[0],
           setStartTime = _useState6[1];
       // endTime
 
 
-      var _useState7 = (0, _taroTt.useState)(''),
+      var _useState7 = (0, _taroWeapp.useState)(''),
           _useState8 = _slicedToArray(_useState7, 2),
           endTime = _useState8[0],
           setEndTime = _useState8[1];
       // 项目详情
 
 
-      var _useState9 = (0, _taroTt.useState)(''),
+      var _useState9 = (0, _taroWeapp.useState)(''),
           _useState10 = _slicedToArray(_useState9, 2),
           textarea = _useState10[0],
           setTextarea = _useState10[1];
       // 图片
 
 
-      var _useState11 = (0, _taroTt.useState)({
+      var _useState11 = (0, _taroWeapp.useState)({
         item: []
       }),
           _useState12 = _slicedToArray(_useState11, 2),
@@ -175,61 +175,61 @@ var AddProjectPage = function (_Taro$Component) {
       // 所有的省，市
 
 
-      var _useState13 = (0, _taroTt.useState)([]),
+      var _useState13 = (0, _taroWeapp.useState)([]),
           _useState14 = _slicedToArray(_useState13, 2),
           multiArrayone = _useState14[0],
           setMultiArrayone = _useState14[1];
       // 省和第一个市
 
 
-      var _useState15 = (0, _taroTt.useState)([]),
+      var _useState15 = (0, _taroWeapp.useState)([]),
           _useState16 = _slicedToArray(_useState15, 2),
           multiArray = _useState16[0],
           setMultiArray = _useState16[1];
       // 省和市的值
 
 
-      var _useState17 = (0, _taroTt.useState)([0, 0]),
+      var _useState17 = (0, _taroWeapp.useState)([0, 0]),
           _useState18 = _slicedToArray(_useState17, 2),
           multiIndex = _useState18[0],
           setMultiIndex = _useState18[1];
       // 修改值
 
 
-      var _useState19 = (0, _taroTt.useState)(0),
+      var _useState19 = (0, _taroWeapp.useState)(0),
           _useState20 = _slicedToArray(_useState19, 2),
           edit = _useState20[0],
           setEdit = _useState20[1];
       // 省
 
 
-      var _useState21 = (0, _taroTt.useState)([]),
+      var _useState21 = (0, _taroWeapp.useState)([]),
           _useState22 = _slicedToArray(_useState21, 2),
           allprovinces = _useState22[0],
           setAllprovinces = _useState22[1];
       // 省和市中文
 
 
-      var _useState23 = (0, _taroTt.useState)(''),
+      var _useState23 = (0, _taroWeapp.useState)(''),
           _useState24 = _slicedToArray(_useState23, 2),
           multiIndexvalue = _useState24[0],
           seMultiIndexvalue = _useState24[1];
       // 选择后省和市中文
 
 
-      var _useState25 = (0, _taroTt.useState)(''),
+      var _useState25 = (0, _taroWeapp.useState)(''),
           _useState26 = _slicedToArray(_useState25, 2),
           allpro = _useState26[0],
           setAllpro = _useState26[1];
       //修改项目id
 
 
-      var _useState27 = (0, _taroTt.useState)(''),
+      var _useState27 = (0, _taroWeapp.useState)(''),
           _useState28 = _slicedToArray(_useState27, 2),
           project_uuid = _useState28[0],
           setProject_uuid = _useState28[1];
 
-      (0, _taroTt.useEffect)(function () {
+      (0, _taroWeapp.useEffect)(function () {
         var data = [];
         var lastData = [];
         var allChildren = [];
@@ -281,7 +281,7 @@ var AddProjectPage = function (_Taro$Component) {
         }
         // 每次修改后就刷新内容，第一次后就不再把值赋上去
         if (type && edit < 1) {
-          _taroTt2.default.setNavigationBarTitle({
+          _taroWeapp2.default.setNavigationBarTitle({
             title: '修改项目经验'
           });
           // 内容回填
@@ -402,7 +402,7 @@ var AddProjectPage = function (_Taro$Component) {
       // 继续
       var handlContinue = function handlContinue(type) {
         if (!(0, _index7.isVaildVal)(name, 3, 12)) {
-          _taroTt2.default.showModal({
+          _taroWeapp2.default.showModal({
             title: '温馨提示',
             content: '请填写真实证书名称，3-12字，必须含有汉字',
             showCancel: false
@@ -410,7 +410,7 @@ var AddProjectPage = function (_Taro$Component) {
           return;
         }
         if (!startTime) {
-          _taroTt2.default.showModal({
+          _taroWeapp2.default.showModal({
             title: '温馨提示',
             content: '请选择开工时间',
             showCancel: false
@@ -419,7 +419,7 @@ var AddProjectPage = function (_Taro$Component) {
         }
         if (!endTime) {
           if (new Date(startTime).getTime() > new Date(endTime).getTime()) {
-            _taroTt2.default.showModal({
+            _taroWeapp2.default.showModal({
               title: '温馨提示',
               content: '请选择完工时间（完工时间必须大于开工时间',
               showCancel: false
@@ -428,7 +428,7 @@ var AddProjectPage = function (_Taro$Component) {
           }
         }
         if (!allpro) {
-          _taroTt2.default.showModal({
+          _taroWeapp2.default.showModal({
             title: '温馨提示',
             content: '请选择项目所在地区',
             showCancel: false
@@ -436,7 +436,7 @@ var AddProjectPage = function (_Taro$Component) {
           return;
         }
         if (!(0, _index7.isVaildVal)(textarea, 15, 500)) {
-          _taroTt2.default.showModal({
+          _taroWeapp2.default.showModal({
             title: '温馨提示',
             content: '请填写真实项目介绍，15-500字，必须含有汉字',
             showCancel: false
@@ -479,7 +479,7 @@ var AddProjectPage = function (_Taro$Component) {
                     // 保存
                   } else {
                     (0, _index4.default)(res.errmsg);
-                    _taroTt2.default.navigateBack({
+                    _taroWeapp2.default.navigateBack({
                       delta: 1
                     });
                   }
@@ -492,7 +492,7 @@ var AddProjectPage = function (_Taro$Component) {
         });
       };
       var handleDel = function handleDel() {
-        _taroTt2.default.showModal({
+        _taroWeapp2.default.showModal({
           title: '提示',
           content: "\u9879\u76EE\u7ECF\u9A8C\u5220\u9664\u540E\uFF0C\u5C06\u65E0\u6CD5\u6062\u590D",
           showCancel: true,
@@ -503,7 +503,7 @@ var AddProjectPage = function (_Taro$Component) {
               };
               (0, _index6.resumesDelProjectAction)(params).then(function (res) {
                 if (res.errcode == 'ok') {
-                  _taroTt2.default.navigateBack({
+                  _taroWeapp2.default.navigateBack({
                     delta: 1
                   });
                 } else {
@@ -542,7 +542,7 @@ var AddProjectPage = function (_Taro$Component) {
       this.anonymousFunc8 = function () {
         return handlContinue(1);
       };
-      _taroTt.propsManager.set({
+      _taroWeapp.propsManager.set({
         "name": "value",
         "title": "\u9879\u76EE\u540D\u79F0:",
         "type": "text",
@@ -550,19 +550,19 @@ var AddProjectPage = function (_Taro$Component) {
         "maxLength": 12,
         "value": name,
         "onChange": this.anonymousFunc0
-      }, $compid__63, $prevCompid__63);
-      _taroTt.propsManager.set({
+      }, $compid__66, $prevCompid__66);
+      _taroWeapp.propsManager.set({
         "num": num
-      }, $compid__64, $prevCompid__64);
-      image.item && _taroTt.propsManager.set({
+      }, $compid__67, $prevCompid__67);
+      image.item && _taroWeapp.propsManager.set({
         "images": image.item,
         "max": 6,
         "userUploadImg": userUploadImg
-      }, $compid__65, $prevCompid__65);
+      }, $compid__68, $prevCompid__68);
       Object.assign(this.__state, {
-        $compid__63: $compid__63,
-        $compid__64: $compid__64,
-        $compid__65: $compid__65,
+        $compid__66: $compid__66,
+        $compid__67: $compid__67,
+        $compid__68: $compid__68,
         startTime: startTime,
         endTime: endTime,
         multiIndex: multiIndex,
@@ -622,14 +622,14 @@ var AddProjectPage = function (_Taro$Component) {
   }]);
 
   return AddProjectPage;
-}(_taroTt2.default.Component);
+}(_taroWeapp2.default.Component);
 
 AddProjectPage.$$events = ["anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6", "anonymousFunc7", "anonymousFunc8"];
 AddProjectPage.$$componentPath = "pages/resume/addProject/index";
 AddProjectPage.config = { navigationBarTitleText: '新增项目经验' };
 exports.default = AddProjectPage;
 
-Page(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(AddProjectPage, true));
+Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(AddProjectPage, true));
 
 /***/ })
 

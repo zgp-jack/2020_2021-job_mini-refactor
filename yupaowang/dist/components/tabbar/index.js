@@ -1,4 +1,4 @@
-(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["components/tabbar/index"],{
+(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["components/tabbar/index"],{
 
 /***/ "./src/actions/msg.ts":
 /*!****************************!*\
@@ -63,9 +63,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
 
 var _classnames = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
 
@@ -111,7 +111,7 @@ var Tabbar = function (_Taro$Component) {
     key: "_constructor",
     value: function _constructor(props) {
       _get(Tabbar.prototype.__proto__ || Object.getPrototypeOf(Tabbar.prototype), "_constructor", this).call(this, props);
-      this.$$refs = new _taroTt2.default.RefsArray();
+      this.$$refs = new _taroWeapp2.default.RefsArray();
     }
   }, {
     key: "_createData",
@@ -138,14 +138,14 @@ var Tabbar = function (_Taro$Component) {
       var timer = void 0; //定时器接收对象
       // 是否展示发布
 
-      var _useState = (0, _taroTt.useState)(false),
+      var _useState = (0, _taroWeapp.useState)(false),
           _useState2 = _slicedToArray(_useState, 2),
           show = _useState2[0],
           setShow = _useState2[1];
       // 展开发布的动画效果
 
 
-      var _useState3 = (0, _taroTt.useState)(false),
+      var _useState3 = (0, _taroWeapp.useState)(false),
           _useState4 = _slicedToArray(_useState3, 2),
           active = _useState4[0],
           setActive = _useState4[1];
@@ -164,7 +164,7 @@ var Tabbar = function (_Taro$Component) {
         }
         if (notredirect) {
           dispatch((0, _tabbar.changeTabbar)(item.id));
-        } else _taroTt2.default.reLaunch({ url: '/pages/index/index?type=' + item.id });
+        } else _taroWeapp2.default.reLaunch({ url: '/pages/index/index?type=' + item.id });
       };
       // 点击发布按钮
       var openPublishMenu = function openPublishMenu() {
@@ -178,7 +178,7 @@ var Tabbar = function (_Taro$Component) {
       };
       // 用户点击弹出的发布类型按钮
       var userTapPublishItem = function userTapPublishItem(url) {
-        _taroTt2.default.navigateTo({
+        _taroWeapp2.default.navigateTo({
           url: url
         });
       };
@@ -201,7 +201,7 @@ var Tabbar = function (_Taro$Component) {
       //   }, MemberMsgTimerInterval)
       // })
       // 清除页面定时器
-      (0, _taroTt.onAppHide)(function () {
+      (0, _taroWeapp.onAppHide)(function () {
         clearInterval(timer);
       });
       var anonymousState__temp3 = show ? (0, _classnames2.default)({
@@ -221,7 +221,7 @@ var Tabbar = function (_Taro$Component) {
       }) : null;
       var loopArray26 = tabbar.list.map(function (item, __index0) {
         item = {
-          $original: (0, _taroTt.internal_get_original)(item)
+          $original: (0, _taroWeapp.internal_get_original)(item)
         };
         var $loopState__temp2 = (0, _classnames2.default)({
           'common-footer-tabbar-list': true,
@@ -270,13 +270,13 @@ var Tabbar = function (_Taro$Component) {
   }]);
 
   return Tabbar;
-}(_taroTt2.default.Component);
+}(_taroWeapp2.default.Component);
 
 Tabbar.$$events = ["anonymousFunc0", "anonymousFunc1"];
 Tabbar.$$componentPath = "components/tabbar/index";
 exports.default = Tabbar;
 
-Component(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(Tabbar));
+Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(Tabbar));
 
 /***/ })
 

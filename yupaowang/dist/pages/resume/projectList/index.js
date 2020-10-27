@@ -1,4 +1,4 @@
-(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["pages/resume/projectList/index"],{
+(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["pages/resume/projectList/index"],{
 
 /***/ "./src/pages/resume/projectList/index.scss":
 /*!*************************************************!*\
@@ -31,9 +31,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
 
 var _index = __webpack_require__(/*! ../../../utils/request/index */ "./src/utils/request/index.ts");
 
@@ -61,7 +61,7 @@ var ProjectList = function (_Taro$Component) {
       navigationBarTitleText: '项目经验'
     };
 
-    _this.$usedState = ["loopArray78", "$compid__62", "data", "IMGCDNURL", "preview", "detail"];
+    _this.$usedState = ["loopArray84", "$compid__65", "data", "IMGCDNURL", "preview", "detail"];
     _this.anonymousFunc0Map = {};
     _this.anonymousFunc1Map = {};
     _this.anonymousFunc2Map = {};
@@ -73,7 +73,7 @@ var ProjectList = function (_Taro$Component) {
     key: "_constructor",
     value: function _constructor(props) {
       _get(ProjectList.prototype.__proto__ || Object.getPrototypeOf(ProjectList.prototype), "_constructor", this).call(this, props);
-      this.$$refs = new _taroTt2.default.RefsArray();
+      this.$$refs = new _taroWeapp2.default.RefsArray();
     }
   }, {
     key: "_createData",
@@ -86,12 +86,12 @@ var ProjectList = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__62"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__65"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__62 = _genCompid2[0],
-          $compid__62 = _genCompid2[1];
+          $prevCompid__65 = _genCompid2[0],
+          $compid__65 = _genCompid2[1];
 
-      var router = (0, _taroTt.useRouter)();
+      var router = (0, _taroWeapp.useRouter)();
       // 获取传递过来的参数
       var _router$params = router.params,
           id = _router$params.id,
@@ -101,19 +101,19 @@ var ProjectList = function (_Taro$Component) {
           uuid = _router$params.uuid;
       // 刷新一次
 
-      var _useState = (0, _taroTt.useState)(false),
+      var _useState = (0, _taroWeapp.useState)(false),
           _useState2 = _slicedToArray(_useState, 2),
           refresh = _useState2[0],
           setRefresh = _useState2[1];
       // 数据
 
 
-      var _useState3 = (0, _taroTt.useState)([]),
+      var _useState3 = (0, _taroWeapp.useState)([]),
           _useState4 = _slicedToArray(_useState3, 2),
           data = _useState4[0],
           setData = _useState4[1];
 
-      (0, _taroTt.useDidShow)(function () {
+      (0, _taroWeapp.useDidShow)(function () {
         if (refresh) {
           setRefresh(false);
           return;
@@ -136,7 +136,7 @@ var ProjectList = function (_Taro$Component) {
       });
       // 点击方法
       var handleImg = function handleImg(e) {
-        _taroTt2.default.previewImage({
+        _taroWeapp2.default.previewImage({
           current: e,
           urls: [e]
         });
@@ -144,31 +144,31 @@ var ProjectList = function (_Taro$Component) {
       };
       // 用户页面跳转
       var userRouteJump = function userRouteJump(url) {
-        _taroTt2.default.navigateTo({
+        _taroWeapp2.default.navigateTo({
           url: url
         });
       };
       this.anonymousFunc3 = function () {
         return userRouteJump("/pages/resume/addProject/index?id=" + id);
       };
-      var loopArray78 = data.map(function (item, i) {
+      var loopArray84 = data.map(function (item, i) {
         item = {
-          $original: (0, _taroTt.internal_get_original)(item)
+          $original: (0, _taroWeapp.internal_get_original)(item)
         };
-        var _$indexKey = "ihzzz" + i;
+        var _$indexKey = "jdzzz" + i;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return userRouteJump("/pages/resume/addProject/index?type=" + i + "&id=" + id);
         };
-        var _$indexKey2 = "iizzz" + i;
+        var _$indexKey2 = "jezzz" + i;
         _this2.anonymousFunc1Map[_$indexKey2] = function () {
           return userRouteJump("/pages/resume/addProject/index?type=" + i + "&id=" + id);
         };
         var $anonymousCallee__11 = item.$original.image.map(function (v, i) {
           v = {
-            $original: (0, _taroTt.internal_get_original)(v)
+            $original: (0, _taroWeapp.internal_get_original)(v)
           };
           var $loopState__temp2 = i + i;
-          var _$indexKey3 = "ijzzz" + i + "-" + i;
+          var _$indexKey3 = "jfzzz" + i + "-" + i;
           _this2.anonymousFunc2Map[_$indexKey3] = function () {
             return handleImg(v.$original);
           };
@@ -185,12 +185,12 @@ var ProjectList = function (_Taro$Component) {
           $original: item.$original
         };
       });
-      !data.length && _taroTt.propsManager.set({
+      !data.length && _taroWeapp.propsManager.set({
         "text": "\u6682\u65E0\u76F8\u5173\u5185\u5BB9"
-      }, $compid__62, $prevCompid__62);
+      }, $compid__65, $prevCompid__65);
       Object.assign(this.__state, {
-        loopArray78: loopArray78,
-        $compid__62: $compid__62,
+        loopArray84: loopArray84,
+        $compid__65: $compid__65,
         data: data,
         IMGCDNURL: _index2.IMGCDNURL,
         preview: preview,
@@ -245,14 +245,14 @@ var ProjectList = function (_Taro$Component) {
   }]);
 
   return ProjectList;
-}(_taroTt2.default.Component);
+}(_taroWeapp2.default.Component);
 
 ProjectList.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3"];
 ProjectList.$$componentPath = "pages/resume/projectList/index";
 ProjectList.config = { navigationBarTitleText: '项目经验' };
 exports.default = ProjectList;
 
-Page(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(ProjectList, true));
+Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(ProjectList, true));
 
 /***/ })
 

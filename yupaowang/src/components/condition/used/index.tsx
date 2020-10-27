@@ -1,16 +1,16 @@
 import Taro, { useState, useEffect, memo } from '@tarojs/taro'
 import { View, Image, Block, ScrollView } from '@tarojs/components'
-import { IMGCDNURL } from '../../config'
+import { IMGCDNURL } from '../../../config'
 import { AtDrawer } from 'taro-ui'
-import { getListFilterData } from '../../utils/request'
-import { filterClassifyResultClassTree, filterClassifyResultJoblistType } from '../../utils/request/index.d'
-import { filterClassifyDataResultReduce } from '../../reducers/filter_classify'
-import { setFilter } from '../../actions/filter_classify'
-import AREAS, { ChildItems } from '../../models/area'
+import { getListFilterData } from '../../../utils/request'
+import { filterClassifyResultClassTree, filterClassifyResultJoblistType } from '../../../utils/request/index.d'
+import { filterClassifyDataResultReduce } from '../../../reducers/filter_classify'
+import { setFilter } from '../../../actions/filter_classify'
+import AREAS, { ChildItems } from '../../../models/area'
 import classnames from 'classnames'
-import { AreaPickerKey,ClassifyPickerKey,FilterPickerKey } from '../../config/pages/lists'
+import { AreaPickerKey, ClassifyPickerKey, FilterPickerKey } from '../../../config/pages/lists'
 import { useDispatch, useSelector } from '@tarojs/redux'
-import './index.scss'
+import '../recruit/index.scss'
 
 interface ConditionData {
   id: string,
@@ -21,8 +21,8 @@ interface ConditionProps {
   setSearchData: (type: string, id: string) => void
 }
 
-function Condition({ data, setSearchData }: ConditionProps ){
-  
+function UsedCondition({ data, setSearchData }: ConditionProps) {
+
   const dispatch = useDispatch()
 
   // * 获取筛选条件信息
@@ -49,17 +49,17 @@ function Condition({ data, setSearchData }: ConditionProps ){
   const [classifyScrollTop, setClassifyScrollTop] = useState<number>(0)
 
   // * 点击选项展开内容
-  const conditionItemClick = (id: string)=> {
+  const conditionItemClick = (id: string) => {
     setCurrent(id)
   }
 
   // * 关闭抽屉
-  const closeDrawer = ()=> {
+  const closeDrawer = () => {
     setCurrent('')
   }
 
   // * 城市索引更换
-  const changeAreaIndex = (i: number)=> {
+  const changeAreaIndex = (i: number) => {
     setAreaIndex(i)
     setAreaScrollTop(0)
     if (!AREAS[i].has_children) {
@@ -86,7 +86,7 @@ function Condition({ data, setSearchData }: ConditionProps ){
   const sureFilterCurrent = (i: number) => {
     setFilterIndex(i)
     let id: string = jobtype[i].type
-    setSearchData(FilterPickerKey, id )
+    setSearchData(FilterPickerKey, id)
     closeDrawer()
   }
 
@@ -94,20 +94,20 @@ function Condition({ data, setSearchData }: ConditionProps ){
   const changeClassifyIndex = (i: number) => {
     setclassifyIndex(i)
     setClassifyScrollTop(0)
-    if (!classify[i].has_children){
-      setSearchData(ClassifyPickerKey,classify[i].id.toString())
+    if (!classify[i].has_children) {
+      setSearchData(ClassifyPickerKey, classify[i].id.toString())
       closeDrawer()
     }
   }
 
   // 获取筛选条件数据
-  useEffect(()=>{
-    if (filterData.isSet){
-      if(seted) return
+  useEffect(() => {
+    if (filterData.isSet) {
+      if (seted) return
       setSeted(true)
       setClassify(filterData.classTree)
       setJobtype(filterData.jobListType)
-    }else{
+    } else {
       getListFilterData().then(res => {
         dispatch(setFilter({ ...res.data, isSet: true }))
         setSeted(true)
@@ -115,14 +115,14 @@ function Condition({ data, setSearchData }: ConditionProps ){
         setJobtype(res.data.jobListType)
       })
     }
-  },[])
+  }, [])
 
   // * 获取城市子集数据
-  useEffect(()=>{
+  useEffect(() => {
     setChildAreaList(AREAS[areaIndex].children)
-  },[areaIndex])
+  }, [areaIndex])
 
-  const onScrollAction = (e: any, type: string)=> {
+  const onScrollAction = (e: any, type: string) => {
     let top: number = e.detail.scrollTop
     switch (type) {
       case AreaPickerKey:
@@ -138,11 +138,11 @@ function Condition({ data, setSearchData }: ConditionProps ){
   return (
     <Block>
       <View className='recruit-condition-box'>
-        {data&&data.map((item)=>(
+        {data && data.map((item) => (
           <View className='recruit-condition-item' key={item.id} onClick={() => conditionItemClick(item.id)}>
             <View className='recruit-condition-content overwords'>
-            { item.text }
-            <Image className='recruit-condition-select' src={IMGCDNURL + 'select.png'} />
+              {item.text}
+              <Image className='recruit-condition-select' src={IMGCDNURL + 'select.png'} />
             </View>
           </View>
         ))}
@@ -152,32 +152,32 @@ function Condition({ data, setSearchData }: ConditionProps ){
       <AtDrawer
         show={current === AreaPickerKey}
         mask
-        onClose={()=>closeDrawer()}
+        onClose={() => closeDrawer()}
       >
         <View className='common-drawer-item'>
           <ScrollView className='drawer-full-lists' scrollY>
-            {AREAS.map((item,index)=>(
-              <View 
+            {AREAS.map((item, index) => (
+              <View
                 className={classnames({
                   'drawer-list-item overwords': true,
                   'drawer-list-item-active': index === areaIndex
                 })}
-                key={ item.id }
+                key={item.id}
                 onClick={() => changeAreaIndex(index)}
-              >{ item.name }</View>
+              >{item.name}</View>
             ))}
           </ScrollView>
           {childAreaList.length &&
-          <ScrollView 
-            className='drawer-full-lists drawer-half-lists' 
-            scrollY 
-            scrollTop={ areaScrollTop }
-            onScroll={(e)=>onScrollAction(e, AreaPickerKey)}
-          >
-            {childAreaList.map((item,i)=>(
-              <View className='drawer-list-item overwords' onClick={()=>sureAreaCurrent(i)}>{ item.name }</View>
-            ))}
-          </ScrollView>
+            <ScrollView
+              className='drawer-full-lists drawer-half-lists'
+              scrollY
+              scrollTop={areaScrollTop}
+              onScroll={(e) => onScrollAction(e, AreaPickerKey)}
+            >
+              {childAreaList.map((item, i) => (
+                <View className='drawer-list-item overwords' onClick={() => sureAreaCurrent(i)}>{item.name}</View>
+              ))}
+            </ScrollView>
           }
         </View>
       </AtDrawer>
@@ -200,15 +200,15 @@ function Condition({ data, setSearchData }: ConditionProps ){
               >{item.name}</View>
             ))}
           </ScrollView>
-          {classify.length&&classify[classifyIndex].has_children &&
+          {classify.length && classify[classifyIndex].has_children &&
             <ScrollView
               className='drawer-full-lists drawer-half-lists'
               scrollY
               scrollTop={classifyScrollTop}
               onScroll={(e) => onScrollAction(e, ClassifyPickerKey)}
             >
-            {classify[classifyIndex].children.map((item,i) => (
-                <View className='drawer-list-item overwords' onClick={()=>sureClassifyCurrent(i)}>{item.name}</View>
+              {classify[classifyIndex].children.map((item, i) => (
+                <View className='drawer-list-item overwords' onClick={() => sureClassifyCurrent(i)}>{item.name}</View>
               ))}
             </ScrollView>
           }
@@ -222,7 +222,7 @@ function Condition({ data, setSearchData }: ConditionProps ){
       >
         <View className='common-drawer-item'>
           <ScrollView className='drawer-full-lists' scrollY>
-            {jobtype.map((item,index) => (
+            {jobtype.map((item, index) => (
               <View
                 key={item.type}
                 onClick={() => sureFilterCurrent(index)}
@@ -239,4 +239,4 @@ function Condition({ data, setSearchData }: ConditionProps ){
   )
 }
 
-export default memo(Condition)
+export default memo(UsedCondition)

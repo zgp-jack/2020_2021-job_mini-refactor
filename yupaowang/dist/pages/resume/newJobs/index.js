@@ -1,4 +1,4 @@
-(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["pages/resume/newJobs/index"],{
+(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["pages/resume/newJobs/index"],{
 
 /***/ "./src/actions/personnel.ts":
 /*!**********************************!*\
@@ -96,9 +96,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
 
 var _index = __webpack_require__(/*! ../../../utils/request/index */ "./src/utils/request/index.ts");
 
@@ -134,7 +134,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var context = exports.context = (0, _taroTt.createContext)({});
+var context = exports.context = (0, _taroWeapp.createContext)({});
 
 var NewJob = function (_Taro$Component) {
   _inherits(NewJob, _Taro$Component);
@@ -148,7 +148,7 @@ var NewJob = function (_Taro$Component) {
       navigationBarTitleText: '找活名片'
     };
 
-    _this.$usedState = ["anonymousState__temp", "data", "loopArray79", "loopArray80", "loopArray81", "loopArray82", "loopArray83", "loopArray84", "$compid__69", "$compid__70", "$compid__71", "showtop", "showcomplete", "IMGCDNURL", "showtopone", "showpassre", "passre", "nopassre", "index", "checkone", "headerimg", "authenticationimg", "certificate_show", "age", "sex", "checkonef", "showskill", "intro", "introne", "ressonone", "selfintrone", "checktwo", "selfintro", "projectlength", "project_count", "project", "skilllength", "skillbooksone", "checkfourf", "recData", "selectdata", "proStatus", "popup"];
+    _this.$usedState = ["anonymousState__temp", "data", "loopArray85", "loopArray86", "loopArray87", "loopArray88", "loopArray89", "loopArray90", "$compid__72", "$compid__73", "$compid__74", "showtop", "showcomplete", "IMGCDNURL", "showtopone", "showpassre", "passre", "nopassre", "index", "checkone", "headerimg", "authenticationimg", "certificate_show", "age", "sex", "checkonef", "showskill", "intro", "introne", "ressonone", "selfintrone", "checktwo", "selfintro", "projectlength", "project_count", "project", "skilllength", "skillbooksone", "checkfourf", "recData", "selectdata", "proStatus", "popup"];
     _this.anonymousFunc16Map = {};
     _this.anonymousFunc17Map = {};
     _this.anonymousFunc21Map = {};
@@ -161,7 +161,7 @@ var NewJob = function (_Taro$Component) {
     key: "_constructor",
     value: function _constructor(props) {
       _get(NewJob.prototype.__proto__ || Object.getPrototypeOf(NewJob.prototype), "_constructor", this).call(this, props);
-      this.$$refs = new _taroTt2.default.RefsArray();
+      this.$$refs = new _taroWeapp2.default.RefsArray();
     }
   }, {
     key: "_createData",
@@ -174,20 +174,20 @@ var NewJob = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__69"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__72"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__69 = _genCompid2[0],
-          $compid__69 = _genCompid2[1];
+          $prevCompid__72 = _genCompid2[0],
+          $compid__72 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__70"),
+      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__73"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__70 = _genCompid4[0],
-          $compid__70 = _genCompid4[1];
+          $prevCompid__73 = _genCompid4[0],
+          $compid__73 = _genCompid4[1];
 
-      var _genCompid5 = (0, _taroTt.genCompid)(__prefix + "$compid__71"),
+      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__74"),
           _genCompid6 = _slicedToArray(_genCompid5, 2),
-          $prevCompid__71 = _genCompid6[0],
-          $compid__71 = _genCompid6[1];
+          $prevCompid__74 = _genCompid6[0],
+          $compid__74 = _genCompid6[1];
 
       var dispatch = (0, _redux.useDispatch)();
       // 获取用户是否登录
@@ -195,7 +195,7 @@ var NewJob = function (_Taro$Component) {
         return state.User['login'];
       });
 
-      var _useState = (0, _taroTt.useState)({
+      var _useState = (0, _taroWeapp.useState)({
         info: {
           progress: '0',
           view_num: '0',
@@ -248,102 +248,102 @@ var NewJob = function (_Taro$Component) {
       //显示分享还是完善基础资料
 
 
-      var _useState3 = (0, _taroTt.useState)(true),
+      var _useState3 = (0, _taroWeapp.useState)(true),
           _useState4 = _slicedToArray(_useState3, 2),
           showcomplete = _useState4[0],
           setShowcomplete = _useState4[1];
       // 是否有个人资料
 
 
-      var _useState5 = (0, _taroTt.useState)(false),
+      var _useState5 = (0, _taroWeapp.useState)(false),
           _useState6 = _slicedToArray(_useState5, 2),
           showtopone = _useState6[0],
           setShowtopone = _useState6[1];
       // 
 
 
-      var _useState7 = (0, _taroTt.useState)(true),
+      var _useState7 = (0, _taroWeapp.useState)(true),
           _useState8 = _slicedToArray(_useState7, 2),
           passre = _useState8[0],
           setPassre = _useState8[1];
       // 用于判断我的工作状态
 
 
-      var _useState9 = (0, _taroTt.useState)(true),
+      var _useState9 = (0, _taroWeapp.useState)(true),
           _useState10 = _slicedToArray(_useState9, 2),
           nopassre = _useState10[0],
           setNopassre = _useState10[1];
       // 选择工作状态
 
 
-      var _useState11 = (0, _taroTt.useState)(false),
+      var _useState11 = (0, _taroWeapp.useState)(false),
           _useState12 = _slicedToArray(_useState11, 2),
           showpassre = _useState12[0],
           setShowpassre = _useState12[1];
 
-      var _useState13 = (0, _taroTt.useState)(0),
+      var _useState13 = (0, _taroWeapp.useState)(0),
           _useState14 = _slicedToArray(_useState13, 2),
           index = _useState14[0],
           setIndex = _useState14[1];
 
-      var _useState15 = (0, _taroTt.useState)([]),
+      var _useState15 = (0, _taroWeapp.useState)([]),
           _useState16 = _slicedToArray(_useState15, 2),
           selectdata = _useState16[0],
           setSelectdata = _useState16[1];
 
-      var _useState17 = (0, _taroTt.useState)(false),
+      var _useState17 = (0, _taroWeapp.useState)(false),
           _useState18 = _slicedToArray(_useState17, 2),
           showtop = _useState18[0],
           setShowtop = _useState18[1];
       // 基础信息状态
 
 
-      var _useState19 = (0, _taroTt.useState)(false),
+      var _useState19 = (0, _taroWeapp.useState)(false),
           _useState20 = _slicedToArray(_useState19, 2),
           checkone = _useState20[0],
           setCheckone = _useState20[1];
 
-      var _useState21 = (0, _taroTt.useState)(''),
+      var _useState21 = (0, _taroWeapp.useState)(''),
           _useState22 = _slicedToArray(_useState21, 2),
           headerimg = _useState22[0],
           setHeaderimg = _useState22[1];
 
-      var _useState23 = (0, _taroTt.useState)(''),
+      var _useState23 = (0, _taroWeapp.useState)(''),
           _useState24 = _slicedToArray(_useState23, 2),
           authenticationimg = _useState24[0],
           setAuthenticationimg = _useState24[1];
       // 基础信息图片
 
 
-      var _useState25 = (0, _taroTt.useState)(0),
+      var _useState25 = (0, _taroWeapp.useState)(0),
           _useState26 = _slicedToArray(_useState25, 2),
           certificate_show = _useState26[0],
           setCertificate_show = _useState26[1];
       // 性别
 
 
-      var _useState27 = (0, _taroTt.useState)('未填写'),
+      var _useState27 = (0, _taroWeapp.useState)('未填写'),
           _useState28 = _slicedToArray(_useState27, 2),
           sex = _useState28[0],
           setSex = _useState28[1];
       // 年纪
 
 
-      var _useState29 = (0, _taroTt.useState)(''),
+      var _useState29 = (0, _taroWeapp.useState)(''),
           _useState30 = _slicedToArray(_useState29, 2),
           age = _useState30[0],
           setAge = _useState30[1];
       // 
 
 
-      var _useState31 = (0, _taroTt.useState)(''),
+      var _useState31 = (0, _taroWeapp.useState)(''),
           _useState32 = _slicedToArray(_useState31, 2),
           checkonef = _useState32[0],
           setCheckonef = _useState32[1];
       // 工种样式修改
 
 
-      var _useState33 = (0, _taroTt.useState)(true),
+      var _useState33 = (0, _taroWeapp.useState)(true),
           _useState34 = _slicedToArray(_useState33, 2),
           showskill = _useState34[0],
           setShowskill = _useState34[1];
@@ -351,28 +351,28 @@ var NewJob = function (_Taro$Component) {
       // 自我介绍样式判断
 
 
-      var _useState35 = (0, _taroTt.useState)(true),
+      var _useState35 = (0, _taroWeapp.useState)(true),
           _useState36 = _slicedToArray(_useState35, 2),
           intro = _useState36[0],
           setIntro = _useState36[1];
       // 自我介绍样式判断
 
 
-      var _useState37 = (0, _taroTt.useState)(false),
+      var _useState37 = (0, _taroWeapp.useState)(false),
           _useState38 = _slicedToArray(_useState37, 2),
           introne = _useState38[0],
           serIntrone = _useState38[1];
       // 显示没有数据完善人员信息
 
 
-      var _useState39 = (0, _taroTt.useState)(true),
+      var _useState39 = (0, _taroWeapp.useState)(true),
           _useState40 = _slicedToArray(_useState39, 2),
           selfintro = _useState40[0],
           setselfintro = _useState40[1];
       // 个人资料审核
 
 
-      var _useState41 = (0, _taroTt.useState)(false),
+      var _useState41 = (0, _taroWeapp.useState)(false),
           _useState42 = _slicedToArray(_useState41, 2),
           ressonone = _useState42[0],
           setRessonone = _useState42[1];
@@ -380,49 +380,49 @@ var NewJob = function (_Taro$Component) {
       // 右边图片审核中
 
 
-      var _useState43 = (0, _taroTt.useState)(false),
+      var _useState43 = (0, _taroWeapp.useState)(false),
           _useState44 = _slicedToArray(_useState43, 2),
           checktwo = _useState44[0],
           setChecktwo = _useState44[1];
       // 是否显示人员信息
 
 
-      var _useState45 = (0, _taroTt.useState)(false),
+      var _useState45 = (0, _taroWeapp.useState)(false),
           _useState46 = _slicedToArray(_useState45, 2),
           selfintrone = _useState46[0],
           setSelfintrone = _useState46[1];
       // 设置项目长度
 
 
-      var _useState47 = (0, _taroTt.useState)(0),
+      var _useState47 = (0, _taroWeapp.useState)(0),
           _useState48 = _slicedToArray(_useState47, 2),
           projectlength = _useState48[0],
           setProjectlength = _useState48[1];
       // 已有项目总长度
 
 
-      var _useState49 = (0, _taroTt.useState)(0),
+      var _useState49 = (0, _taroWeapp.useState)(0),
           _useState50 = _slicedToArray(_useState49, 2),
           project_count = _useState50[0],
           setProject_count = _useState50[1];
       // 项目
 
 
-      var _useState51 = (0, _taroTt.useState)([]),
+      var _useState51 = (0, _taroWeapp.useState)([]),
           _useState52 = _slicedToArray(_useState51, 2),
           project = _useState52[0],
           setProject = _useState52[1];
       // 技能证书长度
 
 
-      var _useState53 = (0, _taroTt.useState)(0),
+      var _useState53 = (0, _taroWeapp.useState)(0),
           _useState54 = _slicedToArray(_useState53, 2),
           skilllength = _useState54[0],
           setSkilllength = _useState54[1];
       // 判断是修改还是新增技能
 
 
-      var _useState55 = (0, _taroTt.useState)('0'),
+      var _useState55 = (0, _taroWeapp.useState)('0'),
           _useState56 = _slicedToArray(_useState55, 2),
           checkfourf = _useState56[0],
           setCheckfourf = _useState56[1];
@@ -433,21 +433,21 @@ var NewJob = function (_Taro$Component) {
       // 技能证书
 
 
-      var _useState57 = (0, _taroTt.useState)([]),
+      var _useState57 = (0, _taroWeapp.useState)([]),
           _useState58 = _slicedToArray(_useState57, 2),
           skillbooksone = _useState58[0],
           setSkillbooksone = _useState58[1];
       // 推荐的列表
 
 
-      var _useState59 = (0, _taroTt.useState)([]),
+      var _useState59 = (0, _taroWeapp.useState)([]),
           _useState60 = _slicedToArray(_useState59, 2),
           recData = _useState60[0],
           setRecData = _useState60[1];
       // 设置默认地址
 
 
-      var _useState61 = (0, _taroTt.useState)(_area.AREABEIJING.name),
+      var _useState61 = (0, _taroWeapp.useState)(_area.AREABEIJING.name),
           _useState62 = _slicedToArray(_useState61, 2),
           area = _useState62[0],
           _setArea = _useState62[1];
@@ -455,14 +455,14 @@ var NewJob = function (_Taro$Component) {
       // const [isOpened, setIsOpened] = useState<boolean>(false)
 
 
-      var _useState63 = (0, _taroTt.useState)(),
+      var _useState63 = (0, _taroWeapp.useState)(),
           _useState64 = _slicedToArray(_useState63, 2),
           resumeTop = _useState64[0],
           setResumeTop = _useState64[1];
       // 工作状态列表
 
 
-      var _useState65 = (0, _taroTt.useState)(),
+      var _useState65 = (0, _taroWeapp.useState)(),
           _useState66 = _slicedToArray(_useState65, 2),
           statusList = _useState66[0],
           setStatusList = _useState66[1];
@@ -496,45 +496,45 @@ var NewJob = function (_Taro$Component) {
       // 修改还是更多项目经验
 
 
-      var _useState67 = (0, _taroTt.useState)('0'),
+      var _useState67 = (0, _taroWeapp.useState)('0'),
           _useState68 = _slicedToArray(_useState67, 2),
           proStatus = _useState68[0],
           setProStatus = _useState68[1];
       // 提示内容
 
 
-      var _useState69 = (0, _taroTt.useState)(''),
+      var _useState69 = (0, _taroWeapp.useState)(''),
           _useState70 = _slicedToArray(_useState69, 2),
           popup = _useState70[0],
           setPopup = _useState70[1];
       // 提示弹窗
 
 
-      var _useState71 = (0, _taroTt.useState)(false),
+      var _useState71 = (0, _taroWeapp.useState)(false),
           _useState72 = _slicedToArray(_useState71, 2),
           tips = _useState72[0],
           setTips = _useState72[1];
       // 置顶提示
 
 
-      var _useState73 = (0, _taroTt.useState)(false),
+      var _useState73 = (0, _taroWeapp.useState)(false),
           _useState74 = _slicedToArray(_useState73, 2),
           toppingModal = _useState74[0],
           setToppingModal = _useState74[1];
       // 置顶的当前索引
 
 
-      var _useState75 = (0, _taroTt.useState)(0),
+      var _useState75 = (0, _taroWeapp.useState)(0),
           _useState76 = _slicedToArray(_useState75, 2),
           indextop = _useState76[0],
           setIndextop = _useState76[1];
 
-      var _useState77 = (0, _taroTt.useState)(0),
+      var _useState77 = (0, _taroWeapp.useState)(0),
           _useState78 = _slicedToArray(_useState77, 2),
           frequency = _useState78[0],
           setFrequency = _useState78[1];
 
-      (0, _taroTt.useDidShow)(function () {
+      (0, _taroWeapp.useDidShow)(function () {
         if (!login) {
           return;
         }
@@ -542,7 +542,7 @@ var NewJob = function (_Taro$Component) {
           getDataList();
         }
       });
-      (0, _taroTt.useEffect)(function () {
+      (0, _taroWeapp.useEffect)(function () {
         if (!login) {
           return;
         }
@@ -559,7 +559,7 @@ var NewJob = function (_Taro$Component) {
             if (res.data.info.uuid) {
               setShowtop(true);
             }
-            _taroTt2.default.setStorageSync("introinfo", res.data.info);
+            _taroWeapp2.default.setStorageSync("introinfo", res.data.info);
             setData({ info: res.data.info, resume_top: res.data.resume_top, content: res.data.content, introduces: res.data.introduces, certificate_count: res.data.certificate_count, fail_certificate: res.data.fail_certificate, fail_project: res.data.fail_project, popup_text: res.data.popup_text, top_status: res.data.top_status });
             var list = res.data.status.map(function (v) {
               return v.name;
@@ -578,7 +578,7 @@ var NewJob = function (_Taro$Component) {
             // 都通过的情况下，并且正在招人，并且未置顶，提示前往置顶，暂不提示15天内不再提示
             // 没有未通过并且正在找，当前状态未置并且不再15天内
             // 获取存储时间
-            var toppingTime = _taroTt2.default.getStorageSync('toptimer');
+            var toppingTime = _taroWeapp2.default.getStorageSync('toptimer');
             var newTime = new Date().getTime();
             var failProject = '0';
             res.data.project.map(function (v) {
@@ -602,16 +602,16 @@ var NewJob = function (_Taro$Component) {
             // 没有置顶时间 ，没有审核失败， 有uuid 就是资料完善了的，
             if (!toppingTime && !top_onoff && res.data.info.uuid && onoff && res.data.info.check !== '1' && index === 0) {
               setToppingModal(true);
-              _taroTt2.default.setStorageSync("toptimer", newTime);
+              _taroWeapp2.default.setStorageSync("toptimer", newTime);
             }
             {
               if (day >= 15 && !top_onoff && res.data.info.uuid && onoff && res.data.info.check !== '1' && index === 0) {
                 setToppingModal(true);
-                _taroTt2.default.setStorageSync("toptimer", newTime);
+                _taroWeapp2.default.setStorageSync("toptimer", newTime);
               }
             }
             // 设置城市
-            var userLoctionCity = _taroTt2.default.getStorageSync(_store.UserLocationCity);
+            var userLoctionCity = _taroWeapp2.default.getStorageSync(_store.UserLocationCity);
             _setArea(userLoctionCity.city);
             if (userLoctionCity) {
               _setArea(userLoctionCity.city);
@@ -809,7 +809,7 @@ var NewJob = function (_Taro$Component) {
               setRecData(res.data.list);
             });
           } else {
-            _taroTt2.default.showModal({
+            _taroWeapp2.default.showModal({
               title: '温馨提示',
               content: res.errmsg,
               showCancel: false
@@ -826,21 +826,21 @@ var NewJob = function (_Taro$Component) {
       };
       // 用户页面跳转
       var userRouteJump = function userRouteJump(url) {
-        _taroTt2.default.navigateTo({
+        _taroWeapp2.default.navigateTo({
           url: url
         });
       };
       var handleTopping = function handleTopping() {
         if (!showtop) {
           // 跳去基础信息页面
-          _taroTt2.default.showModal({
+          _taroWeapp2.default.showModal({
             title: '温馨提示',
             content: data.resume_top.top_tips_string,
             confirmText: "\u53BB\u6DFB\u52A0",
             success: function success(res) {
               if (res.confirm) {
                 // 跳转
-                _taroTt2.default.navigateTo({
+                _taroWeapp2.default.navigateTo({
                   url: '/pages/clients-looking-for-work/essential-information/esinformation'
                 });
                 // that.toperfect()
@@ -849,7 +849,7 @@ var NewJob = function (_Taro$Component) {
           });
           return;
         } else if (data.resume_top.is_show_tips === 1) {
-          _taroTt2.default.showModal({
+          _taroWeapp2.default.showModal({
             title: '温馨提示',
             content: data.resume_top.top_tips_string,
             showCancel: false
@@ -857,7 +857,7 @@ var NewJob = function (_Taro$Component) {
           return;
         } else {
           // 置顶
-          _taroTt2.default.navigateTo({
+          _taroWeapp2.default.navigateTo({
             url: "/pages/topping/index?rec=1"
           });
         }
@@ -894,7 +894,7 @@ var NewJob = function (_Taro$Component) {
           var sheetListId = statusList.map(function (v) {
             return v.id;
           });
-          _taroTt2.default.showActionSheet({
+          _taroWeapp2.default.showActionSheet({
             itemList: sheetList,
             success: function success(res) {
               if (index == res.tapIndex) {
@@ -908,13 +908,13 @@ var NewJob = function (_Taro$Component) {
               };
               (0, _index.resumesEditEndAction)(params).then(function (res) {
                 if (res.errcode == 'ok') {
-                  _taroTt2.default.showModal({
+                  _taroWeapp2.default.showModal({
                     title: '温馨提示',
                     content: res.errmsg,
                     showCancel: false
                   });
                 } else {
-                  _taroTt2.default.showModal({
+                  _taroWeapp2.default.showModal({
                     title: '温馨提示',
                     content: res.errmsg,
                     showCancel: false
@@ -927,14 +927,14 @@ var NewJob = function (_Taro$Component) {
             }
           });
         } else if (data.info.check === '1') {
-          _taroTt2.default.showModal({
+          _taroWeapp2.default.showModal({
             title: '温馨提示',
             content: "审核中请耐心等待",
             showCancel: false
           });
           return;
         } else if (data.info.check === '0') {
-          _taroTt2.default.showModal({
+          _taroWeapp2.default.showModal({
             title: '温馨提示',
             content: "审核未通过，请修改信息",
             showCancel: false
@@ -947,7 +947,7 @@ var NewJob = function (_Taro$Component) {
         var nowtime = getMyDate(new Date().getTime());
         var endtime = getMyDate(parseInt(data.resume_top.end_time) * 1000);
         if (nowtime > endtime) {
-          _taroTt2.default.showModal({
+          _taroWeapp2.default.showModal({
             title: '温馨提示',
             content: '您的置顶已过期',
             showCancel: false
@@ -961,7 +961,7 @@ var NewJob = function (_Taro$Component) {
         // const sheetListId = data.top_status.map(v => v.id);
         //获取当前是否可以置顶
         var contentom = data.resume_top.top_tips_string;
-        _taroTt2.default.showActionSheet({
+        _taroWeapp2.default.showActionSheet({
           itemList: sheetList,
           success: function success(res) {
             // 当前值一样就不发动请求
@@ -969,7 +969,7 @@ var NewJob = function (_Taro$Component) {
               return;
             }
             if (indextop == 1 && data.resume_top.is_show_tips == 1) {
-              _taroTt2.default.showModal({
+              _taroWeapp2.default.showModal({
                 title: '温馨提示',
                 content: contentom,
                 showCancel: false
@@ -982,7 +982,7 @@ var NewJob = function (_Taro$Component) {
             };
             (0, _index.resumesChangeTopStatusAction)(params).then(function (res) {
               if (res.errcode === 'ok') {}
-              _taroTt2.default.showModal({
+              _taroWeapp2.default.showModal({
                 title: '温馨提示',
                 content: res.errmsg,
                 showCancel: false
@@ -1015,7 +1015,7 @@ var NewJob = function (_Taro$Component) {
         var contentom = data.resume_top.top_tips_string;
         var endtime = getMyDate(parseInt(data.resume_top.end_time) * 1000);
         if (nowtime > endtime) {
-          _taroTt2.default.showModal({
+          _taroWeapp2.default.showModal({
             title: '温馨提示',
             content: '您的置顶已过期',
             showCancel: false
@@ -1023,7 +1023,7 @@ var NewJob = function (_Taro$Component) {
           return;
         }
         if (data.resume_top.is_show_tips == 1) {
-          _taroTt2.default.showModal({
+          _taroWeapp2.default.showModal({
             title: '温馨提示',
             content: contentom,
             showCancel: false
@@ -1040,7 +1040,7 @@ var NewJob = function (_Taro$Component) {
       // 修改头像
       var userUploadAvatar = function userUploadAvatar() {
         if (data.info.check == '1') {
-          _taroTt2.default.showModal({
+          _taroWeapp2.default.showModal({
             title: '温馨提示',
             content: '信息审核中，请稍后再试',
             showCancel: false
@@ -1073,19 +1073,19 @@ var NewJob = function (_Taro$Component) {
       // 人员信息完善
       var handlePerfect = function handlePerfect(url) {
         if (!data.info.uuid) {
-          _taroTt2.default.showModal({
+          _taroWeapp2.default.showModal({
             title: '温馨提示',
             content: '您未完善基础信息填写,请先填写基础信息',
             showCancel: false,
             success: function success() {
-              _taroTt2.default.navigateTo({
+              _taroWeapp2.default.navigateTo({
                 url: '/pages/resume/basics/index'
               });
             }
           });
           return;
         } else {
-          _taroTt2.default.navigateTo({
+          _taroWeapp2.default.navigateTo({
             url: url
           });
         }
@@ -1160,9 +1160,9 @@ var NewJob = function (_Taro$Component) {
       this.anonymousFunc28 = function () {
         return userRouteJump("/pages/topping/index?rec=1");
       };
-      var loopArray79 = data.resume_top.has_top != 0 && data.resume_top.is_top != 2 ? data.resume_top.top_provinces_str.map(function (v, i) {
+      var loopArray85 = data.resume_top.has_top != 0 && data.resume_top.is_top != 2 ? data.resume_top.top_provinces_str.map(function (v, i) {
         v = {
-          $original: (0, _taroTt.internal_get_original)(v)
+          $original: (0, _taroWeapp.internal_get_original)(v)
         };
         var $loopState__temp3 = data.resume_top.top_provinces_str.length ? i + i : null;
         return {
@@ -1170,9 +1170,9 @@ var NewJob = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray80 = !showskill ? data.info.occupations.map(function (v, i) {
+      var loopArray86 = !showskill ? data.info.occupations.map(function (v, i) {
         v = {
-          $original: (0, _taroTt.internal_get_original)(v)
+          $original: (0, _taroWeapp.internal_get_original)(v)
         };
         var $loopState__temp5 = data.info.occupations ? i + i : null;
         return {
@@ -1180,9 +1180,9 @@ var NewJob = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray81 = showskill ? data.info.occupations.map(function (v, i) {
+      var loopArray87 = showskill ? data.info.occupations.map(function (v, i) {
         v = {
-          $original: (0, _taroTt.internal_get_original)(v)
+          $original: (0, _taroWeapp.internal_get_original)(v)
         };
         var $loopState__temp7 = data.info.occupations ? i + i : null;
         return {
@@ -1190,9 +1190,9 @@ var NewJob = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray82 = selfintrone ? data.introduces.tags.map(function (v, i) {
+      var loopArray88 = selfintrone ? data.introduces.tags.map(function (v, i) {
         v = {
-          $original: (0, _taroTt.internal_get_original)(v)
+          $original: (0, _taroWeapp.internal_get_original)(v)
         };
         var $loopState__temp9 = data.introduces.tags ? i + i : null;
         return {
@@ -1200,21 +1200,21 @@ var NewJob = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray83 = projectlength != 0 ? project.map(function (item, __index16) {
+      var loopArray89 = projectlength != 0 ? project.map(function (item, __index16) {
         item = {
-          $original: (0, _taroTt.internal_get_original)(item)
+          $original: (0, _taroWeapp.internal_get_original)(item)
         };
-        var _$indexKey = "jazzz" + __index16;
+        var _$indexKey = "jgzzz" + __index16;
         _this2.anonymousFunc16Map[_$indexKey] = function () {
           return userRouteJump("/pages/resume/addProject/index?type=0&id=" + data.info.uuid);
         };
-        var _$indexKey2 = "jbzzz" + __index16;
+        var _$indexKey2 = "jhzzz" + __index16;
         _this2.anonymousFunc17Map[_$indexKey2] = function () {
           return userRouteJump("/pages/resume/addProject/index?type=0&id=" + data.info.uuid);
         };
         var $anonymousCallee__12 = projectlength != 0 ? item.$original.image.map(function (v, i) {
           v = {
-            $original: (0, _taroTt.internal_get_original)(v)
+            $original: (0, _taroWeapp.internal_get_original)(v)
           };
           var $loopState__temp11 = item.$original.image ? i + i : null;
           return {
@@ -1229,22 +1229,22 @@ var NewJob = function (_Taro$Component) {
           $original: item.$original
         };
       }) : [];
-      var loopArray84 = skilllength != 0 ? skillbooksone.map(function (item, i) {
+      var loopArray90 = skilllength != 0 ? skillbooksone.map(function (item, i) {
         item = {
-          $original: (0, _taroTt.internal_get_original)(item)
+          $original: (0, _taroWeapp.internal_get_original)(item)
         };
         var $loopState__temp13 = skillbooksone ? i + i : null;
-        var _$indexKey3 = "jczzz" + i;
+        var _$indexKey3 = "jizzz" + i;
         _this2.anonymousFunc21Map[_$indexKey3] = function () {
           return userRouteJump("/pages/resume/addSkill/index?type=" + i + "&id=" + data.info.uuid);
         };
-        var _$indexKey4 = "jdzzz" + i;
+        var _$indexKey4 = "jjzzz" + i;
         _this2.anonymousFunc22Map[_$indexKey4] = function () {
           return userRouteJump("/pages/resume/addSkill/index?type=" + i + "&id=" + data.info.uuid);
         };
         var $anonymousCallee__13 = skilllength != 0 ? item.$original.image.map(function (v, i) {
           v = {
-            $original: (0, _taroTt.internal_get_original)(v)
+            $original: (0, _taroWeapp.internal_get_original)(v)
           };
           var $loopState__temp15 = item.$original.image ? i + i : null;
           return {
@@ -1260,30 +1260,30 @@ var NewJob = function (_Taro$Component) {
           $original: item.$original
         };
       }) : [];
-      recData.length && _taroTt.propsManager.set({
+      recData.length && _taroWeapp.propsManager.set({
         "type": 1,
         "data": recData
-      }, $compid__69, $prevCompid__69);
-      _taroTt.propsManager.set({
+      }, $compid__72, $prevCompid__72);
+      _taroWeapp.propsManager.set({
         "isOpened": tips,
         "className": "AtModal"
-      }, $compid__70, $prevCompid__70);
-      _taroTt.propsManager.set({
+      }, $compid__73, $prevCompid__73);
+      _taroWeapp.propsManager.set({
         "isOpened": toppingModal,
         "className": "AtModal"
-      }, $compid__71, $prevCompid__71);
+      }, $compid__74, $prevCompid__74);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
         data: data,
-        loopArray79: loopArray79,
-        loopArray80: loopArray80,
-        loopArray81: loopArray81,
-        loopArray82: loopArray82,
-        loopArray83: loopArray83,
-        loopArray84: loopArray84,
-        $compid__69: $compid__69,
-        $compid__70: $compid__70,
-        $compid__71: $compid__71,
+        loopArray85: loopArray85,
+        loopArray86: loopArray86,
+        loopArray87: loopArray87,
+        loopArray88: loopArray88,
+        loopArray89: loopArray89,
+        loopArray90: loopArray90,
+        $compid__72: $compid__72,
+        $compid__73: $compid__73,
+        $compid__74: $compid__74,
         showtop: showtop,
         showcomplete: showcomplete,
         IMGCDNURL: _index6.IMGCDNURL,
@@ -1499,14 +1499,14 @@ var NewJob = function (_Taro$Component) {
   }]);
 
   return NewJob;
-}(_taroTt2.default.Component);
+}(_taroWeapp2.default.Component);
 
 NewJob.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6", "anonymousFunc7", "anonymousFunc8", "anonymousFunc9", "anonymousFunc10", "anonymousFunc11", "anonymousFunc12", "anonymousFunc13", "anonymousFunc14", "anonymousFunc15", "anonymousFunc16", "anonymousFunc17", "anonymousFunc18", "anonymousFunc19", "anonymousFunc20", "anonymousFunc21", "anonymousFunc22", "anonymousFunc23", "anonymousFunc24", "anonymousFunc25", "anonymousFunc26", "anonymousFunc27", "anonymousFunc28"];
 NewJob.$$componentPath = "pages/resume/newJobs/index";
 NewJob.config = { navigationBarTitleText: '找活名片' };
 exports.default = NewJob;
 
-Page(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(NewJob, true));
+Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(NewJob, true));
 
 /***/ })
 

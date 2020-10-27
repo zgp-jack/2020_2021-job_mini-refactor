@@ -1,7 +1,7 @@
 import Taro, { useEffect, useState } from '@tarojs/taro'
 import { View, ScrollView } from '@tarojs/components'
 import Search from '../../../components/search'
-import Condition from '../../../components/resumeCondition'
+import RecruitCondition from '../../../components/condition/recruit'
 import WechatNotice from '../../../components/wechat'
 import RecruitList from '../../../components/lists/recruit'
 import { getRecruitList } from '../../../utils/request'
@@ -143,7 +143,7 @@ export default function Recruit(){
     <View className='recruit-container'>
       <View className='recruit-fiexd-header'>
         <Search placeholder='找活、找工作' value='' setRemark={(val: string) => setRemark(val)} setSearchData={()=>setSearchValData()} />
-        <Condition data={condition} setSearchData={(type, id) => setSearchDataAction(type, id)} />
+        <RecruitCondition data={condition} setSearchData={(type, id) => setSearchDataAction(type, id)} />
       </View>
       <ScrollView 
         className='recruit-lists-containerbox' 

@@ -1,4 +1,4 @@
-(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["pages/published/recruit/index"],{
+(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["pages/published/recruit/index"],{
 
 /***/ "./src/pages/published/recruit/config.ts":
 /*!***********************************************!*\
@@ -60,9 +60,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
 
 var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/redux/index.js");
 
@@ -109,7 +109,7 @@ var PublishedRecruit = function (_Taro$Component) {
       backgroundTextStyle: "dark"
     };
 
-    _this.$usedState = ["loopArray45", "loopArray46", "HeaderList", "refresh", "lists", "IMGCDNURL", "more", "searchData"];
+    _this.$usedState = ["loopArray51", "loopArray52", "HeaderList", "refresh", "lists", "IMGCDNURL", "more", "searchData"];
     _this.anonymousFunc0Map = {};
     _this.anonymousFunc3Map = {};
     _this.anonymousFunc4Map = {};
@@ -125,7 +125,7 @@ var PublishedRecruit = function (_Taro$Component) {
     key: '_constructor',
     value: function _constructor(props) {
       _get(PublishedRecruit.prototype.__proto__ || Object.getPrototypeOf(PublishedRecruit.prototype), '_constructor', this).call(this, props);
-      this.$$refs = new _taroTt2.default.RefsArray();
+      this.$$refs = new _taroWeapp2.default.RefsArray();
     }
   }, {
     key: '_createData',
@@ -139,35 +139,35 @@ var PublishedRecruit = function (_Taro$Component) {
       ;
       // 当前高亮key
 
-      var _useState = (0, _taroTt.useState)(_config2.default[0].id),
+      var _useState = (0, _taroWeapp.useState)(_config2.default[0].id),
           _useState2 = _slicedToArray(_useState, 2),
           id = _useState2[0],
           setId = _useState2[1];
       // 是否还有下一页
 
 
-      var _useState3 = (0, _taroTt.useState)(true),
+      var _useState3 = (0, _taroWeapp.useState)(true),
           _useState4 = _slicedToArray(_useState3, 2),
           more = _useState4[0],
           setMore = _useState4[1];
       // 数据加载中
 
 
-      var _useState5 = (0, _taroTt.useState)(false),
+      var _useState5 = (0, _taroWeapp.useState)(false),
           _useState6 = _slicedToArray(_useState5, 2),
           loading = _useState6[0],
           setLoading = _useState6[1];
       // 是否下拉刷新
 
 
-      var _useState7 = (0, _taroTt.useState)(false),
+      var _useState7 = (0, _taroWeapp.useState)(false),
           _useState8 = _slicedToArray(_useState7, 2),
           refresh = _useState8[0],
           setRefresh = _useState8[1];
       // 已发布招工列表
 
 
-      var _useState9 = (0, _taroTt.useState)([]),
+      var _useState9 = (0, _taroWeapp.useState)([]),
           _useState10 = _slicedToArray(_useState9, 2),
           lists = _useState10[0],
           setLists = _useState10[1];
@@ -178,7 +178,7 @@ var PublishedRecruit = function (_Taro$Component) {
         return state.User;
       });
 
-      var _useState11 = (0, _taroTt.useState)({
+      var _useState11 = (0, _taroWeapp.useState)({
         mid: user.userId,
         uuid: user.uuid,
         page: 1,
@@ -190,7 +190,7 @@ var PublishedRecruit = function (_Taro$Component) {
       // 返回刷新页面
 
 
-      (0, _taroTt.useDidShow)(function () {
+      (0, _taroWeapp.useDidShow)(function () {
         setSearchData(_extends({}, searchData, { page: 1 }));
       });
       // 加载数据类别
@@ -208,15 +208,15 @@ var PublishedRecruit = function (_Taro$Component) {
           }
           if (refresh) {
             setRefresh(false);
-            _taroTt2.default.stopPullDownRefresh();
-            _taroTt2.default.hideNavigationBarLoading();
+            _taroWeapp2.default.stopPullDownRefresh();
+            _taroWeapp2.default.hideNavigationBarLoading();
           }
           setLoading(false);
         }).catch(function () {
           if (refresh) {
             setRefresh(false);
-            _taroTt2.default.stopPullDownRefresh();
-            _taroTt2.default.hideNavigationBarLoading();
+            _taroWeapp2.default.stopPullDownRefresh();
+            _taroWeapp2.default.hideNavigationBarLoading();
           }
           setLoading(false);
         });
@@ -226,7 +226,7 @@ var PublishedRecruit = function (_Taro$Component) {
         setId(key);
         setSearchData(_extends({}, searchData, { type: key, page: 1 }));
       };
-      (0, _taroTt.useEffect)(function () {
+      (0, _taroWeapp.useEffect)(function () {
         getPublishedRecruitLists();
       }, [searchData]);
       // 加载下一页
@@ -238,7 +238,7 @@ var PublishedRecruit = function (_Taro$Component) {
       };
       // 刷新当前页
       var reloadPage = function reloadPage() {
-        _taroTt2.default.showNavigationBarLoading();
+        _taroWeapp2.default.showNavigationBarLoading();
         setRefresh(true);
         setSearchData(_extends({}, searchData, { page: 1 }));
       };
@@ -260,7 +260,7 @@ var PublishedRecruit = function (_Taro$Component) {
       // 跳转
       // 用户页面跳转
       var userRouteJump = function userRouteJump(url) {
-        _taroTt2.default.navigateTo({
+        _taroWeapp2.default.navigateTo({
           url: url
         });
       };
@@ -280,7 +280,7 @@ var PublishedRecruit = function (_Taro$Component) {
       //置顶
       var handleTopping = function handleTopping(item) {
         if (item.is_end === '2') {
-          _taroTt2.default.showModal({
+          _taroWeapp2.default.showModal({
             title: '提示',
             content: '已招到状态不能进行置顶操作，请修改招工状态',
             showCancel: false
@@ -308,7 +308,7 @@ var PublishedRecruit = function (_Taro$Component) {
               setSearchData(_extends({}, searchData, { page: searchData.page }));
             } else if (res.errcode === 'auth_forbid') {
               // 去实名
-              _taroTt2.default.showModal({
+              _taroWeapp2.default.showModal({
                 title: '温馨提示',
                 content: res.errmsg,
                 cancelText: '取消',
@@ -316,7 +316,7 @@ var PublishedRecruit = function (_Taro$Component) {
                 success: function success(res) {
                   if (res.confirm) {
                     var backtwo = "backtwo";
-                    _taroTt2.default.navigateTo({
+                    _taroWeapp2.default.navigateTo({
                       url: "/pages/realname/index?backtwo=backtwo"
                     });
                   }
@@ -324,7 +324,7 @@ var PublishedRecruit = function (_Taro$Component) {
               });
               return;
             } else if (res.errcode == "member_forbid") {
-              _taroTt2.default.showModal({
+              _taroWeapp2.default.showModal({
                 title: '温馨提示',
                 content: "mydata.errmsg",
                 cancelText: "取消",
@@ -332,7 +332,7 @@ var PublishedRecruit = function (_Taro$Component) {
                 success: function success(res) {
                   if (res.confirm) {
                     var tel = _index2.SERVERPHONE;
-                    _taroTt2.default.makePhoneCall({
+                    _taroWeapp2.default.makePhoneCall({
                       phoneNumber: tel
                     });
                   }
@@ -340,7 +340,7 @@ var PublishedRecruit = function (_Taro$Component) {
               });
               return;
             } else {
-              _taroTt2.default.showToast({
+              _taroWeapp2.default.showToast({
                 title: res.errmsg,
                 icon: "none",
                 duration: 1500
@@ -357,11 +357,11 @@ var PublishedRecruit = function (_Taro$Component) {
       this.anonymousFunc2 = function () {
         return getNextPageData();
       };
-      var loopArray45 = _config2.default.map(function (item, __index0) {
+      var loopArray51 = _config2.default.map(function (item, __index0) {
         item = {
-          $original: (0, _taroTt.internal_get_original)(item)
+          $original: (0, _taroWeapp.internal_get_original)(item)
         };
-        var _$indexKey = "edzzz" + __index0;
+        var _$indexKey = "ejzzz" + __index0;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return userChangePublishedItem(item.$original.id);
         };
@@ -375,31 +375,31 @@ var PublishedRecruit = function (_Taro$Component) {
           $original: item.$original
         };
       });
-      var loopArray46 = lists.map(function (item, index) {
+      var loopArray52 = lists.map(function (item, index) {
         item = {
-          $original: (0, _taroTt.internal_get_original)(item)
+          $original: (0, _taroWeapp.internal_get_original)(item)
         };
-        var _$indexKey2 = "eezzz" + index;
+        var _$indexKey2 = "fazzz" + index;
         _this2.anonymousFunc3Map[_$indexKey2] = function () {
           return userRouteJump("/pages/detail/info/index?id=" + item.$original.id);
         };
-        var _$indexKey3 = "efzzz" + index;
+        var _$indexKey3 = "fbzzz" + index;
         _this2.anonymousFunc4Map[_$indexKey3] = function () {
           return userRouteJump("/pages/recruit/publish/index?id=" + item.$original.id);
         };
-        var _$indexKey4 = "egzzz" + index;
+        var _$indexKey4 = "fczzz" + index;
         _this2.anonymousFunc5Map[_$indexKey4] = function () {
           return userStopRecruit(item.$original.id, index);
         };
-        var _$indexKey5 = "ehzzz" + index;
+        var _$indexKey5 = "fdzzz" + index;
         _this2.anonymousFunc6Map[_$indexKey5] = function () {
           return handlCancel(item.$original.id);
         };
-        var _$indexKey6 = "eizzz" + index;
+        var _$indexKey6 = "fezzz" + index;
         _this2.anonymousFunc7Map[_$indexKey6] = function () {
           return handleTopping(item.$original);
         };
-        var _$indexKey7 = "ejzzz" + index;
+        var _$indexKey7 = "ffzzz" + index;
         _this2.anonymousFunc8Map[_$indexKey7] = function () {
           return userRouteJump("/pages/topping/index?id=" + item.$original.id + "&type=1");
         };
@@ -414,8 +414,8 @@ var PublishedRecruit = function (_Taro$Component) {
         };
       });
       Object.assign(this.__state, {
-        loopArray45: loopArray45,
-        loopArray46: loopArray46,
+        loopArray51: loopArray51,
+        loopArray52: loopArray52,
         HeaderList: _config2.default,
         refresh: refresh,
         lists: lists,
@@ -529,14 +529,14 @@ var PublishedRecruit = function (_Taro$Component) {
   }]);
 
   return PublishedRecruit;
-}(_taroTt2.default.Component);
+}(_taroWeapp2.default.Component);
 
 PublishedRecruit.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6", "anonymousFunc7", "anonymousFunc8"];
 PublishedRecruit.$$componentPath = "pages/published/recruit/index";
 PublishedRecruit.config = { navigationBarTitleText: '我的招工信息', navigationBarBackgroundColor: '#0099ff', navigationBarTextStyle: 'white', backgroundTextStyle: "dark" };
 exports.default = PublishedRecruit;
 
-Page(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(PublishedRecruit, true));
+Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(PublishedRecruit, true));
 
 /***/ })
 

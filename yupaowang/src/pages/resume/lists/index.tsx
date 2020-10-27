@@ -1,7 +1,7 @@
 import Taro, { useState, useEffect } from '@tarojs/taro'
 import { View, ScrollView } from '@tarojs/components'
 import Search from '../../../components/search'
-import ResumeCondition from '../../../components/recruitCondition/'
+import ResumeCondition from '../../../components/condition/resume'
 import WechatNotice from '../../../components/wechat'
 import ResumeList from '../../../components/lists/resume'
 import { SearchType } from '../index.d'

@@ -1,4 +1,4 @@
-(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["npm/taro-ui/dist/weapp/components/modal/action/index"],{
+(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["npm/taro-ui/dist/weapp/components/modal/action/index"],{
 
 /***/ "./node_modules/taro-ui/dist/weapp/components/modal/action/index.js":
 /*!**************************************************************************!*\
@@ -20,9 +20,9 @@ var _get = function get(object, property, receiver) { if (object === null) objec
 
 var _class, _temp2;
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
 
 var _propTypes = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
 
@@ -66,7 +66,7 @@ var AtModalAction = (_temp2 = _class = function (_AtComponent) {
     value: function _constructor(props) {
       _get(AtModalAction.prototype.__proto__ || Object.getPrototypeOf(AtModalAction.prototype), '_constructor', this).call(this, props);
 
-      this.$$refs = new _taroTt2.default.RefsArray();
+      this.$$refs = new _taroWeapp2.default.RefsArray();
     }
   }, {
     key: '_createData',
@@ -101,7 +101,7 @@ AtModalAction.propTypes = {
 };
 exports.default = AtModalAction;
 
-Component(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(AtModalAction));
+Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(AtModalAction));
 
 /***/ })
 

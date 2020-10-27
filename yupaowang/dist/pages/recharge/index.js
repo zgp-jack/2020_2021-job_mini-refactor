@@ -1,4 +1,4 @@
-(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["pages/recharge/index"],{
+(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["pages/recharge/index"],{
 
 /***/ "./src/pages/recharge/index.scss":
 /*!***************************************!*\
@@ -33,9 +33,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
 
 var _index = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
 
@@ -73,7 +73,7 @@ var Recharge = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (Recharge.__proto__ || Object.getPrototypeOf(Recharge)).apply(this, arguments));
 
-    _this.$usedState = ["loopArray42", "lists", "integral", "current", "price"];
+    _this.$usedState = ["loopArray48", "lists", "integral", "current", "price"];
     _this.anonymousFunc0Map = {};
     _this.customComponents = ["AtMessage"];
     return _this;
@@ -83,7 +83,7 @@ var Recharge = function (_Taro$Component) {
     key: "_constructor",
     value: function _constructor(props) {
       _get(Recharge.prototype.__proto__ || Object.getPrototypeOf(Recharge.prototype), "_constructor", this).call(this, props);
-      this.$$refs = new _taroTt2.default.RefsArray();
+      this.$$refs = new _taroWeapp2.default.RefsArray();
     }
   }, {
     key: "_createData",
@@ -98,29 +98,29 @@ var Recharge = function (_Taro$Component) {
       var dispatch = (0, _redux.useDispatch)();
       // 积分列表数据与用户当前积分数量
 
-      var _useState = (0, _taroTt.useState)([]),
+      var _useState = (0, _taroWeapp.useState)([]),
           _useState2 = _slicedToArray(_useState, 2),
           lists = _useState2[0],
           setLists = _useState2[1];
 
-      var _useState3 = (0, _taroTt.useState)(0),
+      var _useState3 = (0, _taroWeapp.useState)(0),
           _useState4 = _slicedToArray(_useState3, 2),
           integral = _useState4[0],
           setIntegral = _useState4[1];
 
-      var _useState5 = (0, _taroTt.useState)(0),
+      var _useState5 = (0, _taroWeapp.useState)(0),
           _useState6 = _slicedToArray(_useState5, 2),
           current = _useState6[0],
           setCurrent = _useState6[1];
 
-      var _useState7 = (0, _taroTt.useState)(0),
+      var _useState7 = (0, _taroWeapp.useState)(0),
           _useState8 = _slicedToArray(_useState7, 2),
           price = _useState8[0],
           setPrice = _useState8[1];
       // 初始化积分充值选项
 
 
-      (0, _taroTt.useEffect)(function () {
+      (0, _taroWeapp.useEffect)(function () {
         (0, _index2.getRechargeList)().then(function (res) {
           if (res.errcode == 'ok') {
             setLists(res.list);
@@ -135,7 +135,7 @@ var Recharge = function (_Taro$Component) {
             (0, _index3.ShowActionModal)({
               msg: res.errmsg,
               success: function success() {
-                _taroTt2.default.navigateBack();
+                _taroWeapp2.default.navigateBack();
               }
             });
           }
@@ -155,7 +155,7 @@ var Recharge = function (_Taro$Component) {
       // 用户充值
       var userRechargeAction = function userRechargeAction() {
         var rechargeIntegral = lists[current].integral;
-        _taroTt2.default.login({
+        _taroWeapp2.default.login({
           success: function success(res) {
             (0, _index2.getRechargeOpenid)(res.code).then(function (openidData) {
               var data = {
@@ -163,10 +163,10 @@ var Recharge = function (_Taro$Component) {
                 openid: openidData.openid
               };
               (0, _index2.getRechargeOrder)(data).then(function (orderData) {
-                _taroTt2.default.requestPayment(_extends({}, orderData.payData)).then(function () {
+                _taroWeapp2.default.requestPayment(_extends({}, orderData.payData)).then(function () {
                   var afterIntegral = integral + rechargeIntegral;
                   setIntegral(afterIntegral);
-                  _taroTt2.default.showModal({
+                  _taroWeapp2.default.showModal({
                     title: '恭喜您',
                     content: "\u60A8\u5DF2\u6210\u529F\u5145\u503C" + rechargeIntegral + "\u4E2A\u79EF\u5206",
                     cancelText: '会员中心',
@@ -174,7 +174,7 @@ var Recharge = function (_Taro$Component) {
                     success: function success(res) {
                       if (res.cancel) {
                         // dispatch(changeTabbar(MEMBER))
-                        _taroTt2.default.reLaunch({ url: '/pages/index/index?type=' + _tabbar.MEMBER });
+                        _taroWeapp2.default.reLaunch({ url: '/pages/index/index?type=' + _tabbar.MEMBER });
                       }
                     }
                   });
@@ -193,11 +193,11 @@ var Recharge = function (_Taro$Component) {
       this.anonymousFunc1 = function () {
         return userRechargeAction();
       };
-      var loopArray42 = lists.map(function (item, index) {
+      var loopArray48 = lists.map(function (item, index) {
         item = {
-          $original: (0, _taroTt.internal_get_original)(item)
+          $original: (0, _taroWeapp.internal_get_original)(item)
         };
-        var _$indexKey = "eazzz" + index;
+        var _$indexKey = "egzzz" + index;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return userChooseItem(index);
         };
@@ -212,7 +212,7 @@ var Recharge = function (_Taro$Component) {
         };
       });
       Object.assign(this.__state, {
-        loopArray42: loopArray42,
+        loopArray48: loopArray48,
         lists: lists,
         integral: integral,
         current: current,
@@ -241,13 +241,13 @@ var Recharge = function (_Taro$Component) {
   }]);
 
   return Recharge;
-}(_taroTt2.default.Component);
+}(_taroWeapp2.default.Component);
 
 Recharge.$$events = ["anonymousFunc0", "anonymousFunc1"];
 Recharge.$$componentPath = "pages/recharge/index";
 exports.default = Recharge;
 
-Page(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(Recharge, true));
+Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(Recharge, true));
 
 /***/ })
 

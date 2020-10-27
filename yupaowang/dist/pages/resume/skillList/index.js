@@ -1,4 +1,4 @@
-(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["pages/resume/skillList/index"],{
+(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["pages/resume/skillList/index"],{
 
 /***/ "./src/pages/resume/skillList/index.scss":
 /*!***********************************************!*\
@@ -31,9 +31,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
 
 var _index = __webpack_require__(/*! ../../../utils/request/index */ "./src/utils/request/index.ts");
 
@@ -61,7 +61,7 @@ var SkillList = function (_Taro$Component) {
       navigationBarTitleText: '技能证书'
     };
 
-    _this.$usedState = ["loopArray77", "data", "IMGCDNURL", "preview", "resume_uuid", "detail"];
+    _this.$usedState = ["loopArray83", "data", "IMGCDNURL", "preview", "resume_uuid", "detail"];
     _this.anonymousFunc0Map = {};
     _this.anonymousFunc1Map = {};
     _this.anonymousFunc2Map = {};
@@ -73,7 +73,7 @@ var SkillList = function (_Taro$Component) {
     key: "_constructor",
     value: function _constructor(props) {
       _get(SkillList.prototype.__proto__ || Object.getPrototypeOf(SkillList.prototype), "_constructor", this).call(this, props);
-      this.$$refs = new _taroTt2.default.RefsArray();
+      this.$$refs = new _taroWeapp2.default.RefsArray();
     }
   }, {
     key: "_createData",
@@ -85,7 +85,7 @@ var SkillList = function (_Taro$Component) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var router = (0, _taroTt.useRouter)();
+      var router = (0, _taroWeapp.useRouter)();
       // 获取传递参数
       var _router$params = router.params,
           id = _router$params.id,
@@ -95,26 +95,26 @@ var SkillList = function (_Taro$Component) {
           uuid = _router$params.uuid;
       // 刷新一次
 
-      var _useState = (0, _taroTt.useState)(false),
+      var _useState = (0, _taroWeapp.useState)(false),
           _useState2 = _slicedToArray(_useState, 2),
           refresh = _useState2[0],
           setRefresh = _useState2[1];
       // 数据
 
 
-      var _useState3 = (0, _taroTt.useState)([]),
+      var _useState3 = (0, _taroWeapp.useState)([]),
           _useState4 = _slicedToArray(_useState3, 2),
           data = _useState4[0],
           setData = _useState4[1];
       // 设置uuid
 
 
-      var _useState5 = (0, _taroTt.useState)(''),
+      var _useState5 = (0, _taroWeapp.useState)(''),
           _useState6 = _slicedToArray(_useState5, 2),
           resume_uuid = _useState6[0],
           setResume_uuid = _useState6[1];
 
-      (0, _taroTt.useDidShow)(function () {
+      (0, _taroWeapp.useDidShow)(function () {
         if (refresh) {
           setRefresh(false);
           return;
@@ -138,7 +138,7 @@ var SkillList = function (_Taro$Component) {
       });
       // 点击方法
       var handleImg = function handleImg(e) {
-        _taroTt2.default.previewImage({
+        _taroWeapp2.default.previewImage({
           current: e,
           urls: [e]
         });
@@ -146,31 +146,31 @@ var SkillList = function (_Taro$Component) {
       };
       // 用户页面跳转
       var userRouteJump = function userRouteJump(url) {
-        _taroTt2.default.navigateTo({
+        _taroWeapp2.default.navigateTo({
           url: url
         });
       };
       this.anonymousFunc3 = function () {
         return userRouteJump("/pages/resume/addSkill/index?id=" + id);
       };
-      var loopArray77 = data.map(function (item, i) {
+      var loopArray83 = data.map(function (item, i) {
         item = {
-          $original: (0, _taroTt.internal_get_original)(item)
+          $original: (0, _taroWeapp.internal_get_original)(item)
         };
-        var _$indexKey = "iezzz" + i;
+        var _$indexKey = "jazzz" + i;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return userRouteJump("/pages/resume/addSkill/index?type=" + i + "&id=" + id);
         };
-        var _$indexKey2 = "ifzzz" + i;
+        var _$indexKey2 = "jbzzz" + i;
         _this2.anonymousFunc1Map[_$indexKey2] = function () {
           return userRouteJump("/pages/resume/addSkill/index?type=" + i + "&id=" + id);
         };
         var $anonymousCallee__10 = item.$original.image.map(function (v, i) {
           v = {
-            $original: (0, _taroTt.internal_get_original)(v)
+            $original: (0, _taroWeapp.internal_get_original)(v)
           };
           var $loopState__temp2 = i + i;
-          var _$indexKey3 = "igzzz" + i + "-" + i;
+          var _$indexKey3 = "jczzz" + i + "-" + i;
           _this2.anonymousFunc2Map[_$indexKey3] = function () {
             return handleImg(v.$original);
           };
@@ -188,7 +188,7 @@ var SkillList = function (_Taro$Component) {
         };
       });
       Object.assign(this.__state, {
-        loopArray77: loopArray77,
+        loopArray83: loopArray83,
         data: data,
         IMGCDNURL: _index2.IMGCDNURL,
         preview: preview,
@@ -244,14 +244,14 @@ var SkillList = function (_Taro$Component) {
   }]);
 
   return SkillList;
-}(_taroTt2.default.Component);
+}(_taroWeapp2.default.Component);
 
 SkillList.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3"];
 SkillList.$$componentPath = "pages/resume/skillList/index";
 SkillList.config = { navigationBarTitleText: '技能证书' };
 exports.default = SkillList;
 
-Page(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(SkillList, true));
+Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(SkillList, true));
 
 /***/ })
 

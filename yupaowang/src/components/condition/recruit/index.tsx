@@ -1,16 +1,16 @@
 import Taro, { useState, useEffect, memo } from '@tarojs/taro'
 import { View, Image, Block, ScrollView } from '@tarojs/components'
-import { IMGCDNURL } from '../../config'
+import { IMGCDNURL } from '../../../config'
 import { AtDrawer } from 'taro-ui'
-import { getListFilterData } from '../../utils/request'
-import { filterClassifyResultClassTree, filterClassifyResultJoblistType } from '../../utils/request/index.d'
-import { filterClassifyDataResultReduce } from '../../reducers/filter_classify'
-import { setFilter } from '../../actions/filter_classify'
-import AREAS, { ChildItems } from '../../models/area'
+import { getListFilterData } from '../../../utils/request'
+import { filterClassifyResultClassTree, filterClassifyResultJoblistType } from '../../../utils/request/index.d'
+import { filterClassifyDataResultReduce } from '../../../reducers/filter_classify'
+import { setFilter } from '../../../actions/filter_classify'
+import AREAS, { ChildItems } from '../../../models/area'
 import classnames from 'classnames'
-import { AreaPickerKey, ClassifyPickerKey, FilterPickerKey } from '../../config/pages/lists'
+import { AreaPickerKey, ClassifyPickerKey, FilterPickerKey } from '../../../config/pages/lists'
 import { useDispatch, useSelector } from '@tarojs/redux'
-import '../recruitCondition/index.scss'
+import './index.scss'
 
 interface ConditionData {
   id: string,
@@ -21,7 +21,7 @@ interface ConditionProps {
   setSearchData: (type: string, id: string) => void
 }
 
-function Condition({ data, setSearchData }: ConditionProps) {
+function RecruitCondition({ data, setSearchData }: ConditionProps) {
 
   const dispatch = useDispatch()
 
@@ -136,7 +136,7 @@ function Condition({ data, setSearchData }: ConditionProps) {
     }
   }
   return (
-    <Block>
+    <View>
       <View className='recruit-condition-box'>
         {data && data.map((item) => (
           <View className='recruit-condition-item' key={item.id} onClick={() => conditionItemClick(item.id)}>
@@ -235,8 +235,8 @@ function Condition({ data, setSearchData }: ConditionProps) {
           </ScrollView>
         </View>
       </AtDrawer>
-    </Block>
+    </View>
   )
 }
 
-export default memo(Condition)
+export default memo(RecruitCondition)

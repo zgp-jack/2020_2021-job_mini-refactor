@@ -1,4 +1,4 @@
-(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["pages/resume/lists/index"],{
+(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["pages/resume/lists/index"],{
 
 /***/ "./src/pages/resume/lists/index.scss":
 /*!*******************************************!*\
@@ -33,9 +33,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
 
 var _index = __webpack_require__(/*! ../../../utils/request/index */ "./src/utils/request/index.ts");
 
@@ -68,7 +68,7 @@ var Recruit = function (_Taro$Component) {
     key: "_constructor",
     value: function _constructor(props) {
       _get(Recruit.prototype.__proto__ || Object.getPrototypeOf(Recruit.prototype), "_constructor", this).call(this, props);
-      this.$$refs = new _taroTt2.default.RefsArray();
+      this.$$refs = new _taroWeapp2.default.RefsArray();
     }
   }, {
     key: "_createData",
@@ -79,17 +79,17 @@ var Recruit = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__18"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__18"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
           $prevCompid__18 = _genCompid2[0],
           $compid__18 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__19"),
+      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__19"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
           $prevCompid__19 = _genCompid4[0],
           $compid__19 = _genCompid4[1];
 
-      var _genCompid5 = (0, _taroTt.genCompid)(__prefix + "$compid__20"),
+      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__20"),
           _genCompid6 = _slicedToArray(_genCompid5, 2),
           $prevCompid__20 = _genCompid6[0],
           $compid__20 = _genCompid6[1];
@@ -99,28 +99,28 @@ var Recruit = function (_Taro$Component) {
       var DEFAULT_CONDITION = [{ id: 'area', text: '全国' }, { id: 'work', text: '选择工种' }, { id: 'type', text: '队伍' }, { id: 'filter', text: '推荐' }];
       // * 搜索数据 备份 
 
-      var _useState = (0, _taroTt.useState)(''),
+      var _useState = (0, _taroWeapp.useState)(''),
           _useState2 = _slicedToArray(_useState, 2),
           remark = _useState2[0],
           setRemark = _useState2[1];
       // * 标记是否是在刷新状态
 
 
-      var _useState3 = (0, _taroTt.useState)(false),
+      var _useState3 = (0, _taroWeapp.useState)(false),
           _useState4 = _slicedToArray(_useState3, 2),
           refresh = _useState4[0],
           setRefresh = _useState4[1];
       // * 定义列表数组
 
 
-      var _useState5 = (0, _taroTt.useState)([]),
+      var _useState5 = (0, _taroWeapp.useState)([]),
           _useState6 = _slicedToArray(_useState5, 2),
           lists = _useState6[0],
           setLists = _useState6[1];
       // * 定义data
 
 
-      var _useState7 = (0, _taroTt.useState)({
+      var _useState7 = (0, _taroWeapp.useState)({
         page: 1,
         occupations: '',
         province: '',
@@ -134,9 +134,9 @@ var Recruit = function (_Taro$Component) {
       // * 请求列表数据
 
 
-      (0, _taroTt.useEffect)(function () {
+      (0, _taroWeapp.useEffect)(function () {
         (0, _index.getResumeList)(searchData).then(function (res) {
-          _taroTt2.default.hideNavigationBarLoading();
+          _taroWeapp2.default.hideNavigationBarLoading();
           if (searchData.page === 1) {
             setLists([[].concat(_toConsumableArray(res.errmsg))]);
           } else setLists([].concat(_toConsumableArray(lists), [[].concat(_toConsumableArray(res.errmsg))]));
@@ -157,7 +157,7 @@ var Recruit = function (_Taro$Component) {
       };
       // 用户页面跳转
       var userRouteJump = function userRouteJump(url) {
-        _taroTt2.default.navigateTo({
+        _taroWeapp2.default.navigateTo({
           url: url
         });
       };
@@ -172,21 +172,21 @@ var Recruit = function (_Taro$Component) {
       this.anonymousFunc1 = function () {
         return getNextPageData();
       };
-      var anonymousState__temp4 = (0, _taroTt.internal_inline_style)({ height: '8px' });
+      var anonymousState__temp4 = (0, _taroWeapp.internal_inline_style)({ height: '8px' });
       this.anonymousFunc2 = function () {
         return userRouteJump("/pages/resume/newJobs/index");
       };
-      _taroTt.propsManager.set({
+      _taroWeapp.propsManager.set({
         "placeholder": "\u627E\u5DE5\u4EBA\uFF0C\u627E\u961F\u4F0D\uFF0C\u627E\u73ED\u7EC4",
         "value": "",
         "setRemark": anonymousState__temp,
         "setSearchData": anonymousState__temp2
       }, $compid__18, $prevCompid__18);
-      _taroTt.propsManager.set({
+      _taroWeapp.propsManager.set({
         "data": DEFAULT_CONDITION,
         "setSearchData": anonymousState__temp3
       }, $compid__19, $prevCompid__19);
-      _taroTt.propsManager.set({
+      _taroWeapp.propsManager.set({
         "data": lists
       }, $compid__20, $prevCompid__20);
       Object.assign(this.__state, {
@@ -219,13 +219,13 @@ var Recruit = function (_Taro$Component) {
   }]);
 
   return Recruit;
-}(_taroTt2.default.Component);
+}(_taroWeapp2.default.Component);
 
 Recruit.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2"];
 Recruit.$$componentPath = "pages/resume/lists/index";
 exports.default = Recruit;
 
-Component(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(Recruit));
+Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(Recruit));
 
 /***/ })
 
