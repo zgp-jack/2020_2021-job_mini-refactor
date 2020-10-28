@@ -1076,3 +1076,13 @@ export function userTelCodeLogin(data): Promise<Inter.userAccountOrCodeResult>{
     data
   })
 }
+
+// 实名查询
+export function queryAction(params:object): Promise<Inter.userQueryAuthInfoData> {
+  return doRequestAction({
+    url: api.realnameQueryUrl,
+    method: 'POST',
+    failToast: true,
+    data: params
+  })
+}

@@ -1275,3 +1275,16 @@ export interface filterClassifyResultJoblistType {
   type: string,
   name: string
 }
+//查询实名
+export interface userQueryAuthInfoData extends Result {
+  member: userQueryAuthMember
+}
+
+export interface userQueryAuthMember {
+  age: string,
+  finally_login_address: string,
+  occupations: [],
+  register_address: string,
+  tel: string,
+  username: string
+}

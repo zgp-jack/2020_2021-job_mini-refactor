@@ -192,3 +192,5 @@ export const leavingMessageUrl: string = REQUESTURL +'leaving-message/add-subscr
 export const userAccountUrl: string = REQUESTURL + 'baidu-auth/login/'
 // 用户验证码登录
 export const userTelCodeLogin: string = REQUESTURL + 'baidu-auth/code-login/'
+// 实名查询
+export const realnameQueryUrl: string = REQUESTURL + 'resume/auth-worker-find/'
