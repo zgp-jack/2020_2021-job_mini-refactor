@@ -10,7 +10,7 @@ import AREAS, { ChildItems } from '../../../models/area'
 import classnames from 'classnames'
 import { AreaPickerKey, ClassifyPickerKey, FilterPickerKey } from '../../../config/pages/lists'
 import { useDispatch, useSelector } from '@tarojs/redux'
-import '../recruit/index.scss'
+import './index.scss'
 
 interface ConditionData {
   id: string,

@@ -74,6 +74,12 @@ export const userChangePhone: string = REQUESTURL + 'user/update-tel/'
 export const userGetPublishedRecruitList: string = REQUESTURL + 'job/issue-lists/'
 // 用户改变招工状态
 export const userChangeRecruitStatus: string = REQUESTURL + 'job/job-end-status/'
+// 用户获取已发布二手列表
+export const userGetPublishedUsedList: string = REQUESTURL + 'fleamarket/issues-v1/'
+// 用户改变二手交易信息状态
+export const userChangeUsedStatus: string = REQUESTURL + 'fleamarket/fleamarket-end-status/'
+// 二手交易 刷新置顶
+export const userUpdateUserInfo: string = REQUESTURL + 'fleamarket/update-time/'
 // 收藏招工列表
 export const getCollectionRecruitList: string = REQUESTURL +'job/collect-list/'
 // 收藏找活列表

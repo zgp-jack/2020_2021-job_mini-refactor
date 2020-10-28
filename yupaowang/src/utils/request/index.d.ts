@@ -441,6 +441,44 @@ export interface UserChangePublishedRecruitStatus extends Result{
     }
   }
 }
+
+// 用户已发布二手交易列表
+export interface UserPublishedUsedLists {
+  data: {
+    lists: UserPublishedUsedItem[],
+    checking_tips: string,
+    has_issue: boolean,
+    page_size: number
+  }
+}
+
+export interface UserPublishedUsedItem {
+  id: string,
+  title: string,
+  detail: string,
+  is_check: string,
+  is_end: string
+}
+
+// 用户已发布二手交易 修改状态
+export interface UserChangeUsedStatus extends Result{
+  data: UserChangeUsedStatusData
+}
+
+export interface UserChangeUsedStatusData {
+  id: string,
+  title: string,
+  detail: string,
+  is_check: string,
+  is_end: string,
+  end_word: string,
+  update_word: string,
+}
+
+
+
+
+
 // 收藏招工
 export interface CollectionRecruitListData extends Result {
   list: CollectionRecruitListDataList[],

@@ -11,6 +11,7 @@
     flex: 1;
     padding: 0 10px;
     @include flex();
+    overflow: hidden;
     .recruit-condition-content{
       position: relative;
       padding-right: 50px;

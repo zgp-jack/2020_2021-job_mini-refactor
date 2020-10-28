@@ -13,6 +13,13 @@ const HeaderList: HeaderListItem[] = [
     id: 'being'
   },
   {
+    title: '审核中',
+    id: 'checking'
+  }, {
+    title: '未通过',
+    id: 'fail'
+  },
+  {
     title: '已招满',
     id: 'end'
   },

@@ -35,7 +35,7 @@ export default function RecruitListPage({ data = [], occupations='', city=''}:PR
             <Image src={v.image} className='recruitListBox-content-img'/>
             <View className='recruitListBox-content-box'>
               <View className='recruitListBox-content-name'>{v.user_name}</View>
-              <View className='recruitListBox-content-details'>{v.detail}</View>
+              <View className='recruitListBox-content-details overwrods'>{v.detail}</View>
             </View>
           </View>
           {/* 尾部 */}

@@ -2,7 +2,7 @@ import Taro, { Config, useState, useRouter, useDidShow, useEffect } from '@taroj
 import { View, Text, Image, Icon, Button } from '@tarojs/components'
 import { jobInfoAction, publishComplainAction, jobGetTelAction, recruitListCancelCollectionAction, jobEndStatusAction, jobUpdateTopStatusAction, jobNoUserInfoAction, jobRecommendListAction } from '../../../utils/request/index'
 import WechatNotice from '../../../components/wechat'
-import { IMGCDNURL, SERVERPHONE } from '../../../config'
+import { IMGCDNURL, SERVERPHONE,AUTHPATH,CODEAUTHPATH } from '../../../config'
 import { useSelector } from '@tarojs/redux'
 import { isVaildVal } from '../../../utils/v'
 import  Report  from '../../../components/report'
@@ -113,7 +113,6 @@ export default function DetailInfoPage() {
     console.log(1111)
     getRecruitInfo()
   })
-  
   // 获取招工详情
   const getRecruitInfo = () => {
     const params = {
@@ -224,19 +223,126 @@ export default function DetailInfoPage() {
       }
     })
   }
+  // 操作授权
+  const vaildUserLogin = (): boolean => {
+    if (!login) {
+      Taro.navigateTo({
+        url: ISWEIXIN ? AUTHPATH : CODEAUTHPATH
+      })
+      return false
+    }
+    return true
+  }
+
+  // 处理获取电话号码的不同状态码
+  const detailGetTelAction = (res) => {
+    if (res.errcode == 'ok' || res.errcode == 'end' || res.errcode == 'ajax') {
+      setRefresh(true)
+      setPhone(res.tel)
+      setComplaintInfo(true);
+      setEditPhone(false)
+    } else if (res.errcode == 'end') {
+      Msg(res.errmsg)
+    } else if (res.errcode == 'auth_not_pass' || res.errcode == 'to_auth') {
+      Taro.showModal({
+        title: '温馨提示',
+        content: res.errmsg,
+        success(res) {
+          if (res.confirm) {
+            Taro.navigateTo({
+              url: '/pages/realname/index',
+            })
+          } else {
+            Taro.navigateBack()
+          }
+        }
+      })
+    } else if (res.errcode == 'none_tel') {
+      Taro.showModal({
+        title: '温馨提示',
+        content: res.errmsg,
+        cancelText: "返回列表",
+        confirmText: "绑定手机",
+        success(res) {
+          if (res.confirm) {
+            Taro.navigateTo({
+              url: '/pages/userinfo/index',
+            })
+          } else if (res.cancel) {
+            Taro.navigateBack()
+          }
+
+        }
+      })
+    } else if (res.errcode == 'get_integral') {
+      Taro.showModal({
+        title: '温馨提示',
+        content: res.errmsg,
+        cancelText: "返回列表",
+        confirmText: "获取积分",
+        success(res) {
+          if (res.confirm) {
+            Taro.navigateTo({
+              url: '/pages/getintegral/index',
+            })
+          } else if (res.cancel) {
+            Taro.navigateBack()
+          }
+
+        }
+      })
+    } else if (res.errcode == 'reload') {
+      Taro.showModal({
+        title: '温馨提示',
+        content: res.errmsg,
+        showCancel: false,
+        confirmText: "确定",
+        success(res) {
+          if (res.confirm) {
+            getRecruitInfo()
+          }
+        }
+      })
+    } else if (res.errcode == 'goback') {
+      let pages = Taro.getCurrentPages()
+      Taro.showModal({
+        title: '温馨提示',
+        content: res.errmsg,
+        confirmText: "确定",
+        showCancel: false,
+        success(res) {
+          if (res.confirm) {
+            if (pages.length > 1) {
+              Taro.navigateBack()
+            } else {
+              Taro.reLaunch({ url: '/pages/index/index' })
+            }
+
+          }
+        }
+      })
+    } else {
+      Taro.showModal({
+        title: '温馨提示',
+        content: res.errmsg,
+        showCancel: false,
+        confirmText: "我知道了",
+        success() {
+          Taro.navigateBack()
+        }
+      })
+    }
+  }
+
   // 获取电话
   const jobGetTel = ()=>{
-    const params={
+    if (!vaildUserLogin()) return
+    const params = {
       type:'job',
       infoId:data.id,
     }
     jobGetTelAction(params).then(res=>{
-      if(res.errcode === 'ok'){
-        setRefresh(true)
-        setPhone(res.tel)
-        setComplaintInfo(true);
-        setEditPhone(false)
-      }
+      detailGetTelAction(res)
     })
   }
   const footerComplaint = ()=>{
@@ -277,6 +383,7 @@ export default function DetailInfoPage() {
   }
   // 收藏
   const collection = ()=>{
+    if (!vaildUserLogin()) return
     recruitListCancelCollectionAction(data.id.toString()).then(res=>{
       Msg(res.errmsg)
       if (res.action === 'add'){

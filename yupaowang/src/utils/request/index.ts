@@ -451,6 +451,33 @@ export function userChangeRecruitStatus(id: string): Promise<Inter.UserChangePub
   })
 }
 
+// 用户获取已发布二手列表
+export function userGetPublishedUsedLists(data: searchDataType): Promise<Inter.UserPublishedUsedLists> {
+  return doRequestAction({
+    url: api.userGetPublishedUsedList,
+    data: data,
+    method: 'POST'
+  })
+}
+
+// 用户改变二手状态
+export function userChangeUsedStatus(id: string): Promise<Inter.UserChangeUsedStatus> {
+  return doRequestAction({
+    url: api.userChangeUsedStatus,
+    data: { infoId: id },
+    method: 'POST'
+  })
+}
+
+// 二手交易刷新置顶
+export function userUpdateUsedInfo(id: string): Promise<Inter.Result>{
+  return doRequestAction({
+    url: api.userUpdateUserInfo,
+    data: { infoId: id },
+    method: 'POST'
+  })
+}
+
 // 收藏招工请求数据
 export function getCollectionRecruitListData(page: number): Promise<Inter.CollectionRecruitListData>{
   return doRequestAction({

@@ -14,7 +14,7 @@ export interface UserMemberInfo {
   avatar: string
 }
 export default function Member(){
-
+  console.log(ISWEIXIN)
   // 获取用户信息
   const login = useSelector<any, boolean>(state => state.User['login'])
   // member信息
@@ -90,7 +90,7 @@ export default function Member(){
                 <Text className='member-integral-num'>{ model.member.integral }</Text>
                 <Text className='member-integral-text'>积分</Text>
               </View>
-              <View className='member-integral-item'>
+              <View className='member-integral-item' onClick={()=>userRouteJump('/pages/integral/temp/index')}>
                 <Text className='member-integral-num'>{ model.member.temporary_integral }</Text>
                 <Text className='member-integral-text'>临时积分</Text>
                 <Text className='member-integral-tips'>详情</Text>

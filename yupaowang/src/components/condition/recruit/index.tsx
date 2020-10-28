@@ -18,7 +18,7 @@ interface ConditionData {
 }
 interface ConditionProps {
   data: ConditionData[],
-  setSearchData: (type: string, id: string) => void
+  setSearchData: (type: string, id: string, text: string) => void
 }
 
 function RecruitCondition({ data, setSearchData }: ConditionProps) {
@@ -35,7 +35,11 @@ function RecruitCondition({ data, setSearchData }: ConditionProps) {
   const [areaIndex, setAreaIndex] = useState<number>(0)
   // * 当前工种选择父级索引
   const [classifyIndex, setclassifyIndex] = useState<number>(0)
-  // * 当前工种选择父级索引
+  // * 当前城市选择子级索引
+  const [areaChildId, setAreaChildId] = useState<string>('')
+  // * 当前工种选择子级索引
+  const [classifyChildId, setclassifyChildId] = useState<string>('')
+  // * 当前筛选数据索引
   const [filterIndex, setFilterIndex] = useState<number>(0)
   // * 当前展开的城市子集数据
   const [childAreaList, setChildAreaList] = useState<ChildItems[]>(AREAS[areaIndex].children)
@@ -63,22 +67,25 @@ function RecruitCondition({ data, setSearchData }: ConditionProps) {
     setAreaIndex(i)
     setAreaScrollTop(0)
     if (!AREAS[i].has_children) {
-      setSearchData(AreaPickerKey, AREAS[i].id.toString())
+      setSearchData(AreaPickerKey, AREAS[i].id.toString(),AREAS[i].name)
       closeDrawer()
     }
   }
 
   // 选择子集地区
   const sureAreaCurrent = (i: number) => {
-    let id: string = AREAS[i].children[i].id
-    setSearchData(AreaPickerKey, id)
+    let id: string = AREAS[areaIndex].children[i].id
+    setAreaChildId(id)
+    setSearchData(AreaPickerKey, id, AREAS[areaIndex].children[i].name)
     closeDrawer()
   }
 
   // 选择子集工种
   const sureClassifyCurrent = (i: number) => {
-    let id: number = classify[i].children[i].id
-    setSearchData(ClassifyPickerKey, id.toString())
+    let id: string = classify[classifyIndex].children[i].id.toString()
+    setclassifyChildId(id)
+    let text: string = i ? classify[classifyIndex].children[i].name : classify[classifyIndex].name
+    setSearchData(ClassifyPickerKey, id, text)
     closeDrawer()
   }
 
@@ -86,7 +93,7 @@ function RecruitCondition({ data, setSearchData }: ConditionProps) {
   const sureFilterCurrent = (i: number) => {
     setFilterIndex(i)
     let id: string = jobtype[i].type
-    setSearchData(FilterPickerKey, id)
+    setSearchData(FilterPickerKey, id,jobtype[i].name)
     closeDrawer()
   }
 
@@ -95,7 +102,7 @@ function RecruitCondition({ data, setSearchData }: ConditionProps) {
     setclassifyIndex(i)
     setClassifyScrollTop(0)
     if (!classify[i].has_children) {
-      setSearchData(ClassifyPickerKey, classify[i].id.toString())
+      setSearchData(ClassifyPickerKey, classify[i].id.toString(), classify[i].name)
       closeDrawer()
     }
   }
@@ -136,7 +143,7 @@ function RecruitCondition({ data, setSearchData }: ConditionProps) {
     }
   }
   return (
-    <View>
+    <Block>
       <View className='recruit-condition-box'>
         {data && data.map((item) => (
           <View className='recruit-condition-item' key={item.id} onClick={() => conditionItemClick(item.id)}>
@@ -175,7 +182,10 @@ function RecruitCondition({ data, setSearchData }: ConditionProps) {
               onScroll={(e) => onScrollAction(e, AreaPickerKey)}
             >
               {childAreaList.map((item, i) => (
-                <View className='drawer-list-item overwords' onClick={() => sureAreaCurrent(i)}>{item.name}</View>
+                <View className={classnames({
+                  'drawer-list-item overwords': true,
+                  'drawer-list-item-active': item.id === areaChildId
+                })}   onClick={() => sureAreaCurrent(i)}>{item.name}</View>
               ))}
             </ScrollView>
           }
@@ -208,7 +218,10 @@ function RecruitCondition({ data, setSearchData }: ConditionProps) {
               onScroll={(e) => onScrollAction(e, ClassifyPickerKey)}
             >
               {classify[classifyIndex].children.map((item, i) => (
-                <View className='drawer-list-item overwords' onClick={() => sureClassifyCurrent(i)}>{item.name}</View>
+                <View className={classnames({
+                  'drawer-list-item overwords': true,
+                  'drawer-list-item-active': item.id.toString() === classifyChildId
+                })} onClick={() => sureClassifyCurrent(i)}>{item.name}</View>
               ))}
             </ScrollView>
           }
@@ -235,7 +248,7 @@ function RecruitCondition({ data, setSearchData }: ConditionProps) {
           </ScrollView>
         </View>
       </AtDrawer>
-    </View>
+    </Block>
   )
 }
 

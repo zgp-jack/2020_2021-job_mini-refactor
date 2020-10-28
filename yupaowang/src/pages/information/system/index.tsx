@@ -22,22 +22,22 @@ const newmessageinfo = {
     },
   2: {
     title:'招工信息',
-    url: '',
+    url: '/pages/published/recruit/index',
     titleText: '招工提醒',
   },
   3: {
     title: '名片信息',
-    url: '',
+    url: '/pages/published/resume/index',
     titleText: '找活提醒',
   },
   4: {
     title: '证书信息',
-    url: '',
+    url: '/pages/published/resume/index',
     titleText: '找活提醒',
   },
   5: {
     title: '项目信息',
-    url: '',
+    url: '/pages/published/resume/index',
     titleText: '找活提醒',
   },
   6: {
@@ -113,7 +113,7 @@ export default function System (){
   }
   // 用户页面跳转
   const userRouteJump = (type:number) => {
-    return;
+    return
     Taro.navigateTo({
       url: newmessageinfo[type].url
     })

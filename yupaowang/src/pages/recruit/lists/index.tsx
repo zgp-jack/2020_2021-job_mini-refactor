@@ -105,7 +105,6 @@ export default function Recruit(){
 
   // * 触底加载下一页
   const getNextPageData = ()=> {
-    console.log('触底触底')
     Taro.showNavigationBarLoading()
     setSearchData({...searchData, page: searchData.page + 1})
   }
@@ -122,7 +121,11 @@ export default function Recruit(){
   }
 
   // * 更新筛选条件
-  const setSearchDataAction = (type: string, id: string) => {
+  const setSearchDataAction = (type: string, id: string, text: string) => {
+    const recondition = JSON.parse(JSON.stringify(condition))
+    let i: number = recondition.findIndex((item: conditionType) => item.id === type)
+    recondition[i].text = text
+    setCondition(recondition)
     if(type === ClassifyPickerKey){
       setSearchData({ ...searchData, classify_id: id, page: 1})
     }else if(type === AreaPickerKey){
@@ -130,27 +133,39 @@ export default function Recruit(){
     }else{
       setSearchData({ ...searchData, joblisttype: id, page: 1 })
     }
-    setScrollTop(0)
+    goToScrollTop()
+  }
+
+  // scroll-view 回到顶部
+  const goToScrollTop = () => {
+    setScrollTop(scrollTop ? 0 : 0.1)
+  }
+  // 设置滚动条位置
+  const setScrollTopAction = (e: any) => {
+    //return
+    let top: number = e.detail.scrollTop
+    //console.log(top)
+    //setScrollTop(top)
   }
 
   // 输入搜索关键词
   const setSearchValData = () => {
     setSearchData({ ...searchData, keywords: remark, page: 1 })
-    setScrollTop(0)
+    goToScrollTop()
   }
 
   return (
     <View className='recruit-container'>
       <View className='recruit-fiexd-header'>
         <Search placeholder='找活、找工作' value='' setRemark={(val: string) => setRemark(val)} setSearchData={()=>setSearchValData()} />
-        <RecruitCondition data={condition} setSearchData={(type, id) => setSearchDataAction(type, id)} />
+        <RecruitCondition data={condition} setSearchData={(type, id, text) => setSearchDataAction(type, id, text)} />
       </View>
       <ScrollView 
         className='recruit-lists-containerbox' 
         scrollY
         refresherEnabled
         scrollTop={scrollTop}
-        onScroll={(e: any) => setScrollTop(e.detail.scrollTop)}
+        onScroll={(e: any) => setScrollTopAction(e)}
         scrollWithAnimation
         refresherTriggered={ refresh }
         onRefresherRefresh={() => pullDownAction()}

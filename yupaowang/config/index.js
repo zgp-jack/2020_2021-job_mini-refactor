@@ -30,7 +30,7 @@ const config = {
   plugins: [],
   defineConstants: {
     MINI: miniflag,
-    ISWEIXIN: unweixinmins.find(item => item == miniflag)
+    ISWEIXIN: unweixinmins.find(item => item == miniflag) ? false : true
   },
   mini: {
     postcss: {

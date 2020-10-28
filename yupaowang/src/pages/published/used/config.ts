@@ -9,13 +9,20 @@ const HeaderList: HeaderListItem[] = [
     id: 'all'
   },
   {
-    title: '未成交',
+    title: '交易中',
     id: 'being'
   },
   {
+    title: '审核中',
+    id: 'checking'
+  },
+  {
+    title: '未通过',
+    id: 'fail'
+  }, {
     title: '已成交',
     id: 'end'
-  },
+  }
 ]
 
 export default HeaderList
