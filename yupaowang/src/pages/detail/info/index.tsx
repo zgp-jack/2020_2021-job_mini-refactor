@@ -266,7 +266,7 @@ export default function DetailInfoPage() {
         success(res) {
           if (res.confirm) {
             Taro.navigateTo({
-              url: '/pages/userinfo/index/index',
+              url: '/pages/userinfo/add/index',
             })
           } else if (res.cancel) {
             Taro.navigateBack()

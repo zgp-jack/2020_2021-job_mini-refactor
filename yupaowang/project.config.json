@@ -303,6 +303,12 @@
 					"pathName": "pages/published/recruit/index",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/userinfo/index/add",
+					"pathName": "pages/index/index",
+					"scene": null
 				}
 			]
 		}
