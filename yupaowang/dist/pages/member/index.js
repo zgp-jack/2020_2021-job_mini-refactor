@@ -115,7 +115,8 @@ var Member = function (_Taro$Component) {
       var value = {
         username: model ? model.member.username || model.member.nickname : '',
         avatar: model ? model.member.headimgurl : '',
-        phone: model ? model.member.tel : ''
+        phone: model ? model.member.tel : '',
+        pwd_status: model ? model.member.pwd_status : ''
       };
       // 用户页面跳转
       var userRouteJump = function userRouteJump(url) {
@@ -144,7 +145,7 @@ var Member = function (_Taro$Component) {
         initMemberInfo();
       }, [login]);
       this.anonymousFunc0 = function () {
-        return userRouteJump("/pages/userinfo/index/index?username=" + value.username + "&phone=" + value.phone + "&avatar=" + value.avatar);
+        return userRouteJump("/pages/userinfo/index/index?username=" + value.username + "&phone=" + value.phone + "&avatar=" + value.avatar + "&isPassword=" + (value.pwd_status == 'update' ? true : false));
       };
       this.anonymousFunc1 = function () {
         return userRouteJump('/pages/userinfo/add/index');

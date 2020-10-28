@@ -1,1 +1,1 @@
-{"component":true,"usingComponents":{"wechat-notice":"../../../components/wechat/index","collection-recruit-list":"../../../components/recommendList/index","report":"../../../components/report/index"},"navigationBarTitleText":""}
+{"usingComponents":{"wechat-notice":"../../../components/wechat/index","collection-recruit-list":"../../../components/recommendList/index","report":"../../../components/report/index"},"navigationBarTitleText":""}

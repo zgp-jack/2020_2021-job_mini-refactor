@@ -1103,3 +1103,13 @@ export function userTelCodeLogin(data): Promise<Inter.userAccountOrCodeResult>{
     data
   })
 }
+
+// 用户账号登录
+export function updataPassword(data): Promise<Inter.userAccountOrCodeResult>{
+  return doRequestAction({
+    url: api.updataPassword,
+    method: 'POST',
+    failToast: true,
+    data
+  })
+}

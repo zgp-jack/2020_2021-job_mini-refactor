@@ -70,6 +70,8 @@ export const userChangeAvatar: string = REQUESTURL + 'user/update-header/'
 export const userUpdateName: string = REQUESTURL + 'user/update-username/'
 // 用户更换手机
 export const userChangePhone: string = REQUESTURL + 'user/update-tel/'
+//修改电话号码
+export const updataPassword: string = REQUESTURL + 'user/update-pwd/'
 // 用户获取已发布招工列表
 export const userGetPublishedRecruitList: string = REQUESTURL + 'job/issue-lists/'
 // 用户改变招工状态

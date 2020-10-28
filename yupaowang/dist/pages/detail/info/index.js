@@ -73,7 +73,7 @@ var DetailInfoPage = function (_Taro$Component) {
       navigationBarTitleText: ''
     };
 
-    _this.$usedState = ["data", "loopArray109", "loopArray110", "$compid__87", "$compid__88", "resCode", "editPhone", "IMGCDNURL", "again", "stopHiring", "isCollection", "recommend", "complaintModal", "phone"];
+    _this.$usedState = ["data", "loopArray66", "loopArray67", "$compid__59", "$compid__60", "resCode", "editPhone", "IMGCDNURL", "again", "stopHiring", "isCollection", "recommend", "complaintModal", "phone"];
     _this.anonymousFunc5Map = {};
     _this.customComponents = ["WechatNotice", "CollectionRecruitList", "Report"];
     return _this;
@@ -96,15 +96,15 @@ var DetailInfoPage = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__87"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__59"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__87 = _genCompid2[0],
-          $compid__87 = _genCompid2[1];
+          $prevCompid__59 = _genCompid2[0],
+          $compid__59 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__88"),
+      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__60"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__88 = _genCompid4[0],
-          $compid__88 = _genCompid4[1];
+          $prevCompid__60 = _genCompid4[0],
+          $compid__60 = _genCompid4[1];
 
       var router = (0, _taroWeapp.useRouter)();
       var id = router.params.id;
@@ -393,7 +393,7 @@ var DetailInfoPage = function (_Taro$Component) {
             success: function success(res) {
               if (res.confirm) {
                 _taroWeapp2.default.navigateTo({
-                  url: '/pages/userinfo/index/index'
+                  url: '/pages/userinfo/add/index'
                 });
               } else if (res.cancel) {
                 _taroWeapp2.default.navigateBack();
@@ -646,7 +646,7 @@ var DetailInfoPage = function (_Taro$Component) {
       this.anonymousFunc15 = function () {
         _taroWeapp2.default.makePhoneCall({ phoneNumber: data.tel_str });
       };
-      var loopArray109 = data.classifyName.map(function (v, i) {
+      var loopArray66 = data.classifyName.map(function (v, i) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
@@ -656,12 +656,12 @@ var DetailInfoPage = function (_Taro$Component) {
           $original: v.$original
         };
       });
-      var loopArray110 = data.view_images.length ? data.view_images.map(function (v, i) {
+      var loopArray67 = data.view_images.length ? data.view_images.map(function (v, i) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
         var $loopState__temp4 = data.view_images.length ? i + i : null;
-        var _$indexKey = "baizz" + i;
+        var _$indexKey = "hfzzz" + i;
         _this2.anonymousFunc5Map[_$indexKey] = function () {
           return handleImage(v.$original);
         };
@@ -674,20 +674,20 @@ var DetailInfoPage = function (_Taro$Component) {
       recommend.length && _taroWeapp.propsManager.set({
         "data": recommend,
         "type": 1
-      }, $compid__87, $prevCompid__87);
+      }, $compid__59, $prevCompid__59);
       complaintModal && _taroWeapp.propsManager.set({
         "display": complaintModal,
         "textarea": textarea,
         "handleTextarea": handleTextarea,
         "setComplaintModal": setComplaintModal,
         "handleSubmit": handleSubmit
-      }, $compid__88, $prevCompid__88);
+      }, $compid__60, $prevCompid__60);
       Object.assign(this.__state, {
         data: data,
-        loopArray109: loopArray109,
-        loopArray110: loopArray110,
-        $compid__87: $compid__87,
-        $compid__88: $compid__88,
+        loopArray66: loopArray66,
+        loopArray67: loopArray67,
+        $compid__59: $compid__59,
+        $compid__60: $compid__60,
         resCode: resCode,
         editPhone: editPhone,
         IMGCDNURL: _index2.IMGCDNURL,
