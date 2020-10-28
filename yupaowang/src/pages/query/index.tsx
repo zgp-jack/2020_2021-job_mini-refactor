@@ -1,10 +1,12 @@
-import Taro, { useState } from '@tarojs/taro'
+import Taro, { useState, useEffect, useDidShow } from '@tarojs/taro'
 import { View, Input, Button, Text } from '@tarojs/components'
 import { SERVERPHONE } from '../../config'
 import Msg, { ShowActionModal } from '../../utils/msg'
 import { isPhone } from '../../utils/v'
 import { queryAction } from '../../utils/request/index'
 import { userQueryAuthMember } from '../../utils/request/index.d'
+import { useSelector } from '@tarojs/redux'
+import { checkMineAuthInfo } from '../../utils/request'
 import './index.scss'
 
 export interface DataType {
@@ -12,6 +14,43 @@ export interface DataType {
 }
 
 export default function RealnameQuery(){
+    // 获取用户是否登录
+    const login: boolean = useSelector<any, boolean>(state => state.User['login'])
+    const InitUserAuthInfo = ()=> {
+        if (!login) return
+        checkMineAuthInfo().then(data => {
+            if (data.errcode == 'auth_pass'){
+                return
+            } else if (data.errcode == 'auth_not_pass'){
+                Taro.showModal({
+                    title: '温馨提示',
+                    content: data.errmsg,
+                    success: (res)=> {
+                        if(res.confirm){
+                            // 跳转实名
+                            Taro.navigateTo({url: ''})
+                        }else{
+                            Taro.reLaunch({url: '/pages/index/index'})
+                        }
+                    }
+                })
+            }else{
+                ShowActionModal({
+                    msg: data.errmsg,
+                    success: ()=> {
+                        Taro.reLaunch({ url: '/pages/index/index' })
+                    }
+                })
+            }
+        })
+    }
+    useDidShow(()=>{
+        InitUserAuthInfo()
+    })
+    useEffect(()=>{
+        InitUserAuthInfo()
+    },[login])
+
     const userCallPhone = ()=> {
         Taro.makePhoneCall({ phoneNumber: SERVERPHONE })
     }
