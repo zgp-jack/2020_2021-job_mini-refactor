@@ -1,1 +1,106 @@
-(wx.webpackJsonp=wx.webpackJsonp||[]).push([[90],{"78":function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{"value":!0});var o=function(e,t,n){return t&&defineProperties(e.prototype,t),n&&defineProperties(e,n),e};function defineProperties(e,t){for(var n=0;n<t.length;n++){var o=t[n];o.enumerable=o.enumerable||!1,o.configurable=!0,"value"in o&&(o.writable=!0),Object.defineProperty(e,o.key,o)}}var r=function _interopRequireDefault(e){return e&&e.__esModule?e:{"default":e}}(n(0)),a=n(2);n(79);var i=(function _inherits(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{"constructor":{"value":e,"enumerable":!1,"writable":!0,"configurable":!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}(DetailInfoPage,r.default.Component),o(DetailInfoPage,[{"key":"_constructor","value":function _constructor(e){(function get(e,t,n){null===e&&(e=Function.prototype);var o=Object.getOwnPropertyDescriptor(e,t);if(void 0===o){var r=Object.getPrototypeOf(e);return null===r?void 0:get(r,t,n)}if("value"in o)return o.value;var a=o.get;return void 0!==a?a.call(n):void 0})(DetailInfoPage.prototype.__proto__||Object.getPrototypeOf(DetailInfoPage.prototype),"_constructor",this).call(this,e),this.$$refs=new r.default.RefsArray}},{"key":"_createData","value":function _createData(e,t,n){return this.__state=e||this.state||{},this.__props=t||this.props||{},this.$prefix,this.anonymousFunc0=function(){r.default.makePhoneCall({"phoneNumber":a.SERVERPHONE})},Object.assign(this.__state,{"SERVERPHONE":a.SERVERPHONE}),this.__state}},{"key":"anonymousFunc0","value":function anonymousFunc0(){}}]),DetailInfoPage);function DetailInfoPage(){!function _classCallCheck(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,DetailInfoPage);var e=function _possibleConstructorReturn(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}(this,(DetailInfoPage.__proto__||Object.getPrototypeOf(DetailInfoPage)).apply(this,arguments));return e.config={"navigationBarTitleText":"鱼泡网-防骗指南"},e.$usedState=["SERVERPHONE"],e.customComponents=[],e}i.$$events=["anonymousFunc0"],i.$$componentPath="subpackage/pages/anti-fraud/index",i.config={"navigationBarTitleText":"鱼泡网-防骗指南"},t.default=i,Component(n(0).default.createComponent(i,!0))},"79":function(e,t,n){}},[[78,0,1]]]);
+(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["subpackage/pages/anti-fraud/index"],{
+
+/***/ "./src/subpackage/pages/anti-fraud/index.scss":
+/*!****************************************************!*\
+  !*** ./src/subpackage/pages/anti-fraud/index.scss ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
+/***/ "./src/subpackage/pages/anti-fraud/index.tsx":
+/*!***************************************************!*\
+  !*** ./src/subpackage/pages/anti-fraud/index.tsx ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
+
+var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
+
+var _index = __webpack_require__(/*! ../../../config/index */ "./src/config/index.ts");
+
+__webpack_require__(/*! ./index.scss */ "./src/subpackage/pages/anti-fraud/index.scss");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var DetailInfoPage = function (_Taro$Component) {
+  _inherits(DetailInfoPage, _Taro$Component);
+
+  function DetailInfoPage() {
+    _classCallCheck(this, DetailInfoPage);
+
+    var _this = _possibleConstructorReturn(this, (DetailInfoPage.__proto__ || Object.getPrototypeOf(DetailInfoPage)).apply(this, arguments));
+
+    _this.config = {
+      navigationBarTitleText: '鱼泡网-防骗指南'
+    };
+
+    _this.$usedState = ["SERVERPHONE"];
+    _this.customComponents = [];
+    return _this;
+  }
+
+  _createClass(DetailInfoPage, [{
+    key: "_constructor",
+    value: function _constructor(props) {
+      _get(DetailInfoPage.prototype.__proto__ || Object.getPrototypeOf(DetailInfoPage.prototype), "_constructor", this).call(this, props);
+      this.$$refs = new _taroWeapp2.default.RefsArray();
+    }
+  }, {
+    key: "_createData",
+    value: function _createData() {
+      this.__state = arguments[0] || this.state || {};
+      this.__props = arguments[1] || this.props || {};
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
+      ;
+      this.anonymousFunc0 = function () {
+        _taroWeapp2.default.makePhoneCall({ phoneNumber: _index.SERVERPHONE });
+      };
+      Object.assign(this.__state, {
+        SERVERPHONE: _index.SERVERPHONE
+      });
+      return this.__state;
+    }
+  }, {
+    key: "anonymousFunc0",
+    value: function anonymousFunc0(e) {
+      ;
+    }
+  }]);
+
+  return DetailInfoPage;
+}(_taroWeapp2.default.Component);
+
+DetailInfoPage.$$events = ["anonymousFunc0"];
+DetailInfoPage.$$componentPath = "subpackage/pages/anti-fraud/index";
+DetailInfoPage.config = { navigationBarTitleText: '鱼泡网-防骗指南' };
+exports.default = DetailInfoPage;
+
+Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(DetailInfoPage, true));
+
+/***/ })
+
+},[["./src/subpackage/pages/anti-fraud/index.tsx","runtime","vendors"]]]);

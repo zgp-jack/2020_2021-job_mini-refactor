@@ -1,1 +1,231 @@
-(wx.webpackJsonp=wx.webpackJsonp||[]).push([[83],{"88":function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{"value":!0});var B=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var a in n)Object.prototype.hasOwnProperty.call(n,a)&&(e[a]=n[a])}return e},D=function(e,t){if(Array.isArray(e))return e;if(Symbol.iterator in Object(e))return function sliceIterator(e,t){var n=[],a=!0,o=!1,r=void 0;try{for(var i,u=e[Symbol.iterator]();!(a=(i=u.next()).done)&&(n.push(i.value),!t||n.length!==t);a=!0);}catch(e){o=!0,r=e}finally{try{!a&&u.return&&u.return()}finally{if(o)throw r}}return n}(e,t);throw new TypeError("Invalid attempt to destructure non-iterable instance")},a=function(e,t,n){return t&&defineProperties(e.prototype,t),n&&defineProperties(e,n),e};function defineProperties(e,t){for(var n=0;n<t.length;n++){var a=t[n];a.enumerable=a.enumerable||!1,a.configurable=!0,"value"in a&&(a.writable=!0),Object.defineProperty(e,a.key,a)}}var R=n(0),E=function _interopRequireDefault(e){return e&&e.__esModule?e:{"default":e}}(R),M=n(1);function _toConsumableArray(e){if(Array.isArray(e)){for(var t=0,n=Array(e.length);t<e.length;t++)n[t]=e[t];return n}return Array.from(e)}n(89);var o=(function _inherits(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{"constructor":{"value":e,"enumerable":!1,"writable":!0,"configurable":!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}(Fleamarket,E.default.Component),a(Fleamarket,[{"key":"_constructor","value":function _constructor(e){(function get(e,t,n){null===e&&(e=Function.prototype);var a=Object.getOwnPropertyDescriptor(e,t);if(void 0===a){var o=Object.getPrototypeOf(e);return null===o?void 0:get(o,t,n)}if("value"in a)return a.value;var r=a.get;return void 0!==r?r.call(n):void 0})(Fleamarket.prototype.__proto__||Object.getPrototypeOf(Fleamarket.prototype),"_constructor",this).call(this,e),this.$$refs=new E.default.RefsArray}},{"key":"_createData","value":function _createData(e,t,n){this.__state=e||this.state||{},this.__props=t||this.props||{};var a=this.$prefix,o=(0,R.genCompid)(a+"$compid__28"),r=D(o,2),i=r[0],u=r[1],s=(0,R.genCompid)(a+"$compid__29"),c=D(s,2),l=c[0],p=c[1],f=(0,R.genCompid)(a+"$compid__30"),_=D(f,2),y=_[0],m=_[1],d=(0,R.useState)(!1),h=D(d,2),g=h[0],v=h[1],b=(0,R.useState)(!1),k=D(b,2),w=k[0],S=k[1],F=(0,R.useState)([]),O=D(F,2),C=O[0],$=O[1],x=(0,R.useState)({"page":1,"list_type":"fleamarket","area_id":"","classify_id":"","attribute_id":"","keywords":""}),P=D(x,2),j=P[0],A=P[1];function Fa(){}function Ga(){}function Ha(){}(0,R.useEffect)(function(){g||(0,M.getFleamarketList)(j).then(function(e){E.default.hideNavigationBarLoading(),e.length||v(!0),1===j.page?$([[].concat(_toConsumableArray(e))]):$([].concat(_toConsumableArray(C),[[].concat(_toConsumableArray(e))])),w&&S(!1)})},[j]),this.anonymousFunc0=function(){return function pullDownAction(){S(!0),A(B({},j,{"page":1}))}()},this.anonymousFunc1=function(){return function getNextPageData(){E.default.showNavigationBarLoading(),A(B({},j,{"page":j.page+1}))}()};var T=(0,R.internal_inline_style)({"height":"8px"});return R.propsManager.set({"placeholder":"跳蚤市场","value":"","setRemark":Fa,"setSearchData":Ga},u,i),R.propsManager.set({"data":[{"id":"area","text":"全国"},{"id":"classify","text":"选择分类"}],"setSearchData":Ha},p,l),R.propsManager.set({"data":C},m,y),Object.assign(this.__state,{"anonymousState__temp":Fa,"anonymousState__temp2":Ga,"anonymousState__temp3":Ha,"anonymousState__temp4":T,"$compid__28":u,"$compid__29":p,"$compid__30":m,"refresh":w}),this.__state}},{"key":"anonymousFunc0","value":function anonymousFunc0(){}},{"key":"anonymousFunc1","value":function anonymousFunc1(){}}]),Fleamarket);function Fleamarket(){!function _classCallCheck(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,Fleamarket);var e=function _possibleConstructorReturn(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}(this,(Fleamarket.__proto__||Object.getPrototypeOf(Fleamarket)).apply(this,arguments));return e.config={"navigationBarTitleText":"二手交易列表","enablePullDownRefresh":!1,"navigationBarBackgroundColor":"#0099ff","navigationBarTextStyle":"white","backgroundTextStyle":"dark"},e.$usedState=["anonymousState__temp","anonymousState__temp2","anonymousState__temp3","anonymousState__temp4","$compid__28","$compid__29","$compid__30","refresh"],e.customComponents=["Search","UsedCondition","WechatNotice","UsedList","Tabbar"],e}o.$$events=["anonymousFunc0","anonymousFunc1"],o.$$componentPath="pages/used/lists/index",o.config={"navigationBarTitleText":"二手交易列表","enablePullDownRefresh":!1,"navigationBarBackgroundColor":"#0099ff","navigationBarTextStyle":"white","backgroundTextStyle":"dark"},t.default=o,Component(n(0).default.createComponent(o,!0))},"89":function(e,t,n){}},[[88,0,1]]]);
+(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["pages/used/lists/index"],{
+
+/***/ "./src/pages/used/lists/index.scss":
+/*!*****************************************!*\
+  !*** ./src/pages/used/lists/index.scss ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
+/***/ "./src/pages/used/lists/index.tsx":
+/*!****************************************!*\
+  !*** ./src/pages/used/lists/index.tsx ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
+
+var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
+
+var _index = __webpack_require__(/*! ../../../utils/request/index */ "./src/utils/request/index.ts");
+
+__webpack_require__(/*! ./index.scss */ "./src/pages/used/lists/index.scss");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Fleamarket = function (_Taro$Component) {
+  _inherits(Fleamarket, _Taro$Component);
+
+  function Fleamarket() {
+    _classCallCheck(this, Fleamarket);
+
+    var _this = _possibleConstructorReturn(this, (Fleamarket.__proto__ || Object.getPrototypeOf(Fleamarket)).apply(this, arguments));
+
+    _this.config = {
+      navigationBarTitleText: '二手交易列表',
+      enablePullDownRefresh: false,
+      navigationBarBackgroundColor: '#0099ff',
+      navigationBarTextStyle: 'white',
+      backgroundTextStyle: "dark"
+    };
+
+    _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "anonymousState__temp3", "anonymousState__temp4", "$compid__28", "$compid__29", "$compid__30", "refresh"];
+    _this.customComponents = ["Search", "UsedCondition", "WechatNotice", "UsedList", "Tabbar"];
+    return _this;
+  }
+
+  _createClass(Fleamarket, [{
+    key: "_constructor",
+    value: function _constructor(props) {
+      _get(Fleamarket.prototype.__proto__ || Object.getPrototypeOf(Fleamarket.prototype), "_constructor", this).call(this, props);
+      this.$$refs = new _taroWeapp2.default.RefsArray();
+    }
+  }, {
+    key: "_createData",
+    value: function _createData() {
+      this.__state = arguments[0] || this.state || {};
+      this.__props = arguments[1] || this.props || {};
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
+      ;
+
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__28"),
+          _genCompid2 = _slicedToArray(_genCompid, 2),
+          $prevCompid__28 = _genCompid2[0],
+          $compid__28 = _genCompid2[1];
+
+      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__29"),
+          _genCompid4 = _slicedToArray(_genCompid3, 2),
+          $prevCompid__29 = _genCompid4[0],
+          $compid__29 = _genCompid4[1];
+
+      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__30"),
+          _genCompid6 = _slicedToArray(_genCompid5, 2),
+          $prevCompid__30 = _genCompid6[0],
+          $compid__30 = _genCompid6[1];
+      // 是否已是最后一页
+
+
+      var _useState = (0, _taroWeapp.useState)(false),
+          _useState2 = _slicedToArray(_useState, 2),
+          isend = _useState2[0],
+          setIsend = _useState2[1];
+      // * 配置筛选条件
+
+
+      var DEFAULT_CONDITION = [{ id: 'area', text: '全国' }, { id: 'classify', text: '选择分类' }];
+      // * 标记是否是在刷新状态
+
+      var _useState3 = (0, _taroWeapp.useState)(false),
+          _useState4 = _slicedToArray(_useState3, 2),
+          refresh = _useState4[0],
+          setRefresh = _useState4[1];
+      // * 定义列表数组
+
+
+      var _useState5 = (0, _taroWeapp.useState)([]),
+          _useState6 = _slicedToArray(_useState5, 2),
+          lists = _useState6[0],
+          setLists = _useState6[1];
+      // * 定义data
+
+
+      var _useState7 = (0, _taroWeapp.useState)({
+        page: 1,
+        list_type: 'fleamarket',
+        area_id: '',
+        classify_id: '',
+        attribute_id: '',
+        keywords: ''
+      }),
+          _useState8 = _slicedToArray(_useState7, 2),
+          searchData = _useState8[0],
+          setSearchData = _useState8[1];
+      // * 请求列表数据
+
+
+      (0, _taroWeapp.useEffect)(function () {
+        if (isend) {
+          return;
+        }
+        (0, _index.getFleamarketList)(searchData).then(function (res) {
+          _taroWeapp2.default.hideNavigationBarLoading();
+          if (!res.length) {
+            setIsend(true);
+          }
+          if (searchData.page === 1) {
+            setLists([[].concat(_toConsumableArray(res))]);
+          } else setLists([].concat(_toConsumableArray(lists), [[].concat(_toConsumableArray(res))]));
+          if (refresh) {
+            setRefresh(false);
+          }
+        });
+      }, [searchData]);
+      // * 触底加载下一页
+      var getNextPageData = function getNextPageData() {
+        _taroWeapp2.default.showNavigationBarLoading();
+        setSearchData(_extends({}, searchData, { page: searchData.page + 1 }));
+      };
+      // * 监听下拉刷新
+      var pullDownAction = function pullDownAction() {
+        setRefresh(true);
+        setSearchData(_extends({}, searchData, { page: 1 }));
+      };
+      var anonymousState__temp = function anonymousState__temp() {};
+      var anonymousState__temp2 = function anonymousState__temp2() {};
+      var anonymousState__temp3 = function anonymousState__temp3() {};
+      this.anonymousFunc0 = function () {
+        return pullDownAction();
+      };
+      this.anonymousFunc1 = function () {
+        return getNextPageData();
+      };
+      var anonymousState__temp4 = (0, _taroWeapp.internal_inline_style)({ height: '8px' });
+      _taroWeapp.propsManager.set({
+        "placeholder": "\u8DF3\u86A4\u5E02\u573A",
+        "value": "",
+        "setRemark": anonymousState__temp,
+        "setSearchData": anonymousState__temp2
+      }, $compid__28, $prevCompid__28);
+      _taroWeapp.propsManager.set({
+        "data": DEFAULT_CONDITION,
+        "setSearchData": anonymousState__temp3
+      }, $compid__29, $prevCompid__29);
+      _taroWeapp.propsManager.set({
+        "data": lists
+      }, $compid__30, $prevCompid__30);
+      Object.assign(this.__state, {
+        anonymousState__temp: anonymousState__temp,
+        anonymousState__temp2: anonymousState__temp2,
+        anonymousState__temp3: anonymousState__temp3,
+        anonymousState__temp4: anonymousState__temp4,
+        $compid__28: $compid__28,
+        $compid__29: $compid__29,
+        $compid__30: $compid__30,
+        refresh: refresh
+      });
+      return this.__state;
+    }
+  }, {
+    key: "anonymousFunc0",
+    value: function anonymousFunc0(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc1",
+    value: function anonymousFunc1(e) {
+      ;
+    }
+  }]);
+
+  return Fleamarket;
+}(_taroWeapp2.default.Component);
+
+Fleamarket.$$events = ["anonymousFunc0", "anonymousFunc1"];
+Fleamarket.$$componentPath = "pages/used/lists/index";
+Fleamarket.config = { navigationBarTitleText: '二手交易列表', enablePullDownRefresh: false, navigationBarBackgroundColor: '#0099ff', navigationBarTextStyle: 'white', backgroundTextStyle: "dark" };
+exports.default = Fleamarket;
+
+Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(Fleamarket, true));
+
+/***/ })
+
+},[["./src/pages/used/lists/index.tsx","runtime","vendors"]]]);
