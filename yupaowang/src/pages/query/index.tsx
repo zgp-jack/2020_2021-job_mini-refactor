@@ -23,10 +23,12 @@ export default function RealnameQuery() {
     checkMineAuthInfo().then(data => {
       if (data.errcode == 'auth_pass') {
         return
-      } else if (data.errcode == 'auth_not_pass') {
+      } else if (data.errcode == 'auth_not_pass' || data.errcode == 'not_auth') {
         Taro.showModal({
           title: '温馨提示',
           content: data.errmsg,
+          showCancel: true,
+          confirmText: '确定',
           success: (res) => {
             if (res.confirm) {
               // 跳转实名
@@ -37,8 +39,11 @@ export default function RealnameQuery() {
           }
         })
       } else {
-        ShowActionModal({
-          msg: data.errmsg,
+        Taro.showModal({
+          title: '温馨提示',
+          content: data.errmsg,
+          showCancel: true,
+          confirmText: '确定',
           success: () => {
             Taro.reLaunch({ url: '/pages/index/index' })
           }
@@ -93,8 +98,8 @@ export default function RealnameQuery() {
         Taro.showModal({
           title: '温馨提示',
           content: res.errmsg,
-          cancelText: '取消',
-          confirmText: '去实名',
+          showCancel: true,
+          confirmText: '确定',
           success(res) {
             if (res.confirm) {
               Taro.navigateTo({
@@ -108,7 +113,7 @@ export default function RealnameQuery() {
       } else {
         ShowActionModal(res.errmsg)
       }
-    }).catch(()=>Msg('网络出错'))
+    }).catch(()=>Msg('网络错误，查询失败！'))
   }
   return (
     <View className='query-container'>
