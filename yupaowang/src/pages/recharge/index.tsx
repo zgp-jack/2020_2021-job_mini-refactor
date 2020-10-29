@@ -69,6 +69,25 @@ export default function Recharge(){
     }
   }
 
+  // 检测订单
+  const getOrderStatusAction = (order_no) => {
+    return new Promise((resolve, reject) => {
+      resolve({ code: 0 })
+      userCheckDouyinRecharge({ order_no: order_no })
+        .then(res => {
+          Msg(res.errmsg)
+          if (res.errcode == 'ok') {
+            setIntegral(res.integral)
+            resolve({ code: 0 })
+          }
+        }).catch((err) => {
+          console.log(err)
+          Msg('支付失败')
+          reject(err)
+        })
+    })
+  }
+
   // 抖音支付
   const douyinProPay = () => {
     let id: string = lists[current].id
@@ -77,25 +96,22 @@ export default function Recharge(){
       tt.pay({
         orderInfo: res.data.biteOrderInfo,
         service: 3,
+        _debug: 1,
         getOrderStatus:() => {
-          return new Promise((resolve,reject)=>{
-            userCheckDouyinRecharge({ order_no })
-            .then(res=>{
-              if(res.errcode == 'ok'){
-                setIntegral(res.integral)
-                resolve(0)
-              }
-              reject()
-            }).catch(()=>reject())
-          })
+          return getOrderStatusAction(order_no)
         },
         success: (res) => {
           console.log(res)
           if (res.code == 0) {
             Msg('支付成功')
+          }if(res.code == 9){
+            getOrderStatusAction(order_no)
+          }else{
+            Msg('支付失败')
           }
         },
-        fail: () => {
+        fail: (err) => {
+          console.error(err)
           Msg('支付失败')
         },
       })

@@ -75,7 +75,7 @@ var Recharge = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (Recharge.__proto__ || Object.getPrototypeOf(Recharge)).apply(this, arguments));
 
-    _this.$usedState = ["loopArray49", "lists", "integral", "current", "price"];
+    _this.$usedState = ["loopArray101", "lists", "integral", "current", "price"];
     _this.anonymousFunc0Map = {};
     _this.customComponents = ["AtMessage"];
     return _this;
@@ -161,6 +161,23 @@ var Recharge = function (_Taro$Component) {
           douyinProPay();
         }
       };
+      // 检测订单
+      var getOrderStatusAction = function getOrderStatusAction(order_no) {
+        return new Promise(function (resolve, reject) {
+          resolve({ code: 0 });
+          (0, _index2.userCheckDouyinRecharge)({ order_no: order_no }).then(function (res) {
+            (0, _index4.default)(res.errmsg);
+            if (res.errcode == 'ok') {
+              setIntegral(res.integral);
+              resolve({ code: 0 });
+            }
+          }).catch(function (err) {
+            console.log(err);
+            (0, _index4.default)('支付失败');
+            reject(err);
+          });
+        });
+      };
       // 抖音支付
       var douyinProPay = function douyinProPay() {
         var id = lists[current].id;
@@ -169,26 +186,23 @@ var Recharge = function (_Taro$Component) {
           tt.pay({
             orderInfo: res.data.biteOrderInfo,
             service: 3,
+            _debug: 1,
             getOrderStatus: function getOrderStatus() {
-              return new Promise(function (resolve, reject) {
-                (0, _index2.userCheckDouyinRecharge)({ order_no: order_no }).then(function (res) {
-                  if (res.errcode == 'ok') {
-                    setIntegral(res.integral);
-                    resolve(0);
-                  }
-                  reject();
-                }).catch(function () {
-                  return reject();
-                });
-              });
+              return getOrderStatusAction(order_no);
             },
             success: function success(res) {
               console.log(res);
               if (res.code == 0) {
                 (0, _index4.default)('支付成功');
               }
+              if (res.code == 9) {
+                getOrderStatusAction(order_no);
+              } else {
+                (0, _index4.default)('支付失败');
+              }
             },
-            fail: function fail() {
+            fail: function fail(err) {
+              console.error(err);
               (0, _index4.default)('支付失败');
             }
           });
@@ -237,11 +251,11 @@ var Recharge = function (_Taro$Component) {
       this.anonymousFunc1 = function () {
         return userRechargeAction();
       };
-      var loopArray49 = lists.map(function (item, index) {
+      var loopArray101 = lists.map(function (item, index) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
-        var _$indexKey = "ehzzz" + index;
+        var _$indexKey = "bafzz" + index;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return userChooseItem(index);
         };
@@ -256,7 +270,7 @@ var Recharge = function (_Taro$Component) {
         };
       });
       Object.assign(this.__state, {
-        loopArray49: loopArray49,
+        loopArray101: loopArray101,
         lists: lists,
         integral: integral,
         current: current,
