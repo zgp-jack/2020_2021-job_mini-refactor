@@ -6,7 +6,9 @@ import msg from './msg'
 import Personnel from './personnel'
 import filterClassify from './filter_classify'
 import Myresume from './resume'
+import { MyAreaInfo, MyArea } from './recruit' //发布招工reducer
 
+//合并reducer
 export default combineReducers({
   tabbar,
   WechatNotice,
@@ -14,5 +16,7 @@ export default combineReducers({
   msg,
   Personnel,
   Myresume,
-  filterClassify
+  filterClassify,
+  MyAreaInfo,
+  MyArea
 })

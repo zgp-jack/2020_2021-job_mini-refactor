@@ -1,1 +1,254 @@
-(wx.webpackJsonp=wx.webpackJsonp||[]).push([[65],{"107":function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{"value":!0});var O=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var r in n)Object.prototype.hasOwnProperty.call(n,r)&&(e[r]=n[r])}return e},R=function(e,t){if(Array.isArray(e))return e;if(Symbol.iterator in Object(e))return function sliceIterator(e,t){var n=[],r=!0,o=!1,a=void 0;try{for(var i,u=e[Symbol.iterator]();!(r=(i=u.next()).done)&&(n.push(i.value),!t||n.length!==t);r=!0);}catch(e){o=!0,a=e}finally{try{!r&&u.return&&u.return()}finally{if(o)throw a}}return n}(e,t);throw new TypeError("Invalid attempt to destructure non-iterable instance")},r=function(e,t,n){return t&&defineProperties(e.prototype,t),n&&defineProperties(e,n),e};function defineProperties(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}var w=n(0),P=_interopRequireDefault(w),S=n(2),j=n(1),x=n(3),M=n(4),E=_interopRequireDefault(n(5)),$=n(16),F=n(9);function _interopRequireDefault(e){return e&&e.__esModule?e:{"default":e}}n(108);var o=(function _inherits(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{"constructor":{"value":e,"enumerable":!1,"writable":!0,"configurable":!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}(Recharge,P.default.Component),r(Recharge,[{"key":"_constructor","value":function _constructor(e){(function get(e,t,n){null===e&&(e=Function.prototype);var r=Object.getOwnPropertyDescriptor(e,t);if(void 0===r){var o=Object.getPrototypeOf(e);return null===o?void 0:get(o,t,n)}if("value"in r)return r.value;var a=r.get;return void 0!==a?a.call(n):void 0})(Recharge.prototype.__proto__||Object.getPrototypeOf(Recharge.prototype),"_constructor",this).call(this,e),this.$$refs=new P.default.RefsArray}},{"key":"_createData","value":function _createData(e,t,n){var r=this;this.__state=e||this.state||{},this.__props=t||this.props||{},this.$prefix,(0,M.useDispatch)();var o=(0,w.useState)([]),a=R(o,2),i=a[0],u=a[1],c=(0,w.useState)(0),s=R(c,2),l=s[0],f=s[1],p=(0,w.useState)(0),h=R(p,2),y=h[0],g=h[1],d=(0,w.useState)(0),v=R(d,2),_=v[0],b=v[1];(0,w.useEffect)(function(){(0,j.getRechargeList)().then(function(e){if("ok"==e.errcode){u(e.list),f(parseInt(e.user.integral));var t=e.list.findIndex(function(e){return"1"==e.default});g(t);var n=(0,F.getPointNumber)(e.list[t].price,e.list[t].integral);b(n)}else(0,x.ShowActionModal)({"msg":e.errmsg,"success":function success(){P.default.navigateBack()}})})},[]),this.anonymousFunc1=function(){return function userRechargeAction(){var n=i[y].integral;P.default.login({"success":function success(e){(0,j.getRechargeOpenid)(e.code).then(function(e){var t={"priceType":i[y].id,"openid":e.openid};(0,j.getRechargeOrder)(t).then(function(e){P.default.requestPayment(O({},e.payData)).then(function(){f(l+n),P.default.showModal({"title":"恭喜您","content":"您已成功充值"+n+"个积分","cancelText":"会员中心","confirmText":"继续充值","success":function success(e){e.cancel&&P.default.reLaunch({"url":"/pages/index/index?type="+$.MEMBER})}})}).catch(function(){(0,x.errMsg)("用户取消充值")})}).catch(function(){(0,x.errMsg)("网络异常，充值失败，客服电话"+S.SERVERPHONE)})}).catch(function(){(0,x.ShowActionModal)("充值失败，请联系客服电话"+S.SERVERPHONE)})}})}()};var m=i.map(function(e,t){e={"$original":(0,w.internal_get_original)(e)};var n="egzzz"+t;return r.anonymousFunc0Map[n]=function(){return function userChooseItem(n){g(n);var e=(0,F.getPointNumber)(i[n].price,i[n].integral);b(e);var t=JSON.parse(JSON.stringify(i));t.map(function(e,t){e.default=t==n?"1":"0"}),u(t)}(t)},{"_$indexKey":n,"$loopState__temp2":(0,E.default)({"recharge-list-box":!0,"recharge-list-box-active":t===y}),"$original":e.$original}});return Object.assign(this.__state,{"loopArray48":m,"lists":i,"integral":l,"current":y,"price":_}),this.__state}},{"key":"anonymousFunc0","value":function anonymousFunc0(e){for(var t,n=arguments.length,r=Array(1<n?n-1:0),o=1;o<n;o++)r[o-1]=arguments[o];return this.anonymousFunc0Map[e]&&(t=this.anonymousFunc0Map)[e].apply(t,r)}},{"key":"anonymousFunc1","value":function anonymousFunc1(){}}]),Recharge);function Recharge(){!function _classCallCheck(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,Recharge);var e=function _possibleConstructorReturn(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}(this,(Recharge.__proto__||Object.getPrototypeOf(Recharge)).apply(this,arguments));return e.$usedState=["loopArray48","lists","integral","current","price"],e.anonymousFunc0Map={},e.customComponents=["AtMessage"],e}o.$$events=["anonymousFunc0","anonymousFunc1"],o.$$componentPath="pages/recharge/index",t.default=o,Component(n(0).default.createComponent(o,!0))},"108":function(e,t,n){}},[[107,0,1]]]);
+(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["pages/recharge/index"],{
+
+/***/ "./src/pages/recharge/index.scss":
+/*!***************************************!*\
+  !*** ./src/pages/recharge/index.scss ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
+/***/ "./src/pages/recharge/index.tsx":
+/*!**************************************!*\
+  !*** ./src/pages/recharge/index.tsx ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
+
+var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
+
+var _index = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
+
+var _index2 = __webpack_require__(/*! ../../utils/request/index */ "./src/utils/request/index.ts");
+
+var _index3 = __webpack_require__(/*! ../../utils/msg/index */ "./src/utils/msg/index.ts");
+
+var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/redux/index.js");
+
+var _classnames = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _tabbar = __webpack_require__(/*! ../../constants/tabbar */ "./src/constants/tabbar.ts");
+
+var _index4 = __webpack_require__(/*! ../../utils/helper/index */ "./src/utils/helper/index.ts");
+
+__webpack_require__(/*! ./index.scss */ "./src/pages/recharge/index.scss");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+// import { changeTabbar } from '../../actions/tabbar'
+
+
+var Recharge = function (_Taro$Component) {
+  _inherits(Recharge, _Taro$Component);
+
+  function Recharge() {
+    _classCallCheck(this, Recharge);
+
+    var _this = _possibleConstructorReturn(this, (Recharge.__proto__ || Object.getPrototypeOf(Recharge)).apply(this, arguments));
+
+    _this.$usedState = ["loopArray48", "lists", "integral", "current", "price"];
+    _this.anonymousFunc0Map = {};
+    _this.customComponents = ["AtMessage"];
+    return _this;
+  }
+
+  _createClass(Recharge, [{
+    key: "_constructor",
+    value: function _constructor(props) {
+      _get(Recharge.prototype.__proto__ || Object.getPrototypeOf(Recharge.prototype), "_constructor", this).call(this, props);
+      this.$$refs = new _taroWeapp2.default.RefsArray();
+    }
+  }, {
+    key: "_createData",
+    value: function _createData() {
+      var _this2 = this;
+
+      this.__state = arguments[0] || this.state || {};
+      this.__props = arguments[1] || this.props || {};
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
+      ;
+      var dispatch = (0, _redux.useDispatch)();
+      // 积分列表数据与用户当前积分数量
+
+      var _useState = (0, _taroWeapp.useState)([]),
+          _useState2 = _slicedToArray(_useState, 2),
+          lists = _useState2[0],
+          setLists = _useState2[1];
+
+      var _useState3 = (0, _taroWeapp.useState)(0),
+          _useState4 = _slicedToArray(_useState3, 2),
+          integral = _useState4[0],
+          setIntegral = _useState4[1];
+
+      var _useState5 = (0, _taroWeapp.useState)(0),
+          _useState6 = _slicedToArray(_useState5, 2),
+          current = _useState6[0],
+          setCurrent = _useState6[1];
+
+      var _useState7 = (0, _taroWeapp.useState)(0),
+          _useState8 = _slicedToArray(_useState7, 2),
+          price = _useState8[0],
+          setPrice = _useState8[1];
+      // 初始化积分充值选项
+
+
+      (0, _taroWeapp.useEffect)(function () {
+        (0, _index2.getRechargeList)().then(function (res) {
+          if (res.errcode == 'ok') {
+            setLists(res.list);
+            setIntegral(parseInt(res.user.integral));
+            var i = res.list.findIndex(function (item) {
+              return item.default == '1';
+            });
+            setCurrent(i);
+            var _price = (0, _index4.getPointNumber)(res.list[i].price, res.list[i].integral);
+            setPrice(_price);
+          } else {
+            (0, _index3.ShowActionModal)({
+              msg: res.errmsg,
+              success: function success() {
+                _taroWeapp2.default.navigateBack();
+              }
+            });
+          }
+        });
+      }, []);
+      // 用户选择充值项
+      var userChooseItem = function userChooseItem(i) {
+        setCurrent(i);
+        var price = (0, _index4.getPointNumber)(lists[i].price, lists[i].integral);
+        setPrice(price);
+        var newLists = JSON.parse(JSON.stringify(lists));
+        newLists.map(function (d, index) {
+          d.default = index == i ? '1' : '0';
+        });
+        setLists(newLists);
+      };
+      // 用户充值
+      var userRechargeAction = function userRechargeAction() {
+        var rechargeIntegral = lists[current].integral;
+        _taroWeapp2.default.login({
+          success: function success(res) {
+            (0, _index2.getRechargeOpenid)(res.code).then(function (openidData) {
+              var data = {
+                priceType: lists[current].id,
+                openid: openidData.openid
+              };
+              (0, _index2.getRechargeOrder)(data).then(function (orderData) {
+                _taroWeapp2.default.requestPayment(_extends({}, orderData.payData)).then(function () {
+                  var afterIntegral = integral + rechargeIntegral;
+                  setIntegral(afterIntegral);
+                  _taroWeapp2.default.showModal({
+                    title: '恭喜您',
+                    content: "\u60A8\u5DF2\u6210\u529F\u5145\u503C" + rechargeIntegral + "\u4E2A\u79EF\u5206",
+                    cancelText: '会员中心',
+                    confirmText: '继续充值',
+                    success: function success(res) {
+                      if (res.cancel) {
+                        // dispatch(changeTabbar(MEMBER))
+                        _taroWeapp2.default.reLaunch({ url: '/pages/index/index?type=' + _tabbar.MEMBER });
+                      }
+                    }
+                  });
+                }).catch(function () {
+                  (0, _index3.errMsg)("\u7528\u6237\u53D6\u6D88\u5145\u503C");
+                });
+              }).catch(function () {
+                (0, _index3.errMsg)("\u7F51\u7EDC\u5F02\u5E38\uFF0C\u5145\u503C\u5931\u8D25\uFF0C\u5BA2\u670D\u7535\u8BDD" + _index.SERVERPHONE);
+              });
+            }).catch(function () {
+              (0, _index3.ShowActionModal)("\u5145\u503C\u5931\u8D25\uFF0C\u8BF7\u8054\u7CFB\u5BA2\u670D\u7535\u8BDD" + _index.SERVERPHONE);
+            });
+          }
+        });
+      };
+      this.anonymousFunc1 = function () {
+        return userRechargeAction();
+      };
+      var loopArray48 = lists.map(function (item, index) {
+        item = {
+          $original: (0, _taroWeapp.internal_get_original)(item)
+        };
+        var _$indexKey = "egzzz" + index;
+        _this2.anonymousFunc0Map[_$indexKey] = function () {
+          return userChooseItem(index);
+        };
+        var $loopState__temp2 = (0, _classnames2.default)({
+          'recharge-list-box': true,
+          'recharge-list-box-active': index === current
+        });
+        return {
+          _$indexKey: _$indexKey,
+          $loopState__temp2: $loopState__temp2,
+          $original: item.$original
+        };
+      });
+      Object.assign(this.__state, {
+        loopArray48: loopArray48,
+        lists: lists,
+        integral: integral,
+        current: current,
+        price: price
+      });
+      return this.__state;
+    }
+  }, {
+    key: "anonymousFunc0",
+    value: function anonymousFunc0(_$indexKey) {
+      var _anonymousFunc0Map;
+
+      ;
+
+      for (var _len = arguments.length, e = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+        e[_key - 1] = arguments[_key];
+      }
+
+      return this.anonymousFunc0Map[_$indexKey] && (_anonymousFunc0Map = this.anonymousFunc0Map)[_$indexKey].apply(_anonymousFunc0Map, e);
+    }
+  }, {
+    key: "anonymousFunc1",
+    value: function anonymousFunc1(e) {
+      ;
+    }
+  }]);
+
+  return Recharge;
+}(_taroWeapp2.default.Component);
+
+Recharge.$$events = ["anonymousFunc0", "anonymousFunc1"];
+Recharge.$$componentPath = "pages/recharge/index";
+exports.default = Recharge;
+
+Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(Recharge, true));
+
+/***/ })
+
+},[["./src/pages/recharge/index.tsx","runtime","vendors"]]]);

@@ -1,1 +1,788 @@
-(wx.webpackJsonp=wx.webpackJsonp||[]).push([[80],{"146":function(n,i,t){"use strict";Object.defineProperty(i,"__esModule",{"value":!0});var U=function(n,i){if(Array.isArray(n))return n;if(Symbol.iterator in Object(n))return function sliceIterator(n,i){var t=[],e=!0,r=!1,a=void 0;try{for(var o,c=n[Symbol.iterator]();!(e=(o=c.next()).done)&&(t.push(o.value),!i||t.length!==i);e=!0);}catch(n){r=!0,a=n}finally{try{!e&&c.return&&c.return()}finally{if(r)throw a}}return t}(n,i);throw new TypeError("Invalid attempt to destructure non-iterable instance")},e=function(n,i,t){return i&&defineProperties(n.prototype,i),t&&defineProperties(n,t),n};function defineProperties(n,i){for(var t=0;t<i.length;t++){var e=i[t];e.enumerable=e.enumerable||!1,e.configurable=!0,"value"in e&&(e.writable=!0),Object.defineProperty(n,e.key,e)}}var H=t(0),V=_interopRequireDefault(H),Q=t(1),W=_interopRequireDefault(t(8)),X=t(7),Y=t(2),Z=t(144);function _interopRequireDefault(n){return n&&n.__esModule?n:{"default":n}}t(147);var r=(function _inherits(n,i){if("function"!=typeof i&&null!==i)throw new TypeError("Super expression must either be null or a function, not "+typeof i);n.prototype=Object.create(i&&i.prototype,{"constructor":{"value":n,"enumerable":!1,"writable":!0,"configurable":!0}}),i&&(Object.setPrototypeOf?Object.setPrototypeOf(n,i):n.__proto__=i)}(Distruction,V.default.Component),e(Distruction,[{"key":"_constructor","value":function _constructor(n){(function get(n,i,t){null===n&&(n=Function.prototype);var e=Object.getOwnPropertyDescriptor(n,i);if(void 0===e){var r=Object.getPrototypeOf(n);return null===r?void 0:get(r,i,t)}if("value"in e)return e.value;var a=e.get;return void 0!==a?a.call(t):void 0})(Distruction.prototype.__proto__||Object.getPrototypeOf(Distruction.prototype),"_constructor",this).call(this,n),this.$$refs=new V.default.RefsArray}},{"key":"_createData","value":function _createData(n,i,t){var r=this;this.__state=n||this.state||{},this.__props=i||this.props||{},this.$prefix;var e=(0,H.useContext)(Z.contextItem),a=e.AreParams,o=e.setAreParams,c=(0,H.useRouter)().params,$=c.max_city,w=c.max_province,u=(0,H.useState)({"item":[]}),l=U(u,2),b=l[0],J=l[1],s=(0,H.useState)({"areData":[]}),p=U(s,2),M=p[0],A=p[1],f=(0,H.useState)(!1),d=U(f,2),y=d[0],m=d[1],h=(0,H.useState)(!1),v=U(h,2),g=v[0],k=v[1],_=(0,H.useState)({"list":[]}),O=U(_,2),S=O[0],F=O[1],D=(0,H.useState)(""),N=U(D,2),x=N[0],C=N[1],I=(0,H.useState)({"historylist":[]}),P=U(I,2),j=P[0],z=P[1],R=(0,H.useState)({"city":[],"province":[],"whole":[]}),T=U(R,2),E=T[0],L=T[1];function Na(e,t){if(console.log(e),"0"===e.pid){var n=JSON.parse(JSON.stringify(b.item)),i=JSON.parse(JSON.stringify(M.areData)),r=void 0,a=void 0,o=[];a=e.click?(r=n.map(function(n){return n.id===e.id&&(n.click=!1),n}),i.map(function(n){return n.children&&n.children.map(function(n){n.click=!1}),n})):(r=n.map(function(n){return n.id===e.id?(n.click=!0,o.push(n)):n.click=!1,n}),i.map(function(n){return n.children&&n.children.map(function(n){n.click=!1}),n})),A({"areData":a}),J({"item":r}),L({"city":[],"province":[],"whole":o})}else if("1"!==e.pid&&"0"!==e.pid){var c=JSON.parse(JSON.stringify(E.city));if(c.length){var u=JSON.parse(JSON.stringify(c));if(u.find(function(n){return n.id===e.id}))u.map(function(n,i){n.id===e.id&&u.splice(i,1)});else{if(c.length>=parseInt($))return void V.default.showModal({"title":"温馨提示","content":"最多可同时置顶"+$+"个市、"+w+"个省或直辖市","showCancel":!1});u.push(e)}var l=b.item.map(function(n){return n.id===e.id&&(n.click=!e.click),n}),s=M.areData.map(function(i){return i.children.map(function(n){return n.id===e.id&&(1===t?n.click=e.click:(n.click=!e.click,i.children[0].click=!1)),n}),i});A({"areData":s}),J({"item":l});var p=JSON.parse(JSON.stringify(E.province));M.areData.map(function(t){t.children&&t.children.map(function(n){n.id===e.id&&p.map(function(n,i){n.id===t.id&&p.splice(i,1)})})}),L({"city":u,"province":p,"whole":[]})}else{var f=b.item.map(function(n){return n.id===e.id?n.click=!e.click:"0"===n.pid&&(console.log(n),n.click=!1),n}),d=M.areData.map(function(i){return i.id!==e.id&&i.children.map(function(n){return n.id===e.id&&(1===t?n.click=e.click:(n.click=!e.click,i.children[0].click=!1)),"1"===n.pid&&i.children.map(function(n){n.id===e.id&&(n.click=!1)}),n}),i});A({"areData":d}),J({"item":f});var y=JSON.parse(JSON.stringify(c));y.push(e);var m=JSON.parse(JSON.stringify(E.province));M.areData.map(function(t){t.children&&t.children.map(function(n){n.id===e.id&&m.map(function(n,i){n.id===t.id&&m.splice(i,1)})})}),L({"city":y,"province":m,"whole":[]})}}else{var h=JSON.parse(JSON.stringify(E.province));if(h.length){var v=JSON.parse(JSON.stringify(h));if(v.find(function(n){return n.id===e.id}))v.map(function(n,i){n.id===e.id&&v.splice(i,1)});else{if(h.length>=parseInt(w))return void V.default.showModal({"title":"温馨提示","content":"最多可同时置顶"+$+"个市、"+w+"个省或直辖市","showCancel":!1});v.push(e)}var g=b.item.map(function(n){return n.id===e.id&&(n.click=!e.click),n}),k=M.areData.map(function(n){return n.id!==e.id?n.children.map(function(n){return n.id===e.id&&(n.click=!e.click),n}):n.children.map(function(n){return n.id===e.id?n.click=!e.click:n.click=!1,n}),n}),_=JSON.parse(JSON.stringify(E.city));M.areData.map(function(n){n.id===e.id&&n.children.map(function(t){_.map(function(n,i){t.id===n.id&&_.splice(i,1)})})}),A({"areData":k}),J({"item":g}),L({"city":_,"province":v,"whole":[]})}else{console.log(e,"第一次点击省");for(var O=JSON.parse(JSON.stringify(M.areData)),S=0;S<O.length;S++)O[S].id===e.id&&O[S].children.length&&O[S].children.map(function(n){n.id===e.id?(console.log(e),console.log(n,"222"),n.click=!e.click):n.click=!1});var F=JSON.parse(JSON.stringify(E.city));M.areData.map(function(n){n.id===e.id&&n.children.map(function(t){b.item.map(function(n){return n.id===t.id&&(n.click=!1),n}),F.map(function(n,i){t.id===n.id&&F.splice(i,1)})})});var D=b.item.map(function(n){return n.id===e.id?n.click=!0:"0"===n.pid&&(n.click=!1),n});A({"areData":O}),J({"item":D});var N=JSON.parse(JSON.stringify(h));N.push(e),L({"city":F,"province":N,"whole":[]})}}}function Oa(n){Na(n,0),m(!1),k(!1),C(""),j.historylist.unshift(n);var t={},i=j.historylist.reduce(function(n,i){return t[i.name]||(t[i.name]=n.push(i)),n},[]);z({"historylist":i}),6<j.historylist.length&&j.historylist.pop(),V.default.setStorageSync(X.SearchList,j.historylist)}(0,H.useEffect)(function(){var n=V.default.getStorageSync(X.SearchList);n&&z({"historylist":n}),(0,Q.jobTopHotAreasAction)().then(function(n){if("ok"==n.errcode){var i=[];W.default.map(function(n){0<n.children.length&&i.push(n)});for(var t=0;t<i.length;t++)for(var e=0;e<i[t].children.length;e++)i[t].click=!1,i[t].children[e].click=!1;a&&(n.data.map(function(i){a.city&&a.city.map(function(n){return i.id===n.id&&(i.click=!0),n}),a.province&&a.province.map(function(n){return i.id===n.id&&(i.click=!0),n})}),i.map(function(n){n.children.map(function(i){a.city&&a.city.map(function(n){return i.id===n.id&&(i.click=!0),n}),a.province&&a.province.map(function(n){return i.id===n.id&&(i.click=!0),n})})})),J({"item":n.data}),A({"areData":i}),L({"city":a.city,"province":a.province,"whole":[]})}else V.default.showModal({"title":"温馨提示","content":n.errmsg,"showCancel":!1})})},[]),this.anonymousFunc0=function handleInput(){m(!0)},this.anonymousFunc1=function(n){return function handleOnInput(i){C(i.detail.value),k(!0);var t=[];W.default.map(function(n){0<=n.name.indexOf(i.detail.value)&&t.push(n),n.children.map(function(n){0<=n.name.indexOf(i.detail.value)&&t.push(n)})});var e=[];t.map(function(i){return i.listName=i.ad_name+"-"+i.name,i.children&&0<i.children.length&&i.children.map(function(n){return n.listName=i.name+"-"+n.name,e.push(n),n}),e.push(i),i}),F({"list":e})}(n)},this.anonymousFunc3=function handleCloseHistory(){z({"historylist":[]}),V.default.clearStorageSync()},this.anonymousFunc8=function handleClick(){o(E.city,E.province,E.whole),V.default.navigateBack({"delta":1})};var K=0<S.list.length?S.list.map(function(n,i){n={"$original":(0,H.internal_get_original)(n)};var t="iczzz"+i;return r.anonymousFunc2Map[t]=function(){return Oa(n.$original)},{"_$indexKey":t,"$original":n.$original}}):[],q=y&&!g&&0<j.historylist.length?j.historylist.map(function(n,i){n={"$original":(0,H.internal_get_original)(n)};var t="idzzz"+i;return r.anonymousFunc4Map[t]=function(){return Oa(n.$original)},{"_$indexKey2":t,"$original":n.$original}}):[],B=b.item.map(function(n,i){n={"$original":(0,H.internal_get_original)(n)};var t="iezzz"+i;return r.anonymousFunc5Map[t]=function(){Na(n.$original,1)},{"_$indexKey3":t,"$original":n.$original}}),G=M.areData.map(function(n,e){return{"$anonymousCallee__9":(n={"$original":(0,H.internal_get_original)(n)}).$original.children.map(function(n,i){n={"$original":(0,H.internal_get_original)(n)};var t="ifzzz"+e+"-"+i;return r.anonymousFunc6Map[t]=function(){return Na(n.$original,0)},{"_$indexKey4":t,"$original":n.$original}}),"$original":n.$original}});return Object.assign(this.__state,{"searchData":S,"history":j,"data":b,"are":M,"loopArray75":K,"loopArray76":q,"loopArray77":B,"loopArray78":G,"clickInput":y,"inputVal":x,"onInput":g,"IMGCDNURL":Y.IMGCDNURL}),this.__state}},{"key":"anonymousFunc0","value":function anonymousFunc0(){}},{"key":"anonymousFunc1","value":function anonymousFunc1(){}},{"key":"anonymousFunc2","value":function anonymousFunc2(n){for(var i,t=arguments.length,e=Array(1<t?t-1:0),r=1;r<t;r++)e[r-1]=arguments[r];return this.anonymousFunc2Map[n]&&(i=this.anonymousFunc2Map)[n].apply(i,e)}},{"key":"anonymousFunc3","value":function anonymousFunc3(){}},{"key":"anonymousFunc4","value":function anonymousFunc4(n){for(var i,t=arguments.length,e=Array(1<t?t-1:0),r=1;r<t;r++)e[r-1]=arguments[r];return this.anonymousFunc4Map[n]&&(i=this.anonymousFunc4Map)[n].apply(i,e)}},{"key":"anonymousFunc5","value":function anonymousFunc5(n){for(var i,t=arguments.length,e=Array(1<t?t-1:0),r=1;r<t;r++)e[r-1]=arguments[r];return this.anonymousFunc5Map[n]&&(i=this.anonymousFunc5Map)[n].apply(i,e)}},{"key":"anonymousFunc6","value":function anonymousFunc6(n){for(var i,t=arguments.length,e=Array(1<t?t-1:0),r=1;r<t;r++)e[r-1]=arguments[r];return this.anonymousFunc6Map[n]&&(i=this.anonymousFunc6Map)[n].apply(i,e)}},{"key":"anonymousFunc8","value":function anonymousFunc8(){}}]),Distruction);function Distruction(){!function _classCallCheck(n,i){if(!(n instanceof i))throw new TypeError("Cannot call a class as a function")}(this,Distruction);var n=function _possibleConstructorReturn(n,i){if(!n)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!i||"object"!=typeof i&&"function"!=typeof i?n:i}(this,(Distruction.__proto__||Object.getPrototypeOf(Distruction)).apply(this,arguments));return n.config={"navigationBarTitleText":"招工置顶"},n.$usedState=["searchData","history","data","are","loopArray75","loopArray76","loopArray77","loopArray78","clickInput","inputVal","onInput","IMGCDNURL"],n.anonymousFunc2Map={},n.anonymousFunc4Map={},n.anonymousFunc5Map={},n.anonymousFunc6Map={},n.customComponents=[],n}r.$$events=["anonymousFunc0","anonymousFunc1","anonymousFunc2","anonymousFunc3","anonymousFunc4","anonymousFunc5","anonymousFunc6","anonymousFunc8"],r.$$componentPath="pages/topping/distruction/index",r.config={"navigationBarTitleText":"招工置顶"},i.default=r,Component(t(0).default.createComponent(r,!0))},"147":function(n,i,t){}},[[146,0,1]]]);
+(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["pages/topping/distruction/index"],{
+
+/***/ "./src/pages/topping/distruction/index.scss":
+/*!**************************************************!*\
+  !*** ./src/pages/topping/distruction/index.scss ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
+/***/ "./src/pages/topping/distruction/index.tsx":
+/*!*************************************************!*\
+  !*** ./src/pages/topping/distruction/index.tsx ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
+
+var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
+
+var _index = __webpack_require__(/*! ../../../utils/request/index */ "./src/utils/request/index.ts");
+
+var _area = __webpack_require__(/*! ../../../models/area */ "./src/models/area.ts");
+
+var _area2 = _interopRequireDefault(_area);
+
+var _store = __webpack_require__(/*! ../../../config/store */ "./src/config/store.ts");
+
+var _index2 = __webpack_require__(/*! ../../../config/index */ "./src/config/index.ts");
+
+var _index3 = __webpack_require__(/*! ../index */ "./src/pages/topping/index.tsx");
+
+__webpack_require__(/*! ./index.scss */ "./src/pages/topping/distruction/index.scss");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Distruction = function (_Taro$Component) {
+  _inherits(Distruction, _Taro$Component);
+
+  function Distruction() {
+    _classCallCheck(this, Distruction);
+
+    var _this = _possibleConstructorReturn(this, (Distruction.__proto__ || Object.getPrototypeOf(Distruction)).apply(this, arguments));
+
+    _this.config = {
+      navigationBarTitleText: '招工置顶'
+    };
+
+    _this.$usedState = ["searchData", "history", "data", "are", "loopArray75", "loopArray76", "loopArray77", "loopArray78", "clickInput", "inputVal", "onInput", "IMGCDNURL"];
+    _this.anonymousFunc2Map = {};
+    _this.anonymousFunc4Map = {};
+    _this.anonymousFunc5Map = {};
+    _this.anonymousFunc6Map = {};
+    _this.customComponents = [];
+    return _this;
+  }
+
+  _createClass(Distruction, [{
+    key: '_constructor',
+    value: function _constructor(props) {
+      _get(Distruction.prototype.__proto__ || Object.getPrototypeOf(Distruction.prototype), '_constructor', this).call(this, props);
+      this.$$refs = new _taroWeapp2.default.RefsArray();
+    }
+  }, {
+    key: '_createData',
+    value: function _createData() {
+      var _this2 = this;
+
+      this.__state = arguments[0] || this.state || {};
+      this.__props = arguments[1] || this.props || {};
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
+      ;
+
+      var _useContext = (0, _taroWeapp.useContext)(_index3.contextItem),
+          AreParams = _useContext.AreParams,
+          setAreParams = _useContext.setAreParams;
+
+      var router = (0, _taroWeapp.useRouter)();
+      var _router$params = router.params,
+          max_city = _router$params.max_city,
+          max_province = _router$params.max_province;
+      // 热门城市
+
+      var _useState = (0, _taroWeapp.useState)({
+        item: []
+      }),
+          _useState2 = _slicedToArray(_useState, 2),
+          data = _useState2[0],
+          setData = _useState2[1];
+      // 所有省份
+
+
+      var _useState3 = (0, _taroWeapp.useState)({
+        areData: []
+      }),
+          _useState4 = _slicedToArray(_useState3, 2),
+          are = _useState4[0],
+          setAre = _useState4[1];
+      // 是否点击输入框
+
+
+      var _useState5 = (0, _taroWeapp.useState)(false),
+          _useState6 = _slicedToArray(_useState5, 2),
+          clickInput = _useState6[0],
+          setClickInput = _useState6[1];
+      // 输入输入框时
+
+
+      var _useState7 = (0, _taroWeapp.useState)(false),
+          _useState8 = _slicedToArray(_useState7, 2),
+          onInput = _useState8[0],
+          setOnInput = _useState8[1];
+      // 搜索的内容
+
+
+      var _useState9 = (0, _taroWeapp.useState)({
+        list: []
+      }),
+          _useState10 = _slicedToArray(_useState9, 2),
+          searchData = _useState10[0],
+          setSearchData = _useState10[1];
+      // 输入框内容
+
+
+      var _useState11 = (0, _taroWeapp.useState)(''),
+          _useState12 = _slicedToArray(_useState11, 2),
+          inputVal = _useState12[0],
+          setInputVal = _useState12[1];
+      // 搜索历史
+
+
+      var _useState13 = (0, _taroWeapp.useState)({
+        historylist: []
+      }),
+          _useState14 = _slicedToArray(_useState13, 2),
+          history = _useState14[0],
+          setHistory = _useState14[1];
+      // 点击参数
+
+
+      var _useState15 = (0, _taroWeapp.useState)({
+        city: [],
+        province: [],
+        whole: []
+      }),
+          _useState16 = _slicedToArray(_useState15, 2),
+          params = _useState16[0],
+          setParams = _useState16[1];
+      // 设置参数
+
+
+      (0, _taroWeapp.useEffect)(function () {
+        // 获取搜索历史
+        var searchItem = _taroWeapp2.default.getStorageSync(_store.SearchList);
+        if (searchItem) {
+          setHistory({ historylist: searchItem });
+        }
+        (0, _index.jobTopHotAreasAction)().then(function (res) {
+          if (res.errcode == "ok") {
+            var item = [];
+            _area2.default.map(function (v) {
+              if (v.children.length > 0) {
+                item.push(v);
+              }
+            });
+            for (var i = 0; i < item.length; i++) {
+              for (var j = 0; j < item[i].children.length; j++) {
+                item[i].click = false;
+                item[i].children[j].click = false;
+              }
+            }
+            if (AreParams) {
+              // 热门
+              res.data.map(function (val) {
+                if (AreParams.city) {
+                  AreParams.city.map(function (v) {
+                    if (val.id === v.id) {
+                      val.click = true;
+                    }
+                    return v;
+                  });
+                }
+                if (AreParams.province) {
+                  AreParams.province.map(function (v) {
+                    if (val.id === v.id) {
+                      val.click = true;
+                    }
+                    return v;
+                  });
+                }
+              });
+              // 所有
+              item.map(function (val) {
+                val.children.map(function (itme) {
+                  if (AreParams.city) {
+                    AreParams.city.map(function (v) {
+                      if (itme.id === v.id) {
+                        itme.click = true;
+                      }
+                      return v;
+                    });
+                  }
+                  if (AreParams.province) {
+                    AreParams.province.map(function (v) {
+                      if (itme.id === v.id) {
+                        itme.click = true;
+                      }
+                      return v;
+                    });
+                  }
+                });
+              });
+            }
+            setData({ item: res.data });
+            setAre({ areData: item });
+            setParams({ city: AreParams.city, province: AreParams.province, whole: [] });
+          } else {
+            _taroWeapp2.default.showModal({
+              title: '温馨提示',
+              content: res.errmsg,
+              showCancel: false
+            });
+          }
+        });
+      }, []);
+      // 点击输入框
+      var handleInput = function handleInput() {
+        setClickInput(true);
+      };
+      // 输入输入框
+      var handleOnInput = function handleOnInput(e) {
+        setInputVal(e.detail.value);
+        setOnInput(true);
+        var list = [];
+        _area2.default.map(function (v) {
+          if (v.name.indexOf(e.detail.value) >= 0) {
+            list.push(v);
+          }
+          v.children.map(function (val) {
+            if (val.name.indexOf(e.detail.value) >= 0) {
+              list.push(val);
+            }
+          });
+        });
+        var data = [];
+        list.map(function (v) {
+          v.listName = v.ad_name + '-' + v.name;
+          if (v.children && v.children.length > 0) {
+            v.children.map(function (val) {
+              val.listName = v.name + '-' + val.name;
+              data.push(val);
+              return val;
+            });
+          }
+          data.push(v);
+          return v;
+        });
+        setSearchData({ list: data });
+      };
+      // 点击其他省市
+      var handleAllAre = function handleAllAre(v, type) {
+        console.log(v);
+        // 点击市的时候，该市的省取消，点击省的时候,该市的省取消
+        if (v.pid === '0') {
+          // 点击全国，其他热门与省市都为false
+          // 热门城市
+          var hotList = JSON.parse(JSON.stringify(data.item));
+          // 省市
+          var allList = JSON.parse(JSON.stringify(are.areData));
+          var hot = undefined,
+              all = undefined,
+              list = [];
+          // 再次点击
+          if (v.click) {
+            // 热门
+            hot = hotList.map(function (val) {
+              if (val.id === v.id) {
+                val.click = false;
+              }
+              return val;
+            });
+            all = allList.map(function (val) {
+              if (val.children) {
+                val.children.map(function (item) {
+                  item.click = false;
+                });
+              }
+              return val;
+            });
+            // 选择取消
+            // setWhole(false)
+          } else {
+            // 第一次点击
+            hot = hotList.map(function (val) {
+              //出了点击的其他都为false
+              if (val.id === v.id) {
+                val.click = true;
+                list.push(val);
+              } else {
+                val.click = false;
+              }
+              return val;
+            });
+            // 全部
+            all = allList.map(function (val) {
+              if (val.children) {
+                val.children.map(function (item) {
+                  item.click = false;
+                });
+              }
+              return val;
+            });
+            // 选择全国
+            // setWhole(true)
+          }
+          setAre({ areData: all });
+          setData({ item: hot });
+          setParams({ city: [], province: [], whole: list });
+          // 选择市的时候
+        } else if (v.pid !== '1' && v.pid !== '0') {
+          var cityItem = JSON.parse(JSON.stringify(params.city));
+          // 已选择大于限制大小
+          if (cityItem.length) {
+            var val = JSON.parse(JSON.stringify(cityItem));
+            var dataItem = val.find(function (item) {
+              return item.id === v.id;
+            });
+            if (dataItem) {
+              val.map(function (item, i) {
+                if (item.id === v.id) {
+                  val.splice(i, 1);
+                }
+              });
+            } else {
+              if (cityItem.length >= parseInt(max_city)) {
+                _taroWeapp2.default.showModal({
+                  title: '温馨提示',
+                  content: '\u6700\u591A\u53EF\u540C\u65F6\u7F6E\u9876' + max_city + '\u4E2A\u5E02\u3001' + max_province + '\u4E2A\u7701\u6216\u76F4\u8F96\u5E02',
+                  showCancel: false
+                });
+                return;
+              }
+              val.push(v);
+            }
+            var arr = data.item.map(function (val) {
+              if (val.id === v.id) {
+                val.click = !v.click;
+              }
+              return val;
+            });
+            var itemList = are.areData.map(function (val) {
+              val.children.map(function (item) {
+                if (item.id === v.id) {
+                  if (type === 1) {
+                    item.click = v.click;
+                  } else {
+                    item.click = !v.click;
+                    val.children[0].click = false;
+                  }
+                }
+                return item;
+              });
+              return val;
+            });
+            setAre({ areData: itemList });
+            setData({ item: arr });
+            var provinceList = JSON.parse(JSON.stringify(params.province));
+            are.areData.map(function (val) {
+              if (val.children) {
+                val.children.map(function (item) {
+                  if (item.id === v.id) {
+                    provinceList.map(function (list, i) {
+                      if (list.id === val.id) {
+                        provinceList.splice(i, 1);
+                      }
+                    });
+                  }
+                });
+              }
+            });
+            setParams({ city: val, province: provinceList, whole: [] });
+          } else {
+            var _arr = data.item.map(function (val) {
+              if (val.id === v.id) {
+                val.click = !v.click;
+              } else {
+                if (val.pid === '0') {
+                  console.log(val);
+                  val.click = false;
+                }
+              }
+              return val;
+            });
+            var _itemList = are.areData.map(function (val) {
+              if (val.id !== v.id) {
+                val.children.map(function (item) {
+                  if (item.id === v.id) {
+                    if (type === 1) {
+                      item.click = v.click;
+                    } else {
+                      item.click = !v.click;
+                      // 清除该组的省
+                      val.children[0].click = false;
+                    }
+                  }
+                  if (item.pid === '1') {
+                    val.children.map(function (list) {
+                      if (list.id === v.id) {
+                        list.click = false;
+                      }
+                    });
+                  }
+                  return item;
+                });
+              }
+              return val;
+            });
+            // 第一次点击市的时候，该市的省取消
+            setAre({ areData: _itemList });
+            setData({ item: _arr });
+            var _val = JSON.parse(JSON.stringify(cityItem));
+            _val.push(v);
+            var _provinceList = JSON.parse(JSON.stringify(params.province));
+            // 判断省里有点击的市，就删除省
+            are.areData.map(function (val) {
+              if (val.children) {
+                val.children.map(function (item) {
+                  if (item.id === v.id) {
+                    _provinceList.map(function (list, i) {
+                      if (list.id === val.id) {
+                        // console.log(list);
+                        _provinceList.splice(i, 1);
+                      }
+                    });
+                  }
+                });
+              }
+            });
+            setParams({ city: _val, province: _provinceList, whole: [] });
+          }
+        } else {
+          var provinceItem = JSON.parse(JSON.stringify(params.province));
+          if (provinceItem.length) {
+            var _val2 = JSON.parse(JSON.stringify(provinceItem));
+            var _dataItem = _val2.find(function (item) {
+              return item.id === v.id;
+            });
+            if (_dataItem) {
+              _val2.map(function (item, i) {
+                if (item.id === v.id) {
+                  _val2.splice(i, 1);
+                }
+              });
+            } else {
+              if (provinceItem.length >= parseInt(max_province)) {
+                _taroWeapp2.default.showModal({
+                  title: '温馨提示',
+                  content: '\u6700\u591A\u53EF\u540C\u65F6\u7F6E\u9876' + max_city + '\u4E2A\u5E02\u3001' + max_province + '\u4E2A\u7701\u6216\u76F4\u8F96\u5E02',
+                  showCancel: false
+                });
+                return;
+              }
+              _val2.push(v);
+            }
+            var _arr2 = data.item.map(function (val) {
+              if (val.id === v.id) {
+                val.click = !v.click;
+              }
+              return val;
+            });
+            var _itemList2 = are.areData.map(function (val) {
+              // 判断不是全国置顶
+              if (val.id !== v.id) {
+                val.children.map(function (item) {
+                  if (item.id === v.id) {
+                    item.click = !v.click;
+                  }
+                  return item;
+                });
+              } else {
+                // 全国置顶全部变为false
+                val.children.map(function (item) {
+                  if (item.id === v.id) {
+                    item.click = !v.click;
+                  } else {
+                    item.click = false;
+                  }
+                  return item;
+                });
+              }
+              return val;
+            });
+            // 点击省，删除市
+            var cityList = JSON.parse(JSON.stringify(params.city));
+            are.areData.map(function (val) {
+              if (val.id === v.id) {
+                val.children.map(function (item) {
+                  cityList.map(function (list, i) {
+                    if (item.id === list.id) {
+                      cityList.splice(i, 1);
+                    }
+                  });
+                });
+              }
+            });
+            setAre({ areData: _itemList2 });
+            setData({ item: _arr2 });
+            setParams({ city: cityList, province: _val2, whole: [] });
+          } else {
+            console.log(v, '第一次点击省');
+            var List = JSON.parse(JSON.stringify(are.areData));
+            // 点击市的时候把省取消
+            for (var i = 0; i < List.length; i++) {
+              if (List[i].id === v.id) {
+                if (List[i].children.length) {
+                  List[i].children.map(function (val) {
+                    if (val.id === v.id) {
+                      console.log(v);
+                      console.log(val, '222');
+                      val.click = !v.click;
+                    } else {
+                      val.click = false;
+                    }
+                  });
+                }
+              }
+            }
+            // 点击省，删除市
+            var _cityList = JSON.parse(JSON.stringify(params.city));
+            are.areData.map(function (val) {
+              if (val.id === v.id) {
+                val.children.map(function (item) {
+                  data.item.map(function (val) {
+                    if (val.id === item.id) {
+                      val.click = false;
+                    }
+                    return val;
+                  });
+                  _cityList.map(function (list, i) {
+                    if (item.id === list.id) {
+                      _cityList.splice(i, 1);
+                    }
+                  });
+                });
+              }
+            });
+            var _hot = data.item.map(function (val) {
+              if (val.id === v.id) {
+                val.click = true;
+              } else {
+                if (val.pid === '0') {
+                  val.click = false;
+                }
+              }
+              return val;
+            });
+            setAre({ areData: List });
+            setData({ item: _hot });
+            var _val3 = JSON.parse(JSON.stringify(provinceItem));
+            _val3.push(v);
+            setParams({ city: _cityList, province: _val3, whole: [] });
+          }
+        }
+      };
+      var handleSeach = function handleSeach(v) {
+        handleAllAre(v, 0);
+        setClickInput(false);
+        setOnInput(false);
+        setInputVal('');
+        history.historylist.unshift(v);
+        var hash = {};
+        var arr = history.historylist.reduce(function (item, next) {
+          hash[next.name] ? '' : hash[next.name] = item.push(next);
+          return item;
+        }, []);
+        setHistory({ historylist: arr });
+        if (history.historylist.length > 6) {
+          history.historylist.pop();
+        }
+        // 设置搜索历史
+        _taroWeapp2.default.setStorageSync(_store.SearchList, history.historylist);
+      };
+      // 清除历史
+      var handleCloseHistory = function handleCloseHistory() {
+        setHistory({ historylist: [] });
+        _taroWeapp2.default.clearStorageSync();
+      };
+      // 确认选择
+      var handleClick = function handleClick() {
+        setAreParams(params.city, params.province, params.whole);
+        _taroWeapp2.default.navigateBack({
+          delta: 1
+        });
+      };
+      this.anonymousFunc0 = handleInput;
+      this.anonymousFunc1 = function (e) {
+        return handleOnInput(e);
+      };
+      this.anonymousFunc3 = handleCloseHistory;
+      this.anonymousFunc8 = handleClick;
+      var loopArray75 = searchData.list.length > 0 ? searchData.list.map(function (v, __index2) {
+        v = {
+          $original: (0, _taroWeapp.internal_get_original)(v)
+        };
+        var _$indexKey = "iczzz" + __index2;
+        _this2.anonymousFunc2Map[_$indexKey] = function () {
+          return handleSeach(v.$original);
+        };
+        return {
+          _$indexKey: _$indexKey,
+          $original: v.$original
+        };
+      }) : [];
+      var loopArray76 = clickInput && !onInput && history.historylist.length > 0 ? history.historylist.map(function (v, __index4) {
+        v = {
+          $original: (0, _taroWeapp.internal_get_original)(v)
+        };
+        var _$indexKey2 = "idzzz" + __index4;
+        _this2.anonymousFunc4Map[_$indexKey2] = function () {
+          return handleSeach(v.$original);
+        };
+        return {
+          _$indexKey2: _$indexKey2,
+          $original: v.$original
+        };
+      }) : [];
+      var loopArray77 = data.item.map(function (v, __index5) {
+        v = {
+          $original: (0, _taroWeapp.internal_get_original)(v)
+        };
+        var _$indexKey3 = "iezzz" + __index5;
+        _this2.anonymousFunc5Map[_$indexKey3] = function () {
+          handleAllAre(v.$original, 1);
+        };
+        return {
+          _$indexKey3: _$indexKey3,
+          $original: v.$original
+        };
+      });
+      var loopArray78 = are.areData.map(function (v, __index7) {
+        v = {
+          $original: (0, _taroWeapp.internal_get_original)(v)
+        };
+        var $anonymousCallee__9 = v.$original.children.map(function (val, index) {
+          val = {
+            $original: (0, _taroWeapp.internal_get_original)(val)
+          };
+          var _$indexKey4 = 'ifzzz' + __index7 + '-' + index;
+          _this2.anonymousFunc6Map[_$indexKey4] = function () {
+            return handleAllAre(val.$original, 0);
+          };
+          return {
+            _$indexKey4: _$indexKey4,
+            $original: val.$original
+          };
+        });
+        return {
+          $anonymousCallee__9: $anonymousCallee__9,
+          $original: v.$original
+        };
+      });
+      Object.assign(this.__state, {
+        searchData: searchData,
+        history: history,
+        data: data,
+        are: are,
+        loopArray75: loopArray75,
+        loopArray76: loopArray76,
+        loopArray77: loopArray77,
+        loopArray78: loopArray78,
+        clickInput: clickInput,
+        inputVal: inputVal,
+        onInput: onInput,
+        IMGCDNURL: _index2.IMGCDNURL
+      });
+      return this.__state;
+    }
+  }, {
+    key: 'anonymousFunc0',
+    value: function anonymousFunc0(e) {
+      ;
+    }
+  }, {
+    key: 'anonymousFunc1',
+    value: function anonymousFunc1(e) {
+      ;
+    }
+  }, {
+    key: 'anonymousFunc2',
+    value: function anonymousFunc2(_$indexKey) {
+      var _anonymousFunc2Map;
+
+      ;
+
+      for (var _len = arguments.length, e = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+        e[_key - 1] = arguments[_key];
+      }
+
+      return this.anonymousFunc2Map[_$indexKey] && (_anonymousFunc2Map = this.anonymousFunc2Map)[_$indexKey].apply(_anonymousFunc2Map, e);
+    }
+  }, {
+    key: 'anonymousFunc3',
+    value: function anonymousFunc3(e) {
+      ;
+    }
+  }, {
+    key: 'anonymousFunc4',
+    value: function anonymousFunc4(_$indexKey2) {
+      var _anonymousFunc4Map;
+
+      ;
+
+      for (var _len2 = arguments.length, e = Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
+        e[_key2 - 1] = arguments[_key2];
+      }
+
+      return this.anonymousFunc4Map[_$indexKey2] && (_anonymousFunc4Map = this.anonymousFunc4Map)[_$indexKey2].apply(_anonymousFunc4Map, e);
+    }
+  }, {
+    key: 'anonymousFunc5',
+    value: function anonymousFunc5(_$indexKey3) {
+      var _anonymousFunc5Map;
+
+      ;
+
+      for (var _len3 = arguments.length, e = Array(_len3 > 1 ? _len3 - 1 : 0), _key3 = 1; _key3 < _len3; _key3++) {
+        e[_key3 - 1] = arguments[_key3];
+      }
+
+      return this.anonymousFunc5Map[_$indexKey3] && (_anonymousFunc5Map = this.anonymousFunc5Map)[_$indexKey3].apply(_anonymousFunc5Map, e);
+    }
+  }, {
+    key: 'anonymousFunc6',
+    value: function anonymousFunc6(_$indexKey4) {
+      var _anonymousFunc6Map;
+
+      ;
+
+      for (var _len4 = arguments.length, e = Array(_len4 > 1 ? _len4 - 1 : 0), _key4 = 1; _key4 < _len4; _key4++) {
+        e[_key4 - 1] = arguments[_key4];
+      }
+
+      return this.anonymousFunc6Map[_$indexKey4] && (_anonymousFunc6Map = this.anonymousFunc6Map)[_$indexKey4].apply(_anonymousFunc6Map, e);
+    }
+  }, {
+    key: 'anonymousFunc8',
+    value: function anonymousFunc8(e) {
+      ;
+    }
+  }]);
+
+  return Distruction;
+}(_taroWeapp2.default.Component);
+
+Distruction.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6", "anonymousFunc8"];
+Distruction.$$componentPath = "pages/topping/distruction/index";
+Distruction.config = { navigationBarTitleText: '招工置顶' };
+exports.default = Distruction;
+
+Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(Distruction, true));
+
+/***/ })
+
+},[["./src/pages/topping/distruction/index.tsx","runtime","vendors"]]]);

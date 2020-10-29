@@ -7,8 +7,10 @@ import { UserLocationPromiss, AREABEIJING } from '../../models/area'
 import { userAuthLoction } from '../../utils/helper'
 import Msg, { ShowActionModal, SubPopup } from '../../utils/msg'
 import { SubscribeToNews } from '../../utils/subscribeToNews';
-import { useSelector } from '@tarojs/redux'
+import { useSelector, useDispatch } from '@tarojs/redux'
 import { isVaildVal, isPhone } from '../../utils/v'
+import { setAreaInfo, getAreaInfo, setArea, getArea } from '../../actions/recruit'//获取发布招工信息action
+
 
 export default function usePublishViewInfo(InitParams: InitRecruitView){
 
@@ -21,7 +23,7 @@ export default function usePublishViewInfo(InitParams: InitRecruitView){
   // 是否显示工种选择
   const [showProfession, setShowProssion] = useState<boolean>(false)
   // 当前显示城市
-  const [area, setArea] = useState<string>(AREABEIJING.name)
+  // const [area, setArea] = useState<string>(AREABEIJING.name)
   // 招工详情的字数
   const [num, setNum] = useState<number>(0)
   // 备份手机号码
@@ -29,17 +31,25 @@ export default function usePublishViewInfo(InitParams: InitRecruitView){
   // 备份当前数据 用于强制修改判断
   const [bakModel, setBakModel] = useState({})
   // 选择详细地址信息
-  const [areaInfo, setAreaInfo] = useState<UserLastPublishRecruitArea>({
-    title: '',
-    adcode:'',
-    location: '',
-    info: ''
-  })
+  // const [areaInfo, setAreaInfo] = useState<UserLastPublishRecruitArea>({
+  //   title: '',
+  //   adcode:'',
+  //   location: '',
+  //   info: ''
+  // })
+  //获取redux中发布招工区域详细数据
+  const areaInfo:UserLastPublishRecruitArea = useSelector(state=>state.MyAreaInfo)
+  // 获取redux中区域名称数据
+  const area:string = useSelector(state=>state.MyArea)
+  // 获取dispatch分发action
+  const dispatch = useDispatch()
 
   // 初始化招工信息
   useEffect(() => {
+    // 判断是否登录，没有登录直接返回
     if(!login) return
     getPublishRecruitView(InitParams).then(res => {
+      // 获取初始化发布招工数据，参数为{ type: type,infoId: id }
       if(res.errcode == 'ok'){
         let InitViewInfo: RecruitModelInfo = {
           placeholder: res.placeholder,
@@ -64,14 +74,22 @@ export default function usePublishViewInfo(InitParams: InitRecruitView){
           is_check: res.model.hasOwnProperty('is_check') ? res.model.is_check : 1,
           check_fail_msg: res.model.check_fail_msg || ''
         }
+        // 数据保存到model中
         setModel(InitViewInfo)
+        // 初始化用户区域数据
         initUserAreaInfo(res)
         if (InitViewInfo.is_check == 0) bakModelInfo(InitViewInfo)
-        setAreaInfo({ ...areaInfo, title: InitViewInfo.address })
+        // 将数据保存到redux中的areaInfo中
+        dispatch(setAreaInfo({ ...areaInfo, title: InitViewInfo.address }))
+        // setAreaInfo({ ...areaInfo, title: InitViewInfo.address })
+        // 保存手机号
         setPhone(InitViewInfo.user_mobile)
+        // 如果有上传图片保存图片showUpload中
         if (res.view_image.length) setShowUpload(true)
+        // 如果填写有招工详情数据，将填写数据长度保存到num中
         if (InitViewInfo.detail) setNum(InitViewInfo.detail.length)
       }else{
+        // 请求数据失败走提示框返回上一页面
         ShowActionModal({
           msg: res.errmsg,
           success: () => {
@@ -82,36 +100,49 @@ export default function usePublishViewInfo(InitParams: InitRecruitView){
     })
   }, [login])
 
+  // 初始化用户区域数据
   function initUserAreaInfo(data: any){
     console.log(InitParams.infoId,'InitParams.infoId')
-    //  设置地区名字
-    if (InitParams.infoId){
-      setArea(data.default_search_name.name)
+    //  如果传递参数有infoid代表是修改，保存修改的里面默认区域数据
+    if (InitParams.infoId){ 
+      dispatch(setArea(data.default_search_name.name))
+      // setArea(data.default_search_name.name)
     }else{
       let userLoctionCity: UserLocationPromiss = Taro.getStorageSync(UserLocationCity)
       if(userLoctionCity){
-        setArea(userLoctionCity.city)
+        dispatch(setArea(userLoctionCity.city))
+        // setArea(userLoctionCity.city)
       }else{
         userAuthLoction().then(res=>{
-          setArea(res.city)
+          dispatch(setArea(res.city))
+          // setArea(res.city)
         }).then(()=>{
-          setArea(AREABEIJING.name)
+          dispatch(setArea(AREABEIJING.name))
+          // setArea(AREABEIJING.name)
         })
       }
     }
 
-    // 设置发布地址
+    // 如果是修改设置详细发布地址
     if(InitParams.infoId){
-      setAreaInfo({
+      dispatch(setAreaInfo({
         title: data.model.address,
         location: data.model.location,
         info: '',
         adcode: data.model.adcode || ''
-      })
+      }))
+      // setAreaInfo({
+      //   title: data.model.address,
+      //   location: data.model.location,
+      //   info: '',
+      //   adcode: data.model.adcode || ''
+      // })
     }else{
+      // 获取用户最后发布的区域信息
       let userLastPublishArea: UserLastPublishRecruitArea = Taro.getStorageSync(UserLastPublishArea)
       if (userLastPublishArea) {
-        setAreaInfo(userLastPublishArea)
+        dispatch(setAreaInfo(userLastPublishArea))
+        // setAreaInfo(userLastPublishArea)
       }
     }
     
@@ -235,10 +266,10 @@ export default function usePublishViewInfo(InitParams: InitRecruitView){
     showProfession,
     setShowProssion,
     userPublishRecruitAction,
-    area,
-    setArea,
-    areaInfo,
-    setAreaInfo,
+    // area,
+    // setArea,
+    // areaInfo,
+    // setAreaInfo,
     num,
     setNum,
     phone

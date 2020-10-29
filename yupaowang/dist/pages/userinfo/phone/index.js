@@ -1,1 +1,185 @@
-(wx.webpackJsonp=wx.webpackJsonp||[]).push([[88],{"118":function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{"value":!0});var l=function(e,t){if(Array.isArray(e))return e;if(Symbol.iterator in Object(e))return function sliceIterator(e,t){var n=[],o=!0,r=!1,u=void 0;try{for(var a,i=e[Symbol.iterator]();!(o=(a=i.next()).done)&&(n.push(a.value),!t||n.length!==t);o=!0);}catch(e){r=!0,u=e}finally{try{!o&&i.return&&i.return()}finally{if(r)throw u}}return n}(e,t);throw new TypeError("Invalid attempt to destructure non-iterable instance")},o=function(e,t,n){return t&&defineProperties(e.prototype,t),n&&defineProperties(e,n),e};function defineProperties(e,t){for(var n=0;n<t.length;n++){var o=t[n];o.enumerable=o.enumerable||!1,o.configurable=!0,"value"in o&&(o.writable=!0),Object.defineProperty(e,o.key,o)}}var p=n(0),h=_interopRequireDefault(p),y=_interopRequireDefault(n(13)),d=n(1),_=n(6),v=n(114);n(119);var m=_interopRequireDefault(n(3));function _interopRequireDefault(e){return e&&e.__esModule?e:{"default":e}}var r=(function _inherits(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{"constructor":{"value":e,"enumerable":!1,"writable":!0,"configurable":!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}(UserBandPhone,h.default.Component),o(UserBandPhone,[{"key":"_constructor","value":function _constructor(e){(function get(e,t,n){null===e&&(e=Function.prototype);var o=Object.getOwnPropertyDescriptor(e,t);if(void 0===o){var r=Object.getPrototypeOf(e);return null===r?void 0:get(r,t,n)}if("value"in o)return o.value;var u=o.get;return void 0!==u?u.call(n):void 0})(UserBandPhone.prototype.__proto__||Object.getPrototypeOf(UserBandPhone.prototype),"_constructor",this).call(this,e),this.$$refs=new h.default.RefsArray}},{"key":"_createData","value":function _createData(e,t,n){function ha(e,t){var n=e.detail.value,o=JSON.parse(JSON.stringify(c));o[t]=n,f(o)}this.__state=e||this.state||{},this.__props=t||this.props||{},this.$prefix;var o=(0,p.useContext)(v.PhoneContext).setPhone,r=(0,y.default)(),u=r.userGetCode,a=r.text,i=(0,p.useState)({"tel":"","code":""}),s=l(i,2),c=s[0],f=s[1];return this.anonymousFunc0=function(e){return ha(e,"tel")},this.anonymousFunc1=function(e){return ha(e,"code")},this.anonymousFunc2=function(){return u(c.tel)},this.anonymousFunc3=function(){return function userChangePhoneAction(){(0,_.isPhone)(c.tel)?c.code?(0,d.userChangePhone)(c.tel,c.code).then(function(e){(0,m.default)(e.errmsg),"ok"==e.errcode&&(o(c.tel),h.default.navigateBack())}).catch(function(){(0,m.default)("网络错误，发送失败")}):(0,m.default)("请先输入正确的验证码"):(0,m.default)("请先输入正确的手机号码")}()},Object.assign(this.__state,{"info":c,"text":a}),this.__state}},{"key":"anonymousFunc0","value":function anonymousFunc0(){}},{"key":"anonymousFunc1","value":function anonymousFunc1(){}},{"key":"anonymousFunc2","value":function anonymousFunc2(){}},{"key":"anonymousFunc3","value":function anonymousFunc3(){}}]),UserBandPhone);function UserBandPhone(){!function _classCallCheck(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,UserBandPhone);var e=function _possibleConstructorReturn(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}(this,(UserBandPhone.__proto__||Object.getPrototypeOf(UserBandPhone)).apply(this,arguments));return e.$usedState=["info","text"],e.customComponents=[],e}r.$$events=["anonymousFunc0","anonymousFunc1","anonymousFunc2","anonymousFunc3"],r.$$componentPath="pages/userinfo/phone/index",t.default=r,Component(n(0).default.createComponent(r,!0))},"119":function(e,t,n){}},[[118,0,1]]]);
+(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["pages/userinfo/phone/index"],{
+
+/***/ "./src/pages/userinfo/phone/index.scss":
+/*!*********************************************!*\
+  !*** ./src/pages/userinfo/phone/index.scss ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
+/***/ "./src/pages/userinfo/phone/index.tsx":
+/*!********************************************!*\
+  !*** ./src/pages/userinfo/phone/index.tsx ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
+
+var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
+
+var _index = __webpack_require__(/*! ../../../hooks/code/index */ "./src/hooks/code/index.ts");
+
+var _index2 = _interopRequireDefault(_index);
+
+var _index3 = __webpack_require__(/*! ../../../utils/request/index */ "./src/utils/request/index.ts");
+
+var _index4 = __webpack_require__(/*! ../../../utils/v/index */ "./src/utils/v/index.ts");
+
+var _index5 = __webpack_require__(/*! ../index/index */ "./src/pages/userinfo/index/index.tsx");
+
+__webpack_require__(/*! ./index.scss */ "./src/pages/userinfo/phone/index.scss");
+
+var _index6 = __webpack_require__(/*! ../../../utils/msg/index */ "./src/utils/msg/index.ts");
+
+var _index7 = _interopRequireDefault(_index6);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var UserBandPhone = function (_Taro$Component) {
+  _inherits(UserBandPhone, _Taro$Component);
+
+  function UserBandPhone() {
+    _classCallCheck(this, UserBandPhone);
+
+    var _this = _possibleConstructorReturn(this, (UserBandPhone.__proto__ || Object.getPrototypeOf(UserBandPhone)).apply(this, arguments));
+
+    _this.$usedState = ["info", "text"];
+    _this.customComponents = [];
+    return _this;
+  }
+
+  _createClass(UserBandPhone, [{
+    key: "_constructor",
+    value: function _constructor(props) {
+      _get(UserBandPhone.prototype.__proto__ || Object.getPrototypeOf(UserBandPhone.prototype), "_constructor", this).call(this, props);
+      this.$$refs = new _taroWeapp2.default.RefsArray();
+    }
+  }, {
+    key: "_createData",
+    value: function _createData() {
+      this.__state = arguments[0] || this.state || {};
+      this.__props = arguments[1] || this.props || {};
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
+      ;
+
+      var _useContext = (0, _taroWeapp.useContext)(_index5.PhoneContext),
+          setPhone = _useContext.setPhone;
+
+      var _useCode = (0, _index2.default)(),
+          userGetCode = _useCode.userGetCode,
+          text = _useCode.text;
+
+      var _useState = (0, _taroWeapp.useState)({
+        tel: '',
+        code: ''
+      }),
+          _useState2 = _slicedToArray(_useState, 2),
+          info = _useState2[0],
+          setInfo = _useState2[1];
+      // 用户填写表单
+
+
+      var userEnterForm = function userEnterForm(e, title) {
+        var value = e.detail.value;
+
+        var data = JSON.parse(JSON.stringify(info));
+        data[title] = value;
+        setInfo(data);
+      };
+      // 用户更换手机号码操作
+      var userChangePhoneAction = function userChangePhoneAction() {
+        if (!(0, _index4.isPhone)(info.tel)) {
+          (0, _index7.default)('请先输入正确的手机号码');
+          return;
+        }
+        if (!info.code) {
+          (0, _index7.default)('请先输入正确的验证码');
+          return;
+        }
+        (0, _index3.userChangePhone)(info.tel, info.code).then(function (res) {
+          (0, _index7.default)(res.errmsg);
+          if (res.errcode == 'ok') {
+            setPhone(info.tel);
+            _taroWeapp2.default.navigateBack();
+          }
+        }).catch(function () {
+          (0, _index7.default)('网络错误，发送失败');
+        });
+      };
+      this.anonymousFunc0 = function (e) {
+        return userEnterForm(e, 'tel');
+      };
+      this.anonymousFunc1 = function (e) {
+        return userEnterForm(e, 'code');
+      };
+      this.anonymousFunc2 = function () {
+        return userGetCode(info.tel);
+      };
+      this.anonymousFunc3 = function () {
+        return userChangePhoneAction();
+      };
+      Object.assign(this.__state, {
+        info: info,
+        text: text
+      });
+      return this.__state;
+    }
+  }, {
+    key: "anonymousFunc0",
+    value: function anonymousFunc0(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc1",
+    value: function anonymousFunc1(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc2",
+    value: function anonymousFunc2(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc3",
+    value: function anonymousFunc3(e) {
+      ;
+    }
+  }]);
+
+  return UserBandPhone;
+}(_taroWeapp2.default.Component);
+
+UserBandPhone.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3"];
+UserBandPhone.$$componentPath = "pages/userinfo/phone/index";
+exports.default = UserBandPhone;
+
+Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(UserBandPhone, true));
+
+/***/ })
+
+},[["./src/pages/userinfo/phone/index.tsx","runtime","vendors"]]]);

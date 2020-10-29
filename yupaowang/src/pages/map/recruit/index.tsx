@@ -1,6 +1,6 @@
 import Taro, { useEffect, useState, useContext } from '@tarojs/taro'
 import { View, Text, Image, Input } from '@tarojs/components'
-import { context } from '../../recruit/publish'
+// import { context } from '../../recruit/publish'
 import { getAllAreas, checkAdcodeValid } from '../../../utils/request'
 import { AllAreasDataItem } from '../../../utils/request/index.d'
 import { IMGCDNURL, UserPublishAreaHistoryMaxNum } from '../../../config'
@@ -11,6 +11,9 @@ import { getAmapPoiList } from '../../../utils/helper'
 import { InputPoiListTips } from '../../../utils/helper/index.d'
 import Msg, { ShowActionModal } from '../../../utils/msg'
 import './index.scss'
+import { useSelector, useDispatch } from '@tarojs/redux'
+import { UserLastPublishRecruitArea } from '../../../pages/recruit/index.d'
+import { setAreaInfo, getAreaInfo, setArea, getArea } from '../../../actions/recruit'//获取发布招工信息action
 
 
 const PI = Math.PI;  // 数学 PI 常亮
@@ -20,6 +23,12 @@ export default function RecruitMap(){
 
   // 城市数据
   const [areas, setAreas] = useState<AllAreasDataItem[][]>([])
+  //获取redux中发布招工区域详细数据
+  const areaInfo:UserLastPublishRecruitArea = useSelector(state=>state.MyAreaInfo)
+  // 获取redux中区域名称数据
+  const area:string = useSelector(state=>state.MyArea)
+  // 获取dispatch分发action
+  const dispatch = useDispatch()
 
   // 获取城市数据
   useEffect(()=>{
@@ -43,7 +52,7 @@ export default function RecruitMap(){
   // 是否显示城市
   const [showCity, setShowCity] = useState<boolean>(false)
   // 使用发布招工hook处理数据
-  const { area, setArea, setAreaInfo, setPublishArea } = useContext(context)
+  // const { area, setArea, setAreaInfo, setPublishArea } = useContext(context)
   // 详细地址的输入框
   const [smAreaText, setSmAreaText] = useState<string>('')
   // 关键词地区列表
@@ -55,7 +64,9 @@ export default function RecruitMap(){
 
   // 初始化用户定位信息
   const initUserLocationCity = () => {
+    // 获取用户定位数据
     let userLoc: UserLocationPromiss = Taro.getStorageSync(UserLocationCity)
+    // 如果定位
     if (userLoc) {
       let data: ChildItems = getCityInfo(userLoc, 1)
       let userLocData: AllAreasDataItem = {
@@ -64,7 +75,8 @@ export default function RecruitMap(){
         ad_name: data.ad_name,
         city: data.name
       }
-      setArea(data.name)
+      dispatch(setArea(data.name))
+      // setArea(data.name)
       setUserLoc(userLocData)
     }
   }
@@ -77,7 +89,8 @@ export default function RecruitMap(){
 
   // 用户切换城市
   const userChangeCity = (city: string) => {
-    setArea(city)
+    dispatch(setArea(city))
+    // setArea(city)
   }
 
   // 用户点击取消 返回上一页
@@ -172,12 +185,18 @@ export default function RecruitMap(){
       if (res.errcode == "ok") {
         if (setAreaInfo) {
           setUserPublishAreaHistoryItem(item)
-          setAreaInfo({
+          dispatch(setAreaInfo({
             title: item.name,
             location: item.location,
             adcode: item.adcode,
             info: item.district
-          })
+          })) 
+          // setAreaInfo({
+          //   title: item.name,
+          //   location: item.location,
+          //   adcode: item.adcode,
+          //   info: item.district
+          // })
           setPublishArea && setPublishArea(item.name)
         }
         Taro.navigateBack()

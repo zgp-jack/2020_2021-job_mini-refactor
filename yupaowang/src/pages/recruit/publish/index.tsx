@@ -20,12 +20,12 @@ export interface InitRecruitView {
 }
 
 // context类型
-export interface Injected {
-  area: string, // 城市名称
-  setArea: (city: string)=>void, //设置城市名称
-  setAreaInfo?: (item: UserLastPublishRecruitArea)=>void, // 用户点击的小地址信息
-  setPublishArea?: (val: string)=> void //设置最后一次点击 城市的名字
-}
+// export interface Injected {
+//   area: string, // 城市名称
+//   setArea: (city: string)=>void, //设置城市名称
+//   setAreaInfo?: (item: UserLastPublishRecruitArea)=>void, // 用户点击的小地址信息
+//   setPublishArea?: (val: string)=> void //设置最后一次点击 城市的名字
+// }
 
 export const context = createContext<Injected>({} as Injected)
 
@@ -37,17 +37,17 @@ export default function PublishRecruit() {
   const InitParams: InitRecruitView = { type: type,infoId: id }
   
   // 初始化当前信息
-  const { model, setModel, showUpload, setShowUpload, showProfession, setShowProssion, area, setArea, setAreaInfo, userPublishRecruitAction, num, setNum, phone } = usePublishViewInfo(InitParams)
+  const { model, setModel, showUpload, setShowUpload, showProfession, setShowProssion, userPublishRecruitAction, num, setNum, phone } = usePublishViewInfo(InitParams)
   // 需要传递的值
-  const value: Injected = {
-    area: area,
-    setArea: (city: string)=>setArea(city),
-    setAreaInfo: (item: UserLastPublishRecruitArea) => setAreaInfo(item),
-    setPublishArea: (val: string) => {
-      if(!model) return
-      setModel({ ...model, address: val })
-    }
-  }
+  // const value: Injected = {
+  //   area: area,
+  //   setArea: (city: string)=>setArea(city),
+  //   setAreaInfo: (item: UserLastPublishRecruitArea) => setAreaInfo(item),
+  //   setPublishArea: (val: string) => {
+  //     if(!model) return
+  //     setModel({ ...model, address: val })
+  //   }
+  // }
   // 使用自定义验证码hook
   const { text, userGetCode } = useCode()
 
@@ -131,7 +131,7 @@ export default function PublishRecruit() {
   }
 
   return (
-    <context.Provider value={ value }>
+    <context.Provider>
       <Block>
         <Auth />
         {showProfession && 

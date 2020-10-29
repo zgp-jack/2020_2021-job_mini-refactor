@@ -60,7 +60,7 @@ export default function Cities({
   // 用户点击搜索数据
   const userTapInputCity = (item: AllAreasInputDataItem) => {
     setShow(false)
-    delete item['city_name']
+    delete item['city.name']
     userTapCity(item)
   }
 

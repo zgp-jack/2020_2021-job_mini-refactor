@@ -1,1 +1,317 @@
-(wx.webpackJsonp=wx.webpackJsonp||[]).push([[92],{"76":function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{"value":!0});var b=function(e,t){if(Array.isArray(e))return e;if(Symbol.iterator in Object(e))return function sliceIterator(e,t){var n=[],o=!0,r=!1,a=void 0;try{for(var i,u=e[Symbol.iterator]();!(o=(i=u.next()).done)&&(n.push(i.value),!t||n.length!==t);o=!0);}catch(e){r=!0,a=e}finally{try{!o&&u.return&&u.return()}finally{if(r)throw a}}return n}(e,t);throw new TypeError("Invalid attempt to destructure non-iterable instance")},o=function(e,t,n){return t&&defineProperties(e.prototype,t),n&&defineProperties(e,n),e};function defineProperties(e,t){for(var n=0;n<t.length;n++){var o=t[n];o.enumerable=o.enumerable||!1,o.configurable=!0,"value"in o&&(o.writable=!0),Object.defineProperty(e,o.key,o)}}var $=n(0),C=_interopRequireDefault($),w=n(2),M=_interopRequireDefault(n(5)),A=n(1);function _interopRequireDefault(e){return e&&e.__esModule?e:{"default":e}}function _toConsumableArray(e){if(Array.isArray(e)){for(var t=0,n=Array(e.length);t<e.length;t++)n[t]=e[t];return n}return Array.from(e)}n(77);var r=(function _inherits(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{"constructor":{"value":e,"enumerable":!1,"writable":!0,"configurable":!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}(Course,C.default.Component),o(Course,[{"key":"_constructor","value":function _constructor(e){(function get(e,t,n){null===e&&(e=Function.prototype);var o=Object.getOwnPropertyDescriptor(e,t);if(void 0===o){var r=Object.getPrototypeOf(e);return null===r?void 0:get(r,t,n)}if("value"in o)return o.value;var a=o.get;return void 0!==a?a.call(n):void 0})(Course.prototype.__proto__||Object.getPrototypeOf(Course.prototype),"_constructor",this).call(this,e),this.$$refs=new C.default.RefsArray}},{"key":"_createData","value":function _createData(e,t,n){var p=this;this.__state=e||this.state||{},this.__props=t||this.props||{};var f=this.$prefix,o=(0,$.useState)(1),r=b(o,2),y=r[0],a=r[1],i=[{"id":1,"text":"招工老板","icon":w.IMGCDNURL+"course-laoban.png","activeIcon":w.IMGCDNURL+"course-laoban-active.png"},{"id":2,"text":"工人师傅","icon":w.IMGCDNURL+"course-geren.png","activeIcon":w.IMGCDNURL+"course-geren-active.png"}],u=(0,$.useState)({"item":[]}),s=b(u,2),g=s[0],h=s[1],c=(0,$.useState)({"item":[]}),l=b(c,2),m=l[0],_=l[1];(0,$.useEffect)(function(){(0,A.requestAction)().then(function(e){C.default.hideNavigationBarLoading();for(var t=0;t<e.masterList.length;t++)e.masterList[t].isShow=!1;for(var n=0;n<e.userList.length;n++)e.userList[n].isShow=!1;h({"item":[].concat(_toConsumableArray(e.masterList))}),_({"item":[].concat(_toConsumableArray(e.userList))})})},[]);var d=i.map(function(e,t){e={"$original":(0,$.internal_get_original)(e)};var n="czzzz"+t;return p.anonymousFunc0Map[n]=function(){!function handleClick(e){a(e)}(e.$original.id)},{"_$indexKey":n,"$loopState__temp2":(0,M.default)({"course-tab-border":e.$original.id===y,"course-tab-content":!0}),"$loopState__temp4":(0,M.default)({"course.active-text":e.$original.id===y}),"$original":e.$original}}),v=1===y?g.item.map(function(e,t){e={"$original":(0,$.internal_get_original)(e)};var n="dzzzz"+t;p.anonymousFunc1Map[n]=function(){!function bossIsShow(n){var e=JSON.parse(JSON.stringify(g));e.item.forEach(function(e){var t=e.id===n&&!e.isShow;e.isShow=t}),h(e)}(e.$original.id)};var o=(0,$.genCompid)(f+"fzzzzzzzzz"+t,!0),r=b(o,2),a=r[0],i=r[1];1===y&&$.propsManager.set({"open":e.$original.isShow,"onClick":p.anonymousFunc1.bind(p,n),"title":e.$original.title},i,a);var u=(0,$.genCompid)(f+"gzzzzzzzzz"+t,!0),s=b(u,2),c=s[0],l=s[1];return 1===y&&$.propsManager.set({"hasBorder":!1},l,c),{"_$indexKey2":n,"$compid__0":i,"$compid__1":l,"$original":e.$original}}):[],z=2===y?m.item.map(function(e,t){e={"$original":(0,$.internal_get_original)(e)};var n="ezzzz"+t;p.anonymousFunc2Map[n]=function(){!function workerMasterIsShow(n){var e=JSON.parse(JSON.stringify(m));e.item.forEach(function(e){var t=e.id===n&&!e.isShow;e.isShow=t}),_(e)}(e.$original.id)};var o=(0,$.genCompid)(f+"hzzzzzzzzz"+t,!0),r=b(o,2),a=r[0],i=r[1];2===y&&$.propsManager.set({"open":e.$original.isShow,"onClick":p.anonymousFunc2.bind(p,n),"title":e.$original.title},i,a);var u=(0,$.genCompid)(f+"izzzzzzzzz"+t,!0),s=b(u,2),c=s[0],l=s[1];return 2===y&&$.propsManager.set({"hasBorder":!1},l,c),{"_$indexKey3":n,"$compid__2":i,"$compid__3":l,"$original":e.$original}}):[];return Object.assign(this.__state,{"bossData":g,"workerMaster":m,"loopArray3":d,"loopArray4":v,"loopArray5":z,"tab":i,"highlight":y}),this.__state}},{"key":"anonymousFunc0","value":function anonymousFunc0(e){for(var t,n=arguments.length,o=Array(1<n?n-1:0),r=1;r<n;r++)o[r-1]=arguments[r];return this.anonymousFunc0Map[e]&&(t=this.anonymousFunc0Map)[e].apply(t,o)}},{"key":"anonymousFunc1","value":function anonymousFunc1(e){for(var t,n=arguments.length,o=Array(1<n?n-1:0),r=1;r<n;r++)o[r-1]=arguments[r];return this.anonymousFunc1Map[e]&&(t=this.anonymousFunc1Map)[e].apply(t,o)}},{"key":"anonymousFunc2","value":function anonymousFunc2(e){for(var t,n=arguments.length,o=Array(1<n?n-1:0),r=1;r<n;r++)o[r-1]=arguments[r];return this.anonymousFunc2Map[e]&&(t=this.anonymousFunc2Map)[e].apply(t,o)}}]),Course);function Course(){!function _classCallCheck(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,Course);var e=function _possibleConstructorReturn(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}(this,(Course.__proto__||Object.getPrototypeOf(Course)).apply(this,arguments));return e.config={"navigationBarTitleText":"鱼泡网-使用教程"},e.$usedState=["bossData","workerMaster","loopArray3","loopArray4","loopArray5","tab","highlight"],e.anonymousFunc0Map={},e.anonymousFunc1Map={},e.anonymousFunc2Map={},e.customComponents=["Nodata","AtAccordion","AtList"],e}r.$$events=["anonymousFunc0"],r.$$componentPath="subpackage/pages/course/index",r.config={"navigationBarTitleText":"鱼泡网-使用教程"},t.default=r,Component(n(0).default.createComponent(r,!0))},"77":function(e,t,n){}},[[76,0,1]]]);
+(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["subpackage/pages/course/index"],{
+
+/***/ "./src/subpackage/pages/course/index.scss":
+/*!************************************************!*\
+  !*** ./src/subpackage/pages/course/index.scss ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
+/***/ "./src/subpackage/pages/course/index.tsx":
+/*!***********************************************!*\
+  !*** ./src/subpackage/pages/course/index.tsx ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
+
+var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
+
+var _index = __webpack_require__(/*! ../../../config/index */ "./src/config/index.ts");
+
+var _classnames = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _index2 = __webpack_require__(/*! ../../../utils/request/index */ "./src/utils/request/index.ts");
+
+__webpack_require__(/*! ./index.scss */ "./src/subpackage/pages/course/index.scss");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Course = function (_Taro$Component) {
+  _inherits(Course, _Taro$Component);
+
+  function Course() {
+    _classCallCheck(this, Course);
+
+    var _this = _possibleConstructorReturn(this, (Course.__proto__ || Object.getPrototypeOf(Course)).apply(this, arguments));
+
+    _this.config = {
+      navigationBarTitleText: '鱼泡网-使用教程'
+    };
+
+    _this.$usedState = ["bossData", "workerMaster", "loopArray3", "loopArray4", "loopArray5", "tab", "highlight"];
+    _this.anonymousFunc0Map = {};
+    _this.anonymousFunc1Map = {};
+    _this.anonymousFunc2Map = {};
+    _this.customComponents = ["Nodata", "AtAccordion", "AtList"];
+    return _this;
+  }
+
+  _createClass(Course, [{
+    key: "_constructor",
+    value: function _constructor(props) {
+      _get(Course.prototype.__proto__ || Object.getPrototypeOf(Course.prototype), "_constructor", this).call(this, props);
+      this.$$refs = new _taroWeapp2.default.RefsArray();
+    }
+  }, {
+    key: "_createData",
+    value: function _createData() {
+      var _this2 = this;
+
+      this.__state = arguments[0] || this.state || {};
+      this.__props = arguments[1] || this.props || {};
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
+      ;
+      // 设置高亮
+
+      var _useState = (0, _taroWeapp.useState)(1),
+          _useState2 = _slicedToArray(_useState, 2),
+          highlight = _useState2[0],
+          setHighlight = _useState2[1];
+      // 设置默认tab
+
+
+      var tab = [{
+        id: 1, text: '招工老板', icon: _index.IMGCDNURL + "course-laoban.png", activeIcon: _index.IMGCDNURL + "course-laoban-active.png"
+      }, {
+        id: 2, text: '工人师傅', icon: _index.IMGCDNURL + "course-geren.png", activeIcon: _index.IMGCDNURL + "course-geren-active.png"
+      }];
+      var handleClick = function handleClick(id) {
+        setHighlight(id);
+      };
+      // 招工老老板
+
+      var _useState3 = (0, _taroWeapp.useState)({
+        item: []
+      }),
+          _useState4 = _slicedToArray(_useState3, 2),
+          bossData = _useState4[0],
+          setBossData = _useState4[1];
+      // 工人师傅
+
+
+      var _useState5 = (0, _taroWeapp.useState)({
+        item: []
+      }),
+          _useState6 = _slicedToArray(_useState5, 2),
+          workerMaster = _useState6[0],
+          setWorkerMaster = _useState6[1];
+      // 请求数据
+
+
+      (0, _taroWeapp.useEffect)(function () {
+        (0, _index2.requestAction)().then(function (res) {
+          _taroWeapp2.default.hideNavigationBarLoading();
+          // 增加默认关闭字段
+          for (var i = 0; i < res.masterList.length; i++) {
+            res.masterList[i].isShow = false;
+          }
+          for (var _i = 0; _i < res.userList.length; _i++) {
+            res.userList[_i].isShow = false;
+          }
+          setBossData({ item: [].concat(_toConsumableArray(res.masterList)) });
+          setWorkerMaster({ item: [].concat(_toConsumableArray(res.userList)) });
+        });
+      }, []);
+      var bossIsShow = function bossIsShow(id) {
+        var mydata = JSON.parse(JSON.stringify(bossData));
+        mydata.item.forEach(function (v) {
+          var flag = v.id === id && !v.isShow;
+          v.isShow = flag ? true : false;
+        });
+        setBossData(mydata);
+      };
+      var workerMasterIsShow = function workerMasterIsShow(id) {
+        var workerMasterData = JSON.parse(JSON.stringify(workerMaster));
+        workerMasterData.item.forEach(function (v) {
+          var flag = v.id === id && !v.isShow;
+          v.isShow = flag ? true : false;
+        });
+        setWorkerMaster(workerMasterData);
+      };
+      var loopArray3 = tab.map(function (item, __index0) {
+        item = {
+          $original: (0, _taroWeapp.internal_get_original)(item)
+        };
+        var _$indexKey = "czzzz" + __index0;
+        _this2.anonymousFunc0Map[_$indexKey] = function () {
+          handleClick(item.$original.id);
+        };
+        var $loopState__temp2 = (0, _classnames2.default)({
+          'course-tab-border': item.$original.id === highlight,
+          'course-tab-content': true
+        });
+        var $loopState__temp4 = (0, _classnames2.default)({
+          'course.active-text': item.$original.id === highlight
+        });
+        return {
+          _$indexKey: _$indexKey,
+          $loopState__temp2: $loopState__temp2,
+          $loopState__temp4: $loopState__temp4,
+          $original: item.$original
+        };
+      });
+      var loopArray4 = highlight === 1 ? bossData.item.map(function (item, __index1) {
+        item = {
+          $original: (0, _taroWeapp.internal_get_original)(item)
+        };
+        var _$indexKey2 = "dzzzz" + __index1;
+        _this2.anonymousFunc1Map[_$indexKey2] = function () {
+          bossIsShow(item.$original.id);
+        };
+
+        var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "fzzzzzzzzz" + __index1, true),
+            _genCompid2 = _slicedToArray(_genCompid, 2),
+            $prevCompid__0 = _genCompid2[0],
+            $compid__0 = _genCompid2[1];
+
+        highlight === 1 && _taroWeapp.propsManager.set({
+          "open": item.$original.isShow,
+          "onClick": _this2.anonymousFunc1.bind(_this2, _$indexKey2),
+          "title": item.$original.title
+        }, $compid__0, $prevCompid__0);
+
+        var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "gzzzzzzzzz" + __index1, true),
+            _genCompid4 = _slicedToArray(_genCompid3, 2),
+            $prevCompid__1 = _genCompid4[0],
+            $compid__1 = _genCompid4[1];
+
+        highlight === 1 && _taroWeapp.propsManager.set({
+          "hasBorder": false
+        }, $compid__1, $prevCompid__1);
+        return {
+          _$indexKey2: _$indexKey2,
+          $compid__0: $compid__0,
+          $compid__1: $compid__1,
+          $original: item.$original
+        };
+      }) : [];
+      var loopArray5 = highlight === 2 ? workerMaster.item.map(function (item, __index2) {
+        item = {
+          $original: (0, _taroWeapp.internal_get_original)(item)
+        };
+        var _$indexKey3 = "ezzzz" + __index2;
+        _this2.anonymousFunc2Map[_$indexKey3] = function () {
+          workerMasterIsShow(item.$original.id);
+        };
+
+        var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "hzzzzzzzzz" + __index2, true),
+            _genCompid6 = _slicedToArray(_genCompid5, 2),
+            $prevCompid__2 = _genCompid6[0],
+            $compid__2 = _genCompid6[1];
+
+        highlight === 2 && _taroWeapp.propsManager.set({
+          "open": item.$original.isShow,
+          "onClick": _this2.anonymousFunc2.bind(_this2, _$indexKey3),
+          "title": item.$original.title
+        }, $compid__2, $prevCompid__2);
+
+        var _genCompid7 = (0, _taroWeapp.genCompid)(__prefix + "izzzzzzzzz" + __index2, true),
+            _genCompid8 = _slicedToArray(_genCompid7, 2),
+            $prevCompid__3 = _genCompid8[0],
+            $compid__3 = _genCompid8[1];
+
+        highlight === 2 && _taroWeapp.propsManager.set({
+          "hasBorder": false
+        }, $compid__3, $prevCompid__3);
+        return {
+          _$indexKey3: _$indexKey3,
+          $compid__2: $compid__2,
+          $compid__3: $compid__3,
+          $original: item.$original
+        };
+      }) : [];
+      Object.assign(this.__state, {
+        bossData: bossData,
+        workerMaster: workerMaster,
+        loopArray3: loopArray3,
+        loopArray4: loopArray4,
+        loopArray5: loopArray5,
+        tab: tab,
+        highlight: highlight
+      });
+      return this.__state;
+    }
+  }, {
+    key: "anonymousFunc0",
+    value: function anonymousFunc0(_$indexKey) {
+      var _anonymousFunc0Map;
+
+      ;
+
+      for (var _len = arguments.length, e = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+        e[_key - 1] = arguments[_key];
+      }
+
+      return this.anonymousFunc0Map[_$indexKey] && (_anonymousFunc0Map = this.anonymousFunc0Map)[_$indexKey].apply(_anonymousFunc0Map, e);
+    }
+  }, {
+    key: "anonymousFunc1",
+    value: function anonymousFunc1(_$indexKey2) {
+      var _anonymousFunc1Map;
+
+      ;
+
+      for (var _len2 = arguments.length, e = Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
+        e[_key2 - 1] = arguments[_key2];
+      }
+
+      return this.anonymousFunc1Map[_$indexKey2] && (_anonymousFunc1Map = this.anonymousFunc1Map)[_$indexKey2].apply(_anonymousFunc1Map, e);
+    }
+  }, {
+    key: "anonymousFunc2",
+    value: function anonymousFunc2(_$indexKey3) {
+      var _anonymousFunc2Map;
+
+      ;
+
+      for (var _len3 = arguments.length, e = Array(_len3 > 1 ? _len3 - 1 : 0), _key3 = 1; _key3 < _len3; _key3++) {
+        e[_key3 - 1] = arguments[_key3];
+      }
+
+      return this.anonymousFunc2Map[_$indexKey3] && (_anonymousFunc2Map = this.anonymousFunc2Map)[_$indexKey3].apply(_anonymousFunc2Map, e);
+    }
+  }]);
+
+  return Course;
+}(_taroWeapp2.default.Component);
+
+Course.$$events = ["anonymousFunc0"];
+Course.$$componentPath = "subpackage/pages/course/index";
+Course.config = { navigationBarTitleText: '鱼泡网-使用教程' };
+exports.default = Course;
+
+Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(Course, true));
+
+/***/ })
+
+},[["./src/subpackage/pages/course/index.tsx","runtime","vendors"]]]);
