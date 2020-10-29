@@ -11,7 +11,8 @@ import './index.scss'
 export interface UserMemberInfo {
   username: string,
   phone: string,
-  avatar: string
+  avatar: string,
+  pwd_status: string,
 }
 export default function Member(){
   console.log(ISWEIXIN)
@@ -29,7 +30,8 @@ export default function Member(){
   const value: UserMemberInfo = {
     username: model ? model.member.username||model.member.nickname : '',
     avatar: model ? model.member.headimgurl : '',
-    phone: model ? model.member.tel : ''
+    phone: model ? model.member.tel : '',
+    pwd_status: model ? model.member.pwd_status  : '',
   }
 
   // 用户页面跳转
@@ -80,7 +82,7 @@ export default function Member(){
               </View>
               <View className='member-usernum'>会员编号：<Text className='member-id'>{ model.member.id }</Text></View>
               { model.member.tel ? 
-                  <View className='member-editinfo' onClick={() => userRouteJump(`/pages/userinfo/index/index?username=${value.username}&phone=${value.phone}&avatar=${value.avatar}`)}>修改资料</View>
+                  <View className='member-editinfo' onClick={() => userRouteJump(`/pages/userinfo/index/index?username=${value.username}&phone=${value.phone}&avatar=${value.avatar}&isPassword=${value.pwd_status=='update'?true:false}`)}>修改资料</View>
               :
               <View className='member-editinfo' onClick={()=>userRouteJump('/pages/userinfo/add/index')}>完善资料</View>
               }

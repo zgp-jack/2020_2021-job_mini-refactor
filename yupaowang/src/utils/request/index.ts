@@ -1121,3 +1121,14 @@ export function userCheckDouyinRecharge(data): Promise<Inter.userCheckDouyinOrde
     data
   })
 }
+
+
+// 用户修改密码
+export function updataPassword(data): Promise<Inter.Result>{
+  return doRequestAction({
+    url: api.updataPassword,
+    method: 'POST',
+    failToast: true,
+    data
+  })
+}

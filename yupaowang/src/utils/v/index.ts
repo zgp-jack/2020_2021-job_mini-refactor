@@ -70,3 +70,8 @@ export function isIos(): boolean {
   let system = Taro.getSystemInfoSync()
   return system.platform === 'ios'
 }
+
+//验证必填项且长度
+export function isRequireLen(str: string, _len: number = 6): boolean{
+  return (str != '' && str != null && str != undefined && str.length >= _len) ? true : false;
+}

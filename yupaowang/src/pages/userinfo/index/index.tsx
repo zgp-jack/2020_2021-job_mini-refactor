@@ -74,6 +74,15 @@ export default function UserUpdateInfo(){
       Msg('网络错误，修改失败')
     })
   }
+
+  //修改密码
+  const onSetPassword = ()=> {
+    const url = "/pages/userinfo/updatePass/index";
+    Taro.navigateTo({
+      url
+    })
+  }
+
   return (
     <PhoneContext.Provider value={ value }>
     <Block>
@@ -86,7 +95,7 @@ export default function UserUpdateInfo(){
           <View className='user-updatainfo-left'>姓名</View>
           <View className='user-updatainfo-right'>{ name }</View>
         </View>
-        <View className='user-updatainfo-item clearfix'>
+        <View className='user-updatainfo-item clearfix' onClick={onSetPassword}>
           <View className='user-updatainfo-left'>修改密码</View>
           <View className='user-updatainfo-right'></View>
         </View>

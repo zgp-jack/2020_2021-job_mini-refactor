@@ -1,0 +1,82 @@
+.yupao-common-container{
+    .user-changepass-box{
+        .user-changepass-tips{
+            position: relative;
+            display: block;
+            padding: 0 27rpx;
+            line-height: 80rpx;
+            font-size: 30rpx;
+        }
+        .common-publish-item{
+            background: white;
+            position: relative;
+            padding: 0 20rpx;
+            min-height: 100rpx;
+            .common-publish-item-content{
+                padding: 20rpx 0;
+                padding-left: 180rpx;
+                padding-right: 80rpx;
+                border-bottom: 1px solid #dcdcdc;
+                overflow: hidden;
+                .common-publish-words{
+                    position: absolute;
+                    left: 20rpx;
+                    top: 20rpx;
+                    line-height: 60rpx;
+                    font-size: 30rpx;
+                    font-weight: bold;
+                    width: 140rpx;
+                    text-align: justify;
+                    &::after{
+                        content: '.';
+                        width: 100%;
+                        display: inline-block;
+                        overflow: hidden;
+                        height: 0;
+                    }
+                }
+                .common-publish-Input{
+                    position: relative;
+                    width: 100%;
+                    display: block;
+                    height: 60rpx;
+                    font-size: 30rpx;
+                    line-height: 20rpx;
+                    border: 0;
+                }
+                .pass-eyes-icon{
+                    position: absolute;
+                    display: block;
+                    width: 39rpx;
+                    height: 23rpx;
+                    right: 30rpx;
+                    top: 40rpx;
+                    background: url("http://cdn.yupao.com/miniprogram/images/eyes.png") no-repeat;
+                    background-size: 100% 100%;
+                    filter: grayscale(100%);
+                    z-index: 1;
+                }
+                .pass-eyes-icon-active{
+                    filter: grayscale(0);
+                }
+            }
+        }
+        & .common-publish-item:nth-last-child(1) .common-publish-item-content{
+          border-bottom: 0;
+        }
+    }
+    .common-sure-btn{
+        position: relative;
+        width: 80%;
+        height: 80rpx;
+        line-height: 80rpx;
+        background: #0099ff;
+        color: #fff;
+        display: block;
+        text-align: center;
+        border-radius: 2px;
+        font-size: 32rpx;
+        letter-spacing: 1px;
+        margin: 30rpx auto 0;
+    }
+}

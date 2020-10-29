@@ -30,6 +30,7 @@ class App extends Component {
       "pages/userinfo/index/index", // 用户修改资料
       "pages/userinfo/add/index", // 用户完善资料
       "pages/userinfo/phone/index", // 用户更换手机
+      "pages/userinfo/updatePass/index",//修改密码
       "pages/published/recruit/index", // 已发布招工列表
       "pages/published/used/index", // 已发布二手交易
       "pages/collection/index", //收藏

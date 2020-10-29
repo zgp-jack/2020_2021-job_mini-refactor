@@ -393,7 +393,7 @@ var DetailInfoPage = function (_Taro$Component) {
             success: function success(res) {
               if (res.confirm) {
                 _taroTt2.default.navigateTo({
-                  url: '/pages/userinfo/index'
+                  url: '/pages/userinfo/add/index'
                 });
               } else if (res.cancel) {
                 _taroTt2.default.navigateBack();
