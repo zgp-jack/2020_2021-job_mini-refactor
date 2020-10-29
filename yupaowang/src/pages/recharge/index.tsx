@@ -1,9 +1,9 @@
 import Taro, { useEffect, useState } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
-import { SERVERPHONE } from '../../config'
-import { getRechargeList, getRechargeOpenid, getRechargeOrder } from '../../utils/request'
+import { SERVERPHONE, MINIVERSION, DOUYIN } from '../../config'
+import { getRechargeList, getRechargeOpenid, getRechargeOrder, userDouyinRecharge, userCheckDouyinRecharge } from '../../utils/request'
 import { GetRechargeListType } from '../../utils/request/index.d'
-import { ShowActionModal, errMsg } from '../../utils/msg'
+import Msg, { ShowActionModal, errMsg } from '../../utils/msg'
 import { useDispatch } from '@tarojs/redux'
 // import { changeTabbar } from '../../actions/tabbar'
 import classnames from 'classnames'
@@ -61,8 +61,52 @@ export default function Recharge(){
   // 用户充值
   const userRechargeAction = ()=> {
     let rechargeIntegral: number = lists[current].integral
+    if(ISWEIXIN){
+      weixinProPay(rechargeIntegral)
+      return false
+    }else if(MINIVERSION == DOUYIN){
+      douyinProPay()
+    }
+  }
+
+  // 抖音支付
+  const douyinProPay = () => {
+    let id: string = lists[current].id
+    userDouyinRecharge({ integral_price_id: id}).then(res => {
+      let order_no: string = res.data.biteOrderInfo.out_order_no
+      tt.pay({
+        orderInfo: res.data.biteOrderInfo,
+        service: 3,
+        getOrderStatus:() => {
+          return new Promise((resolve,reject)=>{
+            userCheckDouyinRecharge({ order_no })
+            .then(res=>{
+              if(res.errcode == 'ok'){
+                setIntegral(res.integral)
+                resolve(0)
+              }
+              reject()
+            }).catch(()=>reject())
+          })
+        },
+        success: (res) => {
+          console.log(res)
+          if (res.code == 0) {
+            Msg('支付成功')
+          }
+        },
+        fail: () => {
+          Msg('支付失败')
+        },
+      })
+    }).catch(err=>console.log(err))
+  }
+
+  // 微信支付
+  const weixinProPay = (rechargeIntegral: number) => {
+    console.log('吊起微信支付')
     Taro.login({
-      success:(res) => {
+      success: (res) => {
         getRechargeOpenid(res.code).then(openidData => {
           let data: CreateOrder = {
             priceType: lists[current].id,
@@ -78,7 +122,7 @@ export default function Recharge(){
                 cancelText: '会员中心',
                 confirmText: '继续充值',
                 success: (res) => {
-                  if(res.cancel) {
+                  if (res.cancel) {
                     // dispatch(changeTabbar(MEMBER))
                     Taro.reLaunch({ url: '/pages/index/index?type=' + MEMBER })
                   }

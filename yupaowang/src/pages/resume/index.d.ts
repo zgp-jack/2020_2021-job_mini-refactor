@@ -5,11 +5,22 @@ export enum FilterMenu {
   filter = 3
 }
 
-export interface SearchType {
+export interface SearchNormalFieldType {
+  has_sort_flag: string,
+  has_time: string,
+  has_top: string,
+  last_sort_flag_pos: string,
+  last_time_pos: string,
+  last_normal_pos: string,
+}
+
+export interface SearchType{
   page: number,
   occupations: string,
   province: string,
   keywords: string,
-  sort: 'newest' | 'recommend',
+  sort: string,
   location: string,
+  area_id: string,
+  type: string
 }

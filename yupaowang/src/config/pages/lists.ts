@@ -4,3 +4,5 @@
 export const AreaPickerKey: string = 'area'
 export const ClassifyPickerKey: string = 'classify'
 export const FilterPickerKey: string = 'filter'
+export const MemberPickerKey: string = 'member'
+export const ResumeFilterPickerKey: string = 'resumefilter'

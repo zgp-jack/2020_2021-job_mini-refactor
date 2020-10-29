@@ -13,7 +13,7 @@ import { userAuthLoction } from '../../../utils/helper'
 import { AreaPickerKey, ClassifyPickerKey, FilterPickerKey } from '../../../config/pages/lists'
 import './index.scss'
 
-interface conditionType {
+export interface conditionType {
   id: string,
   text: string
 }
@@ -27,8 +27,8 @@ export default function Recruit(){
   // * 配置筛选条件
   const [condition, setCondition] = useState<conditionType[]>([
     { id: AreaPickerKey, text: userListChooseCity ? userListChooseCity.name : '全国' },
-    { id: ClassifyPickerKey, text: '选择工种' },
-    { id: FilterPickerKey, text: '最新' }
+    { id: ClassifyPickerKey, text: '全部分类' },
+    { id: FilterPickerKey, text: '全部' }
   ])
   // * scrollTop 位置 回到顶部
   const [scrollTop,setScrollTop] = useState<number>(0)
@@ -111,7 +111,7 @@ export default function Recruit(){
 
   // * 监听下拉刷新
   const pullDownAction = ()=> {
-    setRefresh(true)
+    setRefresh(true) 
     setSearchData({ ...searchData, page: 1 })
   }
 
@@ -140,13 +140,6 @@ export default function Recruit(){
   const goToScrollTop = () => {
     setScrollTop(scrollTop ? 0 : 0.1)
   }
-  // 设置滚动条位置
-  const setScrollTopAction = (e: any) => {
-    //return
-    let top: number = e.detail.scrollTop
-    //console.log(top)
-    //setScrollTop(top)
-  }
 
   // 输入搜索关键词
   const setSearchValData = () => {
@@ -165,7 +158,6 @@ export default function Recruit(){
         scrollY
         refresherEnabled
         scrollTop={scrollTop}
-        onScroll={(e: any) => setScrollTopAction(e)}
         scrollWithAnimation
         refresherTriggered={ refresh }
         onRefresherRefresh={() => pullDownAction()}

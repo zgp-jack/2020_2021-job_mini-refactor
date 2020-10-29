@@ -11,7 +11,7 @@ export const GetAllListItem: string = REQUESTURL + 'index/new-index-msg/'
 // 获取招工列表
 export const GetRecruitlist: string = REQUESTURL + 'job/list-new/'
 // 获取找活列表
-export const GetResumelist: string = REQUESTURL + 'resumes/index/'
+export const GetResumelist: string = REQUESTURL + 'resumes/new-index/'
 // 获取二手交易列表
 export const GetFleamarketlist: string = REQUESTURL + 'index/info-list/'
 // 获取微信号与公告列表
@@ -198,3 +198,7 @@ export const leavingMessageUrl: string = REQUESTURL +'leaving-message/add-subscr
 export const userAccountUrl: string = REQUESTURL + 'baidu-auth/login/'
 // 用户验证码登录
 export const userTelCodeLogin: string = REQUESTURL + 'baidu-auth/code-login/'
+// 抖音用户充值
+export const userDouyinRecharge: string = REQUESTURL + 'pay/bytedance-order/'
+// 都要用户充值订单检测
+export const userCheckDouyinRecharge: string = REQUESTURL + '/pay/byte-check/'

@@ -19,7 +19,7 @@ import './index.scss'
 
 export const context = createContext<Injected>({} as Injected)
 
-export default function NewJob() {
+export default function Mine() {
   const dispatch = useDispatch()
   // 获取用户是否登录
   const login = useSelector<any, boolean>(state => state.User['login'])
@@ -739,7 +739,7 @@ export default function NewJob() {
           {/* showcomplete */}
           {showcomplete ?
             <View className="isline">
-              <Button className="isline-shareliveone" onClick={() => userRouteJump('/pages/resume/basics/index')}>名片越完善 找活越容易,马上去完善>></Button>
+              <Button className="isline-shareliveone" onClick={() => userRouteJump('/pages/resume/basics/index')}>名片越完善 找活越容易,马上去完善</Button>
               <Text className="isline-sontwoview">浏览次数</Text>
             </View> :
             <View>
@@ -752,7 +752,7 @@ export default function NewJob() {
               <Image className='ranking-img' src={`${IMGCDNURL}lpy/biaptu.png`} />
               <Text>我的排名点：{data.info.sort_flag}</Text>
             </View>
-            <View className='ranking-go' onClick={() => userRouteJump(`/subpackage/pages/ranking/index`)} >马上去提升排名>></View>
+            <View className='ranking-go' onClick={() => userRouteJump(`/subpackage/pages/ranking/index`)} >马上去提升排名</View>
           </View>
           <View className={data.resume_top.is_top === 2 || data.resume_top.has_top == 0 ? 'ranking' : 'ranking-last'}>
             <View>
@@ -763,7 +763,7 @@ export default function NewJob() {
               </Text>
             </View>
             {data.resume_top.has_top == 0 &&
-              <View className='ranking-go' onClick={handleTopping}>马上去置顶>></View>
+              <View className='ranking-go' onClick={handleTopping}>马上去置顶</View>
             }
             {
               data.resume_top.has_top != 0 && data.resume_top.is_top != 2 &&
@@ -804,7 +804,7 @@ export default function NewJob() {
           }
           {data.resume_top.has_top != 0 && data.resume_top.is_top != 2 &&
             <View className="topdetail">
-              <Text onClick={handelEditTopp}>点击修改找活置顶信息>></Text>
+              <Text onClick={handelEditTopp}>点击修改找活置顶信息</Text>
             </View>
           }
         </View>
@@ -1271,6 +1271,6 @@ export default function NewJob() {
     </context.Provider>
   )
 }
-NewJob.config = {
+Mine.config = {
   navigationBarTitleText: '找活名片',
 } as Config

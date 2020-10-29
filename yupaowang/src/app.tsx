@@ -50,7 +50,7 @@ class App extends Component {
       'pages/resume/addProject/index', //新增项目,
       'pages/resume/addSkill/index',//新增技能
       'pages/resume/basics/index',//基础信息
-      'pages/resume/newJobs/index',//新增
+      'pages/resume/mine/index',//新增
       'pages/resume/recList/index', //更多招工信息
       'pages/resume/preview/index', // 预览
       'pages/resume/personInfo/index',//人员信息

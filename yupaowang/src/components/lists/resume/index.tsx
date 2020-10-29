@@ -1,6 +1,7 @@
 import Taro from '@tarojs/taro'
 import { View, Text, Image, Block } from '@tarojs/components'
 import { IMGCDNURL } from '../../../config'
+import Nodata from '../../../components/nodata'
 import { ResumeList } from '../../../utils/request/index.d'
 import './index.scss'
 
@@ -58,6 +59,7 @@ export default function ResumeList({ data, bottom = true }: PROPS){
           ))}
         </Block>
       ))}
+      {data&&data[0]&&!data[0].length && <Nodata text='暂无相关数据' />}
     </View>
   )
 }

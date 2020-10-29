@@ -89,7 +89,7 @@ export default function Home(){
       {/* // ? 轮播图  */}
       <SwiperComponent data={ swiper } />
       {/* // ? 项目列表  */}
-      <Projects />
+      {ISWEIXIN && <Projects />}
       {/* // ? 快捷菜单  */}
       <Fastfun />
       {/* // ? 鱼泡资讯  */}

@@ -158,7 +158,16 @@ interface FleamarketStateArr {
 
 export interface ResumeResult {
   errcode: string,
-  errmsg: ResumeList[]
+  data: {
+    total: number,
+    list: ResumeList[],
+    has_sort_flag?: string,
+    has_time?: string,
+    has_top?: string,
+    last_sort_flag_pos?: string,
+    last_normal_pos?: string,
+    last_time_pos?: string
+  }
 }
 
 // 积分记录数据
@@ -1313,4 +1322,9 @@ export interface filterClassifyResultStaffTree {
 export interface filterClassifyResultJoblistType {
   type: string,
   name: string
+}
+
+// 检测抖音用户是否充值成功
+export interface userCheckDouyinOrderResult extends Result {
+  integral: number
 }

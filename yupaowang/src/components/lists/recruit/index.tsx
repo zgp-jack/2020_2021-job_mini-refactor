@@ -1,6 +1,7 @@
 import Taro from '@tarojs/taro'
 import { View, Text, Image, Block } from '@tarojs/components'
 import { IMGCDNURL } from '../../../config'
+import Nodata from '../../../components/nodata'
 import './index.scss'
 import { RecruitListItem } from '../../../utils/request/index.d'
 
@@ -51,6 +52,7 @@ export default function RecruitList({ data, bottom = true }: PROPS){
         </Block>
         )
       )}
+      {data&&data[0]&&!data[0].length && <Nodata text='暂无相关数据' />}
     </View>
   )
 }

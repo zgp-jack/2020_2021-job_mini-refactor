@@ -1103,3 +1103,21 @@ export function userTelCodeLogin(data): Promise<Inter.userAccountOrCodeResult>{
     data
   })
 }
+
+// 发起抖音支付
+export function userDouyinRecharge(data): Promise<any> {
+  return doRequestAction({
+    url: api.userDouyinRecharge,
+    method: 'POST',
+    data
+  })
+}
+
+// 检测抖音用户是否充值成功
+export function userCheckDouyinRecharge(data): Promise<Inter.userCheckDouyinOrderResult>{
+  return doRequestAction({
+    url: api.userCheckDouyinRecharge,
+    method: 'POST',
+    data
+  })
+}

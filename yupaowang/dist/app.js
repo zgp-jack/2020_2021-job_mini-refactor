@@ -1,1 +1,578 @@
-require("./runtime"),require("./vendors"),(wx.webpackJsonp=wx.webpackJsonp||[]).push([[2],{"37":function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{"value":!0});var r=function(e,t,n){return t&&defineProperties(e.prototype,t),n&&defineProperties(e,n),e};function defineProperties(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}var a=_interopRequireDefault(n(0)),i=n(41),o=n(4),u=_interopRequireDefault(n(45));function _interopRequireDefault(e){return e&&e.__esModule?e:{"default":e}}n(63);var s=(0,u.default)();(0,o.setStore)(s),o.ReduxContext.Provider&&(o.ReduxContext.Provider({"store":s}),o.ReduxContext.Provider({"store":s}));var d=(function _inherits(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{"constructor":{"value":e,"enumerable":!1,"writable":!0,"configurable":!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}(_App,i.Component),r(_App,[{"key":"componentDidMount","value":function componentDidMount(){}},{"key":"componentDidShow","value":function componentDidShow(){}},{"key":"componentDidHide","value":function componentDidHide(){}},{"key":"componentDidCatchError","value":function componentDidCatchError(){}},{"key":"_createData","value":function _createData(){}}]),_App);function _App(){!function _classCallCheck(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,_App);var e=function _possibleConstructorReturn(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}(this,(_App.__proto__||Object.getPrototypeOf(_App)).apply(this,arguments));return e.config={"pages":["pages/index/index","pages/userauth/index","pages/recruit/publish/index","pages/used/lists/index","pages/map/recruit/index","pages/map/resume/index","pages/used/publish/index","pages/used/info/index","pages/invite/index","pages/getintegral/index","pages/integral/source/index","pages/integral/temp/index","pages/integral/official/index","pages/integral/expend/index","pages/recharge/index","pages/realname/index","pages/map/realname/index","pages/userinfo/index/index","pages/userinfo/add/index","pages/userinfo/phone/index","pages/published/recruit/index","pages/published/used/index","pages/collection/index","pages/help/index","pages/feedbacklist/index","pages/feedback/index","pages/static/invite/index","pages/information/mymessage/index","pages/information/system/index","pages/integral/tabber/index","pages/detail/info/index","pages/topping/index","pages/topping/distruction/index","pages/resume/detail/index","pages/resume/skillList/index","pages/resume/projectList/index","pages/resume/addProject/index","pages/resume/addSkill/index","pages/resume/basics/index","pages/resume/newJobs/index","pages/resume/recList/index","pages/resume/preview/index","pages/resume/personInfo/index","pages/login/index"],"subPackages":[{"root":"subpackage/pages","pages":["checkauth/index","about/index","report/index","notice/index","download/index","ranking/index","course/index","anti-fraud/index"]}],"window":{"backgroundTextStyle":"light","navigationBarBackgroundColor":"#0099ff","navigationBarTitleText":"WeChat","navigationBarTextStyle":"white"},"navigateToMiniProgramAppIdList":["wxca0eab5cd5fe6a7c","wxd348efa56021e8d0","wxbfab0a324f27b966","wx33194c327f50b99d","wx0ae31bf0edad4390","wx7cea45b9ebdf87ac","wx3faf62a5edbb1513","wxbac40ffffdee0573"],"permission":{"scope.userLocation":{"desc":"获取您的位置将会为您推荐该地区最新信息"}}},e}t.default=d,App(n(0).default.createApp(d)),a.default.initPxTransform({"designWidth":750,"deviceRatio":{"640":1.17,"750":1,"828":.905}})},"45":function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{"value":!0}),t.default=function configStore(){return(0,r.createStore)(o.default,r.applyMiddleware.apply(void 0,u))};var r=n(21),a=_interopRequireDefault(n(49)),i=n(50),o=_interopRequireDefault(n(51));function _interopRequireDefault(e){return e&&e.__esModule?e:{"default":e}}var u=[a.default,(0,i.createLogger)()]},"51":function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{"value":!0});var r=n(21),a=_interopRequireDefault(n(52)),i=_interopRequireDefault(n(57)),o=_interopRequireDefault(n(58)),u=_interopRequireDefault(n(59)),s=_interopRequireDefault(n(60)),d=_interopRequireDefault(n(61)),p=_interopRequireDefault(n(62));function _interopRequireDefault(e){return e&&e.__esModule?e:{"default":e}}t.default=(0,r.combineReducers)({"tabbar":a.default,"WechatNotice":i.default,"User":o.default,"msg":u.default,"Personnel":s.default,"Myresume":p.default,"filterClassify":d.default})},"52":function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{"value":!0}),t.default=function tabbar(){var e=0<arguments.length&&void 0!==arguments[0]?arguments[0]:i,t=arguments[1],n=JSON.parse(JSON.stringify(i));switch(n.list.find(function(e){e.id===t.type&&(n.key=e.id)}),t.type){case r.HOME:case r.RECRUIT:case r.RESUME:case r.MEMBER:return n;default:return e}};var r=n(16),a=n(2),i={"list":[{"title":"首页","defaultImg":a.ALIYUNCDN+"/newyupao/images/footer-home.png","activeImg":a.ALIYUNCDN+"/newyupao/images/footer-home-active.png","id":r.HOME},{"title":"招工","defaultImg":a.ALIYUNCDN+"/newyupao/images/footer-zg.png","activeImg":a.ALIYUNCDN+"/newyupao/images/footer-zg-active.png","id":r.RECRUIT},{"title":"发布","defaultImg":a.IMGCDNURL+"tabbar-publish-icon.png","activeImg":a.IMGCDNURL+"tabbar-publish-icon.png","id":"","click":"openPublishMenu"},{"title":"找活","defaultImg":a.ALIYUNCDN+"/newyupao/images/footer-zh.png","activeImg":a.ALIYUNCDN+"/newyupao/images/footer-zh-active.png","id":r.RESUME},{"title":"会员","defaultImg":a.ALIYUNCDN+"/newyupao/images/footer-member.png","activeImg":a.ALIYUNCDN+"/newyupao/images/footer-member-active.png","id":r.MEMBER,"msg":!0}],"key":""}},"57":function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{"value":!0});var r=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var r in n)Object.prototype.hasOwnProperty.call(n,r)&&(e[r]=n[r])}return e};t.default=function WechatNotice(){var e=0<arguments.length&&void 0!==arguments[0]?arguments[0]:o,t=arguments[1];switch(t.type){case i.default:return r({},e,t.data);default:return e}};var a=n(2),i=function _interopRequireDefault(e){return e&&e.__esModule?e:{"default":e}}(n(22));var o={"notice":[],"phone":a.SERVERPHONE,"wechat":{"number":"","outTime":600},"success":!1}},"58":function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{"value":!0});var r=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var r in n)Object.prototype.hasOwnProperty.call(n,r)&&(e[r]=n[r])}return e};t.default=function User(){var e=0<arguments.length&&void 0!==arguments[0]?arguments[0]:s,t=arguments[1];switch(t.type){case o.SET:return r({},e,t.data);case o.GET:if(!e.login){var n=a.default.getStorageSync(i.UserInfo);if(n)return n}return e;default:return e}};var a=function _interopRequireDefault(e){return e&&e.__esModule?e:{"default":e}}(n(0)),i=n(7),o=n(23);var u=a.default.getStorageSync(i.UserInfo),s=u||{"userId":0,"uuid":"","tokenTime":0,"token":"","login":!1}},"59":function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{"value":!0});var r=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var r in n)Object.prototype.hasOwnProperty.call(n,r)&&(e[r]=n[r])}return e};t.default=function msg(){var e=0<arguments.length&&void 0!==arguments[0]?arguments[0]:i,t=arguments[1];switch(t.type){case a.GET:return e;case a.SET:return r({},e,t.data);default:return e}};var a=n(24),i={"jobNumber":0,"messageNumber":0}},"60":function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{"value":!0});var r=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var r in n)Object.prototype.hasOwnProperty.call(n,r)&&(e[r]=n[r])}return e};t.default=function Personnel(){var e=0<arguments.length&&void 0!==arguments[0]?arguments[0]:i,t=arguments[1];switch(t.type){case a.GETDATA:return e;case a.SETDATA:return e=r({},e,t.data);default:return e}};var a=n(25),i={"data":{}}},"61":function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{"value":!0});var r=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var r in n)Object.prototype.hasOwnProperty.call(n,r)&&(e[r]=n[r])}return e};t.default=function msg(){var e=0<arguments.length&&void 0!==arguments[0]?arguments[0]:i,t=arguments[1];switch(t.type){case a.GET:return e;case a.SET:return r({},e,t.data);default:return e}};var a=n(26),i={"classTree":[],"fleamarketTree":[],"jobListType":[],"resumeListType":[],"staffTree":[],"isSet":!1}},"62":function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{"value":!0});var r=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var r in n)Object.prototype.hasOwnProperty.call(n,r)&&(e[r]=n[r])}return e};t.default=function Myresume(){var e=0<arguments.length&&void 0!==arguments[0]?arguments[0]:i,t=arguments[1];switch(t.type){case a.GETLIST:return e;case a.SETLIST:return e=r({},e,t.data);default:return e}};var a=n(27),i={"data":{}}},"63":function(e,t,n){}},[[37,0,1]]]);
+require("./runtime");
+require("./vendors");
+
+(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["app"],{
+
+/***/ "./src/app.scss":
+/*!**********************!*\
+  !*** ./src/app.scss ***!
+  \**********************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
+/***/ "./src/app.tsx":
+/*!*********************!*\
+  !*** ./src/app.tsx ***!
+  \*********************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+
+var _taroTt2 = _interopRequireDefault(_taroTt);
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/redux/index.js");
+
+var _index = __webpack_require__(/*! ./store/index */ "./src/store/index.ts");
+
+var _index2 = _interopRequireDefault(_index);
+
+__webpack_require__(/*! ./app.scss */ "./src/app.scss");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var store = (0, _index2.default)();
+(0, _redux.setStore)(store);
+if (_redux.ReduxContext.Provider) {
+  _redux.ReduxContext.Provider({
+    store: store
+  });
+  _redux.ReduxContext.Provider({
+    store: store
+  });
+}
+
+var _App = function (_BaseComponent) {
+  _inherits(_App, _BaseComponent);
+
+  function _App() {
+    _classCallCheck(this, _App);
+
+    var _this = _possibleConstructorReturn(this, (_App.__proto__ || Object.getPrototypeOf(_App)).apply(this, arguments));
+
+    _this.config = {
+      pages: ['pages/index/index', 'pages/userauth/index', "pages/recruit/publish/index", "pages/used/lists/index", "pages/map/recruit/index", "pages/map/resume/index", "pages/used/publish/index", "pages/used/info/index", "pages/invite/index", "pages/getintegral/index", "pages/integral/source/index", "pages/integral/temp/index", "pages/integral/official/index", "pages/integral/expend/index", "pages/recharge/index", "pages/realname/index", "pages/map/realname/index", "pages/userinfo/index/index", "pages/userinfo/add/index", "pages/userinfo/phone/index", "pages/published/recruit/index", "pages/published/used/index", "pages/collection/index", "pages/help/index", "pages/feedbacklist/index", "pages/feedback/index", "pages/static/invite/index", "pages/information/mymessage/index", "pages/information/system/index", 'pages/integral/tabber/index', 'pages/detail/info/index', 'pages/topping/index', 'pages/topping/distruction/index',
+      // 'pages/topping/recruit/index',//置顶找活范围
+      'pages/resume/detail/index', 'pages/resume/skillList/index', 'pages/resume/projectList/index', 'pages/resume/addProject/index', 'pages/resume/addSkill/index', 'pages/resume/basics/index', 'pages/resume/mine/index', 'pages/resume/recList/index', 'pages/resume/preview/index', 'pages/resume/personInfo/index', 'pages/login/index'],
+      subPackages: [{
+        root: 'subpackage/pages',
+        pages: ['checkauth/index', 'about/index', 'report/index', 'notice/index', 'download/index', 'ranking/index', 'course/index', 'anti-fraud/index']
+      }],
+      window: {
+        backgroundTextStyle: 'light',
+        navigationBarBackgroundColor: '#0099ff',
+        navigationBarTitleText: 'WeChat',
+        navigationBarTextStyle: 'white'
+      },
+      navigateToMiniProgramAppIdList: ['wxca0eab5cd5fe6a7c', 'wxd348efa56021e8d0', 'wxbfab0a324f27b966', 'wx33194c327f50b99d', 'wx0ae31bf0edad4390', 'wx7cea45b9ebdf87ac', 'wx3faf62a5edbb1513', 'wxbac40ffffdee0573' //招标采购
+      ],
+      "permission": {
+        "scope.userLocation": {
+          "desc": "获取您的位置将会为您推荐该地区最新信息"
+        }
+      }
+    };
+    return _this;
+  }
+
+  _createClass(_App, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {}
+  }, {
+    key: 'componentDidShow',
+    value: function componentDidShow() {}
+  }, {
+    key: 'componentDidHide',
+    value: function componentDidHide() {}
+  }, {
+    key: 'componentDidCatchError',
+    value: function componentDidCatchError() {}
+    // 在 App 类中的 render() 函数没有实际作用
+    // 请勿修改此函数
+
+  }, {
+    key: '_createData',
+    value: function _createData() {}
+  }]);
+
+  return _App;
+}(_react.Component);
+
+exports.default = _App;
+
+App(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createApp(_App));
+_taroTt2.default.initPxTransform({
+  "designWidth": 750,
+  "deviceRatio": {
+    "640": 1.17,
+    "750": 1,
+    "828": 0.905
+  }
+});
+
+/***/ }),
+
+/***/ "./src/reducers/filter_classify.ts":
+/*!*****************************************!*\
+  !*** ./src/reducers/filter_classify.ts ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+exports.default = msg;
+
+var _filter_classify = __webpack_require__(/*! ../constants/filter_classify */ "./src/constants/filter_classify.ts");
+
+var DEFAULT_STATE = {
+  classTree: [],
+  fleamarketTree: [],
+  jobListType: [],
+  resumeListType: [],
+  staffTree: [],
+  isSet: false
+};
+function msg() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : DEFAULT_STATE;
+  var action = arguments[1];
+
+  switch (action.type) {
+    case _filter_classify.GET:
+      return state;
+    case _filter_classify.SET:
+      return _extends({}, state, action.data);
+    default:
+      return state;
+  }
+}
+
+/***/ }),
+
+/***/ "./src/reducers/index.ts":
+/*!*******************************!*\
+  !*** ./src/reducers/index.ts ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _redux = __webpack_require__(/*! redux */ "./node_modules/redux/lib/redux.js");
+
+var _tabbar = __webpack_require__(/*! ./tabbar */ "./src/reducers/tabbar.ts");
+
+var _tabbar2 = _interopRequireDefault(_tabbar);
+
+var _wechat_notice = __webpack_require__(/*! ./wechat_notice */ "./src/reducers/wechat_notice.ts");
+
+var _wechat_notice2 = _interopRequireDefault(_wechat_notice);
+
+var _user = __webpack_require__(/*! ./user */ "./src/reducers/user.tsx");
+
+var _user2 = _interopRequireDefault(_user);
+
+var _msg = __webpack_require__(/*! ./msg */ "./src/reducers/msg.ts");
+
+var _msg2 = _interopRequireDefault(_msg);
+
+var _personnel = __webpack_require__(/*! ./personnel */ "./src/reducers/personnel.ts");
+
+var _personnel2 = _interopRequireDefault(_personnel);
+
+var _filter_classify = __webpack_require__(/*! ./filter_classify */ "./src/reducers/filter_classify.ts");
+
+var _filter_classify2 = _interopRequireDefault(_filter_classify);
+
+var _resume = __webpack_require__(/*! ./resume */ "./src/reducers/resume.ts");
+
+var _resume2 = _interopRequireDefault(_resume);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = (0, _redux.combineReducers)({
+  tabbar: _tabbar2.default,
+  WechatNotice: _wechat_notice2.default,
+  User: _user2.default,
+  msg: _msg2.default,
+  Personnel: _personnel2.default,
+  Myresume: _resume2.default,
+  filterClassify: _filter_classify2.default
+});
+
+/***/ }),
+
+/***/ "./src/reducers/msg.ts":
+/*!*****************************!*\
+  !*** ./src/reducers/msg.ts ***!
+  \*****************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+exports.default = msg;
+
+var _msg = __webpack_require__(/*! ../constants/msg */ "./src/constants/msg.ts");
+
+var DEFAULT_STATE = {
+  jobNumber: 0,
+  messageNumber: 0
+};
+function msg() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : DEFAULT_STATE;
+  var action = arguments[1];
+
+  switch (action.type) {
+    case _msg.GET:
+      return state;
+    case _msg.SET:
+      return _extends({}, state, action.data);
+    default:
+      return state;
+  }
+}
+
+/***/ }),
+
+/***/ "./src/reducers/personnel.ts":
+/*!***********************************!*\
+  !*** ./src/reducers/personnel.ts ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+exports.default = Personnel;
+
+var _personnel = __webpack_require__(/*! ../constants/personnel */ "./src/constants/personnel.ts");
+
+// 内容的参数
+var DEFAULT_STATE = {
+  data: {}
+};
+function Personnel() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : DEFAULT_STATE;
+  var action = arguments[1];
+
+  switch (action.type) {
+    case _personnel.GETDATA:
+      return state;
+    case _personnel.SETDATA:
+      state = _extends({}, state, action.data);
+      return state;
+    default:
+      return state;
+  }
+}
+
+/***/ }),
+
+/***/ "./src/reducers/resume.ts":
+/*!********************************!*\
+  !*** ./src/reducers/resume.ts ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+exports.default = Myresume;
+
+var _resume = __webpack_require__(/*! ../constants/resume */ "./src/constants/resume.ts");
+
+// 内容的参数
+var DEFAULT_STATE = {
+  data: {}
+};
+function Myresume() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : DEFAULT_STATE;
+  var action = arguments[1];
+
+  switch (action.type) {
+    case _resume.GETLIST:
+      return state;
+    case _resume.SETLIST:
+      state = _extends({}, state, action.data);
+      return state;
+    default:
+      return state;
+  }
+}
+
+/***/ }),
+
+/***/ "./src/reducers/tabbar.ts":
+/*!********************************!*\
+  !*** ./src/reducers/tabbar.ts ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = tabbar;
+
+var _tabbar = __webpack_require__(/*! ../constants/tabbar */ "./src/constants/tabbar.ts");
+
+var _index = __webpack_require__(/*! ../config/index */ "./src/config/index.ts");
+
+var DEFAULT_MENUS = {
+  list: [{
+    title: '首页',
+    defaultImg: _index.ALIYUNCDN + '/newyupao/images/footer-home.png',
+    activeImg: _index.ALIYUNCDN + '/newyupao/images/footer-home-active.png',
+    id: _tabbar.HOME
+  }, {
+    title: '招工',
+    defaultImg: _index.ALIYUNCDN + '/newyupao/images/footer-zg.png',
+    activeImg: _index.ALIYUNCDN + '/newyupao/images/footer-zg-active.png',
+    id: _tabbar.RECRUIT
+  }, {
+    title: '发布',
+    defaultImg: _index.IMGCDNURL + 'tabbar-publish-icon.png',
+    activeImg: _index.IMGCDNURL + 'tabbar-publish-icon.png',
+    id: '',
+    click: 'openPublishMenu'
+  }, {
+    title: '找活',
+    defaultImg: _index.ALIYUNCDN + '/newyupao/images/footer-zh.png',
+    activeImg: _index.ALIYUNCDN + '/newyupao/images/footer-zh-active.png',
+    id: _tabbar.RESUME
+  }, {
+    title: '会员',
+    defaultImg: _index.ALIYUNCDN + '/newyupao/images/footer-member.png',
+    activeImg: _index.ALIYUNCDN + '/newyupao/images/footer-member-active.png',
+    id: _tabbar.MEMBER,
+    msg: true
+  }],
+  key: ''
+};
+function tabbar() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : DEFAULT_MENUS;
+  var action = arguments[1];
+
+  var newMenus = JSON.parse(JSON.stringify(DEFAULT_MENUS));
+  newMenus.list.find(function (item) {
+    if (item.id === action.type) {
+      newMenus.key = item.id;
+    }
+  });
+  switch (action.type) {
+    case _tabbar.HOME:
+      return newMenus;
+    case _tabbar.RECRUIT:
+      return newMenus;
+    case _tabbar.RESUME:
+      return newMenus;
+    case _tabbar.MEMBER:
+      return newMenus;
+    default:
+      return state;
+  }
+}
+
+/***/ }),
+
+/***/ "./src/reducers/user.tsx":
+/*!*******************************!*\
+  !*** ./src/reducers/user.tsx ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+exports.default = User;
+
+var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+
+var _taroTt2 = _interopRequireDefault(_taroTt);
+
+var _store = __webpack_require__(/*! ../config/store */ "./src/config/store.ts");
+
+var _user = __webpack_require__(/*! ../constants/user */ "./src/constants/user.tsx");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var userInfo = _taroTt2.default.getStorageSync(_store.UserInfo);
+var DEFAULT_STATE = userInfo ? userInfo : {
+  userId: 0,
+  uuid: '',
+  tokenTime: 0,
+  token: '',
+  login: false
+};
+function User() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : DEFAULT_STATE;
+  var action = arguments[1];
+
+  switch (action.type) {
+    case _user.SET:
+      return _extends({}, state, action.data);
+    case _user.GET:
+      if (!state.login) {
+        var _userInfo = _taroTt2.default.getStorageSync(_store.UserInfo);
+        if (_userInfo) return _userInfo;
+      }
+      return state;
+    default:
+      return state;
+  }
+}
+
+/***/ }),
+
+/***/ "./src/reducers/wechat_notice.ts":
+/*!***************************************!*\
+  !*** ./src/reducers/wechat_notice.ts ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+exports.default = WechatNotice;
+
+var _index = __webpack_require__(/*! ../config/index */ "./src/config/index.ts");
+
+var _wechat_notice = __webpack_require__(/*! ../constants/wechat_notice */ "./src/constants/wechat_notice.ts");
+
+var _wechat_notice2 = _interopRequireDefault(_wechat_notice);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var DEFAULT_STATE = {
+  notice: [],
+  phone: _index.SERVERPHONE,
+  wechat: {
+    number: '',
+    outTime: 600
+  },
+  success: false
+};
+function WechatNotice() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : DEFAULT_STATE;
+  var action = arguments[1];
+
+  switch (action.type) {
+    case _wechat_notice2.default:
+      return _extends({}, state, action.data);
+    default:
+      return state;
+  }
+}
+
+/***/ }),
+
+/***/ "./src/store/index.ts":
+/*!****************************!*\
+  !*** ./src/store/index.ts ***!
+  \****************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = configStore;
+
+var _redux = __webpack_require__(/*! redux */ "./node_modules/redux/lib/redux.js");
+
+var _reduxThunk = __webpack_require__(/*! redux-thunk */ "./node_modules/redux-thunk/lib/index.js");
+
+var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
+
+var _reduxLogger = __webpack_require__(/*! redux-logger */ "./node_modules/redux-logger/dist/redux-logger.js");
+
+var _index = __webpack_require__(/*! ../reducers/index */ "./src/reducers/index.ts");
+
+var _index2 = _interopRequireDefault(_index);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var middlewares = [_reduxThunk2.default, (0, _reduxLogger.createLogger)()];
+function configStore() {
+  var store = (0, _redux.createStore)(_index2.default, _redux.applyMiddleware.apply(undefined, middlewares));
+  return store;
+}
+
+/***/ })
+
+},[["./src/app.tsx","runtime","vendors"]]]);;
