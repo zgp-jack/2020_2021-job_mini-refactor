@@ -1,1 +1,1 @@
-{"component":true,"usingComponents":{"at-message":"../../npm/taro-ui/dist/weapp/components/message/index"}}
+{"usingComponents":{"at-message":"../../npm/taro-ui/dist/weapp/components/message/index"}}
