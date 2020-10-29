@@ -1,77 +1,80 @@
-import Taro, { useState } from '@tarojs/taro'
+import Taro, { useState, Config } from '@tarojs/taro'
 import { View, Text, Input } from '@tarojs/components'
 import classnames from 'classnames'
 import './index.scss'
+import Msg, { ShowActionModal } from '../../../utils/msg'
 import {isRequireLen} from '../../../utils/v'
 import { updataPassword } from '../../../utils/request';
 
 
 interface Params {
-    oldPwd: string,
-    onePwd: string,
-    twoPwd: string,
+  oldPwd: ParamsItem,
+  newPwd: ParamsItem,
+  reNewPwd: ParamsItem,
+}
+
+interface ParamsItem {
+  text: string,
+  show: false
 }
 
 export default function Updatapass(){
 
     //提交的数据
     const [paramsData, setParamsData] = useState<Params>({
-        oldPwd: '',
-        onePwd: '',
-        twoPwd: '',
-    })
-
-    const [eyesStatus,setEyesStatus] = useState<Params>({
-        oldPwd: '0',
-        onePwd: '0',
-        twoPwd: '0',
+      oldPwd: {
+        text: '',
+        show: false
+      },
+      newPwd: {
+        text: '',
+        show: false
+      },
+      reNewPwd: {
+        text: '',
+        show: false
+      },
     })
 
     const changeInputType = (type:string)=>{
-        eyesStatus[type] === '0' ? eyesStatus[type] = '1' : eyesStatus[type] = '0';
-        setEyesStatus({...eyesStatus})
+      paramsData[type].show = !paramsData[type].show
+      setParamsData({ ...paramsData})
     }
 
     const enterRePass = (type:string,value:string)=>{
-        paramsData[type] = value;
-        setParamsData({...paramsData})
-    }
-
-    const tost=(str:string)=>{
-        Taro.showToast({
-            title: str,
-            icon: "none",
-            duration: 2000
-        })
+      paramsData[type].text = value;
+      setParamsData({...paramsData})
     }
 
     //提交
     const userUpdataPass = ()=>{
-        if (!isRequireLen(paramsData.oldPwd, 6)) {
-            tost('原密码有误')
+        if (!isRequireLen(paramsData.oldPwd.text, 6)) {
+            Msg('原密码有误')
             return false;
         }
-        if (!isRequireLen(paramsData.onePwd, 6)) {
-            tost("新密码由6-16位数字字母组成!")
+        if (!isRequireLen(paramsData.newPwd.text, 6)) {
+            Msg("新密码由6-16位数字字母组成!")
             return false;
         }
-        if (paramsData.onePwd != paramsData.twoPwd) {
-            tost("两次输入的密码不一致!");
+        if (paramsData.newPwd.text != paramsData.reNewPwd.text) {
+            Msg("两次输入的密码不一致!");
             return false;
         }
 
-        updataPassword(paramsData).then(res=>{
+        const data = {
+          oldPwd: paramsData.oldPwd.text,
+          onePwd: paramsData.newPwd.text,
+          twoPwd: paramsData.reNewPwd.text,
+        }
+
+      updataPassword(data).then(res=>{
             if (res.errcode == "ok") {
-                Taro.showModal({
-                    title: '温馨提示',
-                    content: res.errmsg,
-                    showCancel:false,
-                    success:function(){
-                        Taro.navigateBack()
-                    }
-                })
+              ShowActionModal({
+                msg: res.errmsg,
+                success: () => Taro.navigateBack()
+              })
             }else{
-                tost(res.errmsg);
+              Msg(res.errmsg);
             }
         })
     }
@@ -84,10 +87,10 @@ export default function Updatapass(){
                 <View className='common-publish-item'>
                     <View className='common-publish-item-content common-publish-item-pass'>
                         <Text className='common-publish-words'>原密码</Text>
-                        <Input className='common-publish-Input'  value='' placeholder='请输入旧密码' password={eyesStatus.oldPwd==='1'?false:true} onInput={(e:any)=>enterRePass('oldPwd',e.target.value)}></Input>
+                        <Input className='common-publish-Input'  value='' placeholder='请输入旧密码' password={paramsData.oldPwd.show} onInput={(e:any)=>enterRePass('oldPwd',e.target.value)}></Input>
                         <Text className={classnames({
-                            'pass-eyes-icon':true,
-                            'pass-eyes-icon-active':eyesStatus.oldPwd==='0'?false:true
+                            'pass-eyes-icon': true,
+                            'pass-eyes-icon-active':paramsData.oldPwd.show
                         })}  
                         onClick={()=>{changeInputType('oldPwd')}}></Text>
                     </View>
@@ -98,23 +101,23 @@ export default function Updatapass(){
                 <View className='common-publish-item'>
                     <View className='common-publish-item-content common-publish-item-pass'>
                         <Text className='common-publish-words'>新密码</Text>
-                        <Input className='common-publish-Input'  value='' placeholder='请输入新密码' password={eyesStatus.onePwd==='1'?false:true} onInput={(e:any)=>enterRePass('onePwd',e.target.value)}></Input>
+              <Input className='common-publish-Input' value='' placeholder='请输入新密码' password={paramsData.newPwd.show} onInput={(e: any) => enterRePass('newPwd',e.target.value)}></Input>
                         <Text className={classnames({
                             'pass-eyes-icon':true,
-                            'pass-eyes-icon-active':eyesStatus.onePwd==='0'?false:true
+                            'pass-eyes-icon-active':paramsData.newPwd.show
                         })}  
-                        onClick={()=>{changeInputType('onePwd')}}></Text>
+                onClick={() => { changeInputType('newPwd')}}></Text>
                     </View>
                 </View>
                 <View className='common-publish-item'>
                     <View className='common-publish-item-content common-publish-item-pass'>
                         <Text className='common-publish-words'>确认密码</Text>
-                        <Input className='common-publish-Input'  value='' placeholder='请确认新密码' password={eyesStatus.twoPwd==='1'?false:true} onInput={(e:any)=>enterRePass('twoPwd',e.target.value)}></Input>
+              <Input className='common-publish-Input' value='' placeholder='请确认新密码' password={paramsData.reNewPwd.show} onInput={(e: any) => enterRePass('reNewPwd',e.target.value)}></Input>
                         <Text className={classnames({
                             'pass-eyes-icon':true,
-                            'pass-eyes-icon-active':eyesStatus.twoPwd==='0'?false:true
+                            'pass-eyes-icon-active':paramsData.reNewPwd.show
                         })} 
-                        onClick={()=>{changeInputType('twoPwd')}}></Text>
+                  onClick={() => { changeInputType('reNewPwd')}}></Text>
                     </View>
                 </View>
             </View>
