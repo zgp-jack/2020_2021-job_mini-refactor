@@ -1132,3 +1132,13 @@ export function updataPassword(data): Promise<Inter.Result>{
     data
   })
 }
+
+
+// 实名查询
+export function queryAction(params): Promise<Inter.userQueryAuthInfoData> {
+  return doRequestAction({
+    url: api.realnameQueryUrl,
+    method: 'POST',
+    data: params
+  })
+}

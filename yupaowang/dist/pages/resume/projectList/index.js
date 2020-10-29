@@ -61,7 +61,7 @@ var ProjectList = function (_Taro$Component) {
       navigationBarTitleText: '项目经验'
     };
 
-    _this.$usedState = ["loopArray85", "$compid__68", "data", "IMGCDNURL", "preview", "detail"];
+    _this.$usedState = ["loopArray86", "$compid__68", "data", "IMGCDNURL", "preview", "detail"];
     _this.anonymousFunc0Map = {};
     _this.anonymousFunc1Map = {};
     _this.anonymousFunc2Map = {};
@@ -151,7 +151,7 @@ var ProjectList = function (_Taro$Component) {
       this.anonymousFunc3 = function () {
         return userRouteJump("/pages/resume/addProject/index?id=" + id);
       };
-      var loopArray85 = data.map(function (item, i) {
+      var loopArray86 = data.map(function (item, i) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
@@ -189,7 +189,7 @@ var ProjectList = function (_Taro$Component) {
         "text": "\u6682\u65E0\u76F8\u5173\u5185\u5BB9"
       }, $compid__68, $prevCompid__68);
       Object.assign(this.__state, {
-        loopArray85: loopArray85,
+        loopArray86: loopArray86,
         $compid__68: $compid__68,
         data: data,
         IMGCDNURL: _index2.IMGCDNURL,

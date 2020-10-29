@@ -204,3 +204,5 @@ export const userTelCodeLogin: string = REQUESTURL + 'baidu-auth/code-login/'
 export const userDouyinRecharge: string = REQUESTURL + 'pay/bytedance-order/'
 // 都要用户充值订单检测
 export const userCheckDouyinRecharge: string = REQUESTURL + '/pay/byte-check/'
+// 实名查询
+export const realnameQueryUrl: string = REQUESTURL + 'resume/auth-worker-find/'

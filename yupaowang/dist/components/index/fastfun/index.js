@@ -21,7 +21,7 @@ var Config = [{
   img: _index.IMGCDNURL + 'yqhy.png',
   text: '邀请好友'
 }, {
-  url: 'pages/query/query',
+  url: '/pages/query/index',
   img: _index.IMGCDNURL + 'smcx.png',
   text: '实名查询'
 }, {

@@ -38,6 +38,7 @@ class App extends Component {
       "pages/feedbacklist/index", //意见反馈列表
       "pages/feedback/index", //意见反馈
       "pages/static/invite/index", //新闻资讯
+      "pages/query/index", //实名查询
       "pages/information/mymessage/index", //我的信息
       "pages/information/system/index", //我的信息详情
       'pages/integral/tabber/index', //积分来源顶部

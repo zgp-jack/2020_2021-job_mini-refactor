@@ -61,7 +61,7 @@ var SkillList = function (_Taro$Component) {
       navigationBarTitleText: '技能证书'
     };
 
-    _this.$usedState = ["loopArray84", "data", "IMGCDNURL", "preview", "resume_uuid", "detail"];
+    _this.$usedState = ["loopArray85", "data", "IMGCDNURL", "preview", "resume_uuid", "detail"];
     _this.anonymousFunc0Map = {};
     _this.anonymousFunc1Map = {};
     _this.anonymousFunc2Map = {};
@@ -153,7 +153,7 @@ var SkillList = function (_Taro$Component) {
       this.anonymousFunc3 = function () {
         return userRouteJump("/pages/resume/addSkill/index?id=" + id);
       };
-      var loopArray84 = data.map(function (item, i) {
+      var loopArray85 = data.map(function (item, i) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
@@ -188,7 +188,7 @@ var SkillList = function (_Taro$Component) {
         };
       });
       Object.assign(this.__state, {
-        loopArray84: loopArray84,
+        loopArray85: loopArray85,
         data: data,
         IMGCDNURL: _index2.IMGCDNURL,
         preview: preview,

@@ -69,7 +69,7 @@ var Distruction = function (_Taro$Component) {
       navigationBarTitleText: '招工置顶'
     };
 
-    _this.$usedState = ["searchData", "history", "data", "are", "loopArray76", "loopArray77", "loopArray78", "loopArray79", "clickInput", "inputVal", "onInput", "IMGCDNURL"];
+    _this.$usedState = ["searchData", "history", "data", "are", "loopArray77", "loopArray78", "loopArray79", "loopArray80", "clickInput", "inputVal", "onInput", "IMGCDNURL"];
     _this.anonymousFunc2Map = {};
     _this.anonymousFunc4Map = {};
     _this.anonymousFunc5Map = {};
@@ -622,7 +622,7 @@ var Distruction = function (_Taro$Component) {
       };
       this.anonymousFunc3 = handleCloseHistory;
       this.anonymousFunc8 = handleClick;
-      var loopArray76 = searchData.list.length > 0 ? searchData.list.map(function (v, __index2) {
+      var loopArray77 = searchData.list.length > 0 ? searchData.list.map(function (v, __index2) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
@@ -635,7 +635,7 @@ var Distruction = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray77 = clickInput && !onInput && history.historylist.length > 0 ? history.historylist.map(function (v, __index4) {
+      var loopArray78 = clickInput && !onInput && history.historylist.length > 0 ? history.historylist.map(function (v, __index4) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
@@ -648,7 +648,7 @@ var Distruction = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray78 = data.item.map(function (v, __index5) {
+      var loopArray79 = data.item.map(function (v, __index5) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
@@ -661,7 +661,7 @@ var Distruction = function (_Taro$Component) {
           $original: v.$original
         };
       });
-      var loopArray79 = are.areData.map(function (v, __index7) {
+      var loopArray80 = are.areData.map(function (v, __index7) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
@@ -688,10 +688,10 @@ var Distruction = function (_Taro$Component) {
         history: history,
         data: data,
         are: are,
-        loopArray76: loopArray76,
         loopArray77: loopArray77,
         loopArray78: loopArray78,
         loopArray79: loopArray79,
+        loopArray80: loopArray80,
         clickInput: clickInput,
         inputVal: inputVal,
         onInput: onInput,

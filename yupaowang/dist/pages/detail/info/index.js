@@ -73,7 +73,7 @@ var DetailInfoPage = function (_Taro$Component) {
       navigationBarTitleText: ''
     };
 
-    _this.$usedState = ["data", "loopArray67", "loopArray68", "$compid__62", "$compid__63", "resCode", "editPhone", "IMGCDNURL", "again", "stopHiring", "isCollection", "recommend", "complaintModal", "phone"];
+    _this.$usedState = ["data", "loopArray68", "loopArray69", "$compid__62", "$compid__63", "resCode", "editPhone", "IMGCDNURL", "again", "stopHiring", "isCollection", "recommend", "complaintModal", "phone"];
     _this.anonymousFunc5Map = {};
     _this.customComponents = ["WechatNotice", "CollectionRecruitList", "Report"];
     return _this;
@@ -646,7 +646,7 @@ var DetailInfoPage = function (_Taro$Component) {
       this.anonymousFunc15 = function () {
         _taroTt2.default.makePhoneCall({ phoneNumber: data.tel_str });
       };
-      var loopArray67 = data.classifyName.map(function (v, i) {
+      var loopArray68 = data.classifyName.map(function (v, i) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
@@ -656,7 +656,7 @@ var DetailInfoPage = function (_Taro$Component) {
           $original: v.$original
         };
       });
-      var loopArray68 = data.view_images.length ? data.view_images.map(function (v, i) {
+      var loopArray69 = data.view_images.length ? data.view_images.map(function (v, i) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
@@ -684,8 +684,8 @@ var DetailInfoPage = function (_Taro$Component) {
       }, $compid__63, $prevCompid__63);
       Object.assign(this.__state, {
         data: data,
-        loopArray67: loopArray67,
         loopArray68: loopArray68,
+        loopArray69: loopArray69,
         $compid__62: $compid__62,
         $compid__63: $compid__63,
         resCode: resCode,

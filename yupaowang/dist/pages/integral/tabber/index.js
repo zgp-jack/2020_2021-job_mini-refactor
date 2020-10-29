@@ -75,7 +75,7 @@ var Tabber = function (_Taro$Component) {
       navigationBarTitleText: ''
     };
 
-    _this.$usedState = ["data", "modalData", "loopArray65", "loopArray66", "$compid__60", "$compid__61", "time", "start", "end", "IMGCDNURL", "initInfo", "sourceList", "consumeList", "startType", "modal", "complaintModal", "showTime", "title", "num"];
+    _this.$usedState = ["data", "modalData", "loopArray66", "loopArray67", "$compid__60", "$compid__61", "time", "start", "end", "IMGCDNURL", "initInfo", "sourceList", "consumeList", "startType", "modal", "complaintModal", "showTime", "title", "num"];
     _this.anonymousFunc3Map = {};
     _this.customComponents = ["Nodata", "Report"];
     return _this;
@@ -704,7 +704,7 @@ var Tabber = function (_Taro$Component) {
       this.anonymousFunc6 = function () {
         return handleComplaint(modalData.id);
       };
-      var loopArray65 = data.lists.map(function (item, index) {
+      var loopArray66 = data.lists.map(function (item, index) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
@@ -719,7 +719,7 @@ var Tabber = function (_Taro$Component) {
           $original: item.$original
         };
       });
-      var loopArray66 = initInfo === '1' && modal && modalData ? modalData.classifyName.map(function (v, i) {
+      var loopArray67 = initInfo === '1' && modal && modalData ? modalData.classifyName.map(function (v, i) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
@@ -742,8 +742,8 @@ var Tabber = function (_Taro$Component) {
       Object.assign(this.__state, {
         data: data,
         modalData: modalData,
-        loopArray65: loopArray65,
         loopArray66: loopArray66,
+        loopArray67: loopArray67,
         $compid__60: $compid__60,
         $compid__61: $compid__61,
         time: time,

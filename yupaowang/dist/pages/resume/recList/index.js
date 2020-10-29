@@ -70,7 +70,7 @@ var RecListPage = function (_Taro$Component) {
       enablePullDownRefresh: true
     };
 
-    _this.$usedState = ["data", "loopArray92", "IMGCDNURL", "isDown"];
+    _this.$usedState = ["data", "loopArray93", "IMGCDNURL", "isDown"];
     _this.anonymousFunc1Map = {};
     _this.customComponents = ["Nodata"];
     return _this;
@@ -153,7 +153,7 @@ var RecListPage = function (_Taro$Component) {
       this.anonymousFunc2 = function () {
         return _taroTt2.default.reLaunch({ url: '/pages/index/index?type=' + _tabbar.RESUME });
       };
-      var loopArray92 = data.item.map(function (v, __index1) {
+      var loopArray93 = data.item.map(function (v, __index1) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
@@ -168,7 +168,7 @@ var RecListPage = function (_Taro$Component) {
       });
       Object.assign(this.__state, {
         data: data,
-        loopArray92: loopArray92,
+        loopArray93: loopArray93,
         IMGCDNURL: _index2.IMGCDNURL,
         isDown: isDown
       });

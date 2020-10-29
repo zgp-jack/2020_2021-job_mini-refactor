@@ -16781,7 +16781,7 @@ var Topping = function (_Taro$Component) {
       navigationBarTitleText: '招工置顶'
     };
 
-    _this.$usedState = ["params", "data", "loopArray71", "loopArray72", "loopArray73", "loopArray74", "loopArray75", "province", "IMGCDNURL", "rec", "basics", "type", "list", "displayTime", "num", "endTime", "editData", "newTime", "day", "SERVERPHONE"];
+    _this.$usedState = ["params", "data", "loopArray72", "loopArray73", "loopArray74", "loopArray75", "loopArray76", "province", "IMGCDNURL", "rec", "basics", "type", "list", "displayTime", "num", "endTime", "editData", "newTime", "day", "SERVERPHONE"];
     _this.anonymousFunc0Map = {};
     _this.anonymousFunc1Map = {};
     _this.anonymousFunc2Map = {};
@@ -17787,7 +17787,7 @@ var Topping = function (_Taro$Component) {
       this.anonymousFunc12 = function () {
         _taroTt2.default.makePhoneCall({ phoneNumber: _index2.SERVERPHONE });
       };
-      var loopArray71 = province ? province.map(function (v, __index0) {
+      var loopArray72 = province ? province.map(function (v, __index0) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
@@ -17800,7 +17800,7 @@ var Topping = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray72 = params ? params.city.map(function (v, __index1) {
+      var loopArray73 = params ? params.city.map(function (v, __index1) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
@@ -17813,7 +17813,7 @@ var Topping = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray73 = params ? params.province.map(function (v, __index2) {
+      var loopArray74 = params ? params.province.map(function (v, __index2) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
@@ -17826,7 +17826,7 @@ var Topping = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray74 = params ? params.whole.map(function (v, __index3) {
+      var loopArray75 = params ? params.whole.map(function (v, __index3) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
@@ -17839,7 +17839,7 @@ var Topping = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray75 = data.top_rules.map(function (v, i) {
+      var loopArray76 = data.top_rules.map(function (v, i) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
@@ -17852,11 +17852,11 @@ var Topping = function (_Taro$Component) {
       Object.assign(this.__state, {
         params: params,
         data: data,
-        loopArray71: loopArray71,
         loopArray72: loopArray72,
         loopArray73: loopArray73,
         loopArray74: loopArray74,
         loopArray75: loopArray75,
+        loopArray76: loopArray76,
         province: province,
         IMGCDNURL: _index2.IMGCDNURL,
         rec: rec,
@@ -18260,7 +18260,7 @@ Page(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.userCheckDouyinRecharge = exports.userDouyinRecharge = undefined;
+exports.realnameQueryUrl = exports.userCheckDouyinRecharge = exports.userDouyinRecharge = undefined;
 exports.userTelCodeLogin = exports.userAccountUrl = exports.leavingMessageUrl = exports.resumesComplainUrl = exports.resumesUpdateTopResumeUrl = exports.resumesDoTopV2Url = exports.resumesTopConfigV2Url = exports.resumesEditImgUrl = exports.resumesChangeTopStatusUrl = exports.resumesDoTopUrl = exports.resumesTopConfigUrl = exports.resumesTopAreasUrl = exports.resumesDelProjectUrl = exports.resumesEditEndUrl = exports.resumesIntroduceUrl = exports.resumesGetDataUrl = exports.checkAdcodeUrl = exports.addResumeUrl = exports.resumesProjectUrl = exports.resumesCertificateUrl = exports.delCertificateUrl = exports.jobRecommendListUrl = exports.resumeListUrl = exports.resumeCollectUrl = exports.resumeSupportUrl = exports.resumesGetTelUrl = exports.recommendListUrl = exports.resumeDetailUrl = exports.jobUpdateTopStatusUrl = exports.jobChangeTopAreasUrl = exports.jobGetTopAreasUrl = exports.jobDoTopUrl = exports.jobTopHotAreasUrl = exports.jobTopConfigUrl = exports.jobEndStatusUrl = exports.jobGetTelUrl = exports.jobNoUserInfoUrl = exports.jobInfoUrl = exports.publishComplainUrl = exports.integralUseInfoUrl = exports.integralExpendListsUrl = exports.integralExpendConfigUrl = exports.integralSourceListsUrl = exports.integralSourceConfigUrl = exports.messagesTypeUrl = exports.userMessagesUrl = exports.resumesAddClickLog = exports.resumesSortUrl = exports.newsInfoUrl = exports.newsTypesUrl = exports.newListUrl = exports.helpUrl = exports.feedbackSubmissionUrl = exports.feedbackUrl = exports.requestActionUrl = exports.ResumeCancelCollection = exports.recruitCancelCollection = exports.getCollectionResumeList = exports.getCollectionRecruitList = exports.userUpdateUserInfo = exports.userChangeUsedStatus = exports.userGetPublishedUsedList = exports.userChangeRecruitStatus = exports.userGetPublishedRecruitList = exports.updataPassword = exports.userChangePhone = exports.userUpdateName = exports.userChangeAvatar = exports.postUserAddInfo = exports.getIdcardAuthInfo = exports.postUserAuthInfo = exports.getUserAuthInfo = exports.getMemberMsgNumber = exports.getMemberInfo = exports.CheckMineAuthInfo = exports.CheckAuth = exports.GetUsedInfo = exports.GetUserLoginPhoneCode = exports.GetUserPhoneCode = exports.PublishUsedInfo = exports.GetUsedInfoModel = exports.GetRechargeOrder = exports.GetRechargeOpenid = exports.GetRechargeList = exports.GetUserInviteLink = exports.CheckAdcodeValid = exports.GetAllAreas = exports.PublishRecruitInfo = exports.GetPublisRecruitView = exports.GetIntegralList = exports.GetTabbarMsg = exports.GetListFilterData = exports.GetWechatNotice = exports.GetFleamarketlist = exports.GetResumelist = exports.GetRecruitlist = exports.GetAllListItem = exports.GetBannerNotice = exports.GetUserInfo = exports.GetUserSessionKey = undefined;
 
 var _index = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
@@ -18469,6 +18469,8 @@ var userTelCodeLogin = exports.userTelCodeLogin = _index.REQUESTURL + 'baidu-aut
 var userDouyinRecharge = exports.userDouyinRecharge = _index.REQUESTURL + 'pay/bytedance-order/';
 // 都要用户充值订单检测
 var userCheckDouyinRecharge = exports.userCheckDouyinRecharge = _index.REQUESTURL + '/pay/byte-check/';
+// 实名查询
+var realnameQueryUrl = exports.realnameQueryUrl = _index.REQUESTURL + 'resume/auth-worker-find/';
 
 /***/ }),
 
@@ -18798,6 +18800,7 @@ exports.userTelCodeLogin = userTelCodeLogin;
 exports.userDouyinRecharge = userDouyinRecharge;
 exports.userCheckDouyinRecharge = userCheckDouyinRecharge;
 exports.updataPassword = updataPassword;
+exports.queryAction = queryAction;
 
 var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
 
@@ -19808,6 +19811,14 @@ function updataPassword(data) {
     method: 'POST',
     failToast: true,
     data: data
+  });
+}
+// 实名查询
+function queryAction(params) {
+  return doRequestAction({
+    url: api.realnameQueryUrl,
+    method: 'POST',
+    data: params
   });
 }
 
