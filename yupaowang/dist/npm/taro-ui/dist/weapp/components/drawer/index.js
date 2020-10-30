@@ -1,4 +1,4 @@
-(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["npm/taro-ui/dist/weapp/components/drawer/index"],{
+(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["npm/taro-ui/dist/weapp/components/drawer/index"],{
 
 /***/ "./node_modules/taro-ui/dist/weapp/components/drawer/index.js":
 /*!********************************************************************!*\
@@ -22,9 +22,9 @@ var _get = function get(object, property, receiver) { if (object === null) objec
 
 var _class, _temp2;
 
-var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
+var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
 
-var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
+var _taroTt2 = _interopRequireDefault(_taroTt);
 
 var _propTypes = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
 
@@ -71,7 +71,7 @@ var AtDrawer = (_temp2 = _class = function (_AtComponent) {
         animShow: false,
         _show: props.show
       };
-      this.$$refs = new _taroWeapp2.default.RefsArray();
+      this.$$refs = new _taroTt2.default.RefsArray();
     }
   }, {
     key: 'componentDidMount',
@@ -174,20 +174,20 @@ var AtDrawer = (_temp2 = _class = function (_AtComponent) {
       };
 
       var anonymousState__temp = _show ? (0, _classnames2.default)(rootClassName, classObject, this.__props.className) : null;
-      var anonymousState__temp2 = _show ? (0, _taroWeapp.internal_inline_style)(maskStyle) : null;
-      var anonymousState__temp3 = _show ? (0, _taroWeapp.internal_inline_style)(listStyle) : null;
+      var anonymousState__temp2 = _show ? (0, _taroTt.internal_inline_style)(maskStyle) : null;
+      var anonymousState__temp3 = _show ? (0, _taroTt.internal_inline_style)(listStyle) : null;
       var loopArray19 = items.length ? items.map(function (name, index) {
         name = {
-          $original: (0, _taroWeapp.internal_get_original)(name)
+          $original: (0, _taroTt.internal_get_original)(name)
         };
         var $loopState__temp5 = _show ? items.length ? name.$original + "-" + index : null : null;
 
-        var _genCompid = (0, _taroWeapp.genCompid)(__prefix + 'cazzzzzzzz' + index, true),
+        var _genCompid = (0, _taroTt.genCompid)(__prefix + 'cazzzzzzzz' + index, true),
             _genCompid2 = _slicedToArray(_genCompid, 2),
             $prevCompid__16 = _genCompid2[0],
             $compid__16 = _genCompid2[1];
 
-        _show && items.length && _taroWeapp.propsManager.set({
+        _show && items.length && _taroTt.propsManager.set({
           "onClick": _this5.onItemClick.bind(_this5, index),
           "title": name.$original,
           "arrow": "right"
@@ -233,7 +233,7 @@ AtDrawer.propTypes = {
 };
 exports.default = AtDrawer;
 
-Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(AtDrawer));
+Component(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(AtDrawer));
 
 /***/ })
 

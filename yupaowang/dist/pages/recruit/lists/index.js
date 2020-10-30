@@ -1,4 +1,4 @@
-(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["pages/recruit/lists/index"],{
+(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["pages/recruit/lists/index"],{
 
 /***/ "./src/pages/recruit/lists/index.scss":
 /*!********************************************!*\
@@ -33,9 +33,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
+var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
 
-var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
+var _taroTt2 = _interopRequireDefault(_taroTt);
 
 var _index = __webpack_require__(/*! ../../../utils/request/index */ "./src/utils/request/index.ts");
 
@@ -76,7 +76,7 @@ var Recruit = function (_Taro$Component) {
     key: "_constructor",
     value: function _constructor(props) {
       _get(Recruit.prototype.__proto__ || Object.getPrototypeOf(Recruit.prototype), "_constructor", this).call(this, props);
-      this.$$refs = new _taroWeapp2.default.RefsArray();
+      this.$$refs = new _taroTt2.default.RefsArray();
     }
   }, {
     key: "_createData",
@@ -87,62 +87,62 @@ var Recruit = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__10"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__10"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
           $prevCompid__10 = _genCompid2[0],
           $compid__10 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__11"),
+      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__11"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
           $prevCompid__11 = _genCompid4[0],
           $compid__11 = _genCompid4[1];
 
-      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__12"),
+      var _genCompid5 = (0, _taroTt.genCompid)(__prefix + "$compid__12"),
           _genCompid6 = _slicedToArray(_genCompid5, 2),
           $prevCompid__12 = _genCompid6[0],
           $compid__12 = _genCompid6[1];
       // 输入关键词 没搜索 备份
 
 
-      var _useState = (0, _taroWeapp.useState)(''),
+      var _useState = (0, _taroTt.useState)(''),
           _useState2 = _slicedToArray(_useState, 2),
           remark = _useState2[0],
           setRemark = _useState2[1];
       // * 获取选择城市缓存
 
 
-      var userListChooseCity = _taroWeapp2.default.getStorageSync(_store.UserListChooseCity);
+      var userListChooseCity = _taroTt2.default.getStorageSync(_store.UserListChooseCity);
       // * 配置筛选条件
 
-      var _useState3 = (0, _taroWeapp.useState)([{ id: _lists.AreaPickerKey, text: userListChooseCity ? userListChooseCity.name : '全国' }, { id: _lists.ClassifyPickerKey, text: '选择工种' }, { id: _lists.FilterPickerKey, text: '最新' }]),
+      var _useState3 = (0, _taroTt.useState)([{ id: _lists.AreaPickerKey, text: userListChooseCity ? userListChooseCity.name : '全国' }, { id: _lists.ClassifyPickerKey, text: '选择工种' }, { id: _lists.FilterPickerKey, text: '最新' }]),
           _useState4 = _slicedToArray(_useState3, 2),
           condition = _useState4[0],
           setCondition = _useState4[1];
       // * scrollTop 位置 回到顶部
 
 
-      var _useState5 = (0, _taroWeapp.useState)(0),
+      var _useState5 = (0, _taroTt.useState)(0),
           _useState6 = _slicedToArray(_useState5, 2),
           scrollTop = _useState6[0],
           setScrollTop = _useState6[1];
       // * 标记是否是在刷新状态
 
 
-      var _useState7 = (0, _taroWeapp.useState)(false),
+      var _useState7 = (0, _taroTt.useState)(false),
           _useState8 = _slicedToArray(_useState7, 2),
           refresh = _useState8[0],
           setRefresh = _useState8[1];
       // * 定义列表数组
 
 
-      var _useState9 = (0, _taroWeapp.useState)([]),
+      var _useState9 = (0, _taroTt.useState)([]),
           _useState10 = _slicedToArray(_useState9, 2),
           lists = _useState10[0],
           setLists = _useState10[1];
       // * 定义data
 
 
-      var _useState11 = (0, _taroWeapp.useState)({
+      var _useState11 = (0, _taroTt.useState)({
         page: 1,
         list_type: 'job',
         area_id: userListChooseCity ? userListChooseCity.id : '',
@@ -169,7 +169,7 @@ var Recruit = function (_Taro$Component) {
       // 用户定位之后重新设置搜索条件
       var resetLocationSearch = function resetLocationSearch(data) {
         var city = (0, _area.getCityInfo)(data);
-        _taroWeapp2.default.setStorageSync(_store.UserListChooseCity, city); //第一次默认选中
+        _taroTt2.default.setStorageSync(_store.UserListChooseCity, city); //第一次默认选中
         setLists([]);
         editConditionAction('area', city.name);
         setSearchData(_extends({}, searchData, { page: 1, area_id: city.id }));
@@ -180,7 +180,7 @@ var Recruit = function (_Taro$Component) {
         if (userListChooseCity) {
           setSearchData(_extends({}, searchData, { page: 1, area_id: userListChooseCity.id }));
         } else {
-          var userLocationCity = _taroWeapp2.default.getStorageSync(_store.UserLocationCity);
+          var userLocationCity = _taroTt2.default.getStorageSync(_store.UserLocationCity);
           if (userLocationCity) {
             resetLocationSearch(userLocationCity);
             return;
@@ -189,7 +189,7 @@ var Recruit = function (_Taro$Component) {
             resetLocationSearch(gpsLocation);
           }).catch(function () {
             // 拒绝授权默认全国
-            _taroWeapp2.default.setStorageSync(_store.UserListChooseCity, _area.AREACHINA);
+            _taroTt2.default.setStorageSync(_store.UserListChooseCity, _area.AREACHINA);
             setLists([]);
             setSearchData(_extends({}, searchData, { page: 1, area_id: _area.AREACHINA.id }));
           });
@@ -198,7 +198,7 @@ var Recruit = function (_Taro$Component) {
       // 请求列表方法
       var getRecruitListAction = function getRecruitListAction() {
         (0, _index.getRecruitList)(searchData).then(function (res) {
-          _taroWeapp2.default.hideNavigationBarLoading();
+          _taroTt2.default.hideNavigationBarLoading();
           if (searchData.page === 1) {
             setLists([[].concat(_toConsumableArray(res.data))]);
           } else setLists([].concat(_toConsumableArray(lists), [[].concat(_toConsumableArray(res.data))]));
@@ -208,7 +208,7 @@ var Recruit = function (_Taro$Component) {
         });
       };
       // * 请求列表数据
-      (0, _taroWeapp.useEffect)(function () {
+      (0, _taroTt.useEffect)(function () {
         getRecruitListAction();
         if (!searchData.area_id) {
           getUserLocation();
@@ -216,7 +216,7 @@ var Recruit = function (_Taro$Component) {
       }, [searchData]);
       // * 触底加载下一页
       var getNextPageData = function getNextPageData() {
-        _taroWeapp2.default.showNavigationBarLoading();
+        _taroTt2.default.showNavigationBarLoading();
         setSearchData(_extends({}, searchData, { page: searchData.page + 1 }));
       };
       // * 监听下拉刷新
@@ -226,7 +226,7 @@ var Recruit = function (_Taro$Component) {
       };
       // * 发布招工
       var userPublishRecruit = function userPublishRecruit() {
-        _taroWeapp2.default.navigateTo({ url: '/pages/recruit/publish/index' });
+        _taroTt2.default.navigateTo({ url: '/pages/recruit/publish/index' });
       };
       // * 更新筛选条件
       var setSearchDataAction = function setSearchDataAction(type, id, text) {
@@ -279,21 +279,21 @@ var Recruit = function (_Taro$Component) {
       this.anonymousFunc2 = function () {
         return getNextPageData();
       };
-      var anonymousState__temp4 = (0, _taroWeapp.internal_inline_style)({ height: '8px' });
+      var anonymousState__temp4 = (0, _taroTt.internal_inline_style)({ height: '8px' });
       this.anonymousFunc3 = function () {
         return userPublishRecruit();
       };
-      _taroWeapp.propsManager.set({
+      _taroTt.propsManager.set({
         "placeholder": "\u627E\u6D3B\u3001\u627E\u5DE5\u4F5C",
         "value": "",
         "setRemark": anonymousState__temp,
         "setSearchData": anonymousState__temp2
       }, $compid__10, $prevCompid__10);
-      _taroWeapp.propsManager.set({
+      _taroTt.propsManager.set({
         "data": condition,
         "setSearchData": anonymousState__temp3
       }, $compid__11, $prevCompid__11);
-      _taroWeapp.propsManager.set({
+      _taroTt.propsManager.set({
         "data": lists
       }, $compid__12, $prevCompid__12);
       Object.assign(this.__state, {
@@ -332,13 +332,13 @@ var Recruit = function (_Taro$Component) {
   }]);
 
   return Recruit;
-}(_taroWeapp2.default.Component);
+}(_taroTt2.default.Component);
 
 Recruit.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3"];
 Recruit.$$componentPath = "pages/recruit/lists/index";
 exports.default = Recruit;
 
-Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(Recruit));
+Component(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(Recruit));
 
 /***/ })
 

@@ -1,4 +1,4 @@
-(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["pages/recruit/publish/index"],{
+(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["pages/recruit/publish/index"],{
 
 /***/ "./src/hooks/publish/recruit.ts":
 /*!**************************************!*\
@@ -20,9 +20,9 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
 exports.default = usePublishViewInfo;
 
-var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
+var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
 
-var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
+var _taroTt2 = _interopRequireDefault(_taroTt);
 
 var _index = __webpack_require__(/*! ../../utils/request/index */ "./src/utils/request/index.ts");
 
@@ -54,54 +54,45 @@ function usePublishViewInfo(InitParams) {
   });
   // 视图显示信息
 
-  var _useState = (0, _taroWeapp.useState)(),
+  var _useState = (0, _taroTt.useState)(),
       _useState2 = _slicedToArray(_useState, 2),
       model = _useState2[0],
       setModel = _useState2[1];
   // 是否展开图片上传
 
 
-  var _useState3 = (0, _taroWeapp.useState)(false),
+  var _useState3 = (0, _taroTt.useState)(false),
       _useState4 = _slicedToArray(_useState3, 2),
       showUpload = _useState4[0],
       setShowUpload = _useState4[1];
   // 是否显示工种选择
 
 
-  var _useState5 = (0, _taroWeapp.useState)(false),
+  var _useState5 = (0, _taroTt.useState)(false),
       _useState6 = _slicedToArray(_useState5, 2),
       showProfession = _useState6[0],
       setShowProssion = _useState6[1];
-  // 当前显示城市
-  // const [area, setArea] = useState<string>(AREABEIJING.name)
   // 招工详情的字数
 
 
-  var _useState7 = (0, _taroWeapp.useState)(0),
+  var _useState7 = (0, _taroTt.useState)(0),
       _useState8 = _slicedToArray(_useState7, 2),
       num = _useState8[0],
       setNum = _useState8[1];
   // 备份手机号码
 
 
-  var _useState9 = (0, _taroWeapp.useState)(''),
+  var _useState9 = (0, _taroTt.useState)(''),
       _useState10 = _slicedToArray(_useState9, 2),
       phone = _useState10[0],
       setPhone = _useState10[1];
   // 备份当前数据 用于强制修改判断
 
 
-  var _useState11 = (0, _taroWeapp.useState)({}),
+  var _useState11 = (0, _taroTt.useState)({}),
       _useState12 = _slicedToArray(_useState11, 2),
       bakModel = _useState12[0],
       setBakModel = _useState12[1];
-  // 选择详细地址信息
-  // const [areaInfo, setAreaInfo] = useState<UserLastPublishRecruitArea>({
-  //   title: '',
-  //   adcode:'',
-  //   location: '',
-  //   info: ''
-  // })
   //获取redux中发布招工区域详细数据
 
 
@@ -109,13 +100,10 @@ function usePublishViewInfo(InitParams) {
     return state.MyAreaInfo;
   });
   // 获取redux中区域名称数据
-  var area = (0, _redux.useSelector)(function (state) {
-    return state.MyArea;
-  });
   // 获取dispatch分发action
   var dispatch = (0, _redux.useDispatch)();
   // 初始化招工信息
-  (0, _taroWeapp.useEffect)(function () {
+  (0, _taroTt.useEffect)(function () {
     // 判断是否登录，没有登录直接返回
     if (!login) return;
     (0, _index.getPublishRecruitView)(InitParams).then(function (res) {
@@ -151,7 +139,6 @@ function usePublishViewInfo(InitParams) {
         if (InitViewInfo.is_check == 0) bakModelInfo(InitViewInfo);
         // 将数据保存到redux中的areaInfo中
         dispatch((0, _recruit.setAreaInfo)(_extends({}, areaInfo, { title: InitViewInfo.address })));
-        // setAreaInfo({ ...areaInfo, title: InitViewInfo.address })
         // 保存手机号
         setPhone(InitViewInfo.user_mobile);
         // 如果有上传图片保存图片showUpload中
@@ -163,7 +150,7 @@ function usePublishViewInfo(InitParams) {
         (0, _index3.ShowActionModal)({
           msg: res.errmsg,
           success: function success() {
-            _taroWeapp2.default.navigateBack();
+            _taroTt2.default.navigateBack();
           }
         });
       }
@@ -175,19 +162,15 @@ function usePublishViewInfo(InitParams) {
     //  如果传递参数有infoid代表是修改，保存修改的里面默认区域数据
     if (InitParams.infoId) {
       dispatch((0, _recruit.setArea)(data.default_search_name.name));
-      // setArea(data.default_search_name.name)
     } else {
-      var userLoctionCity = _taroWeapp2.default.getStorageSync(_store.UserLocationCity);
+      var userLoctionCity = _taroTt2.default.getStorageSync(_store.UserLocationCity);
       if (userLoctionCity) {
         dispatch((0, _recruit.setArea)(userLoctionCity.city));
-        // setArea(userLoctionCity.city)
       } else {
         (0, _index2.userAuthLoction)().then(function (res) {
           dispatch((0, _recruit.setArea)(res.city));
-          // setArea(res.city)
         }).then(function () {
           dispatch((0, _recruit.setArea)(_area.AREABEIJING.name));
-          // setArea(AREABEIJING.name)
         });
       }
     }
@@ -199,18 +182,11 @@ function usePublishViewInfo(InitParams) {
         info: '',
         adcode: data.model.adcode || ''
       }));
-      // setAreaInfo({
-      //   title: data.model.address,
-      //   location: data.model.location,
-      //   info: '',
-      //   adcode: data.model.adcode || ''
-      // })
     } else {
       // 获取用户最后发布的区域信息
-      var userLastPublishArea = _taroWeapp2.default.getStorageSync(_store.UserLastPublishArea);
+      var userLastPublishArea = _taroTt2.default.getStorageSync(_store.UserLastPublishArea);
       if (userLastPublishArea) {
         dispatch((0, _recruit.setAreaInfo)(userLastPublishArea));
-        // setAreaInfo(userLastPublishArea)
       }
     }
   }
@@ -316,11 +292,15 @@ function usePublishViewInfo(InitParams) {
           (0, _index3.SubPopup)({
             tips: res.errmsg,
             callback: function callback() {
-              _taroWeapp2.default.reLaunch({
+              _taroTt2.default.reLaunch({
                 url: '/pages/published/recruit/index'
               });
             }
           });
+        });
+      } else {
+        (0, _index3.ShowActionModal)({
+          msg: res.errmsg
         });
       }
     });
@@ -358,7 +338,6 @@ function usePublishViewInfo(InitParams) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.context = undefined;
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -368,9 +347,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
+var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
 
-var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
+var _taroTt2 = _interopRequireDefault(_taroTt);
 
 var _index = __webpack_require__(/*! ../../../hooks/code/index */ "./src/hooks/code/index.ts");
 
@@ -390,6 +369,8 @@ var _index6 = _interopRequireDefault(_index5);
 
 __webpack_require__(/*! ./index.scss */ "./src/pages/recruit/publish/index.scss");
 
+var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/redux/index.js");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
@@ -399,15 +380,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-// context类型
-// export interface Injected {
-//   area: string, // 城市名称
-//   setArea: (city: string)=>void, //设置城市名称
-//   setAreaInfo?: (item: UserLastPublishRecruitArea)=>void, // 用户点击的小地址信息
-//   setPublishArea?: (val: string)=> void //设置最后一次点击 城市的名字
-// }
-var context = exports.context = (0, _taroWeapp.createContext)({});
 
 var PublishRecruit = function (_Taro$Component) {
   _inherits(PublishRecruit, _Taro$Component);
@@ -424,7 +396,7 @@ var PublishRecruit = function (_Taro$Component) {
       backgroundTextStyle: "dark"
     };
 
-    _this.$usedState = ["model", "$compid__81", "$compid__82", "$compid__83", "showProfession", "phone", "showUpload", "text"];
+    _this.$usedState = ["model", "$compid__25", "$compid__26", "$compid__27", "showProfession", "areaInfo", "phone", "showUpload", "text"];
     _this.customComponents = ["Auth", "Profession", "WordsTotal", "ImageView"];
     return _this;
   }
@@ -433,7 +405,7 @@ var PublishRecruit = function (_Taro$Component) {
     key: "_constructor",
     value: function _constructor(props) {
       _get(PublishRecruit.prototype.__proto__ || Object.getPrototypeOf(PublishRecruit.prototype), "_constructor", this).call(this, props);
-      this.$$refs = new _taroWeapp2.default.RefsArray();
+      this.$$refs = new _taroTt2.default.RefsArray();
     }
   }, {
     key: "_createData",
@@ -444,27 +416,31 @@ var PublishRecruit = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__81"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__25"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__81 = _genCompid2[0],
-          $compid__81 = _genCompid2[1];
+          $prevCompid__25 = _genCompid2[0],
+          $compid__25 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__82"),
+      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__26"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__82 = _genCompid4[0],
-          $compid__82 = _genCompid4[1];
+          $prevCompid__26 = _genCompid4[0],
+          $compid__26 = _genCompid4[1];
 
-      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__83"),
+      var _genCompid5 = (0, _taroTt.genCompid)(__prefix + "$compid__27"),
           _genCompid6 = _slicedToArray(_genCompid5, 2),
-          $prevCompid__83 = _genCompid6[0],
-          $compid__83 = _genCompid6[1];
+          $prevCompid__27 = _genCompid6[0],
+          $compid__27 = _genCompid6[1];
       // 获取路由参数
 
 
-      var router = (0, _taroWeapp.useRouter)();
+      var router = (0, _taroTt.useRouter)();
       var id = router.params.id || '';
       var type = 'job';
       var InitParams = { type: type, infoId: id };
+      //获取redux中发布招工区域详细数据
+      var areaInfo = (0, _redux.useSelector)(function (state) {
+        return state.MyAreaInfo;
+      });
       // 初始化当前信息
 
       var _usePublishViewInfo = (0, _recruit2.default)(InitParams),
@@ -478,16 +454,6 @@ var PublishRecruit = function (_Taro$Component) {
           num = _usePublishViewInfo.num,
           setNum = _usePublishViewInfo.setNum,
           phone = _usePublishViewInfo.phone;
-      // 需要传递的值
-      // const value: Injected = {
-      //   area: area,
-      //   setArea: (city: string)=>setArea(city),
-      //   setAreaInfo: (item: UserLastPublishRecruitArea) => setAreaInfo(item),
-      //   setPublishArea: (val: string) => {
-      //     if(!model) return
-      //     setModel({ ...model, address: val })
-      //   }
-      // }
       // 使用自定义验证码hook
 
 
@@ -523,7 +489,7 @@ var PublishRecruit = function (_Taro$Component) {
           return;
         }
         var url = '/pages/map/recruit/index';
-        _taroWeapp2.default.navigateTo({
+        _taroTt2.default.navigateTo({
           url: url
         });
       };
@@ -610,27 +576,28 @@ var PublishRecruit = function (_Taro$Component) {
       this.anonymousFunc10 = function () {
         return userPublishRecruitAction();
       };
-      showProfession && _taroWeapp.propsManager.set({
+      showProfession && _taroTt.propsManager.set({
         "closeProfession": closeProfession,
         "data": model && model.classifyTree,
         "onClickItem": this.anonymousFunc0,
         "num": 3
-      }, $compid__81, $prevCompid__81);
-      _taroWeapp.propsManager.set({
+      }, $compid__25, $prevCompid__25);
+      _taroTt.propsManager.set({
         "num": num
-      }, $compid__82, $prevCompid__82);
-      showUpload && model && _taroWeapp.propsManager.set({
+      }, $compid__26, $prevCompid__26);
+      showUpload && model && _taroTt.propsManager.set({
         "images": model.view_images,
         "max": model.maxImageCount,
         "userUploadImg": userUploadImg,
         "userDelImg": userDelImg
-      }, $compid__83, $prevCompid__83);
+      }, $compid__27, $prevCompid__27);
       Object.assign(this.__state, {
         model: model,
-        $compid__81: $compid__81,
-        $compid__82: $compid__82,
-        $compid__83: $compid__83,
+        $compid__25: $compid__25,
+        $compid__26: $compid__26,
+        $compid__27: $compid__27,
         showProfession: showProfession,
+        areaInfo: areaInfo,
         phone: phone,
         showUpload: showUpload,
         text: text
@@ -695,14 +662,14 @@ var PublishRecruit = function (_Taro$Component) {
   }]);
 
   return PublishRecruit;
-}(_taroWeapp2.default.Component);
+}(_taroTt2.default.Component);
 
 PublishRecruit.$$events = ["anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6", "anonymousFunc7", "anonymousFunc8", "anonymousFunc9", "anonymousFunc10"];
 PublishRecruit.$$componentPath = "pages/recruit/publish/index";
 PublishRecruit.config = { navigationBarTitleText: '发布招工', navigationBarBackgroundColor: '#0099ff', navigationBarTextStyle: 'white', backgroundTextStyle: "dark" };
 exports.default = PublishRecruit;
 
-Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(PublishRecruit, true));
+Page(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(PublishRecruit, true));
 
 /***/ })
 

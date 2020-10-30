@@ -1,4 +1,4 @@
-(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["subpackage/pages/notice/index"],{
+(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["subpackage/pages/notice/index"],{
 
 /***/ "./src/subpackage/pages/notice/index.scss":
 /*!************************************************!*\
@@ -31,9 +31,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
+var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
 
-var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
+var _taroTt2 = _interopRequireDefault(_taroTt);
 
 var _index = __webpack_require__(/*! ../../../utils/request/index */ "./src/utils/request/index.ts");
 
@@ -68,7 +68,7 @@ var Notice = function (_Taro$Component) {
     key: "_constructor",
     value: function _constructor(props) {
       _get(Notice.prototype.__proto__ || Object.getPrototypeOf(Notice.prototype), "_constructor", this).call(this, props);
-      this.$$refs = new _taroWeapp2.default.RefsArray();
+      this.$$refs = new _taroTt2.default.RefsArray();
     }
   }, {
     key: "_createData",
@@ -78,15 +78,15 @@ var Notice = function (_Taro$Component) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var router = (0, _taroWeapp.useRouter)();
+      var router = (0, _taroTt.useRouter)();
       var id = router.params.id;
 
-      var _useState = (0, _taroWeapp.useState)(),
+      var _useState = (0, _taroTt.useState)(),
           _useState2 = _slicedToArray(_useState, 2),
           data = _useState2[0],
           setData = _useState2[1];
 
-      (0, _taroWeapp.useEffect)(function () {
+      (0, _taroTt.useEffect)(function () {
         (0, _index.newsInfoAction)(id).then(function (res) {
           // 图片显示有问题，设置他的最大宽度
           var ImgData = res.data.content.replace(/\<img/gi, '<img style="max-width:100%;height:auto"');
@@ -102,14 +102,14 @@ var Notice = function (_Taro$Component) {
   }]);
 
   return Notice;
-}(_taroWeapp2.default.Component);
+}(_taroTt2.default.Component);
 
 Notice.$$events = [];
 Notice.$$componentPath = "subpackage/pages/notice/index";
 Notice.config = { navigationBarTitleText: '咨讯详情' };
 exports.default = Notice;
 
-Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(Notice, true));
+Page(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(Notice, true));
 
 /***/ })
 

@@ -1,6 +1,5 @@
-import Taro, { useEffect, useState, useContext } from '@tarojs/taro'
+import Taro, { useEffect, useState } from '@tarojs/taro'
 import { View, Text, Image, Input } from '@tarojs/components'
-// import { context } from '../../recruit/publish'
 import { getAllAreas, checkAdcodeValid } from '../../../utils/request'
 import { AllAreasDataItem } from '../../../utils/request/index.d'
 import { IMGCDNURL, UserPublishAreaHistoryMaxNum } from '../../../config'
@@ -12,8 +11,7 @@ import { InputPoiListTips } from '../../../utils/helper/index.d'
 import Msg, { ShowActionModal } from '../../../utils/msg'
 import './index.scss'
 import { useSelector, useDispatch } from '@tarojs/redux'
-import { UserLastPublishRecruitArea } from '../../../pages/recruit/index.d'
-import { setAreaInfo, getAreaInfo, setArea, getArea } from '../../../actions/recruit'//获取发布招工信息action
+import { setAreaInfo, setArea } from '../../../actions/recruit'//获取发布招工信息action
 
 
 const PI = Math.PI;  // 数学 PI 常亮
@@ -23,10 +21,8 @@ export default function RecruitMap(){
 
   // 城市数据
   const [areas, setAreas] = useState<AllAreasDataItem[][]>([])
-  //获取redux中发布招工区域详细数据
-  const areaInfo:UserLastPublishRecruitArea = useSelector(state=>state.MyAreaInfo)
   // 获取redux中区域名称数据
-  const area:string = useSelector(state=>state.MyArea)
+  const area:string = useSelector<any,string>(state=>state.MyArea)
   // 获取dispatch分发action
   const dispatch = useDispatch()
 
@@ -51,8 +47,6 @@ export default function RecruitMap(){
   })
   // 是否显示城市
   const [showCity, setShowCity] = useState<boolean>(false)
-  // 使用发布招工hook处理数据
-  // const { area, setArea, setAreaInfo, setPublishArea } = useContext(context)
   // 详细地址的输入框
   const [smAreaText, setSmAreaText] = useState<string>('')
   // 关键词地区列表
@@ -191,13 +185,6 @@ export default function RecruitMap(){
             adcode: item.adcode,
             info: item.district
           })) 
-          // setAreaInfo({
-          //   title: item.name,
-          //   location: item.location,
-          //   adcode: item.adcode,
-          //   info: item.district
-          // })
-          setPublishArea && setPublishArea(item.name)
         }
         Taro.navigateBack()
       }

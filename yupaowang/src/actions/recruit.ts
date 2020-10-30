@@ -1,4 +1,4 @@
-import { SETAREAINFO, SETAREAINFO, SETAREA, GETAREA } from '../constants/recruit'
+import { SETAREAINFO, GETAREAINFO, SETAREA, GETAREA } from '../constants/recruit'
 
 export function setAreaInfo(data:any) {
   return {

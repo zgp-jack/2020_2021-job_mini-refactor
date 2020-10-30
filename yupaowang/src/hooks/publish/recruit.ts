@@ -9,11 +9,10 @@ import Msg, { ShowActionModal, SubPopup } from '../../utils/msg'
 import { SubscribeToNews } from '../../utils/subscribeToNews';
 import { useSelector, useDispatch } from '@tarojs/redux'
 import { isVaildVal, isPhone } from '../../utils/v'
-import { setAreaInfo, getAreaInfo, setArea, getArea } from '../../actions/recruit'//获取发布招工信息action
+import { setAreaInfo, setArea } from '../../actions/recruit'//获取发布招工信息action
 
 
 export default function usePublishViewInfo(InitParams: InitRecruitView){
-
   // 获取用户信息
   const login = useSelector<any, boolean>(state => state.User['login'])
   // 视图显示信息
@@ -22,25 +21,15 @@ export default function usePublishViewInfo(InitParams: InitRecruitView){
   const [showUpload, setShowUpload] = useState<boolean>(false)
   // 是否显示工种选择
   const [showProfession, setShowProssion] = useState<boolean>(false)
-  // 当前显示城市
-  // const [area, setArea] = useState<string>(AREABEIJING.name)
   // 招工详情的字数
   const [num, setNum] = useState<number>(0)
   // 备份手机号码
   const [phone, setPhone] = useState<string>('')
   // 备份当前数据 用于强制修改判断
   const [bakModel, setBakModel] = useState({})
-  // 选择详细地址信息
-  // const [areaInfo, setAreaInfo] = useState<UserLastPublishRecruitArea>({
-  //   title: '',
-  //   adcode:'',
-  //   location: '',
-  //   info: ''
-  // })
   //获取redux中发布招工区域详细数据
-  const areaInfo:UserLastPublishRecruitArea = useSelector(state=>state.MyAreaInfo)
+  const areaInfo:UserLastPublishRecruitArea = useSelector<any,UserLastPublishRecruitArea>(state=>state.MyAreaInfo)
   // 获取redux中区域名称数据
-  const area:string = useSelector(state=>state.MyArea)
   // 获取dispatch分发action
   const dispatch = useDispatch()
 
@@ -81,7 +70,6 @@ export default function usePublishViewInfo(InitParams: InitRecruitView){
         if (InitViewInfo.is_check == 0) bakModelInfo(InitViewInfo)
         // 将数据保存到redux中的areaInfo中
         dispatch(setAreaInfo({ ...areaInfo, title: InitViewInfo.address }))
-        // setAreaInfo({ ...areaInfo, title: InitViewInfo.address })
         // 保存手机号
         setPhone(InitViewInfo.user_mobile)
         // 如果有上传图片保存图片showUpload中
@@ -106,19 +94,15 @@ export default function usePublishViewInfo(InitParams: InitRecruitView){
     //  如果传递参数有infoid代表是修改，保存修改的里面默认区域数据
     if (InitParams.infoId){ 
       dispatch(setArea(data.default_search_name.name))
-      // setArea(data.default_search_name.name)
     }else{
       let userLoctionCity: UserLocationPromiss = Taro.getStorageSync(UserLocationCity)
       if(userLoctionCity){
         dispatch(setArea(userLoctionCity.city))
-        // setArea(userLoctionCity.city)
       }else{
         userAuthLoction().then(res=>{
           dispatch(setArea(res.city))
-          // setArea(res.city)
         }).then(()=>{
           dispatch(setArea(AREABEIJING.name))
-          // setArea(AREABEIJING.name)
         })
       }
     }
@@ -131,18 +115,11 @@ export default function usePublishViewInfo(InitParams: InitRecruitView){
         info: '',
         adcode: data.model.adcode || ''
       }))
-      // setAreaInfo({
-      //   title: data.model.address,
-      //   location: data.model.location,
-      //   info: '',
-      //   adcode: data.model.adcode || ''
-      // })
     }else{
       // 获取用户最后发布的区域信息
       let userLastPublishArea: UserLastPublishRecruitArea = Taro.getStorageSync(UserLastPublishArea)
       if (userLastPublishArea) {
         dispatch(setAreaInfo(userLastPublishArea))
-        // setAreaInfo(userLastPublishArea)
       }
     }
     
@@ -253,6 +230,10 @@ export default function usePublishViewInfo(InitParams: InitRecruitView){
               })
             }
           })
+        })
+      }else{
+        ShowActionModal({
+          msg: res.errmsg
         })
       }
     })
