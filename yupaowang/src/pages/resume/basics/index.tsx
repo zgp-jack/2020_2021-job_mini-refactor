@@ -24,9 +24,6 @@ export default function BasicsPage() {
   console.log(useSelectorItem,'dadasd')
   //选择地址传过来的内容
   const { publishArea, location, adcode } = useContext(contextItem);
-  //公用数据，工种，民族
-  // const publicList:any=[];
-  // const { publicList } = useContext(context);
   // 验证码
   const { text, userGetCode } = useCode()
   // 当前显示城市

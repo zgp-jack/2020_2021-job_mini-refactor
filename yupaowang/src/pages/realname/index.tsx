@@ -1,4 +1,4 @@
-import Taro, { Config, createContext, useDidShow } from '@tarojs/taro'
+import Taro, { Config, useDidShow } from '@tarojs/taro'
 import { View, Text, Input, Image, Button, Picker } from '@tarojs/components'
 import { ALIYUNCDN, IMGCDNURL } from '../../config'
 import useRealname from '../../hooks/realname'
@@ -6,6 +6,8 @@ import { PostUserAuthInfo } from '../../hooks/index.d'
 import useCode from '../../hooks/code'
 import { UserAuthInfoMemberExtData } from '../../utils/request/index.d'
 import { isPhone } from '../../utils/v'
+import { useDispatch } from '@tarojs/redux'
+import { setData } from '../../actions/realname'
 import Msg from '../../utils/msg'
 // import { Injected } from '../recruit/publish'
 import './index.scss'
@@ -14,7 +16,6 @@ export interface Injected {
   RealnameArea: string,
   setRealnameArea: (city: string) => void,
 }
-export const context = createContext<Injected>({} as Injected)
 
 export default function RealName(){
   // 使用 实名hook 与 获取短信验证码hook
@@ -24,6 +25,8 @@ export default function RealName(){
     RealnameArea: RealnameArea,
     setRealnameArea: (city: string) => setRealnameArea(city)
   }
+  const dispatch = useDispatch()
+  dispatch(setData(value))
   // 初始化生日选择时间
   const date = new Date()
   const year: number = date.getFullYear()
@@ -95,14 +98,13 @@ export default function RealName(){
     })
   }
   return (
-    <context.Provider value={ value }>
     <View className='realname-container'>
       <View className='realname-cardimgbox'>
         <View className='realname-card-title'>请拍摄并上传你的身份证照片</View>
         <View className='realname-card-imgs clearfix'>
           <View className='realname-card-item' onClick={() => userUploadIdcardImg(1)}>
             <View className='realname-card-img'>
-              <Image className='realname-card-upimg' src={(model && model.idCardImg) ? (ALIYUNCDN + (model && model.idCardImg)) : IMGCDNURL + 'lpy/auth/idcard-l.png' } />
+              <Image className='realname-card-upimg' src={(initModel && initModel.memberExt.id_card_img_path) ? (ALIYUNCDN + (initModel && initModel.memberExt.id_card_img)) : IMGCDNURL + 'lpy/auth/idcard-l.png' } />
             </View>
             <View className='realname-card-title'>身份证正面照</View>
           </View>
@@ -235,7 +237,6 @@ export default function RealName(){
       }
       <Button className='userauth-btn' onClick={() => userPostAuthInfo()} >身份认证</Button>
     </View>
-    </context.Provider>
   )
 }
 

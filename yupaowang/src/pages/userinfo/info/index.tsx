@@ -1,32 +1,31 @@
-import Taro, { useState, useRouter, createContext } from '@tarojs/taro'
-import { View, Text, Image, Block, Input } from '@tarojs/components'
+import Taro, { useEffect, useState } from '@tarojs/taro'
+import { View, Text, Image, Input } from '@tarojs/components'
 import { userChangeAvatar, userUpdateName } from '../../../utils/request'
 import UploadImgAction from '../../../utils/upload'
+import { useSelector } from '@tarojs/redux'
+import { UserMemberInfo } from '../../../reducers/member'
 import Msg from '../../../utils/msg'
 import './index.scss'
 
-export interface PhoneContext {
-  setPhone: (tel: string) => void
-}
-export const PhoneContext = createContext<PhoneContext>({} as PhoneContext)
-export default function UserUpdateInfo(){
-  const router: Taro.RouterInfo = useRouter()
-  let { username = '', phone = '', avatar = '' } = router.params
+export default function UserInfoIndex(){
+
+  const memberInfo = useSelector< any, UserMemberInfo>(store => store['member'])
+
   // 用户改头像
-  const [headerImg, setHeaderImg] = useState<string>(avatar)
+  const [headerImg, setHeaderImg] = useState<string>(memberInfo.avatar)
   // 是否展示修改名字模态框
   const [showModal, setShowModal] = useState<boolean>(false)
   // 用户名字
-  const [name, setName] = useState<string>(username)
+  const [name, setName] = useState<string>(memberInfo.username)
   // 用户新名字
-  const [newName, setNewName] = useState<string>(username)
-  // 用户电话号码
-  const [uphone, setUPhone] = useState<string>(phone)
+  const [newName, setNewName] = useState<string>(memberInfo.username)
+  // 用户所有信息
+  const [phone, setPhone] = useState<string>(memberInfo.phone)
 
-  const value: PhoneContext = {
-    setPhone: (tel: string) => setUPhone(tel)
-  }
-  
+  useEffect(() => {
+    setPhone(memberInfo.phone)
+  }, [memberInfo])
+
   // 用户输入新名字
   const userEnterName = (e: any)=> {
     let { value = '' } = e.detail
@@ -84,8 +83,7 @@ export default function UserUpdateInfo(){
   }
 
   return (
-    <PhoneContext.Provider value={ value }>
-    <Block>
+    <View>
       <View className='user-updatainfo-container'>
         <View className='user-updatainfo-item clearfix' onClick={() => userUploadAvatar()}>
           <View className='user-updatainfo-left'>头像</View>
@@ -101,7 +99,7 @@ export default function UserUpdateInfo(){
         </View>
         <View className='user-updatainfo-item clearfix' onClick={()=>userJumpPhonePage()}>
           <View className='user-updatainfo-left'>手机号</View>
-          <View className='user-updatainfo-right'>{ uphone }</View>
+          <View className='user-updatainfo-right'>{ phone }</View>
         </View>
       </View>
       {showModal &&
@@ -119,7 +117,6 @@ export default function UserUpdateInfo(){
         </View>
       </View>
       }
-    </Block>
-    </PhoneContext.Provider>
+    </View>
   )
 }

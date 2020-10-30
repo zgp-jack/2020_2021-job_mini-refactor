@@ -75,7 +75,7 @@ var Recharge = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (Recharge.__proto__ || Object.getPrototypeOf(Recharge)).apply(this, arguments));
 
-    _this.$usedState = ["loopArray101", "lists", "integral", "current", "price"];
+    _this.$usedState = ["loopArray49", "lists", "integral", "current", "price"];
     _this.anonymousFunc0Map = {};
     _this.customComponents = ["AtMessage"];
     return _this;
@@ -186,7 +186,6 @@ var Recharge = function (_Taro$Component) {
           tt.pay({
             orderInfo: res.data.biteOrderInfo,
             service: 3,
-            _debug: 1,
             getOrderStatus: function getOrderStatus() {
               return getOrderStatusAction(order_no);
             },
@@ -251,11 +250,11 @@ var Recharge = function (_Taro$Component) {
       this.anonymousFunc1 = function () {
         return userRechargeAction();
       };
-      var loopArray101 = lists.map(function (item, index) {
+      var loopArray49 = lists.map(function (item, index) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
-        var _$indexKey = "bafzz" + index;
+        var _$indexKey = "ehzzz" + index;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return userChooseItem(index);
         };
@@ -270,7 +269,7 @@ var Recharge = function (_Taro$Component) {
         };
       });
       Object.assign(this.__state, {
-        loopArray101: loopArray101,
+        loopArray49: loopArray49,
         lists: lists,
         integral: integral,
         current: current,

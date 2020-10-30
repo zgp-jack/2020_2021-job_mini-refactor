@@ -27,7 +27,7 @@ class App extends Component {
       "pages/recharge/index", //用户充值页面
       "pages/realname/index", //用户实名认证
       "pages/map/realname/index", // 用户实名选择地址
-      "pages/userinfo/index/index", // 用户修改资料
+      "pages/userinfo/info/index", // 用户修改资料
       "pages/userinfo/add/index", // 用户完善资料
       "pages/userinfo/phone/index", // 用户更换手机
       "pages/userinfo/updatePass/index",//修改密码

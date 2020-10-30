@@ -8,8 +8,8 @@ import { Areas, UserLocationCity, UserPublishAreaHistory, UserLocation } from '.
 import { UserLocationPromiss, getCityInfo, ChildItems } from '../../../models/area'
 import { getAmapPoiList } from '../../../utils/helper'
 import { InputPoiListTips } from '../../../utils/helper/index.d'
-import { context  } from '../../../pages/realname';
 import Msg, { ShowActionModal } from '../../../utils/msg'
+import { useSelector } from '@tarojs/redux' 
 import './index.scss'
 
 const PI = Math.PI;  // 数学 PI 常亮
@@ -23,7 +23,9 @@ let EARTH_RADIUS = 6378137.0; // 地球半径
 // }
 
 export default function RealnameMap() {
-  const { setRealnameArea } = useContext(context)
+
+  const setRealnameArea = useSelector<any, (str: string) => void>(store => store['realname'].setRealnameArea)
+
   const [area, setArea] = useState<string>('')
   // 城市数据
   const [areas, setAreas] = useState<AllAreasDataItem[][]>([])

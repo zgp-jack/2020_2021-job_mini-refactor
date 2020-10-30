@@ -1,11 +1,16 @@
 
 import Taro from '@tarojs/taro'
 import { UserInfo } from '../../config/store'
+import { USESUBSCRIBEMESSAGE } from '../../config'
 import { leavingMessageAction } from '../../utils/request/index';
 import TmplId  from './temp_ids';
 
 // 消息推送
 export function SubscribeToNews(type:string, callback:Function){
+  if (!USESUBSCRIBEMESSAGE){
+    callback()
+    return
+  }
   let userInfo = Taro.getStorageSync(UserInfo);
   if (Taro.canIUse('requestSubscribeMessage') === true) {
     Taro.requestSubscribeMessage({

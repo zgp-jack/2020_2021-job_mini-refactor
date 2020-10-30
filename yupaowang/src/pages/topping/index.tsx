@@ -50,12 +50,6 @@ interface BasicsType{
 export const contextItem = createContext<Distruction>({} as Distruction)
 
 export default function Topping() {
-  // console.log(context,'context');
-  // 获取找活名片的数据
-  //console.log(context,'xxx')
-  // const { resumeTop } = useContext(context)
-  // console.log(resumeTop)
-  // console.log(resumeTop);
   const router: Taro.RouterInfo = useRouter();
   let { id, type, rec, areaData, endTimes, endTimeStr } = router.params;
   // 获取userInfo

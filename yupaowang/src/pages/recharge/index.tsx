@@ -70,7 +70,7 @@ export default function Recharge(){
   }
 
   // 检测订单
-  const getOrderStatusAction = (order_no) => {
+  const getOrderStatusAction = (order_no: string) => {
     return new Promise((resolve, reject) => {
       resolve({ code: 0 })
       userCheckDouyinRecharge({ order_no: order_no })
@@ -96,7 +96,6 @@ export default function Recharge(){
       tt.pay({
         orderInfo: res.data.biteOrderInfo,
         service: 3,
-        _debug: 1,
         getOrderStatus:() => {
           return getOrderStatusAction(order_no)
         },

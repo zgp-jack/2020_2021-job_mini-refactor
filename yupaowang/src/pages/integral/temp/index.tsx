@@ -3,7 +3,7 @@ import { View, Text } from '@tarojs/components'
 import { getIntegralList } from '../../../utils/request'
 import { IntegralData, IntegralListConfig } from '../config'
 import { IntegralSourceItem } from '../../../utils/request/index.d'
-import '../index.scss'
+import './index.scss'
 
 export default function Temp(){
   // 初始化页面信息-积分来源记录
