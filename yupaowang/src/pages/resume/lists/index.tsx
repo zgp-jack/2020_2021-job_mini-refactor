@@ -149,7 +149,7 @@ export default function Recruit() {
         <WechatNotice />
         <ResumeList data={ lists } />
       </ScrollView>
-      <View className='publish-list-btn' onClick={() => userRouteJump(`/pages/resume/mine/index`)}>发布找活</View>
+      <View className='publish-list-btn' onClick={() => userRouteJump(`/pages/resume/publish/index`)}>发布找活</View>
     </View>
   )
 }

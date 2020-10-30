@@ -28,8 +28,8 @@ export default function ResumeList({ data, bottom = true }: PROPS){
                 <View className='resume-list-userinfo'>
                   <View className='resume-list-userinfo-detail'>
                     <Text className='resume-userinfo-name'>{ d.username }</Text>
-                    <Text className='resume-userinfo-sex'>男</Text>
-                    <Text className='resume-userinfo-age'>{ d.birthday }岁</Text>
+                    {d.gender && <Text className='resume-userinfo-sex'>{d.gender == '1' ? '男' : '女'}</Text>}
+                    {d.birthday && <Text className='resume-userinfo-age'>{d.birthday}岁</Text>}
                   </View>
                   <Text className='resume-list-type'>{ d.type }</Text>
                   <View className='resume-otherinfo'>

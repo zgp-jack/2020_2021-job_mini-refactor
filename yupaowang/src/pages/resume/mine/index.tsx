@@ -136,33 +136,6 @@ export default function Mine() {
   const [resumeTop, setResumeTop] = useState<any>()
   // 工作状态列表
   const [statusList, setStatusList] = useState<any>()
-  // 共用数据通过content传递给后面的子页面
-  // const [publicList, setPublicList] = useState<resumesGetData>({
-  //   gender: [],
-  //   label: [],
-  //   nation: [],
-  //   occupation: [],
-  //   prof_degree: [],
-  //   type: []
-  // })
-  // // 人员信息
-  // const [userInfo, setUserInfo] = useState<introducesType>({
-  //   experience: '',
-  //   type_str: '',
-  //   hometown: '',
-  //   prof_degree_str: '',
-  //   number_people: '',
-  //   tags: [],
-  // })
-  // 选择详细地址信息
-  // const [areaInfo, setAreaInfo] = useState<UserLastPublishRecruitArea>({
-  //   title: '',
-  //   adcode: '',
-  //   location: '',
-  //   info: ''
-  // })
-  //设置基础信息所在区域
-  // const [basicsCity, setBasicsCity] = useState<string>('')
   // 修改还是更多项目经验
   const [proStatus, setProStatus] = useState<string>('0');
   // 提示内容
@@ -196,7 +169,17 @@ export default function Mine() {
           setShowtop(true)
         }
         Taro.setStorageSync("introinfo", res.data.info)
-        setData({ info: res.data.info, resume_top: res.data.resume_top, content: res.data.content, introduces: res.data.introduces, certificate_count: res.data.certificate_count, fail_certificate: res.data.fail_certificate, fail_project: res.data.fail_project, popup_text: res.data.popup_text, top_status: res.data.top_status })
+        setData({ 
+          info: { ...data.info,...res.data.info}, 
+          resume_top: { ...data.resume_top, ...res.data.resume_top}, 
+          content: { ...data.content,...res.data.content}, 
+          introduces: { ...data.introduces, ...res.data.introduces}, 
+          certificate_count: res.data.certificate_count, 
+          fail_certificate: res.data.fail_certificate, 
+          fail_project: res.data.fail_project, 
+          popup_text: res.data.popup_text, 
+          top_status: res.data.top_status 
+        })
         const list = res.data.status.map(v => v.name);
         // 置顶当前索引
         if (res.data.resume_top.is_top == 1) {
@@ -474,7 +457,7 @@ export default function Mine() {
           if (res.confirm) {
             // 跳转
             Taro.navigateTo({
-              url: '/pages/clients-looking-for-work/essential-information/esinformation',
+              url: '/pages/resume/basics/index',
             })
             // that.toperfect()
           } else if (res.cancel) {
@@ -721,7 +704,7 @@ export default function Mine() {
       })
     }
   }
-  console.log(passre, nopassre, 'nopassre,nopassre')
+  
   return (
     <context.Provider value={value}>
       <Auth />
