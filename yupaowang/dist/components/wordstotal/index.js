@@ -1,4 +1,4 @@
-(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["components/wordstotal/index"],{
+(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["components/wordstotal/index"],{
 
 /***/ "./src/components/wordstotal/index.scss":
 /*!**********************************************!*\
@@ -29,9 +29,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
 
 __webpack_require__(/*! ./index.scss */ "./src/components/wordstotal/index.scss");
 
@@ -60,7 +60,7 @@ var WordsTotal = function (_Taro$Component) {
     key: "_constructor",
     value: function _constructor(props) {
       _get(WordsTotal.prototype.__proto__ || Object.getPrototypeOf(WordsTotal.prototype), "_constructor", this).call(this, props);
-      this.$$refs = new _taroTt2.default.RefsArray();
+      this.$$refs = new _taroWeapp2.default.RefsArray();
     }
   }, {
     key: "_createData",
@@ -88,13 +88,13 @@ var WordsTotal = function (_Taro$Component) {
   }]);
 
   return WordsTotal;
-}(_taroTt2.default.Component);
+}(_taroWeapp2.default.Component);
 
 WordsTotal.$$events = [];
 WordsTotal.$$componentPath = "components/wordstotal/index";
 exports.default = WordsTotal;
 
-Component(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(WordsTotal));
+Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(WordsTotal));
 
 /***/ })
 

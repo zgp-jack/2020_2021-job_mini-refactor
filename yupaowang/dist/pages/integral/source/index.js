@@ -1,4 +1,4 @@
-(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["pages/integral/source/index"],{
+(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["pages/integral/source/index"],{
 
 /***/ "./src/pages/integral/source/index.tsx":
 /*!*********************************************!*\
@@ -22,9 +22,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
 
 var _index = __webpack_require__(/*! ../../../utils/request/index */ "./src/utils/request/index.ts");
 
@@ -57,7 +57,7 @@ var Source = function (_Taro$Component) {
     key: "_constructor",
     value: function _constructor(props) {
       _get(Source.prototype.__proto__ || Object.getPrototypeOf(Source.prototype), "_constructor", this).call(this, props);
-      this.$$refs = new _taroTt2.default.RefsArray();
+      this.$$refs = new _taroWeapp2.default.RefsArray();
     }
   }, {
     key: "_createData",
@@ -71,7 +71,7 @@ var Source = function (_Taro$Component) {
       var initType = 'source';
       // 定义请求参数
 
-      var _useState = (0, _taroTt.useState)({
+      var _useState = (0, _taroWeapp.useState)({
         type: initType,
         page: 1
       }),
@@ -81,7 +81,7 @@ var Source = function (_Taro$Component) {
       // 定义列表接收容器
 
 
-      var _useState3 = (0, _taroTt.useState)({
+      var _useState3 = (0, _taroWeapp.useState)({
         lists: [],
         hasmore: true
       }),
@@ -91,7 +91,7 @@ var Source = function (_Taro$Component) {
       // 获取列表数据
 
 
-      (0, _taroTt.useEffect)(function () {
+      (0, _taroWeapp.useEffect)(function () {
         if (!lists.hasmore) {
           return;
         }
@@ -109,11 +109,11 @@ var Source = function (_Taro$Component) {
         });
       }, [data]);
       // 上拉加载下一页
-      (0, _taroTt.useReachBottom)(function () {
+      (0, _taroWeapp.useReachBottom)(function () {
         setData(_extends({}, data, { page: data.page + 1 }));
       });
       // 下拉刷新当前列表
-      (0, _taroTt.usePullDownRefresh)(function () {
+      (0, _taroWeapp.usePullDownRefresh)(function () {
         setData(_extends({}, data, { page: 1 }));
       });
       Object.assign(this.__state, {});
@@ -122,7 +122,7 @@ var Source = function (_Taro$Component) {
   }]);
 
   return Source;
-}(_taroTt2.default.Component);
+}(_taroWeapp2.default.Component);
 
 Source.$$events = [];
 Source.$$componentPath = "pages/integral/source/index";
@@ -133,7 +133,7 @@ Source.$$componentPath = "pages/integral/source/index";
 
 exports.default = Source;
 
-Page(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(Source, true));
+Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(Source, true));
 
 /***/ })
 

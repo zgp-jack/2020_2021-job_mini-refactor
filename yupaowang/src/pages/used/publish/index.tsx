@@ -5,7 +5,7 @@ import WordsTotal from '../../../components/wordstotal'
 import useUsedInfo from '../../../hooks/publish/used'
 import classnames from 'classnames'
 import useCode from '../../../hooks/code'
-import '../../recruit/publish/index.scss'
+// import '../../recruit/publish/index.scss'
 import './index.scss'
 
 export default function UsedPublish() {

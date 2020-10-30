@@ -1,4 +1,4 @@
-(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["components/index/fastfun/index"],{
+(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["components/index/fastfun/index"],{
 
 /***/ "./src/components/index/fastfun/config.ts":
 /*!************************************************!*\
@@ -62,9 +62,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
 
 var _config = __webpack_require__(/*! ./config */ "./src/components/index/fastfun/config.ts");
 
@@ -98,7 +98,7 @@ var Fastfun = function (_Taro$Component) {
     key: '_constructor',
     value: function _constructor(props) {
       _get(Fastfun.prototype.__proto__ || Object.getPrototypeOf(Fastfun.prototype), '_constructor', this).call(this, props);
-      this.$$refs = new _taroTt2.default.RefsArray();
+      this.$$refs = new _taroWeapp2.default.RefsArray();
     }
   }, {
     key: '_createData',
@@ -112,13 +112,13 @@ var Fastfun = function (_Taro$Component) {
       ;
       // 用户页面跳转
       var userRouteJump = function userRouteJump(url) {
-        _taroTt2.default.navigateTo({
+        _taroWeapp2.default.navigateTo({
           url: url
         });
       };
       var loopArray8 = _config2.default.map(function (item, index) {
         item = {
-          $original: (0, _taroTt.internal_get_original)(item)
+          $original: (0, _taroWeapp.internal_get_original)(item)
         };
         var $loopState__temp2 = index + index;
         var _$indexKey = "bazzz" + index;
@@ -153,13 +153,13 @@ var Fastfun = function (_Taro$Component) {
   }]);
 
   return Fastfun;
-}(_taroTt2.default.Component);
+}(_taroWeapp2.default.Component);
 
 Fastfun.$$events = ["anonymousFunc0"];
 Fastfun.$$componentPath = "components/index/fastfun/index";
 exports.default = Fastfun;
 
-Component(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(Fastfun));
+Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(Fastfun));
 
 /***/ })
 

@@ -1,4 +1,4 @@
-(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["pages/resume/basics/index"],{
+(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["pages/resume/basics/index"],{
 
 /***/ "./src/pages/resume/basics/index.scss":
 /*!********************************************!*\
@@ -33,9 +33,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
 
 var _index = __webpack_require__(/*! ../../../utils/request/index */ "./src/utils/request/index.ts");
 
@@ -94,7 +94,7 @@ var BasicsPage = function (_Taro$Component) {
     key: "_constructor",
     value: function _constructor(props) {
       _get(BasicsPage.prototype.__proto__ || Object.getPrototypeOf(BasicsPage.prototype), "_constructor", this).call(this, props);
-      this.$$refs = new _taroTt2.default.RefsArray();
+      this.$$refs = new _taroWeapp2.default.RefsArray();
     }
   }, {
     key: "_createData",
@@ -105,12 +105,12 @@ var BasicsPage = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__70"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__70"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
           $prevCompid__70 = _genCompid2[0],
           $compid__70 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__71"),
+      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__71"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
           $prevCompid__71 = _genCompid4[0],
           $compid__71 = _genCompid4[1];
@@ -123,7 +123,7 @@ var BasicsPage = function (_Taro$Component) {
       console.log(useSelectorItem, 'dadasd');
       //选择地址传过来的内容
 
-      var _useContext = (0, _taroTt.useContext)(_index5.contextItem),
+      var _useContext = (0, _taroWeapp.useContext)(_index5.contextItem),
           publishArea = _useContext.publishArea,
           location = _useContext.location,
           adcode = _useContext.adcode;
@@ -139,7 +139,7 @@ var BasicsPage = function (_Taro$Component) {
       // 当前显示城市
 
 
-      var _useState = (0, _taroTt.useState)(_area.AREABEIJING.name),
+      var _useState = (0, _taroWeapp.useState)(_area.AREABEIJING.name),
           _useState2 = _slicedToArray(_useState, 2),
           areas = _useState2[0],
           setArea = _useState2[1];
@@ -153,7 +153,7 @@ var BasicsPage = function (_Taro$Component) {
       // 地区需要的值
 
 
-      var _useState3 = (0, _taroTt.useState)(''),
+      var _useState3 = (0, _taroWeapp.useState)(''),
           _useState4 = _slicedToArray(_useState3, 2),
           adcodes = _useState4[0],
           setAdcodes = _useState4[1];
@@ -161,91 +161,91 @@ var BasicsPage = function (_Taro$Component) {
       var sexList = ['男', '女'];
       // 民族（选择框使用的）
 
-      var _useState5 = (0, _taroTt.useState)([]),
+      var _useState5 = (0, _taroWeapp.useState)([]),
           _useState6 = _slicedToArray(_useState5, 2),
           nationCurrent = _useState6[0],
           setNationCurrent = _useState6[1];
       // 民族
 
 
-      var _useState7 = (0, _taroTt.useState)([]),
+      var _useState7 = (0, _taroWeapp.useState)([]),
           _useState8 = _slicedToArray(_useState7, 2),
           allNationCurrent = _useState8[0],
           setAllNationCurrent = _useState8[1];
       // 工种
 
 
-      var _useState9 = (0, _taroTt.useState)([]),
+      var _useState9 = (0, _taroWeapp.useState)([]),
           _useState10 = _slicedToArray(_useState9, 2),
           occupation = _useState10[0],
           setoccupation = _useState10[1];
       // 点击的工种
 
 
-      var _useState11 = (0, _taroTt.useState)([]),
+      var _useState11 = (0, _taroWeapp.useState)([]),
           _useState12 = _slicedToArray(_useState11, 2),
           clickOccupation = _useState12[0],
           setClickOccupation = _useState12[1];
       // 工种弹框
 
 
-      var _useState13 = (0, _taroTt.useState)(false),
+      var _useState13 = (0, _taroWeapp.useState)(false),
           _useState14 = _slicedToArray(_useState13, 2),
           showProfession = _useState14[0],
           setShowProssion = _useState14[1];
       // 进来时的电话做验证码判断
 
 
-      var _useState15 = (0, _taroTt.useState)(''),
+      var _useState15 = (0, _taroWeapp.useState)(''),
           _useState16 = _slicedToArray(_useState15, 2),
           oldTel = _useState16[0],
           setOldTel = _useState16[1];
       // 详情字数
 
 
-      var _useState17 = (0, _taroTt.useState)(0),
+      var _useState17 = (0, _taroWeapp.useState)(0),
           _useState18 = _slicedToArray(_useState17, 2),
           num = _useState18[0],
           setNum = _useState18[1];
       // 省
 
 
-      var _useState19 = (0, _taroTt.useState)(''),
+      var _useState19 = (0, _taroWeapp.useState)(''),
           _useState20 = _slicedToArray(_useState19, 2),
           province = _useState20[0],
           setProvince = _useState20[1];
       // 市
 
 
-      var _useState21 = (0, _taroTt.useState)(''),
+      var _useState21 = (0, _taroWeapp.useState)(''),
           _useState22 = _slicedToArray(_useState21, 2),
           city = _useState22[0],
           setCity = _useState22[1];
       //设置latitude
 
 
-      var _useState23 = (0, _taroTt.useState)(''),
+      var _useState23 = (0, _taroWeapp.useState)(''),
           _useState24 = _slicedToArray(_useState23, 2),
           lat = _useState24[0],
           setLat = _useState24[1];
       // 设置longitude
 
 
-      var _useState25 = (0, _taroTt.useState)(''),
+      var _useState25 = (0, _taroWeapp.useState)(''),
           _useState26 = _slicedToArray(_useState25, 2),
           lng = _useState26[0],
           setLng = _useState26[1];
       // 民族索引
 
 
-      var _useState27 = (0, _taroTt.useState)(0),
+      var _useState27 = (0, _taroWeapp.useState)(0),
           _useState28 = _slicedToArray(_useState27, 2),
           nation_id = _useState28[0],
           setnation_id = _useState28[1];
       // const [occupationsId, setOccupationsId] = useState<string>('')
 
 
-      var _useState29 = (0, _taroTt.useState)({
+      var _useState29 = (0, _taroWeapp.useState)({
         name: '',
         sex: '',
         time: '',
@@ -267,7 +267,7 @@ var BasicsPage = function (_Taro$Component) {
       // 获取数据
 
 
-      (0, _taroTt.useEffect)(function () {
+      (0, _taroWeapp.useEffect)(function () {
         // console.log((getPublicList()),'xxxxs');
         console.log(useSelectorItem, 'xxx111');
         var data = JSON.parse(JSON.stringify(useSelectorItem.Personnel));
@@ -283,7 +283,7 @@ var BasicsPage = function (_Taro$Component) {
           setoccupation(data.occupation);
         }
         // 设置城市
-        var userLoctionCity = _taroTt2.default.getStorageSync(_store.UserLocationCity);
+        var userLoctionCity = _taroWeapp2.default.getStorageSync(_store.UserLocationCity);
         if (userLoctionCity) {
           setArea(userLoctionCity.city);
         } else {
@@ -306,7 +306,7 @@ var BasicsPage = function (_Taro$Component) {
         //   setFormData({ ...formData, are: basicsCity,});
         // }
         // 获取缓存信息
-        var useInfo = _taroTt2.default.getStorageSync('introinfo');
+        var useInfo = _taroWeapp2.default.getStorageSync('introinfo');
         if (useInfo) {
           console.log(useInfo);
           if (publishArea && location && adcode) {
@@ -379,7 +379,7 @@ var BasicsPage = function (_Taro$Component) {
         //   setAllNationCurrent(res.authData.nation);
         // })
       }, []);
-      (0, _taroTt.useDidShow)(function () {
+      (0, _taroWeapp.useDidShow)(function () {
         console.log(publishArea, location, adcode);
         // 点击设置地区
         if (publishArea && location && adcode) {
@@ -393,7 +393,7 @@ var BasicsPage = function (_Taro$Component) {
       });
       // 验证码
 
-      var _useState31 = (0, _taroTt.useState)(false),
+      var _useState31 = (0, _taroWeapp.useState)(false),
           _useState32 = _slicedToArray(_useState31, 2),
           isCode = _useState32[0],
           setIsCode = _useState32[1];
@@ -430,7 +430,7 @@ var BasicsPage = function (_Taro$Component) {
         }
       };
       var Modal = function Modal(content) {
-        _taroTt2.default.showModal({
+        _taroWeapp2.default.showModal({
           title: '温馨提示',
           content: content,
           showCancel: false
@@ -503,7 +503,7 @@ var BasicsPage = function (_Taro$Component) {
               (0, _index2.SubPopup)({
                 tips: res.errmsg,
                 callback: function callback() {
-                  _taroTt2.default.navigateBack({
+                  _taroWeapp2.default.navigateBack({
                     delta: 1
                   });
                 }
@@ -562,27 +562,27 @@ var BasicsPage = function (_Taro$Component) {
           return;
         }
         var url = "/pages/map/resume/index";
-        _taroTt2.default.navigateTo({
+        _taroWeapp2.default.navigateTo({
           url: url
         });
       };
       // 获取当前位置
       var handleLocation = function handleLocation(e) {
         e.stopPropagation();
-        _taroTt2.default.getSetting({
+        _taroWeapp2.default.getSetting({
           success: function success(res) {
             if (res.authSetting['scope.userLocation'] != undefined && res.authSetting['scope.userLocation'] != true) {
               //非初始化进入该页面,且未授权   
-              _taroTt2.default.showModal({
+              _taroWeapp2.default.showModal({
                 title: '是否授权当前位置',
                 content: '需要获取您的地理位置，请确认授权，否则将不能为你自动推荐位置',
                 success: function success(res) {
                   if (res.cancel) {} else if (res.confirm) {
                     //village_LBS(that);
-                    _taroTt2.default.openSetting({
+                    _taroWeapp2.default.openSetting({
                       success: function success(data) {
                         if (data.authSetting["scope.userLocation"] == true) {
-                          _taroTt2.default.showToast({
+                          _taroWeapp2.default.showToast({
                             title: '授权成功',
                             icon: 'success',
                             duration: 2000
@@ -590,7 +590,7 @@ var BasicsPage = function (_Taro$Component) {
                           //再次授权，调用getLocationt的API
                           getLocation();
                         } else {
-                          _taroTt2.default.showToast({
+                          _taroWeapp2.default.showToast({
                             title: '授权失败',
                             icon: 'success',
                             duration: 2000
@@ -612,7 +612,7 @@ var BasicsPage = function (_Taro$Component) {
           resetLocationSearch(gpsLocation);
         }).catch(function () {
           // 拒绝授权默认全国
-          _taroTt2.default.setStorageSync(_store.UserListChooseCity, _area.AREACHINA);
+          _taroWeapp2.default.setStorageSync(_store.UserListChooseCity, _area.AREACHINA);
           // setLists([])
           // setSearchData({ ...searchData, page: 1, area_id: AREACHINA.id })
         });
@@ -660,13 +660,13 @@ var BasicsPage = function (_Taro$Component) {
         return userEnterFrom(e, 'details');
       };
       this.anonymousFunc12 = handleSubmit;
-      showProfession && _taroTt.propsManager.set({
+      showProfession && _taroWeapp.propsManager.set({
         "closeProfession": closeProfession,
         "data": occupation,
         "onClickItem": this.anonymousFunc0,
         "num": 3
       }, $compid__70, $prevCompid__70);
-      _taroTt.propsManager.set({
+      _taroWeapp.propsManager.set({
         "num": num
       }, $compid__71, $prevCompid__71);
       Object.assign(this.__state, {
@@ -750,14 +750,14 @@ var BasicsPage = function (_Taro$Component) {
   }]);
 
   return BasicsPage;
-}(_taroTt2.default.Component);
+}(_taroWeapp2.default.Component);
 
 BasicsPage.$$events = ["anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6", "anonymousFunc7", "anonymousFunc8", "anonymousFunc9", "anonymousFunc10", "anonymousFunc11", "anonymousFunc12"];
 BasicsPage.$$componentPath = "pages/resume/basics/index";
 BasicsPage.config = { navigationBarTitleText: '基础信息' };
 exports.default = BasicsPage;
 
-Page(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(BasicsPage, true));
+Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(BasicsPage, true));
 
 /***/ })
 

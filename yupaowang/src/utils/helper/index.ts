@@ -20,9 +20,10 @@ export function userAuthLoction(): Promise<UserLocationPromiss>{
     const GDMAP = new AMapWX.AMapWX({ key: MAPKEY })
     GDMAP.getRegeo({
       success: function (data: any) {
+        debugger
         let gpsLocation: UserLocationPromiss = {
           province: data[0].regeocodeData.addressComponent.province,
-          city: data[0].regeocodeData.addressComponent.city,
+          city: Array.isArray(data[0].regeocodeData.addressComponent.city)? data[0].regeocodeData.addressComponent.province:data[0].regeocodeData.addressComponent.city,
           adcode: data[0].regeocodeData.addressComponent.adcode,
           citycode: data[0].regeocodeData.addressComponent.citycode
         }

@@ -1,4 +1,4 @@
-(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["pages/help/index"],{
+(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["pages/help/index"],{
 
 /***/ "./src/pages/help/index.scss":
 /*!***********************************!*\
@@ -33,9 +33,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
 
 var _index = __webpack_require__(/*! ../../utils/request/index */ "./src/utils/request/index.ts");
 
@@ -75,7 +75,7 @@ var Help = function (_Taro$Component) {
     key: "_constructor",
     value: function _constructor(props) {
       _get(Help.prototype.__proto__ || Object.getPrototypeOf(Help.prototype), "_constructor", this).call(this, props);
-      this.$$refs = new _taroTt2.default.RefsArray();
+      this.$$refs = new _taroWeapp2.default.RefsArray();
     }
   }, {
     key: "_createData",
@@ -89,21 +89,21 @@ var Help = function (_Taro$Component) {
       ;
       // * 标记是否是在刷新状态
 
-      var _useState = (0, _taroTt.useState)(false),
+      var _useState = (0, _taroWeapp.useState)(false),
           _useState2 = _slicedToArray(_useState, 2),
           refresh = _useState2[0],
           setRefresh = _useState2[1];
       // 设置默认页面
 
 
-      var _useState3 = (0, _taroTt.useState)({
+      var _useState3 = (0, _taroWeapp.useState)({
         page: 1
       }),
           _useState4 = _slicedToArray(_useState3, 2),
           initPage = _useState4[0],
           setinitPage = _useState4[1];
 
-      var _useState5 = (0, _taroTt.useState)({
+      var _useState5 = (0, _taroWeapp.useState)({
         item: []
       }),
           _useState6 = _slicedToArray(_useState5, 2),
@@ -112,7 +112,7 @@ var Help = function (_Taro$Component) {
       // 用户数据
 
 
-      var _useState7 = (0, _taroTt.useState)({
+      var _useState7 = (0, _taroWeapp.useState)({
         phone: '',
         username: ''
       }),
@@ -122,14 +122,14 @@ var Help = function (_Taro$Component) {
       // 是否能下啦加载更多
 
 
-      var _useState9 = (0, _taroTt.useState)(true),
+      var _useState9 = (0, _taroWeapp.useState)(true),
           _useState10 = _slicedToArray(_useState9, 2),
           isDown = _useState10[0],
           setIsDown = _useState10[1];
       // 判断是否是ios
 
 
-      var _useState11 = (0, _taroTt.useState)(false),
+      var _useState11 = (0, _taroWeapp.useState)(false),
           _useState12 = _slicedToArray(_useState11, 2),
           ios = _useState12[0],
           setIos = _useState12[1];
@@ -137,12 +137,12 @@ var Help = function (_Taro$Component) {
       // 列表数据
 
 
-      (0, _taroTt.useEffect)(function () {
+      (0, _taroWeapp.useEffect)(function () {
         // 判断是安卓还是苹果
         setIos((0, _index2.isIos)());
         var terminal_type = ios ? 'ios' : 'android';
         (0, _index.helpAction)(initPage.page, terminal_type).then(function (res) {
-          _taroTt2.default.hideNavigationBarLoading();
+          _taroWeapp2.default.hideNavigationBarLoading();
           for (var i = 0; i < res.lists.length; i++) {
             res.lists[i].isShow = false;
             res.lists[i].id = Math.random();
@@ -161,7 +161,7 @@ var Help = function (_Taro$Component) {
         });
       }, [initPage]);
       // 用户信息
-      (0, _taroTt.useEffect)(function () {
+      (0, _taroWeapp.useEffect)(function () {
         (0, _index.feedbackAction)(1).then(function (res) {
           setUserData(res.memberInfo);
         });
@@ -180,12 +180,12 @@ var Help = function (_Taro$Component) {
         if (!isDown) {
           return;
         }
-        _taroTt2.default.showNavigationBarLoading();
+        _taroWeapp2.default.showNavigationBarLoading();
         setinitPage(_extends({}, initPage, { page: initPage.page + 1 }));
       };
       // 用户页面跳转
       var userRouteJump = function userRouteJump(url) {
-        _taroTt2.default.navigateTo({
+        _taroWeapp2.default.navigateTo({
           url: url
         });
       };
@@ -206,7 +206,7 @@ var Help = function (_Taro$Component) {
       };
       var loopArray58 = data.item.map(function (item, __index2) {
         item = {
-          $original: (0, _taroTt.internal_get_original)(item)
+          $original: (0, _taroWeapp.internal_get_original)(item)
         };
         var $loopState__temp2 = { value: 'help', color: '#09f', size: '15' };
         var _$indexKey = "ggzzz" + __index2;
@@ -214,24 +214,24 @@ var Help = function (_Taro$Component) {
           handleShow(item.$original.id);
         };
 
-        var _genCompid = (0, _taroTt.genCompid)(__prefix + "ghzzzzzzzz" + __index2, true),
+        var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "ghzzzzzzzz" + __index2, true),
             _genCompid2 = _slicedToArray(_genCompid, 2),
             $prevCompid__48 = _genCompid2[0],
             $compid__48 = _genCompid2[1];
 
-        _taroTt.propsManager.set({
+        _taroWeapp.propsManager.set({
           "icon": $loopState__temp2,
           "open": item.$original.isShow,
           "onClick": _this2.anonymousFunc2.bind(_this2, _$indexKey),
           "title": item.$original.question
         }, $compid__48, $prevCompid__48);
 
-        var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "gizzzzzzzz" + __index2, true),
+        var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "gizzzzzzzz" + __index2, true),
             _genCompid4 = _slicedToArray(_genCompid3, 2),
             $prevCompid__49 = _genCompid4[0],
             $compid__49 = _genCompid4[1];
 
-        _taroTt.propsManager.set({
+        _taroWeapp.propsManager.set({
           "hasBorder": false
         }, $compid__49, $prevCompid__49);
         return {
@@ -281,14 +281,14 @@ var Help = function (_Taro$Component) {
   }]);
 
   return Help;
-}(_taroTt2.default.Component);
+}(_taroWeapp2.default.Component);
 
 Help.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc3"];
 Help.$$componentPath = "pages/help/index";
 Help.config = { navigationBarTitleText: '帮助中心' };
 exports.default = Help;
 
-Page(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(Help, true));
+Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(Help, true));
 
 /***/ })
 

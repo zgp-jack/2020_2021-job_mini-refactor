@@ -1,4 +1,4 @@
-(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["npm/taro-ui/dist/weapp/components/accordion/index"],{
+(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["npm/taro-ui/dist/weapp/components/accordion/index"],{
 
 /***/ "./node_modules/taro-ui/dist/weapp/components/accordion/index.js":
 /*!***********************************************************************!*\
@@ -20,9 +20,9 @@ var _get = function get(object, property, receiver) { if (object === null) objec
 
 var _class, _temp2;
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
 
 var _propTypes = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
 
@@ -84,7 +84,7 @@ var AtAccordion = (_temp2 = _class = function (_AtComponent) {
       this.state = {
         wrapperHeight: ''
       };
-      this.$$refs = new _taroTt2.default.RefsArray();
+      this.$$refs = new _taroWeapp2.default.RefsArray();
     }
   }, {
     key: 'toggleWithAnimation',
@@ -171,9 +171,9 @@ var AtAccordion = (_temp2 = _class = function (_AtComponent) {
         contentStyle.height = '';
       }
 
-      var anonymousState__temp = (0, _taroTt.internal_inline_style)(customStyle);
-      var anonymousState__temp2 = icon && icon.value ? (0, _taroTt.internal_inline_style)(iconStyle) : null;
-      var anonymousState__temp3 = (0, _taroTt.internal_inline_style)(contentStyle);
+      var anonymousState__temp = (0, _taroWeapp.internal_inline_style)(customStyle);
+      var anonymousState__temp2 = icon && icon.value ? (0, _taroWeapp.internal_inline_style)(iconStyle) : null;
+      var anonymousState__temp3 = (0, _taroWeapp.internal_inline_style)(contentStyle);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
         anonymousState__temp2: anonymousState__temp2,
@@ -220,7 +220,7 @@ AtAccordion.propTypes = {
 };
 exports.default = AtAccordion;
 
-Component(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(AtAccordion));
+Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(AtAccordion));
 
 /***/ })
 
