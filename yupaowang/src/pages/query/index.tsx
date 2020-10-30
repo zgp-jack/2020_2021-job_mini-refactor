@@ -119,7 +119,7 @@ export default function RealnameQuery() {
     <View className='query-container'>
       <View className='query-box'>
         <Input
-          className='publish-list-input'
+          className='query-list-input'
           type='number'
           maxLength={11}
           placeholder='请输入查询手机号'
@@ -163,11 +163,11 @@ export default function RealnameQuery() {
       <View className='realname-query-footer'>
         <View className="query-tips-title">温馨提示</View>
         <View className="realname-query-words">
-          <View>1.双方联系时，问对方在鱼泡招工实名认证过没有？如没有认证过,一定让他去认证通过后联系。 如有认证过，你输入对方电话号查询对方的姓名、民族、可能在的城市等信息，来帮助你做进一步的判断。 （鱼泡实名认证通过的，都是利用大数据排除了骗子库已有的骗子、同我们工作人员的经验为你筛选过一遍的。当然也不能完全排除就没有骗子了，所以你同对方对接的时候，还需要做好已下几步）</View>
-          <View>2.要求他同你微信视频聊天，视频里约定好条款，录下来，作为证据。</View>
-          <View>3.多问问对方建筑的专业问题，看看他专业与否，一上来就问工地地址，不问清楚工资 图纸等，就说能马上过来的，百分百是骗子。</View>
-          <View>4.一定不要轻易的告诉对方，工地的详细地址。</View>
-          <View>5.如果你发现同你联系的人，有任何问题，都可联系我们客服投诉（电话：<Text className='get-query-tel' onClick={() => userCallPhone()}>{SERVERPHONE}</Text>），确定后，我们将他加入骗子数据库，防止他接着骗人。</View>
+          <View className="realname-item">1.双方联系时，问对方在鱼泡招工实名认证过没有？如没有认证过,一定让他去认证通过后联系。 如有认证过，你输入对方电话号查询对方的姓名、民族、可能在的城市等信息，来帮助你做进一步的判断。 （鱼泡实名认证通过的，都是利用大数据排除了骗子库已有的骗子、同我们工作人员的经验为你筛选过一遍的。当然也不能完全排除就没有骗子了，所以你同对方对接的时候，还需要做好已下几步）</View>
+          <View className="realname-item">2.要求他同你微信视频聊天，视频里约定好条款，录下来，作为证据。</View>
+          <View className="realname-item">3.多问问对方建筑的专业问题，看看他专业与否，一上来就问工地地址，不问清楚工资 图纸等，就说能马上过来的，百分百是骗子。</View>
+          <View className="realname-item">4.一定不要轻易的告诉对方，工地的详细地址。</View>
+          <View className="realname-item">5.如果你发现同你联系的人，有任何问题，都可联系我们客服投诉（电话：<Text className='get-query-tel' onClick={() => userCallPhone()}>{SERVERPHONE}</Text>），确定后，我们将他加入骗子数据库，防止他接着骗人。</View>
         </View>
       </View>
     </View>
