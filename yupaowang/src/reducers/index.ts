@@ -8,6 +8,7 @@ import filterClassify from './filter_classify'
 import Myresume from './resume'
 import member from './member'
 import realname from './realname'
+import resumeAddInfo from './resume_addinfo'
 
 export default combineReducers({
   tabbar,
@@ -18,5 +19,6 @@ export default combineReducers({
   Myresume,
   filterClassify,
   member,
-  realname
+  realname,
+  resumeAddInfo
 })

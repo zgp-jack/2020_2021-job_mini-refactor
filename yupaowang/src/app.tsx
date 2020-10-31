@@ -47,6 +47,10 @@ class App extends Component {
       'pages/topping/distruction/index',//置顶选择范围
       // 'pages/topping/recruit/index',//置顶找活范围
       'pages/resume/publish/index', //发布找活
+      'pages/resume/add_info/index', //新增基本资料
+      'pages/resume/add_member/index', //新增人员信息
+      'pages/resume/add_skill/index', //新增技能证书
+      'pages/resume/add_project/index', //新增项目经验
       'pages/resume/detail/index', // 找活详情
       'pages/resume/skillList/index',//技能证书
       'pages/resume/projectList/index',//项目经验

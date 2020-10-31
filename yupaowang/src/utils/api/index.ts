@@ -206,3 +206,5 @@ export const userDouyinRecharge: string = REQUESTURL + 'pay/bytedance-order/'
 export const userCheckDouyinRecharge: string = REQUESTURL + '/pay/byte-check/'
 // 实名查询
 export const realnameQueryUrl: string = REQUESTURL + 'resume/auth-worker-find/'
+// 找活信息发布基本资料 配置项
+export const getResumeAddInfoConfig: string = REQUESTURL + 'resumes/get-data/'

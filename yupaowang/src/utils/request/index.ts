@@ -1142,3 +1142,11 @@ export function queryAction(params): Promise<Inter.userQueryAuthInfoData> {
     data: params
   })
 }
+
+// 发布找活基本信息 配置项
+export function getResumeAddInfoConfig(): Promise<Inter.ResumeAddInfoConfig>{
+  return doRequestAction({
+    url: api.getResumeAddInfoConfig,
+    method: 'POST'
+  })
+}

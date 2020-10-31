@@ -1,0 +1,38 @@
+@import '../../../style/publish.scss';
+
+.resume-addinfo-container{
+  position: relative;
+  padding: 0 20px;
+  .resume-addinfo-header{
+    background-color: white;
+    line-height: 80px;
+    color: #F87A14;
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+  }
+  .resume-addinfo-form{
+    position: relative;
+    .resume-addinfo-body{
+      background-color: white;
+      margin-top: 25px;
+      padding: 0 20px;
+      .publish-list-item:nth-last-child(1){
+        border-bottom: 0;
+      }
+      .publish-list-item-code input{
+        padding-right: 200px;
+      }
+    }
+    .publish-recruit-btn{
+      position: relative;
+      margin: 30px auto;
+      background-color: $color;
+      color: white;
+      text-align: center;
+      line-height: 85px;
+      width: 70%;
+      border-radius: 20PX;
+    }
+  }
+}

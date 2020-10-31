@@ -1342,3 +1342,46 @@ export interface userQueryAuthMember {
   tel: string,
   username: string
 }
+
+// 发布修改找活基本资料 配置项
+export interface ResumeAddInfoConfig {
+  label: ResumeAddInfoLabelConfig[],
+  nation: ResumeAddInfoNationConfig[],
+  occupation: ResumeAddInfoParentOccupationConfig[],
+  gender: ResumeAddInfoGenderConfig[],
+  type: ResumeAddInfoGenderConfig[],
+  prof_degree: ResumeAddInfoGenderConfig[]
+}
+
+// --标签配置
+export interface ResumeAddInfoLabelConfig {
+  id: string,
+  label_name: string,
+  label_py: string
+}
+
+// --民族配置
+export interface ResumeAddInfoNationConfig {
+  mz_id: string,
+  mz_name: string
+}
+
+// --工种配置
+export interface ResumeAddInfoOccupationConfig {
+  id: string,
+  pid: string,
+  latter: string,
+  not_auth: string
+}
+
+export interface ResumeAddInfoParentOccupationConfig extends ResumeAddInfoOccupationConfig{
+  has_children: number,
+  children: ResumeAddInfoOccupationConfig[]
+}
+
+
+// --性别配置
+export interface ResumeAddInfoGenderConfig {
+  id: string ,
+  name: string
+}
