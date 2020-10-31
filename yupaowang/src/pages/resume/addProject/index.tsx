@@ -46,10 +46,6 @@ export default function AddProjectPage() {
   const useSelectorItem = useSelector<any, any>(state => state)
   // url传递过来的值
   let { type, id } = router.params;
-  // const projectData:any=[];
-  // const { projectData } = useContext(context);
-  // const { area } = useContext(contextItem);
-  // console.log(area,'areaareaarea')
   // 默认字数
   const [num, setNum] = useState<number>(0)
   //项目名称

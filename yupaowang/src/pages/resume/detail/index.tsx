@@ -2,7 +2,7 @@ import Taro, { Config, useState, useRouter, createContext, useDidShow, useEffect
 import { View, Text, Image } from '@tarojs/components'
 import { resumeDetailAction, recommendListAction, resumesGetTelAcrion, resumeSupportAction, resumeCollectAction, resumesComplainAction } from '../../../utils/request/index'
 import { IMGCDNURL } from '../../../config'
-import Msg, { SubPopup } from '../../../utils/msg'
+import Msg, { showModalTip } from '../../../utils/msg'
 import { DataType, ListType, Injected } from './index.d'
 import CollectionRecruitList  from '../../../components/recommendList/index'
 import { isVaildVal } from '../../../utils/v'
@@ -238,7 +238,7 @@ export default function ResumeDetail() {
     resumesComplainAction(params).then((res) => {
       if (res.errcode === 'ok') {
         SubscribeToNews('complain', () => {
-          SubPopup({
+          showModalTip({
             tips: res.errmsg,
             callback: () => {
               setIsComplaint(true)

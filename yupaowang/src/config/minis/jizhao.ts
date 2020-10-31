@@ -8,10 +8,13 @@ var TOKEN: string = 'jizhao'
 var UNITID: string = 'adunit-80f40e8b4f60c3f6'
 // * 邀请key
 var INVITESOURCE: string = "712790d9629c6dcea00e3f5bff60132b"
+// * 是否使用推送信息
+var USESUBSCRIBEMESSAGE: boolean = true
 
 module.exports = {
   PAGETITLE,
   TOKEN,
   UNITID,
-  INVITESOURCE
+  INVITESOURCE,
+  USESUBSCRIBEMESSAGE
 }

@@ -1,9 +1,10 @@
-import Taro, { useState, useContext } from '@tarojs/taro'
+import Taro, { useState } from '@tarojs/taro'
 import { View, Text, Input } from '@tarojs/components'
 import useCode from '../../../hooks/code'
 import { userChangePhone } from '../../../utils/request'
 import { isPhone } from '../../../utils/v'
-import { PhoneContext } from '../index' 
+import { setMemberTel } from '../../../actions/member'
+import { useDispatch } from '@tarojs/redux'
 import './index.scss'
 import Msg from '../../../utils/msg'
 
@@ -12,7 +13,7 @@ interface BandPhone {
   code: string
 }
 export default function UserBandPhone(){
-  const { setPhone } = useContext(PhoneContext)
+  const dispatch =  useDispatch()
   const { userGetCode, text } = useCode()
   const [info, setInfo] = useState<BandPhone>({
     tel: '',
@@ -39,7 +40,7 @@ export default function UserBandPhone(){
     .then(res=>{
       Msg(res.errmsg)
       if(res.errcode == 'ok'){
-        setPhone(info.tel)
+        dispatch(setMemberTel(info.tel))
         Taro.navigateBack()
       }
     })

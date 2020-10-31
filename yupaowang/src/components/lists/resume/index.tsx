@@ -1,6 +1,7 @@
 import Taro from '@tarojs/taro'
 import { View, Text, Image, Block } from '@tarojs/components'
 import { IMGCDNURL } from '../../../config'
+import Nodata from '../../../components/nodata'
 import { ResumeList } from '../../../utils/request/index.d'
 import './index.scss'
 
@@ -27,8 +28,8 @@ export default function ResumeList({ data, bottom = true }: PROPS){
                 <View className='resume-list-userinfo'>
                   <View className='resume-list-userinfo-detail'>
                     <Text className='resume-userinfo-name'>{ d.username }</Text>
-                    <Text className='resume-userinfo-sex'>男</Text>
-                    <Text className='resume-userinfo-age'>{ d.birthday }岁</Text>
+                    {d.gender && <Text className='resume-userinfo-sex'>{d.gender == '1' ? '男' : '女'}</Text>}
+                    {d.birthday && <Text className='resume-userinfo-age'>{d.birthday}岁</Text>}
                   </View>
                   <Text className='resume-list-type'>{ d.type }</Text>
                   <View className='resume-otherinfo'>
@@ -58,6 +59,7 @@ export default function ResumeList({ data, bottom = true }: PROPS){
           ))}
         </Block>
       ))}
+      {data&&data[0]&&!data[0].length && <Nodata text='暂无相关数据' />}
     </View>
   )
 }

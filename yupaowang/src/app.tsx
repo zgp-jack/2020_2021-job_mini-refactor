@@ -27,9 +27,10 @@ class App extends Component {
       "pages/recharge/index", //用户充值页面
       "pages/realname/index", //用户实名认证
       "pages/map/realname/index", // 用户实名选择地址
-      "pages/userinfo/index/index", // 用户修改资料
+      "pages/userinfo/info/index", // 用户修改资料
       "pages/userinfo/add/index", // 用户完善资料
       "pages/userinfo/phone/index", // 用户更换手机
+      "pages/userinfo/updatePass/index",//修改密码
       "pages/published/recruit/index", // 已发布招工列表
       "pages/published/used/index", // 已发布二手交易
       "pages/collection/index", //收藏
@@ -37,6 +38,7 @@ class App extends Component {
       "pages/feedbacklist/index", //意见反馈列表
       "pages/feedback/index", //意见反馈
       "pages/static/invite/index", //新闻资讯
+      "pages/query/index", //实名查询
       "pages/information/mymessage/index", //我的信息
       "pages/information/system/index", //我的信息详情
       'pages/integral/tabber/index', //积分来源顶部
@@ -44,13 +46,14 @@ class App extends Component {
       'pages/topping/index', //置顶
       'pages/topping/distruction/index',//置顶选择范围
       // 'pages/topping/recruit/index',//置顶找活范围
+      'pages/resume/publish/index', //发布找活
       'pages/resume/detail/index', // 找活详情
       'pages/resume/skillList/index',//技能证书
       'pages/resume/projectList/index',//项目经验
       'pages/resume/addProject/index', //新增项目,
       'pages/resume/addSkill/index',//新增技能
       'pages/resume/basics/index',//基础信息
-      'pages/resume/newJobs/index',//新增
+      'pages/resume/mine/index',//新增
       'pages/resume/recList/index', //更多招工信息
       'pages/resume/preview/index', // 预览
       'pages/resume/personInfo/index',//人员信息

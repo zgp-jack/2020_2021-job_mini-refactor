@@ -21,11 +21,6 @@ export default function AddSkillPage() {
   const router: Taro.RouterInfo = useRouter()
   // 获取存入的公用内容
   const useSelectorItem = useSelector<any, any>(state => state)
-  // 传递过来的数据
-  // const skillData:any=[]
-  // const { skillData } = useContext(context);
-  // const { area } = useContext(contextItem);
-  // console.log(area,'contextItemcontextItemcontextItem')
   //  url传递过来的数据
   let { type,id } = router.params;
   console.log(id,'xxx')

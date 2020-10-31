@@ -16,8 +16,10 @@ export const REQUESTURL: string = DEVREQUESTURL;
 export const UPLOADIMGURL: string = PROREQUESTURL + 'index/upload/'
 // * 阿里云CDN域名
 export const ALIYUNCDN: string = 'http://cdn.yupao.com'
+// * 阿里云小程序普通路径
+export const ALIYUNCDNMINIIMG: string = '/miniprogram/images/'
 // * 阿里云CDN图片域名
-export const IMGCDNURL: string = ALIYUNCDN + '/miniprogram/images/'
+export const IMGCDNURL: string = ALIYUNCDN + ALIYUNCDNMINIIMG
 // * 公司默认客服电话
 export const SERVERPHONE: string = '400-838-1888'
 // * 小程序当前版本号
@@ -32,6 +34,8 @@ export const UserPublishAreaHistoryMaxNum: number = 10
 export const MemberMsgTimerInterval: number = 1000 * 60
 
 // ! 页面内常用路径配置
+// * 实名认证页面
+export const REALNAMEPATH: string = '/pages/realname/index'
 // * 授权登录页面
 export const AUTHPATH: string = '/pages/userauth/index'
 // * 微信外验证码登录
@@ -55,4 +59,5 @@ export const TOKEN: string = MINICONFIG.TOKEN
 export const UNITID: string = MINICONFIG.UNITID
 // * 小程序邀请key
 export const INVITESOURCE: string = MINICONFIG.INVITESOURCE
-
+// * 是否使用推送信息
+export const USESUBSCRIBEMESSAGE: boolean = MINICONFIG.USESUBSCRIBEMESSAGE

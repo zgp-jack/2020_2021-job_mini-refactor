@@ -3,7 +3,7 @@ import { View, Form, Text, Picker, Input, Textarea, Button } from '@tarojs/compo
 import { ProfessionRecruitData } from '../../../components/profession/index.d'
 import { addResumeAction} from '../../../utils/request/index'
 import Profession from '../../../components/profession'
-import Msg, { SubPopup } from '../../../utils/msg'
+import Msg, { showModalTip } from '../../../utils/msg'
 import WordsTotal from '../../../components/wordstotal'
 import { userAuthLoction, recSerAuthLoction } from '../../../utils/helper'
 import { contextItem } from '../../../pages/map/resume'
@@ -24,9 +24,6 @@ export default function BasicsPage() {
   console.log(useSelectorItem,'dadasd')
   //选择地址传过来的内容
   const { publishArea, location, adcode } = useContext(contextItem);
-  //公用数据，工种，民族
-  // const publicList:any=[];
-  // const { publicList } = useContext(context);
   // 验证码
   const { text, userGetCode } = useCode()
   // 当前显示城市
@@ -86,8 +83,6 @@ export default function BasicsPage() {
   
   // 获取数据
   useEffect(()=>{
-    // console.log((getPublicList()),'xxxxs');
-    console.log(useSelectorItem,'xxx111')
     const data = JSON.parse(JSON.stringify(useSelectorItem.Personnel));
     if (useSelectorItem.Personnel){
       console.log(useSelectorItem)
@@ -96,6 +91,7 @@ export default function BasicsPage() {
       setNationCurrent(nameList);
       setAllNationCurrent(data.nation);
       // 工种
+      console.log(data)
       setoccupation(data.occupation)
     }
     // 设置城市
@@ -146,9 +142,7 @@ export default function BasicsPage() {
         // 自我介绍
       };
       setnation_id(useInfo.nation_id ? (useInfo.nation_id > 0 ? useInfo.nation_id-1:0):0)
-      // console.log(useInfo.occupation,'xxx')
       const arr = JSON.parse(JSON.stringify(useSelectorItem.Personnel.occupation));
-      console.log(arr,'xxx')
       let clckArr, arrList;
       if (useInfo.occupations_id){
         clckArr = useInfo.occupations_id.split(",");
@@ -177,21 +171,6 @@ export default function BasicsPage() {
       setAdcodes(useInfo.ad_code ? useInfo.ad_code:'')
       setNum(useInfo.introduce?useInfo.introduce.length:0)
     }
-    // const params = {
-    //   type:'job',
-    //   infoId:''
-    // }
-    // // 获取工种
-    // getPublishRecruitView(params).then(res=>{
-    //   console.log(res,'xxxx')
-    //   setModel(res);
-    // });
-    // // 获取民族
-    // getUserAuthInfo().then(res=>{
-    //   const nameList = res.authData.nation.map(v=>v.mz_name);
-    //   setNationCurrent(nameList);
-    //   setAllNationCurrent(res.authData.nation);
-    // })
   },[])
   useDidShow(() => {
     console.log(publishArea , location ,adcode)
@@ -265,11 +244,11 @@ export default function BasicsPage() {
       return
     }
     if (!nation){
-      Msg('请选择名族')
+      Msg('请选择民族')
       return
     }
     if (!clickOccupation) {
-      Modal('请选择您的工种')
+      Msg('请选择您的工种')
       return
     }
     if (!formData.are) {
@@ -277,7 +256,7 @@ export default function BasicsPage() {
       return
     }
     if (!formData.phone) {
-      Modal('请选择您的工种')
+      Msg('请输入您的手机')
       return
     }
     if (isCode){
@@ -309,17 +288,15 @@ export default function BasicsPage() {
     addResumeAction(params).then(res=>{
       if(res.errcode == '200' ){
         SubscribeToNews("resume",()=>{
-          SubPopup({
+          showModalTip({
             tips: res.errmsg, 
             callback: ()=>{
-              Taro.navigateBack({
-                delta: 1
-              })
+              Taro.navigateBack()
             }
           })
         })
       }else{
-        SubPopup({ tips: res.errmsg})
+        showModalTip({ tips: res.errmsg})
       }
     })
   }
@@ -424,7 +401,6 @@ export default function BasicsPage() {
     setLng(data[0].longitude)
     setAdcodes(data[0].regeocodeData.addressComponent.adcode)
   }
-  console.log(occupation,'xxx')
   return (
     <View>
       {showProfession &&

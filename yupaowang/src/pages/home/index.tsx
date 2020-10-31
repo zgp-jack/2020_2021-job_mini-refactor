@@ -12,6 +12,8 @@ import ResumeList from '../../components/lists/resume'
 import UsedList from '../../components/lists/used'
 import About from '../../components/index/about'
 import { getBannerNotice, getAllListItem } from '../../utils/request'
+import { UserListChooseCity, UserLocation } from '../../config/store'
+import HomeCity from '../../components/home_city'
 import { BannerNoticeBanner, BannerNoticeNotice, RecruitListItem, ResumeList as ResumeListArr, FleamarketList } from '../../utils/request/index.d'
 
 export interface FilterData {
@@ -27,11 +29,23 @@ interface AllLists {
 
 export default function Home(){
 
+  let userChooseCity = Taro.getStorageSync(UserListChooseCity)
+  let location = Taro.getStorageSync(UserLocation)
+  // 当前展示的城市
+  const [area, setArea] = useState<string>(userChooseCity ? userChooseCity.name : '全国')
+
+  // * 是否展示城市选择
+  const [shwoCity, setShowCity] = useState<boolean>(false)
   // * 获取列表数据的data
   const [filterData, setFilterData] = useState<FilterData>({
-    area: '',
-    location: ''
+    area: userChooseCity ? userChooseCity.id : 1,
+    location: location || ''
   })
+  // 选择城市 设置信息
+  const setAreaInfo = (val: string, id: string) => {
+    setArea(val)
+    setFilterData({...filterData, area: id})
+  }
   // * 轮播图的基本参数配置
   const [swiper, setSwiper] = useState<IProps<BannerNoticeBanner>>({
     lists: []
@@ -79,9 +93,9 @@ export default function Home(){
       {/* // ? 顶部结构  */}
       <View className='home-header'>
         <Image className='home-header-logo' src={ IMGCDNURL + 'logo.png' }></Image>
-        <View className='home-header-area'>
+        <View className='home-header-area' onClick={()=>setShowCity(true)}>
           <Image className='home-header-loc' src={ IMGCDNURL + 'area.png' }></Image>
-          <Text className='home-header-text'>四川</Text>
+          <Text className='home-header-text'>{area }</Text>
           <Image className='home-header-select' src={ IMGCDNURL + 'areamore.png' }></Image>
         </View>
         <Image onClick={() => userRouteJump('/subpackage/pages/download/index')} className='home-header-app' src={ IMGCDNURL + 'loadapp.png' }></Image>
@@ -89,7 +103,7 @@ export default function Home(){
       {/* // ? 轮播图  */}
       <SwiperComponent data={ swiper } />
       {/* // ? 项目列表  */}
-      <Projects />
+      {ISWEIXIN && <Projects />}
       {/* // ? 快捷菜单  */}
       <Fastfun />
       {/* // ? 鱼泡资讯  */}
@@ -129,6 +143,7 @@ export default function Home(){
 
       {/* // ? 底部信息  */}
       <About />
+      {shwoCity && <HomeCity show={shwoCity} setAreaInfo={(val: string,id: string) => setAreaInfo(val,id)} closeDrawer={() => setShowCity(!shwoCity)} />}
     </View>
   )
 }

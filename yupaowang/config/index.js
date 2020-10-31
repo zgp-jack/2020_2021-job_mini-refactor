@@ -1,8 +1,11 @@
 const webpack = require('webpack-bundle-analyzer')
 // * 非微信小程序标识集合
-const unweixinmins = ['baidu','douyin']
+const unweixinmins = ["baidu","douyin"]
 // * 当前编译小程序集合
 const miniflag = JSON.stringify(process.argv[2])
+const reminiflag = miniflag.replace(/\"/g, "")
+const ISWEIXIN = unweixinmins.find(item => item == reminiflag) ? false : true
+
 const config = {
   projectName: '鱼泡网',
   date: '2020-2-13',
@@ -30,7 +33,7 @@ const config = {
   plugins: [],
   defineConstants: {
     MINI: miniflag,
-    ISWEIXIN: unweixinmins.find(item => item == miniflag) ? false : true
+    ISWEIXIN: ISWEIXIN
   },
   mini: {
     postcss: {

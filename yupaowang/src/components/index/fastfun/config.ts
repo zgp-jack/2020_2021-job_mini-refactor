@@ -13,7 +13,7 @@ const Config: FastfunItem[] = [
     text: '邀请好友'
   },
   {
-    url: 'pages/query/query',
+    url: '/pages/query/index',
     img: IMGCDNURL + 'smcx.png',
     text: '实名查询'
   },

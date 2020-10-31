@@ -11,7 +11,7 @@ export const GetAllListItem: string = REQUESTURL + 'index/new-index-msg/'
 // 获取招工列表
 export const GetRecruitlist: string = REQUESTURL + 'job/list-new/'
 // 获取找活列表
-export const GetResumelist: string = REQUESTURL + 'resumes/index/'
+export const GetResumelist: string = REQUESTURL + 'resumes/new-index/'
 // 获取二手交易列表
 export const GetFleamarketlist: string = REQUESTURL + 'index/info-list/'
 // 获取微信号与公告列表
@@ -70,6 +70,8 @@ export const userChangeAvatar: string = REQUESTURL + 'user/update-header/'
 export const userUpdateName: string = REQUESTURL + 'user/update-username/'
 // 用户更换手机
 export const userChangePhone: string = REQUESTURL + 'user/update-tel/'
+//修改电话号码
+export const updataPassword: string = REQUESTURL + 'user/update-pwd/'
 // 用户获取已发布招工列表
 export const userGetPublishedRecruitList: string = REQUESTURL + 'job/issue-lists/'
 // 用户改变招工状态
@@ -198,3 +200,9 @@ export const leavingMessageUrl: string = REQUESTURL +'leaving-message/add-subscr
 export const userAccountUrl: string = REQUESTURL + 'baidu-auth/login/'
 // 用户验证码登录
 export const userTelCodeLogin: string = REQUESTURL + 'baidu-auth/code-login/'
+// 抖音用户充值
+export const userDouyinRecharge: string = REQUESTURL + 'pay/bytedance-order/'
+// 都要用户充值订单检测
+export const userCheckDouyinRecharge: string = REQUESTURL + '/pay/byte-check/'
+// 实名查询
+export const realnameQueryUrl: string = REQUESTURL + 'resume/auth-worker-find/'

@@ -50,11 +50,12 @@ export function successMsg(msg: string = '') {
 }
 
 
-export function SubPopup(obj) {
+export function showModalTip(obj) {
+  let { title = '温馨提示',showCancel = false } = obj
   Taro.showModal({
-    title: obj.title || '温馨提示',
+    title: title,
     content: obj.tips,
-    showCancel: obj.hasOwnProperty('cancel') ? obj.cancel : false,
+    showCancel: showCancel,
     success() {
       obj.callback ? obj.callback() : "";
     }
