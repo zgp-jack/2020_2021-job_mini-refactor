@@ -5,7 +5,7 @@ import { InitRecruitView } from '../../pages/recruit/publish'
 import { UserLastPublishArea, UserLocationCity } from '../../config/store'
 import { UserLocationPromiss, AREABEIJING } from '../../models/area'
 import { userAuthLoction } from '../../utils/helper'
-import Msg, { ShowActionModal, SubPopup } from '../../utils/msg'
+import Msg, { ShowActionModal } from '../../utils/msg'
 import { SubscribeToNews } from '../../utils/subscribeToNews';
 import { useSelector, useDispatch } from '@tarojs/redux'
 import { isVaildVal, isPhone } from '../../utils/v'
@@ -222,9 +222,9 @@ export default function usePublishViewInfo(InitParams: InitRecruitView){
     publishRecruitInfo(data).then(res=>{
       if(res.errcode == 'ok'){
         SubscribeToNews("recruit", () => {
-          SubPopup({
-            tips: res.errmsg,
-            callback: () => {
+          ShowActionModal({
+            msg: res.errmsg,
+            success: () => {
               Taro.reLaunch({
                 url: '/pages/published/recruit/index'
               })

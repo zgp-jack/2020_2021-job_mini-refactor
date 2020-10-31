@@ -1,4 +1,4 @@
-(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["pages/member/index"],{
+(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["pages/member/index"],{
 
 /***/ "./src/pages/member/index.scss":
 /*!*************************************!*\
@@ -31,15 +31,17 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
+var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
 
-var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
+var _taroTt2 = _interopRequireDefault(_taroTt);
 
 var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/redux/index.js");
 
 var _index = __webpack_require__(/*! ../../utils/request/index */ "./src/utils/request/index.ts");
 
 var _index2 = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
+
+var _member = __webpack_require__(/*! ../../actions/member */ "./src/actions/member.ts");
 
 var _index3 = __webpack_require__(/*! ../../utils/msg/index */ "./src/utils/msg/index.ts");
 
@@ -72,7 +74,7 @@ var Member = function (_Taro$Component) {
     key: "_constructor",
     value: function _constructor(props) {
       _get(Member.prototype.__proto__ || Object.getPrototypeOf(Member.prototype), "_constructor", this).call(this, props);
-      this.$$refs = new _taroWeapp2.default.RefsArray();
+      this.$$refs = new _taroTt2.default.RefsArray();
     }
   }, {
     key: "_createData",
@@ -82,14 +84,14 @@ var Member = function (_Taro$Component) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      console.log(true);
+      var dispatch = (0, _redux.useDispatch)();
       // 获取用户信息
       var login = (0, _redux.useSelector)(function (state) {
         return state.User['login'];
       });
       // member信息
 
-      var _useState = (0, _taroWeapp.useState)(),
+      var _useState = (0, _taroTt.useState)(),
           _useState2 = _slicedToArray(_useState, 2),
           model = _useState2[0],
           setModel = _useState2[1];
@@ -105,21 +107,15 @@ var Member = function (_Taro$Component) {
       });
       // 判断是否是ios
 
-      var _useState3 = (0, _taroWeapp.useState)(false),
+      var _useState3 = (0, _taroTt.useState)(false),
           _useState4 = _slicedToArray(_useState3, 2),
           ios = _useState4[0],
           setIos = _useState4[1];
-      // 创建memberContext
-
-
-      var value = {
-        username: model ? model.member.username || model.member.nickname : '',
-        avatar: model ? model.member.headimgurl : '',
-        phone: model ? model.member.tel : ''
-      };
       // 用户页面跳转
+
+
       var userRouteJump = function userRouteJump(url) {
-        _taroWeapp2.default.navigateTo({
+        _taroTt2.default.navigateTo({
           url: url
         });
       };
@@ -130,21 +126,28 @@ var Member = function (_Taro$Component) {
         }
         (0, _index.getMemberInfo)().then(function (data) {
           if (data.errcode == 'ok') {
+            var value = {
+              username: data.member.username || data.member.nickname,
+              avatar: data.member.headimgurl || '',
+              phone: data.member.tel || '',
+              pwd_status: data.member.pwd_status || ''
+            };
+            dispatch((0, _member.setMemberInfo)(value));
             setModel(data);
           } else (0, _index3.ShowActionModal)(data.errmsg);
         });
       };
-      (0, _taroWeapp.useEffect)(function () {
+      (0, _taroTt.useEffect)(function () {
         setIos((0, _index4.isIos)());
       }, []);
-      (0, _taroWeapp.useDidShow)(function () {
+      (0, _taroTt.useDidShow)(function () {
         initMemberInfo();
       });
-      (0, _taroWeapp.useEffect)(function () {
+      (0, _taroTt.useEffect)(function () {
         initMemberInfo();
       }, [login]);
       this.anonymousFunc0 = function () {
-        return userRouteJump("/pages/userinfo/index/index?username=" + value.username + "&phone=" + value.phone + "&avatar=" + value.avatar);
+        return userRouteJump("/pages/userinfo/info/index");
       };
       this.anonymousFunc1 = function () {
         return userRouteJump('/pages/userinfo/add/index');
@@ -156,7 +159,7 @@ var Member = function (_Taro$Component) {
         return userRouteJump('/pages/integral/temp/index');
       };
       this.anonymousFunc4 = function () {
-        return userRouteJump( true ? _index2.AUTHPATH : undefined);
+        return userRouteJump( false ? undefined : _index2.CODEAUTHPATH);
       };
       this.anonymousFunc5 = function () {
         return userRouteJump('/pages/published/recruit/index');
@@ -284,13 +287,13 @@ var Member = function (_Taro$Component) {
   }]);
 
   return Member;
-}(_taroWeapp2.default.Component);
+}(_taroTt2.default.Component);
 
 Member.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6", "anonymousFunc7", "anonymousFunc8", "anonymousFunc9", "anonymousFunc10", "anonymousFunc11", "anonymousFunc12", "anonymousFunc13", "anonymousFunc14", "anonymousFunc15"];
 Member.$$componentPath = "pages/member/index";
 exports.default = Member;
 
-Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(Member));
+Component(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(Member));
 
 /***/ })
 

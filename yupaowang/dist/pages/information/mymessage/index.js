@@ -1,4 +1,4 @@
-(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["pages/information/mymessage/index"],{
+(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["pages/information/mymessage/index"],{
 
 /***/ "./src/pages/information/mymessage/index.scss":
 /*!****************************************************!*\
@@ -31,9 +31,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
+var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
 
-var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
+var _taroTt2 = _interopRequireDefault(_taroTt);
 
 var _index = __webpack_require__(/*! ../../../utils/request/index */ "./src/utils/request/index.ts");
 
@@ -65,7 +65,7 @@ var Mymessage = function (_Taro$Component) {
       navigationBarTitleText: '鱼泡网-我的信息'
     };
 
-    _this.$usedState = ["data", "loopArray62", "IMGCDNURL"];
+    _this.$usedState = ["data", "loopArray66", "IMGCDNURL"];
     _this.anonymousFunc0Map = {};
     _this.customComponents = ["Auth", "Nodata"];
     return _this;
@@ -75,7 +75,7 @@ var Mymessage = function (_Taro$Component) {
     key: "_constructor",
     value: function _constructor(props) {
       _get(Mymessage.prototype.__proto__ || Object.getPrototypeOf(Mymessage.prototype), "_constructor", this).call(this, props);
-      this.$$refs = new _taroWeapp2.default.RefsArray();
+      this.$$refs = new _taroTt2.default.RefsArray();
     }
   }, {
     key: "_createData",
@@ -89,7 +89,7 @@ var Mymessage = function (_Taro$Component) {
       ;
       // 默认数据
 
-      var _useState = (0, _taroWeapp.useState)({
+      var _useState = (0, _taroTt.useState)({
         item: []
       }),
           _useState2 = _slicedToArray(_useState, 2),
@@ -103,14 +103,14 @@ var Mymessage = function (_Taro$Component) {
       });
       // 判断是否是ios
 
-      var _useState3 = (0, _taroWeapp.useState)(false),
+      var _useState3 = (0, _taroTt.useState)(false),
           _useState4 = _slicedToArray(_useState3, 2),
           ios = _useState4[0],
           setIos = _useState4[1];
       // 数据请求
 
 
-      (0, _taroWeapp.useEffect)(function () {
+      (0, _taroTt.useEffect)(function () {
         if (!login) {
           return;
         }
@@ -122,16 +122,16 @@ var Mymessage = function (_Taro$Component) {
       }, [login]);
       // 用户页面跳转
       var userRouteJump = function userRouteJump(url) {
-        _taroWeapp2.default.navigateTo({
+        _taroTt2.default.navigateTo({
           url: url
         });
       };
-      var loopArray62 = data.item.map(function (item, index) {
+      var loopArray66 = data.item.map(function (item, index) {
         item = {
-          $original: (0, _taroWeapp.internal_get_original)(item)
+          $original: (0, _taroTt.internal_get_original)(item)
         };
         var $loopState__temp2 = index + index;
-        var _$indexKey = "hczzz" + index;
+        var _$indexKey = "hfzzz" + index;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return userRouteJump("/pages/information/system/index?type=" + item.$original.type);
         };
@@ -143,7 +143,7 @@ var Mymessage = function (_Taro$Component) {
       });
       Object.assign(this.__state, {
         data: data,
-        loopArray62: loopArray62,
+        loopArray66: loopArray66,
         IMGCDNURL: _index2.IMGCDNURL
       });
       return this.__state;
@@ -164,14 +164,14 @@ var Mymessage = function (_Taro$Component) {
   }]);
 
   return Mymessage;
-}(_taroWeapp2.default.Component);
+}(_taroTt2.default.Component);
 
 Mymessage.$$events = ["anonymousFunc0"];
 Mymessage.$$componentPath = "pages/information/mymessage/index";
 Mymessage.config = { navigationBarTitleText: '鱼泡网-我的信息' };
 exports.default = Mymessage;
 
-Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(Mymessage, true));
+Page(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(Mymessage, true));
 
 /***/ })
 

@@ -1,4 +1,4 @@
-(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["components/wechat/index"],{
+(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["components/wechat/index"],{
 
 /***/ "./src/actions/wechat_notice.ts":
 /*!**************************************!*\
@@ -56,9 +56,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
+var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
 
-var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
+var _taroTt2 = _interopRequireDefault(_taroTt);
 
 var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/redux/index.js");
 
@@ -90,7 +90,7 @@ var WechatNotice = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (WechatNotice.__proto__ || Object.getPrototypeOf(WechatNotice)).apply(this, arguments));
 
-    _this.$usedState = ["$compid__17", "wechatNoticeData"];
+    _this.$usedState = ["$compid__21", "wechatNoticeData"];
     _this.customComponents = ["SwiperNews"];
     return _this;
   }
@@ -99,7 +99,7 @@ var WechatNotice = function (_Taro$Component) {
     key: '_constructor',
     value: function _constructor(props) {
       _get(WechatNotice.prototype.__proto__ || Object.getPrototypeOf(WechatNotice.prototype), '_constructor', this).call(this, props);
-      this.$$refs = new _taroWeapp2.default.RefsArray();
+      this.$$refs = new _taroTt2.default.RefsArray();
     }
   }, {
     key: '_createData',
@@ -110,12 +110,12 @@ var WechatNotice = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__17"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__21"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__17 = _genCompid2[0],
-          $compid__17 = _genCompid2[1];
+          $prevCompid__21 = _genCompid2[0],
+          $compid__21 = _genCompid2[1];
 
-      var _useState = (0, _taroWeapp.useState)({
+      var _useState = (0, _taroTt.useState)({
         vertical: true,
         lists: []
       }),
@@ -128,7 +128,7 @@ var WechatNotice = function (_Taro$Component) {
         return state.WechatNotice;
       });
       // 获取微信号与公告列表
-      (0, _taroWeapp.useEffect)(function () {
+      (0, _taroTt.useEffect)(function () {
         if (wechatNoticeData.success) {
           setSwiperNews(_extends({}, swiperNews, { lists: wechatNoticeData.notice }));
           return;
@@ -143,11 +143,11 @@ var WechatNotice = function (_Taro$Component) {
           dispatch((0, _wechat_notice2.default)(action));
         });
       }, []);
-      _taroWeapp.propsManager.set({
+      _taroTt.propsManager.set({
         "data": swiperNews
-      }, $compid__17, $prevCompid__17);
+      }, $compid__21, $prevCompid__21);
       Object.assign(this.__state, {
-        $compid__17: $compid__17,
+        $compid__21: $compid__21,
         wechatNoticeData: wechatNoticeData
       });
       return this.__state;
@@ -155,13 +155,13 @@ var WechatNotice = function (_Taro$Component) {
   }]);
 
   return WechatNotice;
-}(_taroWeapp2.default.Component);
+}(_taroTt2.default.Component);
 
 WechatNotice.$$events = [];
 WechatNotice.$$componentPath = "components/wechat/index";
 exports.default = WechatNotice;
 
-Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(WechatNotice));
+Component(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(WechatNotice));
 
 /***/ })
 

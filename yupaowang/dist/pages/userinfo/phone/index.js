@@ -1,4 +1,4 @@
-(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["pages/userinfo/phone/index"],{
+(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["pages/userinfo/phone/index"],{
 
 /***/ "./src/pages/userinfo/phone/index.scss":
 /*!*********************************************!*\
@@ -31,9 +31,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
+var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
 
-var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
+var _taroTt2 = _interopRequireDefault(_taroTt);
 
 var _index = __webpack_require__(/*! ../../../hooks/code/index */ "./src/hooks/code/index.ts");
 
@@ -43,13 +43,15 @@ var _index3 = __webpack_require__(/*! ../../../utils/request/index */ "./src/uti
 
 var _index4 = __webpack_require__(/*! ../../../utils/v/index */ "./src/utils/v/index.ts");
 
-var _index5 = __webpack_require__(/*! ../index/index */ "./src/pages/userinfo/index/index.tsx");
+var _member = __webpack_require__(/*! ../../../actions/member */ "./src/actions/member.ts");
+
+var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/redux/index.js");
 
 __webpack_require__(/*! ./index.scss */ "./src/pages/userinfo/phone/index.scss");
 
-var _index6 = __webpack_require__(/*! ../../../utils/msg/index */ "./src/utils/msg/index.ts");
+var _index5 = __webpack_require__(/*! ../../../utils/msg/index */ "./src/utils/msg/index.ts");
 
-var _index7 = _interopRequireDefault(_index6);
+var _index6 = _interopRequireDefault(_index5);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -76,7 +78,7 @@ var UserBandPhone = function (_Taro$Component) {
     key: "_constructor",
     value: function _constructor(props) {
       _get(UserBandPhone.prototype.__proto__ || Object.getPrototypeOf(UserBandPhone.prototype), "_constructor", this).call(this, props);
-      this.$$refs = new _taroWeapp2.default.RefsArray();
+      this.$$refs = new _taroTt2.default.RefsArray();
     }
   }, {
     key: "_createData",
@@ -86,15 +88,13 @@ var UserBandPhone = function (_Taro$Component) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-
-      var _useContext = (0, _taroWeapp.useContext)(_index5.PhoneContext),
-          setPhone = _useContext.setPhone;
+      var dispatch = (0, _redux.useDispatch)();
 
       var _useCode = (0, _index2.default)(),
           userGetCode = _useCode.userGetCode,
           text = _useCode.text;
 
-      var _useState = (0, _taroWeapp.useState)({
+      var _useState = (0, _taroTt.useState)({
         tel: '',
         code: ''
       }),
@@ -114,21 +114,21 @@ var UserBandPhone = function (_Taro$Component) {
       // 用户更换手机号码操作
       var userChangePhoneAction = function userChangePhoneAction() {
         if (!(0, _index4.isPhone)(info.tel)) {
-          (0, _index7.default)('请先输入正确的手机号码');
+          (0, _index6.default)('请先输入正确的手机号码');
           return;
         }
         if (!info.code) {
-          (0, _index7.default)('请先输入正确的验证码');
+          (0, _index6.default)('请先输入正确的验证码');
           return;
         }
         (0, _index3.userChangePhone)(info.tel, info.code).then(function (res) {
-          (0, _index7.default)(res.errmsg);
+          (0, _index6.default)(res.errmsg);
           if (res.errcode == 'ok') {
-            setPhone(info.tel);
-            _taroWeapp2.default.navigateBack();
+            dispatch((0, _member.setMemberTel)(info.tel));
+            _taroTt2.default.navigateBack();
           }
         }).catch(function () {
-          (0, _index7.default)('网络错误，发送失败');
+          (0, _index6.default)('网络错误，发送失败');
         });
       };
       this.anonymousFunc0 = function (e) {
@@ -172,13 +172,13 @@ var UserBandPhone = function (_Taro$Component) {
   }]);
 
   return UserBandPhone;
-}(_taroWeapp2.default.Component);
+}(_taroTt2.default.Component);
 
 UserBandPhone.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3"];
 UserBandPhone.$$componentPath = "pages/userinfo/phone/index";
 exports.default = UserBandPhone;
 
-Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(UserBandPhone, true));
+Page(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(UserBandPhone, true));
 
 /***/ })
 

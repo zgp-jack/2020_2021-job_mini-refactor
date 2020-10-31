@@ -1,4 +1,4 @@
-(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["npm/taro-ui/dist/weapp/components/modal/index"],{
+(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["npm/taro-ui/dist/weapp/components/modal/index"],{
 
 /***/ "./node_modules/taro-ui/dist/weapp/components/modal/index.js":
 /*!*******************************************************************!*\
@@ -22,9 +22,9 @@ var _get = function get(object, property, receiver) { if (object === null) objec
 
 var _class, _temp2;
 
-var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
+var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
 
-var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
+var _taroTt2 = _interopRequireDefault(_taroTt);
 
 var _propTypes = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
 
@@ -66,7 +66,7 @@ var AtModal = (_temp2 = _class = function (_AtComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AtModal.__proto__ || Object.getPrototypeOf(AtModal)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["_$isRenderAction", "_$anonymousState__temp", "$compid__44", "title", "content", "isWEB", "cancelText", "confirmText", "rootClass", "_isOpened", "isOpened", "closeOnClickOverlay", "className", "children"], _this.handleClickOverlay = function () {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AtModal.__proto__ || Object.getPrototypeOf(AtModal)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["_$isRenderAction", "_$anonymousState__temp", "$compid__49", "title", "content", "isWEB", "cancelText", "confirmText", "rootClass", "_isOpened", "isOpened", "closeOnClickOverlay", "className", "children"], _this.handleClickOverlay = function () {
       if (_this.props.closeOnClickOverlay) {
         _this.setState({
           _isOpened: false
@@ -98,9 +98,9 @@ var AtModal = (_temp2 = _class = function (_AtComponent) {
 
       this.state = {
         _isOpened: isOpened,
-        isWEB: _taroWeapp2.default.getEnv() === _taroWeapp2.default.ENV_TYPE.WEB
+        isWEB: _taroTt2.default.getEnv() === _taroTt2.default.ENV_TYPE.WEB
       };
-      this.$$refs = new _taroWeapp2.default.RefsArray();
+      this.$$refs = new _taroTt2.default.RefsArray();
     }
   }, {
     key: 'componentWillReceiveProps',
@@ -127,10 +127,10 @@ var AtModal = (_temp2 = _class = function (_AtComponent) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__44"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__49"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__44 = _genCompid2[0],
-          $compid__44 = _genCompid2[1];
+          $prevCompid__49 = _genCompid2[0],
+          $compid__49 = _genCompid2[1];
 
       var _$isRenderAction, _$anonymousState__temp;
 
@@ -150,15 +150,15 @@ var AtModal = (_temp2 = _class = function (_AtComponent) {
       if (title || content) {
         _$isRenderAction = cancelText || confirmText;
         _$anonymousState__temp = content ? isWEB ? { __html: content.replace(/\n/g, '<br/>') } : null : null;
-        _$isRenderAction && _taroWeapp.propsManager.set({
+        _$isRenderAction && _taroTt.propsManager.set({
           "isSimple": true
-        }, $compid__44, $prevCompid__44);
+        }, $compid__49, $prevCompid__49);
       }
 
       Object.assign(this.__state, {
         _$isRenderAction: _$isRenderAction,
         _$anonymousState__temp: _$anonymousState__temp,
-        $compid__44: $compid__44,
+        $compid__49: $compid__49,
         title: title,
         content: content,
         cancelText: cancelText,
@@ -190,7 +190,7 @@ AtModal.propTypes = {
 };
 exports.default = AtModal;
 
-Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(AtModal));
+Component(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(AtModal));
 
 /***/ })
 

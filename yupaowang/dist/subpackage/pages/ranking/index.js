@@ -1,4 +1,4 @@
-(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["subpackage/pages/ranking/index"],{
+(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["subpackage/pages/ranking/index"],{
 
 /***/ "./src/subpackage/pages/ranking/index.scss":
 /*!*************************************************!*\
@@ -31,9 +31,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
+var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
 
-var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
+var _taroTt2 = _interopRequireDefault(_taroTt);
 
 var _index = __webpack_require__(/*! ../../../utils/request/index */ "./src/utils/request/index.ts");
 
@@ -72,7 +72,7 @@ var RankingRules = function (_Taro$Component) {
     key: '_constructor',
     value: function _constructor(props) {
       _get(RankingRules.prototype.__proto__ || Object.getPrototypeOf(RankingRules.prototype), '_constructor', this).call(this, props);
-      this.$$refs = new _taroWeapp2.default.RefsArray();
+      this.$$refs = new _taroTt2.default.RefsArray();
     }
   }, {
     key: '_createData',
@@ -84,25 +84,25 @@ var RankingRules = function (_Taro$Component) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var UserInfo = _taroWeapp2.default.getStorageSync('UserInfo');
+      var UserInfo = _taroTt2.default.getStorageSync('UserInfo');
       // 获取用户是否登录
       var login = (0, _redux.useSelector)(function (state) {
         return state.User['login'];
       });
 
-      var _useState = (0, _taroWeapp.useState)(true),
+      var _useState = (0, _taroTt.useState)(true),
           _useState2 = _slicedToArray(_useState, 2),
           showbutton = _useState2[0],
           setShowbutton = _useState2[1];
       // 判断是否需要出现登陆
 
 
-      var _useState3 = (0, _taroWeapp.useState)(false),
+      var _useState3 = (0, _taroTt.useState)(false),
           _useState4 = _slicedToArray(_useState3, 2),
           isLogin = _useState4[0],
           setIsLogin = _useState4[1];
 
-      var _useState5 = (0, _taroWeapp.useState)({
+      var _useState5 = (0, _taroTt.useState)({
         warm_tips: [],
         resume_data: {
           info: {
@@ -119,7 +119,7 @@ var RankingRules = function (_Taro$Component) {
           data = _useState6[0],
           setData = _useState6[1];
 
-      (0, _taroWeapp.useDidShow)(function () {
+      (0, _taroTt.useDidShow)(function () {
         if (!UserInfo) {
           setShowbutton(false);
         }
@@ -148,43 +148,43 @@ var RankingRules = function (_Taro$Component) {
         if (data.resume_info.has_resume == 1 && v.jump.need_jump == 1) {
           // 到新增找活
           if (v.jump.mini_path = '/pages/clients-looking-for-work/finding-name-card/findingnamecard') {
-            _taroWeapp2.default.navigateTo({
+            _taroTt2.default.navigateTo({
               url: "/pages/resume/newJobs/index"
             });
             // 项目
           } else if (v.jump.mini_path == '/pages/clients-looking-for-work/all-project-experience/allexperience') {
-            _taroWeapp2.default.navigateTo({
+            _taroTt2.default.navigateTo({
               url: "/pages/resume/projectList/index?id=" + data.resume_data.info.uuid
             });
             // 技能
           } else if (v.jump.mini_path == '/pages/clients-looking-for-work/all-skills-certificate/skillscertificate') {
-            _taroWeapp2.default.navigateTo({
+            _taroTt2.default.navigateTo({
               url: "/pages/resume/skillList/index?id=" + data.resume_data.info.uuid
             });
             // 充值
           } else if (v.jump.mini_path == '/pages/recharge/recharge') {
-            _taroWeapp2.default.navigateTo({
+            _taroTt2.default.navigateTo({
               url: "/pages/recharge/index"
             });
             // 实名
           } else {
-            _taroWeapp2.default.navigateTo({
+            _taroTt2.default.navigateTo({
               url: "/pages/realname/index"
             });
           }
           // 充值
         } else if (data.resume_info.has_resume == 0 && v.jump.mini_path == '/pages/recharge/recharge' && v.jump.need_jump == 1) {
-          _taroWeapp2.default.navigateTo({
+          _taroTt2.default.navigateTo({
             url: "/pages/recharge/index"
           });
           // 真实姓名
         } else if (data.resume_info.has_resume == 0 && v.jump.mini_path == '/pages/realname/realname' && v.jump.need_jump == 1) {
-          _taroWeapp2.default.navigateTo({
+          _taroTt2.default.navigateTo({
             url: "/pages/realname/index"
           });
           // 名片信息
         } else if (v.jump.need_jump == 1) {
-          _taroWeapp2.default.navigateTo({
+          _taroTt2.default.navigateTo({
             url: "/pages/resume/newJobs/index"
           });
         }
@@ -195,7 +195,7 @@ var RankingRules = function (_Taro$Component) {
       console.log(showbutton);
       var loopArray1 = data.sort_rule_lists.map(function (v, index) {
         v = {
-          $original: (0, _taroWeapp.internal_get_original)(v)
+          $original: (0, _taroTt.internal_get_original)(v)
         };
         var $loopState__temp2 = index + index;
         var _$indexKey = "azzzz" + index;
@@ -215,7 +215,7 @@ var RankingRules = function (_Taro$Component) {
       });
       var loopArray2 = data.warm_tips.map(function (v, index) {
         v = {
-          $original: (0, _taroWeapp.internal_get_original)(v)
+          $original: (0, _taroTt.internal_get_original)(v)
         };
         var $loopState__temp4 = index + index;
         return {
@@ -261,14 +261,14 @@ var RankingRules = function (_Taro$Component) {
   }]);
 
   return RankingRules;
-}(_taroWeapp2.default.Component);
+}(_taroTt2.default.Component);
 
 RankingRules.$$events = ["anonymousFunc0", "anonymousFunc1"];
 RankingRules.$$componentPath = "subpackage/pages/ranking/index";
 RankingRules.config = { navigationBarTitleText: '排名规则' };
 exports.default = RankingRules;
 
-Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(RankingRules, true));
+Page(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(RankingRules, true));
 
 /***/ })
 

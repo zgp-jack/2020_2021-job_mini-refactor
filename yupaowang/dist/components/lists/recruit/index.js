@@ -1,4 +1,4 @@
-(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["components/lists/recruit/index"],{
+(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["components/lists/recruit/index"],{
 
 /***/ "./src/components/lists/recruit/index.scss":
 /*!*************************************************!*\
@@ -25,13 +25,15 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
+var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
 
-var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
+var _taroTt2 = _interopRequireDefault(_taroTt);
 
 var _index = __webpack_require__(/*! ../../../config/index */ "./src/config/index.ts");
 
@@ -53,9 +55,9 @@ var RecruitList = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (RecruitList.__proto__ || Object.getPrototypeOf(RecruitList)).apply(this, arguments));
 
-    _this.$usedState = ["anonymousState__temp", "loopArray10", "data", "IMGCDNURL", "bottom"];
+    _this.$usedState = ["anonymousState__temp", "loopArray10", "$compid__11", "data", "IMGCDNURL", "bottom"];
     _this.anonymousFunc0Map = {};
-    _this.customComponents = [];
+    _this.customComponents = ["Nodata"];
     return _this;
   }
 
@@ -63,7 +65,7 @@ var RecruitList = function (_Taro$Component) {
     key: "_constructor",
     value: function _constructor(props) {
       _get(RecruitList.prototype.__proto__ || Object.getPrototypeOf(RecruitList.prototype), "_constructor", this).call(this, props);
-      this.$$refs = new _taroWeapp2.default.RefsArray();
+      this.$$refs = new _taroTt2.default.RefsArray();
     }
   }, {
     key: "_createData",
@@ -75,6 +77,12 @@ var RecruitList = function (_Taro$Component) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
+
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__11"),
+          _genCompid2 = _slicedToArray(_genCompid, 2),
+          $prevCompid__11 = _genCompid2[0],
+          $compid__11 = _genCompid2[1];
+
       var _props = this.__props,
           data = _props.data,
           _props$bottom = _props.bottom,
@@ -82,18 +90,18 @@ var RecruitList = function (_Taro$Component) {
       // 用户页面跳转
 
       var userRouteJump = function userRouteJump(url) {
-        _taroWeapp2.default.navigateTo({
+        _taroTt2.default.navigateTo({
           url: url
         });
       };
-      var anonymousState__temp = (0, _taroWeapp.internal_inline_style)(bottom ? '' : 'padding-bottom:0');
+      var anonymousState__temp = (0, _taroTt.internal_inline_style)(bottom ? '' : 'padding-bottom:0');
       var loopArray10 = data ? data.map(function (item, __index1) {
         item = {
-          $original: (0, _taroWeapp.internal_get_original)(item)
+          $original: (0, _taroTt.internal_get_original)(item)
         };
         var $anonymousCallee__0 = item.$original ? item.$original.map(function (d, __index0) {
           d = {
-            $original: (0, _taroWeapp.internal_get_original)(d)
+            $original: (0, _taroTt.internal_get_original)(d)
           };
           var _$indexKey = "bbzzz" + __index1 + "-" + __index0;
           _this2.anonymousFunc0Map[_$indexKey] = function () {
@@ -109,9 +117,13 @@ var RecruitList = function (_Taro$Component) {
           $original: item.$original
         };
       }) : [];
+      data && data[0] && !data[0].length && _taroTt.propsManager.set({
+        "text": "\u6682\u65E0\u76F8\u5173\u6570\u636E"
+      }, $compid__11, $prevCompid__11);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
         loopArray10: loopArray10,
+        $compid__11: $compid__11,
         data: data,
         IMGCDNURL: _index.IMGCDNURL
       });
@@ -133,13 +145,13 @@ var RecruitList = function (_Taro$Component) {
   }]);
 
   return RecruitList;
-}(_taroWeapp2.default.Component);
+}(_taroTt2.default.Component);
 
 RecruitList.$$events = ["anonymousFunc0"];
 RecruitList.$$componentPath = "components/lists/recruit/index";
 exports.default = RecruitList;
 
-Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(RecruitList));
+Component(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(RecruitList));
 
 /***/ })
 

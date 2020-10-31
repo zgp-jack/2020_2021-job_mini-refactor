@@ -1,4 +1,4 @@
-(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["pages/static/invite/index"],{
+(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["pages/static/invite/index"],{
 
 /***/ "./src/pages/static/invite/index.scss":
 /*!********************************************!*\
@@ -31,9 +31,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
+var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
 
-var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
+var _taroTt2 = _interopRequireDefault(_taroTt);
 
 var _classnames = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
 
@@ -69,7 +69,7 @@ var InvitePage = function (_Taro$Component) {
       backgroundTextStyle: 'dark'
     };
 
-    _this.$usedState = ["tab", "loopArray60", "loopArray61", "$compid__56", "scrollLeft", "list", "pull"];
+    _this.$usedState = ["tab", "loopArray63", "loopArray64", "$compid__61", "scrollLeft", "list", "pull"];
     _this.anonymousFunc1Map = {};
     _this.anonymousFunc2Map = {};
     _this.customComponents = ["Nodata"];
@@ -80,7 +80,7 @@ var InvitePage = function (_Taro$Component) {
     key: '_constructor',
     value: function _constructor(props) {
       _get(InvitePage.prototype.__proto__ || Object.getPrototypeOf(InvitePage.prototype), '_constructor', this).call(this, props);
-      this.$$refs = new _taroWeapp2.default.RefsArray();
+      this.$$refs = new _taroTt2.default.RefsArray();
     }
   }, {
     key: '_createData',
@@ -93,21 +93,21 @@ var InvitePage = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__56"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__61"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__56 = _genCompid2[0],
-          $compid__56 = _genCompid2[1];
+          $prevCompid__61 = _genCompid2[0],
+          $compid__61 = _genCompid2[1];
       // 默认table
 
 
-      var _useState = (0, _taroWeapp.useState)('-1'),
+      var _useState = (0, _taroTt.useState)('-1'),
           _useState2 = _slicedToArray(_useState, 2),
           current = _useState2[0],
           setCurrent = _useState2[1];
       // 页数
 
 
-      var _useState3 = (0, _taroWeapp.useState)({
+      var _useState3 = (0, _taroTt.useState)({
         page: 1
       }),
           _useState4 = _slicedToArray(_useState3, 2),
@@ -116,28 +116,28 @@ var InvitePage = function (_Taro$Component) {
       //  没有数据显示内容
 
 
-      var _useState5 = (0, _taroWeapp.useState)('暂无相关资讯'),
+      var _useState5 = (0, _taroTt.useState)('暂无相关资讯'),
           _useState6 = _slicedToArray(_useState5, 2),
           noData = _useState6[0],
           setNodata = _useState6[1];
       // 数据
 
 
-      var _useState7 = (0, _taroWeapp.useState)([]),
+      var _useState7 = (0, _taroTt.useState)([]),
           _useState8 = _slicedToArray(_useState7, 2),
           list = _useState8[0],
           setList = _useState8[1];
       // 能否再上拉
 
 
-      var _useState9 = (0, _taroWeapp.useState)(true),
+      var _useState9 = (0, _taroTt.useState)(true),
           _useState10 = _slicedToArray(_useState9, 2),
           pull = _useState10[0],
           setPull = _useState10[1];
       // 设置滚动未知
 
 
-      var _useState11 = (0, _taroWeapp.useState)(0),
+      var _useState11 = (0, _taroTt.useState)(0),
           _useState12 = _slicedToArray(_useState11, 2),
           scrollLeft = _useState12[0],
           setScrollLeft = _useState12[1];
@@ -148,12 +148,12 @@ var InvitePage = function (_Taro$Component) {
         setNodata(name);
         setInitPage({ page: 1 });
         setPull(true);
-        _taroWeapp2.default.pageScrollTo({
+        _taroTt2.default.pageScrollTo({
           scrollTop: 0
         });
       };
 
-      var _useState13 = (0, _taroWeapp.useState)({
+      var _useState13 = (0, _taroTt.useState)({
         item: []
       }),
           _useState14 = _slicedToArray(_useState13, 2),
@@ -162,19 +162,19 @@ var InvitePage = function (_Taro$Component) {
       // 获取新闻类型
 
 
-      (0, _taroWeapp.useEffect)(function () {
+      (0, _taroTt.useEffect)(function () {
         (0, _index.newsTypesAction)().then(function (res) {
           setTab({ item: res.data });
         });
       }, []);
       // 获取新闻列表
-      (0, _taroWeapp.useEffect)(function () {
+      (0, _taroTt.useEffect)(function () {
         var params = {
           page: initPage.page,
           newsType: current
         };
         (0, _index.newListAction)(params).then(function (res) {
-          _taroWeapp2.default.hideNavigationBarLoading();
+          _taroTt2.default.hideNavigationBarLoading();
           if (!res.data.length) {
             setPull(false);
           }
@@ -187,11 +187,11 @@ var InvitePage = function (_Taro$Component) {
       }, [current, initPage]);
       // 用户页面跳转
       var userRouteJump = function userRouteJump(url) {
-        _taroWeapp2.default.navigateTo({
+        _taroTt2.default.navigateTo({
           url: url
         });
       };
-      (0, _taroWeapp.useReachBottom)(function () {
+      (0, _taroTt.useReachBottom)(function () {
         if (pull) {
           setInitPage({ page: initPage.page + 1 });
         }
@@ -199,11 +199,11 @@ var InvitePage = function (_Taro$Component) {
       this.anonymousFunc0 = function (e) {
         console.log(e);
       };
-      var loopArray60 = tab.item ? tab.item.map(function (item, i) {
+      var loopArray63 = tab.item ? tab.item.map(function (item, i) {
         item = {
-          $original: (0, _taroWeapp.internal_get_original)(item)
+          $original: (0, _taroTt.internal_get_original)(item)
         };
-        var _$indexKey = "hazzz" + i;
+        var _$indexKey = "hdzzz" + i;
         _this2.anonymousFunc1Map[_$indexKey] = function () {
           handleTable(item.$original.index, item.$original.name, i);
         };
@@ -216,11 +216,11 @@ var InvitePage = function (_Taro$Component) {
           $original: item.$original
         };
       }) : [];
-      var loopArray61 = list ? list.map(function (v, __index2) {
+      var loopArray64 = list ? list.map(function (v, __index2) {
         v = {
-          $original: (0, _taroWeapp.internal_get_original)(v)
+          $original: (0, _taroTt.internal_get_original)(v)
         };
-        var _$indexKey2 = "hbzzz" + __index2;
+        var _$indexKey2 = "hezzz" + __index2;
         _this2.anonymousFunc2Map[_$indexKey2] = function () {
           return userRouteJump("/subpackage/pages/notice/index?id=" + v.$original.id);
         };
@@ -229,14 +229,14 @@ var InvitePage = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      !list.length && _taroWeapp.propsManager.set({
+      !list.length && _taroTt.propsManager.set({
         "text": noData
-      }, $compid__56, $prevCompid__56);
+      }, $compid__61, $prevCompid__61);
       Object.assign(this.__state, {
         tab: tab,
-        loopArray60: loopArray60,
-        loopArray61: loopArray61,
-        $compid__56: $compid__56,
+        loopArray63: loopArray63,
+        loopArray64: loopArray64,
+        $compid__61: $compid__61,
         scrollLeft: scrollLeft,
         list: list,
         pull: pull
@@ -277,14 +277,14 @@ var InvitePage = function (_Taro$Component) {
   }]);
 
   return InvitePage;
-}(_taroWeapp2.default.Component);
+}(_taroTt2.default.Component);
 
 InvitePage.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2"];
 InvitePage.$$componentPath = "pages/static/invite/index";
 InvitePage.config = { navigationBarTitleText: '鱼泡网-新闻资讯', enablePullDownRefresh: true, navigationBarBackgroundColor: '#0099ff', navigationBarTextStyle: 'white', backgroundTextStyle: 'dark' };
 exports.default = InvitePage;
 
-Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(InvitePage, true));
+Page(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(InvitePage, true));
 
 /***/ })
 
