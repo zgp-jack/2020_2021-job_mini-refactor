@@ -223,8 +223,17 @@ var _resume2 = _interopRequireDefault(_resume);
 
 var _recruit = __webpack_require__(/*! ./recruit */ "./src/reducers/recruit.ts");
 
+var _member = __webpack_require__(/*! ./member */ "./src/reducers/member.ts");
+
+var _member2 = _interopRequireDefault(_member);
+
+var _realname = __webpack_require__(/*! ./realname */ "./src/reducers/realname.ts");
+
+var _realname2 = _interopRequireDefault(_realname);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+//合并reducer
 //发布招工reducer
 exports.default = (0, _redux.combineReducers)({
   tabbar: _tabbar2.default,
@@ -235,8 +244,59 @@ exports.default = (0, _redux.combineReducers)({
   Myresume: _resume2.default,
   filterClassify: _filter_classify2.default,
   MyAreaInfo: _recruit.MyAreaInfo,
-  MyArea: _recruit.MyArea
+  MyArea: _recruit.MyArea,
+  member: _member2.default,
+  realname: _realname2.default,
+  PositionStatus: _recruit.PositionStatus
 });
+
+/***/ }),
+
+/***/ "./src/reducers/member.ts":
+/*!********************************!*\
+  !*** ./src/reducers/member.ts ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; // 用户会员中心部分共用信息
+
+
+exports.default = UserMemberInfo;
+
+var _member = __webpack_require__(/*! ../constants/member */ "./src/constants/member.ts");
+
+var DEFAULT_MEMBER_INFO = {
+  username: '',
+  avatar: '',
+  phone: '',
+  pwd_status: ''
+};
+function UserMemberInfo() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : DEFAULT_MEMBER_INFO;
+  var action = arguments[1];
+
+  switch (action.type) {
+    case _member.GET:
+      return state;
+      break;
+    case _member.SET:
+      return _extends({}, state, action.data);
+      break;
+    case _member.TEL:
+      return _extends({}, state, { phone: action.data });
+      break;
+    default:
+      return state;
+  }
+}
 
 /***/ }),
 
@@ -321,6 +381,54 @@ function Personnel() {
 
 /***/ }),
 
+/***/ "./src/reducers/realname.ts":
+/*!**********************************!*\
+  !*** ./src/reducers/realname.ts ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+exports.default = RealnameStore;
+
+var _realname = __webpack_require__(/*! ../constants/realname */ "./src/constants/realname.ts");
+
+var DEFAULT_STATE = {
+  RealnameArea: '',
+  setRealnameArea: function setRealnameArea() {}
+};
+function RealnameStore() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : DEFAULT_STATE;
+  var action = arguments[1];
+
+  switch (action.type) {
+    case _realname.GET:
+      return state;
+      break;
+    case _realname.SET:
+      return _extends({}, state, action.data);
+      break;
+    case _realname.SETFUN:
+      return _extends({}, state, { setRealnameArea: action.data });
+      break;
+    case _realname.SETAREA:
+      return _extends({}, state, { RealnameArea: action.data });
+      break;
+    default:
+      return state;
+  }
+}
+
+/***/ }),
+
 /***/ "./src/reducers/recruit.ts":
 /*!*********************************!*\
   !*** ./src/reducers/recruit.ts ***!
@@ -340,6 +448,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 exports.MyAreaInfo = MyAreaInfo;
 exports.MyArea = MyArea;
+exports.PositionStatus = PositionStatus;
 
 var _recruit = __webpack_require__(/*! ../constants/recruit */ "./src/constants/recruit.ts");
 
@@ -376,6 +485,18 @@ function MyArea() {
     case _recruit.GETAREA:
       return state;
     case _recruit.SETAREA:
+      state = action.data;
+      return state;
+    default:
+      return state;
+  }
+}
+function PositionStatus() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+  var action = arguments[1];
+
+  switch (action.type) {
+    case _recruit.SETPOSITIONSTATUS:
       state = action.data;
       return state;
     default:

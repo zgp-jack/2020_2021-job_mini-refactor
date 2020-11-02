@@ -46,26 +46,6 @@ function setFun(data) {
 
 /***/ }),
 
-/***/ "./src/constants/realname.ts":
-/*!***********************************!*\
-  !*** ./src/constants/realname.ts ***!
-  \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var GET = exports.GET = 'get';
-var SET = exports.SET = 'set';
-var SETFUN = exports.SETFUN = 'setfun';
-var SETAREA = exports.SETAREA = 'setarea';
-
-/***/ }),
-
 /***/ "./src/hooks/realname/index.ts":
 /*!*************************************!*\
   !*** ./src/hooks/realname/index.ts ***!

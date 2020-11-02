@@ -12108,6 +12108,7 @@ exports.setAreaInfo = setAreaInfo;
 exports.getAreaInfo = getAreaInfo;
 exports.setArea = setArea;
 exports.getArea = getArea;
+exports.setPositionStaus = setPositionStaus;
 
 var _recruit = __webpack_require__(/*! ../constants/recruit */ "./src/constants/recruit.ts");
 
@@ -12131,6 +12132,12 @@ function setArea(data) {
 function getArea() {
   return {
     type: _recruit.GETAREA
+  };
+}
+function setPositionStaus(data) {
+  return {
+    type: _recruit.SETPOSITIONSTATUS,
+    data: data
   };
 }
 
@@ -12550,6 +12557,26 @@ var SETDATA = exports.SETDATA = 'setdata';
 
 /***/ }),
 
+/***/ "./src/constants/realname.ts":
+/*!***********************************!*\
+  !*** ./src/constants/realname.ts ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var GET = exports.GET = 'get';
+var SET = exports.SET = 'set';
+var SETFUN = exports.SETFUN = 'setfun';
+var SETAREA = exports.SETAREA = 'setarea';
+
+/***/ }),
+
 /***/ "./src/constants/recruit.ts":
 /*!**********************************!*\
   !*** ./src/constants/recruit.ts ***!
@@ -12567,6 +12594,7 @@ var GETAREAINFO = exports.GETAREAINFO = 'getareainfo';
 var SETAREAINFO = exports.SETAREAINFO = 'setareainfo';
 var SETAREA = exports.SETAREA = 'setarea';
 var GETAREA = exports.GETAREA = 'getarea';
+var SETPOSITIONSTATUS = exports.SETPOSITIONSTATUS = 'setpositionstatus';
 
 /***/ }),
 
@@ -17044,7 +17072,6 @@ function userAuthLoction() {
     var GDMAP = new _amapWx2.default.AMapWX({ key: _index.MAPKEY });
     GDMAP.getRegeo({
       success: function success(data) {
-        debugger;
         var gpsLocation = {
           province: data[0].regeocodeData.addressComponent.province,
           city: Array.isArray(data[0].regeocodeData.addressComponent.city) ? data[0].regeocodeData.addressComponent.province : data[0].regeocodeData.addressComponent.city,

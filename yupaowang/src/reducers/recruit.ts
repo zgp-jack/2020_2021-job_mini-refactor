@@ -1,4 +1,4 @@
-import { GETAREAINFO, SETAREAINFO, SETAREA, GETAREA } from '../constants/recruit' //定义发布招工获取设置区域信息的action
+import { GETAREAINFO, SETAREAINFO, SETAREA, GETAREA, SETPOSITIONSTATUS } from '../constants/recruit' //定义发布招工获取设置区域信息的action
 import { UserLastPublishRecruitArea } from '../pages/recruit/index.d'//招工信息发布区域信息类型
 import { UserLocationPromiss, AREABEIJING } from '../models/area'
 // 内容的参数
@@ -38,4 +38,14 @@ export function MyArea(state:string = DEFAULT_STATE_AREA, action: ACTIONTYPE){
         default:
           return state
     }
+}
+
+export function PositionStatus(state:boolean = true, action:ACTIONTYPE){
+  switch (action.type) {
+    case SETPOSITIONSTATUS:
+      state = action.data
+      return state;
+    default:
+      return state
+  }
 }

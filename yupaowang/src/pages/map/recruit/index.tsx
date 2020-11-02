@@ -11,7 +11,7 @@ import { InputPoiListTips } from '../../../utils/helper/index.d'
 import Msg, { ShowActionModal } from '../../../utils/msg'
 import './index.scss'
 import { useSelector, useDispatch } from '@tarojs/redux'
-import { setAreaInfo, setArea } from '../../../actions/recruit'//获取发布招工信息action
+import { setAreaInfo, setArea, setPositionStaus } from '../../../actions/recruit'//获取发布招工信息action
 
 
 const PI = Math.PI;  // 数学 PI 常亮
@@ -21,8 +21,11 @@ export default function RecruitMap(){
 
   // 城市数据
   const [areas, setAreas] = useState<AllAreasDataItem[][]>([])
+  // 定位城市
   // 获取redux中区域名称数据
   const area:string = useSelector<any,string>(state=>state.MyArea)
+  // 获取redux中定位状态
+  const positionStatus:boolean = useSelector<any,boolean>(state=>state.PositionStatus)
   // 获取dispatch分发action
   const dispatch = useDispatch()
 
@@ -55,6 +58,7 @@ export default function RecruitMap(){
   const [histroyList, setHistoryList] = useState<InputPoiListTips[]>([])
   // 显示关键词列表还是历史记录
   const [showHistory, setShowHistory] = useState<boolean>(false)
+  
 
   // 初始化用户定位信息
   const initUserLocationCity = () => {
@@ -69,15 +73,17 @@ export default function RecruitMap(){
         ad_name: data.ad_name,
         city: data.name
       }
-      dispatch(setArea(data.name))
-      // setArea(data.name)
+      if (positionStatus) {
+        dispatch(setArea(data.name))
+        dispatch(setPositionStaus(false))
+      }
       setUserLoc(userLocData)
     }
   }
 
   // 初始化所需数据
   useEffect(() => {
-    if (!area) initUserLocationCity()
+    initUserLocationCity()
     initUserPublishAreaHistory()
   }, [])
 
@@ -121,6 +127,7 @@ export default function RecruitMap(){
       })
       lists.forEach(item => {
         item.distance = getGreatCircleDistance(loc, item.location)
+        item.cityName = data[0].name.slice(0,2)
       })
       setLists(lists)
     })
@@ -141,7 +148,6 @@ export default function RecruitMap(){
 
   // 小地址存入缓存，生成历史记录
   const setUserPublishAreaHistoryItem = (item: InputPoiListTips) => {
-    console.log(item,'itemitemitem')
     let userPublishAreaHistory: InputPoiListTips[] = Taro.getStorageSync(UserPublishAreaHistory)
     if (userPublishAreaHistory) {
       let isset: number = userPublishAreaHistory.findIndex(data => {
@@ -172,7 +178,11 @@ export default function RecruitMap(){
     if (value) return
     setShowHistory(true)
   }
-
+  // 用户点击输入框后面的×关闭当前窗口
+  const closeHistoryClient = () => {
+    setShowHistory(false)
+    setSmAreaText('')
+  }
   // 用户选择小地区 检测adcode
   const userClickAreaItem = (item: InputPoiListTips) => {
     checkAdcodeValid(item.adcode).then(res => {
@@ -185,6 +195,7 @@ export default function RecruitMap(){
             adcode: item.adcode,
             info: item.district
           })) 
+          dispatch(setArea(item.cityName)) 
         }
         Taro.navigateBack()
       }
@@ -206,7 +217,7 @@ export default function RecruitMap(){
               placeholder='请输入您的详细地址'
               value={smAreaText}
             />
-            <Text className='at-icon at-icon-close mapinfo-header-clear'></Text>
+            <Text className='at-icon at-icon-close mapinfo-header-clear' onClick={() => closeHistoryClient()}></Text>
           </View>
           <Text className='mapinfo-header-close' onClick={() => userCloseMap()}>取消</Text>
         </View>

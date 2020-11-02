@@ -76,8 +76,8 @@ var RecruitMap = function (_Taro$Component) {
     var _this = _possibleConstructorReturn(this, (RecruitMap.__proto__ || Object.getPrototypeOf(RecruitMap)).apply(this, arguments));
 
     _this.$usedState = ["loopArray39", "loopArray40", "$compid__39", "smAreaText", "showHistory", "histroyList", "lists", "IMGCDNURL", "showCity", "area"];
-    _this.anonymousFunc4Map = {};
     _this.anonymousFunc5Map = {};
+    _this.anonymousFunc6Map = {};
     _this.customComponents = ["Cities"];
     return _this;
   }
@@ -110,11 +110,16 @@ var RecruitMap = function (_Taro$Component) {
           _useState2 = _slicedToArray(_useState, 2),
           areas = _useState2[0],
           setAreas = _useState2[1];
+      // 定位城市
       // 获取redux中区域名称数据
 
 
       var area = (0, _redux.useSelector)(function (state) {
         return state.MyArea;
+      });
+      // 获取redux中定位状态
+      var positionStatus = (0, _redux.useSelector)(function (state) {
+        return state.PositionStatus;
       });
       // 获取dispatch分发action
       var dispatch = (0, _redux.useDispatch)();
@@ -190,16 +195,16 @@ var RecruitMap = function (_Taro$Component) {
             ad_name: data.ad_name,
             city: data.name
           };
-          dispatch((0, _recruit.setArea)(data.name));
-          // setArea(data.name)
+          if (positionStatus) {
+            dispatch((0, _recruit.setArea)(data.name));
+            dispatch((0, _recruit.setPositionStaus)(false));
+          }
           setUserLoc(userLocData);
         }
       };
       // 初始化所需数据
       (0, _taroTt.useEffect)(function () {
-        if (!area) {
-          initUserLocationCity();
-        }
+        initUserLocationCity();
         initUserPublishAreaHistory();
       }, []);
       // 用户切换城市
@@ -240,6 +245,7 @@ var RecruitMap = function (_Taro$Component) {
           });
           lists.forEach(function (item) {
             item.distance = getGreatCircleDistance(loc, item.location);
+            item.cityName = data[0].name.slice(0, 2);
           });
           setLists(lists);
         });
@@ -256,7 +262,6 @@ var RecruitMap = function (_Taro$Component) {
       };
       // 小地址存入缓存，生成历史记录
       var setUserPublishAreaHistoryItem = function setUserPublishAreaHistoryItem(item) {
-        console.log(item, 'itemitemitem');
         var userPublishAreaHistory = _taroTt2.default.getStorageSync(_store.UserPublishAreaHistory);
         if (userPublishAreaHistory) {
           var isset = userPublishAreaHistory.findIndex(function (data) {
@@ -287,6 +292,11 @@ var RecruitMap = function (_Taro$Component) {
         }
         setShowHistory(true);
       };
+      // 用户点击输入框后面的×关闭当前窗口
+      var closeHistoryClient = function closeHistoryClient() {
+        setShowHistory(false);
+        setSmAreaText('');
+      };
       // 用户选择小地区 检测adcode
       var userClickAreaItem = function userClickAreaItem(item) {
         (0, _index.checkAdcodeValid)(item.adcode).then(function (res) {
@@ -299,6 +309,7 @@ var RecruitMap = function (_Taro$Component) {
                 adcode: item.adcode,
                 info: item.district
               }));
+              dispatch((0, _recruit.setArea)(item.cityName));
             }
             _taroTt2.default.navigateBack();
           } else (0, _index4.ShowActionModal)({ msg: res.errmsg });
@@ -316,6 +327,9 @@ var RecruitMap = function (_Taro$Component) {
         return userEnterPosition(e);
       };
       this.anonymousFunc3 = function () {
+        return closeHistoryClient();
+      };
+      this.anonymousFunc4 = function () {
         return userCloseMap();
       };
       var loopArray39 = showHistory ? histroyList.map(function (item, index) {
@@ -324,7 +338,7 @@ var RecruitMap = function (_Taro$Component) {
         };
         var $loopState__temp2 = showHistory ? index + index : null;
         var _$indexKey = "eazzz" + index;
-        _this2.anonymousFunc4Map[_$indexKey] = function () {
+        _this2.anonymousFunc5Map[_$indexKey] = function () {
           return userClickAreaItem(item.$original);
         };
         return {
@@ -339,7 +353,7 @@ var RecruitMap = function (_Taro$Component) {
         };
         var $loopState__temp4 = index + index;
         var _$indexKey2 = "ebzzz" + index;
-        _this2.anonymousFunc5Map[_$indexKey2] = function () {
+        _this2.anonymousFunc6Map[_$indexKey2] = function () {
           return userClickAreaItem(item.$original);
         };
         return {
@@ -391,8 +405,13 @@ var RecruitMap = function (_Taro$Component) {
     }
   }, {
     key: "anonymousFunc4",
-    value: function anonymousFunc4(_$indexKey) {
-      var _anonymousFunc4Map;
+    value: function anonymousFunc4(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc5",
+    value: function anonymousFunc5(_$indexKey) {
+      var _anonymousFunc5Map;
 
       ;
 
@@ -400,12 +419,12 @@ var RecruitMap = function (_Taro$Component) {
         e[_key - 1] = arguments[_key];
       }
 
-      return this.anonymousFunc4Map[_$indexKey] && (_anonymousFunc4Map = this.anonymousFunc4Map)[_$indexKey].apply(_anonymousFunc4Map, e);
+      return this.anonymousFunc5Map[_$indexKey] && (_anonymousFunc5Map = this.anonymousFunc5Map)[_$indexKey].apply(_anonymousFunc5Map, e);
     }
   }, {
-    key: "anonymousFunc5",
-    value: function anonymousFunc5(_$indexKey2) {
-      var _anonymousFunc5Map;
+    key: "anonymousFunc6",
+    value: function anonymousFunc6(_$indexKey2) {
+      var _anonymousFunc6Map;
 
       ;
 
@@ -413,14 +432,14 @@ var RecruitMap = function (_Taro$Component) {
         e[_key2 - 1] = arguments[_key2];
       }
 
-      return this.anonymousFunc5Map[_$indexKey2] && (_anonymousFunc5Map = this.anonymousFunc5Map)[_$indexKey2].apply(_anonymousFunc5Map, e);
+      return this.anonymousFunc6Map[_$indexKey2] && (_anonymousFunc6Map = this.anonymousFunc6Map)[_$indexKey2].apply(_anonymousFunc6Map, e);
     }
   }]);
 
   return RecruitMap;
 }(_taroTt2.default.Component);
 
-RecruitMap.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5"];
+RecruitMap.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6"];
 RecruitMap.$$componentPath = "pages/map/recruit/index";
 exports.default = RecruitMap;
 
