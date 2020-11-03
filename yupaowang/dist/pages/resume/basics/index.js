@@ -85,7 +85,7 @@ var BasicsPage = function (_Taro$Component) {
       navigationBarTitleText: '基础信息'
     };
 
-    _this.$usedState = ["anonymousState__temp", "$compid__75", "$compid__76", "showProfession", "formData", "sexList", "nationCurrent", "isCode", "text"];
+    _this.$usedState = ["anonymousState__temp", "$compid__80", "$compid__81", "showProfession", "formData", "sexList", "nationCurrent", "isCode", "text"];
     _this.customComponents = ["Profession", "WordsTotal"];
     return _this;
   }
@@ -105,15 +105,15 @@ var BasicsPage = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__75"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__80"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__75 = _genCompid2[0],
-          $compid__75 = _genCompid2[1];
+          $prevCompid__80 = _genCompid2[0],
+          $compid__80 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__76"),
+      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__81"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__76 = _genCompid4[0],
-          $compid__76 = _genCompid4[1];
+          $prevCompid__81 = _genCompid4[0],
+          $compid__81 = _genCompid4[1];
       // 获取存入的公用内容
 
 
@@ -641,14 +641,14 @@ var BasicsPage = function (_Taro$Component) {
         "data": occupation,
         "onClickItem": this.anonymousFunc0,
         "num": 3
-      }, $compid__75, $prevCompid__75);
+      }, $compid__80, $prevCompid__80);
       _taroTt.propsManager.set({
         "num": num
-      }, $compid__76, $prevCompid__76);
+      }, $compid__81, $prevCompid__81);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
-        $compid__75: $compid__75,
-        $compid__76: $compid__76,
+        $compid__80: $compid__80,
+        $compid__81: $compid__81,
         showProfession: showProfession,
         formData: formData,
         sexList: sexList,

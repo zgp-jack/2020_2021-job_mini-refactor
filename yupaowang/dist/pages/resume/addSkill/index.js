@@ -77,7 +77,7 @@ var AddSkillPage = function (_Taro$Component) {
       navigationBarTitleText: '新增技能证书'
     };
 
-    _this.$usedState = ["$compid__74", "val", "extraText", "image", "type", "num", "maxNum"];
+    _this.$usedState = ["$compid__79", "val", "extraText", "image", "type", "num", "maxNum"];
     _this.customComponents = ["ImageView"];
     return _this;
   }
@@ -97,10 +97,10 @@ var AddSkillPage = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__74"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__79"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__74 = _genCompid2[0],
-          $compid__74 = _genCompid2[1];
+          $prevCompid__79 = _genCompid2[0],
+          $compid__79 = _genCompid2[1];
 
       var router = (0, _taroTt.useRouter)();
       // 获取存入的公用内容
@@ -337,9 +337,9 @@ var AddSkillPage = function (_Taro$Component) {
         "images": image.item,
         "max": 3,
         "userUploadImg": userUploadImg
-      }, $compid__74, $prevCompid__74);
+      }, $compid__79, $prevCompid__79);
       Object.assign(this.__state, {
-        $compid__74: $compid__74,
+        $compid__79: $compid__79,
         val: val,
         extraText: extraText,
         image: image,

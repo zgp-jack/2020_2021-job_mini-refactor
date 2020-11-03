@@ -2,10 +2,13 @@ import Taro, { } from '@tarojs/taro'
 import { View, Text, Button, Image } from '@tarojs/components'
 import { IMGCDNURL } from '../../../config'
 import { AtProgress } from 'taro-ui'
+import useResume from '../../../hooks/publish/resume'
 import './index.scss'
 
 export default function ResumePublish(){
 
+  const { data } = useResume()
+  console.log(data)
   // 页面跳转
   const userRouteJump = (url: string) => {
     Taro.navigateTo({url: url})

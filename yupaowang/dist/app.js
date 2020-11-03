@@ -74,7 +74,7 @@ var _App = function (_BaseComponent) {
     _this.config = {
       pages: ['pages/index/index', 'pages/userauth/index', "pages/recruit/publish/index", "pages/used/lists/index", "pages/map/recruit/index", "pages/map/resume/index", "pages/used/publish/index", "pages/used/info/index", "pages/invite/index", "pages/getintegral/index", "pages/integral/source/index", "pages/integral/temp/index", "pages/integral/official/index", "pages/integral/expend/index", "pages/recharge/index", "pages/realname/index", "pages/map/realname/index", "pages/userinfo/info/index", "pages/userinfo/add/index", "pages/userinfo/phone/index", "pages/userinfo/updatePass/index", "pages/published/recruit/index", "pages/published/used/index", "pages/collection/index", "pages/help/index", "pages/feedbacklist/index", "pages/feedback/index", "pages/static/invite/index", "pages/query/index", "pages/information/mymessage/index", "pages/information/system/index", 'pages/integral/tabber/index', 'pages/detail/info/index', 'pages/topping/index', 'pages/topping/distruction/index',
       // 'pages/topping/recruit/index',//置顶找活范围
-      'pages/resume/publish/index', 'pages/resume/detail/index', 'pages/resume/skillList/index', 'pages/resume/projectList/index', 'pages/resume/addProject/index', 'pages/resume/addSkill/index', 'pages/resume/basics/index', 'pages/resume/mine/index', 'pages/resume/recList/index', 'pages/resume/preview/index', 'pages/resume/personInfo/index', 'pages/login/index'],
+      'pages/resume/publish/index', 'pages/resume/add_info/index', 'pages/resume/add_member/index', 'pages/resume/add_skill/index', 'pages/resume/add_project/index', 'pages/resume/projects/index', 'pages/resume/skills/index', 'pages/resume/detail/index', 'pages/resume/skillList/index', 'pages/resume/projectList/index', 'pages/resume/addProject/index', 'pages/resume/addSkill/index', 'pages/resume/basics/index', 'pages/resume/mine/index', 'pages/resume/recList/index', 'pages/resume/preview/index', 'pages/resume/personInfo/index', 'pages/login/index'],
       subPackages: [{
         root: 'subpackage/pages',
         pages: ['checkauth/index', 'about/index', 'report/index', 'notice/index', 'download/index', 'ranking/index', 'course/index', 'anti-fraud/index']
@@ -231,10 +231,13 @@ var _realname = __webpack_require__(/*! ./realname */ "./src/reducers/realname.t
 
 var _realname2 = _interopRequireDefault(_realname);
 
+var _resume_addinfo = __webpack_require__(/*! ./resume_addinfo */ "./src/reducers/resume_addinfo.ts");
+
+var _resume_addinfo2 = _interopRequireDefault(_resume_addinfo);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 //合并reducer
-//发布招工reducer
 exports.default = (0, _redux.combineReducers)({
   tabbar: _tabbar2.default,
   WechatNotice: _wechat_notice2.default,
@@ -247,8 +250,8 @@ exports.default = (0, _redux.combineReducers)({
   MyArea: _recruit.MyArea,
   member: _member2.default,
   realname: _realname2.default,
-  PositionStatus: _recruit.PositionStatus
-});
+  resumeAddInfo: _resume_addinfo2.default
+}); //发布招工reducer
 
 /***/ }),
 
@@ -542,6 +545,53 @@ function Myresume() {
       return state;
     default:
       return state;
+  }
+}
+
+/***/ }),
+
+/***/ "./src/reducers/resume_addinfo.ts":
+/*!****************************************!*\
+  !*** ./src/reducers/resume_addinfo.ts ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+exports.default = resumeAddInfo;
+
+var _resume_addinfo = __webpack_require__(/*! ../constants/resume_addinfo */ "./src/constants/resume_addinfo.ts");
+
+var DEFAUTL_STATE = {
+  label: [],
+  gender: [],
+  occupation: [],
+  nation: [],
+  type: [],
+  prof_degree: [],
+  isset: false
+};
+function resumeAddInfo() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : DEFAUTL_STATE;
+  var action = arguments[1];
+
+  switch (action.type) {
+    case _resume_addinfo.GET:
+      return _extends({}, state);
+      break;
+    case _resume_addinfo.SET:
+      return _extends({}, state, action.data);
+      break;
+    default:
+      return _extends({}, state);
   }
 }
 

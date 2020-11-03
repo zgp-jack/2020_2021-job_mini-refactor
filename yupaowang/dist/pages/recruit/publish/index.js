@@ -169,7 +169,7 @@ function usePublishViewInfo(InitParams) {
       } else {
         (0, _index2.userAuthLoction)().then(function (res) {
           dispatch((0, _recruit.setArea)(res.city));
-        }).then(function () {
+        }).catch(function () {
           dispatch((0, _recruit.setArea)(_area.AREABEIJING.name));
         });
       }

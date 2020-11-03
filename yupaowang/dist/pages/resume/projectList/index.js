@@ -61,7 +61,7 @@ var ProjectList = function (_Taro$Component) {
       navigationBarTitleText: '项目经验'
     };
 
-    _this.$usedState = ["loopArray88", "$compid__70", "data", "IMGCDNURL", "preview", "detail"];
+    _this.$usedState = ["loopArray90", "$compid__75", "data", "IMGCDNURL", "preview", "detail"];
     _this.anonymousFunc0Map = {};
     _this.anonymousFunc1Map = {};
     _this.anonymousFunc2Map = {};
@@ -86,10 +86,10 @@ var ProjectList = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__70"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__75"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__70 = _genCompid2[0],
-          $compid__70 = _genCompid2[1];
+          $prevCompid__75 = _genCompid2[0],
+          $compid__75 = _genCompid2[1];
 
       var router = (0, _taroTt.useRouter)();
       // 获取传递过来的参数
@@ -151,15 +151,15 @@ var ProjectList = function (_Taro$Component) {
       this.anonymousFunc3 = function () {
         return userRouteJump("/pages/resume/addProject/index?id=" + id);
       };
-      var loopArray88 = data.map(function (item, i) {
+      var loopArray90 = data.map(function (item, i) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
-        var _$indexKey = "jezzz" + i;
+        var _$indexKey = "jfzzz" + i;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return userRouteJump("/pages/resume/addProject/index?type=" + i + "&id=" + id);
         };
-        var _$indexKey2 = "jfzzz" + i;
+        var _$indexKey2 = "jgzzz" + i;
         _this2.anonymousFunc1Map[_$indexKey2] = function () {
           return userRouteJump("/pages/resume/addProject/index?type=" + i + "&id=" + id);
         };
@@ -168,7 +168,7 @@ var ProjectList = function (_Taro$Component) {
             $original: (0, _taroTt.internal_get_original)(v)
           };
           var $loopState__temp2 = i + i;
-          var _$indexKey3 = "jgzzz" + i + "-" + i;
+          var _$indexKey3 = "jhzzz" + i + "-" + i;
           _this2.anonymousFunc2Map[_$indexKey3] = function () {
             return handleImg(v.$original);
           };
@@ -187,10 +187,10 @@ var ProjectList = function (_Taro$Component) {
       });
       !data.length && _taroTt.propsManager.set({
         "text": "\u6682\u65E0\u76F8\u5173\u5185\u5BB9"
-      }, $compid__70, $prevCompid__70);
+      }, $compid__75, $prevCompid__75);
       Object.assign(this.__state, {
-        loopArray88: loopArray88,
-        $compid__70: $compid__70,
+        loopArray90: loopArray90,
+        $compid__75: $compid__75,
         data: data,
         IMGCDNURL: _index2.IMGCDNURL,
         preview: preview,

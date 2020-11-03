@@ -99,9 +99,10 @@ export default function usePublishViewInfo(InitParams: InitRecruitView){
       if(userLoctionCity){
         dispatch(setArea(userLoctionCity.city))
       }else{
-        userAuthLoction().then(res=>{
+        userAuthLoction()
+        .then(res=>{
           dispatch(setArea(res.city))
-        }).then(()=>{
+        }).catch(()=>{
           dispatch(setArea(AREABEIJING.name))
         })
       }
