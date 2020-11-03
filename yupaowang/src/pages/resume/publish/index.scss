@@ -183,7 +183,7 @@
           font-size: 28px;
           color: #828181;
         }
-        .basic-btn Button{
+        .basic-btn .btn{
           display: inline-block;
           padding: 9px 32px;
           border-radius: 32px;
@@ -257,29 +257,36 @@
               top: calc(50% - 6px);
             }
             .craft-txt{
+              position: absolute;
+              left: 20px;
+              top: 0;
               display: inline-block;
               width: 20%;
               text-align: justify;
               color: #7A7A7A;
-              margin-right: 23px;
-              // position: absolute;
-              // left: 0;
-              // top: 0;
-              // &::after{
-              //   content: '';
-              //   width: 100%;
-              //   display: inline-block;
-              //   overflow: hidden;
-              //   height: 0;
-              // }
+              &::before{
+                content: ':';
+                height: 100%;
+                width: 6px;
+                position: absolute;
+                right: -6px;
+              }
+              &::after{
+                content: '';
+                width: 100%;
+                display: inline-block;
+                overflow: hidden;
+                height: 0;
+              }
             }
             .craft-text{
-              // margin-left: 24%;
+              margin-left: 26%;
               display: inline-block;
               color: #7A7A7A;
             }
             .craft-name{
-              // margin-left: 24%;
+              margin-left: 26%;
+              margin-top: -6px;
               display: inline-block;
               padding: 7px 25px;
               color: #414141;
@@ -287,7 +294,6 @@
             }
           }
           .introduce{
-            // margin-top: 50px;
             text-align: left;
             font-size: 28px;
             color: #797979;
@@ -309,7 +315,7 @@
       .basic-content{
         .content{
           &::before{
-            height: 360px;
+            height: 400px;
           }
         }
         .content .craft:first-child{

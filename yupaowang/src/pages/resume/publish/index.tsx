@@ -63,7 +63,7 @@ export default function ResumePublish(){
           {/* <View className='basic-content'>
             <View className='basic-txt'>您还没有完善基础信息</View>
             <View className='basic-btn'>
-              <Button>去完善</Button>
+              <Button className='btn'>去完善</Button>
             </View>
           </View> */}
           <View className='basic-status'>
@@ -83,19 +83,20 @@ export default function ResumePublish(){
             </View>
             <View className='content'>
               <View className='craft'>
-                <Text className='craft-txt'>工种:</Text>
+                <Text className='craft-txt'>工种</Text>
                 <View className='craft-name'>建筑木工</View>
               </View>
               <View className='craft'>
-                <Text className='craft-txt'>手机:</Text>
+                <Text className='craft-txt'>手机</Text>
                 <View className='craft-text'>13551047443</View>
               </View>
               <View className='craft'>
-                <Text className='craft-txt'>所在地区:</Text>
+                <Text className='craft-txt'>所在地区</Text>
                 <View className='craft-text'>四川省成都市</View>
               </View>
               <View className='craft'>
-                <Text className='craft-txt'>自我介绍:</Text>
+                <Text className='craft-txt'>自我介绍</Text>
+                <View className='craft-text'></View>
               </View>
               <View className='introduce'>请简要介绍您所从事的行业以及工作经验...</View>
             </View>
@@ -111,33 +112,33 @@ export default function ResumePublish(){
           {/* <View className='basic-content'>
             <View className='basic-txt'>完善人员信息能让老板充分了解您或您的队伍</View>
             <View className='basic-btn'>
-              <Button>去完善</Button>
+              <Button className='btn'>去完善</Button>
             </View>
           </View> */}
           <View className='basic-content'>
             <View className='content'>
               <View className='craft'>
-                <Text className='craft-txt'>年龄:</Text>
+                <Text className='craft-txt'>年龄</Text>
                 <View className='craft-text'>15</View>
               </View>
               <View className='craft'>
-                <Text className='craft-txt'>家乡:</Text>
+                <Text className='craft-txt'>家乡</Text>
                 <View className='craft-text'>四川省成都市</View>
               </View>
               <View className='craft'>
-                <Text className='craft-txt'>人员构成:</Text>
+                <Text className='craft-txt'>人员构成</Text>
                 <View className='craft-text'>班组</View>
               </View>
               <View className='craft'>
-                <Text className='craft-txt'>熟练度:</Text>
+                <Text className='craft-txt'>熟练度</Text>
                 <View className='craft-text'>学徒工</View>
               </View>
               <View className='craft'>
-                <Text className='craft-txt'>队伍人数:</Text>
+                <Text className='craft-txt'>队伍人数</Text>
                 <View className='craft-text'>500人</View>
               </View>
               <View className='craft'>
-                <Text className='craft-txt'>标签:</Text>
+                <Text className='craft-txt'>标签</Text>
                 <View className='craft-name'>任劳任怨</View>
               </View>
             </View>
@@ -152,7 +153,7 @@ export default function ResumePublish(){
           {/* <View className='basic-content'>
             <View className='basic-txt'>添加项目经验可提升老板对您的信任程度</View>
             <View className='basic-btn'>
-              <Button>添加项目经验</Button>
+              <Button className='btn'>添加项目经验</Button>
             </View>
           </View> */}
           <View className='project-information'>
@@ -187,7 +188,7 @@ export default function ResumePublish(){
           {/* <View className='basic-content'>
             <View className='basic-txt'>添加职业技能，用实力证明您的能力</View>
             <View className='basic-btn'>
-              <Button>添加职业技能</Button>
+              <Button className='btn'>添加职业技能</Button>
             </View>
           </View> */}
           <View className='professional-information'>
