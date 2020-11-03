@@ -31,15 +31,30 @@ export default function ResumePublish(){
           </View>
           <View className='progress-footer'>
             <View>
-              <Image src='http://cdn.yupao.com/newyupao/images/newresume-rank.png'/>
-              <View className='progress-text'>我的排名：<View>四川省第一</View></View>
+              <Image className='progress-rank-img' src='http://cdn.yupao.com/newyupao/images/newresume-rank.png'/>
+              <View className='progress-text'>我的排名：四川省第一</View>
             </View>
             <View className='progress-rank'>马上去提升排名&gt;&gt;</View>
+          </View>
+          <View className='progress-place-top'>
+            <View className='progress-placed'>
+              <View>
+                <Image className='progress-rank-img' src='http://cdn.yupao.com/newyupao/images/gl/personaltop.png'/>
+                <View className='progress-text'>我的置顶：置顶中</View>
+              </View>
+              <View className='progress-rank'>取消置顶</View>
+            </View>
+            <View className='progress-place-text'>
+              <View className='place-text'>置顶地区：四川省</View>
+              <View className='place-text'>四川省  四川省</View>
+              <View className='place-text'>置顶时间：2019-11-20  15:30:50</View>
+              <View className='progress-place-btn'>点击修改找活置顶信息&gt;&gt;</View>
+            </View>
           </View>
         </View>
         <View className='content-basic-imformation'>
           <View className='basic-imformation'>
-            <Image src='http://cdn.yupao.com/newyupao/images/newresume-jbinfo.png'/>
+            <Image className='basic-jbinfo' src='http://cdn.yupao.com/newyupao/images/newresume-jbinfo.png'/>
             <View className='basic-title'>基础信息</View>
           </View>
           {/* <View className='basic-content'>
@@ -49,13 +64,13 @@ export default function ResumePublish(){
             </View>
           </View> */}
           <View className='basic-status'>
-            <View className='status-txt'><Image src='http://cdn.yupao.com/newyupao/images/newresume-experience-item1.png'/>我的工作状态:</View>
+            <View className='status-txt'><Image className='basic-experience-img' src='http://cdn.yupao.com/newyupao/images/newresume-experience-item1.png'/>我的工作状态:</View>
             <View className='status'>审核未通过</View>
           </View>
           <View className='basic-content'>
             <View className='content-information'>
               <View className='information'>
-                <Image src='http://cdn.yupao.com/newyupao/images/user.png' />
+                <Image className='basic-user-img' src='http://cdn.yupao.com/newyupao/images/user.png' />
                 <View className='infor'>
                   <View className='name'>李小六</View>
                   <View className='sexage'>男  56岁   汉族</View>
@@ -65,28 +80,28 @@ export default function ResumePublish(){
             </View>
             <View className='content'>
               <View className='craft'>
-                <View className='craft-txt'>工        种：</View>
+                <Text className='craft-txt'>工种:</Text>
                 <View className='craft-name'>建筑木工</View>
               </View>
               <View className='craft'>
-                <View className='craft-txt'>手         机:   </View>
+                <Text className='craft-txt'>手机:</Text>
                 <View className='craft-text'>13551047443</View>
               </View>
               <View className='craft'>
-                <View className='craft-txt'>所在地区:     </View>
+                <Text className='craft-txt'>所在地区:</Text>
                 <View className='craft-text'>四川省成都市</View>
               </View>
               <View className='craft'>
-                <View className='craft-txt'>自我介绍:</View>
+                <Text className='craft-txt'>自我介绍:</Text>
               </View>
               <View className='introduce'>请简要介绍您所从事的行业以及工作经验...</View>
             </View>
           </View>
-          <View className='check-fail'><View>个人资料审核失败原因：</View>就不告诉你就不告诉你，就不告诉你就不告诉你，就不告诉你就不告诉你， </View>
+          <View className='check-fail'><View className='check-fail-text'>个人资料审核失败原因：</View>就不告诉你就不告诉你，就不告诉你就不告诉你，就不告诉你就不告诉你， </View>
         </View>
         <View className='content-personal-information'>
           <View className='basic-imformation'>
-            <Image src='http://cdn.yupao.com/newyupao/images/newresume-description.png'/>
+            <Image className='basic-description-img' src='http://cdn.yupao.com/newyupao/images/newresume-description.png'/>
             <View className='basic-title'>人员信息</View>
             <View className='change'>待修改</View>
           </View>
@@ -99,27 +114,27 @@ export default function ResumePublish(){
           <View className='basic-content'>
             <View className='content'>
               <View className='craft'>
-                <View className='craft-txt'>年        龄：</View>
+                <Text className='craft-txt'>年龄:</Text>
                 <View className='craft-text'>15</View>
               </View>
               <View className='craft'>
-                <View className='craft-txt'>家          乡:    </View>
+                <Text className='craft-txt'>家乡:</Text>
                 <View className='craft-text'>四川省成都市</View>
               </View>
               <View className='craft'>
-                <View className='craft-txt'>人员构成:   </View>
+                <Text className='craft-txt'>人员构成:</Text>
                 <View className='craft-text'>班组</View>
               </View>
               <View className='craft'>
-                <View className='craft-txt'>熟  练  度:  </View>
+                <Text className='craft-txt'>熟练度:</Text>
                 <View className='craft-text'>学徒工</View>
               </View>
               <View className='craft'>
-                <View className='craft-txt'>队伍人数:    </View>
+                <Text className='craft-txt'>队伍人数:</Text>
                 <View className='craft-text'>500人</View>
               </View>
               <View className='craft'>
-                <View className='craft-txt'>标         签: </View>
+                <Text className='craft-txt'>标签:</Text>
                 <View className='craft-name'>任劳任怨</View>
               </View>
             </View>
@@ -127,7 +142,7 @@ export default function ResumePublish(){
         </View>
         <View className='content-project-experience'>
           <View className='basic-imformation'>
-            <Image src='http://cdn.yupao.com/newyupao/images/newresume-experience.png'/>
+            <Image className='project-experience-img' src='http://cdn.yupao.com/newyupao/images/newresume-experience.png'/>
             <View className='basic-title'>项目经验</View>
             <View className='change'>添加</View>
           </View>
@@ -148,21 +163,21 @@ export default function ResumePublish(){
             </View>
             <View className='project-content'>
               <View className='content-img'>
-                <Image src='http://cdn.yupao.com//images/message/20201015/20101567394d5082f86f28.jpg'/>
-                <Image src='http://cdn.yupao.com//images/message/20201015/20101567394d5082f86f28.jpg'/>
-                <Image src='http://cdn.yupao.com//images/message/20201015/20101567394d5082f86f28.jpg'/>
-                <Image src='http://cdn.yupao.com//images/message/20201015/20101567394d5082f86f28.jpg'/>
+                <Image className='project-item-img' src='http://cdn.yupao.com//images/message/20201015/20101567394d5082f86f28.jpg'/>
+                <Image className='project-item-img' src='http://cdn.yupao.com//images/message/20201015/20101567394d5082f86f28.jpg'/>
+                <Image className='project-item-img' src='http://cdn.yupao.com//images/message/20201015/20101567394d5082f86f28.jpg'/>
+                <Image className='project-item-img' src='http://cdn.yupao.com//images/message/20201015/20101567394d5082f86f28.jpg'/>
               </View>
               <View className='project-failtxt'>失败原因：不知道</View>
             </View>
             <View className='change-project'>
-              <Button>修改项目经验<View className='nabla'></View></Button>
+              <Button className='change-project-btn'>修改项目经验<View className='nabla'></View></Button>
             </View>
           </View>
         </View>
         <View className='content-professional-skill'>
           <View className='basic-imformation'>
-            <Image src='http://cdn.yupao.com/newyupao/images/newresume-skill.png'/>
+            <Image className='professional-skill-img' src='http://cdn.yupao.com/newyupao/images/newresume-skill.png'/>
             <View className='basic-title'>职业技能</View>
             <View className='change'>添加</View>
           </View>
@@ -182,26 +197,26 @@ export default function ResumePublish(){
             </View>
             <View className='project-content'>
               <View className='content-img'>
-                <Image src='http://cdn.yupao.com//images/message/20201015/20101567394d5082f86f28.jpg'/>
-                <Image src='http://cdn.yupao.com//images/message/20201015/20101567394d5082f86f28.jpg'/>
-                <Image src='http://cdn.yupao.com//images/message/20201015/20101567394d5082f86f28.jpg'/>
-                <Image src='http://cdn.yupao.com//images/message/20201015/20101567394d5082f86f28.jpg'/>
+                <Image className='professional-item-img' src='http://cdn.yupao.com//images/message/20201015/20101567394d5082f86f28.jpg'/>
+                <Image className='professional-item-img' src='http://cdn.yupao.com//images/message/20201015/20101567394d5082f86f28.jpg'/>
+                <Image className='professional-item-img' src='http://cdn.yupao.com//images/message/20201015/20101567394d5082f86f28.jpg'/>
+                <Image className='professional-item-img' src='http://cdn.yupao.com//images/message/20201015/20101567394d5082f86f28.jpg'/>
               </View>
               <View className='project-failtxt'>失败原因：不知道</View>
             </View>
             <View className='change-project'>
-              <Button>修改技能证书<View className='nabla'></View></Button>
+              <Button className='change-project-btn'>修改技能证书<View className='nabla'></View></Button>
             </View>
           </View>
         </View>
         <View className='content-btn'>
           <View className='preview-btn'>
-            <Image src='http://cdn.yupao.com/newyupao/images/newresume-lookuinfo.png' />
-            <View>预览</View>
+            <Image className='preview-img' src='http://cdn.yupao.com/newyupao/images/newresume-lookuinfo.png' />
+            <View className='preview-share-btn'>预览</View>
           </View>
           <View className='share-btn'>
-            <Image src='http://cdn.yupao.com/newyupao/images/newresume-footer-share.png' />
-            <View>分享</View>
+            <Image className='share-img' src='http://cdn.yupao.com/newyupao/images/newresume-footer-share.png' />
+            <View className='preview-share-btn'>分享</View>
           </View>
         </View>
       </View>

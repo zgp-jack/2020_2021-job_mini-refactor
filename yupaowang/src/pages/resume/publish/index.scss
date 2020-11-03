@@ -8,7 +8,7 @@
     line-height: 80px;
     font-weight: bold;
     color: #343434;
-    font-size: 28px;
+    font-size: 30px;
   }
   .resume-content{
     padding-bottom: 140px;
@@ -38,7 +38,7 @@
       }
       .progress-txt{
         margin-top: 22px;
-        font-size: 26px;
+        font-size: 28px;
         color: #0099FF;
       }
       .progress-num{
@@ -49,33 +49,53 @@
       }
       .progress-viewed{
         margin-top: 22px;
-        font-size: 26px;
+        font-size: 28px;
         color: #626160;
       }
-      .progress-footer{
+      .progress-footer,
+      .progress-placed{
         display: flex;
         justify-content: space-between;
+        align-items: baseline;
         padding-top: 18px;
         border-top: 2px dotted #DCDCDC;
-        Image{
+        .progress-rank-img{
           display: inline-block;
           width: 20px;
           height: 24px;
           vertical-align: -2px;
         }
       }
+      .progress-place-top{
+        margin-top: 17px;
+        .progress-placed{
+          padding-bottom: 18px;
+          border-bottom: 2px dotted #DCDCDC;
+        }
+        .progress-rank{
+          color: rgba(255, 77, 66, 1);
+        }
+        .progress-place-text{
+          margin-left: 34px;
+          font-size: 26px;
+          color: rgba(111, 108, 108, 1);
+        }
+        .place-text{
+          margin: 16px 0;
+        }
+        .progress-place-btn{
+          color: rgba(0, 153, 255, 1);
+        }
+      }
       .progress-text{
         display: inline-block;
         margin-left: 15px;
-        font-size: 24px;
+        font-size: 28px;
         font-weight: bold;
         color: #6F6C6C;
-        View{
-          display: inline-block;
-        }
       }
       .progress-rank{
-        font-size: 22px;
+        font-size: 28px;
         line-height: 44px;
         font-weight: bold;
         color: #0099FF;
@@ -90,7 +110,10 @@
         margin: 20px 0;
         text-align: center;
         position: relative;
-        Image{
+        .basic-jbinfo,
+        .basic-description-img,
+        .project-experience-img,
+        .professional-skill-img{
           display: inline-block;
           width: 20px;
           height: 24px;
@@ -99,7 +122,7 @@
         .basic-title{
           display: inline-block;
           margin-left: 11px;
-          font-size: 26px;
+          font-size: 28px;
           font-weight: bold;
           color: #343434;
         }
@@ -107,7 +130,7 @@
           position: absolute;
           top: 6px;
           right: 44px;
-          font-size: 26px;
+          font-size: 28px;
           font-weight: bold;
           color: #0099FF;
         }
@@ -118,7 +141,7 @@
         justify-content: space-between;
         padding: 40px 44px;
         margin: 20px 0;
-        font-size: 26px;
+        font-size: 28px;
         background-color: #FFFFFF;
         &::before,
         &::after{
@@ -139,7 +162,7 @@
         .status-txt{
           color: #161616;
         }
-        Image{
+        .basic-experience-img{
           width: 25px;
           height: 24px;
           margin-right: 25px;
@@ -157,7 +180,7 @@
         background-color:  #FFFFFF;
         .basic-txt{
           margin-bottom: 28px;
-          font-size: 22px;
+          font-size: 28px;
           color: #828181;
         }
         .basic-btn Button{
@@ -176,7 +199,7 @@
           .information{
             max-width: 88%;
             text-align: left;
-            Image{
+            .basic-user-img{
               display: inline-block;
               width: 77px;
               height: 77px;
@@ -195,12 +218,12 @@
             .sexage{
               margin-top: 20px;
               font-weight: bold;
-              font-size: 26px;
+              font-size: 28px;
               color: #6C6B6B;
             }
           }
           .change{
-            font-size: 26px;
+            font-size: 28px;
             font-weight: bold;
             color: #0099FF;
           }
@@ -220,7 +243,7 @@
             position: relative;
             text-align: left;
             margin: 26px 0;
-            font-size: 24px;
+            font-size: 28px;
             padding-left: 14px;
             &::before{
               content: '';
@@ -233,37 +256,50 @@
               left: -6px;
               top: calc(50% - 6px);
             }
-            &>View{
-              display: inline-block;
-            }
             .craft-txt{
-              width: 110px;
+              display: inline-block;
+              width: 20%;
               text-align: justify;
               color: #7A7A7A;
               margin-right: 23px;
+              // position: absolute;
+              // left: 0;
+              // top: 0;
+              // &::after{
+              //   content: '';
+              //   width: 100%;
+              //   display: inline-block;
+              //   overflow: hidden;
+              //   height: 0;
+              // }
             }
             .craft-text{
+              // margin-left: 24%;
+              display: inline-block;
               color: #7A7A7A;
             }
             .craft-name{
+              // margin-left: 24%;
+              display: inline-block;
               padding: 7px 25px;
               color: #414141;
               background-color: #E7E7E7;
             }
           }
           .introduce{
+            // margin-top: 50px;
             text-align: left;
-            font-size: 24px;
+            font-size: 28px;
             color: #797979;
             padding-left: 14px;
           }
         }
       }
       .check-fail{
-        font-size: 24px;
+        font-size: 28px;
         padding: 21px 44px 21px 58px;
         background-color: #FFFBF7;
-        &>View{
+        .check-fail-text{
           display: inline-block;
           color: #FA0819;
         }
@@ -300,10 +336,10 @@
         }
         .content-information{
           .information .name{
-            font-size: 26px;
+            font-size: 28px;
           }
           .information .sexage{
-            font-size: 22px;
+            font-size: 26px;
           }
           .information .time{
             margin-top: 0;
@@ -316,7 +352,8 @@
           display: flex;
           flex-wrap: wrap;
           justify-content: space-between;
-          Image{
+          .project-item-img,
+          .professional-item-img{
             width: 185px;
             height: 185px;
             margin: 25px 0;
@@ -325,13 +362,13 @@
         .project-failtxt{
           margin-bottom: 10px;
           text-align: left;
-          font-size: 22px;
+          font-size: 26px;
           color: #FE1901;
         }
       }
       .change-project{
         text-align: center;
-        Button{
+        .change-project-btn{
           display: inline-block;
           padding: 10px 44px;
           color: #FFFFFF;
@@ -355,8 +392,10 @@
         .content-information{
           align-items: baseline;
         }
-        .content-information .information>View{
-          display: inline-block;
+        .content-information .information{
+          .name,.time{
+            display: inline-block;
+          }
         }
       }
     }
@@ -371,10 +410,11 @@
         text-align: center;
         font-size: 36px;
         color: #7D7D7D;
-        &>View{
+        .preview-share-btn{
           display: inline-block;
         }
-        Image{
+        .preview-img,
+        .share-img{
           display: inline-block;
           width: 36px;
           height: 36px;
