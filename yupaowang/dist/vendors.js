@@ -17197,12 +17197,16 @@ function objDeepCopy(source) {
 // 获取用户定位
 function userAuthLoction() {
   return new Promise(function (resolve, reject) {
+    var loc = _taroTt2.default.getStorageSync(_store.UserLocationCity);
+    if (loc) resolve(loc);
     var GDMAP = new _amapWx2.default.AMapWX({ key: _index.MAPKEY });
     GDMAP.getRegeo({
       success: function success(data) {
+        var city = data[0].regeocodeData.addressComponent.city;
+        var bool = typeof data[0].regeocodeData.addressComponent.city == 'string';
         var gpsLocation = {
           province: data[0].regeocodeData.addressComponent.province,
-          city: Array.isArray(data[0].regeocodeData.addressComponent.city) ? data[0].regeocodeData.addressComponent.province : data[0].regeocodeData.addressComponent.city,
+          city: bool ? city : data[0].regeocodeData.addressComponent.province,
           adcode: data[0].regeocodeData.addressComponent.adcode,
           citycode: data[0].regeocodeData.addressComponent.citycode
         };

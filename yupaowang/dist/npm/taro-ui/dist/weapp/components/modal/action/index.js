@@ -89,7 +89,11 @@ var AtModalAction = (_temp2 = _class = function (_AtComponent) {
   }]);
 
   return AtModalAction;
+<<<<<<< HEAD
 }(_component2.default), _class.$$events = [], _class.$$componentPath = "Users/zhangyibo/yupao-ts-recode/yupaowang/node_modules/taro-ui/dist/weapp/components/modal/action/index", _temp2);
+=======
+}(_component2.default), _class.$$events = [], _class.$$componentPath = 'Users/axin/codes/\u9C7C\u6CE1\u7F51/\u5C0F\u7A0B\u5E8FTS\u91CD\u6784\u9879\u76EE/TaroTs-YuPaoWang/yupaowang/node_modules/taro-ui/dist/weapp/components/modal/action/index', _temp2);
+>>>>>>> 6c69992e9bbe8f754bfdc6980084692969032c77
 
 
 AtModalAction.defaultProps = {
