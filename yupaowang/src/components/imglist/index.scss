@@ -1,0 +1,13 @@
+.imgslist-container{
+  position: relative;
+  .imgslist-item{
+    position: relative;
+    width: 32%;
+    margin-right: 2%;
+    height: 200px;
+    margin-bottom: 10px;
+    &:nth-child(3n){
+      margin-right: 0;
+    }
+  }
+}

@@ -2,7 +2,7 @@ import Taro, { useState, useEffect } from '@tarojs/taro'
 import { View, Text, Form, Textarea, Input, Picker, Button } from '@tarojs/components'
 import WordsTotal from '../../../components/wordstotal'
 import useResumeAddInfo from '../../../hooks/resume_addinfo'
-import useCode from '../../../hooks/code'
+import ImageView from '../../../components/imageview'
 import './index.scss'
 
 export default function AddResumeInfo() {
@@ -47,6 +47,9 @@ export default function AddResumeInfo() {
                 </Picker>
               </View>
               
+            </View>
+            <View className='resume-add-imgsview'>
+              <ImageView images={[]} max={6} />
             </View>
           </Form>
         </View>

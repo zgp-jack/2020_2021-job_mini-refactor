@@ -11,6 +11,11 @@ $bordercolor: #dcdcdc;
 $shadowcolor: #e7e6e4;
 // 间距
 $margin: 15px;
+// 小程序发布组件输入框padding
+// --微信
+// $miniPublishInputPadding: 20px;
+// --抖音
+$miniPublishInputPadding: 0;
 
 // 文字超出显示省略号
 .overwords{

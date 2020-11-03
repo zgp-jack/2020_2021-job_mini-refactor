@@ -1,0 +1,38 @@
+.projects-container{
+  position: relative;
+  padding: 0 20px;
+  .project-item{
+    position: relative;
+    margin-top: 15px;
+    background-color: white;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 0 2px #dcdcdc;
+    .project-item-title{
+      position: relative;
+      line-height: 55px;
+      font-size: 28px;
+      font-weight: bold;
+    }
+    .project-time{
+      position: relative;
+      line-height: 40px;
+      font-size: 28px;
+      color: #8b8b8a;
+      margin-bottom: 15px;
+      .project-time-text{
+        margin-right: 15px;
+        &:nth-last-child(1){
+          margin-right: 0;
+        }
+      }
+    }
+    .project-description{
+      position: relative;
+      padding: 10px 0;
+      font-size: 28px;
+      line-height: 40px;
+      color: #8b8b8a;
+    }
+  }
+}

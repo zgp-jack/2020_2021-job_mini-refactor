@@ -29,10 +29,15 @@ function HomeCity({ closeDrawer, setAreaInfo, show }: ConditionProps) {
     if (userListChooseCity) {
       let id: string = userListChooseCity.id
       setAreaId(id)
+      // pid == 1 代表省份 直辖市
       let pid: string = userListChooseCity.pid === '1' ? userListChooseCity.id : userListChooseCity.pid
       let i: number = AREAS.findIndex(item => item.id === pid)
+      // pid == 0 代表全国
+      i = pid === '0' ? 0 : i
       setCurrent(i)
-      setChildAreaList(AREAS[i].children)
+      if(AREAS[i].has_children){
+        setChildAreaList(AREAS[i].children)
+      }
     }
   }, [])
 
