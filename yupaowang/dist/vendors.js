@@ -12143,6 +12143,38 @@ function setPositionStaus(data) {
 
 /***/ }),
 
+/***/ "./src/actions/resume_addinfo.ts":
+/*!***************************************!*\
+  !*** ./src/actions/resume_addinfo.ts ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.setResumeInfoConfig = setResumeInfoConfig;
+exports.getResumeInfoConfig = getResumeInfoConfig;
+
+var _resume_addinfo = __webpack_require__(/*! ../constants/resume_addinfo */ "./src/constants/resume_addinfo.ts");
+
+function setResumeInfoConfig(data) {
+  return {
+    type: _resume_addinfo.SET,
+    data: data
+  };
+}
+function getResumeInfoConfig() {
+  return {
+    type: _resume_addinfo.GET
+  };
+}
+
+/***/ }),
+
 /***/ "./src/actions/tabbar.ts":
 /*!*******************************!*\
   !*** ./src/actions/tabbar.ts ***!
@@ -12616,6 +12648,24 @@ var SETLIST = exports.SETLIST = 'setlist';
 
 /***/ }),
 
+/***/ "./src/constants/resume_addinfo.ts":
+/*!*****************************************!*\
+  !*** ./src/constants/resume_addinfo.ts ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var GET = exports.GET = 'get';
+var SET = exports.SET = 'set';
+
+/***/ }),
+
 /***/ "./src/constants/tabbar.ts":
 /*!*********************************!*\
   !*** ./src/constants/tabbar.ts ***!
@@ -12755,6 +12805,82 @@ function useCode(type) {
     disabled: disabled,
     text: text,
     userGetCode: userGetCode
+  };
+}
+
+/***/ }),
+
+/***/ "./src/hooks/resume_addinfo/index.ts":
+/*!*******************************************!*\
+  !*** ./src/hooks/resume_addinfo/index.ts ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+exports.default = useResumeAddInfo;
+
+var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+
+var _index = __webpack_require__(/*! ../../utils/request/index */ "./src/utils/request/index.ts");
+
+var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/redux/index.js");
+
+var _resume_addinfo = __webpack_require__(/*! ../../actions/resume_addinfo */ "./src/actions/resume_addinfo.ts");
+
+function useResumeAddInfo() {
+  var dispatch = (0, _redux.useDispatch)();
+  var addInfoConfig = (0, _redux.useSelector)(function (store) {
+    return store['resumeAddInfo'];
+  });
+  // 保存配置项
+
+  var _useState = (0, _taroTt.useState)(addInfoConfig),
+      _useState2 = _slicedToArray(_useState, 2),
+      infoConfig = _useState2[0],
+      setInfoConfig = _useState2[1];
+  // 当前性别的下标
+
+
+  var _useState3 = (0, _taroTt.useState)(0),
+      _useState4 = _slicedToArray(_useState3, 2),
+      genderCurrent = _useState4[0],
+      setGenderCurrent = _useState4[1];
+  // 当前民族的下标
+
+
+  var _useState5 = (0, _taroTt.useState)(0),
+      _useState6 = _slicedToArray(_useState5, 2),
+      nationCurrent = _useState6[0],
+      setNationCurrent = _useState6[1];
+  // 获取年月日范围
+
+
+  var startDatePicker = new Date().getFullYear() - 60 + '-01-01';
+  // 初始化基本信息数据
+  //const 
+  // 请求配置项数据
+  (0, _taroTt.useEffect)(function () {
+    if (addInfoConfig.isset) return;
+    (0, _index.getResumeAddInfoConfig)().then(function (res) {
+      setInfoConfig(res);
+      dispatch((0, _resume_addinfo.setResumeInfoConfig)(_extends({}, res, { isset: true })));
+    });
+  }, []);
+  return {
+    infoConfig: infoConfig,
+    genderCurrent: genderCurrent,
+    startDatePicker: startDatePicker
   };
 }
 
@@ -16805,7 +16931,7 @@ Page(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.realnameQueryUrl = exports.userCheckDouyinRecharge = exports.userDouyinRecharge = undefined;
+exports.getResumeAddInfoConfig = exports.realnameQueryUrl = exports.userCheckDouyinRecharge = exports.userDouyinRecharge = undefined;
 exports.userTelCodeLogin = exports.userAccountUrl = exports.leavingMessageUrl = exports.resumesComplainUrl = exports.resumesUpdateTopResumeUrl = exports.resumesDoTopV2Url = exports.resumesTopConfigV2Url = exports.resumesEditImgUrl = exports.resumesChangeTopStatusUrl = exports.resumesDoTopUrl = exports.resumesTopConfigUrl = exports.resumesTopAreasUrl = exports.resumesDelProjectUrl = exports.resumesEditEndUrl = exports.resumesIntroduceUrl = exports.resumesGetDataUrl = exports.checkAdcodeUrl = exports.addResumeUrl = exports.resumesProjectUrl = exports.resumesCertificateUrl = exports.delCertificateUrl = exports.jobRecommendListUrl = exports.resumeListUrl = exports.resumeCollectUrl = exports.resumeSupportUrl = exports.resumesGetTelUrl = exports.recommendListUrl = exports.resumeDetailUrl = exports.jobUpdateTopStatusUrl = exports.jobChangeTopAreasUrl = exports.jobGetTopAreasUrl = exports.jobDoTopUrl = exports.jobTopHotAreasUrl = exports.jobTopConfigUrl = exports.jobEndStatusUrl = exports.jobGetTelUrl = exports.jobNoUserInfoUrl = exports.jobInfoUrl = exports.publishComplainUrl = exports.integralUseInfoUrl = exports.integralExpendListsUrl = exports.integralExpendConfigUrl = exports.integralSourceListsUrl = exports.integralSourceConfigUrl = exports.messagesTypeUrl = exports.userMessagesUrl = exports.resumesAddClickLog = exports.resumesSortUrl = exports.newsInfoUrl = exports.newsTypesUrl = exports.newListUrl = exports.helpUrl = exports.feedbackSubmissionUrl = exports.feedbackUrl = exports.requestActionUrl = exports.ResumeCancelCollection = exports.recruitCancelCollection = exports.getCollectionResumeList = exports.getCollectionRecruitList = exports.userUpdateUserInfo = exports.userChangeUsedStatus = exports.userGetPublishedUsedList = exports.userChangeRecruitStatus = exports.userGetPublishedRecruitList = exports.updataPassword = exports.userChangePhone = exports.userUpdateName = exports.userChangeAvatar = exports.postUserAddInfo = exports.getIdcardAuthInfo = exports.postUserAuthInfo = exports.getUserAuthInfo = exports.getMemberMsgNumber = exports.getMemberInfo = exports.CheckMineAuthInfo = exports.CheckAuth = exports.GetUsedInfo = exports.GetUserLoginPhoneCode = exports.GetUserPhoneCode = exports.PublishUsedInfo = exports.GetUsedInfoModel = exports.GetRechargeOrder = exports.GetRechargeOpenid = exports.GetRechargeList = exports.GetUserInviteLink = exports.CheckAdcodeValid = exports.GetAllAreas = exports.PublishRecruitInfo = exports.GetPublisRecruitView = exports.GetIntegralList = exports.GetTabbarMsg = exports.GetListFilterData = exports.GetWechatNotice = exports.GetFleamarketlist = exports.GetResumelist = exports.GetRecruitlist = exports.GetAllListItem = exports.GetBannerNotice = exports.GetUserInfo = exports.GetUserSessionKey = undefined;
 
 var _index = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
@@ -17016,6 +17142,8 @@ var userDouyinRecharge = exports.userDouyinRecharge = _index.REQUESTURL + 'pay/b
 var userCheckDouyinRecharge = exports.userCheckDouyinRecharge = _index.REQUESTURL + '/pay/byte-check/';
 // 实名查询
 var realnameQueryUrl = exports.realnameQueryUrl = _index.REQUESTURL + 'resume/auth-worker-find/';
+// 找活信息发布基本资料 配置项
+var getResumeAddInfoConfig = exports.getResumeAddInfoConfig = _index.REQUESTURL + 'resumes/get-data/';
 
 /***/ }),
 
@@ -17351,6 +17479,7 @@ exports.userDouyinRecharge = userDouyinRecharge;
 exports.userCheckDouyinRecharge = userCheckDouyinRecharge;
 exports.updataPassword = updataPassword;
 exports.queryAction = queryAction;
+exports.getResumeAddInfoConfig = getResumeAddInfoConfig;
 
 var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
 
@@ -18369,6 +18498,13 @@ function queryAction(params) {
     url: api.realnameQueryUrl,
     method: 'POST',
     data: params
+  });
+}
+// 发布找活基本信息 配置项
+function getResumeAddInfoConfig() {
+  return doRequestAction({
+    url: api.getResumeAddInfoConfig,
+    method: 'POST'
   });
 }
 

@@ -81,7 +81,7 @@ var AddProjectPage = function (_Taro$Component) {
       navigationBarTitleText: '新增项目经验'
     };
 
-    _this.$usedState = ["$compid__71", "$compid__72", "$compid__73", "startTime", "endTime", "multiIndex", "multiArray", "multiIndexvalue", "textarea", "image", "type"];
+    _this.$usedState = ["$compid__76", "$compid__77", "$compid__78", "startTime", "endTime", "multiIndex", "multiArray", "multiIndexvalue", "textarea", "image", "type"];
     _this.customComponents = ["AtInput", "WordsTotal", "ImageView"];
     return _this;
   }
@@ -101,20 +101,20 @@ var AddProjectPage = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__71"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__76"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__71 = _genCompid2[0],
-          $compid__71 = _genCompid2[1];
+          $prevCompid__76 = _genCompid2[0],
+          $compid__76 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__72"),
+      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__77"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__72 = _genCompid4[0],
-          $compid__72 = _genCompid4[1];
+          $prevCompid__77 = _genCompid4[0],
+          $compid__77 = _genCompid4[1];
 
-      var _genCompid5 = (0, _taroTt.genCompid)(__prefix + "$compid__73"),
+      var _genCompid5 = (0, _taroTt.genCompid)(__prefix + "$compid__78"),
           _genCompid6 = _slicedToArray(_genCompid5, 2),
-          $prevCompid__73 = _genCompid6[0],
-          $compid__73 = _genCompid6[1];
+          $prevCompid__78 = _genCompid6[0],
+          $compid__78 = _genCompid6[1];
 
       var router = (0, _taroTt.useRouter)();
       // 获取存入的公用内容
@@ -546,19 +546,19 @@ var AddProjectPage = function (_Taro$Component) {
         "maxLength": 12,
         "value": name,
         "onChange": this.anonymousFunc0
-      }, $compid__71, $prevCompid__71);
+      }, $compid__76, $prevCompid__76);
       _taroTt.propsManager.set({
         "num": num
-      }, $compid__72, $prevCompid__72);
+      }, $compid__77, $prevCompid__77);
       image.item && _taroTt.propsManager.set({
         "images": image.item,
         "max": 6,
         "userUploadImg": userUploadImg
-      }, $compid__73, $prevCompid__73);
+      }, $compid__78, $prevCompid__78);
       Object.assign(this.__state, {
-        $compid__71: $compid__71,
-        $compid__72: $compid__72,
-        $compid__73: $compid__73,
+        $compid__76: $compid__76,
+        $compid__77: $compid__77,
+        $compid__78: $compid__78,
         startTime: startTime,
         endTime: endTime,
         multiIndex: multiIndex,

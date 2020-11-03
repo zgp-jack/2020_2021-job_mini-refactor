@@ -82,6 +82,8 @@ export default function Cities({
         }
         setRecentlyCities(historyCities)
         return
+      }else{
+        setRecentlyCities(historyCities)
       }
     }
   }
@@ -157,7 +159,7 @@ export default function Cities({
 
         {/* 当前定位、热门城市 */}
         <View className='city-area-item'>
-          <View className='city-area-title'>当前定位城市/最近访问</View>
+          {(recentlyCities.length > 0 || userLoc.id) &&　<View className='city-area-title'>当前定位城市/最近访问</View>}
           <View className='city-area-content clearfix'>
             {userLoc.id &&
             <View className='city-item' onClick={() => userTapCity(userLoc)}>

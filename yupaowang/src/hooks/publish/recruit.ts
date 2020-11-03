@@ -97,7 +97,7 @@ export default function usePublishViewInfo(InitParams: InitRecruitView){
     }else{
       let userLoctionCity: UserLocationPromiss = Taro.getStorageSync(UserLocationCity)
       if(userLoctionCity){
-        dispatch(setArea(userLoctionCity.city))
+        dispatch(setArea(userLoctionCity.city.slice(0,2)))
       }else{
         userAuthLoction().then(res=>{
           dispatch(setArea(res.city))
@@ -247,10 +247,6 @@ export default function usePublishViewInfo(InitParams: InitRecruitView){
     showProfession,
     setShowProssion,
     userPublishRecruitAction,
-    // area,
-    // setArea,
-    // areaInfo,
-    // setAreaInfo,
     num,
     setNum,
     phone
