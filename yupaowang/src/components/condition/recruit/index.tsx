@@ -58,8 +58,11 @@ function RecruitCondition({ data, setSearchData }: ConditionProps) {
     if(userListChooseCity){
       let id: string = userListChooseCity.id
       setAreaId(id)
+      // pid == 1 代表省份 和直辖市
       let pid: string = userListChooseCity.pid === '1' ? userListChooseCity.id : userListChooseCity.pid
       let i: number = AREAS.findIndex(item => item.id === pid)
+      // pid == 0 代表全国
+      i = pid === '0' ? 0 : i
       setAreaIndex(i)
     }
   },[])

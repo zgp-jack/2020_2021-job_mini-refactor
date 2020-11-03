@@ -1,5 +1,12 @@
 @import '../add_info/index.scss';
 
+.resume-add-imgsview{
+  position: relative;
+  padding-top: 10px;
+  margin-top: 20px;
+  background-color: white;
+}
+
 .resume-add-skill-footer{
   position: fixed;
   width: 100%;
@@ -15,6 +22,7 @@
     line-height: 80px;
     border: 1px solid $color;
     border-radius: 3PX;
+    font-size: 30px;
     color: $color;
     text-align: center;
     &:nth-last-child(1){

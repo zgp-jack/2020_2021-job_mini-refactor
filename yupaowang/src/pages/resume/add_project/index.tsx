@@ -1,8 +1,7 @@
 import Taro, { useState, useEffect } from '@tarojs/taro'
 import { View, Text, Form, Textarea, Input, Picker, Button } from '@tarojs/components'
 import WordsTotal from '../../../components/wordstotal'
-import useResumeAddInfo from '../../../hooks/resume_addinfo'
-import useCode from '../../../hooks/code'
+import ImageView from '../../../components/imageview'
 import './index.scss'
 
 export default function AddResumeInfo() {
@@ -36,7 +35,7 @@ export default function AddResumeInfo() {
               </View>
 
               <View className='publish-list-item' >
-                <Text className='pulish-list-title'>项目开始时间</Text>
+                <Text className='pulish-list-title'>开始时间</Text>
                 <Picker
                   mode="date"
                   value=''
@@ -48,7 +47,7 @@ export default function AddResumeInfo() {
               </View>
 
               <View className='publish-list-item' >
-                <Text className='pulish-list-title'>项目结束时间</Text>
+                <Text className='pulish-list-title'>结束时间</Text>
                 <Picker
                   mode="date"
                   value=''
@@ -58,8 +57,32 @@ export default function AddResumeInfo() {
                   <Input className='publish-list-input' type='text' disabled placeholder='请选择领证时间' value='' />
                 </Picker>
               </View>
-
+              <View className='publish-list-item' >
+                <Text className='pulish-list-title'>所在地区</Text>
+                <Picker
+                  mode="date"
+                  value=''
+                  range-key="name"
+                  onChange={(e) => onPickerChange(e, 'b')}
+                >
+                  <Input className='publish-list-input' type='text' disabled placeholder='请选择领证时间' value='' />
+                </Picker>
+              </View>
+              <View className='publish-list-textarea' >
+                <Text className='publish-textarea-title'>项目描述</Text>
+                <Textarea
+                  className='publish-textarea'
+                  value=''
+                  placeholder='主要描述项目中的工作情况'
+                  onInput={(e) => userEnterFrom(e, 'detail')}
+                ></Textarea>
+                <WordsTotal num={0} />
+              </View>
             </View>
+            <View className='resume-add-imgsview'>
+              <ImageView images={[]} max={6} />
+            </View>
+            
           </Form>
         </View>
       </View>

@@ -61,7 +61,6 @@ export default function Tabbar({ notredirect }: PROPS) {
       url: url
     })
   }
-
   // 统计未读信息
   const getMemberMsg = ()=> {
       if (!login) return
@@ -117,7 +116,7 @@ export default function Tabbar({ notredirect }: PROPS) {
           'tabbar-publish-items': true,
           'tabbar-publish-items-active': active
         })}>
-          <View className='tabbar-publish-item'>
+          <View className='tabbar-publish-item' onClick = {() => userTapPublishItem('/pages/recruit/publish/index')}>
             <Image className='tabbar-publih-item-img' src={IMGCDNURL +'publish-recruit.png'}></Image>
             <Text className='tabbar-publih-item-text'>发布招工</Text>
           </View>

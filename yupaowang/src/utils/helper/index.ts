@@ -17,12 +17,16 @@ export function objDeepCopy(source: any):any {
 // 获取用户定位
 export function userAuthLoction(): Promise<UserLocationPromiss>{
   return new Promise((resolve, reject)=>{
+    let loc: UserLocationPromiss = Taro.getStorageSync(UserLocationCity)
+    if (loc) resolve(loc)
     const GDMAP = new AMapWX.AMapWX({ key: MAPKEY })
     GDMAP.getRegeo({
       success: function (data: any) {
+        let city: string = data[0].regeocodeData.addressComponent.city
+        let bool: boolean = typeof data[0].regeocodeData.addressComponent.city == 'string'
         let gpsLocation: UserLocationPromiss = {
           province: data[0].regeocodeData.addressComponent.province,
-          city: data[0].regeocodeData.addressComponent.city,
+          city: bool ? city : data[0].regeocodeData.addressComponent.province,
           adcode: data[0].regeocodeData.addressComponent.adcode,
           citycode: data[0].regeocodeData.addressComponent.citycode
         }

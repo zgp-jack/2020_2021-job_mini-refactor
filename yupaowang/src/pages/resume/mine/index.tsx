@@ -170,10 +170,17 @@ export default function Mine() {
         }
         Taro.setStorageSync("introinfo", res.data.info)
         setData({ 
+<<<<<<< HEAD:yupaowang/src/pages/resume/newJobs/index.tsx
+          info: res.data.info, 
+          resume_top: res.data.resume_top, 
+          content: res.data.content, 
+          introduces: res.data.introduces, 
+=======
           info: { ...data.info,...res.data.info}, 
           resume_top: { ...data.resume_top, ...res.data.resume_top}, 
           content: { ...data.content,...res.data.content}, 
           introduces: { ...data.introduces, ...res.data.introduces}, 
+>>>>>>> c072571a04006bd73d54569f9aa05d6941303506:yupaowang/src/pages/resume/mine/index.tsx
           certificate_count: res.data.certificate_count, 
           fail_certificate: res.data.fail_certificate, 
           fail_project: res.data.fail_project, 
