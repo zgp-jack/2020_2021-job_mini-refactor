@@ -61,7 +61,7 @@ var SkillList = function (_Taro$Component) {
       navigationBarTitleText: '技能证书'
     };
 
-    _this.$usedState = ["loopArray87", "data", "IMGCDNURL", "preview", "resume_uuid", "detail"];
+    _this.$usedState = ["loopArray89", "data", "IMGCDNURL", "preview", "resume_uuid", "detail"];
     _this.anonymousFunc0Map = {};
     _this.anonymousFunc1Map = {};
     _this.anonymousFunc2Map = {};
@@ -153,15 +153,15 @@ var SkillList = function (_Taro$Component) {
       this.anonymousFunc3 = function () {
         return userRouteJump("/pages/resume/addSkill/index?id=" + id);
       };
-      var loopArray87 = data.map(function (item, i) {
+      var loopArray89 = data.map(function (item, i) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
-        var _$indexKey = "jbzzz" + i;
+        var _$indexKey = "jczzz" + i;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return userRouteJump("/pages/resume/addSkill/index?type=" + i + "&id=" + id);
         };
-        var _$indexKey2 = "jczzz" + i;
+        var _$indexKey2 = "jdzzz" + i;
         _this2.anonymousFunc1Map[_$indexKey2] = function () {
           return userRouteJump("/pages/resume/addSkill/index?type=" + i + "&id=" + id);
         };
@@ -170,7 +170,7 @@ var SkillList = function (_Taro$Component) {
             $original: (0, _taroTt.internal_get_original)(v)
           };
           var $loopState__temp2 = i + i;
-          var _$indexKey3 = "jdzzz" + i + "-" + i;
+          var _$indexKey3 = "jezzz" + i + "-" + i;
           _this2.anonymousFunc2Map[_$indexKey3] = function () {
             return handleImg(v.$original);
           };
@@ -188,7 +188,7 @@ var SkillList = function (_Taro$Component) {
         };
       });
       Object.assign(this.__state, {
-        loopArray87: loopArray87,
+        loopArray89: loopArray89,
         data: data,
         IMGCDNURL: _index2.IMGCDNURL,
         preview: preview,

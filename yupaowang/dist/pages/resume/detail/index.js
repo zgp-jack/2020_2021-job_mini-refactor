@@ -74,7 +74,7 @@ var ResumeDetail = function (_Taro$Component) {
       navigationBarTitleText: '找活名片'
     };
 
-    _this.$usedState = ["data", "loopArray83", "loopArray85", "loopArray86", "$compid__68", "$compid__69", "isAuth", "IMGCDNURL", "examine", "onoff", "list", "praise", "collect", "shownewtips", "complaintModal", "age", "phone"];
+    _this.$usedState = ["data", "loopArray85", "loopArray87", "loopArray88", "$compid__73", "$compid__74", "isAuth", "IMGCDNURL", "examine", "onoff", "list", "praise", "collect", "shownewtips", "complaintModal", "age", "phone"];
     _this.anonymousFunc4Map = {};
     _this.anonymousFunc6Map = {};
     _this.customComponents = ["Auth", "CollectionRecruitList", "Report"];
@@ -98,15 +98,15 @@ var ResumeDetail = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__68"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__73"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__68 = _genCompid2[0],
-          $compid__68 = _genCompid2[1];
+          $prevCompid__73 = _genCompid2[0],
+          $compid__73 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__69"),
+      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__74"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__69 = _genCompid4[0],
-          $compid__69 = _genCompid4[1];
+          $prevCompid__74 = _genCompid4[0],
+          $compid__74 = _genCompid4[1];
       // 获取用户是否登录
 
 
@@ -475,7 +475,7 @@ var ResumeDetail = function (_Taro$Component) {
         setShownewtips(false);
       };
       this.anonymousFunc11 = handleTellPhone;
-      var loopArray83 = data.info.occupations.length ? data.info.occupations.map(function (v, i) {
+      var loopArray85 = data.info.occupations.length ? data.info.occupations.map(function (v, i) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
@@ -485,12 +485,12 @@ var ResumeDetail = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray85 = data.project.length ? data.project[0].image.map(function (v, i) {
+      var loopArray87 = data.project.length ? data.project[0].image.map(function (v, i) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
         var $loopState__temp4 = data.project.length ? i + i : null;
-        var _$indexKey = "ijzzz" + i;
+        var _$indexKey = "jazzz" + i;
         _this2.anonymousFunc4Map[_$indexKey] = function () {
           return handleImg(v.$original);
         };
@@ -500,12 +500,12 @@ var ResumeDetail = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray86 = data.certificates.length ? data.certificates[0].image.map(function (val, i) {
+      var loopArray88 = data.certificates.length ? data.certificates[0].image.map(function (val, i) {
         val = {
           $original: (0, _taroTt.internal_get_original)(val)
         };
         var $loopState__temp6 = data.certificates.length ? i + i : null;
-        var _$indexKey2 = "jazzz" + i;
+        var _$indexKey2 = "jbzzz" + i;
         _this2.anonymousFunc6Map[_$indexKey2] = function () {
           return handleImg(val.$original);
         };
@@ -518,21 +518,21 @@ var ResumeDetail = function (_Taro$Component) {
       list.item.length && _taroTt.propsManager.set({
         "data": list.item,
         "type": 2
-      }, $compid__68, $prevCompid__68);
+      }, $compid__73, $prevCompid__73);
       complaintModal && _taroTt.propsManager.set({
         "display": complaintModal,
         "textarea": textarea,
         "handleTextarea": handleTextarea,
         "setComplaintModal": setComplaintModal,
         "handleSubmit": handleSubmit
-      }, $compid__69, $prevCompid__69);
+      }, $compid__74, $prevCompid__74);
       Object.assign(this.__state, {
         data: data,
-        loopArray83: loopArray83,
         loopArray85: loopArray85,
-        loopArray86: loopArray86,
-        $compid__68: $compid__68,
-        $compid__69: $compid__69,
+        loopArray87: loopArray87,
+        loopArray88: loopArray88,
+        $compid__73: $compid__73,
+        $compid__74: $compid__74,
         isAuth: isAuth,
         IMGCDNURL: _index2.IMGCDNURL,
         examine: examine,
