@@ -49,7 +49,6 @@ export default function ResumePublish(){
             </View>
             <View className='progress-place-text'>
               <View className='place-text'>置顶地区：四川省</View>
-              <View className='place-text'>四川省  四川省</View>
               <View className='place-text'>置顶时间：2019-11-20  15:30:50</View>
               <View className='progress-place-btn'>点击修改找活置顶信息&gt;&gt;</View>
             </View>
