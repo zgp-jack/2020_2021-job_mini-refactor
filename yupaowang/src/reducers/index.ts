@@ -2,7 +2,7 @@
  * @Author: zyb
  * @Date: 2020-11-03 14:36:47
  * @LastEditors: zyb
- * @LastEditTime: 2020-11-04 14:41:42
+ * @LastEditTime: 2020-11-04 19:42:42
  * @Description: 
  */
 import { combineReducers } from 'redux'
@@ -19,8 +19,9 @@ import realname from './realname'
 import resumeAddInfo from './resume_addinfo'
 import resProjectData from './resProject';
 import introduces from './introduces';
-import certificates from './certificates'
-import resInfo from './resInfo'
+import certificates from './certificates';
+import resInfo from './resInfo';
+import uuid from './uuid';
 
 //合并reducer
 export default combineReducers({
@@ -41,4 +42,5 @@ export default combineReducers({
   introduces,
   certificates,
   resInfo,
+  uuid,
 })

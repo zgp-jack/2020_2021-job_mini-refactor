@@ -12781,6 +12781,31 @@ var SET = exports.SET = 'set';
 
 /***/ }),
 
+/***/ "./src/constants/uuid.ts":
+/*!*******************************!*\
+  !*** ./src/constants/uuid.ts ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+/*
+ * @Author: zyb
+ * @Date: 2020-11-04 19:37:27
+ * @LastEditors: zyb
+ * @LastEditTime: 2020-11-04 19:37:50
+ * @Description:
+ */
+var GETUUID = exports.GETUUID = 'getUuid';
+var SETUUID = exports.SETUUID = 'setUuid';
+
+/***/ }),
+
 /***/ "./src/constants/wechat_notice.ts":
 /*!****************************************!*\
   !*** ./src/constants/wechat_notice.ts ***!

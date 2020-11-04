@@ -341,16 +341,14 @@ var _resInfo = __webpack_require__(/*! ./resInfo */ "./src/reducers/resInfo.ts")
 
 var _resInfo2 = _interopRequireDefault(_resInfo);
 
+var _uuid = __webpack_require__(/*! ./uuid */ "./src/reducers/uuid.ts");
+
+var _uuid2 = _interopRequireDefault(_uuid);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 //合并reducer
-/*
- * @Author: zyb
- * @Date: 2020-11-03 14:36:47
- * @LastEditors: zyb
- * @LastEditTime: 2020-11-04 14:41:42
- * @Description:
- */
+//发布招工reducer
 exports.default = (0, _redux.combineReducers)({
   tabbar: _tabbar2.default,
   WechatNotice: _wechat_notice2.default,
@@ -368,8 +366,15 @@ exports.default = (0, _redux.combineReducers)({
   resProjectData: _resProject2.default,
   introduces: _introduces2.default,
   certificates: _certificates2.default,
-  resInfo: _resInfo2.default
-}); //发布招工reducer
+  resInfo: _resInfo2.default,
+  uuid: _uuid2.default
+}); /*
+     * @Author: zyb
+     * @Date: 2020-11-03 14:36:47
+     * @LastEditors: zyb
+     * @LastEditTime: 2020-11-04 19:42:42
+     * @Description:
+     */
 
 /***/ }),
 
@@ -1032,6 +1037,48 @@ function User() {
         if (_userInfo) return _userInfo;
       }
       return state;
+    default:
+      return state;
+  }
+}
+
+/***/ }),
+
+/***/ "./src/reducers/uuid.ts":
+/*!******************************!*\
+  !*** ./src/reducers/uuid.ts ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = uuid;
+
+var _uuid = __webpack_require__(/*! ../constants/uuid */ "./src/constants/uuid.ts");
+
+var UUID_STATE = ''; /*
+                      * @Author: zyb
+                      * @Date: 2020-11-04 19:37:03
+                      * @LastEditors: zyb
+                      * @LastEditTime: 2020-11-04 19:42:23
+                      * @Description:
+                      */
+function uuid() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : UUID_STATE;
+  var action = arguments[1];
+
+  switch (action.type) {
+    case _uuid.GETUUID:
+      return state;
+      break;
+    case _uuid.SETUUID:
+      return action.data;
+      break;
     default:
       return state;
   }

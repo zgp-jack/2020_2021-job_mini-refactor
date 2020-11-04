@@ -4,11 +4,14 @@ import { IMGCDNURL } from '../../../config'
 import { AtProgress } from 'taro-ui'
 import Imglist from '../../../components/imglist'
 import useResume from '../../../hooks/publish/resume'
+import { useSelector } from '@tarojs/redux'
 import './index.scss'
 
 export default function ResumePublish(){
+  // uuid
+  const uuid = useSelector<any, string>(state => state.uuid)
+  const { infoData, introducesData, projectData, certificates, resume_top } = useResume()
 
-  const { infoData, introducesData, projectData, certificates, resume_top,uuid } = useResume()
   // 页面跳转
   const userRouteJump = (url: string) => {
     Taro.navigateTo({url: url})
@@ -99,10 +102,16 @@ export default function ResumePublish(){
                   <View className='sexage'>{infoData.gender == '1' ? '男' : '女'}  {infoData.age}  {infoData.nation}</View>
                 </View>
               </View>
-              <View>
-                  {/* {infoData.check == 1? } */}
+              {infoData.check == '0' && 
+              <View className='change'>
+                待修改
               </View>
-              {/* <View className='change'>待修改</View> */}
+              }
+              {infoData.check != '0' && infoData.check == '1' &&
+                <View className='change'>
+                  待修改
+              </View>
+              }
             </View>
             <View className='content'>
               <View className='craft'>
