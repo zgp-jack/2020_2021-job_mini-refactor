@@ -2,7 +2,7 @@
  * @Author: zyb
  * @Date: 2020-11-04 14:30:10
  * @LastEditors: zyb
- * @LastEditTime: 2020-11-04 14:56:32
+ * @LastEditTime: 2020-11-04 16:54:58
  * @Description: 
  */
 import { resCertificatesArr } from '../utils/request/index.d'
@@ -28,7 +28,7 @@ const CERTIFICATES_STATE: resCertificatesArr = {
 }
 interface ACTIONTYPE {
   type: string,
-  data: resCertificatesArr,
+  data: resCertificatesArr[],
 }
 export default function certificates(state: resCertificatesArr = CERTIFICATES_STATE, action: ACTIONTYPE) {
   switch (action.type) {

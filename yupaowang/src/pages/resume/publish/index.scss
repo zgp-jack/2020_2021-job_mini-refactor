@@ -170,6 +170,12 @@ $commonMargin: 44px;
         .status-txt{
           color: #161616;
         }
+        .status-txt-image{
+          width: 24px;
+          height: 22px;
+          margin-top: 4px;
+          transition: transform 0.3s
+        }
         .basic-experience-img{
           width: 25px;
           height: 24px;
