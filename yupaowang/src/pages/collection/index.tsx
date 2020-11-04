@@ -49,7 +49,7 @@ export default function Collection() {
               })}
             >
               <View className='collection-tab-img'>
-                {current === 1 ? <Image src={item.icon}></Image> : <Image src={item.activeIcon}></Image>}
+                  {current === 1 ? <Image className='collect-tab-icon' src={item.icon}></Image> : <Image className='collect-tab-icon' src={item.activeIcon}></Image>}
               </View>
               <Text
                 className={classnames({

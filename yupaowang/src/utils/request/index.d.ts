@@ -1571,3 +1571,8 @@ export interface ResumeAddInfoGenderConfig {
   id: string ,
   name: string
 }
+
+// 添加技能证书返回值
+export interface ResumeCertificateData extends Result{
+  count: number
+}

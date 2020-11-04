@@ -56,15 +56,8 @@ class App extends Component {
 
 
       'pages/resume/detail/index', // 找活详情
-      'pages/resume/skillList/index',//技能证书
-      'pages/resume/projectList/index',//项目经验
-      'pages/resume/addProject/index', //新增项目,
-      'pages/resume/addSkill/index',//新增技能
-      'pages/resume/basics/index',//基础信息
-      'pages/resume/mine/index',//新增
-      'pages/resume/recList/index', //更多招工信息
+      
       'pages/resume/preview/index', // 预览
-      'pages/resume/personInfo/index',//人员信息
       'pages/login/index',//用户登录
     ],
     subPackages: [
