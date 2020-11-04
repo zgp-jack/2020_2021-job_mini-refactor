@@ -2,7 +2,7 @@
  * @Author: zyb
  * @Date: 2020-11-03 14:36:47
  * @LastEditors: zyb
- * @LastEditTime: 2020-11-04 19:42:42
+ * @LastEditTime: 2020-11-04 20:44:09
  * @Description: 
  */
 import { combineReducers } from 'redux'
@@ -17,12 +17,7 @@ import { MyAreaInfo, MyArea, PositionStatus } from './recruit' //发布招工red
 import member from './member'
 import realname from './realname'
 import resumeAddInfo from './resume_addinfo'
-import resProjectData from './resProject';
-import introduces from './introduces';
-import certificates from './certificates';
-import resInfo from './resInfo';
-import uuid from './uuid';
-import useResume from './useResume';
+import resumeData from './resume_data';
 
 //合并reducer
 export default combineReducers({
@@ -39,10 +34,5 @@ export default combineReducers({
   realname,
   resumeAddInfo,
   PositionStatus,
-  resProjectData,
-  introduces,
-  certificates,
-  resInfo,
-  uuid,
-  useResume
+  resumeData
 })

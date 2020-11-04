@@ -2,16 +2,17 @@
  * @Author: zyb
  * @Date: 2020-11-04 19:51:02
  * @LastEditors: zyb
- * @LastEditTime: 2020-11-04 19:58:28
+ * @LastEditTime: 2020-11-04 20:39:17
  * @Description: 
  */
-import { GETUSERRESUME,SETUSERRESUME } from '../constants/useResume';
+import { GETUSERRESUME,SETUSERRESUME } from '../constants/resume_data';
 import { resIntroduceObj, resInfoObj, resProjectArr, resCertificatesArr, resume_topObj } from '../utils/request/index.d';
 export interface useResumeType {
   info: resInfoObj,
   introducesData: resIntroduceObj,
   projectData: resProjectArr[],
   certificates: resCertificatesArr[],
+  resume_uuid:string
 }
 
 export function getUseResume(data: useResumeType) {

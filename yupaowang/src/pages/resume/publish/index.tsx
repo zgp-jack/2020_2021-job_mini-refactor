@@ -9,7 +9,8 @@ import './index.scss'
 
 export default function ResumePublish(){
   // uuid
-  const uuid = useSelector<any, string>(state => state.uuid)
+  const uuid ='';
+  // const uuid = useSelector<any, string>(state => state.useResume.resume_uuid)
   const { infoData, introducesData, projectData, certificates, resume_top } = useResume()
 
   // 页面跳转
