@@ -22,6 +22,7 @@ import introduces from './introduces';
 import certificates from './certificates';
 import resInfo from './resInfo';
 import uuid from './uuid';
+import useResume from './useResume';
 
 //合并reducer
 export default combineReducers({
@@ -43,4 +44,5 @@ export default combineReducers({
   certificates,
   resInfo,
   uuid,
+  useResume
 })

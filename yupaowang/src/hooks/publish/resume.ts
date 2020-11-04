@@ -2,31 +2,29 @@
  * @Author: zyb
  * @Date: 2020-11-03 15:03:11
  * @LastEditors: zyb
- * @LastEditTime: 2020-11-04 19:44:08
+ * @LastEditTime: 2020-11-04 20:25:04
  * @Description: 
  */
 import { useState,useDidShow } from '@tarojs/taro'
 import { resumeListAction } from '../../utils/request'
 import { resIntroduceObj, resInfoObj, resProjectArr, resCertificatesArr,resume_topObj } from '../../utils/request/index.d';
 import { INFODATA_DATA, INTRODUCERS_DATA, RESUME_TOP_DATA } from '../../pages/resume/publish/data';
-import { setResProject } from '../../actions/resProject';
-import { setIntroduces } from '../../actions/introduces';
-import { setResInfo } from '../../actions/resInfo';
-import { setCertificatesData } from '../../actions/certificates';
+import { useResumeType } from '../../actions/useResume';
 import { setUuid } from '../../actions/uuid';
+import { setUseResume } from '../../actions/useResume';
 import { useDispatch, useSelector } from '@tarojs/redux'
 import Msg from '../../utils/msg'
 
 export default function useResume(){
   const dispatch = useDispatch();
   // 基础信息
-  const infoVal = useSelector<any, resInfoObj>(state => state.resInfo)
+  const infoVal = useSelector<any, resInfoObj>(state => state.useResume.info)
   // 人员信息
-  const introducesVal = useSelector<any, resIntroduceObj>(state => state.introduces)
+  const introducesVal = useSelector<any, resIntroduceObj>(state => state.useResume.introducesData)
   // 项目
-  const projectVal = useSelector<any, resProjectArr[]>(state => state.resProjectData)
+  const projectVal = useSelector<any, resProjectArr[]>(state => state.useResume.projectData)
   //  职业技能
-  const certificatesVal = useSelector<any, resCertificatesArr[]>(state => state.certificates)
+  const certificatesVal = useSelector<any, resCertificatesArr[]>(state => state.useResume.certificates)
   // 基础信息
   const [infoData, setInfoData] = useState<resInfoObj>(infoVal)
   // 人员信息
@@ -57,10 +55,12 @@ export default function useResume(){
         setResume_top(res.data.resume_top);
         // 存redux
         dispatch(setUuid(res.data.info.uuid));
-        dispatch(setResProject(res.data.project));
-        dispatch(setIntroduces(res.data.introduces));
-        dispatch(setCertificatesData(res.data.certificates));
-        dispatch(setResInfo(res.data.info))
+        dispatch(setUseResume({
+          info:res.data.info,
+          introducesData:res.data.introduces,
+          certificates:res.data.certificates,
+          projectData:res.data.project,
+        }))
       }else{
         Msg(res.errmsg);
       }
