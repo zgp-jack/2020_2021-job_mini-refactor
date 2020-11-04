@@ -61,7 +61,7 @@ var Preview = function (_Taro$Component) {
       navigationBarTitleText: '找活名片'
     };
 
-    _this.$usedState = ["data", "loopArray89", "loopArray90", "loopArray91", "loopArray92", "IMGCDNURL", "checkpan", "checkone", "headerimg", "age", "sex", "project", "skillbooksone", "telephone"];
+    _this.$usedState = ["data", "loopArray91", "loopArray92", "loopArray93", "loopArray94", "IMGCDNURL", "checkpan", "checkone", "headerimg", "age", "sex", "project", "skillbooksone", "telephone"];
     _this.anonymousFunc0Map = {};
     _this.anonymousFunc2Map = {};
     _this.customComponents = [];
@@ -230,7 +230,7 @@ var Preview = function (_Taro$Component) {
       this.anonymousFunc4 = function () {
         return _taroTt2.default.navigateTo({ url: "/pages/resume/skillList/index?preview=1" });
       };
-      var loopArray89 = data.info.miniInfoOccupations.length ? data.info.miniInfoOccupations.map(function (v, i) {
+      var loopArray91 = data.info.miniInfoOccupations.length ? data.info.miniInfoOccupations.map(function (v, i) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
@@ -240,7 +240,7 @@ var Preview = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray90 = data.introduces.tags.length ? data.introduces.tags.map(function (v, i) {
+      var loopArray92 = data.introduces.tags.length ? data.introduces.tags.map(function (v, i) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
@@ -250,7 +250,7 @@ var Preview = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray91 = data.project.length ? project.map(function (item, i) {
+      var loopArray93 = data.project.length ? project.map(function (item, i) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
@@ -276,7 +276,7 @@ var Preview = function (_Taro$Component) {
           $original: item.$original
         };
       }) : [];
-      var loopArray92 = data.certificates.length ? skillbooksone.map(function (item, __index3) {
+      var loopArray94 = data.certificates.length ? skillbooksone.map(function (item, __index3) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
@@ -302,10 +302,10 @@ var Preview = function (_Taro$Component) {
       }) : [];
       Object.assign(this.__state, {
         data: data,
-        loopArray89: loopArray89,
-        loopArray90: loopArray90,
         loopArray91: loopArray91,
         loopArray92: loopArray92,
+        loopArray93: loopArray93,
+        loopArray94: loopArray94,
         IMGCDNURL: _index2.IMGCDNURL,
         checkpan: checkpan,
         checkone: checkone,
