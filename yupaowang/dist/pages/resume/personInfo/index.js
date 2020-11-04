@@ -71,7 +71,7 @@ var PersonInfo = function (_Taro$Component) {
       navigationBarTitleText: '人员信息'
     };
 
-    _this.$usedState = ["loopArray102", "formData", "multiIndex", "multiArray", "proficiencyIndex", "proficiency", "userIndex", "personnel", "ranks", "label"];
+    _this.$usedState = ["loopArray104", "formData", "multiIndex", "multiArray", "proficiencyIndex", "proficiency", "userIndex", "personnel", "ranks", "label"];
     _this.anonymousFunc6Map = {};
     _this.customComponents = [];
     return _this;
@@ -506,7 +506,7 @@ var PersonInfo = function (_Taro$Component) {
         return userEnterFrom(e, 'type');
       };
       this.anonymousFunc7 = handleSubmit;
-      var loopArray102 = label.map(function (v, __index6) {
+      var loopArray104 = label.map(function (v, __index6) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
@@ -520,7 +520,7 @@ var PersonInfo = function (_Taro$Component) {
         };
       });
       Object.assign(this.__state, {
-        loopArray102: loopArray102,
+        loopArray104: loopArray104,
         formData: formData,
         multiIndex: multiIndex,
         multiArray: multiArray,
