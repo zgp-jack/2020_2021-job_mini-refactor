@@ -2,7 +2,7 @@
  * @Author: zyb
  * @Date: 2020-11-03 15:03:11
  * @LastEditors: zyb
- * @LastEditTime: 2020-11-04 19:10:55
+ * @LastEditTime: 2020-11-04 19:12:01
  * @Description: 
  */
 import { useState,useDidShow } from '@tarojs/taro'
@@ -68,5 +68,6 @@ export default function useResume(){
     projectData,
     certificates,
     resume_top,
+    uuid,
   }
 }
