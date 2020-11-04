@@ -8,8 +8,7 @@ import './index.scss'
 
 export default function ResumePublish(){
 
-  const { data } = useResume()
-  console.log(data)
+  const { infoData, introducesData, projectData, certificates } = useResume()
   // 页面跳转
   const userRouteJump = (url: string) => {
     Taro.navigateTo({url: url})
@@ -24,19 +23,19 @@ export default function ResumePublish(){
             <View>
               <View>
                 <View className='progress-Improve'>名片完善度:</View>
-                <View className='progresser'><AtProgress percent={75} color='#0099FF'/></View>
+                <View className='progresser'><AtProgress percent={+infoData.progress} color='#0099FF'/></View>
               </View>
               <View className='progress-txt'>名片越完善找活越容易；马上去完善&gt;&gt;</View>
             </View>
             <View>
-              <View className='progress-num'>0</View>
+              <View className='progress-num'>{infoData.view_num}</View>
               <View className='progress-viewed'>浏览次数</View>
             </View>
           </View>
           <View className='progress-footer'>
             <View>
               <Image className='progress-rank-img' src='http://cdn.yupao.com/newyupao/images/newresume-rank.png'/>
-              <View className='progress-text'>我的排名：四川省第一</View>
+              <View className='progress-text'>我的排名点：{infoData.sort_flag}</View>
             </View>
             <View className='progress-rank'>马上去提升排名&gt;&gt;</View>
           </View>
@@ -73,10 +72,10 @@ export default function ResumePublish(){
           <View className='basic-content'>
             <View className='content-information'>
               <View className='information'>
-                <Image className='basic-user-img' src='http://cdn.yupao.com/newyupao/images/user.png' />
+                <Image className='basic-user-img' src={infoData.img} />
                 <View className='infor'>
-                  <View className='name'>李小六</View>
-                  <View className='sexage'>男  56岁   汉族</View>
+                  <View className='name'>{infoData.username}</View>
+                  <View className='sexage'>{infoData.gender == '1' ? '男' : '女'}  {infoData.age}  {infoData.nation}</View>
                 </View>
               </View>
               <View className='change'>待修改</View>
@@ -84,21 +83,23 @@ export default function ResumePublish(){
             <View className='content'>
               <View className='craft'>
                 <Text className='craft-txt'>工种</Text>
-                <View className='craft-name'>建筑木工</View>
+                  {infoData.occupations && infoData.occupations.map((v,i)=>(
+                    <View className='craft-name' key={v+i}>{v}</View>
+                  ))}
               </View>
               <View className='craft'>
                 <Text className='craft-txt'>手机</Text>
-                <View className='craft-text'>13551047443</View>
+                <View className='craft-text'>{infoData.tel}</View>
               </View>
               <View className='craft'>
                 <Text className='craft-txt'>所在地区</Text>
-                <View className='craft-text'>四川省成都市</View>
+                <View className='craft-text'>{infoData.city}</View>
               </View>
               <View className='craft'>
                 <Text className='craft-txt'>自我介绍</Text>
-                <View className='craft-text'></View>
+                <View className='craft-text'>{infoData.introduce}</View>
               </View>
-              <View className='introduce'>请简要介绍您所从事的行业以及工作经验...</View>
+              <View className='introduce'></View>
             </View>
           </View>
           <View className='check-fail'><View className='check-fail-text'>个人资料审核失败原因：</View>就不告诉你就不告诉你，就不告诉你就不告诉你，就不告诉你就不告诉你， </View>
@@ -118,28 +119,35 @@ export default function ResumePublish(){
           <View className='basic-content'>
             <View className='content'>
               <View className='craft'>
-                <Text className='craft-txt'>年龄</Text>
-                <View className='craft-text'>15</View>
+                <Text className='craft-txt'>工龄</Text>
+                <View className='craft-text'>{infoData.experience}年</View>
               </View>
               <View className='craft'>
                 <Text className='craft-txt'>家乡</Text>
-                <View className='craft-text'>四川省成都市</View>
+                <View className='craft-text'>{introducesData.hometown}</View>
               </View>
               <View className='craft'>
                 <Text className='craft-txt'>人员构成</Text>
-                <View className='craft-text'>班组</View>
+                <View className='craft-text'>{introducesData.type_str}</View>
               </View>
               <View className='craft'>
                 <Text className='craft-txt'>熟练度</Text>
-                <View className='craft-text'>学徒工</View>
+                <View className='craft-text'>{introducesData.prof_degree_str}</View>
               </View>
               <View className='craft'>
                 <Text className='craft-txt'>队伍人数</Text>
-                <View className='craft-text'>500人</View>
+                <View className='craft-text'>{introducesData.number_people}</View>
               </View>
               <View className='craft'>
                 <Text className='craft-txt'>标签</Text>
-                <View className='craft-name'>任劳任怨</View>
+                <View>
+                {introducesData.tags && introducesData.tags.map((v)=>(
+                  <View className='craft-name' key={v.id}>
+                    {v.label_name}
+                  </View>
+                ))}
+                </View>
+                {/* <View className='craft-name'>任劳任怨</View> */}
               </View>
             </View>
           </View>
@@ -150,31 +158,35 @@ export default function ResumePublish(){
             <View className='basic-title'>项目经验</View>
             <View className='change'>添加</View>
           </View>
-          {/* <View className='basic-content'>
-            <View className='basic-txt'>添加项目经验可提升老板对您的信任程度</View>
-            <View className='basic-btn'>
-              <Button className='btn'>添加项目经验</Button>
-            </View>
-          </View> */}
-          <View className='project-information'>
-            <View className='content-information'>
-              <View className='information'>
-                <View className='name'>广东台山碧桂园项目</View>
-                <View className='sexage'>2019-01-2020-12     广东省台山市 </View>
-                <View className='sexage'>主要包工所有水电安装以及埋管，手艺第一质量放心。</View>
+          {/* 是否有项目 */}
+          {
+            projectData.length == 0 ? 
+            <View className='basic-content'>
+              <View className='basic-txt'>添加项目经验可提升老板对您的信任程度</View>
+              <View className='basic-btn'>
+                <Button className='btn'>添加项目经验</Button>
               </View>
-              <View className='change'>编辑</View>
-            </View>
-            <View className='project-content'>
-              <View className='content-img'>
-                <Imglist />
+            </View>:
+            <View className='project-information'>
+              <View className='content-information'>
+                <View className='information'>
+                  <View className='name'>{projectData[projectData.length - 1].project_name}</View>
+                    <View className='sexage'>{projectData[projectData.length - 1].start_time}-{projectData[projectData.length - 1].start_time}   广东省台山市 </View>
+                  <View className='sexage'>主要包工所有水电安装以及埋管，手艺第一质量放心。</View>
+                </View>
+                <View className='change'>编辑</View>
               </View>
-              <View className='project-failtxt'>失败原因：不知道</View>
+              <View className='project-content'>
+                <View className='content-img'>
+                  <Imglist />
+                </View>
+                <View className='project-failtxt'>失败原因：不知道</View>
+              </View>
+              <View className='change-project'>
+                <Button className='change-project-btn'>修改项目经验<View className='nabla'></View></Button>
+              </View>
             </View>
-            <View className='change-project'>
-              <Button className='change-project-btn'>修改项目经验<View className='nabla'></View></Button>
-            </View>
-          </View>
+          }
         </View>
         <View className='content-professional-skill'>
           <View className='basic-imformation'>

@@ -12524,6 +12524,31 @@ var Introinfo = exports.Introinfo = 'introinfo';
 
 /***/ }),
 
+/***/ "./src/constants/certificates.ts":
+/*!***************************************!*\
+  !*** ./src/constants/certificates.ts ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+/*
+ * @Author: zyb
+ * @Date: 2020-11-04 14:27:15
+ * @LastEditors: zyb
+ * @LastEditTime: 2020-11-04 14:27:49
+ * @Description:
+ */
+var GETCERTIFICATES = exports.GETCERTIFICATES = 'getCertificates';
+var SETCERTIFICATES = exports.SETCERTIFICATES = 'setCertificates';
+
+/***/ }),
+
 /***/ "./src/constants/filter_classify.ts":
 /*!******************************************!*\
   !*** ./src/constants/filter_classify.ts ***!
@@ -12539,6 +12564,31 @@ Object.defineProperty(exports, "__esModule", {
 });
 var GET = exports.GET = 'get';
 var SET = exports.SET = 'set';
+
+/***/ }),
+
+/***/ "./src/constants/introduces.ts":
+/*!*************************************!*\
+  !*** ./src/constants/introduces.ts ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+/*
+ * @Author: zyb
+ * @Date: 2020-11-04 14:10:33
+ * @LastEditors: zyb
+ * @LastEditTime: 2020-11-04 14:14:57
+ * @Description:
+ */
+var GETINTRODUCEA = exports.GETINTRODUCEA = 'getIntroduces';
+var SETINTRODUCEA = exports.SETINTRODUCEA = 'setIntroduces';
 
 /***/ }),
 
@@ -12617,6 +12667,56 @@ var SETAREAINFO = exports.SETAREAINFO = 'setareainfo';
 var SETAREA = exports.SETAREA = 'setarea';
 var GETAREA = exports.GETAREA = 'getarea';
 var SETPOSITIONSTATUS = exports.SETPOSITIONSTATUS = 'setpositionstatus';
+
+/***/ }),
+
+/***/ "./src/constants/resInfo.ts":
+/*!**********************************!*\
+  !*** ./src/constants/resInfo.ts ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+/*
+ * @Author: zyb
+ * @Date: 2020-11-04 14:35:11
+ * @LastEditors: zyb
+ * @LastEditTime: 2020-11-04 14:35:44
+ * @Description:
+ */
+var GETRESINFO = exports.GETRESINFO = 'getResInfo';
+var SETRESINFO = exports.SETRESINFO = 'setResInfo';
+
+/***/ }),
+
+/***/ "./src/constants/resProject.ts":
+/*!*************************************!*\
+  !*** ./src/constants/resProject.ts ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+/*
+ * @Author: zyb
+ * @Date: 2020-11-04 11:29:50
+ * @LastEditors: zyb
+ * @LastEditTime: 2020-11-04 11:30:58
+ * @Description:
+ */
+var GETRESPROJECT = exports.GETRESPROJECT = 'getresProject';
+var SETRESPROJECT = exports.SETRESPROJECT = 'setresProject';
 
 /***/ }),
 
