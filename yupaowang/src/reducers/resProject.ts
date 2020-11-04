@@ -2,7 +2,7 @@
  * @Author: zyb
  * @Date: 2020-11-04 11:33:48
  * @LastEditors: zyb
- * @LastEditTime: 2020-11-04 14:05:50
+ * @LastEditTime: 2020-11-04 17:51:02
  * @Description: 
  */
 import { resProjectArr } from '../utils/request/index.d'
@@ -36,7 +36,7 @@ export default function resProjectData(state: resProjectArr = RESPROJECT_STATE, 
     case GETRESPROJECT:
       return state
     case SETRESPROJECT:
-      return { ...state, ...action.data }
+      return action.data
     default:
       return state
   }

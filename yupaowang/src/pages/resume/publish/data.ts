@@ -2,7 +2,7 @@
  * @Author: zyb
  * @Date: 2020-11-03 18:49:37
  * @LastEditors: zyb
- * @LastEditTime: 2020-11-04 10:39:51
+ * @LastEditTime: 2020-11-04 17:23:33
  * @Description: 
  */
 // 基础信息默认参数
@@ -76,4 +76,13 @@ export const INTRODUCERS_DATA = {
   tags: [],
   type: '',
   type_str: '',
+}
+
+// 置顶
+export const RESUME_TOP_DATA = {
+  has_top: 0,
+  is_top: 0,
+  is_top_text: '',
+  is_top_to_text: '',
+  top_tips_string: '',
 }

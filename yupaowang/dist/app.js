@@ -781,9 +781,6 @@ function resInfo() {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
 exports.default = resProjectData;
 
 var _resProject = __webpack_require__(/*! ../constants/resProject */ "./src/constants/resProject.ts");
@@ -814,7 +811,7 @@ function resProjectData() {
     case _resProject.GETRESPROJECT:
       return state;
     case _resProject.SETRESPROJECT:
-      return _extends({}, state, action.data);
+      return action.data;
     default:
       return state;
   }

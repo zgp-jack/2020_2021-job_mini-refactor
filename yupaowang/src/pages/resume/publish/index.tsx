@@ -8,12 +8,12 @@ import './index.scss'
 
 export default function ResumePublish(){
 
-  const { infoData, introducesData, projectData, certificates } = useResume()
+  const { infoData, introducesData, projectData, certificates, resume_top } = useResume()
   // 页面跳转
   const userRouteJump = (url: string) => {
     Taro.navigateTo({url: url})
   }
-
+  console.error(infoData,'infoDatainfoData')
   return (
     <View className='resume-container'>
       <View className='resume-tips-header'>请完善以下信息</View>
@@ -25,7 +25,10 @@ export default function ResumePublish(){
                 <View className='progress-Improve'>名片完善度:</View>
                 <View className='progresser'><AtProgress percent={+infoData.progress} color='#0099FF'/></View>
               </View>
+              {infoData.uuid && infoData.is_introduces!= '0' && projectData.length>0 && certificates.length > 0 ? 
+              <View className='progress-txt'>分享找活名片,可提升名片排名度</View>:
               <View className='progress-txt'>名片越完善找活越容易；马上去完善&gt;&gt;</View>
+              }
             </View>
             <View>
               <View className='progress-num'>{infoData.view_num}</View>
@@ -43,15 +46,26 @@ export default function ResumePublish(){
             <View className='progress-placed'>
               <View>
                 <Image className='progress-rank-img' src='http://cdn.yupao.com/newyupao/images/gl/personaltop.png'/>
-                <View className='progress-text'>我的置顶：置顶中</View>
+                <View className='progress-text'>我的置顶：
+                  {resume_top.is_top == 2 && <Text>置顶已过期</Text>}
+                  {resume_top.has_top == 1 && resume_top.is_top == 0 && <Text>已取消置顶</Text>}
+                  {resume_top.has_top == 0 && <Text>未置顶</Text>}
+                  {resume_top.has_top != 0 && resume_top.is_top == 1 && <Text>置顶中</Text>}
+                </View>
               </View>
-              <View className='progress-rank'>取消置顶</View>
+              {resume_top.has_top == 0 && <View className='progress-rank'> 马上去置顶>></View>}
+              {resume_top.has_top != 0 && <View className='progress-rank'>
+                {resume_top.is_top != 1 && <View>继续置顶</View>}
+                {resume_top.is_top == 1 && <View>取消置顶</View>}
+              </View>}
             </View>
+            {resume_top.is_top == 1 && 
             <View className='progress-place-text'>
               <View className='place-text'>置顶地区：四川省</View>
-              <View className='place-text'>置顶时间：2019-11-20  15:30:50</View>
+              <View className='place-text'>置顶时间：  15:30:50</View>
               <View className='progress-place-btn'>点击修改找活置顶信息&gt;&gt;</View>
             </View>
+            }
           </View>
         </View>
         <View className='content-basic-imformation'>
@@ -67,7 +81,12 @@ export default function ResumePublish(){
           </View> */}
           <View className='basic-status'>
             <View className='status-txt'><Image className='basic-experience-img' src='http://cdn.yupao.com/newyupao/images/newresume-experience-item1.png'/>我的工作状态:</View>
-            <View className='status'>审核未通过</View>
+            {/* <View className='status'>审核未通过</View> */}
+            <View>
+              <Text></Text>
+              <Text></Text>
+              <Image src='http://cdn.yupao.com/newyupao/images/select.png' className='status-txt-image'/>
+            </View>
           </View>
           <View className='basic-content'>
             <View className='content-information'>
@@ -114,7 +133,7 @@ export default function ResumePublish(){
             <View className='basic-txt'>完善人员信息能让老板充分了解您或您的队伍</View>
             <View className='basic-btn'>
               <Button className='btn'>去完善</Button>
-            </View>
+            </View>z
           </View> */}
           <View className='basic-content'>
             <View className='content'>
@@ -171,14 +190,14 @@ export default function ResumePublish(){
               <View className='content-information'>
                 <View className='information'>
                   <View className='name'>{projectData[projectData.length - 1].project_name}</View>
-                    <View className='sexage'>{projectData[projectData.length - 1].start_time}-{projectData[projectData.length - 1].start_time}   广东省台山市 </View>
-                  <View className='sexage'>主要包工所有水电安装以及埋管，手艺第一质量放心。</View>
+                    <View className='sexage'>{projectData[projectData.length - 1].start_time}-{projectData[projectData.length - 1].completion_time}   {projectData[projectData.length - 1].province_name}-{projectData[projectData.length - 1].city_name} </View>
+                    <View className='sexage'>{projectData[projectData.length - 1].detail}</View>
                 </View>
                 <View className='change'>编辑</View>
               </View>
               <View className='project-content'>
                 <View className='content-img'>
-                  <Imglist />
+                    {projectData.length && <Imglist data={projectData[projectData.length - 1].image} />}
                 </View>
                 <View className='project-failtxt'>失败原因：不知道</View>
               </View>
@@ -203,14 +222,14 @@ export default function ResumePublish(){
           <View className='professional-information'>
             <View className='content-information'>
               <View className='information'>
-                <View className='name'>水电工技术证</View>
-                <View className='sexage time'>2019-01</View>
+                <View className='name'>{certificates[certificates.length - 1].name}</View>
+                <View className='sexage time'>{certificates[certificates.length - 1].certificate_time}</View>
               </View>
               <View className='change'>编辑</View>
             </View>
             <View className='project-content'>
               <View className='content-img'>
-                <Imglist />
+                {certificates.length && <Imglist data={certificates[certificates.length - 1].image && certificates[certificates.length - 1].image} />}
               </View>
               <View className='project-failtxt'>失败原因：不知道</View>
             </View>
