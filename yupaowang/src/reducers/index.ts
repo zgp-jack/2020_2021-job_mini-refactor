@@ -1,3 +1,10 @@
+/*
+ * @Author: zyb
+ * @Date: 2020-11-03 14:36:47
+ * @LastEditors: zyb
+ * @LastEditTime: 2020-11-04 14:41:42
+ * @Description: 
+ */
 import { combineReducers } from 'redux'
 import tabbar from './tabbar'
 import WechatNotice from './wechat_notice'
@@ -10,6 +17,10 @@ import { MyAreaInfo, MyArea, PositionStatus } from './recruit' //发布招工red
 import member from './member'
 import realname from './realname'
 import resumeAddInfo from './resume_addinfo'
+import resProjectData from './resProject';
+import introduces from './introduces';
+import certificates from './certificates'
+import resInfo from './resInfo'
 
 //合并reducer
 export default combineReducers({
@@ -24,9 +35,10 @@ export default combineReducers({
   MyArea,
   member,
   realname,
-<<<<<<< HEAD
-  resumeAddInfo
-=======
-  PositionStatus
->>>>>>> yangchao
+  resumeAddInfo,
+  PositionStatus,
+  resProjectData,
+  introduces,
+  certificates,
+  resInfo,
 })

@@ -170,8 +170,8 @@ export default function ResumePublish(){
             <View className='project-information'>
               <View className='content-information'>
                 <View className='information'>
-                  <View className='name'>广东台山碧桂园项目</View>
-                  <View className='sexage'>2019-01-2020-12     广东省台山市 </View>
+                  <View className='name'>{projectData[projectData.length - 1].project_name}</View>
+                    <View className='sexage'>{projectData[projectData.length - 1].start_time}-{projectData[projectData.length - 1].start_time}   广东省台山市 </View>
                   <View className='sexage'>主要包工所有水电安装以及埋管，手艺第一质量放心。</View>
                 </View>
                 <View className='change'>编辑</View>

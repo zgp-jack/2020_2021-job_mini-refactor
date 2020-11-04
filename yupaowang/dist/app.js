@@ -133,6 +133,60 @@ _taroTt2.default.initPxTransform({
 
 /***/ }),
 
+/***/ "./src/reducers/certificates.ts":
+/*!**************************************!*\
+  !*** ./src/reducers/certificates.ts ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+exports.default = certificates;
+
+var _certificates = __webpack_require__(/*! ../constants/certificates */ "./src/constants/certificates.ts");
+
+var CERTIFICATES_STATE = {
+  admin_last_edit_time: '',
+  certificate_time: '',
+  check: '',
+  current_admin: '',
+  fail_case: '',
+  id: '',
+  image: [],
+  images: [],
+  last_update_admin: '',
+  name: '',
+  resume_uuid: '',
+  sort_flag: '',
+  time: '',
+  update_time: '',
+  user_uuid: '',
+  uuid: ''
+};
+function certificates() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : CERTIFICATES_STATE;
+  var action = arguments[1];
+
+  switch (action.type) {
+    case _certificates.GETCERTIFICATES:
+      return state;
+    case _certificates.SETCERTIFICATES:
+      return _extends({}, state, action.data);
+    default:
+      return state;
+  }
+}
+
+/***/ }),
+
 /***/ "./src/reducers/filter_classify.ts":
 /*!*****************************************!*\
   !*** ./src/reducers/filter_classify.ts ***!
@@ -235,9 +289,32 @@ var _resume_addinfo = __webpack_require__(/*! ./resume_addinfo */ "./src/reducer
 
 var _resume_addinfo2 = _interopRequireDefault(_resume_addinfo);
 
+var _resProject = __webpack_require__(/*! ./resProject */ "./src/reducers/resProject.ts");
+
+var _resProject2 = _interopRequireDefault(_resProject);
+
+var _introduces = __webpack_require__(/*! ./introduces */ "./src/reducers/introduces.ts");
+
+var _introduces2 = _interopRequireDefault(_introduces);
+
+var _certificates = __webpack_require__(/*! ./certificates */ "./src/reducers/certificates.ts");
+
+var _certificates2 = _interopRequireDefault(_certificates);
+
+var _resInfo = __webpack_require__(/*! ./resInfo */ "./src/reducers/resInfo.ts");
+
+var _resInfo2 = _interopRequireDefault(_resInfo);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 //合并reducer
+/*
+ * @Author: zyb
+ * @Date: 2020-11-03 14:36:47
+ * @LastEditors: zyb
+ * @LastEditTime: 2020-11-04 14:41:42
+ * @Description:
+ */
 exports.default = (0, _redux.combineReducers)({
   tabbar: _tabbar2.default,
   WechatNotice: _wechat_notice2.default,
@@ -250,8 +327,63 @@ exports.default = (0, _redux.combineReducers)({
   MyArea: _recruit.MyArea,
   member: _member2.default,
   realname: _realname2.default,
-  resumeAddInfo: _resume_addinfo2.default
+  resumeAddInfo: _resume_addinfo2.default,
+  PositionStatus: _recruit.PositionStatus,
+  resProjectData: _resProject2.default,
+  introduces: _introduces2.default,
+  certificates: _certificates2.default,
+  resInfo: _resInfo2.default
 }); //发布招工reducer
+
+/***/ }),
+
+/***/ "./src/reducers/introduces.ts":
+/*!************************************!*\
+  !*** ./src/reducers/introduces.ts ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+exports.default = introduces;
+
+var _introduces = __webpack_require__(/*! ../constants/introduces */ "./src/constants/introduces.ts");
+
+var INTRODUCEA_STATE = {
+  check: '',
+  experience: '',
+  experience_str: '',
+  hometown: '',
+  hometown_id: '',
+  number_people: '',
+  prof_degree: '',
+  prof_degree_str: '',
+  tag_id: '',
+  tags: [],
+  type: '',
+  type_str: ''
+};
+function introduces() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : INTRODUCEA_STATE;
+  var action = arguments[1];
+
+  switch (action.type) {
+    case _introduces.GETINTRODUCEA:
+      return state;
+    case _introduces.SETINTRODUCEA:
+      return _extends({}, state, action.data);
+    default:
+      return state;
+  }
+}
 
 /***/ }),
 
@@ -502,6 +634,152 @@ function PositionStatus() {
     case _recruit.SETPOSITIONSTATUS:
       state = action.data;
       return state;
+    default:
+      return state;
+  }
+}
+
+/***/ }),
+
+/***/ "./src/reducers/resInfo.ts":
+/*!*********************************!*\
+  !*** ./src/reducers/resInfo.ts ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+exports.default = resInfo;
+
+var _resInfo = __webpack_require__(/*! ../constants/resInfo */ "./src/constants/resInfo.ts");
+
+var INFODATA_DATA = {
+  ad_code: 0,
+  address: '',
+  admin_last_edit_time: '',
+  admin_user_id: '',
+  authentication: '',
+  birthday: '',
+  certificate_show: 0,
+  check: '',
+  city: '未填写',
+  collect_num: '',
+  complain_num: '',
+  country: '',
+  current_admin: '',
+  distance: '',
+  experience: '',
+  extens: '',
+  gender: '',
+  headerimg: '',
+  hometown: '',
+  id: '',
+  img: '',
+  introduce: '未填写',
+  ip_address: '',
+  is_end: '',
+  is_introduces: '',
+  location: '',
+  miniInfoOccupations: [],
+  nation: '',
+  nation_id: '',
+  note: '',
+  number_people: '',
+  occupations: [],
+  occupations_id: '',
+  prof_degree: '',
+  progress: '0',
+  province: '',
+  provinces: '',
+  ranking: '',
+  refresh_time: '',
+  sort_flag: '',
+  source: '',
+  tags: [],
+  tel: '未填写',
+  time: '',
+  type: '',
+  update_time: '',
+  user_id: '',
+  user_uuid: '',
+  username: '',
+  uuid: '',
+  view_num: '',
+  zan_num: '',
+  age: '未填写'
+};
+function resInfo() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : INFODATA_DATA;
+  var action = arguments[1];
+
+  console.error(action, 'dsadasdas');
+  switch (action.type) {
+    case _resInfo.GETRESINFO:
+      return state;
+    case _resInfo.SETRESINFO:
+      return _extends({}, state, action.data);
+    default:
+      return state;
+  }
+}
+
+/***/ }),
+
+/***/ "./src/reducers/resProject.ts":
+/*!************************************!*\
+  !*** ./src/reducers/resProject.ts ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+exports.default = resProjectData;
+
+var _resProject = __webpack_require__(/*! ../constants/resProject */ "./src/constants/resProject.ts");
+
+var RESPROJECT_STATE = {
+  check: '',
+  city: '',
+  city_name: '',
+  completion_time: '',
+  detail: '',
+  fail_case: '',
+  id: '',
+  image: [],
+  images: [],
+  project_name: '',
+  province: '',
+  province_name: '',
+  resume_uuid: '',
+  start_time: '',
+  update_time: '',
+  uuid: ''
+};
+function resProjectData() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : RESPROJECT_STATE;
+  var action = arguments[1];
+
+  switch (action.type) {
+    case _resProject.GETRESPROJECT:
+      return state;
+    case _resProject.SETRESPROJECT:
+      return _extends({}, state, action.data);
     default:
       return state;
   }
