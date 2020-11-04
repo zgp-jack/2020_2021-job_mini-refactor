@@ -891,7 +891,7 @@ export function delCertificateAction(data): Promise<Inter.Result> {
   })
 }
 // 新增技能证书
-export function resumesCertificateAction(data): Promise<Inter.Result> {
+export function resumesCertificateAction(data): Promise<Inter.ResumeCertificateData> {
   return doRequestAction({
     url: api.resumesCertificateUrl,
     method: 'POST',
