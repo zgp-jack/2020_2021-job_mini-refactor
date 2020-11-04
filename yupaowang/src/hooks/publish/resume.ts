@@ -2,7 +2,7 @@
  * @Author: zyb
  * @Date: 2020-11-03 15:03:11
  * @LastEditors: zyb
- * @LastEditTime: 2020-11-04 19:12:01
+ * @LastEditTime: 2020-11-04 19:21:50
  * @Description: 
  */
 import { useState,useDidShow } from '@tarojs/taro'
@@ -43,7 +43,12 @@ export default function useResume(){
     resumeListAction().then(res=>{
       if(res.errcode === 200){
         // 生日需要单独设置
-        const time = new Date().getFullYear() - (+res.data.info.birthday.split('-')[0] - 0);
+        let time;
+        if (res.data.info.birthday){
+          time = new Date().getFullYear() - (+res.data.info.birthday.split('-')[0] - 0);
+        }else{
+          time= 0;
+        }
         const age = time>0? time + '岁' : '未填写';
         res.data.info.age = age;
         setInfoData(res.data.info);
