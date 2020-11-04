@@ -1,3 +1,6 @@
+@import '../../../common.scss';
+$commonMargin: 44px;
+
 .resume-container{
   position: relative;
   .resume-tips-header{
@@ -13,13 +16,13 @@
   .resume-content{
     padding-bottom: 140px;
     .content-progress{
-      padding: 20px 44px;
-      margin: 20px 0;
+      padding: 30px $commonMargin 0;
+      margin: 15px 0 0;
       background-color: #FFFFFF;
       .progress-header{
         display: flex;
         justify-content: space-between;
-        margin-bottom: 28px;
+        margin-bottom: 15px;
       }
       .progress-Improve{
         display: inline-block;
@@ -37,18 +40,19 @@
         }
       }
       .progress-txt{
-        margin-top: 22px;
+        margin-top: 10px;
         font-size: 28px;
-        color: #0099FF;
+        color: $color;
       }
       .progress-num{
+        margin-top: 10px;
         text-align: center;
         font-size: 32px;
         font-weight: bold;
-        color: #0099FF;
+        color: $color;
       }
       .progress-viewed{
-        margin-top: 22px;
+        margin-top: 10px;
         font-size: 28px;
         color: #626160;
       }
@@ -57,8 +61,8 @@
         display: flex;
         justify-content: space-between;
         align-items: baseline;
-        padding-top: 18px;
-        border-top: 2px dotted #DCDCDC;
+        padding-top: 10px;
+        border-top: 2px dotted $bordercolor;
         .progress-rank-img{
           display: inline-block;
           width: 20px;
@@ -69,14 +73,15 @@
       .progress-place-top{
         margin-top: 17px;
         .progress-placed{
-          padding-bottom: 18px;
-          border-bottom: 2px dotted #DCDCDC;
+          padding-bottom: 10px;
+          border-bottom: 2px dotted $bordercolor;
         }
         .progress-rank{
           color: rgba(255, 77, 66, 1);
         }
         .progress-place-text{
           margin-left: 34px;
+          padding-bottom: 10px;
           font-size: 26px;
           color: rgba(111, 108, 108, 1);
         }
@@ -96,18 +101,18 @@
       }
       .progress-rank{
         font-size: 28px;
-        line-height: 44px;
+        line-height: $commonMargin;
         font-weight: bold;
-        color: #0099FF;
+        color: $color;
       }
     }
     .content-basic-imformation,
     .content-personal-information,
     .content-project-experience,
     .content-professional-skill{
-      margin: 20px 0;
+      margin: 0;
       .basic-imformation{
-        margin: 20px 0;
+        margin: 0;
         text-align: center;
         position: relative;
         .basic-jbinfo,
@@ -115,9 +120,9 @@
         .project-experience-img,
         .professional-skill-img{
           display: inline-block;
-          width: 20px;
+          width: 24px;
           height: 24px;
-          vertical-align: -2px;
+          vertical-align: middle;
         }
         .basic-title{
           display: inline-block;
@@ -129,18 +134,21 @@
         .change{
           position: absolute;
           top: 6px;
-          right: 44px;
+          right: $commonMargin;
           font-size: 28px;
           font-weight: bold;
-          color: #0099FF;
+          color: $color;
         }
+      }
+      .basic-imformation{
+        line-height: 80px;
       }
       .basic-status{
         position: relative;
-        display: flex;
+        @include flex();
         justify-content: space-between;
-        padding: 40px 44px;
-        margin: 20px 0;
+        padding: 20px $commonMargin;
+        margin-bottom: 10px;
         font-size: 28px;
         background-color: #FFFFFF;
         &::before,
@@ -150,14 +158,14 @@
           bottom: -18px;
           width: 6px;
           height: 28px;
-          background-color: #0099FF;
+          background-color: $color;
           border-radius: 3px;
         }
         &::after{
-          right: 44px;
+          right: $commonMargin;
         }
         &::before{
-          left: 44px;
+          left: $commonMargin;
         }
         .status-txt{
           color: #161616;
@@ -175,7 +183,7 @@
       .basic-content,
       .project-information,
       .professional-information{
-        padding: 20px 44px;
+        padding: 20px $commonMargin;
         text-align: center;
         background-color:  #FFFFFF;
         .basic-txt{
@@ -188,7 +196,7 @@
           padding: 9px 32px;
           border-radius: 32px;
           vertical-align: middle;
-          background-color: #0099FF;
+          background-color: $color;
           font-size: 26px;
           line-height: 46px;
           color: #FFFFFF;
@@ -204,7 +212,7 @@
               width: 77px;
               height: 77px;
               border-radius: 50%;
-              background-color: #0099FF;
+              background-color: $color;
             }
             &>.infor{
               display: inline-block;
@@ -225,7 +233,7 @@
           .change{
             font-size: 28px;
             font-weight: bold;
-            color: #0099FF;
+            color: $color;
           }
         }
         .content{
@@ -250,7 +258,7 @@
               position: absolute;
               width: 14px;
               height: 14px;
-              background-color: #0099FF;
+              background-color: $color;
               background: url('http://cdn.yupao.com/newyupao/images/newjobinfo-steps.png');
               background-size: cover;
               left: -6px;
@@ -303,7 +311,7 @@
       }
       .check-fail{
         font-size: 28px;
-        padding: 21px 44px 21px 58px;
+        padding: 21px $commonMargin 21px 58px;
         background-color: #FFFBF7;
         .check-fail-text{
           display: inline-block;
@@ -355,9 +363,8 @@
       }
       .project-content{
         .content-img{
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: space-between;
+          margin-top: 15px;
+          text-align: left;
           .project-item-img,
           .professional-item-img{
             width: 185px;
@@ -376,11 +383,11 @@
         text-align: center;
         .change-project-btn{
           display: inline-block;
-          padding: 10px 44px;
+          padding: 10px $commonMargin;
           color: #FFFFFF;
           font-size: 26px;
           line-height: 36px;
-          background-color: #0099FF;
+          background-color: $color;
         }
         .nabla{
           display: inline-block;
@@ -406,21 +413,25 @@
       }
     }
     .content-btn{
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100%;
       display: flex;
       margin-top: 83px;
+      z-index: 10;
+      box-shadow: 0 0 5px $shadowcolor;
       background-color: #FFFFFF;
-      .preview-btn,.share-btn{
+      .preview-btn{
         width: 50%;
         padding: 29px 0;
-        border-top: 2px solid rgba(99, 98, 105, 0.22);
         text-align: center;
         font-size: 36px;
         color: #7D7D7D;
         .preview-share-btn{
           display: inline-block;
         }
-        .preview-img,
-        .share-img{
+        .preview-img{
           display: inline-block;
           width: 36px;
           height: 36px;
@@ -430,9 +441,9 @@
       }
       .preview-btn{
         border-right: 1px solid rgba(99, 98, 105, 0.22);
-      }
-      .share-btn{
-        border-left: 1px solid rgba(99, 98, 105, 0.22);
+        &:nth-last-child(1){
+          border-right: 0;
+        }
       }
     }
   }

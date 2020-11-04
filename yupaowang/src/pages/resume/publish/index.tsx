@@ -2,6 +2,7 @@ import Taro, { } from '@tarojs/taro'
 import { View, Text, Button, Image } from '@tarojs/components'
 import { IMGCDNURL } from '../../../config'
 import { AtProgress } from 'taro-ui'
+import Imglist from '../../../components/imglist'
 import useResume from '../../../hooks/publish/resume'
 import './index.scss'
 
@@ -166,10 +167,7 @@ export default function ResumePublish(){
             </View>
             <View className='project-content'>
               <View className='content-img'>
-                <Image className='project-item-img' src='http://cdn.yupao.com//images/message/20201015/20101567394d5082f86f28.jpg'/>
-                <Image className='project-item-img' src='http://cdn.yupao.com//images/message/20201015/20101567394d5082f86f28.jpg'/>
-                <Image className='project-item-img' src='http://cdn.yupao.com//images/message/20201015/20101567394d5082f86f28.jpg'/>
-                <Image className='project-item-img' src='http://cdn.yupao.com//images/message/20201015/20101567394d5082f86f28.jpg'/>
+                <Imglist />
               </View>
               <View className='project-failtxt'>失败原因：不知道</View>
             </View>
@@ -200,10 +198,7 @@ export default function ResumePublish(){
             </View>
             <View className='project-content'>
               <View className='content-img'>
-                <Image className='professional-item-img' src='http://cdn.yupao.com//images/message/20201015/20101567394d5082f86f28.jpg'/>
-                <Image className='professional-item-img' src='http://cdn.yupao.com//images/message/20201015/20101567394d5082f86f28.jpg'/>
-                <Image className='professional-item-img' src='http://cdn.yupao.com//images/message/20201015/20101567394d5082f86f28.jpg'/>
-                <Image className='professional-item-img' src='http://cdn.yupao.com//images/message/20201015/20101567394d5082f86f28.jpg'/>
+                <Imglist />
               </View>
               <View className='project-failtxt'>失败原因：不知道</View>
             </View>
@@ -217,8 +212,8 @@ export default function ResumePublish(){
             <Image className='preview-img' src='http://cdn.yupao.com/newyupao/images/newresume-lookuinfo.png' />
             <View className='preview-share-btn'>预览</View>
           </View>
-          <View className='share-btn'>
-            <Image className='share-img' src='http://cdn.yupao.com/newyupao/images/newresume-footer-share.png' />
+          <View className='preview-btn'>
+            <Image className='preview-img' src='http://cdn.yupao.com/newyupao/images/newresume-footer-share.png' />
             <View className='preview-share-btn'>分享</View>
           </View>
         </View>
