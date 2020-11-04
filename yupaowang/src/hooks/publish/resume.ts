@@ -2,7 +2,7 @@
  * @Author: zyb
  * @Date: 2020-11-03 15:03:11
  * @LastEditors: zyb
- * @LastEditTime: 2020-11-04 14:56:02
+ * @LastEditTime: 2020-11-04 15:50:26
  * @Description: 
  */
 import { useState,useDidShow } from '@tarojs/taro'
@@ -29,16 +29,19 @@ export default function useResume(){
   // 请求当前找活数据
   useDidShow(()=>{
     resumeListAction().then(res=>{
-      console.log(res);
       if(res.errcode === 200){
-        console.error(res.data,'data')
         // 生日需要单独设置
         const time = new Date().getFullYear() - (+res.data.info.birthday.split('-')[0] - 0);
         const age = time>0? time + '岁' : '未填写';
         res.data.info.age = age;
         if (res.data.project.length>0){
-          const lastTime = res.data.project[res.data.project.length-1];
-          console.error(lastTime,'res.data.project')
+          const lastData = res.data.project[res.data.project.length-1];
+          console.error(lastData,'1111')
+          console.error(new Date(lastData.completion_time).getTime() / 86400000,'new Date(lastData.completion_time).getTime()/86400000');
+          console.error(new Date().getTime() / 86400000,'new Date().getTime() / 86400000)')
+          if(new Date(lastData.completion_time).getTime()/86400000 < new Date().getTime() / 86400000){
+
+          }
         }
         setInfoData(res.data.info);
         setIntroducesData(res.data.introduces);
@@ -48,7 +51,6 @@ export default function useResume(){
         dispatch(setResProject(res.data.project));
         dispatch(setIntroduces(res.data.introduces));
         dispatch(setCertificatesData(res.data.certificates));
-        console.error(res.data.info,'1231231')
         dispatch(setResInfo(res.data.info))
       }else{
         Msg(res.errmsg);

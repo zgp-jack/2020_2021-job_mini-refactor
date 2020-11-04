@@ -720,7 +720,6 @@ function resInfo() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : INFODATA_DATA;
   var action = arguments[1];
 
-  console.error(action, 'dsadasdas');
   switch (action.type) {
     case _resInfo.GETRESINFO:
       return state;

@@ -2,7 +2,7 @@
  * @Author: zyb
  * @Date: 2020-11-04 14:37:40
  * @LastEditors: zyb
- * @LastEditTime: 2020-11-04 14:48:43
+ * @LastEditTime: 2020-11-04 15:25:13
  * @Description: 
  */
 import { resInfoObj } from '../utils/request/index.d'
@@ -69,7 +69,6 @@ const INFODATA_DATA = {
   age: '未填写',
 }
 export default function resInfo(state: resInfoObj = INFODATA_DATA, action: ACTIONTYPE) {
-  console.error(action,'dsadasdas')
   switch (action.type) {
     case GETRESINFO:
       return state
