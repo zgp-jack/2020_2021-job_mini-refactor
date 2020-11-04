@@ -25,7 +25,7 @@ export default function Imglist({data}: PROPS){
 
   return (
     <View className='imgslist-container'>
-      {data.map((item,index) => (
+      {data && data.map((item,index) => (
         <Image className='imgslist-item' src={item} key={index+index} onClick={() => userPreViewImg()}/>
       ))}
     </View>

@@ -4,11 +4,14 @@ import { IMGCDNURL } from '../../../config'
 import { AtProgress } from 'taro-ui'
 import Imglist from '../../../components/imglist'
 import useResume from '../../../hooks/publish/resume'
+import { useSelector } from '@tarojs/redux'
 import './index.scss'
 
 export default function ResumePublish(){
-
+  // uuid
+  const uuid = useSelector<any, string>(state => state.uuid)
   const { infoData, introducesData, projectData, certificates, resume_top } = useResume()
+
   // 页面跳转
   const userRouteJump = (url: string) => {
     Taro.navigateTo({url: url})
@@ -73,12 +76,14 @@ export default function ResumePublish(){
             <Image className='basic-jbinfo' src='http://cdn.yupao.com/newyupao/images/newresume-jbinfo.png'/>
             <View className='basic-title'>基础信息</View>
           </View>
-          {/* <View className='basic-content'>
-            <View className='basic-txt'>您还没有完善基础信息</View>
-            <View className='basic-btn'>
-              <Button className='btn'>去完善</Button>
+          {!uuid &&
+            <View className='basic-content'>
+              <View className='basic-txt'>您还没有完善基础信息</View>
+              <View className='basic-btn'>
+                <Button className='btn'>去完善</Button>
+              </View>
             </View>
-          </View> */}
+          }
           <View className='basic-status'>
             <View className='status-txt'><Image className='basic-experience-img' src='http://cdn.yupao.com/newyupao/images/newresume-experience-item1.png'/>我的工作状态:</View>
             {/* <View className='status'>审核未通过</View> */}
@@ -97,7 +102,16 @@ export default function ResumePublish(){
                   <View className='sexage'>{infoData.gender == '1' ? '男' : '女'}  {infoData.age}  {infoData.nation}</View>
                 </View>
               </View>
-              <View className='change'>待修改</View>
+              {infoData.check == '0' && 
+              <View className='change'>
+                待修改
+              </View>
+              }
+              {infoData.check != '0' && infoData.check == '1' &&
+                <View className='change'>
+                  待修改
+              </View>
+              }
             </View>
             <View className='content'>
               <View className='craft'>

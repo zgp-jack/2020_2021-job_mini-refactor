@@ -133,6 +133,56 @@ _taroTt2.default.initPxTransform({
 
 /***/ }),
 
+/***/ "./src/constants/certificates.ts":
+/*!***************************************!*\
+  !*** ./src/constants/certificates.ts ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+/*
+ * @Author: zyb
+ * @Date: 2020-11-04 14:27:15
+ * @LastEditors: zyb
+ * @LastEditTime: 2020-11-04 14:27:49
+ * @Description:
+ */
+var GETCERTIFICATES = exports.GETCERTIFICATES = 'getCertificates';
+var SETCERTIFICATES = exports.SETCERTIFICATES = 'setCertificates';
+
+/***/ }),
+
+/***/ "./src/constants/introduces.ts":
+/*!*************************************!*\
+  !*** ./src/constants/introduces.ts ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+/*
+ * @Author: zyb
+ * @Date: 2020-11-04 14:10:33
+ * @LastEditors: zyb
+ * @LastEditTime: 2020-11-04 14:14:57
+ * @Description:
+ */
+var GETINTRODUCEA = exports.GETINTRODUCEA = 'getIntroduces';
+var SETINTRODUCEA = exports.SETINTRODUCEA = 'setIntroduces';
+
+/***/ }),
+
 /***/ "./src/constants/personnel.ts":
 /*!************************************!*\
   !*** ./src/constants/personnel.ts ***!
@@ -148,6 +198,56 @@ Object.defineProperty(exports, "__esModule", {
 });
 var GETDATA = exports.GETDATA = 'getdata';
 var SETDATA = exports.SETDATA = 'setdata';
+
+/***/ }),
+
+/***/ "./src/constants/resInfo.ts":
+/*!**********************************!*\
+  !*** ./src/constants/resInfo.ts ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+/*
+ * @Author: zyb
+ * @Date: 2020-11-04 14:35:11
+ * @LastEditors: zyb
+ * @LastEditTime: 2020-11-04 14:35:44
+ * @Description:
+ */
+var GETRESINFO = exports.GETRESINFO = 'getResInfo';
+var SETRESINFO = exports.SETRESINFO = 'setResInfo';
+
+/***/ }),
+
+/***/ "./src/constants/resProject.ts":
+/*!*************************************!*\
+  !*** ./src/constants/resProject.ts ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+/*
+ * @Author: zyb
+ * @Date: 2020-11-04 11:29:50
+ * @LastEditors: zyb
+ * @LastEditTime: 2020-11-04 11:30:58
+ * @Description:
+ */
+var GETRESPROJECT = exports.GETRESPROJECT = 'getresProject';
+var SETRESPROJECT = exports.SETRESPROJECT = 'setresProject';
 
 /***/ }),
 
@@ -341,6 +441,14 @@ var _resInfo = __webpack_require__(/*! ./resInfo */ "./src/reducers/resInfo.ts")
 
 var _resInfo2 = _interopRequireDefault(_resInfo);
 
+var _uuid = __webpack_require__(/*! ./uuid */ "./src/reducers/uuid.ts");
+
+var _uuid2 = _interopRequireDefault(_uuid);
+
+var _useResume = __webpack_require__(/*! ./useResume */ "./src/reducers/useResume.ts");
+
+var _useResume2 = _interopRequireDefault(_useResume);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 //合并reducer
@@ -348,7 +456,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @Author: zyb
  * @Date: 2020-11-03 14:36:47
  * @LastEditors: zyb
- * @LastEditTime: 2020-11-04 14:41:42
+ * @LastEditTime: 2020-11-04 19:42:42
  * @Description:
  */
 exports.default = (0, _redux.combineReducers)({
@@ -368,7 +476,9 @@ exports.default = (0, _redux.combineReducers)({
   resProjectData: _resProject2.default,
   introduces: _introduces2.default,
   certificates: _certificates2.default,
-  resInfo: _resInfo2.default
+  resInfo: _resInfo2.default,
+  uuid: _uuid2.default,
+  useResume: _useResume2.default
 }); //发布招工reducer
 
 /***/ }),
@@ -983,6 +1093,123 @@ function tabbar() {
 
 /***/ }),
 
+/***/ "./src/reducers/useResume.ts":
+/*!***********************************!*\
+  !*** ./src/reducers/useResume.ts ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; /*
+                                                                                                                                                                                                                                                                   * @Author: zyb
+                                                                                                                                                                                                                                                                   * @Date: 2020-11-04 19:59:33
+                                                                                                                                                                                                                                                                   * @LastEditors: zyb
+                                                                                                                                                                                                                                                                   * @LastEditTime: 2020-11-04 20:13:43
+                                                                                                                                                                                                                                                                   * @Description:
+                                                                                                                                                                                                                                                                   */
+
+
+exports.default = useResume;
+
+var _useResume = __webpack_require__(/*! ../constants/useResume */ "./src/constants/useResume.ts");
+
+var DEFAULT_STATE = {
+  info: {
+    ad_code: 0,
+    address: '',
+    admin_last_edit_time: '',
+    admin_user_id: '',
+    authentication: '',
+    birthday: '',
+    certificate_show: 0,
+    check: '',
+    city: '未填写',
+    collect_num: '',
+    complain_num: '',
+    country: '',
+    current_admin: '',
+    distance: '',
+    experience: '',
+    extens: '',
+    gender: '',
+    headerimg: '',
+    hometown: '',
+    id: '',
+    img: '',
+    introduce: '未填写',
+    ip_address: '',
+    is_end: '',
+    is_introduces: '',
+    location: '',
+    miniInfoOccupations: [],
+    nation: '',
+    nation_id: '',
+    note: '',
+    number_people: '',
+    occupations: [],
+    occupations_id: '',
+    prof_degree: '',
+    progress: '0',
+    province: '',
+    provinces: '',
+    ranking: '',
+    refresh_time: '',
+    sort_flag: '',
+    source: '',
+    tags: [],
+    tel: '未填写',
+    time: '',
+    type: '',
+    update_time: '',
+    user_id: '',
+    user_uuid: '',
+    username: '',
+    uuid: '',
+    view_num: '',
+    zan_num: '',
+    age: '未填写'
+  },
+  introducesData: {
+    check: '',
+    experience: '',
+    experience_str: '',
+    hometown: '',
+    hometown_id: '',
+    number_people: '',
+    prof_degree: '',
+    prof_degree_str: '',
+    tag_id: '',
+    tags: [],
+    type: '',
+    type_str: ''
+  },
+  projectData: [],
+  certificates: []
+};
+function useResume() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : DEFAULT_STATE;
+  var action = arguments[1];
+
+  switch (action.type) {
+    case _useResume.GETUSERRESUME:
+      return state;
+    case _useResume.SETUSERRESUME:
+      state = _extends({}, state, action.data);
+      return state;
+    default:
+      return state;
+  }
+}
+
+/***/ }),
+
 /***/ "./src/reducers/user.tsx":
 /*!*******************************!*\
   !*** ./src/reducers/user.tsx ***!
@@ -1032,6 +1259,48 @@ function User() {
         if (_userInfo) return _userInfo;
       }
       return state;
+    default:
+      return state;
+  }
+}
+
+/***/ }),
+
+/***/ "./src/reducers/uuid.ts":
+/*!******************************!*\
+  !*** ./src/reducers/uuid.ts ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = uuid;
+
+var _uuid = __webpack_require__(/*! ../constants/uuid */ "./src/constants/uuid.ts");
+
+var UUID_STATE = ''; /*
+                      * @Author: zyb
+                      * @Date: 2020-11-04 19:37:03
+                      * @LastEditors: zyb
+                      * @LastEditTime: 2020-11-04 19:42:23
+                      * @Description:
+                      */
+function uuid() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : UUID_STATE;
+  var action = arguments[1];
+
+  switch (action.type) {
+    case _uuid.GETUUID:
+      return state;
+      break;
+    case _uuid.SETUUID:
+      return action.data;
+      break;
     default:
       return state;
   }
