@@ -74,7 +74,7 @@ var ResumeDetail = function (_Taro$Component) {
       navigationBarTitleText: '找活名片'
     };
 
-    _this.$usedState = ["data", "loopArray87", "loopArray89", "loopArray90", "$compid__73", "$compid__74", "isAuth", "IMGCDNURL", "examine", "onoff", "list", "praise", "collect", "shownewtips", "complaintModal", "age", "phone"];
+    _this.$usedState = ["data", "loopArray87", "loopArray89", "loopArray90", "$compid__75", "$compid__76", "isAuth", "IMGCDNURL", "examine", "onoff", "list", "praise", "collect", "shownewtips", "complaintModal", "age", "phone"];
     _this.anonymousFunc4Map = {};
     _this.anonymousFunc6Map = {};
     _this.customComponents = ["Auth", "CollectionRecruitList", "Report"];
@@ -98,15 +98,15 @@ var ResumeDetail = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__73"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__75"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__73 = _genCompid2[0],
-          $compid__73 = _genCompid2[1];
+          $prevCompid__75 = _genCompid2[0],
+          $compid__75 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__74"),
+      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__76"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__74 = _genCompid4[0],
-          $compid__74 = _genCompid4[1];
+          $prevCompid__76 = _genCompid4[0],
+          $compid__76 = _genCompid4[1];
       // 获取用户是否登录
 
 
@@ -518,21 +518,21 @@ var ResumeDetail = function (_Taro$Component) {
       list.item.length && _taroTt.propsManager.set({
         "data": list.item,
         "type": 2
-      }, $compid__73, $prevCompid__73);
+      }, $compid__75, $prevCompid__75);
       complaintModal && _taroTt.propsManager.set({
         "display": complaintModal,
         "textarea": textarea,
         "handleTextarea": handleTextarea,
         "setComplaintModal": setComplaintModal,
         "handleSubmit": handleSubmit
-      }, $compid__74, $prevCompid__74);
+      }, $compid__76, $prevCompid__76);
       Object.assign(this.__state, {
         data: data,
         loopArray87: loopArray87,
         loopArray89: loopArray89,
         loopArray90: loopArray90,
-        $compid__73: $compid__73,
-        $compid__74: $compid__74,
+        $compid__75: $compid__75,
+        $compid__76: $compid__76,
         isAuth: isAuth,
         IMGCDNURL: _index2.IMGCDNURL,
         examine: examine,
