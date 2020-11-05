@@ -1,4 +1,4 @@
-(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["pages/resume/recList/index"],{
+(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["pages/resume/recList/index"],{
 
 /***/ "./src/pages/resume/recList/index.scss":
 /*!*********************************************!*\
@@ -33,9 +33,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
 
 var _index = __webpack_require__(/*! ../../../utils/request/index */ "./src/utils/request/index.ts");
 
@@ -70,7 +70,7 @@ var RecListPage = function (_Taro$Component) {
       enablePullDownRefresh: true
     };
 
-    _this.$usedState = ["data", "loopArray97", "IMGCDNURL", "isDown"];
+    _this.$usedState = ["data", "loopArray96", "IMGCDNURL", "isDown"];
     _this.anonymousFunc1Map = {};
     _this.customComponents = ["Nodata"];
     return _this;
@@ -80,7 +80,7 @@ var RecListPage = function (_Taro$Component) {
     key: '_constructor',
     value: function _constructor(props) {
       _get(RecListPage.prototype.__proto__ || Object.getPrototypeOf(RecListPage.prototype), '_constructor', this).call(this, props);
-      this.$$refs = new _taroTt2.default.RefsArray();
+      this.$$refs = new _taroWeapp2.default.RefsArray();
     }
   }, {
     key: '_createData',
@@ -93,10 +93,10 @@ var RecListPage = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
       // 获取缓存数据
-      var IntroinfoList = _taroTt2.default.getStorageSync(_store.Introinfo);
+      var IntroinfoList = _taroWeapp2.default.getStorageSync(_store.Introinfo);
       // 获取数据
 
-      var _useState = (0, _taroTt.useState)({
+      var _useState = (0, _taroWeapp.useState)({
         item: []
       }),
           _useState2 = _slicedToArray(_useState, 2),
@@ -105,12 +105,12 @@ var RecListPage = function (_Taro$Component) {
       // 是够能加载更多
 
 
-      var _useState3 = (0, _taroTt.useState)(true),
+      var _useState3 = (0, _taroWeapp.useState)(true),
           _useState4 = _slicedToArray(_useState3, 2),
           isDown = _useState4[0],
           setIsDown = _useState4[1];
 
-      var _useState5 = (0, _taroTt.useState)({
+      var _useState5 = (0, _taroWeapp.useState)({
         area_id: IntroinfoList.city,
         classify_id: IntroinfoList.occupations_id,
         page: 1,
@@ -120,7 +120,7 @@ var RecListPage = function (_Taro$Component) {
           search = _useState6[0],
           setSearch = _useState6[1];
 
-      (0, _taroTt.useEffect)(function () {
+      (0, _taroWeapp.useEffect)(function () {
         getListData();
       }, [search.page]);
       var getListData = function getListData() {
@@ -137,7 +137,7 @@ var RecListPage = function (_Taro$Component) {
       };
       // 用户页面跳转
       var userRouteJump = function userRouteJump(url) {
-        _taroTt2.default.navigateTo({
+        _taroWeapp2.default.navigateTo({
           url: url
         });
       };
@@ -151,13 +151,13 @@ var RecListPage = function (_Taro$Component) {
         return getNextPageData();
       };
       this.anonymousFunc2 = function () {
-        return _taroTt2.default.reLaunch({ url: '/pages/index/index?type=' + _tabbar.RESUME });
+        return _taroWeapp2.default.reLaunch({ url: '/pages/index/index?type=' + _tabbar.RESUME });
       };
-      var loopArray97 = data.item.map(function (v, __index1) {
+      var loopArray96 = data.item.map(function (v, __index1) {
         v = {
-          $original: (0, _taroTt.internal_get_original)(v)
+          $original: (0, _taroWeapp.internal_get_original)(v)
         };
-        var _$indexKey = "baczz" + __index1;
+        var _$indexKey = "babzz" + __index1;
         _this2.anonymousFunc1Map[_$indexKey] = function () {
           return userRouteJump("/pages/detail/info/index?id=" + v.$original.id);
         };
@@ -168,7 +168,7 @@ var RecListPage = function (_Taro$Component) {
       });
       Object.assign(this.__state, {
         data: data,
-        loopArray97: loopArray97,
+        loopArray96: loopArray96,
         IMGCDNURL: _index2.IMGCDNURL,
         isDown: isDown
       });
@@ -200,14 +200,14 @@ var RecListPage = function (_Taro$Component) {
   }]);
 
   return RecListPage;
-}(_taroTt2.default.Component);
+}(_taroWeapp2.default.Component);
 
 RecListPage.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2"];
 RecListPage.$$componentPath = "pages/resume/recList/index";
 RecListPage.config = { navigationBarTitleText: '项目经验', enablePullDownRefresh: true };
 exports.default = RecListPage;
 
-Page(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(RecListPage, true));
+Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(RecListPage, true));
 
 /***/ })
 

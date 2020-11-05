@@ -1,4 +1,4 @@
-(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["pages/used/publish/index"],{
+(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["pages/used/publish/index"],{
 
 /***/ "./src/hooks/publish/used.ts":
 /*!***********************************!*\
@@ -20,9 +20,9 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
 exports.default = useUsedInfo;
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
 
 var _index = __webpack_require__(/*! ../../utils/request/index */ "./src/utils/request/index.ts");
 
@@ -47,7 +47,7 @@ function useUsedInfo(id) {
   };
   // 用户发布信息模型
 
-  var _useState = (0, _taroTt.useState)({
+  var _useState = (0, _taroWeapp.useState)({
     type: 'fleamarket',
     infoId: id,
     user_mobile: '',
@@ -66,70 +66,70 @@ function useUsedInfo(id) {
   // 用户初始化信息模型
 
 
-  var _useState3 = (0, _taroTt.useState)(),
+  var _useState3 = (0, _taroWeapp.useState)(),
       _useState4 = _slicedToArray(_useState3, 2),
       initModel = _useState4[0],
       setInitModel = _useState4[1];
   // 父级索引
 
 
-  var _useState5 = (0, _taroTt.useState)(0),
+  var _useState5 = (0, _taroWeapp.useState)(0),
       _useState6 = _slicedToArray(_useState5, 2),
       parentCurrent = _useState6[0],
       setParentCurrent = _useState6[1];
   // 子级索引
 
 
-  var _useState7 = (0, _taroTt.useState)(0),
+  var _useState7 = (0, _taroWeapp.useState)(0),
       _useState8 = _slicedToArray(_useState7, 2),
       childCurrent = _useState8[0],
       setChildCurrent = _useState8[1];
   // 目的名字
 
 
-  var _useState9 = (0, _taroTt.useState)(''),
+  var _useState9 = (0, _taroWeapp.useState)(''),
       _useState10 = _slicedToArray(_useState9, 2),
       classifyName = _useState10[0],
       setClassiryName = _useState10[1];
   // 城市名字
 
 
-  var _useState11 = (0, _taroTt.useState)(''),
+  var _useState11 = (0, _taroWeapp.useState)(''),
       _useState12 = _slicedToArray(_useState11, 2),
       cityName = _useState12[0],
       setCityName = _useState12[1];
   // picker 省份索引
 
 
-  var _useState13 = (0, _taroTt.useState)(0),
+  var _useState13 = (0, _taroWeapp.useState)(0),
       _useState14 = _slicedToArray(_useState13, 2),
       pIndex = _useState14[0],
       setPIndex = _useState14[1];
   // picker 省份数据
 
 
-  var _useState15 = (0, _taroTt.useState)([]),
+  var _useState15 = (0, _taroWeapp.useState)([]),
       _useState16 = _slicedToArray(_useState15, 2),
       areaProvince = _useState16[0],
       setAreaProvince = _useState16[1];
   // picker 市级索引
 
 
-  var _useState17 = (0, _taroTt.useState)(0),
+  var _useState17 = (0, _taroWeapp.useState)(0),
       _useState18 = _slicedToArray(_useState17, 2),
       cIndex = _useState18[0],
       setCIndex = _useState18[1];
   // picker 市级索引
 
 
-  var _useState19 = (0, _taroTt.useState)([]),
+  var _useState19 = (0, _taroWeapp.useState)([]),
       _useState20 = _slicedToArray(_useState19, 2),
       areaCity = _useState20[0],
       setAreaCity = _useState20[1];
   // 加载初始化数据
 
 
-  (0, _taroTt.useEffect)(function () {
+  (0, _taroWeapp.useEffect)(function () {
     (0, _index.getUsedInfoModel)(data).then(function (data) {
       if (data.errcode == 'ok') {
         areaTree = data.areaTree;
@@ -140,7 +140,7 @@ function useUsedInfo(id) {
         (0, _index2.ShowActionModal)({
           msg: data.errmsg,
           success: function success() {
-            _taroTt2.default.navigateBack();
+            _taroWeapp2.default.navigateBack();
           }
         });
       }
@@ -338,9 +338,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
 
 var _used = __webpack_require__(/*! ../../../hooks/publish/used */ "./src/hooks/publish/used.ts");
 
@@ -374,7 +374,7 @@ var UsedPublish = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (UsedPublish.__proto__ || Object.getPrototypeOf(UsedPublish)).apply(this, arguments));
 
-    _this.$usedState = ["initModel", "loopArray46", "loopArray47", "$compid__41", "$compid__42", "parentCurrent", "model", "classifyName", "areaProvince", "areaCity", "pIndex", "cIndex", "cityName", "userTel", "text"];
+    _this.$usedState = ["initModel", "loopArray45", "loopArray46", "$compid__40", "$compid__41", "parentCurrent", "model", "classifyName", "areaProvince", "areaCity", "pIndex", "cIndex", "cityName", "userTel", "text"];
     _this.anonymousFunc1Map = {};
     _this.anonymousFunc2Map = {};
     _this.customComponents = ["AtDrawer", "WordsTotal"];
@@ -385,7 +385,7 @@ var UsedPublish = function (_Taro$Component) {
     key: '_constructor',
     value: function _constructor(props) {
       _get(UsedPublish.prototype.__proto__ || Object.getPrototypeOf(UsedPublish.prototype), '_constructor', this).call(this, props);
-      this.$$refs = new _taroTt2.default.RefsArray();
+      this.$$refs = new _taroWeapp2.default.RefsArray();
     }
   }, {
     key: '_createData',
@@ -398,17 +398,17 @@ var UsedPublish = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__41"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__40"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__41 = _genCompid2[0],
-          $compid__41 = _genCompid2[1];
+          $prevCompid__40 = _genCompid2[0],
+          $compid__40 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__42"),
+      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__41"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__42 = _genCompid4[0],
-          $compid__42 = _genCompid4[1];
+          $prevCompid__41 = _genCompid4[0],
+          $compid__41 = _genCompid4[1];
 
-      var router = (0, _taroTt.useRouter)();
+      var router = (0, _taroWeapp.useRouter)();
       var _router$params$id = router.params.id,
           id = _router$params$id === undefined ? '' : _router$params$id;
 
@@ -434,7 +434,7 @@ var UsedPublish = function (_Taro$Component) {
           userTel = _useUsedInfo.userTel,
           vaildPublishModelInfo = _useUsedInfo.vaildPublishModelInfo;
 
-      var _useState = (0, _taroTt.useState)(false),
+      var _useState = (0, _taroWeapp.useState)(false),
           _useState2 = _slicedToArray(_useState, 2),
           showDrawer = _useState2[0],
           setShowDrawer = _useState2[1];
@@ -524,15 +524,15 @@ var UsedPublish = function (_Taro$Component) {
       this.anonymousFunc12 = function () {
         return vaildPublishModelInfo();
       };
-      var loopArray46 = initModel ? initModel.classifyTree.map(function (item, index) {
+      var loopArray45 = initModel ? initModel.classifyTree.map(function (item, index) {
         item = {
-          $original: (0, _taroTt.internal_get_original)(item)
+          $original: (0, _taroWeapp.internal_get_original)(item)
         };
         var $loopState__temp2 = initModel ? (0, _classnames2.default)({
           'drawer-list-item overwords': true,
           'drawer-list-item-active': index === parentCurrent
         }) : null;
-        var _$indexKey = "ehzzz" + index;
+        var _$indexKey = "egzzz" + index;
         _this2.anonymousFunc1Map[_$indexKey] = function () {
           return useClickClassifyParentId(index);
         };
@@ -542,15 +542,15 @@ var UsedPublish = function (_Taro$Component) {
           $original: item.$original
         };
       }) : [];
-      var loopArray47 = initModel ? initModel.classifyTree[parentCurrent].attributes.map(function (item, k) {
+      var loopArray46 = initModel ? initModel.classifyTree[parentCurrent].attributes.map(function (item, k) {
         item = {
-          $original: (0, _taroTt.internal_get_original)(item)
+          $original: (0, _taroWeapp.internal_get_original)(item)
         };
         var $loopState__temp4 = initModel ? (0, _classnames2.default)({
           'drawer-list-item overwords': true,
           'drawer-list-item-active': k == childCurrent && item.$original.id == model.attribute_id
         }) : null;
-        var _$indexKey2 = "eizzz" + k;
+        var _$indexKey2 = "ehzzz" + k;
         _this2.anonymousFunc2Map[_$indexKey2] = function () {
           return useClickClassifyChildId(k);
         };
@@ -560,19 +560,19 @@ var UsedPublish = function (_Taro$Component) {
           $original: item.$original
         };
       }) : [];
-      _taroTt.propsManager.set({
+      _taroWeapp.propsManager.set({
         "show": showDrawer,
         "onClose": this.anonymousFunc0
-      }, $compid__41, $prevCompid__41);
-      _taroTt.propsManager.set({
+      }, $compid__40, $prevCompid__40);
+      _taroWeapp.propsManager.set({
         "num": 0
-      }, $compid__42, $prevCompid__42);
+      }, $compid__41, $prevCompid__41);
       Object.assign(this.__state, {
         initModel: initModel,
+        loopArray45: loopArray45,
         loopArray46: loopArray46,
-        loopArray47: loopArray47,
+        $compid__40: $compid__40,
         $compid__41: $compid__41,
-        $compid__42: $compid__42,
         parentCurrent: parentCurrent,
         model: model,
         classifyName: classifyName,
@@ -670,13 +670,13 @@ var UsedPublish = function (_Taro$Component) {
   }]);
 
   return UsedPublish;
-}(_taroTt2.default.Component);
+}(_taroWeapp2.default.Component);
 
 UsedPublish.$$events = ["anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6", "anonymousFunc7", "anonymousFunc8", "anonymousFunc9", "anonymousFunc10", "anonymousFunc11", "anonymousFunc12"];
 UsedPublish.$$componentPath = "pages/used/publish/index";
 exports.default = UsedPublish;
 
-Page(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(UsedPublish, true));
+Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(UsedPublish, true));
 
 /***/ })
 

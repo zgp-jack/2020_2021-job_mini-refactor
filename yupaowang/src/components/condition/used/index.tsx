@@ -3,13 +3,14 @@ import { View, Image, Block, ScrollView } from '@tarojs/components'
 import { IMGCDNURL } from '../../../config'
 import { AtDrawer } from 'taro-ui'
 import { getListFilterData } from '../../../utils/request'
-import { filterClassifyResultClassTree, filterClassifyResultJoblistType } from '../../../utils/request/index.d'
+import { filterClassifyResultClassTree, filterClassifyResultJoblistType, filterClassifyResultFleamarketTree, filterClassifyResultClassTreeBase } from '../../../utils/request/index.d'
 import { filterClassifyDataResultReduce } from '../../../reducers/filter_classify'
 import { setFilter } from '../../../actions/filter_classify'
 import AREAS, { ChildItems } from '../../../models/area'
 import classnames from 'classnames'
-import { AreaPickerKey, ClassifyPickerKey, FilterPickerKey } from '../../../config/pages/lists'
+import { AreaPickerKey, ClassifyPickerKey, FilterPickerKey, } from '../../../config/pages/lists'
 import { useDispatch, useSelector } from '@tarojs/redux'
+import { UserListChooseCity } from '../../../config/store'
 import './index.scss'
 
 interface ConditionData {
@@ -18,12 +19,15 @@ interface ConditionData {
 }
 interface ConditionProps {
   data: ConditionData[],
-  setSearchData: (type: string, id: string) => void
+  setSearchData: (type: string, id: string, name: string, noRender?: boolean) => void
 }
 
 function UsedCondition({ data, setSearchData }: ConditionProps) {
 
   const dispatch = useDispatch()
+
+  // * 获取地区选择默认数据
+  let userListChooseCity: ChildItems = Taro.getStorageSync(UserListChooseCity)
 
   // * 获取筛选条件信息
   const filterData = useSelector<any, filterClassifyDataResultReduce>(state => state.filterClassify)
@@ -31,18 +35,31 @@ function UsedCondition({ data, setSearchData }: ConditionProps) {
   const [seted, setSeted] = useState<boolean>(false)
   // * 当前展开项id
   const [current, setCurrent] = useState<string>('')
-  // * 当前城市选择父级索引
+  // * 当前城市选择子级索引
   const [areaIndex, setAreaIndex] = useState<number>(0)
+  // * 当前城市选择子级id
+  const [areaChildId, setAreaChildId] = useState<string>(userListChooseCity.id)
   // * 当前工种选择父级索引
-  const [classifyIndex, setclassifyIndex] = useState<number>(0)
+  const [fleamarketTreeIndex, setfleamarketTreeIndex] = useState<number>(0)
+  // * 历史工种选择父级索引
+  let [oldFleamarketTreeIndex, setOldFleamarketTreeIndex] = useState<number>(0)
+  // * 当前工种选择子级id
+  const [fleamarketTreeSonId, setfleamarketTreeSonId] = useState<string>('')
   // * 当前工种选择父级索引
-  const [filterIndex, setFilterIndex] = useState<number>(0)
+  // const [filterIndex, setFilterIndex] = useState<number>(0)
+
   // * 当前展开的城市子集数据
   const [childAreaList, setChildAreaList] = useState<ChildItems[]>(AREAS[areaIndex].children)
   // * 工种数据
-  const [classify, setClassify] = useState<filterClassifyResultClassTree[]>([])
+  // const [classify, setClassify] = useState<filterClassifyResultClassTree[]>([])
+  // 分类
+  const [fleamarketTree, setFleamarketTree] = useState<filterClassifyResultFleamarketTree[]>([])
+  // * 子集类型数据
+  const [fleamarketTreeChildData, setFleamarketTreeChildData] = useState<Pick<filterClassifyResultClassTreeBase, 'id' | 'name'>[]>([])
+  // * 历史子集类型数据
+  const [oldFleamarketTreeChildData, setoldFleamarketTreeChildData] = useState<Pick<filterClassifyResultClassTreeBase, 'id' | 'name'>[]>([])
   // * 数据筛选条件 最新 热门
-  const [jobtype, setJobtype] = useState<filterClassifyResultJoblistType[]>([])
+  // const [jobtype, setJobtype] = useState<filterClassifyResultJoblistType[]>([])
   // * 城市切换后子集列表回到顶部
   const [areaScrollTop, setAreaScrollTop] = useState<number>(0)
   // * 工种切换后子集列表回到顶部
@@ -54,8 +71,23 @@ function UsedCondition({ data, setSearchData }: ConditionProps) {
   }
 
   // * 关闭抽屉
-  const closeDrawer = () => {
-    setCurrent('')
+  // * reReset是否重置
+  const closeDrawer = (reReset?: boolean) => {
+    // * 关闭的时候会去调onClose方法，避免重复调用
+    if(current!==''){
+      //关闭的时候重置数据
+      if (reReset) {
+        resetCity()
+        resetFleamarketTree()
+      }
+      setCurrent('')
+    }
+  }
+
+  // * 重置分类
+  function resetFleamarketTree() {
+    setfleamarketTreeIndex(oldFleamarketTreeIndex)
+    setFleamarketTreeChildData([...oldFleamarketTreeChildData])
   }
 
   // * 城市索引更换
@@ -63,56 +95,74 @@ function UsedCondition({ data, setSearchData }: ConditionProps) {
     setAreaIndex(i)
     setAreaScrollTop(0)
     if (!AREAS[i].has_children) {
-      setSearchData(AreaPickerKey, AREAS[i].id.toString())
+      setSearchData(AreaPickerKey, AREAS[i].id.toString(), AREAS[i].name)
+      Taro.setStorageSync('userListChooseCity', { ...AREAS[i] })
       closeDrawer()
     }
   }
 
   // 选择子集地区
-  const sureAreaCurrent = (i: number) => {
-    let id: string = AREAS[i].children[i].id
-    setSearchData(AreaPickerKey, id)
+  const sureAreaCurrent = (data: any) => {
+    setAreaChildId(data.id)
+    setSearchData(AreaPickerKey, data.id, data.name)
+    Taro.setStorageSync('userListChooseCity', { ...data })
     closeDrawer()
   }
 
-  // 选择子集工种
+  // *  选择子集工种
   const sureClassifyCurrent = (i: number) => {
-    let id: number = classify[i].children[i].id
-    setSearchData(ClassifyPickerKey, id.toString())
+    let id: number = fleamarketTreeChildData[i].id - 0;
+    setfleamarketTreeSonId(id + '')
+    setSearchData(FilterPickerKey, id.toString(), fleamarketTreeChildData[i].name)
+    setOldFleamarketTreeIndex(fleamarketTreeIndex)
+    setoldFleamarketTreeChildData([...filterData.fleamarketTree[fleamarketTreeIndex].attributes])
     closeDrawer()
   }
 
   // 选择最新、推荐过滤条件
-  const sureFilterCurrent = (i: number) => {
-    setFilterIndex(i)
-    let id: string = jobtype[i].type
-    setSearchData(FilterPickerKey, id)
-    closeDrawer()
-  }
+  // const sureFilterCurrent = (i: number) => {
+  //   setFilterIndex(i)
+  //   let id: string = jobtype[i].type
+  //   setSearchData(FilterPickerKey, id, "")
+  //   closeDrawer()
+  // }
 
   // * 工种索引更换
   const changeClassifyIndex = (i: number) => {
-    setclassifyIndex(i)
+    setfleamarketTreeIndex(i)
     setClassifyScrollTop(0)
-    if (!classify[i].has_children) {
-      setSearchData(ClassifyPickerKey, classify[i].id.toString())
+    if (!fleamarketTree[i].has_attribute) {
+      setOldFleamarketTreeIndex(i)
+      setSearchData(ClassifyPickerKey, fleamarketTree[i].id.toString(), fleamarketTree[i].name)
+      setFleamarketTreeChildData([])
       closeDrawer()
+    } else {
+      setSearchData(ClassifyPickerKey, fleamarketTree[i].id.toString(), fleamarketTree[i].name, true)
+      setFleamarketTreeChildData([...filterData.fleamarketTree[i].attributes])
     }
+  }
+
+  // * 地区设置默认索引
+  function resetCity() {
+    let defaultCityId = userListChooseCity.pid === '1' ? userListChooseCity.id : userListChooseCity.pid;
+    let defaultCityIndex = AREAS.findIndex((item) => item.id === defaultCityId)
+    setAreaIndex(defaultCityIndex)
   }
 
   // 获取筛选条件数据
   useEffect(() => {
-    if (filterData.isSet) {
+    resetCity()
+    if (!filterData.isSet) {
       if (seted) return
       setSeted(true)
-      setClassify(filterData.classTree)
-      setJobtype(filterData.jobListType)
+      setFleamarketTree(filterData.fleamarketTree)
+      // setJobtype(filterData.jobListType)
     } else {
       getListFilterData().then(res => {
         dispatch(setFilter({ ...res.data, isSet: true }))
         setSeted(true)
-        setClassify(res.data.classTree)
-        setJobtype(res.data.jobListType)
+        setFleamarketTree(res.data.fleamarketTree)
+        // setJobtype(res.data.jobListType)
       })
     }
   }, [])
@@ -152,7 +202,7 @@ function UsedCondition({ data, setSearchData }: ConditionProps) {
       <AtDrawer
         show={current === AreaPickerKey}
         mask
-        onClose={() => closeDrawer()}
+        onClose={() => closeDrawer(true)}
       >
         <View className='common-drawer-item'>
           <ScrollView className='drawer-full-lists' scrollY>
@@ -175,7 +225,12 @@ function UsedCondition({ data, setSearchData }: ConditionProps) {
               onScroll={(e) => onScrollAction(e, AreaPickerKey)}
             >
               {childAreaList.map((item, i) => (
-                <View className='drawer-list-item overwords' onClick={() => sureAreaCurrent(i)}>{item.name}</View>
+                <View
+                  className={classnames({
+                    'drawer-list-item overwords': true,
+                    'drawer-list-item-active': item.id === areaChildId
+                  })}
+                  onClick={() => sureAreaCurrent(item)}>{item.name}</View>
               ))}
             </ScrollView>
           }
@@ -185,37 +240,40 @@ function UsedCondition({ data, setSearchData }: ConditionProps) {
       <AtDrawer
         show={current === ClassifyPickerKey}
         mask
-        onClose={() => closeDrawer()}
+        onClose={() => closeDrawer(true)}
       >
         <View className='common-drawer-item'>
           <ScrollView className='drawer-full-lists' scrollY>
-            {classify.map((item, index) => (
+            {fleamarketTree.map((item, index) => (
               <View
                 className={classnames({
                   'drawer-list-item overwords': true,
-                  'drawer-list-item-active': index === classifyIndex
+                  'drawer-list-item-active': index === fleamarketTreeIndex
                 })}
                 key={item.id}
                 onClick={() => changeClassifyIndex(index)}
               >{item.name}</View>
             ))}
           </ScrollView>
-          {classify.length && classify[classifyIndex].has_children &&
+          {fleamarketTreeChildData.length &&
             <ScrollView
               className='drawer-full-lists drawer-half-lists'
               scrollY
               scrollTop={classifyScrollTop}
               onScroll={(e) => onScrollAction(e, ClassifyPickerKey)}
             >
-              {classify[classifyIndex].children.map((item, i) => (
-                <View className='drawer-list-item overwords' onClick={() => sureClassifyCurrent(i)}>{item.name}</View>
+              {fleamarketTreeChildData.map((item, i) => (
+                <View className={classnames({
+                  'drawer-list-item overwords': true,
+                  'drawer-list-item-active': item.id + '' === fleamarketTreeSonId
+                })} onClick={() => sureClassifyCurrent(i)}>{item.name}</View>
               ))}
             </ScrollView>
           }
         </View>
       </AtDrawer>
       {/* 条件选择器 */}
-      <AtDrawer
+      {/* <AtDrawer
         show={current === FilterPickerKey}
         mask
         onClose={() => closeDrawer()}
@@ -234,7 +292,7 @@ function UsedCondition({ data, setSearchData }: ConditionProps) {
             ))}
           </ScrollView>
         </View>
-      </AtDrawer>
+      </AtDrawer> */}
     </Block>
   )
 }

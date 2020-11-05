@@ -7,7 +7,10 @@ import UsedList from '../../../components/lists/used'
 import { getFleamarketList } from '../../../utils/request'
 import { FleamarketList } from '../../../utils/request/index.d'
 import Tabbar from '../../../components/tabbar'
+import { UserListChooseCity } from '../../../config/store'
+import { ChildItems } from '../../../models/area'
 import './index.scss'
+import { conditionType } from '../../recruit/lists';
 
 export interface SearchType {
   keywords: string,
@@ -21,11 +24,19 @@ export interface SearchType {
 export default function Fleamarket() {
   // 是否已是最后一页
   const [isend, setIsend] = useState<boolean>(false)
+
+  // * 获取地区选择默认数据
+  let userListChooseCity: ChildItems = Taro.getStorageSync(UserListChooseCity)
+
   // * 配置筛选条件
   const DEFAULT_CONDITION = [
-    { id: 'area', text: '全国' },
+    { id: 'area', text: userListChooseCity.name },
     { id: 'classify', text: '选择分类' }
   ]
+
+  // * 配置筛选条件
+  const [screeningCondition, setScreeningCondition] = useState<conditionType[]>(DEFAULT_CONDITION)
+
   // * 标记是否是在刷新状态
   const [refresh, setRefresh] = useState<boolean>(false)
   // * 定义列表数组
@@ -34,11 +45,13 @@ export default function Fleamarket() {
   const [searchData, setSearchData] = useState<SearchType>({
     page: 1,
     list_type: 'fleamarket',
-    area_id: '',
+    area_id: userListChooseCity.id,
     classify_id: '',
     attribute_id: '',
     keywords: ''
   })
+
+  const [inputValue, setInputValue] = useState<string>('')
 
   // * 请求列表数据
   useEffect(() => {
@@ -64,12 +77,52 @@ export default function Fleamarket() {
     setSearchData({ ...searchData, page: 1 })
   }
 
+  // * 监听地区选择/工种选
+  const searchChange = (key: string, id: string, name: string, noRender?: boolean) => {
+    setIsend(false);
+    let [areaSearchData, classifySearchData] = screeningCondition;
+    let _searchData = { ...searchData }
+    let _screeningCondition = [{ ...areaSearchData }, { ...classifySearchData }]
+    switch (key) {
+      case 'area':
+        _searchData.area_id = id;
+        _screeningCondition[0].text = name;
+        break;
+      case 'classify':
+        _searchData.classify_id = id;
+        _screeningCondition[1].text = name;
+        _searchData.attribute_id = '';
+        break;
+      case 'filter':
+        _searchData.attribute_id = id;
+        _screeningCondition[1].text = name;
+        break;
+    }
+    if (noRender) {
+      return false
+    }
+    _searchData.page = 1;
+    setScreeningCondition([..._screeningCondition])
+    setSearchData({ ..._searchData })
+  }
+
+  // * 监听搜索
+  const inputSearch = (value) => {
+    setInputValue(value)
+  }
+
+  const setSearchDatas = (key: string, value: string | number) => {
+    setIsend(false);
+    searchData[key] = value;
+    setSearchData({ ...searchData })
+  }
+
   return (
     <Block>
       <View className='recruit-container'>
         <View className='recruit-fiexd-header'>
-          <Search placeholder='跳蚤市场' value='' setRemark={()=>{}} setSearchData={()=>{}}/>
-          <UsedCondition data={ DEFAULT_CONDITION } setSearchData={()=>{}} />
+          <Search placeholder='跳蚤市场' value='' setRemark={(value) => inputSearch(value)} setSearchData={() => setSearchDatas('keywords', inputValue)} />
+          <UsedCondition data={screeningCondition} setSearchData={searchChange} />
         </View>
         <ScrollView
           className='recruit-lists-containerbox'
@@ -82,10 +135,10 @@ export default function Fleamarket() {
         >
           <View style={{ height: '8px' }}></View>
           <WechatNotice />
-          <UsedList data={ lists } />
+          <UsedList data={lists} />
         </ScrollView>
       </View>
-      <Tabbar/>
+      <Tabbar />
     </Block>
   )
 }

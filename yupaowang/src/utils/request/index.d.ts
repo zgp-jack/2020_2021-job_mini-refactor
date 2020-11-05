@@ -1307,7 +1307,7 @@ export interface filterClassifyResultClassTree extends filterClassifyResultClass
 export interface filterClassifyResultFleamarketTree extends filterClassifyResultClassTreeBase {
   letter: string,
   has_attribute: number,
-  attributes: Pick<filterClassifyResultClassTreeBase,'id'|'name'>,
+  attributes: Pick<filterClassifyResultClassTreeBase,'id'|'name'>[],
 }
 
 // 找活筛选分类信息数据

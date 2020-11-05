@@ -1,4 +1,4 @@
-(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["pages/resume/personInfo/index"],{
+(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["pages/resume/personInfo/index"],{
 
 /***/ "./src/pages/resume/personInfo/index.scss":
 /*!************************************************!*\
@@ -31,9 +31,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
 
 var _area = __webpack_require__(/*! ../../../models/area */ "./src/models/area.ts");
 
@@ -71,7 +71,7 @@ var PersonInfo = function (_Taro$Component) {
       navigationBarTitleText: '人员信息'
     };
 
-    _this.$usedState = ["loopArray102", "formData", "multiIndex", "multiArray", "proficiencyIndex", "proficiency", "userIndex", "personnel", "ranks", "label"];
+    _this.$usedState = ["loopArray101", "formData", "multiIndex", "multiArray", "proficiencyIndex", "proficiency", "userIndex", "personnel", "ranks", "label"];
     _this.anonymousFunc6Map = {};
     _this.customComponents = [];
     return _this;
@@ -81,7 +81,7 @@ var PersonInfo = function (_Taro$Component) {
     key: '_constructor',
     value: function _constructor(props) {
       _get(PersonInfo.prototype.__proto__ || Object.getPrototypeOf(PersonInfo.prototype), '_constructor', this).call(this, props);
-      this.$$refs = new _taroTt2.default.RefsArray();
+      this.$$refs = new _taroWeapp2.default.RefsArray();
     }
   }, {
     key: '_createData',
@@ -93,7 +93,7 @@ var PersonInfo = function (_Taro$Component) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var router = (0, _taroTt.useRouter)();
+      var router = (0, _taroWeapp.useRouter)();
       // 判断是新增还是编辑
       var type = router.params.type;
       // 获取存入的公用内容
@@ -103,7 +103,7 @@ var PersonInfo = function (_Taro$Component) {
       });
       // const userInfo:any=[];
 
-      var _useState = (0, _taroTt.useState)({
+      var _useState = (0, _taroWeapp.useState)({
         age: '',
         proficiency: '',
         personnel: '',
@@ -116,84 +116,84 @@ var PersonInfo = function (_Taro$Component) {
       // 家乡
 
 
-      var _useState3 = (0, _taroTt.useState)([0, 0]),
+      var _useState3 = (0, _taroWeapp.useState)([0, 0]),
           _useState4 = _slicedToArray(_useState3, 2),
           multiIndex = _useState4[0],
           setMultiIndex = _useState4[1];
 
-      var _useState5 = (0, _taroTt.useState)([]),
+      var _useState5 = (0, _taroWeapp.useState)([]),
           _useState6 = _slicedToArray(_useState5, 2),
           allprovinces = _useState6[0],
           setAllprovinces = _useState6[1];
       // const [multiIndexvalue, seMultiIndexvalue] = useState<string>('请选择所在地区')
 
 
-      var _useState7 = (0, _taroTt.useState)(''),
+      var _useState7 = (0, _taroWeapp.useState)(''),
           _useState8 = _slicedToArray(_useState7, 2),
           allpro = _useState8[0],
           setAllpro = _useState8[1];
 
-      var _useState9 = (0, _taroTt.useState)([]),
+      var _useState9 = (0, _taroWeapp.useState)([]),
           _useState10 = _slicedToArray(_useState9, 2),
           multiArrayone = _useState10[0],
           setMultiArrayone = _useState10[1];
 
-      var _useState11 = (0, _taroTt.useState)([]),
+      var _useState11 = (0, _taroWeapp.useState)([]),
           _useState12 = _slicedToArray(_useState11, 2),
           multiArray = _useState12[0],
           setMultiArray = _useState12[1];
 
-      var _useState13 = (0, _taroTt.useState)(0),
+      var _useState13 = (0, _taroWeapp.useState)(0),
           _useState14 = _slicedToArray(_useState13, 2),
           edit = _useState14[0],
           setEdit = _useState14[1];
       // 熟练度
 
 
-      var _useState15 = (0, _taroTt.useState)([]),
+      var _useState15 = (0, _taroWeapp.useState)([]),
           _useState16 = _slicedToArray(_useState15, 2),
           proficiency = _useState16[0],
           setProficiency = _useState16[1];
       // 人员构成
 
 
-      var _useState17 = (0, _taroTt.useState)([]),
+      var _useState17 = (0, _taroWeapp.useState)([]),
           _useState18 = _slicedToArray(_useState17, 2),
           personnel = _useState18[0],
           setPersonnel = _useState18[1];
       // 标签
 
 
-      var _useState19 = (0, _taroTt.useState)([]),
+      var _useState19 = (0, _taroWeapp.useState)([]),
           _useState20 = _slicedToArray(_useState19, 2),
           label = _useState20[0],
           setLabel = _useState20[1];
 
-      var _useState21 = (0, _taroTt.useState)([]),
+      var _useState21 = (0, _taroWeapp.useState)([]),
           _useState22 = _slicedToArray(_useState21, 2),
           tag = _useState22[0],
           setTag = _useState22[1];
 
-      var _useState23 = (0, _taroTt.useState)(false),
+      var _useState23 = (0, _taroWeapp.useState)(false),
           _useState24 = _slicedToArray(_useState23, 2),
           ranks = _useState24[0],
           setRanks = _useState24[1];
       //熟练度位置
 
 
-      var _useState25 = (0, _taroTt.useState)(0),
+      var _useState25 = (0, _taroWeapp.useState)(0),
           _useState26 = _slicedToArray(_useState25, 2),
           proficiencyIndex = _useState26[0],
           setProficiencyIndex = _useState26[1];
       // 人员构成位置
 
 
-      var _useState27 = (0, _taroTt.useState)(0),
+      var _useState27 = (0, _taroWeapp.useState)(0),
           _useState28 = _slicedToArray(_useState27, 2),
           userIndex = _useState28[0],
           setUserIndex = _useState28[1];
 
-      (0, _taroTt.useEffect)(function () {
+      (0, _taroWeapp.useEffect)(function () {
         var AllItem = JSON.parse(JSON.stringify(useSelectorItem.Personnel));
         if (AllItem) {
           console.log(AllItem);
@@ -429,7 +429,7 @@ var PersonInfo = function (_Taro$Component) {
         if (!allpro) {}
         console.log(params, 'parsadsa');
         if (!formData.age) {
-          _taroTt2.default.showModal({
+          _taroWeapp2.default.showModal({
             title: '温馨提示',
             content: '请输入您的工龄',
             showCancel: false
@@ -454,7 +454,7 @@ var PersonInfo = function (_Taro$Component) {
         if (number_people > 0) {
           if (!strone.test(formData.type)) {
             if (~~formData.type - 0 <= 1) {
-              _taroTt2.default.showModal({
+              _taroWeapp2.default.showModal({
                 title: '温馨提示',
                 content: '请输入您的队伍人数不得少于2人',
                 showCancel: false
@@ -471,14 +471,14 @@ var PersonInfo = function (_Taro$Component) {
               (0, _index.SubPopup)({
                 tips: res.errmsg,
                 callback: function callback() {
-                  _taroTt2.default.navigateBack({
+                  _taroWeapp2.default.navigateBack({
                     delta: 1
                   });
                 }
               });
             });
           } else {
-            _taroTt2.default.showModal({
+            _taroWeapp2.default.showModal({
               title: '温馨提示',
               content: res.errmsg,
               showCancel: false
@@ -506,11 +506,11 @@ var PersonInfo = function (_Taro$Component) {
         return userEnterFrom(e, 'type');
       };
       this.anonymousFunc7 = handleSubmit;
-      var loopArray102 = label.map(function (v, __index6) {
+      var loopArray101 = label.map(function (v, __index6) {
         v = {
-          $original: (0, _taroTt.internal_get_original)(v)
+          $original: (0, _taroWeapp.internal_get_original)(v)
         };
-        var _$indexKey = "bafzz" + __index6;
+        var _$indexKey = "baezz" + __index6;
         _this2.anonymousFunc6Map[_$indexKey] = function () {
           return handleText(v.$original);
         };
@@ -520,7 +520,7 @@ var PersonInfo = function (_Taro$Component) {
         };
       });
       Object.assign(this.__state, {
-        loopArray102: loopArray102,
+        loopArray101: loopArray101,
         formData: formData,
         multiIndex: multiIndex,
         multiArray: multiArray,
@@ -584,14 +584,14 @@ var PersonInfo = function (_Taro$Component) {
   }]);
 
   return PersonInfo;
-}(_taroTt2.default.Component);
+}(_taroWeapp2.default.Component);
 
 PersonInfo.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6", "anonymousFunc7"];
 PersonInfo.$$componentPath = "pages/resume/personInfo/index";
 PersonInfo.config = { navigationBarTitleText: '人员信息' };
 exports.default = PersonInfo;
 
-Page(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(PersonInfo, true));
+Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(PersonInfo, true));
 
 /***/ })
 

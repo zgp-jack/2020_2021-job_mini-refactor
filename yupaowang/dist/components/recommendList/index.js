@@ -1,4 +1,4 @@
-(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["components/recommendList/index"],{
+(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["components/recommendList/index"],{
 
 /***/ "./src/components/recommendList/index.scss":
 /*!*************************************************!*\
@@ -31,9 +31,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
 
 __webpack_require__(/*! ./index.scss */ "./src/components/recommendList/index.scss");
 
@@ -58,7 +58,7 @@ var CollectionRecruitList = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (CollectionRecruitList.__proto__ || Object.getPrototypeOf(CollectionRecruitList)).apply(this, arguments));
 
-    _this.$usedState = ["$compid__66", "$compid__67", "type", "data"];
+    _this.$usedState = ["$compid__65", "$compid__66", "type", "data"];
     _this.customComponents = ["RecruitListPage", "ResumeListPage"];
     return _this;
   }
@@ -67,7 +67,7 @@ var CollectionRecruitList = function (_Taro$Component) {
     key: "_constructor",
     value: function _constructor(props) {
       _get(CollectionRecruitList.prototype.__proto__ || Object.getPrototypeOf(CollectionRecruitList.prototype), "_constructor", this).call(this, props);
-      this.$$refs = new _taroTt2.default.RefsArray();
+      this.$$refs = new _taroWeapp2.default.RefsArray();
     }
   }, {
     key: "_createData",
@@ -78,30 +78,30 @@ var CollectionRecruitList = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__66"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__65"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__66 = _genCompid2[0],
-          $compid__66 = _genCompid2[1];
+          $prevCompid__65 = _genCompid2[0],
+          $compid__65 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__67"),
+      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__66"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__67 = _genCompid4[0],
-          $compid__67 = _genCompid4[1];
+          $prevCompid__66 = _genCompid4[0],
+          $compid__66 = _genCompid4[1];
 
       var _props = this.__props,
           _props$data = _props.data,
           data = _props$data === undefined ? [] : _props$data,
           type = _props.type;
 
-      type === 1 && _taroTt.propsManager.set({
+      type === 1 && _taroWeapp.propsManager.set({
+        "data": data
+      }, $compid__65, $prevCompid__65);
+      type === 2 && _taroWeapp.propsManager.set({
         "data": data
       }, $compid__66, $prevCompid__66);
-      type === 2 && _taroTt.propsManager.set({
-        "data": data
-      }, $compid__67, $prevCompid__67);
       Object.assign(this.__state, {
+        $compid__65: $compid__65,
         $compid__66: $compid__66,
-        $compid__67: $compid__67,
         type: type
       });
       return this.__state;
@@ -109,13 +109,13 @@ var CollectionRecruitList = function (_Taro$Component) {
   }]);
 
   return CollectionRecruitList;
-}(_taroTt2.default.Component);
+}(_taroWeapp2.default.Component);
 
 CollectionRecruitList.$$events = [];
 CollectionRecruitList.$$componentPath = "components/recommendList/index";
 exports.default = CollectionRecruitList;
 
-Component(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(CollectionRecruitList));
+Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(CollectionRecruitList));
 
 /***/ })
 

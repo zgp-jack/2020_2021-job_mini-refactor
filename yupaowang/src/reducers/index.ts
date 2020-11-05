@@ -24,9 +24,6 @@ export default combineReducers({
   MyArea,
   member,
   realname,
-<<<<<<< HEAD
-  resumeAddInfo
-=======
+  resumeAddInfo,
   PositionStatus
->>>>>>> yangchao
 })
