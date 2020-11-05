@@ -236,7 +236,7 @@ export default function ResumePublish(){
                 <View className='name'>{certificates[certificates.length - 1].name}</View>
                 <View className='sexage time'>{certificates[certificates.length - 1].certificate_time}</View>
               </View>
-              <View className='change'>编辑</View>
+              <View className='change' onClick={() => Taro.navigateTo({ url: '/pages/resume/add_skill/index' })}>编辑</View>
             </View>
             <View className='project-content'>
               <View className='content-img'>

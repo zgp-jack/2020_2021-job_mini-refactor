@@ -7,6 +7,8 @@ import UploadImgAction from '../../../utils/upload'
 import { resumesCertificateAction } from '../../../utils/request'
 import ImageView from '../../../components/imageview'
 import { CertificateImgMaxNum, CertificateMaxNum } from '../../../config'
+import { useSelector, useDispatch } from '@tarojs/redux'
+import { useResumeType } from '../../../actions/resume_data'
 import './index.scss'
 import Msg, { ShowActionModal } from '../../../utils/msg'
 
@@ -18,6 +20,8 @@ interface SkillBookInfoType {
 
 export default function AddResumeInfo() {
 
+  const resumeData: useResumeType = useSelector<any, useResumeType>(item => item.resumeData)
+
   // 保留一份默认数据， 方便我们继续添加的时候使用
   const defaultSkillBookData: SkillBookInfoType  = {
     title: '',
@@ -27,8 +31,8 @@ export default function AddResumeInfo() {
 
   // 技能证书信息
   const [skillBookInfo, setSkillBookInfo] = useState<SkillBookInfoType>(defaultSkillBookData)
-  // 是否显示保存继续添加
-  const [showBtn, setShowBtn] = useState<boolean>(true)
+  // 是否显示保存继续添加 总数是否大于等于 最大数量-1
+  const [showBtn, setShowBtn] = useState<boolean>(resumeData.certificates.length >= CertificateMaxNum - 1  ? false : true)
 
   // 用户输入技能证书标题
   const userEnterFrom = (e: any) => {
@@ -80,7 +84,7 @@ export default function AddResumeInfo() {
       return
     }
     resumesCertificateAction({
-      resume_uuid: '',
+      resume_uuid: resumeData.resume_uuid,
       image: skillBookInfo.imgs.map(item => item.url),
       name: skillBookInfo.title,
       certificate_time: skillBookInfo.time
