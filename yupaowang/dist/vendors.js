@@ -12823,7 +12823,14 @@ Object.defineProperty(exports, "__esModule", {
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }(); /*
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          * @Author: zyb
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          * @Date: 2020-11-03 09:23:50
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          * @LastEditors: zyb
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          * @LastEditTime: 2020-11-05 17:29:51
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          * @Description:
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          */
+
 
 exports.default = useResumeAddInfo;
 
@@ -18493,6 +18500,7 @@ exports.isIdcard = isIdcard;
 exports.isType = isType;
 exports.isIos = isIos;
 exports.isRequireLen = isRequireLen;
+exports.isChinese = isChinese;
 
 var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
 
@@ -18506,6 +18514,13 @@ function isPhone(tel) {
   return reg.test(tel);
 }
 // 是否是数字
+/*
+ * @Author: zyb
+ * @Date: 2020-11-03 09:23:50
+ * @LastEditors: zyb
+ * @LastEditTime: 2020-11-05 11:51:03
+ * @Description:
+ */
 function isNumber(num) {
   var reg = /^[0-9]+$/;
   return reg.test(num);
@@ -18574,6 +18589,14 @@ function isRequireLen(str) {
   var _len = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 6;
 
   return str != '' && str != null && str != undefined && str.length >= _len ? true : false;
+}
+// 含有中文
+function isChinese(str) {
+  var reg = new RegExp('[\\u4E00-\\u9FFF]+', "g");
+  if (reg.test(str)) {
+    return true;
+  }
+  return false;
 }
 
 /***/ })

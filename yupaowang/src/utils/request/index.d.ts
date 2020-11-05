@@ -1390,7 +1390,7 @@ export interface resumesGetDataLabel{
   id: number
   label_name: string
   label_py: string
-  click?:boolean
+  click?:boolean,
 }
 export interface resumesGetDataNation{
   mz_id: number
@@ -1549,15 +1549,19 @@ export interface ResumeAddInfoLabelConfig {
 // --民族配置
 export interface ResumeAddInfoNationConfig {
   mz_id: string,
-  mz_name: string
+  mz_name: string,
+  id?:string,
+  name?:string,
 }
 
 // --工种配置
 export interface ResumeAddInfoOccupationConfig {
   id: string,
   pid: string,
-  latter: string,
-  not_auth: string
+  letter: string,
+  not_auth: string,
+  name:string,
+  is_check:boolean,
 }
 
 export interface ResumeAddInfoParentOccupationConfig extends ResumeAddInfoOccupationConfig{

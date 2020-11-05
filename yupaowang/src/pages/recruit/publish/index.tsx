@@ -113,7 +113,6 @@ export default function PublishRecruit() {
     bakModel.view_images.splice(i,1)
     setModel(bakModel)
   }
-
   return (
       <Block>
         <Auth />
