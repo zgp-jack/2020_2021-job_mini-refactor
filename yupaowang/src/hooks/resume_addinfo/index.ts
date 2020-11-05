@@ -18,7 +18,7 @@ export default function useResumeAddInfo() {
   const [nationCurrent, setNationCurrent] = useState<number>(0)
   // 获取年月日范围
   const startDatePicker: string = (new Date().getFullYear() - 60) + '-01-01'
-
+  
   // 初始化基本信息数据
   //const 
 
