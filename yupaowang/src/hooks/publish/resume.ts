@@ -2,29 +2,27 @@
  * @Author: zyb
  * @Date: 2020-11-03 15:03:11
  * @LastEditors: zyb
- * @LastEditTime: 2020-11-04 20:25:04
+ * @LastEditTime: 2020-11-05 09:27:52
  * @Description: 
  */
-import { useState,useDidShow } from '@tarojs/taro'
+import { useState,useDidShow, useEffect } from '@tarojs/taro'
 import { resumeListAction } from '../../utils/request'
 import { resIntroduceObj, resInfoObj, resProjectArr, resCertificatesArr,resume_topObj } from '../../utils/request/index.d';
-import { INFODATA_DATA, INTRODUCERS_DATA, RESUME_TOP_DATA } from '../../pages/resume/publish/data';
-import { useResumeType } from '../../actions/useResume';
-import { setUuid } from '../../actions/uuid';
-import { setUseResume } from '../../actions/useResume';
+import { RESUME_TOP_DATA, INFODATA_DATA, INTRODUCERS_DATA } from '../../pages/resume/publish/data';
+import { setUseResume } from '../../actions/resume_data';
 import { useDispatch, useSelector } from '@tarojs/redux'
 import Msg from '../../utils/msg'
 
 export default function useResume(){
   const dispatch = useDispatch();
   // 基础信息
-  const infoVal = useSelector<any, resInfoObj>(state => state.useResume.info)
+  const infoVal = useSelector<any, resInfoObj>(state => state.resumeData.info)
   // 人员信息
-  const introducesVal = useSelector<any, resIntroduceObj>(state => state.useResume.introducesData)
+  const introducesVal = useSelector<any, resIntroduceObj>(state => state.resumeData.introducesData)
   // 项目
-  const projectVal = useSelector<any, resProjectArr[]>(state => state.useResume.projectData)
+  const projectVal = useSelector<any, resProjectArr[]>(state => state.resumeData.projectData)
   //  职业技能
-  const certificatesVal = useSelector<any, resCertificatesArr[]>(state => state.useResume.certificates)
+  const certificatesVal = useSelector<any, resCertificatesArr[]>(state => state.resumeData.certificates)
   // 基础信息
   const [infoData, setInfoData] = useState<resInfoObj>(infoVal)
   // 人员信息
@@ -36,7 +34,7 @@ export default function useResume(){
   //置顶
   const [resume_top, setResume_top] = useState<resume_topObj>(RESUME_TOP_DATA)
   // 请求当前找活数据
-  useDidShow(()=>{
+  useEffect(()=>{
     resumeListAction().then(res=>{
       if(res.errcode === 200){
         // 生日需要单独设置
@@ -48,24 +46,31 @@ export default function useResume(){
         }
         const age = time>0? time + '岁' : '未填写';
         res.data.info.age = age;
-        setInfoData(res.data.info);
-        setIntroducesData(res.data.introduces);
-        setProjectData(res.data.project);
-        setCertificates(res.data.certificates);
-        setResume_top(res.data.resume_top);
+        //基本信息
+        let info: resInfoObj = { ...INFODATA_DATA};
+        info = {...info,...res.data.info}
+        setInfoData({...info});
+        //人员信息
+        let introduces: resIntroduceObj = { ...INTRODUCERS_DATA};
+        introduces = { ...introduces, ...res.data.introduces }
+        setIntroducesData({...introduces});
+        // 项目
+        setProjectData({...res.data.project});
+        setCertificates({...res.data.certificates});
+        setResume_top({...res.data.resume_top});
         // 存redux
-        dispatch(setUuid(res.data.info.uuid));
         dispatch(setUseResume({
           info:res.data.info,
           introducesData:res.data.introduces,
           certificates:res.data.certificates,
           projectData:res.data.project,
+          resume_uuid: res.data.info.uuid||'',
         }))
       }else{
         Msg(res.errmsg);
       }
     })
-  })
+  },[])
   return {
     infoData,
     introducesData,

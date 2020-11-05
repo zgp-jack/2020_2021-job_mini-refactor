@@ -12638,6 +12638,31 @@ var SET = exports.SET = 'set';
 
 /***/ }),
 
+/***/ "./src/constants/resume_data.ts":
+/*!**************************************!*\
+  !*** ./src/constants/resume_data.ts ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+/*
+ * @Author: zyb
+ * @Date: 2020-11-04 19:51:52
+ * @LastEditors: zyb
+ * @LastEditTime: 2020-11-04 19:52:35
+ * @Description:
+ */
+var GETUSERRESUME = exports.GETUSERRESUME = 'getUseResume';
+var SETUSERRESUME = exports.SETUSERRESUME = 'setUseResume';
+
+/***/ }),
+
 /***/ "./src/constants/tabbar.ts":
 /*!*********************************!*\
   !*** ./src/constants/tabbar.ts ***!
@@ -12663,31 +12688,6 @@ function typeInTabbar(val) {
 
 /***/ }),
 
-/***/ "./src/constants/useResume.ts":
-/*!************************************!*\
-  !*** ./src/constants/useResume.ts ***!
-  \************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-/*
- * @Author: zyb
- * @Date: 2020-11-04 19:51:52
- * @LastEditors: zyb
- * @LastEditTime: 2020-11-04 19:52:35
- * @Description:
- */
-var GETUSERRESUME = exports.GETUSERRESUME = 'getUseResume';
-var SETUSERRESUME = exports.SETUSERRESUME = 'setUseResume';
-
-/***/ }),
-
 /***/ "./src/constants/user.tsx":
 /*!********************************!*\
   !*** ./src/constants/user.tsx ***!
@@ -12703,31 +12703,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 var GET = exports.GET = 'get';
 var SET = exports.SET = 'set';
-
-/***/ }),
-
-/***/ "./src/constants/uuid.ts":
-/*!*******************************!*\
-  !*** ./src/constants/uuid.ts ***!
-  \*******************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-/*
- * @Author: zyb
- * @Date: 2020-11-04 19:37:27
- * @LastEditors: zyb
- * @LastEditTime: 2020-11-04 19:37:50
- * @Description:
- */
-var GETUUID = exports.GETUUID = 'getUuid';
-var SETUUID = exports.SETUUID = 'setUuid';
 
 /***/ }),
 
@@ -15195,6 +15170,108 @@ exports.default = AREAS;
 /***/ (function(module, exports, __webpack_require__) {
 
 // extracted by mini-css-extract-plugin
+
+/***/ }),
+
+/***/ "./src/pages/resume/publish/data.ts":
+/*!******************************************!*\
+  !*** ./src/pages/resume/publish/data.ts ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+/*
+ * @Author: zyb
+ * @Date: 2020-11-03 18:49:37
+ * @LastEditors: zyb
+ * @LastEditTime: 2020-11-04 17:23:33
+ * @Description:
+ */
+// 基础信息默认参数
+var INFODATA_DATA = exports.INFODATA_DATA = {
+  ad_code: 0,
+  address: '',
+  admin_last_edit_time: '',
+  admin_user_id: '',
+  authentication: '',
+  birthday: '',
+  certificate_show: 0,
+  check: '',
+  city: '未填写',
+  collect_num: '',
+  complain_num: '',
+  country: '',
+  current_admin: '',
+  distance: '',
+  experience: '',
+  extens: '',
+  gender: '',
+  headerimg: '',
+  hometown: '',
+  id: '',
+  img: '',
+  introduce: '未填写',
+  ip_address: '',
+  is_end: '',
+  is_introduces: '',
+  location: '',
+  miniInfoOccupations: [],
+  nation: '',
+  nation_id: '',
+  note: '',
+  number_people: '',
+  occupations: [],
+  occupations_id: '',
+  prof_degree: '',
+  progress: '0',
+  province: '',
+  provinces: '',
+  ranking: '',
+  refresh_time: '',
+  sort_flag: '',
+  source: '',
+  tags: [],
+  tel: '未填写',
+  time: '',
+  type: '',
+  update_time: '',
+  user_id: '',
+  user_uuid: '',
+  username: '',
+  uuid: '',
+  view_num: '',
+  zan_num: '',
+  age: '未填写'
+};
+// 人员信息
+var INTRODUCERS_DATA = exports.INTRODUCERS_DATA = {
+  check: '',
+  experience: '',
+  experience_str: '',
+  hometown: '未填写',
+  hometown_id: '',
+  number_people: '',
+  prof_degree: '',
+  prof_degree_str: '',
+  tag_id: '',
+  tags: [],
+  type: '',
+  type_str: ''
+};
+// 置顶
+var RESUME_TOP_DATA = exports.RESUME_TOP_DATA = {
+  has_top: 0,
+  is_top: 0,
+  is_top_text: '',
+  is_top_to_text: '',
+  top_tips_string: ''
+};
 
 /***/ }),
 
