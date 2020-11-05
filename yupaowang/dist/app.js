@@ -1,7 +1,7 @@
 require("./runtime");
 require("./vendors");
 
-(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["app"],{
+(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["app"],{
 
 /***/ "./src/app.scss":
 /*!**********************!*\
@@ -30,9 +30,9 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
 
 var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
@@ -74,7 +74,7 @@ var _App = function (_BaseComponent) {
     _this.config = {
       pages: ['pages/index/index', 'pages/userauth/index', "pages/recruit/publish/index", "pages/used/lists/index", "pages/map/recruit/index", "pages/map/resume/index", "pages/used/publish/index", "pages/used/info/index", "pages/invite/index", "pages/getintegral/index", "pages/integral/source/index", "pages/integral/temp/index", "pages/integral/official/index", "pages/integral/expend/index", "pages/recharge/index", "pages/realname/index", "pages/map/realname/index", "pages/userinfo/info/index", "pages/userinfo/add/index", "pages/userinfo/phone/index", "pages/userinfo/updatePass/index", "pages/published/recruit/index", "pages/published/used/index", "pages/collection/index", "pages/help/index", "pages/feedbacklist/index", "pages/feedback/index", "pages/static/invite/index", "pages/query/index", "pages/information/mymessage/index", "pages/information/system/index", 'pages/integral/tabber/index', 'pages/detail/info/index', 'pages/topping/index', 'pages/topping/distruction/index',
       // 'pages/topping/recruit/index',//置顶找活范围
-      'pages/resume/publish/index', 'pages/resume/add_info/index', 'pages/resume/add_member/index', 'pages/resume/add_skill/index', 'pages/resume/add_project/index', 'pages/resume/projects/index', 'pages/resume/skills/index', 'pages/resume/detail/index', 'pages/resume/preview/index', 'pages/login/index'],
+      'pages/resume/publish/index', 'pages/resume/add_info/index', 'pages/resume/add_member/index', 'pages/resume/add_skill/index', 'pages/resume/add_project/index', 'pages/resume/projects/index', 'pages/resume/skills/index', 'pages/rank-rules/index', 'pages/resume/detail/index', 'pages/resume/preview/index', 'pages/login/index'],
       subPackages: [{
         root: 'subpackage/pages',
         pages: ['checkauth/index', 'about/index', 'report/index', 'notice/index', 'download/index', 'ranking/index', 'course/index', 'anti-fraud/index']
@@ -121,8 +121,8 @@ var _App = function (_BaseComponent) {
 
 exports.default = _App;
 
-App(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createApp(_App));
-_taroTt2.default.initPxTransform({
+App(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createApp(_App));
+_taroWeapp2.default.initPxTransform({
   "designWidth": 750,
   "deviceRatio": {
     "640": 1.17,
@@ -793,9 +793,9 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 exports.default = User;
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
 
 var _store = __webpack_require__(/*! ../config/store */ "./src/config/store.ts");
 
@@ -803,7 +803,7 @@ var _user = __webpack_require__(/*! ../constants/user */ "./src/constants/user.t
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var userInfo = _taroTt2.default.getStorageSync(_store.UserInfo);
+var userInfo = _taroWeapp2.default.getStorageSync(_store.UserInfo);
 var DEFAULT_STATE = userInfo ? userInfo : {
   userId: 0,
   uuid: '',
@@ -820,7 +820,7 @@ function User() {
       return _extends({}, state, action.data);
     case _user.GET:
       if (!state.login) {
-        var _userInfo = _taroTt2.default.getStorageSync(_store.UserInfo);
+        var _userInfo = _taroWeapp2.default.getStorageSync(_store.UserInfo);
         if (_userInfo) return _userInfo;
       }
       return state;

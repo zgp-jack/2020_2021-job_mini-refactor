@@ -1,4 +1,4 @@
-(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["pages/feedback/index"],{
+(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["pages/feedback/index"],{
 
 /***/ "./src/pages/feedback/index.scss":
 /*!***************************************!*\
@@ -33,9 +33,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
 
 var _index = __webpack_require__(/*! ../../utils/upload/index */ "./src/utils/upload/index.tsx");
 
@@ -88,7 +88,7 @@ var Feedback = function (_Taro$Component) {
     key: "_constructor",
     value: function _constructor(props) {
       _get(Feedback.prototype.__proto__ || Object.getPrototypeOf(Feedback.prototype), "_constructor", this).call(this, props);
-      this.$$refs = new _taroTt2.default.RefsArray();
+      this.$$refs = new _taroWeapp2.default.RefsArray();
     }
   }, {
     key: "_createData",
@@ -99,32 +99,32 @@ var Feedback = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__56"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__56"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
           $prevCompid__56 = _genCompid2[0],
           $compid__56 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__57"),
+      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__57"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
           $prevCompid__57 = _genCompid4[0],
           $compid__57 = _genCompid4[1];
 
-      var _genCompid5 = (0, _taroTt.genCompid)(__prefix + "$compid__58"),
+      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__58"),
           _genCompid6 = _slicedToArray(_genCompid5, 2),
           $prevCompid__58 = _genCompid6[0],
           $compid__58 = _genCompid6[1];
 
-      var _genCompid7 = (0, _taroTt.genCompid)(__prefix + "$compid__59"),
+      var _genCompid7 = (0, _taroWeapp.genCompid)(__prefix + "$compid__59"),
           _genCompid8 = _slicedToArray(_genCompid7, 2),
           $prevCompid__59 = _genCompid8[0],
           $compid__59 = _genCompid8[1];
 
-      var _genCompid9 = (0, _taroTt.genCompid)(__prefix + "$compid__60"),
+      var _genCompid9 = (0, _taroWeapp.genCompid)(__prefix + "$compid__60"),
           _genCompid10 = _slicedToArray(_genCompid9, 2),
           $prevCompid__60 = _genCompid10[0],
           $compid__60 = _genCompid10[1];
 
-      var router = (0, _taroTt.useRouter)();
+      var router = (0, _taroWeapp.useRouter)();
       var _router$params = router.params,
           _router$params$userna = _router$params.username,
           username = _router$params$userna === undefined ? '' : _router$params$userna,
@@ -132,40 +132,40 @@ var Feedback = function (_Taro$Component) {
           phone = _router$params$phone === undefined ? '' : _router$params$phone;
       // 用户名字
 
-      var _useState = (0, _taroTt.useState)(username),
+      var _useState = (0, _taroWeapp.useState)(username),
           _useState2 = _slicedToArray(_useState, 2),
           name = _useState2[0],
           setName = _useState2[1];
       // 用户电话号码
 
 
-      var _useState3 = (0, _taroTt.useState)(phone),
+      var _useState3 = (0, _taroWeapp.useState)(phone),
           _useState4 = _slicedToArray(_useState3, 2),
           uphone = _useState4[0],
           setUPhone = _useState4[1];
       // 意见
 
 
-      var _useState5 = (0, _taroTt.useState)(''),
+      var _useState5 = (0, _taroWeapp.useState)(''),
           _useState6 = _slicedToArray(_useState5, 2),
           textarea = _useState6[0],
           setTextarea = _useState6[1];
       // 是否显示获取验证码
 
 
-      var _useState7 = (0, _taroTt.useState)(false),
+      var _useState7 = (0, _taroWeapp.useState)(false),
           _useState8 = _slicedToArray(_useState7, 2),
           isShow = _useState8[0],
           setIsShow = _useState8[1];
       // 验证码
 
 
-      var _useState9 = (0, _taroTt.useState)(''),
+      var _useState9 = (0, _taroWeapp.useState)(''),
           _useState10 = _slicedToArray(_useState9, 2),
           code = _useState10[0],
           setCode = _useState10[1];
 
-      var _useState11 = (0, _taroTt.useState)({
+      var _useState11 = (0, _taroWeapp.useState)({
         item: []
       }),
           _useState12 = _slicedToArray(_useState11, 2),
@@ -174,7 +174,7 @@ var Feedback = function (_Taro$Component) {
       // 默认字数
 
 
-      var _useState13 = (0, _taroTt.useState)(0),
+      var _useState13 = (0, _taroWeapp.useState)(0),
           _useState14 = _slicedToArray(_useState13, 2),
           num = _useState14[0],
           setNum = _useState14[1];
@@ -246,7 +246,7 @@ var Feedback = function (_Taro$Component) {
               (0, _index6.ShowActionModal)({
                 msg: res.errmsg,
                 success: function success() {
-                  _taroTt2.default.navigateBack({
+                  _taroWeapp2.default.navigateBack({
                     delta: 1
                   });
                 }
@@ -278,15 +278,15 @@ var Feedback = function (_Taro$Component) {
         return userGetCode(uphone);
       };
       this.anonymousFunc5 = handleSubmission;
-      _taroTt.propsManager.set({
+      _taroWeapp.propsManager.set({
         "num": num
       }, $compid__56, $prevCompid__56);
-      image.item && _taroTt.propsManager.set({
+      image.item && _taroWeapp.propsManager.set({
         "images": image.item,
         "max": 9,
         "userUploadImg": userUploadImg
       }, $compid__57, $prevCompid__57);
-      _taroTt.propsManager.set({
+      _taroWeapp.propsManager.set({
         "name": "name",
         "title": "\u8054\u7CFB\u4EBA",
         "type": "text",
@@ -294,7 +294,7 @@ var Feedback = function (_Taro$Component) {
         "value": name,
         "onChange": this.anonymousFunc1
       }, $compid__58, $prevCompid__58);
-      _taroTt.propsManager.set({
+      _taroWeapp.propsManager.set({
         "name": "phone",
         "title": "\u8054\u7CFB\u7535\u8BDD",
         "type": "text",
@@ -303,7 +303,7 @@ var Feedback = function (_Taro$Component) {
         "value": uphone,
         "onChange": this.anonymousFunc2
       }, $compid__59, $prevCompid__59);
-      isShow && _taroTt.propsManager.set({
+      isShow && _taroWeapp.propsManager.set({
         "clear": true,
         "title": "\u9A8C\u8BC1\u7801",
         "type": "text",
@@ -360,14 +360,14 @@ var Feedback = function (_Taro$Component) {
   }]);
 
   return Feedback;
-}(_taroTt2.default.Component);
+}(_taroWeapp2.default.Component);
 
 Feedback.$$events = ["anonymousFunc0", "anonymousFunc4", "anonymousFunc5"];
 Feedback.$$componentPath = "pages/feedback/index";
 Feedback.config = { navigationBarTitleText: '鱼泡网-意见反馈' };
 exports.default = Feedback;
 
-Page(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(Feedback, true));
+Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(Feedback, true));
 
 /***/ })
 

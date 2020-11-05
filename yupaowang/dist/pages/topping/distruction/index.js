@@ -1,4 +1,4 @@
-(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["pages/topping/distruction/index"],{
+(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["pages/topping/distruction/index"],{
 
 /***/ "./src/pages/topping/distruction/index.scss":
 /*!**************************************************!*\
@@ -31,9 +31,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
 
 var _index = __webpack_require__(/*! ../../../utils/request/index */ "./src/utils/request/index.ts");
 
@@ -82,7 +82,7 @@ var Distruction = function (_Taro$Component) {
     key: '_constructor',
     value: function _constructor(props) {
       _get(Distruction.prototype.__proto__ || Object.getPrototypeOf(Distruction.prototype), '_constructor', this).call(this, props);
-      this.$$refs = new _taroTt2.default.RefsArray();
+      this.$$refs = new _taroWeapp2.default.RefsArray();
     }
   }, {
     key: '_createData',
@@ -95,17 +95,17 @@ var Distruction = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _useContext = (0, _taroTt.useContext)(_index3.contextItem),
+      var _useContext = (0, _taroWeapp.useContext)(_index3.contextItem),
           AreParams = _useContext.AreParams,
           setAreParams = _useContext.setAreParams;
 
-      var router = (0, _taroTt.useRouter)();
+      var router = (0, _taroWeapp.useRouter)();
       var _router$params = router.params,
           max_city = _router$params.max_city,
           max_province = _router$params.max_province;
       // 热门城市
 
-      var _useState = (0, _taroTt.useState)({
+      var _useState = (0, _taroWeapp.useState)({
         item: []
       }),
           _useState2 = _slicedToArray(_useState, 2),
@@ -114,7 +114,7 @@ var Distruction = function (_Taro$Component) {
       // 所有省份
 
 
-      var _useState3 = (0, _taroTt.useState)({
+      var _useState3 = (0, _taroWeapp.useState)({
         areData: []
       }),
           _useState4 = _slicedToArray(_useState3, 2),
@@ -123,21 +123,21 @@ var Distruction = function (_Taro$Component) {
       // 是否点击输入框
 
 
-      var _useState5 = (0, _taroTt.useState)(false),
+      var _useState5 = (0, _taroWeapp.useState)(false),
           _useState6 = _slicedToArray(_useState5, 2),
           clickInput = _useState6[0],
           setClickInput = _useState6[1];
       // 输入输入框时
 
 
-      var _useState7 = (0, _taroTt.useState)(false),
+      var _useState7 = (0, _taroWeapp.useState)(false),
           _useState8 = _slicedToArray(_useState7, 2),
           onInput = _useState8[0],
           setOnInput = _useState8[1];
       // 搜索的内容
 
 
-      var _useState9 = (0, _taroTt.useState)({
+      var _useState9 = (0, _taroWeapp.useState)({
         list: []
       }),
           _useState10 = _slicedToArray(_useState9, 2),
@@ -146,14 +146,14 @@ var Distruction = function (_Taro$Component) {
       // 输入框内容
 
 
-      var _useState11 = (0, _taroTt.useState)(''),
+      var _useState11 = (0, _taroWeapp.useState)(''),
           _useState12 = _slicedToArray(_useState11, 2),
           inputVal = _useState12[0],
           setInputVal = _useState12[1];
       // 搜索历史
 
 
-      var _useState13 = (0, _taroTt.useState)({
+      var _useState13 = (0, _taroWeapp.useState)({
         historylist: []
       }),
           _useState14 = _slicedToArray(_useState13, 2),
@@ -162,7 +162,7 @@ var Distruction = function (_Taro$Component) {
       // 点击参数
 
 
-      var _useState15 = (0, _taroTt.useState)({
+      var _useState15 = (0, _taroWeapp.useState)({
         city: [],
         province: [],
         whole: []
@@ -173,9 +173,9 @@ var Distruction = function (_Taro$Component) {
       // 设置参数
 
 
-      (0, _taroTt.useEffect)(function () {
+      (0, _taroWeapp.useEffect)(function () {
         // 获取搜索历史
-        var searchItem = _taroTt2.default.getStorageSync(_store.SearchList);
+        var searchItem = _taroWeapp2.default.getStorageSync(_store.SearchList);
         if (searchItem) {
           setHistory({ historylist: searchItem });
         }
@@ -239,7 +239,7 @@ var Distruction = function (_Taro$Component) {
             setAre({ areData: item });
             setParams({ city: AreParams.city, province: AreParams.province, whole: [] });
           } else {
-            _taroTt2.default.showModal({
+            _taroWeapp2.default.showModal({
               title: '温馨提示',
               content: res.errmsg,
               showCancel: false
@@ -357,7 +357,7 @@ var Distruction = function (_Taro$Component) {
               });
             } else {
               if (cityItem.length >= parseInt(max_city)) {
-                _taroTt2.default.showModal({
+                _taroWeapp2.default.showModal({
                   title: '温馨提示',
                   content: '\u6700\u591A\u53EF\u540C\u65F6\u7F6E\u9876' + max_city + '\u4E2A\u5E02\u3001' + max_province + '\u4E2A\u7701\u6216\u76F4\u8F96\u5E02',
                   showCancel: false
@@ -477,7 +477,7 @@ var Distruction = function (_Taro$Component) {
               });
             } else {
               if (provinceItem.length >= parseInt(max_province)) {
-                _taroTt2.default.showModal({
+                _taroWeapp2.default.showModal({
                   title: '温馨提示',
                   content: '\u6700\u591A\u53EF\u540C\u65F6\u7F6E\u9876' + max_city + '\u4E2A\u5E02\u3001' + max_province + '\u4E2A\u7701\u6216\u76F4\u8F96\u5E02',
                   showCancel: false
@@ -602,17 +602,17 @@ var Distruction = function (_Taro$Component) {
           history.historylist.pop();
         }
         // 设置搜索历史
-        _taroTt2.default.setStorageSync(_store.SearchList, history.historylist);
+        _taroWeapp2.default.setStorageSync(_store.SearchList, history.historylist);
       };
       // 清除历史
       var handleCloseHistory = function handleCloseHistory() {
         setHistory({ historylist: [] });
-        _taroTt2.default.clearStorageSync();
+        _taroWeapp2.default.clearStorageSync();
       };
       // 确认选择
       var handleClick = function handleClick() {
         setAreParams(params.city, params.province, params.whole);
-        _taroTt2.default.navigateBack({
+        _taroWeapp2.default.navigateBack({
           delta: 1
         });
       };
@@ -624,7 +624,7 @@ var Distruction = function (_Taro$Component) {
       this.anonymousFunc8 = handleClick;
       var loopArray79 = searchData.list.length > 0 ? searchData.list.map(function (v, __index2) {
         v = {
-          $original: (0, _taroTt.internal_get_original)(v)
+          $original: (0, _taroWeapp.internal_get_original)(v)
         };
         var _$indexKey = "ifzzz" + __index2;
         _this2.anonymousFunc2Map[_$indexKey] = function () {
@@ -637,7 +637,7 @@ var Distruction = function (_Taro$Component) {
       }) : [];
       var loopArray80 = clickInput && !onInput && history.historylist.length > 0 ? history.historylist.map(function (v, __index4) {
         v = {
-          $original: (0, _taroTt.internal_get_original)(v)
+          $original: (0, _taroWeapp.internal_get_original)(v)
         };
         var _$indexKey2 = "igzzz" + __index4;
         _this2.anonymousFunc4Map[_$indexKey2] = function () {
@@ -650,7 +650,7 @@ var Distruction = function (_Taro$Component) {
       }) : [];
       var loopArray81 = data.item.map(function (v, __index5) {
         v = {
-          $original: (0, _taroTt.internal_get_original)(v)
+          $original: (0, _taroWeapp.internal_get_original)(v)
         };
         var _$indexKey3 = "ihzzz" + __index5;
         _this2.anonymousFunc5Map[_$indexKey3] = function () {
@@ -663,11 +663,11 @@ var Distruction = function (_Taro$Component) {
       });
       var loopArray82 = are.areData.map(function (v, __index7) {
         v = {
-          $original: (0, _taroTt.internal_get_original)(v)
+          $original: (0, _taroWeapp.internal_get_original)(v)
         };
         var $anonymousCallee__9 = v.$original.children.map(function (val, index) {
           val = {
-            $original: (0, _taroTt.internal_get_original)(val)
+            $original: (0, _taroWeapp.internal_get_original)(val)
           };
           var _$indexKey4 = 'iizzz' + __index7 + '-' + index;
           _this2.anonymousFunc6Map[_$indexKey4] = function () {
@@ -774,14 +774,14 @@ var Distruction = function (_Taro$Component) {
   }]);
 
   return Distruction;
-}(_taroTt2.default.Component);
+}(_taroWeapp2.default.Component);
 
 Distruction.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6", "anonymousFunc8"];
 Distruction.$$componentPath = "pages/topping/distruction/index";
 Distruction.config = { navigationBarTitleText: '招工置顶' };
 exports.default = Distruction;
 
-Page(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(Distruction, true));
+Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(Distruction, true));
 
 /***/ })
 

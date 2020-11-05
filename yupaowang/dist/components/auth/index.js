@@ -1,4 +1,4 @@
-(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["components/auth/index"],{
+(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["components/auth/index"],{
 
 /***/ "./src/components/auth/index.scss":
 /*!****************************************!*\
@@ -29,9 +29,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
 
 var _index = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
 
@@ -76,7 +76,7 @@ var Auth = function (_Taro$Component) {
     key: "_constructor",
     value: function _constructor(props) {
       _get(Auth.prototype.__proto__ || Object.getPrototypeOf(Auth.prototype), "_constructor", this).call(this, props);
-      this.$$refs = new _taroTt2.default.RefsArray();
+      this.$$refs = new _taroWeapp2.default.RefsArray();
     }
   }, {
     key: "_createData",
@@ -98,7 +98,7 @@ var Auth = function (_Taro$Component) {
       });
       // 返回上一页
       var pageBack = function pageBack() {
-        _taroTt2.default.navigateBack();
+        _taroWeapp2.default.navigateBack();
       };
       // 取消授权
       var cancelAuth = function cancelAuth() {
@@ -111,7 +111,7 @@ var Auth = function (_Taro$Component) {
       // 用户确认授权
       var userAuthAction = function userAuthAction(e) {
         if (e.detail.userInfo) {
-          _taroTt2.default.login({
+          _taroWeapp2.default.login({
             success: function success(res) {
               if (res.code) {
                 (0, _index2.getUserSessionKey)(res.code).then(function (res) {
@@ -129,15 +129,15 @@ var Auth = function (_Taro$Component) {
       };
       // 解密sessionkey
       var decodeSessionKey = function decodeSessionKey(key) {
-        _taroTt2.default.getSetting({
+        _taroWeapp2.default.getSetting({
           success: function success(res) {
             if (!res.authSetting['scope.userInfo']) {
-              _taroTt2.default.getUserInfo({
+              _taroWeapp2.default.getUserInfo({
                 success: function success() {
                   doAuthRequest(key);
                 },
                 fail: function fail() {
-                  _taroTt2.default.openSetting();
+                  _taroWeapp2.default.openSetting();
                 }
               });
             } else {
@@ -148,7 +148,7 @@ var Auth = function (_Taro$Component) {
       };
       // 发起授权请求
       var doAuthRequest = function doAuthRequest(key) {
-        _taroTt2.default.getUserInfo({
+        _taroWeapp2.default.getUserInfo({
           success: function success(res) {
             var encryptedData = res.encryptedData;
             var iv = res.iv;
@@ -168,7 +168,7 @@ var Auth = function (_Taro$Component) {
                   uuid: res.data.uuid,
                   login: true
                 };
-                _taroTt2.default.setStorageSync(_store.UserInfo, user);
+                _taroWeapp2.default.setStorageSync(_store.UserInfo, user);
                 dispatch((0, _user.setUserInfo)(user));
                 callback && callback();
                 if (page) {
@@ -193,7 +193,7 @@ var Auth = function (_Taro$Component) {
       Object.assign(this.__state, {
         login: login,
         page: page,
-        ISWEIXIN: false,
+        ISWEIXIN: true,
         IMGCDNURL: _index.IMGCDNURL
       });
       return this.__state;
@@ -216,13 +216,13 @@ var Auth = function (_Taro$Component) {
   }]);
 
   return Auth;
-}(_taroTt2.default.Component);
+}(_taroWeapp2.default.Component);
 
 Auth.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2"];
 Auth.$$componentPath = "components/auth/index";
 exports.default = Auth;
 
-Component(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(Auth));
+Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(Auth));
 
 /***/ })
 

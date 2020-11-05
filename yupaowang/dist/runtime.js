@@ -139,7 +139,7 @@
 /******/ 	// __webpack_public_path__
 /******/ 	__webpack_require__.p = "/";
 /******/
-/******/ 	var jsonpArray = tt["webpackJsonp"] = tt["webpackJsonp"] || [];
+/******/ 	var jsonpArray = wx["webpackJsonp"] = wx["webpackJsonp"] || [];
 /******/ 	var oldJsonpFunction = jsonpArray.push.bind(jsonpArray);
 /******/ 	jsonpArray.push = webpackJsonpCallback;
 /******/ 	jsonpArray = jsonpArray.slice();

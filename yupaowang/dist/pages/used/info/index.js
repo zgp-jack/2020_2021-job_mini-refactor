@@ -1,4 +1,4 @@
-(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["pages/used/info/index"],{
+(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["pages/used/info/index"],{
 
 /***/ "./src/pages/used/info/index.scss":
 /*!****************************************!*\
@@ -31,9 +31,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
 
 var _index = __webpack_require__(/*! ../../../utils/request/index */ "./src/utils/request/index.ts");
 
@@ -66,7 +66,7 @@ var UserInfo = function (_Taro$Component) {
     key: "_constructor",
     value: function _constructor(props) {
       _get(UserInfo.prototype.__proto__ || Object.getPrototypeOf(UserInfo.prototype), "_constructor", this).call(this, props);
-      this.$$refs = new _taroTt2.default.RefsArray();
+      this.$$refs = new _taroWeapp2.default.RefsArray();
     }
   }, {
     key: "_createData",
@@ -76,17 +76,17 @@ var UserInfo = function (_Taro$Component) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var router = (0, _taroTt.useRouter)();
+      var router = (0, _taroWeapp.useRouter)();
       var id = router.params.id;
 
-      var _useState = (0, _taroTt.useState)(),
+      var _useState = (0, _taroWeapp.useState)(),
           _useState2 = _slicedToArray(_useState, 2),
           model = _useState2[0],
           setModel = _useState2[1];
       // 初始化二手交易信息
 
 
-      (0, _taroTt.useEffect)(function () {
+      (0, _taroWeapp.useEffect)(function () {
         (0, _index.getUsedInfo)(id).then(function (data) {
           if (data.errcode == 'ok') {
             setModel(data.data);
@@ -94,7 +94,7 @@ var UserInfo = function (_Taro$Component) {
             (0, _index2.ShowActionModal)({
               msg: data.errmsg,
               success: function success() {
-                _taroTt2.default.navigateBack();
+                _taroWeapp2.default.navigateBack();
               }
             });
           }
@@ -102,7 +102,7 @@ var UserInfo = function (_Taro$Component) {
           (0, _index2.ShowActionModal)({
             msg: '网络错误，获取失败',
             success: function success() {
-              _taroTt2.default.navigateBack();
+              _taroWeapp2.default.navigateBack();
             }
           });
         });
@@ -115,7 +115,7 @@ var UserInfo = function (_Taro$Component) {
         if (model.is_end == '2') {
           return;
         }
-        _taroTt2.default.makePhoneCall({
+        _taroWeapp2.default.makePhoneCall({
           phoneNumber: model.user_mobile
         });
       };
@@ -135,13 +135,13 @@ var UserInfo = function (_Taro$Component) {
   }]);
 
   return UserInfo;
-}(_taroTt2.default.Component);
+}(_taroWeapp2.default.Component);
 
 UserInfo.$$events = ["anonymousFunc0"];
 UserInfo.$$componentPath = "pages/used/info/index";
 exports.default = UserInfo;
 
-Page(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(UserInfo, true));
+Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(UserInfo, true));
 
 /***/ })
 

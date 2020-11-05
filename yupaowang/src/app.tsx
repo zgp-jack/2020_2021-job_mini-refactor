@@ -1,6 +1,6 @@
-import Taro, { Config } from '@tarojs/taro'
-import { Component } from 'react'
-import { Provider } from '@tarojs/redux'
+import Taro, {Config} from '@tarojs/taro'
+import {Component} from 'react'
+import {Provider} from '@tarojs/redux'
 import Index from './pages/index'
 import configStore from './store'
 import './app.scss'
@@ -53,10 +53,11 @@ class App extends Component {
       'pages/resume/add_project/index', //新增项目经验
       'pages/resume/projects/index', //项目经验列表
       'pages/resume/skills/index', //技能证书列表
+      'pages/rank-rules/index', //排名规则
 
 
       'pages/resume/detail/index', // 找活详情
-      
+
       'pages/resume/preview/index', // 预览
       'pages/login/index',//用户登录
     ],
@@ -98,24 +99,28 @@ class App extends Component {
     }
   }
 
-  componentDidMount() { }
+  componentDidMount() {
+  }
 
-  componentDidShow() { }
+  componentDidShow() {
+  }
 
-  componentDidHide() { }
+  componentDidHide() {
+  }
 
-  componentDidCatchError() { }
+  componentDidCatchError() {
+  }
 
   // 在 App 类中的 render() 函数没有实际作用
   // 请勿修改此函数
   render() {
     return (
-      <Provider store={store} >
-        <Index />
+      <Provider store={store}>
+        <Index/>
       </Provider>
     )
   }
-  
+
 }
 
-Taro.render(<App />, document.getElementById('app'))
+Taro.render(<App/>, document.getElementById('app'))

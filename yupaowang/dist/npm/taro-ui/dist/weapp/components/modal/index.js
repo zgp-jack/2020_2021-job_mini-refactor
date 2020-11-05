@@ -1,4 +1,4 @@
-(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["npm/taro-ui/dist/weapp/components/modal/index"],{
+(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["npm/taro-ui/dist/weapp/components/modal/index"],{
 
 /***/ "./node_modules/taro-ui/dist/weapp/components/modal/index.js":
 /*!*******************************************************************!*\
@@ -22,9 +22,9 @@ var _get = function get(object, property, receiver) { if (object === null) objec
 
 var _class, _temp2;
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
 
 var _propTypes = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
 
@@ -98,9 +98,9 @@ var AtModal = (_temp2 = _class = function (_AtComponent) {
 
       this.state = {
         _isOpened: isOpened,
-        isWEB: _taroTt2.default.getEnv() === _taroTt2.default.ENV_TYPE.WEB
+        isWEB: _taroWeapp2.default.getEnv() === _taroWeapp2.default.ENV_TYPE.WEB
       };
-      this.$$refs = new _taroTt2.default.RefsArray();
+      this.$$refs = new _taroWeapp2.default.RefsArray();
     }
   }, {
     key: 'componentWillReceiveProps',
@@ -127,7 +127,7 @@ var AtModal = (_temp2 = _class = function (_AtComponent) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__49"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__49"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
           $prevCompid__49 = _genCompid2[0],
           $compid__49 = _genCompid2[1];
@@ -150,7 +150,7 @@ var AtModal = (_temp2 = _class = function (_AtComponent) {
       if (title || content) {
         _$isRenderAction = cancelText || confirmText;
         _$anonymousState__temp = content ? isWEB ? { __html: content.replace(/\n/g, '<br/>') } : null : null;
-        _$isRenderAction && _taroTt.propsManager.set({
+        _$isRenderAction && _taroWeapp.propsManager.set({
           "isSimple": true
         }, $compid__49, $prevCompid__49);
       }
@@ -170,7 +170,7 @@ var AtModal = (_temp2 = _class = function (_AtComponent) {
   }]);
 
   return AtModal;
-}(_component2.default), _class.$$events = ["handleClickOverlay", "handleCancel", "handleConfirm", "handleTouchMove"], _class.$$componentPath = 'Users/axin/codes/\u9C7C\u6CE1\u7F51/\u5C0F\u7A0B\u5E8FTS\u91CD\u6784\u9879\u76EE/TaroTs-YuPaoWang/yupaowang/node_modules/taro-ui/dist/weapp/components/modal/index', _temp2);
+}(_component2.default), _class.$$events = ["handleClickOverlay", "handleCancel", "handleConfirm", "handleTouchMove"], _class.$$componentPath = "Users/lixiaoyu/work-project/yupao-ts-recode/yupaowang/node_modules/taro-ui/dist/weapp/components/modal/index", _temp2);
 
 
 AtModal.defaultProps = {
@@ -190,7 +190,7 @@ AtModal.propTypes = {
 };
 exports.default = AtModal;
 
-Component(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(AtModal));
+Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(AtModal));
 
 /***/ })
 
