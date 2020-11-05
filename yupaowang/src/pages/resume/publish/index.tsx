@@ -57,7 +57,7 @@ export default function ResumePublish(){
                   {resume_top.has_top != 0 && resume_top.is_top == 1 && <Text>置顶中</Text>}
                 </View>
               </View>
-              {resume_top.has_top == 0 && <View className='progress-rank'> 马上去置顶>></View>}
+              {resume_top.has_top == 0 && <View className='progress-rank'> 马上去置顶&gt;&gt;</View>}
               {resume_top.has_top != 0 && <View className='progress-rank'>
                 {resume_top.is_top != 1 && <View>继续置顶</View>}
                 {resume_top.is_top == 1 && <View>取消置顶</View>}
@@ -117,9 +117,11 @@ export default function ResumePublish(){
             <View className='content'>
               <View className='craft'>
                 <Text className='craft-txt'>工种</Text>
+                <View className='craft-list'>
                   {infoData.occupations && infoData.occupations.map((v,i)=>(
                     <View className='craft-name' key={v+i}>{v}</View>
                   ))}
+                </View>
               </View>
               <View className='craft'>
                 <Text className='craft-txt'>手机</Text>
