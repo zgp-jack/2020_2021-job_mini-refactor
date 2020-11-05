@@ -1,4 +1,4 @@
-(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["subpackage/pages/report/index"],{
+(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["subpackage/pages/report/index"],{
 
 /***/ "./src/subpackage/pages/report/index.scss":
 /*!************************************************!*\
@@ -29,9 +29,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
+var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
 
-var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
+var _taroTt2 = _interopRequireDefault(_taroTt);
 
 var _index = __webpack_require__(/*! ../../../config/index */ "./src/config/index.ts");
 
@@ -66,7 +66,7 @@ var Report = function (_Taro$Component) {
     key: "_constructor",
     value: function _constructor(props) {
       _get(Report.prototype.__proto__ || Object.getPrototypeOf(Report.prototype), "_constructor", this).call(this, props);
-      this.$$refs = new _taroWeapp2.default.RefsArray();
+      this.$$refs = new _taroTt2.default.RefsArray();
     }
   }, {
     key: "_createData",
@@ -77,7 +77,7 @@ var Report = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
       var handleClick = function handleClick() {
-        _taroWeapp2.default.makePhoneCall({ phoneNumber: _index.SERVERPHONE });
+        _taroTt2.default.makePhoneCall({ phoneNumber: _index.SERVERPHONE });
       };
       this.anonymousFunc0 = function () {
         handleClick();
@@ -95,14 +95,14 @@ var Report = function (_Taro$Component) {
   }]);
 
   return Report;
-}(_taroWeapp2.default.Component);
+}(_taroTt2.default.Component);
 
 Report.$$events = ["anonymousFunc0"];
 Report.$$componentPath = "subpackage/pages/report/index";
 Report.config = { navigationBarTitleText: '鱼泡网-举报骗子' };
 exports.default = Report;
 
-Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(Report, true));
+Page(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(Report, true));
 
 /***/ })
 

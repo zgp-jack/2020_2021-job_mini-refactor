@@ -2,7 +2,7 @@
  * @Author: zyb
  * @Date: 2020-11-03 15:03:11
  * @LastEditors: zyb
- * @LastEditTime: 2020-11-05 10:09:10
+ * @LastEditTime: 2020-11-05 19:53:36
  * @Description: 
  */
 import { useState,useDidShow, useEffect } from '@tarojs/taro'
@@ -55,8 +55,8 @@ export default function useResume(){
         introduces = { ...introduces, ...res.data.introduces }
         setIntroducesData({...introduces});
         // 项目
-        setProjectData({...res.data.project});
-        setCertificates({...res.data.certificates});
+        setProjectData([...res.data.project]);
+        setCertificates([...res.data.certificates]);
         setResume_top({...res.data.resume_top});
         // 存redux
         dispatch(setUseResume({

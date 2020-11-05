@@ -1122,6 +1122,11 @@ export interface resProjectArr {
   start_time: string,
   update_time: string,
   uuid: string,
+  imageData?: RecruitImageModel
+}
+export interface RecruitImageModel {
+  url: string,
+  httpurl: string
 }
 export interface resIntroduceObj {
   check: string,
