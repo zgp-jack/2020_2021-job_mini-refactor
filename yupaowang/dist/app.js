@@ -664,7 +664,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                                                                                                                                                                                                                                                                    * @Author: zyb
                                                                                                                                                                                                                                                                    * @Date: 2020-11-04 19:59:33
                                                                                                                                                                                                                                                                    * @LastEditors: zyb
-                                                                                                                                                                                                                                                                   * @LastEditTime: 2020-11-04 21:11:58
+                                                                                                                                                                                                                                                                   * @LastEditTime: 2020-11-05 10:09:29
                                                                                                                                                                                                                                                                    * @Description:
                                                                                                                                                                                                                                                                    */
 
@@ -680,7 +680,8 @@ var DEFAULT_STATE = {
   introducesData: _data.INTRODUCERS_DATA,
   projectData: [],
   certificates: [],
-  resume_uuid: ''
+  resume_uuid: '',
+  isSet: false
 };
 function resumeData() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : DEFAULT_STATE;
