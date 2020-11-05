@@ -121,6 +121,7 @@ function UsedCondition({ data, setSearchData }: ConditionProps) {
       setOldFleamarketTreeIndex(i)
       setSearchData(ClassifyPickerKey, fleamarketTree[i].id.toString(), fleamarketTree[i].name)
       setFleamarketTreeChildData([])
+      setoldFleamarketTreeChildData([])
       closeDrawer()
     } else {
       setSearchData(ClassifyPickerKey, fleamarketTree[i].id.toString(), fleamarketTree[i].name, true)
