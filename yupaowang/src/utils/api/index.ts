@@ -208,6 +208,4 @@ export const userCheckDouyinRecharge: string = REQUESTURL + '/pay/byte-check/'
 export const realnameQueryUrl: string = REQUESTURL + 'resume/auth-worker-find/'
 // 找活信息发布基本资料 配置项
 export const getResumeAddInfoConfig: string = REQUESTURL + 'resumes/get-data/'
-//排名规则
-export const getRankRulesList: string = REQUESTURL + 'resumes/sort/'
 

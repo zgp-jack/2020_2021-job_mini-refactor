@@ -1,7 +1,7 @@
 import Taro, {useEffect, useState} from '@tarojs/taro'
 import {View, Text, Image} from "@tarojs/components";
 import './index.scss'
-import {getRankRulesList} from "../../utils/request";
+import {resumesSortAction} from "../../utils/request";
 
 interface RankRulesItem {
   type_name: string
@@ -19,7 +19,7 @@ export default function () {
   const [tips, setTips] = useState<string[]>([])
   const [postError, setPostError] = useState<boolean>(false)
   useEffect(() => {
-    getRankRulesList().then(res => {
+    resumesSortAction().then(res => {
       const {sort_rule_lists, warm_tips, resume_info} = res.data
       setSortFlag(resume_info.sort_flag)
       setList(sort_rule_lists)

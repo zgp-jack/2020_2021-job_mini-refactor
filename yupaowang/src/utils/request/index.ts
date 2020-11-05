@@ -1165,11 +1165,3 @@ export function getResumeAddInfoConfig(): Promise<Inter.ResumeAddInfoConfig> {
     method: 'POST'
   })
 }
-
-// 排名规则数据
-export function getRankRulesList(): Promise<any> {
-  return doRequestAction({
-    url: api.getRankRulesList,
-    method: 'POST'
-  })
-}
