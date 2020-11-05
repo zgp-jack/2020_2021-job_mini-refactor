@@ -8,16 +8,12 @@ import { useSelector } from '@tarojs/redux'
 import './index.scss'
 
 export default function ResumePublish(){
-  // uuid
-  const uuid ='';
-  // const uuid = useSelector<any, string>(state => state.useResume.resume_uuid)
+  const uuid = useSelector<any, string>(state => state.resumeData.resume_uuid)
   const { infoData, introducesData, projectData, certificates, resume_top } = useResume()
-
   // 页面跳转
   const userRouteJump = (url: string) => {
     Taro.navigateTo({url: url})
   }
-  console.error(infoData,'infoDatainfoData')
   return (
     <View className='resume-container'>
       <View className='resume-tips-header'>请完善以下信息</View>
@@ -89,7 +85,7 @@ export default function ResumePublish(){
             <View className='status-txt'><Image className='basic-experience-img' src='http://cdn.yupao.com/newyupao/images/newresume-experience-item1.png'/>我的工作状态:</View>
             {/* <View className='status'>审核未通过</View> */}
             <View>
-              <Text></Text>
+              <Text onClick={() => userRouteJump('/pages/resume/add_info/index')}>编辑</Text>
               <Text></Text>
               <Image src='http://cdn.yupao.com/newyupao/images/select.png' className='status-txt-image'/>
             </View>

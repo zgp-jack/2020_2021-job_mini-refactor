@@ -2,7 +2,7 @@
  * @Author: zyb
  * @Date: 2020-11-03 15:03:11
  * @LastEditors: zyb
- * @LastEditTime: 2020-11-04 21:11:20
+ * @LastEditTime: 2020-11-05 09:27:52
  * @Description: 
  */
 import { useState,useDidShow, useEffect } from '@tarojs/taro'
@@ -64,7 +64,7 @@ export default function useResume(){
           introducesData:res.data.introduces,
           certificates:res.data.certificates,
           projectData:res.data.project,
-          resume_uuid: ''
+          resume_uuid: res.data.info.uuid||'',
         }))
       }else{
         Msg(res.errmsg);
