@@ -131,7 +131,7 @@ function UsedCondition({ data, setSearchData }: ConditionProps) {
 
   // * 地区设置默认索引
   function resetCity() {
-    let defaultCityId = userListChooseCity.pid === '1' ? userListChooseCity.id : userListChooseCity.pid;
+    let defaultCityId = userListChooseCity.pid === '0' || userListChooseCity.pid === '1' ? userListChooseCity.id : userListChooseCity.pid;
     let defaultCityIndex = AREAS.findIndex((item) => item.id === defaultCityId)
     setAreaIndex(defaultCityIndex)
   }
