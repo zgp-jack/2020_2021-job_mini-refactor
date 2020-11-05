@@ -171,7 +171,7 @@ var Member = function (_Taro$Component) {
         return userRouteJump('/pages/information/mymessage/index');
       };
       this.anonymousFunc8 = function () {
-        return userRouteJump('/pages/recharge/index');
+        return userRouteJump('/pages/getintegral/index');
       };
       this.anonymousFunc9 = function () {
         return userRouteJump('/pages/invite/index');

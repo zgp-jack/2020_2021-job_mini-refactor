@@ -57,7 +57,11 @@ var GetIntegral = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (GetIntegral.__proto__ || Object.getPrototypeOf(GetIntegral)).apply(this, arguments));
 
-    _this.$usedState = ["ios", "SERVERPHONE"];
+    _this.config = {
+      navigationBarTitleText: "鱼泡网-获取积分"
+    };
+
+    _this.$usedState = ["ios", "IMGCDNURL", "SERVERPHONE"];
     _this.customComponents = [];
     return _this;
   }
@@ -90,24 +94,22 @@ var GetIntegral = function (_Taro$Component) {
       // 判断客户端
       (0, _taroWeapp.useEffect)(function () {
         var system = _taroWeapp2.default.getSystemInfoSync();
-        if (system.platform !== 'ios') {
+        if (system.platform !== "ios") {
           setIos(false);
         }
       }, []);
       this.anonymousFunc0 = function () {
-        return userCallPhone();
+        return (0, _index2.userJumpPage)("/pages/invite/index");
       };
       this.anonymousFunc1 = function () {
-        return userCallPhone();
+        return (0, _index2.userJumpPage)("/pages/recharge/index");
       };
       this.anonymousFunc2 = function () {
-        return (0, _index2.userJumpPage)('/pages/invite/index');
-      };
-      this.anonymousFunc3 = function () {
-        return (0, _index2.userJumpPage)('/pages/recharge/index');
+        return userCallPhone();
       };
       Object.assign(this.__state, {
         ios: ios,
+        IMGCDNURL: _index.IMGCDNURL,
         SERVERPHONE: _index.SERVERPHONE
       });
       return this.__state;
@@ -127,18 +129,14 @@ var GetIntegral = function (_Taro$Component) {
     value: function anonymousFunc2(e) {
       ;
     }
-  }, {
-    key: "anonymousFunc3",
-    value: function anonymousFunc3(e) {
-      ;
-    }
   }]);
 
   return GetIntegral;
 }(_taroWeapp2.default.Component);
 
-GetIntegral.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3"];
+GetIntegral.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2"];
 GetIntegral.$$componentPath = "pages/getintegral/index";
+GetIntegral.config = { navigationBarTitleText: "鱼泡网-获取积分" };
 exports.default = GetIntegral;
 
 Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(GetIntegral, true));
