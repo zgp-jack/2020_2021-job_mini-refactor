@@ -44,6 +44,7 @@
     "@tarojs/components": "2.0.4",
     "@tarojs/components-qa": "2.0.4",
     "@tarojs/components-rn": "^2.0.4",
+    "@tarojs/plugin-sass": "^2.2.10",
     "@tarojs/redux": "2.0.4",
     "@tarojs/redux-h5": "2.0.4",
     "@tarojs/router": "2.0.4",

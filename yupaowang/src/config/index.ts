@@ -32,6 +32,14 @@ export const MAXCACHECITYNUM: number = 3
 export const UserPublishAreaHistoryMaxNum: number = 10
 // * 小程序tabbar msg统计 定时器请求间隔 1分钟
 export const MemberMsgTimerInterval: number = 1000 * 60
+// * 发布技能证书最大数量
+export const CertificateMaxNum: number = 3
+// * 发布技能证书图片最大数量
+export const CertificateImgMaxNum: number = 3
+// * 发布项目经验最大数量
+export const ProjectListMaxNum: number = 5
+// * 找活项目经验图片最大数量
+export const ProjectImgMaxNum: number = 6
 
 // ! 页面内常用路径配置
 // * 实名认证页面

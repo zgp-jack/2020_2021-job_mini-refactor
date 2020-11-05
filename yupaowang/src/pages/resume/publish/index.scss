@@ -170,6 +170,12 @@ $commonMargin: 44px;
         .status-txt{
           color: #161616;
         }
+        .status-txt-image{
+          width: 24px;
+          height: 22px;
+          margin-top: 4px;
+          transition: transform 0.3s
+        }
         .basic-experience-img{
           width: 25px;
           height: 24px;
@@ -253,6 +259,7 @@ $commonMargin: 44px;
             margin: 26px 0;
             font-size: 28px;
             padding-left: 14px;
+            min-height: 40px;
             &::before{
               content: '';
               position: absolute;
@@ -262,7 +269,8 @@ $commonMargin: 44px;
               background: url('http://cdn.yupao.com/newyupao/images/newjobinfo-steps.png');
               background-size: cover;
               left: -6px;
-              top: calc(50% - 6px);
+              top: 14px;
+              // top: calc(50% - 6px);
             }
             .craft-txt{
               position: absolute;
@@ -292,10 +300,13 @@ $commonMargin: 44px;
               display: inline-block;
               color: #7A7A7A;
             }
-            .craft-name{
+            .craft-list{
+              position: relative;
               margin-left: 26%;
               margin-top: -6px;
               display: inline-block;
+            }
+            .craft-name{
               padding: 7px 25px;
               color: #414141;
               background-color: #E7E7E7;

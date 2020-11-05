@@ -1,16 +1,22 @@
 import Taro, { useState, useEffect } from '@tarojs/taro'
 import { View, Text, Form, Textarea, Input, Picker, Button } from '@tarojs/components'
-import WordsTotal from '../../../components/wordstotal'
 import useResumeAddInfo from '../../../hooks/resume_addinfo'
+import { useDispatch, useSelector } from '@tarojs/redux'
+import { resInfoObj } from '../../../utils/request/index.d';
+import WordsTotal from '../../../components/wordstotal'
 import useCode from '../../../hooks/code'
 import './index.scss'
 
 export default function AddResumeInfo(){
-
+  // 获取基础信息的redux
+  const infoData = useSelector<any, resInfoObj>(state => state.resumeData.info);
+  console.error(infoData,'infoData')
   // 获取hooks数据
   const { infoConfig, genderCurrent, startDatePicker } = useResumeAddInfo()
   // 发送验证码
   const { text, userGetCode } = useCode()
+  // 输入数据
+  const [inputVal, setInputVal] = useState<resInfoObj>(infoData)
   // 用户输入表单
   const userEnterFrom = (e:any, type: string) => {
     console.log(e, type)
@@ -35,7 +41,7 @@ export default function AddResumeInfo(){
                     className='publish-list-input'
                     type='text'
                     placeholder='请输入您的名字'
-                    value=''
+                    value={inputVal.username}
                     onInput={(e) => userEnterFrom(e, 'title')}
                   />
                 </View>
@@ -46,7 +52,7 @@ export default function AddResumeInfo(){
                     range={ infoConfig.gender }
                     value={ genderCurrent }
                     range-key="name"
-                    onChange={(e) => onPickerChange(e, 'a')}
+                    onChange={(e) => onPickerChange(e, 'sex')}
                   >
                 <Input className='publish-list-input' type='text' disabled placeholder='请选择性别' value='' />
                 </Picker>
@@ -58,7 +64,7 @@ export default function AddResumeInfo(){
                     value=''
                     range-key="name"
                     start={startDatePicker}
-                    onChange={(e) => onPickerChange(e,'b')}
+                    onChange={(e) => onPickerChange(e,'birthday')}
                   >
                     <Input className='publish-list-input' type='text' disabled placeholder='请选择出生年月' value='' />
                   </Picker>
@@ -70,7 +76,7 @@ export default function AddResumeInfo(){
                     type='text'
                     placeholder='请选择民族'
                     value=''
-                    onInput={(e) => userEnterFrom(e, 'user_name')}
+                    onInput={(e) => userEnterFrom(e, 'nation')}
                   />
                 </View>
                 <View className='publish-list-item'>
@@ -80,7 +86,7 @@ export default function AddResumeInfo(){
                     type='number'
                     placeholder='请选择所属工种'
                     value=''
-                    onInput={(e) => userEnterFrom(e, 'user_mobile')}
+                    onInput={(e) => userEnterFrom(e, 'worktype')}
                   />
                 </View>
               <View className='publish-list-item'>
@@ -90,7 +96,7 @@ export default function AddResumeInfo(){
                   type='text'
                   placeholder='请选择所在地区'
                   value=''
-                  onInput={(e) => userEnterFrom(e, 'user_mobile')}
+                  onInput={(e) => userEnterFrom(e, 'regionone')}
                 />
               </View>
             </View>
@@ -103,7 +109,7 @@ export default function AddResumeInfo(){
                     type='number'
                     placeholder='请输入您的手机号'
                     value=''
-                    onInput={(e) => userEnterFrom(e, 'user_mobile')}
+                    onInput={(e) => userEnterFrom(e, 'telephone')}
                   />
                 </View>
                 <View className='publish-list-item publish-list-item-code'>

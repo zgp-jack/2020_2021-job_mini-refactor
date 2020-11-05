@@ -1064,123 +1064,309 @@ export interface jobRecommendListDataList{
 }
 
 //完善找活
+
 export interface resumeList{
   data: resumeListData,
   errcode:number,
   errmsg: string
 }
-export interface resumeListData {
+export interface resumeListData{
   certificate_count: number,
-  certificates:any[],
-  content: resumeListDataContent
-  fail_certificate:number,
-  fail_project:number,
-  top_status: resumeListDataTopStatus[],
-  status: resumeListDataStatus[],
-  resume_top: ResumeTop,
-  project_count:number,
-  project:any[],
-  popup_text:string[],
-  is_popup:number,
-  is_introduces:string,
-  introduces: resumeListDataIntroduces,
-  info: resumeListDataInfo,
+  certificates: resCertificatesArr[],
+  content: resContentObj,
+  default_top_area: number,
+  fail_certificate: number,
+  fail_project: number,
+  info: resInfoObj,
+  integral: number,
+  introduces: resIntroduceObj,
+  is_introduces: number,
+  is_popup: number,
+  popup_text: [],
+  project: resProjectArr[],
+  project_count: number,
+  refresh_text: string,
+  resume_top: resume_topObj,
+  status: resStatusArr[],
+  top_status: resTop_statusArr[]
 }
-export interface resumeListDataContent{
+export interface resStatusArr {
+  id: number,
+  name: string,
+}
+export interface resTop_statusArr {
+  id: number,
+  name: string,
+}
+export interface resume_topObj {
+  has_top: number,
+  is_top: number,
+  is_top_text: string,
+  is_top_to_text: string,
+  top_tips_string: string,
+}
+export interface resProjectArr {
+  check: string,
+  city: string,
+  city_name: string,
+  completion_time: string,
+  detail: string,
+  fail_case: string,
+  id: string,
+  image: string[],
+  images: string[],
+  project_name: string,
+  province: string,
+  province_name: string,
+  resume_uuid: string,
+  start_time: string,
+  update_time: string,
+  uuid: string,
+}
+export interface resIntroduceObj {
+  check: string,
+  experience: string,
+  experience_str: string,
+  hometown: string,
+  hometown_id: string,
+  number_people: string,
+  prof_degree: string,
+  prof_degree_str: string,
+  tag_id: string,
+  tags: resTagesArr[],
+  type: string,
+  type_str: string,
+}
+export interface resTagesArr {
+  id: number,
+  label_name: string,
+  label_py: string,
+}
+export interface resInfoObj {
+  ad_code: number,
+  address: string,
+  admin_last_edit_time: string,
+  admin_user_id: string,
+  authentication: string,
+  birthday: string,
+  certificate_show: number,
+  check: string,
+  city: string,
+  collect_num: string,
+  complain_num: string,
+  country: string,
+  current_admin: string,
+  distance: string,
+  experience: string,
+  extens: string,
+  gender: string,
+  headerimg: string,
+  hometown: string,
+  id: string,
+  img: string,
+  introduce: string,
+  ip_address: string,
+  is_end: string,
+  is_introduces: string,
+  location: string,
+  miniInfoOccupations: string[],
+  nation: string,
+  nation_id: string,
+  note: string,
+  number_people: string,
+  occupations: string[],
+  occupations_id: string,
+  prof_degree: string,
+  progress: string,
+  province: string,
+  provinces: string,
+  ranking: string,
+  refresh_time: string,
+  sort_flag: string,
+  source: string,
+  tags: resTagesArr[],
+  tel: string,
+  time: string,
+  type: string,
+  update_time: string,
+  user_id: string,
+  user_uuid: string,
+  username: string,
+  uuid: string,
+  view_num: string,
+  zan_num: string,
+  age:string|number,
+}
+export interface resContentObj {
   check_tips_string: string,
   show_tips: number,
 }
-export interface ResumeTop {
-  has_top: number
-  is_show_tips: number
-  is_top: number
-  is_top_text: string
-  is_top_to_text: string
-  top_tips_string: string,
-  top_provinces_str: ResumeTopStr[],
-  start_time_str: number,
-  end_time_str: string,
-  end_time:string,
+export interface resFast_infoObj {
+  city_id: string,
+  city_txt: string,
+  job_id: number,
+  occ: string,
+  occ_txt: string,
+  occupation_tree: resCcupation_treeArr[],
+  province_id: string,
+  province_txt: string,
+  tel: string,
+  type: number,
 }
-export interface ResumeTopStr {
-  name:string,
+export interface resCcupation_treeArr {
+  province_id: string,
+  province_txt: string,
+  tel: string,
+  type: number,
 }
-export interface resumeListDataIntroduces {
-  check: string
-  experience: string
-  experience_str: string
-  hometown: string
-  hometown_id: string
-  number_people: string
-  prof_degree: string
-  prof_degree_str: string
-  tag_id: string
-  tags: []
-  type: string
-  type_str: string
+export interface resFast_infoObj {
+  city_id: string,
+  city_txt: string,
+  job_id: number,
+  occ: string,
+  occ_txt: string,
+  occupation_tree: resOccupation_treeArr[],
+  province_id: string,
+  province_txt: string,
+  tel: string,
+  type: number,
 }
-export interface resumeListDataTopStatus{
-  id: number
-  name: string
+export interface resOccupation_treeArr {
+  province_id: string,
+  province_txt: string,
+  tel: string,
+  type: number,
 }
-export interface resumeListDataStatus{
-  id: number
-  name: string
+export interface resCertificatesArr {
+  admin_last_edit_time: string,
+  certificate_time: string,
+  check: string,
+  current_admin: string,
+  fail_case: string,
+  id: string,
+  image: string[],
+  images: string[],
+  last_update_admin: string,
+  name: string,
+  resume_uuid: string,
+  sort_flag: string,
+  time: string,
+  update_time: string,
+  user_uuid: string,
+  uuid: string,
 }
-export interface resumeListDataInfo {
-  ad_code: number
-  address: string
-  admin_last_edit_time: string
-  authentication: string
-  birthday: any
-  certificate_show: number
-  check: string
-  city: string
-  collect_num: string
-  complain_num: string
-  country: string
-  current_admin: string
-  distance: string
-  experience: string
-  gender: string
-  headerimg: string
-  hometown: string
-  id: string
-  img: string
-  introduce: string
-  ip_address: string
-  is_end: string
-  is_introduces: string
-  last_update_admin: string
-  location: string
-  miniInfoOccupations: []
-  nation: string
-  nation_id: string
-  note: string
-  number_people: string
-  occupations: []
-  occupations_id: string
-  prof_degree: string
-  progress: string
-  province: string
-  provinces: string
-  ranking: string
-  sort_flag: string
-  source: string
-  tags: []
-  tel: string
-  time: string
-  title: null
-  type: string
-  update_time: string
-  user_id: string
-  user_uuid: string
-  username: string
-  uuid: string
-  view_images: null
-  view_num: string
-  zan_num: string
-}
+// export interface resumeListData {
+//   certificate_count: number,
+//   certificates:any[],
+//   content: resumeListDataContent
+//   fail_certificate:number,
+//   fail_project:number,
+//   top_status: resumeListDataTopStatus[],
+//   status: resumeListDataStatus[],
+//   resume_top: ResumeTop,
+//   project_count:number,
+//   project:any[],
+//   popup_text:string[],
+//   is_popup:number,
+//   is_introduces:string,
+//   introduces: resumeListDataIntroduces,
+//   info: resumeListDataInfo,
+// }
+// export interface resumeListDataContent{
+//   check_tips_string: string,
+//   show_tips: number,
+// }
+// export interface ResumeTop {
+//   has_top: number
+//   is_show_tips: number
+//   is_top: number
+//   is_top_text: string
+//   is_top_to_text: string
+//   top_tips_string: string,
+//   top_provinces_str: ResumeTopStr[],
+//   start_time_str: number,
+//   end_time_str: string,
+//   end_time:string,
+// }
+// export interface ResumeTopStr {
+//   name:string,
+// }
+// export interface resumeListDataIntroduces {
+//   check: string
+//   experience: string
+//   experience_str: string
+//   hometown: string
+//   hometown_id: string
+//   number_people: string
+//   prof_degree: string
+//   prof_degree_str: string
+//   tag_id: string
+//   tags: []
+//   type: string
+//   type_str: string
+// }
+// export interface resumeListDataTopStatus{
+//   id: number
+//   name: string
+// }
+// export interface resumeListDataStatus{
+//   id: number
+//   name: string
+// }
+// export interface resumeListDataInfo {
+//   ad_code: number
+//   address: string
+//   admin_last_edit_time: string
+//   authentication: string
+//   birthday: any
+//   certificate_show: number
+//   check: string
+//   city: string
+//   collect_num: string
+//   complain_num: string
+//   country: string
+//   current_admin: string
+//   distance: string
+//   experience: string
+//   gender: string
+//   headerimg: string
+//   hometown: string
+//   id: string
+//   img: string
+//   introduce: string
+//   ip_address: string
+//   is_end: string
+//   is_introduces: string
+//   last_update_admin: string
+//   location: string
+//   miniInfoOccupations: []
+//   nation: string
+//   nation_id: string
+//   note: string
+//   number_people: string
+//   occupations: []
+//   occupations_id: string
+//   prof_degree: string
+//   progress: string
+//   province: string
+//   provinces: string
+//   ranking: string
+//   sort_flag: string
+//   source: string
+//   tags: []
+//   tel: string
+//   time: string
+//   title: null
+//   type: string
+//   update_time: string
+//   user_id: string
+//   user_uuid: string
+//   username: string
+//   uuid: string
+//   view_images: null
+//   view_num: string
+//   zan_num: string
+// }
 
 //  获取电话
 export interface jobGetTel extends Result{
@@ -1384,4 +1570,9 @@ export interface ResumeAddInfoParentOccupationConfig extends ResumeAddInfoOccupa
 export interface ResumeAddInfoGenderConfig {
   id: string ,
   name: string
+}
+
+// 添加技能证书返回值
+export interface ResumeCertificateData extends Result{
+  count: number
 }

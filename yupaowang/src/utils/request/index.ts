@@ -766,7 +766,7 @@ export function jobTopHotAreasAction(): Promise<Inter.jobTopHotAreas> {
 
 
 // 招工置顶
-export function jobDoTopAction(detail:object): Promise<Inter.Result> {
+export function jobDoTopAction(detail): Promise<Inter.Result> {
   return doRequestAction({
     url: api.jobDoTopUrl,
     method: 'POST',
@@ -777,7 +777,7 @@ export function jobDoTopAction(detail:object): Promise<Inter.Result> {
 
 
 // 修改置顶获取数据
-export function jobGetTopAreasAction(detail: object): Promise<Inter.jobGetTopAreas> {
+export function jobGetTopAreasAction(detail): Promise<Inter.jobGetTopAreas> {
   return doRequestAction({
     url: api.jobGetTopAreasUrl,
     method: 'POST',
@@ -787,7 +787,7 @@ export function jobGetTopAreasAction(detail: object): Promise<Inter.jobGetTopAre
 }
 
 // 更新招工置顶城市
-export function jobChangeTopAreasAction(detail: object): Promise<Inter.Result> {
+export function jobChangeTopAreasAction(detail): Promise<Inter.Result> {
   return doRequestAction({
     url: api.jobChangeTopAreasUrl,
     method: 'POST',
@@ -796,7 +796,7 @@ export function jobChangeTopAreasAction(detail: object): Promise<Inter.Result> {
   })
 }
 // 取消招工置顶
-export function jobUpdateTopStatusAction(detail: object): Promise<Inter.Result> {
+export function jobUpdateTopStatusAction(detail): Promise<Inter.Result> {
   return doRequestAction({
     url: api.jobUpdateTopStatusUrl,
     method: 'POST',
@@ -891,7 +891,7 @@ export function delCertificateAction(data): Promise<Inter.Result> {
   })
 }
 // 新增技能证书
-export function resumesCertificateAction(data): Promise<Inter.Result> {
+export function resumesCertificateAction(data): Promise<Inter.ResumeCertificateData> {
   return doRequestAction({
     url: api.resumesCertificateUrl,
     method: 'POST',
