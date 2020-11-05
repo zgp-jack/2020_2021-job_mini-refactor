@@ -3,7 +3,7 @@ import { View, Image, Block, ScrollView } from '@tarojs/components'
 import { IMGCDNURL } from '../../../config'
 import { AtDrawer } from 'taro-ui'
 import { getListFilterData } from '../../../utils/request'
-import { filterClassifyResultClassTree, filterClassifyResultJoblistType, filterClassifyResultFleamarketTree, filterClassifyResultClassTreeBase } from '../../../utils/request/index.d'
+import { filterClassifyResultFleamarketTree, filterClassifyResultClassTreeBase } from '../../../utils/request/index.d'
 import { filterClassifyDataResultReduce } from '../../../reducers/filter_classify'
 import { setFilter } from '../../../actions/filter_classify'
 import AREAS, { ChildItems } from '../../../models/area'
@@ -45,21 +45,15 @@ function UsedCondition({ data, setSearchData }: ConditionProps) {
   let [oldFleamarketTreeIndex, setOldFleamarketTreeIndex] = useState<number>(0)
   // * 当前工种选择子级id
   const [fleamarketTreeSonId, setfleamarketTreeSonId] = useState<string>('')
-  // * 当前工种选择父级索引
-  // const [filterIndex, setFilterIndex] = useState<number>(0)
 
   // * 当前展开的城市子集数据
   const [childAreaList, setChildAreaList] = useState<ChildItems[]>(AREAS[areaIndex].children)
-  // * 工种数据
-  // const [classify, setClassify] = useState<filterClassifyResultClassTree[]>([])
   // 分类
   const [fleamarketTree, setFleamarketTree] = useState<filterClassifyResultFleamarketTree[]>([])
   // * 子集类型数据
   const [fleamarketTreeChildData, setFleamarketTreeChildData] = useState<Pick<filterClassifyResultClassTreeBase, 'id' | 'name'>[]>([])
   // * 历史子集类型数据
   const [oldFleamarketTreeChildData, setoldFleamarketTreeChildData] = useState<Pick<filterClassifyResultClassTreeBase, 'id' | 'name'>[]>([])
-  // * 数据筛选条件 最新 热门
-  // const [jobtype, setJobtype] = useState<filterClassifyResultJoblistType[]>([])
   // * 城市切换后子集列表回到顶部
   const [areaScrollTop, setAreaScrollTop] = useState<number>(0)
   // * 工种切换后子集列表回到顶部
@@ -119,14 +113,6 @@ function UsedCondition({ data, setSearchData }: ConditionProps) {
     closeDrawer()
   }
 
-  // 选择最新、推荐过滤条件
-  // const sureFilterCurrent = (i: number) => {
-  //   setFilterIndex(i)
-  //   let id: string = jobtype[i].type
-  //   setSearchData(FilterPickerKey, id, "")
-  //   closeDrawer()
-  // }
-
   // * 工种索引更换
   const changeClassifyIndex = (i: number) => {
     setfleamarketTreeIndex(i)
@@ -156,13 +142,11 @@ function UsedCondition({ data, setSearchData }: ConditionProps) {
       if (seted) return
       setSeted(true)
       setFleamarketTree(filterData.fleamarketTree)
-      // setJobtype(filterData.jobListType)
     } else {
       getListFilterData().then(res => {
         dispatch(setFilter({ ...res.data, isSet: true }))
         setSeted(true)
         setFleamarketTree(res.data.fleamarketTree)
-        // setJobtype(res.data.jobListType)
       })
     }
   }, [])
@@ -272,27 +256,6 @@ function UsedCondition({ data, setSearchData }: ConditionProps) {
           }
         </View>
       </AtDrawer>
-      {/* 条件选择器 */}
-      {/* <AtDrawer
-        show={current === FilterPickerKey}
-        mask
-        onClose={() => closeDrawer()}
-      >
-        <View className='common-drawer-item'>
-          <ScrollView className='drawer-full-lists' scrollY>
-            {jobtype.map((item, index) => (
-              <View
-                key={item.type}
-                onClick={() => sureFilterCurrent(index)}
-                className={classnames({
-                  'drawer-list-item overwords': true,
-                  'drawer-list-item-active': index === filterIndex
-                })}
-              >{item.name}</View>
-            ))}
-          </ScrollView>
-        </View>
-      </AtDrawer> */}
     </Block>
   )
 }
