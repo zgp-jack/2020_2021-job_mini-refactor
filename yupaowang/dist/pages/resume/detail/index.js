@@ -74,7 +74,7 @@ var ResumeDetail = function (_Taro$Component) {
       navigationBarTitleText: '找活名片'
     };
 
-    _this.$usedState = ["data", "loopArray88", "loopArray90", "loopArray91", "$compid__76", "$compid__77", "isAuth", "IMGCDNURL", "examine", "onoff", "list", "praise", "collect", "shownewtips", "complaintModal", "age", "phone"];
+    _this.$usedState = ["data", "loopArray90", "loopArray92", "loopArray93", "$compid__76", "$compid__77", "isAuth", "IMGCDNURL", "examine", "onoff", "list", "praise", "collect", "shownewtips", "complaintModal", "age", "phone"];
     _this.anonymousFunc4Map = {};
     _this.anonymousFunc6Map = {};
     _this.customComponents = ["Auth", "CollectionRecruitList", "Report"];
@@ -475,7 +475,7 @@ var ResumeDetail = function (_Taro$Component) {
         setShownewtips(false);
       };
       this.anonymousFunc11 = handleTellPhone;
-      var loopArray88 = data.info.occupations.length ? data.info.occupations.map(function (v, i) {
+      var loopArray90 = data.info.occupations.length ? data.info.occupations.map(function (v, i) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
@@ -485,7 +485,7 @@ var ResumeDetail = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray90 = data.project.length ? data.project[0].image.map(function (v, i) {
+      var loopArray92 = data.project.length ? data.project[0].image.map(function (v, i) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
@@ -500,7 +500,7 @@ var ResumeDetail = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray91 = data.certificates.length ? data.certificates[0].image.map(function (val, i) {
+      var loopArray93 = data.certificates.length ? data.certificates[0].image.map(function (val, i) {
         val = {
           $original: (0, _taroTt.internal_get_original)(val)
         };
@@ -528,9 +528,9 @@ var ResumeDetail = function (_Taro$Component) {
       }, $compid__77, $prevCompid__77);
       Object.assign(this.__state, {
         data: data,
-        loopArray88: loopArray88,
         loopArray90: loopArray90,
-        loopArray91: loopArray91,
+        loopArray92: loopArray92,
+        loopArray93: loopArray93,
         $compid__76: $compid__76,
         $compid__77: $compid__77,
         isAuth: isAuth,
