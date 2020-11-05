@@ -54,6 +54,8 @@ class App extends Component {
       'pages/resume/projects/index', //项目经验列表
       'pages/resume/skills/index', //技能证书列表
 
+      'pages/turntable/index',// 大转盘
+
 
       'pages/resume/detail/index', // 找活详情
       

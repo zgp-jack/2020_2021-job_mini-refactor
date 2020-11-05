@@ -50,7 +50,12 @@ export default function GetIntegral() {
           <View className="getintegral-item-content">
             玩游戏，每天可获1~300分。（推荐）
           </View>
-          <View className="getintegral-item-btn">去看看</View>
+          <View
+            onClick={() => userJumpPage("/pages/turntable/index")}
+            className="getintegral-item-btn"
+          >
+            去看看
+          </View>
         </View>
       </View>
       <View className="getintegral-footer">

@@ -322,6 +322,13 @@
 					"id": -1,
 					"name": "pages/getintegral/index",
 					"pathName": "pages/getintegral/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/turntable/index",
+					"pathName": "pages/turntable/index",
 					"scene": null
 				}
 			]
