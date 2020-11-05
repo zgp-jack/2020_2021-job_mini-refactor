@@ -14,12 +14,14 @@ interface RankRulesItem {
 }
 
 export default function () {
+  const [sortFlag, setSortFlag] = useState<number>(0)
   const [list, setList] = useState<RankRulesItem[]>([])
   const [tips, setTips] = useState<string[]>([])
   const [postError, setPostError] = useState<boolean>(false)
   useEffect(() => {
     getRankRulesList().then(res => {
-      const {sort_rule_lists, warm_tips} = res.data
+      const {sort_rule_lists, warm_tips, resume_info} = res.data
+      setSortFlag(resume_info.sort_flag)
       setList(sort_rule_lists)
       setTips(warm_tips)
     }).catch(e => {
@@ -42,7 +44,7 @@ export default function () {
       <View className="header">
         <View className="header-point">
           <Text className="point-text">我的排名点：</Text>
-          <Text className="point-text">0</Text>
+          <Text className="point-text">{sortFlag}</Text>
         </View>
         <View className="header-detail">
           <Text className="detail-text">注：找活名片只有审核通过后，才会在列表展示。排名点越高，排名越靠前。
