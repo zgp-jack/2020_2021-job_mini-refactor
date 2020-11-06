@@ -210,7 +210,7 @@ var AtDrawer = (_temp2 = _class = function (_AtComponent) {
   }]);
 
   return AtDrawer;
-}(_component2.default), _class.$$events = ["onMaskClick"], _class.$$componentPath = "Users/zhangyibo/yupao-ts-recode/yupaowang/node_modules/taro-ui/dist/weapp/components/drawer/index", _temp2);
+}(_component2.default), _class.$$events = ["onMaskClick"], _class.$$componentPath = 'Users/axin/codes/\u9C7C\u6CE1\u7F51/\u5C0F\u7A0B\u5E8FTS\u91CD\u6784\u9879\u76EE/TaroTs-YuPaoWang/yupaowang/node_modules/taro-ui/dist/weapp/components/drawer/index', _temp2);
 
 
 AtDrawer.defaultProps = {

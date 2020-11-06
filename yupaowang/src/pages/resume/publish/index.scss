@@ -16,7 +16,7 @@ $commonMargin: 44px;
   .resume-content{
     padding-bottom: 140px;
     .content-progress{
-      padding: 30px $commonMargin 0;
+      padding: 30px $commonMargin 20px;
       margin: 15px 0 0;
       background-color: #FFFFFF;
       .progress-header{
@@ -61,7 +61,7 @@ $commonMargin: 44px;
         display: flex;
         justify-content: space-between;
         align-items: baseline;
-        padding-top: 10px;
+        padding: 10px 0;
         border-top: 2px dotted $bordercolor;
         .progress-rank-img{
           display: inline-block;

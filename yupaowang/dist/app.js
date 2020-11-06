@@ -663,8 +663,8 @@ Object.defineProperty(exports, "__esModule", {
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; /*
                                                                                                                                                                                                                                                                    * @Author: zyb
                                                                                                                                                                                                                                                                    * @Date: 2020-11-04 19:59:33
-                                                                                                                                                                                                                                                                   * @LastEditors: zyb
-                                                                                                                                                                                                                                                                   * @LastEditTime: 2020-11-05 10:09:29
+                                                                                                                                                                                                                                                                   * @LastEditors: jsxin
+                                                                                                                                                                                                                                                                   * @LastEditTime: 2020-11-06 11:13:45
                                                                                                                                                                                                                                                                    * @Description:
                                                                                                                                                                                                                                                                    */
 
@@ -691,8 +691,9 @@ function resumeData() {
     case _resume_data.GETUSERRESUME:
       return state;
     case _resume_data.SETUSERRESUME:
-      state = _extends({}, state, action.data);
-      return state;
+      return _extends({}, state, action.data);
+    case _resume_data.SETINTRODUCE:
+      return _extends({}, state, { introducesData: action.data });
     default:
       return state;
   }

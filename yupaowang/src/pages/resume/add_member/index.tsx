@@ -1,6 +1,5 @@
 import Taro, { useState, useEffect } from '@tarojs/taro'
-import { View, Text, Form, Textarea, Input, Picker, Button } from '@tarojs/components'
-import WordsTotal from '../../../components/wordstotal'
+import { View, Text, Form, Input, Picker } from '@tarojs/components'
 import useResumeAddInfo from '../../../hooks/resume_addinfo'
 import AREAS, { ParentItems } from '../../../models/area'
 import { ResumeMemberLabelsMaxNum } from '../../../config'
@@ -43,11 +42,11 @@ export default function AddResumeInfo() {
   // 默认提交数据
   const [postData, setPostData] = useState<MemberInfoType>({
     number_people: introducesData.number_people || '',
-    experience: '',
-    hometown: '',
-    prof_degree: '',
-    type: '',
-    tags: []
+    experience: introducesData.experience || '',
+    hometown: introducesData.hometown_id || '',
+    prof_degree: introducesData.prof_degree || '',
+    type: introducesData.type || '',
+    tags: introducesData.tag_id.split(",") || []
   })
   // 充值labels数据
   const [resumeLabels, setResumeLabels] = useState<ResumeLabelsType[]>([])
@@ -55,13 +54,13 @@ export default function AddResumeInfo() {
   const [hometownPicker, setHometownPicker] = useState<HomeTownPicker[][]>([])
   const [hometownChildCity, setHometownChildCity] = useState<HomeTownPicker[][]>([])
   // 家乡名称
-  const [hometown, setHometown] = useState<string>('')
+  const [hometown, setHometown] = useState<string>(introducesData.hometown || '')
   const [hometownIndex, setHometownIndex] = useState<number[]>([0,0])
   // 熟练度名称
-  const [profDegree, setProfDegree] = useState<string>('')
+  const [profDegree, setProfDegree] = useState<string>(introducesData.prof_degree_str || '')
   const [profDegreeIndex, setProfDegreeIndex] = useState<number>(0)
   // 人员构成名称
-  const [memberType, setMemberType] = useState<string>('')
+  const [memberType, setMemberType] = useState<string>(introducesData.type_str || '')
   const [memberTypeIndex, setMemberTypeIndex] = useState<number>(0)
 
   // 用户输入表单
@@ -105,7 +104,23 @@ export default function AddResumeInfo() {
     }
     // 设置初始化数据
     setHometownChildCity(childArr)
-    // 将省份先保存起来
+
+    // 根据id查找家乡的key
+    if (postData.hometown) {
+      let arr: string[] = postData.hometown.split(',')
+      let i: number = parentArr.findIndex(item => item.id == arr[0])
+      if (i > -1) {
+        let pickerCity: HomeTownPicker[][] = []
+        pickerCity[0] = parentArr
+        pickerCity[1] = childArr[i]
+        setHometownPicker(pickerCity)
+        let key: number = childArr[i].findIndex(item => item.id == arr[1])
+        setHometownIndex([i, key > -1 ? key : 0])
+        return
+      }
+
+    }
+    // 否则设置默认数据
     let htpicker: HomeTownPicker[][] = []
     htpicker[0] = parentArr
     htpicker[1] = childArr[0]
@@ -119,15 +134,35 @@ export default function AddResumeInfo() {
       for (let i = 0; i < labels.length; i++){
         let id: string = labels[i].id
         let flag = postData.tags.find(item => item == id)
-          labels.checked = flag ? true : false
+          labels[i].checked = flag ? true : false
       }
       setResumeLabels(labels)
     }
-  },[infoConfig])
+  },[infoConfig,introducesData])
 
   useEffect(()=>{
+    // 处理地区信息
     detailAreasDataAction()
   },[])
+
+  useEffect(()=>{
+    //初始化picker-key值
+    initPickerKey()
+  },[postData,infoConfig])
+
+  // 初始化picker
+  const initPickerKey = () => {
+    // 根据id查找熟练度的key
+    if(postData.prof_degree){
+      let progIndex: number = infoConfig.prof_degree.findIndex(item => item.id == postData.prof_degree)
+      if (progIndex > -1) setProfDegreeIndex(progIndex)
+    }
+    // 根据id查找人员构成的key
+    if(postData.type){
+      let memberIndex: number = infoConfig.type.findIndex(item => item.id == postData.type)
+      if (memberIndex > -1) setMemberTypeIndex(memberIndex)
+    }
+  }
 
   // picker 发生改变
   const onPickerChange = (e: any, type: string) => {
