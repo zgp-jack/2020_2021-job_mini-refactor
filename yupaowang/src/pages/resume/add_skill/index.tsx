@@ -8,7 +8,7 @@ import { resumesCertificateAction } from '../../../utils/request'
 import ImageView from '../../../components/imageview'
 import { CertificateImgMaxNum, CertificateMaxNum } from '../../../config'
 import { useSelector, useDispatch } from '@tarojs/redux'
-import { useResumeType } from '../../../actions/resume_data'
+import { useResumeType } from '../publish/index.d'
 import './index.scss'
 import Msg, { ShowActionModal } from '../../../utils/msg'
 
@@ -21,6 +21,9 @@ interface SkillBookInfoType {
 export default function AddResumeInfo() {
   // 获取路由参数 
   const { id = '' } = useRouter().params
+
+  // 技能证书id
+  const [certificateId, setCertificateId] = useState<string>('')
   
   // 将找活中技能证书相关的数据取出
   const resumeData: useResumeType = useSelector<any, useResumeType>(item => item.resumeData)
@@ -37,6 +40,7 @@ export default function AddResumeInfo() {
   if(id){
     let data = resumeData.certificates.find(item => item.id == id)
     if (data){
+      setCertificateId(data.uuid)
       // 由于接口的图片数据是分开的，所以需要自己重组
       let imgs: RecruitImageModel[] = []
       for(let i = 0; i < data.image.length;i++){
@@ -102,21 +106,23 @@ export default function AddResumeInfo() {
     }
     resumesCertificateAction({
       resume_uuid: resumeData.resume_uuid,
-      certificate_uuid: id,
+      certificate_uuid: certificateId,
       image: skillBookInfo.imgs.map(item => item.url),
       name: skillBookInfo.title,
       certificate_time: skillBookInfo.time
     }).then(res => {
       if(res.errcode == 'ok'){
         if(type === 1){
+          Msg(res.errmsg)
+          setSkillBookInfo({ ...defaultSkillBookData})
+          setCertificateId('')
+        }else{
           ShowActionModal({
             msg: res.errmsg,
-            success: ()=> {
+            success: () => {
               Taro.navigateBack()
             }
           })
-        }else{
-          Msg(res.errmsg)
         }
         if (res.count >= CertificateMaxNum-1){
           setShowBtn(false)
@@ -132,6 +138,8 @@ export default function AddResumeInfo() {
   const userBack = () => {
     Taro.navigateBack()
   }
+  // 用户删除该条技能证书
+  const userDelThisSkill = () => {}
 
   return (
     <View className='resume-addinfo-container'>
@@ -175,7 +183,11 @@ export default function AddResumeInfo() {
         </View>
       </View>
       <View className='resume-add-skill-footer'>
-        {showBtn ? 
+        {/* id存在是编辑  否则判断是否已经达到证书条数的上限 */}
+        {id ? 
+        <View className='resume-add-skill-btn' onClick={() => userDelThisSkill()}>删除</View>
+        :
+        showBtn ? 
         <View className='resume-add-skill-btn' onClick={() => userSubmitSkillBook(1)}>保存 继续添加</View>
         :
         <View className='resume-add-skill-btn' onClick={() => userBack()}>取消</View>

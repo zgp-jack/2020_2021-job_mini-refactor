@@ -1,11 +1,11 @@
 /*
  * @Author: zyb
  * @Date: 2020-11-04 19:59:33
- * @LastEditors: zyb
- * @LastEditTime: 2020-11-05 10:09:29
+ * @LastEditors: jsxin
+ * @LastEditTime: 2020-11-06 11:13:45
  * @Description: 
  */
-import { SETUSERRESUME,GETUSERRESUME } from '../constants/resume_data';
+import { SETUSERRESUME,GETUSERRESUME,SETINTRODUCE } from '../constants/resume_data';
 import { useResumeType } from '../pages/resume/publish/index.d';
 import { INFODATA_DATA, INTRODUCERS_DATA } from '../pages/resume/publish/data';
 
@@ -28,8 +28,9 @@ export default function resumeData(state: useResumeType = DEFAULT_STATE, action:
     case GETUSERRESUME:
       return state;
     case SETUSERRESUME:
-      state = { ...state, ...action.data }
-      return state;
+      return { ...state, ...action.data }
+    case SETINTRODUCE:
+      return { ...state, introducesData: action.data }
     default:
       return state
   }

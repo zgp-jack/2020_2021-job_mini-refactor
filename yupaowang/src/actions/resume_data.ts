@@ -5,8 +5,9 @@
  * @LastEditTime: 2020-11-05 10:01:53
  * @Description: 
  */
-import { GETUSERRESUME,SETUSERRESUME } from '../constants/resume_data';
+import { GETUSERRESUME, SETUSERRESUME, SETINTRODUCE } from '../constants/resume_data';
 import { useResumeType } from '../pages/resume/publish/index.d'
+import { resIntroduceObj } from '../utils/request/index.d'  
 
 export function getUseResume(data: useResumeType) {
   return {
@@ -17,6 +18,12 @@ export function getUseResume(data: useResumeType) {
 export function setUseResume(data: useResumeType) {
   return {
     type: SETUSERRESUME,
+    data: data
+  }
+}
+export function setIntroduceInfo(data: resIntroduceObj){
+  return {
+    type: SETINTRODUCE,
     data: data
   }
 }

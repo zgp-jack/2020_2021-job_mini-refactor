@@ -1,4 +1,4 @@
-import Taro, { } from '@tarojs/taro'
+import Taro, { useDidShow, useEffect, useState } from '@tarojs/taro'
 import { View, Text, Button, Image } from '@tarojs/components'
 import { IMGCDNURL } from '../../../config'
 import { AtProgress } from 'taro-ui'
@@ -9,7 +9,18 @@ import './index.scss'
 
 export default function ResumePublish(){
   const uuid = useSelector<any, string>(state => state.resumeData.resume_uuid)
-  const { infoData, introducesData, projectData, certificates, resume_top } = useResume()
+  const { infoData, introducesData, projectData, certificates, resume_top, initResumeData } = useResume()
+
+  // 判断是否是第一次进入  第一次不加载数据 因为hooks会帮助你加载
+  const [firstJoin, setFirstJoin] = useState<boolean>(true)
+
+  useDidShow(()=>{
+    if(firstJoin){
+      setFirstJoin(false)
+      return false
+    }
+    initResumeData()
+  })
 
   // 页面跳转
   const userRouteJump = (url: string) => {
@@ -43,7 +54,7 @@ export default function ResumePublish(){
             </View>
             <View className='progress-rank'>马上去提升排名&gt;&gt;</View>
           </View>
-          <View className='progress-place-top'>
+          {/* <View className='progress-place-top'>
             <View className='progress-placed'>
               <View>
                 <Image className='progress-rank-img' src='http://cdn.yupao.com/newyupao/images/gl/personaltop.png'/>
@@ -67,7 +78,7 @@ export default function ResumePublish(){
               <View className='progress-place-btn'>点击修改找活置顶信息&gt;&gt;</View>
             </View>
             }
-          </View>
+          </View> */}
         </View>
         <View className='content-basic-imformation'>
           <View className='basic-imformation'>
