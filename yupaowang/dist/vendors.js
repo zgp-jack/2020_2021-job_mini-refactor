@@ -12191,6 +12191,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.getUseResume = getUseResume;
 exports.setUseResume = setUseResume;
 exports.setIntroduceInfo = setIntroduceInfo;
+exports.setCertificateList = setCertificateList;
 
 var _resume_data = __webpack_require__(/*! ../constants/resume_data */ "./src/constants/resume_data.ts");
 
@@ -12202,8 +12203,8 @@ function getUseResume(data) {
 } /*
    * @Author: zyb
    * @Date: 2020-11-04 19:51:02
-   * @LastEditors: zyb
-   * @LastEditTime: 2020-11-05 10:01:53
+   * @LastEditors: jsxin
+   * @LastEditTime: 2020-11-06 15:41:35
    * @Description:
    */
 function setUseResume(data) {
@@ -12212,9 +12213,17 @@ function setUseResume(data) {
     data: data
   };
 }
+// 设置人员信息
 function setIntroduceInfo(data) {
   return {
     type: _resume_data.SETINTRODUCE,
+    data: data
+  };
+}
+// 设置技能证书列表
+function setCertificateList(data) {
+  return {
+    type: _resume_data.SETCERTIFICATE,
     data: data
   };
 }
@@ -12711,6 +12720,8 @@ var GETUSERRESUME = exports.GETUSERRESUME = 'getUseResume';
 var SETUSERRESUME = exports.SETUSERRESUME = 'setUseResume';
 // 单独设置人员信息
 var SETINTRODUCE = exports.SETINTRODUCE = 'setIntroduce';
+// 单独设置技能证书
+var SETCERTIFICATE = exports.SETCERTIFICATE = 'setCertificate';
 
 /***/ }),
 
@@ -12879,7 +12890,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           * @Date: 2020-11-03 15:03:11
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          <<<<<<< HEAD
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           * @LastEditors: jsxin
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          * @LastEditTime: 2020-11-06 11:21:32
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          * @LastEditTime: 2020-11-06 17:18:01
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          =======
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           * @LastEditors: zyb
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           * @LastEditTime: 2020-11-05 19:53:36
@@ -12910,46 +12921,34 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 function useResume() {
   var dispatch = (0, _redux.useDispatch)();
-  // 基础信息
-  var infoVal = (0, _redux.useSelector)(function (state) {
-    return state.resumeData.info;
-  });
-  // 人员信息
-  var introducesVal = (0, _redux.useSelector)(function (state) {
-    return state.resumeData.introducesData;
-  });
-  // 项目
-  var projectVal = (0, _redux.useSelector)(function (state) {
-    return state.resumeData.projectData;
-  });
-  //  职业技能
-  var certificatesVal = (0, _redux.useSelector)(function (state) {
-    return state.resumeData.certificates;
+  // 获取找活名片信息
+  var resumeData = (0, _redux.useSelector)(function (state) {
+    return state.resumeData;
   });
   // 基础信息
 
-  var _useState = (0, _taroTt.useState)(infoVal),
+  var _useState = (0, _taroTt.useState)(resumeData.info),
       _useState2 = _slicedToArray(_useState, 2),
       infoData = _useState2[0],
       setInfoData = _useState2[1];
   // 人员信息
 
 
-  var _useState3 = (0, _taroTt.useState)(introducesVal),
+  var _useState3 = (0, _taroTt.useState)(resumeData.introducesData),
       _useState4 = _slicedToArray(_useState3, 2),
       introducesData = _useState4[0],
       setIntroducesData = _useState4[1];
   // 项目
 
 
-  var _useState5 = (0, _taroTt.useState)(projectVal),
+  var _useState5 = (0, _taroTt.useState)(resumeData.projectData),
       _useState6 = _slicedToArray(_useState5, 2),
       projectData = _useState6[0],
       setProjectData = _useState6[1];
   // 职业技能
 
 
-  var _useState7 = (0, _taroTt.useState)(certificatesVal),
+  var _useState7 = (0, _taroTt.useState)(resumeData.certificates),
       _useState8 = _slicedToArray(_useState7, 2),
       certificates = _useState8[0],
       setCertificates = _useState8[1];
@@ -12964,6 +12963,14 @@ function useResume() {
   (0, _taroTt.useEffect)(function () {
     initResumeData();
   }, []);
+  // 当redux数据发生改变后， 将自动更新到页面上
+  (0, _taroTt.useEffect)(function () {
+    if (!resumeData.isSet) return;
+    setInfoData(resumeData.info);
+    setIntroducesData(resumeData.introducesData);
+    setProjectData(resumeData.projectData);
+    setCertificates(resumeData.certificates);
+  }, [resumeData]);
   // 请求找活详情数据
   var initResumeData = function initResumeData() {
     (0, _index.resumeListAction)().then(function (res) {

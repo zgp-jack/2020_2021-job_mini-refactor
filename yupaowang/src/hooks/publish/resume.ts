@@ -3,7 +3,7 @@
  * @Date: 2020-11-03 15:03:11
 <<<<<<< HEAD
  * @LastEditors: jsxin
- * @LastEditTime: 2020-11-06 11:21:32
+ * @LastEditTime: 2020-11-06 17:18:01
 =======
  * @LastEditors: zyb
  * @LastEditTime: 2020-11-05 19:53:36
@@ -12,36 +12,40 @@
  */
 import { useState,useDidShow, useEffect } from '@tarojs/taro'
 import { resumeListAction } from '../../utils/request'
-import { resIntroduceObj, resInfoObj, resProjectArr, resCertificatesArr,resume_topObj } from '../../utils/request/index.d';
+import { resIntroduceObj, resInfoObj, resProjectArr, resCertificatesArr, resume_topObj } from '../../utils/request/index.d';
 import { RESUME_TOP_DATA, INFODATA_DATA, INTRODUCERS_DATA } from '../../pages/resume/publish/data';
 import { setUseResume } from '../../actions/resume_data';
+import { useResumeType } from '../../pages/resume/publish/index.d'
 import { useDispatch, useSelector } from '@tarojs/redux'
 import Msg from '../../utils/msg'
 
 export default function useResume(){
   const dispatch = useDispatch();
+  // 获取找活名片信息
+  const resumeData: useResumeType = useSelector<any, useResumeType>(state => state.resumeData)
   // 基础信息
-  const infoVal = useSelector<any, resInfoObj>(state => state.resumeData.info)
+  const [infoData, setInfoData] = useState<resInfoObj>(resumeData.info)
   // 人员信息
-  const introducesVal = useSelector<any, resIntroduceObj>(state => state.resumeData.introducesData)
+  const [introducesData, setIntroducesData] = useState<resIntroduceObj>(resumeData.introducesData)
   // 项目
-  const projectVal = useSelector<any, resProjectArr[]>(state => state.resumeData.projectData)
-  //  职业技能
-  const certificatesVal = useSelector<any, resCertificatesArr[]>(state => state.resumeData.certificates)
-  // 基础信息
-  const [infoData, setInfoData] = useState<resInfoObj>(infoVal)
-  // 人员信息
-  const [introducesData, setIntroducesData] = useState<resIntroduceObj>(introducesVal)
-  // 项目
-  const [projectData, setProjectData] = useState<resProjectArr[]>(projectVal)
+  const [projectData, setProjectData] = useState<resProjectArr[]>(resumeData.projectData)
   // 职业技能
-  const [certificates, setCertificates] = useState<resCertificatesArr[]>(certificatesVal);
+  const [certificates, setCertificates] = useState<resCertificatesArr[]>(resumeData.certificates);
   //置顶
   const [resume_top, setResume_top] = useState<resume_topObj>(RESUME_TOP_DATA)
   
   useEffect(()=>{
     initResumeData()
   },[])
+
+  // 当redux数据发生改变后， 将自动更新到页面上
+  useEffect(()=>{
+    if(!resumeData.isSet) return
+    setInfoData(resumeData.info)
+    setIntroducesData(resumeData.introducesData)
+    setProjectData(resumeData.projectData)
+    setCertificates(resumeData.certificates)
+  }, [resumeData])
 
   // 请求找活详情数据
   const initResumeData = () => {
