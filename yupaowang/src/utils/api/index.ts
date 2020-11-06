@@ -208,4 +208,10 @@ export const userCheckDouyinRecharge: string = REQUESTURL + '/pay/byte-check/'
 export const realnameQueryUrl: string = REQUESTURL + 'resume/auth-worker-find/'
 // 找活信息发布基本资料 配置项
 export const getResumeAddInfoConfig: string = REQUESTURL + 'resumes/get-data/'
+// 大转盘获取抽奖次数
+export const turntableIndex: string = REQUESTURL + 'turntable/index/'
+// 大转盘 获取抽奖结果
+export const turntableDraw: string = REQUESTURL + 'turntable/draw/'
+// 大转盘看视频结束后的回调
+export const turntableVideoEnd: string = REQUESTURL + 'turntable/video-end/'
 

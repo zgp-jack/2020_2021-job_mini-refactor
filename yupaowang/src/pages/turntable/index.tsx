@@ -1,9 +1,211 @@
-import { Block, Image, Swiper, SwiperItem, View } from "@tarojs/components";
+import Taro, { useState, useEffect } from "@tarojs/taro";
+import { Image, Swiper, SwiperItem, View } from "@tarojs/components";
 import { Config } from "@tarojs/taro";
 import { IMGCDNURL } from "../../../src/config";
-import './index.scss'
+import "./index.scss";
+import {
+  turntableDraw,
+  turntableIndex,
+  turntableVideoEnd
+} from "../../../src/utils/request";
+import Msg, { showModalTip } from "../../../src/utils/msg";
+import { userCancelAuth } from "../../../src/utils/helper";
+interface NameType {
+  name?: string;
+  integral?: number;
+}
+
+interface ScrollnameType {
+  num: number;
+  current: number;
+  autoplay: boolean;
+  indicatorDots: boolean;
+  circular: boolean;
+  vertical: boolean;
+  interval: number;
+  duration: number;
+  nameArr: NameType[][];
+}
+
+interface ServerType {
+  userTimes: number;
+  overVideoTimes: number;
+  allVideoTimes: number;
+}
+
+interface isCompleteType {
+  isClick: boolean;
+  rotateDeg: number;
+}
+
+let videoAd;
+let JZ = require("../../../src/config/minis/jizhao");
 
 export default function Turntable() {
+  // * 中奖名单
+  const [scrollname, setScrollname] = useState<ScrollnameType>({
+    num: 100,
+    current: 0, // * 旋转角度
+    autoplay: true, // * banner循环
+    indicatorDots: false, // * banner是否显示面板指示点
+    circular: true, // * 是否采用衔接滑动
+    vertical: true, // * 滑动方向是否为纵向
+    interval: 3000, // * 自动切换时间间隔
+    duration: 1000, // * 滑动动画时长
+    nameArr: [] // * 中将名单
+  });
+
+  // * 接口请求的数据（频繁操作）
+  const [serversData, setServersData] = useState<ServerType>({
+    userTimes: 0, // * 剩余抽奖次数
+    overVideoTimes: 0, // * 看视频使用了的次数
+    allVideoTimes: 0 // * 看视频总次数
+  });
+
+  // * 转盘是否停止
+  const [isComplete, setIsComplete] = useState<isCompleteType>({
+    isClick: false,
+    rotateDeg: 0
+  });
+
+  // * 转动时间
+  let [transTime, setTransTime] = useState<number>(5);
+
+  const getRand = (start: number, end: number): number => {
+    if (start == 0) return Math.floor((end + 1) * Math.random());
+    return Math.floor(Math.random() * end + 1);
+  };
+
+  const sliceArrGroup = (arr: NameType[]) => {
+    let result: NameType[][] = [];
+    let chunk: number = 4;
+    for (var i = 0, j = arr.length; i < j; i += chunk) {
+      result.push(arr.slice(i, i + chunk));
+    }
+    return result;
+  };
+
+  const initOrderLists = () => {
+    let firstName: string =
+      "赵钱孙李周吴郑王冯陈褚卫蒋沈韩杨朱秦尤许何吕施张孔曹严华金魏陶姜戚谢邹喻柏水窦章云苏潘葛奚范彭郎鲁韦昌马苗凤花方俞任袁柳酆鲍史唐费廉岑薛雷贺倪汤滕殷罗毕郝邬安常乐于时傅皮卞齐康伍余元卜顾孟平黄和穆萧尹姚邵湛汪祁毛禹狄米贝明臧计伏成戴谈宋茅庞熊纪舒屈项祝董梁杜阮蓝闵席季麻强贾路娄危江童颜郭梅盛林刁钟徐邱骆高夏蔡田樊胡凌霍虞万支柯昝管卢莫经房裘缪干解应宗丁宣贲邓郁单杭洪包诸左石崔吉钮龚程嵇邢滑裴陆荣翁荀羊於惠甄曲家封芮羿储靳汲邴糜松井段富巫乌焦巴弓牧隗山谷车侯宓蓬全郗班仰秋仲伊宫宁仇栾暴甘钭厉戎祖武符刘景詹束龙叶幸司韶郜黎蓟薄印宿白怀蒲邰从鄂索咸籍赖卓蔺屠蒙池乔阴鬱胥能苍双闻莘党翟谭贡劳逄姬申扶堵冉宰郦雍卻璩桑桂濮牛寿通边扈燕冀郏浦尚农温别庄晏柴瞿阎充慕连茹习宦艾鱼容向古易";
+    let firstNameArr: Array<string> = firstName.split("");
+    let _integral: Array<number> = [10, 10, 10, 10, 10, 10, 10, 100, 100, 300];
+    let firstLen: number = firstName.length - 1;
+    let nameArr: NameType[] = [];
+    for (let i = 0; i < scrollname.num; i++) {
+      let nameStr = firstNameArr[getRand(0, firstLen)] + "先生";
+      let integral = _integral[getRand(0, _integral.length - 1)];
+      nameArr.push({ name: nameStr, integral: integral });
+    }
+    scrollname.current = scrollname.num / 4 - 1;
+    scrollname.nameArr = sliceArrGroup(nameArr);
+    console.log(scrollname.nameArr);
+    setScrollname({ ...scrollname });
+  };
+  // * 获取配置信息
+  const initUserinfo = () => {
+    turntableIndex().then(res => {
+      if (res.code == 200) {
+        let { all_video_times, over_video_times } = res.data;
+        setServersData({
+          userTimes: all_video_times - over_video_times,
+          overVideoTimes: over_video_times,
+          allVideoTimes: all_video_times
+        });
+      }
+    });
+  };
+
+  // * 开始抽奖
+  const startTurntable = () => {
+    turntableDraw().then(res => {
+      if (res.code == 200) {
+        let { all_video_times, over_video_times, rotate } = res.data.data;
+        let userTimes = all_video_times - over_video_times;
+        let timer = setTimeout(function() {
+          setTransTime(0)
+          clearTimeout(timer);
+          showModalTip({
+            title: "恭喜中奖",
+            tips: res.data.errmsg,
+            confirmText: "确定",
+            callback: () => {
+              isComplete.rotateDeg = rotate;
+              serversData.userTimes = userTimes;
+              setServersData({ ...serversData });
+              setIsComplete({ ...isComplete });
+            }
+          });
+        }, 5000);
+      } else if (res.code == 405) {
+        Taro.showModal({
+          title: "温馨提示",
+          content: res.errmsg,
+          cancelText: "取消",
+          confirmText: "去观看",
+          success: response => {
+            if (response.confirm) {
+            }
+          }
+        });
+      } else {
+        showModalTip({
+          title: "温馨提示",
+          tips: res.errmsg
+        });
+      }
+    });
+  };
+
+  // * 创建视频
+  const createVideo = () => {
+    if (Taro.createRewardedVideoAd) {
+      videoAd = Taro.createRewardedVideoAd({
+        adUnitId: JZ.VIDEOAD
+      });
+      videoAd.onLoad(() => {});
+      videoAd.onError(err => {
+        showModalTip({
+          title: "温馨提示",
+          tips: "广告创建失败，请重新进入！",
+          callback: () => {
+            userCancelAuth();
+          }
+        });
+      });
+      videoAd.onClose(status => {
+        if ((status && status.isEnded) || status === undefined) {
+          videoAdStop();
+        }
+      });
+    }
+  };
+
+  function videoAdStop() {
+    turntableVideoEnd().then(res => {
+      if (res.code == 200) {
+        Taro.showLoading({
+          title: "视频加载中",
+          mask: true
+        });
+        startTurntable();
+      } else if (res.code == 205) {
+        Taro.showLoading({
+          mask: true
+        });
+        startTurntable();
+      } else {
+        Msg(res.errmsg);
+      }
+    });
+  }
+
+  useEffect(() => {
+    createVideo();
+    initOrderLists();
+    initUserinfo();
+  }, []);
+
   return (
     <View>
       <View className="yupao-common-container">
@@ -13,23 +215,52 @@ export default function Turntable() {
             className="xydzpimg"
           ></Image>
           <View className="turntable-content">
-            <View className="turntable-content-bg"></View>
-            <View onClick={() => {}} className="turntable-btnbox"></View>
+            <View
+              className="turntable-content-bg"
+              style={{
+                transform: `rotate(${isComplete.rotateDeg}deg)`,
+                transition: `transform 5s ease-in-out ${transTime}s`
+              }}
+            ></View>
+            <View
+              onClick={() => startTurntable()}
+              className="turntable-btnbox"
+            ></View>
             <View className="turntable-shade"></View>
           </View>
 
           <View className="turntable-footer">
             <View className="turntable-footer-item">
+              <View className="turntable-times-tips">
+                今日可抽奖次数：{serversData.userTimes} 次
+              </View>
+            </View>
+            <View className="turntable-footer-item">
               <View className="turntable-names-scroll">
                 <View className="index-swiperbox">
                   <View className="index-Swiper-opacity"></View>
                   <View className="turntable-names-tips">中奖名单</View>
-                  <Swiper className="scorllname-Swiper">
-                    <Block>
-                      <SwiperItem>
-                        <View className="scrollname-item"></View>
+                  <Swiper
+                    className="scorllname-swiper"
+                    indicator-dots={scrollname.indicatorDots}
+                    autoplay={scrollname.autoplay}
+                    interval={scrollname.interval}
+                    duration={scrollname.duration}
+                    circular={scrollname.circular}
+                    vertical={scrollname.vertical}
+                  >
+                    {scrollname.nameArr.map((item, i) => (
+                      <SwiperItem key={i}>
+                        <View className="scrollname-item">
+                          {item.map((sonItem, sonIndex) => (
+                            <View key={sonIndex}>
+                              恭喜 {sonItem.name} 中奖！获得 {sonItem.integral}{" "}
+                              临时积分
+                            </View>
+                          ))}
+                        </View>
                       </SwiperItem>
-                    </Block>
+                    ))}
                   </Swiper>
                 </View>
               </View>
@@ -43,5 +274,5 @@ export default function Turntable() {
 
 Turntable.config = {
   navigationBarTitleText: "鱼泡网大转盘",
-  navigationBarBackgroundColor: "#e9463f",
+  navigationBarBackgroundColor: "#e9463f"
 } as Config;

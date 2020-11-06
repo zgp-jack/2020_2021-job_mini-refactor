@@ -1,22 +1,25 @@
-page{
-    position: relative;
-    width: 100%;
-    background:#e9463d  url("http://cdn.yupao.com/miniprogram/images/truntable-main.png") no-repeat;
-    background-size: 100% 100%;
-}
 $turntable-btnbox-height: 144.9px;
-$turntable-content-height:673.9px;
+$turntable-content-height: 673.9px;
+$shadeWidth:600px;
 .yupao-common-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 150px;
+  background-color: #e9463d;
   .turntable-container {
     position: relative;
     width: 100%;
     padding-top: 20px;
+    background: #e9463d
+      url("http://cdn.yupao.com/miniprogram/images/truntable-main.png")
+      no-repeat;
+    background-size: 100% 100%;
     .xydzpimg {
       position: relative;
       width: 338.7px;
       height: 47px;
       display: block;
-      margin: 0 auto 0;
+      margin: 20px auto 0;
     }
     .turntable-content {
       position: relative;
@@ -32,13 +35,10 @@ $turntable-content-height:673.9px;
         left: 0;
         top: 0;
         z-index: 10;
-        transition: transform 5s ease-in-out 0s;
         transform-origin: center;
         background: url("http://cdn.yupao.com/miniprogram/images/new-turntable-integral-bg.png")
           no-repeat;
         background-size: 100% 100%;
-        transition: transform 0s ease-in-out 0s;
-        transform: rotate(0deg);
       }
       .turntable-btnbox {
         position: absolute;
@@ -55,12 +55,14 @@ $turntable-content-height:673.9px;
       }
       .turntable-shade {
         position: absolute;
+        width: $shadeWidth;
+        height: calc(#{$shadeWidth} / 10);
+        left:calc(50% - #{$shadeWidth} / 2);
         background: url("http://cdn.yupao.com/miniprogram/images/truntable-shade.png")
           no-repeat;
         background-size: 100% 100%;
         bottom: 10px;
-        left: 50%;
-        z-index: -1;
+        z-index: 1;
       }
     }
     .turntable-footer {
@@ -72,8 +74,18 @@ $turntable-content-height:673.9px;
         width: 80%;
         border: 1px dashed #f4ef20;
         display: block;
-        margin: 0 auto 40rpx;
+        margin: 0 auto 40px;
         border-radius: 5px;
+        .turntable-times-tips{
+          position: relative;
+          display: block;
+          width: 100%;
+          text-align: center;
+          color: #f1eb3c;
+          line-height: 100px;
+          font-size: 28px;
+          letter-spacing: 2px;
+        }
         .turntable-names-scroll {
           position: relative;
           width: 100%;
@@ -89,29 +101,29 @@ $turntable-content-height:673.9px;
             position: relative;
             display: block;
             width: 100%;
-            font-size: 40rpx;
+            font-size: 40px;
             text-align: center;
-            line-height: 80rpx;
-            padding: 10rpx 0;
+            line-height: 80px;
+            padding: 10px 0;
             color: #f1eb3c;
             background: #e3524a;
           }
           .scorllname-swiper {
             position: relative;
             width: 100%;
-            height: 300rpx;
-            padding: 20rpx 0;
+            height: 300px;
+            padding: 20px 0;
             .scrollname-item {
               position: relative;
-              padding: 0 20rpx;
-            }
-            & > view {
-              position: relative;
-              display: block;
-              line-height: 75rpx;
-              color: #fff;
-              font-size: 30rpx;
-              text-align: center;
+              padding: 0 20px;
+              & > view {
+                position: relative;
+                display: block;
+                line-height: 75px;
+                color: #fff;
+                font-size: 30px;
+                text-align: center;
+              }
             }
           }
         }

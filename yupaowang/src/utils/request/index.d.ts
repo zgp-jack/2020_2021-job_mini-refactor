@@ -1576,3 +1576,43 @@ export interface ResumeAddInfoGenderConfig {
 export interface ResumeCertificateData extends Result{
   count: number
 }
+
+
+// 大转盘
+export interface TurntableIndexTypeData {
+  all_video_times: number,
+  max_times: number,
+  over_video_times: number,
+  time: number,
+  times: number,
+  video_times: number,
+  win_integral: number
+}
+export interface TurntableIndexType extends TurntableIndexTypePortion {
+  data: TurntableIndexTypeData,
+}
+
+export interface TurntableIndexTypePortion {
+  code: number,
+  errcode: string,
+  errmsg: string
+}
+
+export interface TurntableDrawData {
+  video: string,
+}
+
+export interface TurntableDraw extends TurntableIndexTypePortion {
+  data: TurntableDrawData,
+}
+
+export interface TurntableVideoEndData {
+  all_video_times: number,
+  over_video_times: number,
+  times: number,
+  video_times: number
+}
+
+export interface TurntableVideoEnd extends TurntableIndexTypePortion {
+  data: TurntableVideoEndData
+}

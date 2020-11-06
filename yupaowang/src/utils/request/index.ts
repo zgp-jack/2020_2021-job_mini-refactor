@@ -1150,3 +1150,28 @@ export function getResumeAddInfoConfig(): Promise<Inter.ResumeAddInfoConfig>{
     method: 'POST'
   })
 }
+
+// 大转盘获取抽奖次数
+export function turntableIndex():Promise<Inter.TurntableIndexType>{
+  return doRequestAction({
+    url: api.turntableIndex,
+    method: 'POST',
+    title: '正在初始化数据'
+  })
+}
+
+// 大转盘抽奖
+export function turntableDraw():Promise<Inter.TurntableDraw>{
+  return doRequestAction({
+    url: api.turntableDraw,
+    method: 'POST',
+  })
+}
+
+// 大转盘看视频结束后的回调
+export function turntableVideoEnd():Promise<Inter.TurntableVideoEnd>{
+  return doRequestAction({
+    url: api.turntableVideoEnd,
+    method: 'POST',
+  })
+}
