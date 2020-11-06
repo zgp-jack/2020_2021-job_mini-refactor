@@ -12281,38 +12281,6 @@ function setPositionStaus(data) {
 
 /***/ }),
 
-/***/ "./src/actions/resume_addinfo.ts":
-/*!***************************************!*\
-  !*** ./src/actions/resume_addinfo.ts ***!
-  \***************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.setResumeInfoConfig = setResumeInfoConfig;
-exports.getResumeInfoConfig = getResumeInfoConfig;
-
-var _resume_addinfo = __webpack_require__(/*! ../constants/resume_addinfo */ "./src/constants/resume_addinfo.ts");
-
-function setResumeInfoConfig(data) {
-  return {
-    type: _resume_addinfo.SET,
-    data: data
-  };
-}
-function getResumeInfoConfig() {
-  return {
-    type: _resume_addinfo.GET
-  };
-}
-
-/***/ }),
-
 /***/ "./src/actions/resume_data.ts":
 /*!************************************!*\
   !*** ./src/actions/resume_data.ts ***!
@@ -13164,90 +13132,6 @@ function useResume() {
     certificates: certificates,
     resume_top: resume_top,
     initResumeData: initResumeData
-  };
-}
-
-/***/ }),
-
-/***/ "./src/hooks/resume_addinfo/index.ts":
-/*!*******************************************!*\
-  !*** ./src/hooks/resume_addinfo/index.ts ***!
-  \*******************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }(); /*
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          * @Author: zyb
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          * @Date: 2020-11-03 09:23:50
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          * @LastEditors: zyb
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          * @LastEditTime: 2020-11-05 17:29:51
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          * @Description:
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          */
-
-
-exports.default = useResumeAddInfo;
-
-var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
-
-var _index = __webpack_require__(/*! ../../utils/request/index */ "./src/utils/request/index.ts");
-
-var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/redux/index.js");
-
-var _resume_addinfo = __webpack_require__(/*! ../../actions/resume_addinfo */ "./src/actions/resume_addinfo.ts");
-
-function useResumeAddInfo() {
-  var dispatch = (0, _redux.useDispatch)();
-  var addInfoConfig = (0, _redux.useSelector)(function (store) {
-    return store['resumeAddInfo'];
-  });
-  // 保存配置项
-
-  var _useState = (0, _taroWeapp.useState)(addInfoConfig),
-      _useState2 = _slicedToArray(_useState, 2),
-      infoConfig = _useState2[0],
-      setInfoConfig = _useState2[1];
-  // 当前性别的下标
-
-
-  var _useState3 = (0, _taroWeapp.useState)(0),
-      _useState4 = _slicedToArray(_useState3, 2),
-      genderCurrent = _useState4[0],
-      setGenderCurrent = _useState4[1];
-  // 当前民族的下标
-
-
-  var _useState5 = (0, _taroWeapp.useState)(0),
-      _useState6 = _slicedToArray(_useState5, 2),
-      nationCurrent = _useState6[0],
-      setNationCurrent = _useState6[1];
-  // 获取年月日范围
-
-
-  var startDatePicker = new Date().getFullYear() - 60 + '-01-01';
-  // 初始化基本信息数据
-  //const 
-  // 请求配置项数据
-  (0, _taroWeapp.useEffect)(function () {
-    if (addInfoConfig.isset) return;
-    (0, _index.getResumeAddInfoConfig)().then(function (res) {
-      var data = _extends({}, res, { isset: true });
-      setInfoConfig(_extends({}, data));
-      dispatch((0, _resume_addinfo.setResumeInfoConfig)(_extends({}, data)));
-    });
-  }, []);
-  return {
-    infoConfig: infoConfig,
-    genderCurrent: genderCurrent,
-    startDatePicker: startDatePicker
   };
 }
 
