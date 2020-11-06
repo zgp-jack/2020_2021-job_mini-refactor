@@ -4,6 +4,8 @@ import AMapWX from '../../utils/source/amap-wx'
 import { UserLocationPromiss } from '../../models/area'
 import { UserLocationCity } from '../../config/store'
 import { InputPoiList, InputPoiListTips } from './index.d'
+import { checkAdcodeAction } from '../request/index';
+import Msg from '../msg';
 
 // 对象拷贝
 export function objDeepCopy(source: any):any {
@@ -94,4 +96,34 @@ export function recSerAuthLoction(): Promise<UserLocationPromiss> {
 // 用户取消授权
 export function userCancelAuth():void{
   Taro.navigateBack()
+}
+
+// 用户获取定位
+export function getLocation(){
+  Msg('位置获取中...');
+  var myAmapFun = new AMapWX.AMapWX({
+    key: MAPKEY,
+  }); //key注册高德地图开发者
+  myAmapFun.getRegeo({
+    type: 'gcj02',
+    success: (data) => {
+      console.error(data);
+      console.error(data[0].name);
+      let params = {
+        adcode: data[0].regeocodeData.addressComponent.adcode
+      }
+      checkAdcodeAction(params).then(res => {
+        if (res.errcode == 'ok') {
+          console.error('成功', data, res);
+        } else {
+          Msg('定位失败,请重新定位')
+        }
+      }).catch((err) => {
+        Msg('定位失败,请重新定位')
+      })
+    },
+    fail: (err) => {
+      Msg('定位失败,请重新定位')
+    }
+  })
 }

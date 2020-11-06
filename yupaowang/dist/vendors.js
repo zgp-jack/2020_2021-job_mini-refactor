@@ -12175,6 +12175,45 @@ function getResumeInfoConfig() {
 
 /***/ }),
 
+/***/ "./src/actions/resume_data.ts":
+/*!************************************!*\
+  !*** ./src/actions/resume_data.ts ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.getUseResume = getUseResume;
+exports.setUseResume = setUseResume;
+
+var _resume_data = __webpack_require__(/*! ../constants/resume_data */ "./src/constants/resume_data.ts");
+
+function getUseResume(data) {
+  return {
+    type: _resume_data.GETUSERRESUME,
+    data: data
+  };
+} /*
+   * @Author: zyb
+   * @Date: 2020-11-04 19:51:02
+   * @LastEditors: zyb
+   * @LastEditTime: 2020-11-05 10:01:53
+   * @Description:
+   */
+function setUseResume(data) {
+  return {
+    type: _resume_data.SETUSERRESUME,
+    data: data
+  };
+}
+
+/***/ }),
+
 /***/ "./src/actions/tabbar.ts":
 /*!*******************************!*\
   !*** ./src/actions/tabbar.ts ***!
@@ -12804,6 +12843,155 @@ function useCode(type) {
     disabled: disabled,
     text: text,
     userGetCode: userGetCode
+  };
+}
+
+/***/ }),
+
+/***/ "./src/hooks/publish/resume.ts":
+/*!*************************************!*\
+  !*** ./src/hooks/publish/resume.ts ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }(); /*
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          * @Author: zyb
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          * @Date: 2020-11-03 15:03:11
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          * @LastEditors: zyb
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          * @LastEditTime: 2020-11-06 11:00:19
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          * @Description:
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          */
+
+
+exports.default = useResume;
+
+var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+
+var _index = __webpack_require__(/*! ../../utils/request/index */ "./src/utils/request/index.ts");
+
+var _data = __webpack_require__(/*! ../../pages/resume/publish/data */ "./src/pages/resume/publish/data.ts");
+
+var _resume_data = __webpack_require__(/*! ../../actions/resume_data */ "./src/actions/resume_data.ts");
+
+var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/redux/index.js");
+
+var _index2 = __webpack_require__(/*! ../../utils/msg/index */ "./src/utils/msg/index.ts");
+
+var _index3 = _interopRequireDefault(_index2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+function useResume() {
+  var dispatch = (0, _redux.useDispatch)();
+  // 基础信息
+  var infoVal = (0, _redux.useSelector)(function (state) {
+    return state.resumeData.info;
+  });
+  // 人员信息
+  var introducesVal = (0, _redux.useSelector)(function (state) {
+    return state.resumeData.introducesData;
+  });
+  // 项目
+  var projectVal = (0, _redux.useSelector)(function (state) {
+    return state.resumeData.projectData;
+  });
+  //  职业技能
+  var certificatesVal = (0, _redux.useSelector)(function (state) {
+    return state.resumeData.certificates;
+  });
+  // 基础信息
+
+  var _useState = (0, _taroTt.useState)(infoVal),
+      _useState2 = _slicedToArray(_useState, 2),
+      infoData = _useState2[0],
+      setInfoData = _useState2[1];
+  // 人员信息
+
+
+  var _useState3 = (0, _taroTt.useState)(introducesVal),
+      _useState4 = _slicedToArray(_useState3, 2),
+      introducesData = _useState4[0],
+      setIntroducesData = _useState4[1];
+  // 项目
+
+
+  var _useState5 = (0, _taroTt.useState)(projectVal),
+      _useState6 = _slicedToArray(_useState5, 2),
+      projectData = _useState6[0],
+      setProjectData = _useState6[1];
+  // 职业技能
+
+
+  var _useState7 = (0, _taroTt.useState)(certificatesVal),
+      _useState8 = _slicedToArray(_useState7, 2),
+      certificates = _useState8[0],
+      setCertificates = _useState8[1];
+  //置顶
+
+
+  var _useState9 = (0, _taroTt.useState)(_data.RESUME_TOP_DATA),
+      _useState10 = _slicedToArray(_useState9, 2),
+      resume_top = _useState10[0],
+      setResume_top = _useState10[1];
+  // 请求当前找活数据
+
+
+  (0, _taroTt.useEffect)(function () {
+    (0, _index.resumeListAction)().then(function (res) {
+      if (res.errcode === 200) {
+        // 生日需要单独设置
+        var time = void 0;
+        if (res.data.info.birthday) {
+          time = new Date().getFullYear() - (+res.data.info.birthday.split('-')[0] - 0);
+        } else {
+          time = 0;
+        }
+        var age = time > 0 ? time + '岁' : '未填写';
+        res.data.info.age = age;
+        //基本信息
+        var info = _extends({}, _data.INFODATA_DATA);
+        info = _extends({}, info, res.data.info);
+        setInfoData(_extends({}, info));
+        //人员信息
+        var introduces = _extends({}, _data.INTRODUCERS_DATA);
+        introduces = _extends({}, introduces, res.data.introduces);
+        setIntroducesData(_extends({}, introduces));
+        // 项目
+        setProjectData([].concat(_toConsumableArray(res.data.project)));
+        setCertificates([].concat(_toConsumableArray(res.data.certificates)));
+        setResume_top(_extends({}, res.data.resume_top));
+        // 存redux
+        dispatch((0, _resume_data.setUseResume)({
+          info: res.data.info,
+          introducesData: res.data.introduces,
+          certificates: res.data.certificates,
+          projectData: res.data.project,
+          resume_uuid: res.data.info.uuid || '',
+          isSet: true
+        }));
+      } else {
+        (0, _index3.default)(res.errmsg);
+      }
+    });
+  }, []);
+  return {
+    infoData: infoData,
+    introducesData: introducesData,
+    projectData: projectData,
+    certificates: certificates,
+    resume_top: resume_top
   };
 }
 
@@ -16809,6 +16997,7 @@ exports.getPointNumber = getPointNumber;
 exports.getSystemInfo = getSystemInfo;
 exports.recSerAuthLoction = recSerAuthLoction;
 exports.userCancelAuth = userCancelAuth;
+exports.getLocation = getLocation;
 
 var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
 
@@ -16821,6 +17010,12 @@ var _amapWx = __webpack_require__(/*! ../source/amap-wx */ "./src/utils/source/a
 var _amapWx2 = _interopRequireDefault(_amapWx);
 
 var _store = __webpack_require__(/*! ../../config/store */ "./src/config/store.ts");
+
+var _index2 = __webpack_require__(/*! ../request/index */ "./src/utils/request/index.ts");
+
+var _index3 = __webpack_require__(/*! ../msg/index */ "./src/utils/msg/index.ts");
+
+var _index4 = _interopRequireDefault(_index3);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -16902,6 +17097,35 @@ function recSerAuthLoction() {
 // 用户取消授权
 function userCancelAuth() {
   _taroTt2.default.navigateBack();
+}
+// 用户获取定位
+function getLocation() {
+  (0, _index4.default)('位置获取中...');
+  var myAmapFun = new _amapWx2.default.AMapWX({
+    key: _index.MAPKEY
+  }); //key注册高德地图开发者
+  myAmapFun.getRegeo({
+    type: 'gcj02',
+    success: function success(data) {
+      console.error(data);
+      console.error(data[0].name);
+      var params = {
+        adcode: data[0].regeocodeData.addressComponent.adcode
+      };
+      (0, _index2.checkAdcodeAction)(params).then(function (res) {
+        if (res.errcode == 'ok') {
+          console.error('成功', data, res);
+        } else {
+          (0, _index4.default)('定位失败,请重新定位');
+        }
+      }).catch(function (err) {
+        (0, _index4.default)('定位失败,请重新定位');
+      });
+    },
+    fail: function fail(err) {
+      (0, _index4.default)('定位失败,请重新定位');
+    }
+  });
 }
 
 /***/ }),

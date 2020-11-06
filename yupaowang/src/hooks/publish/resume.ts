@@ -1,13 +1,8 @@
 /*
  * @Author: zyb
  * @Date: 2020-11-03 15:03:11
-<<<<<<< HEAD
- * @LastEditors: jsxin
- * @LastEditTime: 2020-11-05 10:40:23
-=======
  * @LastEditors: zyb
- * @LastEditTime: 2020-11-05 19:53:36
->>>>>>> 2b5749a609afbaa14d25b780c7d39444fbbbe5bd
+ * @LastEditTime: 2020-11-06 11:00:19
  * @Description: 
  */
 import { useState,useDidShow, useEffect } from '@tarojs/taro'

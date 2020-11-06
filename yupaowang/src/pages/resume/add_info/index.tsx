@@ -5,12 +5,15 @@ import { useDispatch, useSelector } from '@tarojs/redux'
 import { resInfoObj } from '../../../utils/request/index.d';
 import { ProfessionRecruitData } from '../../../components/profession/index.d'
 import { NationsType, OccupationType } from './index.d';
-import { addResumeAction } from '../../../utils/request/index'; 
+import { addResumeAction, checkAdcodeAction } from '../../../utils/request/index'; 
 import Profession from '../../../components/profession'
 import WordsTotal from '../../../components/wordstotal'
 import useCode from '../../../hooks/code'
 import Msg,{ ShowActionModal } from '../../../utils/msg';
 import { isChinese, isPhone } from '../../../utils/v';
+import { MAPKEY } from '../../../config/index';
+import AMapWX from '../../../utils/source/amap-wx'
+import { recSerAuthLoction, getLocation } from '../../../utils/helper';
 import './index.scss'
 
 export default function AddResumeInfo(){
@@ -178,6 +181,45 @@ export default function AddResumeInfo(){
     console.error(works,'works');
     console.error(newArr,'newArr')
   }
+  // 获取定位
+  const handleGps = ()=>{
+    Taro.getSetting({
+      success:(res)=>{
+        console.error(res);
+        if (res.authSetting['scope.userLocation'] != undefined && res.authSetting['scope.userLocation'] != true) {//非初始化进入该页面,且未授权   
+          Taro.showModal({
+            title: '是否授权当前位置',
+            content: '需要获取您的地理位置，请确认授权，否则将不能为你自动推荐位置',
+            success:(res)=>{
+              if(res.confirm){
+                Taro.openSetting({
+                  success:(data)=>{
+                    if (data.authSetting["scope.userLocation"] == true) {
+                      Msg('授权成功')
+                      getLocation();
+                    }else{
+                      Msg('授权失败')
+                    }
+                  }
+                })
+              }
+            }
+          })
+        }else{
+          getLocation();
+        }
+      }
+    })
+  }
+  // 定位获取
+  
+  // 选择地址
+  const userChooseArea = () => {
+    let url = '/pages/map/recruit/index'
+    Taro.navigateTo({
+      url: url
+    })
+  }
   console.error(classifyTree,'classifyTree');
   console.error(infoData.tel,'1111');
   console.error(inputVal.tel,'222')
@@ -267,15 +309,12 @@ export default function AddResumeInfo(){
                     <Input className='publish-list-input' disabled type='text' placeholder='请选择所属工种' />
                 }
                 </View>
-              <View className='publish-list-item'>
+              <View className='publish-list-item' onClick={()=>userChooseArea()}>
                 <Text className='pulish-list-title'>所在地区</Text>
-                <Input
-                  className='publish-list-input'
-                  type='text'
-                  placeholder='请选择所在地区'
-                  value={inputVal.address}
-                  onInput={(e) => userEnterFrom(e, 'address')}
-                />
+                <View className='flex'>
+                  <Text className='flexContent'>{inputVal.address}</Text>
+                  <Text className='flexTitle' onClick={(e)=>{e.stopPropagation(),handleGps()}}>获取定位</Text>
+                </View>
               </View>
             </View>
             <View className='resume-addinfo-body'>
