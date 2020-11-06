@@ -1,4 +1,4 @@
-(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["vendors"],{
+(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["vendors"],{
 
 /***/ "./node_modules/@tarojs/redux/dist/index.js":
 /*!**************************************************!*\
@@ -701,10 +701,10 @@ module.exports.default = module.exports;
 
 /***/ }),
 
-/***/ "./node_modules/@tarojs/taro-tt/dist/index.js":
-/*!****************************************************!*\
-  !*** ./node_modules/@tarojs/taro-tt/dist/index.js ***!
-  \****************************************************/
+/***/ "./node_modules/@tarojs/taro-weapp/dist/index.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/@tarojs/taro-weapp/dist/index.js ***!
+  \*******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -766,6 +766,25 @@ function _defineProperty(obj, key, value) {
   }
 
   return obj;
+}
+
+function _objectSpread(target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i] != null ? arguments[i] : {};
+    var ownKeys = Object.keys(source);
+
+    if (typeof Object.getOwnPropertySymbols === 'function') {
+      ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {
+        return Object.getOwnPropertyDescriptor(source, sym).enumerable;
+      }));
+    }
+
+    ownKeys.forEach(function (key) {
+      _defineProperty(target, key, source[key]);
+    });
+  }
+
+  return target;
 }
 
 function _inherits(subClass, superClass) {
@@ -1009,7 +1028,7 @@ var nextTick = function nextTick(fn) {
   }
 
   fn = typeof fn === 'function' ? (_fn = fn).bind.apply(_fn, [null].concat(args)) : fn;
-  var timerFunc = tt.nextTick ? tt.nextTick : setTimeout;
+  var timerFunc = wx.nextTick ? wx.nextTick : setTimeout;
   timerFunc(fn);
 };
 
@@ -1021,1042 +1040,6 @@ function unwrapExports(x) {
 
 function createCommonjsModule(fn, module) {
   return module = { exports: {} }, fn(module, module.exports), module.exports;
-}
-
-/** Detect free variable `global` from Node.js. */
-
-var freeGlobal = _typeof(commonjsGlobal) == 'object' && commonjsGlobal && commonjsGlobal.Object === Object && commonjsGlobal;
-var _freeGlobal = freeGlobal;
-
-/** Detect free variable `self`. */
-
-var freeSelf = (typeof self === "undefined" ? "undefined" : _typeof(self)) == 'object' && self && self.Object === Object && self;
-/** Used as a reference to the global object. */
-
-var root = _freeGlobal || freeSelf || Function('return this')();
-var _root = root;
-
-/** Built-in value references. */
-
-var _Symbol2 = _root.Symbol;
-var _Symbol = _Symbol2;
-
-/** Used for built-in method references. */
-
-var objectProto = Object.prototype;
-/** Used to check objects for own properties. */
-
-var hasOwnProperty = objectProto.hasOwnProperty;
-/**
- * Used to resolve the
- * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
- * of values.
- */
-
-var nativeObjectToString = objectProto.toString;
-/** Built-in value references. */
-
-var symToStringTag = _Symbol ? _Symbol.toStringTag : undefined;
-/**
- * A specialized version of `baseGetTag` which ignores `Symbol.toStringTag` values.
- *
- * @private
- * @param {*} value The value to query.
- * @returns {string} Returns the raw `toStringTag`.
- */
-
-function getRawTag(value) {
-  var isOwn = hasOwnProperty.call(value, symToStringTag),
-      tag = value[symToStringTag];
-
-  try {
-    value[symToStringTag] = undefined;
-    var unmasked = true;
-  } catch (e) {}
-
-  var result = nativeObjectToString.call(value);
-
-  {
-    if (isOwn) {
-      value[symToStringTag] = tag;
-    } else {
-      delete value[symToStringTag];
-    }
-  }
-
-  return result;
-}
-
-var _getRawTag = getRawTag;
-
-/** Used for built-in method references. */
-var objectProto$1 = Object.prototype;
-/**
- * Used to resolve the
- * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
- * of values.
- */
-
-var nativeObjectToString$1 = objectProto$1.toString;
-/**
- * Converts `value` to a string using `Object.prototype.toString`.
- *
- * @private
- * @param {*} value The value to convert.
- * @returns {string} Returns the converted string.
- */
-
-function objectToString(value) {
-  return nativeObjectToString$1.call(value);
-}
-
-var _objectToString = objectToString;
-
-/** `Object#toString` result references. */
-
-var nullTag = '[object Null]',
-    undefinedTag = '[object Undefined]';
-/** Built-in value references. */
-
-var symToStringTag$1 = _Symbol ? _Symbol.toStringTag : undefined;
-/**
- * The base implementation of `getTag` without fallbacks for buggy environments.
- *
- * @private
- * @param {*} value The value to query.
- * @returns {string} Returns the `toStringTag`.
- */
-
-function baseGetTag(value) {
-  if (value == null) {
-    return value === undefined ? undefinedTag : nullTag;
-  }
-
-  return symToStringTag$1 && symToStringTag$1 in Object(value) ? _getRawTag(value) : _objectToString(value);
-}
-
-var _baseGetTag = baseGetTag;
-
-/**
- * Creates a unary function that invokes `func` with its argument transformed.
- *
- * @private
- * @param {Function} func The function to wrap.
- * @param {Function} transform The argument transform.
- * @returns {Function} Returns the new function.
- */
-function overArg(func, transform) {
-  return function (arg) {
-    return func(transform(arg));
-  };
-}
-
-var _overArg = overArg;
-
-/** Built-in value references. */
-
-var getPrototype = _overArg(Object.getPrototypeOf, Object);
-var _getPrototype = getPrototype;
-
-/**
- * Checks if `value` is object-like. A value is object-like if it's not `null`
- * and has a `typeof` result of "object".
- *
- * @static
- * @memberOf _
- * @since 4.0.0
- * @category Lang
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is object-like, else `false`.
- * @example
- *
- * _.isObjectLike({});
- * // => true
- *
- * _.isObjectLike([1, 2, 3]);
- * // => true
- *
- * _.isObjectLike(_.noop);
- * // => false
- *
- * _.isObjectLike(null);
- * // => false
- */
-function isObjectLike(value) {
-  return value != null && _typeof(value) == 'object';
-}
-
-var isObjectLike_1 = isObjectLike;
-
-/** `Object#toString` result references. */
-
-var objectTag = '[object Object]';
-/** Used for built-in method references. */
-
-var funcProto = Function.prototype,
-    objectProto$2 = Object.prototype;
-/** Used to resolve the decompiled source of functions. */
-
-var funcToString = funcProto.toString;
-/** Used to check objects for own properties. */
-
-var hasOwnProperty$1 = objectProto$2.hasOwnProperty;
-/** Used to infer the `Object` constructor. */
-
-var objectCtorString = funcToString.call(Object);
-/**
- * Checks if `value` is a plain object, that is, an object created by the
- * `Object` constructor or one with a `[[Prototype]]` of `null`.
- *
- * @static
- * @memberOf _
- * @since 0.8.0
- * @category Lang
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is a plain object, else `false`.
- * @example
- *
- * function Foo() {
- *   this.a = 1;
- * }
- *
- * _.isPlainObject(new Foo);
- * // => false
- *
- * _.isPlainObject([1, 2, 3]);
- * // => false
- *
- * _.isPlainObject({ 'x': 0, 'y': 0 });
- * // => true
- *
- * _.isPlainObject(Object.create(null));
- * // => true
- */
-
-function isPlainObject(value) {
-  if (!isObjectLike_1(value) || _baseGetTag(value) != objectTag) {
-    return false;
-  }
-
-  var proto = _getPrototype(value);
-
-  if (proto === null) {
-    return true;
-  }
-
-  var Ctor = hasOwnProperty$1.call(proto, 'constructor') && proto.constructor;
-  return typeof Ctor == 'function' && Ctor instanceof Ctor && funcToString.call(Ctor) == objectCtorString;
-}
-
-var isPlainObject_1 = isPlainObject;
-
-function isEmptyObject(obj) {
-  if (!obj || !isPlainObject_1(obj)) {
-    return false;
-  }
-
-  for (var n in obj) {
-    if (obj.hasOwnProperty(n)) {
-      return false;
-    }
-  }
-
-  return true;
-}
-function isUndefined(o) {
-  return o === undefined;
-}
-function isFunction(arg) {
-  return typeof arg === 'function';
-}
-function isArray(arg) {
-  return Array.isArray(arg);
-}
-function shakeFnFromObject(obj) {
-  var newObj;
-
-  if (isArray(obj)) {
-    newObj = [];
-    var len = obj.length;
-
-    for (var i = 0; i < len; i++) {
-      newObj.push(shakeFnFromObject(obj[i]));
-    }
-  } else if (isPlainObject_1(obj)) {
-    newObj = {};
-
-    for (var key in obj) {
-      if (isFunction(obj[key])) {
-        continue;
-      }
-
-      var ret = shakeFnFromObject(obj[key]);
-      newObj[key] = ret;
-    }
-  } else {
-    return obj;
-  }
-
-  return newObj;
-}
-var keyList = Object.keys;
-var hasProp = Object.prototype.hasOwnProperty;
-
-function diffArrToPath(to, from) {
-  var res = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-  var keyPrev = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : '';
-  var len = to.length;
-
-  var _loop = function _loop(i) {
-    var toItem = to[i];
-    var fromItem = from[i];
-    var targetKey = "".concat(keyPrev, "[").concat(i, "]");
-
-    if (toItem === fromItem) {
-      return "continue";
-    } else if (_typeof(toItem) !== _typeof(fromItem)) {
-      res[targetKey] = toItem;
-    } else {
-      if (_typeof(toItem) !== 'object') {
-        res[targetKey] = toItem;
-      } else {
-        var arrTo = isArray(toItem);
-        var arrFrom = isArray(fromItem);
-
-        if (arrTo !== arrFrom) {
-          res[targetKey] = toItem;
-        } else if (arrTo && arrFrom) {
-          if (toItem.length < fromItem.length) {
-            res[targetKey] = toItem;
-          } else {
-            // 数组
-            diffArrToPath(toItem, fromItem, res, "".concat(targetKey));
-          }
-        } else {
-          if (!toItem || !fromItem || keyList(toItem).length < keyList(fromItem).length) {
-            res[targetKey] = toItem;
-          } else {
-            // 对象
-            var shouldDiffObject = true;
-            Object.keys(fromItem).some(function (key) {
-              if (typeof toItem[key] === 'undefined' && typeof fromItem[key] !== 'undefined') {
-                shouldDiffObject = false;
-                return true;
-              }
-            });
-
-            if (shouldDiffObject) {
-              diffObjToPath(toItem, fromItem, res, "".concat(targetKey, "."));
-            } else {
-              res[targetKey] = toItem;
-            }
-          }
-        }
-      }
-    }
-  };
-
-  for (var i = 0; i < len; i++) {
-    var _ret = _loop(i);
-
-    if (_ret === "continue") continue;
-  }
-
-  return res;
-} // 比较的对象均为plainObject，且函数已被过滤
-
-
-function diffObjToPath(to, from) {
-  var res = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-  var keyPrev = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : '';
-  var keys = keyList(to);
-  var len = keys.length;
-
-  var _loop2 = function _loop2(i) {
-    var key = keys[i];
-    var toItem = to[key];
-    var fromItem = from[key];
-    var targetKey = "".concat(keyPrev).concat(key);
-
-    if (toItem === fromItem) {
-      return "continue";
-    } else if (!hasProp.call(from, key)) {
-      res[targetKey] = toItem;
-    } else if (_typeof(toItem) !== _typeof(fromItem)) {
-      res[targetKey] = toItem;
-    } else {
-      if (_typeof(toItem) !== 'object') {
-        res[targetKey] = toItem;
-      } else {
-        var arrTo = isArray(toItem);
-        var arrFrom = isArray(fromItem);
-
-        if (arrTo !== arrFrom) {
-          res[targetKey] = toItem;
-        } else if (arrTo && arrFrom) {
-          if (toItem.length < fromItem.length) {
-            res[targetKey] = toItem;
-          } else {
-            // 数组
-            diffArrToPath(toItem, fromItem, res, "".concat(targetKey));
-          }
-        } else {
-          // null
-          if (!toItem || !fromItem) {
-            res[targetKey] = toItem;
-          } else {
-            // 对象
-            var shouldDiffObject = true;
-            Object.keys(fromItem).some(function (key) {
-              if (typeof toItem[key] === 'undefined' && typeof fromItem[key] !== 'undefined') {
-                shouldDiffObject = false;
-                return true;
-              }
-            });
-
-            if (shouldDiffObject) {
-              diffObjToPath(toItem, fromItem, res, "".concat(targetKey, "."));
-            } else {
-              res[targetKey] = toItem;
-            }
-          }
-        }
-      }
-    }
-  };
-
-  for (var i = 0; i < len; i++) {
-    var _ret2 = _loop2(i);
-
-    if (_ret2 === "continue") continue;
-  }
-
-  return res;
-}
-function queryToJson(str) {
-  var dec = decodeURIComponent;
-  var qp = str.split('&');
-  var ret = {};
-  var name;
-  var val;
-
-  for (var i = 0, l = qp.length, item; i < l; ++i) {
-    item = qp[i];
-
-    if (item.length) {
-      var s = item.indexOf('=');
-
-      if (s < 0) {
-        name = dec(item);
-        val = '';
-      } else {
-        name = dec(item.slice(0, s));
-        val = dec(item.slice(s + 1));
-      }
-
-      if (typeof ret[name] === 'string') {
-        // inline'd type check
-        ret[name] = [ret[name]];
-      }
-
-      if (isArray(ret[name])) {
-        ret[name].push(val);
-      } else {
-        ret[name] = val;
-      }
-    }
-  }
-
-  return ret; // Object
-}
-
-var _loadTime = new Date().getTime().toString();
-
-var _i = 1;
-function getUniqueKey() {
-  return _loadTime + _i++;
-}
-
-function triggerLoopRef(that, dom, handler) {
-  var handlerType = _typeof(handler);
-
-  if (handlerType !== 'function' && handlerType !== 'object') {
-    return console.warn('\u5FAA\u73AF Ref \u53EA\u652F\u6301\u51FD\u6570\u6216 createRef()\uFF0C\u5F53\u524D\u7C7B\u578B\u4E3A\uFF1A'.concat(handlerType));
-  }
-
-  if (handlerType === 'object') {
-    handler.current = dom;
-  } else if (handlerType === 'function') {
-    handler.call(that, dom);
-  }
-}
-
-function handleLoopRef(component, id, type, handler) {
-  if (!component) return null;
-  var res;
-
-  if (type === 'component') {
-    component.selectComponent(id, function (res) {
-      res = res ? res.$component || res : null;
-      res && triggerLoopRef(component.$component, res, handler);
-    });
-  } else {
-    var query = wx.createSelectorQuery().in(component);
-    res = query.select(id);
-    res && triggerLoopRef(component.$component, res, handler);
-  }
-
-  return null;
-}
-var id$1 = 0;
-
-function genId() {
-  return String(id$1++);
-}
-
-var compIdsMapper;
-
-try {
-  compIdsMapper = new Map();
-} catch (error) {
-  compIdsMapper = new SimpleMap();
-}
-
-function genCompid(key, isNeedCreate) {
-  if (!taro.Current || !taro.Current.current || !taro.Current.current.$scope) return [];
-  var prevId = compIdsMapper.get(key);
-
-  if (isNeedCreate) {
-    var _id = genId();
-
-    compIdsMapper.set(key, _id);
-    return [prevId, _id];
-  } else {
-    var _id2 = prevId || genId();
-
-    !prevId && compIdsMapper.set(key, _id2);
-    return [null, _id2];
-  }
-}
-var prefix = 0;
-function genCompPrefix() {
-  return String(prefix++);
-}
-
-var data = {};
-function cacheDataSet(key, val) {
-  data[key] = val;
-}
-function cacheDataGet(key, delelteAfterGet) {
-  var temp = data[key];
-  delelteAfterGet && delete data[key];
-  return temp;
-}
-function cacheDataHas(key) {
-  return key in data;
-}
-
-var Manager =
-/*#__PURE__*/
-function () {
-  function Manager() {
-    _classCallCheck(this, Manager);
-
-    _defineProperty(this, "map", {});
-
-    _defineProperty(this, "observers", {});
-  }
-
-  _createClass(Manager, [{
-    key: "set",
-    value: function set() {
-      var props = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-      var compid = arguments.length > 1 ? arguments[1] : undefined;
-      var previd = arguments.length > 2 ? arguments[2] : undefined;
-      if (!compid) return;
-
-      if (previd) {
-        this.delete(previd);
-      }
-
-      var observers = this.observers;
-
-      if (!this.map[compid]) {
-        Object.defineProperty(this.map, compid, {
-          configurable: true,
-          get: function get() {
-            return this["__".concat(compid)];
-          },
-          set: function set(props) {
-            this["__".concat(compid)] = props;
-            var component = observers[compid] && observers[compid].component;
-            var ComponentClass = observers[compid] && observers[compid].ComponentClass;
-            if (!component || !ComponentClass || !component.__isReady) return;
-            var nextProps = filterProps(ComponentClass.defaultProps, props, component.props);
-            component.props = nextProps;
-            nextTick(function () {
-              component._unsafeCallUpdate = true;
-              updateComponent(component);
-              component._unsafeCallUpdate = false;
-            });
-          }
-        });
-      }
-
-      this.map[compid] = props;
-    }
-  }, {
-    key: "delete",
-    value: function _delete(compid) {
-      delete this.map[compid];
-      delete this.map["__".concat(compid)];
-      delete this.observers[compid];
-    }
-  }]);
-
-  return Manager;
-}();
-
-var propsManager = new Manager();
-
-var anonymousFnNamePreffix = 'funPrivate';
-var preloadPrivateKey = '__preload_';
-var preloadInitedComponent = '$preloadComponent';
-var PRELOAD_DATA_KEY = 'preload';
-var pageExtraFns = ['onPullDownRefresh', 'onReachBottom', 'onShareAppMessage', 'onPageScroll', 'onTabItemTap'];
-
-function bindProperties(weappComponentConf, ComponentClass, isPage) {
-  weappComponentConf.properties = {};
-
-  if (isPage) {
-    weappComponentConf.properties[preloadPrivateKey] = {
-      type: null,
-      value: null
-    };
-  }
-
-  weappComponentConf.properties.compid = {
-    type: null,
-    value: null,
-    observer: function observer(newVal, oldVal) {
-      var _this = this;
-
-      // 头条基础库1.38.2后，太早 setData $taroCompReady 为 true 时，setData 虽然成功，但 slot 会不显示。
-      // 因此不在 observer 里 initComponent，在组件 attached 时 initComponent 吧。
-      // initComponent.apply(this, [ComponentClass, isPage])
-      if (oldVal && oldVal !== newVal) {
-        var extraProps = this.data.extraProps;
-        var component = this.$component;
-        propsManager.observers[newVal] = {
-          component: component,
-          ComponentClass: component.constructor
-        };
-        var nextProps = filterProps(component.constructor.defaultProps, propsManager.map[newVal], component.props, extraProps || null);
-        this.$component.props = nextProps;
-        nextTick(function () {
-          _this.$component._unsafeCallUpdate = true;
-          updateComponent(_this.$component);
-          _this.$component._unsafeCallUpdate = false;
-        });
-      }
-    }
-  };
-}
-
-function bindBehaviors(weappComponentConf, ComponentClass) {
-  if (ComponentClass.behaviors) {
-    weappComponentConf.behaviors = ComponentClass.behaviors;
-  }
-}
-
-function bindStaticOptions(weappComponentConf, ComponentClass) {
-  if (ComponentClass.options) {
-    weappComponentConf.options = ComponentClass.options;
-  }
-}
-
-function bindStaticFns(weappComponentConf, ComponentClass) {
-  for (var key in ComponentClass) {
-    typeof ComponentClass[key] === 'function' && (weappComponentConf[key] = ComponentClass[key]);
-  } // 低版本 IOS 下部分属性不能直接访问
-
-
-  Object.getOwnPropertyNames(ComponentClass).forEach(function (key) {
-    var excludes = ['arguments', 'caller', 'length', 'name', 'prototype'];
-
-    if (excludes.indexOf(key) < 0) {
-      typeof ComponentClass[key] === 'function' && (weappComponentConf[key] = ComponentClass[key]);
-    }
-  });
-}
-
-function processEvent(eventHandlerName, obj) {
-  if (obj[eventHandlerName]) return;
-
-  obj[eventHandlerName] = function (event) {
-    if (event) {
-      event.preventDefault = function () {};
-
-      event.stopPropagation = function () {};
-
-      event.currentTarget = event.currentTarget || event.target || {};
-
-      if (event.target) {
-        Object.assign(event.target, event.detail);
-      }
-
-      Object.assign(event.currentTarget, event.detail);
-    }
-
-    var scope = this.$component;
-    var callScope = scope;
-    var isAnonymousFn = eventHandlerName.indexOf(anonymousFnNamePreffix) > -1;
-    var realArgs = [];
-    var detailArgs = [];
-    var datasetArgs = [];
-    var isScopeBinded = false; // 解析从dataset中传过来的参数
-
-    var dataset = event.currentTarget.dataset || {};
-    var bindArgs = {};
-    var eventType = event.type ? event.type.toLocaleLowerCase() : null;
-    if (event.detail && event.detail.__detail) Object.assign(dataset, event.detail.__detail);
-    Object.keys(dataset).forEach(function (key) {
-      var keyLower = key.toLocaleLowerCase();
-
-      if (/^e/.test(keyLower)) {
-        // 小程序属性里中划线后跟一个下划线会解析成不同的结果
-        keyLower = keyLower.replace(/^e/, '');
-
-        if (keyLower.indexOf(eventType) >= 0) {
-          var argName = keyLower.replace(eventType, '');
-
-          if (/^(a[a-z]|so)$/.test(argName)) {
-            bindArgs[argName] = dataset[key];
-          }
-        }
-      }
-    }); // 如果是通过triggerEvent触发,并且带有参数
-
-    if (event.detail && event.detail.__arguments && event.detail.__arguments.length > 0) {
-      detailArgs = event.detail.__arguments;
-    } // 普通的事件（非匿名函数），会直接call
-
-
-    if (!isAnonymousFn) {
-      if ('so' in bindArgs) {
-        if (bindArgs['so'] !== 'this') {
-          callScope = bindArgs['so'];
-        }
-
-        isScopeBinded = true;
-        delete bindArgs['so'];
-      }
-
-      if (detailArgs.length > 0) {
-        !isScopeBinded && detailArgs[0] && (callScope = detailArgs[0]);
-        detailArgs.shift();
-      }
-
-      if (!isEmptyObject(bindArgs)) {
-        datasetArgs = Object.keys(bindArgs).sort().map(function (key) {
-          return bindArgs[key];
-        });
-      }
-
-      realArgs = _toConsumableArray(datasetArgs).concat(_toConsumableArray(detailArgs), [event]);
-    } else {
-      // 匿名函数，会将scope作为第一个参数
-      var _scope = null;
-
-      if ('so' in bindArgs) {
-        if (bindArgs['so'] !== 'this') {
-          _scope = bindArgs['so'];
-        }
-
-        isScopeBinded = true;
-        delete bindArgs['so'];
-      }
-
-      if (detailArgs.length > 0) {
-        !isScopeBinded && detailArgs[0] && (callScope = detailArgs[0]);
-        detailArgs.shift();
-      }
-
-      if (!isEmptyObject(bindArgs)) {
-        datasetArgs = Object.keys(bindArgs).sort().map(function (key) {
-          return bindArgs[key];
-        });
-      }
-
-      realArgs = [_scope].concat(_toConsumableArray(datasetArgs), _toConsumableArray(detailArgs), [event]);
-    }
-
-    return scope[eventHandlerName].apply(callScope, realArgs);
-  };
-}
-
-function bindEvents(weappComponentConf, events, isPage) {
-  weappComponentConf.methods = weappComponentConf.methods || {};
-  var target = isPage ? weappComponentConf : weappComponentConf.methods;
-  events.forEach(function (name) {
-    processEvent(name, target);
-  });
-}
-
-function filterProps() {
-  var defaultProps = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  var propsFromPropsManager = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-  var curAllProps = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-  var newProps = Object.assign({}, curAllProps, propsFromPropsManager);
-
-  if (!isEmptyObject(defaultProps)) {
-    for (var propName in defaultProps) {
-      if (newProps[propName] === undefined) {
-        newProps[propName] = defaultProps[propName];
-      }
-    }
-  }
-
-  return newProps;
-}
-function componentTrigger(component, key, args) {
-  args = args || [];
-
-  if (key === 'componentDidMount') {
-    if (component['$$hasLoopRef']) {
-      taro.Current.current = component;
-      taro.Current.index = 0;
-      component._disableEffect = true;
-
-      component._createData(component.state, component.props, true);
-
-      component._disableEffect = false;
-      taro.Current.current = null;
-    }
-
-    if (component['$$refs'] && component['$$refs'].length > 0) {
-      var refs = {};
-      var refComponents = [];
-      component['$$refs'].forEach(function (ref) {
-        refComponents.push(new Promise(function (resolve, reject) {
-          var query = tt.createSelectorQuery().in(component.$scope);
-
-          if (ref.type === 'component') {
-            component.$scope.selectComponent("#".concat(ref.id), function (target) {
-              resolve({
-                target: target ? target.$component || target : null,
-                ref: ref
-              });
-            });
-          } else {
-            resolve({
-              target: query.select("#".concat(ref.id)),
-              ref: ref
-            });
-          }
-        }));
-      });
-      Promise.all(refComponents).then(function (targets) {
-        targets.forEach(function (_ref) {
-          var ref = _ref.ref,
-              target = _ref.target;
-          taro.commitAttachRef(ref, target, component, refs, true);
-          ref.target = target;
-        });
-        component.refs = Object.assign({}, component.refs || {}, refs); // 此处执行componentDidMount
-
-        component[key] && typeof component[key] === 'function' && component[key].apply(component, _toConsumableArray(args));
-      }).catch(function (err) {
-        console.error(err);
-        component[key] && typeof component[key] === 'function' && component[key].apply(component, _toConsumableArray(args));
-      }); // 此处跳过执行componentDidMount，在refComponents完成后再次执行
-
-      return;
-    }
-  }
-
-  if (key === 'componentWillUnmount') {
-    var compid = component.$scope.data.compid;
-    if (compid) propsManager.delete(compid);
-  }
-
-  component[key] && typeof component[key] === 'function' && component[key].apply(component, _toConsumableArray(args));
-
-  if (key === 'componentWillUnmount') {
-    component._dirty = true;
-    component._disable = true;
-    component.$router = {
-      params: {},
-      path: ''
-    };
-    component._pendingStates = [];
-    component._pendingCallbacks = []; // refs
-
-    taro.detachAllRef(component);
-  }
-
-  if (key === 'componentWillMount') {
-    component._dirty = false;
-    component._disable = false;
-    component.state = component.getState();
-  }
-}
-var hasPageInited = false;
-
-function initComponent(ComponentClass, isPage) {
-  if (!this.$component || this.$component.__isReady) return; // ready之后才可以setData,
-  // ready之前，小程序组件初始化时仍然会触发observer，__isReady为否的时候放弃处理observer
-
-  this.$component.__isReady = true;
-
-  if (isPage && !hasPageInited) {
-    hasPageInited = true;
-  } // 页面Ready的时候setData更新，此时并未didMount,触发observer但不会触发子组件更新
-  // 小程序组件ready，但是数据并没有ready，需要通过updateComponent来初始化数据，setData完成之后才是真正意义上的组件ready
-  // 动态组件执行改造函数副本的时,在初始化数据前计算好props
-
-
-  if (hasPageInited && !isPage) {
-    var compid = this.data.compid;
-
-    if (compid) {
-      propsManager.observers[compid] = {
-        component: this.$component,
-        ComponentClass: ComponentClass
-      };
-    }
-
-    var nextProps = filterProps(ComponentClass.defaultProps, propsManager.map[compid], this.$component.props);
-    this.$component.props = nextProps;
-  }
-
-  if (hasPageInited || isPage) {
-    mountComponent(this.$component);
-  }
-}
-
-function createComponent(ComponentClass, isPage) {
-  var initData = {};
-  var componentProps = filterProps(ComponentClass.defaultProps);
-  var componentInstance = new ComponentClass(componentProps);
-  componentInstance._constructor && componentInstance._constructor(componentProps);
-
-  try {
-    taro.Current.current = componentInstance;
-    taro.Current.index = 0;
-    componentInstance.state = componentInstance._createData() || componentInstance.state;
-  } catch (err) {
-    if (isPage) {
-      console.warn('[Taro warn] \u8BF7\u7ED9\u9875\u9762\u63D0\u4F9B\u521D\u59CB `state` \u4EE5\u63D0\u9AD8\u521D\u6B21\u6E32\u67D3\u6027\u80FD\uFF01');
-    } else {
-      console.warn('[Taro warn] \u8BF7\u7ED9\u7EC4\u4EF6\u63D0\u4F9B\u4E00\u4E2A `defaultProps` \u4EE5\u63D0\u9AD8\u521D\u6B21\u6E32\u67D3\u6027\u80FD\uFF01');
-    }
-
-    console.warn(err);
-  }
-
-  initData = Object.assign({}, initData, componentInstance.props, componentInstance.state);
-  var weappComponentConf = {
-    data: initData,
-    created: function created() {
-      var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-      isPage && (hasPageInited = false);
-
-      if (isPage && cacheDataHas(preloadInitedComponent)) {
-        this.$component = cacheDataGet(preloadInitedComponent, true);
-        this.$component.$componentType = 'PAGE';
-      } else {
-        this.$component = new ComponentClass({}, isPage);
-      }
-
-      this.$component._init(this);
-
-      this.$component.render = this.$component._createData;
-      this.$component.__propTypes = ComponentClass.propTypes;
-
-      if (isPage) {
-        if (cacheDataHas(PRELOAD_DATA_KEY)) {
-          var data = cacheDataGet(PRELOAD_DATA_KEY, true);
-          this.$component.$router.preload = data;
-        }
-
-        Object.assign(this.$component.$router.params, options);
-
-        if (cacheDataHas(options[preloadPrivateKey])) {
-          this.$component.$preloadData = cacheDataGet(options[preloadPrivateKey], true);
-        } else {
-          this.$component.$preloadData = {};
-        }
-
-        this.$component.$router.path = getCurrentPageUrl();
-        initComponent.apply(this, [ComponentClass, isPage]);
-      }
-    },
-    attached: function attached() {
-      initComponent.apply(this, [ComponentClass, isPage]);
-    },
-    ready: function ready() {
-      if (!this.$component.__mounted) {
-        this.$component.__mounted = true;
-        componentTrigger(this.$component, 'componentDidMount');
-      }
-    },
-    detached: function detached() {
-      var component = this.$component;
-      componentTrigger(component, 'componentWillUnmount');
-      component.hooks.forEach(function (hook) {
-        if (isFunction(hook.cleanup)) {
-          hook.cleanup();
-        }
-      });
-      var events = component.$$renderPropsEvents;
-
-      if (isArray(events)) {
-        events.forEach(function (e) {
-          return taro.eventCenter.off(e);
-        });
-      }
-    }
-  };
-
-  if (isPage) {
-    weappComponentConf['onLoad'] = weappComponentConf['created'];
-    weappComponentConf['onReady'] = weappComponentConf['ready'];
-    weappComponentConf['onUnload'] = weappComponentConf['detached'];
-
-    weappComponentConf['onShow'] = function () {
-      componentTrigger(this.$component, 'componentDidShow');
-    };
-
-    weappComponentConf['onHide'] = function () {
-      componentTrigger(this.$component, 'componentDidHide');
-    };
-
-    pageExtraFns.forEach(function (fn) {
-      if (componentInstance[fn] && typeof componentInstance[fn] === 'function') {
-        weappComponentConf[fn] = function () {
-          var component = this.$component;
-
-          if (component && component[fn] && typeof component[fn] === 'function') {
-            return component[fn].apply(component, arguments);
-          }
-        };
-      }
-    });
-    globPageRegistPath && cacheDataSet(globPageRegistPath, ComponentClass);
-  }
-
-  bindProperties(weappComponentConf, ComponentClass, isPage);
-  bindBehaviors(weappComponentConf, ComponentClass);
-  bindStaticFns(weappComponentConf, ComponentClass);
-  bindStaticOptions(weappComponentConf, ComponentClass);
-  ComponentClass['$$events'] && bindEvents(weappComponentConf, ComponentClass['$$events'], isPage);
-
-  if (ComponentClass['externalClasses'] && ComponentClass['externalClasses'].length) {
-    weappComponentConf['externalClasses'] = ComponentClass['externalClasses'];
-  }
-
-  return weappComponentConf;
 }
 
 var reactIs_production_min = createCommonjsModule(function (module, exports) {
@@ -2504,7 +1487,7 @@ object-assign
 /* eslint-disable no-unused-vars */
 
 var getOwnPropertySymbols = Object.getOwnPropertySymbols;
-var hasOwnProperty$2 = Object.prototype.hasOwnProperty;
+var hasOwnProperty = Object.prototype.hasOwnProperty;
 var propIsEnumerable = Object.prototype.propertyIsEnumerable;
 
 function toObject(val) {
@@ -2572,7 +1555,7 @@ var objectAssign = shouldUseNative() ? Object.assign : function (target, source)
     from = Object(arguments[s]);
 
     for (var key in from) {
-      if (hasOwnProperty$2.call(from, key)) {
+      if (hasOwnProperty.call(from, key)) {
         to[key] = from[key];
       }
     }
@@ -3378,6 +2361,1099 @@ var propTypes = createCommonjsModule(function (module) {
   } else {}
 });
 
+/** Detect free variable `global` from Node.js. */
+
+var freeGlobal = _typeof(commonjsGlobal) == 'object' && commonjsGlobal && commonjsGlobal.Object === Object && commonjsGlobal;
+var _freeGlobal = freeGlobal;
+
+/** Detect free variable `self`. */
+
+var freeSelf = (typeof self === "undefined" ? "undefined" : _typeof(self)) == 'object' && self && self.Object === Object && self;
+/** Used as a reference to the global object. */
+
+var root = _freeGlobal || freeSelf || Function('return this')();
+var _root = root;
+
+/** Built-in value references. */
+
+var _Symbol2 = _root.Symbol;
+var _Symbol = _Symbol2;
+
+/** Used for built-in method references. */
+
+var objectProto = Object.prototype;
+/** Used to check objects for own properties. */
+
+var hasOwnProperty$1 = objectProto.hasOwnProperty;
+/**
+ * Used to resolve the
+ * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
+ * of values.
+ */
+
+var nativeObjectToString = objectProto.toString;
+/** Built-in value references. */
+
+var symToStringTag = _Symbol ? _Symbol.toStringTag : undefined;
+/**
+ * A specialized version of `baseGetTag` which ignores `Symbol.toStringTag` values.
+ *
+ * @private
+ * @param {*} value The value to query.
+ * @returns {string} Returns the raw `toStringTag`.
+ */
+
+function getRawTag(value) {
+  var isOwn = hasOwnProperty$1.call(value, symToStringTag),
+      tag = value[symToStringTag];
+
+  try {
+    value[symToStringTag] = undefined;
+    var unmasked = true;
+  } catch (e) {}
+
+  var result = nativeObjectToString.call(value);
+
+  {
+    if (isOwn) {
+      value[symToStringTag] = tag;
+    } else {
+      delete value[symToStringTag];
+    }
+  }
+
+  return result;
+}
+
+var _getRawTag = getRawTag;
+
+/** Used for built-in method references. */
+var objectProto$1 = Object.prototype;
+/**
+ * Used to resolve the
+ * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
+ * of values.
+ */
+
+var nativeObjectToString$1 = objectProto$1.toString;
+/**
+ * Converts `value` to a string using `Object.prototype.toString`.
+ *
+ * @private
+ * @param {*} value The value to convert.
+ * @returns {string} Returns the converted string.
+ */
+
+function objectToString(value) {
+  return nativeObjectToString$1.call(value);
+}
+
+var _objectToString = objectToString;
+
+/** `Object#toString` result references. */
+
+var nullTag = '[object Null]',
+    undefinedTag = '[object Undefined]';
+/** Built-in value references. */
+
+var symToStringTag$1 = _Symbol ? _Symbol.toStringTag : undefined;
+/**
+ * The base implementation of `getTag` without fallbacks for buggy environments.
+ *
+ * @private
+ * @param {*} value The value to query.
+ * @returns {string} Returns the `toStringTag`.
+ */
+
+function baseGetTag(value) {
+  if (value == null) {
+    return value === undefined ? undefinedTag : nullTag;
+  }
+
+  return symToStringTag$1 && symToStringTag$1 in Object(value) ? _getRawTag(value) : _objectToString(value);
+}
+
+var _baseGetTag = baseGetTag;
+
+/**
+ * Creates a unary function that invokes `func` with its argument transformed.
+ *
+ * @private
+ * @param {Function} func The function to wrap.
+ * @param {Function} transform The argument transform.
+ * @returns {Function} Returns the new function.
+ */
+function overArg(func, transform) {
+  return function (arg) {
+    return func(transform(arg));
+  };
+}
+
+var _overArg = overArg;
+
+/** Built-in value references. */
+
+var getPrototype = _overArg(Object.getPrototypeOf, Object);
+var _getPrototype = getPrototype;
+
+/**
+ * Checks if `value` is object-like. A value is object-like if it's not `null`
+ * and has a `typeof` result of "object".
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is object-like, else `false`.
+ * @example
+ *
+ * _.isObjectLike({});
+ * // => true
+ *
+ * _.isObjectLike([1, 2, 3]);
+ * // => true
+ *
+ * _.isObjectLike(_.noop);
+ * // => false
+ *
+ * _.isObjectLike(null);
+ * // => false
+ */
+function isObjectLike(value) {
+  return value != null && _typeof(value) == 'object';
+}
+
+var isObjectLike_1 = isObjectLike;
+
+/** `Object#toString` result references. */
+
+var objectTag = '[object Object]';
+/** Used for built-in method references. */
+
+var funcProto = Function.prototype,
+    objectProto$2 = Object.prototype;
+/** Used to resolve the decompiled source of functions. */
+
+var funcToString = funcProto.toString;
+/** Used to check objects for own properties. */
+
+var hasOwnProperty$2 = objectProto$2.hasOwnProperty;
+/** Used to infer the `Object` constructor. */
+
+var objectCtorString = funcToString.call(Object);
+/**
+ * Checks if `value` is a plain object, that is, an object created by the
+ * `Object` constructor or one with a `[[Prototype]]` of `null`.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.8.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a plain object, else `false`.
+ * @example
+ *
+ * function Foo() {
+ *   this.a = 1;
+ * }
+ *
+ * _.isPlainObject(new Foo);
+ * // => false
+ *
+ * _.isPlainObject([1, 2, 3]);
+ * // => false
+ *
+ * _.isPlainObject({ 'x': 0, 'y': 0 });
+ * // => true
+ *
+ * _.isPlainObject(Object.create(null));
+ * // => true
+ */
+
+function isPlainObject(value) {
+  if (!isObjectLike_1(value) || _baseGetTag(value) != objectTag) {
+    return false;
+  }
+
+  var proto = _getPrototype(value);
+
+  if (proto === null) {
+    return true;
+  }
+
+  var Ctor = hasOwnProperty$2.call(proto, 'constructor') && proto.constructor;
+  return typeof Ctor == 'function' && Ctor instanceof Ctor && funcToString.call(Ctor) == objectCtorString;
+}
+
+var isPlainObject_1 = isPlainObject;
+
+function isEmptyObject(obj) {
+  if (!obj || !isPlainObject_1(obj)) {
+    return false;
+  }
+
+  for (var n in obj) {
+    if (obj.hasOwnProperty(n)) {
+      return false;
+    }
+  }
+
+  return true;
+}
+function isUndefined(o) {
+  return o === undefined;
+}
+function isFunction(arg) {
+  return typeof arg === 'function';
+}
+function isArray(arg) {
+  return Array.isArray(arg);
+}
+function cloneDeep(obj) {
+  var newObj;
+
+  if (isArray(obj)) {
+    newObj = [];
+    var len = obj.length;
+
+    for (var i = 0; i < len; i++) {
+      newObj.push(cloneDeep(obj[i]));
+    }
+  } else if (isPlainObject_1(obj)) {
+    newObj = {};
+
+    for (var key in obj) {
+      var ret = cloneDeep(obj[key]);
+      newObj[key] = ret;
+    }
+  } else {
+    return obj;
+  }
+
+  return newObj;
+}
+var keyList = Object.keys;
+var hasProp = Object.prototype.hasOwnProperty;
+
+function diffArrToPath(to, from) {
+  var res = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+  var keyPrev = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : '';
+  var len = to.length;
+
+  var _loop = function _loop(i) {
+    var toItem = to[i];
+    var fromItem = from[i];
+    var targetKey = "".concat(keyPrev, "[").concat(i, "]");
+
+    if (toItem === fromItem) {
+      return "continue";
+    } else if (_typeof(toItem) !== _typeof(fromItem)) {
+      res[targetKey] = toItem;
+    } else {
+      if (_typeof(toItem) !== 'object') {
+        res[targetKey] = toItem;
+      } else {
+        var arrTo = isArray(toItem);
+        var arrFrom = isArray(fromItem);
+
+        if (arrTo !== arrFrom) {
+          res[targetKey] = toItem;
+        } else if (arrTo && arrFrom) {
+          if (toItem.length < fromItem.length) {
+            res[targetKey] = toItem;
+          } else {
+            // 数组
+            diffArrToPath(toItem, fromItem, res, "".concat(targetKey));
+          }
+        } else {
+          if (!toItem || !fromItem || keyList(toItem).length < keyList(fromItem).length) {
+            res[targetKey] = toItem;
+          } else {
+            // 对象
+            var shouldDiffObject = isPlainObject_1(toItem);
+            shouldDiffObject && Object.keys(fromItem).some(function (key) {
+              if (typeof toItem[key] === 'undefined' && typeof fromItem[key] !== 'undefined') {
+                shouldDiffObject = false;
+                return true;
+              }
+            });
+
+            if (shouldDiffObject) {
+              diffObjToPath(toItem, fromItem, res, "".concat(targetKey, "."));
+            } else {
+              res[targetKey] = toItem;
+            }
+          }
+        }
+      }
+    }
+  };
+
+  for (var i = 0; i < len; i++) {
+    var _ret = _loop(i);
+
+    if (_ret === "continue") continue;
+  }
+
+  return res;
+} // 比较的对象均为plainObject，且函数已被过滤
+
+
+function diffObjToPath(to, from) {
+  var res = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+  var keyPrev = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : '';
+  var keys = keyList(to);
+  var len = keys.length;
+
+  var _loop2 = function _loop2(i) {
+    var key = keys[i];
+    var toItem = to[key];
+    var fromItem = from[key];
+    var targetKey = "".concat(keyPrev).concat(key);
+
+    if (/^\$compid__/.test(key)) {
+      res[targetKey] = toItem;
+    } else if (toItem === fromItem) {
+      return "continue";
+    } else if (!hasProp.call(from, key)) {
+      res[targetKey] = toItem;
+    } else if (_typeof(toItem) !== _typeof(fromItem)) {
+      res[targetKey] = toItem;
+    } else {
+      if (_typeof(toItem) !== 'object') {
+        res[targetKey] = toItem;
+      } else {
+        var arrTo = isArray(toItem);
+        var arrFrom = isArray(fromItem);
+
+        if (arrTo !== arrFrom) {
+          res[targetKey] = toItem;
+        } else if (arrTo && arrFrom) {
+          if (toItem.length < fromItem.length) {
+            res[targetKey] = toItem;
+          } else {
+            // 数组
+            diffArrToPath(toItem, fromItem, res, "".concat(targetKey));
+          }
+        } else {
+          // null
+          if (!toItem || !fromItem) {
+            res[targetKey] = toItem;
+          } else {
+            // 对象
+            var shouldDiffObject = isPlainObject_1(toItem);
+            shouldDiffObject && Object.keys(fromItem).some(function (key) {
+              if (typeof toItem[key] === 'undefined' && typeof fromItem[key] !== 'undefined') {
+                shouldDiffObject = false;
+                return true;
+              }
+            });
+
+            if (shouldDiffObject) {
+              diffObjToPath(toItem, fromItem, res, "".concat(targetKey, "."));
+            } else {
+              res[targetKey] = toItem;
+            }
+          }
+        }
+      }
+    }
+  };
+
+  for (var i = 0; i < len; i++) {
+    var _ret2 = _loop2(i);
+
+    if (_ret2 === "continue") continue;
+  }
+
+  return res;
+}
+function queryToJson(str) {
+  var dec = decodeURIComponent;
+  var qp = str.split('&');
+  var ret = {};
+  var name;
+  var val;
+
+  for (var i = 0, l = qp.length, item; i < l; ++i) {
+    item = qp[i];
+
+    if (item.length) {
+      var s = item.indexOf('=');
+
+      if (s < 0) {
+        name = dec(item);
+        val = '';
+      } else {
+        name = dec(item.slice(0, s));
+        val = dec(item.slice(s + 1));
+      }
+
+      if (typeof ret[name] === 'string') {
+        // inline'd type check
+        ret[name] = [ret[name]];
+      }
+
+      if (isArray(ret[name])) {
+        ret[name].push(val);
+      } else {
+        ret[name] = val;
+      }
+    }
+  }
+
+  return ret; // Object
+}
+
+var _loadTime = new Date().getTime().toString();
+
+var _i = 1;
+function getUniqueKey() {
+  return _loadTime + _i++;
+}
+function getElementById(component, id, type) {
+  if (!component) return null;
+  var res;
+
+  if (type === 'component') {
+    res = component.selectComponent(id);
+    res = res ? res.$component || res : null;
+  } else {
+    var query = wx.createSelectorQuery().in(component);
+    res = query.select(id);
+  }
+
+  if (res) return res;
+  return null;
+}
+var id$1 = 0;
+
+function genId() {
+  return String(id$1++);
+}
+
+var compIdsMapper;
+
+try {
+  compIdsMapper = new Map();
+} catch (error) {
+  compIdsMapper = new SimpleMap();
+}
+
+function genCompid(key, isNeedCreate) {
+  if (!taro.Current || !taro.Current.current || !taro.Current.current.$scope) return [];
+  var prevId = compIdsMapper.get(key);
+
+  if (isNeedCreate) {
+    var _id = genId();
+
+    compIdsMapper.set(key, _id);
+    return [prevId, _id];
+  } else {
+    var _id2 = prevId || genId();
+
+    !prevId && compIdsMapper.set(key, _id2);
+    return [null, _id2];
+  }
+}
+var prefix = 0;
+function genCompPrefix() {
+  return String(prefix++);
+}
+
+var data = {};
+function cacheDataSet(key, val) {
+  data[key] = val;
+}
+function cacheDataGet(key, delelteAfterGet) {
+  var temp = data[key];
+  delelteAfterGet && delete data[key];
+  return temp;
+}
+function cacheDataHas(key) {
+  return key in data;
+}
+
+var Manager =
+/*#__PURE__*/
+function () {
+  function Manager() {
+    _classCallCheck(this, Manager);
+
+    _defineProperty(this, "map", {});
+
+    _defineProperty(this, "observers", {});
+  }
+
+  _createClass(Manager, [{
+    key: "set",
+    value: function set() {
+      var props = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+      var compid = arguments.length > 1 ? arguments[1] : undefined;
+      var previd = arguments.length > 2 ? arguments[2] : undefined;
+      if (!compid) return;
+
+      if (previd) {
+        this.delete(previd);
+      }
+
+      var observers = this.observers;
+
+      if (!this.map[compid]) {
+        Object.defineProperty(this.map, compid, {
+          configurable: true,
+          get: function get() {
+            return this["__".concat(compid)];
+          },
+          set: function set(props) {
+            this["__".concat(compid)] = props;
+            var component = observers[compid] && observers[compid].component;
+            var ComponentClass = observers[compid] && observers[compid].ComponentClass;
+            if (!component || !ComponentClass || !component.__isReady) return;
+            var extraProps = component.$scope && component.$scope.data && component.$scope.data.extraProps || null;
+            var nextProps = filterProps(ComponentClass.defaultProps, props, component.props, extraProps);
+            component.props = nextProps;
+            nextTick(function () {
+              component._unsafeCallUpdate = true;
+              updateComponent(component);
+              component._unsafeCallUpdate = false;
+            });
+          }
+        });
+      }
+
+      this.map[compid] = props;
+    }
+  }, {
+    key: "delete",
+    value: function _delete(compid) {
+      delete this.map[compid];
+      delete this.map["__".concat(compid)];
+      delete this.observers[compid];
+    }
+  }]);
+
+  return Manager;
+}();
+
+var propsManager = new Manager();
+
+var anonymousFnNamePreffix = 'funPrivate';
+var routerParamsPrivateKey = '__key_';
+var preloadPrivateKey = '__preload_';
+var PRELOAD_DATA_KEY = 'preload';
+var preloadInitedComponent = '$preloadComponent';
+var pageExtraFns = ['onPullDownRefresh', 'onReachBottom', 'onShareAppMessage', 'onPageScroll', 'onTabItemTap', 'onResize'];
+
+function bindProperties(weappComponentConf, ComponentClass, isPage) {
+  weappComponentConf.properties = {};
+
+  if (isPage) {
+    weappComponentConf.properties[routerParamsPrivateKey] = {
+      type: null,
+      value: null
+    };
+    weappComponentConf.properties[preloadPrivateKey] = {
+      type: null,
+      value: null
+    };
+    var defaultParams = ComponentClass.defaultParams || {};
+
+    for (var key in defaultParams) {
+      if (defaultParams.hasOwnProperty(key)) {
+        weappComponentConf.properties[key] = {
+          type: null,
+          value: null
+        };
+      }
+    }
+  }
+
+  weappComponentConf.properties.compid = {
+    type: null,
+    value: null,
+    observer: function observer(newVal, oldVal) {
+      var _this = this;
+
+      initComponent.apply(this, [ComponentClass, isPage]);
+
+      if (oldVal && oldVal !== newVal) {
+        var extraProps = this.data.extraProps;
+        var component = this.$component;
+        propsManager.observers[newVal] = {
+          component: component,
+          ComponentClass: component.constructor
+        };
+        var nextProps = filterProps(component.constructor.defaultProps, propsManager.map[newVal], component.props, extraProps || null);
+        this.$component.props = nextProps;
+        nextTick(function () {
+          _this.$component._unsafeCallUpdate = true;
+          updateComponent(_this.$component);
+          _this.$component._unsafeCallUpdate = false;
+        });
+      }
+    }
+  };
+  weappComponentConf.properties.extraProps = {
+    type: null,
+    value: null,
+    observer: function observer() {
+      var _this2 = this;
+
+      // update Component
+      if (!this.$component || !this.$component.__isReady) return;
+      var nextProps = filterProps(ComponentClass.defaultProps, {}, this.$component.props, this.data.extraProps);
+      this.$component.props = nextProps;
+      nextTick(function () {
+        _this2.$component._unsafeCallUpdate = true;
+        updateComponent(_this2.$component);
+        _this2.$component._unsafeCallUpdate = false;
+      });
+    }
+  };
+}
+
+function bindBehaviors(weappComponentConf, ComponentClass) {
+  if (ComponentClass.behaviors) {
+    weappComponentConf.behaviors = ComponentClass.behaviors;
+  }
+}
+
+function bindStaticOptions(weappComponentConf, ComponentClass) {
+  if (ComponentClass.options) {
+    weappComponentConf.options = ComponentClass.options;
+  }
+}
+
+function bindMultipleSlots(weappComponentConf, ComponentClass) {
+  var multipleSlots = ComponentClass.multipleSlots;
+
+  if (!multipleSlots) {
+    return;
+  }
+
+  weappComponentConf.options = _objectSpread({}, weappComponentConf.options, {
+    multipleSlots: multipleSlots
+  });
+}
+
+function bindStaticFns(weappComponentConf, ComponentClass) {
+  for (var key in ComponentClass) {
+    typeof ComponentClass[key] === 'function' && (weappComponentConf[key] = ComponentClass[key]);
+  } // 低版本 IOS 下部分属性不能直接访问
+
+
+  Object.getOwnPropertyNames(ComponentClass).forEach(function (key) {
+    var excludes = ['arguments', 'caller', 'length', 'name', 'prototype'];
+
+    if (excludes.indexOf(key) < 0) {
+      typeof ComponentClass[key] === 'function' && (weappComponentConf[key] = ComponentClass[key]);
+    }
+  });
+}
+
+function processEvent(eventHandlerName, obj) {
+  if (obj[eventHandlerName]) return;
+
+  obj[eventHandlerName] = function (event) {
+    if (event) {
+      event.preventDefault = function () {};
+
+      event.stopPropagation = function () {};
+
+      event.currentTarget = event.currentTarget || event.target || {};
+
+      if (event.target) {
+        Object.assign(event.target, event.detail);
+      }
+
+      Object.assign(event.currentTarget, event.detail);
+    }
+
+    var scope = this.$component;
+    var callScope = scope;
+    var isAnonymousFn = eventHandlerName.indexOf(anonymousFnNamePreffix) > -1;
+    var realArgs = [];
+    var detailArgs = [];
+    var datasetArgs = [];
+    var isScopeBinded = false; // 解析从dataset中传过来的参数
+
+    var dataset = event.currentTarget.dataset || {};
+    var bindArgs = {};
+    var eventType = event.type.toLocaleLowerCase();
+    Object.keys(dataset).forEach(function (key) {
+      var keyLower = key.toLocaleLowerCase();
+
+      if (/^e/.test(keyLower)) {
+        // 小程序属性里中划线后跟一个下划线会解析成不同的结果
+        keyLower = keyLower.replace(/^e/, '');
+
+        if (keyLower.indexOf(eventType) >= 0) {
+          var argName = keyLower.replace(eventType, '');
+
+          if (/^(a[a-z]|so)$/.test(argName)) {
+            bindArgs[argName] = dataset[key];
+          }
+        }
+      }
+    }); // 如果是通过triggerEvent触发,并且带有参数
+
+    if (event.detail && event.detail.__arguments && event.detail.__arguments.length > 0) {
+      detailArgs = event.detail.__arguments;
+    } // 普通的事件（非匿名函数），会直接call
+
+
+    if (!isAnonymousFn) {
+      if ('so' in bindArgs) {
+        if (bindArgs['so'] !== 'this') {
+          callScope = bindArgs['so'];
+        }
+
+        isScopeBinded = true;
+        delete bindArgs['so'];
+      }
+
+      if (detailArgs.length > 0) {
+        !isScopeBinded && detailArgs[0] && (callScope = detailArgs[0]);
+        detailArgs.shift();
+      }
+
+      if (!isEmptyObject(bindArgs)) {
+        datasetArgs = Object.keys(bindArgs).sort().map(function (key) {
+          return bindArgs[key];
+        });
+      }
+
+      realArgs = _toConsumableArray(datasetArgs).concat(_toConsumableArray(detailArgs), [event]);
+    } else {
+      // 匿名函数，会将scope作为第一个参数
+      var _scope = null;
+
+      if ('so' in bindArgs) {
+        if (bindArgs['so'] !== 'this') {
+          _scope = bindArgs['so'];
+        }
+
+        isScopeBinded = true;
+        delete bindArgs['so'];
+      }
+
+      if (detailArgs.length > 0) {
+        !isScopeBinded && detailArgs[0] && (callScope = detailArgs[0]);
+        detailArgs.shift();
+      }
+
+      if (!isEmptyObject(bindArgs)) {
+        datasetArgs = Object.keys(bindArgs).sort().map(function (key) {
+          return bindArgs[key];
+        });
+      }
+
+      realArgs = [_scope].concat(_toConsumableArray(datasetArgs), _toConsumableArray(detailArgs), [event]);
+    }
+
+    return scope[eventHandlerName].apply(callScope, realArgs);
+  };
+}
+
+function bindEvents(weappComponentConf, events, isPage) {
+  weappComponentConf.methods = weappComponentConf.methods || {};
+  var target = weappComponentConf.methods;
+  events.forEach(function (name) {
+    processEvent(name, target);
+  });
+}
+
+function filterProps() {
+  var defaultProps = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var propsFromPropsManager = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  var curAllProps = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+  var extraProps = arguments.length > 3 ? arguments[3] : undefined;
+  var newProps = Object.assign({}, curAllProps, propsFromPropsManager);
+
+  if (!isEmptyObject(defaultProps)) {
+    for (var propName in defaultProps) {
+      if (newProps[propName] === undefined) {
+        newProps[propName] = defaultProps[propName];
+      }
+    }
+  }
+
+  if (extraProps) {
+    newProps = Object.assign({}, newProps, extraProps);
+  }
+
+  return newProps;
+}
+
+function filterParams(data) {
+  var defaultParams = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  var res = {};
+
+  for (var paramName in defaultParams) {
+    res[paramName] = paramName in data ? data[paramName] : defaultParams[paramName];
+  }
+
+  return res;
+}
+
+function componentTrigger(component, key, args) {
+  var _component$key;
+
+  args = args || [];
+
+  if (key === 'componentDidMount') {
+    if (component['$$refs'] && component['$$refs'].length > 0) {
+      var refs = {};
+      component['$$refs'].forEach(function (ref) {
+        var target;
+
+        if (ref.type === 'component') {
+          target = component.$scope.selectComponent("#".concat(ref.id));
+          target = target ? target.$component || target : null;
+        } else {
+          var query = wx.createSelectorQuery().in(component.$scope);
+          target = query.select("#".concat(ref.id));
+        }
+
+        taro.commitAttachRef(ref, target, component, refs, true);
+        ref.target = target;
+      });
+      component.refs = Object.assign({}, component.refs || {}, refs);
+    }
+
+    if (component['$$hasLoopRef']) {
+      taro.Current.current = component;
+      taro.Current.index = 0;
+      component._disableEffect = true;
+
+      component._createData(component.state, component.props, true);
+
+      component._disableEffect = false;
+      taro.Current.current = null;
+    }
+  }
+
+  if (key === 'componentWillUnmount') {
+    var compid = component.$scope.data.compid;
+    if (compid) propsManager.delete(compid);
+  } // eslint-disable-next-line no-useless-call
+
+
+  component[key] && typeof component[key] === 'function' && (_component$key = component[key]).call.apply(_component$key, [component].concat(_toConsumableArray(args)));
+
+  if (key === 'componentWillMount') {
+    component._dirty = false;
+    component._disable = false;
+    component.state = component.getState();
+  }
+
+  if (key === 'componentWillUnmount') {
+    component._dirty = true;
+    component._disable = true;
+    component.$router = {
+      params: {},
+      path: ''
+    };
+    component._pendingStates = [];
+    component._pendingCallbacks = []; // refs
+
+    taro.detachAllRef(component);
+  }
+}
+
+function initComponent(ComponentClass, isPage) {
+  if (this.$component.__isReady) return; // ready之后才可以setData,
+  // ready之前，小程序组件初始化时仍然会触发observer，__isReady为否的时候放弃处理observer
+
+  this.$component.__isReady = true; // 页面Ready的时候setData更新，此时并未didMount,触发observer但不会触发子组件更新
+  // 小程序组件ready，但是数据并没有ready，需要通过updateComponent来初始化数据，setData完成之后才是真正意义上的组件ready
+  // 动态组件执行改造函数副本的时,在初始化数据前计算好props
+
+  if (!isPage) {
+    var compid = this.data.compid;
+
+    if (compid) {
+      propsManager.observers[compid] = {
+        component: this.$component,
+        ComponentClass: ComponentClass
+      };
+    }
+
+    var nextProps = filterProps(ComponentClass.defaultProps, propsManager.map[compid], this.$component.props, this.data.extraProps);
+    this.$component.props = nextProps;
+  } else {
+    this.$component.$router.path = getCurrentPageUrl();
+  }
+
+  mountComponent(this.$component);
+}
+
+function createComponent(ComponentClass, isPage) {
+  var initData = {};
+  var componentProps = filterProps(ComponentClass.defaultProps);
+  var componentInstance = new ComponentClass(componentProps);
+  componentInstance._constructor && componentInstance._constructor(componentProps);
+
+  try {
+    taro.Current.current = componentInstance;
+    taro.Current.index = 0;
+    componentInstance.state = componentInstance._createData() || componentInstance.state;
+  } catch (err) {
+    if (isPage) {
+      console.warn('[Taro warn] \u8BF7\u7ED9\u9875\u9762\u63D0\u4F9B\u521D\u59CB `state` \u4EE5\u63D0\u9AD8\u521D\u6B21\u6E32\u67D3\u6027\u80FD\uFF01');
+    } else {
+      console.warn('[Taro warn] \u8BF7\u7ED9\u7EC4\u4EF6\u63D0\u4F9B\u4E00\u4E2A `defaultProps` \u4EE5\u63D0\u9AD8\u521D\u6B21\u6E32\u67D3\u6027\u80FD\uFF01');
+    }
+
+    console.warn(err);
+  }
+
+  initData = Object.assign({}, initData, componentInstance.props, componentInstance.state);
+  var weappComponentConf = {
+    data: initData,
+    created: function created() {
+      var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+      if (isPage && cacheDataHas(preloadInitedComponent)) {
+        this.$component = cacheDataGet(preloadInitedComponent, true);
+        this.$component.$componentType = 'PAGE';
+      } else {
+        this.$component = new ComponentClass({}, isPage);
+      }
+
+      this.$component._init(this);
+
+      this.$component.render = this.$component._createData;
+      this.$component.__propTypes = ComponentClass.propTypes;
+      Object.assign(this.$component.$router.params, options);
+    },
+    attached: function attached() {
+      var hasParamsCache;
+
+      if (isPage) {
+        // params
+        var params = {};
+        hasParamsCache = cacheDataHas(this.data[routerParamsPrivateKey]);
+
+        if (hasParamsCache) {
+          params = Object.assign({}, ComponentClass.defaultParams, cacheDataGet(this.data[routerParamsPrivateKey], true));
+        } else {
+          // 直接启动，非内部跳转
+          params = filterParams(this.data, ComponentClass.defaultParams);
+        }
+
+        if (cacheDataHas(PRELOAD_DATA_KEY)) {
+          var data = cacheDataGet(PRELOAD_DATA_KEY, true);
+          this.$component.$router.preload = data;
+        }
+
+        Object.assign(this.$component.$router.params, params); // preload
+
+        if (cacheDataHas(this.data[preloadPrivateKey])) {
+          this.$component.$preloadData = cacheDataGet(this.data[preloadPrivateKey], true);
+        } else {
+          this.$component.$preloadData = null;
+        }
+      }
+
+      if (hasParamsCache || !isPage) {
+        initComponent.apply(this, [ComponentClass, isPage]);
+      }
+    },
+    ready: function ready() {
+      if (!isPage && !this.$component.__mounted) {
+        this.$component.__mounted = true;
+        componentTrigger(this.$component, 'componentDidMount');
+      }
+    },
+    detached: function detached() {
+      var component = this.$component;
+      componentTrigger(component, 'componentWillUnmount');
+      component.hooks.forEach(function (hook) {
+        if (isFunction(hook.cleanup)) {
+          hook.cleanup();
+        }
+      });
+      var events = component.$$renderPropsEvents;
+
+      if (isArray(events)) {
+        events.forEach(function (e) {
+          return taro.eventCenter.off(e);
+        });
+      }
+    }
+  };
+
+  if (isPage) {
+    weappComponentConf.methods = weappComponentConf.methods || {};
+
+    weappComponentConf.methods['onLoad'] = function () {
+      var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+      if (this.$component.__isReady) return;
+      Object.assign(this.$component.$router.params, options);
+      initComponent.apply(this, [ComponentClass, isPage]);
+    };
+
+    weappComponentConf.methods['onReady'] = function () {
+      this.$component.__mounted = true;
+      componentTrigger(this.$component, 'componentDidMount');
+    };
+
+    weappComponentConf.methods['onShow'] = function () {
+      componentTrigger(this.$component, 'componentDidShow');
+    };
+
+    weappComponentConf.methods['onHide'] = function () {
+      componentTrigger(this.$component, 'componentDidHide');
+    };
+
+    pageExtraFns.forEach(function (fn) {
+      if (componentInstance[fn] && typeof componentInstance[fn] === 'function') {
+        weappComponentConf.methods[fn] = function () {
+          var component = this.$component;
+
+          if (component && component[fn] && typeof component[fn] === 'function') {
+            var _component$fn;
+
+            // eslint-disable-next-line no-useless-call
+            return (_component$fn = component[fn]).call.apply(_component$fn, [component].concat(Array.prototype.slice.call(arguments)));
+          }
+        };
+      }
+    });
+    __wxRoute && cacheDataSet(__wxRoute, ComponentClass);
+  } else {
+    weappComponentConf.pageLifetimes = weappComponentConf.pageLifetimes || {};
+
+    weappComponentConf.pageLifetimes['show'] = function () {
+      componentTrigger(this.$component, 'componentDidShow');
+    };
+
+    weappComponentConf.pageLifetimes['hide'] = function () {
+      componentTrigger(this.$component, 'componentDidHide');
+    };
+
+    weappComponentConf.pageLifetimes['resize'] = function () {
+      componentTrigger(this.$component, 'onResize');
+    };
+  }
+
+  bindProperties(weappComponentConf, ComponentClass, isPage);
+  bindBehaviors(weappComponentConf, ComponentClass);
+  bindStaticFns(weappComponentConf, ComponentClass);
+  bindStaticOptions(weappComponentConf, ComponentClass);
+  bindMultipleSlots(weappComponentConf, ComponentClass);
+  ComponentClass['$$events'] && bindEvents(weappComponentConf, ComponentClass['$$events'], isPage);
+
+  if (ComponentClass['externalClasses'] && ComponentClass['externalClasses'].length) {
+    weappComponentConf['externalClasses'] = ComponentClass['externalClasses'];
+  }
+
+  return weappComponentConf;
+}
+
 var isDEV = typeof process === 'undefined' || !process.env || "development" !== 'production';
 
 function hasNewLifecycle(component) {
@@ -3468,30 +3544,6 @@ function updateComponent(component) {
   component.prevProps = component.props;
   component.prevState = component.state;
 }
-
-function injectContextType(component) {
-  var ctxType = component.constructor.contextType;
-
-  if (ctxType) {
-    var context = ctxType.context;
-    var emitter = context.emitter;
-
-    if (emitter === null) {
-      component.context = context._defaultValue;
-      return;
-    }
-
-    if (!component._hasContext) {
-      component._hasContext = true;
-      emitter.on(function (_) {
-        return enqueueRender(component);
-      });
-    }
-
-    component.context = emitter.value;
-  }
-}
-
 function mountComponent(component) {
   var props = component.props; // 在willMount前执行构造函数的副本
 
@@ -3520,6 +3572,29 @@ function mountComponent(component) {
   doUpdate(component, props, component.state);
   component.prevProps = component.props;
   component.prevState = component.state;
+}
+
+function injectContextType(component) {
+  var ctxType = component.constructor.contextType;
+
+  if (ctxType) {
+    var context = ctxType.context;
+    var emitter = context.emitter;
+
+    if (emitter === null) {
+      component.context = context._defaultValue;
+      return;
+    }
+
+    if (!component._hasContext) {
+      component._hasContext = true;
+      emitter.on(function (_) {
+        return enqueueRender(component);
+      });
+    }
+
+    component.context = emitter.value;
+  }
 }
 
 function doUpdate(component, prevProps, prevState) {
@@ -3555,9 +3630,8 @@ function doUpdate(component, prevProps, prevState) {
       }
 
       if (_typeof(val) === 'object') {
-        if (isEmptyObject(val)) return taro.internal_safe_set(_data, key, val);
-        val = shakeFnFromObject(val); // 避免筛选完 Fn 后产生了空对象还去渲染
-
+        if (isEmptyObject(val)) return taro.internal_safe_set(_data, key, {});
+        val = cloneDeep(val);
         if (!isEmptyObject(val)) taro.internal_safe_set(_data, key, val);
       } else {
         taro.internal_safe_set(_data, key, val);
@@ -3567,7 +3641,7 @@ function doUpdate(component, prevProps, prevState) {
   }
 
   data['$taroCompReady'] = true;
-  var dataDiff = diffObjToPath(data, component.$scope.data);
+  var dataDiff = taro.getIsUsingDiff() ? diffObjToPath(data, component.$scope.data) : data;
   var __mounted = component.__mounted;
   var snapshot;
 
@@ -3584,22 +3658,21 @@ function doUpdate(component, prevProps, prevState) {
   }
 
   var cb = function cb() {
-    if (component.__mounted) {
+    if (__mounted) {
       taro.invokeEffects(component);
 
       if (component['$$refs'] && component['$$refs'].length > 0) {
         component['$$refs'].forEach(function (ref) {
           // 只有 component 类型能做判断。因为 querySelector 每次调用都一定返回 nodeRefs，无法得知 dom 类型的挂载状态。
           if (ref.type !== 'component') return;
-          component.$scope.selectComponent("#".concat(ref.id), function (target) {
-            target = target ? target.$component || target : null;
-            var prevRef = ref.target;
+          var target = component.$scope.selectComponent("#".concat(ref.id));
+          target = target ? target.$component || target : null;
+          var prevRef = ref.target;
 
-            if (target !== prevRef) {
-              taro.commitAttachRef(ref, target, component, component.refs);
-              ref.target = target;
-            }
-          });
+          if (target !== prevRef) {
+            taro.commitAttachRef(ref, target, component, component.refs);
+            ref.target = target;
+          }
         });
       }
 
@@ -3614,7 +3687,7 @@ function doUpdate(component, prevProps, prevState) {
         taro.Current.current = null;
       }
 
-      if (typeof component.componentDidUpdate === 'function') {
+      if (isFunction(component.componentDidUpdate)) {
         component.componentDidUpdate(prevProps, prevState, snapshot);
       }
     }
@@ -3659,10 +3732,10 @@ function rerender() {
   }
 }
 
-// #私有的__componentProps更新用于触发子组件中对应obsever，生命周期componentWillReciveProps,componentShouldUpdate在这里处理
-// #父组件传过来的props放到data.__props中供模板使用，这么做的目的是模拟reciveProps生命周期
+// #私有的__componentProps更新用于触发子组件中对应obsever，生命周期componentWillReceiveProps,componentShouldUpdate在这里处理
+// #父组件传过来的props放到data.__props中供模板使用，这么做的目的是模拟receiveProps生命周期
 // 执行顺序：组件setState -> 组件_createData() -> 对应的小程序组件setData（组件更新）-> 子组件的__componentProps.observer执行
-//          -> 触发子组件componentWillReciveProps，更新子组件props,componentShouldUpdate -> 子组件_createData -> 子组件setData
+//          -> 触发子组件componentWillReceiveProps，更新子组件props,componentShouldUpdate -> 子组件_createData -> 子组件setData
 
 var PRELOAD_DATA_KEY$1 = 'preload';
 
@@ -3672,7 +3745,6 @@ function () {
   // _createData的时候生成，小程序中通过data.__createData访问
   // this.props,小程序中通过data.__props访问
   // 会在componentDidMount后置为true
-  // hooks
   function BaseComponent() {
     var props = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
     var isPage = arguments.length > 1 ? arguments[1] : undefined;
@@ -3687,7 +3759,7 @@ function () {
 
     _defineProperty(this, "__mounted", false);
 
-    _defineProperty(this, "nextProps", {});
+    _defineProperty(this, "context", {});
 
     _defineProperty(this, "_dirty", true);
 
@@ -3700,8 +3772,6 @@ function () {
     _defineProperty(this, "_pendingCallbacks", []);
 
     _defineProperty(this, "$componentType", '');
-
-    _defineProperty(this, "refs", {});
 
     _defineProperty(this, "$router", {
       params: {},
@@ -3742,7 +3812,7 @@ function () {
         (this._pendingStates = this._pendingStates || []).push(state);
       }
 
-      if (typeof callback === 'function') {
+      if (isFunction(callback)) {
         (this._pendingCallbacks = this._pendingCallbacks || []).push(callback);
       }
 
@@ -3769,7 +3839,7 @@ function () {
 
       this._pendingStates.length = 0;
       queue.forEach(function (nextState) {
-        if (typeof nextState === 'function') {
+        if (isFunction(nextState)) {
           nextState = nextState.call(_this, stateClone, props);
         }
 
@@ -3780,7 +3850,7 @@ function () {
   }, {
     key: "forceUpdate",
     value: function forceUpdate(callback) {
-      if (typeof callback === 'function') {
+      if (isFunction(callback)) {
         (this._pendingCallbacks = this._pendingCallbacks || []).push(callback);
       }
 
@@ -3824,17 +3894,16 @@ function () {
       } else {
         // 普通的
         var keyLower = key.toLocaleLowerCase();
-        var payload = {
+        var detail = {
           __isCustomEvt: true,
           __arguments: args
         };
-        var detail = this.$scope.dataset;
 
-        if (Object.keys(detail).length) {
-          payload.__detail = detail;
+        if (args.length > 0) {
+          detail.value = args.slice(1);
         }
 
-        this.$scope.triggerEvent(keyLower, payload);
+        this.$scope.triggerEvent(keyLower, detail);
       }
     }
   }]);
@@ -3919,7 +3988,7 @@ function createApp(AppClass) {
 }
 
 var RequestQueue = {
-  MAX_REQUEST: 5,
+  MAX_REQUEST: 10,
   queue: [],
   pendingQueue: [],
   request: function request(options) {
@@ -3968,7 +4037,7 @@ var RequestQueue = {
       _this.pendingQueue.push(options);
 
       return {
-        v: tt.request(options)
+        v: wx.request(options)
       };
     };
 
@@ -4032,12 +4101,18 @@ function request(options) {
 
 function processApis(taro$$1) {
   var weApis = Object.assign({}, taro.onAndSyncApis, taro.noPromiseApis, taro.otherApis);
+  var useDataCacheApis = {
+    'navigateTo': true,
+    'redirectTo': true,
+    'reLaunch': true
+  };
+  var routerParamsPrivateKey = '__key_';
   var preloadPrivateKey = '__preload_';
   var preloadInitedComponent = '$preloadComponent';
   Object.keys(weApis).forEach(function (key) {
-    if (!(key in tt)) {
+    if (!(key in wx)) {
       taro$$1[key] = function () {
-        console.warn('\u5934\u6761\u5C0F\u7A0B\u5E8F\u6682\u4E0D\u652F\u6301 '.concat(key));
+        console.warn('\u5FAE\u4FE1\u5C0F\u7A0B\u5E8F\u6682\u4E0D\u652F\u6301 '.concat(key));
       };
 
       return;
@@ -4055,12 +4130,12 @@ function processApis(taro$$1) {
 
         if (typeof options === 'string') {
           if (args.length) {
-            var _tt;
+            var _wx;
 
-            return (_tt = tt)[key].apply(_tt, [options].concat(args));
+            return (_wx = wx)[key].apply(_wx, [options].concat(args));
           }
 
-          return tt[key](options);
+          return wx[key](options);
         }
 
         if (key === 'navigateTo' || key === 'redirectTo') {
@@ -4084,6 +4159,23 @@ function processApis(taro$$1) {
           }
         }
 
+        if (useDataCacheApis[key]) {
+          var _url = obj['url'] = obj['url'] || '';
+
+          var _MarkIndex = _url.indexOf('?');
+
+          var _hasMark = _MarkIndex > -1;
+
+          var _urlQueryStr = _hasMark ? _url.substring(_MarkIndex + 1, _url.length) : '';
+
+          var _params = queryToJson(_urlQueryStr);
+
+          var _cacheKey = getUniqueKey();
+
+          obj.url += (_hasMark ? '&' : '?') + "".concat(routerParamsPrivateKey, "=").concat(_cacheKey);
+          cacheDataSet(_cacheKey, _params);
+        }
+
         var p = new Promise(function (resolve, reject) {
           ['fail', 'success', 'complete'].forEach(function (k) {
             obj[k] = function (res) {
@@ -4104,11 +4196,11 @@ function processApis(taro$$1) {
           });
 
           if (args.length) {
-            var _tt2;
+            var _wx2;
 
-            task = (_tt2 = tt)[key].apply(_tt2, [obj].concat(args));
+            task = (_wx2 = wx)[key].apply(_wx2, [obj].concat(args));
           } else {
-            task = tt[key](obj);
+            task = wx[key](obj);
           }
         });
 
@@ -4116,6 +4208,14 @@ function processApis(taro$$1) {
           p.progress = function (cb) {
             if (task) {
               task.onProgressUpdate(cb);
+            }
+
+            return p;
+          };
+
+          p.headersReceived = function (cb) {
+            if (task) {
+              task.onHeadersReceived(cb);
             }
 
             return p;
@@ -4148,7 +4248,7 @@ function processApis(taro$$1) {
           newArgs.splice(argsLen - 1, 1, lastArg.$scope);
         }
 
-        return tt[key].apply(tt, newArgs);
+        return wx[key].apply(wx, newArgs);
       };
     }
   });
@@ -4172,6 +4272,39 @@ function pxTransform(size) {
   return parseInt(size, 10) / deviceRatio[designWidth] + 'rpx';
 }
 
+function canIUseWebp() {
+  var _wx$getSystemInfoSync = wx.getSystemInfoSync(),
+      platform = _wx$getSystemInfoSync.platform;
+
+  var platformLower = platform.toLowerCase();
+
+  if (platformLower === 'android' || platformLower === 'devtools') {
+    return true;
+  }
+
+  return false;
+}
+
+function wxCloud(taro$$1) {
+  var wxC = wx.cloud || {};
+  var wxcloud = {};
+  var apiList = ['init', 'database', 'uploadFile', 'downloadFile', 'getTempFileURL', 'deleteFile', 'callFunction', 'CloudID'];
+  apiList.forEach(function (v) {
+    wxcloud[v] = wxC[v];
+  });
+  taro$$1.cloud = wxcloud;
+}
+
+function wxEnvObj(taro$$1) {
+  var wxEnv = wx.env || {};
+  var taroEnv = {};
+  var envList = ['USER_DATA_PATH'];
+  envList.forEach(function (key) {
+    return taroEnv[key] = wxEnv[key];
+  });
+  taro$$1.env = taroEnv;
+}
+
 function initNativeApi(taro$$1) {
   processApis(taro$$1);
   taro$$1.request = link.request.bind(link);
@@ -4179,8 +4312,12 @@ function initNativeApi(taro$$1) {
   taro$$1.cleanInterceptors = link.cleanInterceptors.bind(link);
   taro$$1.getCurrentPages = getCurrentPages;
   taro$$1.getApp = getApp;
+  taro$$1.requirePlugin = requirePlugin;
   taro$$1.initPxTransform = taro.initPxTransform.bind(taro$$1);
   taro$$1.pxTransform = pxTransform.bind(taro$$1);
+  taro$$1.canIUseWebp = canIUseWebp;
+  wxCloud(taro$$1);
+  wxEnvObj(taro$$1);
 }
 
 /* eslint-disable camelcase */
@@ -4200,10 +4337,10 @@ var Taro = {
   internal_inline_style: taro.internal_inline_style,
   createComponent: createComponent,
   internal_get_original: taro.internal_get_original,
+  handleLoopRef: taro.handleLoopRef(getElementById),
+  propsManager: propsManager,
   interceptors: taro.interceptors,
   RefsArray: taro.RefsArray,
-  handleLoopRef: handleLoopRef,
-  propsManager: propsManager,
   genCompid: genCompid,
   useEffect: taro.useEffect,
   useLayoutEffect: taro.useLayoutEffect,
@@ -4226,7 +4363,8 @@ var Taro = {
   useContext: taro.useContext,
   createContext: taro.createContext,
   memo: taro.memo,
-  shallowEqual: shallowEqual
+  shallowEqual: shallowEqual,
+  setIsUsingDiff: taro.setIsUsingDiff
 };
 initNativeApi(Taro);
 
@@ -4237,17 +4375,17 @@ exports.default = Taro;
 
 /***/ }),
 
-/***/ "./node_modules/@tarojs/taro-tt/index.js":
-/*!***********************************************!*\
-  !*** ./node_modules/@tarojs/taro-tt/index.js ***!
-  \***********************************************/
+/***/ "./node_modules/@tarojs/taro-weapp/index.js":
+/*!**************************************************!*\
+  !*** ./node_modules/@tarojs/taro-weapp/index.js ***!
+  \**************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-module.exports = __webpack_require__(/*! ./dist/index */ "./node_modules/@tarojs/taro-tt/dist/index.js").default;
+module.exports = __webpack_require__(/*! ./dist/index */ "./node_modules/@tarojs/taro-weapp/dist/index.js").default;
 module.exports.default = module.exports;
 
 /***/ }),
@@ -11662,9 +11800,9 @@ var _class, _temp;
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -11708,7 +11846,7 @@ var AtComponent = (_temp = _class = function (_Component) {
   }]);
 
   return AtComponent;
-}(_taroTt.Component), _class.options = {
+}(_taroWeapp.Component), _class.options = {
   addGlobalClass: true
 
   /**
@@ -11737,18 +11875,18 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.delayGetScrollOffset = exports.delayGetClientRect = exports.handleTouchScroll = exports.pxTransform = exports.isTest = exports.initTestEnv = exports.getEventDetail = exports.uuid = exports.delayQuerySelector = exports.delay = undefined;
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var ENV = _taroTt2.default.getEnv();
+var ENV = _taroWeapp2.default.getEnv();
 function delay() {
   var delayTime = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 500;
 
   return new Promise(function (resolve) {
-    if ([_taroTt2.default.ENV_TYPE.WEB, _taroTt2.default.ENV_TYPE.SWAN].includes(ENV)) {
+    if ([_taroWeapp2.default.ENV_TYPE.WEB, _taroWeapp2.default.ENV_TYPE.SWAN].includes(ENV)) {
       setTimeout(function () {
         resolve();
       }, delayTime);
@@ -11760,8 +11898,8 @@ function delay() {
 function delayQuerySelector(self, selectorStr) {
   var delayTime = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 500;
 
-  var $scope = ENV === _taroTt2.default.ENV_TYPE.WEB ? self : self.$scope;
-  var selector = _taroTt2.default.createSelectorQuery().in($scope);
+  var $scope = ENV === _taroWeapp2.default.ENV_TYPE.WEB ? self : self.$scope;
+  var selector = _taroWeapp2.default.createSelectorQuery().in($scope);
   return new Promise(function (resolve) {
     delay(delayTime).then(function () {
       selector.select(selectorStr).boundingClientRect().exec(function (res) {
@@ -11776,7 +11914,7 @@ function delayGetScrollOffset(_ref) {
 
   return new Promise(function (resolve) {
     delay(delayTime).then(function () {
-      _taroTt2.default.createSelectorQuery().selectViewport().scrollOffset().exec(function (res) {
+      _taroWeapp2.default.createSelectorQuery().selectViewport().scrollOffset().exec(function (res) {
         resolve(res);
       });
     });
@@ -11788,8 +11926,8 @@ function delayGetClientRect(_ref2) {
       _ref2$delayTime = _ref2.delayTime,
       delayTime = _ref2$delayTime === undefined ? 500 : _ref2$delayTime;
 
-  var $scope = ENV === _taroTt2.default.ENV_TYPE.WEB || ENV === _taroTt2.default.ENV_TYPE.SWAN ? self : self.$scope;
-  var selector = _taroTt2.default.createSelectorQuery().in($scope);
+  var $scope = ENV === _taroWeapp2.default.ENV_TYPE.WEB || ENV === _taroWeapp2.default.ENV_TYPE.SWAN ? self : self.$scope;
+  var selector = _taroWeapp2.default.createSelectorQuery().in($scope);
   return new Promise(function (resolve) {
     delay(delayTime).then(function () {
       selector.select(selectorStr).boundingClientRect().exec(function (res) {
@@ -11832,7 +11970,7 @@ function uuid() {
 function getEventDetail(event) {
   var detail = void 0;
   switch (ENV) {
-    case _taroTt2.default.ENV_TYPE.WEB:
+    case _taroWeapp2.default.ENV_TYPE.WEB:
       detail = {
         pageX: event.pageX,
         pageY: event.pageY,
@@ -11844,7 +11982,7 @@ function getEventDetail(event) {
         y: event.y
       };
       break;
-    case _taroTt2.default.ENV_TYPE.WEAPP:
+    case _taroWeapp2.default.ENV_TYPE.WEAPP:
       detail = {
         pageX: event.touches[0].pageX,
         pageY: event.touches[0].pageY,
@@ -11856,7 +11994,7 @@ function getEventDetail(event) {
         y: event.target.y
       };
       break;
-    case _taroTt2.default.ENV_TYPE.ALIPAY:
+    case _taroWeapp2.default.ENV_TYPE.ALIPAY:
       detail = {
         pageX: event.target.pageX,
         pageY: event.target.pageY,
@@ -11868,7 +12006,7 @@ function getEventDetail(event) {
         y: event.target.y
       };
       break;
-    case _taroTt2.default.ENV_TYPE.SWAN:
+    case _taroWeapp2.default.ENV_TYPE.SWAN:
       detail = {
         pageX: event.changedTouches[0].pageX,
         pageY: event.changedTouches[0].pageY,
@@ -11904,7 +12042,7 @@ function isTest() {
 }
 var scrollTop = 0;
 function handleTouchScroll(flag) {
-  if (ENV !== _taroTt2.default.ENV_TYPE.WEB) {
+  if (ENV !== _taroWeapp2.default.ENV_TYPE.WEB) {
     return;
   }
   if (flag) {
@@ -11921,7 +12059,7 @@ function handleTouchScroll(flag) {
 }
 function pxTransform(size) {
   if (!size) return '';
-  return _taroTt2.default.pxTransform(size);
+  return _taroWeapp2.default.pxTransform(size);
 }
 exports.delay = delay;
 exports.delayQuerySelector = delayQuerySelector;
@@ -12326,7 +12464,7 @@ Object.defineProperty(exports, "__esModule", {
 // ? 全局不动配置项 只做导出不做修改
 // ! 根据不同编译脚本打包不同小程序
 // * 当前打包版本
-var MINIVERSION = exports.MINIVERSION = "douyin";
+var MINIVERSION = exports.MINIVERSION = "jizhao";
 var MINICONFIG = exports.MINICONFIG = __webpack_require__("./src/config/minis sync recursive ^\\.\\/.*\\.ts$")("./" + MINIVERSION + ".ts");
 // * 全局请求接口域名
 // * 测试站
@@ -12390,6 +12528,8 @@ var UNITID = exports.UNITID = MINICONFIG.UNITID;
 var INVITESOURCE = exports.INVITESOURCE = MINICONFIG.INVITESOURCE;
 // * 是否使用推送信息
 var USESUBSCRIBEMESSAGE = exports.USESUBSCRIBEMESSAGE = MINICONFIG.USESUBSCRIBEMESSAGE;
+// * 是否能分享
+var ISCANSHARE = exports.ISCANSHARE = MINICONFIG.ISCANSHARE;
 
 /***/ }),
 
@@ -12443,6 +12583,8 @@ webpackContext.id = "./src/config/minis sync recursive ^\\.\\/.*\\.ts$";
 var PAGETITLE = '鱼泡网-';
 // * 小程序token 
 var TOKEN = 'baidu';
+// * 小程序是否能被分享
+var ISCANSHARE = true;
 // * 小程序广告unitid
 var UNITID = 'adunit-80f40e8b4f60c3f6';
 // * 邀请key
@@ -12454,7 +12596,8 @@ module.exports = {
   TOKEN: TOKEN,
   UNITID: UNITID,
   INVITESOURCE: INVITESOURCE,
-  USESUBSCRIBEMESSAGE: USESUBSCRIBEMESSAGE
+  USESUBSCRIBEMESSAGE: USESUBSCRIBEMESSAGE,
+  ISCANSHARE: ISCANSHARE
 };
 
 /***/ }),
@@ -12474,6 +12617,8 @@ module.exports = {
 var PAGETITLE = '鱼泡网-';
 // * 小程序token 
 var TOKEN = 'douyin';
+// * 小程序是否能被分享
+var ISCANSHARE = false;
 // * 小程序广告unitid
 var UNITID = 'adunit-80f40e8b4f60c3f6';
 // * 邀请key
@@ -12505,6 +12650,8 @@ module.exports = {
 var PAGETITLE = '鱼泡网-';
 // * 小程序token 
 var TOKEN = 'jizhao';
+// * 小程序是否能被分享
+var ISCANSHARE = true;
 // * 小程序广告unitid
 var UNITID = 'adunit-80f40e8b4f60c3f6';
 // * 邀请key
@@ -12805,7 +12952,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
 exports.default = useCode;
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
 var _index = __webpack_require__(/*! ../../utils/v/index */ "./src/utils/v/index.ts");
 
@@ -12822,14 +12969,14 @@ var SendTypeHave = exports.SendTypeHave = 'have';
 var SendTypeNo = exports.SendTypeNo = 'no';
 var title = '获取验证码';
 function useCode(type) {
-  var _useState = (0, _taroTt.useState)(type === false ? false : !!type),
+  var _useState = (0, _taroWeapp.useState)(type === false ? false : !!type),
       _useState2 = _slicedToArray(_useState, 2),
       disabled = _useState2[0],
       setDisabled = _useState2[1];
 
   var sendType = type === false ? SendTypeNo : SendTypeHave;
 
-  var _useState3 = (0, _taroTt.useState)(title),
+  var _useState3 = (0, _taroWeapp.useState)(title),
       _useState4 = _slicedToArray(_useState3, 2),
       text = _useState4[0],
       setText = _useState4[1];
@@ -12901,7 +13048,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
 exports.default = useResume;
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
 var _index = __webpack_require__(/*! ../../utils/request/index */ "./src/utils/request/index.ts");
 
@@ -12927,44 +13074,44 @@ function useResume() {
   });
   // 基础信息
 
-  var _useState = (0, _taroTt.useState)(resumeData.info),
+  var _useState = (0, _taroWeapp.useState)(resumeData.info),
       _useState2 = _slicedToArray(_useState, 2),
       infoData = _useState2[0],
       setInfoData = _useState2[1];
   // 人员信息
 
 
-  var _useState3 = (0, _taroTt.useState)(resumeData.introducesData),
+  var _useState3 = (0, _taroWeapp.useState)(resumeData.introducesData),
       _useState4 = _slicedToArray(_useState3, 2),
       introducesData = _useState4[0],
       setIntroducesData = _useState4[1];
   // 项目
 
 
-  var _useState5 = (0, _taroTt.useState)(resumeData.projectData),
+  var _useState5 = (0, _taroWeapp.useState)(resumeData.projectData),
       _useState6 = _slicedToArray(_useState5, 2),
       projectData = _useState6[0],
       setProjectData = _useState6[1];
   // 职业技能
 
 
-  var _useState7 = (0, _taroTt.useState)(resumeData.certificates),
+  var _useState7 = (0, _taroWeapp.useState)(resumeData.certificates),
       _useState8 = _slicedToArray(_useState7, 2),
       certificates = _useState8[0],
       setCertificates = _useState8[1];
   //置顶
 
 
-  var _useState9 = (0, _taroTt.useState)(_data.RESUME_TOP_DATA),
+  var _useState9 = (0, _taroWeapp.useState)(_data.RESUME_TOP_DATA),
       _useState10 = _slicedToArray(_useState9, 2),
       resume_top = _useState10[0],
       setResume_top = _useState10[1];
 
-  (0, _taroTt.useEffect)(function () {
+  (0, _taroWeapp.useEffect)(function () {
     initResumeData();
   }, []);
   // 当redux数据发生改变后， 将自动更新到页面上
-  (0, _taroTt.useEffect)(function () {
+  (0, _taroWeapp.useEffect)(function () {
     if (!resumeData.isSet) return;
     setInfoData(resumeData.info);
     setIntroducesData(resumeData.introducesData);
@@ -13049,7 +13196,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
 exports.default = useResumeAddInfo;
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
 var _index = __webpack_require__(/*! ../../utils/request/index */ "./src/utils/request/index.ts");
 
@@ -13064,21 +13211,21 @@ function useResumeAddInfo() {
   });
   // 保存配置项
 
-  var _useState = (0, _taroTt.useState)(addInfoConfig),
+  var _useState = (0, _taroWeapp.useState)(addInfoConfig),
       _useState2 = _slicedToArray(_useState, 2),
       infoConfig = _useState2[0],
       setInfoConfig = _useState2[1];
   // 当前性别的下标
 
 
-  var _useState3 = (0, _taroTt.useState)(0),
+  var _useState3 = (0, _taroWeapp.useState)(0),
       _useState4 = _slicedToArray(_useState3, 2),
       genderCurrent = _useState4[0],
       setGenderCurrent = _useState4[1];
   // 当前民族的下标
 
 
-  var _useState5 = (0, _taroTt.useState)(0),
+  var _useState5 = (0, _taroWeapp.useState)(0),
       _useState6 = _slicedToArray(_useState5, 2),
       nationCurrent = _useState6[0],
       setNationCurrent = _useState6[1];
@@ -13089,7 +13236,7 @@ function useResumeAddInfo() {
   // 初始化基本信息数据
   //const 
   // 请求配置项数据
-  (0, _taroTt.useEffect)(function () {
+  (0, _taroWeapp.useEffect)(function () {
     if (addInfoConfig.isset) return;
     (0, _index.getResumeAddInfoConfig)().then(function (res) {
       var data = _extends({}, res, { isset: true });
@@ -15530,9 +15677,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
 
 var _index = __webpack_require__(/*! ../../utils/request/index */ "./src/utils/request/index.ts");
 
@@ -15556,7 +15703,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var contextItem = exports.contextItem = (0, _taroTt.createContext)({});
+var contextItem = exports.contextItem = (0, _taroWeapp.createContext)({});
 
 var Topping = function (_Taro$Component) {
   _inherits(Topping, _Taro$Component);
@@ -15583,7 +15730,7 @@ var Topping = function (_Taro$Component) {
     key: "_constructor",
     value: function _constructor(props) {
       _get(Topping.prototype.__proto__ || Object.getPrototypeOf(Topping.prototype), "_constructor", this).call(this, props);
-      this.$$refs = new _taroTt2.default.RefsArray();
+      this.$$refs = new _taroWeapp2.default.RefsArray();
     }
   }, {
     key: "_createData",
@@ -15595,7 +15742,7 @@ var Topping = function (_Taro$Component) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var router = (0, _taroTt.useRouter)();
+      var router = (0, _taroWeapp.useRouter)();
       var _router$params = router.params,
           id = _router$params.id,
           type = _router$params.type,
@@ -15605,9 +15752,9 @@ var Topping = function (_Taro$Component) {
           endTimeStr = _router$params.endTimeStr;
       // 获取userInfo
 
-      var userInfo = _taroTt2.default.getStorageSync(_store.UserInfo);
+      var userInfo = _taroWeapp2.default.getStorageSync(_store.UserInfo);
 
-      var _useState = (0, _taroTt.useState)({
+      var _useState = (0, _taroWeapp.useState)({
         top_rules: []
       }),
           _useState2 = _slicedToArray(_useState, 2),
@@ -15616,42 +15763,42 @@ var Topping = function (_Taro$Component) {
       // 积分
 
 
-      var _useState3 = (0, _taroTt.useState)(0),
+      var _useState3 = (0, _taroWeapp.useState)(0),
           _useState4 = _slicedToArray(_useState3, 2),
           num = _useState4[0],
           setNum = _useState4[1];
       // 天
 
 
-      var _useState5 = (0, _taroTt.useState)(0),
+      var _useState5 = (0, _taroWeapp.useState)(0),
           _useState6 = _slicedToArray(_useState5, 2),
           paramsDay = _useState6[0],
           setParamsDay = _useState6[1];
       //置顶天数
 
 
-      var _useState7 = (0, _taroTt.useState)('请选择置顶天数'),
+      var _useState7 = (0, _taroWeapp.useState)('请选择置顶天数'),
           _useState8 = _slicedToArray(_useState7, 2),
           day = _useState8[0],
           setDay = _useState8[1];
       // 修改置顶天数
 
 
-      var _useState9 = (0, _taroTt.useState)('延长'),
+      var _useState9 = (0, _taroWeapp.useState)('延长'),
           _useState10 = _slicedToArray(_useState9, 2),
           editData = _useState10[0],
           seteditDay = _useState10[1];
       // 下拉框总参数
 
 
-      var _useState11 = (0, _taroTt.useState)([]),
+      var _useState11 = (0, _taroWeapp.useState)([]),
           _useState12 = _slicedToArray(_useState11, 2),
           list = _useState12[0],
           setList = _useState12[1];
       // 最大省市
 
 
-      var _useState13 = (0, _taroTt.useState)({
+      var _useState13 = (0, _taroWeapp.useState)({
         max_city: 0,
         max_province: 0
       }),
@@ -15659,7 +15806,7 @@ var Topping = function (_Taro$Component) {
           city = _useState14[0],
           setCity = _useState14[1];
 
-      var _useState15 = (0, _taroTt.useState)({
+      var _useState15 = (0, _taroWeapp.useState)({
         city: [],
         province: [],
         whole: []
@@ -15668,61 +15815,61 @@ var Topping = function (_Taro$Component) {
           params = _useState16[0],
           setParams = _useState16[1];
 
-      var _useState17 = (0, _taroTt.useState)([]),
+      var _useState17 = (0, _taroWeapp.useState)([]),
           _useState18 = _slicedToArray(_useState17, 2),
           province = _useState18[0],
           setProvince = _useState18[1];
       // 到期时间
 
 
-      var _useState19 = (0, _taroTt.useState)(''),
+      var _useState19 = (0, _taroWeapp.useState)(''),
           _useState20 = _slicedToArray(_useState19, 2),
           endTime = _useState20[0],
           setEndTime = _useState20[1];
       // 到期时间时间戳
 
 
-      var _useState21 = (0, _taroTt.useState)(0),
+      var _useState21 = (0, _taroWeapp.useState)(0),
           _useState22 = _slicedToArray(_useState21, 2),
           end = _useState22[0],
           setEnd = _useState22[1];
       // 显示最新到期时间
 
 
-      var _useState23 = (0, _taroTt.useState)(false),
+      var _useState23 = (0, _taroWeapp.useState)(false),
           _useState24 = _slicedToArray(_useState23, 2),
           displayTime = _useState24[0],
           setdisplayTime = _useState24[1];
       // 最新时间
 
 
-      var _useState25 = (0, _taroTt.useState)(''),
+      var _useState25 = (0, _taroWeapp.useState)(''),
           _useState26 = _slicedToArray(_useState25, 2),
           newTime = _useState26[0],
           setNewTime = _useState26[1];
       // 修改时最大积分
 
 
-      var _useState27 = (0, _taroTt.useState)(0),
+      var _useState27 = (0, _taroWeapp.useState)(0),
           _useState28 = _slicedToArray(_useState27, 2),
           maxNum = _useState28[0],
           setMaxNum = _useState28[1];
       // 找活省份最大的长度
 
 
-      var _useState29 = (0, _taroTt.useState)(0),
+      var _useState29 = (0, _taroWeapp.useState)(0),
           _useState30 = _slicedToArray(_useState29, 2),
           provinceNum = _useState30[0],
           setProvinceNum = _useState30[1];
       // 找活天数
 
 
-      var _useState31 = (0, _taroTt.useState)('1'),
+      var _useState31 = (0, _taroWeapp.useState)('1'),
           _useState32 = _slicedToArray(_useState31, 2),
           recDay = _useState32[0],
           setRecDay = _useState32[1];
 
-      var _useState33 = (0, _taroTt.useState)({
+      var _useState33 = (0, _taroWeapp.useState)({
         max_number: 0,
         province_integral: 0,
         max_top_days: 0,
@@ -15735,7 +15882,7 @@ var Topping = function (_Taro$Component) {
       // 修改超过最大就显示消耗积分
 
 
-      (0, _taroTt.useEffect)(function () {
+      (0, _taroWeapp.useEffect)(function () {
         if (type) {
           if (!rec) {
             var val = {
@@ -15749,7 +15896,7 @@ var Topping = function (_Taro$Component) {
                 setEnd(res.data.end_time);
                 setMaxNum(res.data.max_price);
               } else {
-                _taroTt2.default.showModal({
+                _taroWeapp2.default.showModal({
                   title: '温馨提示',
                   content: res.errmsg,
                   showCancel: false
@@ -15760,7 +15907,7 @@ var Topping = function (_Taro$Component) {
         }
         // 找活
         if (rec) {
-          _taroTt2.default.setNavigationBarTitle({
+          _taroWeapp2.default.setNavigationBarTitle({
             title: '找活置顶'
           });
           var _params = {
@@ -15806,7 +15953,7 @@ var Topping = function (_Taro$Component) {
                 max_province: res.data.max_province, max_city: res.data.max_city
               });
             } else {
-              _taroTt2.default.showModal({
+              _taroWeapp2.default.showModal({
                 title: '温馨提示',
                 content: res.errmsg,
                 showCancel: false
@@ -15824,7 +15971,7 @@ var Topping = function (_Taro$Component) {
               }
               setList(array);
             } else {
-              _taroTt2.default.showModal({
+              _taroWeapp2.default.showModal({
                 title: '温馨提示',
                 content: res.errmsg,
                 showCancel: false
@@ -15913,7 +16060,7 @@ var Topping = function (_Taro$Component) {
       };
       // 用户页面跳转
       var userRouteJump = function userRouteJump(url) {
-        _taroTt2.default.navigateTo({
+        _taroWeapp2.default.navigateTo({
           url: url
         });
       };
@@ -15929,7 +16076,7 @@ var Topping = function (_Taro$Component) {
           return v.id;
         });
         if (!province_ids.length && !city_ids.length && !country_ids.length) {
-          _taroTt2.default.showModal({
+          _taroWeapp2.default.showModal({
             title: '温馨提示',
             content: '请选择您的置顶城市',
             showCancel: false
@@ -15963,25 +16110,25 @@ var Topping = function (_Taro$Component) {
             console.log(32312);
             (0, _index.resumesUpdateTopResumeAction)(editDetail).then(function (res) {
               if (res.errcode === 'ok') {
-                _taroTt2.default.showModal({
+                _taroWeapp2.default.showModal({
                   title: '温馨提示',
                   content: res.errmsg,
                   showCancel: false,
                   success: function success() {
-                    _taroTt2.default.navigateBack({
+                    _taroWeapp2.default.navigateBack({
                       delta: 1
                     });
                   }
                 });
                 return;
               } else if (res.errcode === 'get_integral') {
-                _taroTt2.default.showModal({
+                _taroWeapp2.default.showModal({
                   title: '温馨提示',
                   content: res.errmsg,
                   showCancel: true,
                   success: function success(res) {
                     if (res.confirm == true) {
-                      _taroTt2.default.navigateTo({
+                      _taroWeapp2.default.navigateTo({
                         // 前往积分页面
                         url: "/pages/getintegral/index"
                       });
@@ -15990,19 +16137,19 @@ var Topping = function (_Taro$Component) {
                 });
                 return;
               } else if (res.errcode === 'auth_forbid') {
-                _taroTt2.default.showModal({
+                _taroWeapp2.default.showModal({
                   title: '温馨提示',
                   content: res.errmsg,
                   cancelText: '取消',
                   confirmText: '去实名',
                   success: function success(res) {
                     if (res.cancel) {
-                      _taroTt2.default.navigateBack({
+                      _taroWeapp2.default.navigateBack({
                         delta: 1
                       });
                     } else if (res.confirm) {
                       var backtwo = "backtwo";
-                      _taroTt2.default.redirectTo({
+                      _taroWeapp2.default.redirectTo({
                         url: "/pages/realname/index?backtwo=backtwo"
                       });
                     }
@@ -16010,7 +16157,7 @@ var Topping = function (_Taro$Component) {
                 });
                 return;
               } else if (res.errcode == "member_forbid") {
-                _taroTt2.default.showModal({
+                _taroWeapp2.default.showModal({
                   title: '温馨提示',
                   content: "mydata.errmsg",
                   cancelText: "取消",
@@ -16018,7 +16165,7 @@ var Topping = function (_Taro$Component) {
                   success: function success(res) {
                     if (res.confirm) {
                       var tel = _index2.SERVERPHONE;
-                      _taroTt2.default.makePhoneCall({
+                      _taroWeapp2.default.makePhoneCall({
                         phoneNumber: tel
                       });
                     }
@@ -16026,7 +16173,7 @@ var Topping = function (_Taro$Component) {
                 });
                 return;
               } else {
-                _taroTt2.default.showToast({
+                _taroWeapp2.default.showToast({
                   title: res.errmsg,
                   icon: "none",
                   duration: 1500
@@ -16036,25 +16183,25 @@ var Topping = function (_Taro$Component) {
           } else {
             (0, _index.jobChangeTopAreasAction)(editDetail).then(function (res) {
               if (res.errcode === 'ok') {
-                _taroTt2.default.showModal({
+                _taroWeapp2.default.showModal({
                   title: '温馨提示',
                   content: res.errmsg,
                   showCancel: false,
                   success: function success() {
-                    _taroTt2.default.navigateBack({
+                    _taroWeapp2.default.navigateBack({
                       delta: 1
                     });
                   }
                 });
                 return;
               } else if (res.errcode === 'get_integral') {
-                _taroTt2.default.showModal({
+                _taroWeapp2.default.showModal({
                   title: '温馨提示',
                   content: res.errmsg,
                   showCancel: true,
                   success: function success(res) {
                     if (res.confirm == true) {
-                      _taroTt2.default.navigateTo({
+                      _taroWeapp2.default.navigateTo({
                         // 前往积分页面
                         url: "/pages/getintegral/index"
                       });
@@ -16063,19 +16210,19 @@ var Topping = function (_Taro$Component) {
                 });
                 return;
               } else if (res.errcode === 'auth_forbid') {
-                _taroTt2.default.showModal({
+                _taroWeapp2.default.showModal({
                   title: '温馨提示',
                   content: res.errmsg,
                   cancelText: '取消',
                   confirmText: '去实名',
                   success: function success(res) {
                     if (res.cancel) {
-                      _taroTt2.default.navigateBack({
+                      _taroWeapp2.default.navigateBack({
                         delta: 1
                       });
                     } else if (res.confirm) {
                       var backtwo = "backtwo";
-                      _taroTt2.default.redirectTo({
+                      _taroWeapp2.default.redirectTo({
                         url: "/pages/realname/index?backtwo=backtwo"
                       });
                     }
@@ -16083,7 +16230,7 @@ var Topping = function (_Taro$Component) {
                 });
                 return;
               } else if (res.errcode == "member_forbid") {
-                _taroTt2.default.showModal({
+                _taroWeapp2.default.showModal({
                   title: '温馨提示',
                   content: "mydata.errmsg",
                   cancelText: "取消",
@@ -16091,7 +16238,7 @@ var Topping = function (_Taro$Component) {
                   success: function success(res) {
                     if (res.confirm) {
                       var tel = _index2.SERVERPHONE;
-                      _taroTt2.default.makePhoneCall({
+                      _taroWeapp2.default.makePhoneCall({
                         phoneNumber: tel
                       });
                     }
@@ -16099,7 +16246,7 @@ var Topping = function (_Taro$Component) {
                 });
                 return;
               } else {
-                _taroTt2.default.showToast({
+                _taroWeapp2.default.showToast({
                   title: res.errmsg,
                   icon: "none",
                   duration: 1500
@@ -16109,7 +16256,7 @@ var Topping = function (_Taro$Component) {
           }
         } else {
           if (!province_ids || !city_ids) {
-            _taroTt2.default.showModal({
+            _taroWeapp2.default.showModal({
               title: '温馨提示',
               content: '请设置置顶城市',
               showCancel: false
@@ -16117,7 +16264,7 @@ var Topping = function (_Taro$Component) {
             return;
           }
           if (paramsDay === 0) {
-            _taroTt2.default.showModal({
+            _taroWeapp2.default.showModal({
               title: '温馨提示',
               content: '请设置置顶天数',
               showCancel: false
@@ -16127,12 +16274,12 @@ var Topping = function (_Taro$Component) {
           if (rec) {
             (0, _index.resumesDoTopV2Action)(detail).then(function (res) {
               if (res.errcode === 'ok') {
-                _taroTt2.default.showModal({
+                _taroWeapp2.default.showModal({
                   title: '温馨提示',
                   content: res.errmsg,
                   showCancel: false,
                   success: function success() {
-                    _taroTt2.default.navigateBack({
+                    _taroWeapp2.default.navigateBack({
                       delta: 1
                     });
                   }
@@ -16142,12 +16289,12 @@ var Topping = function (_Taro$Component) {
           } else {
             (0, _index.jobDoTopAction)(detail).then(function (res) {
               if (res.errcode === 'ok') {
-                _taroTt2.default.showModal({
+                _taroWeapp2.default.showModal({
                   title: '温馨提示',
                   content: res.errmsg,
                   showCancel: false,
                   success: function success() {
-                    _taroTt2.default.navigateBack({
+                    _taroWeapp2.default.navigateBack({
                       delta: 1
                     });
                   }
@@ -16418,7 +16565,7 @@ var Topping = function (_Taro$Component) {
       var handleRecDay = function handleRecDay(e) {
         var reg = /^\d{0,2}$/;
         if (!reg.test(e.detail.value)) {
-          _taroTt2.default.showModal({
+          _taroWeapp2.default.showModal({
             title: '温馨提示',
             content: '只能输入整数，请重新输入',
             showCancel: false,
@@ -16466,7 +16613,7 @@ var Topping = function (_Taro$Component) {
         });
         var provinces = [].concat(_toConsumableArray(province_ids), _toConsumableArray(city_ids), _toConsumableArray(country_ids));
         if (!province_ids.length && !city_ids.length && !country_ids.length) {
-          _taroTt2.default.showModal({
+          _taroWeapp2.default.showModal({
             title: '温馨提示',
             content: '请选择您的置顶城市',
             showCancel: false
@@ -16474,7 +16621,7 @@ var Topping = function (_Taro$Component) {
           return;
         }
         if (!parseInt(recDay) || parseInt(recDay) == 0) {
-          _taroTt2.default.showModal({
+          _taroWeapp2.default.showModal({
             title: '温馨提示',
             content: '输入的置顶天数不能为0或者为空',
             showCancel: false
@@ -16503,23 +16650,23 @@ var Topping = function (_Taro$Component) {
         if (!type) {
           (0, _index.resumesDoTopAction)(details).then(function (res) {
             if (res.errcode === 'ok') {
-              _taroTt2.default.showModal({
+              _taroWeapp2.default.showModal({
                 title: '温馨提示',
                 content: res.errmsg,
                 showCancel: false,
                 success: function success() {
-                  _taroTt2.default.navigateBack({
+                  _taroWeapp2.default.navigateBack({
                     delta: 1
                   });
                 }
               });
             } else if (res.errcode === 'resume_null') {
-              _taroTt2.default.showModal({
+              _taroWeapp2.default.showModal({
                 title: '温馨提示',
                 content: res.errmsg,
                 // showCancel: false,
                 success: function success() {
-                  _taroTt2.default.navigateTo({
+                  _taroWeapp2.default.navigateTo({
                     url: "pages/resume/newJobs/index"
                   });
                 }
@@ -16527,23 +16674,23 @@ var Topping = function (_Taro$Component) {
               return;
               //获取积分
             } else if (res.errcode === 'get_integral') {
-              _taroTt2.default.showModal({
+              _taroWeapp2.default.showModal({
                 title: '温馨提示',
                 content: res.errmsg,
                 success: function success() {
-                  _taroTt2.default.navigateTo({
+                  _taroWeapp2.default.navigateTo({
                     url: "/pages/getintegral/index"
                   });
                 }
               });
               return;
             } else {
-              _taroTt2.default.showModal({
+              _taroWeapp2.default.showModal({
                 title: '温馨提示',
                 content: res.errmsg,
                 showCancel: false,
                 success: function success() {
-                  _taroTt2.default.navigateBack({
+                  _taroWeapp2.default.navigateBack({
                     delta: 1
                   });
                 }
@@ -16568,11 +16715,11 @@ var Topping = function (_Taro$Component) {
       };
       this.anonymousFunc11 = handleTopping;
       this.anonymousFunc12 = function () {
-        _taroTt2.default.makePhoneCall({ phoneNumber: _index2.SERVERPHONE });
+        _taroWeapp2.default.makePhoneCall({ phoneNumber: _index2.SERVERPHONE });
       };
       var loopArray74 = province ? province.map(function (v, __index0) {
         v = {
-          $original: (0, _taroTt.internal_get_original)(v)
+          $original: (0, _taroWeapp.internal_get_original)(v)
         };
         var _$indexKey = "ibzzz" + __index0;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
@@ -16585,7 +16732,7 @@ var Topping = function (_Taro$Component) {
       }) : [];
       var loopArray75 = params ? params.city.map(function (v, __index1) {
         v = {
-          $original: (0, _taroTt.internal_get_original)(v)
+          $original: (0, _taroWeapp.internal_get_original)(v)
         };
         var _$indexKey2 = "iczzz" + __index1;
         _this2.anonymousFunc1Map[_$indexKey2] = function () {
@@ -16598,7 +16745,7 @@ var Topping = function (_Taro$Component) {
       }) : [];
       var loopArray76 = params ? params.province.map(function (v, __index2) {
         v = {
-          $original: (0, _taroTt.internal_get_original)(v)
+          $original: (0, _taroWeapp.internal_get_original)(v)
         };
         var _$indexKey3 = "idzzz" + __index2;
         _this2.anonymousFunc2Map[_$indexKey3] = function () {
@@ -16611,7 +16758,7 @@ var Topping = function (_Taro$Component) {
       }) : [];
       var loopArray77 = params ? params.whole.map(function (v, __index3) {
         v = {
-          $original: (0, _taroTt.internal_get_original)(v)
+          $original: (0, _taroWeapp.internal_get_original)(v)
         };
         var _$indexKey4 = "iezzz" + __index3;
         _this2.anonymousFunc3Map[_$indexKey4] = function () {
@@ -16624,7 +16771,7 @@ var Topping = function (_Taro$Component) {
       }) : [];
       var loopArray78 = data.top_rules.map(function (v, i) {
         v = {
-          $original: (0, _taroTt.internal_get_original)(v)
+          $original: (0, _taroWeapp.internal_get_original)(v)
         };
         var $loopState__temp2 = i + i;
         return {
@@ -16756,14 +16903,14 @@ var Topping = function (_Taro$Component) {
   }]);
 
   return Topping;
-}(_taroTt2.default.Component);
+}(_taroWeapp2.default.Component);
 
 Topping.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6", "anonymousFunc7", "anonymousFunc8", "anonymousFunc9", "anonymousFunc10", "anonymousFunc11", "anonymousFunc12"];
 Topping.$$componentPath = "pages/topping/index";
 Topping.config = { navigationBarTitleText: '招工置顶' };
 exports.default = Topping;
 
-Page(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(Topping, true));
+Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(Topping, true));
 
 /***/ }),
 
@@ -17023,9 +17170,9 @@ exports.getSystemInfo = getSystemInfo;
 exports.recSerAuthLoction = recSerAuthLoction;
 exports.userCancelAuth = userCancelAuth;
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
 
 var _index = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
 
@@ -17048,7 +17195,7 @@ function objDeepCopy(source) {
 // 获取用户定位
 function userAuthLoction() {
   return new Promise(function (resolve, reject) {
-    var loc = _taroTt2.default.getStorageSync(_store.UserLocationCity);
+    var loc = _taroWeapp2.default.getStorageSync(_store.UserLocationCity);
     if (loc) resolve(loc);
     var GDMAP = new _amapWx2.default.AMapWX({ key: _index.MAPKEY });
     GDMAP.getRegeo({
@@ -17061,7 +17208,7 @@ function userAuthLoction() {
           adcode: data[0].regeocodeData.addressComponent.adcode,
           citycode: data[0].regeocodeData.addressComponent.citycode
         };
-        _taroTt2.default.setStorageSync(_store.UserLocationCity, gpsLocation); //定位信息
+        _taroWeapp2.default.setStorageSync(_store.UserLocationCity, gpsLocation); //定位信息
         resolve(gpsLocation);
       },
       fail: function fail() {
@@ -17087,7 +17234,7 @@ function getAmapPoiList(val) {
 }
 // 页面跳转
 function userJumpPage(url) {
-  _taroTt2.default.navigateTo({ url: url });
+  _taroWeapp2.default.navigateTo({ url: url });
 }
 // 数字四舍五入并向下取2位小数
 function getPointNumber(p, n) {
@@ -17095,7 +17242,7 @@ function getPointNumber(p, n) {
 }
 // 获取设备系统
 function getSystemInfo() {
-  var system = _taroTt2.default.getSystemInfoSync();
+  var system = _taroWeapp2.default.getSystemInfoSync();
   return system.platform;
 }
 // 找活基础页面获取定位
@@ -17114,7 +17261,7 @@ function recSerAuthLoction() {
 }
 // 用户取消授权
 function userCancelAuth() {
-  _taroTt2.default.navigateBack();
+  _taroWeapp2.default.navigateBack();
 }
 
 /***/ }),
@@ -17139,16 +17286,16 @@ exports.warnMsg = warnMsg;
 exports.successMsg = successMsg;
 exports.showModalTip = showModalTip;
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Msg(msg) {
   var duration = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 3000;
 
-  _taroTt2.default.showToast({
+  _taroWeapp2.default.showToast({
     title: msg,
     icon: 'none',
     duration: duration
@@ -17162,7 +17309,7 @@ function ShowActionModal(data) {
       msg = data.msg,
       _success = data.success;
 
-  _taroTt2.default.showModal({
+  _taroWeapp2.default.showModal({
     title: title,
     content: typeof data === 'string' ? data : msg,
     showCancel: false,
@@ -17175,7 +17322,7 @@ function ShowActionModal(data) {
 function errMsg() {
   var msg = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
 
-  _taroTt2.default.atMessage({
+  _taroWeapp2.default.atMessage({
     'message': msg,
     'type': 'error'
   });
@@ -17183,7 +17330,7 @@ function errMsg() {
 function warnMsg() {
   var msg = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
 
-  _taroTt2.default.atMessage({
+  _taroWeapp2.default.atMessage({
     'message': msg,
     'type': 'warning'
   });
@@ -17191,7 +17338,7 @@ function warnMsg() {
 function successMsg() {
   var msg = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
 
-  _taroTt2.default.atMessage({
+  _taroWeapp2.default.atMessage({
     'message': msg,
     'type': 'success'
   });
@@ -17202,7 +17349,7 @@ function showModalTip(obj) {
       _obj$showCancel = obj.showCancel,
       showCancel = _obj$showCancel === undefined ? false : _obj$showCancel;
 
-  _taroTt2.default.showModal({
+  _taroWeapp2.default.showModal({
     title: title,
     content: obj.tips,
     showCancel: showCancel,
@@ -17337,9 +17484,9 @@ exports.queryAction = queryAction;
 exports.getResumeAddInfoConfig = getResumeAddInfoConfig;
 exports.getRankRulesList = getRankRulesList;
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
 
 var _index = __webpack_require__(/*! ../api/index */ "./src/utils/api/index.ts");
 
@@ -17368,7 +17515,7 @@ function requestShowToast(show) {
 // 获取header请求头信息
 function getRequestHeaderInfo() {
   // 获取用户信息
-  var userInfo = _taroTt2.default.getStorageSync(_store.UserInfo);
+  var userInfo = _taroWeapp2.default.getStorageSync(_store.UserInfo);
   var requestHeader = userInfo.login ? {
     'content-type': 'application/x-www-form-urlencoded',
     mid: userInfo.userId,
@@ -17396,20 +17543,20 @@ var defaultRequestData = {
 function doRequestAction(reqData) {
   var req = _extends({}, defaultRequestData, reqData);
   if (req.loading) {
-    _taroTt2.default.showLoading({
+    _taroWeapp2.default.showLoading({
       title: req.title
     });
   }
   var data = _extends({}, req.data, { wechat_token: _index2.TOKEN });
   // 获取用户信息
-  var userInfo = _taroTt2.default.getStorageSync(_store.UserInfo);
+  var userInfo = _taroWeapp2.default.getStorageSync(_store.UserInfo);
   if (req.method === 'POST' && userInfo.login) {
     data.userId = userInfo.userId;
     data.token = userInfo.token;
     data.tokenTime = userInfo.tokenTime;
   }
   return new Promise(function (resolve, reject) {
-    _taroTt2.default.request({
+    _taroWeapp2.default.request({
       url: /^http(s?):\/\//.test(req.url) ? req.url : req.url,
       method: req.method,
       header: req.header,
@@ -17430,7 +17577,7 @@ function doRequestAction(reqData) {
       },
       complete: function complete() {
         if (req.loading) {
-          _taroTt2.default.hideLoading();
+          _taroWeapp2.default.hideLoading();
         }
       }
     });
@@ -18135,7 +18282,7 @@ function resumesCertificateAction(data) {
 // 新增项目
 function resumesProjectAction(data) {
   // 获取用户信息
-  var userInfo = _taroTt2.default.getStorageSync(_store.UserInfo);
+  var userInfo = _taroWeapp2.default.getStorageSync(_store.UserInfo);
   return doRequestAction({
     url: api.resumesProjectUrl,
     header: {
@@ -18189,7 +18336,7 @@ function resumesIntroduceAction(data) {
 // 找活名片修改状态
 function resumesEditEndAction(data) {
   // 获取用户信息
-  var userInfo = _taroTt2.default.getStorageSync(_store.UserInfo);
+  var userInfo = _taroWeapp2.default.getStorageSync(_store.UserInfo);
   return doRequestAction({
     url: api.resumesEditEndUrl,
     method: 'POST',
@@ -18509,9 +18656,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.SubscribeToNews = SubscribeToNews;
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
 
 var _store = __webpack_require__(/*! ../../config/store */ "./src/config/store.ts");
 
@@ -18531,9 +18678,9 @@ function SubscribeToNews(type, callback) {
     callback();
     return;
   }
-  var userInfo = _taroTt2.default.getStorageSync(_store.UserInfo);
-  if (_taroTt2.default.canIUse('requestSubscribeMessage') === true) {
-    _taroTt2.default.requestSubscribeMessage({
+  var userInfo = _taroWeapp2.default.getStorageSync(_store.UserInfo);
+  if (_taroWeapp2.default.canIUse('requestSubscribeMessage') === true) {
+    _taroWeapp2.default.requestSubscribeMessage({
       tmplIds: [_temp_ids2.default[type].id],
       success: function success(res) {
         callback();
@@ -18617,9 +18764,9 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = UploadImgAction;
 exports.CameraAndAlbum = CameraAndAlbum;
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
 
 var _store = __webpack_require__(/*! ../../config/store */ "./src/config/store.ts");
 
@@ -18632,7 +18779,7 @@ function UploadImgAction() {
 
   var uploadUrl = url || _index.UPLOADIMGURL;
   return new Promise(function (resolve) {
-    _taroTt2.default.chooseImage({
+    _taroWeapp2.default.chooseImage({
       count: 1,
       sizeType: ['compressed'],
       sourceType: ['album', 'camera'],
@@ -18646,11 +18793,11 @@ function CameraAndAlbum() {
   var url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _index.UPLOADIMGURL;
 
   return new Promise(function (resolve) {
-    _taroTt2.default.showActionSheet({
+    _taroWeapp2.default.showActionSheet({
       itemList: ['拍照', '从相册中选择']
     }).then(function (res) {
       var index = res.tapIndex;
-      _taroTt2.default.chooseImage({
+      _taroWeapp2.default.chooseImage({
         count: 1,
         sizeType: ['compressed'],
         sourceType: index === 0 ? ['camera'] : ['album'],
@@ -18664,9 +18811,9 @@ function CameraAndAlbum() {
 function AppUploadImg(resolve, res) {
   var url = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : _index.UPLOADIMGURL;
 
-  var userInfo = _taroTt2.default.getStorageSync(_store.UserInfo);
-  _taroTt2.default.showLoading({ title: '图片上传中' });
-  _taroTt2.default.uploadFile({
+  var userInfo = _taroWeapp2.default.getStorageSync(_store.UserInfo);
+  _taroWeapp2.default.showLoading({ title: '图片上传中' });
+  _taroWeapp2.default.uploadFile({
     url: url,
     filePath: res.tempFilePaths[0],
     header: {
@@ -18676,7 +18823,7 @@ function AppUploadImg(resolve, res) {
     success: function success(response) {
       var mydata = JSON.parse(response.data);
       // let resData = { local: response, remote: mydata}
-      _taroTt2.default.showToast({
+      _taroWeapp2.default.showToast({
         title: mydata.errmsg,
         icon: "none",
         duration: 2000
@@ -18687,14 +18834,14 @@ function AppUploadImg(resolve, res) {
     },
 
     fail: function fail() {
-      _taroTt2.default.showToast({
+      _taroWeapp2.default.showToast({
         title: "网络错误，上传失败！",
         icon: "none",
         duration: 2000
       });
     },
     complete: function complete() {
-      _taroTt2.default.hideLoading();
+      _taroWeapp2.default.hideLoading();
     }
   });
 }
@@ -18728,9 +18875,9 @@ exports.isIos = isIos;
 exports.isRequireLen = isRequireLen;
 exports.isChinese = isChinese;
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -18807,7 +18954,7 @@ function isType(data, type) {
 }
 // 检测是否是ios客户端
 function isIos() {
-  var system = _taroTt2.default.getSystemInfoSync();
+  var system = _taroWeapp2.default.getSystemInfoSync();
   return system.platform === 'ios';
 }
 //验证必填项且长度

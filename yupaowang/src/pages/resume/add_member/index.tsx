@@ -1,4 +1,4 @@
-import Taro, { useState, useEffect } from '@tarojs/taro'
+import Taro, { useState, useEffect, Config } from '@tarojs/taro'
 import { View, Text, Form, Input, Picker } from '@tarojs/components'
 import useResumeAddInfo from '../../../hooks/resume_addinfo'
 import AREAS, { ParentItems } from '../../../models/area'
@@ -33,7 +33,7 @@ interface ResumeLabelsType extends ResumeAddInfoLabelConfig{
   checked: boolean
 }
 
-export default function AddResumeInfo() {
+export default function AddResumeMember() {
 
   // 获取找活信息
   const { introducesData } = useResume()
@@ -359,3 +359,10 @@ export default function AddResumeInfo() {
     </View>
   )
 }
+
+AddResumeMember.config = {
+  navigationBarTitleText: '编辑人员信息',
+  navigationBarBackgroundColor: '#0099ff',
+  navigationBarTextStyle: 'white',
+  backgroundTextStyle: "dark"
+} as Config

@@ -1,4 +1,4 @@
-import Taro, { useState, useEffect } from '@tarojs/taro'
+import Taro, { useState, useEffect, Config } from '@tarojs/taro'
 import { View, Text, Form, Textarea, Input, Picker, Block } from '@tarojs/components'
 import useResumeAddInfo from '../../../hooks/resume_addinfo'
 import { useDispatch, useSelector } from '@tarojs/redux'
@@ -323,3 +323,10 @@ export default function AddResumeInfo(){
       </View>
   )
 }
+
+AddResumeInfo.config = {
+  navigationBarTitleText: '编辑找活名片',
+  navigationBarBackgroundColor: '#0099ff',
+  navigationBarTextStyle: 'white',
+  backgroundTextStyle: "dark"
+} as Config

@@ -1,6 +1,6 @@
-import Taro, { useDidShow, useEffect, useState } from '@tarojs/taro'
+import Taro, { useDidShow, useEffect, useState, Config, usePullDownRefresh } from '@tarojs/taro'
 import { View, Text, Button, Image } from '@tarojs/components'
-import { IMGCDNURL } from '../../../config'
+import { IMGCDNURL, ISCANSHARE } from '../../../config'
 import { AtProgress } from 'taro-ui'
 import Imglist from '../../../components/imglist'
 import useResume from '../../../hooks/publish/resume'
@@ -20,6 +20,14 @@ export default function ResumePublish(){
       return false
     }
     initResumeData()
+  })
+
+  // 下拉刷新后 更新当前找活名片
+  usePullDownRefresh(()=>{
+    initResumeData()
+    setTimeout(()=>{
+      Taro.stopPullDownRefresh()
+    },500)
   })
 
   // 页面跳转
@@ -49,7 +57,7 @@ export default function ResumePublish(){
           </View>
           <View className='progress-footer'>
             <View>
-              <Image className='progress-rank-img' src='http://cdn.yupao.com/newyupao/images/newresume-rank.png'/>
+              <Image className='progress-rank-img' src={`${IMGCDNURL}newresume-rank.png`} />
               <View className='progress-text'>我的排名点：{infoData.sort_flag}</View>
             </View>
             <View className='progress-rank'>马上去提升排名&gt;&gt;</View>
@@ -82,7 +90,7 @@ export default function ResumePublish(){
         </View>
         <View className='content-basic-imformation'>
           <View className='basic-imformation'>
-            <Image className='basic-jbinfo' src='http://cdn.yupao.com/newyupao/images/newresume-jbinfo.png'/>
+            <Image className='basic-jbinfo' src={`${IMGCDNURL}newresume-jbinfo.png`} />
             <View className='basic-title'>基础信息</View>
           </View>
           {!uuid &&
@@ -94,12 +102,12 @@ export default function ResumePublish(){
             </View>
           }
           <View className='basic-status'>
-            <View className='status-txt'><Image className='basic-experience-img' src='http://cdn.yupao.com/newyupao/images/newresume-experience-item1.png'/>我的工作状态:</View>
+            <View className='status-txt'><Image className='basic-experience-img' src={`${IMGCDNURL}newresume-experience-item1.png`} />我的工作状态:</View>
             {/* <View className='status'>审核未通过</View> */}
             <View>
               <Text onClick={() => userRouteJump('/pages/resume/add_info/index')}>编辑</Text>
               <Text></Text>
-              <Image src='http://cdn.yupao.com/newyupao/images/select.png' className='status-txt-image'/>
+              <Image src={`${IMGCDNURL}select.png`} className='status-txt-image'/>
             </View>
           </View>
           <View className='basic-content'>
@@ -150,9 +158,9 @@ export default function ResumePublish(){
         </View>
         <View className='content-personal-information'>
           <View className='basic-imformation'>
-            <Image className='basic-description-img' src='http://cdn.yupao.com/newyupao/images/newresume-description.png'/>
+            <Image className='basic-description-img' src={`${IMGCDNURL}newresume-description.png`} />
             <View className='basic-title'>人员信息</View>
-            <View className='change' onClick={() => Taro.navigateTo({ url: '/pages/resume/add_member/index' })}>待修改</View>
+            <View className='change' onClick={() => userRouteJump('/pages/resume/add_member/index')}>待修改</View>
           </View>
           {/* <View className='basic-content'>
             <View className='basic-txt'>完善人员信息能让老板充分了解您或您的队伍</View>
@@ -198,7 +206,7 @@ export default function ResumePublish(){
         </View>
         <View className='content-project-experience'>
           <View className='basic-imformation'>
-            <Image className='project-experience-img' src='http://cdn.yupao.com/newyupao/images/newresume-experience.png'/>
+            <Image className='project-experience-img' src={`${IMGCDNURL}newresume-experience.png`} />
             <View className='basic-title'>项目经验</View>
             <View className='change'>添加</View>
           </View>
@@ -234,9 +242,9 @@ export default function ResumePublish(){
         </View>
         <View className='content-professional-skill'>
           <View className='basic-imformation'>
-            <Image className='professional-skill-img' src='http://cdn.yupao.com/newyupao/images/newresume-skill.png'/>
+            <Image className='professional-skill-img' src={`${IMGCDNURL}newresume-skill.png`} />
             <View className='basic-title'>职业技能</View>
-            <View className='change' onClick={() => Taro.navigateTo({ url: '/pages/resume/add_skill/index' })}>添加</View>
+            <View className='change' onClick={() => userRouteJump('/pages/resume/add_skill/index')}>添加</View>
           </View>
           {/* 是否填写过技能证书 */}
           {certificates.length ?
@@ -246,38 +254,50 @@ export default function ResumePublish(){
                   <View className='name'>{certificates[certificates.length - 1].name}</View>
                   <View className='sexage time'>{certificates[certificates.length - 1].certificate_time}</View>
                 </View>
-                <View className='change' onClick={() => Taro.navigateTo({ url: `/pages/resume/add_skill/index?id=${certificates[certificates.length - 1].id}` })}>编辑</View>
+                <View className='change' onClick={() => userRouteJump(`/pages/resume/add_skill/index?id=${certificates[certificates.length - 1].id}`)}>编辑</View>
               </View>
               <View className='project-content'>
                 <View className='content-img'>
                   {certificates.length && <Imglist data={certificates[certificates.length - 1].image && certificates[certificates.length - 1].image} />}
                 </View>
-                <View className='project-failtxt'>失败原因：不知道</View>
+                {certificates[certificates.length - 1].check == '0' &&
+                  <View className='project-failtxt'>失败原因：{certificates[certificates.length - 1].fail_case}</View>}
               </View>
               <View className='change-project'>
-                <Button className='change-project-btn' onClick={()=>Taro.navigateTo({url: '/pages/resume/skills/index'})}>更多技能证书<View className='nabla'></View></Button>
+                <Button className='change-project-btn' onClick={() => userRouteJump('/pages/resume/skills/index')}>更多技能证书<View className='nabla'></View></Button>
               </View>
             </View>
           : 
           <View className='basic-content'>
             <View className='basic-txt'>添加职业技能，用实力证明您的能力</View>
             <View className='basic-btn'>
-              <Button className='btn' onClick={() => Taro.navigateTo({ url: '/pages/resume/add_skill/index' })}>添加职业技能</Button>
+                <Button className='btn' onClick={() => userRouteJump('/pages/resume/add_skill/index')}>添加职业技能</Button>
             </View>
           </View>
           }
         </View>
         <View className='content-btn'>
           <View className='preview-btn'>
-            <Image className='preview-img' src='http://cdn.yupao.com/newyupao/images/newresume-lookuinfo.png' />
-            <View className='preview-share-btn'>预览</View>
+            <Image className='preview-img' src={`${IMGCDNURL}newresume-lookuinfo.png`} />
+            <View className='preview-share-btn' onClick={()=>userRouteJump('/pages/resume/preview/index')}>预览</View>
           </View>
+          {ISCANSHARE &&
           <View className='preview-btn'>
-            <Image className='preview-img' src='http://cdn.yupao.com/newyupao/images/newresume-footer-share.png' />
+            <Image className='preview-img' src={`${IMGCDNURL}newresume-footer-share.png`} />
             <View className='preview-share-btn'>分享</View>
           </View>
+          }
         </View>
       </View>
     </View>
   )
 }
+
+ResumePublish.config = {
+  navigationBarTitleText: '发布找活名片',
+  enablePullDownRefresh: true,
+  navigationBarBackgroundColor: '#0099ff',
+  navigationBarTextStyle: 'white',
+  backgroundTextStyle: "dark"
+} as Config
+

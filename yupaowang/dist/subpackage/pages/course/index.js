@@ -1,4 +1,4 @@
-(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["subpackage/pages/course/index"],{
+(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["subpackage/pages/course/index"],{
 
 /***/ "./src/subpackage/pages/course/index.scss":
 /*!************************************************!*\
@@ -31,9 +31,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
 
 var _index = __webpack_require__(/*! ../../../config/index */ "./src/config/index.ts");
 
@@ -79,7 +79,7 @@ var Course = function (_Taro$Component) {
     key: "_constructor",
     value: function _constructor(props) {
       _get(Course.prototype.__proto__ || Object.getPrototypeOf(Course.prototype), "_constructor", this).call(this, props);
-      this.$$refs = new _taroTt2.default.RefsArray();
+      this.$$refs = new _taroWeapp2.default.RefsArray();
     }
   }, {
     key: "_createData",
@@ -93,7 +93,7 @@ var Course = function (_Taro$Component) {
       ;
       // 设置高亮
 
-      var _useState = (0, _taroTt.useState)(1),
+      var _useState = (0, _taroWeapp.useState)(1),
           _useState2 = _slicedToArray(_useState, 2),
           highlight = _useState2[0],
           setHighlight = _useState2[1];
@@ -110,7 +110,7 @@ var Course = function (_Taro$Component) {
       };
       // 招工老老板
 
-      var _useState3 = (0, _taroTt.useState)({
+      var _useState3 = (0, _taroWeapp.useState)({
         item: []
       }),
           _useState4 = _slicedToArray(_useState3, 2),
@@ -119,7 +119,7 @@ var Course = function (_Taro$Component) {
       // 工人师傅
 
 
-      var _useState5 = (0, _taroTt.useState)({
+      var _useState5 = (0, _taroWeapp.useState)({
         item: []
       }),
           _useState6 = _slicedToArray(_useState5, 2),
@@ -128,9 +128,9 @@ var Course = function (_Taro$Component) {
       // 请求数据
 
 
-      (0, _taroTt.useEffect)(function () {
+      (0, _taroWeapp.useEffect)(function () {
         (0, _index2.requestAction)().then(function (res) {
-          _taroTt2.default.hideNavigationBarLoading();
+          _taroWeapp2.default.hideNavigationBarLoading();
           // 增加默认关闭字段
           for (var i = 0; i < res.masterList.length; i++) {
             res.masterList[i].isShow = false;
@@ -160,7 +160,7 @@ var Course = function (_Taro$Component) {
       };
       var loopArray3 = tab.map(function (item, __index0) {
         item = {
-          $original: (0, _taroTt.internal_get_original)(item)
+          $original: (0, _taroWeapp.internal_get_original)(item)
         };
         var _$indexKey = "czzzz" + __index0;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
@@ -182,30 +182,30 @@ var Course = function (_Taro$Component) {
       });
       var loopArray4 = highlight === 1 ? bossData.item.map(function (item, __index1) {
         item = {
-          $original: (0, _taroTt.internal_get_original)(item)
+          $original: (0, _taroWeapp.internal_get_original)(item)
         };
         var _$indexKey2 = "dzzzz" + __index1;
         _this2.anonymousFunc1Map[_$indexKey2] = function () {
           bossIsShow(item.$original.id);
         };
 
-        var _genCompid = (0, _taroTt.genCompid)(__prefix + "fzzzzzzzzz" + __index1, true),
+        var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "fzzzzzzzzz" + __index1, true),
             _genCompid2 = _slicedToArray(_genCompid, 2),
             $prevCompid__0 = _genCompid2[0],
             $compid__0 = _genCompid2[1];
 
-        highlight === 1 && _taroTt.propsManager.set({
+        highlight === 1 && _taroWeapp.propsManager.set({
           "open": item.$original.isShow,
           "onClick": _this2.anonymousFunc1.bind(_this2, _$indexKey2),
           "title": item.$original.title
         }, $compid__0, $prevCompid__0);
 
-        var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "gzzzzzzzzz" + __index1, true),
+        var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "gzzzzzzzzz" + __index1, true),
             _genCompid4 = _slicedToArray(_genCompid3, 2),
             $prevCompid__1 = _genCompid4[0],
             $compid__1 = _genCompid4[1];
 
-        highlight === 1 && _taroTt.propsManager.set({
+        highlight === 1 && _taroWeapp.propsManager.set({
           "hasBorder": false
         }, $compid__1, $prevCompid__1);
         return {
@@ -217,30 +217,30 @@ var Course = function (_Taro$Component) {
       }) : [];
       var loopArray5 = highlight === 2 ? workerMaster.item.map(function (item, __index2) {
         item = {
-          $original: (0, _taroTt.internal_get_original)(item)
+          $original: (0, _taroWeapp.internal_get_original)(item)
         };
         var _$indexKey3 = "ezzzz" + __index2;
         _this2.anonymousFunc2Map[_$indexKey3] = function () {
           workerMasterIsShow(item.$original.id);
         };
 
-        var _genCompid5 = (0, _taroTt.genCompid)(__prefix + "hzzzzzzzzz" + __index2, true),
+        var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "hzzzzzzzzz" + __index2, true),
             _genCompid6 = _slicedToArray(_genCompid5, 2),
             $prevCompid__2 = _genCompid6[0],
             $compid__2 = _genCompid6[1];
 
-        highlight === 2 && _taroTt.propsManager.set({
+        highlight === 2 && _taroWeapp.propsManager.set({
           "open": item.$original.isShow,
           "onClick": _this2.anonymousFunc2.bind(_this2, _$indexKey3),
           "title": item.$original.title
         }, $compid__2, $prevCompid__2);
 
-        var _genCompid7 = (0, _taroTt.genCompid)(__prefix + "izzzzzzzzz" + __index2, true),
+        var _genCompid7 = (0, _taroWeapp.genCompid)(__prefix + "izzzzzzzzz" + __index2, true),
             _genCompid8 = _slicedToArray(_genCompid7, 2),
             $prevCompid__3 = _genCompid8[0],
             $compid__3 = _genCompid8[1];
 
-        highlight === 2 && _taroTt.propsManager.set({
+        highlight === 2 && _taroWeapp.propsManager.set({
           "hasBorder": false
         }, $compid__3, $prevCompid__3);
         return {
@@ -303,14 +303,14 @@ var Course = function (_Taro$Component) {
   }]);
 
   return Course;
-}(_taroTt2.default.Component);
+}(_taroWeapp2.default.Component);
 
 Course.$$events = ["anonymousFunc0"];
 Course.$$componentPath = "subpackage/pages/course/index";
 Course.config = { navigationBarTitleText: '鱼泡网-使用教程' };
 exports.default = Course;
 
-Page(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(Course, true));
+Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(Course, true));
 
 /***/ })
 

@@ -1,4 +1,4 @@
-import Taro, { useState, useEffect, useRouter } from '@tarojs/taro'
+import Taro, { useState, useEffect, useRouter, Config } from '@tarojs/taro'
 import { View, Text, Form, Textarea, Input, Picker, Button } from '@tarojs/components'
 import { RecruitImageModel } from '../../recruit/index.d'
 import UploadImgAction from '../../../utils/upload'
@@ -17,7 +17,7 @@ interface SkillBookInfoType {
   imgs: RecruitImageModel[]
 }
 
-export default function AddResumeInfo() {
+export default function AddResumeSkill() {
   const dispatch = useDispatch()
   // 获取路由参数 
   const { id = '' } = useRouter().params
@@ -220,3 +220,10 @@ export default function AddResumeInfo() {
     </View>
   )
 }
+
+AddResumeSkill.config = {
+  navigationBarTitleText: '编辑技能证书',
+  navigationBarBackgroundColor: '#0099ff',
+  navigationBarTextStyle: 'white',
+  backgroundTextStyle: "dark"
+} as Config

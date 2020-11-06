@@ -140,7 +140,7 @@ export default function Member(){
           </View>
         </View>
         <View className='member-list-container'>
-          <View className='member-list-item' onClick={() => userRouteJump('/pages/recharge/index')}>
+          <View className='member-list-item' onClick={() => userRouteJump('/pages/getintegral/index')}>
             <Image className='member-list-icon' src={ IMGCDNURL + 'lpy/ucenter/newcenter-integral.png'} />
             <Text className='member-list-title'>获取积分</Text>
             {!ios && <Text className='member-list-tips'>去充值</Text>}

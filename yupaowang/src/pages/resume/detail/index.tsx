@@ -618,4 +618,7 @@ export default function ResumeDetail() {
 
 ResumeDetail.config = {
   navigationBarTitleText: '找活名片',
+  navigationBarBackgroundColor: '#0099ff',
+  navigationBarTextStyle: 'white',
+  backgroundTextStyle: "dark"
 } as Config
