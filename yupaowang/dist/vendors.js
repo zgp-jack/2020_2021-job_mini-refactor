@@ -12190,10 +12190,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.getUseResume = getUseResume;
 exports.setUseResume = setUseResume;
-<<<<<<< HEAD
-=======
 exports.setIntroduceInfo = setIntroduceInfo;
->>>>>>> c4934cd3ef6271dedb29cefa5b63959eded6b62a
 
 var _resume_data = __webpack_require__(/*! ../constants/resume_data */ "./src/constants/resume_data.ts");
 
@@ -12215,15 +12212,12 @@ function setUseResume(data) {
     data: data
   };
 }
-<<<<<<< HEAD
-=======
 function setIntroduceInfo(data) {
   return {
     type: _resume_data.SETINTRODUCE,
     data: data
   };
 }
->>>>>>> c4934cd3ef6271dedb29cefa5b63959eded6b62a
 
 /***/ }),
 
@@ -12883,18 +12877,15 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }(); /*
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           * @Author: zyb
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           * @Date: 2020-11-03 15:03:11
-<<<<<<< HEAD
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          * @LastEditors: zyb
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          * @LastEditTime: 2020-11-06 11:00:19
-=======
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         <<<<<<< HEAD
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         =======
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          <<<<<<< HEAD
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           * @LastEditors: jsxin
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           * @LastEditTime: 2020-11-06 11:21:32
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          =======
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         >>>>>>> c4934cd3ef6271dedb29cefa5b63959eded6b62a
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           * @LastEditors: zyb
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          * @LastEditTime: 2020-11-05 19:53:36
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         >>>>>>> 2b5749a609afbaa14d25b780c7d39444fbbbe5bd
->>>>>>> c4934cd3ef6271dedb29cefa5b63959eded6b62a
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          * @LastEditTime: 2020-11-06 11:00:19
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           * @Description:
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           */
 
@@ -12971,19 +12962,12 @@ function useResume() {
       _useState10 = _slicedToArray(_useState9, 2),
       resume_top = _useState10[0],
       setResume_top = _useState10[1];
-<<<<<<< HEAD
-  // 请求当前找活数据
-
-
-  (0, _taroTt.useEffect)(function () {
-=======
 
   (0, _taroTt.useEffect)(function () {
     initResumeData();
   }, []);
   // 请求找活详情数据
   var initResumeData = function initResumeData() {
->>>>>>> c4934cd3ef6271dedb29cefa5b63959eded6b62a
     (0, _index.resumeListAction)().then(function (res) {
       if (res.errcode === 200) {
         // 生日需要单独设置
@@ -13020,22 +13004,14 @@ function useResume() {
         (0, _index3.default)(res.errmsg);
       }
     });
-<<<<<<< HEAD
-  }, []);
-=======
   };
->>>>>>> c4934cd3ef6271dedb29cefa5b63959eded6b62a
   return {
     infoData: infoData,
     introducesData: introducesData,
     projectData: projectData,
     certificates: certificates,
-<<<<<<< HEAD
-    resume_top: resume_top
-=======
     resume_top: resume_top,
     initResumeData: initResumeData
->>>>>>> c4934cd3ef6271dedb29cefa5b63959eded6b62a
   };
 }
 
@@ -17153,6 +17129,7 @@ function getLocation() {
     success: function success(data) {
       console.error(data);
       console.error(data[0].name);
+      return;
       var params = {
         adcode: data[0].regeocodeData.addressComponent.adcode
       };

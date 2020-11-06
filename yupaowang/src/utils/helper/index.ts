@@ -101,7 +101,7 @@ export function userCancelAuth():void{
 // 用户获取定位
 export function getLocation(){
   Msg('位置获取中...');
-  var myAmapFun = new AMapWX.AMapWX({
+  const myAmapFun = new AMapWX.AMapWX({
     key: MAPKEY,
   }); //key注册高德地图开发者
   myAmapFun.getRegeo({

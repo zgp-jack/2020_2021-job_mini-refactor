@@ -909,7 +909,7 @@ export function resumesCertificateAction(data): Promise<Inter.ResumeCertificateD
 }
 
 // 新增项目
-export function resumesProjectAction(data): Promise<Inter.Result> {
+export function resumesProjectAction(data): Promise<Inter.ResumesProjectData> {
   // 获取用户信息
   let userInfo: User = Taro.getStorageSync(UserInfo)
   return doRequestAction({

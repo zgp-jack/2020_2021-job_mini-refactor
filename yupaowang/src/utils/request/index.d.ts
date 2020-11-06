@@ -1122,7 +1122,8 @@ export interface resProjectArr {
   start_time: string,
   update_time: string,
   uuid: string,
-  imageData?: RecruitImageModel
+  imageData?: RecruitImageModel,
+  project_uuid?:string,
 }
 export interface RecruitImageModel {
   url: string,
@@ -1583,5 +1584,10 @@ export interface ResumeAddInfoGenderConfig {
 
 // 添加技能证书返回值
 export interface ResumeCertificateData extends Result{
+  count: number
+}
+
+// 添加项目返回值
+export interface ResumesProjectData extends Result {
   count: number
 }

@@ -2,14 +2,16 @@ import Taro, { useState, useEffect, useRouter } from '@tarojs/taro'
 import { View, Text, Form, Textarea, Input, Picker, Button } from '@tarojs/components'
 import WordsTotal from '../../../components/wordstotal'
 import ImageView from '../../../components/imageview';
-import AddProject from '../../../hooks/publish/add_project';
-import { ProjectImgMaxNum } from '../../../config'
+import { ProjectImgMaxNum, ProjectListMaxNum } from '../../../config'
 import UploadImgAction from '../../../utils/upload'
 import { RecruitImageModel, } from '../../recruit/index.d'
 import AREAS, { ParentItems } from '../../../models/area'
 import { resProjectArr } from '../../../utils/request/index.d';
+import { resumesProjectAction, resumesDelProjectAction } from '../../../utils/request';
 import { useSelector, useDispatch } from '@tarojs/redux'
 import { objDeepCopy } from '../../../utils/helper'
+import Msg, { ShowActionModal } from '../../../utils/msg'
+import { isChinese } from '../../../utils/v';
 import { useResumeType } from '../../../pages/resume/publish/index.d';
 import './index.scss'
 
@@ -20,7 +22,11 @@ interface ProjectInfoType{
   city_name:string,
   province_name:string,
   detail:string,
-  imgs: RecruitImageModel[]
+  province:string,
+  city:string,
+  title:string,
+  imgs: RecruitImageModel[],
+  project_uuid?:string,
 }
 // 保存的多级城市数据类型
 interface HomeTownPicker {
@@ -41,14 +47,39 @@ export default function AddResumeInfo() {
     city_name: '',
     province_name:'',
     detail: '',
-    imgs: []
+    province: '',
+    city:'',
+    title:'',
+    imgs: [],
+    project_uuid:'',
   }
+  // 定义ID
+  const [project_uuid,setProject_uuid] = useState<string>('');
+  // 是否显示保存继续添加 总数是否大于等于 最大数量-1
+  const [showBtn, setShowBtn] = useState<boolean>(resumeData.projectData.length >= ProjectListMaxNum - 1 ? false : true)
   // 城市数据
   const [hometownPicker, setHometownPicker] = useState<HomeTownPicker[][]>([])
   const [hometownChildCity, setHometownChildCity] = useState<HomeTownPicker[][]>([])
   const [hometownIndex, setHometownIndex] = useState<number[]>([0, 0])
   // 技能证书的数据
   let projectInfoData: ProjectInfoType = { ...defaultProjectData }
+  if (id) {
+    let data = resumeData.projectData.find(item => item.id == id);
+    if (data) {
+      setProject_uuid(data.uuid);
+      // 由于接口的图片数据是分开的，所以需要自己重组
+      let imgs: RecruitImageModel[] = []
+      for (let i = 0; i < data.image.length; i++) {
+        imgs.push({ url: data.images[i], httpurl: data.image[i] })
+      }
+      let title = data.city_name ? (data.province_name+'-'+data.city_name):data.province_name;
+      projectInfoData = {
+        project_name: data.project_name, start_time: data.start_time, imgs: imgs, province: data.province, city: data.city,
+        completion_time: data.completion_time, city_name: data.city_name, detail: data.detail, province_name: data.province_name,
+        title
+      }
+    }
+  }
   useEffect(()=>{
     detailAreasDataAction()
   },[])
@@ -74,37 +105,30 @@ export default function AddResumeInfo() {
     }
     // 设置初始化数据
     setHometownChildCity(childArr)
+    // 有地址
+    if(projectInfo){
+      let i: number = parentArr.findIndex(item => item.id == projectInfo.province);
+      if (i > -1) {
+        let pickerCity: HomeTownPicker[][] = []
+        pickerCity[0] = parentArr
+        pickerCity[1] = childArr[i]
+        setHometownPicker(pickerCity)
+        let key: number = childArr[i].findIndex(item => item.id == projectInfo.city)
+        setHometownIndex([i, key > -1 ? key : 0])
+        return
+      }
+    }
     // 将省份先保存起来
     let htpicker: HomeTownPicker[][] = []
     htpicker[0] = parentArr
     htpicker[1] = childArr[0]
     setHometownPicker(htpicker)
   }
-  if(id){
-    let data = resumeData.projectData.find(item =>item.id == id);
-    if (data) {
-      // 由于接口的图片数据是分开的，所以需要自己重组
-      let imgs: RecruitImageModel[] = []
-      for (let i = 0; i < data.image.length; i++) {
-        imgs.push({ url: data.images[i], httpurl: data.image[i] })
-      }
-      projectInfoData = { project_name: data.project_name, start_time: data.start_time, imgs: imgs,
-        completion_time: data.completion_time, city_name: data.city_name, detail: data.detail, province_name: data.province_name
-      }
-      let areas: ParentItems[] = objDeepCopy(AREAS)
-      console.error(data,'data')
-      // const provinceItem = areas.filter(item => item.id == data && data.province);
-
-      setHometownIndex([+data.province,+data.city]);
-    }
-  }
   // 项目信息
   const [projectInfo, setProjectInfo] = useState<ProjectInfoType>(projectInfoData)
   // 用户删除图片
   const useDelImg = (i: number) => {
     let imgs: RecruitImageModel[] = [ ...projectInfo.imgs]
-    console.error(imgs,'image');
-    console.error(i,'iii');
     imgs.splice(i, 1)
     setProjectInfo({ ...projectInfo, imgs: imgs })
   }
@@ -134,12 +158,8 @@ export default function AddResumeInfo() {
   const multiPickerChange = (e: any) => {
     let parentData: HomeTownPicker = hometownPicker[0][e.detail.value[0]]
     let childData: HomeTownPicker = hometownPicker[1][e.detail.value[1]]
-    let ids: string = `${parentData.id},${childData.id}`
     let title: string = childData.id == parentData.id ? parentData.name : `${parentData.name}-${childData.name}`
-    console.error(ids,'ids');
-    console.error(title,'title');
-    // setPostData({ ...postData, hometown: ids })
-    // setHometown(title)
+    setProjectInfo({ ...projectInfo, province: parentData.id, city: childData.id, province_name: parentData.name, city_name: childData.name,title})
   }
   // picker 切换行
   const onColumnChange = (e: any) => {
@@ -157,8 +177,100 @@ export default function AddResumeInfo() {
       setHometownIndex(numArr)
     }
   }
+  // 保存
+  const handleSumbit = (type?:number)=>{
+    // type 判断是否继续添加
+    // 项目名称
+    if (!projectInfo.project_name || projectInfo.project_name.length < 3 || projectInfo.project_name.length > 12 || !isChinese(projectInfo.project_name)){
+      ShowActionModal({
+        title: '温馨提示',
+        msg: '请填写真实项目名称，3-12字，必须含有汉字',
+      })
+      return
+    }
+    // 开工时间
+    if (!projectInfo.start_time){
+      ShowActionModal({
+        title: '温馨提示',
+        msg: '请选择开工时间',
+      })
+      return
+    }
+    // 完工
+    if (!projectInfo.completion_time || new Date(projectInfo.start_time).getTime() > new Date(projectInfo.completion_time).getTime()) {
+      ShowActionModal({
+        title: '温馨提示',
+        msg: '请选择完工时间（完工时间必须大于开工时间）',
+      })
+      return
+    }
+    // 项目所在地
+    if(!projectInfo.province){
+      ShowActionModal({
+        title: '温馨提示',
+        msg: '请选择项目所在地区',
+      })
+      return
+    }
+    // 详情
+    if (!projectInfo.detail || !isChinese(projectInfo.detail) || projectInfo.detail.length < 15 || projectInfo.detail.length>500 ){
+      ShowActionModal({
+        title: '温馨提示',
+        msg: '请填写真实项目介绍，15-500字，必须含有汉字',
+      })
+      return
+    }
+    let params:any = {
+      completion_time: projectInfo.completion_time,
+      start_time: projectInfo.start_time,
+      project_name: projectInfo.project_name,
+      detail:projectInfo.detail,
+      province: projectInfo.province,
+      city: projectInfo.city,
+      image: projectInfo.imgs.map(item => item.url),
+      resume_uuid: project_uuid
+    }
+    if(id){
+      params = { ...params, project_uuid: project_uuid};
+    }
+    resumesProjectAction(params).then(res=>{
+      if(res.errcode == 'ok'){
+        if(type){
+          Msg(res.errmsg);
+          setProjectInfo({...projectInfo});
+        }else{
+          ShowActionModal({
+            title:'温馨提示',
+            msg:res.errmsg,
+            success:()=>{
+              Taro.navigateBack({delta:1})
+            }
+          })
+        }
+        if (res.count >= ProjectListMaxNum){
+          setShowBtn(false)
+        }
+      }else{
+        Msg(res.errmsg); 
+      }
+    })
+  }
+  // 删除
+  const handleDel = ()=>{
+    console.error(1111);
+    let params = {};
+    resumesDelProjectAction(params).then(res=>{
+      if(res.errcode == 'ok'){
+        Taro.navigateBack({
+          delta: 1
+        })
+      }else{
+        Msg(res.errmsg);
+      }
+    })
+  }
   return (
-    <View className='resume-addinfo-container'>
+    <View className='resume-addinfo-container resume-addinfo-project'>
       <View className='resume-addinfo-form'>
         <View className='publish-recruit-container'>
           <Form>
@@ -205,7 +317,7 @@ export default function AddResumeInfo() {
                   onChange={(e) => multiPickerChange(e)}
                   onColumnChange={(e) => onColumnChange(e)}
                 >
-                  <Input className='publish-list-input' type='text' disabled placeholder='请选择领证时间' value={projectInfo.province_name + projectInfo.city_name} />
+                  <Input className='publish-list-input' type='text' disabled placeholder='请选择领证时间' value={projectInfo.title} />
                 </Picker>
               </View>
               <View className='publish-list-textarea' >
@@ -215,6 +327,7 @@ export default function AddResumeInfo() {
                   value={projectInfo.detail}
                   placeholder='主要描述项目中的工作情况'
                   onInput={(e) => userEnterFrom(e, 'detail')}
+                  maxlength={500}
                 ></Textarea>
                 <WordsTotal num={projectInfo.detail.length} />
               </View>
@@ -232,8 +345,12 @@ export default function AddResumeInfo() {
         </View>
       </View>
       <View className='resume-add-skill-footer'>
-        <View className='resume-add-skill-btn'>保存 继续添加</View>
-        <View className='resume-add-skill-btn'> 确认保存</View>
+        {id ? <View className='resume-add-skill-btn' onClick={handleDel}>删除</View> :
+        showBtn?
+          <View className='resume-add-skill-btn' onClick={()=>handleSumbit(1)}>保存 继续添加</View>:
+          <View className='resume-add-skill-btn' onClick={()=>Taro.navigateBack({delta:1})}>取消</View>
+        }
+        <View className='resume-add-skill-btn' onClick={()=>handleSumbit()}> 确认保存</View>
       </View>
     </View>
   )
