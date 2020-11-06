@@ -939,7 +939,7 @@ export function addResumeAction(data): Promise<Inter.Result> {
 }
 
 // 获取当前位置
-export function checkAdcodeAction(data): Promise<Inter.Result> {
+export function checkAdcodeAction(data): Promise<Inter.checkAdcodeData> {
   return doRequestAction({
     url: api.checkAdcodeUrl,
     method: 'POST',

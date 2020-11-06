@@ -270,7 +270,7 @@ export default function ResumePublish(){
         <View className='content-btn'>
           <View className='preview-btn'>
             <Image className='preview-img' src='http://cdn.yupao.com/newyupao/images/newresume-lookuinfo.png' />
-            <View className='preview-share-btn'>预览</View>
+            <View className='preview-share-btn' onClick={() => userRouteJump('/pages/resume/newPreview/index')}>预览</View>
           </View>
           <View className='preview-btn'>
             <Image className='preview-img' src='http://cdn.yupao.com/newyupao/images/newresume-footer-share.png' />

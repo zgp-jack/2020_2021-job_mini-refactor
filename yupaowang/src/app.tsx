@@ -57,7 +57,7 @@ class App extends Component {
 
 
       'pages/resume/detail/index', // 找活详情
-
+      'pages/resume/newPreview/index', // 预览
       'pages/resume/preview/index', // 预览
       'pages/login/index',//用户登录
     ],

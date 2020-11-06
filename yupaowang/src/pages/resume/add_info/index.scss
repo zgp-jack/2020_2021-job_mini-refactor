@@ -38,8 +38,12 @@
   .flex{
     font-size: 28px;
     display: flex;
+    min-height: 125px;
     .flexContent{
       width: 64%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
     .flexTitle{
       position: absolute;
@@ -53,5 +57,11 @@
       color: $color;
       border-left: 1px solid rgb(143, 143, 143);
     }
+  }
+  .adressInput{
+    min-height: 125px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 }

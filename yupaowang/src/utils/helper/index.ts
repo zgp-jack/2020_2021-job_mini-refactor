@@ -5,6 +5,7 @@ import { UserLocationPromiss } from '../../models/area'
 import { UserLocationCity } from '../../config/store'
 import { InputPoiList, InputPoiListTips } from './index.d'
 import { checkAdcodeAction } from '../request/index';
+import { LocationDataType  } from '../..//pages/resume/add_info/index.d';
 import Msg from '../msg';
 
 // 对象拷贝
@@ -114,7 +115,18 @@ export function getLocation(){
       }
       checkAdcodeAction(params).then(res => {
         if (res.errcode == 'ok') {
-          console.error('成功', data, res);
+          let gpsLocation: LocationDataType = {
+            province: data[0].regeocodeData.addressComponent.province,
+            city: data[0].regeocodeData.addressComponent.city,
+            adcode: data[0].regeocodeData.addressComponent.adcode,
+            citycode: data[0].regeocodeData.addressComponent.citycode,
+            address:data[0].name,
+            oadcode: data[0].regeocodeData.addressComponent.adcode,
+            longitude: data[0].longitude + "",
+            latitude: data[0].latitude + "",
+            wardenryid: res.data.city
+          }
+          return gpsLocation;
         } else {
           Msg('定位失败,请重新定位')
         }

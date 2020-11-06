@@ -17136,13 +17136,23 @@ function getLocation() {
     success: function success(data) {
       console.error(data);
       console.error(data[0].name);
-      return;
       var params = {
         adcode: data[0].regeocodeData.addressComponent.adcode
       };
       (0, _index2.checkAdcodeAction)(params).then(function (res) {
         if (res.errcode == 'ok') {
-          console.error('成功', data, res);
+          var gpsLocation = {
+            province: data[0].regeocodeData.addressComponent.province,
+            city: data[0].regeocodeData.addressComponent.city,
+            adcode: data[0].regeocodeData.addressComponent.adcode,
+            citycode: data[0].regeocodeData.addressComponent.citycode,
+            address: data[0].name,
+            oadcode: data[0].regeocodeData.addressComponent.adcode,
+            longitude: data[0].longitude + "",
+            latitude: data[0].latitude + "",
+            wardenryid: res.data.city
+          };
+          return gpsLocation;
         } else {
           (0, _index4.default)('定位失败,请重新定位');
         }

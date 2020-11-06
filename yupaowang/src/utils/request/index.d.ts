@@ -1194,6 +1194,7 @@ export interface resInfoObj {
   tel: string,
   time: string,
   type: string,
+  title:string,
   update_time: string,
   user_id: string,
   user_uuid: string,
@@ -1590,4 +1591,12 @@ export interface ResumeCertificateData extends Result{
 // 添加项目返回值
 export interface ResumesProjectData extends Result {
   count: number
+}
+
+// 获取当前位置
+export interface checkAdcodeData extends Result{
+  data: checkAdcodeDataCity,
+}
+export interface checkAdcodeDataCity {
+  city:string,
 }

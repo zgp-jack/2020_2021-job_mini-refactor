@@ -6,21 +6,26 @@ import { resInfoObj } from '../../../utils/request/index.d';
 import { ProfessionRecruitData } from '../../../components/profession/index.d'
 import { NationsType, OccupationType } from './index.d';
 import { addResumeAction, checkAdcodeAction } from '../../../utils/request/index'; 
+import { UserLastPublishRecruitArea } from '../../../pages/recruit/index.d'
 import Profession from '../../../components/profession'
 import WordsTotal from '../../../components/wordstotal'
 import useCode from '../../../hooks/code'
 import Msg,{ ShowActionModal } from '../../../utils/msg';
 import { isChinese, isPhone } from '../../../utils/v';
-import { MAPKEY } from '../../../config/index';
-import AMapWX from '../../../utils/source/amap-wx'
-import { recSerAuthLoction, getLocation } from '../../../utils/helper';
+import { getLocation } from '../../../utils/helper';
+import { location } from './data';
+import { LocationDataType } from './index.d';
+import { setAreaInfo, setArea } from '../../../actions/recruit'//获取发布招工信息action
 import './index.scss'
 
 export default function AddResumeInfo(){
+  // 获取dispatch分发action
+  const dispatch = useDispatch()
   // 获取基础信息的redux
   const infoData = useSelector<any, resInfoObj>(state => state.resumeData.info);
   // 获取hooks数据
-  const { infoConfig, genderCurrent, startDatePicker } = useResumeAddInfo()
+  const { infoConfig, genderCurrent, startDatePicker } = useResumeAddInfo();
+  console.error(infoConfig,'info23132')
   // 发送验证码
   const { text, userGetCode } = useCode()
   // 输入数据
@@ -43,6 +48,10 @@ export default function AddResumeInfo(){
   const [maxClassifyCount, setMaxClassifyCount] = useState<number>(3);
   // 已选择工种
   const [classifies, setClassifies] = useState<string[]>([]);
+  //位置
+  const [locationData, setLocationData] = useState<LocationDataType>(location)
+  //获取redux中发布招工区域详细数据
+  const areaInfo: UserLastPublishRecruitArea = useSelector<any, UserLastPublishRecruitArea>(state => state.MyAreaInfo)
   useEffect(()=>{
     // 性别
     if(infoData.gender){
@@ -71,16 +80,28 @@ export default function AddResumeInfo(){
         }
       }
     }
+    // 判断所在地区
+    // 将数据保存到redux中的areaInfo中
+    dispatch(setAreaInfo({ ...areaInfo, title: infoData.address||'' }));
+    setLocationData({ province: infoData.province, city: infoData.city, citycode: '', oadcode: '', regionone: infoData.title, longitude: infoData.location.split(',')[0].toString(), latitude: infoData.location.split(',')[1].toString(), address: infoData.address, adcode: infoData.ad_code.toString(), wardenryid: ''})
     // 工种
     setNations(nations);
     setClassifyTree(data)
     setClassifies(classifiesArr)
   }, [infoConfig])
+  useEffect(()=>{
+    //设置所属地区
+    const area = { ...areaInfo};
+    setLocationData({
+      ...location, adcode: area.adcode, address: area.title, longitude: area.location.split(',')[0], latitude: area.location.split(',')[1],
+    })
+  }, [areaInfo])
+  console.error(areaInfo, 'locationlocationlocation')
   // 用户输入表单
   const userEnterFrom = (e:any, type: string) => {
     console.log(e, type)
     inputVal[type] = e.detail.value;
-    setInputVal(inputVal)
+    setInputVal({...inputVal})
   }
 
   // picker 发生改变
@@ -103,12 +124,7 @@ export default function AddResumeInfo(){
       setTime(e.detail.value);
       inputVal[type] = e.detail.value;
     }
-    setInputVal(inputVal)
-  }
-
-  // picker 切换行
-  const onColumnChange = (e) => {
-    console.error(e,'eeee')
+    setInputVal({...inputVal})
   }
   // 提交
   const handelSubmit =()=>{
@@ -140,15 +156,17 @@ export default function AddResumeInfo(){
       gender: inputVal.gender,
       nation: inputVal.nation,
       birthday: inputVal.birthday,
-      occupations: [],
-      province: '',
-      city: '',
+      occupations: classifies.toString(),
+      province: locationData.province,
+      city: locationData.city,
       introduce: inputVal.introduce,
-      lat: '',
-      lng: '',
-      address:'',
+      lat: locationData.latitude,
+      lng: locationData.longitude,
+      address:locationData.address,
       adcode: '',
     };
+    console.error(params,'params')
+    return;
     addResumeAction(params).then(res=>{
       if(res.errcode == 'ok'){
         Taro.navigateBack({delta:1})
@@ -196,7 +214,11 @@ export default function AddResumeInfo(){
                   success:(data)=>{
                     if (data.authSetting["scope.userLocation"] == true) {
                       Msg('授权成功')
-                      getLocation();
+                      const data = getLocation();
+                      if (data != null) {
+                        setLocationData(data);
+                      }
+                      console.error(data,'1111');
                     }else{
                       Msg('授权失败')
                     }
@@ -206,7 +228,11 @@ export default function AddResumeInfo(){
             }
           })
         }else{
-          getLocation();
+          let data = getLocation();
+          if(data != null){
+            setLocationData(data);
+          }
+          console.error(data,'111');
         }
       }
     })
@@ -252,7 +278,7 @@ export default function AddResumeInfo(){
                   <Text className='pulish-list-title'>性别</Text>
                   <Picker
                     mode="selector"
-                    range={ infoConfig.gender }
+                    range={ infoConfig.gender||[] }
                     value={+inputVal.gender-1}
                     range-key="name"
                     onChange={(e) => onPickerChange(e, 'gender')}
@@ -277,7 +303,7 @@ export default function AddResumeInfo(){
                   mode="selector"
                   // value={infoConfig.nation}
                   value={+inputVal.nation_id-1}
-                  range={nations}
+                  range={nations||[]}
                   range-key='name'
                   onChange={(e) => onPickerChange(e, 'nation')}
                 >
@@ -309,10 +335,10 @@ export default function AddResumeInfo(){
                     <Input className='publish-list-input' disabled type='text' placeholder='请选择所属工种' />
                 }
                 </View>
-              <View className='publish-list-item' onClick={()=>userChooseArea()}>
+              <View className='publish-list-item adressInput' onClick={()=>userChooseArea()}>
                 <Text className='pulish-list-title'>所在地区</Text>
                 <View className='flex'>
-                  <Text className='flexContent'>{inputVal.address}</Text>
+                  <Text className='flexContent'>{locationData && locationData.address}</Text>
                   <Text className='flexTitle' onClick={(e)=>{e.stopPropagation(),handleGps()}}>获取定位</Text>
                 </View>
               </View>
@@ -351,8 +377,9 @@ export default function AddResumeInfo(){
                     value={inputVal.introduce}
                     placeholder='请简要介绍您所从事的行业以及工作经验...'
                     onInput={(e) => userEnterFrom(e, 'introduce')}
+                    maxlength={500}
                   ></Textarea>
-                  <WordsTotal num={0} />
+                  <WordsTotal num={inputVal.introduce.length} />
                 </View>
               </View>
               <View className='publish-recruit-btn' onClick={handelSubmit} >确认发布</View>
