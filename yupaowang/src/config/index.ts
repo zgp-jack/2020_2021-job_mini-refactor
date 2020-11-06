@@ -36,6 +36,8 @@ export const MemberMsgTimerInterval: number = 1000 * 60
 export const CertificateMaxNum: number = 3
 // * 发布技能证书图片最大数量
 export const CertificateImgMaxNum: number = 3
+// * 找活人员信息标签最大数量
+export const ResumeMemberLabelsMaxNum: number = 3
 // * 发布项目经验最大数量
 export const ProjectListMaxNum: number = 5
 // * 找活项目经验图片最大数量

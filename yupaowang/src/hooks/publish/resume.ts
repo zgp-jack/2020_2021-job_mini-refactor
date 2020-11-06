@@ -1,8 +1,8 @@
 /*
  * @Author: zyb
  * @Date: 2020-11-03 15:03:11
- * @LastEditors: zyb
- * @LastEditTime: 2020-11-05 09:27:52
+ * @LastEditors: jsxin
+ * @LastEditTime: 2020-11-05 10:40:23
  * @Description: 
  */
 import { useState,useDidShow, useEffect } from '@tarojs/taro'
@@ -38,7 +38,7 @@ export default function useResume(){
     resumeListAction().then(res=>{
       if(res.errcode === 200){
         // 生日需要单独设置
-        let time;
+        let time: number;
         if (res.data.info.birthday){
           time = new Date().getFullYear() - (+res.data.info.birthday.split('-')[0] - 0);
         }else{
@@ -55,8 +55,8 @@ export default function useResume(){
         introduces = { ...introduces, ...res.data.introduces }
         setIntroducesData({...introduces});
         // 项目
-        setProjectData({...res.data.project});
-        setCertificates({...res.data.certificates});
+        setProjectData([...res.data.project]);
+        setCertificates([...res.data.certificates]);
         setResume_top({...res.data.resume_top});
         // 存redux
         dispatch(setUseResume({

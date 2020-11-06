@@ -11,7 +11,7 @@ export default function useResumeAddInfo() {
 
   const addInfoConfig = useSelector<any, DEFAUTL_STATE_TYPE>(store => store['resumeAddInfo'])
   // 保存配置项
-  const [infoConfig, setInfoConfig] = useState<ResumeAddInfoConfig>(addInfoConfig)
+  const [infoConfig, setInfoConfig] = useState<DEFAUTL_STATE_TYPE>(addInfoConfig)
   // 当前性别的下标
   const [genderCurrent, setGenderCurrent] = useState<number>(0)
   // 当前民族的下标
@@ -28,8 +28,9 @@ export default function useResumeAddInfo() {
   useEffect(()=>{
     if (addInfoConfig.isset) return
     getResumeAddInfoConfig().then(res => {
-      setInfoConfig(res)
-      dispatch(setResumeInfoConfig({ ...res, isset: true }))
+      let data = { ...res, isset: true }
+      setInfoConfig({ ...data})
+      dispatch(setResumeInfoConfig({ ...data}))
     })
   },[])
 

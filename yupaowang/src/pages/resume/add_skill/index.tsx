@@ -1,4 +1,4 @@
-import Taro, { useState, useEffect } from '@tarojs/taro'
+import Taro, { useState, useEffect, useRouter } from '@tarojs/taro'
 import { View, Text, Form, Textarea, Input, Picker, Button } from '@tarojs/components'
 import WordsTotal from '../../../components/wordstotal'
 import useResumeAddInfo from '../../../hooks/resume_addinfo'
@@ -19,7 +19,10 @@ interface SkillBookInfoType {
 }
 
 export default function AddResumeInfo() {
-
+  // 获取路由参数 
+  const { id = '' } = useRouter().params
+  
+  // 将找活中技能证书相关的数据取出
   const resumeData: useResumeType = useSelector<any, useResumeType>(item => item.resumeData)
 
   // 保留一份默认数据， 方便我们继续添加的时候使用
@@ -29,8 +32,22 @@ export default function AddResumeInfo() {
     imgs: []
   }
 
+  // 技能证书的数据
+  let normalSkillBookData: SkillBookInfoType = {...defaultSkillBookData}
+  if(id){
+    let data = resumeData.certificates.find(item => item.id == id)
+    if (data){
+      // 由于接口的图片数据是分开的，所以需要自己重组
+      let imgs: RecruitImageModel[] = []
+      for(let i = 0; i < data.image.length;i++){
+        imgs.push({ url: data.images[i],httpurl: data.image[i]})
+      }
+      normalSkillBookData = { title: data.name, time: data.certificate_time, imgs: imgs }
+    }
+  }
+
   // 技能证书信息
-  const [skillBookInfo, setSkillBookInfo] = useState<SkillBookInfoType>(defaultSkillBookData)
+  const [skillBookInfo, setSkillBookInfo] = useState<SkillBookInfoType>(normalSkillBookData)
   // 是否显示保存继续添加 总数是否大于等于 最大数量-1
   const [showBtn, setShowBtn] = useState<boolean>(resumeData.certificates.length >= CertificateMaxNum - 1  ? false : true)
 
@@ -85,6 +102,7 @@ export default function AddResumeInfo() {
     }
     resumesCertificateAction({
       resume_uuid: resumeData.resume_uuid,
+      certificate_uuid: id,
       image: skillBookInfo.imgs.map(item => item.url),
       name: skillBookInfo.title,
       certificate_time: skillBookInfo.time

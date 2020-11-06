@@ -10,6 +10,7 @@ import './index.scss'
 export default function ResumePublish(){
   const uuid = useSelector<any, string>(state => state.resumeData.resume_uuid)
   const { infoData, introducesData, projectData, certificates, resume_top } = useResume()
+
   // 页面跳转
   const userRouteJump = (url: string) => {
     Taro.navigateTo({url: url})
@@ -140,7 +141,7 @@ export default function ResumePublish(){
           <View className='basic-imformation'>
             <Image className='basic-description-img' src='http://cdn.yupao.com/newyupao/images/newresume-description.png'/>
             <View className='basic-title'>人员信息</View>
-            <View className='change'>待修改</View>
+            <View className='change' onClick={() => Taro.navigateTo({ url: '/pages/resume/add_member/index' })}>待修改</View>
           </View>
           {/* <View className='basic-content'>
             <View className='basic-txt'>完善人员信息能让老板充分了解您或您的队伍</View>
@@ -172,7 +173,7 @@ export default function ResumePublish(){
               </View>
               <View className='craft'>
                 <Text className='craft-txt'>标签</Text>
-                <View>
+                <View className='craft-list'>
                 {introducesData.tags && introducesData.tags.map((v)=>(
                   <View className='craft-name' key={v.id}>
                     {v.label_name}
@@ -224,32 +225,36 @@ export default function ResumePublish(){
           <View className='basic-imformation'>
             <Image className='professional-skill-img' src='http://cdn.yupao.com/newyupao/images/newresume-skill.png'/>
             <View className='basic-title'>职业技能</View>
-            <View className='change'>添加</View>
+            <View className='change' onClick={() => Taro.navigateTo({ url: '/pages/resume/add_skill/index' })}>添加</View>
           </View>
-          {/* <View className='basic-content'>
+          {/* 是否填写过技能证书 */}
+          {certificates.length ?
+            <View className='professional-information'>
+              <View className='content-information'>
+                <View className='information'>
+                  <View className='name'>{certificates[certificates.length - 1].name}</View>
+                  <View className='sexage time'>{certificates[certificates.length - 1].certificate_time}</View>
+                </View>
+                <View className='change' onClick={() => Taro.navigateTo({ url: `/pages/resume/add_skill/index?id=${certificates[certificates.length - 1].id}` })}>编辑</View>
+              </View>
+              <View className='project-content'>
+                <View className='content-img'>
+                  {certificates.length && <Imglist data={certificates[certificates.length - 1].image && certificates[certificates.length - 1].image} />}
+                </View>
+                <View className='project-failtxt'>失败原因：不知道</View>
+              </View>
+              <View className='change-project'>
+                <Button className='change-project-btn'>修改技能证书<View className='nabla'></View></Button>
+              </View>
+            </View>
+          : 
+          <View className='basic-content'>
             <View className='basic-txt'>添加职业技能，用实力证明您的能力</View>
             <View className='basic-btn'>
-              <Button className='btn'>添加职业技能</Button>
-            </View>
-          </View> */}
-          <View className='professional-information'>
-            <View className='content-information'>
-              <View className='information'>
-                <View className='name'>{certificates[certificates.length - 1].name}</View>
-                <View className='sexage time'>{certificates[certificates.length - 1].certificate_time}</View>
-              </View>
-              <View className='change' onClick={() => Taro.navigateTo({ url: '/pages/resume/add_skill/index' })}>编辑</View>
-            </View>
-            <View className='project-content'>
-              <View className='content-img'>
-                {certificates.length && <Imglist data={certificates[certificates.length - 1].image && certificates[certificates.length - 1].image} />}
-              </View>
-              <View className='project-failtxt'>失败原因：不知道</View>
-            </View>
-            <View className='change-project'>
-              <Button className='change-project-btn'>修改技能证书<View className='nabla'></View></Button>
+              <Button className='btn' onClick={() => Taro.navigateTo({ url: '/pages/resume/add_skill/index' })}>添加职业技能</Button>
             </View>
           </View>
+          }
         </View>
         <View className='content-btn'>
           <View className='preview-btn'>

@@ -12304,6 +12304,8 @@ var MemberMsgTimerInterval = exports.MemberMsgTimerInterval = 60000;
 var CertificateMaxNum = exports.CertificateMaxNum = 3;
 // * 发布技能证书图片最大数量
 var CertificateImgMaxNum = exports.CertificateImgMaxNum = 3;
+// * 找活人员信息标签最大数量
+var ResumeMemberLabelsMaxNum = exports.ResumeMemberLabelsMaxNum = 3;
 // * 发布项目经验最大数量
 var ProjectListMaxNum = exports.ProjectListMaxNum = 5;
 // * 找活项目经验图片最大数量
@@ -12870,8 +12872,9 @@ function useResumeAddInfo() {
   (0, _taroTt.useEffect)(function () {
     if (addInfoConfig.isset) return;
     (0, _index.getResumeAddInfoConfig)().then(function (res) {
-      setInfoConfig(res);
-      dispatch((0, _resume_addinfo.setResumeInfoConfig)(_extends({}, res, { isset: true })));
+      var data = _extends({}, res, { isset: true });
+      setInfoConfig(_extends({}, data));
+      dispatch((0, _resume_addinfo.setResumeInfoConfig)(_extends({}, data)));
     });
   }, []);
   return {
