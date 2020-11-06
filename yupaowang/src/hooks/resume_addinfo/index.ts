@@ -1,3 +1,10 @@
+/*
+ * @Author: zyb
+ * @Date: 2020-11-03 09:23:50
+ * @LastEditors: zyb
+ * @LastEditTime: 2020-11-05 17:29:51
+ * @Description: 
+ */
 import Taro, { useState, useEffect } from '@tarojs/taro'
 import { getResumeAddInfoConfig } from '../../utils/request'
 import { ResumeAddInfoConfig } from '../../utils/request/index.d'

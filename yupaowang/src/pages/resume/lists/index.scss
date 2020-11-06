@@ -1,1 +1,19 @@
 @import '../../recruit/lists/index.scss';
+
+.overflow-image {
+  position: fixed;
+  z-index: 9999;
+  top: 65%;
+  right: 20px;
+  width: 110px;
+  height: 110px;
+  box-shadow: 0 0 8px #E7E6E4;
+  border-radius: 50%;
+  overflow: hidden;
+
+  .rank-rules-image {
+    width: 110px;
+    height: 110px;
+  }
+}
+

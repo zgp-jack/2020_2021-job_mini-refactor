@@ -61,7 +61,7 @@ var Preview = function (_Taro$Component) {
       navigationBarTitleText: '找活名片'
     };
 
-    _this.$usedState = ["data", "loopArray91", "loopArray92", "loopArray93", "loopArray94", "IMGCDNURL", "checkpan", "checkone", "headerimg", "age", "sex", "project", "skillbooksone", "telephone"];
+    _this.$usedState = ["data", "loopArray94", "loopArray95", "loopArray96", "loopArray97", "IMGCDNURL", "checkpan", "checkone", "headerimg", "age", "sex", "project", "skillbooksone", "telephone"];
     _this.anonymousFunc0Map = {};
     _this.anonymousFunc2Map = {};
     _this.customComponents = [];
@@ -230,7 +230,7 @@ var Preview = function (_Taro$Component) {
       this.anonymousFunc4 = function () {
         return _taroTt2.default.navigateTo({ url: "/pages/resume/skillList/index?preview=1" });
       };
-      var loopArray91 = data.info.miniInfoOccupations.length ? data.info.miniInfoOccupations.map(function (v, i) {
+      var loopArray94 = data.info.miniInfoOccupations.length ? data.info.miniInfoOccupations.map(function (v, i) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
@@ -240,7 +240,7 @@ var Preview = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray92 = data.introduces.tags.length ? data.introduces.tags.map(function (v, i) {
+      var loopArray95 = data.introduces.tags.length ? data.introduces.tags.map(function (v, i) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
@@ -250,12 +250,12 @@ var Preview = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray93 = data.project.length ? project.map(function (item, i) {
+      var loopArray96 = data.project.length ? project.map(function (item, i) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
         var $loopState__temp6 = data.project.length ? i + i : null;
-        var $anonymousCallee__10 = data.project.length ? item.$original.image.map(function (v, i) {
+        var $anonymousCallee__11 = data.project.length ? item.$original.image.map(function (v, i) {
           v = {
             $original: (0, _taroTt.internal_get_original)(v)
           };
@@ -272,15 +272,15 @@ var Preview = function (_Taro$Component) {
         }) : [];
         return {
           $loopState__temp6: $loopState__temp6,
-          $anonymousCallee__10: $anonymousCallee__10,
+          $anonymousCallee__11: $anonymousCallee__11,
           $original: item.$original
         };
       }) : [];
-      var loopArray94 = data.certificates.length ? skillbooksone.map(function (item, __index3) {
+      var loopArray97 = data.certificates.length ? skillbooksone.map(function (item, __index3) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
-        var $anonymousCallee__11 = data.certificates.length ? item.$original.image.map(function (v, i) {
+        var $anonymousCallee__12 = data.certificates.length ? item.$original.image.map(function (v, i) {
           v = {
             $original: (0, _taroTt.internal_get_original)(v)
           };
@@ -296,16 +296,16 @@ var Preview = function (_Taro$Component) {
           };
         }) : [];
         return {
-          $anonymousCallee__11: $anonymousCallee__11,
+          $anonymousCallee__12: $anonymousCallee__12,
           $original: item.$original
         };
       }) : [];
       Object.assign(this.__state, {
         data: data,
-        loopArray91: loopArray91,
-        loopArray92: loopArray92,
-        loopArray93: loopArray93,
         loopArray94: loopArray94,
+        loopArray95: loopArray95,
+        loopArray96: loopArray96,
+        loopArray97: loopArray97,
         IMGCDNURL: _index2.IMGCDNURL,
         checkpan: checkpan,
         checkone: checkone,

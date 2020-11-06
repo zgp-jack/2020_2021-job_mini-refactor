@@ -74,7 +74,7 @@ var ResumeDetail = function (_Taro$Component) {
       navigationBarTitleText: '找活名片'
     };
 
-    _this.$usedState = ["data", "loopArray87", "loopArray89", "loopArray90", "$compid__75", "$compid__76", "isAuth", "IMGCDNURL", "examine", "onoff", "list", "praise", "collect", "shownewtips", "complaintModal", "age", "phone"];
+    _this.$usedState = ["data", "loopArray90", "loopArray92", "loopArray93", "$compid__76", "$compid__77", "isAuth", "IMGCDNURL", "examine", "onoff", "list", "praise", "collect", "shownewtips", "complaintModal", "age", "phone"];
     _this.anonymousFunc4Map = {};
     _this.anonymousFunc6Map = {};
     _this.customComponents = ["Auth", "CollectionRecruitList", "Report"];
@@ -98,15 +98,15 @@ var ResumeDetail = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__75"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__76"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__75 = _genCompid2[0],
-          $compid__75 = _genCompid2[1];
+          $prevCompid__76 = _genCompid2[0],
+          $compid__76 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__76"),
+      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__77"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__76 = _genCompid4[0],
-          $compid__76 = _genCompid4[1];
+          $prevCompid__77 = _genCompid4[0],
+          $compid__77 = _genCompid4[1];
       // 获取用户是否登录
 
 
@@ -475,7 +475,7 @@ var ResumeDetail = function (_Taro$Component) {
         setShownewtips(false);
       };
       this.anonymousFunc11 = handleTellPhone;
-      var loopArray87 = data.info.occupations.length ? data.info.occupations.map(function (v, i) {
+      var loopArray90 = data.info.occupations.length ? data.info.occupations.map(function (v, i) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
@@ -485,7 +485,7 @@ var ResumeDetail = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray89 = data.project.length ? data.project[0].image.map(function (v, i) {
+      var loopArray92 = data.project.length ? data.project[0].image.map(function (v, i) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
@@ -500,7 +500,7 @@ var ResumeDetail = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray90 = data.certificates.length ? data.certificates[0].image.map(function (val, i) {
+      var loopArray93 = data.certificates.length ? data.certificates[0].image.map(function (val, i) {
         val = {
           $original: (0, _taroTt.internal_get_original)(val)
         };
@@ -518,21 +518,21 @@ var ResumeDetail = function (_Taro$Component) {
       list.item.length && _taroTt.propsManager.set({
         "data": list.item,
         "type": 2
-      }, $compid__75, $prevCompid__75);
+      }, $compid__76, $prevCompid__76);
       complaintModal && _taroTt.propsManager.set({
         "display": complaintModal,
         "textarea": textarea,
         "handleTextarea": handleTextarea,
         "setComplaintModal": setComplaintModal,
         "handleSubmit": handleSubmit
-      }, $compid__76, $prevCompid__76);
+      }, $compid__77, $prevCompid__77);
       Object.assign(this.__state, {
         data: data,
-        loopArray87: loopArray87,
-        loopArray89: loopArray89,
         loopArray90: loopArray90,
-        $compid__75: $compid__75,
+        loopArray92: loopArray92,
+        loopArray93: loopArray93,
         $compid__76: $compid__76,
+        $compid__77: $compid__77,
         isAuth: isAuth,
         IMGCDNURL: _index2.IMGCDNURL,
         examine: examine,

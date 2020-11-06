@@ -1,16 +1,16 @@
-import Taro, { useState, useEffect } from '@tarojs/taro'
-import { View, ScrollView } from '@tarojs/components'
+import Taro, {useState, useEffect} from '@tarojs/taro'
+import {View, ScrollView, Image} from '@tarojs/components'
 import Search from '../../../components/search'
 import ResumeCondition from '../../../components/condition/resume'
 import WechatNotice from '../../../components/wechat'
 import ResumeList from '../../../components/lists/resume'
-import { ChildItems } from '../../../models/area'
-import { SearchType, SearchNormalFieldType } from '../index.d'
-import { ResumeList as ResumeListType } from '../../../utils/request/index.d'
-import { conditionType } from '../../recruit/lists'
-import { AreaPickerKey, ClassifyPickerKey, MemberPickerKey, ResumeFilterPickerKey } from '../../../config/pages/lists'
-import { UserListChooseCity } from '../../../config/store'
-import { getResumeList } from '../../../utils/request'
+import {ChildItems} from '../../../models/area'
+import {SearchType, SearchNormalFieldType} from '../index.d'
+import {ResumeList as ResumeListType} from '../../../utils/request/index.d'
+import {conditionType} from '../../recruit/lists'
+import {AreaPickerKey, ClassifyPickerKey, MemberPickerKey, ResumeFilterPickerKey} from '../../../config/pages/lists'
+import {UserListChooseCity} from '../../../config/store'
+import {getResumeList} from '../../../utils/request'
 import './index.scss'
 
 export default function Recruit() {
@@ -27,16 +27,16 @@ export default function Recruit() {
   let userListChooseCity: ChildItems = Taro.getStorageSync(UserListChooseCity)
   // * 筛选数据
   const DEFAULT_CONDITION: conditionType[] = [
-    { id: AreaPickerKey, text: userListChooseCity ? userListChooseCity.name : '全国' },
-    { id: ClassifyPickerKey, text: '选择工种' },
-    { id: MemberPickerKey, text: '队伍' },
-    { id: ResumeFilterPickerKey, text: '推荐' }
+    {id: AreaPickerKey, text: userListChooseCity ? userListChooseCity.name : '全国'},
+    {id: ClassifyPickerKey, text: '选择工种'},
+    {id: MemberPickerKey, text: '队伍'},
+    {id: ResumeFilterPickerKey, text: '推荐'}
   ]
   // 滚动条高度
   const [scrollTop, setScrollTop] = useState<number>(0)
   // 设置顶部筛选条件数据
   const [condition, setCondition] = useState<conditionType[]>(DEFAULT_CONDITION)
-  // * 搜索数据 备份 
+  // * 搜索数据 备份
   const [remark, setRemark] = useState<string>('')
   // * 标记是否是在刷新状态
   const [refresh, setRefresh] = useState<boolean>(false)
@@ -68,11 +68,11 @@ export default function Recruit() {
 
   // * 请求列表数据
   useEffect(() => {
-    getResumeList({ ...searchData,...normalField}).then(res => {
+    getResumeList({...searchData, ...normalField}).then(res => {
       let mydata = res.data
-      if (mydata.list && mydata.list.length){
-        let { has_sort_flag = hasSortFlag, has_time = hasTime, has_top = hasTop, last_sort_flag_pos = lastSortFlagPos, last_normal_pos = lastNormalPos, last_time_pos = lastTimePos } = mydata
-        setNormalField({ has_sort_flag, has_time, has_top, last_sort_flag_pos, last_normal_pos, last_time_pos})
+      if (mydata.list && mydata.list.length) {
+        let {has_sort_flag = hasSortFlag, has_time = hasTime, has_top = hasTop, last_sort_flag_pos = lastSortFlagPos, last_normal_pos = lastNormalPos, last_time_pos = lastTimePos} = mydata
+        setNormalField({has_sort_flag, has_time, has_top, last_sort_flag_pos, last_normal_pos, last_time_pos})
       }
       Taro.hideNavigationBarLoading()
       if (searchData.page === 1) setLists([[...mydata.list]])
@@ -85,12 +85,12 @@ export default function Recruit() {
   // * 监听下拉刷新
   const pullDownAction = () => {
     setRefresh(true)
-    setSearchData({ ...searchData, page: 1 })
+    setSearchData({...searchData, page: 1})
   }
 
   // * 触底加载下一页
   const getNextPageData = () => {
-    setSearchData({ ...searchData, page: searchData.page + 1 })
+    setSearchData({...searchData, page: searchData.page + 1})
   }
   // 用户页面跳转
   const userRouteJump = (url: string) => {
@@ -107,13 +107,13 @@ export default function Recruit() {
     setCondition(recondition)
     setNormalField(normalFieldReset)
     if (type === ClassifyPickerKey) {
-      setSearchData({ ...searchData, occupations: id, page: 1 })
+      setSearchData({...searchData, occupations: id, page: 1})
     } else if (type === AreaPickerKey) {
-      setSearchData({ ...searchData, area_id: id, page: 1 })
-    } else if(type === ResumeFilterPickerKey) {
-      setSearchData({ ...searchData, sort: id, page: 1 })
-    }else if(type === MemberPickerKey){
-      setSearchData({ ...searchData, type: id, page: 1 })
+      setSearchData({...searchData, area_id: id, page: 1})
+    } else if (type === ResumeFilterPickerKey) {
+      setSearchData({...searchData, sort: id, page: 1})
+    } else if (type === MemberPickerKey) {
+      setSearchData({...searchData, type: id, page: 1})
     }
     goToScrollTop()
   }
@@ -126,29 +126,36 @@ export default function Recruit() {
   // 设置搜索内容
   const setSearchValData = () => {
     setNormalField(normalFieldReset)
-    setSearchData({ ...searchData, keywords: remark, page: 1 })
+    setSearchData({...searchData, keywords: remark, page: 1})
     goToScrollTop()
   }
-
+  const handleClickToRankRules = () => {
+    Taro.navigateTo({url: '/pages/rank-rules/index'})
+  }
   return (
     <View className='recruit-container'>
       <View className='recruit-fiexd-header'>
-        <Search placeholder='找工人，找队伍，找班组' value='' setRemark={(val: string) => setRemark(val)} setSearchData={() => setSearchValData()} />
-        <ResumeCondition data={condition} setSearchData={(type, id, text) => setSearchDataAction(type,id,text)} /> 
+        <Search placeholder='找工人，找队伍，找班组' value='' setRemark={(val: string) => setRemark(val)}
+                setSearchData={() => setSearchValData()}/>
+        <ResumeCondition data={condition} setSearchData={(type, id, text) => setSearchDataAction(type, id, text)}/>
       </View>
-      <ScrollView 
+      <ScrollView
         className='recruit-lists-containerbox'
         scrollY
-        lowerThreshold={200} 
+        lowerThreshold={200}
         refresherEnabled
         refresherTriggered={refresh}
         onRefresherRefresh={() => pullDownAction()}
         onScrollToLower={() => getNextPageData()}
       >
-        <View style={{ height: '8px' }}></View>
-        <WechatNotice />
-        <ResumeList data={ lists } />
+        <View style={{height: '8px'}}></View>
+        <WechatNotice/>
+        <ResumeList data={lists}/>
       </ScrollView>
+      <View className="overflow-image">
+        <Image className={"rank-rules-image"} onClick={handleClickToRankRules}
+               src='http://cdn.yupao.com/miniprogram/images/resume-list-rules-btn.png'/>
+      </View>
       <View className='publish-list-btn' onClick={() => userRouteJump(`/pages/resume/publish/index`)}>发布找活</View>
     </View>
   )

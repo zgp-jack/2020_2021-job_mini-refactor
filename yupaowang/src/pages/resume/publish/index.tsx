@@ -207,7 +207,7 @@ export default function ResumePublish(){
                     <View className='sexage'>{projectData[projectData.length - 1].start_time}-{projectData[projectData.length - 1].completion_time}   {projectData[projectData.length - 1].province_name}-{projectData[projectData.length - 1].city_name} </View>
                     <View className='sexage'>{projectData[projectData.length - 1].detail}</View>
                 </View>
-                <View className='change'>编辑</View>
+                  <View className='change' onClick={() => { userRouteJump(`/pages/resume/add_project/index?id=${projectData[projectData.length - 1].id}`)}}>编辑</View>
               </View>
               <View className='project-content'>
                 <View className='content-img'>

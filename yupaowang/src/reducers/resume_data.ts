@@ -2,11 +2,11 @@
  * @Author: zyb
  * @Date: 2020-11-04 19:59:33
  * @LastEditors: zyb
- * @LastEditTime: 2020-11-04 21:11:58
+ * @LastEditTime: 2020-11-05 10:09:29
  * @Description: 
  */
 import { SETUSERRESUME,GETUSERRESUME } from '../constants/resume_data';
-import { useResumeType } from '../actions/resume_data';
+import { useResumeType } from '../pages/resume/publish/index.d';
 import { INFODATA_DATA, INTRODUCERS_DATA } from '../pages/resume/publish/data';
 
 const DEFAULT_STATE: useResumeType = {
@@ -15,6 +15,7 @@ const DEFAULT_STATE: useResumeType = {
   projectData:[],
   certificates:[],
   resume_uuid:'',
+  isSet:false,
 }
 
 interface ActionType {

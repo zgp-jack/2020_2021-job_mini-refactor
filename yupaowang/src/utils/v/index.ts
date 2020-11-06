@@ -1,3 +1,10 @@
+/*
+ * @Author: zyb
+ * @Date: 2020-11-03 09:23:50
+ * @LastEditors: zyb
+ * @LastEditTime: 2020-11-05 11:51:03
+ * @Description: 
+ */
 import Taro from '@tarojs/taro'
 
 // 是否是电话号码
@@ -75,3 +82,13 @@ export function isIos(): boolean {
 export function isRequireLen(str: string, _len: number = 6): boolean{
   return (str != '' && str != null && str != undefined && str.length >= _len) ? true : false;
 }
+
+// 含有中文
+export function isChinese(str:string){
+  const reg = new RegExp("[\\u4E00-\\u9FFF]+", "g");
+  if(reg.test(str)){
+    return true
+  }
+  return false;
+}
+

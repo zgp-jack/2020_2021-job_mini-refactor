@@ -123,7 +123,7 @@ var Recruit = function (_Taro$Component) {
           _useState4 = _slicedToArray(_useState3, 2),
           condition = _useState4[0],
           setCondition = _useState4[1];
-      // * 搜索数据 备份 
+      // * 搜索数据 备份
 
 
       var _useState5 = (0, _taroTt.useState)(''),
@@ -254,6 +254,9 @@ var Recruit = function (_Taro$Component) {
         setSearchData(_extends({}, searchData, { keywords: remark, page: 1 }));
         goToScrollTop();
       };
+      var handleClickToRankRules = function handleClickToRankRules() {
+        _taroTt2.default.navigateTo({ url: '/pages/rank-rules/index' });
+      };
       var anonymousState__temp = function anonymousState__temp(val) {
         return setRemark(val);
       };
@@ -270,7 +273,8 @@ var Recruit = function (_Taro$Component) {
         return getNextPageData();
       };
       var anonymousState__temp4 = (0, _taroTt.internal_inline_style)({ height: '8px' });
-      this.anonymousFunc2 = function () {
+      this.anonymousFunc2 = handleClickToRankRules;
+      this.anonymousFunc3 = function () {
         return userRouteJump("/pages/resume/publish/index");
       };
       _taroTt.propsManager.set({
@@ -313,12 +317,17 @@ var Recruit = function (_Taro$Component) {
     value: function anonymousFunc2(e) {
       ;
     }
+  }, {
+    key: 'anonymousFunc3',
+    value: function anonymousFunc3(e) {
+      ;
+    }
   }]);
 
   return Recruit;
 }(_taroTt2.default.Component);
 
-Recruit.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2"];
+Recruit.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3"];
 Recruit.$$componentPath = "pages/resume/lists/index";
 exports.default = Recruit;
 
