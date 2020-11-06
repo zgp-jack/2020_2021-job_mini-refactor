@@ -1,13 +1,12 @@
 import Taro, { useState, useEffect, useRouter } from '@tarojs/taro'
 import { View, Text, Form, Textarea, Input, Picker, Button } from '@tarojs/components'
-import WordsTotal from '../../../components/wordstotal'
-import useResumeAddInfo from '../../../hooks/resume_addinfo'
 import { RecruitImageModel } from '../../recruit/index.d'
 import UploadImgAction from '../../../utils/upload'
-import { resumesCertificateAction } from '../../../utils/request'
+import { resumesCertificateAction, delCertificateAction } from '../../../utils/request'
 import ImageView from '../../../components/imageview'
 import { CertificateImgMaxNum, CertificateMaxNum } from '../../../config'
 import { useSelector, useDispatch } from '@tarojs/redux'
+import { setCertificateList } from '../../../actions/resume_data'
 import { useResumeType } from '../publish/index.d'
 import './index.scss'
 import Msg, { ShowActionModal } from '../../../utils/msg'
@@ -19,6 +18,7 @@ interface SkillBookInfoType {
 }
 
 export default function AddResumeInfo() {
+  const dispatch = useDispatch()
   // 获取路由参数 
   const { id = '' } = useRouter().params
 
@@ -139,7 +139,30 @@ export default function AddResumeInfo() {
     Taro.navigateBack()
   }
   // 用户删除该条技能证书
-  const userDelThisSkill = () => {}
+  const userDelThisSkill = () => {
+    Taro.showModal({
+      title: '温馨提示',
+      content: '技能证书删除后，将无法恢复',
+      success: () => {
+        delCertificateAction({ certificate_uuid: certificateId }).then(res => {
+          if (res.errcode == 'ok') {
+            let i: number = resumeData.certificates.findIndex(item => item.id == id)
+            if(i > -1){
+              let lists = [...resumeData.certificates]
+              lists.splice(i, 1)
+              dispatch(setCertificateList([...lists]))
+            }
+            ShowActionModal({
+              msg: res.errmsg,
+              success: () => {
+                Taro.navigateBack()
+              }
+            })
+          }
+        })
+      }
+    })
+  }
 
   return (
     <View className='resume-addinfo-container'>

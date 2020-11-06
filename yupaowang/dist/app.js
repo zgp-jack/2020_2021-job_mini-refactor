@@ -664,7 +664,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                                                                                                                                                                                                                                                                    * @Author: zyb
                                                                                                                                                                                                                                                                    * @Date: 2020-11-04 19:59:33
                                                                                                                                                                                                                                                                    * @LastEditors: jsxin
-                                                                                                                                                                                                                                                                   * @LastEditTime: 2020-11-06 11:13:45
+                                                                                                                                                                                                                                                                   * @LastEditTime: 2020-11-06 15:39:52
                                                                                                                                                                                                                                                                    * @Description:
                                                                                                                                                                                                                                                                    */
 
@@ -694,6 +694,8 @@ function resumeData() {
       return _extends({}, state, action.data);
     case _resume_data.SETINTRODUCE:
       return _extends({}, state, { introducesData: action.data });
+    case _resume_data.SETCERTIFICATE:
+      return _extends({}, state, { certificates: action.data });
     default:
       return state;
   }

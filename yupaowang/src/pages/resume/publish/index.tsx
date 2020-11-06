@@ -227,7 +227,7 @@ export default function ResumePublish(){
                 <View className='project-failtxt'>失败原因：不知道</View>
               </View>
               <View className='change-project'>
-                <Button className='change-project-btn'>修改项目经验<View className='nabla'></View></Button>
+                <Button className='change-project-btn'>更多项目经验<View className='nabla'></View></Button>
               </View>
             </View>
           }
@@ -255,7 +255,7 @@ export default function ResumePublish(){
                 <View className='project-failtxt'>失败原因：不知道</View>
               </View>
               <View className='change-project'>
-                <Button className='change-project-btn'>修改技能证书<View className='nabla'></View></Button>
+                <Button className='change-project-btn' onClick={()=>Taro.navigateTo({url: '/pages/resume/skills/index'})}>更多技能证书<View className='nabla'></View></Button>
               </View>
             </View>
           : 
