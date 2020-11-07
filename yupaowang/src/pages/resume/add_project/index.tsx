@@ -6,13 +6,13 @@ import { ProjectImgMaxNum, ProjectListMaxNum } from '../../../config'
 import UploadImgAction from '../../../utils/upload'
 import { RecruitImageModel, } from '../../recruit/index.d'
 import AREAS, { ParentItems } from '../../../models/area'
-import { resProjectArr } from '../../../utils/request/index.d';
 import { resumesProjectAction, resumesDelProjectAction } from '../../../utils/request';
 import { useSelector, useDispatch } from '@tarojs/redux'
 import { objDeepCopy } from '../../../utils/helper'
 import Msg, { ShowActionModal } from '../../../utils/msg'
 import { isChinese } from '../../../utils/v';
 import { useResumeType } from '../../../pages/resume/publish/index.d';
+import { setProjectList } from '../../../actions/resume_data';
 import './index.scss'
 
 interface ProjectInfoType{
@@ -35,6 +35,7 @@ interface HomeTownPicker {
   name: string
 }
 export default function AddResumeInfo() {
+  const dispatch = useDispatch();
   // 获取路由参数 
   const { id = '' } = useRouter().params
   // 将找活中项目经验相关的数据取出
@@ -228,7 +229,7 @@ export default function AddResumeInfo() {
       province: projectInfo.province,
       city: projectInfo.city,
       image: projectInfo.imgs.map(item => item.url),
-      resume_uuid: project_uuid
+      resume_uuid: resumeData.resume_uuid,
     }
     if(id){
       params = { ...params, project_uuid: project_uuid};
@@ -238,12 +239,13 @@ export default function AddResumeInfo() {
         if(type){
           Msg(res.errmsg);
           setProjectInfo({...projectInfo});
+          setProject_uuid('');
         }else{
           ShowActionModal({
             title:'温馨提示',
             msg:res.errmsg,
             success:()=>{
-              Taro.navigateBack({delta:1})
+              Taro.navigateBack()
             }
           })
         }
@@ -257,17 +259,39 @@ export default function AddResumeInfo() {
   }
   // 删除
   const handleDel = ()=>{
-    console.error(1111);
-    let params = {};
-    resumesDelProjectAction(params).then(res=>{
-      if(res.errcode == 'ok'){
-        Taro.navigateBack({
-          delta: 1
+    Taro.showModal({
+      title: '温馨提示',
+      content: '技能证书删除后，将无法恢复',
+      success: () => {
+        resumesDelProjectAction({ project_uuid: project_uuid }).then(res => {
+          if (res.errcode == 'ok') {
+            let i: number = resumeData.projectData.findIndex(item => item.id == id)
+            if (i > -1) {
+              let lists = [...resumeData.projectData]
+              lists.splice(i, 1)
+              dispatch(setProjectList([...lists]))
+            }
+            ShowActionModal({
+              msg: res.errmsg,
+              success: () => {
+                Taro.navigateBack()
+              }
+            })
+          }
         })
-      }else{
-        Msg(res.errmsg);
       }
     })
+    // console.error(1111);
+    // let params = {};
+    // resumesDelProjectAction(params).then(res=>{
+    //   if(res.errcode == 'ok'){
+    //     Taro.navigateBack({
+    //       delta: 1
+    //     })
+    //   }else{
+    //     Msg(res.errmsg);
+    //   }
+    // })
   }
   return (
     <View className='resume-addinfo-container resume-addinfo-project'>
@@ -348,7 +372,7 @@ export default function AddResumeInfo() {
         {id ? <View className='resume-add-skill-btn' onClick={handleDel}>删除</View> :
         showBtn?
           <View className='resume-add-skill-btn' onClick={()=>handleSumbit(1)}>保存 继续添加</View>:
-          <View className='resume-add-skill-btn' onClick={()=>Taro.navigateBack({delta:1})}>取消</View>
+          <View className='resume-add-skill-btn' onClick={()=>Taro.navigateBack()}>取消</View>
         }
         <View className='resume-add-skill-btn' onClick={()=>handleSumbit()}> 确认保存</View>
       </View>

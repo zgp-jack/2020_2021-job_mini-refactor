@@ -1,8 +1,8 @@
 /*
  * @Author: zyb
  * @Date: 2020-11-04 19:51:52
- * @LastEditors: jsxin
- * @LastEditTime: 2020-11-06 11:16:17
+ * @LastEditors: zyb
+ * @LastEditTime: 2020-11-06 23:22:31
  * @Description: 
  */
 // 获取找活详情全部数据
@@ -12,3 +12,5 @@ export const SETUSERRESUME: string = 'setUseResume'
 export const SETINTRODUCE: string = 'setIntroduce'
 // 单独设置技能证书
 export const SETCERTIFICATE: string = 'setCertificate'
+// 单独设置项目
+export const SETPROJECT: string = 'setproject'

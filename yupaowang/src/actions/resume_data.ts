@@ -1,13 +1,13 @@
 /*
  * @Author: zyb
  * @Date: 2020-11-04 19:51:02
- * @LastEditors: jsxin
- * @LastEditTime: 2020-11-06 15:41:35
+ * @LastEditors: zyb
+ * @LastEditTime: 2020-11-06 23:22:56
  * @Description: 
  */
-import { GETUSERRESUME, SETUSERRESUME, SETINTRODUCE, SETCERTIFICATE } from '../constants/resume_data';
+import { GETUSERRESUME, SETUSERRESUME, SETINTRODUCE, SETCERTIFICATE, SETPROJECT } from '../constants/resume_data';
 import { useResumeType } from '../pages/resume/publish/index.d'
-import { resIntroduceObj, resCertificatesArr } from '../utils/request/index.d'  
+import { resIntroduceObj, resCertificatesArr, resProjectArr } from '../utils/request/index.d'  
 
 export function getUseResume(data: useResumeType) {
   return {
@@ -32,6 +32,14 @@ export function setIntroduceInfo(data: resIntroduceObj){
 export function setCertificateList(data: resCertificatesArr[]) {
   return {
     type: SETCERTIFICATE,
+    data: data
+  }
+}
+
+// 设置项目列表
+export function setProjectList(data: resProjectArr[]){
+  return {
+    type: SETPROJECT,
     data: data
   }
 }

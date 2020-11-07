@@ -2,7 +2,7 @@
  * @Author: zyb
  * @Date: 2020-11-03 18:49:37
  * @LastEditors: zyb
- * @LastEditTime: 2020-11-04 17:23:33
+ * @LastEditTime: 2020-11-07 09:33:48
  * @Description: 
  */
 // 基础信息默认参数
@@ -15,7 +15,7 @@ export const INFODATA_DATA =  {
   birthday: '',
   certificate_show: 0,
   check: '',
-  city: '未填写',
+  city: '',
   collect_num: '',
   complain_num: '',
   country: '',
@@ -28,7 +28,7 @@ export const INFODATA_DATA =  {
   hometown: '',
   id: '',
   img: '',
-  introduce: '未填写',
+  introduce: '',
   ip_address: '',
   is_end: '',
   is_introduces: '',
@@ -49,7 +49,7 @@ export const INFODATA_DATA =  {
   sort_flag: '',
   source: '',
   tags: [],
-  tel: '未填写',
+  tel: '',
   time: '',
   type: '',
   update_time: '',
@@ -59,7 +59,7 @@ export const INFODATA_DATA =  {
   uuid: '',
   view_num: '',
   zan_num: '',
-  age:'未填写',
+  age:'',
 }
 
 // 人员信息
@@ -67,7 +67,7 @@ export const INTRODUCERS_DATA = {
   check: '',
   experience: '',
   experience_str: '',
-  hometown: '未填写',
+  hometown: '',
   hometown_id: '',
   number_people: '',
   prof_degree: '',

@@ -25,7 +25,7 @@ export default function AddResumeInfo(){
   const infoData = useSelector<any, resInfoObj>(state => state.resumeData.info);
   // 获取hooks数据
   const { infoConfig, genderCurrent, startDatePicker } = useResumeAddInfo();
-  console.error(infoConfig,'info23132')
+  console.error(infoData,'info23132')
   // 发送验证码
   const { text, userGetCode } = useCode()
   // 输入数据
@@ -60,30 +60,38 @@ export default function AddResumeInfo(){
     }
     // 民族
     let nations: NationsType[] = [...infoConfig.nation];
-    for (let i = 0; i < nations.length; i++) {
-      nations[i].id = nations[i].mz_id;
-      nations[i].name = nations[i].mz_name;
-      if (infoData.nation_id){
-        setNationsName(nations[+infoData.nation_id-1].mz_name);
+    if(nations.length){
+      for (let i = 0; i < nations.length; i++) {
+        nations[i].id = nations[i].mz_id;
+        nations[i].name = nations[i].mz_name;
+        if (infoData.nation_id){
+          setNationsName(nations[+infoData.nation_id-1].mz_name);
+        }
       }
     }
-    let classifiesArr = infoData.occupations_id.split(',');
-    const data = [...infoConfig.occupation];
-    if (data){
+    let classifiesArr = infoData.occupations_id&&infoData.occupations_id.split(',')||[];
+    const data = [...infoConfig.occupation] ||[];
+    console.error(data,'data')
+    if (data && data.length){
       for (let i = 0; i < data.length;i++){
         for (let j = 0; j < data[i].children.length;j++){
-          for (let z = 0; z < classifiesArr.length;z++){
-            if (data[i].children[j].id == classifiesArr[z]){
-              data[i].children[j].is_check = true;
+          if (classifiesArr.length){
+            for (let z = 0; z < classifiesArr.length;z++){
+              if (data[i].children[j].id == classifiesArr[z]){
+                data[i].children[j].is_check = true;
+              }
             }
           }
         }
       }
     }
+    console.error('走这里')
     // 判断所在地区
+    if(infoData){
+      setLocationData({ province: infoData.province, city: infoData.city, citycode: '', oadcode: '', regionone: infoData.title, longitude: infoData.location && infoData.location.split(',')[0].toString(), latitude: infoData.location && infoData.location.split(',')[1].toString(), address: infoData.address, adcode: infoData.ad_code, wardenryid: ''})
+    }
     // 将数据保存到redux中的areaInfo中
     dispatch(setAreaInfo({ ...areaInfo, title: infoData.address||'' }));
-    setLocationData({ province: infoData.province, city: infoData.city, citycode: '', oadcode: '', regionone: infoData.title, longitude: infoData.location.split(',')[0].toString(), latitude: infoData.location.split(',')[1].toString(), address: infoData.address, adcode: infoData.ad_code.toString(), wardenryid: ''})
     // 工种
     setNations(nations);
     setClassifyTree(data)
@@ -96,17 +104,14 @@ export default function AddResumeInfo(){
       ...location, adcode: area.adcode, address: area.title, longitude: area.location.split(',')[0], latitude: area.location.split(',')[1],
     })
   }, [areaInfo])
-  console.error(areaInfo, 'locationlocationlocation')
   // 用户输入表单
   const userEnterFrom = (e:any, type: string) => {
-    console.log(e, type)
     inputVal[type] = e.detail.value;
     setInputVal({...inputVal})
   }
 
   // picker 发生改变
   const onPickerChange = (e:any, type: string) => {
-    console.error(e,'111')
     if (type == 'gender'){
       inputVal[type] = (+e.detail.value + 1).toString();
       const sexTitle = e.detail.value == 0 ? '男':'女';
@@ -117,7 +122,6 @@ export default function AddResumeInfo(){
       for (let i = 0; i < nations.length;i++){
         name = nations[e.detail.value].mz_name
       }
-      console.error(name,'111')
       setNationsName(name);
       inputVal[type] = name;
     }else{
@@ -128,8 +132,6 @@ export default function AddResumeInfo(){
   }
   // 提交
   const handelSubmit =()=>{
-    console.error(1);
-    console.error(inputVal.username,'inputVal.username')
     if (!inputVal.username || inputVal.username.length < 2 || inputVal.username.length > 5 || !isChinese(inputVal.username)){
       ShowActionModal({msg: '请填写真实姓名，2-5字，必须含有汉字'})
       return
@@ -144,7 +146,6 @@ export default function AddResumeInfo(){
         return
       }
     }
-    console.error(inputVal.introduce)
     if (!inputVal.introduce|| !isChinese(inputVal.introduce) || inputVal.introduce.length < 15 || inputVal.introduce.length > 500 ){
       ShowActionModal({ msg: '请填写真实自我介绍，15-500字，必须含有汉字' })
       return
@@ -165,7 +166,6 @@ export default function AddResumeInfo(){
       address:locationData.address,
       adcode: '',
     };
-    console.error(params,'params')
     return;
     addResumeAction(params).then(res=>{
       if(res.errcode == 'ok'){
@@ -180,7 +180,6 @@ export default function AddResumeInfo(){
     setShowProssion(false)
   }
   const userClickProfession = (i:number,k:number,id:string)=>{
-    console.error(i,k,id,'111')
     let works: ProfessionRecruitData[] = JSON.parse(JSON.stringify(classifyTree))
     let check: boolean = works[i].children[k].is_check
     if (!check) {
@@ -196,14 +195,11 @@ export default function AddResumeInfo(){
     let newArr: string[] = (check) ? classifyArr.filter(item => item !== id) : [...classifyArr, id];
     setClassifyTree(works);
     setClassifies(newArr);
-    console.error(works,'works');
-    console.error(newArr,'newArr')
   }
   // 获取定位
   const handleGps = ()=>{
     Taro.getSetting({
       success:(res)=>{
-        console.error(res);
         if (res.authSetting['scope.userLocation'] != undefined && res.authSetting['scope.userLocation'] != true) {//非初始化进入该页面,且未授权   
           Taro.showModal({
             title: '是否授权当前位置',
@@ -218,7 +214,6 @@ export default function AddResumeInfo(){
                       if (data != null) {
                         setLocationData(data);
                       }
-                      console.error(data,'1111');
                     }else{
                       Msg('授权失败')
                     }
@@ -232,7 +227,6 @@ export default function AddResumeInfo(){
           if(data != null){
             setLocationData(data);
           }
-          console.error(data,'111');
         }
       }
     })
@@ -246,9 +240,7 @@ export default function AddResumeInfo(){
       url: url
     })
   }
-  console.error(classifyTree,'classifyTree');
-  console.error(infoData.tel,'1111');
-  console.error(inputVal.tel,'222')
+  console.error(classifies,'classifies')
   return (
     <View className='resume-addinfo-container'>
       {showProssion && 
@@ -318,8 +310,8 @@ export default function AddResumeInfo(){
                 </View>
               <View className='publish-list-item' onClick={() => setShowProssion(true)}>
                   <Text className='pulish-list-title'>所属工种</Text>
-                {
-                  classifies.length ?
+                {/* {
+                  classifies && classifies.length ?
                     <View className='publish-list-input'>
                       {classifyTree.map(item => (
                         <Block key={item.id}>
@@ -333,7 +325,7 @@ export default function AddResumeInfo(){
                     </View>
                     :
                     <Input className='publish-list-input' disabled type='text' placeholder='请选择所属工种' />
-                }
+                } */}
                 </View>
               <View className='publish-list-item adressInput' onClick={()=>userChooseArea()}>
                 <Text className='pulish-list-title'>所在地区</Text>

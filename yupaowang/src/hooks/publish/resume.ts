@@ -4,8 +4,8 @@
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
- * @LastEditors: jsxin
- * @LastEditTime: 2020-11-06 17:18:01
+ * @LastEditors: zyb
+ * @LastEditTime: 2020-11-07 00:21:38
 =======
 >>>>>>> c4934cd3ef6271dedb29cefa5b63959eded6b62a
  * @LastEditors: zyb
@@ -35,7 +35,14 @@ export default function useResume(){
   const [certificates, setCertificates] = useState<resCertificatesArr[]>(resumeData.certificates);
   //置顶
   const [resume_top, setResume_top] = useState<resume_topObj>(RESUME_TOP_DATA)
-  
+  // 人员信息
+  const [is_introduces, setIs_introduces] = useState<number>(0);
+  // 最大项目长度
+  const [project_count, setProject_count] = useState<number>(0)
+  // 最大技能长度
+  const [certificate_count, setCertificate_count] = useState<number>(0);
+  // 显示图标
+  const [show_tips, setShow_tips]= useState<number>(0);
   useEffect(()=>{
     initResumeData()
   },[])
@@ -66,6 +73,14 @@ export default function useResume(){
         let info: resInfoObj = { ...INFODATA_DATA };
         info = { ...info, ...res.data.info }
         setInfoData({ ...info });
+        // 是否有人员信息
+        setIs_introduces(res.data.is_introduces);
+        //最大项目长度
+        setProject_count(res.data.project_count);
+        // 最大技能长度
+        setCertificate_count(res.data.certificate_count);
+        // 头像旁边图片显示
+        setShow_tips(res.data.content.show_tips);
         //人员信息
         let introduces: resIntroduceObj = { ...INTRODUCERS_DATA };
         introduces = { ...introduces, ...res.data.introduces }
@@ -95,6 +110,10 @@ export default function useResume(){
     projectData,
     certificates,
     resume_top,
-    initResumeData
+    initResumeData,
+    is_introduces,
+    project_count,
+    certificate_count,
+    show_tips,
   }
 }

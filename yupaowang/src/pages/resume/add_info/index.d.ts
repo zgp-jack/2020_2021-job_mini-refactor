@@ -2,7 +2,7 @@
  * @Author: zyb
  * @Date: 2020-11-05 10:04:59
  * @LastEditors: zyb
- * @LastEditTime: 2020-11-06 20:47:21
+ * @LastEditTime: 2020-11-07 09:17:43
  * @Description: 
  */
 export interface NationsType{
@@ -22,7 +22,7 @@ export interface OccupationType {
 export interface LocationDataType {
   province: string,
   city: string,
-  adcode: string,
+  adcode: string|number,
   citycode:string,
   address:string,
   oadcode:string,

@@ -1,4 +1,4 @@
-(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["subpackage/pages/checkauth/index"],{
+(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["subpackage/pages/checkauth/index"],{
 
 /***/ "./src/subpackage/pages/checkauth/index.scss":
 /*!***************************************************!*\
@@ -31,9 +31,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
+var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
 
-var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
+var _taroTt2 = _interopRequireDefault(_taroTt);
 
 var _index = __webpack_require__(/*! ../../../config/index */ "./src/config/index.ts");
 
@@ -74,7 +74,7 @@ var CheckAuth = function (_Taro$Component) {
     key: "_constructor",
     value: function _constructor(props) {
       _get(CheckAuth.prototype.__proto__ || Object.getPrototypeOf(CheckAuth.prototype), "_constructor", this).call(this, props);
-      this.$$refs = new _taroWeapp2.default.RefsArray();
+      this.$$refs = new _taroTt2.default.RefsArray();
     }
   }, {
     key: "_createData",
@@ -85,17 +85,17 @@ var CheckAuth = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _useState = (0, _taroWeapp.useState)(''),
+      var _useState = (0, _taroTt.useState)(''),
           _useState2 = _slicedToArray(_useState, 2),
           tel = _useState2[0],
           setTel = _useState2[1];
 
-      var _useState3 = (0, _taroWeapp.useState)(),
+      var _useState3 = (0, _taroTt.useState)(),
           _useState4 = _slicedToArray(_useState3, 2),
           model = _useState4[0],
           setModel = _useState4[1];
 
-      var _useState5 = (0, _taroWeapp.useState)(false),
+      var _useState5 = (0, _taroTt.useState)(false),
           _useState6 = _slicedToArray(_useState5, 2),
           show = _useState6[0],
           setShow = _useState6[1];
@@ -105,7 +105,7 @@ var CheckAuth = function (_Taro$Component) {
       });
       // 用户拨打电话
       var userCallPhone = function userCallPhone() {
-        _taroWeapp2.default.makePhoneCall({
+        _taroTt2.default.makePhoneCall({
           phoneNumber: _index.SERVERPHONE
         });
       };
@@ -117,15 +117,15 @@ var CheckAuth = function (_Taro$Component) {
           if (data.errcode == 'auth_pass') {
             return;
           } else if (data.errcode == 'auth_not_pass') {
-            _taroWeapp2.default.showModal({
+            _taroTt2.default.showModal({
               title: '温馨提示',
               content: data.errmsg,
               success: function success(res) {
                 if (res.confirm) {
                   // 跳转实名
-                  _taroWeapp2.default.navigateTo({ url: '' });
+                  _taroTt2.default.navigateTo({ url: '' });
                 } else {
-                  _taroWeapp2.default.reLaunch({ url: '/pages/index/index' });
+                  _taroTt2.default.reLaunch({ url: '/pages/index/index' });
                 }
               }
             });
@@ -133,16 +133,16 @@ var CheckAuth = function (_Taro$Component) {
             (0, _index4.ShowActionModal)({
               msg: data.errmsg,
               success: function success() {
-                _taroWeapp2.default.reLaunch({ url: '/pages/index/index' });
+                _taroTt2.default.reLaunch({ url: '/pages/index/index' });
               }
             });
           }
         });
       };
-      (0, _taroWeapp.useDidShow)(function () {
+      (0, _taroTt.useDidShow)(function () {
         InitUserAuthInfo();
       });
-      (0, _taroWeapp.useEffect)(function () {
+      (0, _taroTt.useEffect)(function () {
         InitUserAuthInfo();
       }, [login]);
       // 用户输入电话号码
@@ -167,7 +167,7 @@ var CheckAuth = function (_Taro$Component) {
           (0, _index4.ShowActionModal)({
             msg: '网络错误，请求失败',
             success: function success() {
-              _taroWeapp2.default.navigateBack();
+              _taroTt2.default.navigateBack();
             }
           });
         });
@@ -207,13 +207,13 @@ var CheckAuth = function (_Taro$Component) {
   }]);
 
   return CheckAuth;
-}(_taroWeapp2.default.Component);
+}(_taroTt2.default.Component);
 
 CheckAuth.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2"];
 CheckAuth.$$componentPath = "subpackage/pages/checkauth/index";
 exports.default = CheckAuth;
 
-Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(CheckAuth, true));
+Page(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(CheckAuth, true));
 
 /***/ })
 
