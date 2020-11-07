@@ -59,7 +59,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+// import CollectionRecruitList  from '../../../components/recommendList/index'
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> abac5d3434e1eab5d85d51a17bd8bc75756a93ca
 var detailContext = exports.detailContext = (0, _taroTt.createContext)({});
 
 var ResumeDetail = function (_Taro$Component) {
@@ -77,10 +82,14 @@ var ResumeDetail = function (_Taro$Component) {
       backgroundTextStyle: "dark"
     };
 
+<<<<<<< HEAD
     _this.$usedState = ["data", "loopArray91", "loopArray93", "loopArray94", "$compid__78", "$compid__79", "isAuth", "IMGCDNURL", "examine", "onoff", "list", "praise", "collect", "shownewtips", "complaintModal", "age", "phone"];
+=======
+    _this.$usedState = ["data", "loopArray109", "loopArray111", "loopArray112", "$compid__94", "isAuth", "IMGCDNURL", "examine", "onoff", "praise", "collect", "shownewtips", "complaintModal", "age", "phone"];
+>>>>>>> abac5d3434e1eab5d85d51a17bd8bc75756a93ca
     _this.anonymousFunc4Map = {};
     _this.anonymousFunc6Map = {};
-    _this.customComponents = ["Auth", "CollectionRecruitList", "Report"];
+    _this.customComponents = ["Auth", "Report"];
     return _this;
   }
 
@@ -101,6 +110,7 @@ var ResumeDetail = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
+<<<<<<< HEAD
       var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__78"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
           $prevCompid__78 = _genCompid2[0],
@@ -110,6 +120,12 @@ var ResumeDetail = function (_Taro$Component) {
           _genCompid4 = _slicedToArray(_genCompid3, 2),
           $prevCompid__79 = _genCompid4[0],
           $compid__79 = _genCompid4[1];
+=======
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__94"),
+          _genCompid2 = _slicedToArray(_genCompid, 2),
+          $prevCompid__94 = _genCompid2[0],
+          $compid__94 = _genCompid2[1];
+>>>>>>> abac5d3434e1eab5d85d51a17bd8bc75756a93ca
       // 获取用户是否登录
 
 
@@ -163,8 +179,12 @@ var ResumeDetail = function (_Taro$Component) {
           data = _useState2[0],
           setDate = _useState2[1];
       // 相关推荐
+      // const [list,setList ] = useState<ListType>({
+      //   item:[]
+      // })
 
 
+<<<<<<< HEAD
       var _useState3 = (0, _taroTt.useState)({
         item: []
       }),
@@ -251,6 +271,87 @@ var ResumeDetail = function (_Taro$Component) {
           _useState28 = _slicedToArray(_useState27, 2),
           clickType = _useState28[0],
           setClickType = _useState28[1];
+=======
+      var _useState3 = (0, _taroTt.useState)(true),
+          _useState4 = _slicedToArray(_useState3, 2),
+          examine = _useState4[0],
+          setExamine = _useState4[1];
+      // 查看电话
+
+
+      var _useState5 = (0, _taroTt.useState)(false),
+          _useState6 = _slicedToArray(_useState5, 2),
+          onoff = _useState6[0],
+          seOnoff = _useState6[1];
+      // 手机号码
+
+
+      var _useState7 = (0, _taroTt.useState)(''),
+          _useState8 = _slicedToArray(_useState7, 2),
+          phone = _useState8[0],
+          setPhone = _useState8[1];
+      // 弹框
+
+
+      var _useState9 = (0, _taroTt.useState)(false),
+          _useState10 = _slicedToArray(_useState9, 2),
+          shownewtips = _useState10[0],
+          setShownewtips = _useState10[1];
+      // 收藏
+
+
+      var _useState11 = (0, _taroTt.useState)(0),
+          _useState12 = _slicedToArray(_useState11, 2),
+          collect = _useState12[0],
+          setCollect = _useState12[1];
+      // 赞
+
+
+      var _useState13 = (0, _taroTt.useState)(0),
+          _useState14 = _slicedToArray(_useState13, 2),
+          praise = _useState14[0],
+          setPraise = _useState14[1];
+      // 年龄
+
+
+      var _useState15 = (0, _taroTt.useState)(''),
+          _useState16 = _slicedToArray(_useState15, 2),
+          age = _useState16[0],
+          setAge = _useState16[1];
+      // 投诉
+
+
+      var _useState17 = (0, _taroTt.useState)(false),
+          _useState18 = _slicedToArray(_useState17, 2),
+          complaintModal = _useState18[0],
+          setComplaintModal = _useState18[1];
+      // 投诉内容
+
+
+      var _useState19 = (0, _taroTt.useState)(''),
+          _useState20 = _slicedToArray(_useState19, 2),
+          textarea = _useState20[0],
+          setTextarea = _useState20[1];
+      // 是否还可以投诉
+
+
+      var _useState21 = (0, _taroTt.useState)(false),
+          _useState22 = _slicedToArray(_useState21, 2),
+          iscomplaint = _useState22[0],
+          setIsComplaint = _useState22[1];
+      // 点赞获取电话号码分享收藏需要先登陆
+
+
+      var _useState23 = (0, _taroTt.useState)(false),
+          _useState24 = _slicedToArray(_useState23, 2),
+          isAuth = _useState24[0],
+          setIsAuth = _useState24[1];
+
+      var _useState25 = (0, _taroTt.useState)(''),
+          _useState26 = _slicedToArray(_useState25, 2),
+          clickType = _useState26[0],
+          setClickType = _useState26[1];
+>>>>>>> abac5d3434e1eab5d85d51a17bd8bc75756a93ca
 
       var getDataList = function getDataList() {
         var params = {
@@ -280,16 +381,17 @@ var ResumeDetail = function (_Taro$Component) {
             if (res.info.is_read == 0 && res.info.is_end != '2' && res.operation.status == 0) {
               seOnoff(true);
             }
-            var listParams = {
-              page: 1,
-              type: 1,
-              area_id: res.info.city,
-              occupations: res.info.occupations_id,
-              uuid: res.info.uuid
-            };
-            (0, _index.recommendListAction)(listParams).then(function (res) {
-              setList({ item: res.data.list });
-            });
+            // 加载相关推荐数据列表
+            // const listParams = {
+            //   page: 1,
+            //   type: 1,
+            //   area_id: res.info.city,
+            //   occupations: res.info.occupations_id,
+            //   uuid: res.info.uuid,
+            // }
+            // recommendListAction(listParams).then(res => {
+            //   setList({ item: res.data.list })
+            // })
           }
         });
       };
@@ -478,7 +580,7 @@ var ResumeDetail = function (_Taro$Component) {
         setShownewtips(false);
       };
       this.anonymousFunc11 = handleTellPhone;
-      var loopArray91 = data.info.occupations.length ? data.info.occupations.map(function (v, i) {
+      var loopArray109 = data.info.occupations.length ? data.info.occupations.map(function (v, i) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
@@ -488,12 +590,12 @@ var ResumeDetail = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray93 = data.project.length ? data.project[0].image.map(function (v, i) {
+      var loopArray111 = data.project.length ? data.project[0].image.map(function (v, i) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
         var $loopState__temp4 = data.project.length ? i + i : null;
-        var _$indexKey = "jhzzz" + i;
+        var _$indexKey = "bahzz" + i;
         _this2.anonymousFunc4Map[_$indexKey] = function () {
           return handleImg(v.$original);
         };
@@ -503,12 +605,12 @@ var ResumeDetail = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray94 = data.certificates.length ? data.certificates[0].image.map(function (val, i) {
+      var loopArray112 = data.certificates.length ? data.certificates[0].image.map(function (val, i) {
         val = {
           $original: (0, _taroTt.internal_get_original)(val)
         };
         var $loopState__temp6 = data.certificates.length ? i + i : null;
-        var _$indexKey2 = "jizzz" + i;
+        var _$indexKey2 = "baizz" + i;
         _this2.anonymousFunc6Map[_$indexKey2] = function () {
           return handleImg(val.$original);
         };
@@ -518,16 +620,20 @@ var ResumeDetail = function (_Taro$Component) {
           $original: val.$original
         };
       }) : [];
+<<<<<<< HEAD
       list.item.length && _taroTt.propsManager.set({
         "data": list.item,
         "type": 2
       }, $compid__78, $prevCompid__78);
+=======
+>>>>>>> abac5d3434e1eab5d85d51a17bd8bc75756a93ca
       complaintModal && _taroTt.propsManager.set({
         "display": complaintModal,
         "textarea": textarea,
         "handleTextarea": handleTextarea,
         "setComplaintModal": setComplaintModal,
         "handleSubmit": handleSubmit
+<<<<<<< HEAD
       }, $compid__79, $prevCompid__79);
       Object.assign(this.__state, {
         data: data,
@@ -536,11 +642,19 @@ var ResumeDetail = function (_Taro$Component) {
         loopArray94: loopArray94,
         $compid__78: $compid__78,
         $compid__79: $compid__79,
+=======
+      }, $compid__94, $prevCompid__94);
+      Object.assign(this.__state, {
+        data: data,
+        loopArray109: loopArray109,
+        loopArray111: loopArray111,
+        loopArray112: loopArray112,
+        $compid__94: $compid__94,
+>>>>>>> abac5d3434e1eab5d85d51a17bd8bc75756a93ca
         isAuth: isAuth,
         IMGCDNURL: _index2.IMGCDNURL,
         examine: examine,
         onoff: onoff,
-        list: list,
         praise: praise,
         collect: collect,
         shownewtips: shownewtips,

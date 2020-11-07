@@ -28,10 +28,12 @@ export default function ResumeLists() {
   // * 筛选数据
   const DEFAULT_CONDITION: conditionType[] = [
     {id: AreaPickerKey, text: userListChooseCity ? userListChooseCity.name : '全国'},
-    {id: ClassifyPickerKey, text: '选择工种'},
+    {id: ClassifyPickerKey, text: '工种'},
     {id: MemberPickerKey, text: '队伍'},
     {id: ResumeFilterPickerKey, text: '推荐'}
   ]
+  // 是否还有下一页
+  const [hasMore, setHasMore] = useState<boolean>(true)
   // 滚动条高度
   const [scrollTop, setScrollTop] = useState<number>(0)
   // 设置顶部筛选条件数据
@@ -74,6 +76,7 @@ export default function ResumeLists() {
         let {has_sort_flag = hasSortFlag, has_time = hasTime, has_top = hasTop, last_sort_flag_pos = lastSortFlagPos, last_normal_pos = lastNormalPos, last_time_pos = lastTimePos} = mydata
         setNormalField({has_sort_flag, has_time, has_top, last_sort_flag_pos, last_normal_pos, last_time_pos})
       }
+      if (mydata.list && !mydata.list.length) setHasMore(false)
       Taro.hideNavigationBarLoading()
       if (searchData.page === 1) setLists([[...mydata.list]])
       else setLists([...lists, [...mydata.list]])
@@ -85,11 +88,13 @@ export default function ResumeLists() {
   // * 监听下拉刷新
   const pullDownAction = () => {
     setRefresh(true)
+    setHasMore(true)
     setSearchData({...searchData, page: 1})
   }
 
   // * 触底加载下一页
   const getNextPageData = () => {
+    if(!hasMore) return
     setSearchData({...searchData, page: searchData.page + 1})
   }
   // 用户页面跳转
@@ -144,6 +149,8 @@ export default function ResumeLists() {
         scrollY
         lowerThreshold={200}
         refresherEnabled
+        scrollWithAnimation
+        scrollTop={scrollTop}
         refresherTriggered={refresh}
         onRefresherRefresh={() => pullDownAction()}
         onScrollToLower={() => getNextPageData()}

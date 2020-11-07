@@ -52,6 +52,7 @@ export default function RecruitList({ data, bottom = true }: PROPS){
         </Block>
         )
       )}
+      {data && data[0] && data[0].length && <View className='list-data-notmore'>没有更多数据了</View>} 
       {data&&data[0]&&!data[0].length && <Nodata text='暂无相关数据' />}
     </View>
   )

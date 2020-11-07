@@ -77,3 +77,12 @@ $miniPublishInputPadding: 0;
   overflow: hidden;
   height: 0;
 }
+
+// 列表页没有更多数据
+.list-data-notmore{
+  position: relative;
+  font-size: 28px;
+  color: #7f7e7e;
+  text-align: center;
+  line-height: 70px;
+}
