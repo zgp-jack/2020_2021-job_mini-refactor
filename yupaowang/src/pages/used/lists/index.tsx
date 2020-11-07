@@ -36,7 +36,7 @@ export default function Fleamarket() {
     page: 1,
     list_type: 'fleamarket',
     area_id: userListChooseCity.id,
-    classify_id: '',
+    classify_id: '0',
     attribute_id: '',
     keywords: ''
   })
