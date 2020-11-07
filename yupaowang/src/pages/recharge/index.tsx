@@ -1,4 +1,4 @@
-import Taro, { useEffect, useState } from '@tarojs/taro'
+import Taro, { useEffect, useState, Config } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
 import { SERVERPHONE, MINIVERSION, DOUYIN } from '../../config'
 import { getRechargeList, getRechargeOpenid, getRechargeOrder, userDouyinRecharge, userCheckDouyinRecharge } from '../../utils/request'
@@ -193,3 +193,10 @@ export default function Recharge(){
     </View>
   )
 }
+
+Recharge.config = {
+  navigationBarTitleText: '用户充值积分',
+  navigationBarBackgroundColor: '#0099ff',
+  navigationBarTextStyle: 'white',
+  backgroundTextStyle: "dark"
+} as Config

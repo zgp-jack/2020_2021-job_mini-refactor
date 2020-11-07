@@ -1,4 +1,4 @@
-(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["components/recommendList/resumeList/index"],{
+(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["components/recommendList/resumeList/index"],{
 
 /***/ "./src/components/recommendList/resumeList/index.scss":
 /*!************************************************************!*\
@@ -29,9 +29,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
 
 var _index = __webpack_require__(/*! ../../../config/index */ "./src/config/index.ts");
 
@@ -65,7 +65,7 @@ var ResumeListPage = function (_Taro$Component) {
     key: "_constructor",
     value: function _constructor(props) {
       _get(ResumeListPage.prototype.__proto__ || Object.getPrototypeOf(ResumeListPage.prototype), "_constructor", this).call(this, props);
-      this.$$refs = new _taroTt2.default.RefsArray();
+      this.$$refs = new _taroWeapp2.default.RefsArray();
     }
   }, {
     key: "_createData",
@@ -82,12 +82,12 @@ var ResumeListPage = function (_Taro$Component) {
       // 用户页面跳转
 
       var userRouteJump = function userRouteJump(url) {
-        _taroTt2.default.navigateTo({
+        _taroWeapp2.default.navigateTo({
           url: url
         });
       };
       var handleLast = function handleLast() {
-        _taroTt2.default.navigateBack({
+        _taroWeapp2.default.navigateBack({
           delta: 1
         });
       };
@@ -96,7 +96,7 @@ var ResumeListPage = function (_Taro$Component) {
       };
       var loopArray73 = data.map(function (item, __index0) {
         item = {
-          $original: (0, _taroTt.internal_get_original)(item)
+          $original: (0, _taroWeapp.internal_get_original)(item)
         };
         var _$indexKey = "iazzz" + __index0;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
@@ -104,7 +104,7 @@ var ResumeListPage = function (_Taro$Component) {
         };
         var $anonymousCallee__8 = item.$original.occupations.map(function (v, i) {
           v = {
-            $original: (0, _taroTt.internal_get_original)(v)
+            $original: (0, _taroWeapp.internal_get_original)(v)
           };
           var $loopState__temp2 = i + i;
           return {
@@ -146,13 +146,13 @@ var ResumeListPage = function (_Taro$Component) {
   }]);
 
   return ResumeListPage;
-}(_taroTt2.default.Component);
+}(_taroWeapp2.default.Component);
 
 ResumeListPage.$$events = ["anonymousFunc0", "anonymousFunc1"];
 ResumeListPage.$$componentPath = "components/recommendList/resumeList/index";
 exports.default = ResumeListPage;
 
-Component(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(ResumeListPage));
+Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(ResumeListPage));
 
 /***/ })
 

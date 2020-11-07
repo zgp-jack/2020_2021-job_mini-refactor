@@ -4,6 +4,8 @@
 var PAGETITLE: string = '鱼泡网-'
 // * 小程序token 
 var TOKEN: string = 'baidu'
+// * 小程序是否能被分享
+var ISCANSHARE: boolean = true
 // * 小程序广告unitid
 var UNITID: string = 'adunit-80f40e8b4f60c3f6'
 // * 邀请key
@@ -17,5 +19,6 @@ module.exports = {
   TOKEN,
   UNITID,
   INVITESOURCE,
-  USESUBSCRIBEMESSAGE
+  USESUBSCRIBEMESSAGE,
+  ISCANSHARE
 }

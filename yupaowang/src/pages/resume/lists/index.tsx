@@ -1,4 +1,4 @@
-import Taro, {useState, useEffect} from '@tarojs/taro'
+import Taro, {useState, useEffect, Config} from '@tarojs/taro'
 import {View, ScrollView, Image} from '@tarojs/components'
 import Search from '../../../components/search'
 import ResumeCondition from '../../../components/condition/resume'
@@ -13,7 +13,7 @@ import {UserListChooseCity} from '../../../config/store'
 import {getResumeList} from '../../../utils/request'
 import './index.scss'
 
-export default function Recruit() {
+export default function ResumeLists() {
 
   // 设置字段默认值
   const hasSortFlag: string = '1'
@@ -153,10 +153,20 @@ export default function Recruit() {
         <ResumeList data={lists}/>
       </ScrollView>
       <View className="overflow-image">
-        <Image className={"rank-rules-image"} onClick={handleClickToRankRules}
-               src='http://cdn.yupao.com/miniprogram/images/resume-list-rules-btn.png'/>
+        <Image 
+          className={"rank-rules-image"} 
+          onClick={handleClickToRankRules}
+          src='http://cdn.yupao.com/miniprogram/images/resume-list-rules-btn.png'
+        />
       </View>
       <View className='publish-list-btn' onClick={() => userRouteJump(`/pages/resume/publish/index`)}>发布找活</View>
     </View>
   )
 }
+
+ResumeLists.config = {
+  navigationBarTitleText: '工人找活列表',
+  navigationBarBackgroundColor: '#0099ff',
+  navigationBarTextStyle: 'white',
+  backgroundTextStyle: "dark"
+} as Config

@@ -71,3 +71,5 @@ export const UNITID: string = MINICONFIG.UNITID
 export const INVITESOURCE: string = MINICONFIG.INVITESOURCE
 // * 是否使用推送信息
 export const USESUBSCRIBEMESSAGE: boolean = MINICONFIG.USESUBSCRIBEMESSAGE
+// * 是否能分享
+export const ISCANSHARE: boolean = MINICONFIG.ISCANSHARE

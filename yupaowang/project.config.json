@@ -218,21 +218,21 @@
         {
           "id": -1,
           "name": "项目经验",
-          "pathName": "pages/resume/projectList/index",
+          "pathName": "pages/resume/projects/index",
           "query": "",
           "scene": null
         },
         {
           "id": -1,
           "name": "技能证书",
-          "pathName": "pages/resume/skillList/index",
+          "pathName": "pages/resume/skills/index",
           "query": "",
           "scene": null
         },
         {
           "id": 24,
           "name": "新增找活",
-          "pathName": "pages/resume/newJobs/index",
+          "pathName": "pages/resume/publish/index",
           "query": "",
           "scene": null
         },

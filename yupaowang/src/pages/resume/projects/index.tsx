@@ -1,4 +1,4 @@
-import Taro from '@tarojs/taro'
+import Taro,{ Config } from '@tarojs/taro'
 import { View, Text, Image } from '@tarojs/components'
 import Imglist from '../../../components/imglist'
 import useResume from '../../../hooks/publish/resume'
@@ -41,3 +41,10 @@ export default function Projects(){
     </View>
   )
 }
+
+Projects.config = {
+  navigationBarTitleText: '技能证书列表',
+  navigationBarBackgroundColor: '#0099ff',
+  navigationBarTextStyle: 'white',
+  backgroundTextStyle: "dark"
+} as Config
