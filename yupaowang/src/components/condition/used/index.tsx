@@ -3,38 +3,29 @@ import { View, Image, Block, ScrollView } from "@tarojs/components";
 import { IMGCDNURL } from "../../../config";
 import { AtDrawer } from "taro-ui";
 import { getListFilterData } from "../../../utils/request";
-import {
-  filterClassifyResultFleamarketTree,
-  filterClassifyResultClassTreeBase
-} from "../../../utils/request/index.d";
+import { filterClassifyResultFleamarketTree, filterClassifyResultClassTreeBase } from "../../../utils/request/index.d";
 import { filterClassifyDataResultReduce } from "../../../reducers/filter_classify";
 import { setFilter } from "../../../actions/filter_classify";
 import AREAS, { ChildItems } from "../../../models/area";
 import classnames from "classnames";
-import {
-  AreaPickerKey,
-  ClassifyPickerKey,
-  FilterPickerKey
-} from "../../../config/pages/lists";
+import { AreaPickerKey, ClassifyPickerKey, FilterPickerKey } from "../../../config/pages/lists";
 import { useDispatch, useSelector } from "@tarojs/redux";
 import { UserListChooseCity } from "../../../config/store";
 import "./index.scss";
-
-interface ConditionData {
-  id: string;
-  text: string;
-}
+import { conditionType } from '../../../pages/recruit/lists/index';
 interface ConditionProps {
-  data: ConditionData[];
   setSearchData: (
-    type: string,
-    id: string,
-    name: string,
-    noRender?: boolean
+    data:paramsType
   ) => void;
 }
 
-function UsedCondition({ data, setSearchData }: ConditionProps) {
+interface paramsType {
+  area_id: string,
+  classify_id: string,
+  attribute_id: string
+}
+
+function UsedCondition({ setSearchData }: ConditionProps) {
   const dispatch = useDispatch();
 
   // * 获取地区选择默认数据
@@ -52,33 +43,42 @@ function UsedCondition({ data, setSearchData }: ConditionProps) {
   const [areaIndex, setAreaIndex] = useState<number>(0);
   // * 当前城市选择子级id
   const [areaChildId, setAreaChildId] = useState<string>(userListChooseCity.id);
-  // * 当前工种选择父级索引
+  // * 当前分类选择父级索引
   const [fleamarketTreeIndex, setfleamarketTreeIndex] = useState<number>(0);
-  // * 历史工种选择父级索引
+  // * 历史分类选择父级索引
   let [oldFleamarketTreeIndex, setOldFleamarketTreeIndex] = useState<number>(0);
-  // * 当前工种选择子级id
+  // * 当前分类选择子级id
   const [fleamarketTreeSonId, setfleamarketTreeSonId] = useState<string>("");
-
+  // * 历史分类选择子级id
+  const [oldFleamarketTreeSonId, setOldFleamarketTreeSonId] = useState<string>("");
   // * 当前展开的城市子集数据
-  const [childAreaList, setChildAreaList] = useState<ChildItems[]>(
-    AREAS[areaIndex].children
-  );
+  const [childAreaList, setChildAreaList] = useState<ChildItems[]>(AREAS[areaIndex].children);
   // 分类
-  const [fleamarketTree, setFleamarketTree] = useState<
-    filterClassifyResultFleamarketTree[]
-  >([]);
+  const [fleamarketTree, setFleamarketTree] = useState<filterClassifyResultFleamarketTree[]>([]);
   // * 子集类型数据
-  const [fleamarketTreeChildData, setFleamarketTreeChildData] = useState<
-    Pick<filterClassifyResultClassTreeBase, "id" | "name">[]
-  >([]);
+  const [fleamarketTreeChildData, setFleamarketTreeChildData] = useState<Pick<filterClassifyResultClassTreeBase, "id" | "name">[]>([]);
   // * 历史子集类型数据
-  const [oldFleamarketTreeChildData, setoldFleamarketTreeChildData] = useState<
-    Pick<filterClassifyResultClassTreeBase, "id" | "name">[]
-  >([]);
+  const [oldFleamarketTreeChildData, setoldFleamarketTreeChildData] = useState<Pick<filterClassifyResultClassTreeBase, "id" | "name">[]>([]);
   // * 城市切换后子集列表回到顶部
   const [areaScrollTop, setAreaScrollTop] = useState<number>(0);
-  // * 工种切换后子集列表回到顶部
+  // * 分类切换后子集列表回到顶部
   const [classifyScrollTop, setClassifyScrollTop] = useState<number>(0);
+  
+  // * 搜索的地区/分类参数
+  const [paramsData, setParamsData] = useState<paramsType>({
+    area_id: userListChooseCity.id,
+    classify_id: '',
+    attribute_id: ''
+  })
+
+  // * 标题默认值
+  const DEFAULT_CONDITION = [
+    { id: AreaPickerKey, text: userListChooseCity.name },
+    { id: ClassifyPickerKey, text: '选择分类' }
+  ]
+
+  // * 标题
+  const [screeningCondition, setScreeningCondition] = useState<conditionType[]>(DEFAULT_CONDITION)
 
   // * 点击选项展开内容
   const conditionItemClick = (id: string) => {
@@ -86,23 +86,32 @@ function UsedCondition({ data, setSearchData }: ConditionProps) {
   };
 
   // * 关闭抽屉
-  // * reReset是否重置
+  // * reReset是否重置（手动关闭的时候reReset为true）
   const closeDrawer = (reReset?: boolean) => {
     // * 关闭的时候会去调onClose方法，避免重复调用
-    if (current !== "") {
+    if (current) {
       //关闭的时候重置数据
       if (reReset) {
         resetCity();
         resetFleamarketTree();
+        setParamsData({...paramsData})
       }
       setCurrent("");
     }
   };
 
-  // * 重置分类
+  // * 重置分类（历史数据设置为当前数据）
   function resetFleamarketTree() {
     setfleamarketTreeIndex(oldFleamarketTreeIndex);
     setFleamarketTreeChildData([...oldFleamarketTreeChildData]);
+    paramsData.classify_id = AREAS[oldFleamarketTreeIndex].id.toString()
+    paramsData.attribute_id = oldFleamarketTreeSonId
+  }
+
+  // * 设置标题
+  function setTile(key,text){
+    screeningCondition[key].text = text;
+    setScreeningCondition([...screeningCondition])
   }
 
   // * 城市索引更换
@@ -110,29 +119,49 @@ function UsedCondition({ data, setSearchData }: ConditionProps) {
     setAreaIndex(i);
     setAreaScrollTop(0);
     if (!AREAS[i].has_children) {
-      setSearchData(AreaPickerKey, AREAS[i].id.toString(), AREAS[i].name);
-      Taro.setStorageSync("userListChooseCity", { ...AREAS[i] });
+      // 设置标题
+      setTile(0,AREAS[i].name)
+      // 请求接口
+      paramsData.area_id = AREAS[i].id.toString()
+      setSearchData({...paramsData})
+      setParamsData({...paramsData})
+      setAreaChildId('');
+      // 设置缓存
+      Taro.setStorageSync(UserListChooseCity, { ...AREAS[i] });
       closeDrawer();
     }
   };
 
   // 选择子集地区
   const sureAreaCurrent = (data: any) => {
+    // 设置标题
+    setTile(0,data.name)
+    // 设置地区id
     setAreaChildId(data.id);
-    setSearchData(AreaPickerKey, data.id, data.name);
-    Taro.setStorageSync("userListChooseCity", { ...data });
+    // 请求接口
+    paramsData.area_id = data.id.toString()
+    setSearchData({...paramsData})
+    setParamsData({...paramsData})
+    // 设置缓存
+    Taro.setStorageSync(UserListChooseCity, { ...data });
     closeDrawer();
   };
 
-  // *  选择子集工种
+  // *  选择子集分类
   const sureClassifyCurrent = (i: number) => {
-    let id: number = fleamarketTreeChildData[i].id - 0;
-    setfleamarketTreeSonId(id + "");
-    setSearchData(
-      FilterPickerKey,
-      id.toString(),
-      fleamarketTreeChildData[i].name
-    );
+    let id: number = Number(fleamarketTreeChildData[i].id); 
+
+    // 设置标题
+    setTile(1,fleamarketTreeChildData[i].name)
+    // 设置id/历史id
+    setfleamarketTreeSonId(id.toString());
+    setOldFleamarketTreeSonId(id.toString())
+    // 请求接口
+    paramsData.classify_id = AREAS[fleamarketTreeIndex].id.toString();
+    paramsData.attribute_id = id.toString();
+    setSearchData({...paramsData})
+    setParamsData({...paramsData})
+    // 设置历史数据/索引
     setOldFleamarketTreeIndex(fleamarketTreeIndex);
     setoldFleamarketTreeChildData([
       ...filterData.fleamarketTree[fleamarketTreeIndex].attributes
@@ -140,38 +169,38 @@ function UsedCondition({ data, setSearchData }: ConditionProps) {
     closeDrawer();
   };
 
-  // * 工种索引更换
+  // * 分类索引更换
   const changeClassifyIndex = (i: number) => {
+    // 设置索引
     setfleamarketTreeIndex(i);
     setClassifyScrollTop(0);
     if (!fleamarketTree[i].has_attribute) {
+
+      // 设置标题
+      setTile(1,fleamarketTree[i].name)
+      // 设置历史索引
       setOldFleamarketTreeIndex(i);
-      setSearchData(
-        ClassifyPickerKey,
-        fleamarketTree[i].id.toString(),
-        fleamarketTree[i].name
-      );
+      // 请求接口
+      paramsData.classify_id = fleamarketTree[i].id.toString()
+      paramsData.attribute_id = '';
+      setSearchData({...paramsData})
+      setParamsData({...paramsData})
+
+      // 设置子内容/历史内容
       setFleamarketTreeChildData([]);
       setoldFleamarketTreeChildData([]);
       closeDrawer();
     } else {
-      setSearchData(
-        ClassifyPickerKey,
-        fleamarketTree[i].id.toString(),
-        fleamarketTree[i].name,
-        true
-      );
+      // 设置子内容
       setFleamarketTreeChildData([...filterData.fleamarketTree[i].attributes]);
     }
   };
 
   // * 地区设置默认索引
   function resetCity() {
-    let defaultCityId =
-      userListChooseCity.pid === "0" || userListChooseCity.pid === "1"
-        ? userListChooseCity.id
-        : userListChooseCity.pid;
+    let defaultCityId = userListChooseCity.pid === "0" || userListChooseCity.pid === "1" ? userListChooseCity.id : userListChooseCity.pid;
     let defaultCityIndex = AREAS.findIndex(item => item.id === defaultCityId);
+    paramsData.area_id = userListChooseCity.id
     setAreaIndex(defaultCityIndex);
   }
 
@@ -212,8 +241,8 @@ function UsedCondition({ data, setSearchData }: ConditionProps) {
   return (
     <Block>
       <View className="recruit-condition-box">
-        {data &&
-          data.map(item => (
+        {screeningCondition &&
+          screeningCondition.map(item => (
             <View
               className="recruit-condition-item"
               key={item.id}
@@ -274,7 +303,7 @@ function UsedCondition({ data, setSearchData }: ConditionProps) {
           )}
         </View>
       </AtDrawer>
-      {/* 工种选择器 */}
+      {/* 分类选择器 */}
       <AtDrawer
         show={current === ClassifyPickerKey}
         mask
@@ -307,7 +336,7 @@ function UsedCondition({ data, setSearchData }: ConditionProps) {
                   className={classnames({
                     "drawer-list-item overwords": true,
                     "drawer-list-item-active":
-                      item.id + "" === fleamarketTreeSonId
+                      item.id.toString() === fleamarketTreeSonId
                   })}
                   key={item.id}
                   onClick={() => sureClassifyCurrent(i)}
