@@ -1616,3 +1616,15 @@ export interface TurntableVideoEndData {
 export interface TurntableVideoEnd extends TurntableIndexTypePortion {
   data: TurntableVideoEndData
 }
+
+
+// 获取鱼泡币页面大转盘展示控制
+export interface memberTurntableDataType {
+  all_config: number
+  is_turntable: number
+  show_turntable: number
+}
+
+export interface memberTurntableType extends TurntableIndexTypePortion {
+  data: memberTurntableDataType
+}

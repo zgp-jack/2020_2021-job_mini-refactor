@@ -79,9 +79,10 @@ export default function Fleamarket() {
     setInputValue(value)
   }
 
-  const setSearchDatas = (key: string, value: string | number) => {
+  const setSearchDatas = (key: string, value: string) => {
     setIsend(false);
     searchData[key] = value;
+    searchData.page = 1;
     setSearchData({ ...searchData })
   }
 
@@ -103,7 +104,7 @@ export default function Fleamarket() {
         >
           <View style={{ height: '8px' }}></View>
           <WechatNotice />
-          <UsedList data={lists} />
+          <UsedList data={lists} isend={isend}/>
         </ScrollView>
       </View>
       <Tabbar />

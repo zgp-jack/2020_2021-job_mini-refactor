@@ -214,4 +214,6 @@ export const turntableIndex: string = REQUESTURL + 'turntable/index/'
 export const turntableDraw: string = REQUESTURL + 'turntable/draw/'
 // 大转盘看视频结束后的回调
 export const turntableVideoEnd: string = REQUESTURL + 'turntable/video-end/'
+// 获取鱼泡币页面大转盘展示控制
+export const memberTurntable: string = REQUESTURL + 'member/turntable/'
 

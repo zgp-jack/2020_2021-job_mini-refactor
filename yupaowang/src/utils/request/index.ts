@@ -1175,3 +1175,11 @@ export function turntableVideoEnd():Promise<Inter.TurntableVideoEnd>{
     method: 'POST',
   })
 }
+
+// 获取鱼泡币页面大转盘展示控制
+export function memberTurntable():Promise<Inter.memberTurntableType>{
+  return doRequestAction({
+    url: api.memberTurntable,
+    method: 'POST',
+  })
+}

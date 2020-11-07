@@ -3,6 +3,13 @@ import { View, Text, Image } from "@tarojs/components";
 import { IMGCDNURL, SERVERPHONE } from "../../config";
 import { userJumpPage } from "../../utils/helper";
 import "./index.scss";
+import { memberTurntable } from "../../../src/utils/request";
+import classnames from "classnames";
+
+interface TurntableType {
+  showBtn: number;
+  show: number;
+}
 
 export default function GetIntegral() {
   const [ios, setIos] = useState<boolean>(true);
@@ -10,8 +17,22 @@ export default function GetIntegral() {
   const userCallPhone = () => {
     Taro.makePhoneCall({ phoneNumber: SERVERPHONE });
   };
+
+  const [turntable, setTurntable] = useState<TurntableType>({
+    showBtn: 0,
+    show: 0
+  });
+
   // 判断客户端
   useEffect(() => {
+    memberTurntable().then(res => {
+      if (res.errcode == "ok") {
+        let { is_turntable, show_turntable } = res.data;
+        turntable.showBtn = Number(is_turntable);
+        turntable.show = Number(show_turntable);
+        setTurntable({ ...turntable });
+      }
+    });
     let system: Taro.getSystemInfoSync.Result = Taro.getSystemInfoSync();
     if (system.platform !== "ios") setIos(false);
   }, []);
@@ -45,18 +66,25 @@ export default function GetIntegral() {
             </View>
           </View>
         )}
-        <View className="getintegral-item">
-          <View className="getintegral-item-title">玩游戏，赚积分</View>
-          <View className="getintegral-item-content">
-            玩游戏，每天可获1~300分。（推荐）
+        {turntable.show ? (
+          <View className="getintegral-item">
+            <View className="getintegral-item-title">玩游戏，赚积分</View>
+            <View className="getintegral-item-content">
+              玩游戏，每天可获1~300分。（推荐）
+            </View>
+            <View
+              onClick={() => userJumpPage("/pages/turntable/index")}
+              className={classnames({
+                "getintegral-item-btn": true,
+                "getintegral-list-btn-dis": !turntable.showBtn
+              })}
+            >
+              {turntable.showBtn ? "去看看" : "已完成"}
+            </View>
           </View>
-          <View
-            onClick={() => userJumpPage("/pages/turntable/index")}
-            className="getintegral-item-btn"
-          >
-            去看看
-          </View>
-        </View>
+        ) : (
+          ""
+        )}
       </View>
       <View className="getintegral-footer">
         <View className="getintegral-footer-header">
