@@ -1,4 +1,4 @@
-(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["pages/collection/index"],{
+(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["pages/collection/index"],{
 
 /***/ "./src/pages/collection/index.scss":
 /*!*****************************************!*\
@@ -31,9 +31,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
+var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
 
-var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
+var _taroTt2 = _interopRequireDefault(_taroTt);
 
 var _index = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
 
@@ -84,7 +84,7 @@ var Collection = function (_Taro$Component) {
     key: "_constructor",
     value: function _constructor(props) {
       _get(Collection.prototype.__proto__ || Object.getPrototypeOf(Collection.prototype), "_constructor", this).call(this, props);
-      this.$$refs = new _taroWeapp2.default.RefsArray();
+      this.$$refs = new _taroTt2.default.RefsArray();
     }
   }, {
     key: "_createData",
@@ -97,29 +97,29 @@ var Collection = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__44"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__44"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
           $prevCompid__44 = _genCompid2[0],
           $compid__44 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__45"),
+      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__45"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
           $prevCompid__45 = _genCompid4[0],
           $compid__45 = _genCompid4[1];
       // 默认table
 
 
-      var _useState = (0, _taroWeapp.useState)(1),
+      var _useState = (0, _taroTt.useState)(1),
           _useState2 = _slicedToArray(_useState, 2),
           current = _useState2[0],
           setCurrent = _useState2[1];
 
-      var _useState3 = (0, _taroWeapp.useState)(0),
+      var _useState3 = (0, _taroTt.useState)(0),
           _useState4 = _slicedToArray(_useState3, 2),
           bottom = _useState4[0],
           setBottom = _useState4[1];
 
-      var _useState5 = (0, _taroWeapp.useState)(0),
+      var _useState5 = (0, _taroTt.useState)(0),
           _useState6 = _slicedToArray(_useState5, 2),
           initPage = _useState6[0],
           setInitPage = _useState6[1];
@@ -130,16 +130,16 @@ var Collection = function (_Taro$Component) {
         setCurrent(type);
       };
       // 是否加载更多
-      (0, _taroWeapp.useReachBottom)(function () {
+      (0, _taroTt.useReachBottom)(function () {
         setBottom(bottom + 1);
       });
       // 下拉刷新
-      (0, _taroWeapp.usePullDownRefresh)(function () {
+      (0, _taroTt.usePullDownRefresh)(function () {
         setInitPage(initPage + 1);
       });
       var loopArray58 = tab.map(function (item, __index0) {
         item = {
-          $original: (0, _taroWeapp.internal_get_original)(item)
+          $original: (0, _taroTt.internal_get_original)(item)
         };
         var _$indexKey = "gezzz" + __index0;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
@@ -159,11 +159,11 @@ var Collection = function (_Taro$Component) {
           $original: item.$original
         };
       });
-      current === 1 && _taroWeapp.propsManager.set({
+      current === 1 && _taroTt.propsManager.set({
         "bottom": bottom,
         "initPage": initPage
       }, $compid__44, $prevCompid__44);
-      !(current === 1) && _taroWeapp.propsManager.set({
+      !(current === 1) && _taroTt.propsManager.set({
         "bottom": bottom,
         "initPage": initPage
       }, $compid__45, $prevCompid__45);
@@ -192,14 +192,14 @@ var Collection = function (_Taro$Component) {
   }]);
 
   return Collection;
-}(_taroWeapp2.default.Component);
+}(_taroTt2.default.Component);
 
 Collection.$$events = ["anonymousFunc0"];
 Collection.$$componentPath = "pages/collection/index";
 Collection.config = { navigationBarTitleText: '我的收藏找活', enablePullDownRefresh: true, navigationBarBackgroundColor: '#0099ff', navigationBarTextStyle: 'white', backgroundTextStyle: "dark" };
 exports.default = Collection;
 
-Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(Collection, true));
+Page(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(Collection, true));
 
 /***/ })
 

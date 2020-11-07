@@ -1,4 +1,4 @@
-(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["npm/taro-ui/dist/weapp/components/input/index"],{
+(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["npm/taro-ui/dist/weapp/components/input/index"],{
 
 /***/ "./node_modules/taro-ui/dist/weapp/components/input/index.js":
 /*!*******************************************************************!*\
@@ -20,9 +20,9 @@ var _get = function get(object, property, receiver) { if (object === null) objec
 
 var _class, _temp2;
 
-var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
+var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
 
-var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
+var _taroTt2 = _interopRequireDefault(_taroTt);
 
 var _propTypes = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
 
@@ -107,7 +107,7 @@ var AtInput = (_temp2 = _class = function (_AtComponent) {
     value: function _constructor(props) {
       _get(AtInput.prototype.__proto__ || Object.getPrototypeOf(AtInput.prototype), '_constructor', this).call(this, props);
 
-      this.$$refs = new _taroWeapp2.default.RefsArray();
+      this.$$refs = new _taroTt2.default.RefsArray();
     }
   }, {
     key: '_createData',
@@ -157,7 +157,7 @@ var AtInput = (_temp2 = _class = function (_AtComponent) {
       });
       var placeholderCls = (0, _classnames2.default)('placeholder', placeholderClass);
 
-      var anonymousState__temp = (0, _taroWeapp.internal_inline_style)(customStyle);
+      var anonymousState__temp = (0, _taroTt.internal_inline_style)(customStyle);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
         rootCls: rootCls,
@@ -257,7 +257,7 @@ AtInput.propTypes = {
 };
 exports.default = AtInput;
 
-Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(AtInput));
+Component(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(AtInput));
 
 /***/ })
 
