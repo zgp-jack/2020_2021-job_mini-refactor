@@ -55,7 +55,7 @@ var ResumeList = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (ResumeList.__proto__ || Object.getPrototypeOf(ResumeList)).apply(this, arguments));
 
-    _this.$usedState = ["anonymousState__temp", "loopArray99", "$compid__84", "data", "IMGCDNURL", "bottom"];
+    _this.$usedState = ["anonymousState__temp", "loopArray11", "$compid__12", "data", "IMGCDNURL", "bottom"];
     _this.anonymousFunc0Map = {};
     _this.customComponents = ["Nodata"];
     return _this;
@@ -78,14 +78,10 @@ var ResumeList = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-<<<<<<< HEAD
       var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__12"),
-=======
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__84"),
->>>>>>> abac5d3434e1eab5d85d51a17bd8bc75756a93ca
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__84 = _genCompid2[0],
-          $compid__84 = _genCompid2[1];
+          $prevCompid__12 = _genCompid2[0],
+          $compid__12 = _genCompid2[1];
 
       var _props = this.__props,
           data = _props.data,
@@ -99,19 +95,15 @@ var ResumeList = function (_Taro$Component) {
         });
       };
       var anonymousState__temp = (0, _taroTt.internal_inline_style)(bottom ? '' : 'padding-bottom:0');
-<<<<<<< HEAD
       var loopArray11 = data ? data.map(function (item, __index1) {
-=======
-      var loopArray99 = data ? data.map(function (item, __index1) {
->>>>>>> abac5d3434e1eab5d85d51a17bd8bc75756a93ca
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
-        var $anonymousCallee__13 = item.$original ? item.$original.map(function (d, __index0) {
+        var $anonymousCallee__2 = item.$original ? item.$original.map(function (d, __index0) {
           d = {
             $original: (0, _taroTt.internal_get_original)(d)
           };
-          var _$indexKey = "babzz" + __index1 + "-" + __index0;
+          var _$indexKey = "bczzz" + __index1 + "-" + __index0;
           _this2.anonymousFunc0Map[_$indexKey] = function () {
             return userRouteJump("/pages/resume/detail/index?uuid=" + d.$original.uuid + "&location=" + d.$original.location);
           };
@@ -121,17 +113,17 @@ var ResumeList = function (_Taro$Component) {
           };
         }) : [];
         return {
-          $anonymousCallee__13: $anonymousCallee__13,
+          $anonymousCallee__2: $anonymousCallee__2,
           $original: item.$original
         };
       }) : [];
       data && data[0] && !data[0].length && _taroTt.propsManager.set({
         "text": "\u6682\u65E0\u76F8\u5173\u6570\u636E"
-      }, $compid__84, $prevCompid__84);
+      }, $compid__12, $prevCompid__12);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
-        loopArray99: loopArray99,
-        $compid__84: $compid__84,
+        loopArray11: loopArray11,
+        $compid__12: $compid__12,
         data: data,
         IMGCDNURL: _index.IMGCDNURL
       });

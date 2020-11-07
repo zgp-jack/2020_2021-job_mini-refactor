@@ -70,7 +70,7 @@ var ResumeLists = function (_Taro$Component) {
       backgroundTextStyle: "dark"
     };
 
-    _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "anonymousState__temp3", "anonymousState__temp4", "$compid__89", "$compid__90", "$compid__91", "scrollTop", "refresh"];
+    _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "anonymousState__temp3", "anonymousState__temp4", "$compid__22", "$compid__23", "$compid__24", "scrollTop", "refresh"];
     _this.customComponents = ["Search", "ResumeCondition", "WechatNotice", "ResumeList"];
     return _this;
   }
@@ -90,32 +90,20 @@ var ResumeLists = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-<<<<<<< HEAD
       var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__22"),
-=======
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__89"),
->>>>>>> abac5d3434e1eab5d85d51a17bd8bc75756a93ca
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__89 = _genCompid2[0],
-          $compid__89 = _genCompid2[1];
+          $prevCompid__22 = _genCompid2[0],
+          $compid__22 = _genCompid2[1];
 
-<<<<<<< HEAD
       var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__23"),
-=======
-      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__90"),
->>>>>>> abac5d3434e1eab5d85d51a17bd8bc75756a93ca
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__90 = _genCompid4[0],
-          $compid__90 = _genCompid4[1];
+          $prevCompid__23 = _genCompid4[0],
+          $compid__23 = _genCompid4[1];
 
-<<<<<<< HEAD
       var _genCompid5 = (0, _taroTt.genCompid)(__prefix + "$compid__24"),
-=======
-      var _genCompid5 = (0, _taroTt.genCompid)(__prefix + "$compid__91"),
->>>>>>> abac5d3434e1eab5d85d51a17bd8bc75756a93ca
           _genCompid6 = _slicedToArray(_genCompid5, 2),
-          $prevCompid__91 = _genCompid6[0],
-          $compid__91 = _genCompid6[1];
+          $prevCompid__24 = _genCompid6[0],
+          $compid__24 = _genCompid6[1];
       // 设置字段默认值
 
 
@@ -131,55 +119,35 @@ var ResumeLists = function (_Taro$Component) {
       var DEFAULT_CONDITION = [{ id: _lists.AreaPickerKey, text: userListChooseCity ? userListChooseCity.name : '全国' }, { id: _lists.ClassifyPickerKey, text: '工种' }, { id: _lists.MemberPickerKey, text: '队伍' }, { id: _lists.ResumeFilterPickerKey, text: '推荐' }];
       // 是否还有下一页
 
-<<<<<<< HEAD
-      var _useState = (0, _taroTt.useState)(0),
-=======
       var _useState = (0, _taroTt.useState)(true),
->>>>>>> abac5d3434e1eab5d85d51a17bd8bc75756a93ca
           _useState2 = _slicedToArray(_useState, 2),
           hasMore = _useState2[0],
           setHasMore = _useState2[1];
       // 滚动条高度
 
 
-<<<<<<< HEAD
-      var _useState3 = (0, _taroTt.useState)(DEFAULT_CONDITION),
-=======
       var _useState3 = (0, _taroTt.useState)(0),
->>>>>>> abac5d3434e1eab5d85d51a17bd8bc75756a93ca
           _useState4 = _slicedToArray(_useState3, 2),
           scrollTop = _useState4[0],
           setScrollTop = _useState4[1];
       // 设置顶部筛选条件数据
 
 
-<<<<<<< HEAD
-      var _useState5 = (0, _taroTt.useState)(''),
-=======
       var _useState5 = (0, _taroTt.useState)(DEFAULT_CONDITION),
->>>>>>> abac5d3434e1eab5d85d51a17bd8bc75756a93ca
           _useState6 = _slicedToArray(_useState5, 2),
           condition = _useState6[0],
           setCondition = _useState6[1];
       // * 搜索数据 备份
 
 
-<<<<<<< HEAD
-      var _useState7 = (0, _taroTt.useState)(false),
-=======
       var _useState7 = (0, _taroTt.useState)(''),
->>>>>>> abac5d3434e1eab5d85d51a17bd8bc75756a93ca
           _useState8 = _slicedToArray(_useState7, 2),
           remark = _useState8[0],
           setRemark = _useState8[1];
       // * 标记是否是在刷新状态
 
 
-<<<<<<< HEAD
-      var _useState9 = (0, _taroTt.useState)([]),
-=======
       var _useState9 = (0, _taroTt.useState)(false),
->>>>>>> abac5d3434e1eab5d85d51a17bd8bc75756a93ca
           _useState10 = _slicedToArray(_useState9, 2),
           refresh = _useState10[0],
           setRefresh = _useState10[1];
@@ -193,11 +161,7 @@ var ResumeLists = function (_Taro$Component) {
       // * 定义data
 
 
-<<<<<<< HEAD
-      var _useState11 = (0, _taroTt.useState)({
-=======
       var _useState13 = (0, _taroTt.useState)({
->>>>>>> abac5d3434e1eab5d85d51a17bd8bc75756a93ca
         page: 1,
         occupations: '',
         province: userListChooseCity ? userListChooseCity.id : '',
@@ -223,17 +187,10 @@ var ResumeLists = function (_Taro$Component) {
       };
       // 单独处理特殊字段
 
-<<<<<<< HEAD
-      var _useState13 = (0, _taroTt.useState)(normalFieldReset),
-          _useState14 = _slicedToArray(_useState13, 2),
-          normalField = _useState14[0],
-          setNormalField = _useState14[1];
-=======
       var _useState15 = (0, _taroTt.useState)(normalFieldReset),
           _useState16 = _slicedToArray(_useState15, 2),
           normalField = _useState16[0],
           setNormalField = _useState16[1];
->>>>>>> abac5d3434e1eab5d85d51a17bd8bc75756a93ca
       // * 请求列表数据
 
 
@@ -256,12 +213,9 @@ var ResumeLists = function (_Taro$Component) {
 
             setNormalField({ has_sort_flag: has_sort_flag, has_time: has_time, has_top: has_top, last_sort_flag_pos: last_sort_flag_pos, last_normal_pos: last_normal_pos, last_time_pos: last_time_pos });
           }
-<<<<<<< HEAD
-=======
           if (mydata.list && !mydata.list.length) {
             setHasMore(false);
           }
->>>>>>> abac5d3434e1eab5d85d51a17bd8bc75756a93ca
           _taroTt2.default.hideNavigationBarLoading();
           if (searchData.page === 1) {
             setLists([[].concat(_toConsumableArray(mydata.list))]);
@@ -349,30 +303,22 @@ var ResumeLists = function (_Taro$Component) {
         "value": "",
         "setRemark": anonymousState__temp,
         "setSearchData": anonymousState__temp2
-<<<<<<< HEAD
       }, $compid__22, $prevCompid__22);
       _taroTt.propsManager.set({
         "data": condition,
         "setSearchData": anonymousState__temp3
       }, $compid__23, $prevCompid__23);
-=======
-      }, $compid__89, $prevCompid__89);
-      _taroTt.propsManager.set({
-        "data": condition,
-        "setSearchData": anonymousState__temp3
-      }, $compid__90, $prevCompid__90);
->>>>>>> abac5d3434e1eab5d85d51a17bd8bc75756a93ca
       _taroTt.propsManager.set({
         "data": lists
-      }, $compid__91, $prevCompid__91);
+      }, $compid__24, $prevCompid__24);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
         anonymousState__temp2: anonymousState__temp2,
         anonymousState__temp3: anonymousState__temp3,
         anonymousState__temp4: anonymousState__temp4,
-        $compid__89: $compid__89,
-        $compid__90: $compid__90,
-        $compid__91: $compid__91,
+        $compid__22: $compid__22,
+        $compid__23: $compid__23,
+        $compid__24: $compid__24,
         scrollTop: scrollTop,
         refresh: refresh
       });

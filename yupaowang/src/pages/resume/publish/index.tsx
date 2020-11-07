@@ -10,7 +10,6 @@ import './index.scss'
 export default function ResumePublish(){
   const uuid = useSelector<any, string>(state => state.resumeData.resume_uuid)
   const { infoData, introducesData, projectData, certificates, resume_top, initResumeData, is_introduces, project_count, certificate_count, show_tips } = useResume()
-  console.error(projectData,'projectData')
   // 判断是否是第一次进入  第一次不加载数据 因为hooks会帮助你加载
   const [firstJoin, setFirstJoin] = useState<boolean>(true)
 
@@ -123,12 +122,12 @@ export default function ResumePublish(){
                   <Image className='audit' src={`${IMGCDNURL}lpy/audit.png `}/>
                 }
                 {infoData.check == '0' && 
-                <View className='change'>
+                  <View className='change' onClick={() => userRouteJump('/pages/resume/add_info/index')}>
                   待修改
                 </View>
                 }
                 {infoData.check != '0' && infoData.check != '1' &&
-                  <View className='change'>
+                  <View className='change' onClick={() => userRouteJump('/pages/resume/add_info/index')}>
                     编辑
                 </View>
                 }

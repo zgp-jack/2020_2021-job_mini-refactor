@@ -5,7 +5,7 @@
 =======
 <<<<<<< HEAD
  * @LastEditors: zyb
- * @LastEditTime: 2020-11-07 14:50:45
+ * @LastEditTime: 2020-11-07 15:03:21
 =======
 >>>>>>> c4934cd3ef6271dedb29cefa5b63959eded6b62a
  * @LastEditors: zyb
@@ -90,8 +90,6 @@ export default function useResume(){
         setCertificates([...res.data.certificates]);
         setResume_top({ ...res.data.resume_top });
         // 存redux
-        console.error(res,'redasjndasjnd kj')
-        console.error(res.data.project,'res.data.project')
         dispatch(setUseResume({
           info: res.data.info,
           introducesData: res.data.introduces,
