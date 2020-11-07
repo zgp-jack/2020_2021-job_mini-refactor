@@ -367,7 +367,7 @@ $commonMargin: 44px;
     .content-professional-skill{
       .project-information,.professional-information{
         position: relative;
-        &::before{
+        .content-information-image::before {
           content: '';
           width: 100px;
           height: 100px;

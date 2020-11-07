@@ -10,7 +10,7 @@ import './index.scss'
 export default function ResumePublish(){
   const uuid = useSelector<any, string>(state => state.resumeData.resume_uuid)
   const { infoData, introducesData, projectData, certificates, resume_top, initResumeData, is_introduces, project_count, certificate_count, show_tips } = useResume()
-
+  console.error(projectData,'projectData')
   // 判断是否是第一次进入  第一次不加载数据 因为hooks会帮助你加载
   const [firstJoin, setFirstJoin] = useState<boolean>(true)
 
@@ -244,29 +244,29 @@ export default function ResumePublish(){
             <View className='project-information'>
               <View className='content-information'>
                 <View className='information'>
-                  <View className='name'>{projectData[projectData.length - 1].project_name}</View>
-                    <View className='sexage'>{projectData[projectData.length - 1].start_time}-{projectData[projectData.length - 1].completion_time}   {projectData[projectData.length - 1].province_name}-{projectData[projectData.length - 1].city_name} </View>
-                    <View className='sexage'>{projectData[projectData.length - 1].detail}</View>
+                      <View className='name'>{projectData[0].project_name} {projectData[0].check}</View>
+                    <View className='sexage'>{projectData[0].start_time}-{projectData[0].completion_time}   {projectData[0].province_name}-{projectData[0].city_name} </View>
+                    <View className='sexage'>{projectData[0].detail}</View>
                 </View>
-                  {projectData[projectData.length - 1].check == '1' && show_tips ==1 && 
+                  {projectData[0].check == '1' && show_tips ==1 && 
                     <Image className='audit' src={`${IMGCDNURL}lpy/audit.png `} />
                   }
-                  {projectData[projectData.length - 1].check == '2'  &&
-                    <View className='change' onClick={() => { userRouteJump(`/pages/resume/add_project/index?id=${projectData[projectData.length - 1].id}`)}}>编辑</View>
+                  {projectData[0].check == '2'  &&
+                    <View className='change' onClick={() => { userRouteJump(`/pages/resume/add_project/index?id=${projectData[0].id}`)}}>编辑</View>
                   }
-                  {projectData[projectData.length - 1].check == '0' &&
-                    <View className='change' onClick={() => { userRouteJump(`/pages/resume/add_project/index?id=${projectData[projectData.length - 1].id}`) }}>待修改</View>
+                  {projectData[0].check == '0' &&
+                    <View className='change' onClick={() => { userRouteJump(`/pages/resume/add_project/index?id=${projectData[0].id}`) }}>待修改</View>
                   }
-                  {projectData[projectData.length - 1].check == '1' && show_tips == 0 &&
+                  {projectData[0].check == '1' && show_tips == 0 &&
                     <Image className='audit' src={`${IMGCDNURL}lpy/inreview.png`} />
                   }
               </View>
               <View className='project-content'>
                 <View className='content-img'>
-                    {projectData.length && <Imglist data={projectData[projectData.length - 1].image} />}
+                    {projectData && <Imglist data={projectData[0].image} />}
                 </View>
-                  {projectData[projectData.length - 1].check == '0' && 
-                    <View className='project-failtxt'>未通过原因：{projectData[projectData.length - 1].fail_case}</View>
+                  {projectData[0].check == '0' && 
+                    <View className='project-failtxt'>未通过原因：{projectData[0].fail_case}</View>
                   }
               </View>
               <View className='change-project'>
@@ -285,40 +285,44 @@ export default function ResumePublish(){
           </View>
           {/* 是否填写过技能证书 */}
           {certificates.length ?
+          // <View>
+          //   {showCertificate&&
             <View className='professional-information'>
               <View className='content-information'>
                 <View className='information'>
-                  <View className='name'>{certificates[certificates.length - 1].name}</View>
-                  <View className='sexage time'>{certificates[certificates.length - 1].certificate_time}</View>
+                  <View className='name'>{certificates[0].name}</View>
+                  <View className='sexage time'>{certificates[0].certificate_time}</View>
                 </View>
-                {certificates[certificates.length - 1].check == '1' && show_tips == 1 &&
+                {certificates[0].check == '1' && show_tips == 1 &&
                   <Image className='audit' src={`${IMGCDNURL}lpy/audit.png `} />
                 }
-                {certificates[certificates.length - 1].check == '2' &&
-                  <View className='change' onClick={() => { userRouteJump(`/pages/resume/add_skill/index?id=${certificates[certificates.length - 1].id}`) }}>编辑</View>
+                {certificates[0].check == '2' &&
+                  <View className='change' onClick={() => { userRouteJump(`/pages/resume/add_skill/index?id=${certificates[0].id}`) }}>编辑</View>
                 }
-                {certificates[certificates.length - 1].check == '0' &&
-                  <View className='change' onClick={() => { userRouteJump(`/pages/resume/add_skill/index?id=${certificates[certificates.length - 1].id}`) }}>待修改</View>
+                {certificates[0].check == '0' &&
+                  <View className='change' onClick={() => { userRouteJump(`/pages/resume/add_skill/index?id=${certificates[0].id}`) }}>待修改</View>
                 }
-                {certificates[certificates.length - 1].check == '0' &&
+                {certificates[0].check == '0' &&
                   <Image className='audit' src={`${IMGCDNURL}lpy/notthrough.png`} />
                 }
-                {certificates[certificates.length - 1].check == '1' && show_tips == 0 &&
+                {certificates[0].check == '1' && show_tips == 0 &&
                   <Image className='audit' src={`${IMGCDNURL}lpy/inreview.png`} />
                 }
-                {/* <View className='change' onClick={() => userRouteJump(`/pages/resume/add_skill/index?id=${certificates[certificates.length - 1].id}`)}>编辑</View> */}
+                {/* <View className='change' onClick={() => userRouteJump(`/pages/resume/add_skill/index?id=${certificates[0].id}`)}>编辑</View> */}
               </View>
               <View className='project-content'>
                 <View className='content-img'>
-                  {certificates.length && <Imglist data={certificates[certificates.length - 1].image && certificates[certificates.length - 1].image} />}
+                  {certificates.length && <Imglist data={certificates[0].image && certificates[0].image} />}
                 </View>
-                {certificates[certificates.length - 1].check == '0' &&
-                  <View className='project-failtxt'>失败原因：{certificates[certificates.length - 1].fail_case}</View>}
+                {certificates[0].check == '0' &&
+                  <View className='project-failtxt'>失败原因：{certificates[0].fail_case}</View>}
               </View>
               <View className='change-project'>
                 <Button className='change-project-btn' onClick={() => userRouteJump('/pages/resume/skills/index')}>更多技能证书<View className='nabla'></View></Button>
               </View>
             </View>
+          //   }
+          // </View>
           : 
           <View className='basic-content'>
             <View className='basic-txt'>添加职业技能，用实力证明您的能力</View>

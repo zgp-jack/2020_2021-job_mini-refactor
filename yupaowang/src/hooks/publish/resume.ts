@@ -5,7 +5,7 @@
 =======
 <<<<<<< HEAD
  * @LastEditors: zyb
- * @LastEditTime: 2020-11-07 00:21:38
+ * @LastEditTime: 2020-11-07 14:50:45
 =======
 >>>>>>> c4934cd3ef6271dedb29cefa5b63959eded6b62a
  * @LastEditors: zyb
@@ -71,7 +71,7 @@ export default function useResume(){
         res.data.info.age = age;
         //基本信息
         let info: resInfoObj = { ...INFODATA_DATA };
-        info = { ...info, ...res.data.info }
+        info = { ...info, ...res.data.info };
         setInfoData({ ...info });
         // 是否有人员信息
         setIs_introduces(res.data.is_introduces);
@@ -90,6 +90,8 @@ export default function useResume(){
         setCertificates([...res.data.certificates]);
         setResume_top({ ...res.data.resume_top });
         // 存redux
+        console.error(res,'redasjndasjnd kj')
+        console.error(res.data.project,'res.data.project')
         dispatch(setUseResume({
           info: res.data.info,
           introducesData: res.data.introduces,

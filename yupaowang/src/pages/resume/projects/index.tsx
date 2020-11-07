@@ -30,13 +30,13 @@ export default function Projects(){
             <Text className='project-time-text'>{`${item.province_name}-${item.city_name}`}</Text>
           </View>
           <View className='project-description'>{item.detail}</View>
-          <Imglist data={item.images} />
+          <Imglist data={item.image} />
           {item.check == '0' && <View className='project-reason-text'>{item.fail_case}</View>}
         </View>
       ))}
       {!projectData.length && <Nodata />}
       {projectData.length < ProjectListMaxNum &&
-      <View className='add-certificate-btn' onClick={()=>Taro.navigateTo({url:'/pages/resume/add_project/index'})}>添加技能证书</View>
+      <View className='add-certificate-btn' onClick={()=>Taro.navigateTo({url:'/pages/resume/add_project/index'})}>添加项目经验</View>
       }
     </View>
   )
