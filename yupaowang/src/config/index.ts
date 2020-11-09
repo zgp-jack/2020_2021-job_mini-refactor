@@ -7,9 +7,9 @@ export const MINICONFIG = require(`./minis/${MINIVERSION}.ts`)
 
 // * 全局请求接口域名
 // * 测试站
-export const DEVREQUESTURL: string = 'https://miniapi.zhaogong.vrtbbs.com/'  
+export const DEVREQUESTURL: string = 'https://miniapi.zhaogong.vrtbbs.com/'
 // * 正式站
-export const PROREQUESTURL: string = 'https://newyupaomini.54xiaoshuo.com/' 
+export const PROREQUESTURL: string = 'https://newyupaomini.54xiaoshuo.com/'
 // * 当前测试
 export const REQUESTURL: string = DEVREQUESTURL;
 // * 默认上传图片
@@ -49,7 +49,7 @@ export const AUTHPATH: string = '/pages/userauth/index'
 // * 微信外验证码登录
 export const CODEAUTHPATH: string = '/pages/login/index'
 // * 下载App
-export const DownloadApp: string ='https://android.myapp.com/myapp/detail.htm?apkName=io.dcloud.H576E6CC7&amp;ADTAG=mobile'
+export const DownloadApp: string = 'https://android.myapp.com/myapp/detail.htm?apkName=io.dcloud.H576E6CC7&amp;ADTAG=mobile'
 
 // ! 所有小程序列表
 // 百度
@@ -58,10 +58,10 @@ export const BAIDU: string = 'baidu'
 export const DOUYIN: string = 'douyin'
 
 
-// ! 以下内容为每个小程序独立配置  
+// ! 以下内容为每个小程序独立配置
 // * page-title-global
 export const PAGETITLE: string = MINICONFIG.PAGETITLE
-// * 小程序token 
+// * 小程序token
 export const TOKEN: string = MINICONFIG.TOKEN
 // * 小程序广告unitid
 export const UNITID: string = MINICONFIG.UNITID

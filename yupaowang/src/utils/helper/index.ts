@@ -1,12 +1,12 @@
 import Taro from '@tarojs/taro'
-import { MAPKEY } from '../../config'
+import {MAPKEY} from '../../config'
 import AMapWX from '../../utils/source/amap-wx'
-import { UserLocationPromiss } from '../../models/area'
-import { UserLocationCity } from '../../config/store'
-import { InputPoiList, InputPoiListTips } from './index.d'
+import {UserLocationPromiss} from '../../models/area'
+import {UserLocationCity} from '../../config/store'
+import {InputPoiList, InputPoiListTips} from './index.d'
 
 // 对象拷贝
-export function objDeepCopy(source: any):any {
+export function objDeepCopy(source: any): any {
   var sourceCopy = source instanceof Array ? [] : {};
   for (var item in source) {
     sourceCopy[item] = typeof source[item] === 'object' ? objDeepCopy(source[item]) : source[item];
@@ -15,11 +15,11 @@ export function objDeepCopy(source: any):any {
 }
 
 // 获取用户定位
-export function userAuthLoction(): Promise<UserLocationPromiss>{
-  return new Promise((resolve, reject)=>{
+export function userAuthLoction(): Promise<UserLocationPromiss> {
+  return new Promise((resolve, reject) => {
     let loc: UserLocationPromiss = Taro.getStorageSync(UserLocationCity)
     if (loc) resolve(loc)
-    const GDMAP = new AMapWX.AMapWX({ key: MAPKEY })
+    const GDMAP = new AMapWX.AMapWX({key: MAPKEY})
     GDMAP.getRegeo({
       success: function (data: any) {
         let city: string = data[0].regeocodeData.addressComponent.city
@@ -38,20 +38,20 @@ export function userAuthLoction(): Promise<UserLocationPromiss>{
       }
     })
   })
-  
+
 }
 
 // 请求高德api获取附近地点
 export function getAmapPoiList(val: string): Promise<InputPoiListTips[]> {
-  return new Promise((resolve, reject)=>{
-    const GDMAP = new AMapWX.AMapWX({ key: MAPKEY })
+  return new Promise((resolve, reject) => {
+    const GDMAP = new AMapWX.AMapWX({key: MAPKEY})
     GDMAP.getInputtips({
       keywords: val,
-      success: (data: InputPoiList)=> {
-        if(data) resolve(data.tips)
+      success: (data: InputPoiList) => {
+        if (data) resolve(data.tips)
         else reject()
       },
-      fail: ()=> {
+      fail: () => {
         reject()
       }
     })
@@ -59,7 +59,7 @@ export function getAmapPoiList(val: string): Promise<InputPoiListTips[]> {
 }
 
 // 页面跳转
-export function userJumpPage(url: string):void {
+export function userJumpPage(url: string): void {
   Taro.navigateTo({url: url})
 }
 
@@ -69,7 +69,7 @@ export function getPointNumber(p: number, n: number): number {
 }
 
 // 获取设备系统
-export function getSystemInfo(): string{
+export function getSystemInfo(): string {
   let system = Taro.getSystemInfoSync()
   return system.platform
 }
@@ -78,7 +78,7 @@ export function getSystemInfo(): string{
 // 找活基础页面获取定位
 export function recSerAuthLoction(): Promise<UserLocationPromiss> {
   return new Promise((resolve, reject) => {
-    const GDMAP = new AMapWX.AMapWX({ key: MAPKEY })
+    const GDMAP = new AMapWX.AMapWX({key: MAPKEY})
     GDMAP.getRegeo({
       success: function (data: any) {
         resolve(data)
@@ -92,6 +92,11 @@ export function recSerAuthLoction(): Promise<UserLocationPromiss> {
 }
 
 // 用户取消授权
-export function userCancelAuth():void{
+export function userCancelAuth(): void {
   Taro.navigateBack()
 }
+
+//调用播放广告公告函数
+// export const handleAdvConfig = (callback, flag) => {
+//
+// }

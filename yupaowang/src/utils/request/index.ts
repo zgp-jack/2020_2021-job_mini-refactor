@@ -1165,3 +1165,13 @@ export function getResumeAddInfoConfig(): Promise<Inter.ResumeAddInfoConfig> {
     method: 'POST'
   })
 }
+
+//调用播放广告
+///member/get-adv-status/
+export function getAdvStatus(params: any): Promise<any> {
+  return doRequestAction({
+    url: api.getAdvStatusConfig,
+    method: 'GET',
+    data: params
+  })
+}

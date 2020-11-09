@@ -1,43 +1,58 @@
-import Taro, { Config, useState, useEffect, useReachBottom, useRouter } from '@tarojs/taro'
-import { View, Text, Picker, Image } from '@tarojs/components'
-import { integralSourceConfigAction, integralSourceListsAction, integralExpendListsAction, integralExpendConfigAction, integralUseInfoAction, publishComplainAction } from '../../../utils/request/index'
-import { getSystemInfo } from '../../../utils/helper/index'
-import { IMGCDNURL } from '../../../config'
+import Taro, {Config, useState, useEffect, useReachBottom, useRouter} from '@tarojs/taro'
+import {View, Text, Picker, Image} from '@tarojs/components'
+import {
+  integralSourceConfigAction,
+  integralSourceListsAction,
+  integralExpendListsAction,
+  integralExpendConfigAction,
+  integralUseInfoAction,
+  publishComplainAction
+} from '../../../utils/request/index'
+import {getSystemInfo} from '../../../utils/helper/index'
+import {IMGCDNURL} from '../../../config'
 import Nodata from '../../../components/nodata'
-import { integralSourceListsDataSum, integralSourceListsDataLists, integralUseInfoData, integralSourceConfigDataType  } from '../../../utils/request/index.d'
-import { SubscribeToNews } from '../../../utils/subscribeToNews';
-import  Report  from '../../../components/report';
-import { isVaildVal } from '../../../utils/v'
-import Msg, { SubPopup } from '../../../utils/msg'
+import {
+  integralSourceListsDataSum,
+  integralSourceListsDataLists,
+  integralUseInfoData,
+  integralSourceConfigDataType
+} from '../../../utils/request/index.d'
+import {SubscribeToNews} from '../../../utils/subscribeToNews';
+import Report from '../../../components/report';
+import {isVaildVal} from '../../../utils/v'
+import Msg, {SubPopup} from '../../../utils/msg'
 import './index.scss'
 
 interface ParamsType {
   y: string,
   m: string,
   stime: string,
-  type?: number|string,
+  type?: number | string,
   bak: string,
   system_type: string,
-  flag:boolean,
-  source_type?:number|string,
-  office?:number|string,
+  flag: boolean,
+  source_type?: number | string,
+  office?: number | string,
 }
+
 interface DataType {
   lists: integralSourceListsDataLists[],
-  next_page:number,
-  stime:string,
-  bak:string,
+  next_page: number,
+  stime: string,
+  bak: string,
 }
-interface SearchType{
-  time:string,
-  sortType:string,
+
+interface SearchType {
+  time: string,
+  sortType: string,
   flag: boolean,
-  listType:string,
+  listType: string,
 }
+
 // 只用temp和source
 export default function Tabber() {
   const router: Taro.RouterInfo = useRouter()
-  const { info, office } = router.params;
+  const {info, office} = router.params;
   // 切换
   const [changeType, setChangeType] = useState<boolean>(false)
   // 标识是第一次
@@ -62,54 +77,54 @@ export default function Tabber() {
   const [consumeType, setConsumeType] = useState<string>('0')
   // 数据
   const [data, setData] = useState<DataType>({
-    lists:[],
+    lists: [],
     next_page: 0,
     stime: '0',
-    bak:'0'
+    bak: '0'
   })
   // 默认积分
-  const [num, setNum] = useState < integralSourceListsDataSum>({
-    get:0,
-    expend:0,
+  const [num, setNum] = useState<integralSourceListsDataSum>({
+    get: 0,
+    expend: 0,
   })
   // 弹窗
-  const [modal,setModal] = useState<boolean>(false)
+  const [modal, setModal] = useState<boolean>(false)
   // 弹窗内容
   const [modalData, setModalData] = useState<integralUseInfoData>()
   // 投诉
   const [complaintModal, setComplaintModal] = useState<boolean>(false)
-  // 投诉id 
-  const [complaintId, setComplaintId ] = useState<string>('')
+  // 投诉id
+  const [complaintId, setComplaintId] = useState<string>('')
   // textarea
   const [textarea, setTextarea] = useState<string>('');
   // 需要传递的参数
   const [params, setParams] = useState<ParamsType>({
     y: '0',
     m: '0',
-    stime:'0',
-    type:0,
-    bak:'0',
+    stime: '0',
+    type: 0,
+    bak: '0',
     system_type: getSystemInfo(),
-    flag:false,
+    flag: false,
   })
   // 没有下一页
-  const [nextPage,setNextPage]= useState<boolean>(false)
+  const [nextPage, setNextPage] = useState<boolean>(false)
   // 搜索来源记录
   const [sourceSearch, setSourceSearch] = useState<SearchType>({
     time: '',
     sortType: '0',
     flag: false,
-    listType:'0',
+    listType: '0',
   })
   // 搜索消耗记录
-  const [consumeSearch, setConsumeSearch] = useState <SearchType>({
+  const [consumeSearch, setConsumeSearch] = useState<SearchType>({
     time: '',
     sortType: '0',
     flag: false,
     listType: '0',
   })
   // 下拉框开始位置
-  const [startType,setStartType] = useState<number>(0)
+  const [startType, setStartType] = useState<number>(0)
   // 来源分类list
   const [sourceList, setSourceList] = useState<string[]>([])
   // 消耗分类list
@@ -118,21 +133,23 @@ export default function Tabber() {
   const [issource, setIssource] = useState<boolean>(false);
   // 积分是否获取到list
   const [isconsume, setIsconsume] = useState<boolean>(false);
-  useEffect(()=>{
+  //顶部tab数据
+  const [tabBar] = useState<{ type: string, name: string }[]>([{type: '0', name: '积分来源'}, {type: '1', name: '积分消耗'}])
+  useEffect(() => {
     let navigationBarTitleText = initInfo === '0' ? '鱼泡网-积分来源记录' : '鱼泡网-积分消耗记录'
     Taro.setNavigationBarTitle({title: navigationBarTitleText})
     // 获取现在时间
     let newTime = new Date();
     let nowyear = newTime.getFullYear();
-    let nowmonth:string|number = newTime.getMonth() + 1;
+    let nowmonth: string | number = newTime.getMonth() + 1;
     if (nowmonth >= 1 && nowmonth <= 9) {
       nowmonth = "0" + nowmonth;
     }
     setEnd(nowyear + "-" + nowmonth);
-    if (initInfo === '0'){
-      if (!issource){
+    if (initInfo === '0') {
+      if (!issource) {
         integralSourceConfig();
-      }else{
+      } else {
         if (sourceSearch.flag) {
           let date = sourceSearch.time.split('-');
           const params = {
@@ -154,12 +171,12 @@ export default function Tabber() {
           // 设置下拉分类的位置
           setStartType(parseInt(sourceSearch.listType));
           setParams(params);
-        } 
+        }
       }
-    }else{
-      if (!isconsume){
+    } else {
+      if (!isconsume) {
         integralExpendConfig();
-      }else{
+      } else {
         let date = consumeSearch.time.split('-');
         const params = {
           y: date[0],
@@ -182,18 +199,18 @@ export default function Tabber() {
       }
     }
   }, [initInfo])
-  useEffect(()=>{
-    if(params.flag){
-      if (initInfo === '0'){
+  useEffect(() => {
+    if (params.flag) {
+      if (initInfo === '0') {
         integralSourceLists();
-      }else{
+      } else {
         integralExpendLists();
       }
     }
-  },[params])
+  }, [params])
   // 积分消耗
-  const integralExpendConfig = ()=>{
-    integralExpendConfigAction().then(res=>{
+  const integralExpendConfig = () => {
+    integralExpendConfigAction().then(res => {
       setStart(res.data.min.y + '-' + res.data.min.m);
       let item: string[] = res.data.types.map(item => item.name)
       setInitList(res.data.types)
@@ -203,20 +220,20 @@ export default function Tabber() {
       const time = res.data.default.y + '-' + res.data.default.m;
       setTime(time);
       setShowTime(res.data.default.y + '年' + res.data.default.m + '月')
-        const params = {
-          y: res.data.default.y,
-          m: res.data.default.m,
-          stime: '0',
-          type: 0,
-          bak: '0',
-          system_type: getSystemInfo(),
-          flag: true
-        }
+      const params = {
+        y: res.data.default.y,
+        m: res.data.default.m,
+        stime: '0',
+        type: 0,
+        bak: '0',
+        system_type: getSystemInfo(),
+        flag: true
+      }
       setParams(params);
     })
   }
-   // 积分来源分类
-  const integralSourceConfig= ()=>{
+  // 积分来源分类
+  const integralSourceConfig = () => {
     let params = {
       office, // 是否为只查看正式数据 0/1,
       system_type: getSystemInfo()
@@ -231,22 +248,22 @@ export default function Tabber() {
       const date = res.data.default.y + '-' + res.data.default.m;
       setTime(date);
       setShowTime(res.data.default.y + '年' + res.data.default.m + '月')
-        const params = {
-          y: res.data.default.y,
-          m: res.data.default.m,
-          stime: '0',
-          source_type: 0,
-          bak: '0',
-          system_type: getSystemInfo(),
-          flag: true,
-          office,
-        }
+      const params = {
+        y: res.data.default.y,
+        m: res.data.default.m,
+        stime: '0',
+        source_type: 0,
+        bak: '0',
+        system_type: getSystemInfo(),
+        flag: true,
+        office,
+      }
       setParams(params);
     })
   }
 
-  // 积分列表
-  const integralSourceLists = ()=>{
+  // 积分来源列表
+  const integralSourceLists = () => {
     integralSourceListsAction(params).then(res => {
       if (!nextPage) {
         if (!first) {
@@ -254,47 +271,57 @@ export default function Tabber() {
           setFirst(true)
         }
         if (changeType) {
-          setData({ lists: [...res.data.lists], next_page: res.data.next_page, stime: res.data.stime, bak: res.data.bak })
+          setData({lists: [...res.data.lists], next_page: res.data.next_page, stime: res.data.stime, bak: res.data.bak})
           setChangeType(false)
         } else {
-          setData({ lists: [...data.lists, ...res.data.lists], next_page: res.data.next_page, stime: res.data.stime, bak: res.data.bak })
+          setData({
+            lists: [...data.lists, ...res.data.lists],
+            next_page: res.data.next_page,
+            stime: res.data.stime,
+            bak: res.data.bak
+          })
         }
       }
     })
   }
   // 消耗积分列表
-  const integralExpendLists = ()=>{
+  const integralExpendLists = () => {
     integralExpendListsAction(params).then(res => {
       // 下拉时候不修改
       // 选择时间/分类/跳转就直接赋值，只有加载更多在追加
-      if (!nextPage){
-        if (!first){
+      if (!nextPage) {
+        if (!first) {
           setNum(res.data.sum_data);
           setFirst(true)
         }
-        if (changeType){
-          setData({ lists: [...res.data.lists], next_page: res.data.next_page, stime: res.data.stime, bak: res.data.bak })
+        if (changeType) {
+          setData({lists: [...res.data.lists], next_page: res.data.next_page, stime: res.data.stime, bak: res.data.bak})
           setChangeType(false)
-        }else{
-          setData({ lists: [...data.lists, ...res.data.lists], next_page: res.data.next_page, stime: res.data.stime, bak: res.data.bak })
+        } else {
+          setData({
+            lists: [...data.lists, ...res.data.lists],
+            next_page: res.data.next_page,
+            stime: res.data.stime,
+            bak: res.data.bak
+          })
         }
       }
     })
   }
   // 点击分类
-  const handleClick = (e:any)=>{
+  const handleClick = (e: any) => {
     setChangeType(true)
     setFirst(false)
-    let type:any;
-    if(initInfo === '0'){
+    let type: any;
+    if (initInfo === '0') {
       setSourceType(e.detail.value);
       setTitle(sourceList[e.detail.value])
-      for (let i =0;i<initList.length;i++){
-        if (initList[i].name === sourceList[e.detail.value]){
+      for (let i = 0; i < initList.length; i++) {
+        if (initList[i].name === sourceList[e.detail.value]) {
           type = initList[i].type
         }
       }
-    }else{
+    } else {
       setTitle(consumeList[e.detail.value])
       setConsumeType(e.detail.value)
       for (let i = 0; i < initList.length; i++) {
@@ -310,14 +337,14 @@ export default function Tabber() {
       stime: '0',
       type,
       source_type: type,
-      bak:'0',
+      bak: '0',
       system_type: getSystemInfo(),
       flag: true
     }
     setParams(params)
   }
   // 时间选择
-  const handleClckTime = (e:any)=>{
+  const handleClckTime = (e: any) => {
     setChangeType(true)
     setFirst(false)
     let date = e.target.value.split('-');
@@ -344,16 +371,16 @@ export default function Tabber() {
       //来源和消耗传值不同（偷懒都传过去）
       source_type: type,
       type: type,
-      bak:'0',
+      bak: '0',
       system_type: getSystemInfo(),
-      flag:true,
+      flag: true,
     }
-      setParams(params)
+    setParams(params)
   }
   // 是否加载更多
   useReachBottom(() => {
     // 没有内容
-    if(data.next_page === 0){
+    if (data.next_page === 0) {
       setNextPage(true);
       return;
     }
@@ -388,12 +415,13 @@ export default function Tabber() {
     setParams(params);
   })
   // 跳转
-  const handleJump = ()=>{
+  const handleJump = (_type: string) => {
+    if (_type == initInfo) return
     setFirst(false)
     setNextPage(false);
     setChangeType(true)
     let type: any;
-    if (initInfo === '0') {
+    if (initInfo == '0') {
       for (let i = 0; i < initList.length; i++) {
         if (initList[i].name === sourceList[sourceType]) {
           type = initList[i].type
@@ -406,17 +434,8 @@ export default function Tabber() {
         }
       }
     }
-    if(initInfo === '0'){
-      setInitInfo("1")
-      // 存搜索记录
-      setSourceSearch({
-        time,
-        sortType: type,
-        flag:true,
-        listType: sourceType
-      })
-    } else if (initInfo === '1') {
-      setInitInfo("0");
+    if (_type == '0') {
+      setInitInfo(_type)
       // 存搜索记录
       setConsumeSearch({
         time,
@@ -424,25 +443,35 @@ export default function Tabber() {
         flag: true,
         listType: consumeType
       })
+
+    } else if (_type == '1') {
+      setInitInfo(_type);
+      // 存搜索记录
+      setSourceSearch({
+        time,
+        sortType: type,
+        flag: true,
+        listType: sourceType
+      })
     }
   }
   // 弹窗
-  const handleModal = (userId:string)=>{
-    integralUseInfoAction(userId).then(res=>{
-      if (res.errcode === 'deleted'){
+  const handleModal = (userId: string) => {
+    integralUseInfoAction(userId).then(res => {
+      if (res.errcode === 'deleted' || res.errcode === 'fail') {
         Taro.showModal({
           title: '温馨提示',
           content: res.errmsg,
           showCancel: false,
         })
-      }else{
+      } else {
         setModalData(res.info);
         setModal(true);
       }
     })
   }
   // 投诉弹窗
-  const handleComplaint = (id:string)=>{
+  const handleComplaint = (id: string) => {
     setComplaintModal(true);
     setComplaintId(id);
   }
@@ -452,117 +481,165 @@ export default function Tabber() {
     setTextarea(val);
   }
   // 提交投诉
-  const handleSubmit = ()=>{
+  const handleSubmit = () => {
     if (!isVaildVal(textarea, 15, 500)) {
       Msg('输入内容不少于15个字且必须包含文字')
       return false
     }
     const params = {
-      content:textarea,
-      type:'job',
-      infoId:complaintId
+      content: textarea,
+      type: 'job',
+      infoId: complaintId
     };
-    publishComplainAction(params).then((res)=>{
-      if(res.errcode === 'ok' ){
-        SubscribeToNews('complain',()=>{
+    publishComplainAction(params).then((res) => {
+      if (res.errcode === 'ok') {
+        SubscribeToNews('complain', () => {
           SubPopup({
             tips: res.errmsg,
             callback: () => {
-            setComplaintModal(false);
-            setModal(false);
+              setComplaintModal(false);
+              setModal(false);
             }
-            })
+          })
         })
       }
     })
   }
+
   return (
     <View className='tabber-content'>
+      <View className="integral-tab">
+        {
+          tabBar.map((item, i) => (
+            <View className="tab-item" key={i} onClick={() => handleJump(item.type)}>
+              <Text
+                className={"tab-item-text " + (initInfo == item.type ? 'tab-item-text-active' : '')}>{item.name}</Text>
+            </View>
+          ))
+        }
+      </View>
+
       <View className='tabber-content-box'>
         <View className='tabber-content-box-time'>
-          <Picker mode='date' fields='month' value={time} start={start} end={end} onChange={(e)=>handleClckTime(e)}>
+          <Picker mode='date' fields='month' value={time} start={start} end={end} onChange={(e) => handleClckTime(e)}>
             <Text className='tabber-content-box-time-text'>{showTime}</Text>
             <Image className='tabber-content-box-time-img' src={`${IMGCDNURL}lpy/integral/select2.png`}/>
           </Picker>
+          <View className='tabber-content-box-numBox'>
+            <View>获取积分：<Text
+              className='tabber-content-box-num-color'>{num.get}</Text></View>
+            <View
+              className='tabber-content-box-numBox-num'>消耗积分：<Text
+              className='tabber-content-box-num-color'>{num.expend}</Text></View>
+          </View>
         </View>
         <View className='tabber-content-box-selector'>
-          <Picker mode='selector' range={initInfo === '0' ? sourceList : consumeList} value={startType} onChange={(e)=>handleClick(e)}>
+          <Picker mode='selector' range={initInfo === '0' ? sourceList : consumeList} value={startType}
+                  onChange={(e) => handleClick(e)}>
             <Text className='tabber-content-box-selector-text'>{title}</Text>
             <Image className='tabber-content-box-selector-img' src={`${IMGCDNURL}lpy/integral/select1.png`}/>
           </Picker>
         </View>
       </View>
-      <View className='tabber-content-box-numBox'>
-        <View>{initInfo === '0' ? '获取积分：' : '消耗积分：'}<Text className='tabber-content-box-num-color'>{initInfo === '0' ? num.get : num.expend}</Text></View>
-        <View onClick={handleJump} className='tabber-content-box-numBox-num'>{initInfo === '0' ? '消耗积分：' : '获取积分：'}<Text className='tabber-content-box-num-color'>{initInfo === '0' ? num.expend : num.get}</Text></View>
-      </View>
-      <View className='integral-content'>
-        {!data.lists.length && <Nodata text={initInfo === '0'?'暂无积分来源记录':'暂无积分消耗记录'}/>}
-        {data.lists.map((item,index)=>(
-          <View key={index+index} onClick={()=>handleModal(item.id)}>
-            <View className='integral-list'>
-              <View className='integral-list-time'>
-                <Text className='integral-time-year'>{item.y_m}</Text>
-                <Text className='integral-time-day'>{item.day}</Text>
+
+      {!data.lists.length && <Nodata text={initInfo === '0' ? '暂无积分来源记录' : '暂无积分消耗记录'}/>}
+      <View className='integral-list-container'>
+        {data.lists.map((item, index) => (
+          <View className="integral-list-item" key={index} onClick={() => handleModal(item.id)}>
+            <View className="item-container">
+              <View className="icon-bor">
+                <Image className="icon" src={item.icon}/>
               </View>
-              <View className='integral-list-item'>
+              <View className='integral-list-words'>
                 <View className='integral-list-title overwords'>{item.type_name}</View>
-                <View className='integral-list-words overwords'>{initInfo === '0' ? item.ext : item.title}</View>
-                <View className='integral-item-time'>时间：{item.his}<Text>{initInfo === '0' ? item.source_integral_string : item.tips}</Text></View>
+                <View className='integral-list-info overwords'>{initInfo === '0' ? item.ext : item.title}</View>
+                <View className='integral-list-lasttime overwords'>{item.date}</View>
+                <Text className="tips">{item.tips}</Text>
               </View>
             </View>
           </View>
+          // <View key={index + index} onClick={() => handleModal(item.id)}>
+          //   <View className='integral-list'>
+          //     <View className='integral-list-time'>
+          //       <Text className='integral-time-year'>{item.y_m}</Text>
+          //       <Text className='integral-time-day'>{item.day}</Text>
+          //     </View>
+          //     <View className='integral-list-item'>
+          //       <View className='integral-list-title overwords'>{item.type_name}</View>
+          //       <View className='integral-list-words overwords'>{initInfo === '0' ? item.ext : item.title}</View>
+          //       <View
+          //         className='integral-item-time'>时间：{item.his}<Text>{initInfo === '0' ? item.source_integral_string : item.tips}</Text></View>
+          //     </View>
+          //   </View>
+          // </View>
         ))}
       </View>
-      {data.next_page === 0 && data.lists.length && <View className='integral-noData'>没有更多数据了</View>}
-      {initInfo === '1' && modal && modalData&&
+      {/*{data.next_page === 0 && data.lists.length && <View className='integral-noData'>没有更多数据了</View>}*/}
+      {initInfo === '1' && modal && modalData &&
       <View className='tabber-Modal'>
         <View className='tabber-Modal-content'>
-        <View onClick={() => { setModal(false) }} className='tabber-Modal-content-close'></View>
+          <View onClick={() => {
+            setModal(false)
+          }} className='tabber-Modal-content-close'></View>
           <View className='tabber-Modal-content-scroll'>
-            {modalData.expend_type !== 2 && 
+            {modalData.expend_type !== 2 &&
             <View className='tabber-Modal-content-flexBox'>
               <View className='tabber-Modal-content-flexBox-left'>项目名称</View>
               <View className='tabber-Modal-content-flexBox-right'>{modalData.title}</View>
             </View>
             }
-          <View className='tabber-Modal-content-flexBox'>
-            <View>电话</View>
-              <View className='tabber-content-box-num-color'>{modalData.user_mobile}({modalData.user_name})
-              <View onClick={() => { Taro.makePhoneCall({ phoneNumber: modalData.user_mobile})}} className='tabber-Modal-content-flexBox-phone'>拨打</View>
-              {modalData.show_complain !== 0 && <View className='tabber-Modal-content-flexBox-complaint' onClick={() => handleComplaint(modalData.id)}>投诉</View>}
-            </View>
-          </View>
-            {modalData.expend_type === 2 && 
-              <View>
-                <View className='tabber-Modal-content-flexBox'>
-                  <View>规模</View>
-                <View className='tabber-content-box-num-color'>{modalData.team_composition_words}</View>
-                </View>
-                <View className='tabber-Modal-content-flexBox'>
-                <View >接活省份</View>
-                <View className='tabber-content-box-num-color'>{modalData.showProvinceList}</View>
-                </View>
+            <View className='tabber-Modal-content-flexBox'>
+              <View className='tabber-Modal-content-flexBox-left'>电话</View>
+              <View className='tabber-content-box-num-color'>{modalData.user_mobile}
+                <View onClick={() => {
+                  Taro.makePhoneCall({phoneNumber: modalData.user_mobile})
+                }} className='tabber-Modal-content-flexBox-phone'>拨打</View>
+                {modalData.show_complain !== 0 && <View className='tabber-Modal-content-flexBox-complaint'
+                                                        onClick={() => handleComplaint(modalData.id)}>投诉</View>}
               </View>
+            </View>
+            {modalData.expend_type === 2 &&
+            <View>
+              <View className='tabber-Modal-content-flexBox'>
+                <View className='tabber-Modal-content-flexBox-left'>规模</View>
+                <View className='tabber-content-box-num-color'>{modalData.team_composition_words}</View>
+              </View>
+              <View className='tabber-Modal-content-flexBox'>
+                <View className='tabber-Modal-content-flexBox-left'>接活省份</View>
+                <View className='tabber-content-box-num-color'>{modalData.showProvinceList}</View>
+              </View>
+            </View>
             }
-            <View className='tabber-Modal-content-flexBox-classifyName'>
-              {modalData.classifyName.map((v,i)=>(
-                <Text key={i + i} className='tabber-Modal-content-flexBox-classifyName-data'>
-                  [{v}]
-                </Text>
-              ))}
+            {modalData.address !== '' && <View className='tabber-Modal-content-flexBox'>
+              <View className='tabber-Modal-content-flexBox-left'>项目地址</View>
+              <View className='tabber-Modal-content-flexBox-gray'>
+                {modalData.address}
+              </View>
+            </View>}
+            <View className='tabber-Modal-content-flexBox'>
+              <View className='tabber-Modal-content-flexBox-left'>工种</View>
+              <View className='tabber-Modal-content-flexBox-gray'>
+                {modalData.classifyName.map((v, i) => (
+                  <Text key={i + i} className='tabber-Modal-content-flexBox-classifyName-data'>
+                    [{v}]
+                  </Text>
+                ))}
+              </View>
+            </View>
+            {modalData.detail !== '' && <View className='tabber-Modal-content-flexBox'>
+              <View className='tabber-Modal-content-flexBox-left'>项目描述</View>
+              <View className='tabber-Modal-content-flexBox-gray'>
+                {modalData.detail}
+              </View>
+            </View>}
           </View>
-            <View className='clear'></View>
-          <View className='tabber-Modal-content-flexBox-last'>
-            <View>{modalData.detail}</View>
-          </View>
-        </View>
         </View>
       </View>
       }
       {/* 投诉 */}
-      {complaintModal && <Report display={complaintModal} textarea={textarea} handleTextarea={handleTextarea} setComplaintModal={setComplaintModal}
-        handleSubmit={handleSubmit} />
+      {complaintModal && <Report display={complaintModal} textarea={textarea} handleTextarea={handleTextarea}
+                                 setComplaintModal={setComplaintModal}
+                                 handleSubmit={handleSubmit}/>
       }
     </View>
   )
