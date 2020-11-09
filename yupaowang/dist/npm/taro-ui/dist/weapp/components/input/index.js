@@ -1,4 +1,4 @@
-(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["npm/taro-ui/dist/weapp/components/input/index"],{
+(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["npm/taro-ui/dist/weapp/components/input/index"],{
 
 /***/ "./node_modules/taro-ui/dist/weapp/components/input/index.js":
 /*!*******************************************************************!*\
@@ -20,9 +20,9 @@ var _get = function get(object, property, receiver) { if (object === null) objec
 
 var _class, _temp2;
 
-var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
+var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
 
-var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
+var _taroTt2 = _interopRequireDefault(_taroTt);
 
 var _propTypes = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
 
@@ -107,7 +107,7 @@ var AtInput = (_temp2 = _class = function (_AtComponent) {
     value: function _constructor(props) {
       _get(AtInput.prototype.__proto__ || Object.getPrototypeOf(AtInput.prototype), '_constructor', this).call(this, props);
 
-      this.$$refs = new _taroWeapp2.default.RefsArray();
+      this.$$refs = new _taroTt2.default.RefsArray();
     }
   }, {
     key: '_createData',
@@ -157,7 +157,7 @@ var AtInput = (_temp2 = _class = function (_AtComponent) {
       });
       var placeholderCls = (0, _classnames2.default)('placeholder', placeholderClass);
 
-      var anonymousState__temp = (0, _taroWeapp.internal_inline_style)(customStyle);
+      var anonymousState__temp = (0, _taroTt.internal_inline_style)(customStyle);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
         rootCls: rootCls,
@@ -188,7 +188,7 @@ var AtInput = (_temp2 = _class = function (_AtComponent) {
   }]);
 
   return AtInput;
-}(_component2.default), _class.$$events = ["onClick", "onInput", "onFocus", "onBlur", "onConfirm", "clearValue", "onErrorClick"], _class.$$componentPath = "Users/zhangyibo/yupao-ts-recode/yupaowang/node_modules/taro-ui/dist/weapp/components/input/index", _temp2);
+}(_component2.default), _class.$$events = ["onClick", "onInput", "onFocus", "onBlur", "onConfirm", "clearValue", "onErrorClick"], _class.$$componentPath = 'Users/axin/codes/\u9C7C\u6CE1\u7F51/\u5C0F\u7A0B\u5E8FTS\u91CD\u6784\u9879\u76EE/TaroTs-YuPaoWang/yupaowang/node_modules/taro-ui/dist/weapp/components/input/index', _temp2);
 
 
 AtInput.defaultProps = {
@@ -257,7 +257,7 @@ AtInput.propTypes = {
 };
 exports.default = AtInput;
 
-Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(AtInput));
+Component(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(AtInput));
 
 /***/ })
 

@@ -1,4 +1,4 @@
-(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["pages/realname/index"],{
+(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["pages/realname/index"],{
 
 /***/ "./src/actions/realname.ts":
 /*!*********************************!*\
@@ -66,9 +66,9 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
 exports.default = useRealname;
 
-var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
+var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
 
-var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
+var _taroTt2 = _interopRequireDefault(_taroTt);
 
 var _index = __webpack_require__(/*! ../../utils/request/index */ "./src/utils/request/index.ts");
 
@@ -97,35 +97,35 @@ var cardInfoFailImg = _index7.ALIYUNCDNMINIIMG + 'lpy/auth/upload-fail-tips.png'
 var sexArray = [{ id: '1', name: '男' }, { id: '2', name: '女' }];
 function useRealname() {
   // 性别下标
-  var _useState = (0, _taroWeapp.useState)(0),
+  var _useState = (0, _taroTt.useState)(0),
       _useState2 = _slicedToArray(_useState, 2),
       sexCurrent = _useState2[0],
       setSexCurrent = _useState2[1];
   // 性别名称
 
 
-  var _useState3 = (0, _taroWeapp.useState)(''),
+  var _useState3 = (0, _taroTt.useState)(''),
       _useState4 = _slicedToArray(_useState3, 2),
       sexName = _useState4[0],
       setSexName = _useState4[1];
   // 民族下标
 
 
-  var _useState5 = (0, _taroWeapp.useState)(0),
+  var _useState5 = (0, _taroTt.useState)(0),
       _useState6 = _slicedToArray(_useState5, 2),
       nationCurrent = _useState6[0],
       setNationCurrent = _useState6[1];
   // 初始化返回模型
 
 
-  var _useState7 = (0, _taroWeapp.useState)(),
+  var _useState7 = (0, _taroTt.useState)(),
       _useState8 = _slicedToArray(_useState7, 2),
       initModel = _useState8[0],
       setInitModel = _useState8[1];
   // 保存数据提交模型
 
 
-  var _useState9 = (0, _taroWeapp.useState)(),
+  var _useState9 = (0, _taroTt.useState)(),
       _useState10 = _slicedToArray(_useState9, 2),
       model = _useState10[0],
       setModel = _useState10[1];
@@ -137,31 +137,31 @@ function useRealname() {
   });
   // 是否显示表单
 
-  var _useState11 = (0, _taroWeapp.useState)(false),
+  var _useState11 = (0, _taroTt.useState)(false),
       _useState12 = _slicedToArray(_useState11, 2),
       showForm = _useState12[0],
       setShowForm = _useState12[1];
   // 展示电话号码选项
 
 
-  var _useState13 = (0, _taroWeapp.useState)(false),
+  var _useState13 = (0, _taroTt.useState)(false),
       _useState14 = _slicedToArray(_useState13, 2),
       checkDegree = _useState14[0],
       setCheckDegree = _useState14[1];
   // 声明父组件传值地区名字
 
 
-  var _useState15 = (0, _taroWeapp.useState)(''),
+  var _useState15 = (0, _taroTt.useState)(''),
       _useState16 = _slicedToArray(_useState15, 2),
       RealnameArea = _useState16[0],
       setRealnameArea = _useState16[1];
 
-  (0, _taroWeapp.useEffect)(function () {
+  (0, _taroTt.useEffect)(function () {
     if (!login) return;
     (0, _index.getUserAuthInfo)().then(function (data) {
       if (data.errcode == 'ok') {
         if (data.authData.member && data.authData.member.is_check === '0') {
-          _taroWeapp2.default.showModal({
+          _taroTt2.default.showModal({
             title: '审核失败',
             content: data.authData.memberExt.idcard_check_failure_reason,
             showCancel: false
@@ -215,7 +215,7 @@ function useRealname() {
         (0, _index2.ShowActionModal)({
           msg: data.errmsg,
           success: function success() {
-            _taroWeapp2.default.navigateBack();
+            _taroTt2.default.navigateBack();
           }
         });
       }
@@ -297,7 +297,7 @@ function useRealname() {
         (0, _index2.ShowActionModal)({
           msg: res.errmsg,
           success: function success() {
-            _taroWeapp2.default.navigateBack();
+            _taroTt2.default.navigateBack();
           }
         });
       });
@@ -447,9 +447,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
+var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
 
-var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
+var _taroTt2 = _interopRequireDefault(_taroTt);
 
 var _index = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
 
@@ -504,7 +504,7 @@ var RealName = function (_Taro$Component) {
     key: "_constructor",
     value: function _constructor(props) {
       _get(RealName.prototype.__proto__ || Object.getPrototypeOf(RealName.prototype), "_constructor", this).call(this, props);
-      this.$$refs = new _taroWeapp2.default.RefsArray();
+      this.$$refs = new _taroTt2.default.RefsArray();
     }
   }, {
     key: "_createData",
@@ -563,7 +563,7 @@ var RealName = function (_Taro$Component) {
           setModel(_extends({}, model, { gender: id }));
         }
       };
-      (0, _taroWeapp.useDidShow)(function () {
+      (0, _taroTt.useDidShow)(function () {
         if (RealnameArea) {
           var modelItem = JSON.parse(JSON.stringify(model));
           modelItem.address = RealnameArea;
@@ -620,7 +620,7 @@ var RealName = function (_Taro$Component) {
         if (!RealnameArea) {
           return;
         }
-        _taroWeapp2.default.navigateTo({
+        _taroTt2.default.navigateTo({
           url: "/pages/map/realname/index"
         });
       };
@@ -739,14 +739,14 @@ var RealName = function (_Taro$Component) {
   }]);
 
   return RealName;
-}(_taroWeapp2.default.Component);
+}(_taroTt2.default.Component);
 
 RealName.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6", "anonymousFunc7", "anonymousFunc8", "anonymousFunc9", "anonymousFunc10", "anonymousFunc11"];
 RealName.$$componentPath = "pages/realname/index";
 RealName.config = { navigationBarTitleText: '鱼泡网-实名认证' };
 exports.default = RealName;
 
-Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(RealName, true));
+Page(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(RealName, true));
 
 /***/ })
 

@@ -1,4 +1,4 @@
-(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["components/swiper/news/index"],{
+(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["components/swiper/news/index"],{
 
 /***/ "./src/components/swiper/news/index.scss":
 /*!***********************************************!*\
@@ -31,13 +31,15 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
+var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
 
-var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
+var _taroTt2 = _interopRequireDefault(_taroTt);
 
 var _index = __webpack_require__(/*! ../index */ "./src/components/swiper/index.ts");
 
 __webpack_require__(/*! ./index.scss */ "./src/components/swiper/news/index.scss");
+
+var _index2 = __webpack_require__(/*! ../../../utils/helper/index */ "./src/utils/helper/index.ts");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -56,6 +58,7 @@ var SwiperNews = function (_Taro$Component) {
     var _this = _possibleConstructorReturn(this, (SwiperNews.__proto__ || Object.getPrototypeOf(SwiperNews)).apply(this, arguments));
 
     _this.$usedState = ["swiper", "loopArray9", "data"];
+    _this.anonymousFunc0Map = {};
     _this.customComponents = [];
     return _this;
   }
@@ -64,11 +67,13 @@ var SwiperNews = function (_Taro$Component) {
     key: '_constructor',
     value: function _constructor(props) {
       _get(SwiperNews.prototype.__proto__ || Object.getPrototypeOf(SwiperNews.prototype), '_constructor', this).call(this, props);
-      this.$$refs = new _taroWeapp2.default.RefsArray();
+      this.$$refs = new _taroTt2.default.RefsArray();
     }
   }, {
     key: '_createData',
     value: function _createData() {
+      var _this2 = this;
+
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
       var __isRunloopRef = arguments[2];
@@ -77,13 +82,16 @@ var SwiperNews = function (_Taro$Component) {
       var data = this.__props.data;
 
       var swiper = _extends({}, _index.DEFAULT_PROPS, data);
-      var loopArray9 = swiper.lists.map(function (item, index) {
+      var loopArray9 = swiper.lists.map(function (item, __index0) {
         item = {
-          $original: (0, _taroWeapp.internal_get_original)(item)
+          $original: (0, _taroTt.internal_get_original)(item)
         };
-        var $loopState__temp2 = index + index;
+        var _$indexKey = "bbzzz" + __index0;
+        _this2.anonymousFunc0Map[_$indexKey] = function () {
+          return (0, _index2.userJumpPage)("/subpackage/pages/notice/index?id=" + item.$original.id);
+        };
         return {
-          $loopState__temp2: $loopState__temp2,
+          _$indexKey: _$indexKey,
           $original: item.$original
         };
       });
@@ -93,16 +101,29 @@ var SwiperNews = function (_Taro$Component) {
       });
       return this.__state;
     }
+  }, {
+    key: 'anonymousFunc0',
+    value: function anonymousFunc0(_$indexKey) {
+      var _anonymousFunc0Map;
+
+      ;
+
+      for (var _len = arguments.length, e = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+        e[_key - 1] = arguments[_key];
+      }
+
+      return this.anonymousFunc0Map[_$indexKey] && (_anonymousFunc0Map = this.anonymousFunc0Map)[_$indexKey].apply(_anonymousFunc0Map, e);
+    }
   }]);
 
   return SwiperNews;
-}(_taroWeapp2.default.Component);
+}(_taroTt2.default.Component);
 
-SwiperNews.$$events = [];
+SwiperNews.$$events = ["anonymousFunc0"];
 SwiperNews.$$componentPath = "components/swiper/news/index";
 exports.default = SwiperNews;
 
-Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(SwiperNews));
+Component(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(SwiperNews));
 
 /***/ })
 

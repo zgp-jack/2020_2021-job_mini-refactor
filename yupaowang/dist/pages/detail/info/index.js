@@ -1,4 +1,4 @@
-(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["pages/detail/info/index"],{
+(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["pages/detail/info/index"],{
 
 /***/ "./src/pages/detail/info/index.scss":
 /*!******************************************!*\
@@ -31,9 +31,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
+var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
 
-var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
+var _taroTt2 = _interopRequireDefault(_taroTt);
 
 var _index = __webpack_require__(/*! ../../../utils/request/index */ "./src/utils/request/index.ts");
 
@@ -73,7 +73,7 @@ var DetailInfoPage = function (_Taro$Component) {
       navigationBarTitleText: ''
     };
 
-    _this.$usedState = ["data", "loopArray70", "loopArray71", "$compid__64", "$compid__65", "resCode", "editPhone", "IMGCDNURL", "again", "stopHiring", "isCollection", "recommend", "complaintModal", "phone"];
+    _this.$usedState = ["data", "loopArray69", "loopArray70", "$compid__63", "$compid__64", "resCode", "editPhone", "IMGCDNURL", "again", "stopHiring", "isCollection", "recommend", "complaintModal", "phone"];
     _this.anonymousFunc5Map = {};
     _this.customComponents = ["WechatNotice", "CollectionRecruitList", "Report"];
     return _this;
@@ -83,7 +83,7 @@ var DetailInfoPage = function (_Taro$Component) {
     key: "_constructor",
     value: function _constructor(props) {
       _get(DetailInfoPage.prototype.__proto__ || Object.getPrototypeOf(DetailInfoPage.prototype), "_constructor", this).call(this, props);
-      this.$$refs = new _taroWeapp2.default.RefsArray();
+      this.$$refs = new _taroTt2.default.RefsArray();
     }
   }, {
     key: "_createData",
@@ -96,23 +96,23 @@ var DetailInfoPage = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__64"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__63"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__64 = _genCompid2[0],
-          $compid__64 = _genCompid2[1];
+          $prevCompid__63 = _genCompid2[0],
+          $compid__63 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__65"),
+      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__64"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__65 = _genCompid4[0],
-          $compid__65 = _genCompid4[1];
+          $prevCompid__64 = _genCompid4[0],
+          $compid__64 = _genCompid4[1];
 
-      var router = (0, _taroWeapp.useRouter)();
+      var router = (0, _taroTt.useRouter)();
       var id = router.params.id;
       // 获取userInfo
 
-      var userInfo = _taroWeapp2.default.getStorageSync(_store.UserInfo);
+      var userInfo = _taroTt2.default.getStorageSync(_store.UserInfo);
 
-      var _useState = (0, _taroWeapp.useState)({
+      var _useState = (0, _taroTt.useState)({
         title: '',
         time: '',
         image: '',
@@ -145,77 +145,77 @@ var DetailInfoPage = function (_Taro$Component) {
       // 投诉
 
 
-      var _useState3 = (0, _taroWeapp.useState)(false),
+      var _useState3 = (0, _taroTt.useState)(false),
           _useState4 = _slicedToArray(_useState3, 2),
           complaintModal = _useState4[0],
           setComplaintModal = _useState4[1];
       // textarea
 
 
-      var _useState5 = (0, _taroWeapp.useState)(''),
+      var _useState5 = (0, _taroTt.useState)(''),
           _useState6 = _slicedToArray(_useState5, 2),
           textarea = _useState6[0],
           setTextarea = _useState6[1];
       // 刷新一次
 
 
-      var _useState7 = (0, _taroWeapp.useState)(false),
+      var _useState7 = (0, _taroTt.useState)(false),
           _useState8 = _slicedToArray(_useState7, 2),
           refresh = _useState8[0],
           setRefresh = _useState8[1];
       // 是否收藏
 
 
-      var _useState9 = (0, _taroWeapp.useState)(0),
+      var _useState9 = (0, _taroTt.useState)(0),
           _useState10 = _slicedToArray(_useState9, 2),
           isCollection = _useState10[0],
           setIsCollection = _useState10[1];
       // 判断招聘类型
 
 
-      var _useState11 = (0, _taroWeapp.useState)(''),
+      var _useState11 = (0, _taroTt.useState)(''),
           _useState12 = _slicedToArray(_useState11, 2),
           resCode = _useState12[0],
           setResCode = _useState12[1];
       // 是否显示停止招工
 
 
-      var _useState13 = (0, _taroWeapp.useState)(false),
+      var _useState13 = (0, _taroTt.useState)(false),
           _useState14 = _slicedToArray(_useState13, 2),
           stopHiring = _useState14[0],
           setStopHiring = _useState14[1];
       // 是够能继续投诉
 
 
-      var _useState15 = (0, _taroWeapp.useState)(false),
+      var _useState15 = (0, _taroTt.useState)(false),
           _useState16 = _slicedToArray(_useState15, 2),
           complaint = _useState16[0],
           setComplaint = _useState16[1];
       // 重新招工
 
 
-      var _useState17 = (0, _taroWeapp.useState)(false),
+      var _useState17 = (0, _taroTt.useState)(false),
           _useState18 = _slicedToArray(_useState17, 2),
           again = _useState18[0],
           setAgain = _useState18[1];
       // 电话
 
 
-      var _useState19 = (0, _taroWeapp.useState)(''),
+      var _useState19 = (0, _taroTt.useState)(''),
           _useState20 = _slicedToArray(_useState19, 2),
           phone = _useState20[0],
           setPhone = _useState20[1];
       // 修改电话后投诉
 
 
-      var _useState21 = (0, _taroWeapp.useState)(false),
+      var _useState21 = (0, _taroTt.useState)(false),
           _useState22 = _slicedToArray(_useState21, 2),
           complaintInfo = _useState22[0],
           setComplaintInfo = _useState22[1];
       // 修改电话后，显示投诉和拨打
 
 
-      var _useState23 = (0, _taroWeapp.useState)(true),
+      var _useState23 = (0, _taroTt.useState)(true),
           _useState24 = _slicedToArray(_useState23, 2),
           editPhone = _useState24[0],
           setEditPhone = _useState24[1];
@@ -227,14 +227,14 @@ var DetailInfoPage = function (_Taro$Component) {
       });
       // 相关推荐
 
-      var _useState25 = (0, _taroWeapp.useState)([]),
+      var _useState25 = (0, _taroTt.useState)([]),
           _useState26 = _slicedToArray(_useState25, 2),
           recommend = _useState26[0],
           setRecommend = _useState26[1];
       // 返回刷新页面
 
 
-      (0, _taroWeapp.useDidShow)(function () {
+      (0, _taroTt.useDidShow)(function () {
         if (refresh) {
           setRefresh(false);
           return;
@@ -258,7 +258,7 @@ var DetailInfoPage = function (_Taro$Component) {
             setData(res.result);
             setPhone(res.result.tel_str);
             setEditPhone(res.result.show_ajax_btn);
-            _taroWeapp2.default.setNavigationBarTitle({
+            _taroTt2.default.setNavigationBarTitle({
               title: res.result.title
             });
             setIsCollection(res.result.is_collect);
@@ -286,7 +286,7 @@ var DetailInfoPage = function (_Taro$Component) {
             setData(res.result);
             setPhone(res.result.tel_str);
             setEditPhone(res.result.show_ajax_btn);
-            _taroWeapp2.default.setNavigationBarTitle({
+            _taroTt2.default.setNavigationBarTitle({
               title: res.result.title
             });
             setIsCollection(res.result.is_collect);
@@ -303,7 +303,7 @@ var DetailInfoPage = function (_Taro$Component) {
       var handleMap = function handleMap() {
         var locArr = data.location.split(",");
         setRefresh(true);
-        _taroWeapp2.default.openLocation({
+        _taroTt2.default.openLocation({
           latitude: parseFloat(locArr[1]),
           longitude: parseFloat(locArr[0]),
           name: data.map_address_name,
@@ -313,7 +313,7 @@ var DetailInfoPage = function (_Taro$Component) {
       };
       // 用户页面跳转
       var userRouteJump = function userRouteJump(url) {
-        _taroWeapp2.default.navigateTo({
+        _taroTt2.default.navigateTo({
           url: url
         });
       };
@@ -354,8 +354,8 @@ var DetailInfoPage = function (_Taro$Component) {
       // 操作授权
       var vaildUserLogin = function vaildUserLogin() {
         if (!login) {
-          _taroWeapp2.default.navigateTo({
-            url:  true ? _index2.AUTHPATH : undefined
+          _taroTt2.default.navigateTo({
+            url:  false ? undefined : _index2.CODEAUTHPATH
           });
           return false;
         }
@@ -371,53 +371,53 @@ var DetailInfoPage = function (_Taro$Component) {
         } else if (res.errcode == 'end') {
           (0, _index5.default)(res.errmsg);
         } else if (res.errcode == 'auth_not_pass' || res.errcode == 'to_auth') {
-          _taroWeapp2.default.showModal({
+          _taroTt2.default.showModal({
             title: '温馨提示',
             content: res.errmsg,
             success: function success(res) {
               if (res.confirm) {
-                _taroWeapp2.default.navigateTo({
+                _taroTt2.default.navigateTo({
                   url: '/pages/realname/index'
                 });
               } else {
-                _taroWeapp2.default.navigateBack();
+                _taroTt2.default.navigateBack();
               }
             }
           });
         } else if (res.errcode == 'none_tel') {
-          _taroWeapp2.default.showModal({
+          _taroTt2.default.showModal({
             title: '温馨提示',
             content: res.errmsg,
             cancelText: "返回列表",
             confirmText: "绑定手机",
             success: function success(res) {
               if (res.confirm) {
-                _taroWeapp2.default.navigateTo({
+                _taroTt2.default.navigateTo({
                   url: '/pages/userinfo/add/index'
                 });
               } else if (res.cancel) {
-                _taroWeapp2.default.navigateBack();
+                _taroTt2.default.navigateBack();
               }
             }
           });
         } else if (res.errcode == 'get_integral') {
-          _taroWeapp2.default.showModal({
+          _taroTt2.default.showModal({
             title: '温馨提示',
             content: res.errmsg,
             cancelText: "返回列表",
             confirmText: "获取积分",
             success: function success(res) {
               if (res.confirm) {
-                _taroWeapp2.default.navigateTo({
+                _taroTt2.default.navigateTo({
                   url: '/pages/getintegral/index'
                 });
               } else if (res.cancel) {
-                _taroWeapp2.default.navigateBack();
+                _taroTt2.default.navigateBack();
               }
             }
           });
         } else if (res.errcode == 'reload') {
-          _taroWeapp2.default.showModal({
+          _taroTt2.default.showModal({
             title: '温馨提示',
             content: res.errmsg,
             showCancel: false,
@@ -429,8 +429,8 @@ var DetailInfoPage = function (_Taro$Component) {
             }
           });
         } else if (res.errcode == 'goback') {
-          var pages = _taroWeapp2.default.getCurrentPages();
-          _taroWeapp2.default.showModal({
+          var pages = _taroTt2.default.getCurrentPages();
+          _taroTt2.default.showModal({
             title: '温馨提示',
             content: res.errmsg,
             confirmText: "确定",
@@ -438,21 +438,21 @@ var DetailInfoPage = function (_Taro$Component) {
             success: function success(res) {
               if (res.confirm) {
                 if (pages.length > 1) {
-                  _taroWeapp2.default.navigateBack();
+                  _taroTt2.default.navigateBack();
                 } else {
-                  _taroWeapp2.default.reLaunch({ url: '/pages/index/index' });
+                  _taroTt2.default.reLaunch({ url: '/pages/index/index' });
                 }
               }
             }
           });
         } else {
-          _taroWeapp2.default.showModal({
+          _taroTt2.default.showModal({
             title: '温馨提示',
             content: res.errmsg,
             showCancel: false,
             confirmText: "我知道了",
             success: function success() {
-              _taroWeapp2.default.navigateBack();
+              _taroTt2.default.navigateBack();
             }
           });
         }
@@ -472,7 +472,7 @@ var DetailInfoPage = function (_Taro$Component) {
       };
       var footerComplaint = function footerComplaint() {
         if (resCode === 'end') {
-          _taroWeapp2.default.showModal({
+          _taroTt2.default.showModal({
             title: '温馨提示',
             content: '该招工信息已招到，暂时不能投诉',
             showCancel: false
@@ -480,7 +480,7 @@ var DetailInfoPage = function (_Taro$Component) {
         } else {
           // 投诉过一次就不能投诉了
           if (complaint) {
-            _taroWeapp2.default.showModal({
+            _taroTt2.default.showModal({
               title: '提示',
               content: '您已投诉该信息，请勿重复操作！',
               showCancel: false
@@ -494,7 +494,7 @@ var DetailInfoPage = function (_Taro$Component) {
               (0, _index5.default)('请查看完整的手机号码后再操作！');
             } else {
               if (data.is_end === 2 || !data.show_complaint.show_complaint) {
-                _taroWeapp2.default.showModal({
+                _taroTt2.default.showModal({
                   title: '提示',
                   content: '您已投诉该信息，请勿重复投诉！',
                   showCancel: false
@@ -522,7 +522,7 @@ var DetailInfoPage = function (_Taro$Component) {
       };
       var handleImage = function handleImage(v) {
         setRefresh(true);
-        _taroWeapp2.default.previewImage({
+        _taroTt2.default.previewImage({
           current: v,
           urls: [v]
         });
@@ -553,7 +553,7 @@ var DetailInfoPage = function (_Taro$Component) {
           var endtime = parseInt(data.top_info.end_time);
           var timestr = new Date().getTime() / 1000;
           if (timestr < endtime) {
-            _taroWeapp2.default.showLoading({
+            _taroTt2.default.showLoading({
               title: '正在执行操作'
             });
             var params = {
@@ -569,7 +569,7 @@ var DetailInfoPage = function (_Taro$Component) {
                 // setSearchData({ ...searchData, page: searchData.page })
               } else if (res.errcode === 'auth_forbid') {
                 // 去实名
-                _taroWeapp2.default.showModal({
+                _taroTt2.default.showModal({
                   title: '温馨提示',
                   content: res.errmsg,
                   cancelText: '取消',
@@ -577,7 +577,7 @@ var DetailInfoPage = function (_Taro$Component) {
                   success: function success(res) {
                     if (res.confirm) {
                       var backtwo = "backtwo";
-                      _taroWeapp2.default.navigateTo({
+                      _taroTt2.default.navigateTo({
                         url: "/pages/realname/index?backtwo=backtwo"
                       });
                     }
@@ -585,7 +585,7 @@ var DetailInfoPage = function (_Taro$Component) {
                 });
                 return;
               } else if (res.errcode == "member_forbid") {
-                _taroWeapp2.default.showModal({
+                _taroTt2.default.showModal({
                   title: '温馨提示',
                   content: "mydata.errmsg",
                   cancelText: "取消",
@@ -593,7 +593,7 @@ var DetailInfoPage = function (_Taro$Component) {
                   success: function success(res) {
                     if (res.confirm) {
                       var tel = _index2.SERVERPHONE;
-                      _taroWeapp2.default.makePhoneCall({
+                      _taroTt2.default.makePhoneCall({
                         phoneNumber: tel
                       });
                     }
@@ -601,7 +601,7 @@ var DetailInfoPage = function (_Taro$Component) {
                 });
                 return;
               } else {
-                _taroWeapp2.default.showToast({
+                _taroTt2.default.showToast({
                   title: res.errmsg,
                   icon: "none",
                   duration: 1500
@@ -617,7 +617,7 @@ var DetailInfoPage = function (_Taro$Component) {
         return jobGetTel();
       };
       this.anonymousFunc1 = function () {
-        _taroWeapp2.default.makePhoneCall({ phoneNumber: phone });
+        _taroTt2.default.makePhoneCall({ phoneNumber: phone });
       };
       this.anonymousFunc2 = footerComplaint;
       this.anonymousFunc3 = function () {
@@ -644,11 +644,11 @@ var DetailInfoPage = function (_Taro$Component) {
         return jobGetTel();
       };
       this.anonymousFunc15 = function () {
-        _taroWeapp2.default.makePhoneCall({ phoneNumber: data.tel_str });
+        _taroTt2.default.makePhoneCall({ phoneNumber: data.tel_str });
       };
-      var loopArray70 = data.classifyName.map(function (v, i) {
+      var loopArray69 = data.classifyName.map(function (v, i) {
         v = {
-          $original: (0, _taroWeapp.internal_get_original)(v)
+          $original: (0, _taroTt.internal_get_original)(v)
         };
         var $loopState__temp2 = i + i;
         return {
@@ -656,9 +656,9 @@ var DetailInfoPage = function (_Taro$Component) {
           $original: v.$original
         };
       });
-      var loopArray71 = data.view_images.length ? data.view_images.map(function (v, i) {
+      var loopArray70 = data.view_images.length ? data.view_images.map(function (v, i) {
         v = {
-          $original: (0, _taroWeapp.internal_get_original)(v)
+          $original: (0, _taroTt.internal_get_original)(v)
         };
         var $loopState__temp4 = data.view_images.length ? i + i : null;
         var _$indexKey = "hizzz" + i;
@@ -671,23 +671,23 @@ var DetailInfoPage = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      recommend.length && _taroWeapp.propsManager.set({
+      recommend.length && _taroTt.propsManager.set({
         "data": recommend,
         "type": 1
-      }, $compid__64, $prevCompid__64);
-      complaintModal && _taroWeapp.propsManager.set({
+      }, $compid__63, $prevCompid__63);
+      complaintModal && _taroTt.propsManager.set({
         "display": complaintModal,
         "textarea": textarea,
         "handleTextarea": handleTextarea,
         "setComplaintModal": setComplaintModal,
         "handleSubmit": handleSubmit
-      }, $compid__65, $prevCompid__65);
+      }, $compid__64, $prevCompid__64);
       Object.assign(this.__state, {
         data: data,
+        loopArray69: loopArray69,
         loopArray70: loopArray70,
-        loopArray71: loopArray71,
+        $compid__63: $compid__63,
         $compid__64: $compid__64,
-        $compid__65: $compid__65,
         resCode: resCode,
         editPhone: editPhone,
         IMGCDNURL: _index2.IMGCDNURL,
@@ -791,14 +791,14 @@ var DetailInfoPage = function (_Taro$Component) {
   }]);
 
   return DetailInfoPage;
-}(_taroWeapp2.default.Component);
+}(_taroTt2.default.Component);
 
 DetailInfoPage.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6", "anonymousFunc7", "anonymousFunc8", "anonymousFunc9", "anonymousFunc10", "anonymousFunc11", "anonymousFunc12", "anonymousFunc13", "anonymousFunc14", "anonymousFunc15"];
 DetailInfoPage.$$componentPath = "pages/detail/info/index";
 DetailInfoPage.config = { navigationBarTitleText: '' };
 exports.default = DetailInfoPage;
 
-Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(DetailInfoPage, true));
+Page(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(DetailInfoPage, true));
 
 /***/ })
 

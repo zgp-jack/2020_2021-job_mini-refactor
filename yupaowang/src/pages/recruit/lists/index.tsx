@@ -22,6 +22,8 @@ export default function Recruit(){
 
   // 输入关键词 没搜索 备份
   const [remark, setRemark] = useState<string>('')
+  // 是否还有下一页
+  const [hasMore, setHasMore] = useState<boolean>(true)
   // * 获取选择城市缓存
   let userListChooseCity: ChildItems = Taro.getStorageSync(UserListChooseCity)
   // * 配置筛选条件
@@ -90,6 +92,7 @@ export default function Recruit(){
   // 请求列表方法
   const getRecruitListAction = ()=> {
     getRecruitList(searchData).then(res => {
+      if (res.data && !res.data.length) setHasMore(false)
       Taro.hideNavigationBarLoading()
       if (searchData.page === 1) setLists([[...res.data]])
       else setLists([...lists, [...res.data]])
@@ -138,6 +141,7 @@ export default function Recruit(){
 
   // scroll-view 回到顶部
   const goToScrollTop = () => {
+    setHasMore(true)
     setScrollTop(scrollTop ? 0 : 0.1)
   }
 
@@ -166,7 +170,7 @@ export default function Recruit(){
       >
         <View style={{height: '8px'}}></View>
         <WechatNotice />
-        <RecruitList data={lists} />
+        <RecruitList data={lists} hasMore={hasMore} />
       </ScrollView>
       <View className='publish-list-btn' onClick={() => userPublishRecruit()}>发布招工</View>
     </View>

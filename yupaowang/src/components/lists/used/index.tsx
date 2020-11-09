@@ -1,15 +1,16 @@
 import Taro from '@tarojs/taro'
 import { View, Text, Image, Block } from '@tarojs/components'
 import './index.scss'
-import { IMGCDNURL } from '../../../config'
+import { ALIYUNCDN, IMGCDNURL } from '../../../config'
 import { FleamarketList } from '../../../utils/request/index.d'
 
 interface Props {
   data: FleamarketList[][],
-  bottom?: boolean
+  bottom?: boolean,
+  hasMore?: boolean
 }
 
-export default function UsedList({ data = [], bottom = true }: Props){
+export default function UsedList({ data = [], bottom = true, hasMore = true }: Props){
   // 用户查看二手交易详情
   const userLookUsedInfo = (id: string)=> {
     Taro.navigateTo({
@@ -18,7 +19,7 @@ export default function UsedList({ data = [], bottom = true }: Props){
   }
   return (
     <View className='usedlist-container' style={ bottom ? '' : 'padding-bottom:0' }>
-      {data.length&&data.map((item)=>(
+      {data.length && data.map((item)=>(
         <Block>
           {item.map((d)=>(
             <View className='usedlist-item' onClick={()=>userLookUsedInfo(d.id)}>
@@ -46,7 +47,16 @@ export default function UsedList({ data = [], bottom = true }: Props){
             </View>
           ))}
         </Block>
-      ))}
+      ))
+    }
+    {
+        data && data[0] && data[0].length && !hasMore && <View className='showMore'>没有更多内容了</View>
+    }
+    { data && data[0] && !data[0].length && <View className='lists-nodata'>
+        <Image src={`${ALIYUNCDN}/miniprogram/images/nodata.png`}></Image>
+        <Text>暂无相关内容</Text>
+      </View>
+    }
     </View>
   )
 }

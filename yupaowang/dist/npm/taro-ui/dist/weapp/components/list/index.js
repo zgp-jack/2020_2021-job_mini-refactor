@@ -1,4 +1,4 @@
-(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["npm/taro-ui/dist/weapp/components/list/index"],{
+(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["npm/taro-ui/dist/weapp/components/list/index"],{
 
 /***/ "./node_modules/taro-ui/dist/weapp/components/list/index.js":
 /*!******************************************************************!*\
@@ -20,9 +20,9 @@ var _get = function get(object, property, receiver) { if (object === null) objec
 
 var _class, _temp2;
 
-var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
+var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
 
-var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
+var _taroTt2 = _interopRequireDefault(_taroTt);
 
 var _propTypes = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
 
@@ -66,7 +66,7 @@ var AtList = (_temp2 = _class = function (_AtComponent) {
     value: function _constructor(props) {
       _get(AtList.prototype.__proto__ || Object.getPrototypeOf(AtList.prototype), '_constructor', this).call(this, props);
 
-      this.$$refs = new _taroWeapp2.default.RefsArray();
+      this.$$refs = new _taroTt2.default.RefsArray();
     }
   }, {
     key: '_createData',
@@ -89,7 +89,7 @@ var AtList = (_temp2 = _class = function (_AtComponent) {
   }]);
 
   return AtList;
-}(_component2.default), _class.$$events = [], _class.$$componentPath = "Users/zhangyibo/yupao-ts-recode/yupaowang/node_modules/taro-ui/dist/weapp/components/list/index", _temp2);
+}(_component2.default), _class.$$events = [], _class.$$componentPath = 'Users/axin/codes/\u9C7C\u6CE1\u7F51/\u5C0F\u7A0B\u5E8FTS\u91CD\u6784\u9879\u76EE/TaroTs-YuPaoWang/yupaowang/node_modules/taro-ui/dist/weapp/components/list/index', _temp2);
 
 
 AtList.defaultProps = {
@@ -101,7 +101,7 @@ AtList.propTypes = {
 };
 exports.default = AtList;
 
-Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(AtList));
+Component(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(AtList));
 
 /***/ })
 

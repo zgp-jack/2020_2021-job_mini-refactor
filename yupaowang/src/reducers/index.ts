@@ -33,6 +33,10 @@ export default combineReducers({
   member,
   realname,
   resumeAddInfo,
+<<<<<<< HEAD
+  PositionStatus
+=======
   PositionStatus,
   resumeData
+>>>>>>> 13c03d01952af98e14b9d9fac077c9afed1a5ccd
 })

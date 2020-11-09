@@ -7,6 +7,8 @@ import UsedList from '../../../components/lists/used'
 import { getFleamarketList } from '../../../utils/request'
 import { FleamarketList } from '../../../utils/request/index.d'
 import Tabbar from '../../../components/tabbar'
+import { UserListChooseCity } from '../../../config/store'
+import { ChildItems } from '../../../models/area'
 import './index.scss'
 
 export interface SearchType {
@@ -20,12 +22,11 @@ export interface SearchType {
 
 export default function Fleamarket() {
   // 是否已是最后一页
-  const [isend, setIsend] = useState<boolean>(false)
-  // * 配置筛选条件
-  const DEFAULT_CONDITION = [
-    { id: 'area', text: '全国' },
-    { id: 'classify', text: '选择分类' }
-  ]
+  const [hasMore, setHasMore] = useState<boolean>(true)
+
+  // * 获取地区选择默认数据
+  let userListChooseCity: ChildItems = Taro.getStorageSync(UserListChooseCity)
+
   // * 标记是否是在刷新状态
   const [refresh, setRefresh] = useState<boolean>(false)
   // * 定义列表数组
@@ -34,19 +35,26 @@ export default function Fleamarket() {
   const [searchData, setSearchData] = useState<SearchType>({
     page: 1,
     list_type: 'fleamarket',
-    area_id: '',
-    classify_id: '',
+    area_id: userListChooseCity.id,
+    classify_id: '0',
     attribute_id: '',
     keywords: ''
   })
 
+  const [inputValue, setInputValue] = useState<string>('')
+
+  let [listScrollTop, setListScrollTop] = useState<number>(0)
+
   // * 请求列表数据
   useEffect(() => {
-    if (isend) return
     getFleamarketList(searchData).then(res => {
       Taro.hideNavigationBarLoading()
-      if (!res.length) setIsend(true)
-      if (searchData.page === 1) setLists([[...res]])
+      if (!res.length) setHasMore(false)
+      if (searchData.page === 1) {
+        setHasMore(true)
+        goToScrollTop()
+        setLists([[...res]])
+      }
       else setLists([...lists, [...res]])
       if (refresh) setRefresh(false)
     })
@@ -54,6 +62,7 @@ export default function Fleamarket() {
 
   // * 触底加载下一页
   const getNextPageData = () => {
+    if (!hasMore) return
     Taro.showNavigationBarLoading()
     setSearchData({ ...searchData, page: searchData.page + 1 })
   }
@@ -64,12 +73,32 @@ export default function Fleamarket() {
     setSearchData({ ...searchData, page: 1 })
   }
 
+  // * 监听地区选择/分类选
+  const searchChange = (data) => {
+    setSearchData({ ...searchData,...data, page: 1 })
+  }
+
+  // * 监听搜索
+  const inputSearch = (value) => {
+    setInputValue(value)
+  }
+
+  const setSearchDatas = (key: string, value: string) => {
+    searchData[key] = value;
+    setSearchData({ ...searchData, page: 1 })
+  }
+
+   // scroll-view 回到顶部
+  const goToScrollTop = () => {
+    setListScrollTop(listScrollTop ? 0 : 0.1)
+  }
+
   return (
     <Block>
       <View className='recruit-container'>
         <View className='recruit-fiexd-header'>
-          <Search placeholder='跳蚤市场' value='' setRemark={()=>{}} setSearchData={()=>{}}/>
-          <UsedCondition data={ DEFAULT_CONDITION } setSearchData={()=>{}} />
+          <Search placeholder='跳蚤市场' value='' setRemark={(value) => inputSearch(value)} setSearchData={() => setSearchDatas('keywords', inputValue)} />
+          <UsedCondition setSearchData={searchChange} />
         </View>
         <ScrollView
           className='recruit-lists-containerbox'
@@ -79,13 +108,14 @@ export default function Fleamarket() {
           onRefresherRefresh={() => pullDownAction()}
           lowerThreshold={200}
           onScrollToLower={() => getNextPageData()}
+          scrollTop={listScrollTop}
         >
           <View style={{ height: '8px' }}></View>
           <WechatNotice />
-          <UsedList data={ lists } />
+          <UsedList data={lists} hasMore={hasMore}/>
         </ScrollView>
       </View>
-      <Tabbar/>
+      <Tabbar />
     </Block>
   )
 }

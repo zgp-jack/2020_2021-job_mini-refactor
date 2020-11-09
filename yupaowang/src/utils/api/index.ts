@@ -210,4 +210,12 @@ export const realnameQueryUrl: string = REQUESTURL + 'resume/auth-worker-find/'
 export const getResumeAddInfoConfig: string = REQUESTURL + 'resumes/get-data/'
 //排名规则
 export const getRankRulesList: string = REQUESTURL + 'resumes/sort/'
+// 大转盘获取抽奖次数
+export const turntableIndex: string = REQUESTURL + 'turntable/index/'
+// 大转盘 获取抽奖结果
+export const turntableDraw: string = REQUESTURL + 'turntable/draw/'
+// 大转盘看视频结束后的回调
+export const turntableVideoEnd: string = REQUESTURL + 'turntable/video-end/'
+// 获取鱼泡币页面大转盘展示控制
+export const memberTurntable: string = REQUESTURL + 'member/turntable/'
 

@@ -7,10 +7,11 @@ import './index.scss'
 
 interface PROPS {
   data: ResumeList[][],
-  bottom?: boolean
+  bottom?: boolean,
+  hasMore?: boolean
 }
 
-export default function ResumeList({ data, bottom = true }: PROPS){
+export default function ResumeList({ data, bottom = true, hasMore = true }: PROPS){
   // 用户页面跳转
   const userRouteJump = (url: string) => {
     Taro.navigateTo({
@@ -59,7 +60,7 @@ export default function ResumeList({ data, bottom = true }: PROPS){
           ))}
         </Block>
       ))}
-      {data && data[0] && data[0].length && <View className='list-data-notmore'>没有更多数据了</View>} 
+      {data && data[0] && data[0].length && !hasMore && <View className='list-data-notmore'>没有更多数据了</View>} 
       {data&&data[0]&&!data[0].length && <Nodata text='暂无相关数据' />}
     </View>
   )

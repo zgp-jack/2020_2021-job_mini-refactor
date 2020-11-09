@@ -1,4 +1,4 @@
-(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["components/profession/index"],{
+(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["components/profession/index"],{
 
 /***/ "./src/components/profession/index.scss":
 /*!**********************************************!*\
@@ -29,9 +29,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
+var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
 
-var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
+var _taroTt2 = _interopRequireDefault(_taroTt);
 
 var _classnames = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
 
@@ -65,7 +65,7 @@ var Profession = function (_Taro$Component) {
     key: '_constructor',
     value: function _constructor(props) {
       _get(Profession.prototype.__proto__ || Object.getPrototypeOf(Profession.prototype), '_constructor', this).call(this, props);
-      this.$$refs = new _taroWeapp2.default.RefsArray();
+      this.$$refs = new _taroTt2.default.RefsArray();
     }
   }, {
     key: '_createData',
@@ -92,13 +92,13 @@ var Profession = function (_Taro$Component) {
       };
       var loopArray31 = data ? data.map(function (item, i) {
         item = {
-          $original: (0, _taroWeapp.internal_get_original)(item)
+          $original: (0, _taroTt.internal_get_original)(item)
         };
         var $anonymousCallee__5 = data ? item.$original.children.map(function (d, k) {
           d = {
-            $original: (0, _taroWeapp.internal_get_original)(d)
+            $original: (0, _taroTt.internal_get_original)(d)
           };
-          var _$indexKey = 'dbzzz' + i + '-' + k;
+          var _$indexKey = 'dczzz' + i + '-' + k;
           _this2.anonymousFunc0Map[_$indexKey] = function () {
             return _this2.__props.onClickItem(i, k, d.$original.id, d.$original.name);
           };
@@ -148,7 +148,7 @@ var Profession = function (_Taro$Component) {
   }]);
 
   return Profession;
-}(_taroWeapp2.default.Component);
+}(_taroTt2.default.Component);
 
 Profession.$$events = ["anonymousFunc0", "anonymousFunc1"];
 Profession.$$componentPath = "components/profession/index";
@@ -157,7 +157,7 @@ Profession.options = {
 };
 exports.default = Profession;
 
-Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(Profession));
+Component(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(Profession));
 
 /***/ })
 

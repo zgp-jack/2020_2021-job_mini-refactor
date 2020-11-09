@@ -164,7 +164,8 @@ export function getAllListItem(data: FilterData): Promise<Inter.HomeLists> {
 export function getRecruitList(data: RecruitSearchType): Promise<Inter.RecruitList> {
   return doRequestAction({
     url: api.GetRecruitlist,
-    data: data
+    data: data,
+    method: 'POST'
   })
 }
 
@@ -1171,5 +1172,37 @@ export function getRankRulesList(): Promise<any> {
   return doRequestAction({
     url: api.getRankRulesList,
     method: 'POST'
+  })
+}
+// 大转盘获取抽奖次数
+export function turntableIndex():Promise<Inter.TurntableIndexType>{
+  return doRequestAction({
+    url: api.turntableIndex,
+    method: 'POST',
+    title: '正在初始化数据'
+  })
+}
+
+// 大转盘抽奖
+export function turntableDraw():Promise<Inter.TurntableDraw>{
+  return doRequestAction({
+    url: api.turntableDraw,
+    method: 'POST',
+  })
+}
+
+// 大转盘看视频结束后的回调
+export function turntableVideoEnd():Promise<Inter.TurntableVideoEnd>{
+  return doRequestAction({
+    url: api.turntableVideoEnd,
+    method: 'POST',
+  })
+}
+
+// 获取鱼泡币页面大转盘展示控制
+export function memberTurntable():Promise<Inter.memberTurntableType>{
+  return doRequestAction({
+    url: api.memberTurntable,
+    method: 'POST',
   })
 }
