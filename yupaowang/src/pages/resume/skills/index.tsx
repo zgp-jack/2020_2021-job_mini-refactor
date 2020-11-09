@@ -1,4 +1,4 @@
-import Taro, { Config } from '@tarojs/taro'
+import Taro, { Config, useDidShow } from '@tarojs/taro'
 import { View, Text, Image } from '@tarojs/components'
 import Imglist from '../../../components/imglist'
 import useResume from '../../../hooks/publish/resume'
@@ -8,7 +8,11 @@ import './index.scss'
 
 export default function Skills() {
 
-  const { certificates } = useResume()
+  const { certificates, initResumeData } = useResume()
+
+  useDidShow(() => {
+    initResumeData()
+  })
 
   const userEditSkill = (id: string) => {
     Taro.navigateTo({

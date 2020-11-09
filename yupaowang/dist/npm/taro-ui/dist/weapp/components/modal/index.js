@@ -1,1 +1,197 @@
-(tt.webpackJsonp=tt.webpackJsonp||[]).push([[38],{"268":function(e,t,o){"use strict";Object.defineProperty(t,"__esModule",{"value":!0});var O=function(e,t){if(Array.isArray(e))return e;if(Symbol.iterator in Object(e))return function sliceIterator(e,t){var o=[],n=!0,r=!1,a=void 0;try{for(var i,l=e[Symbol.iterator]();!(n=(i=l.next()).done)&&(o.push(i.value),!t||o.length!==t);n=!0);}catch(e){r=!0,a=e}finally{try{!n&&l.return&&l.return()}finally{if(r)throw a}}return o}(e,t);throw new TypeError("Invalid attempt to destructure non-iterable instance")},n=function(e,t,o){return t&&defineProperties(e.prototype,t),o&&defineProperties(e,o),e};function defineProperties(e,t){for(var o=0;o<t.length;o++){var n=t[o];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}var r,a,b=o(0),i=_interopRequireDefault(b),l=_interopRequireDefault(o(11)),C=_interopRequireDefault(o(5)),s=_interopRequireDefault(o(43)),c=_interopRequireDefault(o(10)),u=o(41);function _interopRequireDefault(e){return e&&e.__esModule?e:{"default":e}}function _possibleConstructorReturn(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}var p=(function _inherits(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{"constructor":{"value":e,"enumerable":!1,"writable":!0,"configurable":!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}(AtModal,c.default),n(AtModal,[{"key":"_constructor","value":function _constructor(e){(function get(e,t,o){null===e&&(e=Function.prototype);var n=Object.getOwnPropertyDescriptor(e,t);if(void 0===n){var r=Object.getPrototypeOf(e);return null===r?void 0:get(r,t,o)}if("value"in n)return n.value;var a=n.get;return void 0!==a?a.call(o):void 0})(AtModal.prototype.__proto__||Object.getPrototypeOf(AtModal.prototype),"_constructor",this).apply(this,arguments);var t=e.isOpened;this.state={"_isOpened":t,"isWEB":i.default.getEnv()===i.default.ENV_TYPE.WEB},this.$$refs=new i.default.RefsArray}},{"key":"componentWillReceiveProps","value":function componentWillReceiveProps(e){var t=e.isOpened;this.props.isOpened!==t&&(0,u.handleTouchScroll)(t),t!==this.state._isOpened&&this.setState({"_isOpened":t})}},{"key":"_createData","value":function _createData(e,t,o){this.__state=e||this.state||{},this.__props=t||this.props||{};var n,r,a=this.$prefix,i=(0,b.genCompid)(a+"$compid__49"),l=O(i,2),s=l[0],c=l[1],u=this.__state,p=u._isOpened,f=u.isWEB,d=this.__props,_=d.title,h=d.content,y=d.cancelText,v=d.confirmText,m=(0,C.default)("at-modal",{"at-modal--active":p},this.__props.className);return(_||h)&&(n=y||v,r=h&&f?{"__html":h.replace(/\n/g,"<br/>")}:null,n&&b.propsManager.set({"isSimple":!0},c,s)),Object.assign(this.__state,{"_$isRenderAction":n,"_$anonymousState__temp":r,"$compid__49":c,"title":_,"content":h,"cancelText":y,"confirmText":v,"rootClass":m}),this.__state}}]),a=r=AtModal,r.$$events=["handleClickOverlay","handleCancel","handleConfirm","handleTouchMove"],r.$$componentPath="Users/zhangyibo/yupao-ts-recode/yupaowang/node_modules/taro-ui/dist/weapp/components/modal/index",a);function AtModal(){var e,t,o;!function _classCallCheck(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,AtModal);for(var n=arguments.length,r=Array(n),a=0;a<n;a++)r[a]=arguments[a];return(t=o=_possibleConstructorReturn(this,(e=AtModal.__proto__||Object.getPrototypeOf(AtModal)).call.apply(e,[this].concat(r)))).$usedState=["_$isRenderAction","_$anonymousState__temp","$compid__49","title","content","isWEB","cancelText","confirmText","rootClass","_isOpened","isOpened","closeOnClickOverlay","className","children"],o.handleClickOverlay=function(){o.props.closeOnClickOverlay&&o.setState({"_isOpened":!1},o.handleClose)},o.handleClose=function(){(0,s.default)(o.props.onClose)&&o.props.onClose()},o.handleCancel=function(){(0,s.default)(o.props.onCancel)&&o.props.onCancel()},o.handleConfirm=function(){(0,s.default)(o.props.onConfirm)&&o.props.onConfirm()},o.handleTouchMove=function(e){e.stopPropagation()},o.customComponents=["AtModalHeader","AtModalContent","AtModalAction"],_possibleConstructorReturn(o,t)}p.defaultProps={"closeOnClickOverlay":!0},p.propTypes={"title":l.default.string,"isOpened":l.default.bool,"onCancel":l.default.func,"onConfirm":l.default.func,"onClose":l.default.func,"content":l.default.string,"closeOnClickOverlay":l.default.bool,"cancelText":l.default.string,"confirmText":l.default.string},t.default=p,Component(o(0).default.createComponent(p))}},[[268,0,1]]]);
+(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["npm/taro-ui/dist/weapp/components/modal/index"],{
+
+/***/ "./node_modules/taro-ui/dist/weapp/components/modal/index.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/taro-ui/dist/weapp/components/modal/index.js ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+
+var _class, _temp2;
+
+var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+
+var _taroTt2 = _interopRequireDefault(_taroTt);
+
+var _propTypes = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _classnames = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _isFunction2 = __webpack_require__(/*! lodash/isFunction */ "./node_modules/lodash/isFunction.js");
+
+var _isFunction3 = _interopRequireDefault(_isFunction2);
+
+var _component = __webpack_require__(/*! ../../common/component */ "./node_modules/taro-ui/dist/weapp/common/component.js");
+
+var _component2 = _interopRequireDefault(_component);
+
+var _utils = __webpack_require__(/*! ../../common/utils */ "./node_modules/taro-ui/dist/weapp/common/utils.ts");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var AtModal = (_temp2 = _class = function (_AtComponent) {
+  _inherits(AtModal, _AtComponent);
+
+  function AtModal() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
+    _classCallCheck(this, AtModal);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AtModal.__proto__ || Object.getPrototypeOf(AtModal)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["_$isRenderAction", "_$anonymousState__temp", "$compid__49", "title", "content", "isWEB", "cancelText", "confirmText", "rootClass", "_isOpened", "isOpened", "closeOnClickOverlay", "className", "children"], _this.handleClickOverlay = function () {
+      if (_this.props.closeOnClickOverlay) {
+        _this.setState({
+          _isOpened: false
+        }, _this.handleClose);
+      }
+    }, _this.handleClose = function () {
+      if ((0, _isFunction3.default)(_this.props.onClose)) {
+        _this.props.onClose();
+      }
+    }, _this.handleCancel = function () {
+      if ((0, _isFunction3.default)(_this.props.onCancel)) {
+        _this.props.onCancel();
+      }
+    }, _this.handleConfirm = function () {
+      if ((0, _isFunction3.default)(_this.props.onConfirm)) {
+        _this.props.onConfirm();
+      }
+    }, _this.handleTouchMove = function (e) {
+      e.stopPropagation();
+    }, _this.customComponents = ["AtModalHeader", "AtModalContent", "AtModalAction"], _temp), _possibleConstructorReturn(_this, _ret);
+  }
+
+  _createClass(AtModal, [{
+    key: '_constructor',
+    value: function _constructor(props) {
+      _get(AtModal.prototype.__proto__ || Object.getPrototypeOf(AtModal.prototype), '_constructor', this).apply(this, arguments);
+
+      var isOpened = props.isOpened;
+
+      this.state = {
+        _isOpened: isOpened,
+        isWEB: _taroTt2.default.getEnv() === _taroTt2.default.ENV_TYPE.WEB
+      };
+      this.$$refs = new _taroTt2.default.RefsArray();
+    }
+  }, {
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(nextProps) {
+      var isOpened = nextProps.isOpened;
+
+
+      if (this.props.isOpened !== isOpened) {
+        (0, _utils.handleTouchScroll)(isOpened);
+      }
+
+      if (isOpened !== this.state._isOpened) {
+        this.setState({
+          _isOpened: isOpened
+        });
+      }
+    }
+  }, {
+    key: '_createData',
+    value: function _createData() {
+      this.__state = arguments[0] || this.state || {};
+      this.__props = arguments[1] || this.props || {};
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
+      ;
+
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__49"),
+          _genCompid2 = _slicedToArray(_genCompid, 2),
+          $prevCompid__49 = _genCompid2[0],
+          $compid__49 = _genCompid2[1];
+
+      var _$isRenderAction, _$anonymousState__temp;
+
+      var _state = this.__state,
+          _isOpened = _state._isOpened,
+          isWEB = _state.isWEB;
+      var _props = this.__props,
+          title = _props.title,
+          content = _props.content,
+          cancelText = _props.cancelText,
+          confirmText = _props.confirmText;
+
+      var rootClass = (0, _classnames2.default)('at-modal', {
+        'at-modal--active': _isOpened
+      }, this.__props.className);
+
+      if (title || content) {
+        _$isRenderAction = cancelText || confirmText;
+        _$anonymousState__temp = content ? isWEB ? { __html: content.replace(/\n/g, '<br/>') } : null : null;
+        _$isRenderAction && _taroTt.propsManager.set({
+          "isSimple": true
+        }, $compid__49, $prevCompid__49);
+      }
+
+      Object.assign(this.__state, {
+        _$isRenderAction: _$isRenderAction,
+        _$anonymousState__temp: _$anonymousState__temp,
+        $compid__49: $compid__49,
+        title: title,
+        content: content,
+        cancelText: cancelText,
+        confirmText: confirmText,
+        rootClass: rootClass
+      });
+      return this.__state;
+    }
+  }]);
+
+  return AtModal;
+}(_component2.default), _class.$$events = ["handleClickOverlay", "handleCancel", "handleConfirm", "handleTouchMove"], _class.$$componentPath = 'Users/axin/codes/\u9C7C\u6CE1\u7F51/\u5C0F\u7A0B\u5E8FTS\u91CD\u6784\u9879\u76EE/TaroTs-YuPaoWang/yupaowang/node_modules/taro-ui/dist/weapp/components/modal/index', _temp2);
+
+
+AtModal.defaultProps = {
+  closeOnClickOverlay: true
+};
+
+AtModal.propTypes = {
+  title: _propTypes2.default.string,
+  isOpened: _propTypes2.default.bool,
+  onCancel: _propTypes2.default.func,
+  onConfirm: _propTypes2.default.func,
+  onClose: _propTypes2.default.func,
+  content: _propTypes2.default.string,
+  closeOnClickOverlay: _propTypes2.default.bool,
+  cancelText: _propTypes2.default.string,
+  confirmText: _propTypes2.default.string
+};
+exports.default = AtModal;
+
+Component(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(AtModal));
+
+/***/ })
+
+},[["./node_modules/taro-ui/dist/weapp/components/modal/index.js","runtime","vendors"]]]);

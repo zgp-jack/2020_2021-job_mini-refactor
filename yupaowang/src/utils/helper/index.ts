@@ -6,7 +6,7 @@ import { UserLocationCity } from '../../config/store'
 import { InputPoiList, InputPoiListTips } from './index.d'
 import { checkAdcodeAction } from '../request/index';
 import { LocationDataType  } from '../..//pages/resume/add_info/index.d';
-import Msg from '../msg';
+import Msg, { ShowActionModal } from '../msg';
 
 // 对象拷贝
 export function objDeepCopy(source: any):any {
@@ -139,5 +139,31 @@ export function getLocation(){
     fail: (err) => {
       Msg('定位失败,请重新定位')
     }
+  })
+}
+
+// 复制内容到粘贴板
+export function setClipboardData(val: string, msg: string = '内容已成功复制到粘贴板') {
+  Taro.setClipboardData({
+    data: val,
+    success: () => {
+      Taro.hideToast()
+      ShowActionModal({
+        msg: msg
+      })
+    }
+  })
+}
+
+// 复制微信号到粘贴板
+export function copyWechatNumber(val: string) {
+  let msg: string = `微信号:${val}已复制到粘贴板，去微信-添加朋友-搜索框粘贴`
+  setClipboardData(val, msg)
+}
+
+// 用户拨打电话
+export function userCallPhone(val: string) {
+  Taro.makePhoneCall({
+    phoneNumber: val
   })
 }
