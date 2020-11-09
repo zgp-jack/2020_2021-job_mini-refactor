@@ -199,6 +199,7 @@ export default function AddResumeInfo(){
   const handleGps = ()=>{
     Taro.getSetting({
       success:(res)=>{
+        console.error(res,'111111');
         if (res.authSetting['scope.userLocation'] != undefined && res.authSetting['scope.userLocation'] != true) {//非初始化进入该页面,且未授权   
           Taro.showModal({
             title: '是否授权当前位置',
@@ -210,6 +211,7 @@ export default function AddResumeInfo(){
                     if (data.authSetting["scope.userLocation"] == true) {
                       Msg('授权成功')
                       const data = getLocation();
+                      console.error(data,'dadadada')
                       if (data != null) {
                         setLocationData(data);
                       }
@@ -223,6 +225,7 @@ export default function AddResumeInfo(){
           })
         }else{
           let data = getLocation();
+          console.error(data,'1111')
           if(data != null){
             setLocationData(data);
           }

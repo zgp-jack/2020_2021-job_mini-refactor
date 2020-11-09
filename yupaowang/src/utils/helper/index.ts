@@ -114,6 +114,7 @@ export function getLocation(){
         adcode: data[0].regeocodeData.addressComponent.adcode
       }
       checkAdcodeAction(params).then(res => {
+        console.error(res,'dnahbdhja')
         if (res.errcode == 'ok') {
           let gpsLocation: LocationDataType = {
             province: data[0].regeocodeData.addressComponent.province,
@@ -124,7 +125,8 @@ export function getLocation(){
             oadcode: data[0].regeocodeData.addressComponent.adcode,
             longitude: data[0].longitude + "",
             latitude: data[0].latitude + "",
-            wardenryid: res.data.city
+            wardenryid: res.data.city,
+            regionone:''
           }
           return gpsLocation;
         } else {

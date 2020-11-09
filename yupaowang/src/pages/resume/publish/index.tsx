@@ -147,9 +147,11 @@ export default function ResumePublish(){
                 <View className='craft'>
                   <Text className='craft-txt'>工种</Text>
                   <View className='craft-list'>
+                    <View className='craft-list-worker'>
                     {infoData.miniInfoOccupations && infoData.miniInfoOccupations.map((v,i)=>(
                       <View className='craft-name' key={v+i}>{v}</View>
                     ))}
+                    </View>
                   </View>
                 </View>
                 <View className='craft'>
@@ -179,11 +181,11 @@ export default function ResumePublish(){
             <Image className='basic-description-img' src={`${IMGCDNURL}newresume-description.png`} />
             <View className='basic-title'>人员信息</View>
             {
-              infoData.check != '0' && (introducesData.check == '1' || !introducesData.check ) && 
+              infoData.check != '0' && introducesData.check != '1' && 
               <View className='change' onClick={() => userRouteJump('/pages/resume/add_member/index')}>编辑</View>
             }
             {
-              infoData.check == '0' && (introducesData.check == '1' || !introducesData.check) &&
+              infoData.check == '0' && introducesData.check != '1' &&
               <View className='change' onClick={() => userRouteJump('/pages/resume/add_member/index')}>待修改</View>
             }
           </View>
@@ -222,11 +224,13 @@ export default function ResumePublish(){
               <View className='craft'>
                 <Text className='craft-txt'>标签</Text>
                 <View className='craft-list'>
-                {introducesData.tags && introducesData.tags.map((v)=>(
-                  <View className='craft-name' key={v.id}>
-                    {v.label_name}
-                  </View>
-                ))}
+                <View className='craft-list-worker'>
+                  {introducesData.tags && introducesData.tags.map((v)=>(
+                    <View className='craft-box' key={v.id}>
+                      {v.label_name}
+                    </View>
+                  ))}
+                </View>
                 </View>
                 {/* <View className='craft-name'>任劳任怨</View> */}
               </View>
