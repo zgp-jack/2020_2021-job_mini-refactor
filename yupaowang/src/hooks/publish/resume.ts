@@ -7,7 +7,7 @@
 =======
 <<<<<<< HEAD
  * @LastEditors: zyb
- * @LastEditTime: 2020-11-09 17:10:19
+ * @LastEditTime: 2020-11-09 17:14:36
 =======
 >>>>>>> c4934cd3ef6271dedb29cefa5b63959eded6b62a
 >>>>>>> ef05e55da45d0296166b90ea66d29fd7eab0550e
@@ -119,6 +119,8 @@ export default function useResume(){
           if (projectItem.length){
             projectItem[0].completion_time = 'zhijing';
           }
+        }else{
+          projectItem[0].completion_time = 'zhijin';
         }
         // 是否有人员信息
         setIs_introduces(res.data.is_introduces);
