@@ -1,1 +1,687 @@
-(tt.webpackJsonp=tt.webpackJsonp||[]).push([[72],{"100":function(e,n,t){"use strict";Object.defineProperty(n,"__esModule",{"value":!0});var O=Object.assign||function(e){for(var n=1;n<arguments.length;n++){var t=arguments[n];for(var o in t)Object.prototype.hasOwnProperty.call(t,o)&&(e[o]=t[o])}return e},C=function(e,n){if(Array.isArray(e))return e;if(Symbol.iterator in Object(e))return function sliceIterator(e,n){var t=[],o=!0,i=!1,r=void 0;try{for(var u,a=e[Symbol.iterator]();!(o=(u=a.next()).done)&&(t.push(u.value),!n||t.length!==n);o=!0);}catch(e){i=!0,r=e}finally{try{!o&&a.return&&a.return()}finally{if(i)throw r}}return t}(e,n);throw new TypeError("Invalid attempt to destructure non-iterable instance")};n.default=function usePublishViewInfo(o){var e=(0,U.useSelector)(function(e){return e.User.login}),n=(0,R.useState)(),t=C(n,2),i=t[0],r=t[1],u=(0,R.useState)(!1),a=C(u,2),s=a[0],c=a[1],l=(0,R.useState)(!1),f=C(l,2),d=f[0],m=f[1],y=(0,R.useState)(0),p=C(y,2),h=p[0],_=p[1],v=(0,R.useState)(""),g=C(v,2),b=g[0],w=g[1],P=(0,R.useState)({}),F=C(P,2),S=F[0],k=F[1],I=(0,U.useSelector)(function(e){return e.MyAreaInfo}),A=(0,U.useDispatch)();return(0,R.useEffect)(function(){e&&(0,T.getPublishRecruitView)(o).then(function(e){if("ok"==e.errcode){var n={"placeholder":e.placeholder,"classifies":e.selectedClassifies,"maxImageCount":e.typeTextArr.maxImageCount,"maxClassifyCount":e.typeTextArr.maxClassifyCount,"classifyTree":e.classifyTree,"title":e.model.title||"","address":e.model.address||"","detail":e.model.detail||"","infoId":e.model.id||o.infoId,"type":e.type,"user_mobile":e.model.user_mobile||e.memberInfo.tel||"","code":"","user_name":e.model.user_name,"view_images":e.view_image,"province_id":e.model.province_id||"","city_id":e.model.city_id||"","location":e.model.location||"","adcode":"","county_id":e.model.county_id||"","is_check":e.model.hasOwnProperty("is_check")?e.model.is_check:1,"check_fail_msg":e.model.check_fail_msg||""};r(n),function initUserAreaInfo(e){if(console.log(o.infoId,"InitParams.infoId"),o.infoId)A((0,q.setArea)(e.default_search_name.name));else{var n=x.default.getStorageSync(j.UserLocationCity);n?A((0,q.setArea)(n.city)):(0,$.userAuthLoction)().then(function(e){A((0,q.setArea)(e.city))}).catch(function(){A((0,q.setArea)(M.AREABEIJING.name))})}if(o.infoId)A((0,q.setAreaInfo)({"title":e.model.address,"location":e.model.location,"info":"","adcode":e.model.adcode||""}));else{var t=x.default.getStorageSync(j.UserLastPublishArea);t&&A((0,q.setAreaInfo)(t))}}(e),0==n.is_check&&function bakModelInfo(e){var n={"title":e.title,"address":e.address,"detail":e.detail,"infoId":e.infoId,"type":e.type,"user_mobile":e.user_mobile,"code":e.code,"user_name":e.user_name,"province_id":e.province_id,"city_id":e.city_id,"location":e.location,"adcode":"","county_id":e.county_id,"classifies":e.classifies,"images":e.view_images.map(function(e){return e.url})};k(n),(0,D.ShowActionModal)({"title":"审核失败","msg":e.check_fail_msg})}(n),A((0,q.setAreaInfo)(O({},I,{"title":n.address}))),w(n.user_mobile),e.view_image.length&&c(!0),n.detail&&_(n.detail.length)}else(0,D.ShowActionModal)({"msg":e.errmsg,"success":function success(){x.default.navigateBack()}})})},[e]),{"model":i,"setModel":r,"showUpload":s,"setShowUpload":c,"showProfession":d,"setShowProssion":m,"userPublishRecruitAction":function userPublishRecruitAction(){var e=function getPublishedInfo(){if(!i)return;return{"title":i.title,"address":I.title,"detail":i.detail,"infoId":i.infoId,"type":i.type,"user_mobile":i.user_mobile,"code":i.code,"user_name":i.user_name,"province_id":i.province_id,"city_id":i.city_id,"location":i.location,"adcode":I.adcode,"county_id":i.county_id,"classifies":i.classifies,"images":i.view_images.map(function(e){return e.url})}}();if(!e)return;if(!(0,B.isVaildVal)(e.title,3))return void(0,N.default)("请正确输入3~12字中文标题!");if(!e.classifies.length)return void(0,N.default)("请选择您的工种!");if(!e.province_id&&!e.address)return void(0,N.default)("请选择您的详细地址!");if(!(0,B.isVaildVal)(e.user_name,2))return void(0,N.default)("请正确输入2~6字中文姓名!");if(!(0,B.isPhone)(e.user_mobile))return void(0,N.default)("手机号输入有误!");if(b!=e.user_mobile&&!e.code)return void(0,N.default)("请输入正确的验证码!");if(!(0,B.isVaildVal)(e.detail,15))return void(0,N.default)("请正确输入15~500字招工详情!");if(i&&0==i.is_check){var n=JSON.stringify(S),t=JSON.stringify(e);if(n==t)return void(0,D.ShowActionModal)({"title":"审核失败","msg":i&&i.check_fail_msg})}e.address+="@@@@@"+I.info,(0,T.publishRecruitInfo)(e).then(function(e){"ok"==e.errcode?(0,J.SubscribeToNews)("recruit",function(){(0,D.ShowActionModal)({"msg":e.errmsg,"success":function success(){x.default.reLaunch({"url":"/pages/published/recruit/index"})}})}):(0,D.ShowActionModal)({"msg":e.errmsg})})},"num":h,"setNum":_,"phone":b}};var R=t(0),x=_interopRequireDefault(R),T=t(1),j=t(7),M=t(8),$=t(9),D=t(4),N=_interopRequireDefault(D),J=t(14),U=t(3),B=t(6),q=t(19);function _interopRequireDefault(e){return e&&e.__esModule?e:{"default":e}}},"103":function(e,n,t){},"99":function(e,n,t){"use strict";Object.defineProperty(n,"__esModule",{"value":!0});var T=Object.assign||function(e){for(var n=1;n<arguments.length;n++){var t=arguments[n];for(var o in t)Object.prototype.hasOwnProperty.call(t,o)&&(e[o]=t[o])}return e},j=function(e,n){if(Array.isArray(e))return e;if(Symbol.iterator in Object(e))return function sliceIterator(e,n){var t=[],o=!0,i=!1,r=void 0;try{for(var u,a=e[Symbol.iterator]();!(o=(u=a.next()).done)&&(t.push(u.value),!n||t.length!==n);o=!0);}catch(e){i=!0,r=e}finally{try{!o&&a.return&&a.return()}finally{if(i)throw r}}return t}(e,n);throw new TypeError("Invalid attempt to destructure non-iterable instance")},o=function(e,n,t){return n&&defineProperties(e.prototype,n),t&&defineProperties(e,t),e};function defineProperties(e,n){for(var t=0;t<n.length;t++){var o=n[t];o.enumerable=o.enumerable||!1,o.configurable=!0,"value"in o&&(o.writable=!0),Object.defineProperty(e,o.key,o)}}var M=t(0),$=_interopRequireDefault(M),D=_interopRequireDefault(t(12)),N=_interopRequireDefault(t(100)),J=_interopRequireDefault(t(15)),U=_interopRequireDefault(t(4));t(103);var B=t(3);function _interopRequireDefault(e){return e&&e.__esModule?e:{"default":e}}function _toConsumableArray(e){if(Array.isArray(e)){for(var n=0,t=Array(e.length);n<e.length;n++)t[n]=e[n];return t}return Array.from(e)}var i=(function _inherits(e,n){if("function"!=typeof n&&null!==n)throw new TypeError("Super expression must either be null or a function, not "+typeof n);e.prototype=Object.create(n&&n.prototype,{"constructor":{"value":e,"enumerable":!1,"writable":!0,"configurable":!0}}),n&&(Object.setPrototypeOf?Object.setPrototypeOf(e,n):e.__proto__=n)}(PublishRecruit,$.default.Component),o(PublishRecruit,[{"key":"_constructor","value":function _constructor(e){(function get(e,n,t){null===e&&(e=Function.prototype);var o=Object.getOwnPropertyDescriptor(e,n);if(void 0===o){var i=Object.getPrototypeOf(e);return null===i?void 0:get(i,n,t)}if("value"in o)return o.value;var r=o.get;return void 0!==r?r.call(t):void 0})(PublishRecruit.prototype.__proto__||Object.getPrototypeOf(PublishRecruit.prototype),"_constructor",this).call(this,e),this.$$refs=new $.default.RefsArray}},{"key":"_createData","value":function _createData(e,n,t){function pc(e,n){var t=e.detail.value,o=JSON.parse(JSON.stringify(g));o[n]=t,b(o),"detail"===n&&A(t.length)}this.__state=e||this.state||{},this.__props=n||this.props||{};var o=this.$prefix,i=(0,M.genCompid)(o+"$compid__30"),r=j(i,2),u=r[0],a=r[1],s=(0,M.genCompid)(o+"$compid__31"),c=j(s,2),l=c[0],f=c[1],d=(0,M.genCompid)(o+"$compid__32"),m=j(d,2),y=m[0],p=m[1],h={"type":"job","infoId":(0,M.useRouter)().params.id||""},_=(0,B.useSelector)(function(e){return e.MyAreaInfo}),v=(0,N.default)(h),g=v.model,b=v.setModel,w=v.showUpload,P=v.setShowUpload,F=v.showProfession,S=v.setShowProssion,k=v.userPublishRecruitAction,I=v.num,A=v.setNum,O=v.phone,C=(0,D.default)(),R=C.text,x=C.userGetCode;return this.anonymousFunc0=function(e,n,t){return function userClickProfession(e,n,t){if(g){var o=JSON.parse(JSON.stringify(g.classifyTree)),i=o[e].children[n].is_check;if(!i){var r=g.maxClassifyCount;if(r<=g.classifies.length)return void(0,U.default)("工种最多可以选择"+r+"个")}o[e].children[n].is_check=!i;var u=JSON.parse(JSON.stringify(g.classifies)),a=i?u.filter(function(e){return e!==t}):[].concat(_toConsumableArray(u),[t]);b(T({},g,{"classifyTree":o,"classifies":a}))}}(e,n,t)},this.anonymousFunc1=function(e){return pc(e,"title")},this.anonymousFunc2=function(){return function showProfessionAction(){S(!0)}()},this.anonymousFunc3=function(){return function userChooseArea(){g&&$.default.navigateTo({"url":"/pages/map/recruit/index"})}()},this.anonymousFunc4=function(e){return pc(e,"user_name")},this.anonymousFunc5=function(e){return pc(e,"user_mobile")},this.anonymousFunc6=function(e){return pc(e,"code")},this.anonymousFunc7=function(){return x(g.user_mobile)},this.anonymousFunc8=function(e){return pc(e,"detail")},this.anonymousFunc9=function(){return function changeShowUpload(){P(!w)}()},this.anonymousFunc10=function(){return k()},F&&M.propsManager.set({"closeProfession":function closeProfession(){S(!1)},"data":g&&g.classifyTree,"onClickItem":this.anonymousFunc0,"num":3},a,u),M.propsManager.set({"num":I},f,l),w&&g&&M.propsManager.set({"images":g.view_images,"max":g.maxImageCount,"userUploadImg":function userUploadImg(e){var t=0<arguments.length&&void 0!==e?e:-1;(0,J.default)().then(function(e){var n={"url":e.url,"httpurl":e.httpurl};g&&(-1===t?b(T({},g,{"view_images":[].concat(_toConsumableArray(g.view_images),[n])})):(g.view_images[t]=n,b(T({},g))))})},"userDelImg":function userDelImg(e){if(g){var n=JSON.parse(JSON.stringify(g));n.view_images.splice(e,1),b(n)}}},p,y),Object.assign(this.__state,{"model":g,"$compid__30":a,"$compid__31":f,"$compid__32":p,"showProfession":F,"areaInfo":_,"phone":O,"showUpload":w,"text":R}),this.__state}},{"key":"anonymousFunc0","value":function anonymousFunc0(){}},{"key":"anonymousFunc1","value":function anonymousFunc1(){}},{"key":"anonymousFunc2","value":function anonymousFunc2(){}},{"key":"anonymousFunc3","value":function anonymousFunc3(){}},{"key":"anonymousFunc4","value":function anonymousFunc4(){}},{"key":"anonymousFunc5","value":function anonymousFunc5(){}},{"key":"anonymousFunc6","value":function anonymousFunc6(){}},{"key":"anonymousFunc7","value":function anonymousFunc7(){}},{"key":"anonymousFunc8","value":function anonymousFunc8(){}},{"key":"anonymousFunc9","value":function anonymousFunc9(){}},{"key":"anonymousFunc10","value":function anonymousFunc10(){}}]),PublishRecruit);function PublishRecruit(){!function _classCallCheck(e,n){if(!(e instanceof n))throw new TypeError("Cannot call a class as a function")}(this,PublishRecruit);var e=function _possibleConstructorReturn(e,n){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!n||"object"!=typeof n&&"function"!=typeof n?e:n}(this,(PublishRecruit.__proto__||Object.getPrototypeOf(PublishRecruit)).apply(this,arguments));return e.config={"navigationBarTitleText":"发布招工","navigationBarBackgroundColor":"#0099ff","navigationBarTextStyle":"white","backgroundTextStyle":"dark"},e.$usedState=["model","$compid__30","$compid__31","$compid__32","showProfession","areaInfo","phone","showUpload","text"],e.customComponents=["Auth","Profession","WordsTotal","ImageView"],e}i.$$events=["anonymousFunc1","anonymousFunc2","anonymousFunc3","anonymousFunc4","anonymousFunc5","anonymousFunc6","anonymousFunc7","anonymousFunc8","anonymousFunc9","anonymousFunc10"],i.$$componentPath="pages/recruit/publish/index",i.config={"navigationBarTitleText":"发布招工","navigationBarBackgroundColor":"#0099ff","navigationBarTextStyle":"white","backgroundTextStyle":"dark"},n.default=i,Page(t(0).default.createComponent(i,!0))}},[[99,0,1]]]);
+(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["pages/recruit/publish/index"],{
+
+/***/ "./src/hooks/publish/recruit.ts":
+/*!**************************************!*\
+  !*** ./src/hooks/publish/recruit.ts ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+exports.default = usePublishViewInfo;
+
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
+
+var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
+
+var _index = __webpack_require__(/*! ../../utils/request/index */ "./src/utils/request/index.ts");
+
+var _store = __webpack_require__(/*! ../../config/store */ "./src/config/store.ts");
+
+var _area = __webpack_require__(/*! ../../models/area */ "./src/models/area.ts");
+
+var _index2 = __webpack_require__(/*! ../../utils/helper/index */ "./src/utils/helper/index.ts");
+
+var _index3 = __webpack_require__(/*! ../../utils/msg/index */ "./src/utils/msg/index.ts");
+
+var _index4 = _interopRequireDefault(_index3);
+
+var _index5 = __webpack_require__(/*! ../../utils/subscribeToNews/index */ "./src/utils/subscribeToNews/index.ts");
+
+var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/redux/index.js");
+
+var _index6 = __webpack_require__(/*! ../../utils/v/index */ "./src/utils/v/index.ts");
+
+var _recruit = __webpack_require__(/*! ../../actions/recruit */ "./src/actions/recruit.ts");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//获取发布招工信息action
+function usePublishViewInfo(InitParams) {
+  // 获取用户信息
+  var login = (0, _redux.useSelector)(function (state) {
+    return state.User['login'];
+  });
+  // 视图显示信息
+
+  var _useState = (0, _taroWeapp.useState)(),
+      _useState2 = _slicedToArray(_useState, 2),
+      model = _useState2[0],
+      setModel = _useState2[1];
+  // 是否展开图片上传
+
+
+  var _useState3 = (0, _taroWeapp.useState)(false),
+      _useState4 = _slicedToArray(_useState3, 2),
+      showUpload = _useState4[0],
+      setShowUpload = _useState4[1];
+  // 是否显示工种选择
+
+
+  var _useState5 = (0, _taroWeapp.useState)(false),
+      _useState6 = _slicedToArray(_useState5, 2),
+      showProfession = _useState6[0],
+      setShowProssion = _useState6[1];
+  // 招工详情的字数
+
+
+  var _useState7 = (0, _taroWeapp.useState)(0),
+      _useState8 = _slicedToArray(_useState7, 2),
+      num = _useState8[0],
+      setNum = _useState8[1];
+  // 备份手机号码
+
+
+  var _useState9 = (0, _taroWeapp.useState)(''),
+      _useState10 = _slicedToArray(_useState9, 2),
+      phone = _useState10[0],
+      setPhone = _useState10[1];
+  // 备份当前数据 用于强制修改判断
+
+
+  var _useState11 = (0, _taroWeapp.useState)({}),
+      _useState12 = _slicedToArray(_useState11, 2),
+      bakModel = _useState12[0],
+      setBakModel = _useState12[1];
+  //获取redux中发布招工区域详细数据
+
+
+  var areaInfo = (0, _redux.useSelector)(function (state) {
+    return state.MyAreaInfo;
+  });
+  // 获取redux中区域名称数据
+  // 获取dispatch分发action
+  var dispatch = (0, _redux.useDispatch)();
+  // 初始化招工信息
+  (0, _taroWeapp.useEffect)(function () {
+    // 判断是否登录，没有登录直接返回
+    if (!login) return;
+    (0, _index.getPublishRecruitView)(InitParams).then(function (res) {
+      // 获取初始化发布招工数据，参数为{ type: type,infoId: id }
+      if (res.errcode == 'ok') {
+        var InitViewInfo = {
+          placeholder: res.placeholder,
+          classifies: res.selectedClassifies,
+          maxImageCount: res.typeTextArr.maxImageCount,
+          maxClassifyCount: res.typeTextArr.maxClassifyCount,
+          classifyTree: res.classifyTree,
+          title: res.model.title || '',
+          address: res.model.address || '',
+          detail: res.model.detail || '',
+          infoId: res.model.id || InitParams.infoId,
+          type: res.type,
+          user_mobile: res.model.user_mobile || res.memberInfo.tel || '',
+          code: '',
+          user_name: res.model.user_name,
+          view_images: res.view_image,
+          province_id: res.model.province_id || '',
+          city_id: res.model.city_id || '',
+          location: res.model.location || '',
+          adcode: '',
+          county_id: res.model.county_id || '',
+          is_check: res.model.hasOwnProperty('is_check') ? res.model.is_check : 1,
+          check_fail_msg: res.model.check_fail_msg || ''
+        };
+        // 数据保存到model中
+        setModel(InitViewInfo);
+        // 初始化用户区域数据
+        initUserAreaInfo(res);
+        if (InitViewInfo.is_check == 0) bakModelInfo(InitViewInfo);
+        // 将数据保存到redux中的areaInfo中
+        dispatch((0, _recruit.setAreaInfo)(_extends({}, areaInfo, { title: InitViewInfo.address })));
+        // 保存手机号
+        setPhone(InitViewInfo.user_mobile);
+        // 如果有上传图片保存图片showUpload中
+        if (res.view_image.length) setShowUpload(true);
+        // 如果填写有招工详情数据，将填写数据长度保存到num中
+        if (InitViewInfo.detail) setNum(InitViewInfo.detail.length);
+      } else {
+        // 请求数据失败走提示框返回上一页面
+        (0, _index3.ShowActionModal)({
+          msg: res.errmsg,
+          success: function success() {
+            _taroWeapp2.default.navigateBack();
+          }
+        });
+      }
+    });
+  }, [login]);
+  // 初始化用户区域数据
+  function initUserAreaInfo(data) {
+    console.log(InitParams.infoId, 'InitParams.infoId');
+    //  如果传递参数有infoid代表是修改，保存修改的里面默认区域数据
+    if (InitParams.infoId) {
+      dispatch((0, _recruit.setArea)(data.default_search_name.name));
+    } else {
+      var userLoctionCity = _taroWeapp2.default.getStorageSync(_store.UserLocationCity);
+      if (userLoctionCity) {
+        dispatch((0, _recruit.setArea)(userLoctionCity.city));
+      } else {
+        (0, _index2.userAuthLoction)().then(function (res) {
+          dispatch((0, _recruit.setArea)(res.city));
+        }).catch(function () {
+          dispatch((0, _recruit.setArea)(_area.AREABEIJING.name));
+        });
+      }
+    }
+    // 如果是修改设置详细发布地址
+    if (InitParams.infoId) {
+      dispatch((0, _recruit.setAreaInfo)({
+        title: data.model.address,
+        location: data.model.location,
+        info: '',
+        adcode: data.model.adcode || ''
+      }));
+    } else {
+      // 获取用户最后发布的区域信息
+      var userLastPublishArea = _taroWeapp2.default.getStorageSync(_store.UserLastPublishArea);
+      if (userLastPublishArea) {
+        dispatch((0, _recruit.setAreaInfo)(userLastPublishArea));
+      }
+    }
+  }
+  function bakModelInfo(model) {
+    var data = {
+      title: model.title,
+      address: model.address,
+      detail: model.detail,
+      infoId: model.infoId,
+      type: model.type,
+      user_mobile: model.user_mobile,
+      code: model.code,
+      user_name: model.user_name,
+      province_id: model.province_id,
+      city_id: model.city_id,
+      location: model.location,
+      adcode: '',
+      county_id: model.county_id,
+      classifies: model.classifies,
+      images: model.view_images.map(function (item) {
+        return item.url;
+      })
+    };
+    setBakModel(data);
+    (0, _index3.ShowActionModal)({
+      title: '审核失败',
+      msg: model.check_fail_msg
+    });
+  }
+  function getPublishedInfo() {
+    if (!model) return;
+    var data = {
+      title: model.title,
+      address: areaInfo.title,
+      detail: model.detail,
+      infoId: model.infoId,
+      type: model.type,
+      user_mobile: model.user_mobile,
+      code: model.code,
+      user_name: model.user_name,
+      province_id: model.province_id,
+      city_id: model.city_id,
+      location: model.location,
+      adcode: areaInfo.adcode,
+      county_id: model.county_id,
+      classifies: model.classifies,
+      images: model.view_images.map(function (item) {
+        return item.url;
+      })
+    };
+    return data;
+  }
+  function userPublishRecruitAction() {
+    var data = getPublishedInfo();
+    if (!data) return;
+    if (!(0, _index6.isVaildVal)(data.title, 3)) {
+      (0, _index4.default)('请正确输入3~12字中文标题!');
+      return;
+    }
+    if (!data.classifies.length) {
+      (0, _index4.default)('请选择您的工种!');
+      return;
+    }
+    if (!data.province_id && !data.address) {
+      (0, _index4.default)('请选择您的详细地址!');
+      return;
+    }
+    if (!(0, _index6.isVaildVal)(data.user_name, 2)) {
+      (0, _index4.default)('请正确输入2~6字中文姓名!');
+      return;
+    }
+    if (!(0, _index6.isPhone)(data.user_mobile)) {
+      (0, _index4.default)('手机号输入有误!');
+      return;
+    }
+    if (phone != data.user_mobile) {
+      if (!data.code) {
+        (0, _index4.default)('请输入正确的验证码!');
+        return;
+      }
+    }
+    if (!(0, _index6.isVaildVal)(data.detail, 15)) {
+      (0, _index4.default)('请正确输入15~500字招工详情!');
+      return;
+    }
+    // 如果是审核失败 那么久必须强制修改
+    if (model && model.is_check == 0) {
+      var bak = JSON.stringify(bakModel);
+      var mydata = JSON.stringify(data);
+      if (bak == mydata) {
+        (0, _index3.ShowActionModal)({
+          title: '审核失败',
+          msg: model && model.check_fail_msg
+        });
+        return;
+      }
+    }
+    // 拼接小地址的描述
+    data.address += '@@@@@' + areaInfo.info;
+    (0, _index.publishRecruitInfo)(data).then(function (res) {
+      if (res.errcode == 'ok') {
+        (0, _index5.SubscribeToNews)("recruit", function () {
+          (0, _index3.ShowActionModal)({
+            msg: res.errmsg,
+            success: function success() {
+              _taroWeapp2.default.reLaunch({
+                url: '/pages/published/recruit/index'
+              });
+            }
+          });
+        });
+      } else {
+        (0, _index3.ShowActionModal)({
+          msg: res.errmsg
+        });
+      }
+    });
+  }
+  return {
+    model: model,
+    setModel: setModel,
+    showUpload: showUpload,
+    setShowUpload: setShowUpload,
+    showProfession: showProfession,
+    setShowProssion: setShowProssion,
+    userPublishRecruitAction: userPublishRecruitAction,
+    // area,
+    // setArea,
+    // areaInfo,
+    // setAreaInfo,
+    num: num,
+    setNum: setNum,
+    phone: phone
+  };
+}
+
+/***/ }),
+
+/***/ "./src/pages/recruit/publish/index.scss":
+/*!**********************************************!*\
+  !*** ./src/pages/recruit/publish/index.scss ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
+/***/ "./src/pages/recruit/publish/index.tsx":
+/*!*********************************************!*\
+  !*** ./src/pages/recruit/publish/index.tsx ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
+
+var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
+
+var _index = __webpack_require__(/*! ../../../hooks/code/index */ "./src/hooks/code/index.ts");
+
+var _index2 = _interopRequireDefault(_index);
+
+var _recruit = __webpack_require__(/*! ../../../hooks/publish/recruit */ "./src/hooks/publish/recruit.ts");
+
+var _recruit2 = _interopRequireDefault(_recruit);
+
+var _index3 = __webpack_require__(/*! ../../../utils/upload/index */ "./src/utils/upload/index.tsx");
+
+var _index4 = _interopRequireDefault(_index3);
+
+var _index5 = __webpack_require__(/*! ../../../utils/msg/index */ "./src/utils/msg/index.ts");
+
+var _index6 = _interopRequireDefault(_index5);
+
+__webpack_require__(/*! ./index.scss */ "./src/pages/recruit/publish/index.scss");
+
+var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/redux/index.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var PublishRecruit = function (_Taro$Component) {
+  _inherits(PublishRecruit, _Taro$Component);
+
+  function PublishRecruit() {
+    _classCallCheck(this, PublishRecruit);
+
+    var _this = _possibleConstructorReturn(this, (PublishRecruit.__proto__ || Object.getPrototypeOf(PublishRecruit)).apply(this, arguments));
+
+    _this.config = {
+      navigationBarTitleText: '发布招工',
+      navigationBarBackgroundColor: '#0099ff',
+      navigationBarTextStyle: 'white',
+      backgroundTextStyle: "dark"
+    };
+
+    _this.$usedState = ["model", "$compid__30", "$compid__31", "$compid__32", "showProfession", "areaInfo", "phone", "showUpload", "text"];
+    _this.customComponents = ["Auth", "Profession", "WordsTotal", "ImageView"];
+    return _this;
+  }
+
+  _createClass(PublishRecruit, [{
+    key: "_constructor",
+    value: function _constructor(props) {
+      _get(PublishRecruit.prototype.__proto__ || Object.getPrototypeOf(PublishRecruit.prototype), "_constructor", this).call(this, props);
+      this.$$refs = new _taroWeapp2.default.RefsArray();
+    }
+  }, {
+    key: "_createData",
+    value: function _createData() {
+      this.__state = arguments[0] || this.state || {};
+      this.__props = arguments[1] || this.props || {};
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
+      ;
+
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__30"),
+          _genCompid2 = _slicedToArray(_genCompid, 2),
+          $prevCompid__30 = _genCompid2[0],
+          $compid__30 = _genCompid2[1];
+
+      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__31"),
+          _genCompid4 = _slicedToArray(_genCompid3, 2),
+          $prevCompid__31 = _genCompid4[0],
+          $compid__31 = _genCompid4[1];
+
+      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__32"),
+          _genCompid6 = _slicedToArray(_genCompid5, 2),
+          $prevCompid__32 = _genCompid6[0],
+          $compid__32 = _genCompid6[1];
+      // 获取路由参数
+
+
+      var router = (0, _taroWeapp.useRouter)();
+      var id = router.params.id || '';
+      var type = 'job';
+      var InitParams = { type: type, infoId: id };
+      //获取redux中发布招工区域详细数据
+      var areaInfo = (0, _redux.useSelector)(function (state) {
+        return state.MyAreaInfo;
+      });
+      // 初始化当前信息
+
+      var _usePublishViewInfo = (0, _recruit2.default)(InitParams),
+          model = _usePublishViewInfo.model,
+          setModel = _usePublishViewInfo.setModel,
+          showUpload = _usePublishViewInfo.showUpload,
+          setShowUpload = _usePublishViewInfo.setShowUpload,
+          showProfession = _usePublishViewInfo.showProfession,
+          setShowProssion = _usePublishViewInfo.setShowProssion,
+          userPublishRecruitAction = _usePublishViewInfo.userPublishRecruitAction,
+          num = _usePublishViewInfo.num,
+          setNum = _usePublishViewInfo.setNum,
+          phone = _usePublishViewInfo.phone;
+      // 使用自定义验证码hook
+
+
+      var _useCode = (0, _index2.default)(),
+          text = _useCode.text,
+          userGetCode = _useCode.userGetCode;
+      // 切换图片上传显示隐藏
+
+
+      var changeShowUpload = function changeShowUpload() {
+        setShowUpload(!showUpload);
+      };
+      var showProfessionAction = function showProfessionAction() {
+        setShowProssion(true);
+      };
+      var closeProfession = function closeProfession() {
+        setShowProssion(false);
+      };
+      // 用户填写表单
+      var userEnterFrom = function userEnterFrom(e, key) {
+        var value = e.detail.value;
+        var state = JSON.parse(JSON.stringify(model));
+        state[key] = value;
+        setModel(state);
+        // 如果是detail, 那么需要统计字数
+        if (key === 'detail') {
+          setNum(value.length);
+        }
+      };
+      // 选择地址
+      var userChooseArea = function userChooseArea() {
+        if (!model) {
+          return;
+        }
+        var url = '/pages/map/recruit/index';
+        _taroWeapp2.default.navigateTo({
+          url: url
+        });
+      };
+      // 点击工种
+      var userClickProfession = function userClickProfession(i, k, id) {
+        if (!model) {
+          return;
+        }
+        var works = JSON.parse(JSON.stringify(model.classifyTree));
+        var check = works[i].children[k].is_check;
+        if (!check) {
+          var max = model.maxClassifyCount;
+          var _num = model.classifies.length;
+          if (_num >= max) {
+            (0, _index6.default)('工种最多可以选择' + max + '个');
+            return;
+          }
+        }
+        works[i].children[k].is_check = !check;
+        var classifyArr = JSON.parse(JSON.stringify(model.classifies));
+        var newArr = check ? classifyArr.filter(function (item) {
+          return item !== id;
+        }) : [].concat(_toConsumableArray(classifyArr), [id]);
+        setModel(_extends({}, model, { classifyTree: works, classifies: newArr }));
+      };
+      // 用户上传图片
+      var userUploadImg = function userUploadImg() {
+        var i = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : -1;
+
+        (0, _index4.default)().then(function (res) {
+          var imageItem = {
+            url: res.url,
+            httpurl: res.httpurl
+          };
+          if (model) {
+            if (i === -1) {
+              setModel(_extends({}, model, { view_images: [].concat(_toConsumableArray(model.view_images), [imageItem]) }));
+            } else {
+              model.view_images[i] = imageItem;
+              setModel(_extends({}, model));
+            }
+          }
+        });
+      };
+      // 用户删除图片
+      var userDelImg = function userDelImg(i) {
+        if (!model) {
+          return;
+        }
+        var bakModel = JSON.parse(JSON.stringify(model));
+        bakModel.view_images.splice(i, 1);
+        setModel(bakModel);
+      };
+      this.anonymousFunc0 = function (i, k, id) {
+        return userClickProfession(i, k, id);
+      };
+      this.anonymousFunc1 = function (e) {
+        return userEnterFrom(e, 'title');
+      };
+      this.anonymousFunc2 = function () {
+        return showProfessionAction();
+      };
+      this.anonymousFunc3 = function () {
+        return userChooseArea();
+      };
+      this.anonymousFunc4 = function (e) {
+        return userEnterFrom(e, 'user_name');
+      };
+      this.anonymousFunc5 = function (e) {
+        return userEnterFrom(e, 'user_mobile');
+      };
+      this.anonymousFunc6 = function (e) {
+        return userEnterFrom(e, 'code');
+      };
+      this.anonymousFunc7 = function () {
+        return userGetCode(model.user_mobile);
+      };
+      this.anonymousFunc8 = function (e) {
+        return userEnterFrom(e, 'detail');
+      };
+      this.anonymousFunc9 = function () {
+        return changeShowUpload();
+      };
+      this.anonymousFunc10 = function () {
+        return userPublishRecruitAction();
+      };
+      showProfession && _taroWeapp.propsManager.set({
+        "closeProfession": closeProfession,
+        "data": model && model.classifyTree,
+        "onClickItem": this.anonymousFunc0,
+        "num": 3
+      }, $compid__30, $prevCompid__30);
+      _taroWeapp.propsManager.set({
+        "num": num
+      }, $compid__31, $prevCompid__31);
+      showUpload && model && _taroWeapp.propsManager.set({
+        "images": model.view_images,
+        "max": model.maxImageCount,
+        "userUploadImg": userUploadImg,
+        "userDelImg": userDelImg
+      }, $compid__32, $prevCompid__32);
+      Object.assign(this.__state, {
+        model: model,
+        $compid__30: $compid__30,
+        $compid__31: $compid__31,
+        $compid__32: $compid__32,
+        showProfession: showProfession,
+        areaInfo: areaInfo,
+        phone: phone,
+        showUpload: showUpload,
+        text: text
+      });
+      return this.__state;
+    }
+  }, {
+    key: "anonymousFunc0",
+    value: function anonymousFunc0(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc1",
+    value: function anonymousFunc1(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc2",
+    value: function anonymousFunc2(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc3",
+    value: function anonymousFunc3(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc4",
+    value: function anonymousFunc4(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc5",
+    value: function anonymousFunc5(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc6",
+    value: function anonymousFunc6(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc7",
+    value: function anonymousFunc7(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc8",
+    value: function anonymousFunc8(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc9",
+    value: function anonymousFunc9(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc10",
+    value: function anonymousFunc10(e) {
+      ;
+    }
+  }]);
+
+  return PublishRecruit;
+}(_taroWeapp2.default.Component);
+
+PublishRecruit.$$events = ["anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6", "anonymousFunc7", "anonymousFunc8", "anonymousFunc9", "anonymousFunc10"];
+PublishRecruit.$$componentPath = "pages/recruit/publish/index";
+PublishRecruit.config = { navigationBarTitleText: '发布招工', navigationBarBackgroundColor: '#0099ff', navigationBarTextStyle: 'white', backgroundTextStyle: "dark" };
+exports.default = PublishRecruit;
+
+Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(PublishRecruit, true));
+
+/***/ })
+
+},[["./src/pages/recruit/publish/index.tsx","runtime","vendors"]]]);

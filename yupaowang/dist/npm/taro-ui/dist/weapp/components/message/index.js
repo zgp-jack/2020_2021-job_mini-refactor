@@ -1,4 +1,4 @@
-(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["npm/taro-ui/dist/weapp/components/message/index"],{
+(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["npm/taro-ui/dist/weapp/components/message/index"],{
 
 /***/ "./node_modules/taro-ui/dist/weapp/components/message/index.js":
 /*!*********************************************************************!*\
@@ -20,9 +20,9 @@ var _get = function get(object, property, receiver) { if (object === null) objec
 
 var _class, _temp2;
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
 
 var _propTypes = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
 
@@ -72,14 +72,14 @@ var AtMessage = (_temp2 = _class = function (_AtComponent) {
         _duration: 3000
       };
       this._timer = null;
-      this.$$refs = new _taroTt2.default.RefsArray();
+      this.$$refs = new _taroWeapp2.default.RefsArray();
     }
   }, {
     key: 'bindMessageListener',
     value: function bindMessageListener() {
       var _this2 = this;
 
-      _taroTt2.default.eventCenter.on('atMessage', function () {
+      _taroWeapp2.default.eventCenter.on('atMessage', function () {
         var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
         var message = options.message,
             type = options.type,
@@ -101,7 +101,7 @@ var AtMessage = (_temp2 = _class = function (_AtComponent) {
         });
       });
       // 绑定函数
-      _taroTt2.default.atMessage = _taroTt2.default.eventCenter.trigger.bind(_taroTt2.default.eventCenter, 'atMessage');
+      _taroWeapp2.default.atMessage = _taroWeapp2.default.eventCenter.trigger.bind(_taroWeapp2.default.eventCenter, 'atMessage');
     }
   }, {
     key: 'componentDidShow',
@@ -116,12 +116,12 @@ var AtMessage = (_temp2 = _class = function (_AtComponent) {
   }, {
     key: 'componentDidHide',
     value: function componentDidHide() {
-      _taroTt2.default.eventCenter.off('atMessage');
+      _taroWeapp2.default.eventCenter.off('atMessage');
     }
   }, {
     key: 'componentWillUnmount',
     value: function componentWillUnmount() {
-      _taroTt2.default.eventCenter.off('atMessage');
+      _taroWeapp2.default.eventCenter.off('atMessage');
     }
   }, {
     key: '_createData',
@@ -146,7 +146,7 @@ var AtMessage = (_temp2 = _class = function (_AtComponent) {
         'at-message--hidden': !_isOpened
       }, "at-message--" + _type, className);
 
-      var anonymousState__temp = (0, _taroTt.internal_inline_style)(customStyle);
+      var anonymousState__temp = (0, _taroWeapp.internal_inline_style)(customStyle);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
         rootCls: rootCls
@@ -156,7 +156,7 @@ var AtMessage = (_temp2 = _class = function (_AtComponent) {
   }]);
 
   return AtMessage;
-}(_component2.default), _class.$$events = [], _class.$$componentPath = 'Users/axin/codes/\u9C7C\u6CE1\u7F51/\u5C0F\u7A0B\u5E8FTS\u91CD\u6784\u9879\u76EE/TaroTs-YuPaoWang/yupaowang/node_modules/taro-ui/dist/weapp/components/message/index', _temp2);
+}(_component2.default), _class.$$events = [], _class.$$componentPath = "Users/zhangyibo/yupao-ts-recode/yupaowang/node_modules/taro-ui/dist/weapp/components/message/index", _temp2);
 
 
 AtMessage.defaultProps = {
@@ -170,7 +170,7 @@ AtMessage.propTypes = {
 };
 exports.default = AtMessage;
 
-Component(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(AtMessage));
+Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(AtMessage));
 
 /***/ })
 

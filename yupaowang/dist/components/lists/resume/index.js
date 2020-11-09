@@ -1,1 +1,158 @@
-(tt.webpackJsonp=tt.webpackJsonp||[]).push([[15],{"220":function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{"value":!0});var m=function(t,e){if(Array.isArray(t))return t;if(Symbol.iterator in Object(t))return function sliceIterator(t,e){var n=[],o=!0,r=!1,i=void 0;try{for(var a,u=t[Symbol.iterator]();!(o=(a=u.next()).done)&&(n.push(a.value),!e||n.length!==e);o=!0);}catch(t){r=!0,i=t}finally{try{!o&&u.return&&u.return()}finally{if(r)throw i}}return n}(t,e);throw new TypeError("Invalid attempt to destructure non-iterable instance")},o=function(t,e,n){return e&&defineProperties(t.prototype,e),n&&defineProperties(t,n),t};function defineProperties(t,e){for(var n=0;n<e.length;n++){var o=e[n];o.enumerable=o.enumerable||!1,o.configurable=!0,"value"in o&&(o.writable=!0),Object.defineProperty(t,o.key,o)}}var d=n(0),h=function _interopRequireDefault(t){return t&&t.__esModule?t:{"default":t}}(d),g=n(2);n(221);var r=(function _inherits(t,e){if("function"!=typeof e&&null!==e)throw new TypeError("Super expression must either be null or a function, not "+typeof e);t.prototype=Object.create(e&&e.prototype,{"constructor":{"value":t,"enumerable":!1,"writable":!0,"configurable":!0}}),e&&(Object.setPrototypeOf?Object.setPrototypeOf(t,e):t.__proto__=e)}(ResumeList,h.default.Component),o(ResumeList,[{"key":"_constructor","value":function _constructor(t){(function get(t,e,n){null===t&&(t=Function.prototype);var o=Object.getOwnPropertyDescriptor(t,e);if(void 0===o){var r=Object.getPrototypeOf(t);return null===r?void 0:get(r,e,n)}if("value"in o)return o.value;var i=o.get;return void 0!==i?i.call(n):void 0})(ResumeList.prototype.__proto__||Object.getPrototypeOf(ResumeList.prototype),"_constructor",this).call(this,t),this.$$refs=new h.default.RefsArray}},{"key":"_createData","value":function _createData(t,e,n){var r=this;this.__state=t||this.state||{},this.__props=e||this.props||{};var o=this.$prefix,i=(0,d.genCompid)(o+"$compid__12"),a=m(i,2),u=a[0],s=a[1],l=this.__props,c=l.data,p=l.bottom,f=void 0===p||p,_=(0,d.internal_inline_style)(f?"":"padding-bottom:0"),y=c?c.map(function(t,o){return{"$anonymousCallee__2":(t={"$original":(0,d.internal_get_original)(t)}).$original?t.$original.map(function(t,e){t={"$original":(0,d.internal_get_original)(t)};var n="bczzz"+o+"-"+e;return r.anonymousFunc0Map[n]=function(){return function userRouteJump(t){h.default.navigateTo({"url":t})}("/pages/resume/detail/index?uuid="+t.$original.uuid+"&location="+t.$original.location)},{"_$indexKey":n,"$original":t.$original}}):[],"$original":t.$original}}):[];return c&&c[0]&&!c[0].length&&d.propsManager.set({"text":"暂无相关数据"},s,u),Object.assign(this.__state,{"anonymousState__temp":_,"loopArray11":y,"$compid__12":s,"data":c,"IMGCDNURL":g.IMGCDNURL}),this.__state}},{"key":"anonymousFunc0","value":function anonymousFunc0(t){for(var e,n=arguments.length,o=Array(1<n?n-1:0),r=1;r<n;r++)o[r-1]=arguments[r];return this.anonymousFunc0Map[t]&&(e=this.anonymousFunc0Map)[t].apply(e,o)}}]),ResumeList);function ResumeList(){!function _classCallCheck(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}(this,ResumeList);var t=function _possibleConstructorReturn(t,e){if(!t)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!e||"object"!=typeof e&&"function"!=typeof e?t:e}(this,(ResumeList.__proto__||Object.getPrototypeOf(ResumeList)).apply(this,arguments));return t.$usedState=["anonymousState__temp","loopArray11","$compid__12","data","IMGCDNURL","bottom"],t.anonymousFunc0Map={},t.customComponents=["Nodata"],t}r.$$events=["anonymousFunc0"],r.$$componentPath="components/lists/resume/index",e.default=r,Component(n(0).default.createComponent(r))},"221":function(t,e,n){}},[[220,0,1]]]);
+(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["components/lists/resume/index"],{
+
+/***/ "./src/components/lists/resume/index.scss":
+/*!************************************************!*\
+  !*** ./src/components/lists/resume/index.scss ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
+/***/ "./src/components/lists/resume/index.tsx":
+/*!***********************************************!*\
+  !*** ./src/components/lists/resume/index.tsx ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
+
+var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
+
+var _index = __webpack_require__(/*! ../../../config/index */ "./src/config/index.ts");
+
+__webpack_require__(/*! ./index.scss */ "./src/components/lists/resume/index.scss");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var ResumeList = function (_Taro$Component) {
+  _inherits(ResumeList, _Taro$Component);
+
+  function ResumeList() {
+    _classCallCheck(this, ResumeList);
+
+    var _this = _possibleConstructorReturn(this, (ResumeList.__proto__ || Object.getPrototypeOf(ResumeList)).apply(this, arguments));
+
+    _this.$usedState = ["anonymousState__temp", "loopArray11", "$compid__12", "data", "IMGCDNURL", "bottom"];
+    _this.anonymousFunc0Map = {};
+    _this.customComponents = ["Nodata"];
+    return _this;
+  }
+
+  _createClass(ResumeList, [{
+    key: "_constructor",
+    value: function _constructor(props) {
+      _get(ResumeList.prototype.__proto__ || Object.getPrototypeOf(ResumeList.prototype), "_constructor", this).call(this, props);
+      this.$$refs = new _taroWeapp2.default.RefsArray();
+    }
+  }, {
+    key: "_createData",
+    value: function _createData() {
+      var _this2 = this;
+
+      this.__state = arguments[0] || this.state || {};
+      this.__props = arguments[1] || this.props || {};
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
+      ;
+
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__12"),
+          _genCompid2 = _slicedToArray(_genCompid, 2),
+          $prevCompid__12 = _genCompid2[0],
+          $compid__12 = _genCompid2[1];
+
+      var _props = this.__props,
+          data = _props.data,
+          _props$bottom = _props.bottom,
+          bottom = _props$bottom === undefined ? true : _props$bottom;
+      // 用户页面跳转
+
+      var userRouteJump = function userRouteJump(url) {
+        _taroWeapp2.default.navigateTo({
+          url: url
+        });
+      };
+      var anonymousState__temp = (0, _taroWeapp.internal_inline_style)(bottom ? '' : 'padding-bottom:0');
+      var loopArray11 = data ? data.map(function (item, __index1) {
+        item = {
+          $original: (0, _taroWeapp.internal_get_original)(item)
+        };
+        var $anonymousCallee__2 = item.$original ? item.$original.map(function (d, __index0) {
+          d = {
+            $original: (0, _taroWeapp.internal_get_original)(d)
+          };
+          var _$indexKey = "bczzz" + __index1 + "-" + __index0;
+          _this2.anonymousFunc0Map[_$indexKey] = function () {
+            return userRouteJump("/pages/resume/detail/index?uuid=" + d.$original.uuid + "&location=" + d.$original.location);
+          };
+          return {
+            _$indexKey: _$indexKey,
+            $original: d.$original
+          };
+        }) : [];
+        return {
+          $anonymousCallee__2: $anonymousCallee__2,
+          $original: item.$original
+        };
+      }) : [];
+      data && data[0] && !data[0].length && _taroWeapp.propsManager.set({
+        "text": "\u6682\u65E0\u76F8\u5173\u6570\u636E"
+      }, $compid__12, $prevCompid__12);
+      Object.assign(this.__state, {
+        anonymousState__temp: anonymousState__temp,
+        loopArray11: loopArray11,
+        $compid__12: $compid__12,
+        data: data,
+        IMGCDNURL: _index.IMGCDNURL
+      });
+      return this.__state;
+    }
+  }, {
+    key: "anonymousFunc0",
+    value: function anonymousFunc0(_$indexKey) {
+      var _anonymousFunc0Map;
+
+      ;
+
+      for (var _len = arguments.length, e = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+        e[_key - 1] = arguments[_key];
+      }
+
+      return this.anonymousFunc0Map[_$indexKey] && (_anonymousFunc0Map = this.anonymousFunc0Map)[_$indexKey].apply(_anonymousFunc0Map, e);
+    }
+  }]);
+
+  return ResumeList;
+}(_taroWeapp2.default.Component);
+
+ResumeList.$$events = ["anonymousFunc0"];
+ResumeList.$$componentPath = "components/lists/resume/index";
+exports.default = ResumeList;
+
+Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(ResumeList));
+
+/***/ })
+
+},[["./src/components/lists/resume/index.tsx","runtime","vendors"]]]);

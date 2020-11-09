@@ -7,7 +7,7 @@
 =======
 <<<<<<< HEAD
  * @LastEditors: zyb
- * @LastEditTime: 2020-11-09 09:35:26
+ * @LastEditTime: 2020-11-09 11:17:41
 =======
 >>>>>>> c4934cd3ef6271dedb29cefa5b63959eded6b62a
 >>>>>>> ef05e55da45d0296166b90ea66d29fd7eab0550e
@@ -164,7 +164,7 @@ export default function useResume(){
         msg: "审核未通过，请修改信息",
       })
       return
-    } else 
+    }
   }
   return {
     infoData,

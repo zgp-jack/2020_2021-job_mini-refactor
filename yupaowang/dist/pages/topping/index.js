@@ -1,1 +1,1 @@
-(tt.webpackJsonp=tt.webpackJsonp||[]).push([[86],[],[[166,0,1]]]);
+(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["pages/topping/index"],[],[["./src/pages/topping/index.tsx","runtime","vendors"]]]);

@@ -272,7 +272,7 @@ export default function AddResumeInfo(){
                   <Picker
                     mode="selector"
                     range={ infoConfig.gender||[] }
-                    value={+inputVal.gender-1}
+                    value={inputVal.gender?(Number(inputVal.gender)-1):0}
                     range-key="name"
                     onChange={(e) => onPickerChange(e, 'gender')}
                   >
@@ -295,7 +295,7 @@ export default function AddResumeInfo(){
                 <Picker
                   mode="selector"
                   // value={infoConfig.nation}
-                  value={+inputVal.nation_id-1}
+                  value={inputVal.nation_id?(Number(inputVal.nation_id)-1):0}
                   range={nations||[]}
                   range-key='name'
                   onChange={(e) => onPickerChange(e, 'nation')}
