@@ -75,7 +75,7 @@ var Tabber = function (_Taro$Component) {
       navigationBarTitleText: ''
     };
 
-    _this.$usedState = ["data", "modalData", "loopArray68", "loopArray69", "$compid__62", "$compid__63", "time", "start", "end", "IMGCDNURL", "initInfo", "sourceList", "consumeList", "startType", "modal", "complaintModal", "showTime", "title", "num"];
+    _this.$usedState = ["data", "modalData", "loopArray67", "loopArray68", "$compid__61", "$compid__62", "time", "start", "end", "IMGCDNURL", "initInfo", "sourceList", "consumeList", "startType", "modal", "complaintModal", "showTime", "title", "num"];
     _this.anonymousFunc3Map = {};
     _this.customComponents = ["Nodata", "Report"];
     return _this;
@@ -98,15 +98,23 @@ var Tabber = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
+<<<<<<< HEAD
       var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__62"),
+=======
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__61"),
+>>>>>>> 3a1c93d376a916fd8849f306954f46896f0e54ad
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__62 = _genCompid2[0],
-          $compid__62 = _genCompid2[1];
+          $prevCompid__61 = _genCompid2[0],
+          $compid__61 = _genCompid2[1];
 
+<<<<<<< HEAD
       var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__63"),
+=======
+      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__62"),
+>>>>>>> 3a1c93d376a916fd8849f306954f46896f0e54ad
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__63 = _genCompid4[0],
-          $compid__63 = _genCompid4[1];
+          $prevCompid__62 = _genCompid4[0],
+          $compid__62 = _genCompid4[1];
 
       var router = (0, _taroTt.useRouter)();
       var _router$params = router.params,
@@ -704,7 +712,7 @@ var Tabber = function (_Taro$Component) {
       this.anonymousFunc6 = function () {
         return handleComplaint(modalData.id);
       };
-      var loopArray68 = data.lists.map(function (item, index) {
+      var loopArray67 = data.lists.map(function (item, index) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
@@ -719,7 +727,7 @@ var Tabber = function (_Taro$Component) {
           $original: item.$original
         };
       });
-      var loopArray69 = initInfo === '1' && modal && modalData ? modalData.classifyName.map(function (v, i) {
+      var loopArray68 = initInfo === '1' && modal && modalData ? modalData.classifyName.map(function (v, i) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
@@ -731,21 +739,25 @@ var Tabber = function (_Taro$Component) {
       }) : [];
       !data.lists.length && _taroTt.propsManager.set({
         "text": initInfo === '0' ? '暂无积分来源记录' : '暂无积分消耗记录'
+<<<<<<< HEAD
       }, $compid__62, $prevCompid__62);
+=======
+      }, $compid__61, $prevCompid__61);
+>>>>>>> 3a1c93d376a916fd8849f306954f46896f0e54ad
       complaintModal && _taroTt.propsManager.set({
         "display": complaintModal,
         "textarea": textarea,
         "handleTextarea": handleTextarea,
         "setComplaintModal": setComplaintModal,
         "handleSubmit": handleSubmit
-      }, $compid__63, $prevCompid__63);
+      }, $compid__62, $prevCompid__62);
       Object.assign(this.__state, {
         data: data,
         modalData: modalData,
+        loopArray67: loopArray67,
         loopArray68: loopArray68,
-        loopArray69: loopArray69,
+        $compid__61: $compid__61,
         $compid__62: $compid__62,
-        $compid__63: $compid__63,
         time: time,
         start: start,
         end: end,

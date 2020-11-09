@@ -1,4 +1,4 @@
-import Taro, { useState, useEffect } from '@tarojs/taro'
+import Taro, { useState, useEffect, useDidShow } from '@tarojs/taro'
 import { View, Text, Image } from '@tarojs/components'
 import { IProps } from '../../components/swiper/index'
 import SwiperComponent from '../../components/swiper/index/index'
@@ -11,10 +11,14 @@ import RecruitList from '../../components/lists/recruit'
 import ResumeList from '../../components/lists/resume'
 import UsedList from '../../components/lists/used'
 import About from '../../components/index/about'
+import { useDispatch } from '@tarojs/redux'
+import { changeTabbar } from '../../actions/tabbar'
+import { RECRUIT,RESUME,USED } from '../../constants/tabbar'
 import { getBannerNotice, getAllListItem } from '../../utils/request'
 import { UserListChooseCity, UserLocation } from '../../config/store'
 import HomeCity from '../../components/home_city'
 import { BannerNoticeBanner, BannerNoticeNotice, RecruitListItem, ResumeList as ResumeListArr, FleamarketList } from '../../utils/request/index.d'
+import { userJumpPage } from '../../utils/helper'
 
 export interface FilterData {
   area: string,
@@ -29,8 +33,30 @@ interface AllLists {
 
 export default function Home(){
 
-  let userChooseCity = Taro.getStorageSync(UserListChooseCity)
-  let location = Taro.getStorageSync(UserLocation)
+  const dispatch = useDispatch()
+
+  const tabbarJump = (id: string) => {
+    if(id === USED){
+      userJumpPage('/pages/used/index')
+      return
+    }
+    dispatch(changeTabbar(id))
+  }
+
+  // 因为刷新页面就会改变，所以我们将获取选择的位置和当前定位经纬度声明变量先保存
+  let userChooseCity;
+  let location;
+
+  useDidShow(() => {
+    userChooseCity = Taro.getStorageSync(UserListChooseCity)
+    location = Taro.getStorageSync(UserLocation)
+    setArea(userChooseCity ? userChooseCity.name : '全国')
+    setFilterData({
+      area: userChooseCity ? userChooseCity.id : 1,
+      location: location || ''
+    })
+  })
+
   // 当前展示的城市
   const [area, setArea] = useState<string>(userChooseCity ? userChooseCity.name : '全国')
 
@@ -46,6 +72,7 @@ export default function Home(){
     setArea(val)
     setFilterData({...filterData, area: id})
   }
+
   // * 轮播图的基本参数配置
   const [swiper, setSwiper] = useState<IProps<BannerNoticeBanner>>({
     lists: []
@@ -119,7 +146,7 @@ export default function Home(){
         <View className='home-lists-item'>
           <View className='home-lists-item-header'>
             <Text className='home-lists-item-title'>最新招工信息</Text>
-            <Text className='home-lists-item-more'>更多</Text>
+            <Text className='home-lists-item-more' onClick={() => tabbarJump(RECRUIT)}>更多</Text>
           </View>
           <RecruitList data={ lists.recruit } bottom={ false } />
         </View>
@@ -127,17 +154,17 @@ export default function Home(){
         <View className='home-lists-item'>
           <View className='home-lists-item-header'>
             <Text className='home-lists-item-title'>最新找活信息</Text>
-            <Text className='home-lists-item-more'>更多</Text>
+            <Text className='home-lists-item-more' onClick={() => tabbarJump(RESUME)}>更多</Text>
           </View>
-          <ResumeList data={ lists.resume } bottom={ false } />
+          <ResumeList data={ lists.resume } bottom={ false } hasMore={true} />
         </View>
         {/* // ? 二手列表  */}
         <View className='home-lists-item'>
           <View className='home-lists-item-header'>
             <Text className='home-lists-item-title'>最新二手交易信息</Text>
-            <Text className='home-lists-item-more'>更多</Text>
+            <Text className='home-lists-item-more' onClick={() => tabbarJump(USED)}>更多</Text>
           </View>
-          <UsedList data={ lists.fleamarket } bottom={ false } />
+          <UsedList data={lists.fleamarket} bottom={false} />
         </View>
       </View>
 

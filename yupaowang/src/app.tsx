@@ -55,6 +55,8 @@ class App extends Component {
       'pages/resume/skills/index', //技能证书列表
       'pages/rank-rules/index', //排名规则
 
+      'pages/turntable/index',// 大转盘
+
 
       'pages/resume/detail/index', // 找活详情
       'pages/resume/newPreview/index', // 预览

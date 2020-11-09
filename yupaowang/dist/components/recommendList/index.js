@@ -58,7 +58,7 @@ var CollectionRecruitList = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (CollectionRecruitList.__proto__ || Object.getPrototypeOf(CollectionRecruitList)).apply(this, arguments));
 
-    _this.$usedState = ["$compid__66", "$compid__67", "type", "data"];
+    _this.$usedState = ["$compid__65", "$compid__66", "type", "data"];
     _this.customComponents = ["RecruitListPage", "ResumeListPage"];
     return _this;
   }
@@ -78,15 +78,23 @@ var CollectionRecruitList = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
+<<<<<<< HEAD
       var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__66"),
+=======
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__65"),
+>>>>>>> 3a1c93d376a916fd8849f306954f46896f0e54ad
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__66 = _genCompid2[0],
-          $compid__66 = _genCompid2[1];
+          $prevCompid__65 = _genCompid2[0],
+          $compid__65 = _genCompid2[1];
 
+<<<<<<< HEAD
       var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__67"),
+=======
+      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__66"),
+>>>>>>> 3a1c93d376a916fd8849f306954f46896f0e54ad
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__67 = _genCompid4[0],
-          $compid__67 = _genCompid4[1];
+          $prevCompid__66 = _genCompid4[0],
+          $compid__66 = _genCompid4[1];
 
       var _props = this.__props,
           _props$data = _props.data,
@@ -95,13 +103,17 @@ var CollectionRecruitList = function (_Taro$Component) {
 
       type === 1 && _taroTt.propsManager.set({
         "data": data
+<<<<<<< HEAD
       }, $compid__66, $prevCompid__66);
+=======
+      }, $compid__65, $prevCompid__65);
+>>>>>>> 3a1c93d376a916fd8849f306954f46896f0e54ad
       type === 2 && _taroTt.propsManager.set({
         "data": data
-      }, $compid__67, $prevCompid__67);
+      }, $compid__66, $prevCompid__66);
       Object.assign(this.__state, {
+        $compid__65: $compid__65,
         $compid__66: $compid__66,
-        $compid__67: $compid__67,
         type: type
       });
       return this.__state;

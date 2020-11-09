@@ -255,7 +255,7 @@ var Preview = function (_Taro$Component) {
           $original: (0, _taroTt.internal_get_original)(item)
         };
         var $loopState__temp6 = data.project.length ? i + i : null;
-        var $anonymousCallee__11 = data.project.length ? item.$original.image.map(function (v, i) {
+        var $anonymousCallee__12 = data.project.length ? item.$original.image.map(function (v, i) {
           v = {
             $original: (0, _taroTt.internal_get_original)(v)
           };
@@ -272,7 +272,7 @@ var Preview = function (_Taro$Component) {
         }) : [];
         return {
           $loopState__temp6: $loopState__temp6,
-          $anonymousCallee__11: $anonymousCallee__11,
+          $anonymousCallee__12: $anonymousCallee__12,
           $original: item.$original
         };
       }) : [];
@@ -280,7 +280,7 @@ var Preview = function (_Taro$Component) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
-        var $anonymousCallee__12 = data.certificates.length ? item.$original.image.map(function (v, i) {
+        var $anonymousCallee__13 = data.certificates.length ? item.$original.image.map(function (v, i) {
           v = {
             $original: (0, _taroTt.internal_get_original)(v)
           };
@@ -296,7 +296,7 @@ var Preview = function (_Taro$Component) {
           };
         }) : [];
         return {
-          $anonymousCallee__12: $anonymousCallee__12,
+          $anonymousCallee__13: $anonymousCallee__13,
           $original: item.$original
         };
       }) : [];

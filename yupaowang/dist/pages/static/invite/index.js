@@ -69,7 +69,7 @@ var InvitePage = function (_Taro$Component) {
       backgroundTextStyle: 'dark'
     };
 
-    _this.$usedState = ["tab", "loopArray63", "loopArray64", "$compid__61", "scrollLeft", "list", "pull"];
+    _this.$usedState = ["tab", "loopArray62", "loopArray63", "$compid__60", "scrollLeft", "list", "pull"];
     _this.anonymousFunc1Map = {};
     _this.anonymousFunc2Map = {};
     _this.customComponents = ["Nodata"];
@@ -93,10 +93,14 @@ var InvitePage = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
+<<<<<<< HEAD
       var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__61"),
+=======
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__60"),
+>>>>>>> 3a1c93d376a916fd8849f306954f46896f0e54ad
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__61 = _genCompid2[0],
-          $compid__61 = _genCompid2[1];
+          $prevCompid__60 = _genCompid2[0],
+          $compid__60 = _genCompid2[1];
       // 默认table
 
 
@@ -199,7 +203,7 @@ var InvitePage = function (_Taro$Component) {
       this.anonymousFunc0 = function (e) {
         console.log(e);
       };
-      var loopArray63 = tab.item ? tab.item.map(function (item, i) {
+      var loopArray62 = tab.item ? tab.item.map(function (item, i) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
@@ -216,7 +220,7 @@ var InvitePage = function (_Taro$Component) {
           $original: item.$original
         };
       }) : [];
-      var loopArray64 = list ? list.map(function (v, __index2) {
+      var loopArray63 = list ? list.map(function (v, __index2) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
@@ -231,12 +235,12 @@ var InvitePage = function (_Taro$Component) {
       }) : [];
       !list.length && _taroTt.propsManager.set({
         "text": noData
-      }, $compid__61, $prevCompid__61);
+      }, $compid__60, $prevCompid__60);
       Object.assign(this.__state, {
         tab: tab,
+        loopArray62: loopArray62,
         loopArray63: loopArray63,
-        loopArray64: loopArray64,
-        $compid__61: $compid__61,
+        $compid__60: $compid__60,
         scrollLeft: scrollLeft,
         list: list,
         pull: pull

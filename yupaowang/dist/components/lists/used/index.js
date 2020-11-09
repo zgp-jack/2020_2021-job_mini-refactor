@@ -53,7 +53,7 @@ var UsedList = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (UsedList.__proto__ || Object.getPrototypeOf(UsedList)).apply(this, arguments));
 
-    _this.$usedState = ["anonymousState__temp", "loopArray12", "data", "IMGCDNURL", "bottom"];
+    _this.$usedState = ["anonymousState__temp", "loopArray12", "data", "IMGCDNURL", "hasMore", "ALIYUNCDN", "bottom"];
     _this.anonymousFunc0Map = {};
     _this.customComponents = [];
     return _this;
@@ -79,7 +79,9 @@ var UsedList = function (_Taro$Component) {
           _props$data = _props.data,
           data = _props$data === undefined ? [] : _props$data,
           _props$bottom = _props.bottom,
-          bottom = _props$bottom === undefined ? true : _props$bottom;
+          bottom = _props$bottom === undefined ? true : _props$bottom,
+          _props$hasMore = _props.hasMore,
+          hasMore = _props$hasMore === undefined ? true : _props$hasMore;
       // 用户查看二手交易详情
 
       var userLookUsedInfo = function userLookUsedInfo(id) {
@@ -96,7 +98,7 @@ var UsedList = function (_Taro$Component) {
           d = {
             $original: (0, _taroTt.internal_get_original)(d)
           };
-          var _$indexKey = "bdzzz" + __index1 + "-" + __index0;
+          var _$indexKey = "bezzz" + __index1 + "-" + __index0;
           _this2.anonymousFunc0Map[_$indexKey] = function () {
             return userLookUsedInfo(d.$original.id);
           };
@@ -114,7 +116,9 @@ var UsedList = function (_Taro$Component) {
         anonymousState__temp: anonymousState__temp,
         loopArray12: loopArray12,
         data: data,
-        IMGCDNURL: _index.IMGCDNURL
+        IMGCDNURL: _index.IMGCDNURL,
+        hasMore: hasMore,
+        ALIYUNCDN: _index.ALIYUNCDN
       });
       return this.__state;
     }

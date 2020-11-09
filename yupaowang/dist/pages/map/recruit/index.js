@@ -75,7 +75,7 @@ var RecruitMap = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (RecruitMap.__proto__ || Object.getPrototypeOf(RecruitMap)).apply(this, arguments));
 
-    _this.$usedState = ["loopArray39", "loopArray40", "$compid__39", "smAreaText", "showHistory", "histroyList", "lists", "IMGCDNURL", "showCity", "area"];
+    _this.$usedState = ["loopArray38", "loopArray39", "$compid__38", "smAreaText", "showHistory", "histroyList", "lists", "IMGCDNURL", "showCity", "area"];
     _this.anonymousFunc5Map = {};
     _this.anonymousFunc6Map = {};
     _this.customComponents = ["Cities"];
@@ -99,10 +99,14 @@ var RecruitMap = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
+<<<<<<< HEAD
       var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__39"),
+=======
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__38"),
+>>>>>>> 3a1c93d376a916fd8849f306954f46896f0e54ad
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__39 = _genCompid2[0],
-          $compid__39 = _genCompid2[1];
+          $prevCompid__38 = _genCompid2[0],
+          $compid__38 = _genCompid2[1];
       // 城市数据
 
 
@@ -332,7 +336,7 @@ var RecruitMap = function (_Taro$Component) {
       this.anonymousFunc4 = function () {
         return userCloseMap();
       };
-      var loopArray39 = showHistory ? histroyList.map(function (item, index) {
+      var loopArray38 = showHistory ? histroyList.map(function (item, index) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
@@ -347,7 +351,7 @@ var RecruitMap = function (_Taro$Component) {
           $original: item.$original
         };
       }) : [];
-      var loopArray40 = lists.map(function (item, index) {
+      var loopArray39 = lists.map(function (item, index) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
@@ -368,11 +372,11 @@ var RecruitMap = function (_Taro$Component) {
         "userLoc": userLoc,
         "userChangeCity": userChangeCity,
         "userTapCityBtn": userTapCityBtn
-      }, $compid__39, $prevCompid__39);
+      }, $compid__38, $prevCompid__38);
       Object.assign(this.__state, {
+        loopArray38: loopArray38,
         loopArray39: loopArray39,
-        loopArray40: loopArray40,
-        $compid__39: $compid__39,
+        $compid__38: $compid__38,
         smAreaText: smAreaText,
         showHistory: showHistory,
         histroyList: histroyList,

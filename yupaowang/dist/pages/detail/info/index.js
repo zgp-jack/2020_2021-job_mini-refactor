@@ -73,7 +73,7 @@ var DetailInfoPage = function (_Taro$Component) {
       navigationBarTitleText: ''
     };
 
-    _this.$usedState = ["data", "loopArray70", "loopArray71", "$compid__64", "$compid__65", "resCode", "editPhone", "IMGCDNURL", "again", "stopHiring", "isCollection", "recommend", "complaintModal", "phone"];
+    _this.$usedState = ["data", "loopArray69", "loopArray70", "$compid__63", "$compid__64", "resCode", "editPhone", "IMGCDNURL", "again", "stopHiring", "isCollection", "recommend", "complaintModal", "phone"];
     _this.anonymousFunc5Map = {};
     _this.customComponents = ["WechatNotice", "CollectionRecruitList", "Report"];
     return _this;
@@ -96,15 +96,23 @@ var DetailInfoPage = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
+<<<<<<< HEAD
       var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__64"),
+=======
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__63"),
+>>>>>>> 3a1c93d376a916fd8849f306954f46896f0e54ad
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__64 = _genCompid2[0],
-          $compid__64 = _genCompid2[1];
+          $prevCompid__63 = _genCompid2[0],
+          $compid__63 = _genCompid2[1];
 
+<<<<<<< HEAD
       var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__65"),
+=======
+      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__64"),
+>>>>>>> 3a1c93d376a916fd8849f306954f46896f0e54ad
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__65 = _genCompid4[0],
-          $compid__65 = _genCompid4[1];
+          $prevCompid__64 = _genCompid4[0],
+          $compid__64 = _genCompid4[1];
 
       var router = (0, _taroTt.useRouter)();
       var id = router.params.id;
@@ -646,7 +654,7 @@ var DetailInfoPage = function (_Taro$Component) {
       this.anonymousFunc15 = function () {
         _taroTt2.default.makePhoneCall({ phoneNumber: data.tel_str });
       };
-      var loopArray70 = data.classifyName.map(function (v, i) {
+      var loopArray69 = data.classifyName.map(function (v, i) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
@@ -656,7 +664,7 @@ var DetailInfoPage = function (_Taro$Component) {
           $original: v.$original
         };
       });
-      var loopArray71 = data.view_images.length ? data.view_images.map(function (v, i) {
+      var loopArray70 = data.view_images.length ? data.view_images.map(function (v, i) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
@@ -674,20 +682,24 @@ var DetailInfoPage = function (_Taro$Component) {
       recommend.length && _taroTt.propsManager.set({
         "data": recommend,
         "type": 1
+<<<<<<< HEAD
       }, $compid__64, $prevCompid__64);
+=======
+      }, $compid__63, $prevCompid__63);
+>>>>>>> 3a1c93d376a916fd8849f306954f46896f0e54ad
       complaintModal && _taroTt.propsManager.set({
         "display": complaintModal,
         "textarea": textarea,
         "handleTextarea": handleTextarea,
         "setComplaintModal": setComplaintModal,
         "handleSubmit": handleSubmit
-      }, $compid__65, $prevCompid__65);
+      }, $compid__64, $prevCompid__64);
       Object.assign(this.__state, {
         data: data,
+        loopArray69: loopArray69,
         loopArray70: loopArray70,
-        loopArray71: loopArray71,
+        $compid__63: $compid__63,
         $compid__64: $compid__64,
-        $compid__65: $compid__65,
         resCode: resCode,
         editPhone: editPhone,
         IMGCDNURL: _index2.IMGCDNURL,

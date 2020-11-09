@@ -66,7 +66,7 @@ var AtModal = (_temp2 = _class = function (_AtComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AtModal.__proto__ || Object.getPrototypeOf(AtModal)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["_$isRenderAction", "_$anonymousState__temp", "$compid__49", "title", "content", "isWEB", "cancelText", "confirmText", "rootClass", "_isOpened", "isOpened", "closeOnClickOverlay", "className", "children"], _this.handleClickOverlay = function () {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AtModal.__proto__ || Object.getPrototypeOf(AtModal)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["_$isRenderAction", "_$anonymousState__temp", "$compid__48", "title", "content", "isWEB", "cancelText", "confirmText", "rootClass", "_isOpened", "isOpened", "closeOnClickOverlay", "className", "children"], _this.handleClickOverlay = function () {
       if (_this.props.closeOnClickOverlay) {
         _this.setState({
           _isOpened: false
@@ -127,10 +127,10 @@ var AtModal = (_temp2 = _class = function (_AtComponent) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__49"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__48"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__49 = _genCompid2[0],
-          $compid__49 = _genCompid2[1];
+          $prevCompid__48 = _genCompid2[0],
+          $compid__48 = _genCompid2[1];
 
       var _$isRenderAction, _$anonymousState__temp;
 
@@ -152,13 +152,13 @@ var AtModal = (_temp2 = _class = function (_AtComponent) {
         _$anonymousState__temp = content ? isWEB ? { __html: content.replace(/\n/g, '<br/>') } : null : null;
         _$isRenderAction && _taroTt.propsManager.set({
           "isSimple": true
-        }, $compid__49, $prevCompid__49);
+        }, $compid__48, $prevCompid__48);
       }
 
       Object.assign(this.__state, {
         _$isRenderAction: _$isRenderAction,
         _$anonymousState__temp: _$anonymousState__temp,
-        $compid__49: $compid__49,
+        $compid__48: $compid__48,
         title: title,
         content: content,
         cancelText: cancelText,
@@ -170,7 +170,7 @@ var AtModal = (_temp2 = _class = function (_AtComponent) {
   }]);
 
   return AtModal;
-}(_component2.default), _class.$$events = ["handleClickOverlay", "handleCancel", "handleConfirm", "handleTouchMove"], _class.$$componentPath = "Users/zhangyibo/yupao-ts-recode/yupaowang/node_modules/taro-ui/dist/weapp/components/modal/index", _temp2);
+}(_component2.default), _class.$$events = ["handleClickOverlay", "handleCancel", "handleConfirm", "handleTouchMove"], _class.$$componentPath = 'Users/axin/codes/\u9C7C\u6CE1\u7F51/\u5C0F\u7A0B\u5E8FTS\u91CD\u6784\u9879\u76EE/TaroTs-YuPaoWang/yupaowang/node_modules/taro-ui/dist/weapp/components/modal/index', _temp2);
 
 
 AtModal.defaultProps = {

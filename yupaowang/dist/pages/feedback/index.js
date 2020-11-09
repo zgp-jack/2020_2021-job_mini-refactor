@@ -79,7 +79,7 @@ var Feedback = function (_Taro$Component) {
       navigationBarTitleText: '鱼泡网-意见反馈'
     };
 
-    _this.$usedState = ["$compid__56", "$compid__57", "$compid__58", "$compid__59", "$compid__60", "textarea", "image", "isShow", "disabled", "text"];
+    _this.$usedState = ["$compid__55", "$compid__56", "$compid__57", "$compid__58", "$compid__59", "textarea", "image", "isShow", "disabled", "text"];
     _this.customComponents = ["WechatNotice", "WordsTotal", "ImageView", "AtInput"];
     return _this;
   }
@@ -99,30 +99,50 @@ var Feedback = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
+<<<<<<< HEAD
       var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__56"),
+=======
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__55"),
+>>>>>>> 3a1c93d376a916fd8849f306954f46896f0e54ad
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__56 = _genCompid2[0],
-          $compid__56 = _genCompid2[1];
+          $prevCompid__55 = _genCompid2[0],
+          $compid__55 = _genCompid2[1];
 
+<<<<<<< HEAD
       var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__57"),
+=======
+      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__56"),
+>>>>>>> 3a1c93d376a916fd8849f306954f46896f0e54ad
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__57 = _genCompid4[0],
-          $compid__57 = _genCompid4[1];
+          $prevCompid__56 = _genCompid4[0],
+          $compid__56 = _genCompid4[1];
 
+<<<<<<< HEAD
       var _genCompid5 = (0, _taroTt.genCompid)(__prefix + "$compid__58"),
+=======
+      var _genCompid5 = (0, _taroTt.genCompid)(__prefix + "$compid__57"),
+>>>>>>> 3a1c93d376a916fd8849f306954f46896f0e54ad
           _genCompid6 = _slicedToArray(_genCompid5, 2),
-          $prevCompid__58 = _genCompid6[0],
-          $compid__58 = _genCompid6[1];
+          $prevCompid__57 = _genCompid6[0],
+          $compid__57 = _genCompid6[1];
 
+<<<<<<< HEAD
       var _genCompid7 = (0, _taroTt.genCompid)(__prefix + "$compid__59"),
+=======
+      var _genCompid7 = (0, _taroTt.genCompid)(__prefix + "$compid__58"),
+>>>>>>> 3a1c93d376a916fd8849f306954f46896f0e54ad
           _genCompid8 = _slicedToArray(_genCompid7, 2),
-          $prevCompid__59 = _genCompid8[0],
-          $compid__59 = _genCompid8[1];
+          $prevCompid__58 = _genCompid8[0],
+          $compid__58 = _genCompid8[1];
 
+<<<<<<< HEAD
       var _genCompid9 = (0, _taroTt.genCompid)(__prefix + "$compid__60"),
+=======
+      var _genCompid9 = (0, _taroTt.genCompid)(__prefix + "$compid__59"),
+>>>>>>> 3a1c93d376a916fd8849f306954f46896f0e54ad
           _genCompid10 = _slicedToArray(_genCompid9, 2),
-          $prevCompid__60 = _genCompid10[0],
-          $compid__60 = _genCompid10[1];
+          $prevCompid__59 = _genCompid10[0],
+          $compid__59 = _genCompid10[1];
 
       var router = (0, _taroTt.useRouter)();
       var _router$params = router.params,
@@ -280,12 +300,20 @@ var Feedback = function (_Taro$Component) {
       this.anonymousFunc5 = handleSubmission;
       _taroTt.propsManager.set({
         "num": num
+<<<<<<< HEAD
       }, $compid__56, $prevCompid__56);
+=======
+      }, $compid__55, $prevCompid__55);
+>>>>>>> 3a1c93d376a916fd8849f306954f46896f0e54ad
       image.item && _taroTt.propsManager.set({
         "images": image.item,
         "max": 9,
         "userUploadImg": userUploadImg
+<<<<<<< HEAD
       }, $compid__57, $prevCompid__57);
+=======
+      }, $compid__56, $prevCompid__56);
+>>>>>>> 3a1c93d376a916fd8849f306954f46896f0e54ad
       _taroTt.propsManager.set({
         "name": "name",
         "title": "\u8054\u7CFB\u4EBA",
@@ -293,7 +321,11 @@ var Feedback = function (_Taro$Component) {
         "placeholder": "\u8BF7\u8F93\u5165\u4F60\u7684\u540D\u5B57",
         "value": name,
         "onChange": this.anonymousFunc1
+<<<<<<< HEAD
       }, $compid__58, $prevCompid__58);
+=======
+      }, $compid__57, $prevCompid__57);
+>>>>>>> 3a1c93d376a916fd8849f306954f46896f0e54ad
       _taroTt.propsManager.set({
         "name": "phone",
         "title": "\u8054\u7CFB\u7535\u8BDD",
@@ -302,7 +334,11 @@ var Feedback = function (_Taro$Component) {
         "maxLength": 11,
         "value": uphone,
         "onChange": this.anonymousFunc2
+<<<<<<< HEAD
       }, $compid__59, $prevCompid__59);
+=======
+      }, $compid__58, $prevCompid__58);
+>>>>>>> 3a1c93d376a916fd8849f306954f46896f0e54ad
       isShow && _taroTt.propsManager.set({
         "clear": true,
         "title": "\u9A8C\u8BC1\u7801",
@@ -312,13 +348,13 @@ var Feedback = function (_Taro$Component) {
         "name": "code",
         "value": code,
         "onChange": this.anonymousFunc3
-      }, $compid__60, $prevCompid__60);
+      }, $compid__59, $prevCompid__59);
       Object.assign(this.__state, {
+        $compid__55: $compid__55,
         $compid__56: $compid__56,
         $compid__57: $compid__57,
         $compid__58: $compid__58,
         $compid__59: $compid__59,
-        $compid__60: $compid__60,
         textarea: textarea,
         image: image,
         isShow: isShow,

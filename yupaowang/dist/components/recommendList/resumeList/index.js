@@ -55,7 +55,7 @@ var ResumeListPage = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (ResumeListPage.__proto__ || Object.getPrototypeOf(ResumeListPage)).apply(this, arguments));
 
-    _this.$usedState = ["loopArray73", "data", "IMGCDNURL"];
+    _this.$usedState = ["loopArray72", "data", "IMGCDNURL"];
     _this.anonymousFunc0Map = {};
     _this.customComponents = [];
     return _this;
@@ -94,7 +94,7 @@ var ResumeListPage = function (_Taro$Component) {
       this.anonymousFunc1 = function () {
         return handleLast();
       };
-      var loopArray73 = data.map(function (item, __index0) {
+      var loopArray72 = data.map(function (item, __index0) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
@@ -119,7 +119,7 @@ var ResumeListPage = function (_Taro$Component) {
         };
       });
       Object.assign(this.__state, {
-        loopArray73: loopArray73,
+        loopArray72: loopArray72,
         data: data,
         IMGCDNURL: _index.IMGCDNURL
       });

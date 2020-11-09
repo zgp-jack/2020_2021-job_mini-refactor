@@ -55,7 +55,7 @@ var ResumeList = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (ResumeList.__proto__ || Object.getPrototypeOf(ResumeList)).apply(this, arguments));
 
-    _this.$usedState = ["anonymousState__temp", "loopArray11", "$compid__12", "data", "IMGCDNURL", "bottom"];
+    _this.$usedState = ["anonymousState__temp", "loopArray11", "$compid__12", "data", "IMGCDNURL", "hasMore", "bottom"];
     _this.anonymousFunc0Map = {};
     _this.customComponents = ["Nodata"];
     return _this;
@@ -86,7 +86,9 @@ var ResumeList = function (_Taro$Component) {
       var _props = this.__props,
           data = _props.data,
           _props$bottom = _props.bottom,
-          bottom = _props$bottom === undefined ? true : _props$bottom;
+          bottom = _props$bottom === undefined ? true : _props$bottom,
+          _props$hasMore = _props.hasMore,
+          hasMore = _props$hasMore === undefined ? true : _props$hasMore;
       // 用户页面跳转
 
       var userRouteJump = function userRouteJump(url) {
@@ -103,7 +105,7 @@ var ResumeList = function (_Taro$Component) {
           d = {
             $original: (0, _taroTt.internal_get_original)(d)
           };
-          var _$indexKey = "bczzz" + __index1 + "-" + __index0;
+          var _$indexKey = "bdzzz" + __index1 + "-" + __index0;
           _this2.anonymousFunc0Map[_$indexKey] = function () {
             return userRouteJump("/pages/resume/detail/index?uuid=" + d.$original.uuid + "&location=" + d.$original.location);
           };
@@ -125,7 +127,8 @@ var ResumeList = function (_Taro$Component) {
         loopArray11: loopArray11,
         $compid__12: $compid__12,
         data: data,
-        IMGCDNURL: _index.IMGCDNURL
+        IMGCDNURL: _index.IMGCDNURL,
+        hasMore: hasMore
       });
       return this.__state;
     }

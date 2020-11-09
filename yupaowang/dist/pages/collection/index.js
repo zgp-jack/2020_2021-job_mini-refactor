@@ -74,7 +74,7 @@ var Collection = function (_Taro$Component) {
       backgroundTextStyle: "dark"
     };
 
-    _this.$usedState = ["loopArray58", "$compid__44", "$compid__45", "tab", "current"];
+    _this.$usedState = ["loopArray57", "$compid__43", "$compid__44", "tab", "current"];
     _this.anonymousFunc0Map = {};
     _this.customComponents = ["Auth", "RecruitList", "ResumeList"];
     return _this;
@@ -97,15 +97,23 @@ var Collection = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
+<<<<<<< HEAD
       var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__44"),
+=======
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__43"),
+>>>>>>> 3a1c93d376a916fd8849f306954f46896f0e54ad
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__44 = _genCompid2[0],
-          $compid__44 = _genCompid2[1];
+          $prevCompid__43 = _genCompid2[0],
+          $compid__43 = _genCompid2[1];
 
+<<<<<<< HEAD
       var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__45"),
+=======
+      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__44"),
+>>>>>>> 3a1c93d376a916fd8849f306954f46896f0e54ad
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__45 = _genCompid4[0],
-          $compid__45 = _genCompid4[1];
+          $prevCompid__44 = _genCompid4[0],
+          $compid__44 = _genCompid4[1];
       // 默认table
 
 
@@ -137,7 +145,7 @@ var Collection = function (_Taro$Component) {
       (0, _taroTt.usePullDownRefresh)(function () {
         setInitPage(initPage + 1);
       });
-      var loopArray58 = tab.map(function (item, __index0) {
+      var loopArray57 = tab.map(function (item, __index0) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
@@ -162,15 +170,19 @@ var Collection = function (_Taro$Component) {
       current === 1 && _taroTt.propsManager.set({
         "bottom": bottom,
         "initPage": initPage
+<<<<<<< HEAD
       }, $compid__44, $prevCompid__44);
+=======
+      }, $compid__43, $prevCompid__43);
+>>>>>>> 3a1c93d376a916fd8849f306954f46896f0e54ad
       !(current === 1) && _taroTt.propsManager.set({
         "bottom": bottom,
         "initPage": initPage
-      }, $compid__45, $prevCompid__45);
+      }, $compid__44, $prevCompid__44);
       Object.assign(this.__state, {
-        loopArray58: loopArray58,
+        loopArray57: loopArray57,
+        $compid__43: $compid__43,
         $compid__44: $compid__44,
-        $compid__45: $compid__45,
         tab: tab,
         current: current
       });

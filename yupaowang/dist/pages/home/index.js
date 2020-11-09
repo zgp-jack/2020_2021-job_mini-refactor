@@ -41,9 +41,17 @@ __webpack_require__(/*! ./index.scss */ "./src/pages/home/index.scss");
 
 var _index = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
 
+var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/redux/index.js");
+
+var _tabbar = __webpack_require__(/*! ../../actions/tabbar */ "./src/actions/tabbar.ts");
+
+var _tabbar2 = __webpack_require__(/*! ../../constants/tabbar */ "./src/constants/tabbar.ts");
+
 var _index2 = __webpack_require__(/*! ../../utils/request/index */ "./src/utils/request/index.ts");
 
 var _store = __webpack_require__(/*! ../../config/store */ "./src/config/store.ts");
+
+var _index3 = __webpack_require__(/*! ../../utils/helper/index */ "./src/utils/helper/index.ts");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -113,8 +121,31 @@ var Home = function (_Taro$Component) {
           $prevCompid__10 = _genCompid12[0],
           $compid__10 = _genCompid12[1];
 
+<<<<<<< HEAD
       var userChooseCity = _taroTt2.default.getStorageSync(_store.UserListChooseCity);
       var location = _taroTt2.default.getStorageSync(_store.UserLocation);
+=======
+      var dispatch = (0, _redux.useDispatch)();
+      var tabbarJump = function tabbarJump(id) {
+        if (id === _tabbar2.USED) {
+          (0, _index3.userJumpPage)('/pages/used/index');
+          return;
+        }
+        dispatch((0, _tabbar.changeTabbar)(id));
+      };
+      // 因为刷新页面就会改变，所以我们将获取选择的位置和当前定位经纬度声明变量先保存
+      var userChooseCity = void 0;
+      var location = void 0;
+      (0, _taroTt.useDidShow)(function () {
+        userChooseCity = _taroTt2.default.getStorageSync(_store.UserListChooseCity);
+        location = _taroTt2.default.getStorageSync(_store.UserLocation);
+        setArea(userChooseCity ? userChooseCity.name : '全国');
+        setFilterData({
+          area: userChooseCity ? userChooseCity.id : 1,
+          location: location || ''
+        });
+      });
+>>>>>>> 3a1c93d376a916fd8849f306954f46896f0e54ad
       // 当前展示的城市
 
       var _useState = (0, _taroTt.useState)(userChooseCity ? userChooseCity.name : '全国'),
@@ -205,6 +236,15 @@ var Home = function (_Taro$Component) {
       this.anonymousFunc1 = function () {
         return userRouteJump('/subpackage/pages/download/index');
       };
+      this.anonymousFunc2 = function () {
+        return tabbarJump(_tabbar2.RECRUIT);
+      };
+      this.anonymousFunc3 = function () {
+        return tabbarJump(_tabbar2.RESUME);
+      };
+      this.anonymousFunc4 = function () {
+        return tabbarJump(_tabbar2.USED);
+      };
       var anonymousState__temp = shwoCity ? function (val, id) {
         return setAreaInfo(val, id);
       } : null;
@@ -223,7 +263,8 @@ var Home = function (_Taro$Component) {
       }, $compid__7, $prevCompid__7);
       _taroTt.propsManager.set({
         "data": lists.resume,
-        "bottom": false
+        "bottom": false,
+        "hasMore": true
       }, $compid__8, $prevCompid__8);
       _taroTt.propsManager.set({
         "data": lists.fleamarket,
@@ -260,12 +301,27 @@ var Home = function (_Taro$Component) {
     value: function anonymousFunc1(e) {
       ;
     }
+  }, {
+    key: "anonymousFunc2",
+    value: function anonymousFunc2(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc3",
+    value: function anonymousFunc3(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc4",
+    value: function anonymousFunc4(e) {
+      ;
+    }
   }]);
 
   return Home;
 }(_taroTt2.default.Component);
 
-Home.$$events = ["anonymousFunc0", "anonymousFunc1"];
+Home.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4"];
 Home.$$componentPath = "pages/home/index";
 exports.default = Home;
 

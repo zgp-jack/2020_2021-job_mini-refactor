@@ -125,6 +125,7 @@ export default function ResumeLists() {
 
   // scroll-view 回到顶部
   const goToScrollTop = () => {
+    setHasMore(true)
     setScrollTop(scrollTop ? 0 : 0.1)
   }
 
@@ -157,7 +158,7 @@ export default function ResumeLists() {
       >
         <View style={{height: '8px'}}></View>
         <WechatNotice/>
-        <ResumeList data={lists}/>
+        <ResumeList data={lists} hasMore={hasMore} />
       </ScrollView>
       <View className="overflow-image">
         <Image 

@@ -98,7 +98,7 @@ var Profession = function (_Taro$Component) {
           d = {
             $original: (0, _taroTt.internal_get_original)(d)
           };
-          var _$indexKey = 'dbzzz' + i + '-' + k;
+          var _$indexKey = 'dczzz' + i + '-' + k;
           _this2.anonymousFunc0Map[_$indexKey] = function () {
             return _this2.__props.onClickItem(i, k, d.$original.id, d.$original.name);
           };

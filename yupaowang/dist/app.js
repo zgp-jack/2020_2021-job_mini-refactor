@@ -74,7 +74,7 @@ var _App = function (_BaseComponent) {
     _this.config = {
       pages: ['pages/index/index', 'pages/userauth/index', "pages/recruit/publish/index", "pages/used/lists/index", "pages/map/recruit/index", "pages/map/resume/index", "pages/used/publish/index", "pages/used/info/index", "pages/invite/index", "pages/getintegral/index", "pages/integral/source/index", "pages/integral/temp/index", "pages/integral/official/index", "pages/integral/expend/index", "pages/recharge/index", "pages/realname/index", "pages/map/realname/index", "pages/userinfo/info/index", "pages/userinfo/add/index", "pages/userinfo/phone/index", "pages/userinfo/updatePass/index", "pages/published/recruit/index", "pages/published/used/index", "pages/collection/index", "pages/help/index", "pages/feedbacklist/index", "pages/feedback/index", "pages/static/invite/index", "pages/query/index", "pages/information/mymessage/index", "pages/information/system/index", 'pages/integral/tabber/index', 'pages/detail/info/index', 'pages/topping/index', 'pages/topping/distruction/index',
       // 'pages/topping/recruit/index',//置顶找活范围
-      'pages/resume/publish/index', 'pages/resume/add_info/index', 'pages/resume/add_member/index', 'pages/resume/add_skill/index', 'pages/resume/add_project/index', 'pages/resume/projects/index', 'pages/resume/skills/index', 'pages/rank-rules/index', 'pages/resume/detail/index', 'pages/resume/newPreview/index', 'pages/resume/preview/index', 'pages/login/index'],
+      'pages/resume/publish/index', 'pages/resume/add_info/index', 'pages/resume/add_member/index', 'pages/resume/add_skill/index', 'pages/resume/add_project/index', 'pages/resume/projects/index', 'pages/resume/skills/index', 'pages/rank-rules/index', 'pages/turntable/index', 'pages/resume/detail/index', 'pages/resume/newPreview/index', 'pages/resume/preview/index', 'pages/login/index'],
       subPackages: [{
         root: 'subpackage/pages',
         pages: ['checkauth/index', 'about/index', 'report/index', 'notice/index', 'download/index', 'ranking/index', 'course/index', 'anti-fraud/index']
@@ -271,14 +271,16 @@ var _resume_addinfo = __webpack_require__(/*! ./resume_addinfo */ "./src/reducer
 
 var _resume_addinfo2 = _interopRequireDefault(_resume_addinfo);
 
-var _resume_data = __webpack_require__(/*! ./resume_data */ "./src/reducers/resume_data.ts");
-
-var _resume_data2 = _interopRequireDefault(_resume_data);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 //合并reducer
-//发布招工reducer
+/*
+ * @Author: zyb
+ * @Date: 2020-11-03 14:36:47
+ * @LastEditors: zyb
+ * @LastEditTime: 2020-11-04 20:44:09
+ * @Description:
+ */
 exports.default = (0, _redux.combineReducers)({
   tabbar: _tabbar2.default,
   WechatNotice: _wechat_notice2.default,
@@ -292,15 +294,8 @@ exports.default = (0, _redux.combineReducers)({
   member: _member2.default,
   realname: _realname2.default,
   resumeAddInfo: _resume_addinfo2.default,
-  PositionStatus: _recruit.PositionStatus,
-  resumeData: _resume_data2.default
-}); /*
-     * @Author: zyb
-     * @Date: 2020-11-03 14:36:47
-     * @LastEditors: zyb
-     * @LastEditTime: 2020-11-04 20:44:09
-     * @Description:
-     */
+  PositionStatus: _recruit.PositionStatus
+}); //发布招工reducer
 
 /***/ }),
 
@@ -641,63 +636,6 @@ function resumeAddInfo() {
       break;
     default:
       return _extends({}, state);
-  }
-}
-
-/***/ }),
-
-/***/ "./src/reducers/resume_data.ts":
-/*!*************************************!*\
-  !*** ./src/reducers/resume_data.ts ***!
-  \*************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; /*
-                                                                                                                                                                                                                                                                   * @Author: zyb
-                                                                                                                                                                                                                                                                   * @Date: 2020-11-04 19:59:33
-                                                                                                                                                                                                                                                                   * @LastEditors: jsxin
-                                                                                                                                                                                                                                                                   * @LastEditTime: 2020-11-06 15:39:52
-                                                                                                                                                                                                                                                                   * @Description:
-                                                                                                                                                                                                                                                                   */
-
-
-exports.default = resumeData;
-
-var _resume_data = __webpack_require__(/*! ../constants/resume_data */ "./src/constants/resume_data.ts");
-
-var _data = __webpack_require__(/*! ../pages/resume/publish/data */ "./src/pages/resume/publish/data.ts");
-
-var DEFAULT_STATE = {
-  info: _data.INFODATA_DATA,
-  introducesData: _data.INTRODUCERS_DATA,
-  projectData: [],
-  certificates: [],
-  resume_uuid: '',
-  isSet: false
-};
-function resumeData() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : DEFAULT_STATE;
-  var action = arguments[1];
-
-  switch (action.type) {
-    case _resume_data.GETUSERRESUME:
-      return state;
-    case _resume_data.SETUSERRESUME:
-      return _extends({}, state, action.data);
-    case _resume_data.SETINTRODUCE:
-      return _extends({}, state, { introducesData: action.data });
-    case _resume_data.SETCERTIFICATE:
-      return _extends({}, state, { certificates: action.data });
-    default:
-      return state;
   }
 }
 

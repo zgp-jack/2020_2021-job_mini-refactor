@@ -115,7 +115,7 @@ var PublishedRecruit = function (_Taro$Component) {
       backgroundTextStyle: "dark"
     };
 
-    _this.$usedState = ["loopArray54", "loopArray55", "HeaderList", "refresh", "lists", "IMGCDNURL", "more", "searchData"];
+    _this.$usedState = ["loopArray53", "loopArray54", "HeaderList", "refresh", "lists", "IMGCDNURL", "more", "searchData"];
     _this.anonymousFunc0Map = {};
     _this.anonymousFunc3Map = {};
     _this.anonymousFunc4Map = {};
@@ -363,7 +363,7 @@ var PublishedRecruit = function (_Taro$Component) {
       this.anonymousFunc2 = function () {
         return getNextPageData();
       };
-      var loopArray54 = _config2.default.map(function (item, __index0) {
+      var loopArray53 = _config2.default.map(function (item, __index0) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
@@ -381,7 +381,7 @@ var PublishedRecruit = function (_Taro$Component) {
           $original: item.$original
         };
       });
-      var loopArray55 = lists.map(function (item, index) {
+      var loopArray54 = lists.map(function (item, index) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
@@ -420,8 +420,8 @@ var PublishedRecruit = function (_Taro$Component) {
         };
       });
       Object.assign(this.__state, {
+        loopArray53: loopArray53,
         loopArray54: loopArray54,
-        loopArray55: loopArray55,
         HeaderList: _config2.default,
         refresh: refresh,
         lists: lists,

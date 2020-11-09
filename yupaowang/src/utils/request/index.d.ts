@@ -1397,7 +1397,7 @@ export interface filterClassifyResultClassTree extends filterClassifyResultClass
 export interface filterClassifyResultFleamarketTree extends filterClassifyResultClassTreeBase {
   letter: string,
   has_attribute: number,
-  attributes: Pick<filterClassifyResultClassTreeBase,'id'|'name'>,
+  attributes: Pick<filterClassifyResultClassTreeBase,'id'|'name'>[],
 }
 
 // 找活筛选分类信息数据
@@ -1496,4 +1496,62 @@ export interface checkAdcodeData extends Result{
 }
 export interface checkAdcodeDataCity {
   city:string,
+}
+
+// 大转盘
+export interface TurntableIndexTypeData {
+  all_video_times: number,
+  max_times: number,
+  over_video_times: number,
+  time: number,
+  times: number,
+  video_times: number,
+  win_integral: number
+}
+export interface TurntableIndexType extends TurntableIndexTypePortion {
+  data: TurntableIndexTypeData,
+}
+
+export interface TurntableIndexTypePortion {
+  code: number,
+  errcode: string,
+  errmsg: string
+}
+
+export interface TurntableDrawData {
+  video?: string,
+  all_video_times?: number,
+  integral?: number,
+  over_video_times?: number,
+  rotate?: number,
+  times?: number,
+  video_times?: number,
+  win_integral?: number,
+}
+
+export interface TurntableDraw extends TurntableIndexTypePortion {
+  data: TurntableDrawData,
+}
+
+export interface TurntableVideoEndData {
+  all_video_times: number,
+  over_video_times: number,
+  times: number,
+  video_times: number
+}
+
+export interface TurntableVideoEnd extends TurntableIndexTypePortion {
+  data: TurntableVideoEndData
+}
+
+
+// 获取鱼泡币页面大转盘展示控制
+export interface memberTurntableDataType {
+  all_config: number
+  is_turntable: number
+  show_turntable: number
+}
+
+export interface memberTurntableType extends TurntableIndexTypePortion {
+  data: memberTurntableDataType
 }

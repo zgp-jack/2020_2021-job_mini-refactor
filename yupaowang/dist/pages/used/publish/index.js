@@ -374,7 +374,7 @@ var UsedPublish = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (UsedPublish.__proto__ || Object.getPrototypeOf(UsedPublish)).apply(this, arguments));
 
-    _this.$usedState = ["initModel", "loopArray46", "loopArray47", "$compid__41", "$compid__42", "parentCurrent", "model", "classifyName", "areaProvince", "areaCity", "pIndex", "cIndex", "cityName", "userTel", "text"];
+    _this.$usedState = ["initModel", "loopArray45", "loopArray46", "$compid__40", "$compid__41", "parentCurrent", "model", "classifyName", "areaProvince", "areaCity", "pIndex", "cIndex", "cityName", "userTel", "text"];
     _this.anonymousFunc1Map = {};
     _this.anonymousFunc2Map = {};
     _this.customComponents = ["AtDrawer", "WordsTotal"];
@@ -398,15 +398,23 @@ var UsedPublish = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
+<<<<<<< HEAD
       var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__41"),
+=======
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__40"),
+>>>>>>> 3a1c93d376a916fd8849f306954f46896f0e54ad
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__41 = _genCompid2[0],
-          $compid__41 = _genCompid2[1];
+          $prevCompid__40 = _genCompid2[0],
+          $compid__40 = _genCompid2[1];
 
+<<<<<<< HEAD
       var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__42"),
+=======
+      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__41"),
+>>>>>>> 3a1c93d376a916fd8849f306954f46896f0e54ad
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__42 = _genCompid4[0],
-          $compid__42 = _genCompid4[1];
+          $prevCompid__41 = _genCompid4[0],
+          $compid__41 = _genCompid4[1];
 
       var router = (0, _taroTt.useRouter)();
       var _router$params$id = router.params.id,
@@ -524,7 +532,7 @@ var UsedPublish = function (_Taro$Component) {
       this.anonymousFunc12 = function () {
         return vaildPublishModelInfo();
       };
-      var loopArray46 = initModel ? initModel.classifyTree.map(function (item, index) {
+      var loopArray45 = initModel ? initModel.classifyTree.map(function (item, index) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
@@ -542,7 +550,7 @@ var UsedPublish = function (_Taro$Component) {
           $original: item.$original
         };
       }) : [];
-      var loopArray47 = initModel ? initModel.classifyTree[parentCurrent].attributes.map(function (item, k) {
+      var loopArray46 = initModel ? initModel.classifyTree[parentCurrent].attributes.map(function (item, k) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
@@ -563,16 +571,20 @@ var UsedPublish = function (_Taro$Component) {
       _taroTt.propsManager.set({
         "show": showDrawer,
         "onClose": this.anonymousFunc0
+<<<<<<< HEAD
       }, $compid__41, $prevCompid__41);
+=======
+      }, $compid__40, $prevCompid__40);
+>>>>>>> 3a1c93d376a916fd8849f306954f46896f0e54ad
       _taroTt.propsManager.set({
         "num": 0
-      }, $compid__42, $prevCompid__42);
+      }, $compid__41, $prevCompid__41);
       Object.assign(this.__state, {
         initModel: initModel,
+        loopArray45: loopArray45,
         loopArray46: loopArray46,
-        loopArray47: loopArray47,
+        $compid__40: $compid__40,
         $compid__41: $compid__41,
-        $compid__42: $compid__42,
         parentCurrent: parentCurrent,
         model: model,
         classifyName: classifyName,

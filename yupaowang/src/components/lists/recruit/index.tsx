@@ -7,10 +7,11 @@ import { RecruitListItem } from '../../../utils/request/index.d'
 
 interface PROPS {
   data: RecruitListItem[][],
-  bottom?: boolean
+  bottom?: boolean,
+  hasMore?: boolean
 }
 
-export default function RecruitList({ data, bottom = true }: PROPS){
+export default function RecruitList({ data, bottom = true, hasMore = false }: PROPS){
   // 用户页面跳转
   const userRouteJump = (url: string) => {
     Taro.navigateTo({
@@ -52,7 +53,7 @@ export default function RecruitList({ data, bottom = true }: PROPS){
         </Block>
         )
       )}
-      {data && data[0] && data[0].length && <View className='list-data-notmore'>没有更多数据了</View>} 
+      {data && data[0] && data[0].length && !hasMore && <View className='list-data-notmore'>没有更多数据了</View>} 
       {data&&data[0]&&!data[0].length && <Nodata text='暂无相关数据' />}
     </View>
   )

@@ -69,7 +69,7 @@ var FeedbackList = function (_Taro$Component) {
       backgroundTextStyle: 'dark'
     };
 
-    _this.$usedState = ["lists", "loopArray62", "$compid__55", "isDown"];
+    _this.$usedState = ["lists", "loopArray61", "$compid__54", "isDown"];
     _this.anonymousFunc0Map = {};
     _this.customComponents = ["Auth", "WechatNotice", "Nodata"];
     return _this;
@@ -92,10 +92,14 @@ var FeedbackList = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
+<<<<<<< HEAD
       var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__55"),
+=======
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__54"),
+>>>>>>> 3a1c93d376a916fd8849f306954f46896f0e54ad
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__55 = _genCompid2[0],
-          $compid__55 = _genCompid2[1];
+          $prevCompid__54 = _genCompid2[0],
+          $compid__54 = _genCompid2[1];
       // * 标记是否是在刷新状态
 
 
@@ -199,7 +203,7 @@ var FeedbackList = function (_Taro$Component) {
       this.anonymousFunc2 = function () {
         return userRouteJump("/pages/feedback/index?username=" + userData.username + "&phone=" + userData.phone);
       };
-      var loopArray62 = lists.item ? lists.item.map(function (item, __index1) {
+      var loopArray61 = lists.item ? lists.item.map(function (item, __index1) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
@@ -225,11 +229,11 @@ var FeedbackList = function (_Taro$Component) {
       }) : [];
       !lists.item.length && _taroTt.propsManager.set({
         "text": "\u6682\u65E0\u76F8\u5173\u6570\u636E\u53CD\u9988"
-      }, $compid__55, $prevCompid__55);
+      }, $compid__54, $prevCompid__54);
       Object.assign(this.__state, {
         lists: lists,
-        loopArray62: loopArray62,
-        $compid__55: $compid__55,
+        loopArray61: loopArray61,
+        $compid__54: $compid__54,
         isDown: isDown
       });
       return this.__state;
