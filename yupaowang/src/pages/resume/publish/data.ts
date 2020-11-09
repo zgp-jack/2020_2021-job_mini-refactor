@@ -1,8 +1,8 @@
 /*
  * @Author: zyb
  * @Date: 2020-11-03 18:49:37
- * @LastEditors: zyb
- * @LastEditTime: 2020-11-07 09:33:48
+ * @LastEditors: jsxin
+ * @LastEditTime: 2020-11-07 15:49:27
  * @Description: 
  */
 // 基础信息默认参数
@@ -60,6 +60,7 @@ export const INFODATA_DATA =  {
   view_num: '',
   zan_num: '',
   age:'',
+  title: ''
 }
 
 // 人员信息

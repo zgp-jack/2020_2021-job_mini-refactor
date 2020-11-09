@@ -1,5 +1,5 @@
 import Taro, { useState, useEffect, useRouter } from '@tarojs/taro'
-import { View, Text, Form, Textarea, Input, Picker, Button } from '@tarojs/components'
+import { View, Text, Form, Textarea, Input, Picker } from '@tarojs/components'
 import WordsTotal from '../../../components/wordstotal'
 import ImageView from '../../../components/imageview';
 import { ProjectImgMaxNum, ProjectListMaxNum } from '../../../config'
@@ -7,12 +7,11 @@ import UploadImgAction from '../../../utils/upload'
 import { RecruitImageModel, } from '../../recruit/index.d'
 import AREAS, { ParentItems } from '../../../models/area'
 import { resumesProjectAction, resumesDelProjectAction } from '../../../utils/request';
-import { useSelector, useDispatch } from '@tarojs/redux'
+import { useSelector } from '@tarojs/redux'
 import { objDeepCopy } from '../../../utils/helper'
 import Msg, { ShowActionModal } from '../../../utils/msg'
 import { isChinese } from '../../../utils/v';
 import { useResumeType } from '../../../pages/resume/publish/index.d';
-import { setProjectList } from '../../../actions/resume_data';
 import './index.scss'
 
 interface ProjectInfoType{
@@ -35,7 +34,6 @@ interface HomeTownPicker {
   name: string
 }
 export default function AddResumeInfo() {
-  const dispatch = useDispatch();
   // 获取路由参数 
   const { id = '' } = useRouter().params
   // 将找活中项目经验相关的数据取出
@@ -238,8 +236,12 @@ export default function AddResumeInfo() {
       if(res.errcode == 'ok'){
         if(type){
           Msg(res.errmsg);
-          setProjectInfo({...projectInfo});
+          setProjectInfo({...defaultProjectData});
           setProject_uuid('');
+          // 判断是否项目经验条数已经达到了设置的最大上限
+          if (res.count >= ProjectListMaxNum) {
+            setShowBtn(false)
+          }
         }else{
           ShowActionModal({
             title:'温馨提示',
@@ -248,9 +250,6 @@ export default function AddResumeInfo() {
               Taro.navigateBack()
             }
           })
-        }
-        if (res.count >= ProjectListMaxNum){
-          setShowBtn(false)
         }
       }else{
         Msg(res.errmsg); 
@@ -265,12 +264,6 @@ export default function AddResumeInfo() {
       success: () => {
         resumesDelProjectAction({ project_uuid: project_uuid }).then(res => {
           if (res.errcode == 'ok') {
-            let i: number = resumeData.projectData.findIndex(item => item.id == id)
-            if (i > -1) {
-              let lists = [...resumeData.projectData]
-              lists.splice(i, 1)
-              dispatch(setProjectList([...lists]))
-            }
             ShowActionModal({
               msg: res.errmsg,
               success: () => {
@@ -281,17 +274,6 @@ export default function AddResumeInfo() {
         })
       }
     })
-    // console.error(1111);
-    // let params = {};
-    // resumesDelProjectAction(params).then(res=>{
-    //   if(res.errcode == 'ok'){
-    //     Taro.navigateBack({
-    //       delta: 1
-    //     })
-    //   }else{
-    //     Msg(res.errmsg);
-    //   }
-    // })
   }
   return (
     <View className='resume-addinfo-container resume-addinfo-project'>
@@ -310,25 +292,25 @@ export default function AddResumeInfo() {
                 />
               </View>
               <View className='publish-list-item' >
-                <Text className='pulish-list-title'>开始时间</Text>
+                <Text className='pulish-list-title'>开工时间</Text>
                 <Picker
                   mode="date"
                   value={projectInfo.start_time}
                   range-key="name"
                   onChange={(e) => userEnterFrom(e, 'start_time')}
                 >
-                  <Input className='publish-list-input' type='text' disabled placeholder='请选择领证时间' value={projectInfo.start_time} />
+                  <Input className='publish-list-input' type='text' disabled placeholder='请选择开工时间' value={projectInfo.start_time} />
                 </Picker>
               </View>
               <View className='publish-list-item' >
-                <Text className='pulish-list-title'>结束时间</Text>
+                <Text className='pulish-list-title'>完工时间</Text>
                 <Picker
                   mode="date"
                   value={projectInfo.completion_time}
                   range-key="name"
                   onChange={(e) => userEnterFrom(e, 'completion_time')}
                 >
-                  <Input className='publish-list-input' type='text' disabled placeholder='请选择领证时间' value={projectInfo.completion_time} />
+                  <Input className='publish-list-input' type='text' disabled placeholder='请选择完工时间' value={projectInfo.completion_time} />
                 </Picker>
               </View>
               <View className='publish-list-item' >
@@ -369,9 +351,12 @@ export default function AddResumeInfo() {
         </View>
       </View>
       <View className='resume-add-skill-footer'>
-        {id ? <View className='resume-add-skill-btn' onClick={handleDel}>删除</View> :
-        showBtn?
-          <View className='resume-add-skill-btn' onClick={()=>handleSumbit(1)}>保存 继续添加</View>:
+        {id ? 
+        <View className='resume-add-skill-btn' onClick={handleDel}>删除</View> :
+        showBtn
+        ?
+          <View className='resume-add-skill-btn' onClick={()=>handleSumbit(1)}>保存 继续添加</View>
+          :
           <View className='resume-add-skill-btn' onClick={()=>Taro.navigateBack()}>取消</View>
         }
         <View className='resume-add-skill-btn' onClick={()=>handleSumbit()}> 确认保存</View>

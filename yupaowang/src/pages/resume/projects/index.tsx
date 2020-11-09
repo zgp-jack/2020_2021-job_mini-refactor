@@ -1,4 +1,4 @@
-import Taro,{ Config } from '@tarojs/taro'
+import Taro,{ Config, useDidShow } from '@tarojs/taro'
 import { View, Text, Image } from '@tarojs/components'
 import Imglist from '../../../components/imglist'
 import useResume from '../../../hooks/publish/resume'
@@ -8,13 +8,17 @@ import './index.scss'
 
 export default function Projects(){
 
-  const { projectData } = useResume()
+  const { projectData,initResumeData } = useResume()
   // 用户编辑该条项目经验
   const userEditSkill = (id: string) => {
     Taro.navigateTo({
       url: `/pages/resume/add_project/index?id=${id}`
     })
   }
+
+  useDidShow(()=>{
+    initResumeData()
+  })
 
   return (
     <View className='projects-container'>
