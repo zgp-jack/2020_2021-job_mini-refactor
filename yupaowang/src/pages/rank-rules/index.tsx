@@ -4,6 +4,7 @@ import './index.scss'
 import {resumesSortAction, resumesAddClickLogAction} from "../../utils/request";
 import {useSelector} from '@tarojs/redux'
 import {User} from "../../reducers/user";
+import {UserInfo} from "../../config/store";
 
 interface resumesSortDataList {
   button_words: string,
@@ -161,13 +162,7 @@ export default function () {
     }
   }
   const handleJump = (e) => {
-    console.log(11111111)
-    // let ranking = ranking;
-    // let rankjump = this.data.rankjump;
-    // let certificate_count = this.data.certificate_count;
-    // let project_count = this.data.project_count;
-    // let resume_uuid = this.data.resume_uuid;
-    if (!userInfo) {
+    if (!Taro.getStorageSync(UserInfo)) {
       Taro.navigateTo({url: '/pages/userauth/index'})
       setShowButton(true)
       return false;
