@@ -12907,8 +12907,8 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }(); /*
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           * @Author: zyb
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           * @Date: 2020-11-03 15:03:11
-<<<<<<< HEAD
-=======
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         <<<<<<< HEAD
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         =======
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          <<<<<<< HEAD
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          =======
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          <<<<<<< HEAD
@@ -12916,7 +12916,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           * @LastEditTime: 2020-11-09 09:35:26
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          =======
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          >>>>>>> c4934cd3ef6271dedb29cefa5b63959eded6b62a
->>>>>>> ef05e55da45d0296166b90ea66d29fd7eab0550e
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         >>>>>>> ef05e55da45d0296166b90ea66d29fd7eab0550e
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           * @LastEditors: zyb
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           * @LastEditTime: 2020-11-06 11:00:19
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           * @Description:
@@ -17169,6 +17169,9 @@ exports.getSystemInfo = getSystemInfo;
 exports.recSerAuthLoction = recSerAuthLoction;
 exports.userCancelAuth = userCancelAuth;
 exports.getLocation = getLocation;
+exports.setClipboardData = setClipboardData;
+exports.copyWechatNumber = copyWechatNumber;
+exports.userCallPhone = userCallPhone;
 
 var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
 
@@ -17307,6 +17310,31 @@ function getLocation() {
     fail: function fail(err) {
       (0, _index4.default)('定位失败,请重新定位');
     }
+  });
+}
+// 复制内容到粘贴板
+function setClipboardData(val) {
+  var msg = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '内容已成功复制到粘贴板';
+
+  _taroTt2.default.setClipboardData({
+    data: val,
+    success: function success() {
+      _taroTt2.default.hideToast();
+      (0, _index3.ShowActionModal)({
+        msg: msg
+      });
+    }
+  });
+}
+// 复制微信号到粘贴板
+function copyWechatNumber(val) {
+  var msg = "\u5FAE\u4FE1\u53F7:" + val + "\u5DF2\u590D\u5236\u5230\u7C98\u8D34\u677F\uFF0C\u53BB\u5FAE\u4FE1-\u6DFB\u52A0\u670B\u53CB-\u641C\u7D22\u6846\u7C98\u8D34";
+  setClipboardData(val, msg);
+}
+// 用户拨打电话
+function userCallPhone(val) {
+  _taroTt2.default.makePhoneCall({
+    phoneNumber: val
   });
 }
 
