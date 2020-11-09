@@ -8,7 +8,7 @@ import {
   turntableIndex,
   turntableVideoEnd
 } from "../../../src/utils/request";
-import Msg, { showModalTip } from "../../../src/utils/msg";
+import Msg, { ShowActionModal, showModalTip } from "../../../src/utils/msg";
 import { userCancelAuth } from "../../../src/utils/helper";
 interface NameType {
   name?: string;
@@ -99,7 +99,6 @@ export default function Turntable() {
     }
     scrollname.current = scrollname.num / 4 - 1;
     scrollname.nameArr = sliceArrGroup(nameArr);
-    console.log(scrollname.nameArr);
     setScrollname({ ...scrollname });
   };
   // * 获取配置信息
@@ -118,26 +117,45 @@ export default function Turntable() {
 
   // * 开始抽奖
   const startTurntable = () => {
+
     turntableDraw().then(res => {
       if (res.code == 200) {
-        let { all_video_times, over_video_times, rotate } = res.data.data;
+        let { all_video_times, over_video_times, rotate } = res.data;
         let userTimes = all_video_times - over_video_times;
         let timer = setTimeout(function() {
           setTransTime(0)
           clearTimeout(timer);
-          showModalTip({
+          Taro.showModal({
             title: "恭喜中奖",
-            tips: res.data.errmsg,
+            content: res.errmsg,
             confirmText: "确定",
-            callback: () => {
-              isComplete.rotateDeg = rotate;
-              serversData.userTimes = userTimes;
-              setServersData({ ...serversData });
-              setIsComplete({ ...isComplete });
+            success: response => {
+              if (response.confirm) {
+                isComplete.rotateDeg = rotate;
+                serversData.userTimes = userTimes;
+                setServersData({ ...serversData });
+                setIsComplete({ ...isComplete });
+              }
             }
           });
         }, 5000);
-      } else if (res.code == 405) {
+      } else if(res.code == 206 || res.code == 207){
+        let { all_video_times, over_video_times, rotate } = res.data;
+        let userTimes = all_video_times - over_video_times;
+        let timer = setTimeout(function(){
+            clearTimeout(timer)
+            Taro.showModal({
+              title: '谢谢参与',
+              content: res.errmsg,
+              showCancel: false,
+              confirmText: res.code == 206 ? '再来一次' : '确定',
+              success:()=>{
+
+              }
+            })
+        },5000)
+      }
+      else if (res.code == 405) {
         Taro.showModal({
           title: "温馨提示",
           content: res.errmsg,
@@ -145,6 +163,10 @@ export default function Turntable() {
           confirmText: "去观看",
           success: response => {
             if (response.confirm) {
+              Taro.showLoading({
+                mask: true
+              })
+              userSeeVideo()
             }
           }
         });
@@ -156,6 +178,27 @@ export default function Turntable() {
       }
     });
   };
+
+  function userSeeVideo(){
+    if (videoAd) {
+        videoAd.show()
+        .then(()=>{
+          Taro.hideLoading()
+        })
+        .catch(() => {
+          // 失败重试
+          videoAd.load()
+            .then(() => {
+                videoAd.show()
+            })
+            .catch(err => {
+                Taro.hideLoading()
+                //两次展示广告失败，直接获得奖励
+                console.log('两次展示广告失败，直接获得奖励')
+            })
+        })
+    }
+}
 
   // * 创建视频
   const createVideo = () => {

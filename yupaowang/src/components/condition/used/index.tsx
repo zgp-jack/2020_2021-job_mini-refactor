@@ -67,7 +67,7 @@ function UsedCondition({ setSearchData }: ConditionProps) {
   // * 搜索的地区/分类参数
   const [paramsData, setParamsData] = useState<paramsType>({
     area_id: userListChooseCity.id,
-    classify_id: '',
+    classify_id: '0',
     attribute_id: ''
   })
 
@@ -104,7 +104,7 @@ function UsedCondition({ setSearchData }: ConditionProps) {
   function resetFleamarketTree() {
     setfleamarketTreeIndex(oldFleamarketTreeIndex);
     setFleamarketTreeChildData([...oldFleamarketTreeChildData]);
-    paramsData.classify_id = AREAS[oldFleamarketTreeIndex].id.toString()
+    paramsData.classify_id = fleamarketTree[oldFleamarketTreeIndex].id.toString()
     paramsData.attribute_id = oldFleamarketTreeSonId
   }
 
@@ -157,14 +157,14 @@ function UsedCondition({ setSearchData }: ConditionProps) {
     setfleamarketTreeSonId(id.toString());
     setOldFleamarketTreeSonId(id.toString())
     // 请求接口
-    paramsData.classify_id = AREAS[fleamarketTreeIndex].id.toString();
+    paramsData.classify_id = fleamarketTree[fleamarketTreeIndex].id.toString();
     paramsData.attribute_id = id.toString();
     setSearchData({...paramsData})
     setParamsData({...paramsData})
     // 设置历史数据/索引
     setOldFleamarketTreeIndex(fleamarketTreeIndex);
     setoldFleamarketTreeChildData([
-      ...filterData.fleamarketTree[fleamarketTreeIndex].attributes
+      ...fleamarketTree[fleamarketTreeIndex].attributes
     ]);
     closeDrawer();
   };
@@ -192,7 +192,7 @@ function UsedCondition({ setSearchData }: ConditionProps) {
       closeDrawer();
     } else {
       // 设置子内容
-      setFleamarketTreeChildData([...filterData.fleamarketTree[i].attributes]);
+      setFleamarketTreeChildData([...fleamarketTree[i].attributes]);
     }
   };
 
