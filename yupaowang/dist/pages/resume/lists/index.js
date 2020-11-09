@@ -310,12 +310,8 @@ var ResumeLists = function (_Taro$Component) {
         "setSearchData": anonymousState__temp3
       }, $compid__23, $prevCompid__23);
       _taroTt.propsManager.set({
-<<<<<<< HEAD
-        "data": lists
-=======
         "data": lists,
         "hasMore": hasMore
->>>>>>> 3a1c93d376a916fd8849f306954f46896f0e54ad
       }, $compid__24, $prevCompid__24);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,

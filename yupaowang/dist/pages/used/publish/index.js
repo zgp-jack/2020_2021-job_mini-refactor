@@ -398,20 +398,12 @@ var UsedPublish = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-<<<<<<< HEAD
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__41"),
-=======
       var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__40"),
->>>>>>> 3a1c93d376a916fd8849f306954f46896f0e54ad
           _genCompid2 = _slicedToArray(_genCompid, 2),
           $prevCompid__40 = _genCompid2[0],
           $compid__40 = _genCompid2[1];
 
-<<<<<<< HEAD
-      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__42"),
-=======
       var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__41"),
->>>>>>> 3a1c93d376a916fd8849f306954f46896f0e54ad
           _genCompid4 = _slicedToArray(_genCompid3, 2),
           $prevCompid__41 = _genCompid4[0],
           $compid__41 = _genCompid4[1];
@@ -571,11 +563,7 @@ var UsedPublish = function (_Taro$Component) {
       _taroTt.propsManager.set({
         "show": showDrawer,
         "onClose": this.anonymousFunc0
-<<<<<<< HEAD
-      }, $compid__41, $prevCompid__41);
-=======
       }, $compid__40, $prevCompid__40);
->>>>>>> 3a1c93d376a916fd8849f306954f46896f0e54ad
       _taroTt.propsManager.set({
         "num": 0
       }, $compid__41, $prevCompid__41);

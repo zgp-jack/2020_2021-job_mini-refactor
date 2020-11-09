@@ -7,7 +7,7 @@
 =======
 <<<<<<< HEAD
  * @LastEditors: zyb
- * @LastEditTime: 2020-11-09 16:57:44
+ * @LastEditTime: 2020-11-09 17:10:19
 =======
 >>>>>>> c4934cd3ef6271dedb29cefa5b63959eded6b62a
 >>>>>>> ef05e55da45d0296166b90ea66d29fd7eab0550e
@@ -115,6 +115,10 @@ export default function useResume(){
         if (new Date(projectItem[0].completion_time).getTime() / 86400000 < parseInt(((new Date().getTime()) / 86400000).toString())) {
           // 项目
           setProjectData([...projectItem]);
+          setProjectList([projectOne])
+          if (projectItem.length){
+            projectItem[0].completion_time = 'zhijing';
+          }
         }
         // 是否有人员信息
         setIs_introduces(res.data.is_introduces);
@@ -139,7 +143,7 @@ export default function useResume(){
           info: res.data.info,
           introducesData: res.data.introduces,
           certificates: res.data.certificates,
-          projectData: res.data.project,
+          projectData: projectItem,
           resume_uuid: res.data.info&&res.data.info.uuid || '',
           isSet: true,
         }))

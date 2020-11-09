@@ -79,20 +79,12 @@ var CollectionRecruitList = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-<<<<<<< HEAD
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__47"),
-=======
       var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__46"),
->>>>>>> 3a1c93d376a916fd8849f306954f46896f0e54ad
           _genCompid2 = _slicedToArray(_genCompid, 2),
           $prevCompid__46 = _genCompid2[0],
           $compid__46 = _genCompid2[1];
 
-<<<<<<< HEAD
-      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__48"),
-=======
       var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__47"),
->>>>>>> 3a1c93d376a916fd8849f306954f46896f0e54ad
           _genCompid4 = _slicedToArray(_genCompid3, 2),
           $prevCompid__47 = _genCompid4[0],
           $compid__47 = _genCompid4[1];
@@ -154,11 +146,7 @@ var CollectionRecruitList = function (_Taro$Component) {
       }) : [];
       !data.length && _taroTt.propsManager.set({
         "text": "\u6CA1\u6709\u627E\u5230\u76F8\u5173\u7684\u6570\u636E"
-<<<<<<< HEAD
-      }, $compid__47, $prevCompid__47);
-=======
       }, $compid__46, $prevCompid__46);
->>>>>>> 3a1c93d376a916fd8849f306954f46896f0e54ad
       _taroTt.propsManager.set({
         "isOpened": isOpened
       }, $compid__47, $prevCompid__47);
