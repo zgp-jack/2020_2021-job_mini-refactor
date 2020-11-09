@@ -79,6 +79,12 @@ $commonMargin: 44px;
         .progress-rank{
           color: rgba(255, 77, 66, 1);
         }
+        .progress-blue{
+          font-size: 28px;
+          line-height: $commonMargin;
+          font-weight: bold;
+          color: $color;
+        }
         .progress-place-text{
           margin-left: 34px;
           padding-bottom: 10px;
@@ -169,6 +175,9 @@ $commonMargin: 44px;
         }
         .status-txt{
           color: #161616;
+        }
+        .z-index{
+          z-index: 10;
         }
         .status-txt-image{
           width: 24px;
@@ -365,18 +374,18 @@ $commonMargin: 44px;
     }
     .content-project-experience,
     .content-professional-skill{
+      .professional-information-noImage::before {
+        content: '';
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-image: url('http://cdn.yupao.com/newyupao/images/newresume-status-nopass.png');
+        background-size: cover;
+      }
       .project-information,.professional-information{
         position: relative;
-        .content-information-image::before {
-          content: '';
-          width: 100px;
-          height: 100px;
-          position: absolute;
-          top: 0;
-          left: 0;
-          background-image: url('http://cdn.yupao.com/newyupao/images/newresume-status-nopass.png');
-          background-size: cover;
-        }
         .content-information{
           position: relative;
           .audit{

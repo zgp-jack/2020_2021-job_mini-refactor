@@ -9,8 +9,7 @@ import './index.scss'
 
 export default function ResumePublish(){
   const uuid = useSelector<any, string>(state => state.resumeData.resume_uuid)
-  const { infoData, introducesData, projectData, certificates, resume_top, initResumeData, is_introduces, project_count, certificate_count, show_tips } = useResume()
-  console.error(projectData,'projectData')
+  const { infoData, introducesData, projectData, certificates, resume_top, initResumeData, is_introduces, project_count, certificate_count, show_tips, selectData, selectDataIndex, handleSelectData } = useResume()
   // 判断是否是第一次进入  第一次不加载数据 因为hooks会帮助你加载
   const [firstJoin, setFirstJoin] = useState<boolean>(true)
 
@@ -73,7 +72,7 @@ export default function ResumePublish(){
                   {resume_top.has_top != 0 && resume_top.is_top == 1 && <Text>置顶中</Text>}
                 </View>
               </View>
-              {resume_top.has_top == 0 && <View className='progress-rank'> 马上去置顶&gt;&gt;</View>}
+              {resume_top.has_top == 0 && <View className='progress-blue'> 马上去置顶&gt;&gt;</View>}
               {resume_top.has_top != 0 && <View className='progress-rank'>
                 {resume_top.is_top != 1 && <View>继续置顶</View>}
                 {resume_top.is_top == 1 && <View>取消置顶</View>}
@@ -82,7 +81,7 @@ export default function ResumePublish(){
             {resume_top.is_top == 1 && 
             <View className='progress-place-text'>
               <View className='place-text'>置顶地区：四川省</View>
-              <View className='place-text'>置顶时间：  15:30:50</View>
+              <View className='place-text'>置顶时间：{resume_top.start_time_str}~{resume_top.end_time_str}</View>
               <View className='progress-place-btn'>点击修改找活置顶信息&gt;&gt;</View>
             </View>
             }
@@ -103,12 +102,23 @@ export default function ResumePublish(){
             <View>
             <View className='basic-status'>
               <View className='status-txt'><Image className='basic-experience-img' src={`${IMGCDNURL}newresume-experience-item1.png`} />我的工作状态:</View>
-              {/* <View className='status'>审核未通过</View> */}
+              <View className='z-index' onClick={(e)=>{e.stopPropagation();handleSelectData()}}>
+                {infoData.check == '0' && (introducesData.check == '0') &&
+                <View className='status'>审核未通过</View>
+              }
+              {infoData.check != '0' && (infoData.check == '1'|| introducesData.check == '1') &&
               <View>
-                <Text onClick={() => userRouteJump('/pages/resume/add_info/index')}>编辑</Text>
-                <Text></Text>
+                <View className='status'>人工审核中</View>
+                </View>
+              }
+                  {infoData.check != '0' && introducesData.check != '0' && introducesData.check != '1'&&
+                <View className='status'>
+                {selectData && selectData[selectDataIndex].name}
+                {/* <View className='status' onClick={() => userRouteJump('/pages/resume/add_info/index')}>人工审核中</View> */}
                 <Image src={`${IMGCDNURL}select.png`} className='status-txt-image'/>
               </View>
+              }
+            </View>
             </View>
             <View className='basic-content'>
               <View className='content-information'>
@@ -123,12 +133,12 @@ export default function ResumePublish(){
                   <Image className='audit' src={`${IMGCDNURL}lpy/audit.png `}/>
                 }
                 {infoData.check == '0' && 
-                <View className='change'>
+                  <View className='change' onClick={() => userRouteJump('/pages/resume/add_info/index')}>
                   待修改
                 </View>
                 }
                 {infoData.check != '0' && infoData.check != '1' &&
-                  <View className='change'>
+                  <View className='change' onClick={() => userRouteJump('/pages/resume/add_info/index')}>
                     编辑
                 </View>
                 }
@@ -137,7 +147,7 @@ export default function ResumePublish(){
                 <View className='craft'>
                   <Text className='craft-txt'>工种</Text>
                   <View className='craft-list'>
-                    {infoData.occupations && infoData.occupations.map((v,i)=>(
+                    {infoData.miniInfoOccupations && infoData.miniInfoOccupations.map((v,i)=>(
                       <View className='craft-name' key={v+i}>{v}</View>
                     ))}
                   </View>
@@ -148,7 +158,7 @@ export default function ResumePublish(){
                 </View>
                 <View className='craft'>
                   <Text className='craft-txt'>所在地区</Text>
-                  <View className='craft-text'>{infoData.city}</View>
+                  <View className='craft-text'>{infoData.address}</View>
                 </View>
                 <View className='craft'>
                   <Text className='craft-txt'>自我介绍</Text>
@@ -169,11 +179,11 @@ export default function ResumePublish(){
             <Image className='basic-description-img' src={`${IMGCDNURL}newresume-description.png`} />
             <View className='basic-title'>人员信息</View>
             {
-              infoData.check != '0' && (introducesData.check != '1' && introducesData.check ) && 
+              infoData.check != '0' && (introducesData.check == '1' || !introducesData.check ) && 
               <View className='change' onClick={() => userRouteJump('/pages/resume/add_member/index')}>编辑</View>
             }
             {
-              infoData.check == '0' && (introducesData.check != '1' && introducesData.check) &&
+              infoData.check == '0' && (introducesData.check == '1' || !introducesData.check) &&
               <View className='change' onClick={() => userRouteJump('/pages/resume/add_member/index')}>待修改</View>
             }
           </View>
@@ -242,10 +252,10 @@ export default function ResumePublish(){
               </View>
             </View>:
             <View className='project-information'>
-              <View className='content-information'>
+                <View className={projectData[0].check == '0' ? 'content-information professional-information-noImage' : 'content-information'}>
                 <View className='information'>
                       <View className='name'>{projectData[0].project_name} {projectData[0].check}</View>
-                    <View className='sexage'>{projectData[0].start_time}-{projectData[0].completion_time}   {projectData[0].province_name}-{projectData[0].city_name} </View>
+                    <View className='sexage'>{projectData[0].start_time}-{projectData[0].completion_time} {projectData[0].province_name}{projectData[0].city_name ? `-${projectData[0].city_name}`:''} </View>
                     <View className='sexage'>{projectData[0].detail}</View>
                 </View>
                   {projectData[0].check == '1' && show_tips ==1 && 
@@ -285,9 +295,7 @@ export default function ResumePublish(){
           </View>
           {/* 是否填写过技能证书 */}
           {certificates.length ?
-          // <View>
-          //   {showCertificate&&
-            <View className='professional-information'>
+            <View className={certificates[0].check == '1' ? 'professional-information' : 'professional-information-noImage professional-information'}>
               <View className='content-information'>
                 <View className='information'>
                   <View className='name'>{certificates[0].name}</View>
@@ -321,8 +329,6 @@ export default function ResumePublish(){
                 <Button className='change-project-btn' onClick={() => userRouteJump('/pages/resume/skills/index')}>更多技能证书<View className='nabla'></View></Button>
               </View>
             </View>
-          //   }
-          // </View>
           : 
           <View className='basic-content'>
             <View className='basic-txt'>添加职业技能，用实力证明您的能力</View>

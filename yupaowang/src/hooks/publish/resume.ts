@@ -1,18 +1,28 @@
 /*
  * @Author: zyb
  * @Date: 2020-11-03 15:03:11
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+ * @LastEditors: zyb
+ * @LastEditTime: 2020-11-09 09:35:26
+=======
+>>>>>>> c4934cd3ef6271dedb29cefa5b63959eded6b62a
+>>>>>>> ef05e55da45d0296166b90ea66d29fd7eab0550e
  * @LastEditors: zyb
  * @LastEditTime: 2020-11-06 11:00:19
  * @Description: 
  */
-import { useState,useDidShow, useEffect } from '@tarojs/taro'
-import { resumeListAction } from '../../utils/request'
-import { resIntroduceObj, resInfoObj, resProjectArr, resCertificatesArr, resume_topObj } from '../../utils/request/index.d';
+import Taro,{ useState,useDidShow, useEffect } from '@tarojs/taro'
+import { resumeListAction, resumesEditEndAction } from '../../utils/request'
+import { resIntroduceObj, resInfoObj, resProjectArr, resCertificatesArr, resume_topObj, resTop_statusArr } from '../../utils/request/index.d';
 import { RESUME_TOP_DATA, INFODATA_DATA, INTRODUCERS_DATA } from '../../pages/resume/publish/data';
 import { setUseResume } from '../../actions/resume_data';
 import { useResumeType } from '../../pages/resume/publish/index.d'
 import { useDispatch, useSelector } from '@tarojs/redux'
-import Msg from '../../utils/msg'
+import Msg, { ShowActionModal} from '../../utils/msg'
 
 export default function useResume(){
   const dispatch = useDispatch();
@@ -36,6 +46,12 @@ export default function useResume(){
   const [certificate_count, setCertificate_count] = useState<number>(0);
   // 显示图标
   const [show_tips, setShow_tips]= useState<number>(0);
+  // 工作状态
+  const [selectData, setSelectData] = useState<resTop_statusArr[]>([]);
+  // 工作状态索引
+  const [selectDataIndex, setSelectDataIndex] = useState<number>(0);
+  // 工作状态
+  const [check, setCheck] = useState<string>('');
   useEffect(()=>{
     initResumeData()
   },[])
@@ -74,6 +90,10 @@ export default function useResume(){
         setCertificate_count(res.data.certificate_count);
         // 头像旁边图片显示
         setShow_tips(res.data.content.show_tips);
+        // 工作状态
+        setSelectData(res.data.status);
+        // 工作状态用来选择是正在找工作还是已找到工作
+        setCheck(res.data.info.check);
         //人员信息
         let introduces: resIntroduceObj = { ...INTRODUCERS_DATA };
         introduces = { ...introduces, ...res.data.introduces }
@@ -83,8 +103,6 @@ export default function useResume(){
         setCertificates([...res.data.certificates]);
         setResume_top({ ...res.data.resume_top });
         // 存redux
-        console.error(res,'redasjndasjnd kj')
-        console.error(res.data.project,'res.data.project')
         dispatch(setUseResume({
           info: res.data.info,
           introducesData: res.data.introduces,
@@ -98,7 +116,56 @@ export default function useResume(){
       }
     })
   }
-
+  // 工作状态
+  const handleSelectData = ()=>{
+    if (check == '2'){
+      let selectdataList: string[] = [], selectdataId:number[]=[];
+      for (let i = 0; i < selectData.length; i++) {
+        selectdataList.push(selectData[i].name)
+      }
+      for (let i = 0; i < selectData.length; i++) {
+        selectdataId.push(selectData[i].id)
+      }
+      Taro.showActionSheet({
+        itemList: selectdataList,
+        success(res:any) {
+          console.error(res,'res')
+          if (selectDataIndex == res.tapIndex) {
+            return
+          }
+          setSelectDataIndex(res.tapIndex);
+          resumesEditEndAction({ type: selectdataId[res.tapIndex], resume_uuid:infoData.uuid}).then(res=>{
+            if(res.errcode == 'ok'){
+              ShowActionModal({
+                title: '温馨提示',
+                msg: res.errmsg,
+              })
+              initResumeData();
+            }else{
+              ShowActionModal({
+                title: '温馨提示',
+                msg: res.errmsg,
+              })
+            }
+          })
+        }
+      })
+      // 审核中
+    }else if (check == '1') {
+      ShowActionModal({
+        title: '温馨提示',
+        msg: "审核中请耐心等待",
+      })
+      return
+      // 审核未通过
+    } else if (check == '0') {
+      ShowActionModal({
+        title: '温馨提示',
+        msg: "审核未通过，请修改信息",
+      })
+      return
+    } else 
+  }
   return {
     infoData,
     introducesData,
@@ -110,5 +177,8 @@ export default function useResume(){
     project_count,
     certificate_count,
     show_tips,
+    selectData,
+    selectDataIndex,
+    handleSelectData,
   }
 }

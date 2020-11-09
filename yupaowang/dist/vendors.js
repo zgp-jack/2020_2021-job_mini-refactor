@@ -12907,6 +12907,16 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }(); /*
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           * @Author: zyb
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           * @Date: 2020-11-03 15:03:11
+<<<<<<< HEAD
+=======
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         <<<<<<< HEAD
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         =======
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         <<<<<<< HEAD
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          * @LastEditors: zyb
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          * @LastEditTime: 2020-11-09 09:35:26
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         =======
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         >>>>>>> c4934cd3ef6271dedb29cefa5b63959eded6b62a
+>>>>>>> ef05e55da45d0296166b90ea66d29fd7eab0550e
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           * @LastEditors: zyb
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           * @LastEditTime: 2020-11-06 11:00:19
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           * @Description:
@@ -12916,6 +12926,8 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 exports.default = useResume;
 
 var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+
+var _taroTt2 = _interopRequireDefault(_taroTt);
 
 var _index = __webpack_require__(/*! ../../utils/request/index */ "./src/utils/request/index.ts");
 
@@ -13001,6 +13013,27 @@ function useResume() {
       _useState18 = _slicedToArray(_useState17, 2),
       show_tips = _useState18[0],
       setShow_tips = _useState18[1];
+  // 工作状态
+
+
+  var _useState19 = (0, _taroTt.useState)([]),
+      _useState20 = _slicedToArray(_useState19, 2),
+      selectData = _useState20[0],
+      setSelectData = _useState20[1];
+  // 工作状态索引
+
+
+  var _useState21 = (0, _taroTt.useState)(0),
+      _useState22 = _slicedToArray(_useState21, 2),
+      selectDataIndex = _useState22[0],
+      setSelectDataIndex = _useState22[1];
+  // 工作状态
+
+
+  var _useState23 = (0, _taroTt.useState)(''),
+      _useState24 = _slicedToArray(_useState23, 2),
+      check = _useState24[0],
+      setCheck = _useState24[1];
 
   (0, _taroTt.useEffect)(function () {
     initResumeData();
@@ -13038,6 +13071,10 @@ function useResume() {
         setCertificate_count(res.data.certificate_count);
         // 头像旁边图片显示
         setShow_tips(res.data.content.show_tips);
+        // 工作状态
+        setSelectData(res.data.status);
+        // 工作状态用来选择是正在找工作还是已找到工作
+        setCheck(res.data.info.check);
         //人员信息
         var introduces = _extends({}, _data.INTRODUCERS_DATA);
         introduces = _extends({}, introduces, res.data.introduces);
@@ -13047,8 +13084,6 @@ function useResume() {
         setCertificates([].concat(_toConsumableArray(res.data.certificates)));
         setResume_top(_extends({}, res.data.resume_top));
         // 存redux
-        console.error(res, 'redasjndasjnd kj');
-        console.error(res.data.project, 'res.data.project');
         dispatch((0, _resume_data.setUseResume)({
           info: res.data.info,
           introducesData: res.data.introduces,
@@ -13062,6 +13097,57 @@ function useResume() {
       }
     });
   };
+  // 工作状态
+  var handleSelectData = function handleSelectData() {
+    if (check == '2') {
+      var selectdataList = [],
+          selectdataId = [];
+      for (var i = 0; i < selectData.length; i++) {
+        selectdataList.push(selectData[i].name);
+      }
+      for (var _i = 0; _i < selectData.length; _i++) {
+        selectdataId.push(selectData[_i].id);
+      }
+      _taroTt2.default.showActionSheet({
+        itemList: selectdataList,
+        success: function success(res) {
+          console.error(res, 'res');
+          if (selectDataIndex == res.tapIndex) {
+            return;
+          }
+          setSelectDataIndex(res.tapIndex);
+          (0, _index.resumesEditEndAction)({ type: selectdataId[res.tapIndex], resume_uuid: infoData.uuid }).then(function (res) {
+            if (res.errcode == 'ok') {
+              (0, _index2.ShowActionModal)({
+                title: '温馨提示',
+                msg: res.errmsg
+              });
+              initResumeData();
+            } else {
+              (0, _index2.ShowActionModal)({
+                title: '温馨提示',
+                msg: res.errmsg
+              });
+            }
+          });
+        }
+      });
+      // 审核中
+    } else if (check == '1') {
+      (0, _index2.ShowActionModal)({
+        title: '温馨提示',
+        msg: "审核中请耐心等待"
+      });
+      return;
+      // 审核未通过
+    } else if (check == '0') {
+      (0, _index2.ShowActionModal)({
+        title: '温馨提示',
+        msg: "审核未通过，请修改信息"
+      });
+      return;
+    } else ;
+  };
   return {
     infoData: infoData,
     introducesData: introducesData,
@@ -13072,7 +13158,10 @@ function useResume() {
     is_introduces: is_introduces,
     project_count: project_count,
     certificate_count: certificate_count,
-    show_tips: show_tips
+    show_tips: show_tips,
+    selectData: selectData,
+    selectDataIndex: selectDataIndex,
+    handleSelectData: handleSelectData
   };
 }
 

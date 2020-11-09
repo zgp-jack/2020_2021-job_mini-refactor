@@ -1105,6 +1105,8 @@ export interface resume_topObj {
   is_top_text: string,
   is_top_to_text: string,
   top_tips_string: string,
+  start_time_str?:string,
+  end_time_str?:string,
 }
 // 项目
 export interface resProjectArr {

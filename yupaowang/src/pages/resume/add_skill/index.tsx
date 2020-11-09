@@ -67,7 +67,7 @@ export default function AddResumeInfo() {
 
   // 用户删除图片
   const useDelImg = (i: number) => {
-    let imgs: RecruitImageModel[] = {...skillBookInfo.imgs}
+    let imgs: RecruitImageModel[] = [...skillBookInfo.imgs]
     imgs.splice(i,1)
     setSkillBookInfo({...skillBookInfo,imgs: imgs})
   }

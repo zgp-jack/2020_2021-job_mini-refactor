@@ -25,7 +25,6 @@ export default function AddResumeInfo(){
   const infoData = useSelector<any, resInfoObj>(state => state.resumeData.info);
   // 获取hooks数据
   const { infoConfig, genderCurrent, startDatePicker } = useResumeAddInfo();
-  console.error(infoData,'info23132')
   // 发送验证码
   const { text, userGetCode } = useCode()
   // 输入数据
@@ -240,7 +239,6 @@ export default function AddResumeInfo(){
       url: url
     })
   }
-  console.error(classifies,'classifies')
   return (
     <View className='resume-addinfo-container'>
       {showProssion && 
@@ -310,8 +308,7 @@ export default function AddResumeInfo(){
                 </View>
               <View className='publish-list-item' onClick={() => setShowProssion(true)}>
                   <Text className='pulish-list-title'>所属工种</Text>
-                {/* {
-                  classifies && classifies.length ?
+                {classifies && classifies.length ?
                     <View className='publish-list-input'>
                       {classifyTree.map(item => (
                         <Block key={item.id}>
@@ -325,7 +322,7 @@ export default function AddResumeInfo(){
                     </View>
                     :
                     <Input className='publish-list-input' disabled type='text' placeholder='请选择所属工种' />
-                } */}
+                }
                 </View>
               <View className='publish-list-item adressInput' onClick={()=>userChooseArea()}>
                 <Text className='pulish-list-title'>所在地区</Text>
