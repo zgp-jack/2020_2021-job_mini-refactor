@@ -79,11 +79,7 @@ var ResumeList = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-<<<<<<< HEAD
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__50"),
-=======
       var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__49"),
->>>>>>> 3a1c93d376a916fd8849f306954f46896f0e54ad
           _genCompid2 = _slicedToArray(_genCompid, 2),
           $prevCompid__49 = _genCompid2[0],
           $compid__49 = _genCompid2[1];

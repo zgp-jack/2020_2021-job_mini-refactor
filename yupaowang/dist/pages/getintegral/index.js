@@ -108,11 +108,6 @@ var GetIntegral = function (_Taro$Component) {
           turntable = _useState4[0],
           setTurntable = _useState4[1];
       // 判断客户端
-<<<<<<< HEAD
-      (0, _taroTt.useEffect)(function () {
-        var system = _taroTt2.default.getSystemInfoSync();
-        if (system.platform !== 'ios') {
-=======
 
 
       (0, _taroTt.useEffect)(function () {
@@ -129,7 +124,6 @@ var GetIntegral = function (_Taro$Component) {
         });
         var system = _taroTt2.default.getSystemInfoSync();
         if (system.platform !== "ios") {
->>>>>>> 3a1c93d376a916fd8849f306954f46896f0e54ad
           setIos(false);
         }
       }, []);

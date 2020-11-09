@@ -121,37 +121,6 @@ var Recruit = function (_Taro$Component) {
       var userListChooseCity = _taroTt2.default.getStorageSync(_store.UserListChooseCity);
       // * 配置筛选条件
 
-<<<<<<< HEAD
-      var _useState3 = (0, _taroTt.useState)([{ id: _lists.AreaPickerKey, text: userListChooseCity ? userListChooseCity.name : '全国' }, { id: _lists.ClassifyPickerKey, text: '全部分类' }, { id: _lists.FilterPickerKey, text: '全部' }]),
-          _useState4 = _slicedToArray(_useState3, 2),
-          condition = _useState4[0],
-          setCondition = _useState4[1];
-      // * scrollTop 位置 回到顶部
-
-
-      var _useState5 = (0, _taroTt.useState)(0),
-          _useState6 = _slicedToArray(_useState5, 2),
-          scrollTop = _useState6[0],
-          setScrollTop = _useState6[1];
-      // * 标记是否是在刷新状态
-
-
-      var _useState7 = (0, _taroTt.useState)(false),
-          _useState8 = _slicedToArray(_useState7, 2),
-          refresh = _useState8[0],
-          setRefresh = _useState8[1];
-      // * 定义列表数组
-
-
-      var _useState9 = (0, _taroTt.useState)([]),
-          _useState10 = _slicedToArray(_useState9, 2),
-          lists = _useState10[0],
-          setLists = _useState10[1];
-      // * 定义data
-
-
-      var _useState11 = (0, _taroTt.useState)({
-=======
       var _useState5 = (0, _taroTt.useState)([{ id: _lists.AreaPickerKey, text: userListChooseCity ? userListChooseCity.name : '全国' }, { id: _lists.ClassifyPickerKey, text: '全部分类' }, { id: _lists.FilterPickerKey, text: '全部' }]),
           _useState6 = _slicedToArray(_useState5, 2),
           condition = _useState6[0],
@@ -181,7 +150,6 @@ var Recruit = function (_Taro$Component) {
 
 
       var _useState13 = (0, _taroTt.useState)({
->>>>>>> 3a1c93d376a916fd8849f306954f46896f0e54ad
         page: 1,
         list_type: 'job',
         area_id: userListChooseCity ? userListChooseCity.id : '',
@@ -237,12 +205,9 @@ var Recruit = function (_Taro$Component) {
       // 请求列表方法
       var getRecruitListAction = function getRecruitListAction() {
         (0, _index.getRecruitList)(searchData).then(function (res) {
-<<<<<<< HEAD
-=======
           if (res.data && !res.data.length) {
             setHasMore(false);
           }
->>>>>>> 3a1c93d376a916fd8849f306954f46896f0e54ad
           _taroTt2.default.hideNavigationBarLoading();
           if (searchData.page === 1) {
             setLists([[].concat(_toConsumableArray(res.data))]);
@@ -330,12 +295,8 @@ var Recruit = function (_Taro$Component) {
         "setSearchData": anonymousState__temp3
       }, $compid__16, $prevCompid__16);
       _taroTt.propsManager.set({
-<<<<<<< HEAD
-        "data": lists
-=======
         "data": lists,
         "hasMore": hasMore
->>>>>>> 3a1c93d376a916fd8849f306954f46896f0e54ad
       }, $compid__17, $prevCompid__17);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,

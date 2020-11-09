@@ -106,11 +106,7 @@ var RealnameMap = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-<<<<<<< HEAD
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__43"),
-=======
       var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__42"),
->>>>>>> 3a1c93d376a916fd8849f306954f46896f0e54ad
           _genCompid2 = _slicedToArray(_genCompid, 2),
           $prevCompid__42 = _genCompid2[0],
           $compid__42 = _genCompid2[1];

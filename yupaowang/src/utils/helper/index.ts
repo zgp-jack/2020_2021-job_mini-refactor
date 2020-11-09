@@ -109,33 +109,36 @@ export function getLocation(){
     myAmapFun.getRegeo({
       type: 'gcj02',
       success:(data) => {
+        console.log(data)
+        let mydata = data[0].regeocodeData.addressComponent
         let params = {
-          adcode: data[0].regeocodeData.addressComponent.adcode
+          adcode: mydata.adcode
         }
         checkAdcodeAction(params).then(res => {
           if (res.errcode == 'ok') {
+            let province: string = mydata.province
+            let city: string = mydata.city
+            city = typeof city === 'string' ? city : province
             let gpsLocation: LocationDataType = {
-              province: data[0].regeocodeData.addressComponent.province,
-              city: data[0].regeocodeData.addressComponent.city,
-              adcode: data[0].regeocodeData.addressComponent.adcode,
-              citycode: data[0].regeocodeData.addressComponent.citycode,
+              province: province,
+              city: city,
+              adcode: mydata.adcode,
+              citycode: mydata.citycode,
               address:data[0].name,
-              oadcode: data[0].regeocodeData.addressComponent.adcode,
+              oadcode: mydata.adcode,
               longitude: data[0].longitude + "",
               latitude: data[0].latitude + "",
-              wardenryid: res.data.city,
+              wardenryid: res.city,
               regionone:''
             }
             resolve(gpsLocation);
           } else {
-            console.error(res)
             Msg('定位失败,请重新定位')
             reject();
           }
         }).catch((err) => {
-          console.error(err, 'catch')
           Msg('定位失败,请重新定位')
-          reject();
+          reject(err);
         })
       },
       fail: (err) => {

@@ -93,11 +93,7 @@ var InvitePage = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-<<<<<<< HEAD
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__61"),
-=======
       var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__60"),
->>>>>>> 3a1c93d376a916fd8849f306954f46896f0e54ad
           _genCompid2 = _slicedToArray(_genCompid, 2),
           $prevCompid__60 = _genCompid2[0],
           $compid__60 = _genCompid2[1];

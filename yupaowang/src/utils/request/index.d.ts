@@ -1492,10 +1492,13 @@ export interface ResumesProjectData extends Result {
 
 // 获取当前位置
 export interface checkAdcodeData extends Result{
-  data: checkAdcodeDataCity,
+  // data: checkAdcodeDataCity,
+  province: string,
+  city: string,
+  county: string
 }
 export interface checkAdcodeDataCity {
-  city:string,
+  city: string,
 }
 
 // 大转盘

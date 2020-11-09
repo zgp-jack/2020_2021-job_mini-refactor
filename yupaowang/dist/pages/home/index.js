@@ -121,10 +121,6 @@ var Home = function (_Taro$Component) {
           $prevCompid__10 = _genCompid12[0],
           $compid__10 = _genCompid12[1];
 
-<<<<<<< HEAD
-      var userChooseCity = _taroTt2.default.getStorageSync(_store.UserListChooseCity);
-      var location = _taroTt2.default.getStorageSync(_store.UserLocation);
-=======
       var dispatch = (0, _redux.useDispatch)();
       var tabbarJump = function tabbarJump(id) {
         if (id === _tabbar2.USED) {
@@ -145,7 +141,6 @@ var Home = function (_Taro$Component) {
           location: location || ''
         });
       });
->>>>>>> 3a1c93d376a916fd8849f306954f46896f0e54ad
       // 当前展示的城市
 
       var _useState = (0, _taroTt.useState)(userChooseCity ? userChooseCity.name : '全国'),

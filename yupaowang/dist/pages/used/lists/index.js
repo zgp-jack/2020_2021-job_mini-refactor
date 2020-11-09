@@ -106,11 +106,7 @@ var Fleamarket = function (_Taro$Component) {
       // 是否已是最后一页
 
 
-<<<<<<< HEAD
-      var _useState = (0, _taroTt.useState)(false),
-=======
       var _useState = (0, _taroTt.useState)(true),
->>>>>>> 3a1c93d376a916fd8849f306954f46896f0e54ad
           _useState2 = _slicedToArray(_useState, 2),
           hasMore = _useState2[0],
           setHasMore = _useState2[1];
@@ -159,12 +155,6 @@ var Fleamarket = function (_Taro$Component) {
 
 
       (0, _taroTt.useEffect)(function () {
-<<<<<<< HEAD
-        if (isend) {
-          return;
-        }
-=======
->>>>>>> 3a1c93d376a916fd8849f306954f46896f0e54ad
         (0, _index.getFleamarketList)(searchData).then(function (res) {
           _taroTt2.default.hideNavigationBarLoading();
           if (!res.length) {
@@ -182,12 +172,9 @@ var Fleamarket = function (_Taro$Component) {
       }, [searchData]);
       // * 触底加载下一页
       var getNextPageData = function getNextPageData() {
-<<<<<<< HEAD
-=======
         if (!hasMore) {
           return;
         }
->>>>>>> 3a1c93d376a916fd8849f306954f46896f0e54ad
         _taroTt2.default.showNavigationBarLoading();
         setSearchData(_extends({}, searchData, { page: searchData.page + 1 }));
       };
@@ -224,11 +211,7 @@ var Fleamarket = function (_Taro$Component) {
       this.anonymousFunc1 = function () {
         return getNextPageData();
       };
-<<<<<<< HEAD
-      var anonymousState__temp4 = (0, _taroTt.internal_inline_style)({ height: '8px' });
-=======
       var anonymousState__temp3 = (0, _taroTt.internal_inline_style)({ height: '8px' });
->>>>>>> 3a1c93d376a916fd8849f306954f46896f0e54ad
       _taroTt.propsManager.set({
         "placeholder": "\u8DF3\u86A4\u5E02\u573A",
         "value": "",
@@ -236,19 +219,11 @@ var Fleamarket = function (_Taro$Component) {
         "setSearchData": anonymousState__temp2
       }, $compid__33, $prevCompid__33);
       _taroTt.propsManager.set({
-<<<<<<< HEAD
-        "data": DEFAULT_CONDITION,
-        "setSearchData": anonymousState__temp3
-      }, $compid__34, $prevCompid__34);
-      _taroTt.propsManager.set({
-        "data": lists
-=======
         "setSearchData": searchChange
       }, $compid__34, $prevCompid__34);
       _taroTt.propsManager.set({
         "data": lists,
         "hasMore": hasMore
->>>>>>> 3a1c93d376a916fd8849f306954f46896f0e54ad
       }, $compid__35, $prevCompid__35);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,

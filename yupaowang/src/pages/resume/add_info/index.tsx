@@ -210,15 +210,8 @@ export default function AddResumeInfo(){
                   success:(data)=>{
                     if (data.authSetting["scope.userLocation"] == true) {
                       Msg('授权成功')
-                      // const data = getLocation();
-                      // console.error(data,'dadadada')
-                      // if (data != null) {
-                      //   setLocationData(data);
-                      // }
                       getLocation().then(res=> {
-                        if(res){
-                          // setLocationData(res);
-                        }
+                        console.log(res,222)
                       })
                     }else{
                       Msg('授权失败')

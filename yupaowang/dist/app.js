@@ -271,16 +271,14 @@ var _resume_addinfo = __webpack_require__(/*! ./resume_addinfo */ "./src/reducer
 
 var _resume_addinfo2 = _interopRequireDefault(_resume_addinfo);
 
+var _resume_data = __webpack_require__(/*! ./resume_data */ "./src/reducers/resume_data.ts");
+
+var _resume_data2 = _interopRequireDefault(_resume_data);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 //合并reducer
-/*
- * @Author: zyb
- * @Date: 2020-11-03 14:36:47
- * @LastEditors: zyb
- * @LastEditTime: 2020-11-04 20:44:09
- * @Description:
- */
+//发布招工reducer
 exports.default = (0, _redux.combineReducers)({
   tabbar: _tabbar2.default,
   WechatNotice: _wechat_notice2.default,
@@ -294,8 +292,15 @@ exports.default = (0, _redux.combineReducers)({
   member: _member2.default,
   realname: _realname2.default,
   resumeAddInfo: _resume_addinfo2.default,
-  PositionStatus: _recruit.PositionStatus
-}); //发布招工reducer
+  PositionStatus: _recruit.PositionStatus,
+  resumeData: _resume_data2.default
+}); /*
+     * @Author: zyb
+     * @Date: 2020-11-03 14:36:47
+     * @LastEditors: jsxin
+     * @LastEditTime: 2020-11-09 17:11:58
+     * @Description:
+     */
 
 /***/ }),
 
@@ -636,6 +641,63 @@ function resumeAddInfo() {
       break;
     default:
       return _extends({}, state);
+  }
+}
+
+/***/ }),
+
+/***/ "./src/reducers/resume_data.ts":
+/*!*************************************!*\
+  !*** ./src/reducers/resume_data.ts ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; /*
+                                                                                                                                                                                                                                                                   * @Author: zyb
+                                                                                                                                                                                                                                                                   * @Date: 2020-11-04 19:59:33
+                                                                                                                                                                                                                                                                   * @LastEditors: jsxin
+                                                                                                                                                                                                                                                                   * @LastEditTime: 2020-11-06 15:39:52
+                                                                                                                                                                                                                                                                   * @Description:
+                                                                                                                                                                                                                                                                   */
+
+
+exports.default = resumeData;
+
+var _resume_data = __webpack_require__(/*! ../constants/resume_data */ "./src/constants/resume_data.ts");
+
+var _data = __webpack_require__(/*! ../pages/resume/publish/data */ "./src/pages/resume/publish/data.ts");
+
+var DEFAULT_STATE = {
+  info: _data.INFODATA_DATA,
+  introducesData: _data.INTRODUCERS_DATA,
+  projectData: [],
+  certificates: [],
+  resume_uuid: '',
+  isSet: false
+};
+function resumeData() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : DEFAULT_STATE;
+  var action = arguments[1];
+
+  switch (action.type) {
+    case _resume_data.GETUSERRESUME:
+      return state;
+    case _resume_data.SETUSERRESUME:
+      return _extends({}, state, action.data);
+    case _resume_data.SETINTRODUCE:
+      return _extends({}, state, { introducesData: action.data });
+    case _resume_data.SETCERTIFICATE:
+      return _extends({}, state, { certificates: action.data });
+    default:
+      return state;
   }
 }
 

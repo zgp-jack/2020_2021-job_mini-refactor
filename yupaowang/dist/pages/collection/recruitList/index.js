@@ -81,11 +81,7 @@ var RecruitList = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-<<<<<<< HEAD
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__46"),
-=======
       var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__45"),
->>>>>>> 3a1c93d376a916fd8849f306954f46896f0e54ad
           _genCompid2 = _slicedToArray(_genCompid, 2),
           $prevCompid__45 = _genCompid2[0],
           $compid__45 = _genCompid2[1];
