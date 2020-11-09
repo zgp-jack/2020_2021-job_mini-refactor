@@ -43,13 +43,18 @@ export default function Fleamarket() {
 
   const [inputValue, setInputValue] = useState<string>('')
 
+  let [listScrollTop, setListScrollTop] = useState<number>(0)
+
   // * 请求列表数据
   useEffect(() => {
     if (isend) return
     getFleamarketList(searchData).then(res => {
       Taro.hideNavigationBarLoading()
       if (!res.length) setIsend(true)
-      if (searchData.page === 1) setLists([[...res]])
+      if (searchData.page === 1) {
+        setLists([[...res]])
+        goToScrollTop()
+      }
       else setLists([...lists, [...res]])
       if (refresh) setRefresh(false)
     })
@@ -86,6 +91,11 @@ export default function Fleamarket() {
     setSearchData({ ...searchData })
   }
 
+   // scroll-view 回到顶部
+  const goToScrollTop = () => {
+    setListScrollTop(listScrollTop ? 0 : 0.1)
+  }
+
   return (
     <Block>
       <View className='recruit-container'>
@@ -101,6 +111,7 @@ export default function Fleamarket() {
           onRefresherRefresh={() => pullDownAction()}
           lowerThreshold={200}
           onScrollToLower={() => getNextPageData()}
+          scrollTop={listScrollTop}
         >
           <View style={{ height: '8px' }}></View>
           <WechatNotice />

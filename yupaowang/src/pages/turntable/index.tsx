@@ -11,31 +11,32 @@ import {
 import Msg, { ShowActionModal, showModalTip } from "../../../src/utils/msg";
 import { userCancelAuth } from "../../../src/utils/helper";
 interface NameType {
-  name?: string;
-  integral?: number;
+  name?: string,
+  integral?: number,
 }
 
 interface ScrollnameType {
-  num: number;
-  current: number;
-  autoplay: boolean;
-  indicatorDots: boolean;
-  circular: boolean;
-  vertical: boolean;
-  interval: number;
-  duration: number;
-  nameArr: NameType[][];
+  num: number,
+  current: number,
+  autoplay: boolean,
+  circleTime: number,
+  indicatorDots: boolean,
+  circular: boolean,
+  vertical: boolean,
+  interval: number,
+  duration: number,
+  nameArr: NameType[][]
 }
 
 interface ServerType {
-  userTimes: number;
-  overVideoTimes: number;
-  allVideoTimes: number;
+  userTimes: number,
+  overVideoTimes: number,
+  allVideoTimes: number
 }
 
-interface isCompleteType {
-  isClick: boolean;
-  rotateDeg: number;
+interface rotateType {
+  rotateDeg: number,
+  transTime: number,
 }
 
 let videoAd;
@@ -45,8 +46,9 @@ export default function Turntable() {
   // * 中奖名单
   const [scrollname, setScrollname] = useState<ScrollnameType>({
     num: 100,
-    current: 0, // * 旋转角度
+    current: 0, 
     autoplay: true, // * banner循环
+    circleTime: 15,// * 选择圈数
     indicatorDots: false, // * banner是否显示面板指示点
     circular: true, // * 是否采用衔接滑动
     vertical: true, // * 滑动方向是否为纵向
@@ -63,13 +65,13 @@ export default function Turntable() {
   });
 
   // * 转盘是否停止
-  const [isComplete, setIsComplete] = useState<isCompleteType>({
-    isClick: false,
-    rotateDeg: 0
-  });
+  let [isComplete, setIsComplete] = useState<Boolean>(true)
 
-  // * 转动时间
-  let [transTime, setTransTime] = useState<number>(5);
+  // * 选择角度/时间
+  let [rotateDegTime, setRotateDegTime] = useState<rotateType>({
+    rotateDeg: 0,
+    transTime: 5,
+  })
 
   const getRand = (start: number, end: number): number => {
     if (start == 0) return Math.floor((end + 1) * Math.random());
@@ -115,15 +117,27 @@ export default function Turntable() {
     });
   };
 
+  // * 旋转角度/时间
+  function rotationAngle( edg, time){
+    rotateDegTime.rotateDeg = edg;
+    rotateDegTime.transTime = time;
+    setRotateDegTime({...rotateDegTime})
+  }
+
   // * 开始抽奖
   const startTurntable = () => {
-
+    if( !isComplete ) return false;
+    isComplete = false
+    setIsComplete(isComplete)
     turntableDraw().then(res => {
       if (res.code == 200) {
         let { all_video_times, over_video_times, rotate } = res.data;
         let userTimes = all_video_times - over_video_times;
+        // 旋转角度
+        rotationAngle( rotate - 30, 5 )
+
         let timer = setTimeout(function() {
-          setTransTime(0)
+          setIsComplete(true);
           clearTimeout(timer);
           Taro.showModal({
             title: "恭喜中奖",
@@ -131,10 +145,11 @@ export default function Turntable() {
             confirmText: "确定",
             success: response => {
               if (response.confirm) {
-                isComplete.rotateDeg = rotate;
+                // 旋转角度
+                rotationAngle( 0, 0 )
+
                 serversData.userTimes = userTimes;
                 setServersData({ ...serversData });
-                setIsComplete({ ...isComplete });
               }
             }
           });
@@ -142,7 +157,11 @@ export default function Turntable() {
       } else if(res.code == 206 || res.code == 207){
         let { all_video_times, over_video_times, rotate } = res.data;
         let userTimes = all_video_times - over_video_times;
+        // 旋转角度
+        rotationAngle( rotate - 30, 5 )
+
         let timer = setTimeout(function(){
+            setIsComplete(true);
             clearTimeout(timer)
             Taro.showModal({
               title: '谢谢参与',
@@ -150,7 +169,11 @@ export default function Turntable() {
               showCancel: false,
               confirmText: res.code == 206 ? '再来一次' : '确定',
               success:()=>{
+                // 旋转角度
+                rotationAngle( 0, 0 )
 
+                serversData.userTimes = userTimes;
+                setServersData({ ...serversData });
               }
             })
         },5000)
@@ -170,12 +193,14 @@ export default function Turntable() {
             }
           }
         });
+        setIsComplete(true);
       } else {
         showModalTip({
           title: "温馨提示",
           tips: res.errmsg
         });
       }
+      setIsComplete(true);
     });
   };
 
@@ -261,8 +286,8 @@ export default function Turntable() {
             <View
               className="turntable-content-bg"
               style={{
-                transform: `rotate(${isComplete.rotateDeg}deg)`,
-                transition: `transform 5s ease-in-out ${transTime}s`
+                transform: `rotate(${rotateDegTime.rotateDeg}deg)`,
+                transition: `transform ${rotateDegTime.transTime}s ease-in-out 0s`
               }}
             ></View>
             <View

@@ -1610,7 +1610,7 @@ export interface TurntableDrawData {
 }
 
 export interface TurntableDraw extends TurntableIndexTypePortion {
-  data?: TurntableDrawData,
+  data: TurntableDrawData,
 }
 
 export interface TurntableVideoEndData {
