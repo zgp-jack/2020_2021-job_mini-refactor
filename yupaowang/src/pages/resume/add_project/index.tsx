@@ -239,7 +239,7 @@ export default function AddResumeInfo() {
           setProjectInfo({...defaultProjectData});
           setProject_uuid('');
           // 判断是否项目经验条数已经达到了设置的最大上限
-          if (res.count >= ProjectListMaxNum) {
+          if (res.count >= ProjectListMaxNum-1) {
             setShowBtn(false)
           }
         }else{

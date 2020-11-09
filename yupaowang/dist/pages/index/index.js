@@ -1,4 +1,4 @@
-(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["pages/index/index"],{
+(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["pages/index/index"],{
 
 /***/ "./src/config/pages/index.ts":
 /*!***********************************!*\
@@ -71,9 +71,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
+var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
 
-var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
+var _taroTt2 = _interopRequireDefault(_taroTt);
 
 var _tabbar = __webpack_require__(/*! ../../constants/tabbar */ "./src/constants/tabbar.ts");
 
@@ -125,7 +125,7 @@ var Index = function (_Taro$Component) {
     key: '_constructor',
     value: function _constructor(props) {
       _get(Index.prototype.__proto__ || Object.getPrototypeOf(Index.prototype), '_constructor', this).call(this, props);
-      this.$$refs = new _taroWeapp2.default.RefsArray();
+      this.$$refs = new _taroTt2.default.RefsArray();
     }
   }, {
     key: '_createData',
@@ -136,14 +136,14 @@ var Index = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__4"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__4"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
           $prevCompid__4 = _genCompid2[0],
           $compid__4 = _genCompid2[1];
 
       var dispatch = (0, _redux.useDispatch)();
       // 初始化页面参数
-      var router = (0, _taroWeapp.useRouter)();
+      var router = (0, _taroTt.useRouter)();
       var _router$params$type = router.params.type,
           type = _router$params$type === undefined ? _tabbar.RECRUIT : _router$params$type;
       // 获取当前tabbar高亮值
@@ -153,18 +153,18 @@ var Index = function (_Taro$Component) {
       });
       // 标记是否触发下拉刷新
 
-      var _useState = (0, _taroWeapp.useState)(0),
+      var _useState = (0, _taroTt.useState)(0),
           _useState2 = _slicedToArray(_useState, 2),
           pulldown = _useState2[0],
           setPulldown = _useState2[1];
       // 监听页面下拉刷新
 
 
-      (0, _taroWeapp.usePullDownRefresh)(function () {
+      (0, _taroTt.usePullDownRefresh)(function () {
         setPulldown(pulldown + 1);
       });
       // 初始化底部显示页面
-      (0, _taroWeapp.useEffect)(function () {
+      (0, _taroTt.useEffect)(function () {
         if ((0, _tabbar.typeInTabbar)(type)) {
           dispatch((0, _tabbar2.changeTabbar)(type));
         } else {
@@ -172,18 +172,18 @@ var Index = function (_Taro$Component) {
         }
       }, [type]);
       // 初始化页面配置信息
-      (0, _taroWeapp.useEffect)(function () {
+      (0, _taroTt.useEffect)(function () {
         if (!tabKey) {
           return;
         }
         var data = _index2.default[tabKey];
-        _taroWeapp2.default.setNavigationBarTitle({ title: data.navigationBarTitleText });
-        _taroWeapp2.default.setNavigationBarColor({
+        _taroTt2.default.setNavigationBarTitle({ title: data.navigationBarTitleText });
+        _taroTt2.default.setNavigationBarColor({
           backgroundColor: data.navigationBarBackgroundColor || '#0099ff',
           frontColor: '#ffffff'
         });
       }, [tabKey]);
-      _taroWeapp.propsManager.set({
+      _taroTt.propsManager.set({
         "notredirect": true
       }, $compid__4, $prevCompid__4);
       Object.assign(this.__state, {
@@ -199,14 +199,14 @@ var Index = function (_Taro$Component) {
   }]);
 
   return Index;
-}(_taroWeapp2.default.Component);
+}(_taroTt2.default.Component);
 
 Index.$$events = [];
 Index.$$componentPath = "pages/index/index";
 Index.config = { navigationBarTitleText: '', enablePullDownRefresh: true, navigationBarBackgroundColor: '#0099ff', navigationBarTextStyle: 'white', backgroundTextStyle: "dark" };
 exports.default = Index;
 
-Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(Index, true));
+Page(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(Index, true));
 
 /***/ })
 

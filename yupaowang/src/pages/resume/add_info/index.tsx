@@ -196,7 +196,7 @@ export default function AddResumeInfo(){
     setClassifies(newArr);
   }
   // 获取定位
-  const handleGps = ()=>{
+  const handleGps =()=>{
     Taro.getSetting({
       success:(res)=>{
         console.error(res,'111111');
@@ -210,11 +210,16 @@ export default function AddResumeInfo(){
                   success:(data)=>{
                     if (data.authSetting["scope.userLocation"] == true) {
                       Msg('授权成功')
-                      const data = getLocation();
-                      console.error(data,'dadadada')
-                      if (data != null) {
-                        setLocationData(data);
-                      }
+                      // const data = getLocation();
+                      // console.error(data,'dadadada')
+                      // if (data != null) {
+                      //   setLocationData(data);
+                      // }
+                      getLocation().then(res=> {
+                        if(res){
+                          // setLocationData(res);
+                        }
+                      })
                     }else{
                       Msg('授权失败')
                     }
@@ -224,11 +229,12 @@ export default function AddResumeInfo(){
             }
           })
         }else{
-          let data = getLocation();
-          console.error(data,'1111')
-          if(data != null){
-            setLocationData(data);
-          }
+          getLocation().then(res=>{
+            console.log(res,'1111');
+            if (res) {
+              // setLocationData(res);
+            }
+          })
         }
       }
     })

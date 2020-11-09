@@ -102,43 +102,48 @@ export function userCancelAuth():void{
 // 用户获取定位
 export function getLocation(){
   Msg('位置获取中...');
-  const myAmapFun = new AMapWX.AMapWX({
-    key: MAPKEY,
-  }); //key注册高德地图开发者
-  myAmapFun.getRegeo({
-    type: 'gcj02',
-    success: (data) => {
-      console.error(data);
-      console.error(data[0].name);
-      let params = {
-        adcode: data[0].regeocodeData.addressComponent.adcode
-      }
-      checkAdcodeAction(params).then(res => {
-        console.error(res,'dnahbdhja')
-        if (res.errcode == 'ok') {
-          let gpsLocation: LocationDataType = {
-            province: data[0].regeocodeData.addressComponent.province,
-            city: data[0].regeocodeData.addressComponent.city,
-            adcode: data[0].regeocodeData.addressComponent.adcode,
-            citycode: data[0].regeocodeData.addressComponent.citycode,
-            address:data[0].name,
-            oadcode: data[0].regeocodeData.addressComponent.adcode,
-            longitude: data[0].longitude + "",
-            latitude: data[0].latitude + "",
-            wardenryid: res.data.city,
-            regionone:''
-          }
-          return gpsLocation;
-        } else {
-          Msg('定位失败,请重新定位')
+  return new Promise(function (resolve, reject) {
+    const myAmapFun = new AMapWX.AMapWX({
+      key: MAPKEY,
+    }); //key注册高德地图开发者
+    myAmapFun.getRegeo({
+      type: 'gcj02',
+      success:(data) => {
+        let params = {
+          adcode: data[0].regeocodeData.addressComponent.adcode
         }
-      }).catch((err) => {
+        checkAdcodeAction(params).then(res => {
+          if (res.errcode == 'ok') {
+            let gpsLocation: LocationDataType = {
+              province: data[0].regeocodeData.addressComponent.province,
+              city: data[0].regeocodeData.addressComponent.city,
+              adcode: data[0].regeocodeData.addressComponent.adcode,
+              citycode: data[0].regeocodeData.addressComponent.citycode,
+              address:data[0].name,
+              oadcode: data[0].regeocodeData.addressComponent.adcode,
+              longitude: data[0].longitude + "",
+              latitude: data[0].latitude + "",
+              wardenryid: res.data.city,
+              regionone:''
+            }
+            resolve(gpsLocation);
+          } else {
+            console.error(res)
+            Msg('定位失败,请重新定位')
+            reject();
+          }
+        }).catch((err) => {
+          console.error(err, 'catch')
+          Msg('定位失败,请重新定位')
+          reject();
+        })
+      },
+      fail: (err) => {
+        console.error(err,'fail')
         Msg('定位失败,请重新定位')
-      })
-    },
-    fail: (err) => {
-      Msg('定位失败,请重新定位')
-    }
+        reject(err)
+      }
+    })
   })
 }
 

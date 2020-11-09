@@ -942,7 +942,7 @@ export function addResumeAction(data): Promise<Inter.Result> {
 export function checkAdcodeAction(data): Promise<Inter.checkAdcodeData> {
   return doRequestAction({
     url: api.checkAdcodeUrl,
-    method: 'POST',
+    method: 'GET',
     failToast: true,
     data,
   })

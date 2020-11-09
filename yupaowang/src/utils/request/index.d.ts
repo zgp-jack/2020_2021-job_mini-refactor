@@ -1128,6 +1128,8 @@ export interface resProjectArr {
   uuid: string,
   imageData?: RecruitImageModel,
   project_uuid?:string,
+  endTime?:number,
+  index?:number,
 }
 export interface RecruitImageModel {
   url: string,

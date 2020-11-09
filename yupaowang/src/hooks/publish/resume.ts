@@ -7,7 +7,7 @@
 =======
 <<<<<<< HEAD
  * @LastEditors: zyb
- * @LastEditTime: 2020-11-09 11:17:41
+ * @LastEditTime: 2020-11-09 16:57:44
 =======
 >>>>>>> c4934cd3ef6271dedb29cefa5b63959eded6b62a
 >>>>>>> ef05e55da45d0296166b90ea66d29fd7eab0550e
@@ -52,6 +52,10 @@ export default function useResume(){
   const [selectDataIndex, setSelectDataIndex] = useState<number>(0);
   // 工作状态
   const [check, setCheck] = useState<string>('');
+  // 页面显示项目
+  const [ProjectList, setProjectList] = useState<resProjectArr[]>([]);
+  // 页面显示技能
+  // 项目列表
   useEffect(()=>{
     initResumeData()
   },[])
@@ -82,6 +86,36 @@ export default function useResume(){
         let info: resInfoObj = { ...INFODATA_DATA };
         info = { ...info, ...res.data.info };
         setInfoData({ ...info });
+        // 设置页面显示的项目
+          // 定义有图片项目数组
+          let hasImageProject: resProjectArr[] = [];
+          // 定义没图片的数组
+        let NoImageProject: resProjectArr[] = [];
+          let data = [...res.data.project];
+        for (let i = 0; i < data.length; i++) {
+          // 将时间转成毫秒并存入数组
+          data[i].endTime = new Date(data[i].completion_time).getTime()
+          // 获取项目经验对象中images不为空的项目
+          if (data[i].image.length != 0) {
+            // 增加index字段作为data数组查找标识
+            data[i].index = i
+            hasImageProject.push(data[i])
+          } else {
+            data[i].index = i
+            NoImageProject.push(data[i])
+          }
+        }
+        // 将有图片的数组与没有图片的数组进行按照时间降序排列
+        let sortImageProject = hasImageProject.sort(projectSort("endTime"))
+        let sortNoImageProject = NoImageProject.sort(projectSort("endTime"))
+        // 组合项目经验对象
+        let projectItem = [...sortImageProject, ...sortNoImageProject];
+        // 获取排序后的第一个元素
+        let projectOne = projectItem[0];
+        if (new Date(projectItem[0].completion_time).getTime() / 86400000 < parseInt(((new Date().getTime()) / 86400000).toString())) {
+          // 项目
+          setProjectData([...projectItem]);
+        }
         // 是否有人员信息
         setIs_introduces(res.data.is_introduces);
         //最大项目长度
@@ -98,8 +132,6 @@ export default function useResume(){
         let introduces: resIntroduceObj = { ...INTRODUCERS_DATA };
         introduces = { ...introduces, ...res.data.introduces }
         setIntroducesData({ ...introduces });
-        // 项目
-        setProjectData([...res.data.project]);
         setCertificates([...res.data.certificates]);
         setResume_top({ ...res.data.resume_top });
         // 存redux
@@ -108,13 +140,24 @@ export default function useResume(){
           introducesData: res.data.introduces,
           certificates: res.data.certificates,
           projectData: res.data.project,
-          resume_uuid: res.data.info.uuid || '',
+          resume_uuid: res.data.info&&res.data.info.uuid || '',
           isSet: true,
         }))
       } else {
         Msg(res.errmsg);
       }
     })
+  }
+  // 获取项目结束时间比较近的项目
+  // 排序规则降序排列
+  const projectSort = (key)=> {
+    return function (objectN, objectM) {
+      let valueN = objectN[key];
+      let valueM = objectM[key];
+      if (valueN < valueM) return 1
+      else if (valueN > valueM) return -1
+      else return 0
+    }
   }
   // 工作状态
   const handleSelectData = ()=>{
