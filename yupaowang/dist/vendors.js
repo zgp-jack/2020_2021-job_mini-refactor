@@ -12911,7 +12911,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          =======
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          <<<<<<< HEAD
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           * @LastEditors: zyb
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          * @LastEditTime: 2020-11-07 15:03:21
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          * @LastEditTime: 2020-11-09 09:35:26
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          =======
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          >>>>>>> c4934cd3ef6271dedb29cefa5b63959eded6b62a
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           * @LastEditors: zyb
@@ -12923,6 +12923,8 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 exports.default = useResume;
 
 var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+
+var _taroTt2 = _interopRequireDefault(_taroTt);
 
 var _index = __webpack_require__(/*! ../../utils/request/index */ "./src/utils/request/index.ts");
 
@@ -13008,6 +13010,27 @@ function useResume() {
       _useState18 = _slicedToArray(_useState17, 2),
       show_tips = _useState18[0],
       setShow_tips = _useState18[1];
+  // 工作状态
+
+
+  var _useState19 = (0, _taroTt.useState)([]),
+      _useState20 = _slicedToArray(_useState19, 2),
+      selectData = _useState20[0],
+      setSelectData = _useState20[1];
+  // 工作状态索引
+
+
+  var _useState21 = (0, _taroTt.useState)(0),
+      _useState22 = _slicedToArray(_useState21, 2),
+      selectDataIndex = _useState22[0],
+      setSelectDataIndex = _useState22[1];
+  // 工作状态
+
+
+  var _useState23 = (0, _taroTt.useState)(''),
+      _useState24 = _slicedToArray(_useState23, 2),
+      check = _useState24[0],
+      setCheck = _useState24[1];
 
   (0, _taroTt.useEffect)(function () {
     initResumeData();
@@ -13045,6 +13068,10 @@ function useResume() {
         setCertificate_count(res.data.certificate_count);
         // 头像旁边图片显示
         setShow_tips(res.data.content.show_tips);
+        // 工作状态
+        setSelectData(res.data.status);
+        // 工作状态用来选择是正在找工作还是已找到工作
+        setCheck(res.data.info.check);
         //人员信息
         var introduces = _extends({}, _data.INTRODUCERS_DATA);
         introduces = _extends({}, introduces, res.data.introduces);
@@ -13067,6 +13094,57 @@ function useResume() {
       }
     });
   };
+  // 工作状态
+  var handleSelectData = function handleSelectData() {
+    if (check == '2') {
+      var selectdataList = [],
+          selectdataId = [];
+      for (var i = 0; i < selectData.length; i++) {
+        selectdataList.push(selectData[i].name);
+      }
+      for (var _i = 0; _i < selectData.length; _i++) {
+        selectdataId.push(selectData[_i].id);
+      }
+      _taroTt2.default.showActionSheet({
+        itemList: selectdataList,
+        success: function success(res) {
+          console.error(res, 'res');
+          if (selectDataIndex == res.tapIndex) {
+            return;
+          }
+          setSelectDataIndex(res.tapIndex);
+          (0, _index.resumesEditEndAction)({ type: selectdataId[res.tapIndex], resume_uuid: infoData.uuid }).then(function (res) {
+            if (res.errcode == 'ok') {
+              (0, _index2.ShowActionModal)({
+                title: '温馨提示',
+                msg: res.errmsg
+              });
+              initResumeData();
+            } else {
+              (0, _index2.ShowActionModal)({
+                title: '温馨提示',
+                msg: res.errmsg
+              });
+            }
+          });
+        }
+      });
+      // 审核中
+    } else if (check == '1') {
+      (0, _index2.ShowActionModal)({
+        title: '温馨提示',
+        msg: "审核中请耐心等待"
+      });
+      return;
+      // 审核未通过
+    } else if (check == '0') {
+      (0, _index2.ShowActionModal)({
+        title: '温馨提示',
+        msg: "审核未通过，请修改信息"
+      });
+      return;
+    } else ;
+  };
   return {
     infoData: infoData,
     introducesData: introducesData,
@@ -13077,7 +13155,10 @@ function useResume() {
     is_introduces: is_introduces,
     project_count: project_count,
     certificate_count: certificate_count,
-    show_tips: show_tips
+    show_tips: show_tips,
+    selectData: selectData,
+    selectDataIndex: selectDataIndex,
+    handleSelectData: handleSelectData
   };
 }
 
