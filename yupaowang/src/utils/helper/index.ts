@@ -142,7 +142,6 @@ export function getLocation(): Promise<LocationDataType>{
         })
       },
       fail: (err) => {
-        console.error(err,'fail')
         Msg('定位失败,请重新定位')
         reject(err)
       }

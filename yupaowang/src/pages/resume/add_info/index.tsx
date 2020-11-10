@@ -23,7 +23,6 @@ export default function AddResumeInfo(){
   const dispatch = useDispatch()
   // 获取基础信息的redux
   const infoData = useSelector<any, resInfoObj>(state => state.resumeData.info);
-  console.error(infoData,'state.resumeData.info')
   // 获取hooks数据
   const { infoConfig, genderCurrent, startDatePicker } = useResumeAddInfo();
   // 发送验证码
@@ -43,7 +42,7 @@ export default function AddResumeInfo(){
   // 选择工种
   const [showProssion,setShowProssion] =useState<boolean>(false);
   // 工种
-  const [classifyTree, setClassifyTree] = useState<ProfessionRecruitData[]>([]);
+  const [classifyTree, setClassifyTree] = useState<ProfessionRecruitData[]>([...infoConfig.occupation]||[]);
   // 工种长度
   const [maxClassifyCount, setMaxClassifyCount] = useState<number>(3);
   // 已选择工种
@@ -102,9 +101,8 @@ export default function AddResumeInfo(){
     if(first) return;
     //设置所属地区
     const area = { ...areaInfo };
-    console.error(area,'readnajksndkja')
     setLocationData({
-      ...location, adcode: area.adcode, address: area.title, longitude: area.location.split(',')[0], latitude: area.location.split(',')[1],
+      ...location, adcode: area.adcode, address: area.title, longitude: area.location.split(',')[0], latitude: area.location.split(',')[1], city: area.city || '', province: area.provice || ''
     })
   }, [areaInfo])
   // 用户输入表单
@@ -134,6 +132,7 @@ export default function AddResumeInfo(){
   }
   // 提交
   const handelSubmit =()=>{
+    console.log(inputVal,'ndksandjks')
     if (!inputVal.username || inputVal.username.length < 2 || inputVal.username.length > 5 || !isChinese(inputVal.username)){
       ShowActionModal({msg: '请填写真实姓名，2-5字，必须含有汉字'})
       return
@@ -143,7 +142,7 @@ export default function AddResumeInfo(){
       return
     }
     if (infoData.tel != inputVal.tel){
-      if(!code){
+      if (!inputVal.code){
         ShowActionModal({ msg: '请正确填写验证码' })
         return
       }
@@ -152,9 +151,8 @@ export default function AddResumeInfo(){
       ShowActionModal({ msg: '请填写真实自我介绍，15-500字，必须含有汉字' })
       return
     }
-    console.error(locationData,'====')
     let params = {
-      code,
+      code: inputVal.code,
       username: inputVal.username,
       tel: inputVal.tel,
       gender: inputVal.gender,
@@ -167,12 +165,10 @@ export default function AddResumeInfo(){
       lat: locationData.latitude,
       lng: locationData.longitude,
       address:locationData.address,
-      adcode: '',
+      adcode: locationData.adcode,
     };
-    console.error(params,'123213')
-    return;
     addResumeAction(params).then(res=>{
-      if(res.errcode == 'ok'){
+      if (res.errcode == 200){
         Taro.navigateBack({delta:1})
       }
     })
@@ -334,7 +330,7 @@ export default function AddResumeInfo(){
               <View className='publish-list-item adressInput' onClick={()=>userChooseArea()}>
                 <Text className='pulish-list-title'>所在地区</Text>
                 <View className='flex'>
-                  <Text className='flexContent'>{locationData && locationData.address}</Text>
+                  <Text className={locationData && locationData.address ? 'flexContent' :'flexContent-no'}>{locationData && locationData.address ? locationData.address:'请选你所在地址'}</Text>
                   <Text className='flexTitle' onClick={(e)=>{e.stopPropagation(),handleGps()}}>获取定位</Text>
                 </View>
               </View>

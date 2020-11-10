@@ -2,7 +2,7 @@
  * @Author: zyb
  * @Date: 2020-11-04 19:51:02
  * @LastEditors: zyb
- * @LastEditTime: 2020-11-06 23:22:56
+ * @LastEditTime: 2020-11-10 10:01:29
  * @Description: 
  */
 import { GETUSERRESUME, SETUSERRESUME, SETINTRODUCE, SETCERTIFICATE, SETPROJECT } from '../constants/resume_data';

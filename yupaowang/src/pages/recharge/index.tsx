@@ -110,7 +110,6 @@ export default function Recharge(){
           }
         },
         fail: (err) => {
-          console.error(err)
           Msg('支付失败')
         },
       })

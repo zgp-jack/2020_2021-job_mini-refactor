@@ -112,7 +112,6 @@ export default function ResumeMap() {
 
   // 用户切换城市
   const userChangeCity = (city: string) => {
-    console.error(city,'111')
     setArea(city)
   }
 
@@ -223,6 +222,8 @@ export default function ResumeMap() {
             location: item.location,
             adcode: item.adcode,
             info: item.district,
+            provice:res.province,
+            city:res.city
           }))
           // dispatch(setArea(item.cityName))
         // }

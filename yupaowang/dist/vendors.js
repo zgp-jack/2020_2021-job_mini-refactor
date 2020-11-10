@@ -12205,7 +12205,7 @@ function getUseResume(data) {
    * @Author: zyb
    * @Date: 2020-11-04 19:51:02
    * @LastEditors: zyb
-   * @LastEditTime: 2020-11-06 23:22:56
+   * @LastEditTime: 2020-11-10 10:01:29
    * @Description:
    */
 function setUseResume(data) {
@@ -12740,7 +12740,7 @@ Object.defineProperty(exports, "__esModule", {
  * @Author: zyb
  * @Date: 2020-11-04 19:51:52
  * @LastEditors: zyb
- * @LastEditTime: 2020-11-06 23:22:31
+ * @LastEditTime: 2020-11-10 10:00:53
  * @Description:
  */
 // 获取找活详情全部数据
@@ -13047,6 +13047,7 @@ function useResume() {
   var initResumeData = function initResumeData() {
     (0, _index.resumeListAction)().then(function (res) {
       if (res.errcode === 200) {
+        debugger;
         // 生日需要单独设置
         var time = void 0;
         if (res.data.info.birthday) {
@@ -13085,15 +13086,15 @@ function useResume() {
         // 组合项目经验对象
         var projectItem = [].concat(_toConsumableArray(sortImageProject), _toConsumableArray(sortNoImageProject));
         // 获取排序后的第一个元素
-        if (new Date(projectItem[0].completion_time).getTime() / 86400000 < parseInt((new Date().getTime() / 86400000).toString())) {
-          // 项目
-          setProjectData([].concat(_toConsumableArray(projectItem)));
-          if (projectItem.length) {
-            projectItem[0].completion_time = 'zhijing';
-          }
-        } else {
-          projectItem[0].completion_time = 'zhijin';
-        }
+        setProjectData([].concat(_toConsumableArray(projectItem)));
+        // if (new Date(projectItem[0].completion_time).getTime() / 86400000 < parseInt(((new Date().getTime()) / 86400000).toString())) {
+        //   // 项目
+        //   if (projectItem.length){
+        //     projectItem[0].completion_time = 'zhijing';
+        //   }
+        // }else{
+        //   projectItem[0].completion_time = 'zhijin';
+        // }
         // 是否有人员信息
         setIs_introduces(res.data.is_introduces);
         //最大项目长度
@@ -15594,8 +15595,8 @@ Object.defineProperty(exports, "__esModule", {
 /*
  * @Author: zyb
  * @Date: 2020-11-03 18:49:37
- * @LastEditors: jsxin
- * @LastEditTime: 2020-11-07 15:49:27
+ * @LastEditors: zyb
+ * @LastEditTime: 2020-11-10 09:34:01
  * @Description:
  */
 // 基础信息默认参数
@@ -15653,7 +15654,8 @@ var INFODATA_DATA = exports.INFODATA_DATA = {
   view_num: '',
   zan_num: '',
   age: '',
-  title: ''
+  title: '',
+  code: ''
 };
 // 人员信息
 var INTRODUCERS_DATA = exports.INTRODUCERS_DATA = {
@@ -17360,7 +17362,6 @@ function getLocation() {
         });
       },
       fail: function fail(err) {
-        console.error(err, 'fail');
         (0, _index4.default)('定位失败,请重新定位');
         reject(err);
       }
