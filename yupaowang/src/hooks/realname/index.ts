@@ -75,7 +75,6 @@ export default function useRealname(){
           birthday: initData.memberExt.birthday || '',
           gender: initData.memberExt.sex || ''
         }
-        console.log(modelData)
         // 设置地图显示的名称
         let area: string = getLongAreaAdname(modelData.address)
         setRealnameArea(area)

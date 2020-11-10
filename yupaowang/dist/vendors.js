@@ -17759,18 +17759,21 @@ function getRequestHeaderInfo() {
   return requestHeader;
 }
 // 配置默认请求参数
-var defaultRequestData = {
-  url: '',
-  method: 'GET',
-  header: getRequestHeaderInfo(),
-  data: {},
-  loading: true,
-  title: '数据加载中...',
-  failToast: true
+var getRequestHeaderInfoAction = function getRequestHeaderInfoAction() {
+  var headers = getRequestHeaderInfo();
+  return {
+    url: '',
+    method: 'GET',
+    header: _extends({}, headers),
+    data: {},
+    loading: true,
+    title: '数据加载中...',
+    failToast: true
+  };
 };
 // 全局通用请求方法
 function doRequestAction(reqData) {
-  var req = _extends({}, defaultRequestData, reqData);
+  var req = _extends({}, getRequestHeaderInfoAction(), reqData);
   if (req.loading) {
     _taroTt2.default.showLoading({
       title: req.title

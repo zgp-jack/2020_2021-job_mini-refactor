@@ -72,6 +72,8 @@ export default function LoginComponent({type = 2}: LoginComponentProps) {
       Taro.setStorageSync(UserInfo, user)
       dispatch(setUserInfo(user))
       if(type === 1) Taro.navigateBack()
+    }else{
+      Msg(res.errmsg)
     }
   }
 

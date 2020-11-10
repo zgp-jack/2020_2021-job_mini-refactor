@@ -452,7 +452,7 @@ export interface UserChangePublishedRecruitStatus extends Result{
 }
 
 // 用户已发布二手交易列表
-export interface UserPublishedUsedLists {
+export interface UserPublishedUsedLists extends Result {
   data: {
     lists: UserPublishedUsedItem[],
     checking_tips: string,

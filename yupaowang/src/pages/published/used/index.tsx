@@ -41,27 +41,37 @@ export default function PublishedUsed() {
     type: id
   })
 
+  // 当redux更新后 ， 立即更新用户数据
+  useEffect(()=>{
+    if(!user.login || loading) return
+    setSearchData({...searchData,mid: user.userId, uuid: user.uuid})
+  }, [user])
+
   // 加载数据类别
   const getPublishedUsedLists = () => {
     setLoading(true)
     userGetPublishedUsedLists(searchData)
       .then(res => {
-        let list = res.data.lists
-        let len = list.length
-        let page = searchData.page
-        setChecktip(res.data.checking_tips)
-        setMore(len ? true : false)
-        if (page === 1) {
-          setLists(list)
-        } else {
-          setLists([...lists, ...list])
+        if(res.errcode == 'ok'){
+          let list = res.data.lists
+          let len = list.length
+          let page = searchData.page
+          setChecktip(res.data.checking_tips)
+          setMore(len ? true : false)
+          if (page === 1) {
+            setLists(list)
+          } else {
+            setLists([...lists, ...list])
+          }
+          if (refresh) {
+            setRefresh(false)
+            Taro.stopPullDownRefresh()
+            Taro.hideNavigationBarLoading()
+          }
+          setLoading(false)
+        }else{
+          Msg(res.errmsg)
         }
-        if (refresh) {
-          setRefresh(false)
-          Taro.stopPullDownRefresh()
-          Taro.hideNavigationBarLoading()
-        }
-        setLoading(false)
       })
       .catch(() => {
         if (refresh) {
@@ -80,6 +90,7 @@ export default function PublishedUsed() {
   }
 
   useEffect(() => {
+    if(!user.login) return
     getPublishedUsedLists()
   }, [searchData])
 

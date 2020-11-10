@@ -25,8 +25,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -42,8 +40,6 @@ var _index = __webpack_require__(/*! ../../config/index */ "./src/config/index.t
 var _index2 = __webpack_require__(/*! ../../utils/helper/index */ "./src/utils/helper/index.ts");
 
 __webpack_require__(/*! ./index.scss */ "./src/pages/getintegral/index.scss");
-
-var _index3 = __webpack_require__(/*! ../../utils/request/index */ "./src/utils/request/index.ts");
 
 var _classnames = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
 
@@ -70,7 +66,7 @@ var GetIntegral = function (_Taro$Component) {
     };
 
     _this.$usedState = ["anonymousState__temp", "ios", "turntable", "IMGCDNURL", "SERVERPHONE"];
-    _this.customComponents = [];
+    _this.customComponents = ["Auth"];
     return _this;
   }
 
@@ -111,17 +107,14 @@ var GetIntegral = function (_Taro$Component) {
 
 
       (0, _taroTt.useEffect)(function () {
-        (0, _index3.memberTurntable)().then(function (res) {
-          if (res.errcode == "ok") {
-            var _res$data = res.data,
-                is_turntable = _res$data.is_turntable,
-                show_turntable = _res$data.show_turntable;
-
-            turntable.showBtn = Number(is_turntable);
-            turntable.show = Number(show_turntable);
-            setTurntable(_extends({}, turntable));
-          }
-        });
+        // memberTurntable().then(res => {
+        //   if (res.errcode == "ok") {
+        //     let { is_turntable, show_turntable } = res.data;
+        //     turntable.showBtn = Number(is_turntable);
+        //     turntable.show = Number(show_turntable);
+        //     setTurntable({ ...turntable });
+        //   }
+        // });
         var system = _taroTt2.default.getSystemInfoSync();
         if (system.platform !== "ios") {
           setIos(false);
