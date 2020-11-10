@@ -61,8 +61,8 @@ var RecruitList = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (RecruitList.__proto__ || Object.getPrototypeOf(RecruitList)).apply(this, arguments));
 
-    _this.$usedState = ["$compid__45", "bottom", "initPage"];
-    _this.customComponents = ["Auth", "CollectionRecruitList"];
+    _this.$usedState = ["$compid__89", "bottom", "initPage"];
+    _this.customComponents = ["CollectionRecruitList"];
     return _this;
   }
 
@@ -81,10 +81,14 @@ var RecruitList = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
+<<<<<<< HEAD
       var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__45"),
+=======
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__89"),
+>>>>>>> 1c741a5b3b1f3bcd562276799913f264f7a35926
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__45 = _genCompid2[0],
-          $compid__45 = _genCompid2[1];
+          $prevCompid__89 = _genCompid2[0],
+          $compid__89 = _genCompid2[1];
 
       var _props = this.__props,
           bottom = _props.bottom,
@@ -190,9 +194,9 @@ var RecruitList = function (_Taro$Component) {
         "data": lists,
         "onHandlerClick": this.anonymousFunc0,
         "recruitNoMoreData": recruitNoMoreData
-      }, $compid__45, $prevCompid__45);
+      }, $compid__89, $prevCompid__89);
       Object.assign(this.__state, {
-        $compid__45: $compid__45
+        $compid__89: $compid__89
       });
       return this.__state;
     }

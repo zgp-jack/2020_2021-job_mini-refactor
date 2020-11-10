@@ -45,6 +45,8 @@ var _index4 = __webpack_require__(/*! ../../../utils/subscribeToNews/index */ ".
 
 var _index5 = __webpack_require__(/*! ../../../utils/v/index */ "./src/utils/v/index.ts");
 
+var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/redux/index.js");
+
 var _index6 = __webpack_require__(/*! ../../../utils/msg/index */ "./src/utils/msg/index.ts");
 
 var _index7 = _interopRequireDefault(_index6);
@@ -75,9 +77,8 @@ var Tabber = function (_Taro$Component) {
       navigationBarTitleText: ''
     };
 
-    _this.$usedState = ["data", "modalData", "loopArray67", "loopArray68", "$compid__61", "$compid__62", "time", "start", "end", "IMGCDNURL", "initInfo", "sourceList", "consumeList", "startType", "modal", "complaintModal", "showTime", "title", "num"];
-    _this.anonymousFunc3Map = {};
-    _this.customComponents = ["Nodata", "Report"];
+    _this.$usedState = ["data", "modalData", "loopArray119", "$compid__87", "$compid__88", "time", "start", "end", "IMGCDNURL", "initInfo", "sourceList", "consumeList", "startType", "modal", "complaintModal", "showTime", "title", "num"];
+    _this.customComponents = ["Auth", "Nodata", "Report"];
     return _this;
   }
 
@@ -90,25 +91,40 @@ var Tabber = function (_Taro$Component) {
   }, {
     key: '_createData',
     value: function _createData() {
-      var _this2 = this;
-
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
 
+<<<<<<< HEAD
       var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__61"),
+=======
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__87"),
+>>>>>>> 1c741a5b3b1f3bcd562276799913f264f7a35926
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__61 = _genCompid2[0],
-          $compid__61 = _genCompid2[1];
+          $prevCompid__87 = _genCompid2[0],
+          $compid__87 = _genCompid2[1];
 
+<<<<<<< HEAD
       var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__62"),
+=======
+      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__88"),
+>>>>>>> 1c741a5b3b1f3bcd562276799913f264f7a35926
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__62 = _genCompid4[0],
-          $compid__62 = _genCompid4[1];
+          $prevCompid__88 = _genCompid4[0],
+          $compid__88 = _genCompid4[1];
+      // 检测用户是否登录
 
+
+<<<<<<< HEAD
       var router = (0, _taroWeapp.useRouter)();
+=======
+      var login = (0, _redux.useSelector)(function (store) {
+        return store.User['login'];
+      });
+      var router = (0, _taroTt.useRouter)();
+>>>>>>> 1c741a5b3b1f3bcd562276799913f264f7a35926
       var _router$params = router.params,
           info = _router$params.info,
           office = _router$params.office;
@@ -329,8 +345,16 @@ var Tabber = function (_Taro$Component) {
 
       (0, _taroWeapp.useEffect)(function () {
         var navigationBarTitleText = initInfo === '0' ? '鱼泡网-积分来源记录' : '鱼泡网-积分消耗记录';
+<<<<<<< HEAD
         _taroWeapp2.default.setNavigationBarTitle({ title: navigationBarTitleText });
         // 获取现在时间
+=======
+        _taroTt2.default.setNavigationBarTitle({ title: navigationBarTitleText });
+        // 如果用户没有登录 直接断掉请求
+        if (!login) {
+          return;
+        } // 获取现在时间
+>>>>>>> 1c741a5b3b1f3bcd562276799913f264f7a35926
         var newTime = new Date();
         var nowyear = newTime.getFullYear();
         var nowmonth = newTime.getMonth() + 1;
@@ -391,7 +415,14 @@ var Tabber = function (_Taro$Component) {
           }
         }
       }, [initInfo]);
+<<<<<<< HEAD
       (0, _taroWeapp.useEffect)(function () {
+=======
+      (0, _taroTt.useEffect)(function () {
+        if (!login) {
+          return;
+        }
+>>>>>>> 1c741a5b3b1f3bcd562276799913f264f7a35926
         if (params.flag) {
           if (initInfo === '0') {
             integralSourceLists();
@@ -677,7 +708,7 @@ var Tabber = function (_Taro$Component) {
         (0, _index.publishComplainAction)(params).then(function (res) {
           if (res.errcode === 'ok') {
             (0, _index4.SubscribeToNews)('complain', function () {
-              (0, _index6.SubPopup)({
+              (0, _index6.showModalTip)({
                 tips: res.errmsg,
                 callback: function callback() {
                   setComplaintModal(false);
@@ -695,15 +726,21 @@ var Tabber = function (_Taro$Component) {
         return handleClick(e);
       };
       this.anonymousFunc2 = handleJump;
-      this.anonymousFunc4 = function () {
+      this.anonymousFunc3 = function () {
         setModal(false);
       };
+<<<<<<< HEAD
       this.anonymousFunc5 = function () {
         _taroWeapp2.default.makePhoneCall({ phoneNumber: modalData.user_mobile });
+=======
+      this.anonymousFunc4 = function () {
+        _taroTt2.default.makePhoneCall({ phoneNumber: modalData.user_mobile });
+>>>>>>> 1c741a5b3b1f3bcd562276799913f264f7a35926
       };
-      this.anonymousFunc6 = function () {
+      this.anonymousFunc5 = function () {
         return handleComplaint(modalData.id);
       };
+<<<<<<< HEAD
       var loopArray67 = data.lists.map(function (item, index) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
@@ -720,32 +757,39 @@ var Tabber = function (_Taro$Component) {
         };
       });
       var loopArray68 = initInfo === '1' && modal && modalData ? modalData.classifyName.map(function (v, i) {
+=======
+      var loopArray119 = initInfo === '1' && modal && modalData ? modalData.classifyName.map(function (v, i) {
+>>>>>>> 1c741a5b3b1f3bcd562276799913f264f7a35926
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
-        var $loopState__temp4 = initInfo === '1' && modal && modalData ? i + i : null;
+        var $loopState__temp2 = initInfo === '1' && modal && modalData ? i + i : null;
         return {
-          $loopState__temp4: $loopState__temp4,
+          $loopState__temp2: $loopState__temp2,
           $original: v.$original
         };
       }) : [];
       !data.lists.length && _taroWeapp.propsManager.set({
         "text": initInfo === '0' ? '暂无积分来源记录' : '暂无积分消耗记录'
+<<<<<<< HEAD
       }, $compid__61, $prevCompid__61);
       complaintModal && _taroWeapp.propsManager.set({
+=======
+      }, $compid__87, $prevCompid__87);
+      complaintModal && _taroTt.propsManager.set({
+>>>>>>> 1c741a5b3b1f3bcd562276799913f264f7a35926
         "display": complaintModal,
         "textarea": textarea,
         "handleTextarea": handleTextarea,
         "setComplaintModal": setComplaintModal,
         "handleSubmit": handleSubmit
-      }, $compid__62, $prevCompid__62);
+      }, $compid__88, $prevCompid__88);
       Object.assign(this.__state, {
         data: data,
         modalData: modalData,
-        loopArray67: loopArray67,
-        loopArray68: loopArray68,
-        $compid__61: $compid__61,
-        $compid__62: $compid__62,
+        loopArray119: loopArray119,
+        $compid__87: $compid__87,
+        $compid__88: $compid__88,
         time: time,
         start: start,
         end: end,
@@ -779,16 +823,8 @@ var Tabber = function (_Taro$Component) {
     }
   }, {
     key: 'anonymousFunc3',
-    value: function anonymousFunc3(_$indexKey) {
-      var _anonymousFunc3Map;
-
+    value: function anonymousFunc3(e) {
       ;
-
-      for (var _len = arguments.length, e = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-        e[_key - 1] = arguments[_key];
-      }
-
-      return this.anonymousFunc3Map[_$indexKey] && (_anonymousFunc3Map = this.anonymousFunc3Map)[_$indexKey].apply(_anonymousFunc3Map, e);
     }
   }, {
     key: 'anonymousFunc4',
@@ -800,17 +836,12 @@ var Tabber = function (_Taro$Component) {
     value: function anonymousFunc5(e) {
       ;
     }
-  }, {
-    key: 'anonymousFunc6',
-    value: function anonymousFunc6(e) {
-      ;
-    }
   }]);
 
   return Tabber;
 }(_taroWeapp2.default.Component);
 
-Tabber.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6"];
+Tabber.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5"];
 Tabber.$$componentPath = "pages/integral/tabber/index";
 Tabber.config = { navigationBarTitleText: '' };
 exports.default = Tabber;

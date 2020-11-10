@@ -13088,6 +13088,10 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 function useResume() {
   var dispatch = (0, _redux.useDispatch)();
+  // 检测用户是否登录
+  var login = (0, _redux.useSelector)(function (store) {
+    return store.User['login'];
+  });
   // 获取找活名片信息
   var resumeData = (0, _redux.useSelector)(function (state) {
     return state.resumeData;
@@ -13180,7 +13184,7 @@ function useResume() {
 
   (0, _taroWeapp.useEffect)(function () {
     initResumeData();
-  }, []);
+  }, [login]);
   // 当redux数据发生改变后， 将自动更新到页面上
   (0, _taroWeapp.useEffect)(function () {
     if (!resumeData.isSet) return;
@@ -13191,6 +13195,7 @@ function useResume() {
   }, [resumeData]);
   // 请求找活详情数据
   var initResumeData = function initResumeData() {
+    if (!login) return;
     (0, _index.resumeListAction)().then(function (res) {
       if (res.errcode === 200) {
         // debugger

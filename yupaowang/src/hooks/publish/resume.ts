@@ -9,6 +9,8 @@ import Msg, { ShowActionModal} from '../../utils/msg'
 
 export default function useResume(){
   const dispatch = useDispatch();
+  // 检测用户是否登录
+  const login: boolean = useSelector<any, boolean>(store => store.User['login'])
   // 获取找活名片信息
   const resumeData: useResumeType = useSelector<any, useResumeType>(state => state.resumeData)
   // 基础信息
@@ -38,7 +40,7 @@ export default function useResume(){
   // 项目列表
   useEffect(()=>{
     initResumeData()
-  },[])
+  },[login])
 
   // 当redux数据发生改变后， 将自动更新到页面上
   useEffect(()=>{
@@ -51,6 +53,7 @@ export default function useResume(){
 
   // 请求找活详情数据
   const initResumeData = () => {
+    if (!login) return
     resumeListAction().then(res => {
       if (res.errcode === 200) {
         // debugger

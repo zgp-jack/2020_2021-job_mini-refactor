@@ -89,17 +89,29 @@ var Recruit = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
+<<<<<<< HEAD
       var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__15"),
+=======
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__15"),
+>>>>>>> 1c741a5b3b1f3bcd562276799913f264f7a35926
           _genCompid2 = _slicedToArray(_genCompid, 2),
           $prevCompid__15 = _genCompid2[0],
           $compid__15 = _genCompid2[1];
 
+<<<<<<< HEAD
       var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__16"),
+=======
+      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__16"),
+>>>>>>> 1c741a5b3b1f3bcd562276799913f264f7a35926
           _genCompid4 = _slicedToArray(_genCompid3, 2),
           $prevCompid__16 = _genCompid4[0],
           $compid__16 = _genCompid4[1];
 
+<<<<<<< HEAD
       var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__17"),
+=======
+      var _genCompid5 = (0, _taroTt.genCompid)(__prefix + "$compid__17"),
+>>>>>>> 1c741a5b3b1f3bcd562276799913f264f7a35926
           _genCompid6 = _slicedToArray(_genCompid5, 2),
           $prevCompid__17 = _genCompid6[0],
           $compid__17 = _genCompid6[1];
@@ -292,11 +304,19 @@ var Recruit = function (_Taro$Component) {
         "setRemark": anonymousState__temp,
         "setSearchData": anonymousState__temp2
       }, $compid__15, $prevCompid__15);
+<<<<<<< HEAD
       _taroWeapp.propsManager.set({
         "data": condition,
         "setSearchData": anonymousState__temp3
       }, $compid__16, $prevCompid__16);
       _taroWeapp.propsManager.set({
+=======
+      _taroTt.propsManager.set({
+        "data": condition,
+        "setSearchData": anonymousState__temp3
+      }, $compid__16, $prevCompid__16);
+      _taroTt.propsManager.set({
+>>>>>>> 1c741a5b3b1f3bcd562276799913f264f7a35926
         "data": lists,
         "hasMore": hasMore
       }, $compid__17, $prevCompid__17);
