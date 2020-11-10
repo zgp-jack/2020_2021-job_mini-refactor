@@ -10,7 +10,8 @@ import {ResumeList as ResumeListType} from '../../../utils/request/index.d'
 import {conditionType} from '../../recruit/lists'
 import {AreaPickerKey, ClassifyPickerKey, MemberPickerKey, ResumeFilterPickerKey} from '../../../config/pages/lists'
 import {UserListChooseCity} from '../../../config/store'
-import {getResumeList} from '../../../utils/request'
+import { getResumeList } from '../../../utils/request'
+import { PUBLISHRESUME } from '../../../config'
 import './index.scss'
 
 export default function ResumeLists() {
@@ -167,7 +168,7 @@ export default function ResumeLists() {
           src='http://cdn.yupao.com/miniprogram/images/resume-list-rules-btn.png'
         />
       </View>
-      <View className='publish-list-btn' onClick={() => userRouteJump(`/pages/resume/publish/index`)}>发布找活</View>
+      <View className='publish-list-btn' onClick={() => userRouteJump(PUBLISHRESUME)}>发布找活</View>
     </View>
   )
 }

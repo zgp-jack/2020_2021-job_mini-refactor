@@ -44,6 +44,14 @@ export const ProjectListMaxNum: number = 5
 export const ProjectImgMaxNum: number = 6
 
 // ! 页面内常用路径配置
+// * 首页
+export const INDEXPATH: string = '/pages/index/index'
+// * 发布招工页面
+export const PUBLISHRECRUIT: string = '/pages/recruit/publish/index'
+// * 发布找活页面
+export const PUBLISHRESUME: string = '/pages/resume/publish/index'
+// * 发布二手交易
+export const PUBLISHUSED: string = '/pages/used/publish/index'
 // * 实名认证页面
 export const REALNAMEPATH: string = '/pages/realname/index'
 // * 授权登录页面

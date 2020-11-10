@@ -100,7 +100,7 @@ export function userCancelAuth():void{
 }
 
 // 用户获取定位
-export function getLocation(){
+export function getLocation(): Promise<LocationDataType>{
   Msg('位置获取中...');
   return new Promise(function (resolve, reject) {
     const myAmapFun = new AMapWX.AMapWX({

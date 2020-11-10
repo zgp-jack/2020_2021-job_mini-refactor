@@ -12374,6 +12374,14 @@ var ProjectListMaxNum = exports.ProjectListMaxNum = 5;
 // * 找活项目经验图片最大数量
 var ProjectImgMaxNum = exports.ProjectImgMaxNum = 6;
 // ! 页面内常用路径配置
+// * 首页
+var INDEXPATH = exports.INDEXPATH = '/pages/index/index';
+// * 发布招工页面
+var PUBLISHRECRUIT = exports.PUBLISHRECRUIT = '/pages/recruit/publish/index';
+// * 发布找活页面
+var PUBLISHRESUME = exports.PUBLISHRESUME = '/pages/resume/publish/index';
+// * 发布二手交易
+var PUBLISHUSED = exports.PUBLISHUSED = '/pages/used/publish/index';
 // * 实名认证页面
 var REALNAMEPATH = exports.REALNAMEPATH = '/pages/realname/index';
 // * 授权登录页面

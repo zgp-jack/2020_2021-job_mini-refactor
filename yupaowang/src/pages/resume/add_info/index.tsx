@@ -225,7 +225,7 @@ export default function AddResumeInfo(){
           getLocation().then(res=>{
             console.log(res,'1111');
             if (res) {
-              // setLocationData(res);
+              setLocationData(res);
             }
           })
         }

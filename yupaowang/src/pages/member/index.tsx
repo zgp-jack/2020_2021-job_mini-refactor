@@ -3,7 +3,7 @@ import { View, Image, Text } from '@tarojs/components'
 import { useSelector, useDispatch } from '@tarojs/redux'
 import { getMemberInfo } from '../../utils/request'
 import { MemberInfo } from '../../utils/request/index.d'
-import { IMGCDNURL, AUTHPATH, CODEAUTHPATH } from '../../config'
+import { IMGCDNURL, AUTHPATH, CODEAUTHPATH, PUBLISHRESUME } from '../../config'
 import { setMemberInfo } from '../../actions/member'
 import { ShowActionModal } from '../../utils/msg'
 import { UserMemberInfo } from '../../reducers/member'
@@ -117,7 +117,7 @@ export default function Member(){
             <Text className='member-list-title'>我的招工</Text>
             {jobNumber && <Text className='member-list-tips'>状态有更新</Text>}
           </View>
-          <View className='member-list-item'>
+          <View className='member-list-item' onClick={() => userRouteJump(PUBLISHRESUME)}>
             <Image className='member-list-icon' src={ IMGCDNURL + 'lpy/ucenter/newcenter-resume.png'} />
             <Text className='member-list-title'>我的找活名片</Text>
             <Text className='member-list-tips'>{model && model.member.resume_status.resume_tips_string }</Text>
