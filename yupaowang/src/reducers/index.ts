@@ -1,8 +1,8 @@
 /*
  * @Author: zyb
  * @Date: 2020-11-03 14:36:47
- * @LastEditors: zyb
- * @LastEditTime: 2020-11-04 20:44:09
+ * @LastEditors: jsxin
+ * @LastEditTime: 2020-11-09 17:11:58
  * @Description: 
  */
 import { combineReducers } from 'redux'
@@ -33,10 +33,6 @@ export default combineReducers({
   member,
   realname,
   resumeAddInfo,
-<<<<<<< HEAD
-  PositionStatus
-=======
   PositionStatus,
   resumeData
->>>>>>> 13c03d01952af98e14b9d9fac077c9afed1a5ccd
 })

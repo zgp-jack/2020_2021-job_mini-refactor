@@ -1,20 +1,3 @@
-/*
- * @Author: zyb
- * @Date: 2020-11-03 15:03:11
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
- * @LastEditors: zyb
- * @LastEditTime: 2020-11-09 17:14:36
-=======
->>>>>>> c4934cd3ef6271dedb29cefa5b63959eded6b62a
->>>>>>> ef05e55da45d0296166b90ea66d29fd7eab0550e
- * @LastEditors: zyb
- * @LastEditTime: 2020-11-06 11:00:19
- * @Description: 
- */
 import Taro,{ useState,useDidShow, useEffect } from '@tarojs/taro'
 import { resumeListAction, resumesEditEndAction } from '../../utils/request'
 import { resIntroduceObj, resInfoObj, resProjectArr, resCertificatesArr, resume_topObj, resTop_statusArr } from '../../utils/request/index.d';
@@ -52,9 +35,6 @@ export default function useResume(){
   const [selectDataIndex, setSelectDataIndex] = useState<number>(0);
   // 工作状态
   const [check, setCheck] = useState<string>('');
-  // 页面显示项目
-  const [ProjectList, setProjectList] = useState<resProjectArr[]>([]);
-  // 页面显示技能
   // 项目列表
   useEffect(()=>{
     initResumeData()
@@ -111,11 +91,9 @@ export default function useResume(){
         // 组合项目经验对象
         let projectItem = [...sortImageProject, ...sortNoImageProject];
         // 获取排序后的第一个元素
-        let projectOne = projectItem[0];
         if (new Date(projectItem[0].completion_time).getTime() / 86400000 < parseInt(((new Date().getTime()) / 86400000).toString())) {
           // 项目
           setProjectData([...projectItem]);
-          setProjectList([projectOne])
           if (projectItem.length){
             projectItem[0].completion_time = 'zhijing';
           }
@@ -178,7 +156,6 @@ export default function useResume(){
       Taro.showActionSheet({
         itemList: selectdataList,
         success(res:any) {
-          console.error(res,'res')
           if (selectDataIndex == res.tapIndex) {
             return
           }
