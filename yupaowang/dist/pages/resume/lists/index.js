@@ -43,6 +43,8 @@ var _store = __webpack_require__(/*! ../../../config/store */ "./src/config/stor
 
 var _index = __webpack_require__(/*! ../../../utils/request/index */ "./src/utils/request/index.ts");
 
+var _index2 = __webpack_require__(/*! ../../../config/index */ "./src/config/index.ts");
+
 __webpack_require__(/*! ./index.scss */ "./src/pages/resume/lists/index.scss");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -70,7 +72,7 @@ var ResumeLists = function (_Taro$Component) {
       backgroundTextStyle: "dark"
     };
 
-    _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "anonymousState__temp3", "anonymousState__temp4", "$compid__22", "$compid__23", "$compid__24", "scrollTop", "refresh"];
+    _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "anonymousState__temp3", "anonymousState__temp4", "$compid__78", "$compid__79", "$compid__80", "scrollTop", "refresh"];
     _this.customComponents = ["Search", "ResumeCondition", "WechatNotice", "ResumeList"];
     return _this;
   }
@@ -90,20 +92,20 @@ var ResumeLists = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__22"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__78"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__22 = _genCompid2[0],
-          $compid__22 = _genCompid2[1];
+          $prevCompid__78 = _genCompid2[0],
+          $compid__78 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__23"),
+      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__79"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__23 = _genCompid4[0],
-          $compid__23 = _genCompid4[1];
+          $prevCompid__79 = _genCompid4[0],
+          $compid__79 = _genCompid4[1];
 
-      var _genCompid5 = (0, _taroTt.genCompid)(__prefix + "$compid__24"),
+      var _genCompid5 = (0, _taroTt.genCompid)(__prefix + "$compid__80"),
           _genCompid6 = _slicedToArray(_genCompid5, 2),
-          $prevCompid__24 = _genCompid6[0],
-          $compid__24 = _genCompid6[1];
+          $prevCompid__80 = _genCompid6[0],
+          $compid__80 = _genCompid6[1];
       // 设置字段默认值
 
 
@@ -297,30 +299,30 @@ var ResumeLists = function (_Taro$Component) {
       var anonymousState__temp4 = (0, _taroTt.internal_inline_style)({ height: '8px' });
       this.anonymousFunc2 = handleClickToRankRules;
       this.anonymousFunc3 = function () {
-        return userRouteJump("/pages/resume/publish/index");
+        return userRouteJump(_index2.PUBLISHRESUME);
       };
       _taroTt.propsManager.set({
         "placeholder": '\u627E\u5DE5\u4EBA\uFF0C\u627E\u961F\u4F0D\uFF0C\u627E\u73ED\u7EC4',
         "value": "",
         "setRemark": anonymousState__temp,
         "setSearchData": anonymousState__temp2
-      }, $compid__22, $prevCompid__22);
+      }, $compid__78, $prevCompid__78);
       _taroTt.propsManager.set({
         "data": condition,
         "setSearchData": anonymousState__temp3
-      }, $compid__23, $prevCompid__23);
+      }, $compid__79, $prevCompid__79);
       _taroTt.propsManager.set({
         "data": lists,
         "hasMore": hasMore
-      }, $compid__24, $prevCompid__24);
+      }, $compid__80, $prevCompid__80);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
         anonymousState__temp2: anonymousState__temp2,
         anonymousState__temp3: anonymousState__temp3,
         anonymousState__temp4: anonymousState__temp4,
-        $compid__22: $compid__22,
-        $compid__23: $compid__23,
-        $compid__24: $compid__24,
+        $compid__78: $compid__78,
+        $compid__79: $compid__79,
+        $compid__80: $compid__80,
         scrollTop: scrollTop,
         refresh: refresh
       });

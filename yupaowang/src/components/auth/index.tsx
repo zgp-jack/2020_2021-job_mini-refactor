@@ -8,6 +8,7 @@ import Msg, { errMsg } from '../../utils/msg'
 import { useDispatch, useSelector } from '@tarojs/redux'
 import { setUserInfo } from '../../actions/user'
 import { UserInfo } from '../../config/store'
+import LoginComponet from '../login/index'
 import { userCancelAuth as userCancelAuthAction } from '../../utils/helper'
 import './index.scss'
 
@@ -137,6 +138,7 @@ export default function Auth({ page = false, callback, userCancelAuth }: PROPS){
       </View>
     </View>
     }
+      {!ISWEIXIN && !login && <LoginComponet />}
     </Block>
   )
 }

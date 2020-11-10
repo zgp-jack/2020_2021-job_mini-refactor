@@ -45,6 +45,8 @@ var _store = __webpack_require__(/*! ../../../config/store */ "./src/config/stor
 
 var _index2 = __webpack_require__(/*! ../../../utils/helper/index */ "./src/utils/helper/index.ts");
 
+var _index3 = __webpack_require__(/*! ../../../config/index */ "./src/config/index.ts");
+
 var _lists = __webpack_require__(/*! ../../../config/pages/lists */ "./src/config/pages/lists.ts");
 
 __webpack_require__(/*! ./index.scss */ "./src/pages/recruit/lists/index.scss");
@@ -67,7 +69,7 @@ var Recruit = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (Recruit.__proto__ || Object.getPrototypeOf(Recruit)).apply(this, arguments));
 
-    _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "anonymousState__temp3", "anonymousState__temp4", "$compid__15", "$compid__16", "$compid__17", "scrollTop", "refresh"];
+    _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "anonymousState__temp3", "anonymousState__temp4", "$compid__81", "$compid__82", "$compid__83", "scrollTop", "refresh"];
     _this.customComponents = ["Search", "RecruitCondition", "WechatNotice", "RecruitList"];
     return _this;
   }
@@ -87,20 +89,20 @@ var Recruit = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__15"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__81"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__15 = _genCompid2[0],
-          $compid__15 = _genCompid2[1];
+          $prevCompid__81 = _genCompid2[0],
+          $compid__81 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__16"),
+      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__82"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__16 = _genCompid4[0],
-          $compid__16 = _genCompid4[1];
+          $prevCompid__82 = _genCompid4[0],
+          $compid__82 = _genCompid4[1];
 
-      var _genCompid5 = (0, _taroTt.genCompid)(__prefix + "$compid__17"),
+      var _genCompid5 = (0, _taroTt.genCompid)(__prefix + "$compid__83"),
           _genCompid6 = _slicedToArray(_genCompid5, 2),
-          $prevCompid__17 = _genCompid6[0],
-          $compid__17 = _genCompid6[1];
+          $prevCompid__83 = _genCompid6[0],
+          $compid__83 = _genCompid6[1];
       // 输入关键词 没搜索 备份
 
 
@@ -236,7 +238,7 @@ var Recruit = function (_Taro$Component) {
       };
       // * 发布招工
       var userPublishRecruit = function userPublishRecruit() {
-        _taroTt2.default.navigateTo({ url: '/pages/recruit/publish/index' });
+        _taroTt2.default.navigateTo({ url: _index3.PUBLISHRECRUIT });
       };
       // * 更新筛选条件
       var setSearchDataAction = function setSearchDataAction(type, id, text) {
@@ -289,23 +291,23 @@ var Recruit = function (_Taro$Component) {
         "value": "",
         "setRemark": anonymousState__temp,
         "setSearchData": anonymousState__temp2
-      }, $compid__15, $prevCompid__15);
+      }, $compid__81, $prevCompid__81);
       _taroTt.propsManager.set({
         "data": condition,
         "setSearchData": anonymousState__temp3
-      }, $compid__16, $prevCompid__16);
+      }, $compid__82, $prevCompid__82);
       _taroTt.propsManager.set({
         "data": lists,
         "hasMore": hasMore
-      }, $compid__17, $prevCompid__17);
+      }, $compid__83, $prevCompid__83);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
         anonymousState__temp2: anonymousState__temp2,
         anonymousState__temp3: anonymousState__temp3,
         anonymousState__temp4: anonymousState__temp4,
-        $compid__15: $compid__15,
-        $compid__16: $compid__16,
-        $compid__17: $compid__17,
+        $compid__81: $compid__81,
+        $compid__82: $compid__82,
+        $compid__83: $compid__83,
         scrollTop: scrollTop,
         refresh: refresh
       });
