@@ -1,10 +1,11 @@
-import Taro, { useDidShow, useEffect, useState, Config, usePullDownRefresh } from '@tarojs/taro'
-import { View, Text, Button, Image } from '@tarojs/components'
+import Taro, { useDidShow, useState, Config, usePullDownRefresh } from '@tarojs/taro'
+import { View, Text, Button, Image, Block } from '@tarojs/components'
 import { IMGCDNURL, ISCANSHARE } from '../../../config'
 import { AtProgress } from 'taro-ui'
 import Imglist from '../../../components/imglist'
 import useResume from '../../../hooks/publish/resume'
 import { useSelector } from '@tarojs/redux'
+import Auth from '../../../components/auth'
 import './index.scss'
 
 export default function ResumePublish(){
@@ -34,6 +35,8 @@ export default function ResumePublish(){
     Taro.navigateTo({url: url})
   }
   return (
+    <Block>
+    <Auth />
     <View className='resume-container'>
       <View className='resume-tips-header'>请完善以下信息</View>
       <View className='resume-content'>
@@ -366,6 +369,7 @@ export default function ResumePublish(){
         }
       </View>
     </View>
+    </Block>
   )
 }
 

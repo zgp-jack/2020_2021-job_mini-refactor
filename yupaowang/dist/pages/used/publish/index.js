@@ -363,8 +363,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-// import '../../recruit/publish/index.scss'
-
 
 var UsedPublish = function (_Taro$Component) {
   _inherits(UsedPublish, _Taro$Component);
@@ -377,7 +375,7 @@ var UsedPublish = function (_Taro$Component) {
     _this.$usedState = ["initModel", "loopArray45", "loopArray46", "$compid__40", "$compid__41", "parentCurrent", "model", "classifyName", "areaProvince", "areaCity", "pIndex", "cIndex", "cityName", "userTel", "text"];
     _this.anonymousFunc1Map = {};
     _this.anonymousFunc2Map = {};
-    _this.customComponents = ["AtDrawer", "WordsTotal"];
+    _this.customComponents = ["Auth", "AtDrawer", "WordsTotal"];
     return _this;
   }
 

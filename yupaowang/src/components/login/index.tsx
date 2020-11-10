@@ -12,7 +12,14 @@ import { INDEXPATH } from '../../config'
 import { userAccountLogin, userTelCodeLogin } from '../../utils/request'
 import './index.scss'
 
-export default function LoginComponent() {
+// 使用type来区分当前授权模式
+// 1 跳转登录 跳转到登录页面 成功之后返回上一页
+// 2 页面登录  登录成功之后直接隐藏当前授权框
+interface LoginComponentProps {
+  type?: number
+}
+
+export default function LoginComponent({type = 2}: LoginComponentProps) {
   const dispatch = useDispatch()
   // 声明登录方式变量
   const codeLogin: string = 'code-login'
@@ -64,7 +71,7 @@ export default function LoginComponent() {
       }
       Taro.setStorageSync(UserInfo, user)
       dispatch(setUserInfo(user))
-      Taro.navigateBack()
+      if(type === 1) Taro.navigateBack()
     }
   }
 

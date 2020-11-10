@@ -3,7 +3,6 @@ import { View } from '@tarojs/components'
 import CollectionRecruitList from '../collectionRecruitList';
 import { getCollectionRecruitListData, recruitListCancelCollectionAction } from '../../../utils/request'
 import {  CollectionRecruitListDataList } from '../../../utils/request/index.d'
-import Auth from '../../../components/auth'
 import { useSelector } from '@tarojs/redux'
 import './index.scss'
 
@@ -82,7 +81,6 @@ export default function RecruitList({ bottom, initPage}: PROPS) {
   }
   return (
     <View className='recruit-container'>
-      <Auth />
         <View className='recruit-lists-containerbox'>
         <CollectionRecruitList  data={lists} onHandlerClick={recruitListHandler} recruitNoMoreData={recruitNoMoreData}/>
         </View>

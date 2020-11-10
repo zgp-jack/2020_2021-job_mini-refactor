@@ -8,7 +8,8 @@ import classnames from 'classnames'
 import { User } from '../../../reducers/user'
 import Nodata from '../../../components/nodata'
 import './index.scss'
-import { IMGCDNURL, SERVERPHONE } from '../../../config'
+import Auth from '../../../components/auth'
+import { IMGCDNURL } from '../../../config'
 import Msg from '../../../utils/msg'
 
 export interface searchDataType {
@@ -137,6 +138,8 @@ export default function PublishedUsed() {
   }
 
   return (
+    <Block>
+    <Auth />
     <View className='user-published-container'>
       <View className='user-published-header'>
         {HeaderList.map(item => (
@@ -195,6 +198,7 @@ export default function PublishedUsed() {
         }
       </ScrollView>
     </View>
+    </Block>
   )
 }
 

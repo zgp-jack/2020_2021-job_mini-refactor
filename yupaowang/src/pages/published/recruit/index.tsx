@@ -8,6 +8,7 @@ import classnames from 'classnames'
 import { User } from '../../../reducers/user'
 import Nodata from '../../../components/nodata'
 import Tabbar from '../../../components/tabbar'
+import Auth from '../../../components/auth'
 import './index.scss'
 import { IMGCDNURL, SERVERPHONE } from '../../../config'
 import Msg from '../../../utils/msg'
@@ -208,6 +209,7 @@ export default function PublishedRecruit(){
   }
   return (
     <Block>
+      <Auth />
       <View className='user-published-container'>
         <View className='user-published-header'>
           {HeaderList.map(item => (

@@ -72,7 +72,7 @@ var ResumeLists = function (_Taro$Component) {
       backgroundTextStyle: "dark"
     };
 
-    _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "anonymousState__temp3", "anonymousState__temp4", "$compid__78", "$compid__79", "$compid__80", "scrollTop", "refresh"];
+    _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "anonymousState__temp3", "anonymousState__temp4", "$compid__22", "$compid__23", "$compid__24", "scrollTop", "refresh"];
     _this.customComponents = ["Search", "ResumeCondition", "WechatNotice", "ResumeList"];
     return _this;
   }
@@ -92,20 +92,20 @@ var ResumeLists = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__78"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__22"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__78 = _genCompid2[0],
-          $compid__78 = _genCompid2[1];
+          $prevCompid__22 = _genCompid2[0],
+          $compid__22 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__79"),
+      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__23"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__79 = _genCompid4[0],
-          $compid__79 = _genCompid4[1];
+          $prevCompid__23 = _genCompid4[0],
+          $compid__23 = _genCompid4[1];
 
-      var _genCompid5 = (0, _taroTt.genCompid)(__prefix + "$compid__80"),
+      var _genCompid5 = (0, _taroTt.genCompid)(__prefix + "$compid__24"),
           _genCompid6 = _slicedToArray(_genCompid5, 2),
-          $prevCompid__80 = _genCompid6[0],
-          $compid__80 = _genCompid6[1];
+          $prevCompid__24 = _genCompid6[0],
+          $compid__24 = _genCompid6[1];
       // 设置字段默认值
 
 
@@ -306,23 +306,23 @@ var ResumeLists = function (_Taro$Component) {
         "value": "",
         "setRemark": anonymousState__temp,
         "setSearchData": anonymousState__temp2
-      }, $compid__78, $prevCompid__78);
+      }, $compid__22, $prevCompid__22);
       _taroTt.propsManager.set({
         "data": condition,
         "setSearchData": anonymousState__temp3
-      }, $compid__79, $prevCompid__79);
+      }, $compid__23, $prevCompid__23);
       _taroTt.propsManager.set({
         "data": lists,
         "hasMore": hasMore
-      }, $compid__80, $prevCompid__80);
+      }, $compid__24, $prevCompid__24);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
         anonymousState__temp2: anonymousState__temp2,
         anonymousState__temp3: anonymousState__temp3,
         anonymousState__temp4: anonymousState__temp4,
-        $compid__78: $compid__78,
-        $compid__79: $compid__79,
-        $compid__80: $compid__80,
+        $compid__22: $compid__22,
+        $compid__23: $compid__23,
+        $compid__24: $compid__24,
         scrollTop: scrollTop,
         refresh: refresh
       });
