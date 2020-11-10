@@ -11,7 +11,7 @@ import Profession from '../../../components/profession'
 import WordsTotal from '../../../components/wordstotal'
 import useCode from '../../../hooks/code'
 import Msg,{ ShowActionModal } from '../../../utils/msg';
-import { isChinese, isPhone } from '../../../utils/v';
+import { isChinese, isPhone, allChinese } from '../../../utils/v';
 import { getLocation } from '../../../utils/helper';
 import { location } from './data';
 import { LocationDataType } from './index.d';
@@ -133,8 +133,8 @@ export default function AddResumeInfo(){
   // 提交
   const handelSubmit =()=>{
     console.log(inputVal,'ndksandjks')
-    if (!inputVal.username || inputVal.username.length < 2 || inputVal.username.length > 5 || !isChinese(inputVal.username)){
-      ShowActionModal({msg: '请填写真实姓名，2-5字，必须含有汉字'})
+    if (!inputVal.username || inputVal.username.length < 2 || inputVal.username.length > 5 || !allChinese(inputVal.username)){
+      ShowActionModal({ msg: '请输入2~5字纯中文姓名'})
       return
     }
     if (!isPhone(inputVal.tel)){
@@ -170,6 +170,8 @@ export default function AddResumeInfo(){
     addResumeAction(params).then(res=>{
       if (res.errcode == 200){
         Taro.navigateBack({delta:1})
+      }else{
+
       }
     })
     .catch(() => {

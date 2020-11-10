@@ -13047,7 +13047,7 @@ function useResume() {
   var initResumeData = function initResumeData() {
     (0, _index.resumeListAction)().then(function (res) {
       if (res.errcode === 200) {
-        debugger;
+        // debugger
         // 生日需要单独设置
         var time = void 0;
         if (res.data.info.birthday) {
@@ -13086,15 +13086,17 @@ function useResume() {
         // 组合项目经验对象
         var projectItem = [].concat(_toConsumableArray(sortImageProject), _toConsumableArray(sortNoImageProject));
         // 获取排序后的第一个元素
+        if (projectItem.length) {
+          if (new Date(projectItem[0].completion_time).getTime() / 86400000 < parseInt((new Date().getTime() / 86400000).toString())) {
+            // 项目
+            if (projectItem.length) {
+              projectItem[0].completion_timeTitle = 'zhijing';
+            }
+          } else {
+            projectItem[0].completion_timeTitle = 'zhijin';
+          }
+        }
         setProjectData([].concat(_toConsumableArray(projectItem)));
-        // if (new Date(projectItem[0].completion_time).getTime() / 86400000 < parseInt(((new Date().getTime()) / 86400000).toString())) {
-        //   // 项目
-        //   if (projectItem.length){
-        //     projectItem[0].completion_time = 'zhijing';
-        //   }
-        // }else{
-        //   projectItem[0].completion_time = 'zhijin';
-        // }
         // 是否有人员信息
         setIs_introduces(res.data.is_introduces);
         //最大项目长度
@@ -19038,6 +19040,7 @@ exports.isType = isType;
 exports.isIos = isIos;
 exports.isRequireLen = isRequireLen;
 exports.isChinese = isChinese;
+exports.allChinese = allChinese;
 
 var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
 
@@ -19055,7 +19058,7 @@ function isPhone(tel) {
  * @Author: zyb
  * @Date: 2020-11-03 09:23:50
  * @LastEditors: zyb
- * @LastEditTime: 2020-11-05 11:51:03
+ * @LastEditTime: 2020-11-10 11:53:46
  * @Description:
  */
 function isNumber(num) {
@@ -19130,6 +19133,14 @@ function isRequireLen(str) {
 // 含有中文
 function isChinese(str) {
   var reg = new RegExp('[\\u4E00-\\u9FFF]+', "g");
+  if (reg.test(str)) {
+    return true;
+  }
+  return false;
+}
+// 2-5汉字
+function allChinese(str) {
+  var reg = new RegExp('^[\u4E00-\u9FA5]{2,5}$');
   if (reg.test(str)) {
     return true;
   }

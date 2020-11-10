@@ -53,7 +53,7 @@ export default function useResume(){
   const initResumeData = () => {
     resumeListAction().then(res => {
       if (res.errcode === 200) {
-        debugger
+        // debugger
         // 生日需要单独设置
         let time: number;
         if (res.data.info.birthday) {
@@ -92,15 +92,17 @@ export default function useResume(){
         // 组合项目经验对象
         let projectItem = [...sortImageProject, ...sortNoImageProject];
         // 获取排序后的第一个元素
+        if (projectItem.length){
+          if (new Date(projectItem[0].completion_time).getTime() / 86400000 < parseInt(((new Date().getTime()) / 86400000).toString())) {
+            // 项目
+            if (projectItem.length){
+              projectItem[0].completion_timeTitle = 'zhijing';
+            }
+          }else{
+            projectItem[0].completion_timeTitle = 'zhijin';
+          }
+        }
         setProjectData([...projectItem]);
-        // if (new Date(projectItem[0].completion_time).getTime() / 86400000 < parseInt(((new Date().getTime()) / 86400000).toString())) {
-        //   // 项目
-        //   if (projectItem.length){
-        //     projectItem[0].completion_time = 'zhijing';
-        //   }
-        // }else{
-        //   projectItem[0].completion_time = 'zhijin';
-        // }
         // 是否有人员信息
         setIs_introduces(res.data.is_introduces);
         //最大项目长度

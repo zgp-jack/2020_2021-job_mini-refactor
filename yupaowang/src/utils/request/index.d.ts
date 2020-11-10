@@ -1130,6 +1130,7 @@ export interface resProjectArr {
   project_uuid?:string,
   endTime?:number,
   index?:number,
+  completion_timeTitle?:string,
 }
 export interface RecruitImageModel {
   url: string,
