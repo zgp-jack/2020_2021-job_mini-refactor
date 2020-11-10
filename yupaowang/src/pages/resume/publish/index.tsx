@@ -6,11 +6,12 @@ import Imglist from '../../../components/imglist'
 import useResume from '../../../hooks/publish/resume'
 import { useSelector } from '@tarojs/redux'
 import Auth from '../../../components/auth'
+import { ShowActionModal } from '../../../utils/msg';
 import './index.scss'
 
 export default function ResumePublish(){
   const uuid = useSelector<any, string>(state => state.resumeData.resume_uuid)
-  const { infoData, introducesData, projectData, certificates, resume_top, initResumeData, is_introduces, project_count, certificate_count, show_tips, selectData, selectDataIndex, handleSelectData } = useResume()
+  const { infoData, introducesData, projectData, certificates, resume_top, initResumeData, is_introduces, project_count, certificate_count, show_tips, selectData, selectDataIndex, handleSelectData, isModifySkill, isModifyProject, projectNum, certificatesNum} = useResume()
   // 判断是否是第一次进入  第一次不加载数据 因为hooks会帮助你加载
   const [firstJoin, setFirstJoin] = useState<boolean>(true)
 
@@ -33,6 +34,21 @@ export default function ResumePublish(){
   // 页面跳转
   const userRouteJump = (url: string) => {
     Taro.navigateTo({url: url})
+  }
+  // 页面跳转
+  const handleJump = (url:string)=>{
+    // 如果没有完善资料就跳到完善基础资料
+    if(!uuid){
+      ShowActionModal({ 
+        title: '温馨提示', 
+        msg:'您未完善基础信息填写,请先填写基础信息',
+        success:()=>{
+          userRouteJump('/pages/resume/add_info/index')
+        }
+      })
+    }else{
+      userRouteJump(url)
+    }
   }
   return (
     <Block>
@@ -196,7 +212,7 @@ export default function ResumePublish(){
           <View className='basic-content'>
             <View className='basic-txt'>完善人员信息能让老板充分了解您或您的队伍</View>
             <View className='basic-btn'>
-                <Button className='btn' onClick={() => userRouteJump('/pages/resume/add_member/index')}>去完善</Button>
+                  <Button className='btn' onClick={()=>handleJump('/pages/resume/add_member/index')}>去完善</Button>
             </View>
           </View>:
           <View className='basic-content'>
@@ -255,7 +271,7 @@ export default function ResumePublish(){
             <View className='basic-content'>
               <View className='basic-txt'>添加项目经验可提升老板对您的信任程度</View>
               <View className='basic-btn'>
-                  <Button className='btn' onClick={() => userRouteJump('/pages/resume/add_project/index')}>添加项目经验</Button>
+                <Button className='btn' onClick={() => handleJump('/pages/resume/add_project/index')}>添加项目经验</Button>
               </View>
             </View>:
             <View className='project-information'>
@@ -287,7 +303,9 @@ export default function ResumePublish(){
                   }
               </View>
               <View className='change-project'>
-                  <Button className='change-project-btn' onClick={() => userRouteJump('/pages/resume/projects/index')}>更多项目经验<View className='nabla'></View></Button>
+                <Button className='change-project-btn' onClick={() => userRouteJump('/pages/resume/projects/index')}>{isModifyProject && isModifyProject != '0' ? '更多项目经验' :'修改项目经验'}<View className='nabla'></View>
+                {isModifyProject && isModifyProject =='0' &&<View className='change-project-btn-icon'>{projectNum}</View>}
+                </Button>
               </View>
             </View>
           }
@@ -319,9 +337,6 @@ export default function ResumePublish(){
                 {certificates[0].check == '0' &&
                   <View className='change' onClick={() => { userRouteJump(`/pages/resume/add_skill/index?id=${certificates[0].id}`) }}>待修改</View>
                 }
-                {certificates[0].check == '0' &&
-                  <Image className='audit' src={`${IMGCDNURL}lpy/notthrough.png`} />
-                }
                 {certificates[0].check == '1' && show_tips == 0 &&
                   <Image className='audit' src={`${IMGCDNURL}lpy/inreview.png`} />
                 }
@@ -335,14 +350,18 @@ export default function ResumePublish(){
                   <View className='project-failtxt'>失败原因：{certificates[0].fail_case}</View>}
               </View>
               <View className='change-project'>
-                <Button className='change-project-btn' onClick={() => userRouteJump('/pages/resume/skills/index')}>更多技能证书<View className='nabla'></View></Button>
+                <Button className='change-project-btn' onClick={() => userRouteJump('/pages/resume/skills/index')}>
+                  {isModifyProject && isModifyProject == '0' ? '更多技能证书' :'修改技能证书'}
+                  <View className='nabla'></View>
+                  {isModifyProject && isModifyProject != '0' && <View className='change-project-btn-icon'>{certificatesNum}</View>}
+                </Button>
               </View>
             </View>
           : 
           <View className='basic-content'>
             <View className='basic-txt'>添加职业技能，用实力证明您的能力</View>
             <View className='basic-btn'>
-                <Button className='btn' onClick={() => userRouteJump('/pages/resume/add_skill/index')}>添加职业技能</Button>
+              <Button className='btn' onClick={() => handleJump('/pages/resume/add_skill/index')}>添加职业技能</Button>
             </View>
           </View>
           }

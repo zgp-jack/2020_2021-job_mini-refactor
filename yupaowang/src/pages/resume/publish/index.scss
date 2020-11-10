@@ -446,12 +446,27 @@ $commonMargin: 44px;
       .change-project{
         text-align: center;
         .change-project-btn{
+          position: relative;
           display: inline-block;
           padding: 10px $commonMargin;
           color: #FFFFFF;
           font-size: 26px;
           line-height: 36px;
           background-color: $color;
+          .change-project-btn-icon{
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            color: white;
+            background: #dc0102;
+            border-radius: 50%;
+            right: -20px;
+            top: -14px;
+            text-align: center;
+            line-height: 24px;
+            font-size: 20px;
+            z-index: 10;
+          }
         }
         .nabla{
           display: inline-block;
