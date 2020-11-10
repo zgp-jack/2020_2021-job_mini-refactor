@@ -24,7 +24,6 @@ export default function () {
       setTips(warm_tips)
     }).catch(e => {
       setPostError(true)
-      console.error(e)
     })
   }, [])
   if (postError) {

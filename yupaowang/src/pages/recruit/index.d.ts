@@ -67,5 +67,7 @@ export interface UserLastPublishRecruitArea {
   location: string,
   adcode: string,
   title: string,
-  info: string
+  info: string,
+  city?:string,
+  provice?:string,
 }

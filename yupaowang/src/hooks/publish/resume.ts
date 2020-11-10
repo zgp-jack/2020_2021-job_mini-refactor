@@ -1,10 +1,3 @@
-/*
- * @Author: zyb
- * @Date: 2020-11-03 15:03:11
- * @LastEditors: jsxin
- * @LastEditTime: 2020-11-09 17:11:48
- * @Description: 
- */
 import Taro,{ useState,useDidShow, useEffect } from '@tarojs/taro'
 import { resumeListAction, resumesEditEndAction } from '../../utils/request'
 import { resIntroduceObj, resInfoObj, resProjectArr, resCertificatesArr, resume_topObj, resTop_statusArr } from '../../utils/request/index.d';
@@ -42,9 +35,6 @@ export default function useResume(){
   const [selectDataIndex, setSelectDataIndex] = useState<number>(0);
   // 工作状态
   const [check, setCheck] = useState<string>('');
-  // 页面显示项目
-  const [ProjectList, setProjectList] = useState<resProjectArr[]>([]);
-  // 页面显示技能
   // 项目列表
   useEffect(()=>{
     initResumeData()
@@ -63,6 +53,7 @@ export default function useResume(){
   const initResumeData = () => {
     resumeListAction().then(res => {
       if (res.errcode === 200) {
+        debugger
         // 生日需要单独设置
         let time: number;
         if (res.data.info.birthday) {
@@ -101,11 +92,15 @@ export default function useResume(){
         // 组合项目经验对象
         let projectItem = [...sortImageProject, ...sortNoImageProject];
         // 获取排序后的第一个元素
-        let projectOne = projectItem[0];
-        if (new Date(projectItem[0].completion_time).getTime() / 86400000 < parseInt(((new Date().getTime()) / 86400000).toString())) {
-          // 项目
-          setProjectData([...projectItem]);
-        }
+        setProjectData([...projectItem]);
+        // if (new Date(projectItem[0].completion_time).getTime() / 86400000 < parseInt(((new Date().getTime()) / 86400000).toString())) {
+        //   // 项目
+        //   if (projectItem.length){
+        //     projectItem[0].completion_time = 'zhijing';
+        //   }
+        // }else{
+        //   projectItem[0].completion_time = 'zhijin';
+        // }
         // 是否有人员信息
         setIs_introduces(res.data.is_introduces);
         //最大项目长度
@@ -129,7 +124,7 @@ export default function useResume(){
           info: res.data.info,
           introducesData: res.data.introduces,
           certificates: res.data.certificates,
-          projectData: res.data.project,
+          projectData: projectItem,
           resume_uuid: res.data.info&&res.data.info.uuid || '',
           isSet: true,
         }))
@@ -162,7 +157,6 @@ export default function useResume(){
       Taro.showActionSheet({
         itemList: selectdataList,
         success(res:any) {
-          console.error(res,'res')
           if (selectDataIndex == res.tapIndex) {
             return
           }

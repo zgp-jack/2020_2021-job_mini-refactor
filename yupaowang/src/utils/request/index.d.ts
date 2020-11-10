@@ -1211,6 +1211,7 @@ export interface resInfoObj {
   view_num: string,
   zan_num: string,
   age:string|number,
+  code?:string,
 }
 export interface resContentObj {
   check_tips_string: string,
@@ -1557,4 +1558,10 @@ export interface memberTurntableDataType {
 
 export interface memberTurntableType extends TurntableIndexTypePortion {
   data: memberTurntableDataType
+}
+
+// 基本信息
+export interface addResumeData {
+  errcode: number
+  errmsg: string
 }

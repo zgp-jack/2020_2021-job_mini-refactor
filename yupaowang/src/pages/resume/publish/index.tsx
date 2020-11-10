@@ -258,8 +258,8 @@ export default function ResumePublish(){
             <View className='project-information'>
                 <View className={projectData[0].check == '0' ? 'content-information professional-information-noImage' : 'content-information'}>
                 <View className='information'>
-                      <View className='name'>{projectData[0].project_name} {projectData[0].check}</View>
-                    <View className='sexage'>{projectData[0].start_time}-{projectData[0].completion_time} {projectData[0].province_name}{projectData[0].city_name ? `-${projectData[0].city_name}`:''} </View>
+                      <View className='name'>{projectData[0].project_name}</View>
+                    <View className='sexage'>{projectData[0].start_time}-{projectData[0].completion_time == 'zhijin' ? '至今': projectData[0].completion_time} {projectData[0].province_name}{projectData[0].city_name ? `-${projectData[0].city_name}`:''} </View>
                     <View className='sexage'>{projectData[0].detail}</View>
                 </View>
                   {projectData[0].check == '1' && show_tips ==1 && 

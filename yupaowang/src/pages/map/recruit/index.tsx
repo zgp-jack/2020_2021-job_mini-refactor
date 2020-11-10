@@ -193,7 +193,7 @@ export default function RecruitMap(){
             title: item.name,
             location: item.location,
             adcode: item.adcode,
-            info: item.district
+            info: item.district,
           })) 
           dispatch(setArea(item.cityName)) 
         }

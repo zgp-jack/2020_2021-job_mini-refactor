@@ -930,7 +930,7 @@ export function resumesProjectAction(data): Promise<Inter.ResumesProjectData> {
 }
 
 // 基础信息
-export function addResumeAction(data): Promise<Inter.Result> {
+export function addResumeAction(data): Promise<Inter.addResumeData> {
   return doRequestAction({
     url: api.addResumeUrl,
     method: 'POST',

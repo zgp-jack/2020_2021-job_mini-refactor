@@ -45,6 +45,13 @@
       flex-direction: column;
       justify-content: center;
     }
+    .flexContent-no {
+      width: 64%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      color: #828181
+    }
     .flexTitle{
       position: absolute;
       right: 0px;

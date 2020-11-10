@@ -116,12 +116,12 @@ export function getLocation(): Promise<LocationDataType>{
         }
         checkAdcodeAction(params).then(res => {
           if (res.errcode == 'ok') {
-            let province: string = mydata.province
-            let city: string = mydata.city
-            city = typeof city === 'string' ? city : province
+            let province: string = res.province;
+            // let city: string = mydata.city
+            // city = typeof city === 'string' ? city : province
             let gpsLocation: LocationDataType = {
               province: province,
-              city: city,
+              city: res.city,
               adcode: mydata.adcode,
               citycode: mydata.citycode,
               address:data[0].name,
@@ -142,7 +142,6 @@ export function getLocation(): Promise<LocationDataType>{
         })
       },
       fail: (err) => {
-        console.error(err,'fail')
         Msg('定位失败,请重新定位')
         reject(err)
       }
