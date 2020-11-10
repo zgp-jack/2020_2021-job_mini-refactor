@@ -1,1 +1,97 @@
-(wx.webpackJsonp=wx.webpackJsonp||[]).push([[85],{"83":function(t,e,r){"use strict";Object.defineProperty(e,"__esModule",{"value":!0});var s=function(t,e){if(Array.isArray(t))return t;if(Symbol.iterator in Object(t))return function sliceIterator(t,e){var r=[],o=!0,n=!1,a=void 0;try{for(var i,u=t[Symbol.iterator]();!(o=(i=u.next()).done)&&(r.push(i.value),!e||r.length!==e);o=!0);}catch(t){n=!0,a=t}finally{try{!o&&u.return&&u.return()}finally{if(n)throw a}}return r}(t,e);throw new TypeError("Invalid attempt to destructure non-iterable instance")},o=function(t,e,r){return e&&defineProperties(t.prototype,e),r&&defineProperties(t,r),t};function defineProperties(t,e){for(var r=0;r<e.length;r++){var o=e[r];o.enumerable=o.enumerable||!1,o.configurable=!0,"value"in o&&(o.writable=!0),Object.defineProperty(t,o.key,o)}}var c=r(0),n=function _interopRequireDefault(t){return t&&t.__esModule?t:{"default":t}}(c);var a=(function _inherits(t,e){if("function"!=typeof e&&null!==e)throw new TypeError("Super expression must either be null or a function, not "+typeof e);t.prototype=Object.create(e&&e.prototype,{"constructor":{"value":t,"enumerable":!1,"writable":!0,"configurable":!0}}),e&&(Object.setPrototypeOf?Object.setPrototypeOf(t,e):t.__proto__=e)}(UserAuth,n.default.Component),o(UserAuth,[{"key":"_constructor","value":function _constructor(t){(function get(t,e,r){null===t&&(t=Function.prototype);var o=Object.getOwnPropertyDescriptor(t,e);if(void 0===o){var n=Object.getPrototypeOf(t);return null===n?void 0:get(n,e,r)}if("value"in o)return o.value;var a=o.get;return void 0!==a?a.call(r):void 0})(UserAuth.prototype.__proto__||Object.getPrototypeOf(UserAuth.prototype),"_constructor",this).call(this,t),this.$$refs=new n.default.RefsArray}},{"key":"_createData","value":function _createData(t,e,r){this.__state=t||this.state||{},this.__props=e||this.props||{};var o=this.$prefix,n=(0,c.genCompid)(o+"$compid__24"),a=s(n,2),i=a[0],u=a[1];return c.propsManager.set({"page":!0},u,i),Object.assign(this.__state,{"$compid__24":u}),this.__state}}]),UserAuth);function UserAuth(){!function _classCallCheck(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}(this,UserAuth);var t=function _possibleConstructorReturn(t,e){if(!t)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!e||"object"!=typeof e&&"function"!=typeof e?t:e}(this,(UserAuth.__proto__||Object.getPrototypeOf(UserAuth)).apply(this,arguments));return t.config={"navigationBarTitleText":"用户授权","navigationBarBackgroundColor":"#0099ff","navigationBarTextStyle":"white","backgroundTextStyle":"dark"},t.$usedState=["$compid__24"],t.customComponents=["Auth"],t}a.$$events=[],a.$$componentPath="pages/userauth/index",a.config={"navigationBarTitleText":"用户授权","navigationBarBackgroundColor":"#0099ff","navigationBarTextStyle":"white","backgroundTextStyle":"dark"},e.default=a,Component(r(0).default.createComponent(a,!0))}},[[83,0,1]]]);
+(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["pages/userauth/index"],{
+
+/***/ "./src/pages/userauth/index.tsx":
+/*!**************************************!*\
+  !*** ./src/pages/userauth/index.tsx ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+
+var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+
+var _taroTt2 = _interopRequireDefault(_taroTt);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var UserAuth = function (_Taro$Component) {
+  _inherits(UserAuth, _Taro$Component);
+
+  function UserAuth() {
+    _classCallCheck(this, UserAuth);
+
+    var _this = _possibleConstructorReturn(this, (UserAuth.__proto__ || Object.getPrototypeOf(UserAuth)).apply(this, arguments));
+
+    _this.config = {
+      navigationBarTitleText: '用户授权',
+      navigationBarBackgroundColor: '#0099ff',
+      navigationBarTextStyle: 'white',
+      backgroundTextStyle: "dark"
+    };
+
+    _this.$usedState = ["$compid__24"];
+    _this.customComponents = ["Auth"];
+    return _this;
+  }
+
+  _createClass(UserAuth, [{
+    key: '_constructor',
+    value: function _constructor(props) {
+      _get(UserAuth.prototype.__proto__ || Object.getPrototypeOf(UserAuth.prototype), '_constructor', this).call(this, props);
+      this.$$refs = new _taroTt2.default.RefsArray();
+    }
+  }, {
+    key: '_createData',
+    value: function _createData() {
+      this.__state = arguments[0] || this.state || {};
+      this.__props = arguments[1] || this.props || {};
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
+      ;
+
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__24"),
+          _genCompid2 = _slicedToArray(_genCompid, 2),
+          $prevCompid__24 = _genCompid2[0],
+          $compid__24 = _genCompid2[1];
+
+      _taroTt.propsManager.set({
+        "page": true
+      }, $compid__24, $prevCompid__24);
+      Object.assign(this.__state, {
+        $compid__24: $compid__24
+      });
+      return this.__state;
+    }
+  }]);
+
+  return UserAuth;
+}(_taroTt2.default.Component);
+
+UserAuth.$$events = [];
+UserAuth.$$componentPath = "pages/userauth/index";
+UserAuth.config = { navigationBarTitleText: '用户授权', navigationBarBackgroundColor: '#0099ff', navigationBarTextStyle: 'white', backgroundTextStyle: "dark" };
+exports.default = UserAuth;
+
+Page(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(UserAuth, true));
+
+/***/ })
+
+},[["./src/pages/userauth/index.tsx","runtime","vendors"]]]);

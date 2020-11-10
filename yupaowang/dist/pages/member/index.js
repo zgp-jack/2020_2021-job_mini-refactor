@@ -1,1 +1,297 @@
-(wx.webpackJsonp=wx.webpackJsonp||[]).push([[61],{"223":function(n,e,o){"use strict";Object.defineProperty(e,"__esModule",{"value":!0});var h=function(n,e){if(Array.isArray(n))return n;if(Symbol.iterator in Object(n))return function sliceIterator(n,e){var o=[],u=!0,t=!1,r=void 0;try{for(var a,i=n[Symbol.iterator]();!(u=(a=i.next()).done)&&(o.push(a.value),!e||o.length!==e);u=!0);}catch(n){t=!0,r=n}finally{try{!u&&i.return&&i.return()}finally{if(t)throw r}}return o}(n,e);throw new TypeError("Invalid attempt to destructure non-iterable instance")},u=function(n,e,o){return e&&defineProperties(n.prototype,e),o&&defineProperties(n,o),n};function defineProperties(n,e){for(var o=0;o<e.length;o++){var u=e[o];u.enumerable=u.enumerable||!1,u.configurable=!0,"value"in u&&(u.writable=!0),Object.defineProperty(n,u.key,u)}}var d=o(0),g=function _interopRequireDefault(n){return n&&n.__esModule?n:{"default":n}}(d),v=o(4),_=o(1),k=o(2),x=o(3),w=o(6);o(224);var t=(function _inherits(n,e){if("function"!=typeof e&&null!==e)throw new TypeError("Super expression must either be null or a function, not "+typeof e);n.prototype=Object.create(e&&e.prototype,{"constructor":{"value":n,"enumerable":!1,"writable":!0,"configurable":!0}}),e&&(Object.setPrototypeOf?Object.setPrototypeOf(n,e):n.__proto__=e)}(Member,g.default.Component),u(Member,[{"key":"_constructor","value":function _constructor(n){(function get(n,e,o){null===n&&(n=Function.prototype);var u=Object.getOwnPropertyDescriptor(n,e);if(void 0===u){var t=Object.getPrototypeOf(n);return null===t?void 0:get(t,e,o)}if("value"in u)return u.value;var r=u.get;return void 0!==r?r.call(o):void 0})(Member.prototype.__proto__||Object.getPrototypeOf(Member.prototype),"_constructor",this).call(this,n),this.$$refs=new g.default.RefsArray}},{"key":"_createData","value":function _createData(n,e,o){function ia(n){g.default.navigateTo({"url":n})}function ja(){u&&(0,_.getMemberInfo)().then(function(n){"ok"==n.errcode?i(n):(0,x.ShowActionModal)(n.errmsg)})}this.__state=n||this.state||{},this.__props=e||this.props||{},this.$prefix,console.log(!0);var u=(0,v.useSelector)(function(n){return n.User.login}),t=(0,d.useState)(),r=h(t,2),a=r[0],i=r[1],s=(0,v.useSelector)(function(n){return n.msg.jobNumber}),c=(0,v.useSelector)(function(n){return n.msg.messageNumber}),m=(0,d.useState)(!1),y=h(m,2),f=y[0],l=y[1],p=a?a.member.username||a.member.nickname:"",F=a?a.member.headimgurl:"",b=a?a.member.tel:"";return(0,d.useEffect)(function(){l((0,w.isIos)())},[]),(0,d.useDidShow)(function(){ja()}),(0,d.useEffect)(function(){ja()},[u]),this.anonymousFunc0=function(){return ia("/pages/userinfo/index/index?username="+p+"&phone="+b+"&avatar="+F)},this.anonymousFunc1=function(){return ia("/pages/userinfo/add/index")},this.anonymousFunc2=function(){return ia("/pages/integral/tabber/index?info=0&office=0")},this.anonymousFunc3=function(){return ia("/pages/integral/temp/index")},this.anonymousFunc4=function(){return ia(k.AUTHPATH)},this.anonymousFunc5=function(){return ia("/pages/published/recruit/index")},this.anonymousFunc6=function(){return ia("/pages/published/used/index")},this.anonymousFunc7=function(){return ia("/pages/information/mymessage/index")},this.anonymousFunc8=function(){return ia("/pages/recharge/index")},this.anonymousFunc9=function(){return ia("/pages/invite/index")},this.anonymousFunc10=function(){return ia("/pages/integral/tabber/index?info=1")},this.anonymousFunc11=function(){return ia("/pages/integral/tabber/index?info=0")},this.anonymousFunc12=function(){return ia("/pages/realname/index")},this.anonymousFunc13=function(){return ia("/pages/collection/index")},this.anonymousFunc14=function(){return ia("/pages/feedbacklist/index")},this.anonymousFunc15=function(){return ia("/pages/help/index")},Object.assign(this.__state,{"login":u,"model":a,"IMGCDNURL":k.IMGCDNURL,"jobNumber":s,"msgNumber":c,"ios":f}),this.__state}},{"key":"anonymousFunc0","value":function anonymousFunc0(){}},{"key":"anonymousFunc1","value":function anonymousFunc1(){}},{"key":"anonymousFunc2","value":function anonymousFunc2(){}},{"key":"anonymousFunc3","value":function anonymousFunc3(){}},{"key":"anonymousFunc4","value":function anonymousFunc4(){}},{"key":"anonymousFunc5","value":function anonymousFunc5(){}},{"key":"anonymousFunc6","value":function anonymousFunc6(){}},{"key":"anonymousFunc7","value":function anonymousFunc7(){}},{"key":"anonymousFunc8","value":function anonymousFunc8(){}},{"key":"anonymousFunc9","value":function anonymousFunc9(){}},{"key":"anonymousFunc10","value":function anonymousFunc10(){}},{"key":"anonymousFunc11","value":function anonymousFunc11(){}},{"key":"anonymousFunc12","value":function anonymousFunc12(){}},{"key":"anonymousFunc13","value":function anonymousFunc13(){}},{"key":"anonymousFunc14","value":function anonymousFunc14(){}},{"key":"anonymousFunc15","value":function anonymousFunc15(){}}]),Member);function Member(){!function _classCallCheck(n,e){if(!(n instanceof e))throw new TypeError("Cannot call a class as a function")}(this,Member);var n=function _possibleConstructorReturn(n,e){if(!n)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!e||"object"!=typeof e&&"function"!=typeof e?n:e}(this,(Member.__proto__||Object.getPrototypeOf(Member)).apply(this,arguments));return n.$usedState=["login","model","IMGCDNURL","jobNumber","msgNumber","ios"],n.customComponents=[],n}t.$$events=["anonymousFunc0","anonymousFunc1","anonymousFunc2","anonymousFunc3","anonymousFunc4","anonymousFunc5","anonymousFunc6","anonymousFunc7","anonymousFunc8","anonymousFunc9","anonymousFunc10","anonymousFunc11","anonymousFunc12","anonymousFunc13","anonymousFunc14","anonymousFunc15"],t.$$componentPath="pages/member/index",e.default=t,Component(o(0).default.createComponent(t))},"224":function(n,e,o){}},[[223,0,1]]]);
+(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["pages/member/index"],{
+
+/***/ "./src/pages/member/index.scss":
+/*!*************************************!*\
+  !*** ./src/pages/member/index.scss ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
+/***/ "./src/pages/member/index.tsx":
+/*!************************************!*\
+  !*** ./src/pages/member/index.tsx ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+
+var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+
+var _taroTt2 = _interopRequireDefault(_taroTt);
+
+var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/redux/index.js");
+
+var _index = __webpack_require__(/*! ../../utils/request/index */ "./src/utils/request/index.ts");
+
+var _index2 = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
+
+var _index3 = __webpack_require__(/*! ../../utils/msg/index */ "./src/utils/msg/index.ts");
+
+var _index4 = __webpack_require__(/*! ../../utils/v/index */ "./src/utils/v/index.ts");
+
+__webpack_require__(/*! ./index.scss */ "./src/pages/member/index.scss");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Member = function (_Taro$Component) {
+  _inherits(Member, _Taro$Component);
+
+  function Member() {
+    _classCallCheck(this, Member);
+
+    var _this = _possibleConstructorReturn(this, (Member.__proto__ || Object.getPrototypeOf(Member)).apply(this, arguments));
+
+    _this.$usedState = ["login", "model", "IMGCDNURL", "jobNumber", "msgNumber", "ios"];
+    _this.customComponents = [];
+    return _this;
+  }
+
+  _createClass(Member, [{
+    key: "_constructor",
+    value: function _constructor(props) {
+      _get(Member.prototype.__proto__ || Object.getPrototypeOf(Member.prototype), "_constructor", this).call(this, props);
+      this.$$refs = new _taroTt2.default.RefsArray();
+    }
+  }, {
+    key: "_createData",
+    value: function _createData() {
+      this.__state = arguments[0] || this.state || {};
+      this.__props = arguments[1] || this.props || {};
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
+      ;
+      console.log(true);
+      // 获取用户信息
+      var login = (0, _redux.useSelector)(function (state) {
+        return state.User['login'];
+      });
+      // member信息
+
+      var _useState = (0, _taroTt.useState)(),
+          _useState2 = _slicedToArray(_useState, 2),
+          model = _useState2[0],
+          setModel = _useState2[1];
+      // 获取招工信息更新数量
+
+
+      var jobNumber = (0, _redux.useSelector)(function (state) {
+        return state.msg['jobNumber'];
+      });
+      // 获取我的信息未读数量
+      var msgNumber = (0, _redux.useSelector)(function (state) {
+        return state.msg['messageNumber'];
+      });
+      // 判断是否是ios
+
+      var _useState3 = (0, _taroTt.useState)(false),
+          _useState4 = _slicedToArray(_useState3, 2),
+          ios = _useState4[0],
+          setIos = _useState4[1];
+      // 创建memberContext
+
+
+      var value = {
+        username: model ? model.member.username || model.member.nickname : '',
+        avatar: model ? model.member.headimgurl : '',
+        phone: model ? model.member.tel : ''
+      };
+      // 用户页面跳转
+      var userRouteJump = function userRouteJump(url) {
+        _taroTt2.default.navigateTo({
+          url: url
+        });
+      };
+      // 初始化用户信息
+      var initMemberInfo = function initMemberInfo() {
+        if (!login) {
+          return;
+        }
+        (0, _index.getMemberInfo)().then(function (data) {
+          if (data.errcode == 'ok') {
+            setModel(data);
+          } else (0, _index3.ShowActionModal)(data.errmsg);
+        });
+      };
+      (0, _taroTt.useEffect)(function () {
+        setIos((0, _index4.isIos)());
+      }, []);
+      (0, _taroTt.useDidShow)(function () {
+        initMemberInfo();
+      });
+      (0, _taroTt.useEffect)(function () {
+        initMemberInfo();
+      }, [login]);
+      this.anonymousFunc0 = function () {
+        return userRouteJump("/pages/userinfo/index/index?username=" + value.username + "&phone=" + value.phone + "&avatar=" + value.avatar);
+      };
+      this.anonymousFunc1 = function () {
+        return userRouteJump('/pages/userinfo/add/index');
+      };
+      this.anonymousFunc2 = function () {
+        return userRouteJump('/pages/integral/tabber/index?info=0&office=0');
+      };
+      this.anonymousFunc3 = function () {
+        return userRouteJump('/pages/integral/temp/index');
+      };
+      this.anonymousFunc4 = function () {
+        return userRouteJump( true ? _index2.AUTHPATH : undefined);
+      };
+      this.anonymousFunc5 = function () {
+        return userRouteJump('/pages/published/recruit/index');
+      };
+      this.anonymousFunc6 = function () {
+        return userRouteJump('/pages/published/used/index');
+      };
+      this.anonymousFunc7 = function () {
+        return userRouteJump('/pages/information/mymessage/index');
+      };
+      this.anonymousFunc8 = function () {
+        return userRouteJump('/pages/recharge/index');
+      };
+      this.anonymousFunc9 = function () {
+        return userRouteJump('/pages/invite/index');
+      };
+      this.anonymousFunc10 = function () {
+        return userRouteJump("/pages/integral/tabber/index?info=1");
+      };
+      this.anonymousFunc11 = function () {
+        return userRouteJump("/pages/integral/tabber/index?info=0");
+      };
+      this.anonymousFunc12 = function () {
+        return userRouteJump('/pages/realname/index');
+      };
+      this.anonymousFunc13 = function () {
+        return userRouteJump('/pages/collection/index');
+      };
+      this.anonymousFunc14 = function () {
+        return userRouteJump('/pages/feedbacklist/index');
+      };
+      this.anonymousFunc15 = function () {
+        return userRouteJump('/pages/help/index');
+      };
+      Object.assign(this.__state, {
+        login: login,
+        model: model,
+        IMGCDNURL: _index2.IMGCDNURL,
+        jobNumber: jobNumber,
+        msgNumber: msgNumber,
+        ios: ios
+      });
+      return this.__state;
+    }
+  }, {
+    key: "anonymousFunc0",
+    value: function anonymousFunc0(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc1",
+    value: function anonymousFunc1(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc2",
+    value: function anonymousFunc2(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc3",
+    value: function anonymousFunc3(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc4",
+    value: function anonymousFunc4(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc5",
+    value: function anonymousFunc5(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc6",
+    value: function anonymousFunc6(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc7",
+    value: function anonymousFunc7(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc8",
+    value: function anonymousFunc8(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc9",
+    value: function anonymousFunc9(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc10",
+    value: function anonymousFunc10(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc11",
+    value: function anonymousFunc11(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc12",
+    value: function anonymousFunc12(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc13",
+    value: function anonymousFunc13(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc14",
+    value: function anonymousFunc14(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc15",
+    value: function anonymousFunc15(e) {
+      ;
+    }
+  }]);
+
+  return Member;
+}(_taroTt2.default.Component);
+
+Member.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6", "anonymousFunc7", "anonymousFunc8", "anonymousFunc9", "anonymousFunc10", "anonymousFunc11", "anonymousFunc12", "anonymousFunc13", "anonymousFunc14", "anonymousFunc15"];
+Member.$$componentPath = "pages/member/index";
+exports.default = Member;
+
+Component(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(Member));
+
+/***/ })
+
+},[["./src/pages/member/index.tsx","runtime","vendors"]]]);

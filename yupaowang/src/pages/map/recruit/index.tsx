@@ -1,7 +1,7 @@
 import Taro, { useEffect, useState, useContext } from '@tarojs/taro'
 import { View, Text, Image, Input } from '@tarojs/components'
 import { context } from '../../recruit/publish'
-import { getAllAreas, checkAdcodeValid } from '../../../utils/request'
+import { getAllAreas,   } from '../../../utils/request'
 import { AllAreasDataItem } from '../../../utils/request/index.d'
 import { IMGCDNURL, UserPublishAreaHistoryMaxNum } from '../../../config'
 import Cities from '../../../components/citys'

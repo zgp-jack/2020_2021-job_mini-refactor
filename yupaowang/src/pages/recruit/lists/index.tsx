@@ -118,6 +118,7 @@ export default function Recruit(){
   // * 发布招工
   const userPublishRecruit = ()=> {
     Taro.navigateTo({url: '/pages/recruit/publish/index'})
+    // Taro.navigateTo({url: '/pages/recruit/fastPublish/index'})
   }
 
   // * 更新筛选条件
