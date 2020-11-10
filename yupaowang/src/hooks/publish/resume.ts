@@ -37,6 +37,14 @@ export default function useResume(){
   const [selectDataIndex, setSelectDataIndex] = useState<number>(0);
   // 工作状态
   const [check, setCheck] = useState<string>('');
+  // 是否修改项目经验
+  const [isModifyProject, setIsModifyProject] = useState<string>('');
+  //是否修改技能证书
+  const [isModifySkill, setIsModifySkill] = useState<string>('');
+  // 修改项目数量
+  const [projectNum, setProjectNum] = useState<number>(0);
+  // 修改职业技能数量
+  const [certificatesNum, setCertificatesNum] = useState<number>(0);
   // 项目列表
   useEffect(()=>{
     initResumeData()
@@ -71,9 +79,9 @@ export default function useResume(){
         info = { ...info, ...res.data.info };
         setInfoData({ ...info });
         // 设置页面显示的项目
-          // 定义有图片项目数组
-          let hasImageProject: resProjectArr[] = [];
-          // 定义没图片的数组
+        // 定义有图片项目数组
+        let hasImageProject: resProjectArr[] = [];
+        // 定义没图片的数组
         let NoImageProject: resProjectArr[] = [];
           let data = [...res.data.project];
         for (let i = 0; i < data.length; i++) {
@@ -89,6 +97,28 @@ export default function useResume(){
             NoImageProject.push(data[i])
           }
         }
+        // 设置是否修改项目经验
+        let isModifyProject: string = '';
+        if(res.data.project.length>0){
+          for (let i = 0; i < res.data.project.length; i++) {
+            isModifyProject = res.data.project[i].check;
+            if (res.data.project[i].check = '0') {
+              break;
+            }
+          }
+        }
+        setIsModifyProject(isModifyProject);
+        // 是否修改技能证书
+        let isModifySkill:string = '';
+        if(res.data.certificates.length){
+          for(let i=0;i<res.data.certificates.length;i++){
+            isModifySkill = res.data.certificates[i].check;
+            if (res.data.certificates[i].check = '0') {
+              break;
+            }
+          }
+        }
+        setIsModifySkill(isModifySkill)
         // 将有图片的数组与没有图片的数组进行按照时间降序排列
         let sortImageProject = hasImageProject.sort(projectSort("endTime"))
         let sortNoImageProject = NoImageProject.sort(projectSort("endTime"))
@@ -121,6 +151,10 @@ export default function useResume(){
         //人员信息
         let introduces: resIntroduceObj = { ...INTRODUCERS_DATA };
         introduces = { ...introduces, ...res.data.introduces }
+        // 修改项目数量
+        setProjectNum(res.data.fail_project);
+        // 修改技能证书数量
+        setCertificatesNum(res.data.fail_certificate);
         setIntroducesData({ ...introduces });
         setCertificates([...res.data.certificates]);
         setResume_top({ ...res.data.resume_top });
@@ -198,6 +232,8 @@ export default function useResume(){
       return
     }
   }
+  console.error(isModifySkill,'isModifySkill');
+  console.error(isModifyProject,'isModifyProject')
   return {
     infoData,
     introducesData,
@@ -212,5 +248,9 @@ export default function useResume(){
     selectData,
     selectDataIndex,
     handleSelectData,
+    isModifySkill,
+    isModifyProject,
+    projectNum,
+    certificatesNum,
   }
 }

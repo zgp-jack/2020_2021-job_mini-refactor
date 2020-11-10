@@ -264,7 +264,7 @@ export default function AddResumeInfo(){
                   <Input
                     className='publish-list-input'
                     type='text'
-                    placeholder='请输入您的名字'
+                    placeholder='请输入2~5个纯中文姓名'
                     value={inputVal.username}
                     onInput={(e) => userEnterFrom(e, 'username')}
                   />
@@ -312,7 +312,7 @@ export default function AddResumeInfo(){
                 </Picker>
                 </View>
               <View className='publish-list-item' onClick={() => setShowProssion(true)}>
-                  <Text className='pulish-list-title'>所属工种</Text>
+                <Text className='pulish-list-title-address'>所属工种</Text>
                 {classifies && classifies.length ?
                     <View className='publish-list-input'>
                       {classifyTree.map(item => (
@@ -330,7 +330,7 @@ export default function AddResumeInfo(){
                 }
                 </View>
               <View className='publish-list-item adressInput' onClick={()=>userChooseArea()}>
-                <Text className='pulish-list-title'>所在地区</Text>
+                <Text className='pulish-list-title-address'>所在地区</Text>
                 <View className='flex'>
                   <Text className={locationData && locationData.address ? 'flexContent' :'flexContent-no'}>{locationData && locationData.address ? locationData.address:'请选你所在地址'}</Text>
                   <Text className='flexTitle' onClick={(e)=>{e.stopPropagation(),handleGps()}}>获取定位</Text>
@@ -385,7 +385,7 @@ export default function AddResumeInfo(){
 }
 
 AddResumeInfo.config = {
-  navigationBarTitleText: '编辑找活名片',
+  navigationBarTitleText: '基础信息',
   navigationBarBackgroundColor: '#0099ff',
   navigationBarTextStyle: 'white',
   backgroundTextStyle: "dark"

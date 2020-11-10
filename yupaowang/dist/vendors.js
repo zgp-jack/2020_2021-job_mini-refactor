@@ -13041,6 +13041,34 @@ function useResume() {
       _useState24 = _slicedToArray(_useState23, 2),
       check = _useState24[0],
       setCheck = _useState24[1];
+  // 是否修改项目经验
+
+
+  var _useState25 = (0, _taroTt.useState)(''),
+      _useState26 = _slicedToArray(_useState25, 2),
+      isModifyProject = _useState26[0],
+      setIsModifyProject = _useState26[1];
+  //是否修改技能证书
+
+
+  var _useState27 = (0, _taroTt.useState)(''),
+      _useState28 = _slicedToArray(_useState27, 2),
+      isModifySkill = _useState28[0],
+      setIsModifySkill = _useState28[1];
+  // 修改项目数量
+
+
+  var _useState29 = (0, _taroTt.useState)(0),
+      _useState30 = _slicedToArray(_useState29, 2),
+      projectNum = _useState30[0],
+      setProjectNum = _useState30[1];
+  // 修改职业技能数量
+
+
+  var _useState31 = (0, _taroTt.useState)(0),
+      _useState32 = _slicedToArray(_useState31, 2),
+      certificatesNum = _useState32[0],
+      setCertificatesNum = _useState32[1];
   // 项目列表
 
 
@@ -13093,6 +13121,28 @@ function useResume() {
             NoImageProject.push(data[i]);
           }
         }
+        // 设置是否修改项目经验
+        var _isModifyProject = '';
+        if (res.data.project.length > 0) {
+          for (var _i = 0; _i < res.data.project.length; _i++) {
+            _isModifyProject = res.data.project[_i].check;
+            if (res.data.project[_i].check = '0') {
+              break;
+            }
+          }
+        }
+        setIsModifyProject(_isModifyProject);
+        // 是否修改技能证书
+        var _isModifySkill = '';
+        if (res.data.certificates.length) {
+          for (var _i2 = 0; _i2 < res.data.certificates.length; _i2++) {
+            _isModifySkill = res.data.certificates[_i2].check;
+            if (res.data.certificates[_i2].check = '0') {
+              break;
+            }
+          }
+        }
+        setIsModifySkill(_isModifySkill);
         // 将有图片的数组与没有图片的数组进行按照时间降序排列
         var sortImageProject = hasImageProject.sort(projectSort("endTime"));
         var sortNoImageProject = NoImageProject.sort(projectSort("endTime"));
@@ -13125,6 +13175,10 @@ function useResume() {
         //人员信息
         var introduces = _extends({}, _data.INTRODUCERS_DATA);
         introduces = _extends({}, introduces, res.data.introduces);
+        // 修改项目数量
+        setProjectNum(res.data.fail_project);
+        // 修改技能证书数量
+        setCertificatesNum(res.data.fail_certificate);
         setIntroducesData(_extends({}, introduces));
         setCertificates([].concat(_toConsumableArray(res.data.certificates)));
         setResume_top(_extends({}, res.data.resume_top));
@@ -13159,8 +13213,8 @@ function useResume() {
       for (var i = 0; i < selectData.length; i++) {
         selectdataList.push(selectData[i].name);
       }
-      for (var _i = 0; _i < selectData.length; _i++) {
-        selectdataId.push(selectData[_i].id);
+      for (var _i3 = 0; _i3 < selectData.length; _i3++) {
+        selectdataId.push(selectData[_i3].id);
       }
       _taroTt2.default.showActionSheet({
         itemList: selectdataList,
@@ -13201,6 +13255,8 @@ function useResume() {
       return;
     }
   };
+  console.error(isModifySkill, 'isModifySkill');
+  console.error(isModifyProject, 'isModifyProject');
   return {
     infoData: infoData,
     introducesData: introducesData,
@@ -13214,7 +13270,11 @@ function useResume() {
     show_tips: show_tips,
     selectData: selectData,
     selectDataIndex: selectDataIndex,
-    handleSelectData: handleSelectData
+    handleSelectData: handleSelectData,
+    isModifySkill: isModifySkill,
+    isModifyProject: isModifyProject,
+    projectNum: projectNum,
+    certificatesNum: certificatesNum
   };
 }
 
