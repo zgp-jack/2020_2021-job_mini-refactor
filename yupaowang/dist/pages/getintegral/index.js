@@ -25,6 +25,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -40,6 +42,12 @@ var _index = __webpack_require__(/*! ../../config/index */ "./src/config/index.t
 var _index2 = __webpack_require__(/*! ../../utils/helper/index */ "./src/utils/helper/index.ts");
 
 __webpack_require__(/*! ./index.scss */ "./src/pages/getintegral/index.scss");
+
+var _index3 = __webpack_require__(/*! ../../utils/request/index */ "./src/utils/request/index.ts");
+
+var _classnames = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+
+var _classnames2 = _interopRequireDefault(_classnames);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -57,7 +65,11 @@ var GetIntegral = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (GetIntegral.__proto__ || Object.getPrototypeOf(GetIntegral)).apply(this, arguments));
 
-    _this.$usedState = ["ios", "SERVERPHONE"];
+    _this.config = {
+      navigationBarTitleText: "鱼泡网-获取积分"
+    };
+
+    _this.$usedState = ["anonymousState__temp", "ios", "turntable", "IMGCDNURL", "SERVERPHONE"];
     _this.customComponents = [];
     return _this;
   }
@@ -87,27 +99,55 @@ var GetIntegral = function (_Taro$Component) {
       var userCallPhone = function userCallPhone() {
         _taroTt2.default.makePhoneCall({ phoneNumber: _index.SERVERPHONE });
       };
+
+      var _useState3 = (0, _taroTt.useState)({
+        showBtn: 0,
+        show: 0
+      }),
+          _useState4 = _slicedToArray(_useState3, 2),
+          turntable = _useState4[0],
+          setTurntable = _useState4[1];
       // 判断客户端
+
+
       (0, _taroTt.useEffect)(function () {
+        (0, _index3.memberTurntable)().then(function (res) {
+          if (res.errcode == "ok") {
+            var _res$data = res.data,
+                is_turntable = _res$data.is_turntable,
+                show_turntable = _res$data.show_turntable;
+
+            turntable.showBtn = Number(is_turntable);
+            turntable.show = Number(show_turntable);
+            setTurntable(_extends({}, turntable));
+          }
+        });
         var system = _taroTt2.default.getSystemInfoSync();
-        if (system.platform !== 'ios') {
+        if (system.platform !== "ios") {
           setIos(false);
         }
       }, []);
       this.anonymousFunc0 = function () {
-        return userCallPhone();
+        return (0, _index2.userJumpPage)("/pages/invite/index");
       };
       this.anonymousFunc1 = function () {
-        return userCallPhone();
+        return (0, _index2.userJumpPage)("/pages/recharge/index");
       };
       this.anonymousFunc2 = function () {
-        return (0, _index2.userJumpPage)('/pages/invite/index');
+        return (0, _index2.userJumpPage)("/pages/turntable/index");
       };
+      var anonymousState__temp = turntable.show ? (0, _classnames2.default)({
+        "getintegral-item-btn": true,
+        "getintegral-list-btn-dis": !turntable.showBtn
+      }) : null;
       this.anonymousFunc3 = function () {
-        return (0, _index2.userJumpPage)('/pages/recharge/index');
+        return userCallPhone();
       };
       Object.assign(this.__state, {
+        anonymousState__temp: anonymousState__temp,
         ios: ios,
+        turntable: turntable,
+        IMGCDNURL: _index.IMGCDNURL,
         SERVERPHONE: _index.SERVERPHONE
       });
       return this.__state;
@@ -139,6 +179,7 @@ var GetIntegral = function (_Taro$Component) {
 
 GetIntegral.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3"];
 GetIntegral.$$componentPath = "pages/getintegral/index";
+GetIntegral.config = { navigationBarTitleText: "鱼泡网-获取积分" };
 exports.default = GetIntegral;
 
 Page(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(GetIntegral, true));

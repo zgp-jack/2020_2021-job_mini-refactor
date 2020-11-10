@@ -69,7 +69,7 @@ var FeedbackList = function (_Taro$Component) {
       backgroundTextStyle: 'dark'
     };
 
-    _this.$usedState = ["lists", "loopArray59", "$compid__50", "isDown"];
+    _this.$usedState = ["lists", "loopArray61", "$compid__54", "isDown"];
     _this.anonymousFunc0Map = {};
     _this.customComponents = ["Auth", "WechatNotice", "Nodata"];
     return _this;
@@ -92,10 +92,10 @@ var FeedbackList = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__50"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__54"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__50 = _genCompid2[0],
-          $compid__50 = _genCompid2[1];
+          $prevCompid__54 = _genCompid2[0],
+          $compid__54 = _genCompid2[1];
       // * 标记是否是在刷新状态
 
 
@@ -199,7 +199,7 @@ var FeedbackList = function (_Taro$Component) {
       this.anonymousFunc2 = function () {
         return userRouteJump("/pages/feedback/index?username=" + userData.username + "&phone=" + userData.phone);
       };
-      var loopArray59 = lists.item ? lists.item.map(function (item, __index1) {
+      var loopArray61 = lists.item ? lists.item.map(function (item, __index1) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
@@ -208,7 +208,7 @@ var FeedbackList = function (_Taro$Component) {
             $original: (0, _taroTt.internal_get_original)(v)
           };
           var $loopState__temp2 = item.$original.images ? index + index : null;
-          var _$indexKey = "gjzzz" + __index1 + "-" + index;
+          var _$indexKey = "hczzz" + __index1 + "-" + index;
           _this2.anonymousFunc0Map[_$indexKey] = function () {
             handleImg(v.$original);
           };
@@ -225,11 +225,11 @@ var FeedbackList = function (_Taro$Component) {
       }) : [];
       !lists.item.length && _taroTt.propsManager.set({
         "text": "\u6682\u65E0\u76F8\u5173\u6570\u636E\u53CD\u9988"
-      }, $compid__50, $prevCompid__50);
+      }, $compid__54, $prevCompid__54);
       Object.assign(this.__state, {
         lists: lists,
-        loopArray59: loopArray59,
-        $compid__50: $compid__50,
+        loopArray61: loopArray61,
+        $compid__54: $compid__54,
         isDown: isDown
       });
       return this.__state;

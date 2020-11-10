@@ -41,6 +41,8 @@ var _index = __webpack_require__(/*! ../../utils/request/index */ "./src/utils/r
 
 var _index2 = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
 
+var _member = __webpack_require__(/*! ../../actions/member */ "./src/actions/member.ts");
+
 var _index3 = __webpack_require__(/*! ../../utils/msg/index */ "./src/utils/msg/index.ts");
 
 var _index4 = __webpack_require__(/*! ../../utils/v/index */ "./src/utils/v/index.ts");
@@ -82,7 +84,7 @@ var Member = function (_Taro$Component) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      console.log(true);
+      var dispatch = (0, _redux.useDispatch)();
       // 获取用户信息
       var login = (0, _redux.useSelector)(function (state) {
         return state.User['login'];
@@ -109,15 +111,9 @@ var Member = function (_Taro$Component) {
           _useState4 = _slicedToArray(_useState3, 2),
           ios = _useState4[0],
           setIos = _useState4[1];
-      // 创建memberContext
-
-
-      var value = {
-        username: model ? model.member.username || model.member.nickname : '',
-        avatar: model ? model.member.headimgurl : '',
-        phone: model ? model.member.tel : ''
-      };
       // 用户页面跳转
+
+
       var userRouteJump = function userRouteJump(url) {
         _taroTt2.default.navigateTo({
           url: url
@@ -130,6 +126,13 @@ var Member = function (_Taro$Component) {
         }
         (0, _index.getMemberInfo)().then(function (data) {
           if (data.errcode == 'ok') {
+            var value = {
+              username: data.member.username || data.member.nickname,
+              avatar: data.member.headimgurl || '',
+              phone: data.member.tel || '',
+              pwd_status: data.member.pwd_status || ''
+            };
+            dispatch((0, _member.setMemberInfo)(value));
             setModel(data);
           } else (0, _index3.ShowActionModal)(data.errmsg);
         });
@@ -144,7 +147,7 @@ var Member = function (_Taro$Component) {
         initMemberInfo();
       }, [login]);
       this.anonymousFunc0 = function () {
-        return userRouteJump("/pages/userinfo/index/index?username=" + value.username + "&phone=" + value.phone + "&avatar=" + value.avatar);
+        return userRouteJump("/pages/userinfo/info/index");
       };
       this.anonymousFunc1 = function () {
         return userRouteJump('/pages/userinfo/add/index');
@@ -156,39 +159,42 @@ var Member = function (_Taro$Component) {
         return userRouteJump('/pages/integral/temp/index');
       };
       this.anonymousFunc4 = function () {
-        return userRouteJump( true ? _index2.AUTHPATH : undefined);
+        return userRouteJump( false ? undefined : _index2.CODEAUTHPATH);
       };
       this.anonymousFunc5 = function () {
         return userRouteJump('/pages/published/recruit/index');
       };
       this.anonymousFunc6 = function () {
-        return userRouteJump('/pages/published/used/index');
+        return userRouteJump(_index2.PUBLISHRESUME);
       };
       this.anonymousFunc7 = function () {
-        return userRouteJump('/pages/information/mymessage/index');
+        return userRouteJump('/pages/published/used/index');
       };
       this.anonymousFunc8 = function () {
-        return userRouteJump('/pages/recharge/index');
+        return userRouteJump('/pages/information/mymessage/index');
       };
       this.anonymousFunc9 = function () {
-        return userRouteJump('/pages/invite/index');
+        return userRouteJump('/pages/getintegral/index');
       };
       this.anonymousFunc10 = function () {
-        return userRouteJump("/pages/integral/tabber/index?info=1");
+        return userRouteJump('/pages/invite/index');
       };
       this.anonymousFunc11 = function () {
-        return userRouteJump("/pages/integral/tabber/index?info=0");
+        return userRouteJump("/pages/integral/tabber/index?info=1");
       };
       this.anonymousFunc12 = function () {
-        return userRouteJump('/pages/realname/index');
+        return userRouteJump("/pages/integral/tabber/index?info=0");
       };
       this.anonymousFunc13 = function () {
-        return userRouteJump('/pages/collection/index');
+        return userRouteJump('/pages/realname/index');
       };
       this.anonymousFunc14 = function () {
-        return userRouteJump('/pages/feedbacklist/index');
+        return userRouteJump('/pages/collection/index');
       };
       this.anonymousFunc15 = function () {
+        return userRouteJump('/pages/feedbacklist/index');
+      };
+      this.anonymousFunc16 = function () {
         return userRouteJump('/pages/help/index');
       };
       Object.assign(this.__state, {
@@ -281,12 +287,17 @@ var Member = function (_Taro$Component) {
     value: function anonymousFunc15(e) {
       ;
     }
+  }, {
+    key: "anonymousFunc16",
+    value: function anonymousFunc16(e) {
+      ;
+    }
   }]);
 
   return Member;
 }(_taroTt2.default.Component);
 
-Member.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6", "anonymousFunc7", "anonymousFunc8", "anonymousFunc9", "anonymousFunc10", "anonymousFunc11", "anonymousFunc12", "anonymousFunc13", "anonymousFunc14", "anonymousFunc15"];
+Member.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6", "anonymousFunc7", "anonymousFunc8", "anonymousFunc9", "anonymousFunc10", "anonymousFunc11", "anonymousFunc12", "anonymousFunc13", "anonymousFunc14", "anonymousFunc15", "anonymousFunc16"];
 Member.$$componentPath = "pages/member/index";
 exports.default = Member;
 

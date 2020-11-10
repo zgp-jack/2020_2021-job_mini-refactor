@@ -35,23 +35,25 @@ var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs
 
 var _taroTt2 = _interopRequireDefault(_taroTt);
 
-var _index = __webpack_require__(/*! ../../recruit/publish/index */ "./src/pages/recruit/publish/index.tsx");
+var _index = __webpack_require__(/*! ../../../utils/request/index */ "./src/utils/request/index.ts");
 
-var _index2 = __webpack_require__(/*! ../../../utils/request/index */ "./src/utils/request/index.ts");
-
-var _index3 = __webpack_require__(/*! ../../../config/index */ "./src/config/index.ts");
+var _index2 = __webpack_require__(/*! ../../../config/index */ "./src/config/index.ts");
 
 var _store = __webpack_require__(/*! ../../../config/store */ "./src/config/store.ts");
 
 var _area = __webpack_require__(/*! ../../../models/area */ "./src/models/area.ts");
 
-var _index4 = __webpack_require__(/*! ../../../utils/helper/index */ "./src/utils/helper/index.ts");
+var _index3 = __webpack_require__(/*! ../../../utils/helper/index */ "./src/utils/helper/index.ts");
 
-var _index5 = __webpack_require__(/*! ../../../utils/msg/index */ "./src/utils/msg/index.ts");
+var _index4 = __webpack_require__(/*! ../../../utils/msg/index */ "./src/utils/msg/index.ts");
 
-var _index6 = _interopRequireDefault(_index5);
+var _index5 = _interopRequireDefault(_index4);
 
 __webpack_require__(/*! ./index.scss */ "./src/pages/map/recruit/index.scss");
+
+var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/redux/index.js");
+
+var _recruit = __webpack_require__(/*! ../../../actions/recruit */ "./src/actions/recruit.ts");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -61,6 +63,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+//获取发布招工信息action
 var PI = Math.PI; // 数学 PI 常亮
 var EARTH_RADIUS = 6378137.0; // 地球半径
 
@@ -72,9 +75,9 @@ var RecruitMap = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (RecruitMap.__proto__ || Object.getPrototypeOf(RecruitMap)).apply(this, arguments));
 
-    _this.$usedState = ["loopArray36", "loopArray37", "$compid__34", "smAreaText", "showHistory", "histroyList", "lists", "IMGCDNURL", "showCity", "area"];
-    _this.anonymousFunc4Map = {};
+    _this.$usedState = ["loopArray38", "loopArray39", "$compid__38", "smAreaText", "showHistory", "histroyList", "lists", "IMGCDNURL", "showCity", "area"];
     _this.anonymousFunc5Map = {};
+    _this.anonymousFunc6Map = {};
     _this.customComponents = ["Cities"];
     return _this;
   }
@@ -96,10 +99,10 @@ var RecruitMap = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__34"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__38"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__34 = _genCompid2[0],
-          $compid__34 = _genCompid2[1];
+          $prevCompid__38 = _genCompid2[0],
+          $compid__38 = _genCompid2[1];
       // 城市数据
 
 
@@ -107,14 +110,25 @@ var RecruitMap = function (_Taro$Component) {
           _useState2 = _slicedToArray(_useState, 2),
           areas = _useState2[0],
           setAreas = _useState2[1];
+      // 定位城市
+      // 获取redux中区域名称数据
+
+
+      var area = (0, _redux.useSelector)(function (state) {
+        return state.MyArea;
+      });
+      // 获取redux中定位状态
+      var positionStatus = (0, _redux.useSelector)(function (state) {
+        return state.PositionStatus;
+      });
+      // 获取dispatch分发action
+      var dispatch = (0, _redux.useDispatch)();
       // 获取城市数据
-
-
       (0, _taroTt.useEffect)(function () {
         var areas = _taroTt2.default.getStorageSync(_store.Areas);
         if (areas) {
           setAreas(areas);
-        } else (0, _index2.getAllAreas)().then(function (res) {
+        } else (0, _index.getAllAreas)().then(function (res) {
           // 存入缓存
           _taroTt2.default.setStorageSync(_store.Areas, res);
           setAreas(res);
@@ -138,14 +152,6 @@ var RecruitMap = function (_Taro$Component) {
           _useState6 = _slicedToArray(_useState5, 2),
           showCity = _useState6[0],
           setShowCity = _useState6[1];
-      // 使用发布招工hook处理数据
-
-
-      var _useContext = (0, _taroTt.useContext)(_index.context),
-          area = _useContext.area,
-          setArea = _useContext.setArea,
-          setAreaInfo = _useContext.setAreaInfo,
-          setPublishArea = _useContext.setPublishArea;
       // 详细地址的输入框
 
 
@@ -178,7 +184,9 @@ var RecruitMap = function (_Taro$Component) {
 
 
       var initUserLocationCity = function initUserLocationCity() {
+        // 获取用户定位数据
         var userLoc = _taroTt2.default.getStorageSync(_store.UserLocationCity);
+        // 如果定位
         if (userLoc) {
           var data = (0, _area.getCityInfo)(userLoc, 1);
           var userLocData = {
@@ -187,20 +195,22 @@ var RecruitMap = function (_Taro$Component) {
             ad_name: data.ad_name,
             city: data.name
           };
-          setArea(data.name);
+          if (positionStatus) {
+            dispatch((0, _recruit.setArea)(data.name));
+            dispatch((0, _recruit.setPositionStaus)(false));
+          }
           setUserLoc(userLocData);
         }
       };
       // 初始化所需数据
       (0, _taroTt.useEffect)(function () {
-        if (!area) {
-          initUserLocationCity();
-        }
+        initUserLocationCity();
         initUserPublishAreaHistory();
       }, []);
       // 用户切换城市
       var userChangeCity = function userChangeCity(city) {
-        setArea(city);
+        dispatch((0, _recruit.setArea)(city));
+        // setArea(city)
       };
       // 用户点击取消 返回上一页
       var userCloseMap = function userCloseMap() {
@@ -228,13 +238,14 @@ var RecruitMap = function (_Taro$Component) {
       };
       // 获取关键词地区列表
       (0, _taroTt.useEffect)(function () {
-        (0, _index4.getAmapPoiList)(area + smAreaText).then(function (data) {
+        (0, _index3.getAmapPoiList)(area + smAreaText).then(function (data) {
           var loc = _taroTt2.default.getStorageSync(_store.UserLocation);
           var lists = data.filter(function (item) {
             return item.name && item.adcode && typeof item.location === 'string';
           });
           lists.forEach(function (item) {
             item.distance = getGreatCircleDistance(loc, item.location);
+            item.cityName = data[0].name.slice(0, 2);
           });
           setLists(lists);
         });
@@ -251,7 +262,6 @@ var RecruitMap = function (_Taro$Component) {
       };
       // 小地址存入缓存，生成历史记录
       var setUserPublishAreaHistoryItem = function setUserPublishAreaHistoryItem(item) {
-        console.log(item, 'itemitemitem');
         var userPublishAreaHistory = _taroTt2.default.getStorageSync(_store.UserPublishAreaHistory);
         if (userPublishAreaHistory) {
           var isset = userPublishAreaHistory.findIndex(function (data) {
@@ -261,7 +271,7 @@ var RecruitMap = function (_Taro$Component) {
           if (isset !== -1) {
             userPublishAreaHistory.splice(isset, 1);
           }
-          userPublishAreaHistory.splice(_index3.UserPublishAreaHistoryMaxNum);
+          userPublishAreaHistory.splice(_index2.UserPublishAreaHistoryMaxNum);
           setHistoryList(userPublishAreaHistory);
           _taroTt2.default.setStorageSync(_store.UserPublishAreaHistory, userPublishAreaHistory);
         } else {
@@ -282,24 +292,29 @@ var RecruitMap = function (_Taro$Component) {
         }
         setShowHistory(true);
       };
+      // 用户点击输入框后面的×关闭当前窗口
+      var closeHistoryClient = function closeHistoryClient() {
+        setShowHistory(false);
+        setSmAreaText('');
+      };
       // 用户选择小地区 检测adcode
       var userClickAreaItem = function userClickAreaItem(item) {
         checkAdcodeValid(item.adcode).then(function (res) {
           if (res.errcode == "ok") {
-            if (setAreaInfo) {
+            if (_recruit.setAreaInfo) {
               setUserPublishAreaHistoryItem(item);
-              setAreaInfo({
+              dispatch((0, _recruit.setAreaInfo)({
                 title: item.name,
                 location: item.location,
                 adcode: item.adcode,
                 info: item.district
-              });
-              setPublishArea && setPublishArea(item.name);
+              }));
+              dispatch((0, _recruit.setArea)(item.cityName));
             }
             _taroTt2.default.navigateBack();
-          } else (0, _index5.ShowActionModal)({ msg: res.errmsg });
+          } else (0, _index4.ShowActionModal)({ msg: res.errmsg });
         }).catch(function () {
-          (0, _index6.default)("网络错误，请求失败！");
+          (0, _index5.default)("网络错误，请求失败！");
         });
       };
       this.anonymousFunc0 = function () {
@@ -312,15 +327,18 @@ var RecruitMap = function (_Taro$Component) {
         return userEnterPosition(e);
       };
       this.anonymousFunc3 = function () {
+        return closeHistoryClient();
+      };
+      this.anonymousFunc4 = function () {
         return userCloseMap();
       };
-      var loopArray36 = showHistory ? histroyList.map(function (item, index) {
+      var loopArray38 = showHistory ? histroyList.map(function (item, index) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
         var $loopState__temp2 = showHistory ? index + index : null;
-        var _$indexKey = "dhzzz" + index;
-        _this2.anonymousFunc4Map[_$indexKey] = function () {
+        var _$indexKey = "eazzz" + index;
+        _this2.anonymousFunc5Map[_$indexKey] = function () {
           return userClickAreaItem(item.$original);
         };
         return {
@@ -329,13 +347,13 @@ var RecruitMap = function (_Taro$Component) {
           $original: item.$original
         };
       }) : [];
-      var loopArray37 = lists.map(function (item, index) {
+      var loopArray39 = lists.map(function (item, index) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
         var $loopState__temp4 = index + index;
-        var _$indexKey2 = "dizzz" + index;
-        _this2.anonymousFunc5Map[_$indexKey2] = function () {
+        var _$indexKey2 = "ebzzz" + index;
+        _this2.anonymousFunc6Map[_$indexKey2] = function () {
           return userClickAreaItem(item.$original);
         };
         return {
@@ -350,16 +368,16 @@ var RecruitMap = function (_Taro$Component) {
         "userLoc": userLoc,
         "userChangeCity": userChangeCity,
         "userTapCityBtn": userTapCityBtn
-      }, $compid__34, $prevCompid__34);
+      }, $compid__38, $prevCompid__38);
       Object.assign(this.__state, {
-        loopArray36: loopArray36,
-        loopArray37: loopArray37,
-        $compid__34: $compid__34,
+        loopArray38: loopArray38,
+        loopArray39: loopArray39,
+        $compid__38: $compid__38,
         smAreaText: smAreaText,
         showHistory: showHistory,
         histroyList: histroyList,
         lists: lists,
-        IMGCDNURL: _index3.IMGCDNURL,
+        IMGCDNURL: _index2.IMGCDNURL,
         showCity: showCity,
         area: area
       });
@@ -387,8 +405,13 @@ var RecruitMap = function (_Taro$Component) {
     }
   }, {
     key: "anonymousFunc4",
-    value: function anonymousFunc4(_$indexKey) {
-      var _anonymousFunc4Map;
+    value: function anonymousFunc4(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc5",
+    value: function anonymousFunc5(_$indexKey) {
+      var _anonymousFunc5Map;
 
       ;
 
@@ -396,12 +419,12 @@ var RecruitMap = function (_Taro$Component) {
         e[_key - 1] = arguments[_key];
       }
 
-      return this.anonymousFunc4Map[_$indexKey] && (_anonymousFunc4Map = this.anonymousFunc4Map)[_$indexKey].apply(_anonymousFunc4Map, e);
+      return this.anonymousFunc5Map[_$indexKey] && (_anonymousFunc5Map = this.anonymousFunc5Map)[_$indexKey].apply(_anonymousFunc5Map, e);
     }
   }, {
-    key: "anonymousFunc5",
-    value: function anonymousFunc5(_$indexKey2) {
-      var _anonymousFunc5Map;
+    key: "anonymousFunc6",
+    value: function anonymousFunc6(_$indexKey2) {
+      var _anonymousFunc6Map;
 
       ;
 
@@ -409,14 +432,14 @@ var RecruitMap = function (_Taro$Component) {
         e[_key2 - 1] = arguments[_key2];
       }
 
-      return this.anonymousFunc5Map[_$indexKey2] && (_anonymousFunc5Map = this.anonymousFunc5Map)[_$indexKey2].apply(_anonymousFunc5Map, e);
+      return this.anonymousFunc6Map[_$indexKey2] && (_anonymousFunc6Map = this.anonymousFunc6Map)[_$indexKey2].apply(_anonymousFunc6Map, e);
     }
   }]);
 
   return RecruitMap;
 }(_taroTt2.default.Component);
 
-RecruitMap.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5"];
+RecruitMap.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6"];
 RecruitMap.$$componentPath = "pages/map/recruit/index";
 exports.default = RecruitMap;
 

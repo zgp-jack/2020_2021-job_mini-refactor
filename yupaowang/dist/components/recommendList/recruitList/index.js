@@ -55,7 +55,7 @@ var RecruitListPage = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (RecruitListPage.__proto__ || Object.getPrototypeOf(RecruitListPage)).apply(this, arguments));
 
-    _this.$usedState = ["loopArray68", "data", "IMGCDNURL", "occupations", "city"];
+    _this.$usedState = ["loopArray71", "data", "IMGCDNURL", "occupations", "city"];
     _this.anonymousFunc0Map = {};
     _this.customComponents = ["Nodata"];
     return _this;
@@ -94,11 +94,11 @@ var RecruitListPage = function (_Taro$Component) {
       this.anonymousFunc1 = function () {
         return userRouteJump("/pages/resume/recList/index?city=" + city + "&occupations=" + occupations);
       };
-      var loopArray68 = data.map(function (v, __index0) {
+      var loopArray71 = data.map(function (v, __index0) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
-        var _$indexKey = "hgzzz" + __index0;
+        var _$indexKey = "hjzzz" + __index0;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return userRouteJump("/pages/detail/info/index?id=" + v.$original.id);
         };
@@ -108,7 +108,7 @@ var RecruitListPage = function (_Taro$Component) {
         };
       });
       Object.assign(this.__state, {
-        loopArray68: loopArray68,
+        loopArray71: loopArray71,
         data: data,
         IMGCDNURL: _index.IMGCDNURL
       });

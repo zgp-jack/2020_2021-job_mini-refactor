@@ -16,8 +16,10 @@ export const REQUESTURL: string = DEVREQUESTURL;
 export const UPLOADIMGURL: string = PROREQUESTURL + 'index/upload/'
 // * 阿里云CDN域名
 export const ALIYUNCDN: string = 'http://cdn.yupao.com'
+// * 阿里云小程序普通路径
+export const ALIYUNCDNMINIIMG: string = '/miniprogram/images/'
 // * 阿里云CDN图片域名
-export const IMGCDNURL: string = ALIYUNCDN + '/miniprogram/images/'
+export const IMGCDNURL: string = ALIYUNCDN + ALIYUNCDNMINIIMG
 // * 公司默认客服电话
 export const SERVERPHONE: string = '400-838-1888'
 // * 小程序当前版本号
@@ -30,8 +32,30 @@ export const MAXCACHECITYNUM: number = 3
 export const UserPublishAreaHistoryMaxNum: number = 10
 // * 小程序tabbar msg统计 定时器请求间隔 1分钟
 export const MemberMsgTimerInterval: number = 1000 * 60
+// * 发布技能证书最大数量
+export const CertificateMaxNum: number = 3
+// * 发布技能证书图片最大数量
+export const CertificateImgMaxNum: number = 3
+// * 找活人员信息标签最大数量
+export const ResumeMemberLabelsMaxNum: number = 3
+// * 发布项目经验最大数量
+export const ProjectListMaxNum: number = 5
+// * 找活项目经验图片最大数量
+export const ProjectImgMaxNum: number = 6
 
 // ! 页面内常用路径配置
+// * 首页
+export const INDEXPATH: string = '/pages/index/index'
+// * 发布招工页面
+export const PUBLISHRECRUIT: string = '/pages/recruit/publish/index'
+// * 急速发布
+export const PUBLISHFAST: string = '/pages/recruit/fastPublish/index'
+// * 发布找活页面
+export const PUBLISHRESUME: string = '/pages/resume/publish/index'
+// * 发布二手交易
+export const PUBLISHUSED: string = '/pages/used/publish/index'
+// * 实名认证页面
+export const REALNAMEPATH: string = '/pages/realname/index'
 // * 授权登录页面
 export const AUTHPATH: string = '/pages/userauth/index'
 // * 微信外验证码登录
@@ -55,4 +79,7 @@ export const TOKEN: string = MINICONFIG.TOKEN
 export const UNITID: string = MINICONFIG.UNITID
 // * 小程序邀请key
 export const INVITESOURCE: string = MINICONFIG.INVITESOURCE
-
+// * 是否使用推送信息
+export const USESUBSCRIBEMESSAGE: boolean = MINICONFIG.USESUBSCRIBEMESSAGE
+// * 是否能分享
+export const ISCANSHARE: boolean = MINICONFIG.ISCANSHARE

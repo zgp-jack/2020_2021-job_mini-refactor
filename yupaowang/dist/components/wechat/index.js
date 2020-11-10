@@ -72,6 +72,8 @@ var _wechat_notice4 = _interopRequireDefault(_wechat_notice3);
 
 var _index = __webpack_require__(/*! ../../utils/request/index */ "./src/utils/request/index.ts");
 
+var _index2 = __webpack_require__(/*! ../../utils/helper/index */ "./src/utils/helper/index.ts");
+
 __webpack_require__(/*! ./index.scss */ "./src/components/wechat/index.scss");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -90,7 +92,7 @@ var WechatNotice = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (WechatNotice.__proto__ || Object.getPrototypeOf(WechatNotice)).apply(this, arguments));
 
-    _this.$usedState = ["$compid__17", "wechatNoticeData"];
+    _this.$usedState = ["$compid__21", "wechatNoticeData"];
     _this.customComponents = ["SwiperNews"];
     return _this;
   }
@@ -110,10 +112,10 @@ var WechatNotice = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__17"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__21"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__17 = _genCompid2[0],
-          $compid__17 = _genCompid2[1];
+          $prevCompid__21 = _genCompid2[0],
+          $compid__21 = _genCompid2[1];
 
       var _useState = (0, _taroTt.useState)({
         vertical: true,
@@ -143,21 +145,61 @@ var WechatNotice = function (_Taro$Component) {
           dispatch((0, _wechat_notice2.default)(action));
         });
       }, []);
+      // 复制微信号
+      var userCopyWechatNumber = function userCopyWechatNumber() {
+        (0, _index2.copyWechatNumber)(wechatNoticeData.wechat.number);
+      };
+      // 用户拨打电话
+      var userCallPhoneAction = function userCallPhoneAction() {
+        (0, _index2.userCallPhone)(wechatNoticeData.phone);
+      };
+      this.anonymousFunc0 = function () {
+        return userCopyWechatNumber();
+      };
+      this.anonymousFunc1 = function () {
+        return userCopyWechatNumber();
+      };
+      this.anonymousFunc2 = function () {
+        return userCallPhoneAction();
+      };
+      this.anonymousFunc3 = function () {
+        return userCallPhoneAction();
+      };
       _taroTt.propsManager.set({
         "data": swiperNews
-      }, $compid__17, $prevCompid__17);
+      }, $compid__21, $prevCompid__21);
       Object.assign(this.__state, {
-        $compid__17: $compid__17,
+        $compid__21: $compid__21,
         wechatNoticeData: wechatNoticeData
       });
       return this.__state;
+    }
+  }, {
+    key: 'anonymousFunc0',
+    value: function anonymousFunc0(e) {
+      ;
+    }
+  }, {
+    key: 'anonymousFunc1',
+    value: function anonymousFunc1(e) {
+      ;
+    }
+  }, {
+    key: 'anonymousFunc2',
+    value: function anonymousFunc2(e) {
+      ;
+    }
+  }, {
+    key: 'anonymousFunc3',
+    value: function anonymousFunc3(e) {
+      ;
     }
   }]);
 
   return WechatNotice;
 }(_taroTt2.default.Component);
 
-WechatNotice.$$events = [];
+WechatNotice.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3"];
 WechatNotice.$$componentPath = "components/wechat/index";
 exports.default = WechatNotice;
 

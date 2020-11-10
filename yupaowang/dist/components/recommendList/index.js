@@ -58,7 +58,7 @@ var CollectionRecruitList = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (CollectionRecruitList.__proto__ || Object.getPrototypeOf(CollectionRecruitList)).apply(this, arguments));
 
-    _this.$usedState = ["$compid__61", "$compid__62", "type", "data"];
+    _this.$usedState = ["$compid__65", "$compid__66", "type", "data"];
     _this.customComponents = ["RecruitListPage", "ResumeListPage"];
     return _this;
   }
@@ -78,15 +78,15 @@ var CollectionRecruitList = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__61"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__65"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__61 = _genCompid2[0],
-          $compid__61 = _genCompid2[1];
+          $prevCompid__65 = _genCompid2[0],
+          $compid__65 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__62"),
+      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__66"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__62 = _genCompid4[0],
-          $compid__62 = _genCompid4[1];
+          $prevCompid__66 = _genCompid4[0],
+          $compid__66 = _genCompid4[1];
 
       var _props = this.__props,
           _props$data = _props.data,
@@ -95,13 +95,13 @@ var CollectionRecruitList = function (_Taro$Component) {
 
       type === 1 && _taroTt.propsManager.set({
         "data": data
-      }, $compid__61, $prevCompid__61);
+      }, $compid__65, $prevCompid__65);
       type === 2 && _taroTt.propsManager.set({
         "data": data
-      }, $compid__62, $prevCompid__62);
+      }, $compid__66, $prevCompid__66);
       Object.assign(this.__state, {
-        $compid__61: $compid__61,
-        $compid__62: $compid__62,
+        $compid__65: $compid__65,
+        $compid__66: $compid__66,
         type: type
       });
       return this.__state;

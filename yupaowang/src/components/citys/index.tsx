@@ -14,8 +14,8 @@ export interface IPROPS {
 }
 
 export interface CitiesProps extends IPROPS {
-  userTapCityBtn: (b: boolean) => void,
-  area: string,
+  userTapCityBtn: (b: boolean) => void, // 显示关闭操作
+  area: string,  // 当前选择城市
   userChangeCity?: (city: string)=> void,
   userLoc: AllAreasDataItem
 }
@@ -26,7 +26,7 @@ export default function Cities({
   userTapCityBtn,
   userChangeCity,
   area,
-  userLoc
+  userLoc,
 }: CitiesProps){
 
   // 最近访问城市数据
@@ -54,27 +54,36 @@ export default function Cities({
     Taro.setStorageSync(HistoryCities,historyCities)
     userChangeCity && userChangeCity(city.city)
     userTapCityBtn(false)
-    //userRecentlyCities()
+    userRecentlyCities()
   }
 
   // 用户点击搜索数据
   const userTapInputCity = (item: AllAreasInputDataItem) => {
     setShow(false)
-    delete item['city_name']
+    //delete item['city_name']
     userTapCity(item)
   }
 
   // 用户最新选择城市
   const userRecentlyCities = ()=> {
+    // 获取历史城市数据列表
     let historyCities: AllAreasDataItem[] = Taro.getStorageSync(HistoryCities)
     if (historyCities){
+      // 如果有用户定位位置信息
       if(userLoc.id){
-        historyCities.splice(MAXCACHECITYNUM - 1)
+        // 在历史选择城市信息中有定位城市信息删除该信息，否则删除历史城市信息最后一条
+        let LocIdex = historyCities.findIndex((item) => {
+           return item.id == userLoc.id
+        })
+        if (LocIdex != -1) {
+          historyCities.splice(LocIdex,1)
+        }else{
+          historyCities.splice(MAXCACHECITYNUM - 1)
+        }
         setRecentlyCities(historyCities)
         return
       }
     }
-    setRecentlyCities([])
   }
 
   // 初始化城市数据
@@ -151,7 +160,7 @@ export default function Cities({
           <View className='city-area-title'>当前定位城市/最近访问</View>
           <View className='city-area-content clearfix'>
             {userLoc.id &&
-            <View className='city-item'>
+            <View className='city-item' onClick={() => userTapCity(userLoc)}>
               <View className='city-item-posi'>
                 <Image className='city-item-img' src={IMGCDNURL + 'gps-posi.png'} />
                 {userLoc.city}
@@ -169,12 +178,13 @@ export default function Cities({
         {/* 城市数据列表 */}
         {data.map((item, index)=>(
           <View className='city-area-item' key={index+item[0].id}>
-            <View className='city-area-title'>{ item[0].city }</View>
+            {index === 0?<View className='city-area-title'>热门城市</View>:<View className='city-area-title'>{ item[0].city }</View>}
+            {/* <View className='city-area-title'>{ item[0].city }</View> */}
             <View className='city-area-content clearfix'>
               {item.map((d, key)=>(
-                <View className='city-item' key={ key+d.id } onClick={()=>userTapCity(d)}>
-                  <Text className='city-item-text overwords'>{ d.city }</Text>
-                </View>
+                index === 0 &&　key === 0? '':<View className='city-item' key={ key+d.id } onClick={()=>userTapCity(d)}>
+                <Text className='city-item-text overwords'>{ d.city }</Text>
+              </View>
               ))}
             </View>
           </View>

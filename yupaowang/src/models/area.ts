@@ -2702,4 +2702,32 @@ export function getLongAreaAdname(title: string): string {
   return area
 }
 
+// 根据城市id返回城市信息
+export function getCityInfoById(id: string){
+  let pCurrent = 0
+  let cCurrent = 0 //默认返回该下标的数据
+  let flag = false // 是否已经找到了数据
+  let index: number = AREAS.findIndex(item => item.id == id)
+  if(index > -1){
+    return AREAS[index]
+  }
+  for(let i = 0 ;i < AREAS.length; i++){
+    if (AREAS[i].has_children){
+      let items = AREAS[i].children
+      for(let j = 0; j < items.length; j++){
+        let item = items[j]
+        if(item.id == id){
+          pCurrent = i
+          cCurrent = j
+          flag = true
+          break
+        }
+      }
+    }
+    if(flag) break
+  }
+  if (flag) return AREAS[pCurrent].children[cCurrent]
+  return AREAS[pCurrent]
+}
+
 export default AREAS

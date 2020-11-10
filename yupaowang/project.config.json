@@ -2,7 +2,7 @@
 	"miniprogramRoot": "dist/",
 	"projectname": "%E9%B1%BC%E6%B3%A1%E7%BD%91",
 	"description": "yupaowang",
-  "appid": "wx456feacb0e86162f",
+	"appid": "wx456feacb0e86162f",
 	"setting": {
 		"urlCheck": false,
 		"es6": false,
@@ -16,14 +16,23 @@
 		"autoAudits": false,
 		"showShadowRootInWxmlPanel": true,
 		"scopeDataCheck": false,
+		"uglifyFileName": false,
 		"checkInvalidKey": true,
 		"checkSiteMap": false,
 		"uploadWithSourceMap": true,
+		"compileHotReLoad": false,
+		"useMultiFrameRuntime": false,
+		"useApiHook": true,
 		"babelSetting": {
 			"ignore": [],
 			"disablePlugins": [],
 			"outputPath": ""
-		}
+		},
+		"useIsolateContext": true,
+		"useCompilerModule": true,
+		"userConfirmedUseCompilerModuleSwitch": false,
+		"packNpmManually": false,
+		"packNpmRelationList": []
 	},
 	"compileType": "miniprogram",
 	"simulatorType": "wechat",
@@ -209,21 +218,21 @@
 				{
 					"id": -1,
 					"name": "项目经验",
-					"pathName": "pages/resume/projectList/index",
+					"pathName": "pages/resume/projects/index",
 					"query": "",
 					"scene": null
 				},
 				{
 					"id": -1,
 					"name": "技能证书",
-					"pathName": "pages/resume/skillList/index",
+					"pathName": "pages/resume/skills/index",
 					"query": "",
 					"scene": null
 				},
 				{
 					"id": 24,
 					"name": "新增找活",
-					"pathName": "pages/resume/newJobs/index",
+					"pathName": "pages/resume/publish/index",
 					"query": "",
 					"scene": null
 				},
@@ -302,6 +311,54 @@
 					"name": "我的招工信息",
 					"pathName": "pages/published/recruit/index",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/userinfo/index/add",
+					"pathName": "pages/index/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/userinfo/setpass/index",
+					"pathName": "pages/userinfo/setpass/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/getintegral/index",
+					"pathName": "pages/getintegral/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/turntable/index",
+					"pathName": "pages/turntable/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/turntable/index",
+					"pathName": "pages/turntable/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/used/lists/index",
+					"pathName": "pages/used/lists/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/turntable/index",
+					"pathName": "pages/turntable/index",
 					"scene": null
 				}
 			]

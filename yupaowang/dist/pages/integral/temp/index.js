@@ -1,5 +1,16 @@
 (tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["pages/integral/temp/index"],{
 
+/***/ "./src/pages/integral/temp/index.scss":
+/*!********************************************!*\
+  !*** ./src/pages/integral/temp/index.scss ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
 /***/ "./src/pages/integral/temp/index.tsx":
 /*!*******************************************!*\
   !*** ./src/pages/integral/temp/index.tsx ***!
@@ -28,7 +39,7 @@ var _taroTt2 = _interopRequireDefault(_taroTt);
 
 var _index = __webpack_require__(/*! ../../../utils/request/index */ "./src/utils/request/index.ts");
 
-__webpack_require__(/*! ../index.scss */ "./src/pages/integral/index.scss");
+__webpack_require__(/*! ./index.scss */ "./src/pages/integral/temp/index.scss");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 

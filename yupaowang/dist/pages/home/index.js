@@ -41,7 +41,17 @@ __webpack_require__(/*! ./index.scss */ "./src/pages/home/index.scss");
 
 var _index = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
 
+var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/redux/index.js");
+
+var _tabbar = __webpack_require__(/*! ../../actions/tabbar */ "./src/actions/tabbar.ts");
+
+var _tabbar2 = __webpack_require__(/*! ../../constants/tabbar */ "./src/constants/tabbar.ts");
+
 var _index2 = __webpack_require__(/*! ../../utils/request/index */ "./src/utils/request/index.ts");
+
+var _store = __webpack_require__(/*! ../../config/store */ "./src/config/store.ts");
+
+var _index3 = __webpack_require__(/*! ../../utils/helper/index */ "./src/utils/helper/index.ts");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -61,8 +71,8 @@ var Home = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (Home.__proto__ || Object.getPrototypeOf(Home)).apply(this, arguments));
 
-    _this.$usedState = ["$compid__5", "$compid__6", "$compid__7", "$compid__8", "$compid__9", "IMGCDNURL"];
-    _this.customComponents = ["SwiperComponent", "Projects", "Fastfun", "SwiperNews", "RecruitList", "ResumeList", "UsedList", "About"];
+    _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "$compid__5", "$compid__6", "$compid__7", "$compid__8", "$compid__9", "$compid__10", "IMGCDNURL", "ISWEIXIN", "shwoCity", "area"];
+    _this.customComponents = ["SwiperComponent", "Projects", "Fastfun", "SwiperNews", "RecruitList", "ResumeList", "UsedList", "About", "HomeCity"];
     return _this;
   }
 
@@ -105,46 +115,91 @@ var Home = function (_Taro$Component) {
           _genCompid10 = _slicedToArray(_genCompid9, 2),
           $prevCompid__9 = _genCompid10[0],
           $compid__9 = _genCompid10[1];
+
+      var _genCompid11 = (0, _taroTt.genCompid)(__prefix + "$compid__10"),
+          _genCompid12 = _slicedToArray(_genCompid11, 2),
+          $prevCompid__10 = _genCompid12[0],
+          $compid__10 = _genCompid12[1];
+
+      var dispatch = (0, _redux.useDispatch)();
+      var tabbarJump = function tabbarJump(id) {
+        if (id === _tabbar2.USED) {
+          (0, _index3.userJumpPage)('/pages/used/index');
+          return;
+        }
+        dispatch((0, _tabbar.changeTabbar)(id));
+      };
+      // 因为刷新页面就会改变，所以我们将获取选择的位置和当前定位经纬度声明变量先保存
+      var userChooseCity = void 0;
+      var location = void 0;
+      (0, _taroTt.useDidShow)(function () {
+        userChooseCity = _taroTt2.default.getStorageSync(_store.UserListChooseCity);
+        location = _taroTt2.default.getStorageSync(_store.UserLocation);
+        setArea(userChooseCity ? userChooseCity.name : '全国');
+        setFilterData({
+          area: userChooseCity ? userChooseCity.id : 1,
+          location: location || ''
+        });
+      });
+      // 当前展示的城市
+
+      var _useState = (0, _taroTt.useState)(userChooseCity ? userChooseCity.name : '全国'),
+          _useState2 = _slicedToArray(_useState, 2),
+          area = _useState2[0],
+          setArea = _useState2[1];
+      // * 是否展示城市选择
+
+
+      var _useState3 = (0, _taroTt.useState)(false),
+          _useState4 = _slicedToArray(_useState3, 2),
+          shwoCity = _useState4[0],
+          setShowCity = _useState4[1];
       // * 获取列表数据的data
 
 
-      var _useState = (0, _taroTt.useState)({
-        area: '',
-        location: ''
+      var _useState5 = (0, _taroTt.useState)({
+        area: userChooseCity ? userChooseCity.id : 1,
+        location: location || ''
       }),
-          _useState2 = _slicedToArray(_useState, 2),
-          filterData = _useState2[0],
-          setFilterData = _useState2[1];
+          _useState6 = _slicedToArray(_useState5, 2),
+          filterData = _useState6[0],
+          setFilterData = _useState6[1];
+      // 选择城市 设置信息
+
+
+      var setAreaInfo = function setAreaInfo(val, id) {
+        setArea(val);
+        setFilterData(_extends({}, filterData, { area: id }));
+      };
       // * 轮播图的基本参数配置
 
-
-      var _useState3 = (0, _taroTt.useState)({
+      var _useState7 = (0, _taroTt.useState)({
         lists: []
       }),
-          _useState4 = _slicedToArray(_useState3, 2),
-          swiper = _useState4[0],
-          setSwiper = _useState4[1];
+          _useState8 = _slicedToArray(_useState7, 2),
+          swiper = _useState8[0],
+          setSwiper = _useState8[1];
       // * 公告列表
 
 
-      var _useState5 = (0, _taroTt.useState)({
+      var _useState9 = (0, _taroTt.useState)({
         vertical: true,
         lists: []
       }),
-          _useState6 = _slicedToArray(_useState5, 2),
-          notice = _useState6[0],
-          setNotice = _useState6[1];
+          _useState10 = _slicedToArray(_useState9, 2),
+          notice = _useState10[0],
+          setNotice = _useState10[1];
       // * 数据列表
 
 
-      var _useState7 = (0, _taroTt.useState)({
+      var _useState11 = (0, _taroTt.useState)({
         recruit: [],
         resume: [],
         fleamarket: []
       }),
-          _useState8 = _slicedToArray(_useState7, 2),
-          lists = _useState8[0],
-          setLists = _useState8[1];
+          _useState12 = _slicedToArray(_useState11, 2),
+          lists = _useState12[0],
+          setLists = _useState12[1];
       // 请求轮播数据
 
 
@@ -171,8 +226,26 @@ var Home = function (_Taro$Component) {
         });
       };
       this.anonymousFunc0 = function () {
+        return setShowCity(true);
+      };
+      this.anonymousFunc1 = function () {
         return userRouteJump('/subpackage/pages/download/index');
       };
+      this.anonymousFunc2 = function () {
+        return tabbarJump(_tabbar2.RECRUIT);
+      };
+      this.anonymousFunc3 = function () {
+        return tabbarJump(_tabbar2.RESUME);
+      };
+      this.anonymousFunc4 = function () {
+        return tabbarJump(_tabbar2.USED);
+      };
+      var anonymousState__temp = shwoCity ? function (val, id) {
+        return setAreaInfo(val, id);
+      } : null;
+      var anonymousState__temp2 = shwoCity ? function () {
+        return setShowCity(!shwoCity);
+      } : null;
       _taroTt.propsManager.set({
         "data": swiper
       }, $compid__5, $prevCompid__5);
@@ -185,19 +258,31 @@ var Home = function (_Taro$Component) {
       }, $compid__7, $prevCompid__7);
       _taroTt.propsManager.set({
         "data": lists.resume,
-        "bottom": false
+        "bottom": false,
+        "hasMore": true
       }, $compid__8, $prevCompid__8);
       _taroTt.propsManager.set({
         "data": lists.fleamarket,
         "bottom": false
       }, $compid__9, $prevCompid__9);
+      shwoCity && _taroTt.propsManager.set({
+        "show": shwoCity,
+        "setAreaInfo": anonymousState__temp,
+        "closeDrawer": anonymousState__temp2
+      }, $compid__10, $prevCompid__10);
       Object.assign(this.__state, {
+        anonymousState__temp: anonymousState__temp,
+        anonymousState__temp2: anonymousState__temp2,
         $compid__5: $compid__5,
         $compid__6: $compid__6,
         $compid__7: $compid__7,
         $compid__8: $compid__8,
         $compid__9: $compid__9,
-        IMGCDNURL: _index.IMGCDNURL
+        $compid__10: $compid__10,
+        IMGCDNURL: _index.IMGCDNURL,
+        ISWEIXIN: false,
+        shwoCity: shwoCity,
+        area: area
       });
       return this.__state;
     }
@@ -206,12 +291,32 @@ var Home = function (_Taro$Component) {
     value: function anonymousFunc0(e) {
       ;
     }
+  }, {
+    key: "anonymousFunc1",
+    value: function anonymousFunc1(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc2",
+    value: function anonymousFunc2(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc3",
+    value: function anonymousFunc3(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc4",
+    value: function anonymousFunc4(e) {
+      ;
+    }
   }]);
 
   return Home;
 }(_taroTt2.default.Component);
 
-Home.$$events = ["anonymousFunc0"];
+Home.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4"];
 Home.$$componentPath = "pages/home/index";
 exports.default = Home;
 

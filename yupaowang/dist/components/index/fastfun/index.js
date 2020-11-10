@@ -17,15 +17,15 @@ Object.defineProperty(exports, "__esModule", {
 var _index = __webpack_require__(/*! ../../../config/index */ "./src/config/index.ts");
 
 var Config = [{
-  url: '/pages/static/invite',
+  url: '/pages/static/invite/index',
   img: _index.IMGCDNURL + 'yqhy.png',
   text: '邀请好友'
 }, {
-  url: 'pages/query/query',
+  url: '/pages/query/index',
   img: _index.IMGCDNURL + 'smcx.png',
   text: '实名查询'
 }, {
-  url: '/pages/static/invite/index',
+  url: '/subpackage/pages/notice/index',
   img: _index.IMGCDNURL + 'index-newzjxm.png',
   text: '鱼泡动态'
 }];

@@ -1,4 +1,4 @@
-import Taro, { useRouter, RouterInfo, createContext, Config } from '@tarojs/taro'
+import Taro, { useRouter, RouterInfo, Config } from '@tarojs/taro'
 import { View, Text, Form, Input, Textarea, Block } from '@tarojs/components'
 import { ProfessionRecruitData } from '../../../components/profession/index.d'
 import WordsTotal from '../../../components/wordstotal'
@@ -9,9 +9,9 @@ import { RecruitModelInfo, UserLastPublishRecruitArea } from '../index.d'
 import UploadImgAction from '../../../utils/upload'
 import ImageView from '../../../components/imageview'
 import Msg from '../../../utils/msg'
-import { userCancelAuth } from '../../../utils/helper'
 import Auth from '../../../components/auth'
 import './index.scss'
+import { useSelector } from '@tarojs/redux'
 
 // 初始化获取信息类型
 export interface InitRecruitView {
@@ -19,15 +19,6 @@ export interface InitRecruitView {
   infoId: string
 }
 
-// context类型
-export interface Injected {
-  area: string, // 城市名称
-  setArea: (city: string)=>void, //设置城市名称
-  setAreaInfo?: (item: UserLastPublishRecruitArea)=>void, // 用户点击的小地址信息
-  setPublishArea?: (val: string)=> void //设置最后一次点击 城市的名字
-}
-
-export const context = createContext<Injected>({} as Injected)
 
 export default function PublishRecruit() {
   // 获取路由参数
@@ -35,19 +26,12 @@ export default function PublishRecruit() {
   const id: string = router.params.id || ''
   const type: string = 'job'
   const InitParams: InitRecruitView = { type: type,infoId: id }
+  //获取redux中发布招工区域详细数据
+  const areaInfo:UserLastPublishRecruitArea = useSelector<any,UserLastPublishRecruitArea>(state=>state.MyAreaInfo)
   
   // 初始化当前信息
-  const { model, setModel, showUpload, setShowUpload, showProfession, setShowProssion, area, setArea, setAreaInfo, userPublishRecruitAction, num, setNum, phone } = usePublishViewInfo(InitParams)
-  // 需要传递的值
-  const value: Injected = {
-    area: area,
-    setArea: (city: string)=>setArea(city),
-    setAreaInfo: (item: UserLastPublishRecruitArea) => setAreaInfo(item),
-    setPublishArea: (val: string) => {
-      if(!model) return
-      setModel({ ...model, address: val })
-    }
-  }
+  const { model, setModel, showUpload, setShowUpload, showProfession, setShowProssion, userPublishRecruitAction, num, setNum, phone } = usePublishViewInfo(InitParams)
+
   // 使用自定义验证码hook
   const { text, userGetCode } = useCode()
 
@@ -129,9 +113,7 @@ export default function PublishRecruit() {
     bakModel.view_images.splice(i,1)
     setModel(bakModel)
   }
-
   return (
-    <context.Provider value={ value }>
       <Block>
         <Auth />
         {showProfession && 
@@ -175,7 +157,7 @@ export default function PublishRecruit() {
               </View>
               <View className='publish-list-item' onClick={()=>userChooseArea()}>
                 <Text className='pulish-list-title'>详细地址</Text>
-                <Input className='publish-list-input' type='text' disabled placeholder='请输入详细地址' value={ model&&model.address } />
+                <Input className='publish-list-input' type='text' disabled placeholder='请输入详细地址' value={ areaInfo&&areaInfo.title } />
               </View>
               <View className='publish-list-item'>
                 <Text className='pulish-list-title'>联系人</Text>
@@ -247,7 +229,6 @@ export default function PublishRecruit() {
           </Form>
         </View>
       </Block>
-    </context.Provider>
   )
 }
 

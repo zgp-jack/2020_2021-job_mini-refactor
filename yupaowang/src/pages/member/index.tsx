@@ -1,20 +1,19 @@
 import Taro, { useState, useEffect, useDidShow } from '@tarojs/taro'
 import { View, Image, Text } from '@tarojs/components'
-import { useSelector } from '@tarojs/redux'
+import { useSelector, useDispatch } from '@tarojs/redux'
 import { getMemberInfo } from '../../utils/request'
 import { MemberInfo } from '../../utils/request/index.d'
-import { IMGCDNURL, AUTHPATH, CODEAUTHPATH } from '../../config'
+import { IMGCDNURL, AUTHPATH, CODEAUTHPATH, PUBLISHRESUME } from '../../config'
+import { setMemberInfo } from '../../actions/member'
 import { ShowActionModal } from '../../utils/msg'
+import { UserMemberInfo } from '../../reducers/member'
 import { isIos } from '../../utils/v'
 import './index.scss'
 
-export interface UserMemberInfo {
-  username: string,
-  phone: string,
-  avatar: string
-}
 export default function Member(){
-  console.log(ISWEIXIN)
+
+  const dispatch = useDispatch()
+
   // 获取用户信息
   const login = useSelector<any, boolean>(state => state.User['login'])
   // member信息
@@ -25,12 +24,6 @@ export default function Member(){
   const msgNumber: number = useSelector<any, number>(state => state.msg['messageNumber'])
   // 判断是否是ios
   const [ios, setIos] = useState<boolean>(false)
-  // 创建memberContext
-  const value: UserMemberInfo = {
-    username: model ? model.member.username||model.member.nickname : '',
-    avatar: model ? model.member.headimgurl : '',
-    phone: model ? model.member.tel : ''
-  }
 
   // 用户页面跳转
   const userRouteJump = (url: string)=> {
@@ -43,7 +36,16 @@ export default function Member(){
   const initMemberInfo = ()=> {
     if(!login) return
     getMemberInfo().then(data=>{
-      if(data.errcode == 'ok') setModel(data)
+      if(data.errcode == 'ok'){
+        const value: UserMemberInfo = {
+          username: data.member.username || data.member.nickname,
+          avatar: data.member.headimgurl||'',
+          phone: data.member.tel||'',
+          pwd_status: data.member.pwd_status || ''
+        }
+        dispatch(setMemberInfo(value))
+        setModel(data)
+      }
       else ShowActionModal(data.errmsg)
     })
   }
@@ -80,7 +82,7 @@ export default function Member(){
               </View>
               <View className='member-usernum'>会员编号：<Text className='member-id'>{ model.member.id }</Text></View>
               { model.member.tel ? 
-                  <View className='member-editinfo' onClick={() => userRouteJump(`/pages/userinfo/index/index?username=${value.username}&phone=${value.phone}&avatar=${value.avatar}`)}>修改资料</View>
+                  <View className='member-editinfo' onClick={() => userRouteJump(`/pages/userinfo/info/index`)}>修改资料</View>
               :
               <View className='member-editinfo' onClick={()=>userRouteJump('/pages/userinfo/add/index')}>完善资料</View>
               }
@@ -115,7 +117,7 @@ export default function Member(){
             <Text className='member-list-title'>我的招工</Text>
             {jobNumber && <Text className='member-list-tips'>状态有更新</Text>}
           </View>
-          <View className='member-list-item'>
+          <View className='member-list-item' onClick={() => userRouteJump(PUBLISHRESUME)}>
             <Image className='member-list-icon' src={ IMGCDNURL + 'lpy/ucenter/newcenter-resume.png'} />
             <Text className='member-list-title'>我的找活名片</Text>
             <Text className='member-list-tips'>{model && model.member.resume_status.resume_tips_string }</Text>
@@ -138,7 +140,7 @@ export default function Member(){
           </View>
         </View>
         <View className='member-list-container'>
-          <View className='member-list-item' onClick={() => userRouteJump('/pages/recharge/index')}>
+          <View className='member-list-item' onClick={() => userRouteJump('/pages/getintegral/index')}>
             <Image className='member-list-icon' src={ IMGCDNURL + 'lpy/ucenter/newcenter-integral.png'} />
             <Text className='member-list-title'>获取积分</Text>
             {!ios && <Text className='member-list-tips'>去充值</Text>}

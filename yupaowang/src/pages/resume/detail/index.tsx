@@ -2,9 +2,9 @@ import Taro, { Config, useState, useRouter, createContext, useDidShow, useEffect
 import { View, Text, Image } from '@tarojs/components'
 import { resumeDetailAction, recommendListAction, resumesGetTelAcrion, resumeSupportAction, resumeCollectAction, resumesComplainAction } from '../../../utils/request/index'
 import { IMGCDNURL } from '../../../config'
-import Msg, { SubPopup } from '../../../utils/msg'
+import Msg, { showModalTip } from '../../../utils/msg'
 import { DataType, ListType, Injected } from './index.d'
-import CollectionRecruitList  from '../../../components/recommendList/index'
+// import CollectionRecruitList  from '../../../components/recommendList/index'
 import { isVaildVal } from '../../../utils/v'
 import Report from '../../../components/report';
 import { useSelector } from '@tarojs/redux'
@@ -57,9 +57,9 @@ export default function ResumeDetail() {
     project:[],
   })
   // 相关推荐
-  const [list,setList ] = useState<ListType>({
-    item:[]
-  })
+  // const [list,setList ] = useState<ListType>({
+  //   item:[]
+  // })
   const [examine, setExamine] = useState<boolean>(true)
   // 查看电话
   const [onoff, seOnoff] = useState<boolean>(false);
@@ -110,16 +110,17 @@ export default function ResumeDetail() {
         if (res.info.is_read == 0 && res.info.is_end != '2' && res.operation.status == 0){
           seOnoff(true)
         }
-        const listParams = {
-          page: 1,
-          type: 1,
-          area_id: res.info.city,
-          occupations: res.info.occupations_id,
-          uuid: res.info.uuid,
-        }
-        recommendListAction(listParams).then(res => {
-          setList({ item: res.data.list })
-        })
+        // 加载相关推荐数据列表
+        // const listParams = {
+        //   page: 1,
+        //   type: 1,
+        //   area_id: res.info.city,
+        //   occupations: res.info.occupations_id,
+        //   uuid: res.info.uuid,
+        // }
+        // recommendListAction(listParams).then(res => {
+        //   setList({ item: res.data.list })
+        // })
       }
     })
   }
@@ -238,7 +239,7 @@ export default function ResumeDetail() {
     resumesComplainAction(params).then((res) => {
       if (res.errcode === 'ok') {
         SubscribeToNews('complain', () => {
-          SubPopup({
+          showModalTip({
             tips: res.errmsg,
             callback: () => {
               setIsComplaint(true)
@@ -526,9 +527,9 @@ export default function ResumeDetail() {
         <View className='resumeDetail-recommend-top'>
           <Text className='resumeDetail-recommend-top-text'>相关推荐</Text></View>
       </View> */}
-      {list.item.length &&
+      {/* {list.item.length &&
       <CollectionRecruitList data={list.item} type={2}/>
-      }
+      } */}
       {/* <View className='resume-list-container'>
       {list.item.map(item=>(
         <Block key={item.id}>
@@ -618,4 +619,7 @@ export default function ResumeDetail() {
 
 ResumeDetail.config = {
   navigationBarTitleText: '找活名片',
+  navigationBarBackgroundColor: '#0099ff',
+  navigationBarTextStyle: 'white',
+  backgroundTextStyle: "dark"
 } as Config

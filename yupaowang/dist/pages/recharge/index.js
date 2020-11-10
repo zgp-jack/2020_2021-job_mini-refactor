@@ -43,6 +43,8 @@ var _index2 = __webpack_require__(/*! ../../utils/request/index */ "./src/utils/
 
 var _index3 = __webpack_require__(/*! ../../utils/msg/index */ "./src/utils/msg/index.ts");
 
+var _index4 = _interopRequireDefault(_index3);
+
 var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/redux/index.js");
 
 var _classnames = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
@@ -51,7 +53,7 @@ var _classnames2 = _interopRequireDefault(_classnames);
 
 var _tabbar = __webpack_require__(/*! ../../constants/tabbar */ "./src/constants/tabbar.ts");
 
-var _index4 = __webpack_require__(/*! ../../utils/helper/index */ "./src/utils/helper/index.ts");
+var _index5 = __webpack_require__(/*! ../../utils/helper/index */ "./src/utils/helper/index.ts");
 
 __webpack_require__(/*! ./index.scss */ "./src/pages/recharge/index.scss");
 
@@ -73,7 +75,14 @@ var Recharge = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (Recharge.__proto__ || Object.getPrototypeOf(Recharge)).apply(this, arguments));
 
-    _this.$usedState = ["loopArray48", "lists", "integral", "current", "price"];
+    _this.config = {
+      navigationBarTitleText: '用户充值积分',
+      navigationBarBackgroundColor: '#0099ff',
+      navigationBarTextStyle: 'white',
+      backgroundTextStyle: "dark"
+    };
+
+    _this.$usedState = ["loopArray50", "lists", "integral", "current", "price"];
     _this.anonymousFunc0Map = {};
     _this.customComponents = ["AtMessage"];
     return _this;
@@ -129,7 +138,7 @@ var Recharge = function (_Taro$Component) {
               return item.default == '1';
             });
             setCurrent(i);
-            var _price = (0, _index4.getPointNumber)(res.list[i].price, res.list[i].integral);
+            var _price = (0, _index5.getPointNumber)(res.list[i].price, res.list[i].integral);
             setPrice(_price);
           } else {
             (0, _index3.ShowActionModal)({
@@ -144,7 +153,7 @@ var Recharge = function (_Taro$Component) {
       // 用户选择充值项
       var userChooseItem = function userChooseItem(i) {
         setCurrent(i);
-        var price = (0, _index4.getPointNumber)(lists[i].price, lists[i].integral);
+        var price = (0, _index5.getPointNumber)(lists[i].price, lists[i].integral);
         setPrice(price);
         var newLists = JSON.parse(JSON.stringify(lists));
         newLists.map(function (d, index) {
@@ -155,6 +164,60 @@ var Recharge = function (_Taro$Component) {
       // 用户充值
       var userRechargeAction = function userRechargeAction() {
         var rechargeIntegral = lists[current].integral;
+        if (false) {} else if (_index.MINIVERSION == _index.DOUYIN) {
+          douyinProPay();
+        }
+      };
+      // 检测订单
+      var getOrderStatusAction = function getOrderStatusAction(order_no) {
+        return new Promise(function (resolve, reject) {
+          resolve({ code: 0 });
+          (0, _index2.userCheckDouyinRecharge)({ order_no: order_no }).then(function (res) {
+            (0, _index4.default)(res.errmsg);
+            if (res.errcode == 'ok') {
+              setIntegral(res.integral);
+              resolve({ code: 0 });
+            }
+          }).catch(function (err) {
+            console.log(err);
+            (0, _index4.default)('支付失败');
+            reject(err);
+          });
+        });
+      };
+      // 抖音支付
+      var douyinProPay = function douyinProPay() {
+        var id = lists[current].id;
+        (0, _index2.userDouyinRecharge)({ integral_price_id: id }).then(function (res) {
+          var order_no = res.data.biteOrderInfo.out_order_no;
+          tt.pay({
+            orderInfo: res.data.biteOrderInfo,
+            service: 3,
+            getOrderStatus: function getOrderStatus() {
+              return getOrderStatusAction(order_no);
+            },
+            success: function success(res) {
+              console.log(res);
+              if (res.code == 0) {
+                (0, _index4.default)('支付成功');
+              }
+              if (res.code == 9) {
+                getOrderStatusAction(order_no);
+              } else {
+                (0, _index4.default)('支付失败');
+              }
+            },
+            fail: function fail(err) {
+              (0, _index4.default)('支付失败');
+            }
+          });
+        }).catch(function (err) {
+          return console.log(err);
+        });
+      };
+      // 微信支付
+      var weixinProPay = function weixinProPay(rechargeIntegral) {
+        console.log('吊起微信支付');
         _taroTt2.default.login({
           success: function success(res) {
             (0, _index2.getRechargeOpenid)(res.code).then(function (openidData) {
@@ -193,11 +256,11 @@ var Recharge = function (_Taro$Component) {
       this.anonymousFunc1 = function () {
         return userRechargeAction();
       };
-      var loopArray48 = lists.map(function (item, index) {
+      var loopArray50 = lists.map(function (item, index) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
-        var _$indexKey = "egzzz" + index;
+        var _$indexKey = "ejzzz" + index;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return userChooseItem(index);
         };
@@ -212,7 +275,7 @@ var Recharge = function (_Taro$Component) {
         };
       });
       Object.assign(this.__state, {
-        loopArray48: loopArray48,
+        loopArray50: loopArray50,
         lists: lists,
         integral: integral,
         current: current,
@@ -245,6 +308,7 @@ var Recharge = function (_Taro$Component) {
 
 Recharge.$$events = ["anonymousFunc0", "anonymousFunc1"];
 Recharge.$$componentPath = "pages/recharge/index";
+Recharge.config = { navigationBarTitleText: '用户充值积分', navigationBarBackgroundColor: '#0099ff', navigationBarTextStyle: 'white', backgroundTextStyle: "dark" };
 exports.default = Recharge;
 
 Page(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(Recharge, true));

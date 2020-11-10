@@ -59,7 +59,7 @@ var ResumeList = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (ResumeList.__proto__ || Object.getPrototypeOf(ResumeList)).apply(this, arguments));
 
-    _this.$usedState = ["$compid__45", "bottom", "initPage"];
+    _this.$usedState = ["$compid__49", "bottom", "initPage"];
     _this.customComponents = ["CollectionResumeList"];
     return _this;
   }
@@ -79,10 +79,10 @@ var ResumeList = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__45"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__49"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__45 = _genCompid2[0],
-          $compid__45 = _genCompid2[1];
+          $prevCompid__49 = _genCompid2[0],
+          $compid__49 = _genCompid2[1];
 
       var _props = this.__props,
           bottom = _props.bottom,
@@ -168,9 +168,9 @@ var ResumeList = function (_Taro$Component) {
         "data": resLists,
         "onHandlerClick": this.anonymousFunc0,
         "recruitNoMoreData": recruitNoMoreData
-      }, $compid__45, $prevCompid__45);
+      }, $compid__49, $prevCompid__49);
       Object.assign(this.__state, {
-        $compid__45: $compid__45
+        $compid__49: $compid__49
       });
       return this.__state;
     }

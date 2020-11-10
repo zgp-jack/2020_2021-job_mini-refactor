@@ -47,7 +47,7 @@ var UserAuth = function (_Taro$Component) {
       backgroundTextStyle: "dark"
     };
 
-    _this.$usedState = ["$compid__24"];
+    _this.$usedState = ["$compid__29"];
     _this.customComponents = ["Auth"];
     return _this;
   }
@@ -67,16 +67,16 @@ var UserAuth = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__24"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__29"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__24 = _genCompid2[0],
-          $compid__24 = _genCompid2[1];
+          $prevCompid__29 = _genCompid2[0],
+          $compid__29 = _genCompid2[1];
 
       _taroTt.propsManager.set({
         "page": true
-      }, $compid__24, $prevCompid__24);
+      }, $compid__29, $prevCompid__29);
       Object.assign(this.__state, {
-        $compid__24: $compid__24
+        $compid__29: $compid__29
       });
       return this.__state;
     }

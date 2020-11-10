@@ -4,6 +4,19 @@
   position: relative;
   width: 100%;
   padding-bottom: 150px;
+  .lists-nodata{
+    text-align: center;
+    & >image{
+      display: inline-block;
+      width: 200px;
+      height: 200px;
+    }
+    & > text{
+      display: block;
+      font-size: 28px;
+      line-height: 100px;
+    }
+  }
   .usedlist-item{
     position: relative;
     width: 100%;

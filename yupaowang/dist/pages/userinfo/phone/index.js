@@ -43,13 +43,15 @@ var _index3 = __webpack_require__(/*! ../../../utils/request/index */ "./src/uti
 
 var _index4 = __webpack_require__(/*! ../../../utils/v/index */ "./src/utils/v/index.ts");
 
-var _index5 = __webpack_require__(/*! ../index/index */ "./src/pages/userinfo/index/index.tsx");
+var _member = __webpack_require__(/*! ../../../actions/member */ "./src/actions/member.ts");
+
+var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/redux/index.js");
 
 __webpack_require__(/*! ./index.scss */ "./src/pages/userinfo/phone/index.scss");
 
-var _index6 = __webpack_require__(/*! ../../../utils/msg/index */ "./src/utils/msg/index.ts");
+var _index5 = __webpack_require__(/*! ../../../utils/msg/index */ "./src/utils/msg/index.ts");
 
-var _index7 = _interopRequireDefault(_index6);
+var _index6 = _interopRequireDefault(_index5);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -86,9 +88,7 @@ var UserBandPhone = function (_Taro$Component) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-
-      var _useContext = (0, _taroTt.useContext)(_index5.PhoneContext),
-          setPhone = _useContext.setPhone;
+      var dispatch = (0, _redux.useDispatch)();
 
       var _useCode = (0, _index2.default)(),
           userGetCode = _useCode.userGetCode,
@@ -114,21 +114,21 @@ var UserBandPhone = function (_Taro$Component) {
       // 用户更换手机号码操作
       var userChangePhoneAction = function userChangePhoneAction() {
         if (!(0, _index4.isPhone)(info.tel)) {
-          (0, _index7.default)('请先输入正确的手机号码');
+          (0, _index6.default)('请先输入正确的手机号码');
           return;
         }
         if (!info.code) {
-          (0, _index7.default)('请先输入正确的验证码');
+          (0, _index6.default)('请先输入正确的验证码');
           return;
         }
         (0, _index3.userChangePhone)(info.tel, info.code).then(function (res) {
-          (0, _index7.default)(res.errmsg);
+          (0, _index6.default)(res.errmsg);
           if (res.errcode == 'ok') {
-            setPhone(info.tel);
+            dispatch((0, _member.setMemberTel)(info.tel));
             _taroTt2.default.navigateBack();
           }
         }).catch(function () {
-          (0, _index7.default)('网络错误，发送失败');
+          (0, _index6.default)('网络错误，发送失败');
         });
       };
       this.anonymousFunc0 = function (e) {

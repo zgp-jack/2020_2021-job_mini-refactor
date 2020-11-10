@@ -45,11 +45,11 @@ var _area = __webpack_require__(/*! ../../../models/area */ "./src/models/area.t
 
 var _index3 = __webpack_require__(/*! ../../../utils/helper/index */ "./src/utils/helper/index.ts");
 
-var _index4 = __webpack_require__(/*! ../../realname/index */ "./src/pages/realname/index.tsx");
+var _index4 = __webpack_require__(/*! ../../../utils/msg/index */ "./src/utils/msg/index.ts");
 
-var _index5 = __webpack_require__(/*! ../../../utils/msg/index */ "./src/utils/msg/index.ts");
+var _index5 = _interopRequireDefault(_index4);
 
-var _index6 = _interopRequireDefault(_index5);
+var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/redux/index.js");
 
 __webpack_require__(/*! ./index.scss */ "./src/pages/map/realname/index.scss");
 
@@ -82,7 +82,7 @@ var RealnameMap = function (_Taro$Component) {
       navigationBarTitleText: '地址选择'
     };
 
-    _this.$usedState = ["loopArray49", "loopArray50", "$compid__38", "smAreaText", "showHistory", "histroyList", "lists", "IMGCDNURL", "showCity", "area"];
+    _this.$usedState = ["loopArray51", "loopArray52", "$compid__42", "smAreaText", "showHistory", "histroyList", "lists", "IMGCDNURL", "showCity", "area"];
     _this.anonymousFunc4Map = {};
     _this.anonymousFunc5Map = {};
     _this.customComponents = ["Cities"];
@@ -106,13 +106,14 @@ var RealnameMap = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__38"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__42"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__38 = _genCompid2[0],
-          $compid__38 = _genCompid2[1];
+          $prevCompid__42 = _genCompid2[0],
+          $compid__42 = _genCompid2[1];
 
-      var _useContext = (0, _taroTt.useContext)(_index4.context),
-          setRealnameArea = _useContext.setRealnameArea;
+      var setRealnameArea = (0, _redux.useSelector)(function (store) {
+        return store['realname'].setRealnameArea;
+      });
 
       var _useState = (0, _taroTt.useState)(''),
           _useState2 = _slicedToArray(_useState, 2),
@@ -322,9 +323,9 @@ var RealnameMap = function (_Taro$Component) {
             setRealnameArea(item.name);
             // }
             _taroTt2.default.navigateBack();
-          } else (0, _index5.ShowActionModal)({ msg: res.errmsg });
+          } else (0, _index4.ShowActionModal)({ msg: res.errmsg });
         }).catch(function () {
-          (0, _index6.default)("网络错误，请求失败！");
+          (0, _index5.default)("网络错误，请求失败！");
         });
       };
       this.anonymousFunc0 = function () {
@@ -339,12 +340,12 @@ var RealnameMap = function (_Taro$Component) {
       this.anonymousFunc3 = function () {
         return userCloseMap();
       };
-      var loopArray49 = showHistory ? histroyList.map(function (item, index) {
+      var loopArray51 = showHistory ? histroyList.map(function (item, index) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
         var $loopState__temp2 = showHistory ? index + index : null;
-        var _$indexKey = "ehzzz" + index;
+        var _$indexKey = "fazzz" + index;
         _this2.anonymousFunc4Map[_$indexKey] = function () {
           return userClickAreaItem(item.$original);
         };
@@ -354,12 +355,12 @@ var RealnameMap = function (_Taro$Component) {
           $original: item.$original
         };
       }) : [];
-      var loopArray50 = lists.map(function (item, index) {
+      var loopArray52 = lists.map(function (item, index) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
         var $loopState__temp4 = index + index;
-        var _$indexKey2 = "eizzz" + index;
+        var _$indexKey2 = "fbzzz" + index;
         _this2.anonymousFunc5Map[_$indexKey2] = function () {
           return userClickAreaItem(item.$original);
         };
@@ -375,11 +376,11 @@ var RealnameMap = function (_Taro$Component) {
         "userLoc": userLoc,
         "userChangeCity": userChangeCity,
         "userTapCityBtn": userTapCityBtn
-      }, $compid__38, $prevCompid__38);
+      }, $compid__42, $prevCompid__42);
       Object.assign(this.__state, {
-        loopArray49: loopArray49,
-        loopArray50: loopArray50,
-        $compid__38: $compid__38,
+        loopArray51: loopArray51,
+        loopArray52: loopArray52,
+        $compid__42: $compid__42,
         smAreaText: smAreaText,
         showHistory: showHistory,
         histroyList: histroyList,

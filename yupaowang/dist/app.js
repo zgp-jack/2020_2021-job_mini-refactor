@@ -72,9 +72,9 @@ var _App = function (_BaseComponent) {
     var _this = _possibleConstructorReturn(this, (_App.__proto__ || Object.getPrototypeOf(_App)).apply(this, arguments));
 
     _this.config = {
-      pages: ['pages/index/index', 'pages/userauth/index', "pages/recruit/publish/index", "pages/used/lists/index", "pages/map/recruit/index", "pages/map/resume/index", "pages/used/publish/index", "pages/used/info/index", "pages/invite/index", "pages/getintegral/index", "pages/integral/source/index", "pages/integral/temp/index", "pages/integral/official/index", "pages/integral/expend/index", "pages/recharge/index", "pages/realname/index", "pages/map/realname/index", "pages/userinfo/index/index", "pages/userinfo/add/index", "pages/userinfo/phone/index", "pages/published/recruit/index", "pages/published/used/index", "pages/collection/index", "pages/help/index", "pages/feedbacklist/index", "pages/feedback/index", "pages/static/invite/index", "pages/information/mymessage/index", "pages/information/system/index", 'pages/integral/tabber/index', 'pages/detail/info/index', 'pages/topping/index', 'pages/topping/distruction/index',
+      pages: ['pages/index/index', 'pages/userauth/index', "pages/recruit/publish/index", "pages/used/lists/index", "pages/map/recruit/index", "pages/map/resume/index", "pages/used/publish/index", "pages/used/info/index", "pages/invite/index", "pages/getintegral/index", "pages/integral/source/index", "pages/integral/temp/index", "pages/integral/official/index", "pages/integral/expend/index", "pages/recharge/index", "pages/realname/index", "pages/map/realname/index", "pages/userinfo/info/index", "pages/userinfo/add/index", "pages/userinfo/phone/index", "pages/userinfo/updatePass/index", "pages/published/recruit/index", "pages/published/used/index", "pages/collection/index", "pages/help/index", "pages/feedbacklist/index", "pages/feedback/index", "pages/static/invite/index", "pages/query/index", "pages/information/mymessage/index", "pages/information/system/index", 'pages/integral/tabber/index', 'pages/detail/info/index', 'pages/topping/index', 'pages/topping/distruction/index',
       // 'pages/topping/recruit/index',//置顶找活范围
-      'pages/resume/detail/index', 'pages/resume/skillList/index', 'pages/resume/projectList/index', 'pages/resume/addProject/index', 'pages/resume/addSkill/index', 'pages/resume/basics/index', 'pages/resume/newJobs/index', 'pages/resume/recList/index', 'pages/resume/preview/index', 'pages/resume/personInfo/index', 'pages/login/index', 'pages/recruit/fastPublish/index'],
+      'pages/resume/publish/index', 'pages/resume/add_info/index', 'pages/resume/add_member/index', 'pages/resume/add_skill/index', 'pages/resume/add_project/index', 'pages/resume/projects/index', 'pages/resume/skills/index', 'pages/rank-rules/index', 'pages/turntable/index', 'pages/resume/detail/index', 'pages/resume/newPreview/index', 'pages/resume/preview/index', 'pages/login/index', 'pages/recruit/fastPublish/index'],
       subPackages: [{
         root: 'subpackage/pages',
         pages: ['checkauth/index', 'about/index', 'report/index', 'notice/index', 'download/index', 'ranking/index', 'course/index', 'anti-fraud/index']
@@ -130,6 +130,42 @@ _taroTt2.default.initPxTransform({
     "828": 0.905
   }
 });
+
+/***/ }),
+
+/***/ "./src/constants/personnel.ts":
+/*!************************************!*\
+  !*** ./src/constants/personnel.ts ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var GETDATA = exports.GETDATA = 'getdata';
+var SETDATA = exports.SETDATA = 'setdata';
+
+/***/ }),
+
+/***/ "./src/constants/resume.ts":
+/*!*********************************!*\
+  !*** ./src/constants/resume.ts ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var GETLIST = exports.GETLIST = 'getlist';
+var SETLIST = exports.SETLIST = 'setlist';
 
 /***/ }),
 
@@ -221,8 +257,28 @@ var _resume = __webpack_require__(/*! ./resume */ "./src/reducers/resume.ts");
 
 var _resume2 = _interopRequireDefault(_resume);
 
+var _recruit = __webpack_require__(/*! ./recruit */ "./src/reducers/recruit.ts");
+
+var _member = __webpack_require__(/*! ./member */ "./src/reducers/member.ts");
+
+var _member2 = _interopRequireDefault(_member);
+
+var _realname = __webpack_require__(/*! ./realname */ "./src/reducers/realname.ts");
+
+var _realname2 = _interopRequireDefault(_realname);
+
+var _resume_addinfo = __webpack_require__(/*! ./resume_addinfo */ "./src/reducers/resume_addinfo.ts");
+
+var _resume_addinfo2 = _interopRequireDefault(_resume_addinfo);
+
+var _resume_data = __webpack_require__(/*! ./resume_data */ "./src/reducers/resume_data.ts");
+
+var _resume_data2 = _interopRequireDefault(_resume_data);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+//合并reducer
+//发布招工reducer
 exports.default = (0, _redux.combineReducers)({
   tabbar: _tabbar2.default,
   WechatNotice: _wechat_notice2.default,
@@ -230,8 +286,69 @@ exports.default = (0, _redux.combineReducers)({
   msg: _msg2.default,
   Personnel: _personnel2.default,
   Myresume: _resume2.default,
-  filterClassify: _filter_classify2.default
+  filterClassify: _filter_classify2.default,
+  MyAreaInfo: _recruit.MyAreaInfo,
+  MyArea: _recruit.MyArea,
+  member: _member2.default,
+  realname: _realname2.default,
+  resumeAddInfo: _resume_addinfo2.default,
+  PositionStatus: _recruit.PositionStatus,
+  resumeData: _resume_data2.default
+}); /*
+     * @Author: zyb
+     * @Date: 2020-11-03 14:36:47
+     * @LastEditors: jsxin
+     * @LastEditTime: 2020-11-09 17:11:58
+     * @Description:
+     */
+
+/***/ }),
+
+/***/ "./src/reducers/member.ts":
+/*!********************************!*\
+  !*** ./src/reducers/member.ts ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
 });
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; // 用户会员中心部分共用信息
+
+
+exports.default = UserMemberInfo;
+
+var _member = __webpack_require__(/*! ../constants/member */ "./src/constants/member.ts");
+
+var DEFAULT_MEMBER_INFO = {
+  username: '',
+  avatar: '',
+  phone: '',
+  pwd_status: ''
+};
+function UserMemberInfo() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : DEFAULT_MEMBER_INFO;
+  var action = arguments[1];
+
+  switch (action.type) {
+    case _member.GET:
+      return state;
+      break;
+    case _member.SET:
+      return _extends({}, state, action.data);
+      break;
+    case _member.TEL:
+      return _extends({}, state, { phone: action.data });
+      break;
+    default:
+      return state;
+  }
+}
 
 /***/ }),
 
@@ -316,6 +433,131 @@ function Personnel() {
 
 /***/ }),
 
+/***/ "./src/reducers/realname.ts":
+/*!**********************************!*\
+  !*** ./src/reducers/realname.ts ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+exports.default = RealnameStore;
+
+var _realname = __webpack_require__(/*! ../constants/realname */ "./src/constants/realname.ts");
+
+var DEFAULT_STATE = {
+  RealnameArea: '',
+  setRealnameArea: function setRealnameArea() {}
+};
+function RealnameStore() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : DEFAULT_STATE;
+  var action = arguments[1];
+
+  switch (action.type) {
+    case _realname.GET:
+      return state;
+      break;
+    case _realname.SET:
+      return _extends({}, state, action.data);
+      break;
+    case _realname.SETFUN:
+      return _extends({}, state, { setRealnameArea: action.data });
+      break;
+    case _realname.SETAREA:
+      return _extends({}, state, { RealnameArea: action.data });
+      break;
+    default:
+      return state;
+  }
+}
+
+/***/ }),
+
+/***/ "./src/reducers/recruit.ts":
+/*!*********************************!*\
+  !*** ./src/reducers/recruit.ts ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; //定义发布招工获取设置区域信息的action
+
+
+exports.MyAreaInfo = MyAreaInfo;
+exports.MyArea = MyArea;
+exports.PositionStatus = PositionStatus;
+
+var _recruit = __webpack_require__(/*! ../constants/recruit */ "./src/constants/recruit.ts");
+
+var _area = __webpack_require__(/*! ../models/area */ "./src/models/area.ts");
+
+// 内容的参数
+var DEFAULT_STATE_AREAINFO = {
+  title: '',
+  adcode: '',
+  location: '',
+  info: ''
+};
+// 定义默认的区域数据
+var DEFAULT_STATE_AREA = _area.AREABEIJING.name;
+function MyAreaInfo() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : DEFAULT_STATE_AREAINFO;
+  var action = arguments[1];
+
+  switch (action.type) {
+    case _recruit.GETAREAINFO:
+      return state;
+    case _recruit.SETAREAINFO:
+      state = _extends({}, state, action.data);
+      return state;
+    default:
+      return state;
+  }
+}
+function MyArea() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : DEFAULT_STATE_AREA;
+  var action = arguments[1];
+
+  switch (action.type) {
+    case _recruit.GETAREA:
+      return state;
+    case _recruit.SETAREA:
+      state = action.data;
+      return state;
+    default:
+      return state;
+  }
+}
+function PositionStatus() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+  var action = arguments[1];
+
+  switch (action.type) {
+    case _recruit.SETPOSITIONSTATUS:
+      state = action.data;
+      return state;
+    default:
+      return state;
+  }
+}
+
+/***/ }),
+
 /***/ "./src/reducers/resume.ts":
 /*!********************************!*\
   !*** ./src/reducers/resume.ts ***!
@@ -350,6 +592,110 @@ function Myresume() {
     case _resume.SETLIST:
       state = _extends({}, state, action.data);
       return state;
+    default:
+      return state;
+  }
+}
+
+/***/ }),
+
+/***/ "./src/reducers/resume_addinfo.ts":
+/*!****************************************!*\
+  !*** ./src/reducers/resume_addinfo.ts ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+exports.default = resumeAddInfo;
+
+var _resume_addinfo = __webpack_require__(/*! ../constants/resume_addinfo */ "./src/constants/resume_addinfo.ts");
+
+var DEFAUTL_STATE = {
+  label: [],
+  gender: [],
+  occupation: [],
+  nation: [],
+  type: [],
+  prof_degree: [],
+  isset: false
+};
+function resumeAddInfo() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : DEFAUTL_STATE;
+  var action = arguments[1];
+
+  switch (action.type) {
+    case _resume_addinfo.GET:
+      return _extends({}, state);
+      break;
+    case _resume_addinfo.SET:
+      return _extends({}, state, action.data);
+      break;
+    default:
+      return _extends({}, state);
+  }
+}
+
+/***/ }),
+
+/***/ "./src/reducers/resume_data.ts":
+/*!*************************************!*\
+  !*** ./src/reducers/resume_data.ts ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; /*
+                                                                                                                                                                                                                                                                   * @Author: zyb
+                                                                                                                                                                                                                                                                   * @Date: 2020-11-04 19:59:33
+                                                                                                                                                                                                                                                                   * @LastEditors: jsxin
+                                                                                                                                                                                                                                                                   * @LastEditTime: 2020-11-06 15:39:52
+                                                                                                                                                                                                                                                                   * @Description:
+                                                                                                                                                                                                                                                                   */
+
+
+exports.default = resumeData;
+
+var _resume_data = __webpack_require__(/*! ../constants/resume_data */ "./src/constants/resume_data.ts");
+
+var _data = __webpack_require__(/*! ../pages/resume/publish/data */ "./src/pages/resume/publish/data.ts");
+
+var DEFAULT_STATE = {
+  info: _data.INFODATA_DATA,
+  introducesData: _data.INTRODUCERS_DATA,
+  projectData: [],
+  certificates: [],
+  resume_uuid: '',
+  isSet: false
+};
+function resumeData() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : DEFAULT_STATE;
+  var action = arguments[1];
+
+  switch (action.type) {
+    case _resume_data.GETUSERRESUME:
+      return state;
+    case _resume_data.SETUSERRESUME:
+      return _extends({}, state, action.data);
+    case _resume_data.SETINTRODUCE:
+      return _extends({}, state, { introducesData: action.data });
+    case _resume_data.SETCERTIFICATE:
+      return _extends({}, state, { certificates: action.data });
     default:
       return state;
   }

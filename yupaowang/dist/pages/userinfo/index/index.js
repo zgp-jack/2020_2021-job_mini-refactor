@@ -1,1 +1,0 @@
-(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["pages/userinfo/index/index"],[],[["./src/pages/userinfo/index/index.tsx","runtime","vendors"]]]);

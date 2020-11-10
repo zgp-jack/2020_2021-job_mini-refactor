@@ -115,7 +115,7 @@ var PublishedRecruit = function (_Taro$Component) {
       backgroundTextStyle: "dark"
     };
 
-    _this.$usedState = ["loopArray51", "loopArray52", "HeaderList", "refresh", "lists", "IMGCDNURL", "more", "searchData"];
+    _this.$usedState = ["loopArray53", "loopArray54", "HeaderList", "refresh", "lists", "IMGCDNURL", "more", "searchData"];
     _this.anonymousFunc0Map = {};
     _this.anonymousFunc3Map = {};
     _this.anonymousFunc4Map = {};
@@ -123,7 +123,7 @@ var PublishedRecruit = function (_Taro$Component) {
     _this.anonymousFunc6Map = {};
     _this.anonymousFunc7Map = {};
     _this.anonymousFunc8Map = {};
-    _this.customComponents = ["Nodata"];
+    _this.customComponents = ["Nodata", "Tabbar"];
     return _this;
   }
 
@@ -363,11 +363,11 @@ var PublishedRecruit = function (_Taro$Component) {
       this.anonymousFunc2 = function () {
         return getNextPageData();
       };
-      var loopArray51 = _config2.default.map(function (item, __index0) {
+      var loopArray53 = _config2.default.map(function (item, __index0) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
-        var _$indexKey = "ejzzz" + __index0;
+        var _$indexKey = "fczzz" + __index0;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return userChangePublishedItem(item.$original.id);
         };
@@ -381,31 +381,31 @@ var PublishedRecruit = function (_Taro$Component) {
           $original: item.$original
         };
       });
-      var loopArray52 = lists.map(function (item, index) {
+      var loopArray54 = lists.map(function (item, index) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
-        var _$indexKey2 = "fazzz" + index;
+        var _$indexKey2 = "fdzzz" + index;
         _this2.anonymousFunc3Map[_$indexKey2] = function () {
           return userRouteJump("/pages/detail/info/index?id=" + item.$original.id);
         };
-        var _$indexKey3 = "fbzzz" + index;
+        var _$indexKey3 = "fezzz" + index;
         _this2.anonymousFunc4Map[_$indexKey3] = function () {
           return userRouteJump("/pages/recruit/publish/index?id=" + item.$original.id);
         };
-        var _$indexKey4 = "fczzz" + index;
+        var _$indexKey4 = "ffzzz" + index;
         _this2.anonymousFunc5Map[_$indexKey4] = function () {
           return userStopRecruit(item.$original.id, index);
         };
-        var _$indexKey5 = "fdzzz" + index;
+        var _$indexKey5 = "fgzzz" + index;
         _this2.anonymousFunc6Map[_$indexKey5] = function () {
           return handlCancel(item.$original.id);
         };
-        var _$indexKey6 = "fezzz" + index;
+        var _$indexKey6 = "fhzzz" + index;
         _this2.anonymousFunc7Map[_$indexKey6] = function () {
           return handleTopping(item.$original);
         };
-        var _$indexKey7 = "ffzzz" + index;
+        var _$indexKey7 = "fizzz" + index;
         _this2.anonymousFunc8Map[_$indexKey7] = function () {
           return userRouteJump("/pages/topping/index?id=" + item.$original.id + "&type=1");
         };
@@ -420,8 +420,8 @@ var PublishedRecruit = function (_Taro$Component) {
         };
       });
       Object.assign(this.__state, {
-        loopArray51: loopArray51,
-        loopArray52: loopArray52,
+        loopArray53: loopArray53,
+        loopArray54: loopArray54,
         HeaderList: _config2.default,
         refresh: refresh,
         lists: lists,

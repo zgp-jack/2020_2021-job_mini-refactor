@@ -25,19 +25,10 @@
     "dev:rn": "npm run build:rn -- --watch",
     "dev:qq": "npm run build:qq -- --watch",
     "dev:quickapp": "npm run build:quickapp -- --watch",
-
-
     "dev-baidu": "npm run build:swan baidu -- --watch",
     "build-baidu": "taro build baidu --type swan ",
-
     "dev-douyin": "npm run build:tt douyin -- --watch",
     "build-douyin": "taro build douyin --type tt ",
-
-
-
-
-
-    
     "dev": "npm run build:weapp jizhao -- --watch",
     "build": "taro build jizhao --type weapp ",
     "jizhao": "npm run build:weapp jizhao -- --watch",
@@ -53,6 +44,7 @@
     "@tarojs/components": "2.0.4",
     "@tarojs/components-qa": "2.0.4",
     "@tarojs/components-rn": "^2.0.4",
+    "@tarojs/plugin-sass": "^2.2.10",
     "@tarojs/redux": "2.0.4",
     "@tarojs/redux-h5": "2.0.4",
     "@tarojs/router": "2.0.4",

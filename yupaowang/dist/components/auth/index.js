@@ -68,7 +68,7 @@ var Auth = function (_Taro$Component) {
     var _this = _possibleConstructorReturn(this, (Auth.__proto__ || Object.getPrototypeOf(Auth)).apply(this, arguments));
 
     _this.$usedState = ["login", "page", "ISWEIXIN", "IMGCDNURL", "callback", "userCancelAuth"];
-    _this.customComponents = ["AtMessage"];
+    _this.customComponents = ["AtMessage", "LoginComponet"];
     return _this;
   }
 
@@ -193,7 +193,7 @@ var Auth = function (_Taro$Component) {
       Object.assign(this.__state, {
         login: login,
         page: page,
-        ISWEIXIN: true,
+        ISWEIXIN: false,
         IMGCDNURL: _index.IMGCDNURL
       });
       return this.__state;

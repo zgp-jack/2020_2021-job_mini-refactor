@@ -8,6 +8,7 @@ import { filterClassifyDataResultReduce } from '../../../reducers/filter_classif
 import { setFilter } from '../../../actions/filter_classify'
 import AREAS, { ChildItems } from '../../../models/area'
 import classnames from 'classnames'
+import { UserListChooseCity } from '../../../config/store'
 import { AreaPickerKey, ClassifyPickerKey, FilterPickerKey } from '../../../config/pages/lists'
 import { useDispatch, useSelector } from '@tarojs/redux'
 import './index.scss'
@@ -24,7 +25,6 @@ interface ConditionProps {
 function RecruitCondition({ data, setSearchData }: ConditionProps) {
 
   const dispatch = useDispatch()
-
   // * 获取筛选条件信息
   const filterData = useSelector<any, filterClassifyDataResultReduce>(state => state.filterClassify)
   // * 设置标识 避免数据的重复设置影响性能
@@ -33,14 +33,14 @@ function RecruitCondition({ data, setSearchData }: ConditionProps) {
   const [current, setCurrent] = useState<string>('')
   // * 当前城市选择父级索引
   const [areaIndex, setAreaIndex] = useState<number>(0)
+  // * 当前城市选中的id
+  const [areaId, setAreaId] = useState<string>('')
   // * 当前工种选择父级索引
   const [classifyIndex, setclassifyIndex] = useState<number>(0)
-  // * 当前城市选择子级索引
-  const [areaChildId, setAreaChildId] = useState<string>('')
-  // * 当前工种选择子级索引
-  const [classifyChildId, setclassifyChildId] = useState<string>('')
-  // * 当前筛选数据索引
+  // * 当前工种选择父级索引
   const [filterIndex, setFilterIndex] = useState<number>(0)
+  // * 当前工种被选中id
+  const [classifyId, setClassifyId] = useState<string>('')
   // * 当前展开的城市子集数据
   const [childAreaList, setChildAreaList] = useState<ChildItems[]>(AREAS[areaIndex].children)
   // * 工种数据
@@ -51,6 +51,21 @@ function RecruitCondition({ data, setSearchData }: ConditionProps) {
   const [areaScrollTop, setAreaScrollTop] = useState<number>(0)
   // * 工种切换后子集列表回到顶部
   const [classifyScrollTop, setClassifyScrollTop] = useState<number>(0)
+
+  // 初始化城市父级索引
+  useEffect(() => {
+    let userListChooseCity: ChildItems = Taro.getStorageSync(UserListChooseCity)
+    if(userListChooseCity){
+      let id: string = userListChooseCity.id
+      setAreaId(id)
+      // pid == 1 代表省份 和直辖市
+      let pid: string = userListChooseCity.pid === '1' ? userListChooseCity.id : userListChooseCity.pid
+      let i: number = AREAS.findIndex(item => item.id === pid)
+      // pid == 0 代表全国
+      i = pid === '0' ? 0 : i
+      setAreaIndex(i)
+    }
+  },[])
 
   // * 点击选项展开内容
   const conditionItemClick = (id: string) => {
@@ -67,7 +82,10 @@ function RecruitCondition({ data, setSearchData }: ConditionProps) {
     setAreaIndex(i)
     setAreaScrollTop(0)
     if (!AREAS[i].has_children) {
-      setSearchData(AreaPickerKey, AREAS[i].id.toString(),AREAS[i].name)
+      let id: string = AREAS[i].id.toString()
+      setSearchData(AreaPickerKey, id, AREAS[i].name)
+      setAreaId(id)
+      Taro.setStorageSync(UserListChooseCity, AREAS[i])
       closeDrawer()
     }
   }
@@ -75,17 +93,17 @@ function RecruitCondition({ data, setSearchData }: ConditionProps) {
   // 选择子集地区
   const sureAreaCurrent = (i: number) => {
     let id: string = AREAS[areaIndex].children[i].id
-    setAreaChildId(id)
     setSearchData(AreaPickerKey, id, AREAS[areaIndex].children[i].name)
+    setAreaId(id)
+    Taro.setStorageSync(UserListChooseCity, AREAS[areaIndex].children[i])
     closeDrawer()
   }
 
   // 选择子集工种
   const sureClassifyCurrent = (i: number) => {
     let id: string = classify[classifyIndex].children[i].id.toString()
-    setclassifyChildId(id)
-    let text: string = i ? classify[classifyIndex].children[i].name : classify[classifyIndex].name
-    setSearchData(ClassifyPickerKey, id, text)
+    setSearchData(ClassifyPickerKey, id, classify[classifyIndex].children[i].name)
+    setClassifyId(id)
     closeDrawer()
   }
 
@@ -93,7 +111,7 @@ function RecruitCondition({ data, setSearchData }: ConditionProps) {
   const sureFilterCurrent = (i: number) => {
     setFilterIndex(i)
     let id: string = jobtype[i].type
-    setSearchData(FilterPickerKey, id,jobtype[i].name)
+    setSearchData(FilterPickerKey, id, jobtype[i].name)
     closeDrawer()
   }
 
@@ -102,7 +120,9 @@ function RecruitCondition({ data, setSearchData }: ConditionProps) {
     setclassifyIndex(i)
     setClassifyScrollTop(0)
     if (!classify[i].has_children) {
-      setSearchData(ClassifyPickerKey, classify[i].id.toString(), classify[i].name)
+      let id: string = classify[i].id.toString()
+      setSearchData(ClassifyPickerKey, id, classify[i].name)
+      setClassifyId(id)
       closeDrawer()
     }
   }
@@ -128,6 +148,11 @@ function RecruitCondition({ data, setSearchData }: ConditionProps) {
   useEffect(() => {
     setChildAreaList(AREAS[areaIndex].children)
   }, [areaIndex])
+
+  // * 接收传入的地区id
+  useEffect(()=>{
+
+  },[areaId])
 
   const onScrollAction = (e: any, type: string) => {
     let top: number = e.detail.scrollTop
@@ -184,8 +209,8 @@ function RecruitCondition({ data, setSearchData }: ConditionProps) {
               {childAreaList.map((item, i) => (
                 <View className={classnames({
                   'drawer-list-item overwords': true,
-                  'drawer-list-item-active': item.id === areaChildId
-                })}   onClick={() => sureAreaCurrent(i)}>{item.name}</View>
+                  'drawer-list-item-active': item.id === areaId
+                })} onClick={() => sureAreaCurrent(i)}>{item.name}</View>
               ))}
             </ScrollView>
           }
@@ -220,7 +245,8 @@ function RecruitCondition({ data, setSearchData }: ConditionProps) {
               {classify[classifyIndex].children.map((item, i) => (
                 <View className={classnames({
                   'drawer-list-item overwords': true,
-                  'drawer-list-item-active': item.id.toString() === classifyChildId
+                  'overwords': true,
+                  'drawer-list-item-active': item.id.toString() === classifyId
                 })} onClick={() => sureClassifyCurrent(i)}>{item.name}</View>
               ))}
             </ScrollView>

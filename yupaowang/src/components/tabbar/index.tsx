@@ -7,8 +7,8 @@ import { useSelector, useDispatch } from '@tarojs/redux'
 import { DEFAULT_MENUS_TYPE, Menu } from '../../reducers/tabbar'
 import { setMsg } from '../../actions/msg'
 import { changeTabbar } from '../../actions/tabbar'
-import { MemberMsgTimerInterval } from '../../config'
-import { IMGCDNURL } from '../../config'
+import { MemberMsgTimerInterval, PUBLISHRECRUIT, PUBLISHRESUME, PUBLISHUSED,IMGCDNURL } from '../../config'
+// import { IMGCDNURL } from '../../config'
 import './index.scss'
 
 interface PROPS {
@@ -61,7 +61,6 @@ export default function Tabbar({ notredirect }: PROPS) {
       url: url
     })
   }
-
   // 统计未读信息
   const getMemberMsg = ()=> {
       if (!login) return
@@ -117,15 +116,15 @@ export default function Tabbar({ notredirect }: PROPS) {
           'tabbar-publish-items': true,
           'tabbar-publish-items-active': active
         })}>
-          <View className='tabbar-publish-item'>
+          <View className='tabbar-publish-item' onClick={() => userTapPublishItem(PUBLISHRECRUIT)}>
             <Image className='tabbar-publih-item-img' src={IMGCDNURL +'publish-recruit.png'}></Image>
             <Text className='tabbar-publih-item-text'>发布招工</Text>
           </View>
-          <View className='tabbar-publish-item'>
+          <View className='tabbar-publish-item' onClick={() => userTapPublishItem(PUBLISHRESUME)}>
             <Image className='tabbar-publih-item-img' src={IMGCDNURL +'publish-card.png'}></Image>
             <Text className='tabbar-publih-item-text'>发布找活</Text>
           </View>
-          <View className='tabbar-publish-item'>
+          <View className='tabbar-publish-item' onClick={() => userTapPublishItem(PUBLISHUSED)}>
             <Image className='tabbar-publih-item-img' src={IMGCDNURL +'publish-used.png'}></Image>
             <Text className='tabbar-publih-item-text'>二手交易</Text>
           </View>

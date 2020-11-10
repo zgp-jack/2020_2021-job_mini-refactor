@@ -92,6 +92,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+// import { IMGCDNURL } from '../../config'
+
 
 var Tabbar = function (_Taro$Component) {
   _inherits(Tabbar, _Taro$Component);
@@ -101,7 +103,7 @@ var Tabbar = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (Tabbar.__proto__ || Object.getPrototypeOf(Tabbar)).apply(this, arguments));
 
-    _this.$usedState = ["anonymousState__temp3", "anonymousState__temp4", "anonymousState__temp5", "tabbar", "loopArray26", "memberMsg", "show", "IMGCDNURL", "notredirect"];
+    _this.$usedState = ["anonymousState__temp3", "anonymousState__temp4", "anonymousState__temp5", "tabbar", "loopArray29", "memberMsg", "show", "IMGCDNURL", "notredirect"];
     _this.anonymousFunc0Map = {};
     _this.customComponents = [];
     return _this;
@@ -219,7 +221,16 @@ var Tabbar = function (_Taro$Component) {
         'tabbar-publish-items': true,
         'tabbar-publish-items-active': active
       }) : null;
-      var loopArray26 = tabbar.list.map(function (item, __index0) {
+      this.anonymousFunc2 = function () {
+        return userTapPublishItem(_index3.PUBLISHRECRUIT);
+      };
+      this.anonymousFunc3 = function () {
+        return userTapPublishItem(_index3.PUBLISHRESUME);
+      };
+      this.anonymousFunc4 = function () {
+        return userTapPublishItem(_index3.PUBLISHUSED);
+      };
+      var loopArray29 = tabbar.list.map(function (item, __index0) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
@@ -227,7 +238,7 @@ var Tabbar = function (_Taro$Component) {
           'common-footer-tabbar-list': true,
           'common-footer-tabbar-list-active': item.$original.id === tabbar.key
         });
-        var _$indexKey = "chzzz" + __index0;
+        var _$indexKey = "dbzzz" + __index0;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return changeTabbarAction(item.$original);
         };
@@ -242,7 +253,7 @@ var Tabbar = function (_Taro$Component) {
         anonymousState__temp4: anonymousState__temp4,
         anonymousState__temp5: anonymousState__temp5,
         tabbar: tabbar,
-        loopArray26: loopArray26,
+        loopArray29: loopArray29,
         memberMsg: memberMsg,
         show: show,
         IMGCDNURL: _index3.IMGCDNURL
@@ -267,12 +278,27 @@ var Tabbar = function (_Taro$Component) {
     value: function anonymousFunc1(e) {
       ;
     }
+  }, {
+    key: "anonymousFunc2",
+    value: function anonymousFunc2(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc3",
+    value: function anonymousFunc3(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc4",
+    value: function anonymousFunc4(e) {
+      ;
+    }
   }]);
 
   return Tabbar;
 }(_taroTt2.default.Component);
 
-Tabbar.$$events = ["anonymousFunc0", "anonymousFunc1"];
+Tabbar.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4"];
 Tabbar.$$componentPath = "components/tabbar/index";
 exports.default = Tabbar;
 

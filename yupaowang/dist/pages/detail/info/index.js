@@ -73,7 +73,7 @@ var DetailInfoPage = function (_Taro$Component) {
       navigationBarTitleText: ''
     };
 
-    _this.$usedState = ["data", "loopArray66", "loopArray67", "$compid__59", "$compid__60", "resCode", "editPhone", "IMGCDNURL", "again", "stopHiring", "isCollection", "recommend", "complaintModal", "phone"];
+    _this.$usedState = ["data", "loopArray69", "loopArray70", "$compid__63", "$compid__64", "resCode", "editPhone", "IMGCDNURL", "again", "stopHiring", "isCollection", "recommend", "complaintModal", "phone"];
     _this.anonymousFunc5Map = {};
     _this.customComponents = ["WechatNotice", "CollectionRecruitList", "Report"];
     return _this;
@@ -96,15 +96,15 @@ var DetailInfoPage = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__59"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__63"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__59 = _genCompid2[0],
-          $compid__59 = _genCompid2[1];
+          $prevCompid__63 = _genCompid2[0],
+          $compid__63 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__60"),
+      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__64"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__60 = _genCompid4[0],
-          $compid__60 = _genCompid4[1];
+          $prevCompid__64 = _genCompid4[0],
+          $compid__64 = _genCompid4[1];
 
       var router = (0, _taroTt.useRouter)();
       var id = router.params.id;
@@ -355,7 +355,7 @@ var DetailInfoPage = function (_Taro$Component) {
       var vaildUserLogin = function vaildUserLogin() {
         if (!login) {
           _taroTt2.default.navigateTo({
-            url:  true ? _index2.AUTHPATH : undefined
+            url:  false ? undefined : _index2.CODEAUTHPATH
           });
           return false;
         }
@@ -393,7 +393,7 @@ var DetailInfoPage = function (_Taro$Component) {
             success: function success(res) {
               if (res.confirm) {
                 _taroTt2.default.navigateTo({
-                  url: '/pages/userinfo/index'
+                  url: '/pages/userinfo/add/index'
                 });
               } else if (res.cancel) {
                 _taroTt2.default.navigateBack();
@@ -646,7 +646,7 @@ var DetailInfoPage = function (_Taro$Component) {
       this.anonymousFunc15 = function () {
         _taroTt2.default.makePhoneCall({ phoneNumber: data.tel_str });
       };
-      var loopArray66 = data.classifyName.map(function (v, i) {
+      var loopArray69 = data.classifyName.map(function (v, i) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
@@ -656,12 +656,12 @@ var DetailInfoPage = function (_Taro$Component) {
           $original: v.$original
         };
       });
-      var loopArray67 = data.view_images.length ? data.view_images.map(function (v, i) {
+      var loopArray70 = data.view_images.length ? data.view_images.map(function (v, i) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
         var $loopState__temp4 = data.view_images.length ? i + i : null;
-        var _$indexKey = "hfzzz" + i;
+        var _$indexKey = "hizzz" + i;
         _this2.anonymousFunc5Map[_$indexKey] = function () {
           return handleImage(v.$original);
         };
@@ -674,20 +674,20 @@ var DetailInfoPage = function (_Taro$Component) {
       recommend.length && _taroTt.propsManager.set({
         "data": recommend,
         "type": 1
-      }, $compid__59, $prevCompid__59);
+      }, $compid__63, $prevCompid__63);
       complaintModal && _taroTt.propsManager.set({
         "display": complaintModal,
         "textarea": textarea,
         "handleTextarea": handleTextarea,
         "setComplaintModal": setComplaintModal,
         "handleSubmit": handleSubmit
-      }, $compid__60, $prevCompid__60);
+      }, $compid__64, $prevCompid__64);
       Object.assign(this.__state, {
         data: data,
-        loopArray66: loopArray66,
-        loopArray67: loopArray67,
-        $compid__59: $compid__59,
-        $compid__60: $compid__60,
+        loopArray69: loopArray69,
+        loopArray70: loopArray70,
+        $compid__63: $compid__63,
+        $compid__64: $compid__64,
         resCode: resCode,
         editPhone: editPhone,
         IMGCDNURL: _index2.IMGCDNURL,

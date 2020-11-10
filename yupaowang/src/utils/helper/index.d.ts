@@ -9,5 +9,6 @@ export interface InputPoiListTips {
   district: string
   location: string
   name: string,
-  distance: string
+  distance: string,
+  cityName: string
 }

@@ -1,0 +1,136 @@
+$turntable-btnbox-height: 144.9px;
+$turntable-content-height: 673.9px;
+$shadeWidth:600px;
+.yupao-common-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 150px;
+  background-color: #e9463d;
+  .turntable-container {
+    position: relative;
+    width: 100%;
+    padding-top: 20px;
+    background: #e9463d
+      url("http://cdn.yupao.com/miniprogram/images/truntable-main.png")
+      no-repeat;
+    background-size: 100% 100%;
+    .xydzpimg {
+      position: relative;
+      width: 338.7px;
+      height: 47px;
+      display: block;
+      margin: 20px auto 0;
+    }
+    .turntable-content {
+      position: relative;
+      height: $turntable-content-height;
+      width: $turntable-content-height;
+      margin: 0 auto;
+      display: block;
+      overflow: hidden;
+      .turntable-content-bg {
+        position: absolute;
+        height: $turntable-content-height;
+        width: $turntable-content-height;
+        left: 0;
+        top: 0;
+        z-index: 10;
+        transform-origin: center;
+        background: url("http://cdn.yupao.com/miniprogram/images/new-turntable-integral-bg.png")
+          no-repeat;
+        background-size: 100% 100%;
+      }
+      .turntable-btnbox {
+        position: absolute;
+        left: calc(50% - #{$turntable-btnbox-height} / 2);
+        top: calc(50% - #{$turntable-btnbox-height} / 2);
+        width: $turntable-btnbox-height;
+        height: $turntable-btnbox-height;
+        display: block;
+        background: url("http://cdn.yupao.com/miniprogram/images/turntable-btn-new.png")
+          no-repeat;
+        background-size: 100% 100%;
+        z-index: 15;
+        transform-origin: center;
+      }
+      .turntable-shade {
+        position: absolute;
+        width: $shadeWidth;
+        height: calc(#{$shadeWidth} / 10);
+        left:calc(50% - #{$shadeWidth} / 2);
+        background: url("http://cdn.yupao.com/miniprogram/images/truntable-shade.png")
+          no-repeat;
+        background-size: 100% 100%;
+        bottom: 10px;
+        z-index: 1;
+      }
+    }
+    .turntable-footer {
+      position: relative;
+      padding-top: 50px;
+      .turntable-footer-item {
+        position: relative;
+        background: #ec6861;
+        width: 80%;
+        border: 1px dashed #f4ef20;
+        display: block;
+        margin: 0 auto 40px;
+        border-radius: 5px;
+        .turntable-times-tips{
+          position: relative;
+          display: block;
+          width: 100%;
+          text-align: center;
+          color: #f1eb3c;
+          line-height: 100px;
+          font-size: 28px;
+          letter-spacing: 2px;
+        }
+        .turntable-names-scroll {
+          position: relative;
+          width: 100%;
+          .index-swiper-opacity {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: block;
+            z-index: 5;
+            background: transparent;
+          }
+          .turntable-names-tips {
+            position: relative;
+            display: block;
+            width: 100%;
+            font-size: 40px;
+            text-align: center;
+            line-height: 80px;
+            padding: 10px 0;
+            color: #f1eb3c;
+            background: #e3524a;
+          }
+          .scorllname-swiper {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            padding: 20px 0;
+            .scrollname-item {
+              position: relative;
+              padding: 0 20px;
+              & > view {
+                position: relative;
+                display: block;
+                line-height: 75px;
+                color: #fff;
+                font-size: 30px;
+                text-align: center;
+              }
+            }
+          }
+        }
+      }
+      & > .turntable-footer-item:nth-last-child(1) {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

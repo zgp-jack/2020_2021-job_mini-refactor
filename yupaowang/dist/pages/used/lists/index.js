@@ -39,6 +39,8 @@ var _taroTt2 = _interopRequireDefault(_taroTt);
 
 var _index = __webpack_require__(/*! ../../../utils/request/index */ "./src/utils/request/index.ts");
 
+var _store = __webpack_require__(/*! ../../../config/store */ "./src/config/store.ts");
+
 __webpack_require__(/*! ./index.scss */ "./src/pages/used/lists/index.scss");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -67,7 +69,7 @@ var Fleamarket = function (_Taro$Component) {
       backgroundTextStyle: "dark"
     };
 
-    _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "anonymousState__temp3", "anonymousState__temp4", "$compid__28", "$compid__29", "$compid__30", "refresh"];
+    _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "anonymousState__temp3", "$compid__33", "$compid__34", "$compid__35", "refresh", "listScrollTop"];
     _this.customComponents = ["Search", "UsedCondition", "WechatNotice", "UsedList", "Tabbar"];
     return _this;
   }
@@ -87,31 +89,31 @@ var Fleamarket = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__28"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__33"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__28 = _genCompid2[0],
-          $compid__28 = _genCompid2[1];
+          $prevCompid__33 = _genCompid2[0],
+          $compid__33 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__29"),
+      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__34"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__29 = _genCompid4[0],
-          $compid__29 = _genCompid4[1];
+          $prevCompid__34 = _genCompid4[0],
+          $compid__34 = _genCompid4[1];
 
-      var _genCompid5 = (0, _taroTt.genCompid)(__prefix + "$compid__30"),
+      var _genCompid5 = (0, _taroTt.genCompid)(__prefix + "$compid__35"),
           _genCompid6 = _slicedToArray(_genCompid5, 2),
-          $prevCompid__30 = _genCompid6[0],
-          $compid__30 = _genCompid6[1];
+          $prevCompid__35 = _genCompid6[0],
+          $compid__35 = _genCompid6[1];
       // 是否已是最后一页
 
 
-      var _useState = (0, _taroTt.useState)(false),
+      var _useState = (0, _taroTt.useState)(true),
           _useState2 = _slicedToArray(_useState, 2),
-          isend = _useState2[0],
-          setIsend = _useState2[1];
-      // * 配置筛选条件
+          hasMore = _useState2[0],
+          setHasMore = _useState2[1];
+      // * 获取地区选择默认数据
 
 
-      var DEFAULT_CONDITION = [{ id: 'area', text: '全国' }, { id: 'classify', text: '选择分类' }];
+      var userListChooseCity = _taroTt2.default.getStorageSync(_store.UserListChooseCity);
       // * 标记是否是在刷新状态
 
       var _useState3 = (0, _taroTt.useState)(false),
@@ -131,27 +133,36 @@ var Fleamarket = function (_Taro$Component) {
       var _useState7 = (0, _taroTt.useState)({
         page: 1,
         list_type: 'fleamarket',
-        area_id: '',
-        classify_id: '',
+        area_id: userListChooseCity.id,
+        classify_id: '0',
         attribute_id: '',
         keywords: ''
       }),
           _useState8 = _slicedToArray(_useState7, 2),
           searchData = _useState8[0],
           setSearchData = _useState8[1];
+
+      var _useState9 = (0, _taroTt.useState)(''),
+          _useState10 = _slicedToArray(_useState9, 2),
+          inputValue = _useState10[0],
+          setInputValue = _useState10[1];
+
+      var _useState11 = (0, _taroTt.useState)(0),
+          _useState12 = _slicedToArray(_useState11, 2),
+          listScrollTop = _useState12[0],
+          setListScrollTop = _useState12[1];
       // * 请求列表数据
 
 
       (0, _taroTt.useEffect)(function () {
-        if (isend) {
-          return;
-        }
         (0, _index.getFleamarketList)(searchData).then(function (res) {
           _taroTt2.default.hideNavigationBarLoading();
           if (!res.length) {
-            setIsend(true);
+            setHasMore(false);
           }
           if (searchData.page === 1) {
+            setHasMore(true);
+            goToScrollTop();
             setLists([[].concat(_toConsumableArray(res))]);
           } else setLists([].concat(_toConsumableArray(lists), [[].concat(_toConsumableArray(res))]));
           if (refresh) {
@@ -161,6 +172,9 @@ var Fleamarket = function (_Taro$Component) {
       }, [searchData]);
       // * 触底加载下一页
       var getNextPageData = function getNextPageData() {
+        if (!hasMore) {
+          return;
+        }
         _taroTt2.default.showNavigationBarLoading();
         setSearchData(_extends({}, searchData, { page: searchData.page + 1 }));
       };
@@ -169,38 +183,57 @@ var Fleamarket = function (_Taro$Component) {
         setRefresh(true);
         setSearchData(_extends({}, searchData, { page: 1 }));
       };
-      var anonymousState__temp = function anonymousState__temp() {};
-      var anonymousState__temp2 = function anonymousState__temp2() {};
-      var anonymousState__temp3 = function anonymousState__temp3() {};
+      // * 监听地区选择/分类选
+      var searchChange = function searchChange(data) {
+        setSearchData(_extends({}, searchData, data, { page: 1 }));
+      };
+      // * 监听搜索
+      var inputSearch = function inputSearch(value) {
+        setInputValue(value);
+      };
+      var setSearchDatas = function setSearchDatas(key, value) {
+        searchData[key] = value;
+        setSearchData(_extends({}, searchData, { page: 1 }));
+      };
+      // scroll-view 回到顶部
+      var goToScrollTop = function goToScrollTop() {
+        setListScrollTop(listScrollTop ? 0 : 0.1);
+      };
+      var anonymousState__temp = function anonymousState__temp(value) {
+        return inputSearch(value);
+      };
+      var anonymousState__temp2 = function anonymousState__temp2() {
+        return setSearchDatas('keywords', inputValue);
+      };
       this.anonymousFunc0 = function () {
         return pullDownAction();
       };
       this.anonymousFunc1 = function () {
         return getNextPageData();
       };
-      var anonymousState__temp4 = (0, _taroTt.internal_inline_style)({ height: '8px' });
+      var anonymousState__temp3 = (0, _taroTt.internal_inline_style)({ height: '8px' });
       _taroTt.propsManager.set({
         "placeholder": "\u8DF3\u86A4\u5E02\u573A",
         "value": "",
         "setRemark": anonymousState__temp,
         "setSearchData": anonymousState__temp2
-      }, $compid__28, $prevCompid__28);
+      }, $compid__33, $prevCompid__33);
       _taroTt.propsManager.set({
-        "data": DEFAULT_CONDITION,
-        "setSearchData": anonymousState__temp3
-      }, $compid__29, $prevCompid__29);
+        "setSearchData": searchChange
+      }, $compid__34, $prevCompid__34);
       _taroTt.propsManager.set({
-        "data": lists
-      }, $compid__30, $prevCompid__30);
+        "data": lists,
+        "hasMore": hasMore
+      }, $compid__35, $prevCompid__35);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
         anonymousState__temp2: anonymousState__temp2,
         anonymousState__temp3: anonymousState__temp3,
-        anonymousState__temp4: anonymousState__temp4,
-        $compid__28: $compid__28,
-        $compid__29: $compid__29,
-        $compid__30: $compid__30,
-        refresh: refresh
+        $compid__33: $compid__33,
+        $compid__34: $compid__34,
+        $compid__35: $compid__35,
+        refresh: refresh,
+        listScrollTop: listScrollTop
       });
       return this.__state;
     }

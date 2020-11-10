@@ -3,20 +3,21 @@ import { UserAuthInfoData, UserAuthInfoMemberExtData } from '../../utils/request
 import { PostUserAuthInfo } from '../index.d'
 import { getUserAuthInfo, postUserAuthInfo } from '../../utils/request'
 import { useSelector } from '@tarojs/redux'
-import Msg, { ShowActionModal, SubPopup } from '../../utils/msg'
+import Msg, { ShowActionModal } from '../../utils/msg'
 import { CameraAndAlbum } from '../../utils/upload'
+import * as Hooks from '../../hooks/index.d'
 import UploadImgAction from '../../utils/upload'
 import { getIdcardAuthInfo } from '../../utils/api'
-import { IMGCDNURL } from '../../config'
+import { ALIYUNCDNMINIIMG } from '../../config'
 import { getLongAreaAdname } from '../../models/area'
-import { SubscribeToNews } from '../../utils/subscribeToNews';
+import { SubscribeToNews } from '../../utils/subscribeToNews'
 
 interface SexTypeArr {
   id: string,
   name: string
 }
 
-const cardInfoFailImg: string = IMGCDNURL + 'lpy/auth/upload-fail-tips.png'
+const cardInfoFailImg: string = ALIYUNCDNMINIIMG + 'lpy/auth/upload-fail-tips.png'
 // 声明性别选项与下标
 const sexArray: SexTypeArr[] = [{ id: '1', name: '男' }, { id: '2', name: '女' }]
 
@@ -41,9 +42,6 @@ export default function useRealname(){
   const [RealnameArea, setRealnameArea] = useState<string>('')
   useEffect(()=>{
     if(!login) return
-    // if (publishArea && location && adcode ){
-    //   console.log(publishArea, location, adcode)
-    // }
     getUserAuthInfo().then(data=>{
       if(data.errcode == 'ok'){
         if (data.authData.member && data.authData.member.is_check === '0') {
@@ -61,13 +59,13 @@ export default function useRealname(){
         if(nationId){
           nationCurrent = initData.nation.findIndex(item => item.mz_id == nationId)
           nationName = initData.nation[nationCurrent].mz_name
-          setNationCurrent(nationCurrent)
         }
+        setNationCurrent(nationCurrent)
         let modelData: PostUserAuthInfo = {
           username: initData.member ? initData.member.username : '',
           age: initData.memberExt.age || '',
-          nation_id: nationId,
-          nationality: nationName,
+          nation_id: nationId || initData.nation[nationCurrent].mz_id,
+          nationality: nationName || initData.nation[nationCurrent].mz_name,
           idCard: initData.memberExt.id_card || '',
           idCardImg: initData.memberExt.id_card_img || '',
           handImg: initData.memberExt.hand_img || '',
@@ -77,6 +75,7 @@ export default function useRealname(){
           birthday: initData.memberExt.birthday || '',
           gender: initData.memberExt.sex || ''
         }
+        console.log(modelData)
         // 设置地图显示的名称
         let area: string = getLongAreaAdname(modelData.address)
         setRealnameArea(area)
@@ -92,7 +91,7 @@ export default function useRealname(){
             }
           }
         }
-        setModel(modelData)
+        setModel({ ...modelData})
         if (initData.member&&initData.member.check_degree == '2') setShowForm(true)
       }else{
         ShowActionModal({
@@ -105,28 +104,67 @@ export default function useRealname(){
     })
   }, [login])
 
+  // 验证数据提交
+  const vaildUserAuthInfo = (): boolean => {
+  if(!model || !initModel) return false
+    if (!model.idCardImg){
+      Msg('请上传身份证照片')
+      return false
+    }
+    if (!model.handImg) {
+      Msg('请上传身份手持照')
+      return false
+    }
+    if (!model.username) {
+      Msg('请输入您的名字')
+      return false
+    }
+    if (!model.gender) {
+      Msg('请选择您的性别')
+      return false
+    }
+    if (!model.birthday) {
+      Msg('请选择您的出生日期')
+      return false
+    }
+    if (!model.nation_id) {
+      Msg('请选择您的民族')
+      return false
+    }
+    if (!model.idCard) {
+      Msg('请输入您的身份证号码')
+      return false
+    }
+    if (!model.address) {
+      Msg('请选择您的地址')
+      return false
+    }
+    if(!model.tel){
+      Msg('请输入您的手机号')
+      return false
+    }
+    if(!initModel.member) return false
+    if (!initModel.member.tel){
+      if (!model.code) {
+        Msg('请输入验证码')
+        return false
+      }
+    }
+    return true
+  }
+
+  // 用户提交实名表单
   const userPostAuthInfo = ()=> {
     console.log(model)
+    console.log(initModel)
+    // 验证用户是否填写完了表单
+    if (!vaildUserAuthInfo()) return 
     const item = JSON.parse(JSON.stringify(model))
     const modelItem = JSON.parse(JSON.stringify(initModel))
-    console.log(sexCurrent,'sexCurrent');
-    console.log(modelItem.nation[nationCurrent].mz_name,'nationCurrentnationCurrent');
-    console.log(nationCurrent,'nationCurrent')
-    // 判断大于18小于65
-    let age;
-    if (item.age<18 || item.age>65){
-      const newData = new Date().getFullYear();
-      let birth = modelItem.memberExt.birthday.substring(0, 4)
-      age = newData - birth
-      console.log(age,'12312312321')
-    }else{
-      age = item.age;
-    }
-    console.log(age)
-    let params = {
+    let params: Hooks.PostUserAuthInfo = {
       username: item.username,
-      age:age,
-      nation_id: nationCurrent+1,
+      age: item.age,
+      nation_id: modelItem.nation[nationCurrent].mz_id,
       nationality: modelItem.nation[nationCurrent].mz_name,
       idCard: item.idCard,
       idCardImg: item.idCardImg,
@@ -137,17 +175,13 @@ export default function useRealname(){
       birthday: modelItem.memberExt.birthday,
       gender: sexCurrent+1
     }
-    console.log(params)
-    // return;
     postUserAuthInfo(params).then(res=>{
       console.log(res);
       SubscribeToNews('auth', () => {
-        SubPopup({
-          tips: res.errmsg,
-          callback: () => {
-            Taro.navigateBack({
-              delta: 1
-            })
+        ShowActionModal({
+          msg: res.errmsg,
+          success: () => {
+            Taro.navigateBack()
           }
         })
       })
@@ -155,81 +189,70 @@ export default function useRealname(){
   }
   const userUploadIdcard = (type: number = 2)=> {
     const modelObj = JSON.parse(JSON.stringify(model));
-    //type = 1 证明 type = 2 手持  
+    //type = 1 正面 type = 2 手持  
     let url: string = type == 1 ? getIdcardAuthInfo : ''
     if(!initModel) return
     if(type === 1){
     CameraAndAlbum(url).then(data => {
       if(data.errcode == 'ok'){
         let memberExt: UserAuthInfoMemberExtData = JSON.parse(JSON.stringify(initModel.memberExt))
-        if(type == 1){
-          memberExt.id_card_img = data.url
-          memberExt.id_card_img_path = data.httpurl
-          setInitModel({ ...initModel, memberExt: memberExt })
-        }else{
-          memberExt.hand_img = data.url
-          memberExt.hand_img_path = data.httpurl
-          Msg(data.errmsg)
-          return
-        }
         if(data.card_info){
           setShowForm(true)
+          memberExt.id_card_img = data.url
+          memberExt.id_card_img_path = data.httpurl
+          setInitModel({ ...initModel, memberExt: { ...memberExt } })
           let cardData = data.card_info
           if(data.card_info.success){
             memberExt.nation_id = cardData.nation_id || ''
+            memberExt.nationality = cardData.nationality || ''
             memberExt.birthday = cardData.birth || ''
             memberExt.address = cardData.address || ''
             memberExt.sex = cardData.sex || ''
-            //memberExt.
             memberExt.id_card = cardData.num || '',
             memberExt.user_name = cardData.name || ''
+            //处理数据
+            //生日
+            let birthall = '';
+            if (memberExt.birthday) {
+              let birth = memberExt.birthday.substring(0, 4)
+              let birthtwo = memberExt.birthday.substring(4, 6)
+              let birththree = memberExt.birthday.substring(6, 8)
+              birthall = birth + "-" + birthtwo + "-" + birththree;
+            }
+            // 性别
+            let sexIndex = 0;
+            sexArray.map((v, i) => {
+              if (memberExt.sex === v.name) {
+                sexIndex = i;
+              }
+            })
+            setSexCurrent(sexIndex);
+            setSexName(memberExt.sex)
+            const dataItem = {
+              username: memberExt.user_name ? memberExt.user_name : '',
+              age: memberExt.age || '',
+              nation_id: memberExt.nation_id,
+              nationality: memberExt.nationality,
+              idCard: memberExt.id_card || '',
+              idCardImg: memberExt.id_card_img || '',
+              handImg: memberExt.hand_img || '',
+              tel: modelObj.tel || '',
+              code: '',
+              address: memberExt.address,
+              birthday: birthall || '',
+              gender: sexIndex && sexIndex != -1 ? sexIndex : "",
+            }
+            memberExt.birthday = birthall;
+            setInitModel({ ...initModel, memberExt: { ...memberExt} })
+            setModel(dataItem)
           }else{
             Msg(data.card_info.tips_message)
             memberExt.id_card_img_path = cardInfoFailImg
-            setInitModel({...initModel, memberExt: memberExt})
+            memberExt.id_card_img = cardInfoFailImg
+            if(model) setModel({...model,idCardImg:data.url})
+            setInitModel({ ...initModel, memberExt: { ...memberExt}})
           }
         }
-        // 生日
-        let birthall;
-        if (memberExt.birthday) {
-          let birth = memberExt.birthday.substring(0, 4)
-          let birthtwo = memberExt.birthday.substring(4, 6)
-          let birththree = memberExt.birthday.substring(6, 8)
-          if (memberExt.birthday != "") {
-            birthall = birth + "-" + birthtwo + "-" + birththree;
-          } else {
-            birthall = ""
-          }
-        }
-        // 性别
-        let sexIndex;
-        sexArray.map((v,i)=>{
-          // let sexItem;
-          if (memberExt.sex === v.name){
-            // sexItem = v;
-            sexIndex = i;
-          }
-        })
-        setSexCurrent(sexIndex);
-        setSexName(memberExt.sex)
-        const dataItem = {
-          username: memberExt.user_name ? memberExt.user_name : '',
-          age: memberExt.age || '',
-          nation_id: memberExt.nationId,
-          nationality: memberExt.nationality,
-          idCard: memberExt.id_card || '',
-          idCardImg: memberExt.id_card_img || '',
-          handImg: memberExt.hand_img || '',
-          tel: modelObj.tel || '',
-          code: '',
-          address: memberExt.address,
-          birthday: birthall || '',
-          gender: sexIndex && sexIndex != -1 ? sexIndex : "",
-        }
-        memberExt.birthday = birthall;
-        setInitModel({ ...initModel, memberExt: memberExt })
-        setModel(dataItem)
-        setInitModel({ ...initModel, memberExt: memberExt })
       }else{
         Msg(data.errmsg)
       }
@@ -245,12 +268,6 @@ export default function useRealname(){
         console.log(imageItem);
         memberExt.hand_img = imageItem.url
         memberExt.hand_img_path = imageItem.httpurl
-        // if (i === -1) {
-        //   setImage({ ...image, item: [...image.item, imageItem] })
-        // } else {
-        //   image.item[i] = imageItem
-        //   setImage({ ...image })
-        // }
         const item = JSON.parse(JSON.stringify(model))
         item.handImg = imageItem.url;
         setModel(item)

@@ -21,6 +21,7 @@
       position: relative;
       padding-left: 120px;
       line-height: 50px;
+      min-height: 100px;
       .resume-list-user{
         position: absolute;
         width: 100%;
@@ -41,6 +42,7 @@
           .resume-userinfo-age{
             position: relative;
             color: #FB8732;
+            font-size: 30px;
           }
         }
       }
