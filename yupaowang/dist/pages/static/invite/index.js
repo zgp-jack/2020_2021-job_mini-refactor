@@ -69,7 +69,7 @@ var InvitePage = function (_Taro$Component) {
       backgroundTextStyle: 'dark'
     };
 
-    _this.$usedState = ["tab", "loopArray62", "loopArray63", "$compid__60", "scrollLeft", "list", "pull"];
+    _this.$usedState = ["tab", "loopArray65", "loopArray66", "$compid__62", "scrollLeft", "list", "pull"];
     _this.anonymousFunc1Map = {};
     _this.anonymousFunc2Map = {};
     _this.customComponents = ["Nodata"];
@@ -93,10 +93,10 @@ var InvitePage = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__60"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__62"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__60 = _genCompid2[0],
-          $compid__60 = _genCompid2[1];
+          $prevCompid__62 = _genCompid2[0],
+          $compid__62 = _genCompid2[1];
       // 默认table
 
 
@@ -199,11 +199,11 @@ var InvitePage = function (_Taro$Component) {
       this.anonymousFunc0 = function (e) {
         console.log(e);
       };
-      var loopArray62 = tab.item ? tab.item.map(function (item, i) {
+      var loopArray65 = tab.item ? tab.item.map(function (item, i) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
-        var _$indexKey = "hdzzz" + i;
+        var _$indexKey = "hizzz" + i;
         _this2.anonymousFunc1Map[_$indexKey] = function () {
           handleTable(item.$original.index, item.$original.name, i);
         };
@@ -216,11 +216,11 @@ var InvitePage = function (_Taro$Component) {
           $original: item.$original
         };
       }) : [];
-      var loopArray63 = list ? list.map(function (v, __index2) {
+      var loopArray66 = list ? list.map(function (v, __index2) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
-        var _$indexKey2 = "hezzz" + __index2;
+        var _$indexKey2 = "hjzzz" + __index2;
         _this2.anonymousFunc2Map[_$indexKey2] = function () {
           return userRouteJump("/subpackage/pages/notice/index?id=" + v.$original.id);
         };
@@ -231,12 +231,12 @@ var InvitePage = function (_Taro$Component) {
       }) : [];
       !list.length && _taroTt.propsManager.set({
         "text": noData
-      }, $compid__60, $prevCompid__60);
+      }, $compid__62, $prevCompid__62);
       Object.assign(this.__state, {
         tab: tab,
-        loopArray62: loopArray62,
-        loopArray63: loopArray63,
-        $compid__60: $compid__60,
+        loopArray65: loopArray65,
+        loopArray66: loopArray66,
+        $compid__62: $compid__62,
         scrollLeft: scrollLeft,
         list: list,
         pull: pull

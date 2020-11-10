@@ -7,13 +7,17 @@ import { DataType, ListType, Injected } from './index.d'
 // import CollectionRecruitList  from '../../../components/recommendList/index'
 import { isVaildVal } from '../../../utils/v'
 import Report from '../../../components/report';
-import { useSelector } from '@tarojs/redux'
+import { useSelector, useDispatch } from '@tarojs/redux'
 import Auth from '../../../components/auth'
+import { resumeDetailCertificatesRedux, resumeDetailProjectRedux } from '../../../utils/request/index.d';
 import { SubscribeToNews } from '../../../utils/subscribeToNews';
+import { setSubpackcertificate, setSubpackProject} from '../../../actions/resume_list';
 import './index.scss'
 
 export const detailContext = createContext<Injected>({} as Injected)
 export default function ResumeDetail() {
+  // 获取dispatch分发action
+  const dispatch = useDispatch()
   // 获取用户是否登录
   const login = useSelector<any, boolean>(state => state.User['login'])
   const router: Taro.RouterInfo = useRouter()
@@ -87,10 +91,27 @@ export default function ResumeDetail() {
       location:location,
       resume_uuid: uuid
     }
+    console.error(312312312)
     resumeDetailAction(params).then(res=>{
-      console.log(res);
       if(res.errcode === 'ok'){
-        console.log(res);
+        console.error(3213123231)
+        // 技能证书
+        let mylists = [...res.certificates]
+        let data: resumeDetailCertificatesRedux[] = [];
+        for(let i=0;i<mylists.length;i++){
+          let item = { ...mylists[i], images: mylists[i].images.split(',') }
+          data.push(item)
+        }
+        dispatch(setSubpackcertificate([...data]));
+        // 项目经验
+        let projectArr = [...res.project];
+        let projectData: resumeDetailProjectRedux[] = [];
+        // 职业技能
+        for (let i = 0; i < projectArr.length; i++) {
+          let item = { ...projectArr[i], images: projectArr[i].images.split(',') }
+          projectData.push(item)
+        }
+        dispatch(setSubpackProject([...projectData]));
         const date = new Date();
         const dateo = date.getTime()
         const dateone = new Date(dateo);
@@ -128,10 +149,7 @@ export default function ResumeDetail() {
     getDataList();
   })
   useEffect(() => {
-    console.log(313213)
-    console.log(login)
     if (!login) return;
-    console.log(clickType, 'sss')
     // 授权获取内容
     if (clickType){
       if (clickType === 'support'){
@@ -274,7 +292,6 @@ export default function ResumeDetail() {
     project: data.project,
     certificates:data.certificates
   }
-  console.log(value,'xxxx')
   const handleMap = ()=>{
     let locArr = data.info.location.split(",");
     Taro.openLocation({
@@ -285,7 +302,6 @@ export default function ResumeDetail() {
       scale: 18
     })
   }
-  console.log(isAuth,'isAuthx')
   return(
     <detailContext.Provider value={value}>
       {isAuth && <Auth />}
@@ -469,7 +485,7 @@ export default function ResumeDetail() {
               ))}
             </View>
           <View className='resumeDetail-more-box'>
-              <View className='resumeDetail-more' onClick={() => Taro.navigateTo({ url: `/pages/resume/projectList/index?preview=1&detail=1&location=${location}&uuid=${uuid}` })}>更多项目经验
+              <View className='resumeDetail-more' onClick={() => Taro.navigateTo({ url: '/subpackage/pages/projects/index'})}>更多项目经验
                 <Image src={`${IMGCDNURL}lpy/downward.png`} className="down"/>
               </View>
             </View>
@@ -514,7 +530,7 @@ export default function ResumeDetail() {
               </View>
             </View>
           <View className='resumeDetail-more-box'>
-              <View className='resumeDetail-more' onClick={() => Taro.navigateTo({ url: `/pages/resume/skillList/index?preview=1&detail=1&location=${location}&uuid=${uuid}` })}>
+              <View className='resumeDetail-more' onClick={() => Taro.navigateTo({ url: '/subpackage/pages/skills/index' })}>
                 更多技能证书
                 <Image src={`${IMGCDNURL}lpy/downward.png`} className="down" />
               </View>

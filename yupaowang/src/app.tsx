@@ -75,6 +75,8 @@ class App extends Component {
           'ranking/index',//排名规则
           'course/index',//使用教程
           'anti-fraud/index', //防骗指南
+          'projects/index', //更多项目经验
+          'skills/index',//更多技能证书
         ]
       },
     ],

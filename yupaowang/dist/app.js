@@ -77,7 +77,7 @@ var _App = function (_BaseComponent) {
       'pages/resume/publish/index', 'pages/resume/add_info/index', 'pages/resume/add_member/index', 'pages/resume/add_skill/index', 'pages/resume/add_project/index', 'pages/resume/projects/index', 'pages/resume/skills/index', 'pages/rank-rules/index', 'pages/turntable/index', 'pages/resume/detail/index', 'pages/resume/newPreview/index', 'pages/resume/preview/index', 'pages/login/index'],
       subPackages: [{
         root: 'subpackage/pages',
-        pages: ['checkauth/index', 'about/index', 'report/index', 'notice/index', 'download/index', 'ranking/index', 'course/index', 'anti-fraud/index']
+        pages: ['checkauth/index', 'about/index', 'report/index', 'notice/index', 'download/index', 'ranking/index', 'course/index', 'anti-fraud/index', 'projects/index', 'skills/index']
       }],
       window: {
         backgroundTextStyle: 'light',
@@ -275,10 +275,20 @@ var _resume_data = __webpack_require__(/*! ./resume_data */ "./src/reducers/resu
 
 var _resume_data2 = _interopRequireDefault(_resume_data);
 
+var _resume_list = __webpack_require__(/*! ./resume_list */ "./src/reducers/resume_list.ts");
+
+var _resume_list2 = _interopRequireDefault(_resume_list);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 //合并reducer
-//发布招工reducer
+/*
+ * @Author: zyb
+ * @Date: 2020-11-03 14:36:47
+ * @LastEditors: jsxin
+ * @LastEditTime: 2020-11-09 17:11:58
+ * @Description:
+ */
 exports.default = (0, _redux.combineReducers)({
   tabbar: _tabbar2.default,
   WechatNotice: _wechat_notice2.default,
@@ -293,14 +303,9 @@ exports.default = (0, _redux.combineReducers)({
   realname: _realname2.default,
   resumeAddInfo: _resume_addinfo2.default,
   PositionStatus: _recruit.PositionStatus,
-  resumeData: _resume_data2.default
-}); /*
-     * @Author: zyb
-     * @Date: 2020-11-03 14:36:47
-     * @LastEditors: jsxin
-     * @LastEditTime: 2020-11-09 17:11:58
-     * @Description:
-     */
+  resumeData: _resume_data2.default,
+  resumeList: _resume_list2.default
+}); //发布招工reducer
 
 /***/ }),
 
@@ -696,6 +701,47 @@ function resumeData() {
       return _extends({}, state, { introducesData: action.data });
     case _resume_data.SETCERTIFICATE:
       return _extends({}, state, { certificates: action.data });
+    default:
+      return state;
+  }
+}
+
+/***/ }),
+
+/***/ "./src/reducers/resume_list.ts":
+/*!*************************************!*\
+  !*** ./src/reducers/resume_list.ts ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+exports.default = resumeList;
+
+var _resume_list = __webpack_require__(/*! ../constants/resume_list */ "./src/constants/resume_list.ts");
+
+var DEFAULT_STATE = {
+  certificates: [],
+  project: []
+};
+function resumeList() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : DEFAULT_STATE;
+  var action = arguments[1];
+
+  console.error(state, '1111', action);
+  switch (action.type) {
+    case _resume_list.SETSUBPACKCERTIFICATE:
+      return _extends({}, state, { certificates: action.data });
+    case _resume_list.SETSUBPACKPROJECT:
+      return _extends({}, state, { project: action.data });
     default:
       return state;
   }

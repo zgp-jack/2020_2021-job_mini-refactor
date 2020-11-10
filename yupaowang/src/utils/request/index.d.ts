@@ -971,7 +971,7 @@ export interface resumeDetailProjectTags{
   label_name: string
   label_py: string
 }
-export interface resumeDetailProject{
+export interface resumeDetailProjectItem{
   check: string
   city: string
   city_name: string
@@ -980,7 +980,6 @@ export interface resumeDetailProject{
   fail_case: string
   id: string
   image: []
-  images: null
   project_name: string
   province: string
   province_name: string
@@ -989,7 +988,13 @@ export interface resumeDetailProject{
   update_time: string
   uuid: string
 }
-export interface resumeDetailCertificates{
+export interface resumeDetailProject extends resumeDetailProjectItem {
+  images: string
+}
+export interface resumeDetailProjectRedux extends resumeDetailProjectItem {
+  images: string[]
+}
+export interface resumeDetailCertificatesItem{
   admin_last_edit_time: string
   certificate_time: string
   check: string
@@ -997,7 +1002,6 @@ export interface resumeDetailCertificates{
   fail_case: string
   id: string
   image: []
-  images: string
   last_update_admin: string
   name: string
   resume_uuid: string
@@ -1006,6 +1010,12 @@ export interface resumeDetailCertificates{
   update_time: string
   user_uuid: string
   uuid: string
+}
+export interface resumeDetailCertificates extends resumeDetailCertificatesItem{
+  images:string,
+}
+export interface resumeDetailCertificatesRedux extends resumeDetailCertificatesItem {
+  images: string[]
 }
 // 找活详情列表
 export interface recommendList  extends Result{
@@ -1272,6 +1282,7 @@ export interface resCertificatesArr {
   update_time: string,
   user_uuid: string,
   uuid: string,
+
 }
 
 //  获取电话

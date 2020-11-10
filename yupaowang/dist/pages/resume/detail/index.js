@@ -1,5 +1,38 @@
 (tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["pages/resume/detail/index"],{
 
+/***/ "./src/actions/resume_list.ts":
+/*!************************************!*\
+  !*** ./src/actions/resume_list.ts ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.setSubpackcertificate = setSubpackcertificate;
+exports.setSubpackProject = setSubpackProject;
+
+var _resume_list = __webpack_require__(/*! ../constants/resume_list */ "./src/constants/resume_list.ts");
+
+function setSubpackcertificate(data) {
+  return {
+    type: _resume_list.SETSUBPACKCERTIFICATE,
+    data: data
+  };
+}
+function setSubpackProject(data) {
+  return {
+    type: _resume_list.SETSUBPACKPROJECT,
+    data: data
+  };
+}
+
+/***/ }),
+
 /***/ "./src/pages/resume/detail/index.scss":
 /*!********************************************!*\
   !*** ./src/pages/resume/detail/index.scss ***!
@@ -26,6 +59,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.detailContext = undefined;
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -50,9 +85,13 @@ var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/re
 
 var _index6 = __webpack_require__(/*! ../../../utils/subscribeToNews/index */ "./src/utils/subscribeToNews/index.ts");
 
+var _resume_list = __webpack_require__(/*! ../../../actions/resume_list */ "./src/actions/resume_list.ts");
+
 __webpack_require__(/*! ./index.scss */ "./src/pages/resume/detail/index.scss");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -79,7 +118,7 @@ var ResumeDetail = function (_Taro$Component) {
       backgroundTextStyle: "dark"
     };
 
-    _this.$usedState = ["data", "loopArray92", "loopArray94", "loopArray95", "$compid__77", "isAuth", "IMGCDNURL", "examine", "onoff", "praise", "collect", "shownewtips", "complaintModal", "age", "phone"];
+    _this.$usedState = ["data", "loopArray94", "loopArray96", "loopArray97", "$compid__79", "isAuth", "IMGCDNURL", "examine", "onoff", "praise", "collect", "shownewtips", "complaintModal", "age", "phone"];
     _this.anonymousFunc4Map = {};
     _this.anonymousFunc6Map = {};
     _this.customComponents = ["Auth", "Report"];
@@ -103,13 +142,15 @@ var ResumeDetail = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__77"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__79"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__77 = _genCompid2[0],
-          $compid__77 = _genCompid2[1];
+          $prevCompid__79 = _genCompid2[0],
+          $compid__79 = _genCompid2[1];
+      // 获取dispatch分发action
+
+
+      var dispatch = (0, _redux.useDispatch)();
       // 获取用户是否登录
-
-
       var login = (0, _redux.useSelector)(function (state) {
         return state.User['login'];
       });
@@ -250,10 +291,27 @@ var ResumeDetail = function (_Taro$Component) {
           location: location,
           resume_uuid: uuid
         };
+        console.error(312312312);
         (0, _index.resumeDetailAction)(params).then(function (res) {
-          console.log(res);
           if (res.errcode === 'ok') {
-            console.log(res);
+            console.error(3213123231);
+            // 技能证书
+            var mylists = [].concat(_toConsumableArray(res.certificates));
+            var _data = [];
+            for (var i = 0; i < mylists.length; i++) {
+              var item = _extends({}, mylists[i], { images: mylists[i].images.split(',') });
+              _data.push(item);
+            }
+            dispatch((0, _resume_list.setSubpackcertificate)([].concat(_data)));
+            // 项目经验
+            var projectArr = [].concat(_toConsumableArray(res.project));
+            var projectData = [];
+            // 职业技能
+            for (var _i = 0; _i < projectArr.length; _i++) {
+              var _item = _extends({}, projectArr[_i], { images: projectArr[_i].images.split(',') });
+              projectData.push(_item);
+            }
+            dispatch((0, _resume_list.setSubpackProject)([].concat(projectData)));
             var date = new Date();
             var dateo = date.getTime();
             var dateone = new Date(dateo);
@@ -291,13 +349,9 @@ var ResumeDetail = function (_Taro$Component) {
         getDataList();
       });
       (0, _taroTt.useEffect)(function () {
-        console.log(313213);
-        console.log(login);
         if (!login) {
           return;
-        }
-        console.log(clickType, 'sss');
-        // 授权获取内容
+        } // 授权获取内容
         if (clickType) {
           if (clickType === 'support') {
             resumeSupport();
@@ -439,7 +493,6 @@ var ResumeDetail = function (_Taro$Component) {
         project: data.project,
         certificates: data.certificates
       };
-      console.log(value, 'xxxx');
       var handleMap = function handleMap() {
         var locArr = data.info.location.split(",");
         _taroTt2.default.openLocation({
@@ -450,7 +503,6 @@ var ResumeDetail = function (_Taro$Component) {
           scale: 18
         });
       };
-      console.log(isAuth, 'isAuthx');
       detailContext.Provider(value);
       this.anonymousFunc0 = handlePhone;
       this.anonymousFunc1 = function () {
@@ -461,10 +513,10 @@ var ResumeDetail = function (_Taro$Component) {
       };
       this.anonymousFunc3 = handleMap;
       this.anonymousFunc5 = function () {
-        return _taroTt2.default.navigateTo({ url: "/pages/resume/projectList/index?preview=1&detail=1&location=" + location + "&uuid=" + uuid });
+        return _taroTt2.default.navigateTo({ url: '/subpackage/pages/projects/index' });
       };
       this.anonymousFunc7 = function () {
-        return _taroTt2.default.navigateTo({ url: "/pages/resume/skillList/index?preview=1&detail=1&location=" + location + "&uuid=" + uuid });
+        return _taroTt2.default.navigateTo({ url: '/subpackage/pages/skills/index' });
       };
       this.anonymousFunc8 = resumeSupport;
       this.anonymousFunc9 = resumeCollect;
@@ -472,7 +524,7 @@ var ResumeDetail = function (_Taro$Component) {
         setShownewtips(false);
       };
       this.anonymousFunc11 = handleTellPhone;
-      var loopArray92 = data.info.occupations.length ? data.info.occupations.map(function (v, i) {
+      var loopArray94 = data.info.occupations.length ? data.info.occupations.map(function (v, i) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
@@ -482,12 +534,12 @@ var ResumeDetail = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray94 = data.project.length ? data.project[0].image.map(function (v, i) {
+      var loopArray96 = data.project.length ? data.project[0].image.map(function (v, i) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
         var $loopState__temp4 = data.project.length ? i + i : null;
-        var _$indexKey = "jgzzz" + i;
+        var _$indexKey = "baazz" + i;
         _this2.anonymousFunc4Map[_$indexKey] = function () {
           return handleImg(v.$original);
         };
@@ -497,12 +549,12 @@ var ResumeDetail = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray95 = data.certificates.length ? data.certificates[0].image.map(function (val, i) {
+      var loopArray97 = data.certificates.length ? data.certificates[0].image.map(function (val, i) {
         val = {
           $original: (0, _taroTt.internal_get_original)(val)
         };
         var $loopState__temp6 = data.certificates.length ? i + i : null;
-        var _$indexKey2 = "jhzzz" + i;
+        var _$indexKey2 = "babzz" + i;
         _this2.anonymousFunc6Map[_$indexKey2] = function () {
           return handleImg(val.$original);
         };
@@ -518,13 +570,13 @@ var ResumeDetail = function (_Taro$Component) {
         "handleTextarea": handleTextarea,
         "setComplaintModal": setComplaintModal,
         "handleSubmit": handleSubmit
-      }, $compid__77, $prevCompid__77);
+      }, $compid__79, $prevCompid__79);
       Object.assign(this.__state, {
         data: data,
-        loopArray92: loopArray92,
         loopArray94: loopArray94,
-        loopArray95: loopArray95,
-        $compid__77: $compid__77,
+        loopArray96: loopArray96,
+        loopArray97: loopArray97,
+        $compid__79: $compid__79,
         isAuth: isAuth,
         IMGCDNURL: _index2.IMGCDNURL,
         examine: examine,
