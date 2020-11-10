@@ -2,7 +2,7 @@
  * @Author: zyb
  * @Date: 2020-11-03 09:23:50
  * @LastEditors: zyb
- * @LastEditTime: 2020-11-05 11:51:03
+ * @LastEditTime: 2020-11-10 11:53:46
  * @Description: 
  */
 import Taro from '@tarojs/taro'
@@ -92,3 +92,11 @@ export function isChinese(str:string){
   return false;
 }
 
+// 2-5汉字
+export function allChinese(str:string){
+  const reg = new RegExp('^[\u4E00-\u9FA5]{2,5}$');
+  if (reg.test(str)) {
+    return true
+  }
+  return false;
+}

@@ -184,7 +184,7 @@ export default function ResumePublish(){
             <Image className='basic-description-img' src={`${IMGCDNURL}newresume-description.png`} />
             <View className='basic-title'>人员信息</View>
             {
-              infoData.check != '0' && introducesData.check != '1' && 
+              infoData.check&& infoData.check != '0' && introducesData.check != '1' && 
               <View className='change' onClick={() => userRouteJump('/pages/resume/add_member/index')}>编辑</View>
             }
             {
@@ -245,7 +245,7 @@ export default function ResumePublish(){
           <View className='basic-imformation'>
             <Image className='project-experience-img' src={`${IMGCDNURL}newresume-experience.png`} />
             <View className='basic-title'>项目经验</View>
-            {projectData.length < project_count && 
+            {projectData.length && projectData.length < project_count && 
             <View className='change' onClick={() => userRouteJump('/pages/resume/add_project/index')}>添加</View>
             }
           </View>
@@ -262,7 +262,7 @@ export default function ResumePublish(){
                 <View className={projectData[0].check == '0' ? 'content-information professional-information-noImage' : 'content-information'}>
                 <View className='information'>
                       <View className='name'>{projectData[0].project_name}</View>
-                    <View className='sexage'>{projectData[0].start_time}-{projectData[0].completion_time == 'zhijin' ? '至今': projectData[0].completion_time} {projectData[0].province_name}{projectData[0].city_name ? `-${projectData[0].city_name}`:''} </View>
+                    <View className='sexage'>{projectData[0].start_time}-{projectData[0].completion_timeTitle == 'zhijin' ? '至今': projectData[0].completion_time} {projectData[0].province_name}{projectData[0].city_name ? `-${projectData[0].city_name}`:''} </View>
                     <View className='sexage'>{projectData[0].detail}</View>
                 </View>
                   {projectData[0].check == '1' && show_tips ==1 && 
@@ -296,7 +296,7 @@ export default function ResumePublish(){
           <View className='basic-imformation'>
             <Image className='professional-skill-img' src={`${IMGCDNURL}newresume-skill.png`} />
             <View className='basic-title'>职业技能</View>
-            {certificates.length<certificate_count && 
+            {certificates.length &&certificates.length<certificate_count && 
               <View className='change' onClick={() => userRouteJump('/pages/resume/add_skill/index')}>添加</View>
             }
           </View>
@@ -304,9 +304,11 @@ export default function ResumePublish(){
           {certificates.length ?
             <View className={certificates[0].check == '1' ? 'professional-information' : 'professional-information-noImage professional-information'}>
               <View className='content-information'>
+                <View>
                 <View className='information'>
                   <View className='name'>{certificates[0].name}</View>
                   <View className='sexage time'>{certificates[0].certificate_time}</View>
+                </View>
                 </View>
                 {certificates[0].check == '1' && show_tips == 1 &&
                   <Image className='audit' src={`${IMGCDNURL}lpy/audit.png `} />
