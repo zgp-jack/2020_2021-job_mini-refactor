@@ -23,6 +23,7 @@ export default function AddResumeInfo(){
   const dispatch = useDispatch()
   // 获取基础信息的redux
   const infoData = useSelector<any, resInfoObj>(state => state.resumeData.info);
+  console.error(infoData,'state.resumeData.info')
   // 获取hooks数据
   const { infoConfig, genderCurrent, startDatePicker } = useResumeAddInfo();
   // 发送验证码
@@ -51,6 +52,8 @@ export default function AddResumeInfo(){
   const [locationData, setLocationData] = useState<LocationDataType>(location)
   //获取redux中发布招工区域详细数据
   const areaInfo: UserLastPublishRecruitArea = useSelector<any, UserLastPublishRecruitArea>(state => state.MyAreaInfo)
+  // 不是第一次存areaInfo
+  const [first, setFirst] = useState<boolean>(false);
   useEffect(()=>{
     // 性别
     if(infoData.gender){
@@ -70,7 +73,6 @@ export default function AddResumeInfo(){
     }
     let classifiesArr = infoData.occupations_id&&infoData.occupations_id.split(',')||[];
     const data = [...infoConfig.occupation] ||[];
-    console.error(data,'data')
     if (data && data.length){
       for (let i = 0; i < data.length;i++){
         for (let j = 0; j < data[i].children.length;j++){
@@ -84,21 +86,23 @@ export default function AddResumeInfo(){
         }
       }
     }
-    console.error('走这里')
     // 判断所在地区
     if(infoData){
       setLocationData({ province: infoData.province, city: infoData.city, citycode: '', oadcode: '', regionone: infoData.title, longitude: infoData.location && infoData.location.split(',')[0].toString(), latitude: infoData.location && infoData.location.split(',')[1].toString(), address: infoData.address, adcode: infoData.ad_code, wardenryid: ''})
     }
     // 将数据保存到redux中的areaInfo中
-    dispatch(setAreaInfo({ ...areaInfo, title: infoData.address||'' }));
+    setFirst(true);
+    dispatch(setAreaInfo({ ...areaInfo, title: infoData.address || '', location : infoData.location }));
     // 工种
     setNations(nations);
     setClassifyTree(data)
     setClassifies(classifiesArr)
   }, [infoConfig])
-  useEffect(()=>{
+  useEffect(() => {
+    if(first) return;
     //设置所属地区
-    const area = { ...areaInfo};
+    const area = { ...areaInfo };
+    console.error(area,'readnajksndkja')
     setLocationData({
       ...location, adcode: area.adcode, address: area.title, longitude: area.location.split(',')[0], latitude: area.location.split(',')[1],
     })
@@ -108,7 +112,6 @@ export default function AddResumeInfo(){
     inputVal[type] = e.detail.value;
     setInputVal({...inputVal})
   }
-
   // picker 发生改变
   const onPickerChange = (e:any, type: string) => {
     if (type == 'gender'){
@@ -149,12 +152,13 @@ export default function AddResumeInfo(){
       ShowActionModal({ msg: '请填写真实自我介绍，15-500字，必须含有汉字' })
       return
     }
+    console.error(locationData,'====')
     let params = {
       code,
       username: inputVal.username,
       tel: inputVal.tel,
       gender: inputVal.gender,
-      nation: inputVal.nation,
+      nation: inputVal.nation_id,
       birthday: inputVal.birthday,
       occupations: classifies.toString(),
       province: locationData.province,
@@ -165,6 +169,7 @@ export default function AddResumeInfo(){
       address:locationData.address,
       adcode: '',
     };
+    console.error(params,'123213')
     return;
     addResumeAction(params).then(res=>{
       if(res.errcode == 'ok'){
@@ -197,9 +202,9 @@ export default function AddResumeInfo(){
   }
   // 获取定位
   const handleGps =()=>{
+    setFirst(false);
     Taro.getSetting({
       success:(res)=>{
-        console.error(res,'111111');
         if (res.authSetting['scope.userLocation'] != undefined && res.authSetting['scope.userLocation'] != true) {//非初始化进入该页面,且未授权   
           Taro.showModal({
             title: '是否授权当前位置',
@@ -211,7 +216,7 @@ export default function AddResumeInfo(){
                     if (data.authSetting["scope.userLocation"] == true) {
                       Msg('授权成功')
                       getLocation().then(res=> {
-                        console.log(res,222)
+                        setLocationData(res);
                       })
                     }else{
                       Msg('授权失败')
@@ -223,9 +228,8 @@ export default function AddResumeInfo(){
           })
         }else{
           getLocation().then(res=>{
-            console.log(res,'1111');
             if (res) {
-              // setLocationData(res);
+              setLocationData(res);
             }
           })
         }
@@ -236,7 +240,8 @@ export default function AddResumeInfo(){
   
   // 选择地址
   const userChooseArea = () => {
-    let url = '/pages/map/recruit/index'
+    setFirst(false);
+    let url = '/pages/map/resume/index'
     Taro.navigateTo({
       url: url
     })

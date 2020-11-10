@@ -12916,14 +12916,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }(); /*
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          * @Author: zyb
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          * @Date: 2020-11-03 15:03:11
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          * @LastEditors: jsxin
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          * @LastEditTime: 2020-11-09 17:11:48
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          * @Description:
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          */
-
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
 exports.default = useResume;
 
@@ -13036,14 +13029,6 @@ function useResume() {
       _useState24 = _slicedToArray(_useState23, 2),
       check = _useState24[0],
       setCheck = _useState24[1];
-  // 页面显示项目
-
-
-  var _useState25 = (0, _taroTt.useState)([]),
-      _useState26 = _slicedToArray(_useState25, 2),
-      ProjectList = _useState26[0],
-      setProjectList = _useState26[1];
-  // 页面显示技能
   // 项目列表
 
 
@@ -13100,10 +13085,14 @@ function useResume() {
         // 组合项目经验对象
         var projectItem = [].concat(_toConsumableArray(sortImageProject), _toConsumableArray(sortNoImageProject));
         // 获取排序后的第一个元素
-        var projectOne = projectItem[0];
         if (new Date(projectItem[0].completion_time).getTime() / 86400000 < parseInt((new Date().getTime() / 86400000).toString())) {
           // 项目
           setProjectData([].concat(_toConsumableArray(projectItem)));
+          if (projectItem.length) {
+            projectItem[0].completion_time = 'zhijing';
+          }
+        } else {
+          projectItem[0].completion_time = 'zhijin';
         }
         // 是否有人员信息
         setIs_introduces(res.data.is_introduces);
@@ -13128,7 +13117,7 @@ function useResume() {
           info: res.data.info,
           introducesData: res.data.introduces,
           certificates: res.data.certificates,
-          projectData: res.data.project,
+          projectData: projectItem,
           resume_uuid: res.data.info && res.data.info.uuid || '',
           isSet: true
         }));
@@ -13160,7 +13149,6 @@ function useResume() {
       _taroTt2.default.showActionSheet({
         itemList: selectdataList,
         success: function success(res) {
-          console.error(res, 'res');
           if (selectDataIndex == res.tapIndex) {
             return;
           }
@@ -17346,12 +17334,12 @@ function getLocation() {
         };
         (0, _index2.checkAdcodeAction)(params).then(function (res) {
           if (res.errcode == 'ok') {
-            var province = mydata.province;
-            var city = mydata.city;
-            city = typeof city === 'string' ? city : province;
+            var province = res.province;
+            // let city: string = mydata.city
+            // city = typeof city === 'string' ? city : province
             var gpsLocation = {
               province: province,
-              city: city,
+              city: res.city,
               adcode: mydata.adcode,
               citycode: mydata.citycode,
               address: data[0].name,

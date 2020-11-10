@@ -6,7 +6,7 @@ const DEFAULT_STATE_AREAINFO: UserLastPublishRecruitArea = {
     title: '',
     adcode:'',
     location: '',
-    info: ''
+    info: '',
 }
 // 定义默认的区域数据
 const DEFAULT_STATE_AREA:string = AREABEIJING.name

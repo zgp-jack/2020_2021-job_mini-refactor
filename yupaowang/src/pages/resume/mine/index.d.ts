@@ -2,7 +2,7 @@
  * @Author: zyb
  * @Date: 2020-11-03 09:23:50
  * @LastEditors: zyb
- * @LastEditTime: 2020-11-03 16:32:41
+ * @LastEditTime: 2020-11-09 20:10:38
  * @Description: 
  */
 import { ResumeTopStr, resumesGetData, resumeListDataTopStatus } from '../../../utils/request/index.d'
@@ -199,7 +199,7 @@ export interface UserLastPublishRecruitArea {
   location: string,
   adcode: string,
   title: string,
-  info: string
+  info: string,
 }
 
 export interface Injected {

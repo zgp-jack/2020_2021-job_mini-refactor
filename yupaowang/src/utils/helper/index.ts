@@ -100,7 +100,7 @@ export function userCancelAuth():void{
 }
 
 // 用户获取定位
-export function getLocation(){
+export function getLocation(): Promise<LocationDataType>{
   Msg('位置获取中...');
   return new Promise(function (resolve, reject) {
     const myAmapFun = new AMapWX.AMapWX({
@@ -116,12 +116,12 @@ export function getLocation(){
         }
         checkAdcodeAction(params).then(res => {
           if (res.errcode == 'ok') {
-            let province: string = mydata.province
-            let city: string = mydata.city
-            city = typeof city === 'string' ? city : province
+            let province: string = res.province;
+            // let city: string = mydata.city
+            // city = typeof city === 'string' ? city : province
             let gpsLocation: LocationDataType = {
               province: province,
-              city: city,
+              city: res.city,
               adcode: mydata.adcode,
               citycode: mydata.citycode,
               address:data[0].name,

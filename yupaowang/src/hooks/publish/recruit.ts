@@ -114,7 +114,7 @@ export default function usePublishViewInfo(InitParams: InitRecruitView){
         title: data.model.address,
         location: data.model.location,
         info: '',
-        adcode: data.model.adcode || ''
+        adcode: data.model.adcode || '',
       }))
     }else{
       // 获取用户最后发布的区域信息
