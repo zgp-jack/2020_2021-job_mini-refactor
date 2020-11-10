@@ -16774,7 +16774,7 @@ var Topping = function (_Taro$Component) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
-        var _$indexKey = "ibzzz" + __index0;
+        var _$indexKey = "iazzz" + __index0;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return handleDel(v.$original);
         };
@@ -16787,7 +16787,7 @@ var Topping = function (_Taro$Component) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
-        var _$indexKey2 = "iczzz" + __index1;
+        var _$indexKey2 = "ibzzz" + __index1;
         _this2.anonymousFunc1Map[_$indexKey2] = function () {
           return handleDel(v.$original);
         };
@@ -16800,7 +16800,7 @@ var Topping = function (_Taro$Component) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
-        var _$indexKey3 = "idzzz" + __index2;
+        var _$indexKey3 = "iczzz" + __index2;
         _this2.anonymousFunc2Map[_$indexKey3] = function () {
           return handleDel(v.$original);
         };
@@ -16813,7 +16813,7 @@ var Topping = function (_Taro$Component) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
-        var _$indexKey4 = "iezzz" + __index3;
+        var _$indexKey4 = "idzzz" + __index3;
         _this2.anonymousFunc3Map[_$indexKey4] = function () {
           return handleDel(v.$original);
         };
@@ -17679,18 +17679,21 @@ function getRequestHeaderInfo() {
   return requestHeader;
 }
 // 配置默认请求参数
-var defaultRequestData = {
-  url: '',
-  method: 'GET',
-  header: getRequestHeaderInfo(),
-  data: {},
-  loading: true,
-  title: '数据加载中...',
-  failToast: true
+var getRequestHeaderInfoAction = function getRequestHeaderInfoAction() {
+  var headers = getRequestHeaderInfo();
+  return {
+    url: '',
+    method: 'GET',
+    header: _extends({}, headers),
+    data: {},
+    loading: true,
+    title: '数据加载中...',
+    failToast: true
+  };
 };
 // 全局通用请求方法
 function doRequestAction(reqData) {
-  var req = _extends({}, defaultRequestData, reqData);
+  var req = _extends({}, getRequestHeaderInfoAction(), reqData);
   if (req.loading) {
     _taroTt2.default.showLoading({
       title: req.title

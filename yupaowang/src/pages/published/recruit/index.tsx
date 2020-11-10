@@ -81,8 +81,9 @@ export default function PublishedRecruit(){
   }
 
   useEffect(()=>{
+    if (!user.login || loading) return
     getPublishedRecruitLists()
-  }, [searchData])
+  }, [searchData, user])
 
   // 加载下一页
   const getNextPageData = () => {

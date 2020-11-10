@@ -1,5 +1,38 @@
 (tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["pages/collection/index"],{
 
+/***/ "./src/pages/collection/config.ts":
+/*!****************************************!*\
+  !*** ./src/pages/collection/config.ts ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _index = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
+
+var tab = [{
+  id: 1,
+  text: '招工信息',
+  icon: _index.IMGCDNURL + 'new-collect-info-active.png',
+  activeIcon: _index.IMGCDNURL + 'new-collect-info.png',
+  title: '我收藏的招工信息'
+}, {
+  id: 2,
+  text: '找活信息',
+  icon: _index.IMGCDNURL + 'new-collect-resume.png',
+  activeIcon: _index.IMGCDNURL + 'new-collect-resume-active.png',
+  title: '我收藏的找活信息'
+}];
+exports.default = tab;
+
+/***/ }),
+
 /***/ "./src/pages/collection/index.scss":
 /*!*****************************************!*\
   !*** ./src/pages/collection/index.scss ***!
@@ -35,7 +68,9 @@ var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs
 
 var _taroTt2 = _interopRequireDefault(_taroTt);
 
-var _index = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
+var _config = __webpack_require__(/*! ./config */ "./src/pages/collection/config.ts");
+
+var _config2 = _interopRequireDefault(_config);
 
 var _classnames = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
 
@@ -51,13 +86,6 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-// 设置默认tab
-var tab = [{
-  id: 1, text: '招工信息', icon: _index.IMGCDNURL + "new-collect-info-active.png", activeIcon: _index.IMGCDNURL + "new-collect-info.png"
-}, {
-  id: 2, text: '找活信息', icon: _index.IMGCDNURL + "new-collect-resume.png", activeIcon: _index.IMGCDNURL + "new-collect-resume-active.png"
-}];
-
 var Collection = function (_Taro$Component) {
   _inherits(Collection, _Taro$Component);
 
@@ -67,27 +95,27 @@ var Collection = function (_Taro$Component) {
     var _this = _possibleConstructorReturn(this, (Collection.__proto__ || Object.getPrototypeOf(Collection)).apply(this, arguments));
 
     _this.config = {
-      navigationBarTitleText: '我的收藏找活',
+      navigationBarTitleText: '我收藏的招工信息',
       enablePullDownRefresh: true,
       navigationBarBackgroundColor: '#0099ff',
       navigationBarTextStyle: 'white',
       backgroundTextStyle: "dark"
     };
 
-    _this.$usedState = ["loopArray57", "$compid__43", "$compid__44", "tab", "current"];
+    _this.$usedState = ["loopArray111", "$compid__81", "$compid__82", "tab", "current"];
     _this.anonymousFunc0Map = {};
     _this.customComponents = ["Auth", "RecruitList", "ResumeList"];
     return _this;
   }
 
   _createClass(Collection, [{
-    key: "_constructor",
+    key: '_constructor',
     value: function _constructor(props) {
-      _get(Collection.prototype.__proto__ || Object.getPrototypeOf(Collection.prototype), "_constructor", this).call(this, props);
+      _get(Collection.prototype.__proto__ || Object.getPrototypeOf(Collection.prototype), '_constructor', this).call(this, props);
       this.$$refs = new _taroTt2.default.RefsArray();
     }
   }, {
-    key: "_createData",
+    key: '_createData',
     value: function _createData() {
       var _this2 = this;
 
@@ -97,15 +125,15 @@ var Collection = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__43"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__81"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__43 = _genCompid2[0],
-          $compid__43 = _genCompid2[1];
+          $prevCompid__81 = _genCompid2[0],
+          $compid__81 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__44"),
+      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__82"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__44 = _genCompid4[0],
-          $compid__44 = _genCompid4[1];
+          $prevCompid__82 = _genCompid4[0],
+          $compid__82 = _genCompid4[1];
       // 默认table
 
 
@@ -128,6 +156,7 @@ var Collection = function (_Taro$Component) {
         setBottom(0);
         setInitPage(0);
         setCurrent(type);
+        _taroTt2.default.setNavigationBarTitle({ title: _config2.default[type - 1].title });
       };
       // 是否加载更多
       (0, _taroTt.useReachBottom)(function () {
@@ -137,11 +166,11 @@ var Collection = function (_Taro$Component) {
       (0, _taroTt.usePullDownRefresh)(function () {
         setInitPage(initPage + 1);
       });
-      var loopArray57 = tab.map(function (item, __index0) {
+      var loopArray111 = _config2.default.map(function (item, __index0) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
-        var _$indexKey = "gezzz" + __index0;
+        var _$indexKey = "bcizz" + __index0;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return handleTable(item.$original.id);
         };
@@ -162,22 +191,22 @@ var Collection = function (_Taro$Component) {
       current === 1 && _taroTt.propsManager.set({
         "bottom": bottom,
         "initPage": initPage
-      }, $compid__43, $prevCompid__43);
+      }, $compid__81, $prevCompid__81);
       !(current === 1) && _taroTt.propsManager.set({
         "bottom": bottom,
         "initPage": initPage
-      }, $compid__44, $prevCompid__44);
+      }, $compid__82, $prevCompid__82);
       Object.assign(this.__state, {
-        loopArray57: loopArray57,
-        $compid__43: $compid__43,
-        $compid__44: $compid__44,
-        tab: tab,
+        loopArray111: loopArray111,
+        $compid__81: $compid__81,
+        $compid__82: $compid__82,
+        tab: _config2.default,
         current: current
       });
       return this.__state;
     }
   }, {
-    key: "anonymousFunc0",
+    key: 'anonymousFunc0',
     value: function anonymousFunc0(_$indexKey) {
       var _anonymousFunc0Map;
 
@@ -196,7 +225,7 @@ var Collection = function (_Taro$Component) {
 
 Collection.$$events = ["anonymousFunc0"];
 Collection.$$componentPath = "pages/collection/index";
-Collection.config = { navigationBarTitleText: '我的收藏找活', enablePullDownRefresh: true, navigationBarBackgroundColor: '#0099ff', navigationBarTextStyle: 'white', backgroundTextStyle: "dark" };
+Collection.config = { navigationBarTitleText: '我收藏的招工信息', enablePullDownRefresh: true, navigationBarBackgroundColor: '#0099ff', navigationBarTextStyle: 'white', backgroundTextStyle: "dark" };
 exports.default = Collection;
 
 Page(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(Collection, true));

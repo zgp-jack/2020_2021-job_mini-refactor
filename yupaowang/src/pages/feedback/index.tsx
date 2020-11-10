@@ -1,13 +1,14 @@
 import Taro, { Config, useState, useRouter } from '@tarojs/taro'
-import { View, Button, Textarea } from '@tarojs/components'
+import { View, Button, Textarea, Block } from '@tarojs/components'
 import { AtInput } from 'taro-ui'
 import WordsTotal from '../../components/wordstotal'
 import WechatNotice from '../../components/wechat'
 import ImageView from '../../components/imageview'
 import UploadImgAction from '../../utils/upload'
 import useCode from '../../hooks/code'
+import Auth from '../../components/auth'
 import { feedbackSubmissionAction } from '../../utils/request/index'
-import Msg, { ShowActionModal, SubPopup} from '../../utils/msg'
+import Msg, { ShowActionModal } from '../../utils/msg'
 import { SubscribeToNews } from '../../utils/subscribeToNews';
 import { isVaildVal, isPhone } from '../../utils/v'
 import './index.scss'
@@ -125,6 +126,8 @@ export default function Feedback() {
     setNum(val.length);
   }
   return (
+    <Block>
+    <Auth />
     <View className='feedback-content'>
       <WechatNotice />
       <View className='feedback-content-middle'>
@@ -187,6 +190,7 @@ export default function Feedback() {
       </View>
       <View><Button className='feedback-content-button' onClick={handleSubmission}>反馈意见</Button></View>
     </View>
+    </Block>
   )
 }
 

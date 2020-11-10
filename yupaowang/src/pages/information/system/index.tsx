@@ -27,42 +27,42 @@ const newmessageinfo = {
   },
   3: {
     title: '名片信息',
-    url: '/pages/published/resume/index',
+    url: '/pages/resume/publish/index',
     titleText: '找活提醒',
   },
   4: {
     title: '证书信息',
-    url: '/pages/published/resume/index',
+    url: '/pages/resume/skills/index',
     titleText: '找活提醒',
   },
   5: {
     title: '项目信息',
-    url: '/pages/published/resume/index',
+    url: '/pages/resume/projects/index',
     titleText: '找活提醒',
   },
   6: {
     title: '投诉招工信息',
-    url: '',
+    url: '/pages/integral/tabber/index',
     titleText: '投诉提醒',
   },
   7: {
     title: '留言信息',
-    url: '',
+    url: '/pages/feedbacklist/index',
     titleText: '我的信息-留言',
   },
   8: {
-    title: '积分管理-充值',
-    url: '',
+    title: '积分管理',
+    url: '/pages/integral/tabber/index',
     titleText: '系统提醒',
   },
   9: {
     title: '实名认证',
-    url: '',
+    url: '/pages/realname/index',
     titleText: '系统提醒',
   },
   10: {
     title: '投诉找活信息',
-    url: '',
+    url: '/pages/integral/tabber/index',
     titleText: '投诉提醒',
   }
 }
@@ -113,7 +113,6 @@ export default function System (){
   }
   // 用户页面跳转
   const userRouteJump = (type:number) => {
-    return
     Taro.navigateTo({
       url: newmessageinfo[type].url
     })
