@@ -122,20 +122,66 @@ export default function PublishedRecruit(){
     })
   }
   // 取消置顶 jobUpdateTopStatusAction
-  const handlCancel = (id:string)=>{
+  const handlCancel = (id:string, index: number)=>{
     const params = {
       infoId: id,
       status:0,
     }
     jobUpdateTopStatusAction(params).then(res=>{
-      if(res.errcode){
-        Msg(res.errmsg)
-        setSearchData({ ...searchData, page: searchData.page })
-      }
+      detailUserSetTopAction(res, index)
     })
   }
+
+  // 已有置顶取消置顶操作  未置顶 但未到期 相同判断
+  const detailUserSetTopAction = (res,index: number) => {
+    if (res.errcode === 'ok') {
+      Msg(res.errmsg)
+      let mylists = JSON.parse(JSON.stringify(lists))
+      mylists[index].top_data.is_top = res.data.top.is_top
+      setLists(mylists)
+    } else if (res.errcode === 'auth_forbid') {
+      // 去实名
+      Taro.showModal({
+        title: '温馨提示',
+        content: res.errmsg,
+        cancelText: '取消',
+        confirmText: '去实名',
+        success(res) {
+          if (res.confirm) {
+            let backtwo = "backtwo"
+            Taro.navigateTo({
+              url: `/pages/realname/index?backtwo=${backtwo}`
+            })
+          }
+        }
+      })
+      return
+    } else if (res.errcode == "member_forbid") {
+      Taro.showModal({
+        title: '温馨提示',
+        content: res.errmsg,
+        cancelText: "取消",
+        confirmText: "联系客服",
+        success(res) {
+          if (res.confirm) {
+            Taro.makePhoneCall({
+              phoneNumber: SERVERPHONE,
+            })
+          }
+        }
+      })
+      return;
+    } else {
+      Taro.showToast({
+        title: res.errmsg,
+        icon: "none",
+        duration: 1500
+      })
+    }
+  }
+
   //置顶
-  const handleTopping = (item)=>{
+  const handleTopping = (item, index: number)=>{
     if (item.is_end === '2') {
       Taro.showModal({
         title: '提示',
@@ -159,49 +205,7 @@ export default function PublishedRecruit(){
         status: toping == '0' ? '1' : "0"
       }
       jobUpdateTopStatusAction(params).then(res => {
-        if (res.errcode === 'ok') {
-          Msg(res.errmsg)
-          setSearchData({ ...searchData, page: searchData.page })
-        } else if (res.errcode === 'auth_forbid'){
-          // 去实名
-          Taro.showModal({
-            title: '温馨提示',
-            content: res.errmsg,
-            cancelText: '取消',
-            confirmText: '去实名',
-            success(res) {
-              if (res.confirm) {
-                let backtwo = "backtwo"
-                Taro.navigateTo({
-                  url: `/pages/realname/index?backtwo=${backtwo}`
-                })
-              }
-            }
-          })
-          return
-        } else if(res.errcode == "member_forbid"){
-          Taro.showModal({
-            title: '温馨提示',
-            content: "mydata.errmsg",
-            cancelText: "取消",
-            confirmText: "联系客服",
-            success(res) {
-              if (res.confirm) {
-                let tel = SERVERPHONE;
-                Taro.makePhoneCall({
-                  phoneNumber: tel,
-                })
-              }
-            }
-          })
-          return;
-        } else {
-          Taro.showToast({
-            title: res.errmsg,
-            icon: "none",
-            duration: 1500
-          })
-        }
+        detailUserSetTopAction(res, index)
       })
     }else{
       userRouteJump(`/pages/topping/index?id=${item.id}`)
@@ -257,8 +261,8 @@ export default function PublishedRecruit(){
                 {item.is_end != '2' && 
                   <View>
                       {item.top && item.top_data && item.top_data.is_top == '1' ?
-                          <View className='user-published-footer-item' onClick={()=>handlCancel(item.id)}>取消置顶</View> :
-                          <View className='user-published-footer-item' onClick={()=>handleTopping(item)}>我要置顶</View>
+                          <View className='user-published-footer-item' onClick={()=>handlCancel(item.id, index)}>取消置顶</View> :
+                          <View className='user-published-footer-item' onClick={()=>handleTopping(item, index)}>我要置顶</View>
                       }
                   </View>
                 }

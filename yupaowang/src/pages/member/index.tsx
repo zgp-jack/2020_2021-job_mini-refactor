@@ -3,7 +3,7 @@ import { View, Image, Text } from '@tarojs/components'
 import { useSelector, useDispatch } from '@tarojs/redux'
 import { getMemberInfo } from '../../utils/request'
 import { MemberInfo } from '../../utils/request/index.d'
-import { IMGCDNURL, AUTHPATH, CODEAUTHPATH, PUBLISHRESUME } from '../../config'
+import { IMGCDNURL, AUTHPATH, CODEAUTHPATH, PUBLISHRESUME, PUBLISHEDRECRUIT } from '../../config'
 import { setMemberInfo } from '../../actions/member'
 import { ShowActionModal } from '../../utils/msg'
 import { UserMemberInfo } from '../../reducers/member'
@@ -112,7 +112,7 @@ export default function Member(){
       </View>
       <View className='member-body-container'>
         <View className='member-list-container'>
-          <View className='member-list-item' onClick={()=>userRouteJump('/pages/published/recruit/index')}>
+          <View className='member-list-item' onClick={() => userRouteJump(PUBLISHEDRECRUIT)}>
             <Image className='member-list-icon' src={ IMGCDNURL + 'lpy/ucenter/newcenter-recruit.png' } />
             <Text className='member-list-title'>我的招工</Text>
             {jobNumber && <Text className='member-list-tips'>状态有更新</Text>}
