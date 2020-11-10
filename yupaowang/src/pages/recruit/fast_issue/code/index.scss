@@ -1,0 +1,114 @@
+body{
+  background-color: white !important;
+  .code-container{
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    background-color: white;
+    .issue-contactbox {
+      margin-top: 0;
+      .issue-tip{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        text-align: center;
+        font-weight: bold;
+        font-size: 30px;
+        color: #333;
+        line-height: 60px;
+        .issue-tip-image {
+          display: inline-block;
+          width:30px
+        }
+        .issue-contact-title{
+          margin: 0px 10px;
+        }
+      }
+      .issue-contact-body{
+        text-align: left;
+        font-weight: bold;
+        position: relative;
+        font-size: 28px;
+        line-height: 50px;
+        text{
+          color: #FF0B0B;
+          display: inline;
+        }
+      }
+      .issue-code-box{
+        position: relative;
+        margin-top: 50px;
+        padding-left: 120px;
+        text{
+          position: absolute;
+          line-height: 75px;
+          left: 0;
+          font-size: 28px;
+        }
+        .issue-contact-input {
+          position: relative;
+          margin-top: 20px;
+          display: block;
+          width: 100%;
+          border: 1px solid #dcdcdc;
+          border-radius: 5px;
+          height: 75px;
+          line-height: 75px;
+          background-color: white;
+          padding: 0 20px;
+          font-size: 28px;
+        }
+      }
+      .issue-code-tips{
+        position: relative;
+        line-height: 70px;
+        .issue-code-words{
+          font-size: 28px;
+          text{
+            color: #0099ff;
+          }
+        }
+        .issue-code-reget{
+          position: absolute;
+          padding:2px 10px;
+          background-color: #0099ff;
+          color: #fff;
+          font-size: 26px;
+          display: inline-block;
+          right: 0;
+          top: 15px;
+          line-height: 45px;
+          height: 45px;
+          border-radius: 5px;
+        }
+      }
+      .issue-code-btn{
+        position: relative;
+        margin: 50px auto 20px;
+        width: 300px;
+        background-color: #0099ff;
+        color: #fff;
+        font-size: 30px;
+        text-align: center;
+        line-height: 75px;
+        border-radius: 5px;
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

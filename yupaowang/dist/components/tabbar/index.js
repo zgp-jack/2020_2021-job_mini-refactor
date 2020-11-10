@@ -220,7 +220,7 @@ var Tabbar = function (_Taro$Component) {
         'tabbar-publish-items-active': active
       }) : null;
       this.anonymousFunc2 = function () {
-        return userTapPublishItem('/pages/recruit/publish/index');
+        return userTapPublishItem('/pages/recruit/fast_issue/issue/index');
       };
       var loopArray29 = tabbar.list.map(function (item, __index0) {
         item = {

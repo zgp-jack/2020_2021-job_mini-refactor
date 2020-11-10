@@ -1,6 +1,8 @@
+import Taro, { Config } from '@tarojs/taro'
 import { View, Textarea, Input, Image } from '@tarojs/components'
 import WordsTotal from '../../../../components/wordstotal'
 import { useState } from '@tarojs/taro'
+import './index.scss'
 
 
 export default function FastIssue() {
@@ -13,27 +15,32 @@ export default function FastIssue() {
     }
   }
   return (
-    <View class="issue-container">
-      <View class="issue-textarea-box">
+    <View className="issue-container">
+      <View className="issue-textarea-box">
         <Textarea
-          class="issue-textarea"
+          className="issue-textarea"
           placeholder="请粘贴或输入您要发布的招工信息"
           onInput={(e) => userEnterFrom(e, 'detail')}
-          value= { content }
-          maxlength="500"
+          value= "nihaoaasdfds"
         ></Textarea>
-        <WordsTotal num={num} />
+        <WordsTotal num={1} />
       </View>
-      <View class="issue-contactbox">
-        <View class="issue-phone">
-          <Image src='' mode="widthFix" class="issue-phone-image"></Image>
-          <View class="issue-contact-title">联系电话</View>
-          <Image src='' mode="widthFix" class="issue-phone-image"></Image>
+      <View className="issue-contactbox">
+        <View className="issue-phone">
+          {/* <Image src='' mode="widthFix" className="issue-phone-image"></Image> */}
+          <View className="issue-contact-title">联系电话</View>
+          {/* <Image src='' mode="widthFix" className="issue-phone-image"></Image> */}
         </View>
-        <View class="issue-contact-body">请确定招工联系电话，如若有误，请自行修改。</View>
-        <Input class="issue-contact-input" type="number" maxlength="11" placeholder="请输入联系电话" bindinput="enterPhone" value="{{ phone }"></ Input>
+        <View className="issue-contact-body">请确定招工联系电话，如若有误，请自行修改。</View>
+        <Input className="issue-contact-input" type="number"  placeholder="请输入联系电话"></ Input>
       </View>
-      <View class="issue-btn" bindtap="publishRecurit">发布招工</View>
+      <View className="issue-btn">发布招工</View>
     </View >
   )
 }
+FastIssue.config = {
+  navigationBarTitleText: '发布招工',
+  navigationBarBackgroundColor: '#0099ff',
+  navigationBarTextStyle: 'white',
+  backgroundTextStyle: "dark"
+} as Config

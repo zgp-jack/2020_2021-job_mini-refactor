@@ -66,6 +66,9 @@ class App extends Component {
       'pages/resume/preview/index', // 预览
       'pages/resume/personInfo/index',//人员信息
       'pages/login/index',//用户登录
+      'pages/recruit/fast_issue/issue/index',
+      'pages/recruit/fast_issue/code/index',
+      'pages/recruit/fast_issue/release/index'
     ],
     subPackages: [
       {
