@@ -143,7 +143,7 @@ export default function useResume(){
         // 最大技能长度
         setCertificate_count(res.data.certificate_count);
         // 头像旁边图片显示
-        setShow_tips(res.data.content.show_tips);
+        setShow_tips(res.data.content && res.data.content.show_tips||0);
         // 工作状态
         setSelectData(res.data.status);
         // 工作状态用来选择是正在找工作还是已找到工作

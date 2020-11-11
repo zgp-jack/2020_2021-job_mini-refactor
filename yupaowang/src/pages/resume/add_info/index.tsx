@@ -102,7 +102,7 @@ export default function AddResumeInfo(){
     //设置所属地区
     const area = { ...areaInfo };
     setLocationData({
-      ...location, adcode: area.adcode, address: area.title, longitude: area.location.split(',')[0], latitude: area.location.split(',')[1], city: area.city || '', province: area.provice || ''
+      ...location, adcode: area.adcode, address: area.title, longitude: area.location && area.location.split(',')[0], latitude: area.location&& area.location.split(',')[1], city: area.city || '', province: area.provice || ''
     })
   }, [areaInfo])
   // 用户输入表单
@@ -331,7 +331,11 @@ export default function AddResumeInfo(){
               <View className='publish-list-item adressInput' onClick={()=>userChooseArea()}>
                 <Text className='pulish-list-title-address'>所在地区</Text>
                 <View className='flex'>
-                  <Text className={locationData && locationData.address ? 'flexContent' :'flexContent-no'}>{locationData && locationData.address ? locationData.address:'请选你所在地址'}</Text>
+                  {locationData && locationData.adcode ? 
+                    <Text className='flexContent'>{locationData && locationData.address}</Text>:
+                    <Input placeholder='请选你所在地址' className='flexContent-input' /> 
+                    // <Text className={locationData && locationData.address ? 'flexContent' :'flexContent-no'}>{locationData && locationData.address ? locationData.address:'请选你所在地址'}</Text>
+                  }
                   <Text className='flexTitle' onClick={(e)=>{e.stopPropagation(),handleGps()}}>获取定位</Text>
                 </View>
               </View>
@@ -372,7 +376,7 @@ export default function AddResumeInfo(){
                     onInput={(e) => userEnterFrom(e, 'introduce')}
                     maxlength={500}
                   ></Textarea>
-                  <WordsTotal num={inputVal.introduce.length} />
+                  <WordsTotal num={inputVal&&inputVal.introduce&&inputVal.introduce.length||0} />
                 </View>
               </View>
               <View className='publish-recruit-btn' onClick={handelSubmit} >确认发布</View>

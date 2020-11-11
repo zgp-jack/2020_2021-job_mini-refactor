@@ -140,7 +140,7 @@ export default function PublishRecruit() {
                 <Text className='pulish-list-title'>所属工种</Text>
                 {
                 model&&model.classifies.length ? 
-                <View className='publish-list-input'>
+                <View className='publish-list-input publish-list-text'>
                   {model.classifyTree.map(item=>(
                     <Block key={ item.id }>
                       {item.children.map(data=>(
