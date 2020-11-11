@@ -2,11 +2,11 @@ import Taro, { Config, useState, useRouter, useDidShow, useEffect } from '@taroj
 import { View, Text, Image, Icon, Button } from '@tarojs/components'
 import { jobInfoAction, publishComplainAction, jobGetTelAction, recruitListCancelCollectionAction, jobEndStatusAction, jobUpdateTopStatusAction, jobNoUserInfoAction, jobRecommendListAction } from '../../../utils/request/index'
 import WechatNotice from '../../../components/wechat'
-import { IMGCDNURL, SERVERPHONE,AUTHPATH,CODEAUTHPATH } from '../../../config'
+import { IMGCDNURL, SERVERPHONE, AUTHPATH, CODEAUTHPATH, ISCANSHARE} from '../../../config'
 import { useSelector } from '@tarojs/redux'
 import { isVaildVal } from '../../../utils/v'
 import  Report  from '../../../components/report'
-import Msg, { SubPopup } from '../../../utils/msg'
+import Msg, { showModalTip } from '../../../utils/msg'
 import { SubscribeToNews } from '../../../utils/subscribeToNews';
 import  CollectionRecruitList from '../../../components/recommendList/index'
 import { UserInfo } from '../../../config/store'
@@ -141,16 +141,16 @@ export default function DetailInfoPage() {
       })
     }else{
       jobInfoAction(params).then(res => {
-        let paramsObj = {
-          page:1,
-          type:1,
-          area_id: res.result.city_id,
-          job_ids: res.result.id,
-          classify_id:[res.result.occupations].join(','),
-        }
-        jobRecommendListAction(paramsObj).then(res=>{
-          setRecommend(res.data.list);
-        })
+        // let paramsObj = {
+        //   page:1,
+        //   type:1,
+        //   area_id: res.result.city_id,
+        //   job_ids: res.result.id,
+        //   classify_id:[res.result.occupations].join(','),
+        // }
+        // jobRecommendListAction(paramsObj).then(res=>{
+        //   setRecommend(res.data.list);
+        // })
         setRefresh(false)
         setData(res.result);
         setPhone(res.result.tel_str);
@@ -210,7 +210,7 @@ export default function DetailInfoPage() {
     publishComplainAction(params).then((res) => {
       if (res.errcode === 'ok') {
         SubscribeToNews('complain', () => {
-          SubPopup({
+          showModalTip({
             tips: res.errmsg,
             callback: () => {
               setComplaintModal(false);
@@ -593,10 +593,12 @@ export default function DetailInfoPage() {
               <View><Image src={`${IMGCDNURL}newjobinfo-complain.png`} className='detailInfo-footer-content-box-image' /></View>
               <View className='detailInfo-footer-content-box-text'>投诉</View>
             </View>
+            {ISCANSHARE &&
             <View className='detailInfo-footer-content-box-list'>
               <View><Image src={`${IMGCDNURL}newjobinfo-share.png`} className='detailInfo-footer-content-box-image' /></View>
               <View className='detailInfo-footer-content-box-text'>分享</View>
             </View>
+            }
             <View>
               {resCode === 'end' ? <Button className='detailInfo-footer-content-box-button'>已招到</Button> : (editPhone ?
                 <Button className='detailInfo-footer-content-box-button' onClick={() => jobGetTel()}>查看完整电话</Button> :
@@ -608,9 +610,9 @@ export default function DetailInfoPage() {
         </View>
       }
       {/* 相关推荐 */}
-      {recommend.length && 
+      {/* {recommend.length && 
       <CollectionRecruitList data={recommend} type={1}/>
-      }
+      } */}
       {/* 投诉 */}
       {complaintModal && <Report display={complaintModal} textarea={textarea} handleTextarea={handleTextarea} setComplaintModal={setComplaintModal}
         handleSubmit={handleSubmit} />

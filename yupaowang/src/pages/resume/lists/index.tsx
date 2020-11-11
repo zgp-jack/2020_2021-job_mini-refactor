@@ -161,13 +161,13 @@ export default function ResumeLists() {
         <WechatNotice/>
         <ResumeList data={lists} hasMore={hasMore} />
       </ScrollView>
-      <View className="overflow-image">
+      {/* <View className="overflow-image">
         <Image 
           className={"rank-rules-image"} 
           onClick={handleClickToRankRules}
           src='http://cdn.yupao.com/miniprogram/images/resume-list-rules-btn.png'
         />
-      </View>
+      </View> */}
       <View className='publish-list-btn' onClick={() => userRouteJump(PUBLISHRESUME)}>发布找活</View>
     </View>
   )
