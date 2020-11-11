@@ -337,7 +337,7 @@ export default function ResumeDetail() {
           <View className='cardotext'>
               <Text className='oworkotext'>手机</Text>
               <Text className='workotextone'>{phone}</Text>
-            {examine || !onoff && data.info.is_read === 1 && data.info.is_end !='2' && data.operation.status === 0  &&
+            {(examine || !onoff && data.info.is_read == 1) && data.info.is_end !='2' && data.operation.status === 0  &&
               <Text className='clioktel' onClick={handlePhone}>查看完整电话</Text>
             }
           {onoff && 
