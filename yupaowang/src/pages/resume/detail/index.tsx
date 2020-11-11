@@ -14,7 +14,7 @@ import { SubscribeToNews } from '../../../utils/subscribeToNews';
 import { setSubpackcertificate, setSubpackProject} from '../../../actions/resume_list';
 import './index.scss'
 
-export const detailContext = createContext<Injected>({} as Injected)
+// export const detailContext = createContext<Injected>({} as Injected)
 export default function ResumeDetail() {
   // 获取dispatch分发action
   const dispatch = useDispatch()
@@ -301,7 +301,8 @@ export default function ResumeDetail() {
     })
   }
   return(
-    <detailContext.Provider value={value}>
+    // <detailContext.Provider value={value}>
+    <View>
       {isAuth && <Auth />}
     <View className='resumeDetail'>
       {/* 顶部 */}
@@ -627,7 +628,8 @@ export default function ResumeDetail() {
           handleSubmit={handleSubmit}/>
         }
     </View>
-    </detailContext.Provider>
+    </View>
+    // </detailContext.Provider>
   )
 }
 
