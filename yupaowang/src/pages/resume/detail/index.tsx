@@ -1,7 +1,7 @@
 import Taro, { Config, useState, useRouter, createContext, useDidShow, useEffect } from '@tarojs/taro'
 import { View, Text, Image } from '@tarojs/components'
 import { resumeDetailAction, recommendListAction, resumesGetTelAcrion, resumeSupportAction, resumeCollectAction, resumesComplainAction } from '../../../utils/request/index'
-import { IMGCDNURL } from '../../../config'
+import { IMGCDNURL, ISCANSHARE } from '../../../config'
 import Msg, { showModalTip } from '../../../utils/msg'
 import { DataType, ListType, Injected } from './index.d'
 // import CollectionRecruitList  from '../../../components/recommendList/index'
@@ -590,10 +590,12 @@ export default function ResumeDetail() {
           <Image className="bossimg" src={praise === 0 ? `${IMGCDNURL}newresume-footer-star.png` : `${IMGCDNURL}newresume-footer-star-active.png`} />
           <View>赞</View>
         </View>
+        {ISCANSHARE && 
         <View className='resumeDetail-footer-box'>
           <Image className="bossimg" src={`${IMGCDNURL}newresume-footer-share.png`} />
           <View>分享</View>
         </View>
+        }
         <View className='resumeDetail-footer-box' onClick={resumeCollect}>
           <Image className="bossimg" src={collect === 0 ? `${IMGCDNURL}newresume-footer-collect.png` : `${IMGCDNURL}newresume-footer-collect-active.png`}/>
           <View>收藏</View>

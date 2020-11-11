@@ -333,7 +333,7 @@ export default function AddResumeInfo(){
                 <View className='flex'>
                   {locationData && locationData.adcode ? 
                     <Text className='flexContent'>{locationData && locationData.address}</Text>:
-                    <Input placeholder='请选你所在地址' className='flexContent-input' /> 
+                    <Input placeholder='请选你所在地址' className='flexContent-input' disabled/> 
                     // <Text className={locationData && locationData.address ? 'flexContent' :'flexContent-no'}>{locationData && locationData.address ? locationData.address:'请选你所在地址'}</Text>
                   }
                   <Text className='flexTitle' onClick={(e)=>{e.stopPropagation(),handleGps()}}>获取定位</Text>
