@@ -18,6 +18,7 @@ import member from './member'
 import realname from './realname'
 import resumeAddInfo from './resume_addinfo'
 import resumeData from './resume_data';
+import resumeList from './resume_list';
 
 //合并reducer
 export default combineReducers({
@@ -34,5 +35,6 @@ export default combineReducers({
   realname,
   resumeAddInfo,
   PositionStatus,
-  resumeData
+  resumeData,
+  resumeList
 })

@@ -73,7 +73,7 @@ var DetailInfoPage = function (_Taro$Component) {
       navigationBarTitleText: ''
     };
 
-    _this.$usedState = ["data", "loopArray69", "loopArray70", "$compid__63", "$compid__64", "resCode", "editPhone", "IMGCDNURL", "again", "stopHiring", "isCollection", "recommend", "complaintModal", "phone"];
+    _this.$usedState = ["data", "loopArray72", "loopArray73", "$compid__65", "$compid__66", "resCode", "editPhone", "IMGCDNURL", "again", "stopHiring", "isCollection", "recommend", "complaintModal", "phone"];
     _this.anonymousFunc5Map = {};
     _this.customComponents = ["WechatNotice", "CollectionRecruitList", "Report"];
     return _this;
@@ -96,15 +96,15 @@ var DetailInfoPage = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__63"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__65"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__63 = _genCompid2[0],
-          $compid__63 = _genCompid2[1];
+          $prevCompid__65 = _genCompid2[0],
+          $compid__65 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__64"),
+      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__66"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__64 = _genCompid4[0],
-          $compid__64 = _genCompid4[1];
+          $prevCompid__66 = _genCompid4[0],
+          $compid__66 = _genCompid4[1];
 
       var router = (0, _taroWeapp.useRouter)();
       var id = router.params.id;
@@ -646,7 +646,7 @@ var DetailInfoPage = function (_Taro$Component) {
       this.anonymousFunc15 = function () {
         _taroWeapp2.default.makePhoneCall({ phoneNumber: data.tel_str });
       };
-      var loopArray69 = data.classifyName.map(function (v, i) {
+      var loopArray72 = data.classifyName.map(function (v, i) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
@@ -656,12 +656,12 @@ var DetailInfoPage = function (_Taro$Component) {
           $original: v.$original
         };
       });
-      var loopArray70 = data.view_images.length ? data.view_images.map(function (v, i) {
+      var loopArray73 = data.view_images.length ? data.view_images.map(function (v, i) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
         var $loopState__temp4 = data.view_images.length ? i + i : null;
-        var _$indexKey = "hhzzz" + i;
+        var _$indexKey = "ibzzz" + i;
         _this2.anonymousFunc5Map[_$indexKey] = function () {
           return handleImage(v.$original);
         };
@@ -674,20 +674,20 @@ var DetailInfoPage = function (_Taro$Component) {
       recommend.length && _taroWeapp.propsManager.set({
         "data": recommend,
         "type": 1
-      }, $compid__63, $prevCompid__63);
+      }, $compid__65, $prevCompid__65);
       complaintModal && _taroWeapp.propsManager.set({
         "display": complaintModal,
         "textarea": textarea,
         "handleTextarea": handleTextarea,
         "setComplaintModal": setComplaintModal,
         "handleSubmit": handleSubmit
-      }, $compid__64, $prevCompid__64);
+      }, $compid__66, $prevCompid__66);
       Object.assign(this.__state, {
         data: data,
-        loopArray69: loopArray69,
-        loopArray70: loopArray70,
-        $compid__63: $compid__63,
-        $compid__64: $compid__64,
+        loopArray72: loopArray72,
+        loopArray73: loopArray73,
+        $compid__65: $compid__65,
+        $compid__66: $compid__66,
         resCode: resCode,
         editPhone: editPhone,
         IMGCDNURL: _index2.IMGCDNURL,

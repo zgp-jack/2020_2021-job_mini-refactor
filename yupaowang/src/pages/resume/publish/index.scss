@@ -40,9 +40,12 @@ $commonMargin: 44px;
         }
       }
       .progress-txt{
+        padding:0;
         margin-top: 10px;
         font-size: 28px;
         color: $color;
+        text-align: left;
+        background-color: white;
       }
       .progress-num{
         margin-top: 10px;

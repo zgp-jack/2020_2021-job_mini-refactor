@@ -12903,6 +12903,26 @@ var SETPROJECT = exports.SETPROJECT = 'setproject';
 
 /***/ }),
 
+/***/ "./src/constants/resume_list.ts":
+/*!**************************************!*\
+  !*** ./src/constants/resume_list.ts ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+// 项目经验
+var SETSUBPACKPROJECT = exports.SETSUBPACKPROJECT = 'setSubpackageProject';
+// 技能证书
+var SETSUBPACKCERTIFICATE = exports.SETSUBPACKCERTIFICATE = 'setSubpackCertificate';
+
+/***/ }),
+
 /***/ "./src/constants/tabbar.ts":
 /*!*********************************!*\
   !*** ./src/constants/tabbar.ts ***!
@@ -15970,7 +15990,7 @@ var Topping = function (_Taro$Component) {
       navigationBarTitleText: '招工置顶'
     };
 
-    _this.$usedState = ["params", "data", "loopArray110", "loopArray111", "loopArray112", "loopArray113", "loopArray114", "province", "IMGCDNURL", "rec", "basics", "type", "list", "displayTime", "num", "endTime", "editData", "newTime", "day", "SERVERPHONE"];
+    _this.$usedState = ["params", "data", "loopArray76", "loopArray77", "loopArray78", "loopArray79", "loopArray80", "province", "IMGCDNURL", "rec", "basics", "type", "list", "displayTime", "num", "endTime", "editData", "newTime", "day", "SERVERPHONE"];
     _this.anonymousFunc0Map = {};
     _this.anonymousFunc1Map = {};
     _this.anonymousFunc2Map = {};
@@ -16970,11 +16990,11 @@ var Topping = function (_Taro$Component) {
       this.anonymousFunc12 = function () {
         _taroWeapp2.default.makePhoneCall({ phoneNumber: _index2.SERVERPHONE });
       };
-      var loopArray110 = province ? province.map(function (v, __index0) {
+      var loopArray76 = province ? province.map(function (v, __index0) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
-        var _$indexKey = "baizz" + __index0;
+        var _$indexKey = "iezzz" + __index0;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return handleDel(v.$original);
         };
@@ -16983,11 +17003,11 @@ var Topping = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray111 = params ? params.city.map(function (v, __index1) {
+      var loopArray77 = params ? params.city.map(function (v, __index1) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
-        var _$indexKey2 = "bajzz" + __index1;
+        var _$indexKey2 = "ifzzz" + __index1;
         _this2.anonymousFunc1Map[_$indexKey2] = function () {
           return handleDel(v.$original);
         };
@@ -16996,11 +17016,11 @@ var Topping = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray112 = params ? params.province.map(function (v, __index2) {
+      var loopArray78 = params ? params.province.map(function (v, __index2) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
-        var _$indexKey3 = "bbazz" + __index2;
+        var _$indexKey3 = "igzzz" + __index2;
         _this2.anonymousFunc2Map[_$indexKey3] = function () {
           return handleDel(v.$original);
         };
@@ -17009,11 +17029,11 @@ var Topping = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray113 = params ? params.whole.map(function (v, __index3) {
+      var loopArray79 = params ? params.whole.map(function (v, __index3) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
-        var _$indexKey4 = "bbbzz" + __index3;
+        var _$indexKey4 = "ihzzz" + __index3;
         _this2.anonymousFunc3Map[_$indexKey4] = function () {
           return handleDel(v.$original);
         };
@@ -17022,7 +17042,7 @@ var Topping = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray114 = data.top_rules.map(function (v, i) {
+      var loopArray80 = data.top_rules.map(function (v, i) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
@@ -17035,11 +17055,11 @@ var Topping = function (_Taro$Component) {
       Object.assign(this.__state, {
         params: params,
         data: data,
-        loopArray110: loopArray110,
-        loopArray111: loopArray111,
-        loopArray112: loopArray112,
-        loopArray113: loopArray113,
-        loopArray114: loopArray114,
+        loopArray76: loopArray76,
+        loopArray77: loopArray77,
+        loopArray78: loopArray78,
+        loopArray79: loopArray79,
+        loopArray80: loopArray80,
         province: province,
         IMGCDNURL: _index2.IMGCDNURL,
         rec: rec,
@@ -17434,6 +17454,7 @@ exports.getLocation = getLocation;
 exports.setClipboardData = setClipboardData;
 exports.copyWechatNumber = copyWechatNumber;
 exports.userCallPhone = userCallPhone;
+exports.getUserShareMessage = getUserShareMessage;
 
 var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
@@ -17607,6 +17628,13 @@ function userCallPhone(val) {
   _taroWeapp2.default.makePhoneCall({
     phoneNumber: val
   });
+}
+// 用户统一分享内容
+function getUserShareMessage() {
+  return {
+    title: '全国建筑工地招工平台',
+    imageUrl: _index.IMGCDNURL + "minishare.png"
+  };
 }
 
 /***/ }),

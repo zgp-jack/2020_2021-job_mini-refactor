@@ -77,7 +77,7 @@ var Tabber = function (_Taro$Component) {
       navigationBarTitleText: ''
     };
 
-    _this.$usedState = ["data", "modalData", "loopArray68", "$compid__61", "$compid__62", "time", "start", "end", "IMGCDNURL", "initInfo", "sourceList", "consumeList", "startType", "modal", "complaintModal", "showTime", "title", "num"];
+    _this.$usedState = ["data", "modalData", "loopArray71", "$compid__63", "$compid__64", "time", "start", "end", "IMGCDNURL", "initInfo", "sourceList", "consumeList", "startType", "modal", "complaintModal", "showTime", "title", "num"];
     _this.customComponents = ["Auth", "Nodata", "Report"];
     return _this;
   }
@@ -97,15 +97,15 @@ var Tabber = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__61"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__63"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__61 = _genCompid2[0],
-          $compid__61 = _genCompid2[1];
+          $prevCompid__63 = _genCompid2[0],
+          $compid__63 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__62"),
+      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__64"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__62 = _genCompid4[0],
-          $compid__62 = _genCompid4[1];
+          $prevCompid__64 = _genCompid4[0],
+          $compid__64 = _genCompid4[1];
       // 检测用户是否登录
 
 
@@ -714,7 +714,7 @@ var Tabber = function (_Taro$Component) {
       this.anonymousFunc5 = function () {
         return handleComplaint(modalData.id);
       };
-      var loopArray68 = initInfo === '1' && modal && modalData ? modalData.classifyName.map(function (v, i) {
+      var loopArray71 = initInfo === '1' && modal && modalData ? modalData.classifyName.map(function (v, i) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
@@ -726,20 +726,20 @@ var Tabber = function (_Taro$Component) {
       }) : [];
       !data.lists.length && _taroWeapp.propsManager.set({
         "text": initInfo === '0' ? '暂无积分来源记录' : '暂无积分消耗记录'
-      }, $compid__61, $prevCompid__61);
+      }, $compid__63, $prevCompid__63);
       complaintModal && _taroWeapp.propsManager.set({
         "display": complaintModal,
         "textarea": textarea,
         "handleTextarea": handleTextarea,
         "setComplaintModal": setComplaintModal,
         "handleSubmit": handleSubmit
-      }, $compid__62, $prevCompid__62);
+      }, $compid__64, $prevCompid__64);
       Object.assign(this.__state, {
         data: data,
         modalData: modalData,
-        loopArray68: loopArray68,
-        $compid__61: $compid__61,
-        $compid__62: $compid__62,
+        loopArray71: loopArray71,
+        $compid__63: $compid__63,
+        $compid__64: $compid__64,
         time: time,
         start: start,
         end: end,

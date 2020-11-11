@@ -58,7 +58,7 @@ var CollectionRecruitList = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (CollectionRecruitList.__proto__ || Object.getPrototypeOf(CollectionRecruitList)).apply(this, arguments));
 
-    _this.$usedState = ["$compid__65", "$compid__66", "type", "data"];
+    _this.$usedState = ["$compid__67", "$compid__68", "type", "data"];
     _this.customComponents = ["RecruitListPage", "ResumeListPage"];
     return _this;
   }
@@ -78,15 +78,15 @@ var CollectionRecruitList = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__65"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__67"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__65 = _genCompid2[0],
-          $compid__65 = _genCompid2[1];
+          $prevCompid__67 = _genCompid2[0],
+          $compid__67 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__66"),
+      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__68"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__66 = _genCompid4[0],
-          $compid__66 = _genCompid4[1];
+          $prevCompid__68 = _genCompid4[0],
+          $compid__68 = _genCompid4[1];
 
       var _props = this.__props,
           _props$data = _props.data,
@@ -95,13 +95,13 @@ var CollectionRecruitList = function (_Taro$Component) {
 
       type === 1 && _taroWeapp.propsManager.set({
         "data": data
-      }, $compid__65, $prevCompid__65);
+      }, $compid__67, $prevCompid__67);
       type === 2 && _taroWeapp.propsManager.set({
         "data": data
-      }, $compid__66, $prevCompid__66);
+      }, $compid__68, $prevCompid__68);
       Object.assign(this.__state, {
-        $compid__65: $compid__65,
-        $compid__66: $compid__66,
+        $compid__67: $compid__67,
+        $compid__68: $compid__68,
         type: type
       });
       return this.__state;
