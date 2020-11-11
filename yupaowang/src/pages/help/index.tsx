@@ -94,7 +94,7 @@ export default function Help() {
     setSearchResult(_searchResult)
   }
   //输入框防抖函数
-  const onDebounceInput = (e) => {//加入防抖动后 在频繁输入后 不会发送请求
+  const onDebounceInput = (e) => {
     let handleDebounce = debounce(handleSearchResult, 1000)
     handleDebounce(e.target.value)
   }
