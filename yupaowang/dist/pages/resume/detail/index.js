@@ -118,7 +118,7 @@ var ResumeDetail = function (_Taro$Component) {
       backgroundTextStyle: "dark"
     };
 
-    _this.$usedState = ["data", "loopArray94", "loopArray96", "loopArray97", "$compid__79", "isAuth", "IMGCDNURL", "examine", "onoff", "praise", "collect", "shownewtips", "complaintModal", "age", "phone"];
+    _this.$usedState = ["data", "loopArray94", "loopArray96", "loopArray97", "$compid__78", "isAuth", "IMGCDNURL", "examine", "onoff", "praise", "collect", "shownewtips", "complaintModal", "age", "phone"];
     _this.anonymousFunc4Map = {};
     _this.anonymousFunc6Map = {};
     _this.customComponents = ["Auth", "Report"];
@@ -142,10 +142,10 @@ var ResumeDetail = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__79"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__78"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__79 = _genCompid2[0],
-          $compid__79 = _genCompid2[1];
+          $prevCompid__78 = _genCompid2[0],
+          $compid__78 = _genCompid2[1];
       // 获取dispatch分发action
 
 
@@ -568,13 +568,13 @@ var ResumeDetail = function (_Taro$Component) {
         "handleTextarea": handleTextarea,
         "setComplaintModal": setComplaintModal,
         "handleSubmit": handleSubmit
-      }, $compid__79, $prevCompid__79);
+      }, $compid__78, $prevCompid__78);
       Object.assign(this.__state, {
         data: data,
         loopArray94: loopArray94,
         loopArray96: loopArray96,
         loopArray97: loopArray97,
-        $compid__79: $compid__79,
+        $compid__78: $compid__78,
         isAuth: isAuth,
         IMGCDNURL: _index2.IMGCDNURL,
         examine: examine,

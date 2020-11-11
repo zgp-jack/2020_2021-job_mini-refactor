@@ -314,7 +314,7 @@ export default function ResumeDetail() {
         <View className="resumeDetail-findingnamecardthreemobile">
           <View>
             <Image className='resumeDetail-findingnamecardthreemobile-image'  src={`${IMGCDNURL}newresume-catimg.png`}/>
-            <Text className='resumeDetail-findingnamecardthreemobile-text'>基础信息</Text>
+            <Text className='resumeDetail-findingnamecardthreemobile-text tips'>基础信息</Text>
             <Image className='resumeDetail-findingnamecardthreemobile-image' src={`${IMGCDNURL}newresume-catimg.png`} />
           </View>
         </View>
@@ -323,12 +323,12 @@ export default function ResumeDetail() {
         <View className='resumeDetail-basics-heard'>
           <Image className='resumeDetail-basics-heard-img' src={data.info.headerimg}/>
           <View>
-            <View>
+              <View className='resumeDetail-basics-heard-username'>
               {data.info.username}
               {data.info.authentication === '2' && <Image className='resumeDetail-basics-img' src={`${IMGCDNURL}new-list-realname-icon.png`}/>}
               {data.info.certificate_show === 1 && <Image className='resumeDetail-basics-img' src={`${IMGCDNURL}new-list-jnzs-icon.png`} />}
             </View>
-              <View>{data.info.gender && (data.info.gender === '1'?'男':'女') } {age} {data.info.nation}</View>
+              <View className='resumeDetail-basics-heard-content'>{data.info.gender && (data.info.gender === '1'?'男':'女') } {age} {data.info.nation}</View>
           </View>
         </View>
         <View className='lineone'>
@@ -449,7 +449,7 @@ export default function ResumeDetail() {
         <View className="resumeDetail-findingnamecardthreemobile">
           <View>
             <Image className='resumeDetail-findingnamecardthreemobile-image' src={`${IMGCDNURL}newresume-catimg.png`} />
-            <Text className='resumeDetail-findingnamecardthreemobile-text'>自我介绍</Text>
+            <Text className='resumeDetail-findingnamecardthreemobile-text tips'>自我介绍</Text>
             <Image className='resumeDetail-findingnamecardthreemobile-image' src={`${IMGCDNURL}newresume-catimg.png`} />
           </View>
         </View>
@@ -463,7 +463,7 @@ export default function ResumeDetail() {
         <View className="resumeDetail-findingnamecardthreemobile">
           <View>
             <Image className='resumeDetail-findingnamecardthreemobile-image' src={`${IMGCDNURL}newresume-catimg.png`} />
-            <Text className='resumeDetail-findingnamecardthreemobile-text'>项目经验</Text>
+              <Text className='resumeDetail-findingnamecardthreemobile-text tips'>项目经验</Text>
             <Image className='resumeDetail-findingnamecardthreemobile-image' src={`${IMGCDNURL}newresume-catimg.png`} />
           </View>
         </View>
@@ -506,7 +506,7 @@ export default function ResumeDetail() {
         <View className="resumeDetail-findingnamecardthreemobile">
           <View>
             <Image className='resumeDetail-findingnamecardthreemobile-image' src={`${IMGCDNURL}newresume-catimg.png`} />
-            <Text className='resumeDetail-findingnamecardthreemobile-text'>职业技能</Text>
+              <Text className='resumeDetail-findingnamecardthreemobile-text tips'>职业技能</Text>
             <Image className='resumeDetail-findingnamecardthreemobile-image' src={`${IMGCDNURL}newresume-catimg.png`} />
           </View>
         </View>
