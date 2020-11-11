@@ -9,7 +9,6 @@ import Home from '../home'
 import Recruit from '../recruit/lists'
 import Resume from '../resume/lists'
 import Member from '../member'
-import { MINIVERSION, UNITID } from '../../config'
 import './index.scss'
 
 export default function Index(){

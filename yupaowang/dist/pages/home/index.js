@@ -1,4 +1,4 @@
-(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["pages/home/index"],{
+(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["pages/home/index"],{
 
 /***/ "./src/pages/home/index.scss":
 /*!***********************************!*\
@@ -33,9 +33,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
 
 __webpack_require__(/*! ./index.scss */ "./src/pages/home/index.scss");
 
@@ -80,7 +80,7 @@ var Home = function (_Taro$Component) {
     key: "_constructor",
     value: function _constructor(props) {
       _get(Home.prototype.__proto__ || Object.getPrototypeOf(Home.prototype), "_constructor", this).call(this, props);
-      this.$$refs = new _taroTt2.default.RefsArray();
+      this.$$refs = new _taroWeapp2.default.RefsArray();
     }
   }, {
     key: "_createData",
@@ -91,32 +91,32 @@ var Home = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__7"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__7"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
           $prevCompid__7 = _genCompid2[0],
           $compid__7 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__8"),
+      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__8"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
           $prevCompid__8 = _genCompid4[0],
           $compid__8 = _genCompid4[1];
 
-      var _genCompid5 = (0, _taroTt.genCompid)(__prefix + "$compid__9"),
+      var _genCompid5 = (0, _taroWeapp.genCompid)(__prefix + "$compid__9"),
           _genCompid6 = _slicedToArray(_genCompid5, 2),
           $prevCompid__9 = _genCompid6[0],
           $compid__9 = _genCompid6[1];
 
-      var _genCompid7 = (0, _taroTt.genCompid)(__prefix + "$compid__10"),
+      var _genCompid7 = (0, _taroWeapp.genCompid)(__prefix + "$compid__10"),
           _genCompid8 = _slicedToArray(_genCompid7, 2),
           $prevCompid__10 = _genCompid8[0],
           $compid__10 = _genCompid8[1];
 
-      var _genCompid9 = (0, _taroTt.genCompid)(__prefix + "$compid__11"),
+      var _genCompid9 = (0, _taroWeapp.genCompid)(__prefix + "$compid__11"),
           _genCompid10 = _slicedToArray(_genCompid9, 2),
           $prevCompid__11 = _genCompid10[0],
           $compid__11 = _genCompid10[1];
 
-      var _genCompid11 = (0, _taroTt.genCompid)(__prefix + "$compid__12"),
+      var _genCompid11 = (0, _taroWeapp.genCompid)(__prefix + "$compid__12"),
           _genCompid12 = _slicedToArray(_genCompid11, 2),
           $prevCompid__12 = _genCompid12[0],
           $compid__12 = _genCompid12[1];
@@ -132,9 +132,9 @@ var Home = function (_Taro$Component) {
       // 因为刷新页面就会改变，所以我们将获取选择的位置和当前定位经纬度声明变量先保存
       var userChooseCity = void 0;
       var location = void 0;
-      (0, _taroTt.useDidShow)(function () {
-        userChooseCity = _taroTt2.default.getStorageSync(_store.UserListChooseCity);
-        location = _taroTt2.default.getStorageSync(_store.UserLocation);
+      (0, _taroWeapp.useDidShow)(function () {
+        userChooseCity = _taroWeapp2.default.getStorageSync(_store.UserListChooseCity);
+        location = _taroWeapp2.default.getStorageSync(_store.UserLocation);
         setArea(userChooseCity ? userChooseCity.name : '全国');
         setFilterData({
           area: userChooseCity ? userChooseCity.id : 1,
@@ -143,21 +143,21 @@ var Home = function (_Taro$Component) {
       });
       // 当前展示的城市
 
-      var _useState = (0, _taroTt.useState)(userChooseCity ? userChooseCity.name : '全国'),
+      var _useState = (0, _taroWeapp.useState)(userChooseCity ? userChooseCity.name : '全国'),
           _useState2 = _slicedToArray(_useState, 2),
           area = _useState2[0],
           setArea = _useState2[1];
       // * 是否展示城市选择
 
 
-      var _useState3 = (0, _taroTt.useState)(false),
+      var _useState3 = (0, _taroWeapp.useState)(false),
           _useState4 = _slicedToArray(_useState3, 2),
           shwoCity = _useState4[0],
           setShowCity = _useState4[1];
       // * 获取列表数据的data
 
 
-      var _useState5 = (0, _taroTt.useState)({
+      var _useState5 = (0, _taroWeapp.useState)({
         area: userChooseCity ? userChooseCity.id : 1,
         location: location || ''
       }),
@@ -173,7 +173,7 @@ var Home = function (_Taro$Component) {
       };
       // * 轮播图的基本参数配置
 
-      var _useState7 = (0, _taroTt.useState)({
+      var _useState7 = (0, _taroWeapp.useState)({
         lists: []
       }),
           _useState8 = _slicedToArray(_useState7, 2),
@@ -182,7 +182,7 @@ var Home = function (_Taro$Component) {
       // * 公告列表
 
 
-      var _useState9 = (0, _taroTt.useState)({
+      var _useState9 = (0, _taroWeapp.useState)({
         vertical: true,
         lists: []
       }),
@@ -192,7 +192,7 @@ var Home = function (_Taro$Component) {
       // * 数据列表
 
 
-      var _useState11 = (0, _taroTt.useState)({
+      var _useState11 = (0, _taroWeapp.useState)({
         recruit: [],
         resume: [],
         fleamarket: []
@@ -203,14 +203,14 @@ var Home = function (_Taro$Component) {
       // 请求轮播数据
 
 
-      (0, _taroTt.useEffect)(function () {
+      (0, _taroWeapp.useEffect)(function () {
         (0, _index2.getBannerNotice)().then(function (res) {
           setNotice(_extends({}, notice, { lists: [].concat(_toConsumableArray(res.notice)) }));
           setSwiper(_extends({}, swiper, { lists: [].concat(_toConsumableArray(res.banner)) }));
         });
       }, []);
       // 请求列表数据
-      (0, _taroTt.useEffect)(function () {
+      (0, _taroWeapp.useEffect)(function () {
         (0, _index2.getAllListItem)(filterData).then(function (res) {
           setLists(_extends({}, lists, {
             recruit: [[].concat(_toConsumableArray(res.job.lists))],
@@ -221,7 +221,7 @@ var Home = function (_Taro$Component) {
       }, [filterData]);
       // 用户页面跳转
       var userRouteJump = function userRouteJump(url) {
-        _taroTt2.default.navigateTo({
+        _taroWeapp2.default.navigateTo({
           url: url
         });
       };
@@ -246,26 +246,26 @@ var Home = function (_Taro$Component) {
       var anonymousState__temp2 = shwoCity ? function () {
         return setShowCity(!shwoCity);
       } : null;
-      _taroTt.propsManager.set({
+      _taroWeapp.propsManager.set({
         "data": swiper
       }, $compid__7, $prevCompid__7);
-      _taroTt.propsManager.set({
+      _taroWeapp.propsManager.set({
         "data": notice
       }, $compid__8, $prevCompid__8);
-      _taroTt.propsManager.set({
+      _taroWeapp.propsManager.set({
         "data": lists.recruit,
         "bottom": false
       }, $compid__9, $prevCompid__9);
-      _taroTt.propsManager.set({
+      _taroWeapp.propsManager.set({
         "data": lists.resume,
         "bottom": false,
         "hasMore": true
       }, $compid__10, $prevCompid__10);
-      _taroTt.propsManager.set({
+      _taroWeapp.propsManager.set({
         "data": lists.fleamarket,
         "bottom": false
       }, $compid__11, $prevCompid__11);
-      shwoCity && _taroTt.propsManager.set({
+      shwoCity && _taroWeapp.propsManager.set({
         "show": shwoCity,
         "setAreaInfo": anonymousState__temp,
         "closeDrawer": anonymousState__temp2
@@ -280,7 +280,7 @@ var Home = function (_Taro$Component) {
         $compid__11: $compid__11,
         $compid__12: $compid__12,
         IMGCDNURL: _index.IMGCDNURL,
-        ISWEIXIN: false,
+        ISWEIXIN: true,
         shwoCity: shwoCity,
         area: area
       });
@@ -314,13 +314,13 @@ var Home = function (_Taro$Component) {
   }]);
 
   return Home;
-}(_taroTt2.default.Component);
+}(_taroWeapp2.default.Component);
 
 Home.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4"];
 Home.$$componentPath = "pages/home/index";
 exports.default = Home;
 
-Component(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(Home));
+Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(Home));
 
 /***/ })
 

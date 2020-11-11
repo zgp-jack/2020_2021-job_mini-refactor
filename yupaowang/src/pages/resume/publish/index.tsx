@@ -1,17 +1,19 @@
-import Taro, { useDidShow, useState, Config, usePullDownRefresh } from '@tarojs/taro'
+import Taro, { useDidShow, useState, Config, usePullDownRefresh, useShareAppMessage } from '@tarojs/taro'
 import { View, Text, Button, Image, Block } from '@tarojs/components'
+import { RESUME } from '../../../constants/tabbar'
 import { IMGCDNURL, ISCANSHARE } from '../../../config'
 import { AtProgress } from 'taro-ui'
 import Imglist from '../../../components/imglist'
 import useResume from '../../../hooks/publish/resume'
 import { useSelector } from '@tarojs/redux'
 import Auth from '../../../components/auth'
+import { getUserShareMessage } from '../../../utils/helper'
 import { ShowActionModal } from '../../../utils/msg';
 import './index.scss'
 
 export default function ResumePublish(){
   const uuid = useSelector<any, string>(state => state.resumeData.resume_uuid)
-  const { infoData, introducesData, projectData, certificates, resume_top, initResumeData, is_introduces, project_count, certificate_count, show_tips, selectData, selectDataIndex, handleSelectData, isModifySkill, isModifyProject, projectNum, certificatesNum} = useResume()
+  const { infoData, introducesData, projectData, certificates, initResumeData, is_introduces, project_count, certificate_count, show_tips, selectData, selectDataIndex, handleSelectData, isModifyProject, projectNum, certificatesNum} = useResume()
   // 判断是否是第一次进入  第一次不加载数据 因为hooks会帮助你加载
   const [firstJoin, setFirstJoin] = useState<boolean>(true)
 
@@ -23,6 +25,20 @@ export default function ResumePublish(){
     initResumeData()
   })
 
+  // 用户分享参数配置
+  useShareAppMessage(()=>{
+    if (uuid){
+      return {
+        ...getUserShareMessage(),
+        path: `/pages/resume/detail/index?uuid=${uuid}`
+      }
+    }
+    return {
+      ...getUserShareMessage(),
+      path: `/pages/index/index?type=${RESUME}`
+    }
+  })
+
   // 下拉刷新后 更新当前找活名片
   usePullDownRefresh(()=>{
     initResumeData()
@@ -30,6 +46,19 @@ export default function ResumePublish(){
       Taro.stopPullDownRefresh()
     },500)
   })
+
+  // 用户点击完善信息按钮
+  const userEditCardInfo = () => {
+    if(!uuid){
+      userRouteJump(`/pages/resume/add_info/index`)
+    } else if (!is_introduces){
+      userRouteJump(`/pages/resume/add_member/index`)
+    }else if(!projectData.length){
+      userRouteJump(`/pages/resume/add_project/index`)
+    }else if(!certificates.length){
+      userRouteJump(`/pages/resume/add_skill/index`)
+    }
+  }
 
   // 页面跳转
   const userRouteJump = (url: string) => {
@@ -64,8 +93,8 @@ export default function ResumePublish(){
                 <View className='progresser'><AtProgress percent={(infoData.progress && +infoData.progress)||0} color='#0099FF'/></View>
               </View>
               {infoData.uuid && infoData.is_introduces!= '0' && projectData.length>0 && certificates.length > 0 ? 
-              <View className='progress-txt'>分享找活名片,可提升名片排名度</View>:
-              <View className='progress-txt'>名片越完善找活越容易；马上去完善&gt;&gt;</View>
+                  <Button openType='share' className='progress-txt' >分享找活名片,可提升名片排名度</Button>:
+              <View className='progress-txt' onClick={()=>userEditCardInfo()}>名片越完善找活越容易；马上去完善&gt;&gt;</View>
               }
             </View>
             <View>
@@ -73,6 +102,7 @@ export default function ResumePublish(){
               <View className='progress-viewed'>浏览次数</View>
             </View>
           </View>
+{/*           
           <View className='progress-footer'>
             <View>
               <Image className='progress-rank-img' src={`${IMGCDNURL}newresume-rank.png`} />
@@ -83,7 +113,7 @@ export default function ResumePublish(){
           <View className='progress-place-top'>
             <View className='progress-placed'>
               <View>
-                <Image className='progress-rank-img' src='http://cdn.yupao.com/newyupao/images/gl/personaltop.png'/>
+                <Image className='progress-rank-img' src={`${IMGCDNURL}lpy/personaltop.png`}/>
                 <View className='progress-text'>我的置顶：
                   {resume_top.is_top == 2 && <Text>置顶已过期</Text>}
                   {resume_top.has_top == 1 && resume_top.is_top == 0 && <Text>已取消置顶</Text>}
@@ -104,11 +134,12 @@ export default function ResumePublish(){
               <View className='progress-place-btn'>点击修改找活置顶信息&gt;&gt;</View>
             </View>
             }
-          </View>
+          </View> */}
+
         </View>
         <View className='content-basic-imformation'>
           <View className='basic-imformation'>
-            <Image className='basic-jbinfo' src={`${IMGCDNURL}newresume-jbinfo.png`} />
+            <Image className='basic-jbinfo' src={`${IMGCDNURL}lpy/jichu.png`} />
             <View className='basic-title'>基础信息</View>
           </View>
           {!uuid ?

@@ -1,5 +1,5 @@
 import Taro, { Config, useEffect, useState, createContext,useRouter } from '@tarojs/taro'
-import { View, Picker, Text, Image } from '@tarojs/components'
+import { View, Picker, Text, Image, Input } from '@tarojs/components'
 import { jobTopConfigAction, jobDoTopAction, jobGetTopAreasAction, jobChangeTopAreasAction, resumesTopConfigV2Action, resumesDoTopAction, resumesDoTopV2Action, resumesUpdateTopResumeAction } from '../../utils/request/index'
 import { SERVERPHONE, IMGCDNURL  } from '../../config'
 import { UserInfo } from '../../config/store'
@@ -907,7 +907,7 @@ export default function Topping() {
             <View onClick={handleAddJump} className='topping-list-add'>添加更多</View>
           }
           {!params.city.length && !params.province.length && !params.whole.length  &&
-          <View className='topping-change-btnBox' onClick={handleJump}><View className='topping-change-btnBox-btn'>点击选择置顶范围></View></View>
+          <View className='topping-change-btnBox' onClick={handleJump}><View className='topping-change-btnBox-btn'>点击选择置顶范围</View></View>
         }
         </View>:
         // 找活
@@ -916,7 +916,7 @@ export default function Topping() {
             <View onClick={handleAddJump} className='topping-list-add'>添加更多</View>
           }
           {!params.city.length && !params.province.length && !params.whole.length &&
-            <View className='topping-change-btnBox' onClick={handleJump}><View className='topping-change-btnBox-btn'>点击选择置顶范围></View></View>
+            <View className='topping-change-btnBox' onClick={handleJump}><View className='topping-change-btnBox-btn'>点击选择置顶范围</View></View>
           }
         </View>
         // <View>
@@ -952,11 +952,11 @@ export default function Topping() {
           {num !== 0 &&  <View className='topping-input-box-list'>消耗积分:<View className='topping-input-box-list-num'>{num}分</View></View>}
       </View> :
       <View className='topping-input-box'>
-        <View className='topping-input-box-list'>置顶天数:
-          <Picker mode='selector' range={list} value={0} onChange={(e) => handleClick(e)}>
+        <Picker mode='selector' range={list} value={0} onChange={(e) => handleClick(e)}>
+          <View className='topping-input-box-list'>置顶天数:
             <Text className='topping-input-box-list-input'>{day}</Text>
+          </View>
         </Picker>
-        </View>
         <View className='topping-input-box-list'>消耗积分:<View className='topping-input-box-list-num'>{num}分</View></View>
       </View>
     }

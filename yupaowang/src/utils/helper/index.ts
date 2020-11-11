@@ -1,5 +1,5 @@
 import Taro from '@tarojs/taro'
-import { MAPKEY } from '../../config'
+import { IMGCDNURL, MAPKEY } from '../../config'
 import AMapWX from '../../utils/source/amap-wx'
 import { UserLocationPromiss } from '../../models/area'
 import { UserLocationCity } from '../../config/store'
@@ -172,4 +172,12 @@ export function userCallPhone(val: string) {
   Taro.makePhoneCall({
     phoneNumber: val
   })
+}
+
+// 用户统一分享内容
+export function getUserShareMessage(){
+  return {
+    title: '全国建筑工地招工平台',
+    imageUrl: `${IMGCDNURL}minishare.png`
+  }
 }

@@ -18,7 +18,7 @@ export default function Invite() {
     if (!login) return
     getUserInviteLink().then(res=>{
       if (res.errcode == 'ok') setLink(res.link)
-      else ShowActionModal({msg: res.errmsg})
+      else ShowActionModal({msg: res.errmsg,success:() => Taro.navigateBack()})
     })
   }, [login])
   // 用户复制邀请链接
