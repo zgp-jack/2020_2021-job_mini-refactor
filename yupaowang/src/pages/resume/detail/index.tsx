@@ -385,7 +385,7 @@ export default function ResumeDetail() {
             <View className='cardotext-position'>
             {data.info.experience && 
               <View className='cardotext'>
-              <Text className='oworkotext'>工龄</Text>:
+              <Text className='oworkotext'>工龄</Text>
               <Text className='workotextone'>{data.info.experience}</Text>
             </View>
             }
@@ -393,7 +393,7 @@ export default function ResumeDetail() {
             <View className='cardotext-position'>
             {data.info.prof_degree_str && 
               <View className='cardotext'>
-              <Text className='oworkotext'>熟练</Text>:
+              <Text className='oworkotext'>熟练</Text>
               <Text className='workotextone'>{data.info.prof_degree_str}</Text>
             </View>
             }
@@ -401,7 +401,7 @@ export default function ResumeDetail() {
             <View className='cardotext-position'>
             {data.info.type_str && 
               <View className='cardotext'>
-              <Text className='oworkotext'>人员构成</Text>:
+              <Text className='oworkotext'>人员构成</Text>
               <Text className='workotextone'>{data.info.type_str}</Text>
             </View>
             }
@@ -409,7 +409,7 @@ export default function ResumeDetail() {
             <View className='cardotext-position'>
           {data.info.number_people && 
               <View className='cardotext'>
-              <Text className='oworkotext'>队伍人数</Text>:
+              <Text className='oworkotext'>队伍人数</Text>
               <Text className='workotextone'>{data.info.number_people}</Text>
             </View>
           }
@@ -417,7 +417,7 @@ export default function ResumeDetail() {
             <View className='cardotext-position'>
           {data.info.address &&
             <View className='cardotext'>
-              <Text className='oworkotext'>所在地区</Text>:
+              <Text className='oworkotext'>所在地区</Text>
             <Text className='workotextone-address'>{data.info.address}</Text>
             {/* 地图 */}
             {data.info.distance && 
