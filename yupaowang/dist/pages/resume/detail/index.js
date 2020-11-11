@@ -117,7 +117,7 @@ var ResumeDetail = function (_Taro$Component) {
       backgroundTextStyle: "dark"
     };
 
-    _this.$usedState = ["data", "loopArray102", "loopArray104", "loopArray105", "$compid__81", "isAuth", "IMGCDNURL", "examine", "onoff", "praise", "collect", "shownewtips", "complaintModal", "age", "phone"];
+    _this.$usedState = ["data", "loopArray94", "loopArray96", "loopArray97", "$compid__79", "isAuth", "IMGCDNURL", "examine", "onoff", "praise", "collect", "shownewtips", "complaintModal", "age", "phone"];
     _this.anonymousFunc4Map = {};
     _this.anonymousFunc6Map = {};
     _this.customComponents = ["Auth", "Report"];
@@ -141,10 +141,10 @@ var ResumeDetail = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__81"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__79"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__81 = _genCompid2[0],
-          $compid__81 = _genCompid2[1];
+          $prevCompid__79 = _genCompid2[0],
+          $compid__79 = _genCompid2[1];
       // 获取dispatch分发action
 
 
@@ -520,7 +520,7 @@ var ResumeDetail = function (_Taro$Component) {
         setShownewtips(false);
       };
       this.anonymousFunc11 = handleTellPhone;
-      var loopArray102 = data.info.occupations.length ? data.info.occupations.map(function (v, i) {
+      var loopArray94 = data.info.occupations.length ? data.info.occupations.map(function (v, i) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
@@ -530,12 +530,12 @@ var ResumeDetail = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray104 = data.project.length ? data.project[0].image.map(function (v, i) {
+      var loopArray96 = data.project.length ? data.project[0].image.map(function (v, i) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
         var $loopState__temp4 = data.project.length ? i + i : null;
-        var _$indexKey = "badzz" + i;
+        var _$indexKey = "jjzzz" + i;
         _this2.anonymousFunc4Map[_$indexKey] = function () {
           return handleImg(v.$original);
         };
@@ -545,12 +545,12 @@ var ResumeDetail = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray105 = data.certificates.length ? data.certificates[0].image.map(function (val, i) {
+      var loopArray97 = data.certificates.length ? data.certificates[0].image.map(function (val, i) {
         val = {
           $original: (0, _taroTt.internal_get_original)(val)
         };
         var $loopState__temp6 = data.certificates.length ? i + i : null;
-        var _$indexKey2 = "baezz" + i;
+        var _$indexKey2 = "baazz" + i;
         _this2.anonymousFunc6Map[_$indexKey2] = function () {
           return handleImg(val.$original);
         };
@@ -566,13 +566,13 @@ var ResumeDetail = function (_Taro$Component) {
         "handleTextarea": handleTextarea,
         "setComplaintModal": setComplaintModal,
         "handleSubmit": handleSubmit
-      }, $compid__81, $prevCompid__81);
+      }, $compid__79, $prevCompid__79);
       Object.assign(this.__state, {
         data: data,
-        loopArray102: loopArray102,
-        loopArray104: loopArray104,
-        loopArray105: loopArray105,
-        $compid__81: $compid__81,
+        loopArray94: loopArray94,
+        loopArray96: loopArray96,
+        loopArray97: loopArray97,
+        $compid__79: $compid__79,
         isAuth: isAuth,
         IMGCDNURL: _index2.IMGCDNURL,
         examine: examine,

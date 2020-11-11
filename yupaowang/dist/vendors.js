@@ -12962,6 +12962,8 @@ var _resume_data = __webpack_require__(/*! ../../actions/resume_data */ "./src/a
 
 var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/redux/index.js");
 
+var _recruit = __webpack_require__(/*! ../../actions/recruit */ "./src/actions/recruit.ts");
+
 var _index2 = __webpack_require__(/*! ../../utils/msg/index */ "./src/utils/msg/index.ts");
 
 var _index3 = _interopRequireDefault(_index2);
@@ -13124,6 +13126,15 @@ function useResume() {
         var info = _extends({}, _data.INFODATA_DATA);
         info = _extends({}, info, res.data.info);
         setInfoData(_extends({}, info));
+        // 清除地图redux
+        dispatch((0, _recruit.setAreaInfo)({
+          title: '',
+          location: '',
+          adcode: '',
+          info: '',
+          provice: '',
+          city: ''
+        }));
         // 设置页面显示的项目
         // 定义有图片项目数组
         var hasImageProject = [];

@@ -5,6 +5,7 @@ import { RESUME_TOP_DATA, INFODATA_DATA, INTRODUCERS_DATA } from '../../pages/re
 import { setUseResume } from '../../actions/resume_data';
 import { useResumeType } from '../../pages/resume/publish/index.d'
 import { useDispatch, useSelector } from '@tarojs/redux'
+import { setAreaInfo } from '../../actions/recruit';
 import Msg, { ShowActionModal} from '../../utils/msg'
 
 export default function useResume(){
@@ -78,6 +79,15 @@ export default function useResume(){
         let info: resInfoObj = { ...INFODATA_DATA };
         info = { ...info, ...res.data.info };
         setInfoData({ ...info });
+        // 清除地图redux
+        dispatch(setAreaInfo({
+          title: '',
+          location: '',
+          adcode: '',
+          info: '',
+          provice: '',
+          city: '',
+        }))
         // 设置页面显示的项目
         // 定义有图片项目数组
         let hasImageProject: resProjectArr[] = [];
