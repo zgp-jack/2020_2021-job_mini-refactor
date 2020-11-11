@@ -370,6 +370,7 @@ export default function AddResumeInfo(){
               <View className='publish-list-textarea'>
                   <Text className='publish-textarea-title'>自我介绍</Text>
                   <Textarea
+                    showConfirmBar={true}
                     className='publish-textarea'
                     value={inputVal.introduce}
                     placeholder='请简要介绍您所从事的行业以及工作经验...'
