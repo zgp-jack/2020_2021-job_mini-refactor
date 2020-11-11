@@ -1,4 +1,4 @@
-import Taro, { useState } from '@tarojs/taro'
+import Taro, { Config, useState } from '@tarojs/taro'
 import { View, Input, Text } from '@tarojs/components'
 import useCode from '../../../hooks/code'
 import { postUserAddInfo } from '../../../utils/request'
@@ -117,3 +117,7 @@ export default function UserInfoAdd(){
     </View>
   )
 }
+
+UserInfoAdd.config = {
+  navigationBarTitleText: '完善资料'
+} as Config

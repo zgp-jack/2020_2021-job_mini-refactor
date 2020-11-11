@@ -1,4 +1,4 @@
-import Taro, { useEffect, useState } from '@tarojs/taro'
+import Taro, { useEffect, useState, Config } from '@tarojs/taro'
 import { View, Text, Image, Input } from '@tarojs/components'
 import { userChangeAvatar, userUpdateName } from '../../../utils/request'
 import UploadImgAction from '../../../utils/upload'
@@ -120,3 +120,8 @@ export default function UserInfoIndex(){
     </View>
   )
 }
+
+
+UserInfoIndex.config = {
+  navigationBarTitleText: '修改资料'
+} as Config
