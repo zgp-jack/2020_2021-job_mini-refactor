@@ -736,7 +736,6 @@ function resumeList() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : DEFAULT_STATE;
   var action = arguments[1];
 
-  console.error(state, '1111', action);
   switch (action.type) {
     case _resume_list.SETSUBPACKCERTIFICATE:
       return _extends({}, state, { certificates: action.data });

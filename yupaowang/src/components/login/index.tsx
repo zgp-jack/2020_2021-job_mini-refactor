@@ -60,7 +60,6 @@ export default function LoginComponent({type = 2}: LoginComponentProps) {
 
   // 处理登录信息
   const detailUserLoginInfo = (res) => {
-    console.log(res)
     if (res.errcode == 'ok') {
       const user: User = {
         userId: res.result.uid,

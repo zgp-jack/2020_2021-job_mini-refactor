@@ -239,7 +239,6 @@ var DetailInfoPage = function (_Taro$Component) {
           setRefresh(false);
           return;
         }
-        console.log(1111);
         getRecruitInfo();
       });
       // 获取招工详情
@@ -279,7 +278,6 @@ var DetailInfoPage = function (_Taro$Component) {
               classify_id: [res.result.occupations].join(',')
             };
             (0, _index.jobRecommendListAction)(paramsObj).then(function (res) {
-              console.log(res, 'xxxxx');
               setRecommend(res.data.list);
             });
             setRefresh(false);
@@ -530,11 +528,8 @@ var DetailInfoPage = function (_Taro$Component) {
       var handleStatus = function handleStatus() {
         (0, _index.jobEndStatusAction)(data.id).then(function (res) {
           if (res.errcode === 'ok') {
-            console.log(stopHiring);
-            console.log(data.is_end, 'xxx');
             // if (stopHiring || (data.is_end === 2)) {
             //   setAgain(true);
-            //   console.log(32131231);
             // }else{
             //   setStopHiring(true);
             // setStopHiring se
@@ -562,7 +557,6 @@ var DetailInfoPage = function (_Taro$Component) {
             };
             (0, _index.jobUpdateTopStatusAction)(params).then(function (res) {
               if (res.errcode === 'ok') {
-                console.log(res);
                 (0, _index5.default)(res.errmsg);
                 setRefresh(true);
                 setStopHiring(true);

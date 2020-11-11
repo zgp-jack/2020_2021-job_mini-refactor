@@ -308,7 +308,6 @@ var RealnameMap = function (_Taro$Component) {
       var userClickAreaItem = function userClickAreaItem(item) {
         (0, _index.checkAdcodeValid)(item.adcode).then(function (res) {
           if (res.errcode == "ok") {
-            // console.log(item,'xxxx')
             // setLocation(item.location)
             // setAdcode(item.adcode)
             // if (setAreaInfo) {

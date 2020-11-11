@@ -291,10 +291,8 @@ var ResumeDetail = function (_Taro$Component) {
           location: location,
           resume_uuid: uuid
         };
-        console.error(312312312);
         (0, _index.resumeDetailAction)(params).then(function (res) {
           if (res.errcode === 'ok') {
-            console.error(3213123231);
             // 技能证书
             var mylists = [].concat(_toConsumableArray(res.certificates));
             var _data = [];

@@ -15,7 +15,6 @@ interface ActionType {
 }
 
 export default function resumeList(state: useResumeType = DEFAULT_STATE, action: ActionType) {
-  console.error(state, '1111', action)
   switch (action.type) {
     case SETSUBPACKCERTIFICATE:
       return { ...state, certificates:action.data }

@@ -232,8 +232,6 @@ export default function useResume(){
       return
     }
   }
-  console.error(isModifySkill,'isModifySkill');
-  console.error(isModifyProject,'isModifyProject')
   return {
     infoData,
     introducesData,

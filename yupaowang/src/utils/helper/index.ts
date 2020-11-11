@@ -109,7 +109,6 @@ export function getLocation(): Promise<LocationDataType>{
     myAmapFun.getRegeo({
       type: 'gcj02',
       success:(data) => {
-        console.log(data)
         let mydata = data[0].regeocodeData.addressComponent
         let params = {
           adcode: mydata.adcode

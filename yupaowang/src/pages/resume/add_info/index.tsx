@@ -132,7 +132,6 @@ export default function AddResumeInfo(){
   }
   // 提交
   const handelSubmit =()=>{
-    console.log(inputVal,'ndksandjks')
     if (!inputVal.username || inputVal.username.length < 2 || inputVal.username.length > 5 || !allChinese(inputVal.username)){
       ShowActionModal({ msg: '请输入2~5字纯中文姓名'})
       return

@@ -44,7 +44,6 @@ export default function Tabbar({ notredirect }: PROPS) {
 
   // 点击发布按钮
   const openPublishMenu = () => {
-    console.log('发布')
     setShow(true)
   }
 

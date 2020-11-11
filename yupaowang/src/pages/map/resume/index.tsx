@@ -39,8 +39,6 @@ export const contextItem = createContext<Injected>({} as Injected)
 export default function ResumeMap() {
   // const router: Taro.RouterInfo = useRouter()
   // let { areaItem } = router.params;
-  // console.log(context,'context');
-  // console.log(contextItem,'contextItem')
   // 获取dispatch分发action
   const dispatch = useDispatch()
   const [area, setArea] = useState<string>('')
@@ -98,7 +96,6 @@ export default function ResumeMap() {
         ad_name: data.ad_name,
         city: data.name
       }
-      console.log(data,'data')
       setArea(data.name)
       setUserLoc(userLocData)
     }
@@ -205,7 +202,6 @@ export default function ResumeMap() {
     checkAdcodeAction({adcode:item.adcode}).then(res => {
       // debugger
       if (res.errcode == "ok") {
-        // console.log(item,'xxxx')
         // setLocation(item.location)
         // setAdcode(item.adcode)
         // if (setAreaInfo) {
@@ -231,7 +227,6 @@ export default function ResumeMap() {
       }
       else ShowActionModal({ msg: res.errmsg })
     }).catch((error) => {
-      console.log(error)
       Msg("网络错误，请求失败！")
     })
   }

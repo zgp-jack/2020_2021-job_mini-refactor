@@ -114,8 +114,6 @@ var ResumeMap = function (_Taro$Component) {
           $compid__41 = _genCompid2[1];
       // const router: Taro.RouterInfo = useRouter()
       // let { areaItem } = router.params;
-      // console.log(context,'context');
-      // console.log(contextItem,'contextItem')
       // 获取dispatch分发action
 
 
@@ -231,7 +229,6 @@ var ResumeMap = function (_Taro$Component) {
             ad_name: data.ad_name,
             city: data.name
           };
-          console.log(data, 'data');
           setArea(data.name);
           setUserLoc(userLocData);
         }
@@ -331,7 +328,6 @@ var ResumeMap = function (_Taro$Component) {
         (0, _index.checkAdcodeAction)({ adcode: item.adcode }).then(function (res) {
           // debugger
           if (res.errcode == "ok") {
-            // console.log(item,'xxxx')
             // setLocation(item.location)
             // setAdcode(item.adcode)
             // if (setAreaInfo) {
@@ -356,7 +352,6 @@ var ResumeMap = function (_Taro$Component) {
             _taroWeapp2.default.navigateBack();
           } else (0, _index4.ShowActionModal)({ msg: res.errmsg });
         }).catch(function (error) {
-          console.log(error);
           (0, _index5.default)("网络错误，请求失败！");
         });
       };
