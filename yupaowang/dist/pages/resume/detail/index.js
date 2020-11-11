@@ -118,7 +118,11 @@ var ResumeDetail = function (_Taro$Component) {
       backgroundTextStyle: "dark"
     };
 
+<<<<<<< HEAD
     _this.$usedState = ["data", "loopArray146", "loopArray148", "loopArray149", "$compid__92", "isAuth", "IMGCDNURL", "examine", "onoff", "praise", "collect", "shownewtips", "complaintModal", "age", "phone"];
+=======
+    _this.$usedState = ["data", "loopArray102", "loopArray104", "loopArray105", "$compid__81", "isAuth", "IMGCDNURL", "examine", "onoff", "praise", "collect", "shownewtips", "complaintModal", "age", "phone"];
+>>>>>>> c75a2da2920779471fd3e1c9ac6f882e1df09566
     _this.anonymousFunc4Map = {};
     _this.anonymousFunc6Map = {};
     _this.customComponents = ["Auth", "Report"];
@@ -142,10 +146,17 @@ var ResumeDetail = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
+<<<<<<< HEAD
       var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__92"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
           $prevCompid__92 = _genCompid2[0],
           $compid__92 = _genCompid2[1];
+=======
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__81"),
+          _genCompid2 = _slicedToArray(_genCompid, 2),
+          $prevCompid__81 = _genCompid2[0],
+          $compid__81 = _genCompid2[1];
+>>>>>>> c75a2da2920779471fd3e1c9ac6f882e1df09566
       // 获取dispatch分发action
 
 
@@ -522,7 +533,11 @@ var ResumeDetail = function (_Taro$Component) {
         setShownewtips(false);
       };
       this.anonymousFunc11 = handleTellPhone;
+<<<<<<< HEAD
       var loopArray146 = data.info.occupations.length ? data.info.occupations.map(function (v, i) {
+=======
+      var loopArray102 = data.info.occupations.length ? data.info.occupations.map(function (v, i) {
+>>>>>>> c75a2da2920779471fd3e1c9ac6f882e1df09566
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
@@ -532,12 +547,20 @@ var ResumeDetail = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
+<<<<<<< HEAD
       var loopArray148 = data.project.length ? data.project[0].image.map(function (v, i) {
+=======
+      var loopArray104 = data.project.length ? data.project[0].image.map(function (v, i) {
+>>>>>>> c75a2da2920779471fd3e1c9ac6f882e1df09566
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
         var $loopState__temp4 = data.project.length ? i + i : null;
+<<<<<<< HEAD
         var _$indexKey = "bcfzz" + i;
+=======
+        var _$indexKey = "badzz" + i;
+>>>>>>> c75a2da2920779471fd3e1c9ac6f882e1df09566
         _this2.anonymousFunc4Map[_$indexKey] = function () {
           return handleImg(v.$original);
         };
@@ -547,12 +570,20 @@ var ResumeDetail = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
+<<<<<<< HEAD
       var loopArray149 = data.certificates.length ? data.certificates[0].image.map(function (val, i) {
+=======
+      var loopArray105 = data.certificates.length ? data.certificates[0].image.map(function (val, i) {
+>>>>>>> c75a2da2920779471fd3e1c9ac6f882e1df09566
         val = {
           $original: (0, _taroTt.internal_get_original)(val)
         };
         var $loopState__temp6 = data.certificates.length ? i + i : null;
+<<<<<<< HEAD
         var _$indexKey2 = "bcgzz" + i;
+=======
+        var _$indexKey2 = "baezz" + i;
+>>>>>>> c75a2da2920779471fd3e1c9ac6f882e1df09566
         _this2.anonymousFunc6Map[_$indexKey2] = function () {
           return handleImg(val.$original);
         };
@@ -568,6 +599,7 @@ var ResumeDetail = function (_Taro$Component) {
         "handleTextarea": handleTextarea,
         "setComplaintModal": setComplaintModal,
         "handleSubmit": handleSubmit
+<<<<<<< HEAD
       }, $compid__92, $prevCompid__92);
       Object.assign(this.__state, {
         data: data,
@@ -575,6 +607,15 @@ var ResumeDetail = function (_Taro$Component) {
         loopArray148: loopArray148,
         loopArray149: loopArray149,
         $compid__92: $compid__92,
+=======
+      }, $compid__81, $prevCompid__81);
+      Object.assign(this.__state, {
+        data: data,
+        loopArray102: loopArray102,
+        loopArray104: loopArray104,
+        loopArray105: loopArray105,
+        $compid__81: $compid__81,
+>>>>>>> c75a2da2920779471fd3e1c9ac6f882e1df09566
         isAuth: isAuth,
         IMGCDNURL: _index2.IMGCDNURL,
         examine: examine,

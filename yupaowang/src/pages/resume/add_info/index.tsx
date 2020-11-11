@@ -311,9 +311,9 @@ export default function AddResumeInfo(){
                 </Picker>
                 </View>
               <View className='publish-list-item' onClick={() => setShowProssion(true)}>
-                <Text className='pulish-list-title-address'>所属工种</Text>
+                <Text className='pulish-list-title'>所属工种</Text>
                 {classifies && classifies.length ?
-                    <View className='publish-list-input'>
+                  <View className='publish-list-input publish-list-text'>
                       {classifyTree.map(item => (
                         <Block key={item.id}>
                           {item.children.map(data => (

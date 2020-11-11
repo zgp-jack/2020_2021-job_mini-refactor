@@ -12344,7 +12344,7 @@ var PROREQUESTURL = exports.PROREQUESTURL = 'https://newyupaomini.54xiaoshuo.com
 // * 当前测试
 var REQUESTURL = exports.REQUESTURL = DEVREQUESTURL;
 // * 默认上传图片
-var UPLOADIMGURL = exports.UPLOADIMGURL = "https://newyupaomini.54xiaoshuo.com/index/upload/";
+var UPLOADIMGURL = exports.UPLOADIMGURL = "https://miniapi.zhaogong.vrtbbs.com/index/upload/";
 // * 阿里云CDN域名
 var ALIYUNCDN = exports.ALIYUNCDN = 'http://cdn.yupao.com';
 // * 阿里云小程序普通路径

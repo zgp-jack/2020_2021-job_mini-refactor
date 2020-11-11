@@ -13,7 +13,7 @@ export const PROREQUESTURL: string = 'https://newyupaomini.54xiaoshuo.com/'
 // * 当前测试
 export const REQUESTURL: string = DEVREQUESTURL;
 // * 默认上传图片
-export const UPLOADIMGURL: string = PROREQUESTURL + 'index/upload/'
+export const UPLOADIMGURL: string = DEVREQUESTURL + 'index/upload/'
 // * 阿里云CDN域名
 export const ALIYUNCDN: string = 'http://cdn.yupao.com'
 // * 阿里云小程序普通路径

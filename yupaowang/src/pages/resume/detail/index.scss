@@ -661,14 +661,14 @@
 }
 .cardotext-position{
   position: relative;
-  margin-top: 5px;
+  margin-top: 20px;
 }
 .cardotext::before {
   position: absolute;
   content: '';
   width: 25px;
   height: 25px;
-  background: url(http://cdn.yupao.com/miniprogram/images/newjobinfo-steps.png?t=11) no-repeat;
+  background: url('http://cdn.yupao.com/miniprogram/images/newjobinfo-steps.png') no-repeat;
   background-size: 100% 100%;
   left: 14px;
   margin-left: -5px;
@@ -696,7 +696,16 @@
   position: absolute;
   margin-left: 52px;
 }
-
+.linezo::before{
+  position: absolute;
+  content: '';
+  left: 20px;
+  top: 0;
+  height: 100%;
+  width: 1px;
+  background-color: #e7e6e4;
+  transform: scaleX(0.5);
+}
 .cworkotype .ocworkotypeoo {
   padding-right: 30px;
 }
