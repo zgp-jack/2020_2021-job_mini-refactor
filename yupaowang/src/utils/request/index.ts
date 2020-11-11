@@ -559,13 +559,38 @@ export function feedbackSubmissionAction(params: object): Promise<Inter.Result> 
 }
 
 // 帮助中心
-export function helpAction(page: number, system: string): Promise<Inter.helpData> {
+export function helpAction(system: string): Promise<any> {
   return doRequestAction({
     url: api.helpUrl,
     failToast: true,
     data: {
-      page,
       system,
+    }
+  })
+}
+
+// 帮助中心问题详情
+export function helpQuestionDetailsAction(id: string, system: string): Promise<any> {
+  return doRequestAction({
+    url: api.getQuestionDetails,
+    method: 'GET',
+    failToast: true,
+    data: {
+      system,
+      id
+    }
+  })
+}
+
+// 帮助中心问题详情反馈
+export function helpQuestionDetailsFeedBankAction(id: string, val: string): Promise<any> {
+  return doRequestAction({
+    url: api.getQuestionDetailsFeedBank,
+    method: 'GET',
+    failToast: true,
+    data: {
+      val,
+      id
     }
   })
 }

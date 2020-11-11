@@ -54,7 +54,7 @@ class App extends Component {
       'pages/resume/projects/index', //项目经验列表
       'pages/resume/skills/index', //技能证书列表
       'pages/rank-rules/index', //排名规则
-
+      'pages/help/question-details/index', //帮助中心问题详情
 
       'pages/resume/detail/index', // 找活详情
 

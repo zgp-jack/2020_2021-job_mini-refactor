@@ -97,7 +97,7 @@ export const feedbackUrl: string = REQUESTURL + 'leaving-message/list/'
 // 意见反馈提交
 export const feedbackSubmissionUrl: string = REQUESTURL + 'leaving-message/publish/'
 // 帮助中心
-export const helpUrl: string = REQUESTURL + 'others/help-feedback/'
+export const helpUrl: string = REQUESTURL + 'others/feedback-tree/'
 // 新闻列表
 export const newListUrl: string = REQUESTURL + 'news/list/'
 // 新闻类型
@@ -210,3 +210,7 @@ export const realnameQueryUrl: string = REQUESTURL + 'resume/auth-worker-find/'
 export const getResumeAddInfoConfig: string = REQUESTURL + 'resumes/get-data/'
 // 播放广告
 export const getAdvStatusConfig: string = REQUESTURL + '/member/get-adv-status/'
+//帮助中心问题详情
+export const getQuestionDetails: string = REQUESTURL + 'others/feedback-detail/'
+//帮助中心问题详情是否解决问题
+export const getQuestionDetailsFeedBank: string = REQUESTURL + 'others/feedback-effective/'

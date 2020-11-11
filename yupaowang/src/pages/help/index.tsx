@@ -1,130 +1,166 @@
-import Taro, { Config, useEffect, useState } from '@tarojs/taro'
-import { View, Text, ScrollView} from '@tarojs/components'
-import { helpAction, feedbackAction } from '../../utils/request'
-import { AtAccordion, AtList } from 'taro-ui'
-import { heleDatalist } from '../../utils/request/index.d'
+import Taro, {Config, useEffect, useState} from '@tarojs/taro'
+import {View, Image, Input} from '@tarojs/components'
+import {helpAction} from '../../utils/request'
+import {AtAccordion, AtList, AtListItem} from 'taro-ui'
 import Nodata from '../../components/nodata'
-import { isIos } from '../../utils/v'
+import {isIos} from '../../utils/v'
 import './index.scss'
 
-export interface InitPageType {
-  page:number
+//页面列表接口
+interface ListItem {
+  id: string
+  name: string
+  icon: string
+  questions: QuestionsItem[]
+  open: boolean
 }
-export interface DataType {
-  item: heleDatalist[]
+
+//问题接口
+interface QuestionsItem {
+  id: string
+  question: string
 }
-export interface InitType {
-  page : number
-}
-export interface UserDataType {
-  phone: string,
-  username: string,
-}
+
 export default function Help() {
-  // * 标记是否是在刷新状态
-  const [refresh, setRefresh] = useState<boolean>(false)
-  // 设置默认页面
-  const [initPage, setinitPage] = useState<InitPageType>({
-    page: 1
-  })
-  const [data, setData] = useState<DataType>({
-    item:[],
-  })
-  // 用户数据
-  const [userData,setUserData] = useState<UserDataType>({
-    phone: '',
-    username: '',
-  }) 
-  // 是否能下啦加载更多
-  const [isDown,setIsDown] = useState<boolean>(true);
+  //帮助列表
+  const [listData, setListData] = useState<ListItem[]>([])
+  //所有问题列表（搜索功能使用）
+  const [allQuestion, setAllQuestion] = useState<QuestionsItem[]>([])
+  //搜索结果列表
+  const [searchResult, setSearchResult] = useState<QuestionsItem[]>([])
+  //搜索框获得焦点
+  const [searchFocus, setSearchFocus] = useState<boolean>(false)
   // 判断是否是ios
-  const [ios, setIos] = useState<boolean>(false)
+  const [device, setDevice] = useState<string>('')
   // 请求数据
-  // 列表数据
   useEffect(() => {
     // 判断是安卓还是苹果
-    setIos(isIos())
-    let terminal_type = ios ? 'ios' : 'android';
-    helpAction(initPage.page, terminal_type).then(res =>{
+    let deviceName = isIos() ? 'ios' : 'android';
+    setDevice(deviceName)
+    helpAction(deviceName).then(res => {
       Taro.hideNavigationBarLoading()
-      for(let i =0;i<res.lists.length;i++){
-        res.lists[i].isShow = false;
-        res.lists[i].id = Math.random();
-      }
-      if (initPage.page === 1) {
-        setData({ item: [...res.lists] })
-      }else{
-        setData({ item: [...data.item, ...res.lists] });
-      }
-      if (refresh) setRefresh(false)
-      if(res.lists.length ===0){
-        setIsDown(false)
+      let newData: ListItem[] = []
+      let allQuertion: QuestionsItem[] = []
+      res.data.forEach(item => {
+        item.open = false
+        newData.push(item)
+        item.questions.forEach(queItem => {
+          allQuertion.push(queItem)
+        })
+      })
+      setListData(newData)
+      setAllQuestion(allQuertion)
+    })
+  }, [])
+  //手风琴开关
+  const handleAccordionClick = (id, open) => {
+    let _listData = JSON.parse(JSON.stringify(listData))
+    _listData.forEach(item => {
+      if (item.id === id) {
+        item.open = open
       }
     })
-  },[initPage])
-  // 用户信息
-  useEffect(() => {
-    feedbackAction(1).then(res =>{
-      setUserData(res.memberInfo);
-    })
-  },[])
-  // 开关
-  const handleShow = (id:number|undefined)=>{
-    const newData = JSON.parse(JSON.stringify(data));
-    newData.item.forEach((v: heleDatalist) => {
-      let flag: boolean = v.id === id && !v.isShow
-      v.isShow = flag ? true : false
-    })
-    setData(newData);
+    setListData(_listData)
   }
-  // * 触底加载下一页
-  const getNextPageData = () => {
-    if (!isDown) return;
-    Taro.showNavigationBarLoading()
-    setinitPage({ ...initPage, page: initPage.page + 1 })
-  }
-  // 用户页面跳转
-  const userRouteJump = (url: string) => {
+  //点击问题，去问题详情页面
+  const handleQuestionsClick = id => {
     Taro.navigateTo({
-      url: url
+      url: `/pages/help/question-details/index?id=${id}&system=${device}`
     })
   }
-  // * 监听下拉刷新
-  const pullDownAction = () => {
-    setRefresh(true)
-    setIsDown(true)
-    setinitPage({ page: 1 })
+  //输入框处理防抖
+  const debounce = (fn, delay = 3000) => {
+    //期间间隔执行 节流
+    return (...rest) => {
+      let args = rest;
+      if (this.state.timerId) clearTimeout(this.state.timerId);
+      this.state.timerId = setTimeout(() => {
+        fn.apply(this, args)
+      }, delay)
+    }
+  }
+  //根据输入内容获取问题列表
+  const handleSearchResult = (searchVal: string) => {
+    if (!searchVal) {
+      setSearchResult([])
+      return
+    }
+    let _searchResult: QuestionsItem[] = []
+    allQuestion.forEach(item => {
+      if (item.question.indexOf(searchVal) !== -1) {
+        _searchResult.push(item)
+      }
+    })
+    setSearchResult(_searchResult)
+  }
+  //输入框防抖函数
+  const onDebounceInput = (e) => {//加入防抖动后 在频繁输入后 不会发送请求
+    let handleDebounce = debounce(handleSearchResult, 1000)
+    handleDebounce(e.target.value)
+  }
+//去意见反馈页面
+  const handleToFeedBank = () => {
+    Taro.navigateTo({url: '/pages/feedback/index'})
+  }
+  //去我的反馈页面
+  const handleToFeedBankList = () => {
+    Taro.navigateTo({url: '/pages/feedbacklist/index'})
+  }
+  if (!listData.length) {
+    return <Nodata/>
   }
   return (
     <View className='help-content'>
-      {!data.item.length && <Nodata />}
-      <ScrollView
-        className='recruit-lists-containerbox'
-        scrollY
-        lowerThreshold={200}
-        refresherEnabled
-        refresherTriggered={refresh}
-        onRefresherRefresh={() => pullDownAction()}
-        onScrollToLower={() => getNextPageData()}
-      >
-        <View className='topNoneBox'></View>
-          {data.item.map(item => (
-            <AtAccordion
-              icon={{ value: 'help', color: '#09f', size: '15'}}
-              key={item.id}
-              open={item.isShow}
-              onClick={() => { handleShow(item.id) }}
-              title={item.question}
-            >
-              <AtList hasBorder={false}>
-                <Text className='help-text'>{item.answer}</Text>
-              </AtList>
-            </AtAccordion>
-          ))}
-        {!isDown && data.item.length && <View className='help-noData'>没有更多数据了</View>}
-        <View className='BootomNoneBox'></View>
-      </ScrollView>
-      <View className='help-button-box' onClick={() => userRouteJump(`/pages/feedback/index?username=${userData.username}&phone=${userData.phone}`)}><Text className='help-button'>意见反馈</Text></View>
+      <View className="help-container">
+        <View className="help_center_head">
+          <View className="help_center_search">
+            <Image className="help_search_icon"
+                   src="http://cdn.yupao.com/miniprogram/images/yc/helpCenter-search.png"/>
+            <Input className="help_search_input" onFocus={() => setSearchFocus(true)}
+                   onBlur={() => setSearchFocus(false)} onInput={e => onDebounceInput(e)}
+                   placeholder="输入您要找的问题"/>
+            {
+              (searchResult.length > 0 && searchFocus) &&
+              <View className="search-results">
+                {
+                  searchResult.map(item => (
+                    <View className="search-results-item" key={item.id}
+                          onClick={() => handleQuestionsClick(item.id)}>{item.question}</View>
+                  ))
+                }
+              </View>
+            }
+          </View>
+          <View className="help-list-title">
+            问题类型
+          </View>
+        </View>
+        <View className="help-list">
+          {
+            listData.map(item => (
+              <View className="help-list-item">
+                <Image src={item.icon} className="help-list-icon"/>
+                <AtAccordion hasBorder={false} open={item.open} onClick={open => handleAccordionClick(item.id, open)}
+                             title={item.name}
+                             key={item.id}>
+                  <AtList hasBorder={false}>
+                    {
+                      item.questions.map(queItem => (
+                        <AtListItem hasBorder={false} key={queItem.id} onClick={() => handleQuestionsClick(queItem.id)}
+                                    title={queItem.question}/>
+                      ))
+                    }
+                  </AtList>
+                </AtAccordion>
+              </View>
+            ))
+          }
+        </View>
+        <View className="help-footer">
+          <View className="help-footer-item suggestions" onClick={handleToFeedBank}>意见反馈</View>
+          <View className="help-footer-item my-suggestions" onClick={handleToFeedBankList}>我的反馈</View>
+        </View>
+      </View>
     </View>
   )
 }
@@ -132,3 +168,4 @@ export default function Help() {
 Help.config = {
   navigationBarTitleText: '帮助中心',
 } as Config
+
