@@ -73,9 +73,15 @@ var DetailInfoPage = function (_Taro$Component) {
       navigationBarTitleText: ''
     };
 
+<<<<<<< HEAD
     _this.$usedState = ["data", "loopArray100", "loopArray101", "$compid__78", "resCode", "editPhone", "IMGCDNURL", "again", "stopHiring", "isCollection", "ISCANSHARE", "complaintModal", "phone"];
     _this.anonymousFunc5Map = {};
     _this.customComponents = ["WechatNotice", "Report"];
+=======
+    _this.$usedState = ["data", "loopArray72", "loopArray73", "$compid__65", "$compid__66", "resCode", "editPhone", "IMGCDNURL", "again", "stopHiring", "isCollection", "recommend", "complaintModal", "phone"];
+    _this.anonymousFunc5Map = {};
+    _this.customComponents = ["WechatNotice", "CollectionRecruitList", "Report"];
+>>>>>>> f21abad4253bc223f8aa7507778bd4dd150dce4e
     return _this;
   }
 
@@ -96,10 +102,22 @@ var DetailInfoPage = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
+<<<<<<< HEAD
       var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__78"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
           $prevCompid__78 = _genCompid2[0],
           $compid__78 = _genCompid2[1];
+=======
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__65"),
+          _genCompid2 = _slicedToArray(_genCompid, 2),
+          $prevCompid__65 = _genCompid2[0],
+          $compid__65 = _genCompid2[1];
+
+      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__66"),
+          _genCompid4 = _slicedToArray(_genCompid3, 2),
+          $prevCompid__66 = _genCompid4[0],
+          $compid__66 = _genCompid4[1];
+>>>>>>> f21abad4253bc223f8aa7507778bd4dd150dce4e
 
       var router = (0, _taroTt.useRouter)();
       var id = router.params.id;
@@ -265,6 +283,7 @@ var DetailInfoPage = function (_Taro$Component) {
           });
         } else {
           (0, _index.jobInfoAction)(params).then(function (res) {
+<<<<<<< HEAD
             // let paramsObj = {
             //   page:1,
             //   type:1,
@@ -275,6 +294,18 @@ var DetailInfoPage = function (_Taro$Component) {
             // jobRecommendListAction(paramsObj).then(res=>{
             //   setRecommend(res.data.list);
             // })
+=======
+            var paramsObj = {
+              page: 1,
+              type: 1,
+              area_id: res.result.city_id,
+              job_ids: res.result.id,
+              classify_id: [res.result.occupations].join(',')
+            };
+            (0, _index.jobRecommendListAction)(paramsObj).then(function (res) {
+              setRecommend(res.data.list);
+            });
+>>>>>>> f21abad4253bc223f8aa7507778bd4dd150dce4e
             setRefresh(false);
             setData(res.result);
             setPhone(res.result.tel_str);
@@ -333,7 +364,11 @@ var DetailInfoPage = function (_Taro$Component) {
         (0, _index.publishComplainAction)(params).then(function (res) {
           if (res.errcode === 'ok') {
             (0, _index6.SubscribeToNews)('complain', function () {
+<<<<<<< HEAD
               (0, _index4.showModalTip)({
+=======
+              (0, _index4.SubPopup)({
+>>>>>>> f21abad4253bc223f8aa7507778bd4dd150dce4e
                 tips: res.errmsg,
                 callback: function callback() {
                   setComplaintModal(false);
@@ -635,7 +670,11 @@ var DetailInfoPage = function (_Taro$Component) {
       this.anonymousFunc15 = function () {
         _taroTt2.default.makePhoneCall({ phoneNumber: data.tel_str });
       };
+<<<<<<< HEAD
       var loopArray100 = data.classifyName.map(function (v, i) {
+=======
+      var loopArray72 = data.classifyName.map(function (v, i) {
+>>>>>>> f21abad4253bc223f8aa7507778bd4dd150dce4e
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
@@ -645,12 +684,20 @@ var DetailInfoPage = function (_Taro$Component) {
           $original: v.$original
         };
       });
+<<<<<<< HEAD
       var loopArray101 = data.view_images.length ? data.view_images.map(function (v, i) {
+=======
+      var loopArray73 = data.view_images.length ? data.view_images.map(function (v, i) {
+>>>>>>> f21abad4253bc223f8aa7507778bd4dd150dce4e
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
         var $loopState__temp4 = data.view_images.length ? i + i : null;
+<<<<<<< HEAD
         var _$indexKey = "babzz" + i;
+=======
+        var _$indexKey = "ibzzz" + i;
+>>>>>>> f21abad4253bc223f8aa7507778bd4dd150dce4e
         _this2.anonymousFunc5Map[_$indexKey] = function () {
           return handleImage(v.$original);
         };
@@ -660,25 +707,46 @@ var DetailInfoPage = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
+<<<<<<< HEAD
+=======
+      recommend.length && _taroTt.propsManager.set({
+        "data": recommend,
+        "type": 1
+      }, $compid__65, $prevCompid__65);
+>>>>>>> f21abad4253bc223f8aa7507778bd4dd150dce4e
       complaintModal && _taroTt.propsManager.set({
         "display": complaintModal,
         "textarea": textarea,
         "handleTextarea": handleTextarea,
         "setComplaintModal": setComplaintModal,
         "handleSubmit": handleSubmit
+<<<<<<< HEAD
       }, $compid__78, $prevCompid__78);
       Object.assign(this.__state, {
         data: data,
         loopArray100: loopArray100,
         loopArray101: loopArray101,
         $compid__78: $compid__78,
+=======
+      }, $compid__66, $prevCompid__66);
+      Object.assign(this.__state, {
+        data: data,
+        loopArray72: loopArray72,
+        loopArray73: loopArray73,
+        $compid__65: $compid__65,
+        $compid__66: $compid__66,
+>>>>>>> f21abad4253bc223f8aa7507778bd4dd150dce4e
         resCode: resCode,
         editPhone: editPhone,
         IMGCDNURL: _index2.IMGCDNURL,
         again: again,
         stopHiring: stopHiring,
         isCollection: isCollection,
+<<<<<<< HEAD
         ISCANSHARE: _index2.ISCANSHARE,
+=======
+        recommend: recommend,
+>>>>>>> f21abad4253bc223f8aa7507778bd4dd150dce4e
         complaintModal: complaintModal,
         phone: phone
       });
