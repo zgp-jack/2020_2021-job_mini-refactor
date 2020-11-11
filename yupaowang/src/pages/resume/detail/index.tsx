@@ -91,10 +91,8 @@ export default function ResumeDetail() {
       location:location,
       resume_uuid: uuid
     }
-    console.error(312312312)
     resumeDetailAction(params).then(res=>{
       if(res.errcode === 'ok'){
-        console.error(3213123231)
         // 技能证书
         let mylists = [...res.certificates]
         let data: resumeDetailCertificatesRedux[] = [];

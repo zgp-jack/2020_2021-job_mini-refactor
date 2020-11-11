@@ -153,7 +153,6 @@ export default function AddResumeInfo() {
   }
    // 用户输入表单
   const userEnterFrom = (e: any, type: string) => {
-    console.log(e, type)
     projectInfo[type] = e.detail.value;
     setProjectInfo({ ...projectInfo});
   }

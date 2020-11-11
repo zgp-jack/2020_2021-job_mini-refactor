@@ -90,7 +90,6 @@ export default function usePublishViewInfo(InitParams: InitRecruitView){
 
   // 初始化用户区域数据
   function initUserAreaInfo(data: any){
-    console.log(InitParams.infoId,'InitParams.infoId')
     //  如果传递参数有infoid代表是修改，保存修改的里面默认区域数据
     if (InitParams.infoId){ 
       dispatch(setArea(data.default_search_name.name))

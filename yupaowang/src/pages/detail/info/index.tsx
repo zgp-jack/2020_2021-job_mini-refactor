@@ -110,7 +110,6 @@ export default function DetailInfoPage() {
       setRefresh(false)
       return
     }
-    console.log(1111)
     getRecruitInfo()
   })
   // 获取招工详情
@@ -150,7 +149,6 @@ export default function DetailInfoPage() {
           classify_id:[res.result.occupations].join(','),
         }
         jobRecommendListAction(paramsObj).then(res=>{
-          console.log(res,'xxxxx')
           setRecommend(res.data.list);
         })
         setRefresh(false)
@@ -403,11 +401,8 @@ export default function DetailInfoPage() {
   const handleStatus = ()=>{
     jobEndStatusAction(data.id).then(res=>{
       if(res.errcode === 'ok'){
-        console.log(stopHiring);
-        console.log(data.is_end,'xxx')
         // if (stopHiring || (data.is_end === 2)) {
         //   setAgain(true);
-        //   console.log(32131231);
         // }else{
           //   setStopHiring(true);
           // setStopHiring se
@@ -435,7 +430,6 @@ export default function DetailInfoPage() {
         }
         jobUpdateTopStatusAction(params).then(res => {
           if (res.errcode ==='ok') {
-            console.log(res);
             Msg(res.errmsg)
             setRefresh(true)
             setStopHiring(true);

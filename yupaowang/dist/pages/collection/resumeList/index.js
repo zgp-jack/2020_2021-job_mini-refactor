@@ -148,7 +148,6 @@ var ResumeList = function (_Taro$Component) {
       }, [bottom]);
       // 下拉
       (0, _taroTt.useEffect)(function () {
-        // console.log('下拉')
         if (!initPage) {
           return;
         }

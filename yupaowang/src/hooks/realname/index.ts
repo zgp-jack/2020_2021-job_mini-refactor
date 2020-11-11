@@ -154,8 +154,6 @@ export default function useRealname(){
 
   // 用户提交实名表单
   const userPostAuthInfo = ()=> {
-    console.log(model)
-    console.log(initModel)
     // 验证用户是否填写完了表单
     if (!vaildUserAuthInfo()) return 
     const item = JSON.parse(JSON.stringify(model))
@@ -175,7 +173,6 @@ export default function useRealname(){
       gender: sexCurrent+1
     }
     postUserAuthInfo(params).then(res=>{
-      console.log(res);
       SubscribeToNews('auth', () => {
         ShowActionModal({
           msg: res.errmsg,
@@ -264,7 +261,6 @@ export default function useRealname(){
           url: res.url,
           httpurl: res.httpurl
         }
-        console.log(imageItem);
         memberExt.hand_img = imageItem.url
         memberExt.hand_img_path = imageItem.httpurl
         const item = JSON.parse(JSON.stringify(model))

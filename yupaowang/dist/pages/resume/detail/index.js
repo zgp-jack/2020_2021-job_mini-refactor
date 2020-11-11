@@ -291,10 +291,8 @@ var ResumeDetail = function (_Taro$Component) {
           location: location,
           resume_uuid: uuid
         };
-        console.error(312312312);
         (0, _index.resumeDetailAction)(params).then(function (res) {
           if (res.errcode === 'ok') {
-            console.error(3213123231);
             // 技能证书
             var mylists = [].concat(_toConsumableArray(res.certificates));
             var _data = [];
@@ -539,7 +537,7 @@ var ResumeDetail = function (_Taro$Component) {
           $original: (0, _taroTt.internal_get_original)(v)
         };
         var $loopState__temp4 = data.project.length ? i + i : null;
-        var _$indexKey = "baazz" + i;
+        var _$indexKey = "jizzz" + i;
         _this2.anonymousFunc4Map[_$indexKey] = function () {
           return handleImg(v.$original);
         };
@@ -554,7 +552,7 @@ var ResumeDetail = function (_Taro$Component) {
           $original: (0, _taroTt.internal_get_original)(val)
         };
         var $loopState__temp6 = data.certificates.length ? i + i : null;
-        var _$indexKey2 = "babzz" + i;
+        var _$indexKey2 = "jjzzz" + i;
         _this2.anonymousFunc6Map[_$indexKey2] = function () {
           return handleImg(val.$original);
         };

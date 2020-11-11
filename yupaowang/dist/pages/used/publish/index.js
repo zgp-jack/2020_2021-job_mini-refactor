@@ -530,7 +530,7 @@ var UsedPublish = function (_Taro$Component) {
           'drawer-list-item overwords': true,
           'drawer-list-item-active': index === parentCurrent
         }) : null;
-        var _$indexKey = "fczzz" + index;
+        var _$indexKey = "fazzz" + index;
         _this2.anonymousFunc1Map[_$indexKey] = function () {
           return useClickClassifyParentId(index);
         };
@@ -548,7 +548,7 @@ var UsedPublish = function (_Taro$Component) {
           'drawer-list-item overwords': true,
           'drawer-list-item-active': k == childCurrent && item.$original.id == model.attribute_id
         }) : null;
-        var _$indexKey2 = "fdzzz" + k;
+        var _$indexKey2 = "fbzzz" + k;
         _this2.anonymousFunc2Map[_$indexKey2] = function () {
           return useClickClassifyChildId(k);
         };

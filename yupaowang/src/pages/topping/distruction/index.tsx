@@ -195,7 +195,6 @@ export default function Distruction() {
   }
   // 点击其他省市
   const handleAllAre = (v:any,type:number)=>{
-    console.log(v);
     // 点击市的时候，该市的省取消，点击省的时候,该市的省取消
     if (v.pid === '0'){
       // 点击全国，其他热门与省市都为false
@@ -318,7 +317,6 @@ export default function Distruction() {
             val.click = !v.click
           }else{
             if(val.pid === '0'){
-              console.log(val)
               val.click = false;
             }
           }
@@ -361,7 +359,6 @@ export default function Distruction() {
               if(item.id === v.id){
                 provinceList.map((list,i)=>{
                   if (list.id === val.id){
-                    // console.log(list);
                     provinceList.splice(i,1)
                   }
                 })
@@ -439,7 +436,6 @@ export default function Distruction() {
         setData({ item: arr })
         setParams({ city: cityList, province: val,whole:[] })
       } else {
-        console.log(v,'第一次点击省');
         const List = JSON.parse(JSON.stringify(are.areData))
         // 点击市的时候把省取消
         for (let i = 0; i < List.length;i++){
@@ -447,8 +443,6 @@ export default function Distruction() {
             if(List[i].children.length){
               List[i].children.map((val)=>{
                 if(val.id === v.id){
-                  console.log(v);
-                  console.log(val,'222')
                   val.click = !v.click
                 }else{
                   val.click = false

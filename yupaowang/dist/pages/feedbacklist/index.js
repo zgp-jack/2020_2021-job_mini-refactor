@@ -208,7 +208,7 @@ var FeedbackList = function (_Taro$Component) {
             $original: (0, _taroTt.internal_get_original)(v)
           };
           var $loopState__temp2 = item.$original.images ? index + index : null;
-          var _$indexKey = "hhzzz" + __index1 + "-" + index;
+          var _$indexKey = "hfzzz" + __index1 + "-" + index;
           _this2.anonymousFunc0Map[_$indexKey] = function () {
             handleImg(v.$original);
           };

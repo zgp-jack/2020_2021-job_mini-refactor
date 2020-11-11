@@ -12,9 +12,6 @@ import Member from '../member'
 import { MINIVERSION, UNITID } from '../../config'
 import './index.scss'
 
-console.log(UNITID)
-console.log(MINIVERSION)
-
 export default function Index(){
 
   const dispatch = useDispatch()

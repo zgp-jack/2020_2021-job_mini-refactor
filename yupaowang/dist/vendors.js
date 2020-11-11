@@ -13275,8 +13275,6 @@ function useResume() {
       return;
     }
   };
-  console.error(isModifySkill, 'isModifySkill');
-  console.error(isModifyProject, 'isModifyProject');
   return {
     infoData: infoData,
     introducesData: introducesData,
@@ -16078,7 +16076,6 @@ var Topping = function (_Taro$Component) {
                   setEnd(parseInt(endTimes));
                   setMaxNum(maxPrice);
                 }
-                // console.log(resumeTop,'resumeTop');
               }
               setList(array);
               setCity({ max_city: res.data.max_city, max_province: res.data.max_province });
@@ -16140,7 +16137,6 @@ var Topping = function (_Taro$Component) {
           setdisplayTime(true);
           // 时间
           var all = 86400000 * (parseInt(e.detail.value) + 1) + ((end - 0) * 1000 - 0);
-          // console.log(all)
           var _newTime = getMyDate(all);
           setNewTime(_newTime);
           // 获取旧价格
@@ -16165,14 +16161,12 @@ var Topping = function (_Taro$Component) {
               if (rec) {
                 money = Math.round((newPrice - oldPrice) * remDay + (params.city.length * 20 + params.province.length * 20) * (parseInt(e.detail.value) + 1));
               } else {
-                console.log((newPrice - oldPrice) * remDay);
                 money = Math.round((newPrice - oldPrice) * remDay + newPrice * (parseInt(e.detail.value) + 1));
               }
             } else {
               money = oldPrice * (parseInt(e.detail.value) + 1);
             }
           }
-          console.log(money, 'xdsadasda');
           setNum(money);
         } else {
           if (params) {
@@ -16235,12 +16229,9 @@ var Topping = function (_Taro$Component) {
           time: userInfo.tokenTime,
           update_integral: num
         };
-        // console.log(321312321);
-        // console.log(editDetail,'editDetail');
         // return
         if (type) {
           if (rec) {
-            console.log(32312);
             (0, _index.resumesUpdateTopResumeAction)(editDetail).then(function (res) {
               if (res.errcode === 'ok') {
                 _taroTt2.default.showModal({
@@ -16447,7 +16438,6 @@ var Topping = function (_Taro$Component) {
             whole = _ref.whole;
 
         setParams({ city: city, province: province, whole: whole });
-        console.log(city, province, whole, 'transferFun');
         calcPrice(city, province, whole);
       };
       var calcPrice = function calcPrice(city, province, whole) {
@@ -16458,8 +16448,6 @@ var Topping = function (_Taro$Component) {
         //     setNum(numData);
         //   }
         // }else{
-        // console.log(city.length,'cityleng')
-        // console.log(province.length,'provincelenken')
         if (city || province || whole) {
           if (type) {
             // 获取旧价格
@@ -16473,11 +16461,6 @@ var Topping = function (_Taro$Component) {
             } else {
               newPrice = whole.length ? 500 : (city.length * 10 + province.length * 20) * 1;
             }
-            console.log(newPrice, '最新价格');
-            // console.log(end,'end');
-            // console.log(Math.round(new Date().getTime() / 1000));
-            // console.log((end - (Math.round(new Date().getTime() / 1000))) / 86400)
-            console.log(paramsDay, 'paramsDay');
             // 修改区域
             var changeCity = true; //修改区域
             // 只改变时间
@@ -16493,24 +16476,17 @@ var Topping = function (_Taro$Component) {
                   // 新的大于旧的金额
                   // 新的减去旧的再*天数
                   // money = Math.round((newPrice - oldPrice));
-                  // console.log(money,'moneymoneymoney')
-                  // console.log(remDay,'xxxx')
                   // money = newPrice - oldPrice - moneys;
                   money = Math.round((newPrice - oldPrice) * remDay);
                 } else {
                   money = Math.round((newPrice - oldPrice) * remDay);
                 }
-                console.log(remDay, 'newPrice > oldPrice');
               }
             } else {
               // 时间变了，城市变了
               if (newPrice - oldPrice > 0) {
-                // console.log(newPrice - oldPrice,'newPrice - oldPrice');
-                // console.log(remDay,'remDay');
-                // console.log(newPrice * paramsDay,'newPrice * paramsDay')
                 if (rec) {
                   money = Math.round(newPrice - oldPrice + (city.length * 20 + province.length * 20) * paramsDay);
-                  console.log(money, '价格是');
                   // money = Math.round(newPrice - oldPrice + oldPrice * paramsDay + newPrice * paramsDay)
                 } else {
                   money = Math.round((newPrice - oldPrice) * remDay + newPrice * paramsDay);
@@ -16525,10 +16501,6 @@ var Topping = function (_Taro$Component) {
             } else {
               _num = _num;
             }
-            console.log(oldPrice, 'oldPrice');
-            console.log(newPrice, 'newPrice');
-            console.log(remDay, 'remDay');
-            console.log(money, 'money');
             setNum(money);
           } else {
             var numData = 0;
@@ -16553,15 +16525,11 @@ var Topping = function (_Taro$Component) {
         }
       };
       var modifyFun = function modifyFun(province) {
-        console.log(province, 'xxxx');
         setProvince(province);
         // 设置积分
         recIntegral(province);
       };
       var recIntegral = function recIntegral(province) {
-        console.log(basics.province_integral);
-        console.log(recDay);
-        console.log(province);
         var num = 0;
         if (province.length) {
           num = basics.province_integral * province.length * parseInt(recDay);
@@ -16572,7 +16540,6 @@ var Topping = function (_Taro$Component) {
       };
       // 删除
       var handleDel = function handleDel(v) {
-        console.log(v);
         if (rec) {
           if (v.pid === '1') {
             params.city.map(function (val, i) {
@@ -16580,7 +16547,6 @@ var Topping = function (_Taro$Component) {
                 params.city.splice(i, 1);
               }
             });
-            console.log(params, 'xxxx');
             setParams({ city: params.city, province: params.province, whole: params.whole });
           }
         }
@@ -16590,7 +16556,6 @@ var Topping = function (_Taro$Component) {
               params.province.splice(i, 1);
             }
           });
-          console.log(params, 'xxxx');
           setParams({ city: params.city, province: params.province, whole: params.whole });
         } else if (v.pid === '0') {
           params.whole.map(function (val, i) {
@@ -16618,7 +16583,6 @@ var Topping = function (_Taro$Component) {
         } else {
           newPrice = params.whole.length ? 500 : (params.city.length * 10 + params.province.length * 20) * 1;
         }
-        console.log(newPrice, '删除价格');
         // const newPrice = (params.city.length * 10 + params.province.length * 20) * 1;
         // 时间差
         var remDay = (end - new Date().getTime() / 1000) / 86400;
@@ -16725,11 +16689,8 @@ var Topping = function (_Taro$Component) {
           }
           return val;
         });
-        console.log(recDay, '222222');
         var num = 0;
         num = list.length * basics.province_integral * parseInt(recDay);
-        console.log(list);
-        console.log(num, 'num');
         setProvince(list);
         setNum(num);
       };
@@ -16767,7 +16728,6 @@ var Topping = function (_Taro$Component) {
         }
         // const provinces = (province.map(v=>v.id)).join(',');
         // const citys = (city.map(v => v.id)).join(',');
-        // console.log(provinces,'xxx')
         // let params={
         //   days: parseInt(recDay),
         //   citys: 0,
@@ -16778,7 +16738,6 @@ var Topping = function (_Taro$Component) {
           citys: 0,
           provinces: provinces
         };
-        // console.log(details,'111s')
         // return;
         if (!type) {
           (0, _index.resumesDoTopAction)(details).then(function (res) {
@@ -16833,7 +16792,6 @@ var Topping = function (_Taro$Component) {
           });
         }
       };
-      console.log(paramsDay, 'aramsDayaaas');
       contextItem.Provider(value);
       this.anonymousFunc4 = handleAddJump;
       this.anonymousFunc5 = handleJump;
@@ -16854,7 +16812,7 @@ var Topping = function (_Taro$Component) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
-        var _$indexKey = "ifzzz" + __index0;
+        var _$indexKey = "idzzz" + __index0;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return handleDel(v.$original);
         };
@@ -16867,7 +16825,7 @@ var Topping = function (_Taro$Component) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
-        var _$indexKey2 = "igzzz" + __index1;
+        var _$indexKey2 = "iezzz" + __index1;
         _this2.anonymousFunc1Map[_$indexKey2] = function () {
           return handleDel(v.$original);
         };
@@ -16880,7 +16838,7 @@ var Topping = function (_Taro$Component) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
-        var _$indexKey3 = "ihzzz" + __index2;
+        var _$indexKey3 = "ifzzz" + __index2;
         _this2.anonymousFunc2Map[_$indexKey3] = function () {
           return handleDel(v.$original);
         };
@@ -16893,7 +16851,7 @@ var Topping = function (_Taro$Component) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
-        var _$indexKey4 = "iizzz" + __index3;
+        var _$indexKey4 = "igzzz" + __index3;
         _this2.anonymousFunc3Map[_$indexKey4] = function () {
           return handleDel(v.$original);
         };
@@ -17424,7 +17382,6 @@ function getLocation() {
     myAmapFun.getRegeo({
       type: 'gcj02',
       success: function success(data) {
-        console.log(data);
         var mydata = data[0].regeocodeData.addressComponent;
         var params = {
           adcode: mydata.adcode
@@ -17794,7 +17751,6 @@ function doRequestAction(reqData) {
       header: req.header,
       data: data,
       success: function success(res) {
-        //console.log(res)
         if (res.statusCode === 200) {
           resolve(res.data);
         } else {

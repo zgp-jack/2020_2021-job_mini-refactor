@@ -16,8 +16,6 @@ import Msg, { ShowActionModal } from '../../../utils/msg'
 //   context: Taro.Context<Injected>
 // }
 export default function MapComponent({ data }){
-  // console.log(data,'data')
-  // console.log(contextItem,'contextItem');
   // 用户定位城市
   const [userLoc, setUserLoc] = useState<AllAreasDataItem>({
     id: '',
@@ -44,7 +42,6 @@ export default function MapComponent({ data }){
     let userLoc: UserLocationPromiss = Taro.getStorageSync(UserLocationCity)
     if(userLoc){
       let data: ChildItems = getCityInfo(userLoc,1)
-      console.log(data,'datadatadatadata')
       let userLocData: AllAreasDataItem = {
         id: data.id,
         pid: data.pid,

@@ -79,7 +79,6 @@ export default function AddResumeInfo() {
   // 用户上传图片
   const userUploadImg = (i: number) => {
     UploadImgAction().then(res => {
-      console.log(res)
       let imageItem: RecruitImageModel = {
         url: res.url,
         httpurl: res.httpurl
@@ -131,7 +130,6 @@ export default function AddResumeInfo() {
           setShowBtn(false)
         }
       }else{
-        console.log('失败')
         Msg(res.errmsg)
       }
     })

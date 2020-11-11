@@ -102,11 +102,7 @@ var Collection = function (_Taro$Component) {
       backgroundTextStyle: "dark"
     };
 
-<<<<<<< HEAD
     _this.$usedState = ["loopArray60", "$compid__45", "$compid__46", "tab", "current"];
-=======
-    _this.$usedState = ["loopArray111", "$compid__81", "$compid__82", "tab", "current"];
->>>>>>> a567e62ed054d80b4b2cce3eedd7bf980cf3b0c2
     _this.anonymousFunc0Map = {};
     _this.customComponents = ["Auth", "RecruitList", "ResumeList"];
     return _this;
@@ -129,7 +125,6 @@ var Collection = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-<<<<<<< HEAD
       var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__45"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
           $prevCompid__45 = _genCompid2[0],
@@ -139,17 +134,6 @@ var Collection = function (_Taro$Component) {
           _genCompid4 = _slicedToArray(_genCompid3, 2),
           $prevCompid__46 = _genCompid4[0],
           $compid__46 = _genCompid4[1];
-=======
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__81"),
-          _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__81 = _genCompid2[0],
-          $compid__81 = _genCompid2[1];
-
-      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__82"),
-          _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__82 = _genCompid4[0],
-          $compid__82 = _genCompid4[1];
->>>>>>> a567e62ed054d80b4b2cce3eedd7bf980cf3b0c2
       // 默认table
 
 
@@ -182,19 +166,11 @@ var Collection = function (_Taro$Component) {
       (0, _taroTt.usePullDownRefresh)(function () {
         setInitPage(initPage + 1);
       });
-<<<<<<< HEAD
-      var loopArray60 = tab.map(function (item, __index0) {
+      var loopArray60 = _config2.default.map(function (item, __index0) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
-        var _$indexKey = "gjzzz" + __index0;
-=======
-      var loopArray111 = _config2.default.map(function (item, __index0) {
-        item = {
-          $original: (0, _taroTt.internal_get_original)(item)
-        };
-        var _$indexKey = "bcizz" + __index0;
->>>>>>> a567e62ed054d80b4b2cce3eedd7bf980cf3b0c2
+        var _$indexKey = "ghzzz" + __index0;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return handleTable(item.$original.id);
         };
@@ -215,7 +191,6 @@ var Collection = function (_Taro$Component) {
       current === 1 && _taroTt.propsManager.set({
         "bottom": bottom,
         "initPage": initPage
-<<<<<<< HEAD
       }, $compid__45, $prevCompid__45);
       !(current === 1) && _taroTt.propsManager.set({
         "bottom": bottom,
@@ -225,19 +200,7 @@ var Collection = function (_Taro$Component) {
         loopArray60: loopArray60,
         $compid__45: $compid__45,
         $compid__46: $compid__46,
-        tab: tab,
-=======
-      }, $compid__81, $prevCompid__81);
-      !(current === 1) && _taroTt.propsManager.set({
-        "bottom": bottom,
-        "initPage": initPage
-      }, $compid__82, $prevCompid__82);
-      Object.assign(this.__state, {
-        loopArray111: loopArray111,
-        $compid__81: $compid__81,
-        $compid__82: $compid__82,
         tab: _config2.default,
->>>>>>> a567e62ed054d80b4b2cce3eedd7bf980cf3b0c2
         current: current
       });
       return this.__state;

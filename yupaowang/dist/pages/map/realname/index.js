@@ -308,7 +308,6 @@ var RealnameMap = function (_Taro$Component) {
       var userClickAreaItem = function userClickAreaItem(item) {
         (0, _index.checkAdcodeValid)(item.adcode).then(function (res) {
           if (res.errcode == "ok") {
-            // console.log(item,'xxxx')
             // setLocation(item.location)
             // setAdcode(item.adcode)
             // if (setAreaInfo) {
@@ -345,7 +344,7 @@ var RealnameMap = function (_Taro$Component) {
           $original: (0, _taroTt.internal_get_original)(item)
         };
         var $loopState__temp2 = showHistory ? index + index : null;
-        var _$indexKey = "ffzzz" + index;
+        var _$indexKey = "fdzzz" + index;
         _this2.anonymousFunc4Map[_$indexKey] = function () {
           return userClickAreaItem(item.$original);
         };
@@ -360,7 +359,7 @@ var RealnameMap = function (_Taro$Component) {
           $original: (0, _taroTt.internal_get_original)(item)
         };
         var $loopState__temp4 = index + index;
-        var _$indexKey2 = "fgzzz" + index;
+        var _$indexKey2 = "fezzz" + index;
         _this2.anonymousFunc5Map[_$indexKey2] = function () {
           return userClickAreaItem(item.$original);
         };

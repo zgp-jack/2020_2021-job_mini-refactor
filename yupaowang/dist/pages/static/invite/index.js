@@ -203,7 +203,7 @@ var InvitePage = function (_Taro$Component) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
-        var _$indexKey = "hizzz" + i;
+        var _$indexKey = "hgzzz" + i;
         _this2.anonymousFunc1Map[_$indexKey] = function () {
           handleTable(item.$original.index, item.$original.name, i);
         };
@@ -220,7 +220,7 @@ var InvitePage = function (_Taro$Component) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
-        var _$indexKey2 = "hjzzz" + __index2;
+        var _$indexKey2 = "hhzzz" + __index2;
         _this2.anonymousFunc2Map[_$indexKey2] = function () {
           return userRouteJump("/subpackage/pages/notice/index?id=" + v.$original.id);
         };

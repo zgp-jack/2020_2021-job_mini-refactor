@@ -130,11 +130,11 @@ var CollectionRecruitList = function (_Taro$Component) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
-        var _$indexKey = "hazzz" + __index0;
+        var _$indexKey = "gizzz" + __index0;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           onHandleClick(item.$original.is_check);
         };
-        var _$indexKey2 = "hbzzz" + __index0;
+        var _$indexKey2 = "gjzzz" + __index0;
         _this2.anonymousFunc1Map[_$indexKey2] = function () {
           _this2.__props.onHandlerClick(item.$original.id);
         };

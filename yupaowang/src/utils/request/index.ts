@@ -107,7 +107,6 @@ export function doRequestAction(reqData: Request): Promise<any> {
       header: req.header,
       data: data,
       success: (res) => {
-        //console.log(res)
         if (res.statusCode === 200) {
           resolve(res.data)
         } else {
