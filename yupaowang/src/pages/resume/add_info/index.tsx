@@ -65,8 +65,9 @@ export default function AddResumeInfo(){
       for (let i = 0; i < nations.length; i++) {
         nations[i].id = nations[i].mz_id;
         nations[i].name = nations[i].mz_name;
-        if (infoData.nation_id){
-          setNationsName(nations[+infoData.nation_id-1].mz_name);
+        let nation_id: number = parseInt(infoData.nation_id)
+        if (nation_id){
+          setNationsName(nations[nation_id - 1 ].mz_name);
         }
       }
     }
@@ -97,6 +98,7 @@ export default function AddResumeInfo(){
     setClassifyTree(data)
     setClassifies(classifiesArr)
   }, [infoConfig])
+  
   useEffect(() => {
     if(first) return;
     //设置所属地区
@@ -370,6 +372,7 @@ export default function AddResumeInfo(){
               <View className='publish-list-textarea'>
                   <Text className='publish-textarea-title'>自我介绍</Text>
                   <Textarea
+                    showConfirmBar={true}
                     className='publish-textarea'
                     value={inputVal.introduce}
                     placeholder='请简要介绍您所从事的行业以及工作经验...'

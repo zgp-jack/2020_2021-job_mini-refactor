@@ -1,4 +1,4 @@
-import Taro, { Config, useState, usePullDownRefresh, useEffect, useRouter, RouterInfo } from '@tarojs/taro'
+import Taro, { Config, useState, usePullDownRefresh, useEffect, useRouter, RouterInfo, useDidShow } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import Tabbar from '../../components/tabbar'
 import { HOME, RECRUIT, RESUME, MEMBER, typeInTabbar } from '../../constants/tabbar'
@@ -22,10 +22,17 @@ export default function Index(){
   const tabKey: string = useSelector<any, string>(state=>state.tabbar.key)
   // 标记是否触发下拉刷新
   const [pulldown, setPulldown] = useState<number>(0)
+  // 会员中心是当前页面的一个组件 所以没有判断页面显示的功能 这里传值给会员中心促使改变刷新数据
+  const [showIndex, setShowIndex] = useState<number>(0)
 
   // 监听页面下拉刷新
   usePullDownRefresh(()=>{
     setPulldown(pulldown + 1)
+  })
+
+  // 当页面显示的 时候 触发
+  useDidShow(()=>{
+    setShowIndex(showIndex+1)
   })
 
   // 初始化底部显示页面
@@ -53,7 +60,7 @@ export default function Index(){
       {tabKey === HOME && <Home />}
       {tabKey === RECRUIT && <Recruit />}
       {tabKey === RESUME && <Resume />}
-      {tabKey === MEMBER && <Member /> }
+      {tabKey === MEMBER && <Member memberIndex={showIndex} /> }
       <Tabbar notredirect />
     </View>
   )

@@ -1,4 +1,4 @@
-import Taro, { useState, useEffect, useDidShow } from '@tarojs/taro'
+import Taro, { useState, useEffect } from '@tarojs/taro'
 import { View, Image, Text } from '@tarojs/components'
 import { useSelector, useDispatch } from '@tarojs/redux'
 import { getMemberInfo } from '../../utils/request'
@@ -10,7 +10,12 @@ import { UserMemberInfo } from '../../reducers/member'
 import { isIos } from '../../utils/v'
 import './index.scss'
 
-export default function Member(){
+// index 页面 传入 useDidShow时候触发 然后重新加载会员中心的数据，保证数据同步
+interface MemberProps {
+  memberIndex?: number
+}
+
+export default function Member({memberIndex = 0}: MemberProps){
 
   const dispatch = useDispatch()
 
@@ -54,13 +59,9 @@ export default function Member(){
     setIos(isIos())
   },[])
 
-  useDidShow(()=>{
-    initMemberInfo()
-  })
-
   useEffect(()=>{
     initMemberInfo()
-  },[login])
+  }, [login, memberIndex])
 
   return (
     <View className='member-container'>
