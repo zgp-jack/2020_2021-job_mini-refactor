@@ -1,6 +1,7 @@
-import Taro, { Config, useState, useEffect, useRouter } from '@tarojs/taro'
+import Taro, { Config, useState, useEffect, useRouter,useShareAppMessage } from '@tarojs/taro'
 import { View, RichText, Button } from '@tarojs/components';
 import { newsInfoAction } from "../../../utils/request/index"
+import { getUserShareMessage } from '../../../utils/helper'
 import { consultationDetailsData } from '../../../utils/request/index.d'
 import './index.scss'
 
@@ -19,6 +20,13 @@ export default function Notice() {
       setData({item:res.data})
     })
   },[])
+
+  // 设置分享信息
+  useShareAppMessage(()=>{
+    return {
+      ...getUserShareMessage(),
+    }
+  })
   return (
     <View className='consultationDetails-content'>
       {data && 

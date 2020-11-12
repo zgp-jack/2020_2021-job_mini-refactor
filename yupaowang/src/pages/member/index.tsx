@@ -5,10 +5,11 @@ import { getMemberInfo } from '../../utils/request'
 import { MemberInfo } from '../../utils/request/index.d'
 import { IMGCDNURL, AUTHPATH, CODEAUTHPATH, PUBLISHRESUME, PUBLISHEDRECRUIT } from '../../config'
 import { setMemberInfo } from '../../actions/member'
-import { ShowActionModal } from '../../utils/msg'
+import Msg, { ShowActionModal } from '../../utils/msg'
 import { UserMemberInfo } from '../../reducers/member'
 import { isIos } from '../../utils/v'
 import './index.scss'
+import { UserInfo } from '../../config/store'
 
 // index 页面 传入 useDidShow时候触发 然后重新加载会员中心的数据，保证数据同步
 interface MemberProps {
@@ -51,7 +52,9 @@ export default function Member({memberIndex = 0}: MemberProps){
         dispatch(setMemberInfo(value))
         setModel(data)
       }
-      else ShowActionModal(data.errmsg)
+      else ShowActionModal({
+        msg: data.errmsg
+      })
     })
   }
 
@@ -62,6 +65,12 @@ export default function Member({memberIndex = 0}: MemberProps){
   useEffect(()=>{
     initMemberInfo()
   }, [login, memberIndex])
+
+  // 清理用户登录信息
+  const userClearSession = () => {
+    Taro.removeStorageSync(UserInfo)
+    Msg('退出抖音，重新扫码')
+  }
 
   return (
     <View className='member-container'>
@@ -184,6 +193,11 @@ export default function Member({memberIndex = 0}: MemberProps){
             <Image className='member-list-icon' src={ IMGCDNURL + 'lpy/ucenter/newcenter-help.png'} />
             <Text className='member-list-title'>帮助中心</Text>
             <Text className='member-list-tips'>使用教程</Text>
+          </View>
+          <View className='member-list-item' onClick={() => userClearSession()} >
+            <Image className='member-list-icon' src={IMGCDNURL + 'lpy/ucenter/newcenter-help.png'} />
+            <Text className='member-list-title'>清理缓存</Text>
+            <Text className='member-list-tips'>退出登录</Text>
           </View>
         </View>
       </View>

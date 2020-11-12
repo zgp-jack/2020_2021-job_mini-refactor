@@ -75,7 +75,7 @@ export default function CheckAuth(){
         setModel(data.member)
         setShow(true)
       }else{
-        ShowActionModal(data.errmsg)
+        ShowActionModal({ msg: data.errmsg})
         setShow(false)
       }
     }).catch(()=>{

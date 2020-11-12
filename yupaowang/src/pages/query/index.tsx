@@ -111,7 +111,7 @@ export default function RealnameQuery() {
           }
         })
       } else {
-        ShowActionModal(res.errmsg)
+        ShowActionModal({ msg: res.errmsg})
       }
     }).catch(()=>Msg('网络错误，查询失败！'))
   }

@@ -31,7 +31,11 @@ interface AllLists {
   fleamarket: FleamarketList[][]
 }
 
-export default function Home(){
+interface HomeProps {
+  homeIndex?: number
+}
+
+export default function Home({ homeIndex = 0}: HomeProps){
 
   const dispatch = useDispatch()
 
@@ -47,7 +51,7 @@ export default function Home(){
   let userChooseCity;
   let location;
 
-  useDidShow(() => {
+  useEffect(() => {
     userChooseCity = Taro.getStorageSync(UserListChooseCity)
     location = Taro.getStorageSync(UserLocation)
     setArea(userChooseCity ? userChooseCity.name : '全国')
@@ -55,7 +59,7 @@ export default function Home(){
       area: userChooseCity ? userChooseCity.id : 1,
       location: location || ''
     })
-  })
+  }, [homeIndex])
 
   // 当前展示的城市
   const [area, setArea] = useState<string>(userChooseCity ? userChooseCity.name : '全国')
@@ -64,8 +68,8 @@ export default function Home(){
   const [shwoCity, setShowCity] = useState<boolean>(false)
   // * 获取列表数据的data
   const [filterData, setFilterData] = useState<FilterData>({
-    area: userChooseCity ? userChooseCity.id : 1,
-    location: location || ''
+    area: '',
+    location: ''
   })
   // 选择城市 设置信息
   const setAreaInfo = (val: string, id: string) => {
@@ -99,6 +103,7 @@ export default function Home(){
 
   // 请求列表数据
   useEffect(()=>{
+    if(!filterData.area) return
     getAllListItem(filterData).then(res=>{
       setLists({ 
         ...lists, 

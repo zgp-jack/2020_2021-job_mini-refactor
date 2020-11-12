@@ -31,7 +31,7 @@ export default function Recruit(){
   const [condition, setCondition] = useState<conditionType[]>([
     { id: AreaPickerKey, text: userListChooseCity ? userListChooseCity.name : '全国' },
     { id: ClassifyPickerKey, text: '全部分类' },
-    { id: FilterPickerKey, text: '全部' }
+    { id: FilterPickerKey, text: '最新' }
   ])
   // * scrollTop 位置 回到顶部
   const [scrollTop,setScrollTop] = useState<number>(0)
