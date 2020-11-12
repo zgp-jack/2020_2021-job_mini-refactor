@@ -13159,7 +13159,7 @@ function useResume() {
         if (res.data.project.length > 0) {
           for (var _i = 0; _i < res.data.project.length; _i++) {
             _isModifyProject = res.data.project[_i].check;
-            if (res.data.project[_i].check = '0') {
+            if (res.data.project[_i].check == '0') {
               break;
             }
           }
@@ -13170,7 +13170,7 @@ function useResume() {
         if (res.data.certificates.length) {
           for (var _i2 = 0; _i2 < res.data.certificates.length; _i2++) {
             _isModifySkill = res.data.certificates[_i2].check;
-            if (res.data.certificates[_i2].check = '0') {
+            if (res.data.certificates[_i2].check == '0') {
               break;
             }
           }
@@ -13192,6 +13192,7 @@ function useResume() {
             projectItem[0].completion_timeTitle = 'zhijin';
           }
         }
+        console.error(projectItem, 'projectItemprojectItem');
         setProjectData([].concat(_toConsumableArray(projectItem)));
         // 是否有人员信息
         setIs_introduces(res.data.is_introduces);
