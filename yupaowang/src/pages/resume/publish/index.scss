@@ -505,6 +505,10 @@ $commonMargin: 44px;
       z-index: 100;
       box-shadow: 0 0 5px $shadowcolor;
       background-color: #FFFFFF;
+      .content-btn-box{
+        width: 100%;
+        display: flex;
+      }
       .preview{
         display: flex;
         width: 100%;

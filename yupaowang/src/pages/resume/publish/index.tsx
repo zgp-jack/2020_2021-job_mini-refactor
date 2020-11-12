@@ -399,7 +399,7 @@ export default function ResumePublish(){
         {infoData && infoData.uuid && 
         <View className='content-btn'>
           {ISCANSHARE ? 
-            <View>
+            <View className='content-btn-box'>
               <View className='preview-btn'>
                 <Image className='preview-img' src={`${IMGCDNURL}newresume-lookuinfo.png`} />
                 <View className='preview-share-btn' onClick={() => userRouteJump('/pages/resume/preview/index')}>预览</View>
