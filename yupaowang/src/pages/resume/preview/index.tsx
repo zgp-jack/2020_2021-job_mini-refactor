@@ -1,7 +1,7 @@
 import Taro, { Config, useState, useEffect} from '@tarojs/taro'
 import { View, Text, Image} from '@tarojs/components'
 import { resumeListAction } from '../../../utils/request/index'
-import { IMGCDNURL } from '../../../config'
+import { IMGCDNURL, ISCANSHARE} from '../../../config'
 import { DataType } from './index.d'
 import './index.scss'
 
@@ -23,7 +23,7 @@ export default function Preview() {
   // 技能
   const [skillbooksone, setSkillbooksone] = useState<any>([])
   // 总数据
-  const [data,setData]= useState<DataType>({
+  const [data,setData]= useState<any>({
     info:{
       username:'未填写',
       authentication:'',
@@ -54,10 +54,10 @@ export default function Preview() {
         const dateo = date.getTime()
         const dateone = new Date(dateo);
         if (res.data.info.birthday) {
-          if (dateone.getFullYear() - (res.data.info.birthday.split("-")[0] - 0) == 0) {
+          if (dateone.getFullYear() - (+res.data.info.birthday.split("-")[0] - 0) == 0) {
             setAge('')
           } else {
-            setAge(dateone.getFullYear() - (res.data.info.birthday.split("-")[0] - 0) + "岁")
+            setAge(dateone.getFullYear() - (+res.data.info.birthday.split("-")[0] - 0) + "岁")
           }
         }
         // Taro.setStorageSync("introinfo", res.data.info)
@@ -75,11 +75,11 @@ export default function Preview() {
           if (res.data.project) {
             if (new Date(res.data.project[0].completion_time).getTime() / 86400000 < new Date().getTime() / 86400000) {
               const item = res.data.project[0];
-              item.completiontime = 'zhijing';
+              item.completion_timeTitle = 'zhijing';
               setProject([item])
             } else {
               const item = res.data.project[0];
-              item.completiontime = 'zhijin';
+              item.completion_timeTitle = 'zhijin';
               setProject([item])
             }
           }
@@ -271,7 +271,7 @@ export default function Preview() {
                   </View>
                   <View className="cardsixthreeborder">
                     <View className="cardsixthree">
-                      <Text className='cardsixthree-text'>{item.start_time}-{item.completiontime == "zhijin" ? "至今" : item.completion_time}</Text>
+                      <Text className='cardsixthree-text'>{item.start_time}-{item.completion_timeTitle == "zhijin" ? "至今" : item.completion_time}</Text>
                       {item.city_name &&
                         <Text className='cardsixthree-text'>{item.province_name}-{item.city_name}</Text>
                       }
@@ -384,9 +384,11 @@ export default function Preview() {
         </View>
       }
       {/* 分享 */}
+      {ISCANSHARE && 
       <View className='btn-box'>
         <View className='btn'>分享</View>
       </View>
+      }
     </View>
   )
 }

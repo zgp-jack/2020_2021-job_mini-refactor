@@ -12344,7 +12344,7 @@ var PROREQUESTURL = exports.PROREQUESTURL = 'https://newyupaomini.54xiaoshuo.com
 // * 当前测试
 var REQUESTURL = exports.REQUESTURL = DEVREQUESTURL;
 // * 默认上传图片
-var UPLOADIMGURL = exports.UPLOADIMGURL = "https://newyupaomini.54xiaoshuo.com/index/upload/";
+var UPLOADIMGURL = exports.UPLOADIMGURL = PROREQUESTURL + 'index/upload/';
 // * 阿里云CDN域名
 var ALIYUNCDN = exports.ALIYUNCDN = 'http://cdn.yupao.com';
 // * 阿里云小程序普通路径
@@ -12390,6 +12390,8 @@ var REALNAMEPATH = exports.REALNAMEPATH = '/pages/realname/index';
 var AUTHPATH = exports.AUTHPATH = '/pages/userauth/index';
 // * 微信外验证码登录
 var CODEAUTHPATH = exports.CODEAUTHPATH = '/pages/login/index';
+// * 已发布招工列表
+var PUBLISHEDRECRUIT = exports.PUBLISHEDRECRUIT = '/pages/published/recruit/index';
 // * 下载App
 var DownloadApp = exports.DownloadApp = 'https://android.myapp.com/myapp/detail.htm?apkName=io.dcloud.H576E6CC7&amp;ADTAG=mobile';
 // ! 所有小程序列表
@@ -12765,6 +12767,26 @@ var SETPROJECT = exports.SETPROJECT = 'setproject';
 
 /***/ }),
 
+/***/ "./src/constants/resume_list.ts":
+/*!**************************************!*\
+  !*** ./src/constants/resume_list.ts ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+// 项目经验
+var SETSUBPACKPROJECT = exports.SETSUBPACKPROJECT = 'setSubpackageProject';
+// 技能证书
+var SETSUBPACKCERTIFICATE = exports.SETSUBPACKCERTIFICATE = 'setSubpackCertificate';
+
+/***/ }),
+
 /***/ "./src/constants/tabbar.ts":
 /*!*********************************!*\
   !*** ./src/constants/tabbar.ts ***!
@@ -12942,6 +12964,8 @@ var _resume_data = __webpack_require__(/*! ../../actions/resume_data */ "./src/a
 
 var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/redux/index.js");
 
+var _recruit = __webpack_require__(/*! ../../actions/recruit */ "./src/actions/recruit.ts");
+
 var _index2 = __webpack_require__(/*! ../../utils/msg/index */ "./src/utils/msg/index.ts");
 
 var _index3 = _interopRequireDefault(_index2);
@@ -12952,6 +12976,10 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 function useResume() {
   var dispatch = (0, _redux.useDispatch)();
+  // 检测用户是否登录
+  var login = (0, _redux.useSelector)(function (store) {
+    return store.User['login'];
+  });
   // 获取找活名片信息
   var resumeData = (0, _redux.useSelector)(function (state) {
     return state.resumeData;
@@ -13039,12 +13067,40 @@ function useResume() {
       _useState24 = _slicedToArray(_useState23, 2),
       check = _useState24[0],
       setCheck = _useState24[1];
+  // 是否修改项目经验
+
+
+  var _useState25 = (0, _taroTt.useState)(''),
+      _useState26 = _slicedToArray(_useState25, 2),
+      isModifyProject = _useState26[0],
+      setIsModifyProject = _useState26[1];
+  //是否修改技能证书
+
+
+  var _useState27 = (0, _taroTt.useState)(''),
+      _useState28 = _slicedToArray(_useState27, 2),
+      isModifySkill = _useState28[0],
+      setIsModifySkill = _useState28[1];
+  // 修改项目数量
+
+
+  var _useState29 = (0, _taroTt.useState)(0),
+      _useState30 = _slicedToArray(_useState29, 2),
+      projectNum = _useState30[0],
+      setProjectNum = _useState30[1];
+  // 修改职业技能数量
+
+
+  var _useState31 = (0, _taroTt.useState)(0),
+      _useState32 = _slicedToArray(_useState31, 2),
+      certificatesNum = _useState32[0],
+      setCertificatesNum = _useState32[1];
   // 项目列表
 
 
   (0, _taroTt.useEffect)(function () {
     initResumeData();
-  }, []);
+  }, [login]);
   // 当redux数据发生改变后， 将自动更新到页面上
   (0, _taroTt.useEffect)(function () {
     if (!resumeData.isSet) return;
@@ -13055,9 +13111,10 @@ function useResume() {
   }, [resumeData]);
   // 请求找活详情数据
   var initResumeData = function initResumeData() {
+    if (!login) return;
     (0, _index.resumeListAction)().then(function (res) {
       if (res.errcode === 200) {
-        debugger;
+        // debugger
         // 生日需要单独设置
         var time = void 0;
         if (res.data.info.birthday) {
@@ -13071,6 +13128,15 @@ function useResume() {
         var info = _extends({}, _data.INFODATA_DATA);
         info = _extends({}, info, res.data.info);
         setInfoData(_extends({}, info));
+        // 清除地图redux
+        dispatch((0, _recruit.setAreaInfo)({
+          title: '',
+          location: '',
+          adcode: '',
+          info: '',
+          provice: '',
+          city: ''
+        }));
         // 设置页面显示的项目
         // 定义有图片项目数组
         var hasImageProject = [];
@@ -13090,21 +13156,45 @@ function useResume() {
             NoImageProject.push(data[i]);
           }
         }
+        // 设置是否修改项目经验
+        var _isModifyProject = '';
+        if (res.data.project.length > 0) {
+          for (var _i = 0; _i < res.data.project.length; _i++) {
+            _isModifyProject = res.data.project[_i].check;
+            if (res.data.project[_i].check = '0') {
+              break;
+            }
+          }
+        }
+        setIsModifyProject(_isModifyProject);
+        // 是否修改技能证书
+        var _isModifySkill = '';
+        if (res.data.certificates.length) {
+          for (var _i2 = 0; _i2 < res.data.certificates.length; _i2++) {
+            _isModifySkill = res.data.certificates[_i2].check;
+            if (res.data.certificates[_i2].check = '0') {
+              break;
+            }
+          }
+        }
+        setIsModifySkill(_isModifySkill);
         // 将有图片的数组与没有图片的数组进行按照时间降序排列
         var sortImageProject = hasImageProject.sort(projectSort("endTime"));
         var sortNoImageProject = NoImageProject.sort(projectSort("endTime"));
         // 组合项目经验对象
         var projectItem = [].concat(_toConsumableArray(sortImageProject), _toConsumableArray(sortNoImageProject));
         // 获取排序后的第一个元素
+        if (projectItem.length) {
+          if (new Date(projectItem[0].completion_time).getTime() / 86400000 < parseInt((new Date().getTime() / 86400000).toString())) {
+            // 项目
+            if (projectItem.length) {
+              projectItem[0].completion_timeTitle = 'zhijing';
+            }
+          } else {
+            projectItem[0].completion_timeTitle = 'zhijin';
+          }
+        }
         setProjectData([].concat(_toConsumableArray(projectItem)));
-        // if (new Date(projectItem[0].completion_time).getTime() / 86400000 < parseInt(((new Date().getTime()) / 86400000).toString())) {
-        //   // 项目
-        //   if (projectItem.length){
-        //     projectItem[0].completion_time = 'zhijing';
-        //   }
-        // }else{
-        //   projectItem[0].completion_time = 'zhijin';
-        // }
         // 是否有人员信息
         setIs_introduces(res.data.is_introduces);
         //最大项目长度
@@ -13112,7 +13202,7 @@ function useResume() {
         // 最大技能长度
         setCertificate_count(res.data.certificate_count);
         // 头像旁边图片显示
-        setShow_tips(res.data.content.show_tips);
+        setShow_tips(res.data.content && res.data.content.show_tips || 0);
         // 工作状态
         setSelectData(res.data.status);
         // 工作状态用来选择是正在找工作还是已找到工作
@@ -13120,6 +13210,10 @@ function useResume() {
         //人员信息
         var introduces = _extends({}, _data.INTRODUCERS_DATA);
         introduces = _extends({}, introduces, res.data.introduces);
+        // 修改项目数量
+        setProjectNum(res.data.fail_project);
+        // 修改技能证书数量
+        setCertificatesNum(res.data.fail_certificate);
         setIntroducesData(_extends({}, introduces));
         setCertificates([].concat(_toConsumableArray(res.data.certificates)));
         setResume_top(_extends({}, res.data.resume_top));
@@ -13154,8 +13248,8 @@ function useResume() {
       for (var i = 0; i < selectData.length; i++) {
         selectdataList.push(selectData[i].name);
       }
-      for (var _i = 0; _i < selectData.length; _i++) {
-        selectdataId.push(selectData[_i].id);
+      for (var _i3 = 0; _i3 < selectData.length; _i3++) {
+        selectdataId.push(selectData[_i3].id);
       }
       _taroTt2.default.showActionSheet({
         itemList: selectdataList,
@@ -13209,7 +13303,11 @@ function useResume() {
     show_tips: show_tips,
     selectData: selectData,
     selectDataIndex: selectDataIndex,
-    handleSelectData: handleSelectData
+    handleSelectData: handleSelectData,
+    isModifySkill: isModifySkill,
+    isModifyProject: isModifyProject,
+    projectNum: projectNum,
+    certificatesNum: certificatesNum
   };
 }
 
@@ -15765,7 +15863,7 @@ var Topping = function (_Taro$Component) {
       navigationBarTitleText: '招工置顶'
     };
 
-    _this.$usedState = ["params", "data", "loopArray73", "loopArray74", "loopArray75", "loopArray76", "loopArray77", "province", "IMGCDNURL", "rec", "basics", "type", "list", "displayTime", "num", "endTime", "editData", "newTime", "day", "SERVERPHONE"];
+    _this.$usedState = ["params", "data", "loopArray74", "loopArray75", "loopArray76", "loopArray77", "loopArray78", "province", "IMGCDNURL", "rec", "basics", "type", "list", "displayTime", "num", "endTime", "editData", "newTime", "day", "SERVERPHONE"];
     _this.anonymousFunc0Map = {};
     _this.anonymousFunc1Map = {};
     _this.anonymousFunc2Map = {};
@@ -15993,7 +16091,6 @@ var Topping = function (_Taro$Component) {
                   setEnd(parseInt(endTimes));
                   setMaxNum(maxPrice);
                 }
-                // console.log(resumeTop,'resumeTop');
               }
               setList(array);
               setCity({ max_city: res.data.max_city, max_province: res.data.max_province });
@@ -16055,7 +16152,6 @@ var Topping = function (_Taro$Component) {
           setdisplayTime(true);
           // 时间
           var all = 86400000 * (parseInt(e.detail.value) + 1) + ((end - 0) * 1000 - 0);
-          // console.log(all)
           var _newTime = getMyDate(all);
           setNewTime(_newTime);
           // 获取旧价格
@@ -16080,14 +16176,12 @@ var Topping = function (_Taro$Component) {
               if (rec) {
                 money = Math.round((newPrice - oldPrice) * remDay + (params.city.length * 20 + params.province.length * 20) * (parseInt(e.detail.value) + 1));
               } else {
-                console.log((newPrice - oldPrice) * remDay);
                 money = Math.round((newPrice - oldPrice) * remDay + newPrice * (parseInt(e.detail.value) + 1));
               }
             } else {
               money = oldPrice * (parseInt(e.detail.value) + 1);
             }
           }
-          console.log(money, 'xdsadasda');
           setNum(money);
         } else {
           if (params) {
@@ -16150,12 +16244,9 @@ var Topping = function (_Taro$Component) {
           time: userInfo.tokenTime,
           update_integral: num
         };
-        // console.log(321312321);
-        // console.log(editDetail,'editDetail');
         // return
         if (type) {
           if (rec) {
-            console.log(32312);
             (0, _index.resumesUpdateTopResumeAction)(editDetail).then(function (res) {
               if (res.errcode === 'ok') {
                 _taroTt2.default.showModal({
@@ -16362,7 +16453,6 @@ var Topping = function (_Taro$Component) {
             whole = _ref.whole;
 
         setParams({ city: city, province: province, whole: whole });
-        console.log(city, province, whole, 'transferFun');
         calcPrice(city, province, whole);
       };
       var calcPrice = function calcPrice(city, province, whole) {
@@ -16373,8 +16463,6 @@ var Topping = function (_Taro$Component) {
         //     setNum(numData);
         //   }
         // }else{
-        // console.log(city.length,'cityleng')
-        // console.log(province.length,'provincelenken')
         if (city || province || whole) {
           if (type) {
             // 获取旧价格
@@ -16388,11 +16476,6 @@ var Topping = function (_Taro$Component) {
             } else {
               newPrice = whole.length ? 500 : (city.length * 10 + province.length * 20) * 1;
             }
-            console.log(newPrice, '最新价格');
-            // console.log(end,'end');
-            // console.log(Math.round(new Date().getTime() / 1000));
-            // console.log((end - (Math.round(new Date().getTime() / 1000))) / 86400)
-            console.log(paramsDay, 'paramsDay');
             // 修改区域
             var changeCity = true; //修改区域
             // 只改变时间
@@ -16408,24 +16491,17 @@ var Topping = function (_Taro$Component) {
                   // 新的大于旧的金额
                   // 新的减去旧的再*天数
                   // money = Math.round((newPrice - oldPrice));
-                  // console.log(money,'moneymoneymoney')
-                  // console.log(remDay,'xxxx')
                   // money = newPrice - oldPrice - moneys;
                   money = Math.round((newPrice - oldPrice) * remDay);
                 } else {
                   money = Math.round((newPrice - oldPrice) * remDay);
                 }
-                console.log(remDay, 'newPrice > oldPrice');
               }
             } else {
               // 时间变了，城市变了
               if (newPrice - oldPrice > 0) {
-                // console.log(newPrice - oldPrice,'newPrice - oldPrice');
-                // console.log(remDay,'remDay');
-                // console.log(newPrice * paramsDay,'newPrice * paramsDay')
                 if (rec) {
                   money = Math.round(newPrice - oldPrice + (city.length * 20 + province.length * 20) * paramsDay);
-                  console.log(money, '价格是');
                   // money = Math.round(newPrice - oldPrice + oldPrice * paramsDay + newPrice * paramsDay)
                 } else {
                   money = Math.round((newPrice - oldPrice) * remDay + newPrice * paramsDay);
@@ -16440,10 +16516,6 @@ var Topping = function (_Taro$Component) {
             } else {
               _num = _num;
             }
-            console.log(oldPrice, 'oldPrice');
-            console.log(newPrice, 'newPrice');
-            console.log(remDay, 'remDay');
-            console.log(money, 'money');
             setNum(money);
           } else {
             var numData = 0;
@@ -16468,15 +16540,11 @@ var Topping = function (_Taro$Component) {
         }
       };
       var modifyFun = function modifyFun(province) {
-        console.log(province, 'xxxx');
         setProvince(province);
         // 设置积分
         recIntegral(province);
       };
       var recIntegral = function recIntegral(province) {
-        console.log(basics.province_integral);
-        console.log(recDay);
-        console.log(province);
         var num = 0;
         if (province.length) {
           num = basics.province_integral * province.length * parseInt(recDay);
@@ -16487,7 +16555,6 @@ var Topping = function (_Taro$Component) {
       };
       // 删除
       var handleDel = function handleDel(v) {
-        console.log(v);
         if (rec) {
           if (v.pid === '1') {
             params.city.map(function (val, i) {
@@ -16495,7 +16562,6 @@ var Topping = function (_Taro$Component) {
                 params.city.splice(i, 1);
               }
             });
-            console.log(params, 'xxxx');
             setParams({ city: params.city, province: params.province, whole: params.whole });
           }
         }
@@ -16505,7 +16571,6 @@ var Topping = function (_Taro$Component) {
               params.province.splice(i, 1);
             }
           });
-          console.log(params, 'xxxx');
           setParams({ city: params.city, province: params.province, whole: params.whole });
         } else if (v.pid === '0') {
           params.whole.map(function (val, i) {
@@ -16533,7 +16598,6 @@ var Topping = function (_Taro$Component) {
         } else {
           newPrice = params.whole.length ? 500 : (params.city.length * 10 + params.province.length * 20) * 1;
         }
-        console.log(newPrice, '删除价格');
         // const newPrice = (params.city.length * 10 + params.province.length * 20) * 1;
         // 时间差
         var remDay = (end - new Date().getTime() / 1000) / 86400;
@@ -16640,11 +16704,8 @@ var Topping = function (_Taro$Component) {
           }
           return val;
         });
-        console.log(recDay, '222222');
         var num = 0;
         num = list.length * basics.province_integral * parseInt(recDay);
-        console.log(list);
-        console.log(num, 'num');
         setProvince(list);
         setNum(num);
       };
@@ -16682,7 +16743,6 @@ var Topping = function (_Taro$Component) {
         }
         // const provinces = (province.map(v=>v.id)).join(',');
         // const citys = (city.map(v => v.id)).join(',');
-        // console.log(provinces,'xxx')
         // let params={
         //   days: parseInt(recDay),
         //   citys: 0,
@@ -16693,7 +16753,6 @@ var Topping = function (_Taro$Component) {
           citys: 0,
           provinces: provinces
         };
-        // console.log(details,'111s')
         // return;
         if (!type) {
           (0, _index.resumesDoTopAction)(details).then(function (res) {
@@ -16748,7 +16807,6 @@ var Topping = function (_Taro$Component) {
           });
         }
       };
-      console.log(paramsDay, 'aramsDayaaas');
       contextItem.Provider(value);
       this.anonymousFunc4 = handleAddJump;
       this.anonymousFunc5 = handleJump;
@@ -16765,11 +16823,11 @@ var Topping = function (_Taro$Component) {
       this.anonymousFunc12 = function () {
         _taroTt2.default.makePhoneCall({ phoneNumber: _index2.SERVERPHONE });
       };
-      var loopArray73 = province ? province.map(function (v, __index0) {
+      var loopArray74 = province ? province.map(function (v, __index0) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
-        var _$indexKey = "ibzzz" + __index0;
+        var _$indexKey = "iczzz" + __index0;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return handleDel(v.$original);
         };
@@ -16778,11 +16836,11 @@ var Topping = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray74 = params ? params.city.map(function (v, __index1) {
+      var loopArray75 = params ? params.city.map(function (v, __index1) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
-        var _$indexKey2 = "iczzz" + __index1;
+        var _$indexKey2 = "idzzz" + __index1;
         _this2.anonymousFunc1Map[_$indexKey2] = function () {
           return handleDel(v.$original);
         };
@@ -16791,11 +16849,11 @@ var Topping = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray75 = params ? params.province.map(function (v, __index2) {
+      var loopArray76 = params ? params.province.map(function (v, __index2) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
-        var _$indexKey3 = "idzzz" + __index2;
+        var _$indexKey3 = "iezzz" + __index2;
         _this2.anonymousFunc2Map[_$indexKey3] = function () {
           return handleDel(v.$original);
         };
@@ -16804,11 +16862,11 @@ var Topping = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray76 = params ? params.whole.map(function (v, __index3) {
+      var loopArray77 = params ? params.whole.map(function (v, __index3) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
-        var _$indexKey4 = "iezzz" + __index3;
+        var _$indexKey4 = "ifzzz" + __index3;
         _this2.anonymousFunc3Map[_$indexKey4] = function () {
           return handleDel(v.$original);
         };
@@ -16817,7 +16875,7 @@ var Topping = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray77 = data.top_rules.map(function (v, i) {
+      var loopArray78 = data.top_rules.map(function (v, i) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
@@ -16830,11 +16888,11 @@ var Topping = function (_Taro$Component) {
       Object.assign(this.__state, {
         params: params,
         data: data,
-        loopArray73: loopArray73,
         loopArray74: loopArray74,
         loopArray75: loopArray75,
         loopArray76: loopArray76,
         loopArray77: loopArray77,
+        loopArray78: loopArray78,
         province: province,
         IMGCDNURL: _index2.IMGCDNURL,
         rec: rec,
@@ -17231,6 +17289,7 @@ exports.getLocation = getLocation;
 exports.setClipboardData = setClipboardData;
 exports.copyWechatNumber = copyWechatNumber;
 exports.userCallPhone = userCallPhone;
+exports.getUserShareMessage = getUserShareMessage;
 
 var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
 
@@ -17341,7 +17400,6 @@ function getLocation() {
     myAmapFun.getRegeo({
       type: 'gcj02',
       success: function success(data) {
-        console.log(data);
         var mydata = data[0].regeocodeData.addressComponent;
         var params = {
           adcode: mydata.adcode
@@ -17404,6 +17462,13 @@ function userCallPhone(val) {
   _taroTt2.default.makePhoneCall({
     phoneNumber: val
   });
+}
+// 用户统一分享内容
+function getUserShareMessage() {
+  return {
+    title: '全国建筑工地招工平台',
+    imageUrl: _index.IMGCDNURL + "minishare.png"
+  };
 }
 
 /***/ }),
@@ -17677,18 +17742,21 @@ function getRequestHeaderInfo() {
   return requestHeader;
 }
 // 配置默认请求参数
-var defaultRequestData = {
-  url: '',
-  method: 'GET',
-  header: getRequestHeaderInfo(),
-  data: {},
-  loading: true,
-  title: '数据加载中...',
-  failToast: true
+var getRequestHeaderInfoAction = function getRequestHeaderInfoAction() {
+  var headers = getRequestHeaderInfo();
+  return {
+    url: '',
+    method: 'GET',
+    header: _extends({}, headers),
+    data: {},
+    loading: true,
+    title: '数据加载中...',
+    failToast: true
+  };
 };
 // 全局通用请求方法
 function doRequestAction(reqData) {
-  var req = _extends({}, defaultRequestData, reqData);
+  var req = _extends({}, getRequestHeaderInfoAction(), reqData);
   if (req.loading) {
     _taroTt2.default.showLoading({
       title: req.title
@@ -17709,7 +17777,6 @@ function doRequestAction(reqData) {
       header: req.header,
       data: data,
       success: function success(res) {
-        //console.log(res)
         if (res.statusCode === 200) {
           resolve(res.data);
         } else {
@@ -19059,6 +19126,7 @@ exports.isType = isType;
 exports.isIos = isIos;
 exports.isRequireLen = isRequireLen;
 exports.isChinese = isChinese;
+exports.allChinese = allChinese;
 
 var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
 
@@ -19076,7 +19144,7 @@ function isPhone(tel) {
  * @Author: zyb
  * @Date: 2020-11-03 09:23:50
  * @LastEditors: zyb
- * @LastEditTime: 2020-11-05 11:51:03
+ * @LastEditTime: 2020-11-10 11:53:46
  * @Description:
  */
 function isNumber(num) {
@@ -19151,6 +19219,14 @@ function isRequireLen(str) {
 // 含有中文
 function isChinese(str) {
   var reg = new RegExp('[\\u4E00-\\u9FFF]+', "g");
+  if (reg.test(str)) {
+    return true;
+  }
+  return false;
+}
+// 2-5汉字
+function allChinese(str) {
+  var reg = new RegExp('^[\u4E00-\u9FA5]{2,5}$');
   if (reg.test(str)) {
     return true;
   }

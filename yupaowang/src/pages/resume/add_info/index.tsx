@@ -11,7 +11,7 @@ import Profession from '../../../components/profession'
 import WordsTotal from '../../../components/wordstotal'
 import useCode from '../../../hooks/code'
 import Msg,{ ShowActionModal } from '../../../utils/msg';
-import { isChinese, isPhone } from '../../../utils/v';
+import { isChinese, isPhone, allChinese } from '../../../utils/v';
 import { getLocation } from '../../../utils/helper';
 import { location } from './data';
 import { LocationDataType } from './index.d';
@@ -65,8 +65,9 @@ export default function AddResumeInfo(){
       for (let i = 0; i < nations.length; i++) {
         nations[i].id = nations[i].mz_id;
         nations[i].name = nations[i].mz_name;
-        if (infoData.nation_id){
-          setNationsName(nations[+infoData.nation_id-1].mz_name);
+        let nation_id: number = parseInt(infoData.nation_id)
+        if (nation_id){
+          setNationsName(nations[nation_id - 1 ].mz_name);
         }
       }
     }
@@ -97,12 +98,13 @@ export default function AddResumeInfo(){
     setClassifyTree(data)
     setClassifies(classifiesArr)
   }, [infoConfig])
+  
   useEffect(() => {
     if(first) return;
     //设置所属地区
     const area = { ...areaInfo };
     setLocationData({
-      ...location, adcode: area.adcode, address: area.title, longitude: area.location.split(',')[0], latitude: area.location.split(',')[1], city: area.city || '', province: area.provice || ''
+      ...location, adcode: area.adcode, address: area.title, longitude: area.location && area.location.split(',')[0], latitude: area.location&& area.location.split(',')[1], city: area.city || '', province: area.provice || ''
     })
   }, [areaInfo])
   // 用户输入表单
@@ -132,9 +134,8 @@ export default function AddResumeInfo(){
   }
   // 提交
   const handelSubmit =()=>{
-    console.log(inputVal,'ndksandjks')
-    if (!inputVal.username || inputVal.username.length < 2 || inputVal.username.length > 5 || !isChinese(inputVal.username)){
-      ShowActionModal({msg: '请填写真实姓名，2-5字，必须含有汉字'})
+    if (!inputVal.username || inputVal.username.length < 2 || inputVal.username.length > 5 || !allChinese(inputVal.username)){
+      ShowActionModal({ msg: '请输入2~5字纯中文姓名'})
       return
     }
     if (!isPhone(inputVal.tel)){
@@ -170,6 +171,8 @@ export default function AddResumeInfo(){
     addResumeAction(params).then(res=>{
       if (res.errcode == 200){
         Taro.navigateBack({delta:1})
+      }else{
+
       }
     })
     .catch(() => {
@@ -262,7 +265,7 @@ export default function AddResumeInfo(){
                   <Input
                     className='publish-list-input'
                     type='text'
-                    placeholder='请输入您的名字'
+                    placeholder='请输入2~5个纯中文姓名'
                     value={inputVal.username}
                     onInput={(e) => userEnterFrom(e, 'username')}
                   />
@@ -310,9 +313,9 @@ export default function AddResumeInfo(){
                 </Picker>
                 </View>
               <View className='publish-list-item' onClick={() => setShowProssion(true)}>
-                  <Text className='pulish-list-title'>所属工种</Text>
+                <Text className='pulish-list-title'>所属工种</Text>
                 {classifies && classifies.length ?
-                    <View className='publish-list-input'>
+                  <View className='publish-list-input publish-list-text'>
                       {classifyTree.map(item => (
                         <Block key={item.id}>
                           {item.children.map(data => (
@@ -328,9 +331,13 @@ export default function AddResumeInfo(){
                 }
                 </View>
               <View className='publish-list-item adressInput' onClick={()=>userChooseArea()}>
-                <Text className='pulish-list-title'>所在地区</Text>
+                <Text className='pulish-list-title-address'>所在地区</Text>
                 <View className='flex'>
-                  <Text className={locationData && locationData.address ? 'flexContent' :'flexContent-no'}>{locationData && locationData.address ? locationData.address:'请选你所在地址'}</Text>
+                  {locationData && locationData.adcode ? 
+                    <Text className='flexContent'>{locationData && locationData.address}</Text>:
+                    <Input placeholder='请选你所在地址' className='flexContent-input' disabled/> 
+                    // <Text className={locationData && locationData.address ? 'flexContent' :'flexContent-no'}>{locationData && locationData.address ? locationData.address:'请选你所在地址'}</Text>
+                  }
                   <Text className='flexTitle' onClick={(e)=>{e.stopPropagation(),handleGps()}}>获取定位</Text>
                 </View>
               </View>
@@ -365,13 +372,14 @@ export default function AddResumeInfo(){
               <View className='publish-list-textarea'>
                   <Text className='publish-textarea-title'>自我介绍</Text>
                   <Textarea
+                    showConfirmBar={true}
                     className='publish-textarea'
                     value={inputVal.introduce}
                     placeholder='请简要介绍您所从事的行业以及工作经验...'
                     onInput={(e) => userEnterFrom(e, 'introduce')}
                     maxlength={500}
                   ></Textarea>
-                  <WordsTotal num={inputVal.introduce.length} />
+                  <WordsTotal num={inputVal&&inputVal.introduce&&inputVal.introduce.length||0} />
                 </View>
               </View>
               <View className='publish-recruit-btn' onClick={handelSubmit} >确认发布</View>
@@ -383,7 +391,7 @@ export default function AddResumeInfo(){
 }
 
 AddResumeInfo.config = {
-  navigationBarTitleText: '编辑找活名片',
+  navigationBarTitleText: '基础信息',
   navigationBarBackgroundColor: '#0099ff',
   navigationBarTextStyle: 'white',
   backgroundTextStyle: "dark"

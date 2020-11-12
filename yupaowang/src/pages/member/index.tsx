@@ -1,16 +1,21 @@
-import Taro, { useState, useEffect, useDidShow } from '@tarojs/taro'
+import Taro, { useState, useEffect } from '@tarojs/taro'
 import { View, Image, Text } from '@tarojs/components'
 import { useSelector, useDispatch } from '@tarojs/redux'
 import { getMemberInfo } from '../../utils/request'
 import { MemberInfo } from '../../utils/request/index.d'
-import { IMGCDNURL, AUTHPATH, CODEAUTHPATH, PUBLISHRESUME } from '../../config'
+import { IMGCDNURL, AUTHPATH, CODEAUTHPATH, PUBLISHRESUME, PUBLISHEDRECRUIT } from '../../config'
 import { setMemberInfo } from '../../actions/member'
 import { ShowActionModal } from '../../utils/msg'
 import { UserMemberInfo } from '../../reducers/member'
 import { isIos } from '../../utils/v'
 import './index.scss'
 
-export default function Member(){
+// index 页面 传入 useDidShow时候触发 然后重新加载会员中心的数据，保证数据同步
+interface MemberProps {
+  memberIndex?: number
+}
+
+export default function Member({memberIndex = 0}: MemberProps){
 
   const dispatch = useDispatch()
 
@@ -54,13 +59,9 @@ export default function Member(){
     setIos(isIos())
   },[])
 
-  useDidShow(()=>{
-    initMemberInfo()
-  })
-
   useEffect(()=>{
     initMemberInfo()
-  },[login])
+  }, [login, memberIndex])
 
   return (
     <View className='member-container'>
@@ -112,7 +113,7 @@ export default function Member(){
       </View>
       <View className='member-body-container'>
         <View className='member-list-container'>
-          <View className='member-list-item' onClick={()=>userRouteJump('/pages/published/recruit/index')}>
+          <View className='member-list-item' onClick={() => userRouteJump(PUBLISHEDRECRUIT)}>
             <Image className='member-list-icon' src={ IMGCDNURL + 'lpy/ucenter/newcenter-recruit.png' } />
             <Text className='member-list-title'>我的招工</Text>
             {jobNumber && <Text className='member-list-tips'>状态有更新</Text>}

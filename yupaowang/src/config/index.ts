@@ -13,7 +13,7 @@ export const PROREQUESTURL: string = 'https://newyupaomini.54xiaoshuo.com/'
 // * 当前测试
 export const REQUESTURL: string = DEVREQUESTURL;
 // * 默认上传图片
-export const UPLOADIMGURL: string = PROREQUESTURL + 'index/upload/'
+export const UPLOADIMGURL: string = `${PROREQUESTURL}index/upload/`
 // * 阿里云CDN域名
 export const ALIYUNCDN: string = 'http://cdn.yupao.com'
 // * 阿里云小程序普通路径
@@ -60,6 +60,8 @@ export const REALNAMEPATH: string = '/pages/realname/index'
 export const AUTHPATH: string = '/pages/userauth/index'
 // * 微信外验证码登录
 export const CODEAUTHPATH: string = '/pages/login/index'
+// * 已发布招工列表
+export const PUBLISHEDRECRUIT: string = '/pages/published/recruit/index'
 // * 下载App
 export const DownloadApp: string ='https://android.myapp.com/myapp/detail.htm?apkName=io.dcloud.H576E6CC7&amp;ADTAG=mobile'
 

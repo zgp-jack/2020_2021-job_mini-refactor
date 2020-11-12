@@ -45,6 +45,9 @@
       flex-direction: column;
       justify-content: center;
     }
+    .flexContent-input{
+      margin-top: 8%;
+    }
     .flexContent-no {
       width: 64%;
       display: flex;
@@ -71,4 +74,7 @@
     flex-direction: column;
     justify-content: center;
   }
+}
+.publish-list-text{
+  padding: 20px 0 !important;
 }

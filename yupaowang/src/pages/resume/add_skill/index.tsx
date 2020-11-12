@@ -1,4 +1,4 @@
-import Taro, { useState, useEffect, useRouter } from '@tarojs/taro'
+import Taro, { useState, useEffect, useRouter, Config } from '@tarojs/taro'
 import { View, Text, Form, Textarea, Input, Picker } from '@tarojs/components'
 import { RecruitImageModel } from '../../recruit/index.d'
 import UploadImgAction from '../../../utils/upload'
@@ -36,6 +36,10 @@ export default function AddResumeInfo() {
   // 技能证书的数据
   let normalSkillBookData: SkillBookInfoType = {...defaultSkillBookData}
   if(id){
+    // 新建/编辑
+    Taro.setNavigationBarTitle({
+      title: '编辑技能证书'
+    });
     let data = resumeData.certificates.find(item => item.id == id)
     if (data){
       setCertificateId(data.uuid)
@@ -75,7 +79,6 @@ export default function AddResumeInfo() {
   // 用户上传图片
   const userUploadImg = (i: number) => {
     UploadImgAction().then(res => {
-      console.log(res)
       let imageItem: RecruitImageModel = {
         url: res.url,
         httpurl: res.httpurl
@@ -127,7 +130,6 @@ export default function AddResumeInfo() {
           setShowBtn(false)
         }
       }else{
-        console.log('失败')
         Msg(res.errmsg)
       }
     })
@@ -213,3 +215,10 @@ export default function AddResumeInfo() {
     </View>
   )
 }
+AddResumeInfo.config = {
+  navigationBarTitleText: '新增技能证书',
+  enablePullDownRefresh: true,
+  navigationBarBackgroundColor: '#0099ff',
+  navigationBarTextStyle: 'white',
+  backgroundTextStyle: "dark"
+} as Config

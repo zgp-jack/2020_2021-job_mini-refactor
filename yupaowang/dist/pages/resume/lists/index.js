@@ -72,7 +72,11 @@ var ResumeLists = function (_Taro$Component) {
       backgroundTextStyle: "dark"
     };
 
+<<<<<<< HEAD
     _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "anonymousState__temp3", "anonymousState__temp4", "$compid__22", "$compid__23", "$compid__24", "scrollTop", "refresh"];
+=======
+    _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "anonymousState__temp3", "anonymousState__temp4", "$compid__25", "$compid__26", "$compid__27", "scrollTop", "refresh"];
+>>>>>>> 37686b166d14874afe4a0eced124a4936a3bb444
     _this.customComponents = ["Search", "ResumeCondition", "WechatNotice", "ResumeList"];
     return _this;
   }
@@ -92,6 +96,7 @@ var ResumeLists = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
+<<<<<<< HEAD
       var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__22"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
           $prevCompid__22 = _genCompid2[0],
@@ -106,6 +111,22 @@ var ResumeLists = function (_Taro$Component) {
           _genCompid6 = _slicedToArray(_genCompid5, 2),
           $prevCompid__24 = _genCompid6[0],
           $compid__24 = _genCompid6[1];
+=======
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__25"),
+          _genCompid2 = _slicedToArray(_genCompid, 2),
+          $prevCompid__25 = _genCompid2[0],
+          $compid__25 = _genCompid2[1];
+
+      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__26"),
+          _genCompid4 = _slicedToArray(_genCompid3, 2),
+          $prevCompid__26 = _genCompid4[0],
+          $compid__26 = _genCompid4[1];
+
+      var _genCompid5 = (0, _taroTt.genCompid)(__prefix + "$compid__27"),
+          _genCompid6 = _slicedToArray(_genCompid5, 2),
+          $prevCompid__27 = _genCompid6[0],
+          $compid__27 = _genCompid6[1];
+>>>>>>> 37686b166d14874afe4a0eced124a4936a3bb444
       // 设置字段默认值
 
 
@@ -297,8 +318,7 @@ var ResumeLists = function (_Taro$Component) {
         return getNextPageData();
       };
       var anonymousState__temp4 = (0, _taroTt.internal_inline_style)({ height: '8px' });
-      this.anonymousFunc2 = handleClickToRankRules;
-      this.anonymousFunc3 = function () {
+      this.anonymousFunc2 = function () {
         return userRouteJump(_index2.PUBLISHRESUME);
       };
       _taroTt.propsManager.set({
@@ -306,6 +326,7 @@ var ResumeLists = function (_Taro$Component) {
         "value": "",
         "setRemark": anonymousState__temp,
         "setSearchData": anonymousState__temp2
+<<<<<<< HEAD
       }, $compid__22, $prevCompid__22);
       _taroTt.propsManager.set({
         "data": condition,
@@ -315,14 +336,31 @@ var ResumeLists = function (_Taro$Component) {
         "data": lists,
         "hasMore": hasMore
       }, $compid__24, $prevCompid__24);
+=======
+      }, $compid__25, $prevCompid__25);
+      _taroTt.propsManager.set({
+        "data": condition,
+        "setSearchData": anonymousState__temp3
+      }, $compid__26, $prevCompid__26);
+      _taroTt.propsManager.set({
+        "data": lists,
+        "hasMore": hasMore
+      }, $compid__27, $prevCompid__27);
+>>>>>>> 37686b166d14874afe4a0eced124a4936a3bb444
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
         anonymousState__temp2: anonymousState__temp2,
         anonymousState__temp3: anonymousState__temp3,
         anonymousState__temp4: anonymousState__temp4,
+<<<<<<< HEAD
         $compid__22: $compid__22,
         $compid__23: $compid__23,
         $compid__24: $compid__24,
+=======
+        $compid__25: $compid__25,
+        $compid__26: $compid__26,
+        $compid__27: $compid__27,
+>>>>>>> 37686b166d14874afe4a0eced124a4936a3bb444
         scrollTop: scrollTop,
         refresh: refresh
       });
@@ -343,17 +381,12 @@ var ResumeLists = function (_Taro$Component) {
     value: function anonymousFunc2(e) {
       ;
     }
-  }, {
-    key: 'anonymousFunc3',
-    value: function anonymousFunc3(e) {
-      ;
-    }
   }]);
 
   return ResumeLists;
 }(_taroTt2.default.Component);
 
-ResumeLists.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3"];
+ResumeLists.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2"];
 ResumeLists.$$componentPath = "pages/resume/lists/index";
 ResumeLists.config = { navigationBarTitleText: '工人找活列表', navigationBarBackgroundColor: '#0099ff', navigationBarTextStyle: 'white', backgroundTextStyle: "dark" };
 exports.default = ResumeLists;

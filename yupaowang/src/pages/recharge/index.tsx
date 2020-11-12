@@ -81,7 +81,6 @@ export default function Recharge(){
             resolve({ code: 0 })
           }
         }).catch((err) => {
-          console.log(err)
           Msg('支付失败')
           reject(err)
         })
@@ -100,7 +99,6 @@ export default function Recharge(){
           return getOrderStatusAction(order_no)
         },
         success: (res) => {
-          console.log(res)
           if (res.code == 0) {
             Msg('支付成功')
           }if(res.code == 9){
@@ -118,7 +116,6 @@ export default function Recharge(){
 
   // 微信支付
   const weixinProPay = (rechargeIntegral: number) => {
-    console.log('吊起微信支付')
     Taro.login({
       success: (res) => {
         getRechargeOpenid(res.code).then(openidData => {

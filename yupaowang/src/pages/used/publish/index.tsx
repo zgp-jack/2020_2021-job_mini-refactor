@@ -1,11 +1,11 @@
 import Taro, { useState, useRouter } from '@tarojs/taro'
-import { View, Form, Text, Input, Textarea, ScrollView, Picker } from '@tarojs/components'
+import { View, Form, Text, Input, Textarea, ScrollView, Picker, Block } from '@tarojs/components'
 import { AtDrawer } from 'taro-ui'
 import WordsTotal from '../../../components/wordstotal'
 import useUsedInfo from '../../../hooks/publish/used'
 import classnames from 'classnames'
 import useCode from '../../../hooks/code'
-// import '../../recruit/publish/index.scss'
+import Auth from '../../../components/auth'
 import './index.scss'
 
 export default function UsedPublish() {
@@ -65,6 +65,8 @@ export default function UsedPublish() {
   }
 
   return (
+    <Block>
+    <Auth />
     <View>
       {/* 选择目的 */}
       <AtDrawer 
@@ -190,5 +192,6 @@ export default function UsedPublish() {
         </Form>
       </View>
     </View>
+    </Block>
   )
 }

@@ -73,9 +73,9 @@ var DetailInfoPage = function (_Taro$Component) {
       navigationBarTitleText: ''
     };
 
-    _this.$usedState = ["data", "loopArray69", "loopArray70", "$compid__63", "$compid__64", "resCode", "editPhone", "IMGCDNURL", "again", "stopHiring", "isCollection", "recommend", "complaintModal", "phone"];
+    _this.$usedState = ["data", "loopArray72", "loopArray73", "$compid__66", "resCode", "editPhone", "IMGCDNURL", "again", "stopHiring", "isCollection", "ISCANSHARE", "complaintModal", "phone"];
     _this.anonymousFunc5Map = {};
-    _this.customComponents = ["WechatNotice", "CollectionRecruitList", "Report"];
+    _this.customComponents = ["WechatNotice", "Report"];
     return _this;
   }
 
@@ -96,15 +96,10 @@ var DetailInfoPage = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__63"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__66"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__63 = _genCompid2[0],
-          $compid__63 = _genCompid2[1];
-
-      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__64"),
-          _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__64 = _genCompid4[0],
-          $compid__64 = _genCompid4[1];
+          $prevCompid__66 = _genCompid2[0],
+          $compid__66 = _genCompid2[1];
 
       var router = (0, _taroTt.useRouter)();
       var id = router.params.id;
@@ -239,7 +234,6 @@ var DetailInfoPage = function (_Taro$Component) {
           setRefresh(false);
           return;
         }
-        console.log(1111);
         getRecruitInfo();
       });
       // 获取招工详情
@@ -271,17 +265,16 @@ var DetailInfoPage = function (_Taro$Component) {
           });
         } else {
           (0, _index.jobInfoAction)(params).then(function (res) {
-            var paramsObj = {
-              page: 1,
-              type: 1,
-              area_id: res.result.city_id,
-              job_ids: res.result.id,
-              classify_id: [res.result.occupations].join(',')
-            };
-            (0, _index.jobRecommendListAction)(paramsObj).then(function (res) {
-              console.log(res, 'xxxxx');
-              setRecommend(res.data.list);
-            });
+            // let paramsObj = {
+            //   page:1,
+            //   type:1,
+            //   area_id: res.result.city_id,
+            //   job_ids: res.result.id,
+            //   classify_id:[res.result.occupations].join(','),
+            // }
+            // jobRecommendListAction(paramsObj).then(res=>{
+            //   setRecommend(res.data.list);
+            // })
             setRefresh(false);
             setData(res.result);
             setPhone(res.result.tel_str);
@@ -340,7 +333,7 @@ var DetailInfoPage = function (_Taro$Component) {
         (0, _index.publishComplainAction)(params).then(function (res) {
           if (res.errcode === 'ok') {
             (0, _index6.SubscribeToNews)('complain', function () {
-              (0, _index4.SubPopup)({
+              (0, _index4.showModalTip)({
                 tips: res.errmsg,
                 callback: function callback() {
                   setComplaintModal(false);
@@ -530,11 +523,8 @@ var DetailInfoPage = function (_Taro$Component) {
       var handleStatus = function handleStatus() {
         (0, _index.jobEndStatusAction)(data.id).then(function (res) {
           if (res.errcode === 'ok') {
-            console.log(stopHiring);
-            console.log(data.is_end, 'xxx');
             // if (stopHiring || (data.is_end === 2)) {
             //   setAgain(true);
-            //   console.log(32131231);
             // }else{
             //   setStopHiring(true);
             // setStopHiring se
@@ -562,7 +552,6 @@ var DetailInfoPage = function (_Taro$Component) {
             };
             (0, _index.jobUpdateTopStatusAction)(params).then(function (res) {
               if (res.errcode === 'ok') {
-                console.log(res);
                 (0, _index5.default)(res.errmsg);
                 setRefresh(true);
                 setStopHiring(true);
@@ -646,7 +635,7 @@ var DetailInfoPage = function (_Taro$Component) {
       this.anonymousFunc15 = function () {
         _taroTt2.default.makePhoneCall({ phoneNumber: data.tel_str });
       };
-      var loopArray69 = data.classifyName.map(function (v, i) {
+      var loopArray72 = data.classifyName.map(function (v, i) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
@@ -656,12 +645,12 @@ var DetailInfoPage = function (_Taro$Component) {
           $original: v.$original
         };
       });
-      var loopArray70 = data.view_images.length ? data.view_images.map(function (v, i) {
+      var loopArray73 = data.view_images.length ? data.view_images.map(function (v, i) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
         var $loopState__temp4 = data.view_images.length ? i + i : null;
-        var _$indexKey = "hizzz" + i;
+        var _$indexKey = "ibzzz" + i;
         _this2.anonymousFunc5Map[_$indexKey] = function () {
           return handleImage(v.$original);
         };
@@ -671,30 +660,25 @@ var DetailInfoPage = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      recommend.length && _taroTt.propsManager.set({
-        "data": recommend,
-        "type": 1
-      }, $compid__63, $prevCompid__63);
       complaintModal && _taroTt.propsManager.set({
         "display": complaintModal,
         "textarea": textarea,
         "handleTextarea": handleTextarea,
         "setComplaintModal": setComplaintModal,
         "handleSubmit": handleSubmit
-      }, $compid__64, $prevCompid__64);
+      }, $compid__66, $prevCompid__66);
       Object.assign(this.__state, {
         data: data,
-        loopArray69: loopArray69,
-        loopArray70: loopArray70,
-        $compid__63: $compid__63,
-        $compid__64: $compid__64,
+        loopArray72: loopArray72,
+        loopArray73: loopArray73,
+        $compid__66: $compid__66,
         resCode: resCode,
         editPhone: editPhone,
         IMGCDNURL: _index2.IMGCDNURL,
         again: again,
         stopHiring: stopHiring,
         isCollection: isCollection,
-        recommend: recommend,
+        ISCANSHARE: _index2.ISCANSHARE,
         complaintModal: complaintModal,
         phone: phone
       });

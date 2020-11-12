@@ -93,10 +93,14 @@ export default function Recruit(){
   // 请求列表方法
   const getRecruitListAction = ()=> {
     getRecruitList(searchData).then(res => {
-      if (res.data && !res.data.length) setHasMore(false)
-      Taro.hideNavigationBarLoading()
-      if (searchData.page === 1) setLists([[...res.data]])
-      else setLists([...lists, [...res.data]])
+      if(res.data){
+        if (!res.data.length) setHasMore(false)
+        Taro.hideNavigationBarLoading()
+        if (searchData.page === 1) setLists([[...res.data]])
+        else setLists([...lists, [...res.data]])
+      }else{
+        setHasMore(false)
+      }
       if (refresh) setRefresh(false)
     })
   }
@@ -109,6 +113,7 @@ export default function Recruit(){
 
   // * 触底加载下一页
   const getNextPageData = ()=> {
+    if(!hasMore) return
     Taro.showNavigationBarLoading()
     setSearchData({...searchData, page: searchData.page + 1})
   }

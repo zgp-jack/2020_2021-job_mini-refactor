@@ -1,5 +1,5 @@
 import Taro, { Config, useDidShow } from '@tarojs/taro'
-import { View, Text, Input, Image, Button, Picker } from '@tarojs/components'
+import { View, Text, Input, Image, Button, Picker, Block } from '@tarojs/components'
 import { ALIYUNCDN, IMGCDNURL } from '../../config'
 import useRealname from '../../hooks/realname'
 import { PostUserAuthInfo } from '../../hooks/index.d'
@@ -9,7 +9,7 @@ import { isPhone } from '../../utils/v'
 import { useDispatch } from '@tarojs/redux'
 import { setData } from '../../actions/realname'
 import Msg from '../../utils/msg'
-// import { Injected } from '../recruit/publish'
+import Auth from '../../components/auth'
 import './index.scss'
 
 export interface Injected {
@@ -98,6 +98,8 @@ export default function RealName(){
     })
   }
   return (
+    <Block>
+    <Auth />
     <View className='realname-container'>
       <View className='realname-cardimgbox'>
         <View className='realname-card-title'>请拍摄并上传你的身份证照片</View>
@@ -236,7 +238,8 @@ export default function RealName(){
       </View>
       }
       <Button className='userauth-btn' onClick={() => userPostAuthInfo()} >身份认证</Button>
-    </View>
+      </View>
+    </Block>
   )
 }
 

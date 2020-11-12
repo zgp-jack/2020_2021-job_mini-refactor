@@ -1,4 +1,4 @@
-import Taro, { useEffect, useState } from '@tarojs/taro'
+import Taro, { Config, useEffect, useState } from '@tarojs/taro'
 import { View, Button, Image, Input } from '@tarojs/components'
 import { IMGCDNURL } from '../../config'
 import { useSelector } from '@tarojs/redux'
@@ -15,11 +15,10 @@ export default function Invite() {
   const login = useSelector<any, boolean>(state => state.User['login'])
   // 初始化用户链接
   useEffect(()=>{
-    console.log(login)
     if (!login) return
     getUserInviteLink().then(res=>{
       if (res.errcode == 'ok') setLink(res.link)
-      else ShowActionModal({msg: res.errmsg})
+      else ShowActionModal({msg: res.errmsg,success:() => Taro.navigateBack()})
     })
   }, [login])
   // 用户复制邀请链接
@@ -58,3 +57,7 @@ export default function Invite() {
     </View>
   )
 }
+
+Invite.config = {
+  navigationBarTitleText: "邀请好友"
+} as Config

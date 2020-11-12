@@ -71,19 +71,22 @@ function getRequestHeaderInfo(): RequestHeader {
 }
 
 // 配置默认请求参数
-const defaultRequestData: RequestBase = {
-  url: '',
-  method: 'GET',
-  header: getRequestHeaderInfo(),
-  data: {},
-  loading: true,
-  title: '数据加载中...',
-  failToast: true
+const getRequestHeaderInfoAction = (): RequestBase => {
+  let headers: RequestHeader = getRequestHeaderInfo()
+  return {
+    url: '',
+    method: 'GET',
+    header: { ...headers},
+    data: {},
+    loading: true,
+    title: '数据加载中...',
+    failToast: true
+  }
 }
 
 // 全局通用请求方法
 export function doRequestAction(reqData: Request): Promise<any> {
-  let req: RequestBase = {...defaultRequestData, ...reqData}
+  let req: RequestBase = { ...getRequestHeaderInfoAction(), ...reqData}
   if (req.loading) {
     Taro.showLoading({
       title: req.title
@@ -104,7 +107,6 @@ export function doRequestAction(reqData: Request): Promise<any> {
       header: req.header,
       data: data,
       success: (res) => {
-        //console.log(res)
         if (res.statusCode === 200) {
           resolve(res.data)
         } else {

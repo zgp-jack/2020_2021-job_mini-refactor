@@ -5,10 +5,13 @@ import { RESUME_TOP_DATA, INFODATA_DATA, INTRODUCERS_DATA } from '../../pages/re
 import { setUseResume } from '../../actions/resume_data';
 import { useResumeType } from '../../pages/resume/publish/index.d'
 import { useDispatch, useSelector } from '@tarojs/redux'
+import { setAreaInfo } from '../../actions/recruit';
 import Msg, { ShowActionModal} from '../../utils/msg'
 
 export default function useResume(){
   const dispatch = useDispatch();
+  // 检测用户是否登录
+  const login: boolean = useSelector<any, boolean>(store => store.User['login'])
   // 获取找活名片信息
   const resumeData: useResumeType = useSelector<any, useResumeType>(state => state.resumeData)
   // 基础信息
@@ -35,10 +38,18 @@ export default function useResume(){
   const [selectDataIndex, setSelectDataIndex] = useState<number>(0);
   // 工作状态
   const [check, setCheck] = useState<string>('');
+  // 是否修改项目经验
+  const [isModifyProject, setIsModifyProject] = useState<string>('');
+  //是否修改技能证书
+  const [isModifySkill, setIsModifySkill] = useState<string>('');
+  // 修改项目数量
+  const [projectNum, setProjectNum] = useState<number>(0);
+  // 修改职业技能数量
+  const [certificatesNum, setCertificatesNum] = useState<number>(0);
   // 项目列表
   useEffect(()=>{
     initResumeData()
-  },[])
+  },[login])
 
   // 当redux数据发生改变后， 将自动更新到页面上
   useEffect(()=>{
@@ -51,9 +62,10 @@ export default function useResume(){
 
   // 请求找活详情数据
   const initResumeData = () => {
+    if (!login) return
     resumeListAction().then(res => {
       if (res.errcode === 200) {
-        debugger
+        // debugger
         // 生日需要单独设置
         let time: number;
         if (res.data.info.birthday) {
@@ -67,10 +79,19 @@ export default function useResume(){
         let info: resInfoObj = { ...INFODATA_DATA };
         info = { ...info, ...res.data.info };
         setInfoData({ ...info });
+        // 清除地图redux
+        dispatch(setAreaInfo({
+          title: '',
+          location: '',
+          adcode: '',
+          info: '',
+          provice: '',
+          city: '',
+        }))
         // 设置页面显示的项目
-          // 定义有图片项目数组
-          let hasImageProject: resProjectArr[] = [];
-          // 定义没图片的数组
+        // 定义有图片项目数组
+        let hasImageProject: resProjectArr[] = [];
+        // 定义没图片的数组
         let NoImageProject: resProjectArr[] = [];
           let data = [...res.data.project];
         for (let i = 0; i < data.length; i++) {
@@ -86,21 +107,45 @@ export default function useResume(){
             NoImageProject.push(data[i])
           }
         }
+        // 设置是否修改项目经验
+        let isModifyProject: string = '';
+        if(res.data.project.length>0){
+          for (let i = 0; i < res.data.project.length; i++) {
+            isModifyProject = res.data.project[i].check;
+            if (res.data.project[i].check = '0') {
+              break;
+            }
+          }
+        }
+        setIsModifyProject(isModifyProject);
+        // 是否修改技能证书
+        let isModifySkill:string = '';
+        if(res.data.certificates.length){
+          for(let i=0;i<res.data.certificates.length;i++){
+            isModifySkill = res.data.certificates[i].check;
+            if (res.data.certificates[i].check = '0') {
+              break;
+            }
+          }
+        }
+        setIsModifySkill(isModifySkill)
         // 将有图片的数组与没有图片的数组进行按照时间降序排列
         let sortImageProject = hasImageProject.sort(projectSort("endTime"))
         let sortNoImageProject = NoImageProject.sort(projectSort("endTime"))
         // 组合项目经验对象
         let projectItem = [...sortImageProject, ...sortNoImageProject];
         // 获取排序后的第一个元素
+        if (projectItem.length){
+          if (new Date(projectItem[0].completion_time).getTime() / 86400000 < parseInt(((new Date().getTime()) / 86400000).toString())) {
+            // 项目
+            if (projectItem.length){
+              projectItem[0].completion_timeTitle = 'zhijing';
+            }
+          }else{
+            projectItem[0].completion_timeTitle = 'zhijin';
+          }
+        }
         setProjectData([...projectItem]);
-        // if (new Date(projectItem[0].completion_time).getTime() / 86400000 < parseInt(((new Date().getTime()) / 86400000).toString())) {
-        //   // 项目
-        //   if (projectItem.length){
-        //     projectItem[0].completion_time = 'zhijing';
-        //   }
-        // }else{
-        //   projectItem[0].completion_time = 'zhijin';
-        // }
         // 是否有人员信息
         setIs_introduces(res.data.is_introduces);
         //最大项目长度
@@ -108,7 +153,7 @@ export default function useResume(){
         // 最大技能长度
         setCertificate_count(res.data.certificate_count);
         // 头像旁边图片显示
-        setShow_tips(res.data.content.show_tips);
+        setShow_tips(res.data.content && res.data.content.show_tips||0);
         // 工作状态
         setSelectData(res.data.status);
         // 工作状态用来选择是正在找工作还是已找到工作
@@ -116,6 +161,10 @@ export default function useResume(){
         //人员信息
         let introduces: resIntroduceObj = { ...INTRODUCERS_DATA };
         introduces = { ...introduces, ...res.data.introduces }
+        // 修改项目数量
+        setProjectNum(res.data.fail_project);
+        // 修改技能证书数量
+        setCertificatesNum(res.data.fail_certificate);
         setIntroducesData({ ...introduces });
         setCertificates([...res.data.certificates]);
         setResume_top({ ...res.data.resume_top });
@@ -207,5 +256,9 @@ export default function useResume(){
     selectData,
     selectDataIndex,
     handleSelectData,
+    isModifySkill,
+    isModifyProject,
+    projectNum,
+    certificatesNum,
   }
 }

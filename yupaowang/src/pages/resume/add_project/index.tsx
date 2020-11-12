@@ -1,4 +1,4 @@
-import Taro, { useState, useEffect, useRouter } from '@tarojs/taro'
+import Taro, { useState, useEffect, useRouter, Config } from '@tarojs/taro'
 import { View, Text, Form, Textarea, Input, Picker } from '@tarojs/components'
 import WordsTotal from '../../../components/wordstotal'
 import ImageView from '../../../components/imageview';
@@ -63,6 +63,10 @@ export default function AddResumeInfo() {
   // 技能证书的数据
   let projectInfoData: ProjectInfoType = { ...defaultProjectData }
   if (id) {
+    // 新建/编辑
+    Taro.setNavigationBarTitle({
+      title: '编辑项目经验'
+    });
     let data = resumeData.projectData.find(item => item.id == id);
     if (data) {
       setProject_uuid(data.uuid);
@@ -149,7 +153,6 @@ export default function AddResumeInfo() {
   }
    // 用户输入表单
   const userEnterFrom = (e: any, type: string) => {
-    console.log(e, type)
     projectInfo[type] = e.detail.value;
     setProjectInfo({ ...projectInfo});
   }
@@ -286,7 +289,7 @@ export default function AddResumeInfo() {
                 <Input
                   className='publish-list-input'
                   type='text'
-                  placeholder='请填写项目名称'
+                  placeholder='请输入项目名称'
                   value={projectInfo.project_name}
                   onInput={(e) => userEnterFrom(e, 'project_name')}
                 />
@@ -323,7 +326,7 @@ export default function AddResumeInfo() {
                   onChange={(e) => multiPickerChange(e)}
                   onColumnChange={(e) => onColumnChange(e)}
                 >
-                  <Input className='publish-list-input' type='text' disabled placeholder='请选择领证时间' value={projectInfo.title} />
+                  <Input className='publish-list-input' type='text' disabled placeholder='请选择所在地区' value={projectInfo.title} />
                 </Picker>
               </View>
               <View className='publish-list-textarea' >
@@ -364,3 +367,10 @@ export default function AddResumeInfo() {
     </View>
   )
 }
+AddResumeInfo.config = {
+  navigationBarTitleText: '新增项目经验',
+  enablePullDownRefresh: true,
+  navigationBarBackgroundColor: '#0099ff',
+  navigationBarTextStyle: 'white',
+  backgroundTextStyle: "dark"
+} as Config

@@ -1,6 +1,6 @@
 import Taro from '@tarojs/taro'
 import { View, Text, Image, Block } from '@tarojs/components'
-import { IMGCDNURL } from '../../../config'
+import { IMGCDNURL, PUBLISHEDRECRUIT } from '../../../config'
 import Nodata from '../../../components/nodata'
 import './index.scss'
 import { RecruitListItem } from '../../../utils/request/index.d'
@@ -28,7 +28,7 @@ export default function RecruitList({ data, bottom = true, hasMore = false }: PR
               {d.is_end == 2 && <Image className='recruit-findend-img' src={IMGCDNURL + 'newlist-jobfindend.png'} /> }
               <View className='recruit-list-header'>
                 <View className='recruit-list-title overwords'>{ d.title }</View>
-                {d.top && <Text className='recruit-list-settop'>我要置顶</Text>}
+                {d.top && <Text className='recruit-list-settop' onClick={() => userRouteJump(PUBLISHEDRECRUIT)}>我要置顶</Text>}
               </View>
               <View className='recruit-list-body'>
                 <Image className='recruit-list-user' src={ d.image } />

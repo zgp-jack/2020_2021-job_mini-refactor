@@ -2,21 +2,11 @@ import Taro, { Config, useState, useReachBottom, usePullDownRefresh } from '@tar
 import { View, Text, Image } from '@tarojs/components'
 import RecruitList from './recruitList'
 import ResumeList from './resumeList'
-import { IMGCDNURL } from '../../config'
+import tab from './config'
 import classnames from 'classnames'
 import Auth from '../../components/auth'
 import './index.scss'
 
-
-// 设置默认tab
-const tab = [
-  {
-    id: 1, text: '招工信息', icon: `${IMGCDNURL}new-collect-info-active.png`, activeIcon: `${IMGCDNURL}new-collect-info.png`
-  },
-  {
-    id: 2, text: '找活信息', icon: `${IMGCDNURL}new-collect-resume.png`, activeIcon: `${IMGCDNURL}new-collect-resume-active.png`
-  },
-]
 export default function Collection() {
   // 默认table
   const [current, setCurrent] = useState<number>(1)
@@ -25,7 +15,8 @@ export default function Collection() {
   const handleTable = (type:number)=>{
     setBottom(0)
     setInitPage(0)
-    setCurrent(type);
+    setCurrent(type)
+    Taro.setNavigationBarTitle({title: tab[type-1].title})
   }
   // 是否加载更多
   useReachBottom(()=>{
@@ -66,7 +57,7 @@ export default function Collection() {
   )
 }
 Collection.config = {
-  navigationBarTitleText: '我的收藏找活',
+  navigationBarTitleText: '我收藏的招工信息',
   enablePullDownRefresh: true,
   navigationBarBackgroundColor: '#0099ff',
   navigationBarTextStyle: 'white',

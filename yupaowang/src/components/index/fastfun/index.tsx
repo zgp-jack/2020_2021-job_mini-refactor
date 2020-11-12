@@ -14,10 +14,15 @@ export default function Fastfun(){
     <View className='home-fastfun clearfix'>
       {Config.map((item,index)=>(
         <View className='home-fastfun-item' key={index+index} onClick={() => userRouteJump(item.url)}>
-          <Image className='home-fastfun-img' src={ item.img } />
+          {ISWEIXIN && <Image className='home-fastfun-img' src={item.img} />}
           <Text className='home-fastfun-text'>{ item.text }</Text>
         </View>
       ))}
+      {!ISWEIXIN && 
+      <View className='home-fastfun-item' onClick={() => userRouteJump(`/pages/used/lists/index`)}>
+        <Text className='home-fastfun-text'>二手交易</Text>
+      </View>
+      }
     </View>
   )
 }

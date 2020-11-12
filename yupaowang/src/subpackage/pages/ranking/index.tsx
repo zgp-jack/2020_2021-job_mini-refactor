@@ -50,8 +50,6 @@ export default function RankingRules() {
     // 日志请求
     resumesAddClickLog(v.click_type);
     // 名片信息
-    // console.log(v.jump.mini_path,'地址');
-    // console.log(v.jump.need_jump,'need_jump')
     // return;
     if (data.resume_info.has_resume == 1 && v.jump.need_jump == 1){
       // 到新增找活
@@ -100,7 +98,6 @@ export default function RankingRules() {
   const resumesAddClickLog = (click_type:number)=>{
     resumesAddClickLogAction(click_type);
   }
-  console.log(showbutton);
   return (
     <View className='rankingRules-content'>
       {isLogin && <Auth/>}

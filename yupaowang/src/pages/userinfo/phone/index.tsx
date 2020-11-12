@@ -1,4 +1,4 @@
-import Taro, { useState } from '@tarojs/taro'
+import Taro, { useState, Config } from '@tarojs/taro'
 import { View, Text, Input } from '@tarojs/components'
 import useCode from '../../../hooks/code'
 import { userChangePhone } from '../../../utils/request'
@@ -77,3 +77,9 @@ export default function UserBandPhone(){
     </View>
   )
 }
+
+
+
+UserBandPhone.config = {
+  navigationBarTitleText: '修改手机号'
+} as Config

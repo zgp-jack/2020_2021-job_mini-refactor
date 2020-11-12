@@ -363,8 +363,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-// import '../../recruit/publish/index.scss'
-
 
 var UsedPublish = function (_Taro$Component) {
   _inherits(UsedPublish, _Taro$Component);
@@ -374,10 +372,10 @@ var UsedPublish = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (UsedPublish.__proto__ || Object.getPrototypeOf(UsedPublish)).apply(this, arguments));
 
-    _this.$usedState = ["initModel", "loopArray45", "loopArray46", "$compid__40", "$compid__41", "parentCurrent", "model", "classifyName", "areaProvince", "areaCity", "pIndex", "cIndex", "cityName", "userTel", "text"];
+    _this.$usedState = ["initModel", "loopArray48", "loopArray49", "$compid__43", "$compid__44", "parentCurrent", "model", "classifyName", "areaProvince", "areaCity", "pIndex", "cIndex", "cityName", "userTel", "text"];
     _this.anonymousFunc1Map = {};
     _this.anonymousFunc2Map = {};
-    _this.customComponents = ["AtDrawer", "WordsTotal"];
+    _this.customComponents = ["Auth", "AtDrawer", "WordsTotal"];
     return _this;
   }
 
@@ -398,15 +396,15 @@ var UsedPublish = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__40"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__43"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__40 = _genCompid2[0],
-          $compid__40 = _genCompid2[1];
+          $prevCompid__43 = _genCompid2[0],
+          $compid__43 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__41"),
+      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__44"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__41 = _genCompid4[0],
-          $compid__41 = _genCompid4[1];
+          $prevCompid__44 = _genCompid4[0],
+          $compid__44 = _genCompid4[1];
 
       var router = (0, _taroTt.useRouter)();
       var _router$params$id = router.params.id,
@@ -524,7 +522,7 @@ var UsedPublish = function (_Taro$Component) {
       this.anonymousFunc12 = function () {
         return vaildPublishModelInfo();
       };
-      var loopArray45 = initModel ? initModel.classifyTree.map(function (item, index) {
+      var loopArray48 = initModel ? initModel.classifyTree.map(function (item, index) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
@@ -532,7 +530,7 @@ var UsedPublish = function (_Taro$Component) {
           'drawer-list-item overwords': true,
           'drawer-list-item-active': index === parentCurrent
         }) : null;
-        var _$indexKey = "ehzzz" + index;
+        var _$indexKey = "fbzzz" + index;
         _this2.anonymousFunc1Map[_$indexKey] = function () {
           return useClickClassifyParentId(index);
         };
@@ -542,7 +540,7 @@ var UsedPublish = function (_Taro$Component) {
           $original: item.$original
         };
       }) : [];
-      var loopArray46 = initModel ? initModel.classifyTree[parentCurrent].attributes.map(function (item, k) {
+      var loopArray49 = initModel ? initModel.classifyTree[parentCurrent].attributes.map(function (item, k) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
@@ -550,7 +548,7 @@ var UsedPublish = function (_Taro$Component) {
           'drawer-list-item overwords': true,
           'drawer-list-item-active': k == childCurrent && item.$original.id == model.attribute_id
         }) : null;
-        var _$indexKey2 = "eizzz" + k;
+        var _$indexKey2 = "fczzz" + k;
         _this2.anonymousFunc2Map[_$indexKey2] = function () {
           return useClickClassifyChildId(k);
         };
@@ -563,16 +561,16 @@ var UsedPublish = function (_Taro$Component) {
       _taroTt.propsManager.set({
         "show": showDrawer,
         "onClose": this.anonymousFunc0
-      }, $compid__40, $prevCompid__40);
+      }, $compid__43, $prevCompid__43);
       _taroTt.propsManager.set({
         "num": 0
-      }, $compid__41, $prevCompid__41);
+      }, $compid__44, $prevCompid__44);
       Object.assign(this.__state, {
         initModel: initModel,
-        loopArray45: loopArray45,
-        loopArray46: loopArray46,
-        $compid__40: $compid__40,
-        $compid__41: $compid__41,
+        loopArray48: loopArray48,
+        loopArray49: loopArray49,
+        $compid__43: $compid__43,
+        $compid__44: $compid__44,
         parentCurrent: parentCurrent,
         model: model,
         classifyName: classifyName,

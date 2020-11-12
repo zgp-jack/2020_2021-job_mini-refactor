@@ -1,8 +1,9 @@
 import Taro, { useEffect, useState, Config } from "@tarojs/taro";
-import { View, Text, Image } from "@tarojs/components";
+import { View, Text, Image, Block } from "@tarojs/components";
 import { IMGCDNURL, SERVERPHONE } from "../../config";
 import { userJumpPage } from "../../utils/helper";
 import "./index.scss";
+import Auth from '../../components/auth'
 import { memberTurntable } from "../../../src/utils/request";
 import classnames from "classnames";
 
@@ -25,19 +26,21 @@ export default function GetIntegral() {
 
   // 判断客户端
   useEffect(() => {
-    memberTurntable().then(res => {
-      if (res.errcode == "ok") {
-        let { is_turntable, show_turntable } = res.data;
-        turntable.showBtn = Number(is_turntable);
-        turntable.show = Number(show_turntable);
-        setTurntable({ ...turntable });
-      }
-    });
+    // memberTurntable().then(res => {
+    //   if (res.errcode == "ok") {
+    //     let { is_turntable, show_turntable } = res.data;
+    //     turntable.showBtn = Number(is_turntable);
+    //     turntable.show = Number(show_turntable);
+    //     setTurntable({ ...turntable });
+    //   }
+    // });
     let system: Taro.getSystemInfoSync.Result = Taro.getSystemInfoSync();
     if (system.platform !== "ios") setIos(false);
   }, []);
 
   return (
+    <Block>
+    <Auth />
     <View className="getintegral-container">
       <View className="getintegral-body">
         <View className="getintegral-item">
@@ -106,6 +109,7 @@ export default function GetIntegral() {
         。鱼泡网投入大量的人力物力开发平台、审核信息，免费服务千万工友。因此请大家帮忙多邀请工友注册，感谢您对鱼泡网的支持！
       </View>
     </View>
+    </Block>
   );
 }
 

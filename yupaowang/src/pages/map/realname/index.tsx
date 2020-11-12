@@ -186,7 +186,6 @@ export default function RealnameMap() {
   const userClickAreaItem = (item: InputPoiListTips) => {
     checkAdcodeValid(item.adcode).then(res => {
       if (res.errcode == "ok") {
-        // console.log(item,'xxxx')
         // setLocation(item.location)
         // setAdcode(item.adcode)
         // if (setAreaInfo) {
