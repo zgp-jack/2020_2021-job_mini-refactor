@@ -52,7 +52,7 @@ function usePublishViewInfo(InitParams) {
   var login = (0, _redux.useSelector)(function (state) {
     return state.User['login'];
   });
-  // 视图显示信息
+  // 极速发布基本信息
 
   var _useState = (0, _taroTt.useState)(),
       _useState2 = _slicedToArray(_useState, 2),

@@ -46,6 +46,28 @@ export interface RecruitModelInfo extends RecruitBaseInfo {
   check_fail_msg: string
 }
 
+export interface FastPublishInit {
+  classifyTree: [],
+  mate_data:[],
+  not_mate_data:[],
+  placeholder:string,
+  memberInfo: FastPublishMenberInfo,
+  errcode:string,
+  typeTextArr:{},
+  detail: string
+}
+
+export interface FastPublishMenberInfo {
+  check_degree: string,
+  headimgurl: string,
+  id: string,
+  is_check: string,
+  status: string,
+  tel: string,
+  username: string,
+  uuid: string
+}
+
 export interface DefaultSearchName {
   id: string
   letter: string

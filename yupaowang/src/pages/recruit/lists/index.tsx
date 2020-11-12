@@ -123,8 +123,8 @@ export default function Recruit(){
   const userPublishRecruit = ()=> {
     // Taro.navigateTo({url: '/pages/recruit/publish/index'})
     // Taro.navigateTo({url: '/pages/recruit/fastPublish/index'})
-    Taro.navigateTo({ url: PUBLISHRECRUIT})
-    // Taro.navigateTo({ url: PUBLISHFAST})
+    // Taro.navigateTo({ url: PUBLISHRECRUIT})
+    Taro.navigateTo({ url: PUBLISHFAST})
   }
 
   // * 更新筛选条件

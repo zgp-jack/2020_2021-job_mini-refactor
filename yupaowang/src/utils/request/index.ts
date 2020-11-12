@@ -225,6 +225,15 @@ export function getPublishRecruitView(data: InitRecruitView): Promise<any> {
   })
 }
 
+// 初始化极速发布招工
+export function fastPublisView(data: InitRecruitView): Promise<any> {
+  return doRequestAction({
+    url: api.fastPublisView,
+    data: data,
+    method: 'POST'
+  })
+}
+
 // 获取城市数据
 export function getAllAreas(loading: boolean = true): Promise<Inter.AllAreasDataItem[][]> {
   return doRequestAction({

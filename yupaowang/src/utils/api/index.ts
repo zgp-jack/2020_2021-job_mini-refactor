@@ -218,4 +218,6 @@ export const turntableDraw: string = REQUESTURL + 'turntable/draw/'
 export const turntableVideoEnd: string = REQUESTURL + 'turntable/video-end/'
 // 获取鱼泡币页面大转盘展示控制
 export const memberTurntable: string = REQUESTURL + 'member/turntable/'
+// 初始化极速发布招工
+export const fastPublisView: string = REQUESTURL + 'publish/new-mate-job/'
 
