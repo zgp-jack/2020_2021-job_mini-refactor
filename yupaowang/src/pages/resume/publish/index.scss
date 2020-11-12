@@ -224,7 +224,7 @@ $commonMargin: 44px;
           display: flex;
           justify-content: space-between;
           .information{
-            max-width: 88%;
+            max-width: 87%;
             text-align: left;
             .basic-user-img{
               display: inline-block;
@@ -253,6 +253,7 @@ $commonMargin: 44px;
             font-size: 28px;
             font-weight: bold;
             color: $color;
+            width: auto;
           }
           .audit {
             width: 110px;

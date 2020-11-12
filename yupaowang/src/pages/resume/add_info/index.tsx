@@ -92,6 +92,12 @@ export default function AddResumeInfo(){
     }
     // 将数据保存到redux中的areaInfo中
     setFirst(true);
+    let location:string='';
+    if(infoData.location){
+      location = location;
+    }else{
+      location = infoData.province +','+infoData.city
+    }
     dispatch(setAreaInfo({ ...areaInfo, title: infoData.address || '', location : infoData.location }));
     // 工种
     setNations(nations);
@@ -172,7 +178,7 @@ export default function AddResumeInfo(){
       if (res.errcode == 200){
         Taro.navigateBack({delta:1})
       }else{
-
+        ShowActionModal(res.errmsg);
       }
     })
     .catch(() => {
