@@ -92,7 +92,7 @@ var WechatNotice = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (WechatNotice.__proto__ || Object.getPrototypeOf(WechatNotice)).apply(this, arguments));
 
-    _this.$usedState = ["$compid__21", "wechatNoticeData"];
+    _this.$usedState = ["$compid__24", "wechatNoticeData"];
     _this.customComponents = ["SwiperNews"];
     return _this;
   }
@@ -112,10 +112,10 @@ var WechatNotice = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__21"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__24"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__21 = _genCompid2[0],
-          $compid__21 = _genCompid2[1];
+          $prevCompid__24 = _genCompid2[0],
+          $compid__24 = _genCompid2[1];
 
       var _useState = (0, _taroTt.useState)({
         vertical: true,
@@ -167,9 +167,9 @@ var WechatNotice = function (_Taro$Component) {
       };
       _taroTt.propsManager.set({
         "data": swiperNews
-      }, $compid__21, $prevCompid__21);
+      }, $compid__24, $prevCompid__24);
       Object.assign(this.__state, {
-        $compid__21: $compid__21,
+        $compid__24: $compid__24,
         wechatNoticeData: wechatNoticeData
       });
       return this.__state;

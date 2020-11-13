@@ -7,12 +7,8 @@ import { useSelector, useDispatch } from '@tarojs/redux'
 import { DEFAULT_MENUS_TYPE, Menu } from '../../reducers/tabbar'
 import { setMsg } from '../../actions/msg'
 import { changeTabbar } from '../../actions/tabbar'
-<<<<<<< HEAD
-import { MemberMsgTimerInterval, PUBLISHRECRUIT, PUBLISHRESUME, PUBLISHUSED,IMGCDNURL } from '../../config'
 // import { IMGCDNURL } from '../../config'
-=======
 import { MemberMsgTimerInterval, PUBLISHRECRUIT, PUBLISHRESUME, PUBLISHUSED, IMGCDNURL } from '../../config'
->>>>>>> 37686b166d14874afe4a0eced124a4936a3bb444
 import './index.scss'
 
 interface PROPS {

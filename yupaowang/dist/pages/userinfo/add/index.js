@@ -69,6 +69,10 @@ var UserInfoAdd = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (UserInfoAdd.__proto__ || Object.getPrototypeOf(UserInfoAdd)).apply(this, arguments));
 
+    _this.config = {
+      navigationBarTitleText: '完善资料'
+    };
+
     _this.$usedState = ["anonymousState__temp", "userInfo", "disPass", "text"];
     _this.customComponents = [];
     return _this;
@@ -221,6 +225,7 @@ var UserInfoAdd = function (_Taro$Component) {
 
 UserInfoAdd.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6"];
 UserInfoAdd.$$componentPath = "pages/userinfo/add/index";
+UserInfoAdd.config = { navigationBarTitleText: '完善资料' };
 exports.default = UserInfoAdd;
 
 Page(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(UserInfoAdd, true));

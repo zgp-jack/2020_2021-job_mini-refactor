@@ -69,11 +69,7 @@ var Recruit = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (Recruit.__proto__ || Object.getPrototypeOf(Recruit)).apply(this, arguments));
 
-<<<<<<< HEAD
-    _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "anonymousState__temp3", "anonymousState__temp4", "$compid__15", "$compid__16", "$compid__17", "scrollTop", "refresh"];
-=======
     _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "anonymousState__temp3", "anonymousState__temp4", "$compid__18", "$compid__19", "$compid__20", "scrollTop", "refresh"];
->>>>>>> 37686b166d14874afe4a0eced124a4936a3bb444
     _this.customComponents = ["Search", "RecruitCondition", "WechatNotice", "RecruitList"];
     return _this;
   }
@@ -93,22 +89,6 @@ var Recruit = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-<<<<<<< HEAD
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__15"),
-          _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__15 = _genCompid2[0],
-          $compid__15 = _genCompid2[1];
-
-      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__16"),
-          _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__16 = _genCompid4[0],
-          $compid__16 = _genCompid4[1];
-
-      var _genCompid5 = (0, _taroTt.genCompid)(__prefix + "$compid__17"),
-          _genCompid6 = _slicedToArray(_genCompid5, 2),
-          $prevCompid__17 = _genCompid6[0],
-          $compid__17 = _genCompid6[1];
-=======
       var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__18"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
           $prevCompid__18 = _genCompid2[0],
@@ -123,7 +103,6 @@ var Recruit = function (_Taro$Component) {
           _genCompid6 = _slicedToArray(_genCompid5, 2),
           $prevCompid__20 = _genCompid6[0],
           $compid__20 = _genCompid6[1];
->>>>>>> 37686b166d14874afe4a0eced124a4936a3bb444
       // 输入关键词 没搜索 备份
 
 
@@ -322,17 +301,6 @@ var Recruit = function (_Taro$Component) {
         "value": "",
         "setRemark": anonymousState__temp,
         "setSearchData": anonymousState__temp2
-<<<<<<< HEAD
-      }, $compid__15, $prevCompid__15);
-      _taroTt.propsManager.set({
-        "data": condition,
-        "setSearchData": anonymousState__temp3
-      }, $compid__16, $prevCompid__16);
-      _taroTt.propsManager.set({
-        "data": lists,
-        "hasMore": hasMore
-      }, $compid__17, $prevCompid__17);
-=======
       }, $compid__18, $prevCompid__18);
       _taroTt.propsManager.set({
         "data": condition,
@@ -342,21 +310,14 @@ var Recruit = function (_Taro$Component) {
         "data": lists,
         "hasMore": hasMore
       }, $compid__20, $prevCompid__20);
->>>>>>> 37686b166d14874afe4a0eced124a4936a3bb444
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
         anonymousState__temp2: anonymousState__temp2,
         anonymousState__temp3: anonymousState__temp3,
         anonymousState__temp4: anonymousState__temp4,
-<<<<<<< HEAD
-        $compid__15: $compid__15,
-        $compid__16: $compid__16,
-        $compid__17: $compid__17,
-=======
         $compid__18: $compid__18,
         $compid__19: $compid__19,
         $compid__20: $compid__20,
->>>>>>> 37686b166d14874afe4a0eced124a4936a3bb444
         scrollTop: scrollTop,
         refresh: refresh
       });

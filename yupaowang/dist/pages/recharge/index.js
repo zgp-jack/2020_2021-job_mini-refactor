@@ -82,7 +82,7 @@ var Recharge = function (_Taro$Component) {
       backgroundTextStyle: "dark"
     };
 
-    _this.$usedState = ["loopArray50", "lists", "integral", "current", "price"];
+    _this.$usedState = ["loopArray53", "lists", "integral", "current", "price"];
     _this.anonymousFunc0Map = {};
     _this.customComponents = ["AtMessage"];
     return _this;
@@ -179,7 +179,6 @@ var Recharge = function (_Taro$Component) {
               resolve({ code: 0 });
             }
           }).catch(function (err) {
-            console.log(err);
             (0, _index4.default)('支付失败');
             reject(err);
           });
@@ -197,7 +196,6 @@ var Recharge = function (_Taro$Component) {
               return getOrderStatusAction(order_no);
             },
             success: function success(res) {
-              console.log(res);
               if (res.code == 0) {
                 (0, _index4.default)('支付成功');
               }
@@ -217,7 +215,6 @@ var Recharge = function (_Taro$Component) {
       };
       // 微信支付
       var weixinProPay = function weixinProPay(rechargeIntegral) {
-        console.log('吊起微信支付');
         _taroTt2.default.login({
           success: function success(res) {
             (0, _index2.getRechargeOpenid)(res.code).then(function (openidData) {
@@ -256,11 +253,11 @@ var Recharge = function (_Taro$Component) {
       this.anonymousFunc1 = function () {
         return userRechargeAction();
       };
-      var loopArray50 = lists.map(function (item, index) {
+      var loopArray53 = lists.map(function (item, index) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
-        var _$indexKey = "ejzzz" + index;
+        var _$indexKey = "fdzzz" + index;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return userChooseItem(index);
         };
@@ -275,7 +272,7 @@ var Recharge = function (_Taro$Component) {
         };
       });
       Object.assign(this.__state, {
-        loopArray50: loopArray50,
+        loopArray53: loopArray53,
         lists: lists,
         integral: integral,
         current: current,

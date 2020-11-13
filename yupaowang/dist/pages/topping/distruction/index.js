@@ -69,7 +69,7 @@ var Distruction = function (_Taro$Component) {
       navigationBarTitleText: '招工置顶'
     };
 
-    _this.$usedState = ["searchData", "history", "data", "are", "loopArray78", "loopArray79", "loopArray80", "loopArray81", "clickInput", "inputVal", "onInput", "IMGCDNURL"];
+    _this.$usedState = ["searchData", "history", "data", "are", "loopArray79", "loopArray80", "loopArray81", "loopArray82", "clickInput", "inputVal", "onInput", "IMGCDNURL"];
     _this.anonymousFunc2Map = {};
     _this.anonymousFunc4Map = {};
     _this.anonymousFunc5Map = {};
@@ -283,7 +283,6 @@ var Distruction = function (_Taro$Component) {
       };
       // 点击其他省市
       var handleAllAre = function handleAllAre(v, type) {
-        console.log(v);
         // 点击市的时候，该市的省取消，点击省的时候,该市的省取消
         if (v.pid === '0') {
           // 点击全国，其他热门与省市都为false
@@ -409,7 +408,6 @@ var Distruction = function (_Taro$Component) {
                 val.click = !v.click;
               } else {
                 if (val.pid === '0') {
-                  console.log(val);
                   val.click = false;
                 }
               }
@@ -452,7 +450,6 @@ var Distruction = function (_Taro$Component) {
                   if (item.id === v.id) {
                     _provinceList.map(function (list, i) {
                       if (list.id === val.id) {
-                        // console.log(list);
                         _provinceList.splice(i, 1);
                       }
                     });
@@ -531,7 +528,6 @@ var Distruction = function (_Taro$Component) {
             setData({ item: _arr2 });
             setParams({ city: cityList, province: _val2, whole: [] });
           } else {
-            console.log(v, '第一次点击省');
             var List = JSON.parse(JSON.stringify(are.areData));
             // 点击市的时候把省取消
             for (var i = 0; i < List.length; i++) {
@@ -539,8 +535,6 @@ var Distruction = function (_Taro$Component) {
                 if (List[i].children.length) {
                   List[i].children.map(function (val) {
                     if (val.id === v.id) {
-                      console.log(v);
-                      console.log(val, '222');
                       val.click = !v.click;
                     } else {
                       val.click = false;
@@ -622,11 +616,11 @@ var Distruction = function (_Taro$Component) {
       };
       this.anonymousFunc3 = handleCloseHistory;
       this.anonymousFunc8 = handleClick;
-      var loopArray78 = searchData.list.length > 0 ? searchData.list.map(function (v, __index2) {
+      var loopArray79 = searchData.list.length > 0 ? searchData.list.map(function (v, __index2) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
-        var _$indexKey = "ifzzz" + __index2;
+        var _$indexKey = "igzzz" + __index2;
         _this2.anonymousFunc2Map[_$indexKey] = function () {
           return handleSeach(v.$original);
         };
@@ -635,11 +629,11 @@ var Distruction = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray79 = clickInput && !onInput && history.historylist.length > 0 ? history.historylist.map(function (v, __index4) {
+      var loopArray80 = clickInput && !onInput && history.historylist.length > 0 ? history.historylist.map(function (v, __index4) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
-        var _$indexKey2 = "igzzz" + __index4;
+        var _$indexKey2 = "ihzzz" + __index4;
         _this2.anonymousFunc4Map[_$indexKey2] = function () {
           return handleSeach(v.$original);
         };
@@ -648,11 +642,11 @@ var Distruction = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray80 = data.item.map(function (v, __index5) {
+      var loopArray81 = data.item.map(function (v, __index5) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
-        var _$indexKey3 = "ihzzz" + __index5;
+        var _$indexKey3 = "iizzz" + __index5;
         _this2.anonymousFunc5Map[_$indexKey3] = function () {
           handleAllAre(v.$original, 1);
         };
@@ -661,15 +655,15 @@ var Distruction = function (_Taro$Component) {
           $original: v.$original
         };
       });
-      var loopArray81 = are.areData.map(function (v, __index7) {
+      var loopArray82 = are.areData.map(function (v, __index7) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
-        var $anonymousCallee__9 = v.$original.children.map(function (val, index) {
+        var $anonymousCallee__8 = v.$original.children.map(function (val, index) {
           val = {
             $original: (0, _taroTt.internal_get_original)(val)
           };
-          var _$indexKey4 = 'iizzz' + __index7 + '-' + index;
+          var _$indexKey4 = 'ijzzz' + __index7 + '-' + index;
           _this2.anonymousFunc6Map[_$indexKey4] = function () {
             return handleAllAre(val.$original, 0);
           };
@@ -679,7 +673,7 @@ var Distruction = function (_Taro$Component) {
           };
         });
         return {
-          $anonymousCallee__9: $anonymousCallee__9,
+          $anonymousCallee__8: $anonymousCallee__8,
           $original: v.$original
         };
       });
@@ -688,10 +682,10 @@ var Distruction = function (_Taro$Component) {
         history: history,
         data: data,
         are: are,
-        loopArray78: loopArray78,
         loopArray79: loopArray79,
         loopArray80: loopArray80,
         loopArray81: loopArray81,
+        loopArray82: loopArray82,
         clickInput: clickInput,
         inputVal: inputVal,
         onInput: onInput,

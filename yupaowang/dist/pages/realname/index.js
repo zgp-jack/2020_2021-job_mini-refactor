@@ -193,7 +193,6 @@ function useRealname() {
           birthday: initData.memberExt.birthday || '',
           gender: initData.memberExt.sex || ''
         };
-        console.log(modelData);
         // 设置地图显示的名称
         var area = (0, _area.getLongAreaAdname)(modelData.address);
         setRealnameArea(area);
@@ -271,8 +270,6 @@ function useRealname() {
   };
   // 用户提交实名表单
   var userPostAuthInfo = function userPostAuthInfo() {
-    console.log(model);
-    console.log(initModel);
     // 验证用户是否填写完了表单
     if (!vaildUserAuthInfo()) return;
     var item = JSON.parse(JSON.stringify(model));
@@ -292,7 +289,6 @@ function useRealname() {
       gender: sexCurrent + 1
     };
     (0, _index.postUserAuthInfo)(params).then(function (res) {
-      console.log(res);
       (0, _index8.SubscribeToNews)('auth', function () {
         (0, _index2.ShowActionModal)({
           msg: res.errmsg,
@@ -382,7 +378,6 @@ function useRealname() {
           url: res.url,
           httpurl: res.httpurl
         };
-        console.log(imageItem);
         memberExt.hand_img = imageItem.url;
         memberExt.hand_img_path = imageItem.httpurl;
         var item = JSON.parse(JSON.stringify(model));
@@ -480,8 +475,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-// import { Injected } from '../recruit/publish'
-
 
 var RealName = function (_Taro$Component) {
   _inherits(RealName, _Taro$Component);
@@ -496,7 +489,7 @@ var RealName = function (_Taro$Component) {
     };
 
     _this.$usedState = ["initModel", "ALIYUNCDN", "IMGCDNURL", "model", "sexCurrent", "sexArray", "sexName", "startDate", "endDate", "nationCurrent", "checkDegree", "text"];
-    _this.customComponents = [];
+    _this.customComponents = ["Auth"];
     return _this;
   }
 

@@ -39,6 +39,8 @@ var _index = __webpack_require__(/*! ../../../config/index */ "./src/config/inde
 
 __webpack_require__(/*! ./index.scss */ "./src/components/lists/resume/index.scss");
 
+var _store = __webpack_require__(/*! ../../../config/store */ "./src/config/store.ts");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -55,7 +57,7 @@ var ResumeList = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (ResumeList.__proto__ || Object.getPrototypeOf(ResumeList)).apply(this, arguments));
 
-    _this.$usedState = ["anonymousState__temp", "loopArray11", "$compid__12", "data", "IMGCDNURL", "hasMore", "bottom"];
+    _this.$usedState = ["anonymousState__temp", "loopArray14", "$compid__15", "data", "IMGCDNURL", "hasMore", "bottom"];
     _this.anonymousFunc0Map = {};
     _this.customComponents = ["Nodata"];
     return _this;
@@ -78,10 +80,10 @@ var ResumeList = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__12"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__15"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__12 = _genCompid2[0],
-          $compid__12 = _genCompid2[1];
+          $prevCompid__15 = _genCompid2[0],
+          $compid__15 = _genCompid2[1];
 
       var _props = this.__props,
           data = _props.data,
@@ -91,41 +93,56 @@ var ResumeList = function (_Taro$Component) {
           hasMore = _props$hasMore === undefined ? true : _props$hasMore;
       // 用户页面跳转
 
-      var userRouteJump = function userRouteJump(url) {
+      var userRouteJump = function userRouteJump(uuid) {
+        var location = _taroTt2.default.getStorageSync(_store.UserLocation);
+        location = location ? location = location.split(',').reverse() : '';
         _taroTt2.default.navigateTo({
-          url: url
+          url: "/pages/resume/detail/index?uuid=" + uuid + "&location=" + location
         });
       };
       var anonymousState__temp = (0, _taroTt.internal_inline_style)(bottom ? '' : 'padding-bottom:0');
-      var loopArray11 = data ? data.map(function (item, __index1) {
+      var loopArray14 = data ? data.map(function (item, di) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
+        var $loopState__temp3 = data ? di + "-" + di : null;
         var $anonymousCallee__2 = item.$original ? item.$original.map(function (d, __index0) {
           d = {
             $original: (0, _taroTt.internal_get_original)(d)
           };
-          var _$indexKey = "bdzzz" + __index1 + "-" + __index0;
+          var _$indexKey = "bhzzz" + di + "-" + __index0;
           _this2.anonymousFunc0Map[_$indexKey] = function () {
-            return userRouteJump("/pages/resume/detail/index?uuid=" + d.$original.uuid + "&location=" + d.$original.location);
+            return userRouteJump(d.$original.uuid);
           };
+          var $anonymousCallee__1 = item.$original ? d.$original.occupations.map(function (i, ii) {
+            i = {
+              $original: (0, _taroTt.internal_get_original)(i)
+            };
+            var $loopState__temp5 = item.$original ? d.$original.id + "-" + ii : null;
+            return {
+              $loopState__temp5: $loopState__temp5,
+              $original: i.$original
+            };
+          }) : [];
           return {
             _$indexKey: _$indexKey,
+            $anonymousCallee__1: $anonymousCallee__1,
             $original: d.$original
           };
         }) : [];
         return {
+          $loopState__temp3: $loopState__temp3,
           $anonymousCallee__2: $anonymousCallee__2,
           $original: item.$original
         };
       }) : [];
       data && data[0] && !data[0].length && _taroTt.propsManager.set({
         "text": "\u6682\u65E0\u76F8\u5173\u6570\u636E"
-      }, $compid__12, $prevCompid__12);
+      }, $compid__15, $prevCompid__15);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
-        loopArray11: loopArray11,
-        $compid__12: $compid__12,
+        loopArray14: loopArray14,
+        $compid__15: $compid__15,
         data: data,
         IMGCDNURL: _index.IMGCDNURL,
         hasMore: hasMore

@@ -45,16 +45,21 @@ export interface RecruitModelInfo extends RecruitBaseInfo {
   is_check: number,
   check_fail_msg: string
 }
-
+// 极速发布数据
 export interface FastPublishInit {
-  classifyTree: [],
+  classifyTree: ProfessionRecruitData[],
   mate_data:[],
   not_mate_data:[],
   placeholder:string,
   memberInfo: FastPublishMenberInfo,
   errcode:string,
-  typeTextArr:{},
-  detail: string
+  typeTextArr: FasttypeTextArr,
+  detail: string,
+  classifies: string[],
+  user_mobile:string,
+  code:string,
+  view_images: RecruitImageModel[],
+  address:string
 }
 
 export interface FastPublishMenberInfo {
@@ -66,6 +71,16 @@ export interface FastPublishMenberInfo {
   tel: string,
   username: string,
   uuid: string
+}
+
+export interface FasttypeTextArr {
+  classifyLabel: string,
+  headerText: string,
+  maxClassifyCount: number,
+  maxImageCount: number,
+  relationField: string,
+  relationModelName: string,
+  selectedClassifyLabel: string
 }
 
 export interface DefaultSearchName {

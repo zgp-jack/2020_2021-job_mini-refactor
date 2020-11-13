@@ -61,6 +61,10 @@ var Invite = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (Invite.__proto__ || Object.getPrototypeOf(Invite)).apply(this, arguments));
 
+    _this.config = {
+      navigationBarTitleText: "邀请好友"
+    };
+
     _this.$usedState = ["IMGCDNURL", "link"];
     _this.customComponents = ["Auth"];
     return _this;
@@ -94,14 +98,15 @@ var Invite = function (_Taro$Component) {
       });
       // 初始化用户链接
       (0, _taroTt.useEffect)(function () {
-        console.log(login);
         if (!login) {
           return;
         }
         (0, _index2.getUserInviteLink)().then(function (res) {
           if (res.errcode == 'ok') {
             setLink(res.link);
-          } else (0, _index3.ShowActionModal)({ msg: res.errmsg });
+          } else (0, _index3.ShowActionModal)({ msg: res.errmsg, success: function success() {
+              return _taroTt2.default.navigateBack();
+            } });
         });
       }, [login]);
       // 用户复制邀请链接
@@ -138,6 +143,7 @@ var Invite = function (_Taro$Component) {
 
 Invite.$$events = ["anonymousFunc0"];
 Invite.$$componentPath = "pages/invite/index";
+Invite.config = { navigationBarTitleText: "邀请好友" };
 exports.default = Invite;
 
 Page(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(Invite, true));

@@ -142,8 +142,6 @@ var RankingRules = function (_Taro$Component) {
         // 日志请求
         resumesAddClickLog(v.click_type);
         // 名片信息
-        // console.log(v.jump.mini_path,'地址');
-        // console.log(v.jump.need_jump,'need_jump')
         // return;
         if (data.resume_info.has_resume == 1 && v.jump.need_jump == 1) {
           // 到新增找活
@@ -192,7 +190,6 @@ var RankingRules = function (_Taro$Component) {
       var resumesAddClickLog = function resumesAddClickLog(click_type) {
         (0, _index.resumesAddClickLogAction)(click_type);
       };
-      console.log(showbutton);
       var loopArray1 = data.sort_rule_lists.map(function (v, index) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)

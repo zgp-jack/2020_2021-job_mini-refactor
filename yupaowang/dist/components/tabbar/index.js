@@ -103,7 +103,7 @@ var Tabbar = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (Tabbar.__proto__ || Object.getPrototypeOf(Tabbar)).apply(this, arguments));
 
-    _this.$usedState = ["anonymousState__temp3", "anonymousState__temp4", "anonymousState__temp5", "tabbar", "loopArray29", "memberMsg", "show", "IMGCDNURL", "notredirect"];
+    _this.$usedState = ["anonymousState__temp3", "anonymousState__temp4", "anonymousState__temp5", "tabbar", "loopArray32", "memberMsg", "show", "IMGCDNURL", "notredirect"];
     _this.anonymousFunc0Map = {};
     _this.customComponents = [];
     return _this;
@@ -170,7 +170,6 @@ var Tabbar = function (_Taro$Component) {
       };
       // 点击发布按钮
       var openPublishMenu = function openPublishMenu() {
-        console.log('发布');
         setShow(true);
       };
       // 点击遮罩可以关闭广告
@@ -230,7 +229,7 @@ var Tabbar = function (_Taro$Component) {
       this.anonymousFunc4 = function () {
         return userTapPublishItem(_index3.PUBLISHUSED);
       };
-      var loopArray29 = tabbar.list.map(function (item, __index0) {
+      var loopArray32 = tabbar.list.map(function (item, __index0) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
@@ -238,7 +237,7 @@ var Tabbar = function (_Taro$Component) {
           'common-footer-tabbar-list': true,
           'common-footer-tabbar-list-active': item.$original.id === tabbar.key
         });
-        var _$indexKey = "dbzzz" + __index0;
+        var _$indexKey = "dfzzz" + __index0;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return changeTabbarAction(item.$original);
         };
@@ -253,7 +252,7 @@ var Tabbar = function (_Taro$Component) {
         anonymousState__temp4: anonymousState__temp4,
         anonymousState__temp5: anonymousState__temp5,
         tabbar: tabbar,
-        loopArray29: loopArray29,
+        loopArray32: loopArray32,
         memberMsg: memberMsg,
         show: show,
         IMGCDNURL: _index3.IMGCDNURL

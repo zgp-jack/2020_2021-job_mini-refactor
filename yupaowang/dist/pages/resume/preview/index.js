@@ -61,7 +61,7 @@ var Preview = function (_Taro$Component) {
       navigationBarTitleText: '找活名片'
     };
 
-    _this.$usedState = ["data", "loopArray96", "loopArray97", "loopArray98", "loopArray99", "IMGCDNURL", "checkpan", "checkone", "headerimg", "age", "sex", "project", "skillbooksone", "telephone"];
+    _this.$usedState = ["data", "loopArray96", "loopArray97", "loopArray98", "loopArray99", "IMGCDNURL", "checkpan", "checkone", "headerimg", "age", "sex", "project", "skillbooksone", "ISCANSHARE", "telephone"];
     _this.anonymousFunc0Map = {};
     _this.anonymousFunc2Map = {};
     _this.customComponents = [];
@@ -177,10 +177,10 @@ var Preview = function (_Taro$Component) {
             var dateo = date.getTime();
             var dateone = new Date(dateo);
             if (res.data.info.birthday) {
-              if (dateone.getFullYear() - (res.data.info.birthday.split("-")[0] - 0) == 0) {
+              if (dateone.getFullYear() - (+res.data.info.birthday.split("-")[0] - 0) == 0) {
                 setAge('');
               } else {
-                setAge(dateone.getFullYear() - (res.data.info.birthday.split("-")[0] - 0) + "岁");
+                setAge(dateone.getFullYear() - (+res.data.info.birthday.split("-")[0] - 0) + "岁");
               }
             }
             // Taro.setStorageSync("introinfo", res.data.info)
@@ -198,11 +198,11 @@ var Preview = function (_Taro$Component) {
               if (res.data.project) {
                 if (new Date(res.data.project[0].completion_time).getTime() / 86400000 < new Date().getTime() / 86400000) {
                   var item = res.data.project[0];
-                  item.completiontime = 'zhijing';
+                  item.completion_timeTitle = 'zhijing';
                   setProject([item]);
                 } else {
                   var _item = res.data.project[0];
-                  _item.completiontime = 'zhijin';
+                  _item.completion_timeTitle = 'zhijin';
                   setProject([_item]);
                 }
               }
@@ -255,7 +255,7 @@ var Preview = function (_Taro$Component) {
           $original: (0, _taroTt.internal_get_original)(item)
         };
         var $loopState__temp6 = data.project.length ? i + i : null;
-        var $anonymousCallee__12 = data.project.length ? item.$original.image.map(function (v, i) {
+        var $anonymousCallee__11 = data.project.length ? item.$original.image.map(function (v, i) {
           v = {
             $original: (0, _taroTt.internal_get_original)(v)
           };
@@ -272,7 +272,7 @@ var Preview = function (_Taro$Component) {
         }) : [];
         return {
           $loopState__temp6: $loopState__temp6,
-          $anonymousCallee__12: $anonymousCallee__12,
+          $anonymousCallee__11: $anonymousCallee__11,
           $original: item.$original
         };
       }) : [];
@@ -280,7 +280,7 @@ var Preview = function (_Taro$Component) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
-        var $anonymousCallee__13 = data.certificates.length ? item.$original.image.map(function (v, i) {
+        var $anonymousCallee__12 = data.certificates.length ? item.$original.image.map(function (v, i) {
           v = {
             $original: (0, _taroTt.internal_get_original)(v)
           };
@@ -296,7 +296,7 @@ var Preview = function (_Taro$Component) {
           };
         }) : [];
         return {
-          $anonymousCallee__13: $anonymousCallee__13,
+          $anonymousCallee__12: $anonymousCallee__12,
           $original: item.$original
         };
       }) : [];
@@ -314,6 +314,7 @@ var Preview = function (_Taro$Component) {
         sex: sex,
         project: project,
         skillbooksone: skillbooksone,
+        ISCANSHARE: _index2.ISCANSHARE,
         telephone: telephone
       });
       return this.__state;

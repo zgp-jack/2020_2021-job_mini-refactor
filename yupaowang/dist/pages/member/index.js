@@ -65,7 +65,7 @@ var Member = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (Member.__proto__ || Object.getPrototypeOf(Member)).apply(this, arguments));
 
-    _this.$usedState = ["login", "model", "IMGCDNURL", "jobNumber", "msgNumber", "ios"];
+    _this.$usedState = ["login", "model", "IMGCDNURL", "jobNumber", "msgNumber", "ios", "memberIndex"];
     _this.customComponents = [];
     return _this;
   }
@@ -84,6 +84,9 @@ var Member = function (_Taro$Component) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
+      var _props$memberIndex = this.__props.memberIndex,
+          memberIndex = _props$memberIndex === undefined ? 0 : _props$memberIndex;
+
       var dispatch = (0, _redux.useDispatch)();
       // 获取用户信息
       var login = (0, _redux.useSelector)(function (state) {
@@ -140,12 +143,9 @@ var Member = function (_Taro$Component) {
       (0, _taroTt.useEffect)(function () {
         setIos((0, _index4.isIos)());
       }, []);
-      (0, _taroTt.useDidShow)(function () {
-        initMemberInfo();
-      });
       (0, _taroTt.useEffect)(function () {
         initMemberInfo();
-      }, [login]);
+      }, [login, memberIndex]);
       this.anonymousFunc0 = function () {
         return userRouteJump("/pages/userinfo/info/index");
       };
@@ -162,7 +162,7 @@ var Member = function (_Taro$Component) {
         return userRouteJump( false ? undefined : _index2.CODEAUTHPATH);
       };
       this.anonymousFunc5 = function () {
-        return userRouteJump('/pages/published/recruit/index');
+        return userRouteJump(_index2.PUBLISHEDRECRUIT);
       };
       this.anonymousFunc6 = function () {
         return userRouteJump(_index2.PUBLISHRESUME);

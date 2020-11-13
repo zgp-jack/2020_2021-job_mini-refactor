@@ -5,7 +5,7 @@ import WordsTotal from '../../../components/wordstotal'
 import Profession from '../../../components/profession'
 import useCode from '../../../hooks/code'
 import fastPublishInit from '../../../hooks/publish/fastPublish'
-import { RecruitModelInfo, UserLastPublishRecruitArea } from '../index.d'
+import { RecruitModelInfo, UserLastPublishRecruitArea,FastPublishInit } from '../index.d'
 import UploadImgAction from '../../../utils/upload'
 import ImageView from '../../../components/imageview'
 import Msg from '../../../utils/msg'
@@ -50,16 +50,17 @@ export default function PublishRecruit() {
 
   // 用户填写表单
   const userEnterFrom = (e: any,key: string)=> {
-    console.log(model)
+    console.log(phone)
     const value: string = e.detail.value
-    const state: RecruitModelInfo = JSON.parse(JSON.stringify(model))
+    const state: FastPublishInit = JSON.parse(JSON.stringify(model))
     // debugger
     state[key] = value
-    // setModel(state)
+    setModel(state)
     // 如果是detail, 那么需要统计字数
     if(key === 'detail'){
       setNum(value.length)
     }
+    console.log(value)
   }
 
   // 选择地址
@@ -77,7 +78,7 @@ export default function PublishRecruit() {
     let works: ProfessionRecruitData[] = JSON.parse(JSON.stringify(model.classifyTree))
     let check: boolean = works[i].children[k].is_check
     if(!check){
-      let max: number = model.maxClassifyCount
+      let max: number = model.typeTextArr.maxClassifyCount
       let num: number = model.classifies.length
       if(num >= max){
         Msg('工种最多可以选择'+ max + '个')
@@ -131,7 +132,7 @@ export default function PublishRecruit() {
             <Textarea
               className='textarea-publish'
               value={model && model.detail || ''}
-              placeholder='请粘贴或输入您要发布的招工信息'
+              placeholder={model && model.placeholder}
               onInput={(e) => userEnterFrom(e, 'detail')}
             ></Textarea>
             <WordsTotal num={num} />
@@ -173,7 +174,7 @@ export default function PublishRecruit() {
                 onInput={(e) => userEnterFrom(e, 'user_mobile')}
               />
             </View>
-            {model && (phone !== model.user_mobile || model.user_mobile == '') &&
+          {model && (phone !== model.user_mobile || model.user_mobile == '') &&
               <View className='publish-list-item publish-list-item-code'>
                 <Text className='pulish-list-title input-title'>验证码</Text>
                 <Input
@@ -204,7 +205,7 @@ export default function PublishRecruit() {
               {showUpload && model && 
                 <ImageView 
                   images={model.view_images} 
-                  max={model.maxImageCount} 
+              max={model.typeTextArr.maxImageCount} 
                   userUploadImg={userUploadImg} 
                   userDelImg={userDelImg} 
                 />

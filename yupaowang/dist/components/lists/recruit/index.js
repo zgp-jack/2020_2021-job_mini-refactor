@@ -55,8 +55,9 @@ var RecruitList = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (RecruitList.__proto__ || Object.getPrototypeOf(RecruitList)).apply(this, arguments));
 
-    _this.$usedState = ["anonymousState__temp", "loopArray10", "$compid__11", "data", "IMGCDNURL", "hasMore", "bottom"];
+    _this.$usedState = ["anonymousState__temp", "loopArray13", "$compid__14", "data", "IMGCDNURL", "hasMore", "bottom"];
     _this.anonymousFunc0Map = {};
+    _this.anonymousFunc2Map = {};
     _this.customComponents = ["Nodata"];
     return _this;
   }
@@ -78,10 +79,10 @@ var RecruitList = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__11"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__14"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__11 = _genCompid2[0],
-          $compid__11 = _genCompid2[1];
+          $prevCompid__14 = _genCompid2[0],
+          $compid__14 = _genCompid2[1];
 
       var _props = this.__props,
           data = _props.data,
@@ -97,7 +98,7 @@ var RecruitList = function (_Taro$Component) {
         });
       };
       var anonymousState__temp = (0, _taroTt.internal_inline_style)(bottom ? '' : 'padding-bottom:0');
-      var loopArray10 = data ? data.map(function (item, __index1) {
+      var loopArray13 = data ? data.map(function (item, __index1) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
@@ -105,12 +106,17 @@ var RecruitList = function (_Taro$Component) {
           d = {
             $original: (0, _taroTt.internal_get_original)(d)
           };
-          var _$indexKey = "bczzz" + __index1 + "-" + __index0;
+          var _$indexKey = "bfzzz" + __index1 + "-" + __index0;
           _this2.anonymousFunc0Map[_$indexKey] = function () {
             return userRouteJump("/pages/detail/info/index?id=" + d.$original.id);
           };
+          var _$indexKey2 = "bgzzz" + __index1 + "-" + __index0;
+          _this2.anonymousFunc2Map[_$indexKey2] = function () {
+            return userRouteJump(_index.PUBLISHEDRECRUIT);
+          };
           return {
             _$indexKey: _$indexKey,
+            _$indexKey2: _$indexKey2,
             $original: d.$original
           };
         }) : [];
@@ -121,11 +127,11 @@ var RecruitList = function (_Taro$Component) {
       }) : [];
       data && data[0] && !data[0].length && _taroTt.propsManager.set({
         "text": "\u6682\u65E0\u76F8\u5173\u6570\u636E"
-      }, $compid__11, $prevCompid__11);
+      }, $compid__14, $prevCompid__14);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
-        loopArray10: loopArray10,
-        $compid__11: $compid__11,
+        loopArray13: loopArray13,
+        $compid__14: $compid__14,
         data: data,
         IMGCDNURL: _index.IMGCDNURL,
         hasMore: hasMore
@@ -145,12 +151,25 @@ var RecruitList = function (_Taro$Component) {
 
       return this.anonymousFunc0Map[_$indexKey] && (_anonymousFunc0Map = this.anonymousFunc0Map)[_$indexKey].apply(_anonymousFunc0Map, e);
     }
+  }, {
+    key: "anonymousFunc2",
+    value: function anonymousFunc2(_$indexKey2) {
+      var _anonymousFunc2Map;
+
+      ;
+
+      for (var _len2 = arguments.length, e = Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
+        e[_key2 - 1] = arguments[_key2];
+      }
+
+      return this.anonymousFunc2Map[_$indexKey2] && (_anonymousFunc2Map = this.anonymousFunc2Map)[_$indexKey2].apply(_anonymousFunc2Map, e);
+    }
   }]);
 
   return RecruitList;
 }(_taroTt2.default.Component);
 
-RecruitList.$$events = ["anonymousFunc0"];
+RecruitList.$$events = ["anonymousFunc0", "anonymousFunc2"];
 RecruitList.$$componentPath = "components/lists/recruit/index";
 exports.default = RecruitList;
 

@@ -98,12 +98,18 @@ export default function usePublishViewInfo(InitParams: InitRecruitView) {
           placeholder: res.placeholder,
           typeTextArr: res.typeTextArr,
           detail: res.model.detail || '',
+          classifies: res.selectedClassifies,
+          user_mobile:res.memberInfo.tel,
+          code:'',
+          view_images: res.view_image,
+          address: res.model.address || '',
         }
         // 数据保存到model中
         setModel(fastPublishInit)
+        // 保存手机号
         setPhone(fastPublishInit.memberInfo.tel)
-        // 初始化用户区域数据
-        initUserAreaInfo(res)
+        // 将数据保存到redux中的areaInfo中
+        dispatch(setAreaInfo({ ...areaInfo, title: InitViewInfo.address }))
       } else {
         // 请求数据失败走提示框返回上一页面
         ShowActionModal({
@@ -181,15 +187,14 @@ export default function usePublishViewInfo(InitParams: InitRecruitView) {
 
   function getPublishedInfo() {
     if (!model) return
-    const data: RecruitPublishInfo = {
-      title: model.title,
+    const data: FastPublishInit = {
       address: areaInfo.title,
       detail: model.detail,
       infoId: model.infoId,
       type: model.type,
       user_mobile: model.user_mobile,
       code: model.code,
-      user_name: model.user_name,
+      user_name: model.memberInfo.user_name,
       province_id: model.province_id,
       city_id: model.city_id,
       location: model.location,

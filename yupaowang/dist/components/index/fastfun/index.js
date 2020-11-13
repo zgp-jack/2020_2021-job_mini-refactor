@@ -88,7 +88,7 @@ var Fastfun = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (Fastfun.__proto__ || Object.getPrototypeOf(Fastfun)).apply(this, arguments));
 
-    _this.$usedState = ["loopArray8", "Config"];
+    _this.$usedState = ["loopArray11", "Config", "ISWEIXIN"];
     _this.anonymousFunc0Map = {};
     _this.customComponents = [];
     return _this;
@@ -116,12 +116,15 @@ var Fastfun = function (_Taro$Component) {
           url: url
         });
       };
-      var loopArray8 = _config2.default.map(function (item, index) {
+      this.anonymousFunc1 = function () {
+        return userRouteJump("/pages/used/lists/index");
+      };
+      var loopArray11 = _config2.default.map(function (item, index) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
         var $loopState__temp2 = index + index;
-        var _$indexKey = "bazzz" + index;
+        var _$indexKey = "bdzzz" + index;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return userRouteJump(item.$original.url);
         };
@@ -132,8 +135,9 @@ var Fastfun = function (_Taro$Component) {
         };
       });
       Object.assign(this.__state, {
-        loopArray8: loopArray8,
-        Config: _config2.default
+        loopArray11: loopArray11,
+        Config: _config2.default,
+        ISWEIXIN: false
       });
       return this.__state;
     }
@@ -150,12 +154,17 @@ var Fastfun = function (_Taro$Component) {
 
       return this.anonymousFunc0Map[_$indexKey] && (_anonymousFunc0Map = this.anonymousFunc0Map)[_$indexKey].apply(_anonymousFunc0Map, e);
     }
+  }, {
+    key: 'anonymousFunc1',
+    value: function anonymousFunc1(e) {
+      ;
+    }
   }]);
 
   return Fastfun;
 }(_taroTt2.default.Component);
 
-Fastfun.$$events = ["anonymousFunc0"];
+Fastfun.$$events = ["anonymousFunc0", "anonymousFunc1"];
 Fastfun.$$componentPath = "components/index/fastfun/index";
 exports.default = Fastfun;
 

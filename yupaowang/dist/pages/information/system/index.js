@@ -69,42 +69,42 @@ var newmessageinfo = {
   },
   3: {
     title: '名片信息',
-    url: '/pages/published/resume/index',
+    url: '/pages/resume/publish/index',
     titleText: '找活提醒'
   },
   4: {
     title: '证书信息',
-    url: '/pages/published/resume/index',
+    url: '/pages/resume/skills/index',
     titleText: '找活提醒'
   },
   5: {
     title: '项目信息',
-    url: '/pages/published/resume/index',
+    url: '/pages/resume/projects/index',
     titleText: '找活提醒'
   },
   6: {
     title: '投诉招工信息',
-    url: '',
+    url: '/pages/integral/tabber/index',
     titleText: '投诉提醒'
   },
   7: {
     title: '留言信息',
-    url: '',
+    url: '/pages/feedbacklist/index',
     titleText: '我的信息-留言'
   },
   8: {
-    title: '积分管理-充值',
-    url: '',
+    title: '积分管理',
+    url: '/pages/integral/tabber/index',
     titleText: '系统提醒'
   },
   9: {
     title: '实名认证',
-    url: '',
+    url: '/pages/realname/index',
     titleText: '系统提醒'
   },
   10: {
     title: '投诉找活信息',
-    url: '',
+    url: '/pages/integral/tabber/index',
     titleText: '投诉提醒'
   }
 };
@@ -122,7 +122,7 @@ var System = function (_Taro$Component) {
       enablePullDownRefresh: true
     };
 
-    _this.$usedState = ["data", "loopArray66", "IMGCDNURL", "isDown"];
+    _this.$usedState = ["data", "loopArray69", "IMGCDNURL", "isDown"];
     _this.anonymousFunc0Map = {};
     _this.customComponents = ["Nodata"];
     return _this;
@@ -209,7 +209,6 @@ var System = function (_Taro$Component) {
       };
       // 用户页面跳转
       var userRouteJump = function userRouteJump(type) {
-        return;
         _taroTt2.default.navigateTo({
           url: newmessageinfo[type].url
         });
@@ -222,11 +221,11 @@ var System = function (_Taro$Component) {
         _taroTt2.default.showNavigationBarLoading();
         setPage(_extends({}, initPage, { page: initPage.page + 1 }));
       });
-      var loopArray66 = data.item.map(function (item, __index0) {
+      var loopArray69 = data.item.map(function (item, __index0) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
-        var _$indexKey = "hgzzz" + __index0;
+        var _$indexKey = "iazzz" + __index0;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return userRouteJump(item.$original.type);
         };
@@ -237,7 +236,7 @@ var System = function (_Taro$Component) {
       });
       Object.assign(this.__state, {
         data: data,
-        loopArray66: loopArray66,
+        loopArray69: loopArray69,
         IMGCDNURL: _index2.IMGCDNURL,
         isDown: isDown
       });

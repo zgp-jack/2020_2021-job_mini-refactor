@@ -85,8 +85,6 @@ var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/re
 
 var _tabbar2 = __webpack_require__(/*! ../../actions/tabbar */ "./src/actions/tabbar.ts");
 
-var _index3 = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
-
 __webpack_require__(/*! ./index.scss */ "./src/pages/index/index.scss");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -96,9 +94,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-console.log(_index3.UNITID);
-console.log(_index3.MINIVERSION);
 
 var Index = function (_Taro$Component) {
   _inherits(Index, _Taro$Component);
@@ -116,7 +111,7 @@ var Index = function (_Taro$Component) {
       backgroundTextStyle: "dark"
     };
 
-    _this.$usedState = ["$compid__4", "tabKey", "HOME", "RECRUIT", "RESUME", "MEMBER"];
+    _this.$usedState = ["$compid__6", "$compid__7", "tabKey", "HOME", "RECRUIT", "RESUME", "MEMBER"];
     _this.customComponents = ["Home", "Recruit", "Resume", "Member", "Tabbar"];
     return _this;
   }
@@ -136,10 +131,15 @@ var Index = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__4"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__6"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__4 = _genCompid2[0],
-          $compid__4 = _genCompid2[1];
+          $prevCompid__6 = _genCompid2[0],
+          $compid__6 = _genCompid2[1];
+
+      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__7"),
+          _genCompid4 = _slicedToArray(_genCompid3, 2),
+          $prevCompid__7 = _genCompid4[0],
+          $compid__7 = _genCompid4[1];
 
       var dispatch = (0, _redux.useDispatch)();
       // 初始化页面参数
@@ -157,11 +157,22 @@ var Index = function (_Taro$Component) {
           _useState2 = _slicedToArray(_useState, 2),
           pulldown = _useState2[0],
           setPulldown = _useState2[1];
+      // 会员中心是当前页面的一个组件 所以没有判断页面显示的功能 这里传值给会员中心促使改变刷新数据
+
+
+      var _useState3 = (0, _taroTt.useState)(0),
+          _useState4 = _slicedToArray(_useState3, 2),
+          showIndex = _useState4[0],
+          setShowIndex = _useState4[1];
       // 监听页面下拉刷新
 
 
       (0, _taroTt.usePullDownRefresh)(function () {
         setPulldown(pulldown + 1);
+      });
+      // 当页面显示的 时候 触发
+      (0, _taroTt.useDidShow)(function () {
+        setShowIndex(showIndex + 1);
       });
       // 初始化底部显示页面
       (0, _taroTt.useEffect)(function () {
@@ -183,11 +194,15 @@ var Index = function (_Taro$Component) {
           frontColor: '#ffffff'
         });
       }, [tabKey]);
+      tabKey === _tabbar.MEMBER && _taroTt.propsManager.set({
+        "memberIndex": showIndex
+      }, $compid__6, $prevCompid__6);
       _taroTt.propsManager.set({
         "notredirect": true
-      }, $compid__4, $prevCompid__4);
+      }, $compid__7, $prevCompid__7);
       Object.assign(this.__state, {
-        $compid__4: $compid__4,
+        $compid__6: $compid__6,
+        $compid__7: $compid__7,
         tabKey: tabKey,
         HOME: _tabbar.HOME,
         RECRUIT: _tabbar.RECRUIT,

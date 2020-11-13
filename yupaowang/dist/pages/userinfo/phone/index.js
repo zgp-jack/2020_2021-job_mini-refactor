@@ -69,6 +69,10 @@ var UserBandPhone = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (UserBandPhone.__proto__ || Object.getPrototypeOf(UserBandPhone)).apply(this, arguments));
 
+    _this.config = {
+      navigationBarTitleText: '修改手机号'
+    };
+
     _this.$usedState = ["info", "text"];
     _this.customComponents = [];
     return _this;
@@ -176,6 +180,7 @@ var UserBandPhone = function (_Taro$Component) {
 
 UserBandPhone.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3"];
 UserBandPhone.$$componentPath = "pages/userinfo/phone/index";
+UserBandPhone.config = { navigationBarTitleText: '修改手机号' };
 exports.default = UserBandPhone;
 
 Page(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(UserBandPhone, true));

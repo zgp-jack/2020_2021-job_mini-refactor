@@ -158,7 +158,6 @@ function usePublishViewInfo(InitParams) {
   }, [login]);
   // 初始化用户区域数据
   function initUserAreaInfo(data) {
-    console.log(InitParams.infoId, 'InitParams.infoId');
     //  如果传递参数有infoid代表是修改，保存修改的里面默认区域数据
     if (InitParams.infoId) {
       dispatch((0, _recruit.setArea)(data.default_search_name.name));
@@ -407,7 +406,7 @@ var PublishRecruit = function (_Taro$Component) {
       backgroundTextStyle: "dark"
     };
 
-    _this.$usedState = ["model", "$compid__30", "$compid__31", "$compid__32", "showProfession", "areaInfo", "phone", "showUpload", "text"];
+    _this.$usedState = ["model", "$compid__33", "$compid__34", "$compid__35", "showProfession", "areaInfo", "phone", "showUpload", "text"];
     _this.customComponents = ["Auth", "Profession", "WordsTotal", "ImageView"];
     return _this;
   }
@@ -427,20 +426,20 @@ var PublishRecruit = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__30"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__33"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__30 = _genCompid2[0],
-          $compid__30 = _genCompid2[1];
+          $prevCompid__33 = _genCompid2[0],
+          $compid__33 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__31"),
+      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__34"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__31 = _genCompid4[0],
-          $compid__31 = _genCompid4[1];
+          $prevCompid__34 = _genCompid4[0],
+          $compid__34 = _genCompid4[1];
 
-      var _genCompid5 = (0, _taroTt.genCompid)(__prefix + "$compid__32"),
+      var _genCompid5 = (0, _taroTt.genCompid)(__prefix + "$compid__35"),
           _genCompid6 = _slicedToArray(_genCompid5, 2),
-          $prevCompid__32 = _genCompid6[0],
-          $compid__32 = _genCompid6[1];
+          $prevCompid__35 = _genCompid6[0],
+          $compid__35 = _genCompid6[1];
       // 获取路由参数
 
 
@@ -592,21 +591,21 @@ var PublishRecruit = function (_Taro$Component) {
         "data": model && model.classifyTree,
         "onClickItem": this.anonymousFunc0,
         "num": 3
-      }, $compid__30, $prevCompid__30);
+      }, $compid__33, $prevCompid__33);
       _taroTt.propsManager.set({
         "num": num
-      }, $compid__31, $prevCompid__31);
+      }, $compid__34, $prevCompid__34);
       showUpload && model && _taroTt.propsManager.set({
         "images": model.view_images,
         "max": model.maxImageCount,
         "userUploadImg": userUploadImg,
         "userDelImg": userDelImg
-      }, $compid__32, $prevCompid__32);
+      }, $compid__35, $prevCompid__35);
       Object.assign(this.__state, {
         model: model,
-        $compid__30: $compid__30,
-        $compid__31: $compid__31,
-        $compid__32: $compid__32,
+        $compid__33: $compid__33,
+        $compid__34: $compid__34,
+        $compid__35: $compid__35,
         showProfession: showProfession,
         areaInfo: areaInfo,
         phone: phone,
