@@ -62,6 +62,9 @@ export const CODEAUTHPATH: string = '/pages/login/index'
 export const PUBLISHEDRECRUIT: string = '/pages/published/recruit/index'
 // * 下载App
 export const DownloadApp: string ='https://android.myapp.com/myapp/detail.htm?apkName=io.dcloud.H576E6CC7&amp;ADTAG=mobile'
+// * 邀请好友
+export const INVITEPATH: string = '/pages/static/invite/index'
+
 
 // ! 所有小程序列表
 // 百度

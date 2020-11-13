@@ -13,6 +13,7 @@ import { userAuthLoction } from '../../../utils/helper'
 import { PUBLISHRECRUIT } from '../../../config'
 import { AreaPickerKey, ClassifyPickerKey, FilterPickerKey } from '../../../config/pages/lists'
 import './index.scss'
+import Msg from '../../../utils/msg'
 
 export interface conditionType {
   id: string,
@@ -93,15 +94,20 @@ export default function Recruit(){
   // 请求列表方法
   const getRecruitListAction = ()=> {
     getRecruitList(searchData).then(res => {
-      if(res.data){
-        if (!res.data.length) setHasMore(false)
-        Taro.hideNavigationBarLoading()
-        if (searchData.page === 1) setLists([[...res.data]])
-        else setLists([...lists, [...res.data]])
+      if(res.errcode == 'ok'){
+        if (res.data) {
+          if (!res.data.length) setHasMore(false)
+          Taro.hideNavigationBarLoading()
+          if (searchData.page === 1) setLists([[...res.data]])
+          else setLists([...lists, [...res.data]])
+        } else {
+          if (searchData.page === 1) setLists([[]])
+          setHasMore(false)
+        }
+        if (refresh) setRefresh(false)
       }else{
-        setHasMore(false)
+        Msg(res.errmsg)
       }
-      if (refresh) setRefresh(false)
     })
   }
 

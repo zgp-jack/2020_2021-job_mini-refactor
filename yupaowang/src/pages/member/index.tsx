@@ -3,7 +3,7 @@ import { View, Image, Text } from '@tarojs/components'
 import { useSelector, useDispatch } from '@tarojs/redux'
 import { getMemberInfo } from '../../utils/request'
 import { MemberInfo } from '../../utils/request/index.d'
-import { IMGCDNURL, AUTHPATH, CODEAUTHPATH, PUBLISHRESUME, PUBLISHEDRECRUIT } from '../../config'
+import { IMGCDNURL, AUTHPATH, CODEAUTHPATH, PUBLISHRESUME, PUBLISHEDRECRUIT, INVITEPATH } from '../../config'
 import { setMemberInfo } from '../../actions/member'
 import Msg, { ShowActionModal } from '../../utils/msg'
 import { UserMemberInfo } from '../../reducers/member'
@@ -155,7 +155,7 @@ export default function Member({memberIndex = 0}: MemberProps){
             <Text className='member-list-title'>获取积分</Text>
             {!ios && <Text className='member-list-tips'>去充值</Text>}
           </View>
-          <View className='member-list-item' onClick={() => userRouteJump('/pages/invite/index')}>
+          <View className='member-list-item' onClick={() => userRouteJump(INVITEPATH)}>
             <Image className='member-list-icon' src={ IMGCDNURL + 'lpy/ucenter/newcenter-invite.png'} />
             <Text className='member-list-title'>邀请工友</Text>
             <Text className='member-list-tips'>邀请好友得积分</Text>

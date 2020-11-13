@@ -2,6 +2,7 @@ import Taro, { Config, useState, useEffect, useRouter,useShareAppMessage } from 
 import { View, RichText, Button } from '@tarojs/components';
 import { newsInfoAction } from "../../../utils/request/index"
 import { getUserShareMessage } from '../../../utils/helper'
+import { ISCANSHARE } from '../../../config'
 import { consultationDetailsData } from '../../../utils/request/index.d'
 import './index.scss'
 
@@ -41,7 +42,7 @@ export default function Notice() {
         </View>
       </View>
       }
-      <Button className='consultationDetails-button'>分享</Button>
+      {ISCANSHARE && <Button className='consultationDetails-button' openType='share'>分享</Button>}
     </View>
   )
 }

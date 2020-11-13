@@ -156,8 +156,7 @@ interface FleamarketStateArr {
   today_text: string
 }
 
-export interface ResumeResult {
-  errcode: string,
+export interface ResumeResult extends Result {
   data: {
     total: number,
     list: ResumeList[],
