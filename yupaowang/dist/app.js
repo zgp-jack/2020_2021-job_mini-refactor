@@ -279,18 +279,6 @@ var _resume_list = __webpack_require__(/*! ./resume_list */ "./src/reducers/resu
 
 var _resume_list2 = _interopRequireDefault(_resume_list);
 
-<<<<<<< HEAD
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-//合并reducer
-/*
- * @Author: zyb
- * @Date: 2020-11-03 14:36:47
- * @LastEditors: jsxin
- * @LastEditTime: 2020-11-09 17:11:58
- * @Description:
- */
-=======
 var _recruit_top = __webpack_require__(/*! ./recruit_top */ "./src/reducers/recruit_top.ts");
 
 var _recruit_top2 = _interopRequireDefault(_recruit_top);
@@ -299,7 +287,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 //合并reducer
 //发布招工reducer
->>>>>>> 520855d8a3a85b8be1d1811ff197595442f74e15
 exports.default = (0, _redux.combineReducers)({
   tabbar: _tabbar2.default,
   WechatNotice: _wechat_notice2.default,
@@ -315,10 +302,6 @@ exports.default = (0, _redux.combineReducers)({
   resumeAddInfo: _resume_addinfo2.default,
   PositionStatus: _recruit.PositionStatus,
   resumeData: _resume_data2.default,
-<<<<<<< HEAD
-  resumeList: _resume_list2.default
-}); //发布招工reducer
-=======
   resumeList: _resume_list2.default,
   recruitTop: _recruit_top2.default
 }); /*
@@ -328,7 +311,6 @@ exports.default = (0, _redux.combineReducers)({
      * @LastEditTime: 2020-11-13 15:02:13
      * @Description:
      */
->>>>>>> 520855d8a3a85b8be1d1811ff197595442f74e15
 
 /***/ }),
 
@@ -357,7 +339,8 @@ var DEFAULT_MEMBER_INFO = {
   username: '',
   avatar: '',
   phone: '',
-  pwd_status: ''
+  pwd_status: '',
+  changeName: false
 };
 function UserMemberInfo() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : DEFAULT_MEMBER_INFO;
@@ -586,8 +569,6 @@ function PositionStatus() {
 
 /***/ }),
 
-<<<<<<< HEAD
-=======
 /***/ "./src/reducers/recruit_top.ts":
 /*!*************************************!*\
   !*** ./src/reducers/recruit_top.ts ***!
@@ -630,7 +611,6 @@ function RecruitTopRedux() {
 
 /***/ }),
 
->>>>>>> 520855d8a3a85b8be1d1811ff197595442f74e15
 /***/ "./src/reducers/resume.ts":
 /*!********************************!*\
   !*** ./src/reducers/resume.ts ***!

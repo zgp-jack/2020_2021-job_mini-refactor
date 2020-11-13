@@ -5,14 +5,16 @@ export interface UserMemberInfo {
   username: string,
   phone: string,
   avatar: string,
-  pwd_status: string
+  pwd_status: string,
+  changeName: boolean
 }
 
 const DEFAULT_MEMBER_INFO: UserMemberInfo = {
   username: '',
   avatar: '',
   phone: '',
-  pwd_status: ''
+  pwd_status: '',
+  changeName: false
 }
 
 interface ACTIONTYPE {

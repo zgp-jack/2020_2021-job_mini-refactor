@@ -41,7 +41,7 @@ export default function Home({ homeIndex = 0}: HomeProps){
 
   const tabbarJump = (id: string) => {
     if(id === USED){
-      userJumpPage('/pages/used/index')
+      userJumpPage('/pages/used/lists/index')
       return
     }
     dispatch(changeTabbar(id))
@@ -153,7 +153,7 @@ export default function Home({ homeIndex = 0}: HomeProps){
             <Text className='home-lists-item-title'>最新招工信息</Text>
             <Text className='home-lists-item-more' onClick={() => tabbarJump(RECRUIT)}>更多</Text>
           </View>
-          <RecruitList data={ lists.recruit } bottom={ false } />
+          <RecruitList data={ lists.recruit } bottom={ false } hasMore={true} />
         </View>
         {/* // ? 找活列表  */}
         <View className='home-lists-item'>
@@ -169,7 +169,7 @@ export default function Home({ homeIndex = 0}: HomeProps){
             <Text className='home-lists-item-title'>最新二手交易信息</Text>
             <Text className='home-lists-item-more' onClick={() => tabbarJump(USED)}>更多</Text>
           </View>
-          <UsedList data={lists.fleamarket} bottom={false} />
+          <UsedList data={lists.fleamarket} bottom={false} hasMore={true} />
         </View>
       </View>
 

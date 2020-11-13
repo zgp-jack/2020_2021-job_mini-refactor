@@ -127,7 +127,7 @@ var Home = function (_Taro$Component) {
       var dispatch = (0, _redux.useDispatch)();
       var tabbarJump = function tabbarJump(id) {
         if (id === _tabbar2.USED) {
-          (0, _index3.userJumpPage)('/pages/used/index');
+          (0, _index3.userJumpPage)('/pages/used/lists/index');
           return;
         }
         dispatch((0, _tabbar.changeTabbar)(id));
@@ -260,7 +260,8 @@ var Home = function (_Taro$Component) {
       }, $compid__11, $prevCompid__11);
       _taroTt.propsManager.set({
         "data": lists.recruit,
-        "bottom": false
+        "bottom": false,
+        "hasMore": true
       }, $compid__12, $prevCompid__12);
       _taroTt.propsManager.set({
         "data": lists.resume,
@@ -269,7 +270,8 @@ var Home = function (_Taro$Component) {
       }, $compid__13, $prevCompid__13);
       _taroTt.propsManager.set({
         "data": lists.fleamarket,
-        "bottom": false
+        "bottom": false,
+        "hasMore": true
       }, $compid__14, $prevCompid__14);
       shwoCity && _taroTt.propsManager.set({
         "show": shwoCity,

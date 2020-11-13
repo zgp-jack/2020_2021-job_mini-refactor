@@ -537,11 +537,7 @@ var ResumeDetail = function (_Taro$Component) {
           $original: (0, _taroTt.internal_get_original)(v)
         };
         var $loopState__temp4 = data.project.length ? i + i : null;
-<<<<<<< HEAD
-        var _$indexKey = "jhzzz" + i;
-=======
         var _$indexKey = "jezzz" + i;
->>>>>>> 520855d8a3a85b8be1d1811ff197595442f74e15
         _this2.anonymousFunc4Map[_$indexKey] = function () {
           return handleImg(v.$original);
         };
@@ -556,11 +552,7 @@ var ResumeDetail = function (_Taro$Component) {
           $original: (0, _taroTt.internal_get_original)(val)
         };
         var $loopState__temp6 = data.certificates.length ? i + i : null;
-<<<<<<< HEAD
-        var _$indexKey2 = "jizzz" + i;
-=======
         var _$indexKey2 = "jfzzz" + i;
->>>>>>> 520855d8a3a85b8be1d1811ff197595442f74e15
         _this2.anonymousFunc6Map[_$indexKey2] = function () {
           return handleImg(val.$original);
         };

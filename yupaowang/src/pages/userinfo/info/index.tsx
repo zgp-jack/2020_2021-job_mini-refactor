@@ -74,6 +74,12 @@ export default function UserInfoIndex(){
     })
   }
 
+  // 用户修改姓名
+  const useEditName = () => {
+    if (!memberInfo.username) return
+    setShowModal(true)
+  }
+
   //修改密码
   const onSetPassword = ()=> {
     const url = "/pages/userinfo/updatePass/index";
@@ -89,7 +95,7 @@ export default function UserInfoIndex(){
           <View className='user-updatainfo-left'>头像</View>
           <Image className='user-updatainfo-right user-updatainfo-avatar' src={ headerImg } />
         </View>
-        <View className='user-updatainfo-item clearfix' onClick={()=>setShowModal(true)}>
+        <View className='user-updatainfo-item clearfix' onClick={()=>useEditName()}>
           <View className='user-updatainfo-left'>姓名</View>
           <View className='user-updatainfo-right'>{ name }</View>
         </View>

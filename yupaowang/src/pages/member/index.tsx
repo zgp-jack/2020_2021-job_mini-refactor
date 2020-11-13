@@ -47,7 +47,8 @@ export default function Member({memberIndex = 0}: MemberProps){
           username: data.member.username || data.member.nickname,
           avatar: data.member.headimgurl||'',
           phone: data.member.tel||'',
-          pwd_status: data.member.pwd_status || ''
+          pwd_status: data.member.pwd_status || '',
+          changeName: model && model.is_checking == 2 && model.member.is_check == '2' ? false : true
         }
         dispatch(setMemberInfo(value))
         setModel(data)
@@ -81,7 +82,7 @@ export default function Member({memberIndex = 0}: MemberProps){
           {login && model ? 
           <View className='member-userinfo'>
             <View className='member-userinfo-content'>
-              <Image className='member-userinfo-avatar' src='http://cdn.yupao.com/miniprogram/images/user.png' />
+              <Image className='member-userinfo-avatar' src={model.member.headimgurl} />
               <View className='member-username'>
                 <View className='member-username-text'>
                 { model.member.username || model.member.nickname }

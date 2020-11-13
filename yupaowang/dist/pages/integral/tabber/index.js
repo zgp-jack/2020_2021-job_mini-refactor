@@ -77,11 +77,7 @@ var Tabber = function (_Taro$Component) {
       navigationBarTitleText: ''
     };
 
-<<<<<<< HEAD
     _this.$usedState = ["data", "modalData", "loopArray70", "$compid__65", "$compid__66", "time", "start", "end", "IMGCDNURL", "initInfo", "sourceList", "consumeList", "startType", "modal", "complaintModal", "showTime", "title", "num"];
-=======
-    _this.$usedState = ["data", "modalData", "loopArray108", "$compid__88", "$compid__89", "time", "start", "end", "IMGCDNURL", "initInfo", "sourceList", "consumeList", "startType", "modal", "complaintModal", "showTime", "title", "num"];
->>>>>>> 520855d8a3a85b8be1d1811ff197595442f74e15
     _this.customComponents = ["Auth", "Nodata", "Report"];
     return _this;
   }
@@ -101,7 +97,6 @@ var Tabber = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-<<<<<<< HEAD
       var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__65"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
           $prevCompid__65 = _genCompid2[0],
@@ -111,17 +106,6 @@ var Tabber = function (_Taro$Component) {
           _genCompid4 = _slicedToArray(_genCompid3, 2),
           $prevCompid__66 = _genCompid4[0],
           $compid__66 = _genCompid4[1];
-=======
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__88"),
-          _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__88 = _genCompid2[0],
-          $compid__88 = _genCompid2[1];
-
-      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__89"),
-          _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__89 = _genCompid4[0],
-          $compid__89 = _genCompid4[1];
->>>>>>> 520855d8a3a85b8be1d1811ff197595442f74e15
       // 检测用户是否登录
 
 
@@ -382,10 +366,7 @@ var Tabber = function (_Taro$Component) {
               // 设置显示时间
               setShowTime(date[0] + '年' + date[1] + '月');
               // 设置时间
-<<<<<<< HEAD
-=======
               console.log(sourceSearch.time);
->>>>>>> 520855d8a3a85b8be1d1811ff197595442f74e15
               setTime(sourceSearch.time);
               // 设置下拉分类的位置
               setStartType(parseInt(sourceSearch.listType));
@@ -434,10 +415,7 @@ var Tabber = function (_Taro$Component) {
       var integralExpendConfig = function integralExpendConfig() {
         (0, _index.integralExpendConfigAction)().then(function (res) {
           setStart(res.data.min.y + '-' + res.data.min.m);
-<<<<<<< HEAD
-=======
           console.log(res.data.min.y + '-' + res.data.min.m);
->>>>>>> 520855d8a3a85b8be1d1811ff197595442f74e15
           var item = res.data.types.map(function (item) {
             return item.name;
           });
@@ -446,10 +424,7 @@ var Tabber = function (_Taro$Component) {
           setIsconsume(true);
           setTitle('消耗分类');
           var time = res.data.default.y + '-' + res.data.default.m;
-<<<<<<< HEAD
-=======
           console.log(time);
->>>>>>> 520855d8a3a85b8be1d1811ff197595442f74e15
           setTime(time);
           setShowTime(res.data.default.y + '年' + res.data.default.m + '月');
           var params = {
@@ -480,10 +455,7 @@ var Tabber = function (_Taro$Component) {
           setIssource(true);
           setTitle('来源分类');
           var date = res.data.default.y + '-' + res.data.default.m;
-<<<<<<< HEAD
-=======
           console.log(date);
->>>>>>> 520855d8a3a85b8be1d1811ff197595442f74e15
           setTime(date);
           setShowTime(res.data.default.y + '年' + res.data.default.m + '月');
           var params = {
@@ -746,11 +718,7 @@ var Tabber = function (_Taro$Component) {
       this.anonymousFunc5 = function () {
         return handleComplaint(modalData.id);
       };
-<<<<<<< HEAD
       var loopArray70 = initInfo === '1' && modal && modalData ? modalData.classifyName.map(function (v, i) {
-=======
-      var loopArray108 = initInfo === '1' && modal && modalData ? modalData.classifyName.map(function (v, i) {
->>>>>>> 520855d8a3a85b8be1d1811ff197595442f74e15
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
@@ -762,18 +730,13 @@ var Tabber = function (_Taro$Component) {
       }) : [];
       !data.lists.length && _taroTt.propsManager.set({
         "text": initInfo === '0' ? '暂无积分来源记录' : '暂无积分消耗记录'
-<<<<<<< HEAD
       }, $compid__65, $prevCompid__65);
-=======
-      }, $compid__88, $prevCompid__88);
->>>>>>> 520855d8a3a85b8be1d1811ff197595442f74e15
       complaintModal && _taroTt.propsManager.set({
         "display": complaintModal,
         "textarea": textarea,
         "handleTextarea": handleTextarea,
         "setComplaintModal": setComplaintModal,
         "handleSubmit": handleSubmit
-<<<<<<< HEAD
       }, $compid__66, $prevCompid__66);
       Object.assign(this.__state, {
         data: data,
@@ -781,15 +744,6 @@ var Tabber = function (_Taro$Component) {
         loopArray70: loopArray70,
         $compid__65: $compid__65,
         $compid__66: $compid__66,
-=======
-      }, $compid__89, $prevCompid__89);
-      Object.assign(this.__state, {
-        data: data,
-        modalData: modalData,
-        loopArray108: loopArray108,
-        $compid__88: $compid__88,
-        $compid__89: $compid__89,
->>>>>>> 520855d8a3a85b8be1d1811ff197595442f74e15
         time: time,
         start: start,
         end: end,
