@@ -1,824 +1,684 @@
 @import '../../../common.scss';
+$commonMargin: 44px;
 
-.resumeDetail {
-  overflow-y: scroll;
-}
-
-.resumeDetail-basics {
-  background: white;
-  padding: 20px 7%;
-}
-
-.resumeDetail-basics-heard {
-  display: flex;
-}
-
-.resumeDetail-basics-heard-img {
-  height: 98px;
-  width: 98px;
-  border-radius: 50%;
-  margin-right: 10px;
-}
-
-.resumeDetail-cardcolore {
-  background: white;
+.resume-container {
   position: relative;
-  box-shadow: 0 0 1px #e7e6e4;
-  margin-top: 0px;
-}
 
-.resumeDetail-header {
-  width: 95%;
-  margin: 0 auto;
-  background: white;
-  font-size: 28px;
-  color: #f87a14;
-  text-align: center;
-  line-height: 80px;
-}
-
-.resumeDetail-findingnamecardthree {
-  width: 93%;
-  margin-top: 18px;
-  margin-bottom: 18px;
-  font-size: 0;
-  margin-left: 24px;
-}
-
-.resumeDetail-findingnamecardthreemobile {
-  text-align: center;
-  font-size: 30px;
-  font-weight: bold;
-  display: flex;
-  justify-content: center;
-  position: relative;
-}
-
-.resumeDetail-findingnamecardthreemobile-image {
-  width: 27px;
-  height: 29px;
-}
-
-.resumeDetail-findingnamecardthreemobile-text {
-  padding: 0 16px;
-}
-
-.resumeDetail-cardcolore {
-  background: white;
-  position: relative;
-  box-shadow: 0 0 1px #e7e6e4;
-  margin-top: 0px;
-}
-
-.resumeDetail-introduce {
-  width: 100%;
-  margin: 0 auto;
-  background: white;
-  overflow: hidden;
-  font-size: 30px;
-  color: black;
-  padding: 21px 50px;
-  word-break: break-all;
-}
-
-.resumeDetail-experience {
-  width: 100%;
-  background: white;
-  padding: 0px 7% 20px 7%;
-}
-
-.resumeDetail-image {
-  height: 20px;
-  width: 20px;
-  margin-left: 20px;
-  margin-right: 20px;
-  margin-top: 20px;
-}
-
-.resumeDetail-experience-content {
-  margin-left: 20px;
-  color: #8b8b8a;
-  font-size: 30px;
-  margin-top: 15px;
-}
-
-.resumeDetail-experience-title {
-  font-size: 30px;
-  font-weight: bold;
-  padding-top: 10px;
-}
-
-.resumeDetail-experience-content-list {
-  padding-bottom: 15px;
-}
-
-.resumeDetail-experience-img-box {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.resumeDetail-experience-img {
-  width: 185px;
-  height: 185px;
-  margin-left: 16px;
-  margin-top: 16px;
-}
-
-.resumeDetail-skill {
-  width: 100%;
-  background: white;
-  padding: 0px 7% 20px 7%;
-}
-
-.resumeDetail-skill-image {
-  width: 185px;
-  height: 185px;
-  margin-left: 16px;
-  margin-top: 16px;
-}
-
-.resumeDetail-basics-img {
-  width: 120px;
-  height: 30px;
-  margin-left: 14px;
-}
-
-.resumeDetail-basics-list-flex {
-  display: flex;
-}
-
-.resumeDetail-basics-list-left {
-  // width: 20.5%;
-  // margin: 0;
-  // padding: 0;
-  // height: 34px;
-  // display: inline-block;
-  // color: #555;
-  // font-size: 30px;
-  // text-align:justify;
-  // text-justify:inter-word;
-  width: 16.5%;
-  vertical-align: baseline;
-}
-
-.resumeDetail-basics-list-right {
-  color: #222;
-  font-size: 30px;
-  margin-right: 5px;
-}
-
-.resumeDetail-basics-list-btn {
-  padding: 4px 10px;
-  border-radius: 6px;
-  background: #09f;
-  width: 60px;
-  color: #fff;
-  font-size: 28px;
-}
-
-.resumeDetail-basics-list-tel {
-  padding: 4px 10px;
-  border-radius: 6px;
-  margin-right: 15px;
-  background: #09f;
-  color: white;
-  font-size: 28px;
-  // z-index: 990;
-}
-
-.resumeDetail-basics-list-report {
-  padding: 4px 10px;
-  border-radius: 6px;
-  margin-right: 15px;
-  background: red;
-  margin-right: 0;
-  color: white;
-  font-size: 28px;
-}
-
-.resumeDetail-basics-list-right-occupations {
-  color: rgba(42, 42, 42, 1);
-  font-size: 28px;
-  display: inline-block;
-  padding: 4px 10px;
-  text-align: center;
-  margin-right: 17px;
-  margin-bottom: 12px;
-  background: rgba(238, 237, 239, 1);
-  border-radius: 6px;
-}
-
-.resumeDetail-basics-list-right-labelName {
-  color: #09f;
-  font-size: 26px;
-  display: inline-block;
-  padding: 0 6px;
-  text-align: center;
-  margin-right: 17px;
-  border-radius: 8px;
-  border: 1px solid #09f;
-  line-height: 40px;
-}
-
-.resumeDetail-recommend {
-  width: 100%;
-  margin-top: 20px;
-  position: relative;
-  width: 100%;
-  margin-top: 20px;
-}
-
-.resumeDetail-recommend-top {
-  position: relative;
-  font-size: 34px;
-  text-align: center;
-  line-height: 80px;
-  background: white;
-}
-
-.resumeDetail-recommend-top-text::after,
-.resumeDetail-recommend-top-text::before {
-  position: absolute;
-  display: block;
-  content: '';
-  height: 1px;
-  width: 150px;
-  background: #E5E5E5;
-  top: 40px;
-}
-
-.resume-list-container {
-  position: relative;
-  width: 100%;
-  padding-bottom: 150px;
-  margin-top: 8px;
-
-  .resume-lists-noData {
+  .resume-tips-header {
+    position: relative;
+    height: 80px;
+    background-color: white;
     text-align: center;
-    display: block;
-    line-height: 100px;
-    font-size: 28px;
-    text-align: center;
-    letter-spacing: 2px;
+    line-height: 80px;
+    font-weight: bold;
+    color: #f87a14;
+    font-size: 30px;
   }
 
-  .resume-list-item {
-    position: relative;
-    width: 100%;
-    padding: 20px 20px 0;
-    background-color: white;
-    margin-top: 15px;
+  .resume-content {
+    padding-bottom: 140px;
 
-    .resume-list-header {
-      position: relative;
-      padding-left: 120px;
-      line-height: 50px;
+    .content-progress {
+      padding: 30px $commonMargin 20px;
+      margin: 15px 0 0;
+      background-color: #FFFFFF;
 
-      .resume-list-user {
-        position: absolute;
-        width: 100%;
-        display: block;
+      .progress-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 15px;
+      }
+
+      .progress-Improve {
+        display: inline-block;
+        font-weight: bold;
+        font-size: 30px;
+        color: #343434;
+      }
+
+      .progresser {
+        display: inline-block;
+        margin-left: 48px;
+        width: 286px;
+
+        .at-progress__content {
+          font-size: 28px;
+          color: #F87A14;
+        }
+      }
+
+      .progress-txt {
+        padding: 0;
+        margin-top: 10px;
+        font-size: 28px;
+        color: $color;
+        text-align: left;
+        background-color: white;
+      }
+
+      .progress-num {
+        margin-top: 10px;
+        text-align: center;
+        font-size: 32px;
+        font-weight: bold;
+        color: $color;
+      }
+
+      .progress-viewed {
+        margin-top: 10px;
+        font-size: 28px;
+        color: #626160;
+      }
+
+      .progress-footer,
+      .progress-placed {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        padding: 10px 0;
+        border-top: 2px dotted $bordercolor;
+
+        .progress-rank-img {
+          display: inline-block;
+          width: 20px;
+          height: 24px;
+          vertical-align: -2px;
+        }
+      }
+
+      .progress-place-top {
+        margin-top: 17px;
+
+        .progress-placed {
+          padding-bottom: 10px;
+          border-bottom: 2px dotted $bordercolor;
+        }
+
+        .progress-rank {
+          color: rgba(255, 77, 66, 1);
+        }
+
+        .progress-blue {
+          font-size: 28px;
+          line-height: $commonMargin;
+          font-weight: bold;
+          color: $color;
+        }
+
+        .progress-place-text {
+          margin-left: 34px;
+          padding-bottom: 10px;
+          font-size: 26px;
+          color: rgba(111, 108, 108, 1);
+        }
+
+        .place-text {
+          margin: 16px 0;
+        }
+
+        .progress-place-btn {
+          color: rgba(0, 153, 255, 1);
+        }
+      }
+
+      .progress-text {
+        display: inline-block;
+        margin-left: 15px;
+        font-size: 28px;
+        font-weight: bold;
+        color: #6F6C6C;
+      }
+
+      .progress-rank {
+        font-size: 28px;
+        line-height: $commonMargin;
+        font-weight: bold;
+        color: $color;
+      }
+    }
+
+    .content-basic-imformation,
+    .content-personal-information,
+    .content-project-experience,
+    .content-professional-skill {
+      margin: 0;
+
+      .basic-imformation {
+        margin: 0;
+        text-align: center;
+        position: relative;
+
+        .basic-jbinfo,
+        .basic-description-img,
+        .project-experience-img,
+        .professional-skill-img {
+          display: inline-block;
+          width: 24px;
+          height: 24px;
+          vertical-align: middle;
+        }
+
+        .basic-title {
+          display: inline-block;
+          margin-left: 11px;
+          font-size: 28px;
+          font-weight: bold;
+          color: #343434;
+        }
+
+        .change {
+          position: absolute;
+          top: 6px;
+          right: $commonMargin;
+          font-size: 28px;
+          font-weight: bold;
+          color: $color;
+        }
+      }
+
+      .basic-imformation {
+        line-height: 80px;
+      }
+
+      .basic-status {
+        position: relative;
+        @include flex();
+        justify-content: space-between;
+        padding: 20px $commonMargin;
+        margin-bottom: 10px;
+        font-size: 28px;
+        background-color: #FFFFFF;
+
+        &::before,
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: -18px;
+          width: 6px;
+          height: 28px;
+          background-color: $color;
+          border-radius: 3px;
+        }
+
+        &::after {
+          right: $commonMargin;
+        }
+
+        &::before {
+          left: $commonMargin;
+        }
+
+        .status-txt {
+          color: #161616;
+        }
+
+        .z-index {
+          z-index: 10;
+        }
+
+        .status-txt-image {
+          width: 24px;
+          height: 22px;
+          margin-top: 4px;
+          transition: transform 0.3s
+        }
+
+        .basic-experience-img {
+          width: 25px;
+          height: 24px;
+          margin-right: 25px;
+          vertical-align: -2px;
+        }
+
+        .status {
+          color: #FF4D42;
+        }
+      }
+
+      .basic-content,
+      .project-information,
+      .professional-information {
+        .professional-information-noImage{
+          content: '';
+          width: 100px;
+          height: 100px;
+          position: absolute;
+          top: 0;
+          left: 0;
+          z-index: 10;
+          background-image: url('http://cdn.yupao.com/newyupao/images/newresume-status-nopass.png');
+          background-size: cover;
+        }
+        padding: 20px $commonMargin;
+        text-align: center;
+        background-color: #FFFFFF;
+        .introduce{
+          text-align: left;
+          font-size: 30px;
+          color: #828181;
+        }
+        .basic-txt {
+          margin-bottom: 28px;
+          font-size: 28px;
+          color: #828181;
+        }
+
+        .basic-btn .btn {
+          display: inline-block;
+          padding: 9px 60px;
+          border-radius: 32px;
+          vertical-align: middle;
+          background-color: $color;
+          font-size: 26px;
+          line-height: 46px;
+          color: #FFFFFF;
+        }
+
+        .content-information {
+          position: relative;
+          display: flex;
+          justify-content: space-between;
+
+          .information {
+            max-width: 87%;
+            text-align: left;
+
+            .basic-user-img {
+              display: inline-block;
+              width: 90px;
+              height: 90px;
+              border-radius: 50%;
+              background-color: $color;
+            }
+
+            &>.infor {
+              display: inline-block;
+              margin-left: 40px;
+            }
+
+            .name {
+              font-size: 28px;
+              font-weight: bold;
+              color: #343434;
+            }
+
+            .sexage {
+              margin-top: 20px;
+              font-weight: bold;
+              font-size: 28px;
+              color: #6C6B6B;
+            }
+          }
+
+          .change {
+            font-size: 28px;
+            font-weight: bold;
+            color: $color;
+            width: auto;
+          }
+
+          .audit {
+            width: 110px;
+            height: 110px;
+            position: absolute;
+            top: 10px;
+            right: 21px;
+            z-index: 99;
+          }
+        }
+
+        .content {
+          position: relative;
+
+          &::before {
+            position: absolute;
+            content: '';
+            left: 0;
+            width: 2px;
+            top: -18px;
+            height: 260px;
+            background: #f2f2f2;
+          }
+
+          .craft {
+            position: relative;
+            text-align: left;
+            margin: 26px 0;
+            font-size: 28px;
+            padding-left: 14px;
+            min-height: 40px;
+
+            &::before {
+              content: '';
+              position: absolute;
+              width: 14px;
+              height: 14px;
+              background-color: $color;
+              background: url('http://cdn.yupao.com/newyupao/images/newjobinfo-steps.png');
+              background-size: cover;
+              left: -6px;
+              top: 14px;
+              // top: calc(50% - 6px);
+            }
+
+            .craft-txt {
+              position: absolute;
+              left: 20px;
+              top: 0;
+              display: inline-block;
+              width: 20%;
+              text-align: justify;
+              color: #7A7A7A;
+
+              &::before {
+                content: ':';
+                height: 100%;
+                width: 6px;
+                position: absolute;
+                right: -6px;
+              }
+
+              &::after {
+                content: '';
+                width: 100%;
+                display: inline-block;
+                overflow: hidden;
+                height: 0;
+              }
+            }
+
+            .craft-text {
+              margin-left: 26%;
+              display: inline-block;
+              color: #7A7A7A;
+            }
+
+            .craft-list {
+              position: relative;
+              margin-left: 26%;
+              margin-top: -6px;
+              display: inline-block;
+            }
+
+            .craft-list-worker {
+              display: flex;
+              flex-wrap: wrap;
+            }
+
+            .craft-name {
+              margin-right: 10px;
+              margin-bottom: 10px;
+              padding: 7px 25px;
+              color: #414141;
+              background-color: #E7E7E7;
+            }
+
+            .craft-box {
+              color: $color;
+              font-size: 26px;
+              display: inline-block;
+              padding: 0 6px;
+              text-align: center;
+              margin-right: 17px;
+              border-radius: 8px;
+              border: 1px solid $color;
+              line-height: 40px;
+            }
+          }
+
+          .introduce {
+            text-align: left;
+            font-size: 28px;
+            color: #797979;
+            padding-left: 14px;
+          }
+        }
+      }
+
+      .check-fail {
+        font-size: 28px;
+        padding: 21px $commonMargin 21px 58px;
+        background-color: #FFFBF7;
+
+        .check-fail-text {
+          display: inline-block;
+          color: #FA0819;
+        }
+      }
+    }
+
+    .content-personal-information {
+      .basic-content {
+        position: relative;
+
+        .audit {
+          width: 110px;
+          height: 110px;
+          position: absolute;
+          top: 10px;
+          right: 21px;
+          z-index: 99;
+        }
+
+        .content {
+          &::before {
+            height: 400px;
+          }
+        }
+
+        .content .craft:first-child {
+          margin-top: 0;
+        }
+
+        .content .craft:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    .content-project-experience,
+    .content-professional-skill {
+      .professional-information-noImage::before {
+        content: '';
         width: 100px;
         height: 100px;
-        border-radius: 50%;
-        left: 0;
-      }
-
-      .resume-list-userinfo {
-        position: relative;
-
-        .resume-list-userinfo-detail {
-
-          .resume-userinfo-name,
-          .resume-userinfo-sex {
-            display: inline-block;
-            font-size: 30px;
-            margin-right: 15px;
-          }
-
-          .resume-userinfo-birthday {
-            font-size: 30px;
-            color: #FB8732;
-          }
-
-          .resume-userinfo-img {
-            position: relative;
-            display: inline-block;
-            width: 100px;
-            height: 30px;
-            margin-left: 15px;
-            vertical-align: middle;
-          }
-
-          .resume-userinfo-age {
-            position: relative;
-            color: #FB8732;
-          }
-        }
-      }
-
-      .resume-otherinfo {
-        position: relative;
-
-        .resume-otherinfo-text {
-          font-size: 28px;
-          margin-right: 15px;
-          color: #828586;
-
-          &:nth-last-child(1) {
-            margin-right: 0;
-          }
-        }
-      }
-
-      .resume-list-type {
         position: absolute;
-        right: 20px;
-        font-size: 28px;
-        line-height: 50px;
-        bottom: 0;
+        top: 0;
+        left: 0;
+        z-index: 10;
+        background-image: url('http://cdn.yupao.com/newyupao/images/newresume-status-nopass.png');
+        background-size: cover;
       }
 
-      .resume-list-tags {
+      .project-information,
+      .professional-information {
         position: relative;
 
-        .resume-list-tags-item {
-          border-radius: 5px;
-          color: $color;
-          border: 1px solid $color;
-          font-size: 26px;
-          padding: 0 10px;
-          margin-right: 15px;
-          line-height: 45px;
+        .content-information {
+          position: relative;
 
-          &:nth-last-child(1) {
-            margin-right: 0;
+          .audit {
+            width: 110px;
+            height: 110px;
+            position: absolute;
+            top: 10px;
+            right: 21px;
+            z-index: 99;
+          }
+
+          .information .name {
+            font-size: 28px;
+          }
+
+          .information .sexage {
+            font-size: 26px;
+          }
+
+          .information .time {
+            margin-top: 0;
+            // margin-left: 50px;
+          }
+        }
+      }
+
+      .project-content {
+        .content-img {
+          margin-top: 15px;
+          text-align: left;
+
+          .project-item-img,
+          .professional-item-img {
+            width: 185px;
+            height: 185px;
+            margin: 25px 0;
+          }
+        }
+
+        .project-failtxt {
+          margin-bottom: 10px;
+          text-align: left;
+          font-size: 26px;
+          color: #FE1901;
+        }
+      }
+
+      .change-project {
+        text-align: center;
+
+        .change-project-btn {
+          position: relative;
+          display: inline-block;
+          padding: 10px $commonMargin;
+          color: #FFFFFF;
+          font-size: 26px;
+          line-height: 36px;
+          background-color: $color;
+
+          .change-project-btn-icon {
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            color: white;
+            background: #dc0102;
+            border-radius: 50%;
+            right: -20px;
+            top: -14px;
+            text-align: center;
+            line-height: 24px;
+            font-size: 20px;
+            z-index: 10;
+          }
+        }
+
+        .nabla {
+          display: inline-block;
+          width: 0;
+          height: 0;
+          // margin-left: 16px;
+          border-right: 15px solid transparent;
+          border-left: 15px solid transparent;
+          border-top: 15px solid rgba(255, 255, 255, 1);
+        }
+      }
+    }
+
+    .content-professional-skill {
+      .professional-information {
+        .content-information {
+          align-items: baseline;
+        }
+
+        .content-information .information {
+
+          .name,
+          .time {
+            display: inline-block;
           }
         }
       }
     }
 
-    .resume-list-works {
-      position: relative;
-      margin-top: 15px;
+    .content-btn {
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      display: flex;
+      margin-top: 83px;
+      z-index: 100;
+      box-shadow: 0 0 5px $shadowcolor;
+      background-color: #FFFFFF;
 
-      .resume-list-words-text {
-        position: relative;
-        display: inline-block;
-        background-color: rgba(238, 237, 239, 1);
-        color: rgba(42, 42, 42, 1);
-        padding: 10px;
-        font-size: 26px;
-        margin-right: 15px;
-        border-radius: 5px;
-        margin-bottom: 10px;
+      .content-btn-box {
+        width: 100%;
+        display: flex;
+      }
+
+      .preview {
+        display: flex;
+        width: 100%;
+        text-align: center;
+        font-size: 36px;
+        color: #7D7D7D;
+        padding: 29px 0;
+
+        .preview-box {
+          margin: 0 auto;
+          display: flex;
+
+          .preview-img {
+            display: inline-block;
+            width: 36px;
+            height: 36px;
+            vertical-align: -6px;
+            margin-right: 15px;
+            margin-top: 4px;
+          }
+        }
+      }
+
+      .preview-btn {
+        width: 50%;
+        padding: 29px 0;
+        text-align: center;
+        font-size: 36px;
+        color: #7D7D7D;
+
+        .preview-share-btn {
+          display: inline-block;
+        }
+
+        .preview-img {
+          display: inline-block;
+          width: 36px;
+          height: 36px;
+          vertical-align: -6px;
+          margin-right: 15px;
+        }
+      }
+
+      .preview-btn {
+        border-right: 1px solid rgba(99, 98, 105, 0.22);
 
         &:nth-last-child(1) {
-          margin-right: 0;
+          border-right: 0;
         }
-      }
-    }
-
-    .resume-list-content {
-      position: relative;
-      color: #555;
-      line-height: 70px;
-      font-size: 28px;
-      margin-top: -10px;
-      border-bottom: 1px dashed $bordercolor;
-    }
-
-    .resume-list-footer {
-      display: flex;
-      justify-content: space-between;
-      padding: 10px 0;
-
-      .resume-list-footer-flex {
-        display: flex;
-        justify-items: center;
-      }
-
-      .resume-list-loc {
-        display: block;
-        width: 20px;
-        height: 30px;
-        margin: auto 10px auto 0px;
-      }
-
-      .resume-list-loctxt {
-        color: #555;
-        position: relative;
-        padding-right: 300px;
-        font-size: 28px;
-        line-height: 60px;
-      }
-
-      .resume-list-time {
-        display: inline-block;
-        top: 10px;
-        line-height: 60px;
-        font-size: 26px;
-        color: rgba(127, 126, 126, 1);
-      }
-
-      .resume-list-button {
-        position: absolute;
-        right: 0;
-        top: 24px;
-        background: $color;
-        color: #fff;
-        line-height: 40px;
-        height: 40px;
-        font-size: 24px;
-        border-radius: 10px;
       }
     }
   }
-}
+  .newPreview-btn {
+    margin-top: 30px;
+    width: 100%;
 
-.newdetail-fixedshadow {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.7);
-  left: 0;
-  top: 0;
-  z-index: 99;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-
-.newdetail-fixed-content {
-  position: relative;
-  background: white;
-  width: 90%;
-  border-radius: 5px;
-}
-
-.newdetail-tips-box {
-  position: relative;
-  padding: 0 30px;
-}
-
-.newdetail-tips-header {
-  position: relative;
-  line-height: 120px;
-  font-weight: bold;
-  font-size: 34px;
-  color: #111;
-  text-align: center;
-  border-bottom: 1px solid #DDDDDD;
-}
-
-.newdetail-tips-body {
-  position: relative;
-  padding: 30px 0;
-}
-
-.newdetail-tips-item {
-  position: relative;
-  margin-bottom: 30px;
-}
-
-.newdetail-tips-item:nth-last-child(1) {
-  margin-bottom: 0;
-}
-
-.newdetail-tips-title {
-  position: relative;
-  padding-left: 50px;
-  font-size: 30px;
-  font-weight: bold;
-}
-
-.newdetail-tips-title::before {
-  position: absolute;
-  content: '';
-  display: block;
-  width: 40px;
-  height: 40px;
-  left: 0;
-  top: 0;
-  background: url(http://cdn.yupao.com/miniprogram/images/usercallphone-tips.png) no-repeat;
-  background-size: 100% 100%;
-}
-
-.newdetail-tips-text {
-  line-height: 45px;
-  color: #7C7C7C;
-  padding: 10px 0;
-  font-size: 28px;
-}
-
-.newdetail-tips-footer {
-  position: relative;
-  border-top: 1px solid #DDDDDD;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-
-.newdetail-footer-item {
-  position: relative;
-  flex: 1;
-  text-align: center;
-  font-size: 30px;
-  color: #666666;
-  line-height: 120px;
-  border-right: 1px solid #DDDDDD;
-}
-
-.newdetail-footer-item:nth-last-child(1) {
-  color: #0099ff;
-  border-right: 0;
-}
-
-.text-nav-name {
-  display: inline-block;
-}
-
-.seemore-recommend-recruit {
-  background: white;
-  line-height: 100px;
-  margin-top: 15px;
-  color: #0099ff;
-  text-align: center;
-  font-size: 30px;
-  letter-spacing: 3px;
-}
-
-.resumeDetail-footer {
-  width: 100%;
-  background: white;
-  height: 100px;
-  display: flex;
-  justify-content: space-around;
-  font-size: 30px;
-  color: #7d7d7d;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  box-shadow: 0 0 1px #e7e6e4;
-  z-index: 5;
-}
-
-.bossimg {
-  width: 35px;
-  height: 30px;
-  color: #7d7d7d;
-  padding-right: 8px;
-  margin-top: 7px;
-}
-
-.resumeDetail-footer-box {
-  padding-left: 0;
-  padding-right: 0;
-  margin: 0;
-  line-height: inherit;
-  margin-top: 30px;
-  display: flex;
-  background-color: #fff;
-  border-radius: 0;
-  font-size: 30px;
-  color: #7d7d7d;
-}
-
-.down {
-  width: 20px;
-  height: 15px;
-  margin: auto 5px;
-}
-
-.resumeDetail-more-box {
-  width: 100%;
-}
-
-.resumeDetail-more {
-  margin: 0 auto;
-  text-align: center;
-  padding: 0;
-  width: 246px;
-  background-color: #09f;
-  font-size: 30px;
-  color: white;
-  display: flex;
-  justify-content: center;
-  margin-top: 14px;
-  position: relative;
-  border-radius: 8px;
-}
-
-.lineone {
-  position: relative;
-  margin-bottom: 8px;
-  margin-top: 18px;
-}
-
-.cardotext {
-  width: 100%;
-  display: flex;
-  vertical-align: baseline;
-}
-
-.cardotext .oworkotext {
-  width: 20.5%;
-  margin: 0;
-  padding: 0;
-  height: 34px;
-  display: inline-block;
-  color: #555;
-  font-size: 30px;
-  /* width: 100%; */
-  /* margin-top: 14px;
-  margin-bottom: 6px; */
-  text-align: justify;
-  position: relative;
-  margin-left: 52px;
-}
-
-.cardotext .oworkotext::after {
-  content: '';
-  width: 100%;
-  display: inline-block;
-  overflow: hidden;
-  height: 0;
-}
-
-.cardotext .oworkotext::before {
-  content: ':';
-  /* overflow: hidden; */
-  height: 100%;
-  width: 6px;
-  position: absolute;
-  right: -4px;
-}
-
-.cardotext .workotextone {
-  color: #222;
-  font-size: 30px;
-  padding-left: 28px;
-  width: 70%;
-}
-
-.workotextone-address {
-  color: #222;
-  font-size: 30px;
-  padding-left: 28px;
-  width: 50%;
-}
-
-.workotextone-address-img {
-  margin-right: 10px;
-  width: 24px;
-  height: 36px;
-  display: inline-block;
-  position: relative;
-}
-
-// .cliok {
-//   position: absolute;
-//   right: 0px;
-//   top: 0;
-// }
-.clioktel {
-  position: absolute;
-  right: 60px;
-  top: 0;
-  padding: 2px 8px;
-  border-radius: 6px;
-  background: #09f;
-  color: #fff;
-  font-size: 28px;
-}
-
-.clioktel-left {
-  position: absolute;
-  right: 200px;
-  top: 0;
-  padding: 2px 8px;
-  border-radius: 6px;
-  background: #09f;
-  color: #fff;
-  font-size: 28px;
-}
-
-.clioktelList-right {
-  position: absolute;
-  right: 60px;
-  top: 0;
-  padding: 2px 8px;
-  border-radius: 6px;
-  background: red;
-  color: #fff;
-  font-size: 28px;
-}
-
-.cworkotype {
-  position: relative;
-  width: 100%;
-  margin-top: 12px;
-  padding-left: 190px;
-  min-height: 30px;
-  margin-bottom: -12px;
-}
-
-.cardotext-position {
-  position: relative;
-  margin-top: 5px;
-}
-
-.cardotext::before {
-  position: absolute;
-  content: '';
-  width: 25px;
-  height: 25px;
-  background: url(http://cdn.yupao.com/miniprogram/images/newjobinfo-steps.png?t=11) no-repeat;
-  background-size: 100% 100%;
-  left: 14px;
-  margin-left: -5px;
-  top: 10px;
-}
-
-.cworkotype::before {
-  position: absolute;
-  content: '';
-  width: 25px;
-  height: 25px;
-  background: url(http://cdn.yupao.com/miniprogram/images/newjobinfo-steps.png?t=11) no-repeat;
-  background-size: 100% 100%;
-  left: 14px;
-  margin-left: -5px;
-  top: 10px;
-}
-
-.ocworkotype {
-  width: 20.5%;
-  left: 0;
-  top: 0;
-  display: inline-block;
-  color: #555;
-  font-size: 30px;
-  text-align: justify;
-  position: absolute;
-  margin-left: 52px;
-}
-
-.cworkotype .ocworkotypeoo {
-  padding-right: 30px;
-}
-
-.cworkotype .ocworkotype::after {
-  content: '';
-  width: 100%;
-  display: inline-block;
-  overflow: hidden;
-  height: 0;
-}
-
-.cworkotype .ocworkotype::before {
-  content: ':';
-  /* overflow: hidden; */
-  height: 100%;
-  width: 6px;
-  position: absolute;
-  right: -4px;
-}
-
-.ocworkotyp {
-  position: relative;
-  left: 28px;
-  font-size: 0;
-}
-
-.ocworkotyp .ocworkotyptu {
-  color: rgba(42, 42, 42, 1);
-  font-size: 28px;
-  display: inline-block;
-  padding: 4px 10px;
-  text-align: center;
-  margin-right: 17px;
-  margin-bottom: 12px;
-  background: rgba(238, 237, 239, 1);
-  border-radius: 6px;
-}
-
-.ocworkotyp .ocworkotyptu:nth-last-child(1) {
-  margin-right: 0;
-}
-
-.distancev {
-  display: flex;
-  font-size: 0;
-  width: 70%;
-}
-
-.flex {
-  display: flex;
-  position: absolute;
-  right: -50px;
-  top: 0px;
-  width: 280px;
+    .newPreview-btn-btn {
+      margin: auto;
+      width: 500px;
+      height: 70px;
+      background: $color;
+      text-align: center;
+      line-height: 70px;
+      color: #FFFFFF;
+      border-radius: 5px;
+    }
+  }
 }

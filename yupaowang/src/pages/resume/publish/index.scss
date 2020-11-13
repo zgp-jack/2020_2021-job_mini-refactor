@@ -201,6 +201,17 @@ $commonMargin: 44px;
       .basic-content,
       .project-information,
       .professional-information{
+        .professional-information-noImage::before {
+          content: '';
+          width: 100px;
+          height: 100px;
+          position: absolute;
+          top: 0;
+          left: 0;
+          z-index: 10;
+          background-image: url('http://cdn.yupao.com/newyupao/images/newresume-status-nopass.png');
+          background-size: cover;
+        }
         padding: 20px $commonMargin;
         text-align: center;
         background-color:  #FFFFFF;
@@ -402,6 +413,7 @@ $commonMargin: 44px;
         position: absolute;
         top: 0;
         left: 0;
+        z-index: 10;
         background-image: url('http://cdn.yupao.com/newyupao/images/newresume-status-nopass.png');
         background-size: cover;
       }
@@ -530,8 +542,11 @@ $commonMargin: 44px;
         }
       }
       .preview-btn{
+        height: 100px;
         width: 50%;
-        padding: 29px 0;
+        // padding: 29px 0;
+        margin: auto;
+        line-height: 100px;
         text-align: center;
         font-size: 36px;
         color: #7D7D7D;
@@ -539,6 +554,24 @@ $commonMargin: 44px;
           display: inline-block;
         }
         .preview-img{
+          display: inline-block;
+          width: 36px;
+          height: 36px;
+          vertical-align: -6px;
+          margin-right: 15px;
+        }
+      }
+      .preview-btn-share{
+        height: 100px;
+        width: 50%;
+        text-align: center;
+        font-size: 36px;
+        color: #7D7D7D;
+        background: #FFFFFF;
+        .preview-share-btn {
+          display: inline-block;
+        }
+        .preview-img {
           display: inline-block;
           width: 36px;
           height: 36px;
