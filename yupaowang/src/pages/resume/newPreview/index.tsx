@@ -2,7 +2,7 @@ import Taro, { useRouter, useShareAppMessage, Config } from '@tarojs/taro'
 import { useResumeType } from '../../../pages/resume/publish/index.d'
 import { useSelector } from '@tarojs/redux'
 import { View, Image, Text, Button } from '@tarojs/components';
-import { IMGCDNURL, ISCANSHARE } from '../../../config'
+import { IMGCDNURL, ISCANSHARE,INDEXPATH } from '../../../config'
 import Imglist from '../../../components/imglist'
 import { getUserShareMessage } from '../../../utils/helper'
 import './index.scss'
@@ -10,7 +10,7 @@ import './index.scss'
 export default function NewPreview() {
   // 跳转传过来的参数
   const router: Taro.RouterInfo = useRouter()
-  let { show_tips, is_introduces } = router.params;
+  let { show_tips } = router.params;
   // 获取找活名片信息
   const resumeData: useResumeType = useSelector<any, useResumeType>(state => state.resumeData);
   const { info, introducesData,projectData,certificates,} = resumeData;
@@ -20,8 +20,10 @@ export default function NewPreview() {
   }
   // 设置当前页面的分享内容
   useShareAppMessage(() => {
+    let path: string = show_tips == '1' ? INDEXPATH : `/pages/resume/detail/index?uuid=${info.uuid}`
     return {
-      ...getUserShareMessage()
+      ...getUserShareMessage(),
+      path: path
     }
   })
   return(
@@ -48,14 +50,17 @@ export default function NewPreview() {
                   }
                 </View>
                 <View className='content'>
+                  {info.tel &&
                   <View className='craft'>
                     <Text className='craft-txt'>手机</Text>
                     <View className='craft-text'>{info.tel}</View>
-                  </View>
+                  </View>}
+                  {introducesData.hometown &&
                   <View className='craft'>
                     <Text className='craft-txt'>家乡</Text>
                     <View className='craft-text'>{introducesData.hometown}</View>
-                  </View>
+                  </View>}
+                  {info.miniInfoOccupations && info.miniInfoOccupations.length &&
                   <View className='craft'>
                     <Text className='craft-txt'>工种</Text>
                     <View className='craft-list'>
@@ -65,23 +70,28 @@ export default function NewPreview() {
                         ))}
                       </View>
                     </View>
-                  </View>
+                  </View>}
+              {info.experience && info.experience != '0' &&
                 <View className='craft'>
                   <Text className='craft-txt'>工龄</Text>
                   <View className='craft-text'>{info.experience}年</View>
-                </View>
+                </View>}
+                {introducesData.prof_degree_str &&
                 <View className='craft'>
                   <Text className='craft-txt'>熟练度</Text>
                   <View className='craft-text'>{introducesData.prof_degree_str}</View>
-                </View>
+                </View>}
+                {introducesData.type_str &&
                 <View className='craft'>
                   <Text className='craft-txt'>人员构成</Text>
                   <View className='craft-text'>{introducesData.type_str}</View>
-                </View>
+                </View>}
+                {info.address &&
                   <View className='craft'>
                     <Text className='craft-txt'>所在地区</Text>
                     <View className='craft-text'>{info.address}</View>
-                  </View>
+                </View>}
+                {introducesData.tags && introducesData.tags.length &&
                 <View className='craft'>
                   <Text className='craft-txt'>标签</Text>
                   <View className='craft-list'>
@@ -93,7 +103,7 @@ export default function NewPreview() {
                       ))}
                     </View>
                   </View>
-                </View>
+                </View>}
                 </View>
               </View>
             </View>
@@ -106,53 +116,6 @@ export default function NewPreview() {
             <View className='introduce'>{info.introduce}</View>
           </View>
         </View>
-        {is_introduces && is_introduces =='0' && 
-        <View className='content-personal-information'>
-          <View className='basic-imformation'>
-            <Image className='basic-description-img' src={`${IMGCDNURL}newresume-description.png`} />
-            <View className='basic-title'>人员信息</View>
-          </View>
-            <View className='basic-content'>
-            {info.check == '1' &&  show_tips == '1' &&
-                <Image className='audit' src={`${IMGCDNURL}lpy/audit.png `} />
-              }
-              <View className='content'>
-                <View className='craft'>
-                  <Text className='craft-txt'>工龄</Text>
-                  <View className='craft-text'>{info.experience}年</View>
-                </View>
-                <View className='craft'>
-                  <Text className='craft-txt'>家乡</Text>
-                  <View className='craft-text'>{introducesData.hometown}</View>
-                </View>
-                <View className='craft'>
-                  <Text className='craft-txt'>人员构成</Text>
-                  <View className='craft-text'>{introducesData.type_str}</View>
-                </View>
-                <View className='craft'>
-                  <Text className='craft-txt'>熟练度</Text>
-                  <View className='craft-text'>{introducesData.prof_degree_str}</View>
-                </View>
-                <View className='craft'>
-                  <Text className='craft-txt'>队伍人数</Text>
-                  <View className='craft-text'>{introducesData.number_people}</View>
-                </View>
-                <View className='craft'>
-                  <Text className='craft-txt'>标签</Text>
-                  <View className='craft-list'>
-                    <View className='craft-list-worker'>
-                      {introducesData.tags && introducesData.tags.map((v) => (
-                        <View className='craft-box' key={v.id}>
-                          {v.label_name}
-                        </View>
-                      ))}
-                    </View>
-                  </View>
-                </View>
-              </View>
-            </View>
-        </View>
-        }
         {projectData.length &&
         <View className='content-project-experience'>
           <View className='basic-imformation'>

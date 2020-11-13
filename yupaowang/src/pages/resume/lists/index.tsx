@@ -50,11 +50,10 @@ export default function ResumeLists() {
   const [searchData, setSearchData] = useState<SearchType>({
     page: 1,
     occupations: '',
-    province: userListChooseCity ? userListChooseCity.id : '',
     keywords: '',
     sort: 'newest',
     location: '',
-    area_id: '',
+    area_id: userListChooseCity ? userListChooseCity.id : '',
     type: '',
   })
 

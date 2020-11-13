@@ -408,7 +408,7 @@ export default function ResumePublish(){
             <View className='content-btn-box'>
               <View className='preview-btn'>
                 <Image className='preview-img' src={`${IMGCDNURL}newresume-lookuinfo.png`} />
-                  <View className='preview-share-btn' onClick={() => userRouteJump(`/pages/resume/newPreview/index?show_tips=${show_tips}&isModifyProject=${isModifyProject}&is_introduces=${is_introduces}&projectNum=${projectNum}&isModifySkill=${isModifySkill}&certificatesNum=${certificatesNum}`)}>预览</View>
+                  <View className='preview-share-btn' onClick={() => userRouteJump(`/pages/resume/newPreview/index?show_tips=${show_tips}`)}>预览</View>
               </View>
               <Button openType='share' className='preview-btn-share'>
                 {/* <View className='preview-btn'> */}
@@ -420,7 +420,7 @@ export default function ResumePublish(){
             : <View className='preview'>
               <View className='preview-box'>
                 <Image className='preview-img' src={`${IMGCDNURL}newresume-lookuinfo.png`} />
-                  <View className='preview-share-btn' onClick={() => userRouteJump(`/pages/resume/newPreview/index?show_tips=${show_tips}&isModifyProject=${isModifyProject}&is_introduces=${is_introduces}&projectNum=${projectNum}&isModifySkill=${isModifySkill}&certificatesNum=${certificatesNum}`)}>预览</View>
+                  <View className='preview-share-btn' onClick={() => userRouteJump(`/pages/resume/newPreview/index?show_tips=${show_tips}`)}>预览</View>
               </View>
             </View>
           }

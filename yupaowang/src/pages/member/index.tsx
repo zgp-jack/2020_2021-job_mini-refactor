@@ -48,7 +48,7 @@ export default function Member({memberIndex = 0}: MemberProps){
           avatar: data.member.headimgurl||'',
           phone: data.member.tel||'',
           pwd_status: data.member.pwd_status || '',
-          changeName: model && model.is_checking == 2 && model.member.is_check == '2' ? false : true
+          changeName: data.is_checking == 2 && data.member.is_check == '2' ? false : true
         }
         dispatch(setMemberInfo(value))
         setModel(data)

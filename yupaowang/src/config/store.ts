@@ -1,5 +1,7 @@
 // * 本文件为小程序内部缓存声明文件
 
+// 邀请人用户id
+export const REFID: string = 'refId'
 // 用户信息
 export const UserInfo: string = 'userInfo'
 // 城市数据 发布招工 首页都会用到

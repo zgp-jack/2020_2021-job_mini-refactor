@@ -76,7 +76,7 @@ export default function UserInfoIndex(){
 
   // 用户修改姓名
   const useEditName = () => {
-    if (!memberInfo.username) return
+    if (!memberInfo.changeName) return
     setShowModal(true)
   }
 

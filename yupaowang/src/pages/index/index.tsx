@@ -9,6 +9,7 @@ import Home from '../home'
 import Recruit from '../recruit/lists'
 import Resume from '../resume/lists'
 import Member from '../member'
+import { REFID } from '../../config/store'
 import './index.scss'
 
 export default function Index(){
@@ -17,7 +18,7 @@ export default function Index(){
 
   // 初始化页面参数
   const router: RouterInfo = useRouter()
-  const { type = RECRUIT } = router.params
+  const { type = RECRUIT, refId = '' } = router.params
   // 获取当前tabbar高亮值
   const tabKey: string = useSelector<any, string>(state=>state.tabbar.key)
   // 标记是否触发下拉刷新
@@ -34,6 +35,11 @@ export default function Index(){
   useDidShow(()=>{
     setShowIndex(showIndex+1)
   })
+
+  // 进入页面的时候 ，如果有邀请人，我们将邀请人id存入缓存中， 等待新用户授权时使用
+  useEffect(()=>{
+    if (refId) Taro.setStorageSync(REFID,refId)
+  },[refId])
 
   // 初始化底部显示页面
   useEffect(() => {

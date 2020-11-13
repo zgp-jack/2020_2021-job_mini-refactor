@@ -16,12 +16,16 @@ export default function UsedPublish() {
   const [showDrawer, setShowDrawer] = useState<boolean>(false)
   // 使用自定义验证码hook
   const { text, userGetCode } = useCode()
+  // 详情字数统计
+  const [num, setNum] = useState<number>(0)
 
   // 用户填写信息
   const userEnterFrom = (e: any, key: string) => {
     let reModel = JSON.parse(JSON.stringify(model))
-    reModel[key] = e.detail.value
+    let val: string = e.detail.value
+    reModel[key] = val
     setModel(reModel)
+    if (key == 'detail') setNum(val.length)
   }
 
   // 用户点击父级
@@ -184,8 +188,9 @@ export default function UsedPublish() {
                 value={ model.detail }
                 placeholder={ initModel&&initModel.placeholder }
                 onInput={(e) => userEnterFrom(e, 'detail')}
+                maxlength={500}
               ></Textarea>
-              <WordsTotal num={0} />
+              <WordsTotal num={num} />
             </View>
           </View>
           <View className='publish-recruit-btn' onClick={() => vaildPublishModelInfo() } >确认发布</View>

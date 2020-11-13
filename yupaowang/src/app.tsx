@@ -102,7 +102,7 @@ class App extends Component {
   componentDidMount() {
   }
 
-  componentDidShow() {
+  componentDidShow(e) {
   }
 
   componentDidHide() {

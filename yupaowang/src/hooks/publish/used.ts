@@ -199,7 +199,7 @@ export default function useUsedInfo(id: string){
       }
     }
     if (!isVaildVal(model.detail,15,500)) {
-      Msg('请正确输入5-500字的交易详情')
+      Msg('请正确输入15-500字的交易详情')
       return false
     }
 

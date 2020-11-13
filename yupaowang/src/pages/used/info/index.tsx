@@ -1,15 +1,22 @@
-import Taro, { useEffect, useRouter, RouterInfo, useState } from '@tarojs/taro'
+import Taro, { useEffect, useRouter, RouterInfo, useState, Config, useShareAppMessage } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
 import WechatNotice from '../../../components/wechat'
 import { getUsedInfo } from '../../../utils/request'
+import { getUserShareMessage } from '../../../utils/helper'
 import { ShowActionModal } from '../../../utils/msg'
 import { GetUsedInfoData } from '../../../utils/request/index.d'
 import './index.scss'
 
-export default function UserInfo(){
+export default function UsedInfo(){
   const router: RouterInfo = useRouter()
   const id: string = router.params.id
   const [model, setModel] = useState<GetUsedInfoData>()
+  // 设置用户分享信息
+  useShareAppMessage(()=>{
+    return {
+      ...getUserShareMessage()
+    }
+  })
   // 初始化二手交易信息
   useEffect(()=>{
     getUsedInfo(id).then((data)=>{
@@ -89,3 +96,7 @@ export default function UserInfo(){
     </View>
   )
 }
+
+UsedInfo.config = {
+  navigationBarTitleText: '二手交易详情'
+} as Config
