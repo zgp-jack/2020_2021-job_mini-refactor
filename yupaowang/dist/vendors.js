@@ -12513,6 +12513,8 @@ var SearchList = exports.SearchList = 'searchList';
 var UserLocation = exports.UserLocation = 'userLocation';
 // 找活名片info信息
 var Introinfo = exports.Introinfo = 'introinfo';
+// 用户发布填写发布信息
+var PublishData = exports.PublishData = 'publishData';
 
 /***/ }),
 
@@ -12586,6 +12588,24 @@ Object.defineProperty(exports, "__esModule", {
 });
 var GETDATA = exports.GETDATA = 'getdata';
 var SETDATA = exports.SETDATA = 'setdata';
+
+/***/ }),
+
+/***/ "./src/constants/publish.ts":
+/*!**********************************!*\
+  !*** ./src/constants/publish.ts ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var GETPUBLISHDATA = exports.GETPUBLISHDATA = 'getpublishdata';
+var SETPUBLISHDATA = exports.SETPUBLISHDATA = 'setpublishdata';
 
 /***/ }),
 

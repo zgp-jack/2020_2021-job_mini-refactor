@@ -1,5 +1,5 @@
 import Taro, { useState, useEffect } from '@tarojs/taro'
-import { UserLastPublishRecruitArea, publishConfigData, RecruitWorkInfo, RecruitPublishInfo} from '../../pages/recruit/index.d'
+import { UserLastPublishRecruitArea, PublishConfigData, RecruitWorkInfo, RecruitPublishInfo } from '../../pages/recruit/index.d'
 import { getPublishRecruitView, publishRecruitInfo } from '../../utils/request'
 import { InitRecruitView } from '../../pages/recruit/publish'
 import { UserLastPublishArea, UserLocationCity } from '../../config/store'
@@ -11,6 +11,7 @@ import { useSelector, useDispatch } from '@tarojs/redux'
 import { isVaildVal, isPhone } from '../../utils/v'
 import { setAreaInfo, setArea } from '../../actions/recruit'//获取发布招工信息action
 import { setPublishData } from '../../actions/publish'
+import { PublishData } from '../../config/store'
 
 export function usePublishData(InitParams: InitRecruitView){
   // 获取用户登录
@@ -25,8 +26,6 @@ export function usePublishData(InitParams: InitRecruitView){
   const [showProfession, setShowProssion] = useState<boolean>(false)
   // 招工详情的字数
   const [num, setNum] = useState<number>(0)
-  // 招工详情内容
-  const [content, setContent] = useState<string>('')
   // 备份手机号码
   const [phone, setPhone] = useState<string>('')
   // 备份当前数据 用于强制修改判断
@@ -41,7 +40,7 @@ export function usePublishData(InitParams: InitRecruitView){
       // 获取初始化发布招工数据，参数为{ type: type,infoId: id }
       if (res.errcode == 'ok') {
         //从发布招工请求中获取公共数据
-        let InitViewInfo: publishConfigData = {
+        let InitViewInfo: PublishConfigData = {
           classifyTree: res.classifyTree,
           mateData: res.mate_data,
           noMateData: res.not_mate_data,
@@ -50,7 +49,7 @@ export function usePublishData(InitParams: InitRecruitView){
           maxImageCount: res.typeTextArr.maxClassifyCount,
           placeholder: res.placeholder
         }
-        
+        // 修改发布招工获取的数据
         let initIssueModel: RecruitWorkInfo = {
           title: res.model.title || '',
           user_mobile: res.model.user_mobile || '',
@@ -70,8 +69,10 @@ export function usePublishData(InitParams: InitRecruitView){
           is_check: res.model.hasOwnProperty('is_check') ? res.model.is_check : 1,
           check_fail_msg: res.model.check_fail_msg || ''
         }
+        
         // 将数据存到redux中
         dispatch(setPublishData({ ...InitViewInfo }))
+  
         // 数据保存到model中
         setModel(initIssueModel)
         // 初始化用户区域数据
@@ -98,30 +99,30 @@ export function usePublishData(InitParams: InitRecruitView){
   // 设置缓存填写信息
   function setEnterInfo (name:string, data:any) {
     let regx:RegExp = /1[3-9]\d{9}/g
-    let key:string = 'jiSuData'
-    let jiSuData = Taro.getStorageSync(key)
+    let key:string = PublishData
+    let issueData = Taro.getStorageSync(key)
     if (name === "phone") {
       if (regx.test(data)) {
-        if (jiSuData) {
-          jiSuData[name] = data
+        if (issueData) {
+          issueData[name] = data
         } else {
-          jiSuData = {}
-          jiSuData[name] = data
+          issueData = {}
+          issueData[name] = data
         }
       } else {
-        if (jiSuData) {
-          jiSuData[name] = ""
+        if (issueData) {
+          issueData[name] = ""
         }
       }
     } else {
-      if (jiSuData) {
-        jiSuData[name] = data
+      if (issueData) {
+        issueData[name] = data
       } else {
-        jiSuData = {}
-        jiSuData[name] = data
+        issueData = {}
+        issueData[name] = data
       }
     }
-    Taro.setStorageSync(key, jiSuData)
+    Taro.setStorageSync(key, issueData)
   }
   // 初始化用户区域数据
   function initUserAreaInfo(data: any) {
@@ -246,78 +247,78 @@ export function usePublishData(InitParams: InitRecruitView){
     })
   }
   // 发布招工详情
-  publishRecurit: function () {
-    let that = this
-    // let vali = v.v.new();
-    if (content == "") {
-      Msg('请输入招工详情。')
-      return
-    }
-    if (!isVaildVal(content, 3)) {
-      Msg('请正确输入3~500字招工详情。')
-      return;
-    }
-    if (!isVaildVal(content) && (content.length > 2)) {
-      Msg('请正确输入3~请正确输入3~500字招工详情,必须含有汉字。')
-      return
-    }
-    if (phone == "") {
-      Msg('请正确输入3~请输入联系电话。')
-      // this.setData({
-      //   showTel: true
-      // })
-      return false
-    }
-    if (phone && !isPhone(phone)) {
-      Msg('请正确输入11位联系电话。')
-      return false;
-    }
-    if (phone == "18349296434") {
-      Msg('该手机号暂不支持发布招工信息，请重新输入。')
-      return false;
-    }
-    app.appRequestAction({
-      url: 'fast-issue/issue/',
-      params: {
-        content,
-        phone,
-        paid_issue: e.detail ? e.detail : 0
-      },
-      way: 'POST',
-      success: function (res) {
-        if (res.data.errcode == "ok") {
-          let mydata = res.data.data
-          app.globalData.fastToken = mydata.token
-          if (mydata.checked) {
-            wx.navigateTo({
-              url: '/pages/fast/area/area?token=' + mydata.token,
-            })
-            that.setEnterInfo("phone", '')
-          } else {
-            wx.navigateTo({
-              url: '/pages/fast/code/code?token=' + mydata.token + '&tel=' + phone,
-            })
-          }
-        }
-        if (res.data.errcode == "unusable") {
-          wx.showModal({
-            title: '提示',
-            content: res.data.errmsg,
-            showCancel: true,
-            cancelText: "知道了",
-            confirmText: "联系客服",
-            success: function (res) {
-              if (res.confirm) {
-                wx.makePhoneCall({
-                  phoneNumber: app.globalData.serverPhone
-                })
-              }
-            }
-          })
-        }
-      }
-    })
-  },
+  // publishRecurit: function () {
+  //   let that = this
+  //   // let vali = v.v.new();
+  //   if (content == "") {
+  //     Msg('请输入招工详情。')
+  //     return
+  //   }
+  //   if (!isVaildVal(content, 3)) {
+  //     Msg('请正确输入3~500字招工详情。')
+  //     return;
+  //   }
+  //   if (!isVaildVal(content) && (content.length > 2)) {
+  //     Msg('请正确输入3~请正确输入3~500字招工详情,必须含有汉字。')
+  //     return
+  //   }
+  //   if (phone == "") {
+  //     Msg('请正确输入3~请输入联系电话。')
+  //     // this.setData({
+  //     //   showTel: true
+  //     // })
+  //     return false
+  //   }
+  //   if (phone && !isPhone(phone)) {
+  //     Msg('请正确输入11位联系电话。')
+  //     return false;
+  //   }
+  //   if (phone == "18349296434") {
+  //     Msg('该手机号暂不支持发布招工信息，请重新输入。')
+  //     return false;
+  //   }
+  //   app.appRequestAction({
+  //     url: 'fast-issue/issue/',
+  //     params: {
+  //       content,
+  //       phone,
+  //       paid_issue: e.detail ? e.detail : 0
+  //     },
+  //     way: 'POST',
+  //     success: function (res) {
+  //       if (res.data.errcode == "ok") {
+  //         let mydata = res.data.data
+  //         app.globalData.fastToken = mydata.token
+  //         if (mydata.checked) {
+  //           wx.navigateTo({
+  //             url: '/pages/fast/area/area?token=' + mydata.token,
+  //           })
+  //           that.setEnterInfo("phone", '')
+  //         } else {
+  //           wx.navigateTo({
+  //             url: '/pages/fast/code/code?token=' + mydata.token + '&tel=' + phone,
+  //           })
+  //         }
+  //       }
+  //       if (res.data.errcode == "unusable") {
+  //         wx.showModal({
+  //           title: '提示',
+  //           content: res.data.errmsg,
+  //           showCancel: true,
+  //           cancelText: "知道了",
+  //           confirmText: "联系客服",
+  //           success: function (res) {
+  //             if (res.confirm) {
+  //               wx.makePhoneCall({
+  //                 phoneNumber: app.globalData.serverPhone
+  //               })
+  //             }
+  //           }
+  //         })
+  //       }
+  //     }
+  //   })
+  // },
   
   return {
     model,

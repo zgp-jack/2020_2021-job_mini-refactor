@@ -99,3 +99,8 @@ export interface publishConfigData {
   maxImageCount: number,
   placeholder: string
 }
+
+export interface fastIssueData{
+  content: string,
+  phone: string
+}
