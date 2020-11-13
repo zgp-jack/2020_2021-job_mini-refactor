@@ -356,7 +356,7 @@ export default function ResumePublish(){
           </View>
           {/* 是否填写过技能证书 */}
           {certificates.length ?
-            <View className={certificates[0].check == '1' ? 'professional-information' : 'professional-information-noImage professional-information'}>
+              <View className={certificates[0].check == '0' ? 'professional-information-noImage professional-information' : 'professional-information'}>
               <View className='content-information'>
                 <View>
                 <View className='information'>

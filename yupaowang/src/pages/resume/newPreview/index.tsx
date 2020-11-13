@@ -24,7 +24,6 @@ export default function NewPreview() {
       ...getUserShareMessage()
     }
   })
-  console.error(info,'info')
   return(
     <View className='resume-container'>
       <View className='resume-tips-header'>注：分享名片 让您的名片排名更靠前</View>
@@ -34,8 +33,9 @@ export default function NewPreview() {
             <Image className='basic-jbinfo' src={`${IMGCDNURL}lpy/jichu.png`} />
             <View className='basic-title'>基础信息</View>
           </View>
-          <View className={info.check == '0' ? 'basic-content professional-information-noImage' :'basic-content'}>
-                <View className='content-information'>
+          <View className='basic-content' >
+            {info.check == '0' && <View className='professional-information-noImage'></View>}
+            <View className='content-information'>
                   <View className='information'>
                     <Image className='basic-user-img' src={info.headerimg} />
                     <View className='infor'>
@@ -196,7 +196,7 @@ export default function NewPreview() {
             <View className='basic-title'>职业技能</View>
           </View>
           {/* 是否填写过技能证书 */}
-            <View className={certificates[0].check == '1' ? 'professional-information' : 'professional-information-noImage professional-information'}>
+          <View className={certificates[0].check == '0' ? 'professional-information professional-information-noImage' : 'professional-information'}>
               <View className='content-information'>
                 <View>
                   <View className='information'>
