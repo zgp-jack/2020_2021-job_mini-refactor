@@ -1,6 +1,6 @@
 import Taro, { useEffect, useState, Config } from "@tarojs/taro";
 import { View, Text, Image, Block } from "@tarojs/components";
-import { IMGCDNURL, SERVERPHONE } from "../../config";
+import { IMGCDNURL, SERVERPHONE, INVITEPATH } from "../../config";
 import { userJumpPage } from "../../utils/helper";
 import "./index.scss";
 import Auth from '../../components/auth'
@@ -50,7 +50,7 @@ export default function GetIntegral() {
           </View>
           <View
             className="getintegral-item-btn"
-            onClick={() => userJumpPage("/pages/invite/index")}
+              onClick={() => userJumpPage(INVITEPATH)}
           >
             去邀请
           </View>

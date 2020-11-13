@@ -263,6 +263,8 @@ export default function ResumeDetail() {
             }
           })
         })
+      }else{
+        Msg(res.errmsg)
       }
     })
   }

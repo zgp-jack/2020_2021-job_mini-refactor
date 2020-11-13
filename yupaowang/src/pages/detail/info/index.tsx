@@ -602,7 +602,7 @@ export default function DetailInfoPage() {
             <View>
               {resCode === 'end' ? <Button className='detailInfo-footer-content-box-button'>已招到</Button> : (editPhone ?
                 <Button className='detailInfo-footer-content-box-button' onClick={() => jobGetTel()}>查看完整电话</Button> :
-                <Button className='detailInfo-footer-content-box-button' onClick={() => { Taro.makePhoneCall({ phoneNumber: data.tel_str }) }}>拨打电话</Button>)}
+                <Button className='detailInfo-footer-content-box-button' onClick={() => { Taro.makePhoneCall({ phoneNumber: phone }) }}>拨打电话</Button>)}
               {
               }
             </View>

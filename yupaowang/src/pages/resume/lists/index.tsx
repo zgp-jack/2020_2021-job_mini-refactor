@@ -13,6 +13,7 @@ import {UserListChooseCity} from '../../../config/store'
 import { getResumeList } from '../../../utils/request'
 import { PUBLISHRESUME } from '../../../config'
 import './index.scss'
+import Msg from '../../../utils/msg'
 
 export default function ResumeLists() {
 
@@ -72,16 +73,20 @@ export default function ResumeLists() {
   // * 请求列表数据
   useEffect(() => {
     getResumeList({...searchData, ...normalField}).then(res => {
-      let mydata = res.data
-      if (mydata.list && mydata.list.length) {
-        let {has_sort_flag = hasSortFlag, has_time = hasTime, has_top = hasTop, last_sort_flag_pos = lastSortFlagPos, last_normal_pos = lastNormalPos, last_time_pos = lastTimePos} = mydata
-        setNormalField({has_sort_flag, has_time, has_top, last_sort_flag_pos, last_normal_pos, last_time_pos})
+      if(res.errcode == 'ok'){
+        let mydata = res.data
+        if (mydata.list && mydata.list.length) {
+          let { has_sort_flag = hasSortFlag, has_time = hasTime, has_top = hasTop, last_sort_flag_pos = lastSortFlagPos, last_normal_pos = lastNormalPos, last_time_pos = lastTimePos } = mydata
+          setNormalField({ has_sort_flag, has_time, has_top, last_sort_flag_pos, last_normal_pos, last_time_pos })
+        }
+        if (mydata.list && !mydata.list.length) setHasMore(false)
+        Taro.hideNavigationBarLoading()
+        if (searchData.page === 1) setLists([[...mydata.list]])
+        else setLists([...lists, [...mydata.list]])
+        if (refresh) setRefresh(false)
+      }else{
+        Msg(res.errmsg)
       }
-      if (mydata.list && !mydata.list.length) setHasMore(false)
-      Taro.hideNavigationBarLoading()
-      if (searchData.page === 1) setLists([[...mydata.list]])
-      else setLists([...lists, [...mydata.list]])
-      if (refresh) setRefresh(false)
     })
   }, [searchData])
 

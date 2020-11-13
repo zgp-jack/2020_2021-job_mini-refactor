@@ -273,6 +273,8 @@ export default function AddResumeInfo() {
                 Taro.navigateBack()
               }
             })
+          }else{
+            Msg(res.errmsg)
           }
         })
       }

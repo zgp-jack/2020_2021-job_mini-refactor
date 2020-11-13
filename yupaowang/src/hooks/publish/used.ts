@@ -199,7 +199,7 @@ export default function useUsedInfo(id: string){
         }
       })
     }).catch(()=>{
-      ShowActionModal(`网络错误，发布失败`)
+      ShowActionModal({ msg: `网络错误，发布失败`})
     })
   }
 

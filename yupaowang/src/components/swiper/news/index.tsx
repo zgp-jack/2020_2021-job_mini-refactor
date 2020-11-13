@@ -15,7 +15,7 @@ export default function SwiperNews({ data }: NormalProps<BannerNoticeNotice>){
       indicatorDots={swiper.indicatorDots}
       autoplay={swiper.autoplay}>
       {swiper.lists.map((item) => (
-        <SwiperItem className='home-swipernews-item' key={item.id} onClick={()=>userJumpPage(`/subpackage/pages/notice/index?id=${item.id}`)}>
+        <SwiperItem className='home-swipernews-item' key={item.id} onClick={()=>userJumpPage(`/pages/static/notice/index?id=${item.id}`)}>
           <View className='home-swipernews-text overwords'>{ item.title }</View>
         </SwiperItem>
       ))}
