@@ -133,6 +133,25 @@ _taroTt2.default.initPxTransform({
 
 /***/ }),
 
+/***/ "./src/constants/publish.ts":
+/*!**********************************!*\
+  !*** ./src/constants/publish.ts ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/*
+ * @Author: jsxin
+ * @Date: 2020-11-13 17:31:15
+ * @LastEditors: jsxin
+ * @LastEditTime: 2020-11-13 17:31:16
+ * @Description:
+ */
+
+
+/***/ }),
+
 /***/ "./src/reducers/filter_classify.ts":
 /*!*****************************************!*\
   !*** ./src/reducers/filter_classify.ts ***!
@@ -235,9 +254,14 @@ var _resume_addinfo = __webpack_require__(/*! ./resume_addinfo */ "./src/reducer
 
 var _resume_addinfo2 = _interopRequireDefault(_resume_addinfo);
 
+var _publish = __webpack_require__(/*! ./publish */ "./src/reducers/publish.ts");
+
+var _publish2 = _interopRequireDefault(_publish);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 //合并reducer
+//发布招工reducer
 exports.default = (0, _redux.combineReducers)({
   tabbar: _tabbar2.default,
   WechatNotice: _wechat_notice2.default,
@@ -250,8 +274,10 @@ exports.default = (0, _redux.combineReducers)({
   MyArea: _recruit.MyArea,
   member: _member2.default,
   realname: _realname2.default,
-  resumeAddInfo: _resume_addinfo2.default
-}); //发布招工reducer
+  resumeAddInfo: _resume_addinfo2.default,
+  PositionStatus: _recruit.PositionStatus,
+  publishData: _publish2.default
+});
 
 /***/ }),
 
@@ -376,6 +402,51 @@ function Personnel() {
       return state;
     case _personnel.SETDATA:
       state = _extends({}, state, action.data);
+      return state;
+    default:
+      return state;
+  }
+}
+
+/***/ }),
+
+/***/ "./src/reducers/publish.ts":
+/*!*********************************!*\
+  !*** ./src/reducers/publish.ts ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = MyAreaInfo;
+
+var _publish = __webpack_require__(/*! ../constants/publish */ "./src/constants/publish.ts");
+
+//定义发布招工获取设置区域信息的action
+// 默认发布招工state数据
+var DEFAULT_STATE_PUBLISHDATA = {
+  classifyTree: [],
+  mateData: [],
+  noMateData: [],
+  user_mobile: '',
+  maxClassifyCount: 0,
+  maxImageCount: 0,
+  placeholder: ''
+};
+function MyAreaInfo() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : DEFAULT_STATE_PUBLISHDATA;
+  var action = arguments[1];
+
+  switch (action.type) {
+    case _publish.GETPUBLISHDATA:
+      return state;
+    case _publish.SETPUBLISHDATA:
+      state = action.data;
       return state;
     default:
       return state;

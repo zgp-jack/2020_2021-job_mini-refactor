@@ -1,11 +1,17 @@
-import Taro, { Config } from '@tarojs/taro'
-import { View, Textarea, Input, Image } from '@tarojs/components'
+import Taro, { useState, Config } from '@tarojs/taro'
+import { View, Textarea, Input } from '@tarojs/components'
 import WordsTotal from '../../../../components/wordstotal'
-import { useState } from '@tarojs/taro'
+import { useSelector } from '@tarojs/redux'
 import './index.scss'
 
 
 export default function FastIssue() {
+  // 招工详情内容
+  const content = useState<string>('')
+  // 用户手机号码
+  const phone = useState<string>('')
+  // 获取用户信息
+  const login = useSelector<any, boolean>(state => state.User['login'])
 
   const userEnterFrom = (e: any, key: string) => {
     const value: string = e.detail.value

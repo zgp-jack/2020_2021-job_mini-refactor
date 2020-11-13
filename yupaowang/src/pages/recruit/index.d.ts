@@ -69,3 +69,10 @@ export interface UserLastPublishRecruitArea {
   title: string,
   info: string
 }
+
+
+// 初始化发布招工获取信息类型
+export interface InitRecruitView {
+  type: string,
+  infoId: string
+}

@@ -1,3 +1,4 @@
+import { MemberInfo } from './index.d';
 export interface Result {
   errcode: string,
   errmsg: string
@@ -1287,6 +1288,32 @@ export interface filterClassifyDataResult{
   staffTree: filterClassifyResultStaffTree[],
   jobListType: filterClassifyResultJoblistType[],
   resumeListType: filterClassifyResultJoblistType[]
+}
+// 发布招工匹配库数据
+export interface mateDataItem {
+  keywords: string,
+  name: string,
+  occupation_id: string
+}
+// 发布招工会员用户数据
+export interface memberData{
+  check_degree: string,
+  headimgurl: string,
+  id: string,
+  is_check: string,
+  status: string,
+  tel: string,
+  username: string,
+  uuid: string
+}
+// 获取发布招工、快速发布、急速发布的配置数据
+export interface publishConfigData{
+  classifyTree: filterClassifyResultClassTree[],
+  mateData: Array<Array<mateDataItem>>,
+  noMateData: Array<mateDataItem>,
+  memberInfo: memberData,
+  maxClassifyCount: number,
+  maxImageCount: number
 }
 
 // 筛选工种数据父类
