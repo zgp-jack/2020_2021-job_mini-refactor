@@ -238,6 +238,7 @@ $commonMargin: 44px;
       .basic-content,
       .project-information,
       .professional-information {
+        position: relative;
         .professional-information-noImage{
           content: '';
           width: 100px;
