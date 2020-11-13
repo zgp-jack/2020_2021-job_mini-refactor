@@ -1,0 +1,1 @@
+export const SET_RECRUIT_TOP_AREA: string = 'set_recruit_top_area'

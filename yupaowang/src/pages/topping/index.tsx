@@ -4,6 +4,8 @@ import { jobTopConfigAction, jobDoTopAction, jobGetTopAreasAction, jobChangeTopA
 import { SERVERPHONE, IMGCDNURL  } from '../../config'
 import { UserInfo } from '../../config/store'
 import Msg from '../../utils/msg'
+import setRecruitTopArea from '../../actions/recruit_top'
+import { useDispatch, useSelector } from '@tarojs/redux'
 import './index.scss'
 
 interface Distruction{
@@ -50,6 +52,8 @@ interface BasicsType{
 export const contextItem = createContext<Distruction>({} as Distruction)
 
 export default function Topping() {
+  const dispatch = useDispatch()
+  const AreParams = useSelector<any, ParamsType>(store => store.recruitTop['AreParams'])
   const router: Taro.RouterInfo = useRouter();
   let { id, type, rec, areaData, endTimes, endTimeStr } = router.params;
   // 获取userInfo
@@ -99,6 +103,12 @@ export default function Topping() {
     max_city:0,
     max_province:0,
   })
+
+  // 当redux更新后 ，立即更新视图区域
+  useEffect(() => { 
+    setParams({ ...AreParams})
+    calcPrice(AreParams.city, AreParams.province, AreParams.whole)
+  }, [AreParams])
   // 修改超过最大就显示消耗积分
   useEffect(()=>{
     if(type){
@@ -110,6 +120,7 @@ export default function Topping() {
         jobGetTopAreasAction(val).then(res=>{
           if(res.errcode === 'ok'){
             setParams({city:res.data.top_city,province:res.data.top_province,whole:res.data.top_country})
+            dispatch(setRecruitTopArea({ city: res.data.top_city, province: res.data.top_province, whole: res.data.top_country }))
             setEndTime(res.data.end_time_string)
             setEnd(res.data.end_time)
             setMaxNum(res.data.max_price)
@@ -135,8 +146,8 @@ export default function Topping() {
         if (res.errcode === 'ok') {
         setData({top_rules:res.data.top_rules})
         let array: string[] = []
-        for (let i = 0; i < res.data.max_top_days; i++) {
-          array.push(i + 1 + "天")
+        for (let i = 0; i < res.data.days.length; i++) {
+          array.push(i  + "天")
         }
         if(type){
           if (areaData){
@@ -161,6 +172,7 @@ export default function Topping() {
               maxPrice = recDay * res.data.country_integral
             }
             setParams({ city, province, whole})
+            dispatch(setRecruitTopArea({ city, province, whole }))
             setEndTime(endTimeStr)
             setEnd(parseInt(endTimes))
             setMaxNum(maxPrice)
@@ -185,8 +197,9 @@ export default function Topping() {
           setData({ top_rules: res.data.top_rules })
           setCity({ max_city: res.data.max_city, max_province: res.data.max_province })
           let array: string[] = []
-          for (let i = 0; i < res.data.max_top_days; i++) {
-            array.push(i + 1 + "天")
+          let daysarr: string[] = res.data.days
+          for (let i = 0; i < daysarr.length; i++) {
+            array.push(daysarr[i] + "天")
           }
           setList(array)
         }else{
@@ -517,7 +530,8 @@ export default function Topping() {
   }
   // 传递方法
   const transferFun = ({ city, province, whole })=>{
-    setParams({ city, province, whole });
+    dispatch(setRecruitTopArea({ city, province, whole }))
+    setParams({ city, province, whole })
     calcPrice(city, province, whole);
   }
   const calcPrice = (city, province, whole) => {
@@ -598,13 +612,7 @@ export default function Topping() {
       }
     }
   }
-  // 需要传递的值
-  const value: Distruction = {
-    AreParams: params,
-    setAreParams: (city: areDataChildrenType[], province: areDataChildrenType[], whole: areDataChildrenType[], ) => transferFun({ city, province, whole }),
-    // provinceParams: province,
-    // setProvinceParams: (province: areDataChildrenType[]) => modifyFun(province)
-  }
+
   const modifyFun = (province)=>{
     setProvince(province);
     // 设置积分
@@ -629,6 +637,7 @@ export default function Topping() {
           }
         })
         setParams({ city: params.city, province: params.province, whole: params.whole })
+        dispatch(setRecruitTopArea({ city: params.city, province: params.province, whole: params.whole }))
       }
     }
     if(v.pid === '1'){
@@ -638,6 +647,7 @@ export default function Topping() {
         }
       })
       setParams({ city:params.city,province:params.province,whole:params.whole})
+      dispatch(setRecruitTopArea({ city: params.city, province: params.province, whole: params.whole }))
     }else if(v.pid === '0'){
       params.whole.map((val, i) => {
         if (val.id === v.id) {
@@ -645,6 +655,7 @@ export default function Topping() {
         }
       })
       setParams({ city: params.city, province: params.province, whole: params.whole })
+      dispatch(setRecruitTopArea({ city: params.city, province: params.province, whole: params.whole }))
     }else{
       params.city.map((val, i) => {
         if (val.id === v.id) {
@@ -652,6 +663,7 @@ export default function Topping() {
         }
       })
       setParams({ city: params.city, province: params.province,whole:params.whole })
+      dispatch(setRecruitTopArea({ city: params.city, province: params.province, whole: params.whole }))
     }
     // 积分 
     // 省市大于原来的省市就改变，不然就是直接最大积分
@@ -870,7 +882,6 @@ export default function Topping() {
     }
   }
   return(
-    <contextItem.Provider value={value}>
     <View className='topping'>
       <View className='topping-title'>当前选择置顶范围：</View>
       <View className='topping-list-box'>
@@ -981,7 +992,6 @@ export default function Topping() {
         {/* } */}
       </View>
     </View>
-    </contextItem.Provider>
   )
 }
 
