@@ -13192,7 +13192,6 @@ function useResume() {
             projectItem[0].completion_timeTitle = 'zhijin';
           }
         }
-        console.error(projectItem, 'projectItemprojectItem');
         setProjectData([].concat(_toConsumableArray(projectItem)));
         // 是否有人员信息
         setIs_introduces(res.data.is_introduces);
