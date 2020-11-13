@@ -1,4 +1,4 @@
-import Taro, { useEffect, useState } from '@tarojs/taro'
+import Taro, { Config, useEffect, useState } from '@tarojs/taro'
 import { View, Text, Image, Input } from '@tarojs/components'
 import { getAllAreas, checkAdcodeValid } from '../../../utils/request'
 import { AllAreasDataItem } from '../../../utils/request/index.d'
@@ -268,3 +268,7 @@ export default function RecruitMap(){
     </View>
   )
 }
+
+RecruitMap.config = {
+  navigationBarTitleText: '选择发布地址'
+} as Config

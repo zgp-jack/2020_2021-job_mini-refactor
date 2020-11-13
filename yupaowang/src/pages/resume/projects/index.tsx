@@ -47,7 +47,7 @@ export default function Projects(){
 }
 
 Projects.config = {
-  navigationBarTitleText: '技能证书列表',
+  navigationBarTitleText: '项目经验列表',
   navigationBarBackgroundColor: '#0099ff',
   navigationBarTextStyle: 'white',
   backgroundTextStyle: "dark"

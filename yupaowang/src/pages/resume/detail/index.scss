@@ -611,8 +611,8 @@
 }
 .workotextone-address-img{
   margin-right: 10px;
-  width: 24px;
-  height: 36px;
+  width: 20px;
+  height: 28px;
   display: inline-block;
   position: relative;
 }
@@ -775,4 +775,9 @@
   font-size: 26px;
   color: #343434;
   font-weight: bold
+}
+.map-distance-info{
+  position: absolute;
+  font-size: 28px;
+  right: -15px;
 }

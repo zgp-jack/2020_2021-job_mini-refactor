@@ -176,33 +176,33 @@ export default function usePublishViewInfo(InitParams: InitRecruitView){
     let data = getPublishedInfo()
     if (!data) return
     if (!isVaildVal(data.title, 3)){
-      Msg('请正确输入3~12字中文标题!')
+      ShowActionModal({ msg: '请正确输入3~12字中文标题!' })
       return
     }
     if (!data.classifies.length){
-      Msg('请选择您的工种!')
+      ShowActionModal({ msg: '请选择您的工种!' })
       return
     }
     if (!data.province_id && !data.address) {
-      Msg('请选择您的详细地址!')
+      ShowActionModal({ msg: '请选择您的详细地址!' })
       return
     }
     if (!isVaildVal(data.user_name, 2)) {
-      Msg('请正确输入2~6字中文姓名!')
+      ShowActionModal({ msg: '请正确输入2~6字中文姓名!' })
       return
     }
     if (!isPhone(data.user_mobile)) {
-      Msg('手机号输入有误!')
+      ShowActionModal({ msg: '手机号输入有误!' })
       return
     }
     if(phone != data.user_mobile){
       if (!data.code){
-        Msg('请输入正确的验证码!')
+        ShowActionModal({ msg: '请输入正确的验证码!' })
         return
       }
     }
     if (!isVaildVal(data.detail, 15)) {
-      Msg('请正确输入15~500字招工详情!')
+      ShowActionModal({ msg: '请正确输入15~500字招工详情!'})
       return
     }
     // 如果是审核失败 那么久必须强制修改

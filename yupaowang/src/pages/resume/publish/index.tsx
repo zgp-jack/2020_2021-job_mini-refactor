@@ -173,7 +173,7 @@ export default function ResumePublish(){
             <View className='basic-content'>
               <View className='content-information'>
                 <View className='information'>
-                  <Image className='basic-user-img' src={infoData.img} />
+                  <Image className='basic-user-img' src={infoData.headerimg} />
                   <View className='infor'>
                     <View className='name'>{infoData.username}</View>
                     <View className='sexage'>{infoData.gender == '1' ? '男' : '女'}  {infoData.age}  {infoData.nation}</View>
