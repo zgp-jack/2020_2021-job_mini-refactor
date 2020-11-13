@@ -249,6 +249,7 @@ export default function usePublishViewInfo(InitParams: InitRecruitView){
     userPublishRecruitAction,
     num,
     setNum,
-    phone
+    phone,
+    setPhone
   }
 }

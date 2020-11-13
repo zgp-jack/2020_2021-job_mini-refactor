@@ -141,14 +141,13 @@ _taroTt2.default.initPxTransform({
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/*
- * @Author: jsxin
- * @Date: 2020-11-13 17:31:15
- * @LastEditors: jsxin
- * @LastEditTime: 2020-11-13 17:31:16
- * @Description:
- */
 
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var GETPUBLISHDATA = exports.GETPUBLISHDATA = 'getpublishdata';
+var SETPUBLISHDATA = exports.SETPUBLISHDATA = 'setpublishdata';
 
 /***/ }),
 

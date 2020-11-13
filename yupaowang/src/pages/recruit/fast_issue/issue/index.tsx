@@ -2,16 +2,16 @@ import Taro, { useState, Config } from '@tarojs/taro'
 import { View, Textarea, Input } from '@tarojs/components'
 import WordsTotal from '../../../../components/wordstotal'
 import { useSelector } from '@tarojs/redux'
+import { InitRecruitView } from '../../../recruit/index.d'
 import './index.scss'
 
 
 export default function FastIssue() {
-  // 招工详情内容
-  const content = useState<string>('')
-  // 用户手机号码
-  const phone = useState<string>('')
-  // 获取用户信息
-  const login = useSelector<any, boolean>(state => state.User['login'])
+  const id: string = ''
+  const type: string = 'job'
+  const InitParams: InitRecruitView = { type: type, infoId: id }
+  // 初始化当前信息
+  const { showUpload, setShowUpload, showProfession, setShowProssion, userPublishRecruitAction, num, setNum, phone } = usePublishViewInfo(InitParams)
 
   const userEnterFrom = (e: any, key: string) => {
     const value: string = e.detail.value

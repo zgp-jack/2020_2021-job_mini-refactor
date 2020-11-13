@@ -76,3 +76,26 @@ export interface InitRecruitView {
   type: string,
   infoId: string
 }
+// 急速发布或者修改急速发布数据信息
+export interface RecruitWorkInfo extends RecruitBaseInfo{
+  view_images: RecruitImageModel[],
+  is_check: number,
+  check_fail_msg: string
+}
+// 发布招工匹配库数据
+export interface mateDataItem {
+  keywords: string,
+  name: string,
+  occupation_id: string
+}
+
+// 获取发布招工、快速发布、急速发布的配置数据
+export interface publishConfigData {
+  classifyTree: ProfessionRecruitData[],
+  mateData: Array<Array<mateDataItem>>,
+  noMateData: Array<mateDataItem>,
+  user_mobile: string,
+  maxClassifyCount: number,
+  maxImageCount: number,
+  placeholder: string
+}

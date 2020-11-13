@@ -1,7 +1,2 @@
-/*
- * @Author: jsxin
- * @Date: 2020-11-13 17:31:15
- * @LastEditors: jsxin
- * @LastEditTime: 2020-11-13 17:31:16
- * @Description: 
- */
+export const GETPUBLISHDATA: string = 'getpublishdata'
+export const SETPUBLISHDATA: string = 'setpublishdata'

@@ -315,7 +315,8 @@ function usePublishViewInfo(InitParams) {
     userPublishRecruitAction: userPublishRecruitAction,
     num: num,
     setNum: setNum,
-    phone: phone
+    phone: phone,
+    setPhone: setPhone
   };
 }
 
