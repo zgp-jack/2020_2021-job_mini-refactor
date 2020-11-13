@@ -1,4 +1,4 @@
-import Taro, { Config, useState, useRouter, useDidShow, useEffect } from '@tarojs/taro'
+import Taro, { Config, useState, useRouter, useDidShow, useEffect, useShareAppMessage } from '@tarojs/taro'
 import { View, Text, Image, Icon, Button } from '@tarojs/components'
 import { jobInfoAction, publishComplainAction, jobGetTelAction, recruitListCancelCollectionAction, jobEndStatusAction, jobUpdateTopStatusAction, jobNoUserInfoAction, jobRecommendListAction } from '../../../utils/request/index'
 import WechatNotice from '../../../components/wechat'
@@ -6,6 +6,7 @@ import { IMGCDNURL, SERVERPHONE, AUTHPATH, CODEAUTHPATH, ISCANSHARE} from '../..
 import { useSelector } from '@tarojs/redux'
 import { isVaildVal } from '../../../utils/v'
 import  Report  from '../../../components/report'
+import { getUserShareMessage } from '../../../utils/helper'
 import Msg, { showModalTip } from '../../../utils/msg'
 import { SubscribeToNews } from '../../../utils/subscribeToNews';
 import  CollectionRecruitList from '../../../components/recommendList/index'
@@ -122,8 +123,9 @@ export default function DetailInfoPage() {
     // let userInfo = Taro.getStorageSync("userInfo");
     // login
     // 用户没有认证
-    if (!login){
-      jobNoUserInfoAction(params).then(res=>{
+    let result = login ? jobInfoAction(params) : jobNoUserInfoAction(params)
+    result.then(res => {
+      detailGetTelAction(res,()=>{
         setRefresh(false)
         setData(res.result);
         setPhone(res.result.tel_str);
@@ -139,34 +141,17 @@ export default function DetailInfoPage() {
           setResCode(res.errcode)
         }
       })
-    }else{
-      jobInfoAction(params).then(res => {
-        // let paramsObj = {
-        //   page:1,
-        //   type:1,
-        //   area_id: res.result.city_id,
-        //   job_ids: res.result.id,
-        //   classify_id:[res.result.occupations].join(','),
-        // }
-        // jobRecommendListAction(paramsObj).then(res=>{
-        //   setRecommend(res.data.list);
-        // })
-        setRefresh(false)
-        setData(res.result);
-        setPhone(res.result.tel_str);
-        setEditPhone(res.result.show_ajax_btn)
-        Taro.setNavigationBarTitle({
-          title: res.result.title
-        })
-        setIsCollection(res.result.is_collect);
-        if (userInfo.userId === res.result.user_id) {
-          // 判断是自己发布的招工
-          setResCode('own')
-        } else {
-          setResCode(res.errcode)
-        }
-      })
-    }
+      // let paramsObj = {
+      //   page:1,
+      //   type:1,
+      //   area_id: res.result.city_id,
+      //   job_ids: res.result.id,
+      //   classify_id:[res.result.occupations].join(','),
+      // }
+      // jobRecommendListAction(paramsObj).then(res=>{
+      //   setRecommend(res.data.list);
+      // })
+    })
   }
   // 地图
   const handleMap = ()=>{
@@ -233,12 +218,9 @@ export default function DetailInfoPage() {
   }
 
   // 处理获取电话号码的不同状态码
-  const detailGetTelAction = (res) => {
+  const detailGetTelAction = (res,callback) => {
     if (res.errcode == 'ok' || res.errcode == 'end' || res.errcode == 'ajax') {
-      setRefresh(true)
-      setPhone(res.tel)
-      setComplaintInfo(true);
-      setEditPhone(false)
+      callback&&callback()
     } else if (res.errcode == 'end') {
       Msg(res.errmsg)
     } else if (res.errcode == 'auth_not_pass' || res.errcode == 'to_auth') {
@@ -332,6 +314,13 @@ export default function DetailInfoPage() {
     }
   }
 
+  // 设置分享信息
+  useShareAppMessage(() => {
+    return {
+      ...getUserShareMessage(),
+    }
+  })
+
   // 获取电话
   const jobGetTel = ()=>{
     if (!vaildUserLogin()) return
@@ -340,7 +329,12 @@ export default function DetailInfoPage() {
       infoId:data.id,
     }
     jobGetTelAction(params).then(res=>{
-      detailGetTelAction(res)
+      detailGetTelAction(res,()=>{
+        setRefresh(true)
+        setPhone(res.tel)
+        setComplaintInfo(true);
+        setEditPhone(false)
+      })
     })
   }
   const footerComplaint = ()=>{
@@ -521,7 +515,7 @@ export default function DetailInfoPage() {
           {/* 工作前，确认好对方身份、签好合同，招工、找活中不要交任何费 用。工作中拍照、录视频留有证据！若双方发生经济纠纷，请立即 报警或前往劳动局投诉，鱼泡网可配合调查，但概不负责。如遇诈 骗信息，请<Text className='detailInfo-prompt-content-red'>立即举报</Text> */}
 
           <View onClick={() => userRouteJump('/subpackage/pages/anti-fraud/index')}><Text className='detailInfo-prompt-content-blued' >《防骗指南》</Text>：此信息由鱼泡网用户提供，但联系时仍需注意识信息真伪。</View>
-          <View onClick={() => userRouteJump(`/subpackage/pages/notice/index?id=32`)}> <View>关注“鱼泡网”微信公众号接收新工作提醒  <Text className='detailInfo-prompt-content-blued' >如何关注</Text></View></View>
+          <View onClick={() => userRouteJump(`/pages/static/notice/index?id=32`)}> <View>关注“鱼泡网”微信公众号接收新工作提醒  <Text className='detailInfo-prompt-content-blued' >如何关注</Text></View></View>
         </View>
       </View>
       <View className='detailInfo-project-content'>
@@ -594,10 +588,10 @@ export default function DetailInfoPage() {
               <View className='detailInfo-footer-content-box-text'>投诉</View>
             </View>
             {ISCANSHARE &&
-            <View className='detailInfo-footer-content-box-list'>
+            <Button openType='share' className='detailInfo-footer-content-box-list'>
               <View><Image src={`${IMGCDNURL}newjobinfo-share.png`} className='detailInfo-footer-content-box-image' /></View>
               <View className='detailInfo-footer-content-box-text'>分享</View>
-            </View>
+            </Button>
             }
             <View>
               {resCode === 'end' ? <Button className='detailInfo-footer-content-box-button'>已招到</Button> : (editPhone ?

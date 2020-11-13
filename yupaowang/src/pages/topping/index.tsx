@@ -3,8 +3,8 @@ import { View, Picker, Text, Image, Input } from '@tarojs/components'
 import { jobTopConfigAction, jobDoTopAction, jobGetTopAreasAction, jobChangeTopAreasAction, resumesTopConfigV2Action, resumesDoTopAction, resumesDoTopV2Action, resumesUpdateTopResumeAction } from '../../utils/request/index'
 import { SERVERPHONE, IMGCDNURL  } from '../../config'
 import { UserInfo } from '../../config/store'
-import './index.scss'
 import Msg from '../../utils/msg'
+import './index.scss'
 
 interface Distruction{
   AreParams: ParamsType,

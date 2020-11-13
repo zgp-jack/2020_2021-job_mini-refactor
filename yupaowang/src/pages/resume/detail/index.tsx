@@ -1,11 +1,12 @@
-import Taro, { Config, useState, useRouter, createContext, useDidShow, useEffect } from '@tarojs/taro'
-import { View, Text, Image } from '@tarojs/components'
+import Taro, { Config, useState, useRouter, useShareAppMessage, useDidShow, useEffect } from '@tarojs/taro'
+import { View, Text, Image, Button } from '@tarojs/components'
 import { resumeDetailAction, recommendListAction, resumesGetTelAcrion, resumeSupportAction, resumeCollectAction, resumesComplainAction } from '../../../utils/request/index'
 import { IMGCDNURL, ISCANSHARE } from '../../../config'
 import Msg, { showModalTip } from '../../../utils/msg'
 import { DataType, ListType, Injected } from './index.d'
 // import CollectionRecruitList  from '../../../components/recommendList/index'
 import { isVaildVal } from '../../../utils/v'
+import { getUserShareMessage } from '../../../utils/helper'
 import Report from '../../../components/report';
 import { useSelector, useDispatch } from '@tarojs/redux'
 import Auth from '../../../components/auth'
@@ -14,7 +15,6 @@ import { SubscribeToNews } from '../../../utils/subscribeToNews';
 import { setSubpackcertificate, setSubpackProject} from '../../../actions/resume_list';
 import './index.scss'
 
-// export const detailContext = createContext<Injected>({} as Injected)
 export default function ResumeDetail() {
   // 获取dispatch分发action
   const dispatch = useDispatch()
@@ -86,6 +86,14 @@ export default function ResumeDetail() {
   // 点赞获取电话号码分享收藏需要先登陆
   const [isAuth, setIsAuth] = useState<boolean>(false)
   const [clickType,setClickType] = useState<string>('');
+
+  // 设置当前页面的分享内容
+  useShareAppMessage(()=>{
+    return {
+      ...getUserShareMessage()
+    }
+  })
+
   const getDataList = ()=>{
     const params = {
       location:location,
@@ -287,11 +295,7 @@ export default function ResumeDetail() {
       urls: [e]
     })
   }
-  // 传递的值
-  const value:Injected = {
-    project: data.project,
-    certificates:data.certificates
-  }
+
   const handleMap = ()=>{
     let locArr = data.info.location.split(",");
     Taro.openLocation({
@@ -303,7 +307,6 @@ export default function ResumeDetail() {
     })
   }
   return(
-    // <detailContext.Provider value={value}>
     <View>
       {isAuth && <Auth />}
     <View className='resumeDetail'>
@@ -424,7 +427,7 @@ export default function ResumeDetail() {
             <Text className='workotextone-address'>{data.info.address}</Text>
             {/* 地图 */}
             {data.info.distance && 
-            <View onClick={handleMap}>
+            <View onClick={handleMap} className='map-distance-info'>
               <Image className='workotextone-address-img' src={`${IMGCDNURL}lpy/biaoqian.png`}/>
               {data.info.distance}
             </View>
@@ -593,10 +596,10 @@ export default function ResumeDetail() {
           <View>赞</View>
         </View>
         {ISCANSHARE && 
-        <View className='resumeDetail-footer-box'>
+        <Button openType='share' className='resumeDetail-footer-box'>
           <Image className="bossimg" src={`${IMGCDNURL}newresume-footer-share.png`} />
           <View>分享</View>
-        </View>
+        </Button>
         }
         <View className='resumeDetail-footer-box' onClick={resumeCollect}>
           <Image className="bossimg" src={collect === 0 ? `${IMGCDNURL}newresume-footer-collect.png` : `${IMGCDNURL}newresume-footer-collect-active.png`}/>
@@ -633,7 +636,6 @@ export default function ResumeDetail() {
         }
     </View>
     </View>
-    // </detailContext.Provider>
   )
 }
 
