@@ -83,24 +83,24 @@ export interface RecruitWorkInfo extends RecruitBaseInfo{
   check_fail_msg: string
 }
 // 发布招工匹配库数据
-export interface mateDataItem {
+export interface MateDataItem {
   keywords: string,
   name: string,
   occupation_id: string
 }
 
 // 获取发布招工、快速发布、急速发布的配置数据
-export interface publishConfigData {
+export interface PublishConfigData {
   classifyTree: ProfessionRecruitData[],
-  mateData: Array<Array<mateDataItem>>,
-  noMateData: Array<mateDataItem>,
+  mateData: Array<Array<MateDataItem>>,
+  noMateData: Array<MateDataItem>,
   user_mobile: string,
   maxClassifyCount: number,
   maxImageCount: number,
   placeholder: string
 }
 
-export interface fastIssueData{
+export interface FastIssueData{
   content: string,
   phone: string
 }
