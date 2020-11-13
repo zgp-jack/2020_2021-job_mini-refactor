@@ -112,9 +112,19 @@ var CollectionResumeList = function (_Taro$Component) {
       // 弹窗
 
 
+<<<<<<< HEAD
       var onHandleClick = function onHandleClick(type) {
         // 1 审核中 2 通过 0 失败
         if (type == '2') {} else if (type == '0') {
+=======
+      var onHandleClick = function onHandleClick(type, uuid) {
+        // 1 审核中 2 通过 0 失败
+        if (type == '2') {
+          _taroTt2.default.navigateTo({
+            url: "/pages/resume/detail/index?uuid=" + uuid
+          });
+        } else if (type == '0') {
+>>>>>>> 520855d8a3a85b8be1d1811ff197595442f74e15
           setIsOpened(true);
           setModalContent('该信息未通过人工审核，审核通过后，即可查看');
         } else if (type == '1') {
@@ -130,11 +140,19 @@ var CollectionResumeList = function (_Taro$Component) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
+<<<<<<< HEAD
         var _$indexKey = "hdzzz" + __index0;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return onHandleClick(item.$original.resume.check);
         };
         var _$indexKey2 = "hezzz" + __index0;
+=======
+        var _$indexKey = "hazzz" + __index0;
+        _this2.anonymousFunc0Map[_$indexKey] = function () {
+          return onHandleClick(item.$original.resume.check, item.$original.resume_uuid);
+        };
+        var _$indexKey2 = "hbzzz" + __index0;
+>>>>>>> 520855d8a3a85b8be1d1811ff197595442f74e15
         _this2.anonymousFunc1Map[_$indexKey2] = function () {
           _this2.__props.onHandlerClick(item.$original.resume_uuid);
         };

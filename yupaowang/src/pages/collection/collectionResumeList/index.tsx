@@ -18,9 +18,12 @@ export default function CollectionResumeList({ data = [], onHandlerClick, bottom
   // 弹窗内容
   const [modalContent, setModalContent] = useState<string>('') 
   // 弹窗
-  const onHandleClick = (type: string) => {
+  const onHandleClick = (type: string, uuid: string) => {
     // 1 审核中 2 通过 0 失败
     if (type == '2') {
+      Taro.navigateTo({
+        url: `/pages/resume/detail/index?uuid=${uuid}`
+      })
     } else if (type == '0') {
       setIsOpened(true)
       setModalContent('该信息未通过人工审核，审核通过后，即可查看')
@@ -35,7 +38,7 @@ export default function CollectionResumeList({ data = [], onHandlerClick, bottom
       { data && data.map((item) => (
         <Block key={item.id}>
           {
-            <View className='resume-list-item' onClick={() => onHandleClick(item.resume.check)} key={item.id}>
+            <View className='resume-list-item' onClick={() => onHandleClick(item.resume.check,item.resume_uuid)} key={item.id}>
               <View className='resume-list-header'>
                   <Image className='resume-list-user' src={item.resume.headerimg} />
                 <View className='resume-list-userinfo'>

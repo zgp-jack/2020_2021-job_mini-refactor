@@ -12143,6 +12143,35 @@ function setPositionStaus(data) {
 
 /***/ }),
 
+<<<<<<< HEAD
+=======
+/***/ "./src/actions/recruit_top.ts":
+/*!************************************!*\
+  !*** ./src/actions/recruit_top.ts ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = setRecruitTopArea;
+
+var _recruit_top = __webpack_require__(/*! ../constants/recruit_top */ "./src/constants/recruit_top.ts");
+
+function setRecruitTopArea(data) {
+  return {
+    type: _recruit_top.SET_RECRUIT_TOP_AREA,
+    data: data
+  };
+}
+
+/***/ }),
+
+>>>>>>> 520855d8a3a85b8be1d1811ff197595442f74e15
 /***/ "./src/actions/resume_addinfo.ts":
 /*!***************************************!*\
   !*** ./src/actions/resume_addinfo.ts ***!
@@ -12718,6 +12747,26 @@ var SETPOSITIONSTATUS = exports.SETPOSITIONSTATUS = 'setpositionstatus';
 
 /***/ }),
 
+<<<<<<< HEAD
+=======
+/***/ "./src/constants/recruit_top.ts":
+/*!**************************************!*\
+  !*** ./src/constants/recruit_top.ts ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var SET_RECRUIT_TOP_AREA = exports.SET_RECRUIT_TOP_AREA = 'set_recruit_top_area';
+
+/***/ }),
+
+>>>>>>> 520855d8a3a85b8be1d1811ff197595442f74e15
 /***/ "./src/constants/resume_addinfo.ts":
 /*!*****************************************!*\
   !*** ./src/constants/resume_addinfo.ts ***!
@@ -15792,6 +15841,7 @@ var RESUME_TOP_DATA = exports.RESUME_TOP_DATA = {
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ "./src/pages/topping/index.scss":
 /*!**************************************!*\
   !*** ./src/pages/topping/index.scss ***!
@@ -17021,6 +17071,8 @@ Page(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/
 
 /***/ }),
 
+=======
+>>>>>>> 520855d8a3a85b8be1d1811ff197595442f74e15
 /***/ "./src/utils/api/index.ts":
 /*!********************************!*\
   !*** ./src/utils/api/index.ts ***!

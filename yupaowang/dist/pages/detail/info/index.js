@@ -614,6 +614,7 @@ var DetailInfoPage = function (_Taro$Component) {
         return userRouteJump('/subpackage/pages/download/index');
       };
       this.anonymousFunc8 = handleStatus;
+<<<<<<< HEAD
       this.anonymousFunc9 = function () {
         return userRouteJump("/pages/topping/index?id=" + data.id + "&type=1");
       };
@@ -627,6 +628,14 @@ var DetailInfoPage = function (_Taro$Component) {
         return jobGetTel();
       };
       this.anonymousFunc15 = function () {
+=======
+      this.anonymousFunc9 = collection;
+      this.anonymousFunc10 = footerComplaint;
+      this.anonymousFunc11 = function () {
+        return jobGetTel();
+      };
+      this.anonymousFunc12 = function () {
+>>>>>>> 520855d8a3a85b8be1d1811ff197595442f74e15
         _taroTt2.default.makePhoneCall({ phoneNumber: phone });
       };
       var loopArray71 = data.classifyName.map(function (v, i) {
@@ -644,7 +653,11 @@ var DetailInfoPage = function (_Taro$Component) {
           $original: (0, _taroTt.internal_get_original)(v)
         };
         var $loopState__temp4 = data.view_images.length ? i + i : null;
+<<<<<<< HEAD
         var _$indexKey = "ibzzz" + i;
+=======
+        var _$indexKey = "hizzz" + i;
+>>>>>>> 520855d8a3a85b8be1d1811ff197595442f74e15
         _this2.anonymousFunc5Map[_$indexKey] = function () {
           return handleImage(v.$original);
         };
@@ -751,6 +764,7 @@ var DetailInfoPage = function (_Taro$Component) {
     value: function anonymousFunc12(e) {
       ;
     }
+<<<<<<< HEAD
   }, {
     key: "anonymousFunc13",
     value: function anonymousFunc13(e) {
@@ -766,12 +780,18 @@ var DetailInfoPage = function (_Taro$Component) {
     value: function anonymousFunc15(e) {
       ;
     }
+=======
+>>>>>>> 520855d8a3a85b8be1d1811ff197595442f74e15
   }]);
 
   return DetailInfoPage;
 }(_taroTt2.default.Component);
 
+<<<<<<< HEAD
 DetailInfoPage.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6", "anonymousFunc7", "anonymousFunc8", "anonymousFunc9", "anonymousFunc10", "anonymousFunc11", "anonymousFunc12", "anonymousFunc13", "anonymousFunc14", "anonymousFunc15"];
+=======
+DetailInfoPage.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6", "anonymousFunc7", "anonymousFunc8", "anonymousFunc9", "anonymousFunc10", "anonymousFunc11", "anonymousFunc12"];
+>>>>>>> 520855d8a3a85b8be1d1811ff197595442f74e15
 DetailInfoPage.$$componentPath = "pages/detail/info/index";
 DetailInfoPage.config = { navigationBarTitleText: '' };
 exports.default = DetailInfoPage;

@@ -159,6 +159,7 @@ export default function Tabber() {
           // 设置显示时间
           setShowTime(date[0] + '年' + date[1] + '月');
           // 设置时间
+          console.log(sourceSearch.time)
           setTime(sourceSearch.time)
           // 设置下拉分类的位置
           setStartType(parseInt(sourceSearch.listType));
@@ -206,12 +207,14 @@ export default function Tabber() {
   const integralExpendConfig = ()=>{
     integralExpendConfigAction().then(res=>{
       setStart(res.data.min.y + '-' + res.data.min.m);
+      console.log(res.data.min.y + '-' + res.data.min.m)
       let item: string[] = res.data.types.map(item => item.name)
       setInitList(res.data.types)
       setConsumeList(item);
       setIsconsume(true);
       setTitle('消耗分类')
       const time = res.data.default.y + '-' + res.data.default.m;
+      console.log(time)
       setTime(time);
       setShowTime(res.data.default.y + '年' + res.data.default.m + '月')
         const params = {
@@ -240,6 +243,7 @@ export default function Tabber() {
       setIssource(true);
       setTitle('来源分类')
       const date = res.data.default.y + '-' + res.data.default.m;
+      console.log(date)
       setTime(date);
       setShowTime(res.data.default.y + '年' + res.data.default.m + '月')
         const params = {

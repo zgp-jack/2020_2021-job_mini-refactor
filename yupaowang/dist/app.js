@@ -279,6 +279,7 @@ var _resume_list = __webpack_require__(/*! ./resume_list */ "./src/reducers/resu
 
 var _resume_list2 = _interopRequireDefault(_resume_list);
 
+<<<<<<< HEAD
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 //合并reducer
@@ -289,6 +290,16 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @LastEditTime: 2020-11-09 17:11:58
  * @Description:
  */
+=======
+var _recruit_top = __webpack_require__(/*! ./recruit_top */ "./src/reducers/recruit_top.ts");
+
+var _recruit_top2 = _interopRequireDefault(_recruit_top);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//合并reducer
+//发布招工reducer
+>>>>>>> 520855d8a3a85b8be1d1811ff197595442f74e15
 exports.default = (0, _redux.combineReducers)({
   tabbar: _tabbar2.default,
   WechatNotice: _wechat_notice2.default,
@@ -304,8 +315,20 @@ exports.default = (0, _redux.combineReducers)({
   resumeAddInfo: _resume_addinfo2.default,
   PositionStatus: _recruit.PositionStatus,
   resumeData: _resume_data2.default,
+<<<<<<< HEAD
   resumeList: _resume_list2.default
 }); //发布招工reducer
+=======
+  resumeList: _resume_list2.default,
+  recruitTop: _recruit_top2.default
+}); /*
+     * @Author: zyb
+     * @Date: 2020-11-03 14:36:47
+     * @LastEditors: jsxin
+     * @LastEditTime: 2020-11-13 15:02:13
+     * @Description:
+     */
+>>>>>>> 520855d8a3a85b8be1d1811ff197595442f74e15
 
 /***/ }),
 
@@ -563,6 +586,51 @@ function PositionStatus() {
 
 /***/ }),
 
+<<<<<<< HEAD
+=======
+/***/ "./src/reducers/recruit_top.ts":
+/*!*************************************!*\
+  !*** ./src/reducers/recruit_top.ts ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+exports.default = RecruitTopRedux;
+
+var _recruit_top = __webpack_require__(/*! ../constants/recruit_top */ "./src/constants/recruit_top.ts");
+
+// 需要传递的值
+var value = {
+  AreParams: {
+    city: [],
+    province: [],
+    whole: []
+  }
+};
+function RecruitTopRedux() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : value;
+  var action = arguments[1];
+
+  switch (action.type) {
+    case _recruit_top.SET_RECRUIT_TOP_AREA:
+      return _extends({}, state, { AreParams: _extends({}, action.data) });
+    default:
+      return state;
+  }
+}
+
+/***/ }),
+
+>>>>>>> 520855d8a3a85b8be1d1811ff197595442f74e15
 /***/ "./src/reducers/resume.ts":
 /*!********************************!*\
   !*** ./src/reducers/resume.ts ***!

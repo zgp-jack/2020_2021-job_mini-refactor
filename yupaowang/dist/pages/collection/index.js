@@ -170,7 +170,11 @@ var Collection = function (_Taro$Component) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
+<<<<<<< HEAD
         var _$indexKey = "hazzz" + __index0;
+=======
+        var _$indexKey = "ghzzz" + __index0;
+>>>>>>> 520855d8a3a85b8be1d1811ff197595442f74e15
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return handleTable(item.$original.id);
         };
