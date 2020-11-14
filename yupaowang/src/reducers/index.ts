@@ -6,7 +6,7 @@ import msg from './msg'
 import Personnel from './personnel'
 import filterClassify from './filter_classify'
 import Myresume from './resume'
-import { MyAreaInfo, MyArea, PositionStatus } from './recruit' //发布招工reducer
+import { MyAreaInfo, MyArea, PositionStatus, RecruitAction } from './recruit' //发布招工reducer
 import member from './member'
 import realname from './realname'
 import resumeAddInfo from './resume_addinfo'
@@ -27,5 +27,6 @@ export default combineReducers({
   realname,
   resumeAddInfo,
   PositionStatus,
-  publishData
+  publishData,
+  RecruitAction
 })

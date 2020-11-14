@@ -1,5 +1,5 @@
-import { SETAREAINFO, GETAREAINFO, SETAREA, GETAREA, SETPOSITIONSTATUS } from '../constants/recruit'
-import { UserLastPublishRecruitArea } from '../pages//recruit/index.d'
+import { SETAREAINFO, GETAREAINFO, SETAREA, GETAREA, SETPOSITIONSTATUS, SETTOKEN, GETTOKEN } from '../constants/recruit'
+import { UserLastPublishRecruitArea } from '../pages/recruit/index.d'
 
 export function setAreaInfo(data:UserLastPublishRecruitArea) {
   return {
@@ -31,5 +31,18 @@ export function setPositionStaus(data:boolean){
   return {
     type: SETPOSITIONSTATUS,
     data: data
+  }
+}
+
+export function setToken(data:string){
+  return {
+    type: SETTOKEN,
+    data: data
+  }
+}
+
+export function getToken () {
+  return {
+    type: GETTOKEN
   }
 }

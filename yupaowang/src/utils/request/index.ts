@@ -1,3 +1,4 @@
+import { DataType } from './../../pages/resume/preview/index.d';
 import Taro from '@tarojs/taro'
 import * as api from '../api'
 import { TOKEN, VERSION } from '../../config'
@@ -19,6 +20,7 @@ import { UserPublishUsedInfo } from '../../pages/used/index.d'
 import * as Hooks from '../../hooks/index.d'
 import { UserAddInfo } from '../../pages/userinfo/add'
 import { searchDataType } from '../../pages/published/recruit' 
+import { FastIssueData } from '../../pages/recruit/index.d'
 
 interface RequestHeader {
   'content-type'?: string
@@ -867,7 +869,15 @@ export function publishRecruitInfo(data): Promise<Inter.Result> {
     method: 'POST',
     data: data,
     failToast: true
-
+  })
+}
+// 快速发布招工信息
+export function fastIssue(data: FastIssueData): Promise<Inter.FastIssue<Inter.FastData>> {
+  return doRequestAction({
+    url: api.FastIssueInfo,
+    method: 'POST',
+    data: data,
+    failToast: true
   })
 }
 

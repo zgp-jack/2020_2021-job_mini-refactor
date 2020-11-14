@@ -1,8 +1,8 @@
 import { SETPUBLISHDATA, GETPUBLISHDATA } from '../constants/publish' //定义发布招工获取设置区域信息的action
-import { publishConfigData } from '../utils/request/index.d'
+import { PublishConfigData } from '../pages/recruit/index.d'
 
 // 默认发布招工state数据
-const DEFAULT_STATE_PUBLISHDATA: publishConfigData = {
+const DEFAULT_STATE_PUBLISHDATA: PublishConfigData = {
   classifyTree: [],
   mateData: [],
   noMateData: [],
@@ -16,10 +16,10 @@ const DEFAULT_STATE_PUBLISHDATA: publishConfigData = {
 // action类型定义
 export interface ACTIONTYPE {
   type: string,
-  data: publishConfigData
+  data: PublishConfigData
 }
 
-export default function MyAreaInfo(state: publishConfigData = DEFAULT_STATE_PUBLISHDATA, action: ACTIONTYPE) {
+export default function MyAreaInfo(state: PublishConfigData = DEFAULT_STATE_PUBLISHDATA, action: ACTIONTYPE) {
   switch (action.type) {
     case GETPUBLISHDATA:
       return state;

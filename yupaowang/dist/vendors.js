@@ -12513,6 +12513,8 @@ var SearchList = exports.SearchList = 'searchList';
 var UserLocation = exports.UserLocation = 'userLocation';
 // 找活名片info信息
 var Introinfo = exports.Introinfo = 'introinfo';
+// 用户发布填写发布信息
+var PublishData = exports.PublishData = 'publishData';
 
 /***/ }),
 
@@ -12586,6 +12588,24 @@ Object.defineProperty(exports, "__esModule", {
 });
 var GETDATA = exports.GETDATA = 'getdata';
 var SETDATA = exports.SETDATA = 'setdata';
+
+/***/ }),
+
+/***/ "./src/constants/publish.ts":
+/*!**********************************!*\
+  !*** ./src/constants/publish.ts ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var GETPUBLISHDATA = exports.GETPUBLISHDATA = 'getpublishdata';
+var SETPUBLISHDATA = exports.SETPUBLISHDATA = 'setpublishdata';
 
 /***/ }),
 
@@ -16931,8 +16951,8 @@ Page(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.getResumeAddInfoConfig = exports.realnameQueryUrl = exports.userCheckDouyinRecharge = exports.userDouyinRecharge = undefined;
-exports.userTelCodeLogin = exports.userAccountUrl = exports.leavingMessageUrl = exports.resumesComplainUrl = exports.resumesUpdateTopResumeUrl = exports.resumesDoTopV2Url = exports.resumesTopConfigV2Url = exports.resumesEditImgUrl = exports.resumesChangeTopStatusUrl = exports.resumesDoTopUrl = exports.resumesTopConfigUrl = exports.resumesTopAreasUrl = exports.resumesDelProjectUrl = exports.resumesEditEndUrl = exports.resumesIntroduceUrl = exports.resumesGetDataUrl = exports.checkAdcodeUrl = exports.addResumeUrl = exports.resumesProjectUrl = exports.resumesCertificateUrl = exports.delCertificateUrl = exports.jobRecommendListUrl = exports.resumeListUrl = exports.resumeCollectUrl = exports.resumeSupportUrl = exports.resumesGetTelUrl = exports.recommendListUrl = exports.resumeDetailUrl = exports.jobUpdateTopStatusUrl = exports.jobChangeTopAreasUrl = exports.jobGetTopAreasUrl = exports.jobDoTopUrl = exports.jobTopHotAreasUrl = exports.jobTopConfigUrl = exports.jobEndStatusUrl = exports.jobGetTelUrl = exports.jobNoUserInfoUrl = exports.jobInfoUrl = exports.publishComplainUrl = exports.integralUseInfoUrl = exports.integralExpendListsUrl = exports.integralExpendConfigUrl = exports.integralSourceListsUrl = exports.integralSourceConfigUrl = exports.messagesTypeUrl = exports.userMessagesUrl = exports.resumesAddClickLog = exports.resumesSortUrl = exports.newsInfoUrl = exports.newsTypesUrl = exports.newListUrl = exports.helpUrl = exports.feedbackSubmissionUrl = exports.feedbackUrl = exports.requestActionUrl = exports.ResumeCancelCollection = exports.recruitCancelCollection = exports.getCollectionResumeList = exports.getCollectionRecruitList = exports.userUpdateUserInfo = exports.userChangeUsedStatus = exports.userGetPublishedUsedList = exports.userChangeRecruitStatus = exports.userGetPublishedRecruitList = exports.updataPassword = exports.userChangePhone = exports.userUpdateName = exports.userChangeAvatar = exports.postUserAddInfo = exports.getIdcardAuthInfo = exports.postUserAuthInfo = exports.getUserAuthInfo = exports.getMemberMsgNumber = exports.getMemberInfo = exports.CheckMineAuthInfo = exports.CheckAuth = exports.GetUsedInfo = exports.GetUserLoginPhoneCode = exports.GetUserPhoneCode = exports.PublishUsedInfo = exports.GetUsedInfoModel = exports.GetRechargeOrder = exports.GetRechargeOpenid = exports.GetRechargeList = exports.GetUserInviteLink = exports.CheckAdcodeValid = exports.GetAllAreas = exports.PublishRecruitInfo = exports.GetPublisRecruitView = exports.GetIntegralList = exports.GetTabbarMsg = exports.GetListFilterData = exports.GetWechatNotice = exports.GetFleamarketlist = exports.GetResumelist = exports.GetRecruitlist = exports.GetAllListItem = exports.GetBannerNotice = exports.GetUserInfo = exports.GetUserSessionKey = undefined;
+exports.getResumeAddInfoConfig = exports.realnameQueryUrl = exports.userCheckDouyinRecharge = exports.userDouyinRecharge = exports.userTelCodeLogin = undefined;
+exports.userAccountUrl = exports.leavingMessageUrl = exports.resumesComplainUrl = exports.resumesUpdateTopResumeUrl = exports.resumesDoTopV2Url = exports.resumesTopConfigV2Url = exports.resumesEditImgUrl = exports.resumesChangeTopStatusUrl = exports.resumesDoTopUrl = exports.resumesTopConfigUrl = exports.resumesTopAreasUrl = exports.resumesDelProjectUrl = exports.resumesEditEndUrl = exports.resumesIntroduceUrl = exports.resumesGetDataUrl = exports.checkAdcodeUrl = exports.addResumeUrl = exports.resumesProjectUrl = exports.resumesCertificateUrl = exports.delCertificateUrl = exports.jobRecommendListUrl = exports.resumeListUrl = exports.resumeCollectUrl = exports.resumeSupportUrl = exports.resumesGetTelUrl = exports.recommendListUrl = exports.resumeDetailUrl = exports.jobUpdateTopStatusUrl = exports.jobChangeTopAreasUrl = exports.jobGetTopAreasUrl = exports.jobDoTopUrl = exports.jobTopHotAreasUrl = exports.jobTopConfigUrl = exports.jobEndStatusUrl = exports.jobGetTelUrl = exports.jobNoUserInfoUrl = exports.jobInfoUrl = exports.publishComplainUrl = exports.integralUseInfoUrl = exports.integralExpendListsUrl = exports.integralExpendConfigUrl = exports.integralSourceListsUrl = exports.integralSourceConfigUrl = exports.messagesTypeUrl = exports.userMessagesUrl = exports.resumesAddClickLog = exports.resumesSortUrl = exports.newsInfoUrl = exports.newsTypesUrl = exports.newListUrl = exports.helpUrl = exports.feedbackSubmissionUrl = exports.feedbackUrl = exports.requestActionUrl = exports.ResumeCancelCollection = exports.recruitCancelCollection = exports.getCollectionResumeList = exports.getCollectionRecruitList = exports.userUpdateUserInfo = exports.userChangeUsedStatus = exports.userGetPublishedUsedList = exports.userChangeRecruitStatus = exports.userGetPublishedRecruitList = exports.updataPassword = exports.userChangePhone = exports.userUpdateName = exports.userChangeAvatar = exports.postUserAddInfo = exports.getIdcardAuthInfo = exports.postUserAuthInfo = exports.getUserAuthInfo = exports.getMemberMsgNumber = exports.getMemberInfo = exports.CheckMineAuthInfo = exports.CheckAuth = exports.GetUsedInfo = exports.GetUserLoginPhoneCode = exports.GetUserPhoneCode = exports.PublishUsedInfo = exports.GetUsedInfoModel = exports.GetRechargeOrder = exports.GetRechargeOpenid = exports.GetRechargeList = exports.GetUserInviteLink = exports.CheckAdcodeValid = exports.GetAllAreas = exports.FastIssueInfo = exports.PublishRecruitInfo = exports.GetPublisRecruitView = exports.GetIntegralList = exports.GetTabbarMsg = exports.GetListFilterData = exports.GetWechatNotice = exports.GetFleamarketlist = exports.GetResumelist = exports.GetRecruitlist = exports.GetAllListItem = exports.GetBannerNotice = exports.GetUserInfo = exports.GetUserSessionKey = undefined;
 
 var _index = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
 
@@ -16959,9 +16979,11 @@ var GetTabbarMsg = exports.GetTabbarMsg = _index.REQUESTURL + 'member/original-m
 // 获取积分记录分页数据
 var GetIntegralList = exports.GetIntegralList = _index.REQUESTURL + 'integral/integral-record/';
 // 初始化发布招工视图
-var GetPublisRecruitView = exports.GetPublisRecruitView = _index.REQUESTURL + 'publish/new-job/';
+var GetPublisRecruitView = exports.GetPublisRecruitView = _index.REQUESTURL + 'publish/new-mate-job/';
 // 发布修改招工信息
 var PublishRecruitInfo = exports.PublishRecruitInfo = _index.REQUESTURL + 'publish/save-job/';
+// 快速发布招工信息
+var FastIssueInfo = exports.FastIssueInfo = _index.REQUESTURL + 'fast-issue/issue/';
 // 获取城市数据
 var GetAllAreas = exports.GetAllAreas = _index.REQUESTURL + 'index/index-area/';
 // 检测adcode是否合法
@@ -17453,6 +17475,7 @@ exports.resumeSupportAction = resumeSupportAction;
 exports.resumeCollectAction = resumeCollectAction;
 exports.resumeListAction = resumeListAction;
 exports.publishRecruitInfo = publishRecruitInfo;
+exports.fastIssue = fastIssue;
 exports.jobRecommendListAction = jobRecommendListAction;
 exports.delCertificateAction = delCertificateAction;
 exports.resumesCertificateAction = resumesCertificateAction;
@@ -18244,6 +18267,15 @@ function resumeListAction() {
 function publishRecruitInfo(data) {
   return doRequestAction({
     url: api.PublishRecruitInfo,
+    method: 'POST',
+    data: data,
+    failToast: true
+  });
+}
+// 快速发布招工信息
+function fastIssue(data) {
+  return doRequestAction({
+    url: api.FastIssueInfo,
     method: 'POST',
     data: data,
     failToast: true
