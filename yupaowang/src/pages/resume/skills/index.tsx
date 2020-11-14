@@ -1,4 +1,4 @@
-import Taro, { Config, useDidShow } from '@tarojs/taro'
+import Taro, { Config, useDidShow, useRouter } from '@tarojs/taro'
 import { View, Text, Image } from '@tarojs/components'
 import Imglist from '../../../components/imglist'
 import useResume from '../../../hooks/publish/resume'
@@ -7,6 +7,10 @@ import { CertificateMaxNum, IMGCDNURL } from '../../../config'
 import './index.scss'
 
 export default function Skills() {
+
+  const router = useRouter()
+  // type 1 为大列表查看更多  2是预览的时候 查看更多 这个时候没有添加按钮
+  const { type = '1' } = router.params
 
   const { certificates, initResumeData } = useResume()
 
@@ -36,7 +40,7 @@ export default function Skills() {
         </View>
       ))}
       {!certificates.length && <Nodata />}
-      {certificates.length < CertificateMaxNum &&
+      {certificates.length < CertificateMaxNum && type == '1' &&
         <View className='add-certificate-btn' onClick={() => Taro.navigateTo({ url: '/pages/resume/add_skill/index' })}>添加技能证书</View>
       }
     </View>

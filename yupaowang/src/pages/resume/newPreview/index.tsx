@@ -146,7 +146,7 @@ export default function NewPreview() {
                 }
               </View>
               <View className='change-project'>
-                <Button className='change-project-btn' onClick={() => userRouteJump('/pages/resume/projects/index')}>更多项目经验
+                <Button className='change-project-btn' onClick={() => userRouteJump('/pages/resume/projects/index?type=2')}>更多项目经验
                 </Button>
               </View>
             </View>
@@ -182,7 +182,7 @@ export default function NewPreview() {
                   <View className='project-failtxt'>失败原因：{certificates[0].fail_case}</View>}
               </View>
               <View className='change-project'>
-                <Button className='change-project-btn' onClick={() => userRouteJump('/pages/resume/skills/index')}>
+                <Button className='change-project-btn' onClick={() => userRouteJump('/pages/resume/skills/index?type=2')}>
                   更多技能证书
                 </Button>
               </View>

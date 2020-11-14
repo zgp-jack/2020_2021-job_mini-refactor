@@ -10,7 +10,7 @@ import { getUserShareMessage } from '../../../utils/helper'
 import Msg, { showModalTip } from '../../../utils/msg'
 import { SubscribeToNews } from '../../../utils/subscribeToNews';
 import  CollectionRecruitList from '../../../components/recommendList/index'
-import { UserInfo } from '../../../config/store'
+import { REFID, UserInfo } from '../../../config/store'
 import './index.scss'
 
 interface User {
@@ -49,7 +49,7 @@ interface DataType {
 }
 export default function DetailInfoPage() {
   const router: Taro.RouterInfo = useRouter()
-  let { id } = router.params;
+  let { id = '', refId = '' } = router.params;
   // 获取userInfo
   let userInfo: User = Taro.getStorageSync(UserInfo)
   const [data, setData] = useState<DataType>({
@@ -314,10 +314,18 @@ export default function DetailInfoPage() {
     }
   }
 
+  // 监听是否是别人分享的页面
+  useEffect(()=>{
+    if(refId) Taro.setStorageSync(REFID, refId)
+  },[refId])
+
   // 设置分享信息
   useShareAppMessage(() => {
+    let path = `/pages/detail/index/index?id=${id}`
+    let userInfo = Taro.getStorageSync(UserInfo)
     return {
       ...getUserShareMessage(),
+      path: userInfo ? `${path}&refId=${userInfo.userId}` : path
     }
   })
 
