@@ -1,6 +1,6 @@
 import Taro from '@tarojs/taro'
 import { UserInfo } from '../config/store'
-import { GET, SET } from '../constants/user'
+import { GETUSER, SETUSER } from '../constants/user'
 
 export interface User {
   userId: number,
@@ -27,9 +27,9 @@ const DEFAULT_STATE: User = userInfo ? userInfo : {
 
 export default function User(state: User = DEFAULT_STATE, action: ActionType ){
   switch(action.type){
-    case SET:
+    case SETUSER:
       return { ...state, ...action.data}
-    case GET:
+    case GETUSER:
       if (!state.login){
         let userInfo = Taro.getStorageSync(UserInfo)
         if(userInfo) return userInfo

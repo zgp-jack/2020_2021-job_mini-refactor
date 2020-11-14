@@ -1,5 +1,5 @@
 import { MemberMsgNumber } from '../utils/request/index.d'
-import { GET, SET } from '../constants/msg'
+import { GETMSG, SETMSG } from '../constants/msg'
 
 const DEFAULT_STATE: MemberMsgNumber = {
   jobNumber: 0,
@@ -13,9 +13,9 @@ export interface ACTIONTYPE {
 
 export default function msg(state: MemberMsgNumber = DEFAULT_STATE, action: ACTIONTYPE){
   switch(action.type){
-    case GET:
+    case GETMSG:
       return state
-    case SET:
+    case SETMSG:
       return { ...state, ...action.data }
     default:
       return state

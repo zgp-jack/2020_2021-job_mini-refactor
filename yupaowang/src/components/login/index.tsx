@@ -7,7 +7,7 @@ import { isPhone } from '../../utils/v'
 import { User } from '../../reducers/user'
 import Msg from '../../utils/msg'
 import { setUserInfo } from '../../actions/user'
-import { UserInfo } from '../../config/store'
+import { UserInfo, REFID } from '../../config/store'
 import { INDEXPATH } from '../../config'
 import { userAccountLogin, userTelCodeLogin } from '../../utils/request'
 import './index.scss'
@@ -47,6 +47,8 @@ export default function LoginComponent({type = 2}: LoginComponentProps) {
         return
       }
       data.code = code
+      let refId: number = Taro.getStorageSync(REFID)
+      if (refId) data.refid = refId
       userTelCodeLogin(data).then(res => detailUserLoginInfo(res))
     } else {
       if (!password) {

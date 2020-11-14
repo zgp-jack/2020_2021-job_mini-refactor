@@ -7,7 +7,7 @@ import { User } from '../../reducers/user'
 import Msg, { errMsg } from '../../utils/msg'
 import { useDispatch, useSelector } from '@tarojs/redux'
 import { setUserInfo } from '../../actions/user'
-import { UserInfo } from '../../config/store'
+import { UserInfo, REFID } from '../../config/store'
 import LoginComponet from '../login/index'
 import { userCancelAuth as userCancelAuthAction } from '../../utils/helper'
 import './index.scss'
@@ -92,11 +92,12 @@ export default function Auth({ page = false, callback, userCancelAuth }: PROPS){
       success: res => {
         let encryptedData = res.encryptedData
         let iv = res.iv
+        let refId: number = Taro.getStorageSync(REFID)
         const data: AuthData = {
           session_key: key,
           encryptedData: encryptedData,
           iv: iv,
-          refId: 0,
+          refId: refId || 0,
           source: '', //疑似小程序source 忘记干嘛的了
         }
         GetUserInfo(data).then(res=>{

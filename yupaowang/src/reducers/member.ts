@@ -1,5 +1,5 @@
 // 用户会员中心部分共用信息
-import { GET, SET, TEL } from '../constants/member'
+import { GETMEMBERINFO, SETMEMBERINFO, TEL } from '../constants/member'
 
 export interface UserMemberInfo {
   username: string,
@@ -24,10 +24,10 @@ interface ACTIONTYPE {
 
 export default function UserMemberInfo(state: UserMemberInfo = DEFAULT_MEMBER_INFO, action: ACTIONTYPE){
   switch(action.type){
-    case GET:
+    case GETMEMBERINFO:
       return state
       break
-    case SET:
+    case SETMEMBERINFO:
       return {...state,...action.data}
       break
     case TEL:

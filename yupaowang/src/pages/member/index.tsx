@@ -7,6 +7,8 @@ import { IMGCDNURL, AUTHPATH, CODEAUTHPATH, PUBLISHRESUME, PUBLISHEDRECRUIT, INV
 import { setMemberInfo } from '../../actions/member'
 import Msg, { ShowActionModal } from '../../utils/msg'
 import { UserMemberInfo } from '../../reducers/member'
+import IndexTabbarConfig from '../../config/pages/index'
+import { MEMBER } from '../../constants/tabbar'
 import { isIos } from '../../utils/v'
 import './index.scss'
 import { UserInfo } from '../../config/store'
@@ -64,6 +66,8 @@ export default function Member({memberIndex = 0}: MemberProps){
   },[])
 
   useEffect(()=>{
+    Taro.setNavigationBarTitle({ title: IndexTabbarConfig[MEMBER].navigationBarTitleText })
+    if(!login) return
     initMemberInfo()
   }, [login, memberIndex])
 

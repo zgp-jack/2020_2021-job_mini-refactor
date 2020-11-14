@@ -51,6 +51,7 @@ export default function PublishedRecruit(){
   })
   // 加载数据类别
   const getPublishedRecruitLists = () =>  {
+    if (!user.login) return
     setLoading(true)
     userGetPublishedRecruitLists(searchData)
     .then(res => {
@@ -91,9 +92,10 @@ export default function PublishedRecruit(){
   }
 
   useEffect(()=>{
+    console.log(searchData)
     if (!user.login || loading) return
     getPublishedRecruitLists()
-  }, [searchData, user])
+  }, [searchData])
 
   // 加载下一页
   const getNextPageData = () => {
