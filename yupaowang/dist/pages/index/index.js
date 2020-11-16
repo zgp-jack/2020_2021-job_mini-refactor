@@ -111,7 +111,7 @@ var Index = function (_Taro$Component) {
       backgroundTextStyle: "dark"
     };
 
-    _this.$usedState = ["$compid__6", "$compid__7", "tabKey", "HOME", "RECRUIT", "RESUME", "MEMBER"];
+    _this.$usedState = ["$compid__7", "$compid__8", "$compid__9", "tabKey", "HOME", "RECRUIT", "RESUME", "MEMBER"];
     _this.customComponents = ["Home", "Recruit", "Resume", "Member", "Tabbar"];
     return _this;
   }
@@ -131,15 +131,20 @@ var Index = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__6"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__7"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__6 = _genCompid2[0],
-          $compid__6 = _genCompid2[1];
+          $prevCompid__7 = _genCompid2[0],
+          $compid__7 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__7"),
+      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__8"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__7 = _genCompid4[0],
-          $compid__7 = _genCompid4[1];
+          $prevCompid__8 = _genCompid4[0],
+          $compid__8 = _genCompid4[1];
+
+      var _genCompid5 = (0, _taroTt.genCompid)(__prefix + "$compid__9"),
+          _genCompid6 = _slicedToArray(_genCompid5, 2),
+          $prevCompid__9 = _genCompid6[0],
+          $compid__9 = _genCompid6[1];
 
       var dispatch = (0, _redux.useDispatch)();
       // 初始化页面参数
@@ -194,15 +199,19 @@ var Index = function (_Taro$Component) {
           frontColor: '#ffffff'
         });
       }, [tabKey]);
+      tabKey === _tabbar.HOME && _taroTt.propsManager.set({
+        "homeIndex": showIndex
+      }, $compid__7, $prevCompid__7);
       tabKey === _tabbar.MEMBER && _taroTt.propsManager.set({
         "memberIndex": showIndex
-      }, $compid__6, $prevCompid__6);
+      }, $compid__8, $prevCompid__8);
       _taroTt.propsManager.set({
         "notredirect": true
-      }, $compid__7, $prevCompid__7);
+      }, $compid__9, $prevCompid__9);
       Object.assign(this.__state, {
-        $compid__6: $compid__6,
         $compid__7: $compid__7,
+        $compid__8: $compid__8,
+        $compid__9: $compid__9,
         tabKey: tabKey,
         HOME: _tabbar.HOME,
         RECRUIT: _tabbar.RECRUIT,

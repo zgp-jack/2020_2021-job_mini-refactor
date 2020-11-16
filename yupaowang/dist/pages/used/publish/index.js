@@ -32,7 +32,9 @@ var _index3 = _interopRequireDefault(_index2);
 
 var _index4 = __webpack_require__(/*! ../../utils/helper/index */ "./src/utils/helper/index.ts");
 
-var _index5 = __webpack_require__(/*! ../../utils/v/index */ "./src/utils/v/index.ts");
+var _index5 = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
+
+var _index6 = __webpack_require__(/*! ../../utils/v/index */ "./src/utils/v/index.ts");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -132,11 +134,38 @@ function useUsedInfo(id) {
   (0, _taroTt.useEffect)(function () {
     (0, _index.getUsedInfoModel)(data).then(function (data) {
       if (data.errcode == 'ok') {
+        // 正常获取到内容
         areaTree = data.areaTree;
         setInitModel(data);
         initPublishModelInfo(data);
         initAreaPicker(data);
+      } else if (data.errcode == 'to_auth') {
+        // 用户当前未实名 或者实名没通过
+        _taroTt2.default.showModal({
+          title: '温馨提示',
+          content: data.errmsg,
+          cancelText: '取消',
+          confirmText: '去实名',
+          success: function success(res) {
+            if (res.cancel) {
+              _taroTt2.default.navigateBack();
+            } else if (res.confirm) {
+              _taroTt2.default.navigateTo({
+                url: _index5.REALNAMEPATH
+              });
+            }
+          }
+        });
+      } else if (data.errcode == 'auth_checking') {
+        // 当前用户的实名信息正在审核中
+        (0, _index2.ShowActionModal)({
+          msg: data.errmsg,
+          success: function success() {
+            return _taroTt2.default.navigateBack();
+          }
+        });
       } else {
+        // 其他状态
         (0, _index2.ShowActionModal)({
           msg: data.errmsg,
           success: function success() {
@@ -223,7 +252,7 @@ function useUsedInfo(id) {
   };
   // 验证发布信息
   var vaildPublishModelInfo = function vaildPublishModelInfo() {
-    if (!(0, _index5.isVaildVal)(model.title, 3, 30)) {
+    if (!(0, _index6.isVaildVal)(model.title, 3, 30)) {
       (0, _index3.default)('请输入3-30字的标题');
       return false;
     }
@@ -239,7 +268,7 @@ function useUsedInfo(id) {
       (0, _index3.default)('请输入您的姓名');
       return false;
     }
-    if (!(0, _index5.isPhone)(model.user_mobile)) {
+    if (!(0, _index6.isPhone)(model.user_mobile)) {
       (0, _index3.default)('请输入正确的联系电话');
       return false;
     }
@@ -249,7 +278,7 @@ function useUsedInfo(id) {
         return false;
       }
     }
-    if (!(0, _index5.isVaildVal)(model.detail, 15, 500)) {
+    if (!(0, _index6.isVaildVal)(model.detail, 15, 500)) {
       (0, _index3.default)('请正确输入5-500字的交易详情');
       return false;
     }
@@ -269,12 +298,14 @@ function useUsedInfo(id) {
         success: function success() {
           if (res.errcode == 'ok') {
             //发布成功跳转到已发布二手交易列表
-            //Taro.reLaunch
+            _taroTt2.default.reLaunch({
+              url: '/pages/published/used/index'
+            });
           }
         }
       });
     }).catch(function () {
-      (0, _index2.ShowActionModal)("\u7F51\u7EDC\u9519\u8BEF\uFF0C\u53D1\u5E03\u5931\u8D25");
+      (0, _index2.ShowActionModal)({ msg: "\u7F51\u7EDC\u9519\u8BEF\uFF0C\u53D1\u5E03\u5931\u8D25" });
     });
   };
   return {
@@ -372,7 +403,11 @@ var UsedPublish = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (UsedPublish.__proto__ || Object.getPrototypeOf(UsedPublish)).apply(this, arguments));
 
-    _this.$usedState = ["initModel", "loopArray48", "loopArray49", "$compid__43", "$compid__44", "parentCurrent", "model", "classifyName", "areaProvince", "areaCity", "pIndex", "cIndex", "cityName", "userTel", "text"];
+    _this.config = {
+      navigationBarTitleText: '发布二手交易'
+    };
+
+    _this.$usedState = ["initModel", "loopArray50", "loopArray51", "$compid__45", "$compid__46", "parentCurrent", "model", "classifyName", "areaProvince", "areaCity", "pIndex", "cIndex", "cityName", "userTel", "text"];
     _this.anonymousFunc1Map = {};
     _this.anonymousFunc2Map = {};
     _this.customComponents = ["Auth", "AtDrawer", "WordsTotal"];
@@ -396,15 +431,15 @@ var UsedPublish = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__43"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__45"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__43 = _genCompid2[0],
-          $compid__43 = _genCompid2[1];
+          $prevCompid__45 = _genCompid2[0],
+          $compid__45 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__44"),
+      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__46"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__44 = _genCompid4[0],
-          $compid__44 = _genCompid4[1];
+          $prevCompid__46 = _genCompid4[0],
+          $compid__46 = _genCompid4[1];
 
       var router = (0, _taroTt.useRouter)();
       var _router$params$id = router.params.id,
@@ -522,7 +557,7 @@ var UsedPublish = function (_Taro$Component) {
       this.anonymousFunc12 = function () {
         return vaildPublishModelInfo();
       };
-      var loopArray48 = initModel ? initModel.classifyTree.map(function (item, index) {
+      var loopArray50 = initModel ? initModel.classifyTree.map(function (item, index) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
@@ -530,7 +565,7 @@ var UsedPublish = function (_Taro$Component) {
           'drawer-list-item overwords': true,
           'drawer-list-item-active': index === parentCurrent
         }) : null;
-        var _$indexKey = "fbzzz" + index;
+        var _$indexKey = "fdzzz" + index;
         _this2.anonymousFunc1Map[_$indexKey] = function () {
           return useClickClassifyParentId(index);
         };
@@ -540,7 +575,7 @@ var UsedPublish = function (_Taro$Component) {
           $original: item.$original
         };
       }) : [];
-      var loopArray49 = initModel ? initModel.classifyTree[parentCurrent].attributes.map(function (item, k) {
+      var loopArray51 = initModel ? initModel.classifyTree[parentCurrent].attributes.map(function (item, k) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
@@ -548,7 +583,7 @@ var UsedPublish = function (_Taro$Component) {
           'drawer-list-item overwords': true,
           'drawer-list-item-active': k == childCurrent && item.$original.id == model.attribute_id
         }) : null;
-        var _$indexKey2 = "fczzz" + k;
+        var _$indexKey2 = "fezzz" + k;
         _this2.anonymousFunc2Map[_$indexKey2] = function () {
           return useClickClassifyChildId(k);
         };
@@ -561,16 +596,16 @@ var UsedPublish = function (_Taro$Component) {
       _taroTt.propsManager.set({
         "show": showDrawer,
         "onClose": this.anonymousFunc0
-      }, $compid__43, $prevCompid__43);
+      }, $compid__45, $prevCompid__45);
       _taroTt.propsManager.set({
         "num": 0
-      }, $compid__44, $prevCompid__44);
+      }, $compid__46, $prevCompid__46);
       Object.assign(this.__state, {
         initModel: initModel,
-        loopArray48: loopArray48,
-        loopArray49: loopArray49,
-        $compid__43: $compid__43,
-        $compid__44: $compid__44,
+        loopArray50: loopArray50,
+        loopArray51: loopArray51,
+        $compid__45: $compid__45,
+        $compid__46: $compid__46,
         parentCurrent: parentCurrent,
         model: model,
         classifyName: classifyName,
@@ -672,6 +707,7 @@ var UsedPublish = function (_Taro$Component) {
 
 UsedPublish.$$events = ["anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6", "anonymousFunc7", "anonymousFunc8", "anonymousFunc9", "anonymousFunc10", "anonymousFunc11", "anonymousFunc12"];
 UsedPublish.$$componentPath = "pages/used/publish/index";
+UsedPublish.config = { navigationBarTitleText: '发布二手交易' };
 exports.default = UsedPublish;
 
 Page(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(UsedPublish, true));

@@ -26,6 +26,8 @@ export const GetIntegralList: string = REQUESTURL + 'integral/integral-record/'
 export const GetPublisRecruitView: string = REQUESTURL + 'publish/new-job/'
 // 发布修改招工信息
 export const PublishRecruitInfo: string = REQUESTURL + 'publish/save-job/'
+// 极速发布招工
+export const FastPublisInfo: string = REQUESTURL + 'publish/new-save-job/'
 // 获取城市数据
 export const GetAllAreas: string = REQUESTURL + 'index/index-area/'
 // 检测adcode是否合法

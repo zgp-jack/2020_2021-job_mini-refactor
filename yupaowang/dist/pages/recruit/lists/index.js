@@ -51,6 +51,10 @@ var _lists = __webpack_require__(/*! ../../../config/pages/lists */ "./src/confi
 
 __webpack_require__(/*! ./index.scss */ "./src/pages/recruit/lists/index.scss");
 
+var _index4 = __webpack_require__(/*! ../../../utils/msg/index */ "./src/utils/msg/index.ts");
+
+var _index5 = _interopRequireDefault(_index4);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
@@ -69,7 +73,7 @@ var Recruit = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (Recruit.__proto__ || Object.getPrototypeOf(Recruit)).apply(this, arguments));
 
-    _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "anonymousState__temp3", "anonymousState__temp4", "$compid__18", "$compid__19", "$compid__20", "scrollTop", "refresh"];
+    _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "anonymousState__temp3", "anonymousState__temp4", "$compid__20", "$compid__21", "$compid__22", "scrollTop", "refresh"];
     _this.customComponents = ["Search", "RecruitCondition", "WechatNotice", "RecruitList"];
     return _this;
   }
@@ -89,20 +93,20 @@ var Recruit = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__18"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__20"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__18 = _genCompid2[0],
-          $compid__18 = _genCompid2[1];
+          $prevCompid__20 = _genCompid2[0],
+          $compid__20 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__19"),
+      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__21"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__19 = _genCompid4[0],
-          $compid__19 = _genCompid4[1];
+          $prevCompid__21 = _genCompid4[0],
+          $compid__21 = _genCompid4[1];
 
-      var _genCompid5 = (0, _taroTt.genCompid)(__prefix + "$compid__20"),
+      var _genCompid5 = (0, _taroTt.genCompid)(__prefix + "$compid__22"),
           _genCompid6 = _slicedToArray(_genCompid5, 2),
-          $prevCompid__20 = _genCompid6[0],
-          $compid__20 = _genCompid6[1];
+          $prevCompid__22 = _genCompid6[0],
+          $compid__22 = _genCompid6[1];
       // 输入关键词 没搜索 备份
 
 
@@ -123,7 +127,7 @@ var Recruit = function (_Taro$Component) {
       var userListChooseCity = _taroTt2.default.getStorageSync(_store.UserListChooseCity);
       // * 配置筛选条件
 
-      var _useState5 = (0, _taroTt.useState)([{ id: _lists.AreaPickerKey, text: userListChooseCity ? userListChooseCity.name : '全国' }, { id: _lists.ClassifyPickerKey, text: '全部分类' }, { id: _lists.FilterPickerKey, text: '全部' }]),
+      var _useState5 = (0, _taroTt.useState)([{ id: _lists.AreaPickerKey, text: userListChooseCity ? userListChooseCity.name : '全国' }, { id: _lists.ClassifyPickerKey, text: '全部分类' }, { id: _lists.FilterPickerKey, text: '最新' }]),
           _useState6 = _slicedToArray(_useState5, 2),
           condition = _useState6[0],
           setCondition = _useState6[1];
@@ -207,19 +211,26 @@ var Recruit = function (_Taro$Component) {
       // 请求列表方法
       var getRecruitListAction = function getRecruitListAction() {
         (0, _index.getRecruitList)(searchData).then(function (res) {
-          if (res.data) {
-            if (!res.data.length) {
+          if (res.errcode == 'ok') {
+            if (res.data) {
+              if (!res.data.length) {
+                setHasMore(false);
+              }
+              _taroTt2.default.hideNavigationBarLoading();
+              if (searchData.page === 1) {
+                setLists([[].concat(_toConsumableArray(res.data))]);
+              } else setLists([].concat(_toConsumableArray(lists), [[].concat(_toConsumableArray(res.data))]));
+            } else {
+              if (searchData.page === 1) {
+                setLists([[]]);
+              }
               setHasMore(false);
             }
-            _taroTt2.default.hideNavigationBarLoading();
-            if (searchData.page === 1) {
-              setLists([[].concat(_toConsumableArray(res.data))]);
-            } else setLists([].concat(_toConsumableArray(lists), [[].concat(_toConsumableArray(res.data))]));
+            if (refresh) {
+              setRefresh(false);
+            }
           } else {
-            setHasMore(false);
-          }
-          if (refresh) {
-            setRefresh(false);
+            (0, _index5.default)(res.errmsg);
           }
         });
       };
@@ -301,23 +312,23 @@ var Recruit = function (_Taro$Component) {
         "value": "",
         "setRemark": anonymousState__temp,
         "setSearchData": anonymousState__temp2
-      }, $compid__18, $prevCompid__18);
+      }, $compid__20, $prevCompid__20);
       _taroTt.propsManager.set({
         "data": condition,
         "setSearchData": anonymousState__temp3
-      }, $compid__19, $prevCompid__19);
+      }, $compid__21, $prevCompid__21);
       _taroTt.propsManager.set({
         "data": lists,
         "hasMore": hasMore
-      }, $compid__20, $prevCompid__20);
+      }, $compid__22, $prevCompid__22);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
         anonymousState__temp2: anonymousState__temp2,
         anonymousState__temp3: anonymousState__temp3,
         anonymousState__temp4: anonymousState__temp4,
-        $compid__18: $compid__18,
-        $compid__19: $compid__19,
         $compid__20: $compid__20,
+        $compid__21: $compid__21,
+        $compid__22: $compid__22,
         scrollTop: scrollTop,
         refresh: refresh
       });

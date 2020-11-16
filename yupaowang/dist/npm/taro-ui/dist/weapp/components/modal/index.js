@@ -66,7 +66,7 @@ var AtModal = (_temp2 = _class = function (_AtComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AtModal.__proto__ || Object.getPrototypeOf(AtModal)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["_$isRenderAction", "_$anonymousState__temp", "$compid__51", "title", "content", "isWEB", "cancelText", "confirmText", "rootClass", "_isOpened", "isOpened", "closeOnClickOverlay", "className", "children"], _this.handleClickOverlay = function () {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AtModal.__proto__ || Object.getPrototypeOf(AtModal)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["_$isRenderAction", "_$anonymousState__temp", "$compid__53", "title", "content", "isWEB", "cancelText", "confirmText", "rootClass", "_isOpened", "isOpened", "closeOnClickOverlay", "className", "children"], _this.handleClickOverlay = function () {
       if (_this.props.closeOnClickOverlay) {
         _this.setState({
           _isOpened: false
@@ -127,10 +127,10 @@ var AtModal = (_temp2 = _class = function (_AtComponent) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__51"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__53"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__51 = _genCompid2[0],
-          $compid__51 = _genCompid2[1];
+          $prevCompid__53 = _genCompid2[0],
+          $compid__53 = _genCompid2[1];
 
       var _$isRenderAction, _$anonymousState__temp;
 
@@ -152,13 +152,13 @@ var AtModal = (_temp2 = _class = function (_AtComponent) {
         _$anonymousState__temp = content ? isWEB ? { __html: content.replace(/\n/g, '<br/>') } : null : null;
         _$isRenderAction && _taroTt.propsManager.set({
           "isSimple": true
-        }, $compid__51, $prevCompid__51);
+        }, $compid__53, $prevCompid__53);
       }
 
       Object.assign(this.__state, {
         _$isRenderAction: _$isRenderAction,
         _$anonymousState__temp: _$anonymousState__temp,
-        $compid__51: $compid__51,
+        $compid__53: $compid__53,
         title: title,
         content: content,
         cancelText: cancelText,

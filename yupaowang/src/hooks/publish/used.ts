@@ -3,6 +3,7 @@ import { UsedPublishModel, UserPublishUsedInfo, UsedPublishModelAreaTree, Provin
 import { getUsedInfoModel, publishUsedInfo } from '../../utils/request'
 import Msg, { ShowActionModal } from '../../utils/msg'
 import { objDeepCopy } from '../../utils/helper'
+import { REALNAMEPATH } from '../../config'
 import { isVaildVal, isPhone } from '../../utils/v'
 import { InitUsedModelInfoParams } from '../index.d'
 
@@ -54,11 +55,36 @@ export default function useUsedInfo(id: string){
   useEffect(()=>{
     getUsedInfoModel(data).then(data=>{
       if(data.errcode == 'ok'){
+        // 正常获取到内容
         areaTree = data.areaTree
         setInitModel(data)
         initPublishModelInfo(data)
         initAreaPicker(data)
+      }else if(data.errcode == 'to_auth'){
+        // 用户当前未实名 或者实名没通过
+        Taro.showModal({
+          title: '温馨提示',
+          content: data.errmsg,
+          cancelText: '取消',
+          confirmText: '去实名',
+          success(res) {
+            if (res.cancel) {
+              Taro.navigateBack()
+            } else if (res.confirm) {
+              Taro.navigateTo({
+                url: REALNAMEPATH
+              })
+            }
+          }
+        })
+      } else if (data.errcode == 'auth_checking'){
+        // 当前用户的实名信息正在审核中
+        ShowActionModal({
+          msg: data.errmsg,
+          success: () => Taro.navigateBack()
+        })
       }else{
+        // 其他状态
         ShowActionModal({
           msg: data.errmsg,
           success: () => {
@@ -194,12 +220,14 @@ export default function useUsedInfo(id: string){
         success: ()=> {
           if(res.errcode == 'ok'){
             //发布成功跳转到已发布二手交易列表
-            //Taro.reLaunch
+            Taro.reLaunch({
+              url: '/pages/published/used/index'
+            })
           }
         }
       })
     }).catch(()=>{
-      ShowActionModal(`网络错误，发布失败`)
+      ShowActionModal({ msg: `网络错误，发布失败`})
     })
   }
 

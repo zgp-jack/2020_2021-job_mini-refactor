@@ -57,7 +57,7 @@ var ResumeList = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (ResumeList.__proto__ || Object.getPrototypeOf(ResumeList)).apply(this, arguments));
 
-    _this.$usedState = ["anonymousState__temp", "loopArray14", "$compid__15", "data", "IMGCDNURL", "hasMore", "bottom"];
+    _this.$usedState = ["anonymousState__temp", "loopArray16", "$compid__17", "data", "IMGCDNURL", "hasMore", "bottom"];
     _this.anonymousFunc0Map = {};
     _this.customComponents = ["Nodata"];
     return _this;
@@ -80,10 +80,10 @@ var ResumeList = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__15"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__17"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__15 = _genCompid2[0],
-          $compid__15 = _genCompid2[1];
+          $prevCompid__17 = _genCompid2[0],
+          $compid__17 = _genCompid2[1];
 
       var _props = this.__props,
           data = _props.data,
@@ -101,7 +101,7 @@ var ResumeList = function (_Taro$Component) {
         });
       };
       var anonymousState__temp = (0, _taroTt.internal_inline_style)(bottom ? '' : 'padding-bottom:0');
-      var loopArray14 = data ? data.map(function (item, di) {
+      var loopArray16 = data ? data.map(function (item, di) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
@@ -110,7 +110,7 @@ var ResumeList = function (_Taro$Component) {
           d = {
             $original: (0, _taroTt.internal_get_original)(d)
           };
-          var _$indexKey = "bhzzz" + di + "-" + __index0;
+          var _$indexKey = "bjzzz" + di + "-" + __index0;
           _this2.anonymousFunc0Map[_$indexKey] = function () {
             return userRouteJump(d.$original.uuid);
           };
@@ -138,11 +138,11 @@ var ResumeList = function (_Taro$Component) {
       }) : [];
       data && data[0] && !data[0].length && _taroTt.propsManager.set({
         "text": "\u6682\u65E0\u76F8\u5173\u6570\u636E"
-      }, $compid__15, $prevCompid__15);
+      }, $compid__17, $prevCompid__17);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
-        loopArray14: loopArray14,
-        $compid__15: $compid__15,
+        loopArray16: loopArray16,
+        $compid__17: $compid__17,
         data: data,
         IMGCDNURL: _index.IMGCDNURL,
         hasMore: hasMore

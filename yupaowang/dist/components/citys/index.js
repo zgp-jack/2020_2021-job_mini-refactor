@@ -63,7 +63,7 @@ var Cities = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (Cities.__proto__ || Object.getPrototypeOf(Cities)).apply(this, arguments));
 
-    _this.$usedState = ["loopArray43", "loopArray44", "loopArray45", "text", "IMGCDNURL", "userLoc", "recentlyCities", "data", "show", "inputCity", "area", "parent", "userTapCityBtn", "userChangeCity"];
+    _this.$usedState = ["loopArray45", "loopArray46", "loopArray47", "text", "IMGCDNURL", "userLoc", "recentlyCities", "data", "show", "inputCity", "area", "parent", "userTapCityBtn", "userChangeCity"];
     _this.anonymousFunc5Map = {};
     _this.anonymousFunc6Map = {};
     _this.anonymousFunc7Map = {};
@@ -249,12 +249,12 @@ var Cities = function (_Taro$Component) {
       this.anonymousFunc4 = function () {
         return userTapCity(userLoc);
       };
-      var loopArray43 = recentlyCities.map(function (item, __index5) {
+      var loopArray45 = recentlyCities.map(function (item, __index5) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
         var $loopState__temp2 = 'rec' + item.$original.id;
-        var _$indexKey = "egzzz" + __index5;
+        var _$indexKey = "eizzz" + __index5;
         _this2.anonymousFunc5Map[_$indexKey] = function () {
           return userTapCity(item.$original);
         };
@@ -264,7 +264,7 @@ var Cities = function (_Taro$Component) {
           $original: item.$original
         };
       });
-      var loopArray44 = data.map(function (item, index) {
+      var loopArray46 = data.map(function (item, index) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
@@ -274,7 +274,7 @@ var Cities = function (_Taro$Component) {
             $original: (0, _taroTt.internal_get_original)(d)
           };
           var $loopState__temp6 = key + d.$original.id;
-          var _$indexKey2 = "ehzzz" + index + "-" + key;
+          var _$indexKey2 = "ejzzz" + index + "-" + key;
           _this2.anonymousFunc6Map[_$indexKey2] = function () {
             return userTapCity(d.$original);
           };
@@ -290,11 +290,11 @@ var Cities = function (_Taro$Component) {
           $original: item.$original
         };
       });
-      var loopArray45 = show ? inputCity.map(function (item, __index7) {
+      var loopArray47 = show ? inputCity.map(function (item, __index7) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
-        var _$indexKey3 = "eizzz" + __index7;
+        var _$indexKey3 = "fazzz" + __index7;
         _this2.anonymousFunc7Map[_$indexKey3] = function () {
           return userTapInputCity(item.$original);
         };
@@ -304,9 +304,9 @@ var Cities = function (_Taro$Component) {
         };
       }) : [];
       Object.assign(this.__state, {
-        loopArray43: loopArray43,
-        loopArray44: loopArray44,
         loopArray45: loopArray45,
+        loopArray46: loopArray46,
+        loopArray47: loopArray47,
         text: text,
         IMGCDNURL: _index.IMGCDNURL,
         userLoc: userLoc,

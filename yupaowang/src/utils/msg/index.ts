@@ -15,8 +15,8 @@ interface ShowBackModel {
   success?: () => void
 }
 
-export function ShowActionModal(data: string | ShowBackModel){
-  let { title = '温馨提示', confirmText = '确定', msg, success } = data as ShowBackModel
+export function ShowActionModal(data: ShowBackModel){
+  let { title = '温馨提示', confirmText = '确定', msg, success } = data
   Taro.showModal({
     title: title,
     content: (typeof data === 'string') ? data : msg,

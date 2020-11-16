@@ -53,7 +53,7 @@ var ImageView = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (ImageView.__proto__ || Object.getPrototypeOf(ImageView)).apply(this, arguments));
 
-    _this.$usedState = ["loopArray35", "images", "bool", "max", "userUploadImg", "userDelImg"];
+    _this.$usedState = ["loopArray37", "images", "bool", "max", "userUploadImg", "userDelImg"];
     _this.anonymousFunc0Map = {};
     _this.anonymousFunc1Map = {};
     _this.customComponents = [];
@@ -86,16 +86,16 @@ var ImageView = function (_Taro$Component) {
       this.anonymousFunc2 = function () {
         return userUploadImg && userUploadImg(-1);
       };
-      var loopArray35 = images ? images.map(function (item, index) {
+      var loopArray37 = images ? images.map(function (item, index) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
         var $loopState__temp2 = images ? index + 'a' : null;
-        var _$indexKey = "dhzzz" + index;
+        var _$indexKey = "djzzz" + index;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return userUploadImg && userUploadImg(index);
         };
-        var _$indexKey2 = "dizzz" + index;
+        var _$indexKey2 = "eazzz" + index;
         _this2.anonymousFunc1Map[_$indexKey2] = function (e) {
           e.stopPropagation();
           userDelImg && userDelImg(index);
@@ -108,7 +108,7 @@ var ImageView = function (_Taro$Component) {
         };
       }) : [];
       Object.assign(this.__state, {
-        loopArray35: loopArray35,
+        loopArray37: loopArray37,
         images: images,
         bool: bool,
         max: max

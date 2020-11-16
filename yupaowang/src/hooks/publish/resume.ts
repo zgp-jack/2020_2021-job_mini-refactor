@@ -112,7 +112,7 @@ export default function useResume(){
         if(res.data.project.length>0){
           for (let i = 0; i < res.data.project.length; i++) {
             isModifyProject = res.data.project[i].check;
-            if (res.data.project[i].check = '0') {
+            if (res.data.project[i].check == '0') {
               break;
             }
           }
@@ -123,7 +123,7 @@ export default function useResume(){
         if(res.data.certificates.length){
           for(let i=0;i<res.data.certificates.length;i++){
             isModifySkill = res.data.certificates[i].check;
-            if (res.data.certificates[i].check = '0') {
+            if (res.data.certificates[i].check == '0') {
               break;
             }
           }

@@ -65,6 +65,10 @@ var CheckAuth = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (CheckAuth.__proto__ || Object.getPrototypeOf(CheckAuth)).apply(this, arguments));
 
+    _this.config = {
+      navigationBarTitleText: '实名查询'
+    };
+
     _this.$usedState = ["model", "tel", "show", "SERVERPHONE"];
     _this.customComponents = ["Auth"];
     return _this;
@@ -160,7 +164,7 @@ var CheckAuth = function (_Taro$Component) {
             setModel(data.member);
             setShow(true);
           } else {
-            (0, _index4.ShowActionModal)(data.errmsg);
+            (0, _index4.ShowActionModal)({ msg: data.errmsg });
             setShow(false);
           }
         }).catch(function () {
@@ -211,6 +215,7 @@ var CheckAuth = function (_Taro$Component) {
 
 CheckAuth.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2"];
 CheckAuth.$$componentPath = "subpackage/pages/checkauth/index";
+CheckAuth.config = { navigationBarTitleText: '实名查询' };
 exports.default = CheckAuth;
 
 Page(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(CheckAuth, true));

@@ -889,6 +889,15 @@ export function publishRecruitInfo(data): Promise<Inter.Result> {
 
   })
 }
+// 极速发布招工
+export function FastPublisInfo(data): Promise<Inter.Result> {
+  return doRequestAction({
+    url: api.FastPublisInfo,
+    method: 'POST',
+    data: data,
+    failToast: true
+  })
+}
 
 // 找活名片推荐
 export function jobRecommendListAction(data): Promise<Inter.jobRecommendList> {

@@ -47,6 +47,10 @@ var _index2 = __webpack_require__(/*! ../../../config/index */ "./src/config/ind
 
 __webpack_require__(/*! ./index.scss */ "./src/pages/resume/lists/index.scss");
 
+var _index3 = __webpack_require__(/*! ../../../utils/msg/index */ "./src/utils/msg/index.ts");
+
+var _index4 = _interopRequireDefault(_index3);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
@@ -72,7 +76,7 @@ var ResumeLists = function (_Taro$Component) {
       backgroundTextStyle: "dark"
     };
 
-    _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "anonymousState__temp3", "anonymousState__temp4", "$compid__25", "$compid__26", "$compid__27", "scrollTop", "refresh"];
+    _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "anonymousState__temp3", "anonymousState__temp4", "$compid__27", "$compid__28", "$compid__29", "scrollTop", "refresh"];
     _this.customComponents = ["Search", "ResumeCondition", "WechatNotice", "ResumeList"];
     return _this;
   }
@@ -92,20 +96,20 @@ var ResumeLists = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__25"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__27"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__25 = _genCompid2[0],
-          $compid__25 = _genCompid2[1];
+          $prevCompid__27 = _genCompid2[0],
+          $compid__27 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__26"),
+      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__28"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__26 = _genCompid4[0],
-          $compid__26 = _genCompid4[1];
+          $prevCompid__28 = _genCompid4[0],
+          $compid__28 = _genCompid4[1];
 
-      var _genCompid5 = (0, _taroTt.genCompid)(__prefix + "$compid__27"),
+      var _genCompid5 = (0, _taroTt.genCompid)(__prefix + "$compid__29"),
           _genCompid6 = _slicedToArray(_genCompid5, 2),
-          $prevCompid__27 = _genCompid6[0],
-          $compid__27 = _genCompid6[1];
+          $prevCompid__29 = _genCompid6[0],
+          $compid__29 = _genCompid6[1];
       // 设置字段默认值
 
 
@@ -198,32 +202,36 @@ var ResumeLists = function (_Taro$Component) {
 
       (0, _taroTt.useEffect)(function () {
         (0, _index.getResumeList)(_extends({}, searchData, normalField)).then(function (res) {
-          var mydata = res.data;
-          if (mydata.list && mydata.list.length) {
-            var _mydata$has_sort_flag = mydata.has_sort_flag,
-                has_sort_flag = _mydata$has_sort_flag === undefined ? hasSortFlag : _mydata$has_sort_flag,
-                _mydata$has_time = mydata.has_time,
-                has_time = _mydata$has_time === undefined ? hasTime : _mydata$has_time,
-                _mydata$has_top = mydata.has_top,
-                has_top = _mydata$has_top === undefined ? hasTop : _mydata$has_top,
-                _mydata$last_sort_fla = mydata.last_sort_flag_pos,
-                last_sort_flag_pos = _mydata$last_sort_fla === undefined ? lastSortFlagPos : _mydata$last_sort_fla,
-                _mydata$last_normal_p = mydata.last_normal_pos,
-                last_normal_pos = _mydata$last_normal_p === undefined ? lastNormalPos : _mydata$last_normal_p,
-                _mydata$last_time_pos = mydata.last_time_pos,
-                last_time_pos = _mydata$last_time_pos === undefined ? lastTimePos : _mydata$last_time_pos;
+          if (res.errcode == 'ok') {
+            var mydata = res.data;
+            if (mydata.list && mydata.list.length) {
+              var _mydata$has_sort_flag = mydata.has_sort_flag,
+                  has_sort_flag = _mydata$has_sort_flag === undefined ? hasSortFlag : _mydata$has_sort_flag,
+                  _mydata$has_time = mydata.has_time,
+                  has_time = _mydata$has_time === undefined ? hasTime : _mydata$has_time,
+                  _mydata$has_top = mydata.has_top,
+                  has_top = _mydata$has_top === undefined ? hasTop : _mydata$has_top,
+                  _mydata$last_sort_fla = mydata.last_sort_flag_pos,
+                  last_sort_flag_pos = _mydata$last_sort_fla === undefined ? lastSortFlagPos : _mydata$last_sort_fla,
+                  _mydata$last_normal_p = mydata.last_normal_pos,
+                  last_normal_pos = _mydata$last_normal_p === undefined ? lastNormalPos : _mydata$last_normal_p,
+                  _mydata$last_time_pos = mydata.last_time_pos,
+                  last_time_pos = _mydata$last_time_pos === undefined ? lastTimePos : _mydata$last_time_pos;
 
-            setNormalField({ has_sort_flag: has_sort_flag, has_time: has_time, has_top: has_top, last_sort_flag_pos: last_sort_flag_pos, last_normal_pos: last_normal_pos, last_time_pos: last_time_pos });
-          }
-          if (mydata.list && !mydata.list.length) {
-            setHasMore(false);
-          }
-          _taroTt2.default.hideNavigationBarLoading();
-          if (searchData.page === 1) {
-            setLists([[].concat(_toConsumableArray(mydata.list))]);
-          } else setLists([].concat(_toConsumableArray(lists), [[].concat(_toConsumableArray(mydata.list))]));
-          if (refresh) {
-            setRefresh(false);
+              setNormalField({ has_sort_flag: has_sort_flag, has_time: has_time, has_top: has_top, last_sort_flag_pos: last_sort_flag_pos, last_normal_pos: last_normal_pos, last_time_pos: last_time_pos });
+            }
+            if (mydata.list && !mydata.list.length) {
+              setHasMore(false);
+            }
+            _taroTt2.default.hideNavigationBarLoading();
+            if (searchData.page === 1) {
+              setLists([[].concat(_toConsumableArray(mydata.list))]);
+            } else setLists([].concat(_toConsumableArray(lists), [[].concat(_toConsumableArray(mydata.list))]));
+            if (refresh) {
+              setRefresh(false);
+            }
+          } else {
+            (0, _index4.default)(res.errmsg);
           }
         });
       }, [searchData]);
@@ -305,23 +313,23 @@ var ResumeLists = function (_Taro$Component) {
         "value": "",
         "setRemark": anonymousState__temp,
         "setSearchData": anonymousState__temp2
-      }, $compid__25, $prevCompid__25);
+      }, $compid__27, $prevCompid__27);
       _taroTt.propsManager.set({
         "data": condition,
         "setSearchData": anonymousState__temp3
-      }, $compid__26, $prevCompid__26);
+      }, $compid__28, $prevCompid__28);
       _taroTt.propsManager.set({
         "data": lists,
         "hasMore": hasMore
-      }, $compid__27, $prevCompid__27);
+      }, $compid__29, $prevCompid__29);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
         anonymousState__temp2: anonymousState__temp2,
         anonymousState__temp3: anonymousState__temp3,
         anonymousState__temp4: anonymousState__temp4,
-        $compid__25: $compid__25,
-        $compid__26: $compid__26,
         $compid__27: $compid__27,
+        $compid__28: $compid__28,
+        $compid__29: $compid__29,
         scrollTop: scrollTop,
         refresh: refresh
       });

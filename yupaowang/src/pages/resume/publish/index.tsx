@@ -13,7 +13,7 @@ import './index.scss'
 
 export default function ResumePublish(){
   const uuid = useSelector<any, string>(state => state.resumeData.resume_uuid)
-  const { infoData, introducesData, projectData, certificates, initResumeData, is_introduces, project_count, certificate_count, show_tips, selectData, selectDataIndex, handleSelectData, isModifyProject, projectNum, certificatesNum} = useResume()
+  const { infoData, introducesData, projectData, certificates, initResumeData, is_introduces, project_count, certificate_count, show_tips, selectData, selectDataIndex, handleSelectData, isModifyProject, isModifySkill, projectNum, certificatesNum} = useResume()
   // 判断是否是第一次进入  第一次不加载数据 因为hooks会帮助你加载
   const [firstJoin, setFirstJoin] = useState<boolean>(true)
 
@@ -173,7 +173,7 @@ export default function ResumePublish(){
             <View className='basic-content'>
               <View className='content-information'>
                 <View className='information'>
-                  <Image className='basic-user-img' src={infoData.img} />
+                  <Image className='basic-user-img' src={infoData.headerimg} />
                   <View className='infor'>
                     <View className='name'>{infoData.username}</View>
                     <View className='sexage'>{infoData.gender == '1' ? '男' : '女'}  {infoData.age}  {infoData.nation}</View>
@@ -381,9 +381,9 @@ export default function ResumePublish(){
               </View>
               <View className='change-project'>
                 <Button className='change-project-btn' onClick={() => userRouteJump('/pages/resume/skills/index')}>
-                  {isModifyProject && isModifyProject == '0' ? '更多技能证书' :'修改技能证书'}
+                  {isModifySkill && isModifySkill != '0' ? '更多技能证书' :'修改技能证书'}
                   <View className='nabla'></View>
-                  {isModifyProject && isModifyProject != '0' && <View className='change-project-btn-icon'>{certificatesNum}</View>}
+                  {isModifySkill && isModifySkill == '0' && <View className='change-project-btn-icon'>{certificatesNum}</View>}
                 </Button>
               </View>
             </View>
@@ -399,7 +399,7 @@ export default function ResumePublish(){
         {infoData && infoData.uuid && 
         <View className='content-btn'>
           {ISCANSHARE ? 
-            <View>
+            <View className='content-btn-box'>
               <View className='preview-btn'>
                 <Image className='preview-img' src={`${IMGCDNURL}newresume-lookuinfo.png`} />
                 <View className='preview-share-btn' onClick={() => userRouteJump('/pages/resume/preview/index')}>预览</View>

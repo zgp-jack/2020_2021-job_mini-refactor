@@ -33,7 +33,7 @@ export interface RecruitBaseInfo {
   location: string,
   adcode: string,
   county_id: string,
-  code: string
+  code: string,
 }
 
 export interface RecruitModelInfo extends RecruitBaseInfo {
@@ -45,23 +45,43 @@ export interface RecruitModelInfo extends RecruitBaseInfo {
   is_check: number,
   check_fail_msg: string
 }
+//极速发布基础信息
+export interface FastPublishBase{
+  address: string,
+  infoId: string,
+  type: string,
+  user_name: string,
+  province_id: number,
+  city_id: number,
+  location: string,
+  adcode: string,
+  county_id: string,
+  images: string[],
+  detail: string,
+  user_mobile: string,
+  code: string,
+  classifies: string[],
+}
+
 // 极速发布数据
-export interface FastPublishInit {
+export interface FastPublishInit extends FastPublishBase{
   classifyTree: ProfessionRecruitData[],
-  mate_data:[],
-  not_mate_data:[],
+  mate_data: MateDataType[],
+  not_mate_data: MateDataType[],
   placeholder:string,
   memberInfo: FastPublishMenberInfo,
   errcode:string,
   typeTextArr: FasttypeTextArr,
-  detail: string,
   classifies: string[],
-  user_mobile:string,
-  code:string,
   view_images: RecruitImageModel[],
-  address:string
+  is_check: number,
+  check_fail_msg: string
 }
-
+export interface MateDataType {
+  keywords: string
+  name: string
+  occupation_id: string
+}
 export interface FastPublishMenberInfo {
   check_degree: string,
   headimgurl: string,
@@ -70,7 +90,8 @@ export interface FastPublishMenberInfo {
   status: string,
   tel: string,
   username: string,
-  uuid: string
+  uuid: string,
+  user_name:string
 }
 
 export interface FasttypeTextArr {

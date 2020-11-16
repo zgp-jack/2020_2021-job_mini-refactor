@@ -55,7 +55,7 @@ var SwiperComponent = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (SwiperComponent.__proto__ || Object.getPrototypeOf(SwiperComponent)).apply(this, arguments));
 
-    _this.$usedState = ["swiper", "loopArray9", "data"];
+    _this.$usedState = ["swiper", "loopArray11", "data"];
     _this.customComponents = [];
     return _this;
   }
@@ -77,7 +77,7 @@ var SwiperComponent = function (_Taro$Component) {
       var data = this.__props.data;
 
       var swiper = _extends({}, _index.DEFAULT_PROPS, data);
-      var loopArray9 = swiper.lists.map(function (item, index) {
+      var loopArray11 = swiper.lists.map(function (item, index) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
@@ -89,7 +89,7 @@ var SwiperComponent = function (_Taro$Component) {
       });
       Object.assign(this.__state, {
         swiper: swiper,
-        loopArray9: loopArray9
+        loopArray11: loopArray11
       });
       return this.__state;
     }

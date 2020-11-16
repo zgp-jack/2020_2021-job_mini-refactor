@@ -115,7 +115,7 @@ var PublishedRecruit = function (_Taro$Component) {
       backgroundTextStyle: "dark"
     };
 
-    _this.$usedState = ["loopArray56", "loopArray57", "HeaderList", "refresh", "lists", "IMGCDNURL", "more", "searchData"];
+    _this.$usedState = ["loopArray58", "loopArray59", "HeaderList", "refresh", "lists", "IMGCDNURL", "more", "searchData"];
     _this.anonymousFunc0Map = {};
     _this.anonymousFunc3Map = {};
     _this.anonymousFunc4Map = {};
@@ -379,11 +379,11 @@ var PublishedRecruit = function (_Taro$Component) {
       this.anonymousFunc2 = function () {
         return getNextPageData();
       };
-      var loopArray56 = _config2.default.map(function (item, __index0) {
+      var loopArray58 = _config2.default.map(function (item, __index0) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
-        var _$indexKey = "fgzzz" + __index0;
+        var _$indexKey = "fizzz" + __index0;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return userChangePublishedItem(item.$original.id);
         };
@@ -397,31 +397,31 @@ var PublishedRecruit = function (_Taro$Component) {
           $original: item.$original
         };
       });
-      var loopArray57 = lists.map(function (item, index) {
+      var loopArray59 = lists.map(function (item, index) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
-        var _$indexKey2 = "fhzzz" + index;
+        var _$indexKey2 = "fjzzz" + index;
         _this2.anonymousFunc3Map[_$indexKey2] = function () {
           return userRouteJump("/pages/detail/info/index?id=" + item.$original.id);
         };
-        var _$indexKey3 = "fizzz" + index;
+        var _$indexKey3 = "gazzz" + index;
         _this2.anonymousFunc4Map[_$indexKey3] = function () {
           return userRouteJump("/pages/recruit/publish/index?id=" + item.$original.id);
         };
-        var _$indexKey4 = "fjzzz" + index;
+        var _$indexKey4 = "gbzzz" + index;
         _this2.anonymousFunc5Map[_$indexKey4] = function () {
           return userStopRecruit(item.$original.id, index);
         };
-        var _$indexKey5 = "gazzz" + index;
+        var _$indexKey5 = "gczzz" + index;
         _this2.anonymousFunc6Map[_$indexKey5] = function () {
           return handlCancel(item.$original.id, index);
         };
-        var _$indexKey6 = "gbzzz" + index;
+        var _$indexKey6 = "gdzzz" + index;
         _this2.anonymousFunc7Map[_$indexKey6] = function () {
           return handleTopping(item.$original, index);
         };
-        var _$indexKey7 = "gczzz" + index;
+        var _$indexKey7 = "gezzz" + index;
         _this2.anonymousFunc8Map[_$indexKey7] = function () {
           return userRouteJump("/pages/topping/index?id=" + item.$original.id + "&type=1");
         };
@@ -436,8 +436,8 @@ var PublishedRecruit = function (_Taro$Component) {
         };
       });
       Object.assign(this.__state, {
-        loopArray56: loopArray56,
-        loopArray57: loopArray57,
+        loopArray58: loopArray58,
+        loopArray59: loopArray59,
         HeaderList: _config2.default,
         refresh: refresh,
         lists: lists,

@@ -65,7 +65,7 @@ var Help = function (_Taro$Component) {
       navigationBarTitleText: '帮助中心'
     };
 
-    _this.$usedState = ["data", "loopArray63", "refresh", "isDown"];
+    _this.$usedState = ["data", "loopArray65", "refresh", "isDown"];
     _this.anonymousFunc2Map = {};
     _this.customComponents = ["Nodata", "AtAccordion", "AtList"];
     return _this;
@@ -204,47 +204,47 @@ var Help = function (_Taro$Component) {
       this.anonymousFunc3 = function () {
         return userRouteJump("/pages/feedback/index?username=" + userData.username + "&phone=" + userData.phone);
       };
-      var loopArray63 = data.item.map(function (item, __index2) {
+      var loopArray65 = data.item.map(function (item, __index2) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
         var $loopState__temp2 = { value: 'help', color: '#09f', size: '15' };
-        var _$indexKey = "hdzzz" + __index2;
+        var _$indexKey = "hfzzz" + __index2;
         _this2.anonymousFunc2Map[_$indexKey] = function () {
           handleShow(item.$original.id);
         };
 
-        var _genCompid = (0, _taroTt.genCompid)(__prefix + "hezzzzzzzz" + __index2, true),
+        var _genCompid = (0, _taroTt.genCompid)(__prefix + "hgzzzzzzzz" + __index2, true),
             _genCompid2 = _slicedToArray(_genCompid, 2),
-            $prevCompid__55 = _genCompid2[0],
-            $compid__55 = _genCompid2[1];
+            $prevCompid__57 = _genCompid2[0],
+            $compid__57 = _genCompid2[1];
 
         _taroTt.propsManager.set({
           "icon": $loopState__temp2,
           "open": item.$original.isShow,
           "onClick": _this2.anonymousFunc2.bind(_this2, _$indexKey),
           "title": item.$original.question
-        }, $compid__55, $prevCompid__55);
+        }, $compid__57, $prevCompid__57);
 
-        var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "hfzzzzzzzz" + __index2, true),
+        var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "hhzzzzzzzz" + __index2, true),
             _genCompid4 = _slicedToArray(_genCompid3, 2),
-            $prevCompid__56 = _genCompid4[0],
-            $compid__56 = _genCompid4[1];
+            $prevCompid__58 = _genCompid4[0],
+            $compid__58 = _genCompid4[1];
 
         _taroTt.propsManager.set({
           "hasBorder": false
-        }, $compid__56, $prevCompid__56);
+        }, $compid__58, $prevCompid__58);
         return {
           $loopState__temp2: $loopState__temp2,
           _$indexKey: _$indexKey,
-          $compid__55: $compid__55,
-          $compid__56: $compid__56,
+          $compid__57: $compid__57,
+          $compid__58: $compid__58,
           $original: item.$original
         };
       });
       Object.assign(this.__state, {
         data: data,
-        loopArray63: loopArray63,
+        loopArray65: loopArray65,
         refresh: refresh,
         isDown: isDown
       });

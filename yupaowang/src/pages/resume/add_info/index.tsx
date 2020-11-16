@@ -92,6 +92,12 @@ export default function AddResumeInfo(){
     }
     // 将数据保存到redux中的areaInfo中
     setFirst(true);
+    let location:string='';
+    if(infoData.location){
+      location = location;
+    }else{
+      location = infoData.province +','+infoData.city
+    }
     dispatch(setAreaInfo({ ...areaInfo, title: infoData.address || '', location : infoData.location }));
     // 工种
     setNations(nations);
@@ -172,7 +178,7 @@ export default function AddResumeInfo(){
       if (res.errcode == 200){
         Taro.navigateBack({delta:1})
       }else{
-
+        ShowActionModal({ msg: res.errmsg});
       }
     })
     .catch(() => {
@@ -372,7 +378,6 @@ export default function AddResumeInfo(){
               <View className='publish-list-textarea'>
                   <Text className='publish-textarea-title'>自我介绍</Text>
                   <Textarea
-                    showConfirmBar={true}
                     className='publish-textarea'
                     value={inputVal.introduce}
                     placeholder='请简要介绍您所从事的行业以及工作经验...'

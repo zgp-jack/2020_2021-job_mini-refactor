@@ -57,7 +57,7 @@ export default function Index(){
 
   return (
     <View>
-      {tabKey === HOME && <Home />}
+      {tabKey === HOME && <Home homeIndex={showIndex}  />}
       {tabKey === RECRUIT && <Recruit />}
       {tabKey === RESUME && <Resume />}
       {tabKey === MEMBER && <Member memberIndex={showIndex} /> }

@@ -75,7 +75,11 @@ var RecruitMap = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (RecruitMap.__proto__ || Object.getPrototypeOf(RecruitMap)).apply(this, arguments));
 
-    _this.$usedState = ["loopArray41", "loopArray42", "$compid__41", "smAreaText", "showHistory", "histroyList", "lists", "IMGCDNURL", "showCity", "area"];
+    _this.config = {
+      navigationBarTitleText: '选择发布地址'
+    };
+
+    _this.$usedState = ["loopArray43", "loopArray44", "$compid__43", "smAreaText", "showHistory", "histroyList", "lists", "IMGCDNURL", "showCity", "area"];
     _this.anonymousFunc5Map = {};
     _this.anonymousFunc6Map = {};
     _this.customComponents = ["Cities"];
@@ -99,10 +103,10 @@ var RecruitMap = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__41"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__43"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__41 = _genCompid2[0],
-          $compid__41 = _genCompid2[1];
+          $prevCompid__43 = _genCompid2[0],
+          $compid__43 = _genCompid2[1];
       // 城市数据
 
 
@@ -299,7 +303,7 @@ var RecruitMap = function (_Taro$Component) {
       };
       // 用户选择小地区 检测adcode
       var userClickAreaItem = function userClickAreaItem(item) {
-        checkAdcodeValid(item.adcode).then(function (res) {
+        (0, _index.checkAdcodeValid)(item.adcode).then(function (res) {
           if (res.errcode == "ok") {
             if (_recruit.setAreaInfo) {
               setUserPublishAreaHistoryItem(item);
@@ -332,12 +336,12 @@ var RecruitMap = function (_Taro$Component) {
       this.anonymousFunc4 = function () {
         return userCloseMap();
       };
-      var loopArray41 = showHistory ? histroyList.map(function (item, index) {
+      var loopArray43 = showHistory ? histroyList.map(function (item, index) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
         var $loopState__temp2 = showHistory ? index + index : null;
-        var _$indexKey = "eezzz" + index;
+        var _$indexKey = "egzzz" + index;
         _this2.anonymousFunc5Map[_$indexKey] = function () {
           return userClickAreaItem(item.$original);
         };
@@ -347,12 +351,12 @@ var RecruitMap = function (_Taro$Component) {
           $original: item.$original
         };
       }) : [];
-      var loopArray42 = lists.map(function (item, index) {
+      var loopArray44 = lists.map(function (item, index) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
         var $loopState__temp4 = index + index;
-        var _$indexKey2 = "efzzz" + index;
+        var _$indexKey2 = "ehzzz" + index;
         _this2.anonymousFunc6Map[_$indexKey2] = function () {
           return userClickAreaItem(item.$original);
         };
@@ -368,11 +372,11 @@ var RecruitMap = function (_Taro$Component) {
         "userLoc": userLoc,
         "userChangeCity": userChangeCity,
         "userTapCityBtn": userTapCityBtn
-      }, $compid__41, $prevCompid__41);
+      }, $compid__43, $prevCompid__43);
       Object.assign(this.__state, {
-        loopArray41: loopArray41,
-        loopArray42: loopArray42,
-        $compid__41: $compid__41,
+        loopArray43: loopArray43,
+        loopArray44: loopArray44,
+        $compid__43: $compid__43,
         smAreaText: smAreaText,
         showHistory: showHistory,
         histroyList: histroyList,
@@ -441,6 +445,7 @@ var RecruitMap = function (_Taro$Component) {
 
 RecruitMap.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6"];
 RecruitMap.$$componentPath = "pages/map/recruit/index";
+RecruitMap.config = { navigationBarTitleText: '选择发布地址' };
 exports.default = RecruitMap;
 
 Page(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(RecruitMap, true));

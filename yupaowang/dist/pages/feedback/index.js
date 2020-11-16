@@ -79,7 +79,7 @@ var Feedback = function (_Taro$Component) {
       navigationBarTitleText: '鱼泡网-意见反馈'
     };
 
-    _this.$usedState = ["$compid__58", "$compid__59", "$compid__60", "$compid__61", "$compid__62", "textarea", "image", "isShow", "disabled", "text"];
+    _this.$usedState = ["$compid__60", "$compid__61", "$compid__62", "$compid__63", "$compid__64", "textarea", "image", "isShow", "disabled", "text"];
     _this.customComponents = ["Auth", "WechatNotice", "WordsTotal", "ImageView", "AtInput"];
     return _this;
   }
@@ -99,30 +99,30 @@ var Feedback = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__58"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__60"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__58 = _genCompid2[0],
-          $compid__58 = _genCompid2[1];
+          $prevCompid__60 = _genCompid2[0],
+          $compid__60 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__59"),
+      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__61"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__59 = _genCompid4[0],
-          $compid__59 = _genCompid4[1];
+          $prevCompid__61 = _genCompid4[0],
+          $compid__61 = _genCompid4[1];
 
-      var _genCompid5 = (0, _taroTt.genCompid)(__prefix + "$compid__60"),
+      var _genCompid5 = (0, _taroTt.genCompid)(__prefix + "$compid__62"),
           _genCompid6 = _slicedToArray(_genCompid5, 2),
-          $prevCompid__60 = _genCompid6[0],
-          $compid__60 = _genCompid6[1];
+          $prevCompid__62 = _genCompid6[0],
+          $compid__62 = _genCompid6[1];
 
-      var _genCompid7 = (0, _taroTt.genCompid)(__prefix + "$compid__61"),
+      var _genCompid7 = (0, _taroTt.genCompid)(__prefix + "$compid__63"),
           _genCompid8 = _slicedToArray(_genCompid7, 2),
-          $prevCompid__61 = _genCompid8[0],
-          $compid__61 = _genCompid8[1];
+          $prevCompid__63 = _genCompid8[0],
+          $compid__63 = _genCompid8[1];
 
-      var _genCompid9 = (0, _taroTt.genCompid)(__prefix + "$compid__62"),
+      var _genCompid9 = (0, _taroTt.genCompid)(__prefix + "$compid__64"),
           _genCompid10 = _slicedToArray(_genCompid9, 2),
-          $prevCompid__62 = _genCompid10[0],
-          $compid__62 = _genCompid10[1];
+          $prevCompid__64 = _genCompid10[0],
+          $compid__64 = _genCompid10[1];
 
       var router = (0, _taroTt.useRouter)();
       var _router$params = router.params,
@@ -218,19 +218,19 @@ var Feedback = function (_Taro$Component) {
           return item.url;
         });
         if (!(0, _index9.isVaildVal)(textarea, 15, 500)) {
-          (0, _index7.default)('输入内容不少于15个字且必须包含文字');
+          (0, _index6.ShowActionModal)({ msg: '输入内容不少于15个字且必须包含文字' });
           return false;
         }
         if (!name) {
-          (0, _index7.default)('请输入联系人姓名');
+          (0, _index6.ShowActionModal)({ msg: '请输入联系人姓名' });
           return false;
         }
         if (!(0, _index9.isPhone)(uphone)) {
-          (0, _index7.default)('请输入正确手机号');
+          (0, _index6.ShowActionModal)({ msg: '请输入正确手机号' });
           return false;
         }
         if (uphone !== phone && !code) {
-          (0, _index7.default)('请输入验证码');
+          (0, _index6.ShowActionModal)({ msg: '请输入验证码' });
           return false;
         }
         var params = {
@@ -280,12 +280,12 @@ var Feedback = function (_Taro$Component) {
       this.anonymousFunc5 = handleSubmission;
       _taroTt.propsManager.set({
         "num": num
-      }, $compid__58, $prevCompid__58);
+      }, $compid__60, $prevCompid__60);
       image.item && _taroTt.propsManager.set({
         "images": image.item,
         "max": 9,
         "userUploadImg": userUploadImg
-      }, $compid__59, $prevCompid__59);
+      }, $compid__61, $prevCompid__61);
       _taroTt.propsManager.set({
         "name": "name",
         "title": "\u8054\u7CFB\u4EBA",
@@ -293,7 +293,7 @@ var Feedback = function (_Taro$Component) {
         "placeholder": "\u8BF7\u8F93\u5165\u4F60\u7684\u540D\u5B57",
         "value": name,
         "onChange": this.anonymousFunc1
-      }, $compid__60, $prevCompid__60);
+      }, $compid__62, $prevCompid__62);
       _taroTt.propsManager.set({
         "name": "phone",
         "title": "\u8054\u7CFB\u7535\u8BDD",
@@ -302,7 +302,7 @@ var Feedback = function (_Taro$Component) {
         "maxLength": 11,
         "value": uphone,
         "onChange": this.anonymousFunc2
-      }, $compid__61, $prevCompid__61);
+      }, $compid__63, $prevCompid__63);
       isShow && _taroTt.propsManager.set({
         "clear": true,
         "title": "\u9A8C\u8BC1\u7801",
@@ -312,13 +312,13 @@ var Feedback = function (_Taro$Component) {
         "name": "code",
         "value": code,
         "onChange": this.anonymousFunc3
-      }, $compid__62, $prevCompid__62);
+      }, $compid__64, $prevCompid__64);
       Object.assign(this.__state, {
-        $compid__58: $compid__58,
-        $compid__59: $compid__59,
         $compid__60: $compid__60,
         $compid__61: $compid__61,
         $compid__62: $compid__62,
+        $compid__63: $compid__63,
+        $compid__64: $compid__64,
         textarea: textarea,
         image: image,
         isShow: isShow,

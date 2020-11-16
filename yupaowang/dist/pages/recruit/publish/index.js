@@ -34,13 +34,11 @@ var _index2 = __webpack_require__(/*! ../../utils/helper/index */ "./src/utils/h
 
 var _index3 = __webpack_require__(/*! ../../utils/msg/index */ "./src/utils/msg/index.ts");
 
-var _index4 = _interopRequireDefault(_index3);
-
-var _index5 = __webpack_require__(/*! ../../utils/subscribeToNews/index */ "./src/utils/subscribeToNews/index.ts");
+var _index4 = __webpack_require__(/*! ../../utils/subscribeToNews/index */ "./src/utils/subscribeToNews/index.ts");
 
 var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/redux/index.js");
 
-var _index6 = __webpack_require__(/*! ../../utils/v/index */ "./src/utils/v/index.ts");
+var _index5 = __webpack_require__(/*! ../../utils/v/index */ "./src/utils/v/index.ts");
 
 var _recruit = __webpack_require__(/*! ../../actions/recruit */ "./src/actions/recruit.ts");
 
@@ -241,34 +239,34 @@ function usePublishViewInfo(InitParams) {
   function userPublishRecruitAction() {
     var data = getPublishedInfo();
     if (!data) return;
-    if (!(0, _index6.isVaildVal)(data.title, 3)) {
-      (0, _index4.default)('请正确输入3~12字中文标题!');
+    if (!(0, _index5.isVaildVal)(data.title, 3)) {
+      (0, _index3.ShowActionModal)({ msg: '请正确输入3~12字中文标题!' });
       return;
     }
     if (!data.classifies.length) {
-      (0, _index4.default)('请选择您的工种!');
+      (0, _index3.ShowActionModal)({ msg: '请选择您的工种!' });
       return;
     }
     if (!data.province_id && !data.address) {
-      (0, _index4.default)('请选择您的详细地址!');
+      (0, _index3.ShowActionModal)({ msg: '请选择您的详细地址!' });
       return;
     }
-    if (!(0, _index6.isVaildVal)(data.user_name, 2)) {
-      (0, _index4.default)('请正确输入2~6字中文姓名!');
+    if (!(0, _index5.isVaildVal)(data.user_name, 2)) {
+      (0, _index3.ShowActionModal)({ msg: '请正确输入2~6字中文姓名!' });
       return;
     }
-    if (!(0, _index6.isPhone)(data.user_mobile)) {
-      (0, _index4.default)('手机号输入有误!');
+    if (!(0, _index5.isPhone)(data.user_mobile)) {
+      (0, _index3.ShowActionModal)({ msg: '手机号输入有误!' });
       return;
     }
     if (phone != data.user_mobile) {
       if (!data.code) {
-        (0, _index4.default)('请输入正确的验证码!');
+        (0, _index3.ShowActionModal)({ msg: '请输入正确的验证码!' });
         return;
       }
     }
-    if (!(0, _index6.isVaildVal)(data.detail, 15)) {
-      (0, _index4.default)('请正确输入15~500字招工详情!');
+    if (!(0, _index5.isVaildVal)(data.detail, 15)) {
+      (0, _index3.ShowActionModal)({ msg: '请正确输入15~500字招工详情!' });
       return;
     }
     // 如果是审核失败 那么久必须强制修改
@@ -287,7 +285,7 @@ function usePublishViewInfo(InitParams) {
     data.address += '@@@@@' + areaInfo.info;
     (0, _index.publishRecruitInfo)(data).then(function (res) {
       if (res.errcode == 'ok') {
-        (0, _index5.SubscribeToNews)("recruit", function () {
+        (0, _index4.SubscribeToNews)("recruit", function () {
           (0, _index3.ShowActionModal)({
             msg: res.errmsg,
             success: function success() {
@@ -406,7 +404,7 @@ var PublishRecruit = function (_Taro$Component) {
       backgroundTextStyle: "dark"
     };
 
-    _this.$usedState = ["model", "$compid__33", "$compid__34", "$compid__35", "showProfession", "areaInfo", "phone", "showUpload", "text"];
+    _this.$usedState = ["model", "$compid__35", "$compid__36", "$compid__37", "showProfession", "areaInfo", "phone", "showUpload", "text"];
     _this.customComponents = ["Auth", "Profession", "WordsTotal", "ImageView"];
     return _this;
   }
@@ -426,20 +424,20 @@ var PublishRecruit = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__33"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__35"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__33 = _genCompid2[0],
-          $compid__33 = _genCompid2[1];
+          $prevCompid__35 = _genCompid2[0],
+          $compid__35 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__34"),
+      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__36"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__34 = _genCompid4[0],
-          $compid__34 = _genCompid4[1];
+          $prevCompid__36 = _genCompid4[0],
+          $compid__36 = _genCompid4[1];
 
-      var _genCompid5 = (0, _taroTt.genCompid)(__prefix + "$compid__35"),
+      var _genCompid5 = (0, _taroTt.genCompid)(__prefix + "$compid__37"),
           _genCompid6 = _slicedToArray(_genCompid5, 2),
-          $prevCompid__35 = _genCompid6[0],
-          $compid__35 = _genCompid6[1];
+          $prevCompid__37 = _genCompid6[0],
+          $compid__37 = _genCompid6[1];
       // 获取路由参数
 
 
@@ -591,21 +589,21 @@ var PublishRecruit = function (_Taro$Component) {
         "data": model && model.classifyTree,
         "onClickItem": this.anonymousFunc0,
         "num": 3
-      }, $compid__33, $prevCompid__33);
+      }, $compid__35, $prevCompid__35);
       _taroTt.propsManager.set({
         "num": num
-      }, $compid__34, $prevCompid__34);
+      }, $compid__36, $prevCompid__36);
       showUpload && model && _taroTt.propsManager.set({
         "images": model.view_images,
         "max": model.maxImageCount,
         "userUploadImg": userUploadImg,
         "userDelImg": userDelImg
-      }, $compid__35, $prevCompid__35);
+      }, $compid__37, $prevCompid__37);
       Object.assign(this.__state, {
         model: model,
-        $compid__33: $compid__33,
-        $compid__34: $compid__34,
         $compid__35: $compid__35,
+        $compid__36: $compid__36,
+        $compid__37: $compid__37,
         showProfession: showProfession,
         areaInfo: areaInfo,
         phone: phone,

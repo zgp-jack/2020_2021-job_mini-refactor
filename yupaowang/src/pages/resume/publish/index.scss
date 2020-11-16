@@ -224,12 +224,12 @@ $commonMargin: 44px;
           display: flex;
           justify-content: space-between;
           .information{
-            max-width: 88%;
+            max-width: 87%;
             text-align: left;
             .basic-user-img{
               display: inline-block;
-              width: 77px;
-              height: 77px;
+              width: 90px;
+              height: 90px;
               border-radius: 50%;
               background-color: $color;
             }
@@ -253,6 +253,7 @@ $commonMargin: 44px;
             font-size: 28px;
             font-weight: bold;
             color: $color;
+            width: auto;
           }
           .audit {
             width: 110px;
@@ -504,6 +505,10 @@ $commonMargin: 44px;
       z-index: 100;
       box-shadow: 0 0 5px $shadowcolor;
       background-color: #FFFFFF;
+      .content-btn-box{
+        width: 100%;
+        display: flex;
+      }
       .preview{
         display: flex;
         width: 100%;

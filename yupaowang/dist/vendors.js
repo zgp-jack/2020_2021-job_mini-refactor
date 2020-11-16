@@ -12394,6 +12394,8 @@ var CODEAUTHPATH = exports.CODEAUTHPATH = '/pages/login/index';
 var PUBLISHEDRECRUIT = exports.PUBLISHEDRECRUIT = '/pages/published/recruit/index';
 // * 下载App
 var DownloadApp = exports.DownloadApp = 'https://android.myapp.com/myapp/detail.htm?apkName=io.dcloud.H576E6CC7&amp;ADTAG=mobile';
+// * 邀请好友
+var INVITEPATH = exports.INVITEPATH = '/pages/static/invite/index';
 // ! 所有小程序列表
 // 百度
 var BAIDU = exports.BAIDU = 'baidu';
@@ -12500,7 +12502,7 @@ var PAGETITLE = '鱼泡网-';
 // * 小程序token 
 var TOKEN = 'douyin';
 // * 小程序是否能被分享
-var ISCANSHARE = false;
+var ISCANSHARE = true;
 // * 小程序广告unitid
 var UNITID = 'adunit-80f40e8b4f60c3f6';
 // * 邀请key
@@ -12512,7 +12514,8 @@ module.exports = {
   TOKEN: TOKEN,
   UNITID: UNITID,
   INVITESOURCE: INVITESOURCE,
-  USESUBSCRIBEMESSAGE: USESUBSCRIBEMESSAGE
+  USESUBSCRIBEMESSAGE: USESUBSCRIBEMESSAGE,
+  ISCANSHARE: ISCANSHARE
 };
 
 /***/ }),
@@ -13161,7 +13164,7 @@ function useResume() {
         if (res.data.project.length > 0) {
           for (var _i = 0; _i < res.data.project.length; _i++) {
             _isModifyProject = res.data.project[_i].check;
-            if (res.data.project[_i].check = '0') {
+            if (res.data.project[_i].check == '0') {
               break;
             }
           }
@@ -13172,7 +13175,7 @@ function useResume() {
         if (res.data.certificates.length) {
           for (var _i2 = 0; _i2 < res.data.certificates.length; _i2++) {
             _isModifySkill = res.data.certificates[_i2].check;
-            if (res.data.certificates[_i2].check = '0') {
+            if (res.data.certificates[_i2].check == '0') {
               break;
             }
           }
@@ -15833,11 +15836,11 @@ var _index2 = __webpack_require__(/*! ../../config/index */ "./src/config/index.
 
 var _store = __webpack_require__(/*! ../../config/store */ "./src/config/store.ts");
 
-__webpack_require__(/*! ./index.scss */ "./src/pages/topping/index.scss");
-
 var _index3 = __webpack_require__(/*! ../../utils/msg/index */ "./src/utils/msg/index.ts");
 
 var _index4 = _interopRequireDefault(_index3);
+
+__webpack_require__(/*! ./index.scss */ "./src/pages/topping/index.scss");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -15863,7 +15866,7 @@ var Topping = function (_Taro$Component) {
       navigationBarTitleText: '招工置顶'
     };
 
-    _this.$usedState = ["params", "data", "loopArray74", "loopArray75", "loopArray76", "loopArray77", "loopArray78", "province", "IMGCDNURL", "rec", "basics", "type", "list", "displayTime", "num", "endTime", "editData", "newTime", "day", "SERVERPHONE"];
+    _this.$usedState = ["params", "data", "loopArray73", "loopArray74", "loopArray75", "loopArray76", "loopArray77", "province", "IMGCDNURL", "rec", "basics", "type", "list", "displayTime", "num", "endTime", "editData", "newTime", "day", "SERVERPHONE"];
     _this.anonymousFunc0Map = {};
     _this.anonymousFunc1Map = {};
     _this.anonymousFunc2Map = {};
@@ -16823,7 +16826,7 @@ var Topping = function (_Taro$Component) {
       this.anonymousFunc12 = function () {
         _taroTt2.default.makePhoneCall({ phoneNumber: _index2.SERVERPHONE });
       };
-      var loopArray74 = province ? province.map(function (v, __index0) {
+      var loopArray73 = province ? province.map(function (v, __index0) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
@@ -16836,7 +16839,7 @@ var Topping = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray75 = params ? params.city.map(function (v, __index1) {
+      var loopArray74 = params ? params.city.map(function (v, __index1) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
@@ -16849,7 +16852,7 @@ var Topping = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray76 = params ? params.province.map(function (v, __index2) {
+      var loopArray75 = params ? params.province.map(function (v, __index2) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
@@ -16862,7 +16865,7 @@ var Topping = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray77 = params ? params.whole.map(function (v, __index3) {
+      var loopArray76 = params ? params.whole.map(function (v, __index3) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
@@ -16875,7 +16878,7 @@ var Topping = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray78 = data.top_rules.map(function (v, i) {
+      var loopArray77 = data.top_rules.map(function (v, i) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
@@ -16888,11 +16891,11 @@ var Topping = function (_Taro$Component) {
       Object.assign(this.__state, {
         params: params,
         data: data,
+        loopArray73: loopArray73,
         loopArray74: loopArray74,
         loopArray75: loopArray75,
         loopArray76: loopArray76,
         loopArray77: loopArray77,
-        loopArray78: loopArray78,
         province: province,
         IMGCDNURL: _index2.IMGCDNURL,
         rec: rec,
@@ -17033,8 +17036,8 @@ Page(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.fastPublisView = exports.memberTurntable = exports.turntableVideoEnd = exports.turntableDraw = exports.turntableIndex = exports.getRankRulesList = exports.getResumeAddInfoConfig = exports.realnameQueryUrl = exports.userCheckDouyinRecharge = exports.userDouyinRecharge = undefined;
-exports.userTelCodeLogin = exports.userAccountUrl = exports.leavingMessageUrl = exports.resumesComplainUrl = exports.resumesUpdateTopResumeUrl = exports.resumesDoTopV2Url = exports.resumesTopConfigV2Url = exports.resumesEditImgUrl = exports.resumesChangeTopStatusUrl = exports.resumesDoTopUrl = exports.resumesTopConfigUrl = exports.resumesTopAreasUrl = exports.resumesDelProjectUrl = exports.resumesEditEndUrl = exports.resumesIntroduceUrl = exports.resumesGetDataUrl = exports.checkAdcodeUrl = exports.addResumeUrl = exports.resumesProjectUrl = exports.resumesCertificateUrl = exports.delCertificateUrl = exports.jobRecommendListUrl = exports.resumeListUrl = exports.resumeCollectUrl = exports.resumeSupportUrl = exports.resumesGetTelUrl = exports.recommendListUrl = exports.resumeDetailUrl = exports.jobUpdateTopStatusUrl = exports.jobChangeTopAreasUrl = exports.jobGetTopAreasUrl = exports.jobDoTopUrl = exports.jobTopHotAreasUrl = exports.jobTopConfigUrl = exports.jobEndStatusUrl = exports.jobGetTelUrl = exports.jobNoUserInfoUrl = exports.jobInfoUrl = exports.publishComplainUrl = exports.integralUseInfoUrl = exports.integralExpendListsUrl = exports.integralExpendConfigUrl = exports.integralSourceListsUrl = exports.integralSourceConfigUrl = exports.messagesTypeUrl = exports.userMessagesUrl = exports.resumesAddClickLog = exports.resumesSortUrl = exports.newsInfoUrl = exports.newsTypesUrl = exports.newListUrl = exports.helpUrl = exports.feedbackSubmissionUrl = exports.feedbackUrl = exports.requestActionUrl = exports.ResumeCancelCollection = exports.recruitCancelCollection = exports.getCollectionResumeList = exports.getCollectionRecruitList = exports.userUpdateUserInfo = exports.userChangeUsedStatus = exports.userGetPublishedUsedList = exports.userChangeRecruitStatus = exports.userGetPublishedRecruitList = exports.updataPassword = exports.userChangePhone = exports.userUpdateName = exports.userChangeAvatar = exports.postUserAddInfo = exports.getIdcardAuthInfo = exports.postUserAuthInfo = exports.getUserAuthInfo = exports.getMemberMsgNumber = exports.getMemberInfo = exports.CheckMineAuthInfo = exports.CheckAuth = exports.GetUsedInfo = exports.GetUserLoginPhoneCode = exports.GetUserPhoneCode = exports.PublishUsedInfo = exports.GetUsedInfoModel = exports.GetRechargeOrder = exports.GetRechargeOpenid = exports.GetRechargeList = exports.GetUserInviteLink = exports.CheckAdcodeValid = exports.GetAllAreas = exports.PublishRecruitInfo = exports.GetPublisRecruitView = exports.GetIntegralList = exports.GetTabbarMsg = exports.GetListFilterData = exports.GetWechatNotice = exports.GetFleamarketlist = exports.GetResumelist = exports.GetRecruitlist = exports.GetAllListItem = exports.GetBannerNotice = exports.GetUserInfo = exports.GetUserSessionKey = undefined;
+exports.fastPublisView = exports.memberTurntable = exports.turntableVideoEnd = exports.turntableDraw = exports.turntableIndex = exports.getRankRulesList = exports.getResumeAddInfoConfig = exports.realnameQueryUrl = exports.userCheckDouyinRecharge = exports.userDouyinRecharge = exports.userTelCodeLogin = undefined;
+exports.userAccountUrl = exports.leavingMessageUrl = exports.resumesComplainUrl = exports.resumesUpdateTopResumeUrl = exports.resumesDoTopV2Url = exports.resumesTopConfigV2Url = exports.resumesEditImgUrl = exports.resumesChangeTopStatusUrl = exports.resumesDoTopUrl = exports.resumesTopConfigUrl = exports.resumesTopAreasUrl = exports.resumesDelProjectUrl = exports.resumesEditEndUrl = exports.resumesIntroduceUrl = exports.resumesGetDataUrl = exports.checkAdcodeUrl = exports.addResumeUrl = exports.resumesProjectUrl = exports.resumesCertificateUrl = exports.delCertificateUrl = exports.jobRecommendListUrl = exports.resumeListUrl = exports.resumeCollectUrl = exports.resumeSupportUrl = exports.resumesGetTelUrl = exports.recommendListUrl = exports.resumeDetailUrl = exports.jobUpdateTopStatusUrl = exports.jobChangeTopAreasUrl = exports.jobGetTopAreasUrl = exports.jobDoTopUrl = exports.jobTopHotAreasUrl = exports.jobTopConfigUrl = exports.jobEndStatusUrl = exports.jobGetTelUrl = exports.jobNoUserInfoUrl = exports.jobInfoUrl = exports.publishComplainUrl = exports.integralUseInfoUrl = exports.integralExpendListsUrl = exports.integralExpendConfigUrl = exports.integralSourceListsUrl = exports.integralSourceConfigUrl = exports.messagesTypeUrl = exports.userMessagesUrl = exports.resumesAddClickLog = exports.resumesSortUrl = exports.newsInfoUrl = exports.newsTypesUrl = exports.newListUrl = exports.helpUrl = exports.feedbackSubmissionUrl = exports.feedbackUrl = exports.requestActionUrl = exports.ResumeCancelCollection = exports.recruitCancelCollection = exports.getCollectionResumeList = exports.getCollectionRecruitList = exports.userUpdateUserInfo = exports.userChangeUsedStatus = exports.userGetPublishedUsedList = exports.userChangeRecruitStatus = exports.userGetPublishedRecruitList = exports.updataPassword = exports.userChangePhone = exports.userUpdateName = exports.userChangeAvatar = exports.postUserAddInfo = exports.getIdcardAuthInfo = exports.postUserAuthInfo = exports.getUserAuthInfo = exports.getMemberMsgNumber = exports.getMemberInfo = exports.CheckMineAuthInfo = exports.CheckAuth = exports.GetUsedInfo = exports.GetUserLoginPhoneCode = exports.GetUserPhoneCode = exports.PublishUsedInfo = exports.GetUsedInfoModel = exports.GetRechargeOrder = exports.GetRechargeOpenid = exports.GetRechargeList = exports.GetUserInviteLink = exports.CheckAdcodeValid = exports.GetAllAreas = exports.FastPublisInfo = exports.PublishRecruitInfo = exports.GetPublisRecruitView = exports.GetIntegralList = exports.GetTabbarMsg = exports.GetListFilterData = exports.GetWechatNotice = exports.GetFleamarketlist = exports.GetResumelist = exports.GetRecruitlist = exports.GetAllListItem = exports.GetBannerNotice = exports.GetUserInfo = exports.GetUserSessionKey = undefined;
 
 var _index = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
 
@@ -17064,6 +17067,8 @@ var GetIntegralList = exports.GetIntegralList = _index.REQUESTURL + 'integral/in
 var GetPublisRecruitView = exports.GetPublisRecruitView = _index.REQUESTURL + 'publish/new-job/';
 // 发布修改招工信息
 var PublishRecruitInfo = exports.PublishRecruitInfo = _index.REQUESTURL + 'publish/save-job/';
+// 极速发布招工
+var FastPublisInfo = exports.FastPublisInfo = _index.REQUESTURL + 'publish/new-save-job/';
 // 获取城市数据
 var GetAllAreas = exports.GetAllAreas = _index.REQUESTURL + 'index/index-area/';
 // 检测adcode是否合法
@@ -17663,6 +17668,7 @@ exports.resumeSupportAction = resumeSupportAction;
 exports.resumeCollectAction = resumeCollectAction;
 exports.resumeListAction = resumeListAction;
 exports.publishRecruitInfo = publishRecruitInfo;
+exports.FastPublisInfo = FastPublisInfo;
 exports.jobRecommendListAction = jobRecommendListAction;
 exports.delCertificateAction = delCertificateAction;
 exports.resumesCertificateAction = resumesCertificateAction;
@@ -18470,6 +18476,15 @@ function resumeListAction() {
 function publishRecruitInfo(data) {
   return doRequestAction({
     url: api.PublishRecruitInfo,
+    method: 'POST',
+    data: data,
+    failToast: true
+  });
+}
+// 极速发布招工
+function FastPublisInfo(data) {
+  return doRequestAction({
+    url: api.FastPublisInfo,
     method: 'POST',
     data: data,
     failToast: true

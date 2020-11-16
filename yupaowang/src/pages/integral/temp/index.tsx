@@ -68,3 +68,7 @@ export default function Temp(){
     </View>
   )
 }
+
+Temp.config = {
+  navigationBarTitleText: '临时积分记录'
+} as Config

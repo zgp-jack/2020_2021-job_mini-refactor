@@ -1,133 +1,65 @@
-import Taro, { Config, useState, useEffect, useReachBottom } from '@tarojs/taro'
-import { View, Text, Image, ScrollView } from '@tarojs/components';
-import classnames from 'classnames'
-import { newsTypesAction, newListAction} from '../../../utils/request/index'
-import { newsTypesListData, newListData } from '../../../utils/request/index.d'
-import Nodata from '../../../components/nodata'
+import Taro, { Config, useEffect, useState } from '@tarojs/taro'
+import { View, Button, Image, Input } from '@tarojs/components'
+import { IMGCDNURL, ISCANSHARE } from '../../../config'
+import { useSelector } from '@tarojs/redux'
+import { getUserInviteLink } from '../../../utils/request'
+import { ShowActionModal } from '../../../utils/msg'
+import Auth from '../../../components/auth'
 import './index.scss'
 
+export default function Invite() {
 
-interface TabListType {
-  item: newsTypesListData[]
-}
-interface InitPageType {
-  page:number
-}
-export default function InvitePage() {
-  // 默认table
-  const [current, setCurrent] = useState<string>('-1')
-  // 页数
-  const [initPage,setInitPage] = useState<InitPageType>({
-    page:1,
-  })
-  //  没有数据显示内容
-  const [noData,setNodata]= useState<string>('暂无相关资讯')
-  // 数据
-  const [list, setList] = useState<newListData[]>([])
-  // 能否再上拉
-  const [pull,setPull] = useState<boolean>(true)
-  // 设置滚动未知
-  const [scrollLeft, setScrollLeft] = useState<number>(0)
-  const handleTable = (id:string,name:string,index:number)=>{
-    setScrollLeft(index*80)
-    setCurrent(id);
-    setNodata(name)
-    setInitPage({page:1})
-    setPull(true)
-    Taro.pageScrollTo({
-      scrollTop: 0
-    })
-  }
-  const [tab,setTab] = useState<TabListType>({
-    item:[]
-  })
-  // 获取新闻类型
+  // 用户邀请链接
+  const [link, setLink] = useState<string>('')
+  // 获取用户是否登录
+  const login = useSelector<any, boolean>(state => state.User['login'])
+  // 初始化用户链接
   useEffect(()=>{
-    newsTypesAction().then(res=>{
-      setTab({item:res.data})
+    if (!login) return
+    getUserInviteLink().then(res=>{
+      if (res.errcode == 'ok') setLink(res.link)
+      else ShowActionModal({msg: res.errmsg,success:() => Taro.navigateBack()})
     })
-  },[])
-  // 获取新闻列表
-  useEffect(() => {
-    const params = {
-      page:initPage.page,
-      newsType: current,
-    }
-    newListAction(params).then(res => {
-      Taro.hideNavigationBarLoading()
-      if (!res.data.length) {
-        setPull(false)
+  }, [login])
+  // 用户复制邀请链接
+  const copyUserInviteLink = ()=> {
+    Taro.setClipboardData({
+      data: link,
+      success: ()=>{
+        Taro.hideToast()
+        ShowActionModal({
+          title: '恭喜您',
+          msg: '您的邀请链接已复制到粘贴板，赶快去邀请好友吧！'
+        })
       }
-      if(params.page ===1){
-        setList([...res.data])
-      }else{
-        setList([...list, ...res.data])
-      }
-    })
-  }, [current,initPage])
-  // 用户页面跳转
-  const userRouteJump = (url: string) => {
-    Taro.navigateTo({
-      url: url
     })
   }
-  useReachBottom(()=>{
-    if (pull){
-      setInitPage({ page: initPage.page+1})
-    }
-  })
-
-  return(
+  return (
     <View>
-      <ScrollView
-        className='invite-ScrollView'
-        scrollX
-        upperThreshold={50}
-        lowerThreshold={50}
-        enableFlex
-        scrollLeft={scrollLeft}
-        scrollWithAnimation
-        onScroll={(e=>{console.log(e)})}
-      >
-      <View className='invite-tab'>
-        {tab.item && tab.item.map((item,i) => (
-          <View key={item.index} className='invite-tab-box' onClick={() => { handleTable(item.index,item.name,i)}}>
-            <View className={classnames({
-              'invite-tab-active': item.index === current
-            })}>
-              {item.name}
-            </View>
+      <Auth />
+      <View className='invite-container'>
+        {ISCANSHARE &&
+        <View className='invite-item invite-item-icon'>
+          <View className='invite-header'>
+            <Image className='invite-img' src={ IMGCDNURL +'invite-way1.png' } />
+            <View className='invite-text'>点击右上角三个点，或点击下方(点击分享)按钮，分享鱼泡网到微信建筑群、焊工群、微信好友，工友点击你分享的链接来到鱼泡网。</View>
           </View>
-        ))}
-      </View>
-      </ScrollView>
-      {!list.length && <Nodata text={noData} />}
-      <View className='invite-content-box'>
-        {list && list.map((v)=>(
-          <View key={v.id} className='invite-content' onClick={() => userRouteJump(`/subpackage/pages/notice/index?id=${v.id}`)}>
-            <View>
-              <Image className='invite-content-img' src={v.cover_img} />
-            </View>
-            <View className='invite-content-right'>
-              <View className='invite-content-title'>{v.title}</View>
-              <View className='invite-content-desc'>{v.desc}</View>
-              <View className='invite-content-footer'>
-                <Text>{v.author}</Text>
-                <Text>{v.time}</Text>
-              </View>
-            </View>
+          <Button className='invite-btn' openType='share'>点击分享</Button>
+        </View>
+        }
+        <View className='invite-item'>
+          <View className='invite-header'>
+            <Image className='invite-img' src={ IMGCDNURL + 'invite-way2.png'} />
+            <View className='invite-text'>点击下方（复制专属邀请链接），发到QQ群、论坛、贴吧，工友通过你的专享邀请链接来到鱼泡网。</View>
+            <Input className='invite-input' value={ link } />
           </View>
-        ))}
+          <Button className='invite-btn' onClick={()=>copyUserInviteLink()}>复制专属邀请链接</Button>
+        </View>
       </View>
-      {list.length && !pull && <View className='invite-nodata'>没有更多数据了</View>}
     </View>
   )
 }
 
-InvitePage.config = {
-  navigationBarTitleText: '鱼泡网-新闻资讯',
-  enablePullDownRefresh: true,
-  navigationBarBackgroundColor: '#0099ff',
-  navigationBarTextStyle: 'white',
-  backgroundTextStyle: 'dark'
+Invite.config = {
+  navigationBarTitleText: "邀请好友"
 } as Config

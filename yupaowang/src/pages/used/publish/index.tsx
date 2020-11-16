@@ -1,4 +1,4 @@
-import Taro, { useState, useRouter } from '@tarojs/taro'
+import Taro, { useState, useRouter, Config } from '@tarojs/taro'
 import { View, Form, Text, Input, Textarea, ScrollView, Picker, Block } from '@tarojs/components'
 import { AtDrawer } from 'taro-ui'
 import WordsTotal from '../../../components/wordstotal'
@@ -124,7 +124,7 @@ export default function UsedPublish() {
             <View className='publish-list-item' onClick={()=>userClickClassify(true)}>
               <Text className='pulish-list-title'>交易目的</Text>
               {classifyName ?
-                <View className='publish-list-input'>
+                <View className='publish-list-input publish-list-text'>
                   <Text className='publish-input-list'>{ classifyName }</Text>
                 </View>
                 :
@@ -178,7 +178,7 @@ export default function UsedPublish() {
             </View>
             }
             <View className='publish-list-textarea'>
-              <Text className='publish-textarea-title'>招工详情</Text>
+              <Text className='publish-textarea-title'>交易详情</Text>
               <Textarea
                 className='publish-textarea'
                 value={ model.detail }
@@ -195,3 +195,7 @@ export default function UsedPublish() {
     </Block>
   )
 }
+
+UsedPublish.config = {
+  navigationBarTitleText: '发布二手交易'
+} as Config

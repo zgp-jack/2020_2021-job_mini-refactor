@@ -18,7 +18,8 @@ class App extends Component {
       "pages/map/resume/index", //发布找活地图
       "pages/used/publish/index", //发布二手交易
       "pages/used/info/index", //二手交易详情
-      "pages/invite/index", //邀请好友
+      "pages/static/invite/index", //邀请好友
+      'pages/static/notice/index',//资讯详情
       "pages/getintegral/index", //获取积分
       "pages/integral/source/index", //积分来源记录
       "pages/integral/temp/index", //临时积分记录
@@ -37,8 +38,6 @@ class App extends Component {
       "pages/help/index", //帮助中心
       "pages/feedbacklist/index", //意见反馈列表
       "pages/feedback/index", //意见反馈
-      "pages/static/invite/index", //新闻资讯
-      "pages/query/index", //实名查询
       "pages/information/mymessage/index", //我的信息
       "pages/information/system/index", //我的信息详情
       'pages/integral/tabber/index', //积分来源顶部
@@ -54,10 +53,7 @@ class App extends Component {
       'pages/resume/projects/index', //项目经验列表
       'pages/resume/skills/index', //技能证书列表
       'pages/rank-rules/index', //排名规则
-
       'pages/turntable/index',// 大转盘
-
-
       'pages/resume/detail/index', // 找活详情
       'pages/resume/newPreview/index', // 预览
       'pages/resume/preview/index', // 预览
@@ -68,16 +64,16 @@ class App extends Component {
       {
         root: 'subpackage/pages',
         pages: [
-          'checkauth/index',
+          'checkauth/index',// 实名查询
           'about/index',//关于我们
           'report/index',//举报骗子
-          'notice/index',//资讯详情
           'download/index',//下载app
           'ranking/index',//排名规则
           'course/index',//使用教程
           'anti-fraud/index', //防骗指南
           'projects/index', //更多项目经验
           'skills/index',//更多技能证书
+          'news/index', //鱼泡动态
         ]
       },
     ],

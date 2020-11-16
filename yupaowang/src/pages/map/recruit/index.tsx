@@ -1,11 +1,6 @@
-import Taro, { useEffect, useState } from '@tarojs/taro'
+import Taro, { Config, useEffect, useState } from '@tarojs/taro'
 import { View, Text, Image, Input } from '@tarojs/components'
-<<<<<<< HEAD
-import { context } from '../../recruit/publish'
-import { getAllAreas,   } from '../../../utils/request'
-=======
 import { getAllAreas, checkAdcodeValid } from '../../../utils/request'
->>>>>>> 01321613023dd0f08e3064936bb0cb43af1d9feb
 import { AllAreasDataItem } from '../../../utils/request/index.d'
 import { IMGCDNURL, UserPublishAreaHistoryMaxNum } from '../../../config'
 import Cities from '../../../components/citys'
@@ -273,3 +268,7 @@ export default function RecruitMap(){
     </View>
   )
 }
+
+RecruitMap.config = {
+  navigationBarTitleText: '选择发布地址'
+} as Config

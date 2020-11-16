@@ -80,9 +80,11 @@ var _index4 = _interopRequireDefault(_index3);
 
 var _index5 = __webpack_require__(/*! ../../../utils/v/index */ "./src/utils/v/index.ts");
 
+var _index6 = __webpack_require__(/*! ../../../utils/helper/index */ "./src/utils/helper/index.ts");
+
 var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/redux/index.js");
 
-var _index6 = __webpack_require__(/*! ../../../utils/subscribeToNews/index */ "./src/utils/subscribeToNews/index.ts");
+var _index7 = __webpack_require__(/*! ../../../utils/subscribeToNews/index */ "./src/utils/subscribeToNews/index.ts");
 
 var _resume_list = __webpack_require__(/*! ../../../actions/resume_list */ "./src/actions/resume_list.ts");
 
@@ -100,8 +102,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 // import CollectionRecruitList  from '../../../components/recommendList/index'
 
 
-// export const detailContext = createContext<Injected>({} as Injected)
-
 var ResumeDetail = function (_Taro$Component) {
   _inherits(ResumeDetail, _Taro$Component);
 
@@ -117,7 +117,7 @@ var ResumeDetail = function (_Taro$Component) {
       backgroundTextStyle: "dark"
     };
 
-    _this.$usedState = ["data", "loopArray92", "loopArray94", "loopArray95", "$compid__77", "isAuth", "IMGCDNURL", "examine", "onoff", "praise", "ISCANSHARE", "collect", "shownewtips", "complaintModal", "age", "phone"];
+    _this.$usedState = ["data", "loopArray91", "loopArray93", "loopArray94", "$compid__78", "isAuth", "IMGCDNURL", "examine", "onoff", "praise", "ISCANSHARE", "collect", "shownewtips", "complaintModal", "age", "phone"];
     _this.anonymousFunc4Map = {};
     _this.anonymousFunc6Map = {};
     _this.customComponents = ["Auth", "Report"];
@@ -141,10 +141,10 @@ var ResumeDetail = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__77"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__78"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__77 = _genCompid2[0],
-          $compid__77 = _genCompid2[1];
+          $prevCompid__78 = _genCompid2[0],
+          $compid__78 = _genCompid2[1];
       // 获取dispatch分发action
 
 
@@ -284,7 +284,12 @@ var ResumeDetail = function (_Taro$Component) {
           _useState26 = _slicedToArray(_useState25, 2),
           clickType = _useState26[0],
           setClickType = _useState26[1];
+      // 设置当前页面的分享内容
 
+
+      (0, _taroTt.useShareAppMessage)(function () {
+        return _extends({}, (0, _index6.getUserShareMessage)());
+      });
       var getDataList = function getDataList() {
         var params = {
           location: location,
@@ -454,7 +459,7 @@ var ResumeDetail = function (_Taro$Component) {
         };
         (0, _index.resumesComplainAction)(params).then(function (res) {
           if (res.errcode === 'ok') {
-            (0, _index6.SubscribeToNews)('complain', function () {
+            (0, _index7.SubscribeToNews)('complain', function () {
               (0, _index3.showModalTip)({
                 tips: res.errmsg,
                 callback: function callback() {
@@ -463,6 +468,8 @@ var ResumeDetail = function (_Taro$Component) {
                 }
               });
             });
+          } else {
+            (0, _index4.default)(res.errmsg);
           }
         });
       };
@@ -484,11 +491,6 @@ var ResumeDetail = function (_Taro$Component) {
           current: e,
           urls: [e]
         });
-      };
-      // 传递的值
-      var value = {
-        project: data.project,
-        certificates: data.certificates
       };
       var handleMap = function handleMap() {
         var locArr = data.info.location.split(",");
@@ -520,7 +522,7 @@ var ResumeDetail = function (_Taro$Component) {
         setShownewtips(false);
       };
       this.anonymousFunc11 = handleTellPhone;
-      var loopArray92 = data.info.occupations.length ? data.info.occupations.map(function (v, i) {
+      var loopArray91 = data.info.occupations.length ? data.info.occupations.map(function (v, i) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
@@ -530,7 +532,7 @@ var ResumeDetail = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray94 = data.project.length ? data.project[0].image.map(function (v, i) {
+      var loopArray93 = data.project.length ? data.project[0].image.map(function (v, i) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
@@ -545,7 +547,7 @@ var ResumeDetail = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray95 = data.certificates.length ? data.certificates[0].image.map(function (val, i) {
+      var loopArray94 = data.certificates.length ? data.certificates[0].image.map(function (val, i) {
         val = {
           $original: (0, _taroTt.internal_get_original)(val)
         };
@@ -566,13 +568,13 @@ var ResumeDetail = function (_Taro$Component) {
         "handleTextarea": handleTextarea,
         "setComplaintModal": setComplaintModal,
         "handleSubmit": handleSubmit
-      }, $compid__77, $prevCompid__77);
+      }, $compid__78, $prevCompid__78);
       Object.assign(this.__state, {
         data: data,
-        loopArray92: loopArray92,
+        loopArray91: loopArray91,
+        loopArray93: loopArray93,
         loopArray94: loopArray94,
-        loopArray95: loopArray95,
-        $compid__77: $compid__77,
+        $compid__78: $compid__78,
         isAuth: isAuth,
         IMGCDNURL: _index2.IMGCDNURL,
         examine: examine,

@@ -59,6 +59,10 @@ var Temp = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (Temp.__proto__ || Object.getPrototypeOf(Temp)).apply(this, arguments));
 
+    _this.config = {
+      navigationBarTitleText: '临时积分记录'
+    };
+
     _this.$usedState = ["lists"];
     _this.customComponents = [];
     return _this;
@@ -139,6 +143,7 @@ var Temp = function (_Taro$Component) {
 
 Temp.$$events = [];
 Temp.$$componentPath = "pages/integral/temp/index";
+Temp.config = { navigationBarTitleText: '临时积分记录' };
 exports.default = Temp;
 
 Page(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(Temp, true));

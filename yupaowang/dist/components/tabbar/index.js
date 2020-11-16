@@ -103,7 +103,7 @@ var Tabbar = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (Tabbar.__proto__ || Object.getPrototypeOf(Tabbar)).apply(this, arguments));
 
-    _this.$usedState = ["anonymousState__temp3", "anonymousState__temp4", "anonymousState__temp5", "tabbar", "loopArray32", "memberMsg", "show", "IMGCDNURL", "notredirect"];
+    _this.$usedState = ["anonymousState__temp3", "anonymousState__temp4", "anonymousState__temp5", "tabbar", "loopArray34", "memberMsg", "show", "IMGCDNURL", "notredirect"];
     _this.anonymousFunc0Map = {};
     _this.customComponents = [];
     return _this;
@@ -229,7 +229,7 @@ var Tabbar = function (_Taro$Component) {
       this.anonymousFunc4 = function () {
         return userTapPublishItem(_index3.PUBLISHUSED);
       };
-      var loopArray32 = tabbar.list.map(function (item, __index0) {
+      var loopArray34 = tabbar.list.map(function (item, __index0) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
@@ -237,7 +237,7 @@ var Tabbar = function (_Taro$Component) {
           'common-footer-tabbar-list': true,
           'common-footer-tabbar-list-active': item.$original.id === tabbar.key
         });
-        var _$indexKey = "dfzzz" + __index0;
+        var _$indexKey = "dhzzz" + __index0;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return changeTabbarAction(item.$original);
         };
@@ -252,7 +252,7 @@ var Tabbar = function (_Taro$Component) {
         anonymousState__temp4: anonymousState__temp4,
         anonymousState__temp5: anonymousState__temp5,
         tabbar: tabbar,
-        loopArray32: loopArray32,
+        loopArray34: loopArray34,
         memberMsg: memberMsg,
         show: show,
         IMGCDNURL: _index3.IMGCDNURL

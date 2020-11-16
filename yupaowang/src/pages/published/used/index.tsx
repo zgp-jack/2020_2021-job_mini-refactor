@@ -6,6 +6,7 @@ import { userGetPublishedUsedLists, userChangeUsedStatus, userUpdateUsedInfo } f
 import { UserPublishedUsedItem } from '../../../utils/request/index.d'
 import classnames from 'classnames'
 import { User } from '../../../reducers/user'
+import Tabbar from '../../../components/tabbar'
 import Nodata from '../../../components/nodata'
 import './index.scss'
 import Auth from '../../../components/auth'
@@ -209,6 +210,7 @@ export default function PublishedUsed() {
         }
       </ScrollView>
     </View>
+      <Tabbar />
     </Block>
   )
 }

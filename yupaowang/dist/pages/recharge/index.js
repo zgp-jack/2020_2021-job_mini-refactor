@@ -82,7 +82,7 @@ var Recharge = function (_Taro$Component) {
       backgroundTextStyle: "dark"
     };
 
-    _this.$usedState = ["loopArray53", "lists", "integral", "current", "price"];
+    _this.$usedState = ["loopArray55", "lists", "integral", "current", "price"];
     _this.anonymousFunc0Map = {};
     _this.customComponents = ["AtMessage"];
     return _this;
@@ -245,7 +245,7 @@ var Recharge = function (_Taro$Component) {
                 (0, _index3.errMsg)("\u7F51\u7EDC\u5F02\u5E38\uFF0C\u5145\u503C\u5931\u8D25\uFF0C\u5BA2\u670D\u7535\u8BDD" + _index.SERVERPHONE);
               });
             }).catch(function () {
-              (0, _index3.ShowActionModal)("\u5145\u503C\u5931\u8D25\uFF0C\u8BF7\u8054\u7CFB\u5BA2\u670D\u7535\u8BDD" + _index.SERVERPHONE);
+              (0, _index3.ShowActionModal)({ msg: "\u5145\u503C\u5931\u8D25\uFF0C\u8BF7\u8054\u7CFB\u5BA2\u670D\u7535\u8BDD" + _index.SERVERPHONE });
             });
           }
         });
@@ -253,11 +253,11 @@ var Recharge = function (_Taro$Component) {
       this.anonymousFunc1 = function () {
         return userRechargeAction();
       };
-      var loopArray53 = lists.map(function (item, index) {
+      var loopArray55 = lists.map(function (item, index) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
-        var _$indexKey = "fdzzz" + index;
+        var _$indexKey = "ffzzz" + index;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return userChooseItem(index);
         };
@@ -272,7 +272,7 @@ var Recharge = function (_Taro$Component) {
         };
       });
       Object.assign(this.__state, {
-        loopArray53: loopArray53,
+        loopArray55: loopArray55,
         lists: lists,
         integral: integral,
         current: current,

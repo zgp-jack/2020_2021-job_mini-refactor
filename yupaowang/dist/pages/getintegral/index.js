@@ -121,7 +121,7 @@ var GetIntegral = function (_Taro$Component) {
         }
       }, []);
       this.anonymousFunc0 = function () {
-        return (0, _index2.userJumpPage)("/pages/invite/index");
+        return (0, _index2.userJumpPage)(_index.INVITEPATH);
       };
       this.anonymousFunc1 = function () {
         return (0, _index2.userJumpPage)("/pages/recharge/index");

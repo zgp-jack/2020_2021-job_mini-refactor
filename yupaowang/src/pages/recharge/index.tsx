@@ -146,7 +146,7 @@ export default function Recharge(){
             errMsg(`网络异常，充值失败，客服电话${SERVERPHONE}`)
           })
         }).catch(() => {
-          ShowActionModal(`充值失败，请联系客服电话${SERVERPHONE}`)
+          ShowActionModal({ msg: `充值失败，请联系客服电话${SERVERPHONE}`})
         })
       }
     })

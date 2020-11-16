@@ -45,9 +45,13 @@ var _member = __webpack_require__(/*! ../../actions/member */ "./src/actions/mem
 
 var _index3 = __webpack_require__(/*! ../../utils/msg/index */ "./src/utils/msg/index.ts");
 
-var _index4 = __webpack_require__(/*! ../../utils/v/index */ "./src/utils/v/index.ts");
+var _index4 = _interopRequireDefault(_index3);
+
+var _index5 = __webpack_require__(/*! ../../utils/v/index */ "./src/utils/v/index.ts");
 
 __webpack_require__(/*! ./index.scss */ "./src/pages/member/index.scss");
+
+var _store = __webpack_require__(/*! ../../config/store */ "./src/config/store.ts");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -137,15 +141,22 @@ var Member = function (_Taro$Component) {
             };
             dispatch((0, _member.setMemberInfo)(value));
             setModel(data);
-          } else (0, _index3.ShowActionModal)(data.errmsg);
+          } else (0, _index3.ShowActionModal)({
+            msg: data.errmsg
+          });
         });
       };
       (0, _taroTt.useEffect)(function () {
-        setIos((0, _index4.isIos)());
+        setIos((0, _index5.isIos)());
       }, []);
       (0, _taroTt.useEffect)(function () {
         initMemberInfo();
       }, [login, memberIndex]);
+      // 清理用户登录信息
+      var userClearSession = function userClearSession() {
+        _taroTt2.default.removeStorageSync(_store.UserInfo);
+        (0, _index4.default)('退出抖音，重新扫码');
+      };
       this.anonymousFunc0 = function () {
         return userRouteJump("/pages/userinfo/info/index");
       };
@@ -177,7 +188,7 @@ var Member = function (_Taro$Component) {
         return userRouteJump('/pages/getintegral/index');
       };
       this.anonymousFunc10 = function () {
-        return userRouteJump('/pages/invite/index');
+        return userRouteJump(_index2.INVITEPATH);
       };
       this.anonymousFunc11 = function () {
         return userRouteJump("/pages/integral/tabber/index?info=1");
@@ -196,6 +207,9 @@ var Member = function (_Taro$Component) {
       };
       this.anonymousFunc16 = function () {
         return userRouteJump('/pages/help/index');
+      };
+      this.anonymousFunc17 = function () {
+        return userClearSession();
       };
       Object.assign(this.__state, {
         login: login,
@@ -292,12 +306,17 @@ var Member = function (_Taro$Component) {
     value: function anonymousFunc16(e) {
       ;
     }
+  }, {
+    key: "anonymousFunc17",
+    value: function anonymousFunc17(e) {
+      ;
+    }
   }]);
 
   return Member;
 }(_taroTt2.default.Component);
 
-Member.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6", "anonymousFunc7", "anonymousFunc8", "anonymousFunc9", "anonymousFunc10", "anonymousFunc11", "anonymousFunc12", "anonymousFunc13", "anonymousFunc14", "anonymousFunc15", "anonymousFunc16"];
+Member.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6", "anonymousFunc7", "anonymousFunc8", "anonymousFunc9", "anonymousFunc10", "anonymousFunc11", "anonymousFunc12", "anonymousFunc13", "anonymousFunc14", "anonymousFunc15", "anonymousFunc16", "anonymousFunc17"];
 Member.$$componentPath = "pages/member/index";
 exports.default = Member;
 
