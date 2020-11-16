@@ -1578,3 +1578,15 @@ export interface addResumeData {
   errcode: number
   errmsg: string
 }
+
+// 热门城市
+export interface hotAreasType extends Result{
+  data: hotAreasTypeData[],
+}
+export interface hotAreasTypeData {
+  id: string,
+  is_hot: string,
+  name: string,
+  pid: string,
+  click?:boolean,
+}

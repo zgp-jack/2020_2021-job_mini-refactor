@@ -1,0 +1,149 @@
+@import '../../../common.scss';
+
+.region{
+  .region-top {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    width: 100%;
+    .region-heard{
+      width: 100%;
+      height: 100px;
+      background: #FFFFFF;
+      .region-heard-seach{
+        display: flex;
+        padding-top: 12px;
+        .region-heard-seach-input{
+          width: 622px;
+          height: 77px;
+          background: #F5F5F5;
+          border-radius: 6px;
+          font-size: 28px;
+          margin-left: 28px;
+          padding-left: 10px;
+        }
+        .region-heard-seach-btn{
+          font-size: 28px;
+          margin-left: 17px;
+          color: rgba(153, 153, 153, 1);
+          padding-top: 20px;
+        }
+      }
+    }
+    .region-top-tips{
+      padding-top: 34px;
+      background: rgba(247, 246, 249, 1);
+      font-size: 30px;
+      font-weight: bold;
+      margin-left: 30px;
+      padding-bottom: 20px;
+    }
+  }
+  .region-content{
+    margin-bottom: 200px;
+    .region-content-hotCity-content-title{
+      color: rgba(32, 32, 33, 1);
+      font-size: 28px;
+      margin-left: 23px;
+      font-weight: bold;
+    }
+    font-size: 36px;
+    color: rgba(105, 105, 105, 1);
+    font-weight: normal;
+    margin-top: 200px;
+    .region-content-hotCity-content{
+      display: flex;
+      flex-flow: wrap;
+      .region-content-hotCity-content-list{
+        position: relative;
+        width: 194px;
+        height: 86px;
+        line-height: 86px;
+        color: rgba(111, 111, 111, 1);
+        font-size: 36px;
+        font-weight: normal;
+        background: #FFFFFF;
+        border-radius: 5px;
+        text-align: center;
+        margin: 28px 28px 0px 28px;
+        .region-content-hotCity-content-list-img{
+          position: absolute;
+          width: 21px;
+          height: 25px;
+          left: 9px;
+          top: 5px;
+        }
+      }
+    }
+    .region-content-allCity-tips{
+      font-size: 28px;
+      color: rgba(32, 32, 33, 1);
+      font-weight: bold;
+      margin-left: 23px;
+      margin-top: 30px;
+    }
+    .region-content-allCity-box{
+      display: flex;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+      .region-content-allCity-box-list{
+        position: relative;
+        width: 194px;
+        height: 86px;
+        line-height: 86px;
+        color: rgba(111, 111, 111, 1);
+        font-size: 36px;
+        font-weight: normal;
+        background: #FFFFFF;
+        border-radius: 5px;
+        text-align: center;
+        margin: 28px 28px 0px 28px;
+        .region-content-allCity-box-list-img {
+          position: absolute;
+          width: 21px;
+          height: 25px;
+          left: 9px;
+          top: 5px;
+        }
+      }
+      .region-content-allCity-box-list-click {
+        position: relative;
+        width: 194px;
+        height: 86px;
+        line-height: 86px;
+        color: #FFFFFF;
+        font-size: 36px;
+        font-weight: normal;
+        background: $color;
+        border-radius: 5px;
+        text-align: center;
+        margin: 28px 28px 0px 28px;
+        .region-content-allCity-box-list-img {
+          position: absolute;
+          width: 21px;
+          height: 25px;
+          left: 9px;
+          top: 5px;
+        }
+      }
+    }
+    .region-content-box{
+      width: 100%;
+      position: fixed;
+      left: 0;
+      bottom: 60px;
+      z-index: 10;
+      .region-content-box-btn{
+        margin: 0 auto;
+        width: 518px;
+        height: 97px;
+        line-height: 97px;
+        text-align: center;
+        color: #FFFFFF;
+        background: $color;
+        border-radius: 10px;
+      }
+    }
+  }
+}

@@ -1208,3 +1208,11 @@ export function memberTurntable():Promise<Inter.memberTurntableType>{
     method: 'POST',
   })
 }
+
+// 获取热门城市
+export function hotAreas(): Promise<Inter.hotAreasType> {
+  return doRequestAction({
+    url: api.hotAreas,
+    method: 'POST',
+  })
+}

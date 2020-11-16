@@ -1,0 +1,116 @@
+@import '../../../common.scss';
+
+.range {
+  font-size: 28px;
+  color: rgba(32, 32, 33, 1);
+  .range-mt30{
+    margin: 30px;
+  }
+  .range-tips {
+    font-weight: bold;
+    margin-bottom: 30px;
+    margin-left: 30px;
+  }
+  .range-noChangeBtn {
+    width: 298px;
+    height: 70px;
+    line-height: 70px;
+    color: #fff;
+    text-align: center;
+    background: #0099FF;
+    box-shadow: 0px 3px 3px 0px rgba(0, 153, 255, 0.5);
+    border-radius: 5px;
+    margin-bottom: 45px;
+  }
+  .range-cityBox{
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 36px;
+    .range-cityBox-list{
+      position: relative;
+      width: 194px;
+      height: 86px;
+      background: rgba(255, 255, 255, 0);
+      border: 2px solid #B5B5B5;
+      box-shadow: 0px 2px 5px 0px rgba(176, 174, 179, 0.38);
+      border-radius: 5px;
+      text-align: center;
+      line-height: 86px;
+      margin: 0px 28px 18px 28px;
+      .range-cityBox-list-close{
+        height: 27px;
+        width: 27px;
+        position: absolute;
+        right: 0px;
+        top: 0px;
+        z-index: 1;
+      }
+    }
+    .range-cityBox-list-last{
+      position: relative;
+      width: 194px;
+      height: 86px;
+      background:$color;
+      box-shadow: 0px 2px 5px 0px rgba(176, 174, 179, 0.38);
+      border-radius: 5px;
+      text-align: center;
+      line-height: 86px;
+      margin: 0px 28px 18px 28px;
+      color: #fff;
+    }
+  }
+  .range-content{
+    font-size: 26px;
+    padding-left: 30px;
+    padding-right: 30px;
+    background: #FFFFFF;
+    box-shadow: 0px 3px 6px 0px rgba(229, 224, 224, 0.75);
+    border-radius: 5px 5px 5px 5px;
+    .range-content-list-time{
+      display: flex;
+      justify-content: space-between;
+    }
+    .range-content-list,
+    .range-content-list-time {
+      height: 82px;
+      line-height: 82px;
+      border-bottom: 1px solid rgba(220, 220, 220, 1);
+      .range-content-list-noDay{
+        color: rgba(198, 198, 199, 1);
+      }
+      .range-content-list-blued{
+        color: $color;
+      }
+    }
+    .range-content-list:last-child,
+    .range-content-list-time:last-child {
+      height: 82px;
+      line-height: 82px;
+      border-bottom: none;
+    }
+  }
+  .range-change{
+    width: 100%;
+    .range-change-btn{
+      width: 418px;
+      height: 78px;
+      background: rgba(16, 142, 239, 1);
+      border-radius: 10px;
+      text-align: center;
+      line-height: 78px;
+      color: #fff;
+      text-align: center;
+      margin: 40px auto;
+    }
+  }
+  .range-rule{
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  .range-rule-content{
+    font-size: 24px;
+    color: rgba(32, 32, 33, 1);
+  }
+}
