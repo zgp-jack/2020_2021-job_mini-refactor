@@ -1,4 +1,4 @@
-import { GETAREAINFO, SETAREAINFO, SETAREA, GETAREA, SETPOSITIONSTATUS, SETTOKEN, GETTOKEN } from '../constants/recruit' //定义发布招工获取设置区域信息的action
+import { GETAREAINFO, SETAREAINFO, SETAREA, GETAREA, SETPOSITIONSTATUS, SETTOKEN, GETTOKEN, SETPHONE } from '../constants/recruit' //定义发布招工获取设置发布信息的action
 import { UserLastPublishRecruitArea, RecruitInfo } from '../pages/recruit/index.d'//招工信息发布区域信息类型
 import { UserLocationPromiss, AREABEIJING } from '../models/area'
 
@@ -11,7 +11,8 @@ const DEFAULT_STATE_RECRUIT: RecruitInfo = {
   },
   area: AREABEIJING.name,
   token:'',
-  positionStatus: true
+  positionStatus: true,
+  phone: ''
 }
 // 内容的参数
 const DEFAULT_STATE_AREAINFO: UserLastPublishRecruitArea = {
@@ -32,7 +33,7 @@ export interface ACTIONTYPE {
 
 export interface ACTIONTYPES {
   type: string,
-  data: UserLastPublishRecruitArea | string
+  data: UserLastPublishRecruitArea | string | boolean
 }
 export function MyAreaInfo(state: UserLastPublishRecruitArea = DEFAULT_STATE_AREAINFO, action: ACTIONTYPE) {
   switch (action.type) {
@@ -78,6 +79,8 @@ export function RecruitAction(state: RecruitInfo = DEFAULT_STATE_RECRUIT, action
       return {...state, token: action.data}
     case SETPOSITIONSTATUS:
       return { ...state, positionStatus: action.data}
+    case SETPHONE: 
+      return { ...state, phone: action.data}
     default:
       return state
   }

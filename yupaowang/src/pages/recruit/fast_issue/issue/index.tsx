@@ -9,7 +9,7 @@ import { useFastIssue } from '../../../../hooks/publish/fast_issue'
 
 export default function FastIssue() {
   // 初始化当前信息
-  const { issueData , inputEnter } = useFastIssue()
+  const { issueData, inputEnter, fastPublish } = useFastIssue()
   // 监听输入事件
   const userInput = (e:any, key:string) =>{
     inputEnter(e, key)
@@ -34,7 +34,7 @@ export default function FastIssue() {
         <View className="issue-contact-body">请确定招工联系电话，如若有误，请自行修改。</View>
         <Input className="issue-contact-input" type="number" placeholder="请输入联系电话" maxLength={11}  onInput={(e) => userInput(e, 'phone')} value={issueData.phone}></ Input>
       </View>
-      <View className="issue-btn">发布招工</View>
+      <View className="issue-btn" onClick={() => fastPublish()}>发布招工</View>
     </View >
   )
 }

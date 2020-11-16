@@ -257,7 +257,8 @@ exports.default = (0, _redux.combineReducers)({
   realname: _realname2.default,
   resumeAddInfo: _resume_addinfo2.default,
   PositionStatus: _recruit.PositionStatus,
-  publishData: _publish2.default
+  publishData: _publish2.default,
+  RecruitAction: _recruit.RecruitAction
 });
 
 /***/ }),
@@ -498,17 +499,30 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; //定义发布招工获取设置区域信息的action
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; //定义发布招工获取设置发布信息的action
 
 
 exports.MyAreaInfo = MyAreaInfo;
 exports.MyArea = MyArea;
 exports.PositionStatus = PositionStatus;
+exports.RecruitAction = RecruitAction;
 
 var _recruit = __webpack_require__(/*! ../constants/recruit */ "./src/constants/recruit.ts");
 
 var _area = __webpack_require__(/*! ../models/area */ "./src/models/area.ts");
 
+var DEFAULT_STATE_RECRUIT = {
+  areaInfo: {
+    title: '',
+    adcode: '',
+    location: '',
+    info: ''
+  },
+  area: _area.AREABEIJING.name,
+  token: '',
+  positionStatus: true,
+  phone: ''
+};
 // 内容的参数
 var DEFAULT_STATE_AREAINFO = {
   title: '',
@@ -554,6 +568,25 @@ function PositionStatus() {
     case _recruit.SETPOSITIONSTATUS:
       state = action.data;
       return state;
+    default:
+      return state;
+  }
+}
+function RecruitAction() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : DEFAULT_STATE_RECRUIT;
+  var action = arguments[1];
+
+  switch (action.type) {
+    case _recruit.SETAREAINFO:
+      return _extends({}, state, { areaInfo: action.data });
+    case _recruit.SETAREA:
+      return _extends({}, state, { area: action.data });
+    case _recruit.SETTOKEN:
+      return _extends({}, state, { token: action.data });
+    case _recruit.SETPOSITIONSTATUS:
+      return _extends({}, state, { positionStatus: action.data });
+    case _recruit.SETPHONE:
+      return _extends({}, state, { phone: action.data });
     default:
       return state;
   }

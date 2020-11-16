@@ -7,7 +7,7 @@ import ImageView from '../../components/imageview'
 import UploadImgAction from '../../utils/upload'
 import useCode from '../../hooks/code'
 import { feedbackSubmissionAction } from '../../utils/request/index'
-import Msg, { ShowActionModal, SubPopup} from '../../utils/msg'
+import Msg, { ShowActionModal } from '../../utils/msg'
 import { SubscribeToNews } from '../../utils/subscribeToNews';
 import { isVaildVal, isPhone } from '../../utils/v'
 import './index.scss'

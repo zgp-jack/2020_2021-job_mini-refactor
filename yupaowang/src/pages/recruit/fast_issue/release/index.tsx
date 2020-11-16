@@ -1,28 +1,33 @@
 import Taro, { Config } from '@tarojs/taro'
-import { View, Input, Image, Text, Switch, Button } from '@tarojs/components'
-import WordsTotal from '../../../../components/wordstotal'
-import { useState } from '@tarojs/taro'
+import { View, Input, Text, Switch, Button } from '@tarojs/components'
+import { RecruitInfo } from '../../../../pages/recruit/index.d'
+import { useSelector } from '@tarojs/redux';
+
 import './index.scss'
 
 
 export default function FastIssue() {
-
-  const userEnterFrom = (e: any, key: string) => {
-    const value: string = e.detail.value
-    // 如果是detail, 那么需要统计字数
-    if (key === 'detail') {
-      setNum(value.length)
-    }
+  // 发布招工redux数据
+  const recruitInfo: RecruitInfo = useSelector<any, RecruitInfo>(state => state.RecruitAction)
+  // 招工信息的定位地址信息
+  const areaInfo = recruitInfo.areaInfo
+  // 点击招工城市，跳转到城市选择页面
+  function showWorkArea () {
+    let url = '/pages/map/recruit/index'
+    Taro.navigateTo({
+      url: url
+    })
   }
+
   return (
     <View className="issue-area-container">
       <View className="issue-tip">
         <View className="issue-contact-title">信息越完善，招工越容易</View>
       </View>
       <View className="issue-contactbox">
-        <View className="issue-box">
+        <View className="issue-box" onClick={() => showWorkArea()}>
           <Text>招工城市：</Text>
-          <Input placeholder="请选择招工城市"  className="issue-input"></Input>
+          <Input placeholder="请选择招工城市"  className="issue-input" value={areaInfo && areaInfo.info}></Input>
         </View>
         <View className="issue-box" >
           <Text>所需工种：</Text>

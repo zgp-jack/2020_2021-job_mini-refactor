@@ -9,7 +9,7 @@ import Msg, { ShowActionModal } from '../../utils/msg'
 import { SubscribeToNews } from '../../utils/subscribeToNews';
 import { useSelector, useDispatch } from '@tarojs/redux'
 import { isVaildVal, isPhone } from '../../utils/v'
-import { setAreaInfo, setArea, setToken } from '../../actions/recruit'//获取发布招工信息action
+import { setAreaInfo, setArea } from '../../actions/recruit'//获取发布招工信息action
 import { setPublishData } from '../../actions/publish'
 import { PublishData } from '../../config/store'
 
@@ -80,7 +80,7 @@ export function usePublishData(InitParams: InitRecruitView){
         // 初始化用户区域数据
         initUserAreaInfo(res)
         // 将数据保存到redux中的areaInfo中
-        dispatch(setAreaInfo({ ...areaInfo, title: initIssueModel.address }))
+        dispatch(setAreaInfo({ ...recruitInfo.areaInfo, title: initIssueModel.address }))
         // 保存手机号
         setPhone(InitViewInfo.user_mobile)
         // 如果有上传图片保存图片showUpload中

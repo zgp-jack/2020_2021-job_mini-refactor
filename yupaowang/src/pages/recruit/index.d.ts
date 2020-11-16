@@ -73,7 +73,8 @@ export interface RecruitInfo {
   areaInfo: UserLastPublishRecruitArea,
   area: string,
   token: string,
-  positionStatus: boolean
+  positionStatus: boolean,
+  phone: string
 }
 
 // 初始化发布招工获取信息类型
@@ -108,4 +109,10 @@ export interface PublishConfigData {
 export interface FastIssueData{
   content: string,
   phone: string
+}
+// 手机验证码校验请求参数
+export interface VaildCodeReq{
+  token: string,
+  phone: string,
+  code: string
 }

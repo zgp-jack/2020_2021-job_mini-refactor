@@ -1,4 +1,4 @@
-import { SETAREAINFO, GETAREAINFO, SETAREA, GETAREA, SETPOSITIONSTATUS, SETTOKEN, GETTOKEN } from '../constants/recruit'
+import { SETAREAINFO, GETAREAINFO, SETAREA, GETAREA, SETPOSITIONSTATUS, SETTOKEN, GETTOKEN, SETPHONE } from '../constants/recruit'
 import { UserLastPublishRecruitArea } from '../pages/recruit/index.d'
 
 export function setAreaInfo(data:UserLastPublishRecruitArea) {
@@ -44,5 +44,12 @@ export function setToken(data:string){
 export function getToken () {
   return {
     type: GETTOKEN
+  }
+}
+
+export function setPhone (data: string) {
+  return {
+    type: SETPHONE,
+    data: data
   }
 }

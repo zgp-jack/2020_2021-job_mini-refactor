@@ -1396,3 +1396,5 @@ export interface ResumeAddInfoGenderConfig {
   id: string ,
   name: string
 }
+
+// 

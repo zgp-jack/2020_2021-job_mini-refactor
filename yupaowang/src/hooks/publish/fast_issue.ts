@@ -1,10 +1,13 @@
 import { usePublishData } from './fastIssue'
 import { FastIssueData } from '../../pages/recruit/index.d'
-import { useState, useEffect } from '@tarojs/taro'
+import Taro, { useState, useEffect } from '@tarojs/taro'
 import { isVaildVal, isPhone } from '../../utils/v'
-import Msg, { ShowActionModal } from '../../utils/msg'
+import { ShowActionModal } from '../../utils/msg'
 import { fastIssue } from '../../utils/request'
 import { FastData } from '../../utils/request/index.d'
+import { setToken, setPhone } from '../../actions/recruit'//获取发布招工信息action
+import { useDispatch } from '@tarojs/redux'
+import { SERVERPHONE } from '../../config'
 
 
 // 初始化获取信息类型
@@ -24,6 +27,8 @@ export function useFastIssue() {
   const [issueData, setIssueData] = useState<FastIssueData>({ phone: phone , content:''})
   // 数据变化的标题
   const [dataType, setDataType] = useState<string>('')
+  // 获取dispatch分发action
+  const dispatch = useDispatch()
   // 存入电话号码
   useEffect(() => {
     setIssueData({ ...issueData, phone: phone })
@@ -37,7 +42,6 @@ export function useFastIssue() {
       setEnterInfo(dataType, issueData[dataType])
     }
   }, [dataType, issueData])
-
   // 用户填写发布信息
   function inputEnter (e: any, key: string) {
     const value: string = e.detail.value
@@ -48,85 +52,65 @@ export function useFastIssue() {
   function fastPublish () {
     let data = { ...issueData }
     if (data.content == "") {
-      Msg('请输入招工详情。')
+      ShowActionModal('请输入招工详情。')
       return
     }
     if (!isVaildVal(data.content, 3, 500)) {
-      Msg('请正确输入3~500字招工详情,必须含有汉字。')
+      ShowActionModal('请正确输入3~500字招工详情,必须含有汉字。')
       return;
     }
     if (data.phone == "") {
-      Msg('请输入联系电话。')
+      ShowActionModal('请输入联系电话。')
       return false
     }
     if (data.phone && !isPhone(phone)) {
-      Msg('请正确输入11位联系电话。')
+      ShowActionModal('请正确输入11位联系电话。')
       return false;
     }
     if (phone == "18349296434") {
-      Msg('该手机号暂不支持发布招工信息，请重新输入。')
+      ShowActionModal('该手机号暂不支持发布招工信息，请重新输入。')
       return false;
     }
     fastIssue(data).then(res => {
       if (res.errcode == 'ok') {
+        // 获取请求的手机号验证结果true为验证通过
         let checked: boolean = (res.data as FastData).checked 
+        // 快速发布招工信息的token，用户携带到整个发布流程使用
+        let token: string = (res.data as FastData).token
+        // token存入redux
+        dispatch(setToken(token))
+        // 发布手机号存入redux
+        dispatch(setPhone(issueData.phone))
         if (checked){
           Taro.navigateTo({
             url: '/pages/recruit/fast_issue/release/index',
           })
         }else{
           Taro.navigateTo({
-            url: 'pages/recruit/fast_issue/code/index',
+            url: '/pages/recruit/fast_issue/code/index',
           })
         }
+      } else if (res.errcode == "unusable") {
+        Taro.showModal({
+          title: '温馨提示',
+          content: "mydata.errmsg",
+          cancelText: "知道了",
+          confirmText: "联系客服",
+          success(res) {
+            if (res.confirm) {
+              let tel = SERVERPHONE;
+              Taro.makePhoneCall({
+                phoneNumber: tel,
+              })
+            }
+          }
+        })
       } else {
         ShowActionModal({
           msg: res.errmsg
         })
       }
     })
-    
-    // app.appRequestAction({
-    //   url: 'fast-issue/issue/',
-    //   params: {
-    //     content,
-    //     phone,
-    //     paid_issue: e.detail ? e.detail : 0
-    //   },
-    //   way: 'POST',
-    //   success: function (res) {
-    //     if (res.data.errcode == "ok") {
-    //       let mydata = res.data.data
-    //       app.globalData.fastToken = mydata.token
-    //       if (mydata.checked) {
-    //         wx.navigateTo({
-    //           url: '/pages/fast/area/area?token=' + mydata.token,
-    //         })
-    //         that.setEnterInfo("phone", '')
-    //       } else {
-    //         wx.navigateTo({
-    //           url: '/pages/fast/code/code?token=' + mydata.token + '&tel=' + phone,
-    //         })
-    //       }
-    //     }
-    //     if (res.data.errcode == "unusable") {
-    //       wx.showModal({
-    //         title: '提示',
-    //         content: res.data.errmsg,
-    //         showCancel: true,
-    //         cancelText: "知道了",
-    //         confirmText: "联系客服",
-    //         success: function (res) {
-    //           if (res.confirm) {
-    //             wx.makePhoneCall({
-    //               phoneNumber: app.globalData.serverPhone
-    //             })
-    //           }
-    //         }
-    //       })
-    //     }
-    //   }
-    // })
   }
   return {
     issueData, 
@@ -134,6 +118,6 @@ export function useFastIssue() {
     inputEnter,
     setDataType,
     dataType,
-    fastPublish
+    fastPublish,
   }
 }
