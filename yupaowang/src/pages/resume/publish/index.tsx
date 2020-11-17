@@ -108,6 +108,7 @@ export default function ResumePublish(){
               <View className='progress-viewed'>浏览次数</View>
             </View>
           </View>
+            <View onClick={() => handleJump('/pages/newTopping/range/index')}>置顶</View>
 {/*           
           <View className='progress-footer'>
             <View>

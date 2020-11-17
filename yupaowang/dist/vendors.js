@@ -12264,6 +12264,32 @@ function setProjectList(data) {
 
 /***/ }),
 
+/***/ "./src/actions/resume_top.ts":
+/*!***********************************!*\
+  !*** ./src/actions/resume_top.ts ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.setResumeTop = setResumeTop;
+
+var _resume_top = __webpack_require__(/*! ../constants/resume_top */ "./src/constants/resume_top.ts");
+
+function setResumeTop(data) {
+  return {
+    type: _resume_top.SETRESUMETOP,
+    data: data
+  };
+}
+
+/***/ }),
+
 /***/ "./src/actions/tabbar.ts":
 /*!*******************************!*\
   !*** ./src/actions/tabbar.ts ***!
@@ -12873,6 +12899,24 @@ var SETSUBPACKCERTIFICATE = exports.SETSUBPACKCERTIFICATE = 'setSubpackCertifica
 
 /***/ }),
 
+/***/ "./src/constants/resume_top.ts":
+/*!*************************************!*\
+  !*** ./src/constants/resume_top.ts ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+// 项目经验
+var SETRESUMETOP = exports.SETRESUMETOP = 'resume_top';
+
+/***/ }),
+
 /***/ "./src/constants/tabbar.ts":
 /*!*********************************!*\
   !*** ./src/constants/tabbar.ts ***!
@@ -13051,6 +13095,8 @@ var _resume_data = __webpack_require__(/*! ../../actions/resume_data */ "./src/a
 var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/redux/index.js");
 
 var _recruit = __webpack_require__(/*! ../../actions/recruit */ "./src/actions/recruit.ts");
+
+var _resume_top = __webpack_require__(/*! ../../actions/resume_top */ "./src/actions/resume_top.ts");
 
 var _index2 = __webpack_require__(/*! ../../utils/msg/index */ "./src/utils/msg/index.ts");
 
@@ -13304,6 +13350,7 @@ function useResume() {
         setCertificates([].concat(_toConsumableArray(res.data.certificates)));
         setResume_top(_extends({}, res.data.resume_top));
         // 存redux
+        dispatch((0, _resume_top.setResumeTop)(_extends({}, res.data.resume_top)));
         dispatch((0, _resume_data.setUseResume)({
           info: res.data.info,
           introducesData: res.data.introduces,
@@ -15872,7 +15919,21 @@ var RESUME_TOP_DATA = exports.RESUME_TOP_DATA = {
   is_top: 0,
   is_top_text: '',
   is_top_to_text: '',
-  top_tips_string: ''
+  top_tips_string: '',
+  max_number: '',
+  max_price: '',
+  end_time: '',
+  start_time: '',
+  start_time_str: '',
+  end_time_str: '',
+  top_citys_str: [],
+  top_provinces_str: [],
+  top_citys: '',
+  top_provinces: '',
+  is_show_tips: 0,
+  is_country: '',
+  first_province_num: '',
+  first_city_num: ''
 };
 
 /***/ }),

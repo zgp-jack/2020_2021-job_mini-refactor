@@ -72,6 +72,7 @@
     }
     .range-content-list,
     .range-content-list-time {
+      display: flex;
       height: 82px;
       line-height: 82px;
       border-bottom: 1px solid rgba(220, 220, 220, 1);
@@ -108,6 +109,10 @@
     font-weight: bold;
     text-align: center;
     margin-bottom: 30px;
+  }
+  .range-rule-phone{
+    color: $color;
+    font-size: 24px;
   }
   .range-rule-content{
     font-size: 24px;

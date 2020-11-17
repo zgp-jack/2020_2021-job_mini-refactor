@@ -75,6 +75,27 @@
           top: 5px;
         }
       }
+      .region-content-hotCity-content-list-click {
+        position: relative;
+        width: 194px;
+        height: 86px;
+        line-height: 86px;
+        color: #FFFFFF;
+        font-size: 36px;
+        font-weight: normal;
+        background: $color;
+        border-radius: 5px;
+        text-align: center;
+        margin: 28px 28px 0px 28px;
+
+        .region-content-hotCity-content-list-img {
+          position: absolute;
+          width: 21px;
+          height: 25px;
+          left: 9px;
+          top: 5px;
+        }
+      }
     }
     .region-content-allCity-tips{
       font-size: 28px;

@@ -7,14 +7,13 @@ import Msg from '../../../utils/msg';
 import AREAS from '../../../models/area'
 import './index.scss'
 
-
 export default function Region() {
   const [hot, setHot] = useState<HotType[]>([]);
   const [areasData, setAreasData] = useState<any>([]);
   useDidShow(()=>{
     hotAreas().then((res=>{
       if(res.errcode == 'ok'){
-        setHot(res.data)
+        setHot([...res.data])
       }else{
         Msg(res.errmsg)
       }
@@ -24,21 +23,30 @@ export default function Region() {
   })
   // 点击
   const handleClick = (val: HotType)=>{
-    const data = JSON.parse(JSON.stringify(areasData));
+    const data =[...areasData];
     for (let i = 0; i < data.length;i++){
       for(let j =0;j<data[i].children.length;j++){
         if(data[i].children[j].id == val.id){
-          console.error(1111)
-          if (data[i].children[j].click){
-            data[i].children[j].click = false;
-          }else{
-            data[i].children[j].click = true;
-          }
+          // console.error(1111)
+          // if (data[i].children[j].click){
+          //   data[i].children[j].click = false;
+          // }else{
+            data[i].children[j].click = !data[i].children[j].click
+          // }
         }
       }
     }
-    console.error(data);
     setAreasData(data);
+  }
+  // 热门城市
+  const handleHot = (v)=>{
+    const data = [...hot];
+    for (let i = 0; i < data.length;i++){
+      if(v.id == data[i].id){
+        data[i].click = !data[i].click
+      }
+    }
+    setHot(data);
   }
   return(
     <View className='region'>
@@ -54,7 +62,7 @@ export default function Region() {
         <View className='region-content-hotCity-content-title'>热门城市</View>
         <View className='region-content-hotCity-content'>
           {hot.map((v) => (
-            <View key={v.id} className='region-content-hotCity-content-list'>{v.name}
+            <View key={v.id} className={v.click ? 'region-content-hotCity-content-list-click' : 'region-content-hotCity-content-list'} onClick={()=>handleHot(v)}>{v.name}
             {v.is_hot == '0' &&
               <Image src={`${IMGCDNURL}lpy/recruit/settop-hot.png`} className='region-content-hotCity-content-list-img'/>
             }

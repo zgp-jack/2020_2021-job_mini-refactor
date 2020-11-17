@@ -283,10 +283,20 @@ var _recruit_top = __webpack_require__(/*! ./recruit_top */ "./src/reducers/recr
 
 var _recruit_top2 = _interopRequireDefault(_recruit_top);
 
+var _resume_top = __webpack_require__(/*! ./resume_top */ "./src/reducers/resume_top.ts");
+
+var _resume_top2 = _interopRequireDefault(_resume_top);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 //合并reducer
-//发布招工reducer
+/*
+ * @Author: zyb
+ * @Date: 2020-11-03 14:36:47
+ * @LastEditors: jsxin
+ * @LastEditTime: 2020-11-13 15:02:13
+ * @Description:
+ */
 exports.default = (0, _redux.combineReducers)({
   tabbar: _tabbar2.default,
   WechatNotice: _wechat_notice2.default,
@@ -303,14 +313,9 @@ exports.default = (0, _redux.combineReducers)({
   PositionStatus: _recruit.PositionStatus,
   resumeData: _resume_data2.default,
   resumeList: _resume_list2.default,
-  recruitTop: _recruit_top2.default
-}); /*
-     * @Author: zyb
-     * @Date: 2020-11-03 14:36:47
-     * @LastEditors: jsxin
-     * @LastEditTime: 2020-11-13 15:02:13
-     * @Description:
-     */
+  recruitTop: _recruit_top2.default,
+  resumeTop: _resume_top2.default
+}); //发布招工reducer
 
 /***/ }),
 
@@ -585,7 +590,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-exports.default = RecruitTopRedux;
+exports.default = recruitTop;
 
 var _recruit_top = __webpack_require__(/*! ../constants/recruit_top */ "./src/constants/recruit_top.ts");
 
@@ -597,7 +602,7 @@ var value = {
     whole: []
   }
 };
-function RecruitTopRedux() {
+function recruitTop() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : value;
   var action = arguments[1];
 
@@ -789,6 +794,61 @@ function resumeList() {
       return _extends({}, state, { certificates: action.data });
     case _resume_list.SETSUBPACKPROJECT:
       return _extends({}, state, { project: action.data });
+    default:
+      return state;
+  }
+}
+
+/***/ }),
+
+/***/ "./src/reducers/resume_top.ts":
+/*!************************************!*\
+  !*** ./src/reducers/resume_top.ts ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+exports.default = resumeTop;
+
+var _resume_top = __webpack_require__(/*! ../constants/resume_top */ "./src/constants/resume_top.ts");
+
+var DEFAULT_STATE = {
+  has_top: 0,
+  is_top: 0,
+  is_top_text: '',
+  is_top_to_text: '',
+  top_tips_string: '',
+  max_number: '',
+  max_price: '',
+  end_time: '',
+  start_time: '',
+  start_time_str: '',
+  end_time_str: '',
+  top_citys_str: [],
+  top_provinces_str: [],
+  top_citys: '',
+  top_provinces: '',
+  is_show_tips: 0,
+  is_country: '',
+  first_province_num: '',
+  first_city_num: ''
+};
+function resumeTop() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : DEFAULT_STATE;
+  var action = arguments[1];
+
+  switch (action.type) {
+    case _resume_top.SETRESUMETOP:
+      return _extends({}, state, action.data);
     default:
       return state;
   }

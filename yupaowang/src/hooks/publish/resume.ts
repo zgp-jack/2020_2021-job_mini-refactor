@@ -6,6 +6,7 @@ import { setUseResume } from '../../actions/resume_data';
 import { useResumeType } from '../../pages/resume/publish/index.d'
 import { useDispatch, useSelector } from '@tarojs/redux'
 import { setAreaInfo } from '../../actions/recruit';
+import { setResumeTop } from '../../actions/resume_top';
 import Msg, { ShowActionModal} from '../../utils/msg'
 
 export default function useResume(){
@@ -169,6 +170,7 @@ export default function useResume(){
         setCertificates([...res.data.certificates]);
         setResume_top({ ...res.data.resume_top });
         // 存redux
+        dispatch(setResumeTop({...res.data.resume_top}));
         dispatch(setUseResume({
           info: res.data.info,
           introducesData: res.data.introduces,
