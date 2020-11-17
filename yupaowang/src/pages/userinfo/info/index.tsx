@@ -117,7 +117,7 @@ export default function UserInfoIndex(){
             <Input className='yupao-enter-wrap yupao-enter-input' value={ newName } placeholder='请输入您的姓名' onInput={(e)=>userEnterName(e)} />
           </View>
           <View className='yupao-enter-footer clearfix'>
-            <Text onClick={()=>setShowModal(false)}>取消</Text>
+            <Text onClick={() => { setShowModal(false);setNewName(name)}}>取消</Text>
             <Text onClick={()=>userSubmitName()}>确定</Text>
           </View>
         </View>

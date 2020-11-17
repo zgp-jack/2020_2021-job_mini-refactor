@@ -1,7 +1,6 @@
 import Taro, { useRouter, RouterInfo, Config, useEffect, useState } from '@tarojs/taro'
 import { View, Text, Form, Input, Textarea, Block } from '@tarojs/components'
 import { ProfessionRecruitData } from '../../../components/profession/index.d'
-import WordsTotal from '../../../components/wordstotal'
 import Profession from '../../../components/profession'
 import useCode from '../../../hooks/code'
 import { TEXTAREAMAXLENGTH } from '../../../config'
@@ -193,6 +192,7 @@ export default function PublishRecruit() {
               }
               <View className='publish-list-textarea'>
               <Text className='publish-textarea-title'>招工详情</Text>
+                {!showProfession && 
                 <Textarea 
                   className={classnames({
                     'publish-textarea': true,
@@ -201,8 +201,8 @@ export default function PublishRecruit() {
                   value={ model&&model.detail||'' }
                   placeholder='请输入招工详情'
                   onInput={(e) => { userEnterFrom(e, 'detail');setNum(e.detail.value.length);return false;}}
-                ></Textarea>
-                <WordsTotal num={num} total={TEXTAREAMAXLENGTH} />
+                ></Textarea>}
+                <View className='words-total-box '>{num}<Text>/{TEXTAREAMAXLENGTH}</Text></View>
               </View>
             </View>
             <View className='publish-recruit-card'>

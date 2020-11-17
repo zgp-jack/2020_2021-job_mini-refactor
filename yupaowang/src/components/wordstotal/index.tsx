@@ -10,8 +10,8 @@ interface PROPS {
 }
 
 export default function WordsTotal({ total = TEXTAREAMAXLENGTH || 500, num = 0, classname = '' }: PROPS){
-  console.log(num)
+  
   return (
-    <View className={ 'words-total-box ' + classname }>{ num }<Text>/{ total }</Text></View>
+    <View className={'words-total-box ' + classname}>{ num }<Text>/{ total }</Text></View>
   )
 }

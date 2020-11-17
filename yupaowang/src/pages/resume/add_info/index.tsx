@@ -8,7 +8,7 @@ import { NationsType, OccupationType } from './index.d';
 import { addResumeAction, checkAdcodeAction } from '../../../utils/request/index'; 
 import { UserLastPublishRecruitArea } from '../../../pages/recruit/index.d'
 import Profession from '../../../components/profession'
-import WordsTotal from '../../../components/wordstotal'
+import { TEXTAREAMAXLENGTH } from '../../../config'
 import useCode from '../../../hooks/code'
 import Msg,{ ShowActionModal } from '../../../utils/msg';
 import { isChinese, isPhone, allChinese } from '../../../utils/v';
@@ -386,7 +386,7 @@ export default function AddResumeInfo(){
                     onInput={(e) => userEnterFrom(e, 'introduce')}
                     maxlength={500}
                   ></Textarea>}
-                  <WordsTotal num={inputVal&&inputVal.introduce&&inputVal.introduce.length||0} />
+                  <View className='words-total-box '>{inputVal && inputVal.introduce && inputVal.introduce.length || 0}<Text>/{TEXTAREAMAXLENGTH}</Text></View>
                 </View>
               </View>
               <View className='publish-recruit-btn' onClick={handelSubmit} >确认发布</View>
