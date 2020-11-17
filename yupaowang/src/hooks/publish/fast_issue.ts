@@ -63,11 +63,11 @@ export function useFastIssue() {
       ShowActionModal('请输入联系电话。')
       return false
     }
-    if (data.phone && !isPhone(phone)) {
+    if (data.phone && !isPhone(data.phone)) {
       ShowActionModal('请正确输入11位联系电话。')
       return false;
     }
-    if (phone == "18349296434") {
+    if (data.phone == "18349296434") {
       ShowActionModal('该手机号暂不支持发布招工信息，请重新输入。')
       return false;
     }

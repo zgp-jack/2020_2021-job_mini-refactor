@@ -98,7 +98,7 @@ export interface MateDataItem {
 // 获取发布招工、快速发布、急速发布的配置数据
 export interface PublishConfigData {
   classifyTree: ProfessionRecruitData[],
-  mateData: Array<Array<MateDataItem>>,
+  mateData: Array<MateDataItem>,
   noMateData: Array<MateDataItem>,
   user_mobile: string,
   maxClassifyCount: number,

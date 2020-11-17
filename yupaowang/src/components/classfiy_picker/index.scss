@@ -65,7 +65,7 @@
           font-size: 28rpx;
           color: #2C2C2C;
           border-bottom: 1px solid #EDEDED;
-          Text{
+          .common-picker-item-text{
             position: absolute;
             top: 10rpx;
             display: inline-block;
@@ -80,6 +80,19 @@
             text-align: center;
           }
         }
+        .common-picker-item-active{
+          color: #0099ff;
+          &::after{
+            position: absolute;
+            content: '';
+            width: 4px;
+            height: 100%;
+            left: 0;
+            top: 0;
+            background-color: #0099ff;
+          }
+        }
+        
       }
       .common-picker-content2{
         position: absolute;
@@ -97,6 +110,9 @@
           font-size: 28rpx;
           color: #2C2C2C;
           border-bottom: 1px solid #EDEDED;
+        }
+        .common-picker-text-active{
+          color: #0099ff;
         }
       }
     }

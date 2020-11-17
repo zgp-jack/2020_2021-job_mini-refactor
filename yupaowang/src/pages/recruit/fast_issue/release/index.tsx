@@ -2,6 +2,7 @@ import Taro, { Config } from '@tarojs/taro'
 import { View, Input, Text, Switch, Button } from '@tarojs/components'
 import { RecruitInfo } from '../../../../pages/recruit/index.d'
 import { useSelector } from '@tarojs/redux';
+import ClassifyPicker from '../../../../components/classfiy_picker/index'
 
 import './index.scss'
 
@@ -57,6 +58,7 @@ export default function FastIssue() {
         </View>
         <Button className="issue-code-btn">确认发布</Button>
       </View>
+      <ClassifyPicker></ClassifyPicker>
     </View>
   )
 }
