@@ -51,6 +51,8 @@ export function useCode(type?: boolean) {
         let t: number = res.refresh || 60
         setCodeTime(t)
         initCodeTime()
+      }else{
+        
       }
     })
   }

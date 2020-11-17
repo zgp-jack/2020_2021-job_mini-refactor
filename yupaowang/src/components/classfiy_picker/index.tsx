@@ -45,15 +45,16 @@ export default function ClassifyPicker ({
   const [childClassifies, setChildClassifies] = useState<ProfessionRecruitChildrenData[]>([])
   // 选择的工种数据
   const [selectClassify, setSelectClassify] = useState<RulesClassfies[]>([])
-
+  console.log("wo diaoyongle ")
 
   useEffect(() => {
     let list = [...userClassifyids, ...rulesClassifyids]
     // selectWorkType(list)
     setSelectClassify(list)
-    initChildWorkType()
+    // initChildWorkType()
   }, [pindex, userClassifyids, rulesClassifyids])
   useEffect(() => {
+    console.log("wo jin lai le ")
     mateClassifyIdsFun()
   }, [])
   
@@ -86,9 +87,9 @@ export default function ClassifyPicker ({
     Taro.setStorageSync(key, issueData)
   }
   // 初始化子类工种信息和选中状态
-  function initChildWorkType () {
+  function initChildWorkType (index:number=0) {
     // 父级工种index
-    let index = pindex
+    // let index = pindex
     // 匹配工种字段
     let rids = rulesClassifyids
     // 用户选择工种字段
@@ -115,7 +116,7 @@ export default function ClassifyPicker ({
     // 一级工种index
     setPindex(index)
     // 初始化子类工种信息
-    // initChildWorkType()
+    initChildWorkType(index)
   }
   // 用户选择工种
   function userCheckWorkType (index:number) {
@@ -174,7 +175,7 @@ export default function ClassifyPicker ({
     // 初始化子类工种的数据与选中状态
     let list = userClassifyidsData.concat(rulesClassifyidsData)
     setSelectClassify(list)
-    initChildWorkType()
+    initChildWorkType(pindexData)
   }
   // 匹配的工种数量
   function countWorkNum(data: RulesClassfies[]) {

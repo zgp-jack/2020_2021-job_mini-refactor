@@ -37,7 +37,7 @@ export function usePublishData(InitParams: InitRecruitView){
 
   useEffect(() => {
     // 判断是否登录，没有登录直接返回
-    if (!login) return
+    // if (!login) return
     getPublishRecruitView(InitParams).then(res => {
       // 获取初始化发布招工数据，参数为{ type: type,infoId: id }
       if (res.errcode == 'ok') {

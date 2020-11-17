@@ -12818,6 +12818,22 @@ function useCode(type) {
       text = _useState4[0],
       setText = _useState4[1];
 
+  var timer = function timer() {
+    var time = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 60;
+
+    var t = time;
+    setText(t + 's后重新获取');
+    var timer = setInterval(function () {
+      t--;
+      if (t === 0) {
+        setDisabled(false);
+        clearInterval(timer);
+        setText(title);
+        return false;
+      }
+      setText(t + 's后重新获取');
+    }, 1000);
+  };
   var userGetCode = function userGetCode(tel) {
     if (disabled) return;
     if (!(0, _index.isPhone)(tel)) {
@@ -12829,25 +12845,17 @@ function useCode(type) {
     (0, _index4.getUserPhoneCode)(data).then(function (res) {
       (0, _index3.default)(res.errmsg, 2500);
       if (res.errcode == 'ok') {
-        var t = res.refresh || 60;
-        setText(t + 's后重新获取');
-        var timer = setInterval(function () {
-          t--;
-          if (t === 0) {
-            setDisabled(false);
-            clearInterval(timer);
-            setText(title);
-            return false;
-          }
-          setText(t + 's后重新获取');
-        }, 1000);
+        timer(res.refresh);
+      } else {
+        setDisabled(false);
       }
     });
   };
   return {
     disabled: disabled,
     text: text,
-    userGetCode: userGetCode
+    userGetCode: userGetCode,
+    timer: timer
   };
 }
 
