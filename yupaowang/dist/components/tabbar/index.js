@@ -221,7 +221,7 @@ var Tabbar = function (_Taro$Component) {
         'tabbar-publish-items-active': active
       }) : null;
       this.anonymousFunc2 = function () {
-        return userTapPublishItem(_index3.PUBLISHRECRUIT);
+        return userTapPublishItem('/pages/recruit/fast_issue/issue/index');
       };
       this.anonymousFunc3 = function () {
         return userTapPublishItem(_index3.PUBLISHRESUME);

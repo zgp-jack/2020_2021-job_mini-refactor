@@ -74,8 +74,7 @@ var _App = function (_BaseComponent) {
     _this.config = {
       pages: ['pages/index/index', 'pages/userauth/index', "pages/recruit/publish/index", "pages/used/lists/index", "pages/map/recruit/index", "pages/map/resume/index", "pages/used/publish/index", "pages/used/info/index", "pages/static/invite/index", 'pages/static/notice/index', "pages/getintegral/index", "pages/integral/source/index", "pages/integral/temp/index", "pages/integral/official/index", "pages/integral/expend/index", "pages/recharge/index", "pages/realname/index", "pages/map/realname/index", "pages/userinfo/info/index", "pages/userinfo/add/index", "pages/userinfo/phone/index", "pages/userinfo/updatePass/index", "pages/published/recruit/index", "pages/published/used/index", "pages/collection/index", "pages/help/index", "pages/feedbacklist/index", "pages/feedback/index", "pages/information/mymessage/index", "pages/information/system/index", 'pages/integral/tabber/index', 'pages/detail/info/index', 'pages/topping/index', 'pages/topping/distruction/index',
       // 'pages/topping/recruit/index',//置顶找活范围
-      'pages/resume/publish/index', 'pages/resume/add_info/index', 'pages/resume/add_member/index', 'pages/resume/add_skill/index', 'pages/resume/add_project/index', 'pages/resume/projects/index', 'pages/resume/skills/index', 'pages/rank-rules/index', 'pages/turntable/index', 'pages/resume/detail/index', 'pages/resume/newPreview/index', 'pages/resume/preview/index', 'pages/login/index', 'pages/recruit/fastPublish/index' //极速发布招工
-      ],
+      'pages/resume/publish/index', 'pages/resume/add_info/index', 'pages/resume/add_member/index', 'pages/resume/add_skill/index', 'pages/resume/add_project/index', 'pages/resume/projects/index', 'pages/resume/skills/index', 'pages/rank-rules/index', 'pages/turntable/index', 'pages/resume/detail/index', 'pages/resume/newPreview/index', 'pages/resume/preview/index', 'pages/login/index', 'pages/recruit/fastPublish/index', 'pages/recruit/fast_issue/issue/index', 'pages/recruit/fast_issue/code/index', 'pages/recruit/fast_issue/release/index'],
       subPackages: [{
         root: 'subpackage/pages',
         pages: ['checkauth/index', 'about/index', 'report/index', 'download/index', 'ranking/index', 'course/index', 'anti-fraud/index', 'projects/index', 'skills/index', 'news/index']
@@ -280,16 +279,14 @@ var _resume_list = __webpack_require__(/*! ./resume_list */ "./src/reducers/resu
 
 var _resume_list2 = _interopRequireDefault(_resume_list);
 
+var _publish = __webpack_require__(/*! ./publish */ "./src/reducers/publish.ts");
+
+var _publish2 = _interopRequireDefault(_publish);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 //合并reducer
-/*
- * @Author: zyb
- * @Date: 2020-11-03 14:36:47
- * @LastEditors: jsxin
- * @LastEditTime: 2020-11-09 17:11:58
- * @Description:
- */
+//发布招工reducer
 exports.default = (0, _redux.combineReducers)({
   tabbar: _tabbar2.default,
   WechatNotice: _wechat_notice2.default,
@@ -305,8 +302,16 @@ exports.default = (0, _redux.combineReducers)({
   resumeAddInfo: _resume_addinfo2.default,
   PositionStatus: _recruit.PositionStatus,
   resumeData: _resume_data2.default,
-  resumeList: _resume_list2.default
-}); //发布招工reducer
+  resumeList: _resume_list2.default,
+  publishData: _publish2.default,
+  RecruitAction: _recruit.RecruitAction
+}); /*
+     * @Author: zyb
+     * @Date: 2020-11-03 14:36:47
+     * @LastEditors: jsxin
+     * @LastEditTime: 2020-11-09 17:11:58
+     * @Description:
+     */
 
 /***/ }),
 
@@ -439,6 +444,51 @@ function Personnel() {
 
 /***/ }),
 
+/***/ "./src/reducers/publish.ts":
+/*!*********************************!*\
+  !*** ./src/reducers/publish.ts ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = MyAreaInfo;
+
+var _publish = __webpack_require__(/*! ../constants/publish */ "./src/constants/publish.ts");
+
+//定义发布招工获取设置区域信息的action
+// 默认发布招工state数据
+var DEFAULT_STATE_PUBLISHDATA = {
+  classifyTree: [],
+  mateData: [],
+  noMateData: [],
+  user_mobile: '',
+  maxClassifyCount: 0,
+  maxImageCount: 0,
+  placeholder: ''
+};
+function MyAreaInfo() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : DEFAULT_STATE_PUBLISHDATA;
+  var action = arguments[1];
+
+  switch (action.type) {
+    case _publish.GETPUBLISHDATA:
+      return state;
+    case _publish.SETPUBLISHDATA:
+      state = action.data;
+      return state;
+    default:
+      return state;
+  }
+}
+
+/***/ }),
+
 /***/ "./src/reducers/realname.ts":
 /*!**********************************!*\
   !*** ./src/reducers/realname.ts ***!
@@ -501,17 +551,30 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; //定义发布招工获取设置区域信息的action
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; //定义发布招工获取设置发布信息的action
 
 
 exports.MyAreaInfo = MyAreaInfo;
 exports.MyArea = MyArea;
 exports.PositionStatus = PositionStatus;
+exports.RecruitAction = RecruitAction;
 
 var _recruit = __webpack_require__(/*! ../constants/recruit */ "./src/constants/recruit.ts");
 
 var _area = __webpack_require__(/*! ../models/area */ "./src/models/area.ts");
 
+var DEFAULT_STATE_RECRUIT = {
+  areaInfo: {
+    title: '',
+    adcode: '',
+    location: '',
+    info: ''
+  },
+  area: _area.AREABEIJING.name,
+  token: '',
+  positionStatus: true,
+  phone: ''
+};
 // 内容的参数
 var DEFAULT_STATE_AREAINFO = {
   title: '',
@@ -557,6 +620,25 @@ function PositionStatus() {
     case _recruit.SETPOSITIONSTATUS:
       state = action.data;
       return state;
+    default:
+      return state;
+  }
+}
+function RecruitAction() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : DEFAULT_STATE_RECRUIT;
+  var action = arguments[1];
+
+  switch (action.type) {
+    case _recruit.SETAREAINFO:
+      return _extends({}, state, { areaInfo: action.data });
+    case _recruit.SETAREA:
+      return _extends({}, state, { area: action.data });
+    case _recruit.SETTOKEN:
+      return _extends({}, state, { token: action.data });
+    case _recruit.SETPOSITIONSTATUS:
+      return _extends({}, state, { positionStatus: action.data });
+    case _recruit.SETPHONE:
+      return _extends({}, state, { phone: action.data });
     default:
       return state;
   }

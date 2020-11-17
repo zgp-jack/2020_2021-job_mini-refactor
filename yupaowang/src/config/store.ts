@@ -20,3 +20,5 @@ export const SearchList: string = 'searchList'
 export const UserLocation: string = 'userLocation'
 // 找活名片info信息
 export const Introinfo: string = 'introinfo'
+// 用户发布填写发布信息
+export const PublishData: string = 'publishData'

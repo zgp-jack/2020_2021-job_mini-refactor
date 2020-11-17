@@ -1,8 +1,19 @@
+import { MemberInfo } from './index.d';
 export interface Result {
   errcode: string,
   errmsg: string
 }
-
+// 快速发布招工信息
+export interface FastIssue<T> extends Result{
+  data?: T
+}
+// 快速发布招工信息返回值data类型
+export interface FastData {
+  token: string,
+  checked: boolean,
+  sendcode: string,
+  sendmsg: string
+}
 export interface ResultData<T> extends Result {
   data: T
 }
@@ -1576,3 +1587,4 @@ export interface addResumeData {
   errcode: number
   errmsg: string
 }
+// 

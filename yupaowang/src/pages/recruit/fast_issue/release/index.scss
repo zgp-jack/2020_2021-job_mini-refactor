@@ -1,0 +1,148 @@
+body{
+  background: #f7f6f7 !important;
+  .issue-area-container{
+    position: relative;
+    .issue-tip{
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      text-align: center;
+      font-weight: bold;
+      font-size: 30px;
+      color: #333;
+      line-height: 100px;
+      background: white;
+      .issue-contact-title{
+        margin: 0px 10px;
+      }
+    }
+    .issue-contactbox{
+      padding: 20px 30px 30px;
+      .issue-box{
+        position: relative;
+        display: flex;
+        align-items: center;
+        background: white;
+        padding: 0px 20px;
+        margin-bottom: 20px;
+        font-size: 28px;
+        border-radius: 10px;
+        text{
+          display: block;
+          position: relative;
+          line-height: 45px;
+          font-size: 28px;
+          width: 140px;
+          font-weight: bold;
+        }
+        .issue-input{
+          position: relative;
+          display: inline-block;
+          border-radius: 5px;
+          height: 100px;
+          line-height: 75px;
+          background-color: white;
+          padding: 0 20px;
+          font-size: 30px;
+          flex:1;
+        }
+        .input-item-text{
+          position: relative;
+          width: 100%;
+          padding: 20px 20px 20px 0px;
+          line-height: 45px;
+          font-size: 28px;
+          left: 20px;
+          flex:1;
+          min-height: 100px;
+          display: flex;
+          align-items: center;
+        }
+      }
+      .issue-form-upload{
+        background: white;
+        border-radius: 10px;
+        .issue-form-header{
+          .issue-form-switch{
+            position:relative;
+            display: flex;
+            align-items: center;
+            height: 100px;
+            font-size: 28px;
+            padding: 0px 20px;
+            font-weight: bold;
+            .issue-upload-switch{
+              position: absolute;
+              right: 20px;
+              zoom: 0.7;
+              top: 40px;
+            }
+          }
+          .issue-upload-tips{
+            position: relative;
+            font-size: 28px;
+            color: #9b9b9b;
+            line-height: 100px;
+            padding: 0px 20px;
+            &::before{
+              position: absolute;
+              content: '';
+              width: 95%;
+              height: 1px;
+              background: #eeee;
+              top: 0px;
+            }
+          }
+        }
+        .issue-upload-show{
+          padding: 0px 20px 40px;
+          .issue-upload-body{
+            position: relative;
+          }
+          .issue-upload-item{
+            float: left;
+            width: 31.5%;
+            height: 190px;
+            margin-right: 10px;
+            border-radius: 5px;
+            overflow: hidden;
+            .imgitem-box{
+              position: relative;
+              width: 100%;
+              height: 100%;
+              border-radius: 10px;
+              image{
+                width: 100%;
+                height: 100%;
+              }
+              .mini-del{
+                position: absolute;
+                width: 35px;
+                height: 35px;
+                border-radius: 50%;
+                background: white url(http://cdn.yupao.com/miniprogram/images/new-published-close-icon.png) no-repeat;
+                background-size: 100% 100%;
+                right: 10px;
+                top: 10px;
+              }
+            }
+          }
+        }
+      }
+      .issue-code-btn {
+        position: relative;
+        margin: 50px auto 20px;
+        width: 500px;
+        background-color: #0099ff;
+        color: #fff;
+        font-size: 30px;
+        text-align: center;
+        border-radius: 5px;
+        display: flex;
+        justify-content: center;
+      }
+    }
+  }
+}

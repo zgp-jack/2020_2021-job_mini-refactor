@@ -1,6 +1,19 @@
-import { GETAREAINFO, SETAREAINFO, SETAREA, GETAREA, SETPOSITIONSTATUS } from '../constants/recruit' //定义发布招工获取设置区域信息的action
-import { UserLastPublishRecruitArea } from '../pages/recruit/index.d'//招工信息发布区域信息类型
-import { AREABEIJING } from '../models/area'
+import { GETAREAINFO, SETAREAINFO, SETAREA, GETAREA, SETPOSITIONSTATUS, SETTOKEN, GETTOKEN, SETPHONE } from '../constants/recruit' //定义发布招工获取设置发布信息的action
+import { UserLastPublishRecruitArea, RecruitInfo } from '../pages/recruit/index.d'//招工信息发布区域信息类型
+import { UserLocationPromiss, AREABEIJING } from '../models/area'
+
+const DEFAULT_STATE_RECRUIT: RecruitInfo = {
+  areaInfo:{
+    title: '',
+    adcode: '',
+    location: '',
+    info: ''
+  },
+  area: AREABEIJING.name,
+  token:'',
+  positionStatus: true,
+  phone: ''
+}
 // 内容的参数
 const DEFAULT_STATE_AREAINFO: UserLastPublishRecruitArea = {
     title: '',
@@ -8,6 +21,7 @@ const DEFAULT_STATE_AREAINFO: UserLastPublishRecruitArea = {
     location: '',
     info: '',
 }
+
 // 定义默认的区域数据
 const DEFAULT_STATE_AREA:string = AREABEIJING.name
 
@@ -17,6 +31,10 @@ export interface ACTIONTYPE {
   data: any
 }
 
+export interface ACTIONTYPES {
+  type: string,
+  data: UserLastPublishRecruitArea | string | boolean
+}
 export function MyAreaInfo(state: UserLastPublishRecruitArea = DEFAULT_STATE_AREAINFO, action: ACTIONTYPE) {
   switch (action.type) {
     case GETAREAINFO:
@@ -45,6 +63,24 @@ export function PositionStatus(state:boolean = true, action:ACTIONTYPE){
     case SETPOSITIONSTATUS:
       state = action.data
       return state;
+    default:
+      return state
+
+  }
+}
+
+export function RecruitAction(state: RecruitInfo = DEFAULT_STATE_RECRUIT, action: ACTIONTYPES){
+  switch (action.type) {
+    case SETAREAINFO:
+      return { ...state, areaInfo: action.data}
+    case SETAREA:
+      return {...state, area: action.data}
+    case SETTOKEN:
+      return {...state, token: action.data}
+    case SETPOSITIONSTATUS:
+      return { ...state, positionStatus: action.data}
+    case SETPHONE: 
+      return { ...state, phone: action.data}
     default:
       return state
   }

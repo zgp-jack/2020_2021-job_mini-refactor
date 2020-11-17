@@ -63,7 +63,7 @@ var Cities = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (Cities.__proto__ || Object.getPrototypeOf(Cities)).apply(this, arguments));
 
-    _this.$usedState = ["loopArray45", "loopArray46", "loopArray47", "text", "IMGCDNURL", "userLoc", "recentlyCities", "data", "show", "inputCity", "area", "parent", "userTapCityBtn", "userChangeCity"];
+    _this.$usedState = ["loopArray45", "loopArray46", "loopArray47", "text", "IMGCDNURL", "recentlyCities", "userLoc", "data", "show", "inputCity", "area", "parent", "userTapCityBtn", "userChangeCity"];
     _this.anonymousFunc5Map = {};
     _this.anonymousFunc6Map = {};
     _this.anonymousFunc7Map = {};
@@ -174,6 +174,8 @@ var Cities = function (_Taro$Component) {
             }
             setRecentlyCities(historyCities);
             return;
+          } else {
+            setRecentlyCities(historyCities);
           }
         }
       };
@@ -309,8 +311,8 @@ var Cities = function (_Taro$Component) {
         loopArray47: loopArray47,
         text: text,
         IMGCDNURL: _index.IMGCDNURL,
-        userLoc: userLoc,
         recentlyCities: recentlyCities,
+        userLoc: userLoc,
         data: data,
         show: show,
         inputCity: inputCity,

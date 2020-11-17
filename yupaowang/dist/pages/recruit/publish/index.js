@@ -162,7 +162,7 @@ function usePublishViewInfo(InitParams) {
     } else {
       var userLoctionCity = _taroTt2.default.getStorageSync(_store.UserLocationCity);
       if (userLoctionCity) {
-        dispatch((0, _recruit.setArea)(userLoctionCity.city));
+        dispatch((0, _recruit.setArea)(userLoctionCity.city.slice(0, 2)));
       } else {
         (0, _index2.userAuthLoction)().then(function (res) {
           dispatch((0, _recruit.setArea)(res.city));
@@ -310,13 +310,10 @@ function usePublishViewInfo(InitParams) {
     showProfession: showProfession,
     setShowProssion: setShowProssion,
     userPublishRecruitAction: userPublishRecruitAction,
-    // area,
-    // setArea,
-    // areaInfo,
-    // setAreaInfo,
     num: num,
     setNum: setNum,
-    phone: phone
+    phone: phone,
+    setPhone: setPhone
   };
 }
 

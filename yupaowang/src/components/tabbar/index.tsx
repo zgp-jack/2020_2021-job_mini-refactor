@@ -115,7 +115,7 @@ export default function Tabbar({ notredirect }: PROPS) {
           'tabbar-publish-items': true,
           'tabbar-publish-items-active': active
         })}>
-          <View className='tabbar-publish-item' onClick={() => userTapPublishItem(PUBLISHRECRUIT)}>
+          <View className='tabbar-publish-item' onClick = {() => userTapPublishItem('/pages/recruit/fast_issue/issue/index')}>
             <Image className='tabbar-publih-item-img' src={IMGCDNURL +'publish-recruit.png'}></Image>
             <Text className='tabbar-publih-item-text'>发布招工</Text>
           </View>

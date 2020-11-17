@@ -1,0 +1,74 @@
+.issue-container{
+  position: relative;
+  padding: 20px;
+  .issue-textarea-box{
+    position: relative;
+    width: 100%;
+    .issue-textarea{
+      position: relative;
+      background-color: white;
+      border-radius: 5px;
+      font-size: 28px;
+      line-height: 60px;
+      height: 300px;
+      display: block;
+      width: 100%;
+      padding: 20px;
+      border: 1px solid #dcdcdc;
+    }
+  }
+  .issue-contactbox{
+    position: relative;
+    width: 100%;
+    margin-top: 50px;
+    .issue-phone{
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      text-align: center;
+      font-weight: bold;
+      font-size: 30px;
+      color: #333;
+      line-height: 60px;
+      .issue-phone-image {
+        display: inline-block;
+        width:30px
+      }
+      .issue-contact-title{
+        margin: 0px 10px;
+      }
+    }
+    .issue-contact-body{
+      position: relative;
+      text-align: center;
+      font-size: 28px;
+      line-height: 50px;
+    }
+    .issue-contact-input{
+      position: relative;
+      margin-top: 20px;
+      display: block;
+      width: 100%;
+      border: 1px solid #dcdcdc;
+      border-radius: 5px;
+      height: 75px;
+      line-height: 75px;
+      background-color: white;
+      padding: 0 20px;
+      font-size: 28px;
+    }
+  }
+  .issue-btn{
+    position: relative;
+    width: 300px;
+    margin: 50px auto 20px;
+    text-align: center;
+    line-height: 75px;
+    background-color: #0099ff;
+    color: #ffffff;
+    font-size: 28px;
+    border-radius: 5px;
+  }
+}

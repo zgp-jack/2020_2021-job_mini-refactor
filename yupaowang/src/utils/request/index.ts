@@ -1,3 +1,4 @@
+import { DataType } from './../../pages/resume/preview/index.d';
 import Taro from '@tarojs/taro'
 import * as api from '../api'
 import {TOKEN, VERSION} from '../../config'
@@ -17,8 +18,9 @@ import {CreateOrder} from '../../pages/recharge'
 import {UsedPublishModel} from '../../pages/used/index.d'
 import {UserPublishUsedInfo} from '../../pages/used/index.d'
 import * as Hooks from '../../hooks/index.d'
-import {UserAddInfo} from '../../pages/userinfo/add'
-import {searchDataType} from '../../pages/published/recruit'
+import { UserAddInfo } from '../../pages/userinfo/add'
+import { searchDataType } from '../../pages/published/recruit' 
+import { FastIssueData } from '../../pages/recruit/index.d'
 
 interface RequestHeader {
   'content-type'?: string
@@ -886,7 +888,15 @@ export function publishRecruitInfo(data): Promise<Inter.Result> {
     method: 'POST',
     data: data,
     failToast: true
-
+  })
+}
+// 快速发布招工信息
+export function fastIssue(data: FastIssueData): Promise<Inter.FastIssue<Inter.FastData>> {
+  return doRequestAction({
+    url: api.FastIssueInfo,
+    method: 'POST',
+    data: data,
+    failToast: true
   })
 }
 // 极速发布招工
@@ -1224,5 +1234,13 @@ export function memberTurntable():Promise<Inter.memberTurntableType>{
   return doRequestAction({
     url: api.memberTurntable,
     method: 'POST',
+  })
+}
+// 发布招工，填写验证码后校验验证码
+export function checkCode(data): Promise<Inter.Result>{
+  return doRequestAction({
+    url: api.checkCodeUrl,
+    method: 'POST',
+    data: data
   })
 }

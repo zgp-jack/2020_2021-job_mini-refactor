@@ -23,11 +23,13 @@ export const GetTabbarMsg: string = REQUESTURL + 'member/original-message/'
 // 获取积分记录分页数据
 export const GetIntegralList: string = REQUESTURL + 'integral/integral-record/'
 // 初始化发布招工视图
-export const GetPublisRecruitView: string = REQUESTURL + 'publish/new-job/'
+export const GetPublisRecruitView: string = REQUESTURL + 'publish/new-mate-job/'
 // 发布修改招工信息
 export const PublishRecruitInfo: string = REQUESTURL + 'publish/save-job/'
 // 极速发布招工
 export const FastPublisInfo: string = REQUESTURL + 'publish/new-save-job/'
+// 快速发布招工信息
+export const FastIssueInfo: string = REQUESTURL + 'fast-issue/issue/'
 // 获取城市数据
 export const GetAllAreas: string = REQUESTURL + 'index/index-area/'
 // 检测adcode是否合法
@@ -223,3 +225,5 @@ export const memberTurntable: string = REQUESTURL + 'member/turntable/'
 // 初始化极速发布招工
 export const fastPublisView: string = REQUESTURL + 'publish/new-mate-job/'
 
+// 发布招工验证码验证
+export const checkCodeUrl: string = REQUESTURL + 'fast-issue/check-code/'

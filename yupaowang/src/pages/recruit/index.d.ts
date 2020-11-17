@@ -145,4 +145,52 @@ export interface AreasTypeChildren {
   pid: string,
   name: string,
   ad_name: string
+  info: string
+}
+export interface RecruitInfo {
+  areaInfo: UserLastPublishRecruitArea,
+  area: string,
+  token: string,
+  positionStatus: boolean,
+  phone: string
+}
+
+// 初始化发布招工获取信息类型
+export interface InitRecruitView {
+  type: string,
+  infoId: string
+}
+// 急速发布或者修改急速发布数据信息
+export interface RecruitWorkInfo extends RecruitBaseInfo{
+  view_images: RecruitImageModel[],
+  is_check: number,
+  check_fail_msg: string
+}
+// 发布招工匹配库数据
+export interface MateDataItem {
+  keywords: string,
+  name: string,
+  occupation_id: string
+}
+
+// 获取发布招工、快速发布、急速发布的配置数据
+export interface PublishConfigData {
+  classifyTree: ProfessionRecruitData[],
+  mateData: Array<MateDataItem>,
+  noMateData: Array<MateDataItem>,
+  user_mobile: string,
+  maxClassifyCount: number,
+  maxImageCount: number,
+  placeholder: string
+}
+
+export interface FastIssueData{
+  content: string,
+  phone: string
+}
+// 手机验证码校验请求参数
+export interface VaildCodeReq{
+  token: string,
+  phone: string,
+  code: string
 }

@@ -1,0 +1,155 @@
+/* 工种选择样式 */
+.common-picker-container{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.65);
+  z-index: 100;
+  transition: 0.3s;
+  .common-picker-box{
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    height: 640rpx;
+    background-color: white;
+    padding-top: 95rpx;
+    transition: 0.3s;
+    .common-picker-header{
+      position: absolute;
+      width: 100%;
+      top: 0;
+      line-height: 93rpx;
+      border-bottom: 1rpx solid #ededed;
+      .common-picker-left{
+        position: absolute;
+        left: 20rpx;
+        top: 0;
+        font-size: 26rpx;
+        color: #777777;
+        z-index: 5;
+      }
+      .common-picker-title{
+        position: relative;
+        text-align: center;
+        color: #333;
+        font-size: 28rpx;
+        font-weight: bold;
+      }
+      .common-picker-right{
+        position: absolute;
+        right: 20rpx;
+        top: 0;
+        font-size: 26rpx;
+        color: #0099ff;
+        z-index: 5;
+      }
+    }
+    .common-picker-body{
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background-color: #F7F7F7;
+      .common-picker-content{
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow-y: scroll;
+        .common-picker-item{
+          position: relative;
+          width: 100%;
+          line-height: 40rpx;
+          padding: 25rpx 20rpx;
+          font-size: 28rpx;
+          color: #2C2C2C;
+          border-bottom: 1px solid #EDEDED;
+          .common-picker-item-text{
+            position: absolute;
+            top: 10rpx;
+            display: inline-block;
+            font-size: 20rpx;
+            padding: 5rpx;
+            border-radius: 50%;
+            background-color: #ff0000;
+            color: white;
+            width: 30rpx;
+            height: 30rpx;
+            line-height: 23rpx;
+            text-align: center;
+          }
+        }
+        .common-picker-item-active{
+          color: #0099ff;
+          &::after{
+            position: absolute;
+            content: '';
+            width: 4px;
+            height: 100%;
+            left: 0;
+            top: 0;
+            background-color: #0099ff;
+          }
+        }
+        
+      }
+      .common-picker-content2{
+        position: absolute;
+        width: 50%;
+        height: 100%;
+        left: 50%;
+        top: 0;
+        overflow-y: scroll;
+        background-color: white;
+        .common-picker-item{
+          position: relative;
+          width: 100%;
+          line-height: 40rpx;
+          padding: 25rpx 20rpx;
+          font-size: 28rpx;
+          color: #2C2C2C;
+          border-bottom: 1px solid #EDEDED;
+        }
+        .common-picker-text-active{
+          color: #0099ff;
+        }
+      }
+    }
+  }
+}
+
+
+
+
+.common-picker-none{
+  z-index: -1;
+  opacity: 0;
+  background: transparent;
+}
+.common-picker-none .common-picker-box{
+  bottom: -700rpx;
+}
+.common-picker-item-active,.common-picker-text-active{
+  color: #0099ff;
+}
+.common-picker-item-active::after{
+  position: absolute;
+  content: '';
+  width: 4px;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background-color: #0099ff;
+}
+.issue-code-btn{
+  position: relative;
+  margin: 50rpx auto 20rpx;
+  width: 500rpx;
+  background-color: #0099ff;
+  color: #fff;
+  font-size: 30rpx;
+  text-align: center;
+  line-height: 100rpx;
+  border-radius: 5rpx;
+}
