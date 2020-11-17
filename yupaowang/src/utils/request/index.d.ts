@@ -1132,9 +1132,10 @@ export interface resume_topObj {
 }
 export interface resume_topObj_arrStr {
   id: string,
-  letter: string,
+  letter?: string,
   name: string,
   pid: string,
+  is_hot?: string,
 }
 // 项目
 export interface resProjectArr {

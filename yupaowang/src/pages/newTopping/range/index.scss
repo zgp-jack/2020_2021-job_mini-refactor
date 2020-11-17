@@ -6,6 +6,9 @@
   .range-mt30{
     margin: 30px;
   }
+  .mt15{
+    margin-top: 15px;
+  }
   .range-tips {
     font-weight: bold;
     margin-bottom: 30px;
@@ -72,12 +75,17 @@
     }
     .range-content-list,
     .range-content-list-time {
+      font-size: 26px;
       display: flex;
       height: 82px;
       line-height: 82px;
       border-bottom: 1px solid rgba(220, 220, 220, 1);
       .range-content-list-noDay{
         color: rgba(198, 198, 199, 1);
+      }
+      .range-content-list-Day {
+        color: rgba(32, 32, 33, 1);
+        font-weight: bold;
       }
       .range-content-list-blued{
         color: $color;

@@ -1014,11 +1014,12 @@ export function resumesTopAreasAction(): Promise<Inter.resumesTopAreas> {
 }
 
 // 找活置顶内容
-export function resumesTopConfigAction(): Promise<Inter.resumesTopConfig> {
+export function resumesTopConfigAction(data): Promise<Inter.resumesTopConfig> {
   return doRequestAction({
     url: api.resumesTopConfigUrl,
     method: 'POST',
     failToast: true,
+    data,
   })
 }
 

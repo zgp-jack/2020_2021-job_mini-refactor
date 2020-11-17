@@ -12278,12 +12278,21 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.setResumeTop = setResumeTop;
+exports.setClickResumeTop = setClickResumeTop;
 
 var _resume_top = __webpack_require__(/*! ../constants/resume_top */ "./src/constants/resume_top.ts");
 
+// 找活存的置顶信息
 function setResumeTop(data) {
   return {
     type: _resume_top.SETRESUMETOP,
+    data: data
+  };
+}
+// 置顶页面城市
+function setClickResumeTop(data) {
+  return {
+    type: _resume_top.SETCLICKRESUMETOP,
     data: data
   };
 }
@@ -12912,8 +12921,10 @@ var SETSUBPACKCERTIFICATE = exports.SETSUBPACKCERTIFICATE = 'setSubpackCertifica
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-// 项目经验
+// 找活存的置顶信息
 var SETRESUMETOP = exports.SETRESUMETOP = 'resume_top';
+// 置顶页面城市
+var SETCLICKRESUMETOP = exports.SETCLICKRESUMETOP = 'click_resume_top';
 
 /***/ }),
 
@@ -17506,11 +17517,12 @@ function resumesTopAreasAction() {
   });
 }
 // 找活置顶内容
-function resumesTopConfigAction() {
+function resumesTopConfigAction(data) {
   return doRequestAction({
     url: api.resumesTopConfigUrl,
     method: 'POST',
-    failToast: true
+    failToast: true,
+    data: data
   });
 }
 // 找活置顶

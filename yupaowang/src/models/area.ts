@@ -2596,7 +2596,8 @@ export interface ChildItems {
   id: string,
   pid: string,
   name: string,
-  ad_name: string
+  ad_name: string,
+  click?:boolean
 }
 
 export interface ParentItems {

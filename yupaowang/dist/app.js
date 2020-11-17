@@ -821,7 +821,7 @@ exports.default = resumeTop;
 
 var _resume_top = __webpack_require__(/*! ../constants/resume_top */ "./src/constants/resume_top.ts");
 
-var DEFAULT_STATE = {
+var DEFAULT_RESUME_TOP = {
   has_top: 0,
   is_top: 0,
   is_top_text: '',
@@ -842,13 +842,19 @@ var DEFAULT_STATE = {
   first_province_num: '',
   first_city_num: ''
 };
+var DEFAULT_STATE = {
+  resumeTopObj: DEFAULT_RESUME_TOP,
+  clickResumeTopObj: []
+};
 function resumeTop() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : DEFAULT_STATE;
   var action = arguments[1];
 
   switch (action.type) {
     case _resume_top.SETRESUMETOP:
-      return _extends({}, state, action.data);
+      return _extends({}, state, { resumeTopObj: action.data });
+    case _resume_top.SETCLICKRESUMETOP:
+      return _extends({}, state, { clickResumeTopObj: action.data });
     default:
       return state;
   }
