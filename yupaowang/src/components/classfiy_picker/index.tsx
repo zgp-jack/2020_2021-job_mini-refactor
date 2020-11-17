@@ -20,9 +20,15 @@ export interface SelectedClassfies extends ProfessionBaseData{
   children: ProfessionRecruitChildrenData[]
   num?: number
 }
+export interface ClassfiyProps {
+  hiddenPickerModel: () => void,
+  selectWorkType: (selectClassify: RulesClassfies[]) => void
+}
 
-
-export default function ClassifyPicker () {
+export default function ClassifyPicker ({
+  hiddenPickerModel,
+  selectWorkType
+}:ClassfiyProps) {
   // 获取redex数据
   const publishData: PublishConfigData = useSelector<any, PublishConfigData>(state => state.publishData)
   // 工种数据、匹配库、不匹配库,最大工种选择数，最大图片上传数
@@ -37,16 +43,18 @@ export default function ClassifyPicker () {
   const [userClassifyids, setUserClassifyids] = useState<RulesClassfies[]>([])
   // 一级工种对应的子工种
   const [childClassifies, setChildClassifies] = useState<ProfessionRecruitChildrenData[]>([])
-  // 子工种index
+  // 选择的工种数据
+  const [selectClassify, setSelectClassify] = useState<RulesClassfies[]>([])
 
 
   useEffect(() => {
+    let list = [...userClassifyids, ...rulesClassifyids]
+    // selectWorkType(list)
+    setSelectClassify(list)
     initChildWorkType()
-  }, [pindex])
+  }, [pindex, userClassifyids, rulesClassifyids])
   useEffect(() => {
     mateClassifyIdsFun()
-    console.log("classifies", classifies)
-    console.log("childClassifies", childClassifies)
   }, [])
   
   // 设置缓存填写信息
@@ -111,7 +119,6 @@ export default function ClassifyPicker () {
   }
   // 用户选择工种
   function userCheckWorkType (index:number) {
-    debugger
     // 获取最大工种数量
     let num:number = maxClassifyCount
     // 选择工种id
@@ -164,20 +171,19 @@ export default function ClassifyPicker () {
       setUserClassifyids(userClassifyidsData)
       setClassifies(data)
     }
-    // 将选择的工种数据与匹配的工种数据存入缓存
-    setEnterInfo('userClassifyids', userClassifyidsData)
-    setEnterInfo('rulesClassifyids', rulesClassifyidsData)
     // 初始化子类工种的数据与选中状态
+    let list = userClassifyidsData.concat(rulesClassifyidsData)
+    setSelectClassify(list)
     initChildWorkType()
   }
   // 匹配的工种数量
-  function countWorkNum() {
+  function countWorkNum(data: RulesClassfies[]) {
     // 从缓存取出发布招工数据
-    let jiSuData = Taro.getStorageSync(PublishData)
+    // let jiSuData = Taro.getStorageSync(PublishData)
     //根据详情匹配工种字段
-    let rulesClassifyidsData: RulesClassfies[] = jiSuData.rulesClassifyids || []
+    let rulesClassifyidsData: RulesClassfies[] = data
     //用户选择工种字段
-    let userClassifyidsData: RulesClassfies[] = jiSuData.userClassifyids || []
+    let userClassifyidsData: RulesClassfies[] = []
     //匹配工种字段与用户选择工种字段组成一个数组
     let ClassifyidsAll: RulesClassfies[] = [...rulesClassifyidsData, ...userClassifyidsData]
     //返回所有工种字段id数组
@@ -216,8 +222,6 @@ export default function ClassifyPicker () {
       mask: true
     })
     let jiSuData = Taro.getStorageSync(PublishData)
-    setUserClassifyids(jiSuData.userClassifyids || [])
-    setRulesClassifyids(jiSuData.rulesClassifyids || [])
     //用户根据所需工作自行选择工种
     let uids = JSON.parse(JSON.stringify(userClassifyids))
     //获取招工详情的内容
@@ -238,7 +242,7 @@ export default function ClassifyPicker () {
     let needArr: RulesClassfies[] = [];
     // 如果没有详情内容直接返回
     if (!content) {
-      countWorkNum()
+      countWorkNum([])
       initChildWorkType()
       // getWorkText()
       Taro.hideLoading()
@@ -285,21 +289,23 @@ export default function ClassifyPicker () {
       let needLen = maxWorkNum - uidsLen
       needArr.splice(needLen)
       setRulesClassifyids(needArr)
-      
-      setEnterInfo('rulesClassifyids', needArr)
     }
-    countWorkNum()
+    countWorkNum(needArr)
     initChildWorkType()
     // getWorkText()
     Taro.hideLoading()
+  }
+  // 点击取消选择工种事件
+  function cancleSelect () {
+    hiddenPickerModel()
   }
   return (
     <View className="common-picker-container">
       <View className="common-picker-box">
         <View className="common-picker-header">
-          <View className="common-picker-left">取消</View>
+          <View className="common-picker-left" onClick={() => cancleSelect()}>取消</View>
           <View className="common-picker-title">选择工种(可多选)</View>
-          <View className="common-picker-right">确定</View>
+          <View className="common-picker-right" onClick={() => selectWorkType(selectClassify)}>确定</View>
         </View>
         <View className="common-picker-body">
           <View className="common-picker-content">

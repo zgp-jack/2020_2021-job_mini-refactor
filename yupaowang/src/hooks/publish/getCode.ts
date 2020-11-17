@@ -67,6 +67,7 @@ export function useCode(type?: boolean) {
       code,
       phone
     }
+    console.log("params", params)
     // 发送验证请求，验证通过跳转到城市工种选择页
     checkCode(params).then(res => {
       if(res.errcode == 'ok'){
