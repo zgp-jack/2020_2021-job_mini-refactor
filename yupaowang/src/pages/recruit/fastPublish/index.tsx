@@ -1,17 +1,18 @@
 import Taro, { useRouter, RouterInfo, Config } from '@tarojs/taro'
-import { View, Text, Form, Input, Textarea, Block } from '@tarojs/components'
+import { View, Text, Form, Input, Textarea, Block,Switch } from '@tarojs/components'
 import { ProfessionRecruitData } from '../../../components/profession/index.d'
 import WordsTotal from '../../../components/wordstotal'
 import Profession from '../../../components/profession'
 import useCode from '../../../hooks/code'
 import fastPublishInit from '../../../hooks/publish/fastPublish'
-import { UserLastPublishRecruitArea, FastPublishInit, MateDataType } from '../index.d'
+import { UserLastPublishRecruitArea, FastPublishInit, MateDataType, AreasType, AreasTypeChildren } from '../index.d'
 import UploadImgAction from '../../../utils/upload'
 import ImageView from '../../../components/imageview'
 import Msg from '../../../utils/msg'
 import Auth from '../../../components/auth'
 import './index.scss'
 import { useSelector } from '@tarojs/redux'
+import area from '../../../models/area'
 
 // 初始化获取信息类型
 export interface InitRecruitView {
@@ -251,15 +252,14 @@ export default function PublishRecruit() {
             <View className='publish-upload-header' onClick={() => changeShowUpload()}>
               <View className='publish-upload-title'>
                 <View className='publish-upload-red'>
-                  <Text>上传图片</Text>
-                  <View className='publish-upload-wbg'>
-                    <Text className='publish-upload-ibg'></Text>
-                  </View>
+                  <Text>上传图片:</Text>
+                  <Switch checked={showUpload} color='#13ce66'></Switch>
                 </View>
-                <Text className='publish-upload-smtips'>(可以不上传)</Text>
               </View>
-              <View className='publish-upload-tips'>可上传工地现场照片、工程图纸、承包合同等</View>
-            </View>
+              {showUpload && model &&
+                <View className='publish-upload-tips'>可上传工地现场照片、工程图纸、承包合同等</View>
+              }
+              </View>
             {showUpload && model &&
               <ImageView
                 images={model.view_images}

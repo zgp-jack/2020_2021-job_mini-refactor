@@ -11,7 +11,6 @@ import { useSelector, useDispatch } from '@tarojs/redux'
 import { isVaildVal, isPhone } from '../../utils/v'
 import { setAreaInfo, setArea } from '../../actions/recruit'//获取发布招工信息action
 
-
 export default function fastPublishInit(InitParams: InitRecruitView) {
   // 获取用户信息
   const login = useSelector<any, boolean>(state => state.User['login'])
