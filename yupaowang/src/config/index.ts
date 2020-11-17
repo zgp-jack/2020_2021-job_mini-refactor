@@ -30,8 +30,8 @@ export const MAPKEY: string = '20f12aae660c04de86f993d3eff590a0'
 export const MAXCACHECITYNUM: number = 3
 // * 用户发布 选择地址 历史记录 最大数量
 export const UserPublishAreaHistoryMaxNum: number = 10
-// * 小程序tabbar msg统计 定时器请求间隔 20 秒
-export const MemberMsgTimerInterval: number = 1000 * 20
+// * 小程序tabbar msg统计 定时器请求间隔 60 秒
+export const MemberMsgTimerInterval: number = 1000 * 60
 // * 发布技能证书最大数量
 export const CertificateMaxNum: number = 3
 // * 发布技能证书图片最大数量
@@ -86,3 +86,5 @@ export const INVITESOURCE: string = MINICONFIG.INVITESOURCE
 export const USESUBSCRIBEMESSAGE: boolean = MINICONFIG.USESUBSCRIBEMESSAGE
 // * 是否能分享
 export const ISCANSHARE: boolean = MINICONFIG.ISCANSHARE
+// * textarea能输入的最大字数
+export const TEXTAREAMAXLENGTH: number = MINICONFIG.TEXTAREAMAXLENGTH

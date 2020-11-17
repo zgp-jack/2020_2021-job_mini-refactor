@@ -12,6 +12,8 @@ var UNITID: string = 'adunit-80f40e8b4f60c3f6'
 var INVITESOURCE: string = "712790d9629c6dcea00e3f5bff60132b"
 // * 是否使用推送信息
 var USESUBSCRIBEMESSAGE: boolean = false
+// * textarea能输入的最大字数
+var TEXTAREAMAXLENGTH: number = 500
 
 
 module.exports = {
@@ -20,5 +22,6 @@ module.exports = {
   UNITID,
   INVITESOURCE,
   USESUBSCRIBEMESSAGE,
-  ISCANSHARE
+  ISCANSHARE,
+  TEXTAREAMAXLENGTH
 }

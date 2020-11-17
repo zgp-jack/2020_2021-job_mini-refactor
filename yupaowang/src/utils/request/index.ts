@@ -372,7 +372,8 @@ export function getMemberMsgNumber(type: boolean): Promise<Inter.ResultData<Inte
     data: {
       terminal_type: type ? 'ios' : 'android'
     },
-    loading: false
+    loading: false,
+    failToast: false
   })
 }
 

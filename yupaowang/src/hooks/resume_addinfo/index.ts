@@ -1,8 +1,8 @@
 /*
  * @Author: zyb
  * @Date: 2020-11-03 09:23:50
- * @LastEditors: zyb
- * @LastEditTime: 2020-11-05 17:29:51
+ * @LastEditors: jsxin
+ * @LastEditTime: 2020-11-17 14:01:25
  * @Description: 
  */
 import Taro, { useState, useEffect } from '@tarojs/taro'
@@ -25,6 +25,8 @@ export default function useResumeAddInfo() {
   const [nationCurrent, setNationCurrent] = useState<number>(0)
   // 获取年月日范围
   const startDatePicker: string = (new Date().getFullYear() - 60) + '-01-01'
+  // 获取结束时间范围
+  const endDatePicker: string = (new Date().getFullYear() - 18) + '-12-31'
 
   // 初始化基本信息数据
   //const 
@@ -44,6 +46,7 @@ export default function useResumeAddInfo() {
   return {
     infoConfig,
     genderCurrent,
-    startDatePicker
+    startDatePicker,
+    endDatePicker
   }
 }

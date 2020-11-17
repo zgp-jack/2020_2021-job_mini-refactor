@@ -24,6 +24,11 @@ $miniPublishInputPadding: 0;
   text-overflow: ellipsis;
 }
 
+// 隐藏元素
+.hide{
+  display: none;
+}
+
 // 没有更多数据了
 .showMore{
   position: relative;

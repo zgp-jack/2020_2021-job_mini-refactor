@@ -8,7 +8,7 @@ export default function Login(){
 }
 
 Login.config = {
-  navigationBarTitleText: '登录注册',
+  navigationBarTitleText: '登录/注册',
   navigationBarBackgroundColor: '#ffffff',
   navigationBarTextStyle: 'black',
 }

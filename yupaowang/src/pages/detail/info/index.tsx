@@ -7,7 +7,7 @@ import { useSelector } from '@tarojs/redux'
 import { isVaildVal } from '../../../utils/v'
 import  Report  from '../../../components/report'
 import { getUserShareMessage } from '../../../utils/helper'
-import Msg, { showModalTip } from '../../../utils/msg'
+import Msg, { ShowActionModal, showModalTip } from '../../../utils/msg'
 import { SubscribeToNews } from '../../../utils/subscribeToNews';
 import  CollectionRecruitList from '../../../components/recommendList/index'
 import { REFID, UserInfo } from '../../../config/store'
@@ -177,8 +177,8 @@ export default function DetailInfoPage() {
   }
   // 提交投诉
   const handleSubmit = () => {
-    if (!isVaildVal(textarea, 15, 500)) {
-      Msg('输入内容不少于15个字且必须包含文字')
+    if (!isVaildVal(textarea, 5, 500)) {
+      ShowActionModal({ msg: '输入内容不少于5个字且必须包含文字'})
       return false
     }
     const params = {
@@ -501,7 +501,7 @@ export default function DetailInfoPage() {
           // 判断是否已经找到
             (resCode === 'end' ? <View className='detailInfo-userContent-buttonBox-'><Button className='detailInfo-userContent-button-end'>已招到</Button></View> : 
             // 判断是够查看到电话号码
-              (editPhone ? <View className='detailInfo-userContent-buttonBox'><Button className='detailInfo-userContent-button' onClick={() => jobGetTel()}>查看完整电话</Button></View> :
+              (editPhone ? <View className='detailInfo-userContent-buttonBox'><Button className='detailInfo-userContent-button' onClick={() => jobGetTel()}>查看招工电话</Button></View> :
               <View className='detailInfo-userContent-buttonBox'>
                   <View className='detailInfo-userContent-button-call' onClick={() => { Taro.makePhoneCall({ phoneNumber: phone }) }}>点击拨打</View>
                 <View className='detailInfo-userContent-button-complaint' onClick={footerComplaint}>投诉</View>
@@ -601,8 +601,8 @@ export default function DetailInfoPage() {
             </Button>
             }
             <View>
-              {resCode === 'end' ? <Button className='detailInfo-footer-content-box-button'>已招到</Button> : (editPhone ?
-                <Button className='detailInfo-footer-content-box-button' onClick={() => jobGetTel()}>查看完整电话</Button> :
+              {resCode === 'end' ? <Button className='detailInfo-footer-content-box-button detailInfo-button-end'>已招到</Button> : (editPhone ?
+                <Button className='detailInfo-footer-content-box-button' onClick={() => jobGetTel()}>查看招工电话</Button> :
                 <Button className='detailInfo-footer-content-box-button' onClick={() => { Taro.makePhoneCall({ phoneNumber: phone }) }}>拨打电话</Button>)}
               {
               }

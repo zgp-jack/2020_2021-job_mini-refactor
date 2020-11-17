@@ -146,7 +146,7 @@ export default function ResumeLists() {
   return (
     <View className='recruit-container'>
       <View className='recruit-fiexd-header'>
-        <Search placeholder='找工人，找队伍，找班组' value='' setRemark={(val: string) => setRemark(val)}
+        <Search placeholder='找工人、找队伍、找班组' value='' setRemark={(val: string) => setRemark(val)}
                 setSearchData={() => setSearchValData()}/>
         <ResumeCondition data={condition} setSearchData={(type, id, text) => setSearchDataAction(type, id, text)}/>
       </View>

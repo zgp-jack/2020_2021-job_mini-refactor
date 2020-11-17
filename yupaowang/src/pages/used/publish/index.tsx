@@ -1,4 +1,4 @@
-import Taro, { useState, useRouter, Config } from '@tarojs/taro'
+import Taro, { useState, useRouter, Config, useDidShow } from '@tarojs/taro'
 import { View, Form, Text, Input, Textarea, ScrollView, Picker, Block } from '@tarojs/components'
 import { AtDrawer } from 'taro-ui'
 import WordsTotal from '../../../components/wordstotal'
@@ -12,12 +12,23 @@ export default function UsedPublish() {
 
   const router = useRouter()
   const { id = '' } = router.params
-  const { model, setModel, initModel, parentCurrent, setParentCurrent, childCurrent, setChildCurrent, classifyName, setClassiryName, cityName, setCityName, setCIndex, setPIndex, areaProvince, areaCity, cIndex, pIndex, thisCurrentAreaCity, userTel, vaildPublishModelInfo } = useUsedInfo(id)
+  const { model, setModel, initModel, parentCurrent, setParentCurrent, childCurrent, setChildCurrent, classifyName, setClassiryName, cityName, setCityName, setCIndex, setPIndex, areaProvince, areaCity, cIndex, pIndex, thisCurrentAreaCity, userTel, vaildPublishModelInfo, initUsedPublishViewInfo } = useUsedInfo(id)
   const [showDrawer, setShowDrawer] = useState<boolean>(false)
   // 使用自定义验证码hook
   const { text, userGetCode } = useCode()
   // 详情字数统计
   const [num, setNum] = useState<number>(0)
+  // 判断是否是首次进入
+  const [first, setFirst] = useState<boolean>(true)
+
+  // 加载初始化数据
+  useDidShow(() => {
+    if (first) {
+      setFirst(false)
+      return
+    }
+    initUsedPublishViewInfo()
+  })
 
   // 用户填写信息
   const userEnterFrom = (e: any, key: string) => {
@@ -183,13 +194,14 @@ export default function UsedPublish() {
             }
             <View className='publish-list-textarea'>
               <Text className='publish-textarea-title'>交易详情</Text>
+              {!showDrawer &&
               <Textarea
                 className='publish-textarea'
                 value={ model.detail }
                 placeholder={ initModel&&initModel.placeholder }
                 onInput={(e) => userEnterFrom(e, 'detail')}
                 maxlength={500}
-              ></Textarea>
+              ></Textarea>}
               <WordsTotal num={num} />
             </View>
           </View>

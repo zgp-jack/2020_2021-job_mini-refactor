@@ -3,6 +3,7 @@ import { View, Text, ScrollView} from '@tarojs/components'
 import { helpAction, feedbackAction } from '../../utils/request'
 import { AtAccordion, AtList } from 'taro-ui'
 import { heleDatalist } from '../../utils/request/index.d'
+import { useSelector } from '@tarojs/redux'
 import Nodata from '../../components/nodata'
 import { isIos } from '../../utils/v'
 import './index.scss'
@@ -21,6 +22,8 @@ export interface UserDataType {
   username: string,
 }
 export default function Help() {
+  // 获取用户是否登录
+  const login = useSelector<any, boolean>(state => state.User['login'])
   // * 标记是否是在刷新状态
   const [refresh, setRefresh] = useState<boolean>(false)
   // 设置默认页面
@@ -64,6 +67,7 @@ export default function Help() {
   },[initPage])
   // 用户信息
   useEffect(() => {
+    if (!login) return
     feedbackAction(1).then(res =>{
       setUserData(res.memberInfo);
     })
@@ -124,7 +128,7 @@ export default function Help() {
         {!isDown && data.item.length && <View className='help-noData'>没有更多数据了</View>}
         <View className='BootomNoneBox'></View>
       </ScrollView>
-      <View className='help-button-box' onClick={() => userRouteJump(`/pages/feedback/index?username=${userData.username}&phone=${userData.phone}`)}><Text className='help-button'>意见反馈</Text></View>
+      <View className='help-button-box' onClick={() => userRouteJump(`/pages/feedback/index?username=${userData.username || ''}&phone=${userData.phone || ''}`)}><Text className='help-button'>意见反馈</Text></View>
     </View>
   )
 }

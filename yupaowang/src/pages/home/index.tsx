@@ -1,4 +1,4 @@
-import Taro, { useState, useEffect, useDidShow } from '@tarojs/taro'
+import Taro, { useState, useEffect } from '@tarojs/taro'
 import { View, Text, Image } from '@tarojs/components'
 import { IProps } from '../../components/swiper/index'
 import SwiperComponent from '../../components/swiper/index/index'
@@ -6,7 +6,7 @@ import SwiperNews from '../../components/swiper/news'
 import Projects from '../../components/index/projects/index'
 import './index.scss'
 import Fastfun from '../../components/index/fastfun'
-import { IMGCDNURL } from '../../config'
+import { IMGCDNURL, PUBLISHRECRUIT } from '../../config'
 import RecruitList from '../../components/lists/recruit'
 import ResumeList from '../../components/lists/resume'
 import UsedList from '../../components/lists/used'
@@ -172,7 +172,11 @@ export default function Home({ homeIndex = 0}: HomeProps){
           <UsedList data={lists.fleamarket} bottom={false} hasMore={true} />
         </View>
       </View>
-
+      <Image 
+        className='fixed-publish-recruit' 
+        src={`${IMGCDNURL}fixed-downloadapp.png`}
+        onClick={()=>userRouteJump(PUBLISHRECRUIT)} 
+      />
       {/* // ? 底部信息  */}
       <About />
       {shwoCity && <HomeCity show={shwoCity} setAreaInfo={(val: string,id: string) => setAreaInfo(val,id)} closeDrawer={() => setShowCity(!shwoCity)} />}

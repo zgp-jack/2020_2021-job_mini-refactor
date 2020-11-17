@@ -24,7 +24,7 @@ export default function AddResumeInfo(){
   // 获取基础信息的redux
   const infoData = useSelector<any, resInfoObj>(state => state.resumeData.info);
   // 获取hooks数据
-  const { infoConfig, genderCurrent, startDatePicker } = useResumeAddInfo();
+  const { infoConfig, genderCurrent, startDatePicker, endDatePicker } = useResumeAddInfo();
   // 发送验证码
   const { text, userGetCode } = useCode()
   // 输入数据
@@ -293,7 +293,8 @@ export default function AddResumeInfo(){
                   <Picker
                     mode="date"
                     value={inputVal.birthday}
-                    // start={startDatePicker}
+                    start={startDatePicker}
+                    end={endDatePicker}
                     onChange={(e) => onPickerChange(e,'birthday')}
                   >
                     <Input className='publish-list-input' type='text' disabled placeholder='请选择出生年月' value={inputVal.birthday} />
@@ -377,13 +378,14 @@ export default function AddResumeInfo(){
             <View className='resume-addinfo-body'>
               <View className='publish-list-textarea'>
                   <Text className='publish-textarea-title'>自我介绍</Text>
+                  {!showProssion &&
                   <Textarea
                     className='publish-textarea'
                     value={inputVal.introduce}
                     placeholder='请简要介绍您所从事的行业以及工作经验...'
                     onInput={(e) => userEnterFrom(e, 'introduce')}
                     maxlength={500}
-                  ></Textarea>
+                  ></Textarea>}
                   <WordsTotal num={inputVal&&inputVal.introduce&&inputVal.introduce.length||0} />
                 </View>
               </View>

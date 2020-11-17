@@ -216,14 +216,17 @@ export default function useRealname(){
               birthall = birth + "-" + birthtwo + "-" + birththree;
             }
             // 性别
-            let sexIndex = 0;
+            let sexIndex: number = 0;
+            let sexId: string = ''; // 默认空 没有遍历到即假
             sexArray.map((v, i) => {
               if (memberExt.sex === v.name) {
                 sexIndex = i;
+                sexId = v.id
               }
             })
             setSexCurrent(sexIndex);
             setSexName(memberExt.sex)
+            if (sexId && model) setModel({ ...model, gender: sexId })
             const dataItem = {
               username: memberExt.user_name ? memberExt.user_name : '',
               age: memberExt.age || '',

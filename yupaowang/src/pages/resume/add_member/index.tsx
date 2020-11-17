@@ -278,6 +278,7 @@ export default function AddResumeMember() {
                 <Input
                   className='publish-list-input'
                   type='number'
+                  maxLength={2}
                   placeholder='请输入您的工龄'
                   value={postData.experience||''}
                   onInput={(e) => userEnterFrom(e, 'experience')}
@@ -328,6 +329,7 @@ export default function AddResumeMember() {
                   className='publish-list-input'
                   type='number'
                   placeholder='请输入队伍人数'
+                  maxLength={3}
                   value={postData.number_people}
                   onInput={(e) => userEnterFrom(e, 'number_people')}
                 />

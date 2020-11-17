@@ -1,8 +1,8 @@
 /*
  * @Author: your name
  * @Date: 2020-10-28 11:04:26
- * @LastEditTime: 2020-11-06 17:06:57
- * @LastEditors: your name
+ * @LastEditTime: 2020-11-16 10:20:41
+ * @LastEditors: jsxin
  * @Description: In User Settings Edit
  * @FilePath: \yupaowang\src\config\minis\jizhao.ts
  */
@@ -22,6 +22,9 @@ var INVITESOURCE: string = "712790d9629c6dcea00e3f5bff60132b"
 var USESUBSCRIBEMESSAGE: boolean = true
 // * 激励视频
 const VIDEOAD = 'adunit-31b05acadbd2a1d1'
+// * textarea能输入的最大字数
+var TEXTAREAMAXLENGTH: number = 500
+
 
 module.exports = {
   PAGETITLE,
@@ -29,5 +32,6 @@ module.exports = {
   UNITID,
   INVITESOURCE,
   USESUBSCRIBEMESSAGE,
-  VIDEOAD
+  VIDEOAD,
+  TEXTAREAMAXLENGTH
 }

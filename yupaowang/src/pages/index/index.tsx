@@ -46,6 +46,9 @@ export default function Index(){
 
   // 当页面显示的 时候 触发
   useDidShow(()=>{
+    if(tabKey){
+      Taro.setNavigationBarTitle({ title: IndexTabbarConfig[tabKey].navigationBarTitleText })
+    }
     setShowIndex(showIndex+1)
   })
 

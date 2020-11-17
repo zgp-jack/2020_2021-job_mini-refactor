@@ -66,7 +66,7 @@ export default function Member({memberIndex = 0}: MemberProps){
   },[])
 
   useEffect(()=>{
-    Taro.setNavigationBarTitle({ title: IndexTabbarConfig[MEMBER].navigationBarTitleText })
+    //Taro.setNavigationBarTitle({ title: IndexTabbarConfig[MEMBER].navigationBarTitleText })
     if(!login) return
     initMemberInfo()
   }, [login, memberIndex])
