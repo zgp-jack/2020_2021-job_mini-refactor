@@ -1,14 +1,12 @@
 import Taro, { useEffect, useState } from '@tarojs/taro';
 import { useSelector, useDispatch } from '@tarojs/redux';
-import { PublishConfigData, UserLastPublishRecruitArea, MateDataItem } from '../../pages/recruit/index.d'
+import { PublishConfigData, UserLastPublishRecruitArea, MateDataItem, ImageData } from '../../pages/recruit/index.d'
 import { PublishData, UserLocation } from '../../config/store'
 import { UserLocationPromiss, AREABEIJING } from '../../models/area'
 import { UserLastPublishArea, UserLocationCity } from '../../config/store'
 import { setAreaInfo, setArea } from '../../actions/recruit'
 import { userAuthLoction } from '../../utils/helper'
 import { SelectedClassfies, RulesClassfies } from '../../components/classfiy_picker/index'
-import { ProfessionRecruitChildrenData } from '../../components/profession/index.d'
-import { UserLastPublishRecruitArea } from '../../pages/recruit/index.d'
 
 
 
@@ -16,7 +14,7 @@ export default function useRelease () {
   // 获取redex数据
   const publishData: PublishConfigData = useSelector<any, PublishConfigData>(state => state.publishData)
   // 工种数据、匹配库、不匹配库,最大工种选择数，最大图片上传数
-  const { classifyTree, mateData, noMateData, maxClassifyCount } = publishData
+  const { classifyTree, mateData, noMateData, maxClassifyCount, maxImageCount } = publishData
   // 将工种数据放入当前状态
   const [classifies, setClassifies] = useState<SelectedClassfies[]>(classifyTree)
   // 工种文本数据
@@ -27,6 +25,8 @@ export default function useRelease () {
   const [choceClassfies, setChoceClassfies] = useState<RulesClassfies[]>([])
   // 是否展开图片上传
   const [showUpload, setShowUpload] = useState<boolean>(false)
+  // 上传图片数据
+  const [image, setImage] = useState<ImageData[]>([])
   // 获取分发action的dispatch
   const dispatch = useDispatch()
 
@@ -186,6 +186,10 @@ export default function useRelease () {
     selectWorkType(needArr)
     Taro.hideLoading()
   }
+  // 发布招工
+  function pulishFindWorker() {
+    
+  }
   return {
     classifies,
     selectText,
@@ -194,6 +198,9 @@ export default function useRelease () {
     selectWorkType,
     countWorkNum,
     showUpload,
-    setShowUpload
+    setShowUpload,
+    image,
+    setImage,
+    maxImageCount
   }
 }

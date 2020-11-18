@@ -5,13 +5,14 @@ import { useSelector } from '@tarojs/redux';
 import ClassifyPicker, { RulesClassfies } from '../../../../components/classfiy_picker/index'
 import useRelease from '../../../../hooks/publish/release'
 import { IMGCDNURL } from '../../../../config'
+import UploadImgAction from '../../../../utils/upload'
 import './index.scss'
 
 
 
 export default function FastIssue() {
   // 获取发布招工hook数据
-  const { classifies, selectText, maxClassifyCount, choceClassfies, selectWorkType, countWorkNum, setShowUpload, showUpload } = useRelease()
+  const { classifies, selectText, maxClassifyCount, choceClassfies, selectWorkType, countWorkNum, setShowUpload, showUpload, image, setImage, maxImageCount } = useRelease()
 
   // 发布招工redux数据
   const recruitInfo: RecruitInfo = useSelector<any, RecruitInfo>(state => state.RecruitAction)
@@ -19,9 +20,6 @@ export default function FastIssue() {
   const [showPicker, setShowPicker] = useState<boolean>(false)
   // 招工信息的定位地址信息
   const areaInfo = recruitInfo.areaInfo
-  
-  // 选择工种id
-  const [selectIds, setSelectIds]  = useState<string[]>([])
   // 点击招工城市，跳转到城市选择页面
   function showWorkArea () {
     let url = '/pages/map/recruit/index'
@@ -31,15 +29,11 @@ export default function FastIssue() {
   }
   function hiddenPickerModel () {
     setShowPicker(false)
-    console.log("choceClassfies", choceClassfies)
-    // selectWorkType(choceClassfies)
-    // countWorkNum(choceClassfies)
   }
   function showWorkType () {
     setShowPicker(true)
   }
   function selectClassfy(data: RulesClassfies[]) {
-    console.log("data", data)
     selectWorkType(data)
     countWorkNum(data)
     setShowPicker(false)
@@ -47,6 +41,29 @@ export default function FastIssue() {
   // 切换上传图片
   function switchClick() {
     setShowUpload(!showUpload)
+  }
+  // 用户上传图片
+  function userUploadImg (i:number = -1){
+    UploadImgAction().then(res=>{
+      let imageItem = {
+        url: res.url,
+        httpurl: res.httpurl
+      }
+      setImage([...image, imageItem])
+      if(image){
+        if (i === -1) {
+          setImage([...image, imageItem])
+        } 
+      }
+    })
+  }
+
+  // 用户删除图片
+  function userDelImg (i: number){
+    if(!image) return
+    let images = [...image]
+    images.splice(i,1)
+    setImage(images)
   }
   return (
     <View className="issue-area-container">
@@ -69,17 +86,20 @@ export default function FastIssue() {
           </View>
           {showUpload ? <View className="issue-upload-show">
             <View className="issue-upload-body clearfix">
-              <View className="issue-upload-item">
-                <View className="imgitem-box">
-                  {/* <Image src="{{ item.httpurl }}"></Image> */}
-                  <View className="mini-del"></View>
+              {image.length != 0 && image.map((item,index)=>(
+                <View className="issue-upload-item">
+                  <View className="imgitem-box">
+                    <Image src={item.httpurl}></Image>
+                    <View className="mini-del" onClick={()=>userDelImg(index) }></View>
+                  </View>
                 </View>
-              </View>
-              <View className="issue-upload-item">
+              ))}
+              {image.length < maxImageCount?
+              <View className="issue-upload-item" onClick={()=>userUploadImg()}>
                 <View className="imgitem-box" >
                   <Image src={`${IMGCDNURL}mini-new-publish-upload-img.png`} ></Image>
                 </View>
-              </View>
+              </View>:''}
             </View>
           </View>:''}
         </View>

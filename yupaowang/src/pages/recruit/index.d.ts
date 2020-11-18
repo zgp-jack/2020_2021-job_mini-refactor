@@ -116,3 +116,8 @@ export interface VaildCodeReq{
   phone: string,
   code: string
 }
+// 上传图片
+export interface ImageData{
+  url: string,
+  httpurl: string
+}
