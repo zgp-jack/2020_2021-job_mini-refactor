@@ -229,6 +229,14 @@ export function getPublishRecruitView(data: InitRecruitView): Promise<any> {
   })
 }
 
+//获取发布招工模式 快速||极速
+export function gitPublish(): Promise<any> {
+  return doRequestAction({
+    url: api.publishModel,
+    method:'POST'
+  })
+}
+
 // 初始化极速发布招工
 export function fastPublisView(data: InitRecruitView): Promise<any> {
   return doRequestAction({

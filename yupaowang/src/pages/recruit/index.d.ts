@@ -130,23 +130,6 @@ export interface UserLastPublishRecruitArea {
   provice?:string,
 }
 
-//地址类型
-export interface AreasType {
-  id: string,
-  pid: string,
-  name: string,
-  ad_name: string,
-  has_children: number,
-  children: AreasTypeChildren[]
-}
-//二级地址
-export interface AreasTypeChildren {
-  id: string,
-  pid: string,
-  name: string,
-  ad_name: string
-  info: string
-}
 export interface RecruitInfo {
   areaInfo: UserLastPublishRecruitArea,
   area: string,

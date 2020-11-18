@@ -31,7 +31,7 @@ export default function fastPublishInit(InitParams: InitRecruitView) {
   // 获取redux中区域名称数据
   // 获取dispatch分发action
   const dispatch = useDispatch()
-
+  
   // 初始化招工信息
   useEffect(() => {
     // 判断是否登录，没有登录直接返回

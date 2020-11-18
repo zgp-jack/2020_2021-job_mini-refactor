@@ -14,6 +14,22 @@ export default function useCode(type?: boolean) {
   const sendType: string = type === false ? SendTypeNo : SendTypeHave
   const [text, setText] = useState<string>(title)
 
+
+  const timer = (time:number = 60)=> {
+    let t: number = time
+      setText(t + 's后重新获取')
+      let timer = setInterval(()=>{
+        t--
+        if(t === 0){
+          setDisabled(false)
+          clearInterval(timer)
+          setText(title)
+          return false
+        }
+        setText(t + 's后重新获取')
+      },1000)
+  }
+
   const userGetCode = (tel: string)=> {
     if(disabled) return
     if(!isPhone(tel)){
@@ -25,18 +41,9 @@ export default function useCode(type?: boolean) {
     getUserPhoneCode(data).then(res=>{
       Msg(res.errmsg, 2500)
       if(res.errcode == 'ok'){
-        let t: number = res.refresh || 60
-        setText(t + 's后重新获取')
-        let timer = setInterval(()=>{
-          t--
-          if(t === 0){
-            setDisabled(false)
-            clearInterval(timer)
-            setText(title)
-            return false
-          }
-          setText(t + 's后重新获取')
-        },1000)
+        timer(res.refresh)
+      }else{
+        setDisabled(false)
       }
     })
   }
@@ -44,7 +51,8 @@ export default function useCode(type?: boolean) {
   return {
     disabled,
     text,
-    userGetCode
+    userGetCode,
+    timer
   }
 
 }

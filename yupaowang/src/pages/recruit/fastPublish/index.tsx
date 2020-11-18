@@ -5,15 +5,14 @@ import WordsTotal from '../../../components/wordstotal'
 import Profession from '../../../components/profession'
 import useCode from '../../../hooks/code'
 import fastPublishInit from '../../../hooks/publish/fastPublish'
-import { UserLastPublishRecruitArea, FastPublishInit, MateDataType, AreasType, AreasTypeChildren } from '../index.d'
+import { UserLastPublishRecruitArea, FastPublishInit, MateDataType} from '../index.d'
 import UploadImgAction from '../../../utils/upload'
 import ImageView from '../../../components/imageview'
 import Msg from '../../../utils/msg'
 import Auth from '../../../components/auth'
 import './index.scss'
 import { useSelector } from '@tarojs/redux'
-import area from '../../../models/area'
-
+import ClassifyPicker from '../../../components/classfiy_picker/index'
 // 初始化获取信息类型
 export interface InitRecruitView {
   type: string,
@@ -174,9 +173,21 @@ export default function PublishRecruit() {
     }
     setModel(state)
   }
+
+  //工种选择 确定
+  // const confrimClass = (r) => {
+  //   console.log(r)
+  // }
   return (
     <Block>
       <Auth />
+
+
+
+      <ClassifyPicker></ClassifyPicker>
+
+
+
       {showProfession &&
         <Profession
           closeProfession={closeProfession}

@@ -224,6 +224,7 @@ export const turntableVideoEnd: string = REQUESTURL + 'turntable/video-end/'
 export const memberTurntable: string = REQUESTURL + 'member/turntable/'
 // 初始化极速发布招工
 export const fastPublisView: string = REQUESTURL + 'publish/new-mate-job/'
-
 // 发布招工验证码验证
 export const checkCodeUrl: string = REQUESTURL + 'fast-issue/check-code/'
+// 获取发布招工模式 快速发布||急速发布
+export const publishModel: string = REQUESTURL + 'index/get-job-view/'
