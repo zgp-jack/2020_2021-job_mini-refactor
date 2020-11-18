@@ -12722,6 +12722,8 @@ var SearchList = exports.SearchList = 'searchList';
 var UserLocation = exports.UserLocation = 'userLocation';
 // 找活名片info信息
 var Introinfo = exports.Introinfo = 'introinfo';
+// 搜索历史
+var HistoryInfo = exports.HistoryInfo = 'historyInfo';
 
 /***/ }),
 
@@ -13557,6 +13559,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.getCityInfo = getCityInfo;
 exports.getLongAreaAdname = getLongAreaAdname;
 exports.getCityInfoById = getCityInfoById;
+exports.seachAreasList = seachAreasList;
 var AREAS = [{
   "id": "1",
   "pid": "0",
@@ -15815,6 +15818,20 @@ function getCityInfoById(id) {
   }
   if (flag) return AREAS[pCurrent].children[cCurrent];
   return AREAS[pCurrent];
+}
+// 搜索返回城市列表
+function seachAreasList(title) {
+  var data = [].concat(AREAS);
+  var arr = [];
+  for (var i = 0; i < data.length; i++) {
+    for (var j = 0; j < data[i].children.length; j++) {
+      if (data[i].name.indexOf(title) != -1 || data[i].children[j].name.indexOf(title) != -1) {
+        data[i].children[j].allName = data[i].name + '-' + data[i].children[j].name;
+        arr.push(data[i].children[j]);
+      }
+    }
+  }
+  return arr;
 }
 exports.default = AREAS;
 

@@ -1136,6 +1136,7 @@ export interface resume_topObj_arrStr {
   name: string,
   pid: string,
   is_hot?: string,
+  click?:boolean
 }
 // 项目
 export interface resProjectArr {
@@ -1608,4 +1609,5 @@ export interface hotAreasTypeData {
   name: string,
   pid: string,
   click?:boolean,
+  allName?:string,
 }

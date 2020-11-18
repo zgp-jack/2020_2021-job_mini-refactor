@@ -167,4 +167,90 @@
       }
     }
   }
+  .regin-hight{
+    height: 100px;
+  }
+  .regin-hight100vh {
+    height: 100vh;
+  }
+  .region-seachContent{
+    margin: auto;
+    width: 100%;
+    background: #FFFFFF;
+    .region-heard{
+      width: 100%;
+      height: 100px;
+      background: #FFFFFF;
+      .region-seachContent-seach{
+          display: flex;
+          padding-top: 12px;
+          .region-seachContent-seach-input {
+            width: 622px;
+            height: 77px;
+            background: #F5F5F5;
+            border-radius: 6px;
+            font-size: 28px;
+            margin-left: 28px;
+            padding-left: 10px;
+          }
+          .region-seachContent-seach-btn {
+            font-size: 28px;
+            margin-left: 17px;
+            color: rgba(153, 153, 153, 1);
+            padding-top: 20px;
+        }
+      }
+      .region-seachContent-seach-history{
+        width: 100%;
+        font-size: 28px;
+        padding: 25px 20px;
+        .region-seachContent-seach-history-flex{
+          display: flex;
+          justify-content: space-between;
+          .region-seachContent-seach-history-img{
+            height: 30px;
+            width: 30px;
+            background-size: cover;
+            margin-right: 6px;
+          }
+        }
+        .region-seachContent-seach-history-flex-box{
+          display: flex;
+          flex-wrap: wrap;
+          .region-seachContent-seach-history-flex-box-list{
+            width: 191px;
+            height: 74px;
+            background: #F5F5F5;
+            border-radius: 5px;
+            color: rgba(111, 111, 111, 1);
+            font-size: 36px;
+            text-align: center;
+            line-height: 74px;
+            margin-top: 30px;
+            margin-right: 23px;
+          }
+        }
+      }
+    }
+    .region-seachContent-noContent{
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+      margin-top: 50%;
+    }
+    .region-seachContent-seach-seachList{
+      background: #FFFFFF;
+      .region-seachContent-seach-seachList-list {
+        padding: 0 20px;
+        line-height: 80px;
+        border-bottom: 1px solid #dcdcdc;
+        font-size: 28px;
+      }
+      .region-seachContent-seach-seachList-list:last-child {
+        padding: 0 20px;
+        line-height: 80px;
+        font-size: 28px;
+      }
+    }
+  }
 }

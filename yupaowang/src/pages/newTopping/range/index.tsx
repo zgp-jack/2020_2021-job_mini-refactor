@@ -9,6 +9,7 @@ import { useResumeType } from '../../../reducers/resume_top';
 import { setClickResumeTop } from '../../../actions/resume_top';
 import './index.scss'
 
+let first = false;
 export default function Range() {
   const dispatch = useDispatch();
   // 获取置顶信息
@@ -48,13 +49,16 @@ export default function Range() {
         // 置顶
         setRule(res.data.top_rules);
         const areasData = [...resumeTopData.resumeTopObj.top_provinces_str || [], ...resumeTopData.resumeTopObj.top_citys_str||[]];
-        // 
         setAreas(areasData);
         dispatch(setClickResumeTop(areasData));
         setEnd_time_str(resumeTopData.resumeTopObj.end_time_str||'');
       }
     })
   },[])
+  useEffect(()=>{
+    if (!first)return
+    setAreas(resumeTopData.clickResumeTopObj);
+  }, [resumeTopData.clickResumeTopObj])
   //跳转 
   const userRouteJump = (url: string) => {
     Taro.navigateTo({
@@ -75,22 +79,30 @@ export default function Range() {
     }
     setAreas(data);
   }
+  //跳转
+  const handleJump = ()=>{
+    first = true;
+    userRouteJump(`/pages/newTopping/region/index?maxCity=${maxCity}&maxProvince=${maxProvince}`)
+  }
   return (
     <View className='range'>
       <View>
         <View className='range-tips range-mt30'>当前选择置顶范围:</View>
         <View>
-          {/* 没有选择 */}
-          {/* <View className='range-noChangeBtn'>点击选择置顶范围 ></View> */}
-          {/* 选择后 */}
-          <View className='range-cityBox'>
-            {areas.map((v)=>(
-              <View key={v.id} className='range-cityBox-list' onClick={()=>handleDel(v.id)}>{v.name}
-                <Image src={`${IMGCDNURL}lpy/delete.png`} className='range-cityBox-list-close' />
-              </View>
-            ))}
-            <View className='range-cityBox-list-last' onClick={() => userRouteJump(`/pages/newTopping/region/index?maxCity=${maxCity}&maxProvince=${maxProvince}`)} >添加更多</View>
-          </View>
+          {areas.length ? 
+            <View className='range-cityBox'>
+              {/* 选择后 */}
+              {areas.map((v) => (
+                <View key={v.id} className='range-cityBox-list' onClick={() => handleDel(v.id)}>{v.name}
+                  <Image src={`${IMGCDNURL}lpy/delete.png`} className='range-cityBox-list-close' />
+                </View>
+              ))}
+              <View className='range-cityBox-list-last' onClick={handleJump} >添加更多</View>
+            </View>
+            :
+            //  没选择
+            <View className='range-noChangeBtn' onClick={handleJump}>点击选择置顶范围 ></View>
+            }
         </View>
       </View>
       <View>

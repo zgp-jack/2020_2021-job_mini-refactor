@@ -4,4 +4,5 @@ export interface HotType {
   name: string,
   is_hot?: string,
   click?:boolean,
+  allName?:string,
 }

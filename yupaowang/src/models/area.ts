@@ -2597,7 +2597,8 @@ export interface ChildItems {
   pid: string,
   name: string,
   ad_name: string,
-  click?:boolean
+  click?:boolean,
+  allName?:string,
 }
 
 export interface ParentItems {
@@ -2729,6 +2730,21 @@ export function getCityInfoById(id: string){
   }
   if (flag) return AREAS[pCurrent].children[cCurrent]
   return AREAS[pCurrent]
+}
+
+// 搜索返回城市列表
+export function seachAreasList(title:string){
+  const data = [...AREAS];
+  let arr: ChildItems[] =[];
+  for(let i =0;i<data.length;i++){
+    for(let j=0;j<data[i].children.length;j++){
+      if (data[i].name.indexOf(title) != -1 || data[i].children[j].name.indexOf(title) != -1){
+        data[i].children[j].allName = data[i].name + '-' + data[i].children[j].name;
+        arr.push(data[i].children[j])
+      }
+    }
+  }
+  return arr;
 }
 
 export default AREAS
