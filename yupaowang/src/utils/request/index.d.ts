@@ -795,7 +795,8 @@ export interface integralSourceListsDataSum {
 
 // 积分弹窗
 export interface integralUseInfo extends Result {
-  info: integralUseInfoData
+  info: integralUseInfoData,
+  data: any
 }
 
 export interface integralUseInfoData {
@@ -813,7 +814,12 @@ export interface integralUseInfoData {
   expend_type: number
   team_composition_words: string
   showProvinceList: string
-  address: string
+  address: string | string[]
+  e_time: string
+  s_time: string
+  tel: string
+  occupations: string[]
+  team_type: string
 }
 
 // 招活详情

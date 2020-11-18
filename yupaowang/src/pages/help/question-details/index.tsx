@@ -21,7 +21,7 @@ export default function QuestionDetails() {
       setEffective(effective)
     })
   }, [])
-  const handleFeedBackClick = (val: string) => {
+  const handleFeedBackClick = (val: string) =>  {
     helpQuestionDetailsFeedBankAction(id, val).then(res => {
       if (res.errcode === 'ok') {
         Taro.showToast({title: res.errmsg})

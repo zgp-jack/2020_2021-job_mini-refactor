@@ -33,7 +33,7 @@ export default function () {
   //列表数据
   const [list, setList] = useState<resumesSortDataList[]>([])
   //列表length
-  const [listLength, setListLength] = useState<number>(0)
+  const [setListLength] = useState<any>(0)
   //规则状态
   const [ruleStatus, setRuleStatus] = useState<string>('')
 

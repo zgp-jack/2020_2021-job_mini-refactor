@@ -60,6 +60,7 @@ class App extends Component {
 
       'pages/resume/preview/index', // 预览
       'pages/login/index',//用户登录
+      'pages/complaint/index'//投诉
     ],
     subPackages: [
       {

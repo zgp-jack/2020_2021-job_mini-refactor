@@ -164,7 +164,7 @@
   padding: 35px 32px 15px 32px;
 }
 
-.tabber-Modal-content-flexBox {
+.Modal-content-row {
   border-bottom: 1px solid #EEEEEE;
   padding-top: 30px;
   padding-bottom: 25px;
@@ -172,6 +172,12 @@
   &:last-child {
     border: none;
   }
+}
+
+.Modal-content-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .clear {
@@ -188,17 +194,36 @@
   justify-content: space-between;
 }
 
-.tabber-Modal-content-flexBox-left {
+.content-left {
   margin-bottom: 20px;
   font-weight: 500;
   color: #333333;
 }
 
-.tabber-Modal-content-flexBox-right {
+.content-right {
   color: $color;
+  display: flex;
+  justify-content: space-between;
 }
 
-.tabber-Modal-content-flexBox-gray {
+.content-right-work {
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.content-right-item {
+  margin-left: 18px;
+}
+
+.Modal-content-row .content-left {
+  margin-bottom: 20px;
+}
+
+.Modal-content-box .content-left {
+  margin-bottom: 0;
+}
+
+.content-gray {
   color: #808080;
 }
 
@@ -215,21 +240,20 @@
 .tabber-Modal-content-flexBox-phone {
   display: inline - block;
   color: #fff;
-  padding: 0 20px;
+  padding: 12px 30px;
   font-size: 26px;
   border-radius: 8px;
   background: #67C23A;
-  margin: 0 5px;
 }
 
 .tabber-Modal-content-flexBox-complaint {
   display: inline - block;
   color: #fff;
-  padding: 0 20px;
+  padding: 12px 30px;
   font-size: 26px;
   border-radius: 8px;
   background: #ff0000;
-  margin: 0 5px;
+  margin-left: 20px;
 }
 
 .integral-noData {

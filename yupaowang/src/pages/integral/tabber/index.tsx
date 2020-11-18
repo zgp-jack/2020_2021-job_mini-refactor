@@ -22,6 +22,7 @@ import Report from '../../../components/report';
 import {isVaildVal} from '../../../utils/v'
 import Msg, {SubPopup} from '../../../utils/msg'
 import './index.scss'
+import set = Reflect.set;
 
 interface ParamsType {
   y: string,
@@ -135,6 +136,8 @@ export default function Tabber() {
   const [isconsume, setIsconsume] = useState<boolean>(false);
   //顶部tab数据
   const [tabBar] = useState<{ type: string, name: string }[]>([{type: '0', name: '积分来源'}, {type: '1', name: '积分消耗'}])
+  Taro.get
+  const [modelType, setModelType] = useState<string>('')
   useEffect(() => {
     let navigationBarTitleText = initInfo === '0' ? '鱼泡网-积分来源记录' : '鱼泡网-积分消耗记录'
     Taro.setNavigationBarTitle({title: navigationBarTitleText})
@@ -456,24 +459,32 @@ export default function Tabber() {
     }
   }
   // 弹窗
-  const handleModal = (userId: string) => {
-    integralUseInfoAction(userId).then(res => {
+  const handleModal = (userId: string, time: string) => {
+    integralUseInfoAction(userId, time).then(res => {
+      const {errcode, errmsg, info, data} = res
       if (res.errcode === 'deleted' || res.errcode === 'fail') {
         Taro.showModal({
           title: '温馨提示',
-          content: res.errmsg,
+          content: errmsg,
           showCancel: false,
         })
+        return
+      } else if (errcode === 'ok') {
+        setModelType(info.type)
       } else {
-        setModalData(res.info);
-        setModal(true);
+        setModelType(errcode)
       }
+      setModalData(info || data);
+      setModal(true);
     })
   }
   // 投诉弹窗
   const handleComplaint = (id: string) => {
-    setComplaintModal(true);
-    setComplaintId(id);
+    Taro.navigateTo({
+      url: '/pages/complaint/index?id=' + id,
+    })
+    // setComplaintModal(true);
+    // setComplaintId(id);
   }
   // 多行输入
   const handleTextarea = (e: any) => {
@@ -505,9 +516,18 @@ export default function Tabber() {
       }
     })
   }
-
+  const handleBgMove = (e) => {
+    e.stopPropagation();
+    return !modal;
+  };
+  const modelItem = (title: string, data: string) => {
+    return (<View className='Modal-content-row  Modal-content-box'>
+      <View className='content-left'>{title}</View>
+      <View className='content-right'>{data}</View>
+    </View>)
+  }
   return (
-    <View className='tabber-content'>
+    <View className='tabber-content' onTouchMove={handleBgMove}>
       <View className="integral-tab">
         {
           tabBar.map((item, i) => (
@@ -545,7 +565,7 @@ export default function Tabber() {
       {!data.lists.length && <Nodata text={initInfo === '0' ? '暂无积分来源记录' : '暂无积分消耗记录'}/>}
       <View className='integral-list-container'>
         {data.lists.map((item, index) => (
-          <View className="integral-list-item" key={index} onClick={() => handleModal(item.id)}>
+          <View className="integral-list-item" key={index} onClick={() => handleModal(item.id, item.time)}>
             <View className="item-container">
               <View className="icon-bor">
                 <Image className="icon" src={item.icon}/>
@@ -575,66 +595,240 @@ export default function Tabber() {
         ))}
       </View>
       {/*{data.next_page === 0 && data.lists.length && <View className='integral-noData'>没有更多数据了</View>}*/}
-      {initInfo === '1' && modal && modalData &&
-      <View className='tabber-Modal'>
-        <View className='tabber-Modal-content'>
-          <View onClick={() => {
-            setModal(false)
-          }} className='tabber-Modal-content-close'></View>
-          <View className='tabber-Modal-content-scroll'>
-            {modalData.expend_type !== 2 &&
-            <View className='tabber-Modal-content-flexBox'>
-              <View className='tabber-Modal-content-flexBox-left'>项目名称</View>
-              <View className='tabber-Modal-content-flexBox-right'>{modalData.title}</View>
+      {
+        initInfo === '1' && modal && modalData &&
+        <View className='tabber-Modal'>
+          <View className='tabber-Modal-content'>
+            <View onClick={() => {
+              setModal(false)
+            }} className='tabber-Modal-content-close'/>
+            <View className='tabber-Modal-content-scroll'>
+              {/*置顶招工*/}
+              {
+                modelType === 'top_job' &&
+                <View>
+                  <View className='Modal-content-row'>
+                    <View className='content-left'>项目名称</View>
+                    <View className='content-right'>{modalData.title}</View>
+                  </View>
+                  <View className='Modal-content-row Modal-content-box'>
+                    <View className='content-left'>置顶范围</View>
+                    <View className='content-right'>
+                      {
+                        (modalData.address as string[]).map((item, i) => (
+                          <Text key={i} className="content-right-item">{item}</Text>
+                        ))
+                      }
+                    </View>
+                  </View>
+                  <View className='Modal-content-row  Modal-content-box'>
+                    <View className='content-left'>置顶开始时间</View>
+                    <View className='content-right'>{modalData.s_time}</View>
+                  </View>
+                  {/*{*/}
+                  {/*  modelItem('置顶开始时间', modalData.s_time)*/}
+                  {/*}*/}
+                  <View className='Modal-content-row  Modal-content-box'>
+                    <View className='content-left'>置顶结束时间</View>
+                    <View className='content-right'>{modalData.e_time}</View>
+                  </View>
+                  <View className='Modal-content-row  Modal-content-box'>
+                    <View className='content-left'>电话</View>
+                    <View className='content-right'>{modalData.tel}</View>
+                  </View>
+                  <View className='Modal-content-row'>
+                    <View className='content-left'>工种</View>
+                    <View className='content-right content-gray content-right-work'>
+                      {
+                        modalData.occupations.map((item, i) => (
+                          <Text>{i === 0 ? item : '、' + item}</Text>
+                        ))
+                      }
+                    </View>
+                  </View>
+                  <View className='Modal-content-row'>
+                    <View className='content-left'>项目描述</View>
+                    <View className='content-right content-gray'>{modalData.detail}</View>
+                  </View>
+                </View>
+              }
+              {/*付费发布招工*/}
+              {
+                modelType === 'paid_recruit' &&
+                <View>
+                  <View className='Modal-content-row'>
+                    <View className='content-left'>项目名称</View>
+                    <View className='content-right'>{modalData.title}</View>
+                  </View>
+                  <View className='Modal-content-row'>
+                    <View className='content-left'>联系人</View>
+                    <View className='content-right'>{modalData.user_name}</View>
+                  </View>
+                  <View className='Modal-content-row'>
+                    <View className='content-left'>电话</View>
+                    <View className='content-right'>{modalData.user_mobile}</View>
+                  </View>
+                  <View className='Modal-content-row'>
+                    <View className='content-left'>项目地址</View>
+                    <View className='content-right content-gray'>
+                      {modalData.address}
+                    </View>
+                  </View>
+                  <View className='Modal-content-row'>
+                    <View className='content-left'>工种</View>
+                    <View className='content-right content-gray content-right-work'>
+                      {
+                        modalData.classifyName.map((item, i) => (
+                          <Text>{i === 0 ? item : '、' + item}</Text>
+                        ))
+                      }
+                    </View>
+                  </View>
+                  <View className='Modal-content-row'>
+                    <View className='content-left'>项目描述</View>
+                    <View className='content-right content-gray'>{modalData.detail}</View>
+                  </View>
+                </View>
+              }
+              {/*置顶找活*/}
+              {
+                modelType === 'top_resume' &&
+                <View>
+                  <View className='Modal-content-row'>
+                    <View className='content-right'>{modalData.title}</View>
+                  </View>
+                  <View className='Modal-content-row Modal-content-box'>
+                    <View className='content-left'>置顶范围</View>
+                    <View className='content-right'>
+                      {
+                        (modalData.address as string[]).map((item, i) => (
+                          <Text key={i} className="content-right-item">{item}</Text>
+                        ))
+                      }
+                    </View>
+                  </View>
+                  <View className='Modal-content-row  Modal-content-box'>
+                    <View className='content-left'>置顶开始时间</View>
+                    <View className='content-right'>{modalData.s_time}</View>
+                  </View>
+                  <View className='Modal-content-row  Modal-content-box'>
+                    <View className='content-left'>置顶结束时间</View>
+                    <View className='content-right'>{modalData.e_time}</View>
+                  </View>
+                  <View className='Modal-content-row  Modal-content-box'>
+                    <View className='content-left'>电话</View>
+                    <View className='content-right'>{modalData.tel}</View>
+                  </View>
+                  <View className='Modal-content-row  Modal-content-box'>
+                    <View className='content-left'>规模</View>
+                    <View className='content-right'>{modalData.team_type}</View>
+                  </View>
+                  <View className='Modal-content-row'>
+                    <View className='content-left'>工种</View>
+                    <View className='content-right content-gray content-right-work'>
+                      {
+                        modalData.occupations.map((item, i) => (
+                          <Text>{i === 0 ? item : '、' + item}</Text>
+                        ))
+                      }
+                    </View>
+                  </View>
+                  <View className='Modal-content-row'>
+                    <View className='content-left'>自我介绍</View>
+                    <View className='content-right content-gray'>{modalData.detail}</View>
+                  </View>
+                </View>
+              }
+              {/*  查看招工*/}
+              {
+                modelType === 'job' &&
+                <View>
+                  <View className='Modal-content-row'>
+                    <View className='content-left'>项目名称</View>
+                    <View className='content-right'>{modalData.title}</View>
+                  </View>
+                  <View className='Modal-content-row'>
+                    <View className='content-left'>联系人</View>
+                    <View className='content-right'>{modalData.user_name}</View>
+                  </View>
+                  <View className='Modal-content-row'>
+                    <View className='content-left'>电话</View>
+                    <View className='content-right'>{modalData.user_mobile}
+                      <View>
+                        <View onClick={() => {
+                          Taro.makePhoneCall({phoneNumber: modalData.user_mobile})
+                        }} className='tabber-Modal-content-flexBox-phone'>拨打</View>
+                        {modalData.show_complain !== 0 && <View className='tabber-Modal-content-flexBox-complaint'
+                                                                onClick={() => handleComplaint(modalData.id)}>投诉</View>}
+                      </View>
+                    </View>
+                  </View>
+                  <View className='Modal-content-row'>
+                    <View className='content-left'>项目地址</View>
+                    <View className='content-right content-gray'>
+                      {modalData.address}
+                    </View>
+                  </View>
+                  <View className='Modal-content-row'>
+                    <View className='content-left'>工种</View>
+                    <View className='content-right content-gray content-right-work'>
+                      {
+                        modalData.classifyName.map((item, i) => (
+                          <Text>{i === 0 ? item : '、' + item}</Text>
+                        ))
+                      }
+                    </View>
+                  </View>
+                  <View className='Modal-content-row'>
+                    <View className='content-left'>项目描述</View>
+                    <View className='content-right content-gray'>{modalData.detail}</View>
+                  </View>
+                </View>
+              }
+              {/*查看找活信息*/}
+              {
+                modelType === 'resume' &&
+                <View>
+                  <View className='Modal-content-row'>
+                    <View className='content-right'>{modalData.title}</View>
+                  </View>
+                  <View className='Modal-content-row'>
+                    <View className='content-left'>电话</View>
+                    <View className='content-right'>{modalData.user_mobile}
+                      <View>
+                        <View onClick={() => {
+                          Taro.makePhoneCall({phoneNumber: modalData.user_mobile})
+                        }} className='tabber-Modal-content-flexBox-phone'>拨打</View>
+                      </View>
+                    </View>
+                  </View>
+                  <View className='Modal-content-row  Modal-content-box'>
+                    <View className='content-left'>规模</View>
+                    <View className='content-right'>{modalData.team_composition_words}</View>
+                  </View>
+                  <View className='Modal-content-row  Modal-content-box'>
+                    <View className='content-left'>接活省份</View>
+                    <View className='content-right'>{modalData.showProvinceList}</View>
+                  </View>
+                  <View className='Modal-content-row'>
+                    <View className='content-left'>工种</View>
+                    <View className='content-right content-gray content-right-work'>
+                      {
+                        modalData.classifyName.map((item, i) => (
+                          <Text>{i === 0 ? item : '、' + item}</Text>
+                        ))
+                      }
+                    </View>
+                  </View>
+                  <View className='Modal-content-row'>
+                    <View className='content-left'>自我介绍</View>
+                    <View className='content-right content-gray'>{modalData.detail}</View>
+                  </View>
+                </View>
+              }
             </View>
-            }
-            <View className='tabber-Modal-content-flexBox'>
-              <View className='tabber-Modal-content-flexBox-left'>电话</View>
-              <View className='tabber-content-box-num-color'>{modalData.user_mobile}
-                <View onClick={() => {
-                  Taro.makePhoneCall({phoneNumber: modalData.user_mobile})
-                }} className='tabber-Modal-content-flexBox-phone'>拨打</View>
-                {modalData.show_complain !== 0 && <View className='tabber-Modal-content-flexBox-complaint'
-                                                        onClick={() => handleComplaint(modalData.id)}>投诉</View>}
-              </View>
-            </View>
-            {modalData.expend_type === 2 &&
-            <View>
-              <View className='tabber-Modal-content-flexBox'>
-                <View className='tabber-Modal-content-flexBox-left'>规模</View>
-                <View className='tabber-content-box-num-color'>{modalData.team_composition_words}</View>
-              </View>
-              <View className='tabber-Modal-content-flexBox'>
-                <View className='tabber-Modal-content-flexBox-left'>接活省份</View>
-                <View className='tabber-content-box-num-color'>{modalData.showProvinceList}</View>
-              </View>
-            </View>
-            }
-            {modalData.address !== '' && <View className='tabber-Modal-content-flexBox'>
-              <View className='tabber-Modal-content-flexBox-left'>项目地址</View>
-              <View className='tabber-Modal-content-flexBox-gray'>
-                {modalData.address}
-              </View>
-            </View>}
-            <View className='tabber-Modal-content-flexBox'>
-              <View className='tabber-Modal-content-flexBox-left'>工种</View>
-              <View className='tabber-Modal-content-flexBox-gray'>
-                {modalData.classifyName.map((v, i) => (
-                  <Text key={i + i} className='tabber-Modal-content-flexBox-classifyName-data'>
-                    [{v}]
-                  </Text>
-                ))}
-              </View>
-            </View>
-            {modalData.detail !== '' && <View className='tabber-Modal-content-flexBox'>
-              <View className='tabber-Modal-content-flexBox-left'>项目描述</View>
-              <View className='tabber-Modal-content-flexBox-gray'>
-                {modalData.detail}
-              </View>
-            </View>}
           </View>
         </View>
-      </View>
       }
       {/* 投诉 */}
       {complaintModal && <Report display={complaintModal} textarea={textarea} handleTextarea={handleTextarea}

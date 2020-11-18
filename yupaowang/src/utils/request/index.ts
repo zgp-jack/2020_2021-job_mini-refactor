@@ -709,13 +709,14 @@ export function integralExpendListsAction(params: object): Promise<Inter.integra
 }
 
 // 消耗积分弹窗内容
-export function integralUseInfoAction(logId: string): Promise<Inter.integralUseInfo> {
+export function integralUseInfoAction(logId: string, time: string): Promise<Inter.integralUseInfo> {
   return doRequestAction({
     url: api.integralUseInfoUrl,
     method: 'POST',
     failToast: true,
     data: {
-      logId
+      logId,
+      time
     }
   })
 }
