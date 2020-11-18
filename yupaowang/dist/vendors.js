@@ -17255,11 +17255,14 @@ function userAuthLoction() {
     var GDMAP = new _amapWx2.default.AMapWX({ key: _index.MAPKEY });
     GDMAP.getRegeo({
       success: function success(data) {
+        var title = Array.isArray(data[0].regeocodeData.addressComponent.neighborhood.name) ? data[0].desc : data[0].regeocodeData.addressComponent.neighborhood.name;
         var gpsLocation = {
           province: data[0].regeocodeData.addressComponent.province,
           city: Array.isArray(data[0].regeocodeData.addressComponent.city) ? data[0].regeocodeData.addressComponent.province : data[0].regeocodeData.addressComponent.city,
           adcode: data[0].regeocodeData.addressComponent.adcode,
-          citycode: data[0].regeocodeData.addressComponent.citycode
+          citycode: data[0].regeocodeData.addressComponent.citycode,
+          title: title,
+          info: data[0].regeocodeData.formatted_address
         };
         _taroTt2.default.setStorageSync(_store.UserLocationCity, gpsLocation); //定位信息
         resolve(gpsLocation);

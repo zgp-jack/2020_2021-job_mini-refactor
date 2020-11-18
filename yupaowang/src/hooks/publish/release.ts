@@ -1,13 +1,15 @@
 import Taro, { useEffect, useState } from '@tarojs/taro';
 import { useSelector, useDispatch } from '@tarojs/redux';
 import { PublishConfigData, UserLastPublishRecruitArea, MateDataItem } from '../../pages/recruit/index.d'
-import { PublishData } from '../../config/store'
+import { PublishData, UserLocation } from '../../config/store'
 import { UserLocationPromiss, AREABEIJING } from '../../models/area'
 import { UserLastPublishArea, UserLocationCity } from '../../config/store'
 import { setAreaInfo, setArea } from '../../actions/recruit'
 import { userAuthLoction } from '../../utils/helper'
 import { SelectedClassfies, RulesClassfies } from '../../components/classfiy_picker/index'
 import { ProfessionRecruitChildrenData } from '../../components/profession/index.d'
+import { UserLastPublishRecruitArea } from '../../pages/recruit/index.d'
+
 
 
 export default function useRelease () {
@@ -23,6 +25,8 @@ export default function useRelease () {
   const [selectedClassifies, setSelectedClassifies] = useState<string[]>([])
   // 选择工种字段
   const [choceClassfies, setChoceClassfies] = useState<RulesClassfies[]>([])
+  // 是否展开图片上传
+  const [showUpload, setShowUpload] = useState<boolean>(false)
   // 获取分发action的dispatch
   const dispatch = useDispatch()
 
@@ -32,11 +36,27 @@ export default function useRelease () {
   },[])
   // 初始化用户区域数据
   function initUserAreaInfo() {
+    debugger
+    let userLocation:string = Taro.getStorageSync(UserLocation)
     let userLoctionCity: UserLocationPromiss = Taro.getStorageSync(UserLocationCity)
     if (userLoctionCity) {
+      let positionArea: UserLastPublishRecruitArea = {
+        location: userLocation,
+        adcode: userLoctionCity.adcode,
+        title: userLoctionCity.title,
+        info: userLoctionCity.info
+      }
       dispatch(setArea(userLoctionCity.city.slice(0, 2)))
+      dispatch(setAreaInfo(positionArea))
     } else {
       userAuthLoction().then(res => {
+        let positionArea: UserLastPublishRecruitArea = {
+          location: userLocation,
+          adcode: res.adcode,
+          title: res.title,
+          info: res.info
+        }
+        dispatch(setAreaInfo(positionArea))
         dispatch(setArea(res.city))
       }).then(() => {
         dispatch(setArea(AREABEIJING.name))
@@ -172,6 +192,8 @@ export default function useRelease () {
     maxClassifyCount,
     choceClassfies,
     selectWorkType,
-    countWorkNum
+    countWorkNum,
+    showUpload,
+    setShowUpload
   }
 }

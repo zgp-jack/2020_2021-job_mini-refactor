@@ -78,9 +78,9 @@ export function usePublishData(InitParams: InitRecruitView){
         // 数据保存到model中
         setModel(initIssueModel)
         // 初始化用户区域数据
-        initUserAreaInfo(res)
+        // initUserAreaInfo(res)
         // 将数据保存到redux中的areaInfo中
-        dispatch(setAreaInfo({ ...recruitInfo.areaInfo, title: initIssueModel.address }))
+        // dispatch(setAreaInfo({ ...recruitInfo.areaInfo, title: initIssueModel.address }))
         // 保存手机号
         setPhone(InitViewInfo.user_mobile)
         // 如果有上传图片保存图片showUpload中

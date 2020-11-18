@@ -99,6 +99,7 @@ export function doRequestAction(reqData: Request): Promise<any> {
     data.token = userInfo.token
     data.tokenTime = userInfo.tokenTime
   }
+
   return new Promise((resolve, reject) => {
     Taro.request({
       url: /^http(s?):\/\//.test(req.url) ? req.url :req.url,

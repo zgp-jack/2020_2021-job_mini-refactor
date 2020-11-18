@@ -47,6 +47,9 @@ body{
           padding: 0 20px;
           font-size: 30px;
           flex:1;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
         }
         .input-item-text{
           position: relative;

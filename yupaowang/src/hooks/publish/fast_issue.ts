@@ -27,6 +27,10 @@ export function useFastIssue() {
   const [issueData, setIssueData] = useState<FastIssueData>({ phone: phone , content:''})
   // 数据变化的标题
   const [dataType, setDataType] = useState<string>('')
+  // 展示或者隐藏电话框
+  const [showPhoneBox, setShowPhoneBox] = useState<boolean>(false)
+  // 详情输入框输入内容
+  const [num, setNum] = useState<number>(0)
   // 获取dispatch分发action
   const dispatch = useDispatch()
   // 存入电话号码
@@ -47,6 +51,22 @@ export function useFastIssue() {
     const value: string = e.detail.value
     setIssueData({ ...issueData, [key]:value})
     setDataType(key)
+    if (key == 'content'){
+      setNum(value.length)
+      let content:string = value.replace(/\s+/g, "")
+      // 匹配电话正则表达式
+      let _partten: RegExp = /1[3-9]\d{9}/g;
+      // 获取匹配结果，可能为null可能有值（数组）
+      let result = content.match(_partten)
+      let phoneNum = result && result[0]
+      if (phoneNum){
+        // 如果匹配有手机号码，保存最新的手机号并显示电话框
+        setIssueData({ ...issueData, phone: phoneNum })
+        // 如果匹配的手机号等于账号手机号也不显示电话框
+        if (phoneNum == phone) return
+        setShowPhoneBox(true)
+      }
+    }
   }
   // 发布招工详情
   function fastPublish () {
@@ -59,8 +79,9 @@ export function useFastIssue() {
       ShowActionModal('请正确输入3~500字招工详情,必须含有汉字。')
       return;
     }
-    if (data.phone == "") {
+    if (!data.phone ||　data.phone == "") {
       ShowActionModal('请输入联系电话。')
+      setShowPhoneBox(true)
       return false
     }
     if (data.phone && !isPhone(data.phone)) {
@@ -119,5 +140,9 @@ export function useFastIssue() {
     setDataType,
     dataType,
     fastPublish,
+    showPhoneBox,
+    setShowPhoneBox,
+    num,
+    setNum
   }
 }

@@ -2613,7 +2613,9 @@ export interface UserLocationPromiss {
   province: string,
   city: string,
   adcode: string,
-  citycode: string
+  citycode: string,
+  title: string,
+  info: string
 }
 
 // * 默认全国数据
