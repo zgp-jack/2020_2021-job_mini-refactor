@@ -104,6 +104,17 @@ body{
           .issue-upload-body{
             position: relative;
           }
+          .clearfix{
+            &::after{
+              content: "";   
+              display: block;  
+              clear: both;  
+              visibility: hidden;
+              line-height: 0;  
+              height: 0;     
+              font-size:0;
+            }
+          }
           .issue-upload-item{
             float: left;
             width: 31.5%;
