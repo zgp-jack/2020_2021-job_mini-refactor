@@ -227,6 +227,7 @@ function ResumeCondition({ data, setSearchData }: ConditionProps) {
       <AtDrawer
         show={current === ClassifyPickerKey}
         mask
+        width='80%'
         onClose={() => closeDrawer()}
       >
         <View className='common-drawer-item'>

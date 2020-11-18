@@ -1,6 +1,6 @@
 import Taro from '@tarojs/taro'
 import { UserInfo } from '../config/store'
-import { GETUSER, SETUSER } from '../constants/user'
+import { GETUSER, SETUSER, LOGINOUT } from '../constants/user'
 
 export interface User {
   userId: number,
@@ -35,6 +35,8 @@ export default function User(state: User = DEFAULT_STATE, action: ActionType ){
         if(userInfo) return userInfo
       }
       return state
+    case LOGINOUT:
+      return { ...state, ...DEFAULT_STATE}
     default:
       return state
   }

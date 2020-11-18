@@ -36,7 +36,8 @@ interface RequestBase {
   data: any,
   failToast: boolean,
   loading: boolean,
-  title: string
+  title: string,
+  user: boolean
 }
 
 type Request = {
@@ -80,7 +81,8 @@ const getRequestHeaderInfoAction = (): RequestBase => {
     data: {},
     loading: true,
     title: '数据加载中...',
-    failToast: true
+    failToast: true,
+    user: true
   }
 }
 
@@ -95,7 +97,7 @@ export function doRequestAction(reqData: Request): Promise<any> {
   let data = {...req.data, wechat_token: TOKEN}
   // 获取用户信息
   let userInfo: User = Taro.getStorageSync(UserInfo)
-  if (req.method === 'POST' && userInfo.login) {
+  if (req.method === 'POST' && userInfo.login && req.user) {
     data.userId = userInfo.userId
     data.token = userInfo.token
     data.tokenTime = userInfo.tokenTime

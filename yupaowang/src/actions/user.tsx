@@ -1,4 +1,4 @@
-import { GETUSER, SETUSER } from '../constants/user'
+import { GETUSER, SETUSER, LOGINOUT } from '../constants/user'
 import { User } from '../reducers/user'
 
 export function setUserInfo(user: User){
@@ -11,5 +11,11 @@ export function setUserInfo(user: User){
 export function getUserInfo(){
   return {
     type: GETUSER
+  }
+}
+
+export function loginOut(){
+  return {
+    type: LOGINOUT
   }
 }

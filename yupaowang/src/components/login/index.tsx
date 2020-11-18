@@ -113,6 +113,7 @@ export default function LoginComponent({type = 2}: LoginComponentProps) {
             <Input
               className='input-item-text'
               placeholder='请输入手机号码'
+              type='number'
               maxLength={11}
               onInput={(e) => setPhone(e.detail.value)}
             />
@@ -121,11 +122,12 @@ export default function LoginComponent({type = 2}: LoginComponentProps) {
         {current === codeLogin &&
           <View className='login-input-item'>
             <View className='input-item-title'>验证码</View>
-            <View className='input-item-form'>
+            <View className='input-item-form input-item-code'>
               <Input
                 className='input-item-text'
                 placeholder='请输入验证码'
                 onInput={(e) => setCode(e.detail.value)}
+                maxLength={8}
               />
               <Button
                 disabled={disabled}

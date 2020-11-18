@@ -169,7 +169,10 @@ export default function usePublishViewInfo(InitParams: InitRecruitView){
       classifies: model.classifies,
       images: model.view_images.map(item => item.url)
     }
-    return data
+    const mydata = JSON.parse(JSON.stringify(data))
+    let imgs: string = mydata.images.join(',')
+    mydata.images = imgs
+    return mydata
   }
 
   function userPublishRecruitAction(){
@@ -219,6 +222,7 @@ export default function usePublishViewInfo(InitParams: InitRecruitView){
     }
     // 拼接小地址的描述
     data.address += '@@@@@' + areaInfo.info
+
     publishRecruitInfo(data).then(res=>{
       if(res.errcode == 'ok'){
         SubscribeToNews("recruit", () => {

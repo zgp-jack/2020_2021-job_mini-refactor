@@ -14,7 +14,7 @@ interface BandPhone {
 }
 export default function UserBandPhone(){
   const dispatch =  useDispatch()
-  const { userGetCode, text } = useCode()
+  const { userGetCode, text } = useCode(false)
   const [info, setInfo] = useState<BandPhone>({
     tel: '',
     code: ''
@@ -58,6 +58,7 @@ export default function UserBandPhone(){
             type='number'
             placeholder='请输入您的手机号'
             value={ info.tel }
+            maxLength={11}
             onInput={(e) => userEnterForm(e, 'tel')}
           />
         </View>

@@ -241,7 +241,7 @@ export default function ResumePublish(){
               <View className='change' onClick={() => userRouteJump('/pages/resume/add_member/index')}>编辑</View>
             }
             {
-              infoData.check == '0' && introducesData.check != '1' &&
+                infoData.check == '0' && introducesData.check != '1' && is_introduces &&
               <View className='change' onClick={() => userRouteJump('/pages/resume/add_member/index')}>待修改</View>
             }
           </View>

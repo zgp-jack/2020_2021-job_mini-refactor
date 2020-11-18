@@ -174,7 +174,7 @@ export default function Home({ homeIndex = 0}: HomeProps){
       </View>
       <Image 
         className='fixed-publish-recruit' 
-        src={`${IMGCDNURL}fixed-downloadapp.png`}
+        src={`${IMGCDNURL}fixed-publishrecruit.png`}
         onClick={()=>userRouteJump(PUBLISHRECRUIT)} 
       />
       {/* // ? 底部信息  */}

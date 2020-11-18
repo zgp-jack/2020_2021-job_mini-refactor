@@ -1,6 +1,6 @@
 import { useState } from '@tarojs/taro'
 import { isPhone } from '../../utils/v'
-import Msg from '../../utils/msg'
+import Msg, { ShowActionModal } from '../../utils/msg'
 import { getUserPhoneCode } from '../../utils/request'
 import { UserGetCodeData } from '../index.d'
 
@@ -10,7 +10,7 @@ export const SendTypeNo: string = 'no'
 
 const title: string = '获取验证码'
 export default function useCode(type?: boolean) {
-  const [disabled, setDisabled] = useState<boolean>(type === false ? false : !!type)
+  const [disabled, setDisabled] = useState<boolean>(false)
   const sendType: string = type === false ? SendTypeNo : SendTypeHave
   const [text, setText] = useState<string>(title)
 
@@ -23,8 +23,8 @@ export default function useCode(type?: boolean) {
     const data: UserGetCodeData = { tel: tel, sendType: sendType }
     setDisabled(true)
     getUserPhoneCode(data).then(res=>{
-      Msg(res.errmsg, 2500)
       if(res.errcode == 'ok'){
+        Msg(res.errmsg, 2500)
         let t: number = res.refresh || 60
         setText(t + 's后重新获取')
         let timer = setInterval(()=>{
@@ -37,6 +37,8 @@ export default function useCode(type?: boolean) {
           }
           setText(t + 's后重新获取')
         },1000)
+      }else{
+        ShowActionModal({msg: res.errmsg})
       }
     })
   }

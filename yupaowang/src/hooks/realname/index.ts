@@ -226,7 +226,6 @@ export default function useRealname(){
             })
             setSexCurrent(sexIndex);
             setSexName(memberExt.sex)
-            if (sexId && model) setModel({ ...model, gender: sexId })
             const dataItem = {
               username: memberExt.user_name ? memberExt.user_name : '',
               age: memberExt.age || '',
@@ -239,11 +238,11 @@ export default function useRealname(){
               code: '',
               address: memberExt.address,
               birthday: birthall || '',
-              gender: sexIndex && sexIndex != -1 ? sexIndex : "",
+              gender: sexId,
             }
             memberExt.birthday = birthall;
             setInitModel({ ...initModel, memberExt: { ...memberExt} })
-            setModel(dataItem)
+            setModel({ ...dataItem})
           }else{
             Msg(data.card_info.tips_message)
             memberExt.id_card_img_path = cardInfoFailImg
