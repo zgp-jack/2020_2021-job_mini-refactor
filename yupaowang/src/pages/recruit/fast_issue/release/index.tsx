@@ -30,6 +30,9 @@ export default function FastIssue() {
   }
   function hiddenPickerModel () {
     setShowPicker(false)
+    console.log("choceClassfies", choceClassfies)
+    // selectWorkType(choceClassfies)
+    // countWorkNum(choceClassfies)
   }
   function showWorkType () {
     setShowPicker(true)

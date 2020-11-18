@@ -32,15 +32,13 @@ export default function ClassifyPicker ({
   maxClassifyCount,
   choceClassfies,
 }:ClassfiyProps) {
-  const [workType, setWorkType] = useState<SelectedClassfies[]>(classifies || [])
+  const [workType, setWorkType] = useState<SelectedClassfies[]>([...classifies] || [])
   // 选择或者匹配的工种
-  const [choceWorkType, setChoceWorkType] = useState<RulesClassfies[]>(choceClassfies)
+  const [choceWorkType, setChoceWorkType] = useState<RulesClassfies[]>([...choceClassfies])
   // 选择一级工种index
   const [pindex, setPindex] = useState<number>(0)
   // 一级工种对应的子工种
   const [childClassifies, setChildClassifies] = useState<ProfessionRecruitChildrenData[]>([])
-
-  
   useEffect(() => {
     initChildWorkType()
   }, [])

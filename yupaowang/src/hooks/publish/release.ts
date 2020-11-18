@@ -17,10 +17,6 @@ export default function useRelease () {
   const { classifyTree, mateData, noMateData, maxClassifyCount } = publishData
   // 将工种数据放入当前状态
   const [classifies, setClassifies] = useState<SelectedClassfies[]>(classifyTree)
-  // 匹配工种
-  const [rulesClassifyids, setRulesClassifyids] = useState<RulesClassfies[]>([])
-  // 用户选择工种
-  const [userClassifyids, setUserClassifyids] = useState<RulesClassfies[]>([])
   // 工种文本数据
   const [selectText, setSelectText] = useState<string>('')
   // 选中的工种字段
@@ -62,6 +58,7 @@ export default function useRelease () {
     let text:string[] = data.map(item => item.name)
     // 拼接成字符串
     let selectText = text.join(",")
+    setChoceClassfies(data)
     setSelectText(selectText)
     setSelectedClassifies(selectWorkType)
   }
@@ -165,7 +162,6 @@ export default function useRelease () {
     }
     // 否则将匹配的数据长度等于总长度减去用户选择的长度
     needArr.splice(maxWorkNum)
-    setChoceClassfies(needArr)
     countWorkNum(needArr)
     selectWorkType(needArr)
     Taro.hideLoading()
