@@ -3,19 +3,22 @@ import { View, Input, Text, Switch, Button } from '@tarojs/components'
 import { RecruitInfo } from '../../../../pages/recruit/index.d'
 import { useSelector } from '@tarojs/redux';
 import ClassifyPicker, { RulesClassfies } from '../../../../components/classfiy_picker/index'
+import useRelease from '../../../../hooks/publish/release'
 import './index.scss'
 
 
 
 export default function FastIssue() {
+  // 获取发布招工hook数据
+  const { classifies, selectText, maxClassifyCount, choceClassfies, selectWorkType, countWorkNum } = useRelease()
+
   // 发布招工redux数据
   const recruitInfo: RecruitInfo = useSelector<any, RecruitInfo>(state => state.RecruitAction)
   // 工种是否显示状态
   const [showPicker, setShowPicker] = useState<boolean>(false)
   // 招工信息的定位地址信息
   const areaInfo = recruitInfo.areaInfo
-  // 工种文本数据
-  const [selectText, setSelectText] = useState<string>('')
+  
   // 选择工种id
   const [selectIds, setSelectIds]  = useState<string[]>([])
   // 点击招工城市，跳转到城市选择页面
@@ -31,19 +34,11 @@ export default function FastIssue() {
   function showWorkType () {
     setShowPicker(true)
   }
-  function selectWorkType(data: RulesClassfies[]) {
-    let selectWorkType: string[] = data.map(function (item) {
-      return item.id
-    })
-    // 获取数组的前5个
-    data.splice(5)
-    // 获取工种名称数组
-    let text = data.map(item => item.name)
-    let selectText = text.join(",")
-    setSelectText(selectText)
+  function selectClassfy(data: RulesClassfies[]) {
+    console.log("data", data)
+    selectWorkType(data)
+    countWorkNum(data)
     setShowPicker(false)
-    setSelectIds(selectWorkType)
-    console.log("data",data)
   }
   return (
     <View className="issue-area-container">
@@ -83,8 +78,11 @@ export default function FastIssue() {
         <Button className="issue-code-btn">确认发布</Button>
       </View>
       {showPicker? <ClassifyPicker
+        classifies={classifies}
         hiddenPickerModel={hiddenPickerModel}
-        selectWorkType={selectWorkType}
+        selectClassfy={selectClassfy}
+        maxClassifyCount={maxClassifyCount}
+        choceClassfies={choceClassfies}
       />:''}
     </View>
   )
