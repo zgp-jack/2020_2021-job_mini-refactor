@@ -12,7 +12,7 @@ interface ShowBackModel {
   title?: string,
   msg: string,
   confirmText?: string,
-  success?: () => void
+  success?: (data?) => void
 }
 
 export function ShowActionModal(data: ShowBackModel){
@@ -23,7 +23,7 @@ export function ShowActionModal(data: ShowBackModel){
     showCancel: false,
     confirmText: confirmText,
     success: ()=> {
-      success && success()
+      success && success(data)
     }
   })
 }

@@ -13,7 +13,7 @@ import './index.scss'
 
 export default function ResumePublish(){
   const uuid = useSelector<any, string>(state => state.resumeData.resume_uuid)
-  const { infoData, introducesData, projectData, certificates, initResumeData, is_introduces, project_count, certificate_count, show_tips, selectData, selectDataIndex, handleSelectData, isModifyProject, isModifySkill, projectNum, certificatesNum} = useResume()
+  const { infoData, introducesData, projectData, certificates, initResumeData, is_introduces, project_count, certificate_count, show_tips, selectData, selectDataIndex, handleSelectData, isModifyProject, isModifySkill, projectNum, certificatesNum, defaultTopArea} = useResume()
   // 判断是否是第一次进入  第一次不加载数据 因为hooks会帮助你加载
   const [firstJoin, setFirstJoin] = useState<boolean>(true)
 
@@ -108,7 +108,8 @@ export default function ResumePublish(){
               <View className='progress-viewed'>浏览次数</View>
             </View>
           </View>
-            <View onClick={() => handleJump('/pages/newTopping/range/index')}>置顶</View>
+            <View onClick={() => handleJump(`/pages/newTopping/range/index?defaultTopArea=${defaultTopArea}`)}>置顶</View>
+            <View onClick={() => handleJump(`/pages/newTopping/range/index`}>置顶1</View>
 {/*           
           <View className='progress-footer'>
             <View>

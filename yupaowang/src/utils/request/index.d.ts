@@ -1379,9 +1379,12 @@ export interface resumesTopConfigData{
   province_integral:number,
   max_province:number,
   max_city:number,
+  time:number,
   special_ids:[],
   days: number[]
   country_integral:number,
+  city_integral:number,
+  default_days?:number,
 }
 
 // 用户账号/验证码登录

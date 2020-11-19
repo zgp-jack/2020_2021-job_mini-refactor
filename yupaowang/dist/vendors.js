@@ -13240,6 +13240,13 @@ function useResume() {
       _useState32 = _slicedToArray(_useState31, 2),
       certificatesNum = _useState32[0],
       setCertificatesNum = _useState32[1];
+  // 默认城市
+
+
+  var _useState33 = (0, _taroTt.useState)(0),
+      _useState34 = _slicedToArray(_useState33, 2),
+      defaultTopArea = _useState34[0],
+      setDefaultTopArea = _useState34[1];
   // 项目列表
 
 
@@ -13352,6 +13359,8 @@ function useResume() {
         setSelectData(res.data.status);
         // 工作状态用来选择是正在找工作还是已找到工作
         setCheck(res.data.info.check);
+        // 没有置顶的时候默认置顶城市
+        setDefaultTopArea(res.data.default_top_area);
         //人员信息
         var introduces = _extends({}, _data.INTRODUCERS_DATA);
         introduces = _extends({}, introduces, res.data.introduces);
@@ -13453,7 +13462,8 @@ function useResume() {
     isModifySkill: isModifySkill,
     isModifyProject: isModifyProject,
     projectNum: projectNum,
-    certificatesNum: certificatesNum
+    certificatesNum: certificatesNum,
+    defaultTopArea: defaultTopArea
   };
 }
 
@@ -16220,6 +16230,7 @@ var hotAreas = exports.hotAreas = _index.REQUESTURL + 'resumes/hot-areas/';
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.getMyDate = exports.addZero = undefined;
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
@@ -16416,6 +16427,30 @@ function getUserShareMessage() {
     imageUrl: _index.IMGCDNURL + "minishare.png"
   };
 }
+var addZero = exports.addZero = function addZero(num) {
+  if (parseInt(num) < 10) {
+    num = '0' + num;
+  }
+  return num;
+};
+var getMyDate = exports.getMyDate = function getMyDate(str) {
+  // const oDate = new Date(str),
+  //   oYear = oDate.getFullYear(),
+  //   oMonth = oDate.getMonth() + 1,
+  //   oDay = oDate.getDate(),
+  //   oHour = oDate.getHours(),
+  //   oMin = oDate.getMinutes(),
+  //   oSen = oDate.getSeconds(),
+  //   oTime = oYear + '-' + addZero(oMonth) + '-' + addZero(oDay) + ' ' + addZero(oHour) + ':' +
+  //   addZero(oMin);
+  var now = new Date(str),
+      y = now.getFullYear(),
+      m = now.getMonth() + 1,
+      d = now.getDate();
+  console.error(now, '111');
+  return y + "-" + (m < 10 ? "0" + m : m) + "-" + (d < 10 ? "0" + d : d) + " " + now.toTimeString().substr(0, 5);
+  // return oTime;
+};
 
 /***/ }),
 
@@ -16468,7 +16503,7 @@ function ShowActionModal(data) {
     showCancel: false,
     confirmText: confirmText,
     success: function success() {
-      _success && _success();
+      _success && _success(data);
     }
   });
 }
