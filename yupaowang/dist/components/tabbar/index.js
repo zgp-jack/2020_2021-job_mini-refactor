@@ -1,37 +1,5 @@
 (tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["components/tabbar/index"],{
 
-/***/ "./src/actions/msg.ts":
-/*!****************************!*\
-  !*** ./src/actions/msg.ts ***!
-  \****************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.setMsg = setMsg;
-exports.getMsg = getMsg;
-
-var _msg = __webpack_require__(/*! ../constants/msg */ "./src/constants/msg.ts");
-
-function setMsg(data) {
-  return {
-    type: _msg.SET,
-    data: data
-  };
-}
-function getMsg() {
-  return {
-    type: _msg.GET
-  };
-}
-
-/***/ }),
-
 /***/ "./src/components/tabbar/index.scss":
 /*!******************************************!*\
   !*** ./src/components/tabbar/index.scss ***!
@@ -101,7 +69,7 @@ var Tabbar = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (Tabbar.__proto__ || Object.getPrototypeOf(Tabbar)).apply(this, arguments));
 
-    _this.$usedState = ["anonymousState__temp3", "anonymousState__temp4", "anonymousState__temp5", "tabbar", "loopArray29", "memberMsg", "show", "IMGCDNURL", "notredirect"];
+    _this.$usedState = ["anonymousState__temp3", "anonymousState__temp4", "anonymousState__temp5", "tabbar", "loopArray34", "memberMsg", "show", "IMGCDNURL", "notredirect"];
     _this.anonymousFunc0Map = {};
     _this.customComponents = [];
     return _this;
@@ -135,7 +103,6 @@ var Tabbar = function (_Taro$Component) {
         return state.msg['messageNumber'];
       });
       var dispatch = (0, _redux.useDispatch)();
-      var timer = void 0; //定时器接收对象
       // 是否展示发布
 
       var _useState = (0, _taroTt.useState)(false),
@@ -168,7 +135,6 @@ var Tabbar = function (_Taro$Component) {
       };
       // 点击发布按钮
       var openPublishMenu = function openPublishMenu() {
-        console.log('发布');
         setShow(true);
       };
       // 点击遮罩可以关闭广告
@@ -194,16 +160,16 @@ var Tabbar = function (_Taro$Component) {
         });
       };
       // 定时请求未读信息
-      // onAppShow(()=>{
-      //   getMemberMsg()
-      //   timer = setInterval(() => {
-      //     getMemberMsg()
-      //   }, MemberMsgTimerInterval)
-      // })
-      // 清除页面定时器
-      (0, _taroTt.onAppHide)(function () {
-        clearInterval(timer);
-      });
+      (0, _taroTt.useEffect)(function () {
+        getMemberMsg();
+        var timer = setInterval(function () {
+          getMemberMsg();
+        }, _index3.MemberMsgTimerInterval);
+        // 清除页面定时器
+        return function () {
+          return clearInterval(timer);
+        };
+      }, []);
       var anonymousState__temp3 = show ? (0, _classnames2.default)({
         'tabbar-publish-container': true,
         'tabbar-publish-container-active': active
@@ -220,9 +186,15 @@ var Tabbar = function (_Taro$Component) {
         'tabbar-publish-items-active': active
       }) : null;
       this.anonymousFunc2 = function () {
-        return userTapPublishItem('/pages/recruit/fast_issue/issue/index');
+        return userTapPublishItem(_index3.PUBLISHRECRUIT);
       };
-      var loopArray29 = tabbar.list.map(function (item, __index0) {
+      this.anonymousFunc3 = function () {
+        return userTapPublishItem(_index3.PUBLISHRESUME);
+      };
+      this.anonymousFunc4 = function () {
+        return userTapPublishItem(_index3.PUBLISHUSED);
+      };
+      var loopArray34 = tabbar.list.map(function (item, __index0) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
@@ -230,7 +202,7 @@ var Tabbar = function (_Taro$Component) {
           'common-footer-tabbar-list': true,
           'common-footer-tabbar-list-active': item.$original.id === tabbar.key
         });
-        var _$indexKey = "dazzz" + __index0;
+        var _$indexKey = "dgzzz" + __index0;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return changeTabbarAction(item.$original);
         };
@@ -245,7 +217,7 @@ var Tabbar = function (_Taro$Component) {
         anonymousState__temp4: anonymousState__temp4,
         anonymousState__temp5: anonymousState__temp5,
         tabbar: tabbar,
-        loopArray29: loopArray29,
+        loopArray34: loopArray34,
         memberMsg: memberMsg,
         show: show,
         IMGCDNURL: _index3.IMGCDNURL
@@ -275,12 +247,22 @@ var Tabbar = function (_Taro$Component) {
     value: function anonymousFunc2(e) {
       ;
     }
+  }, {
+    key: "anonymousFunc3",
+    value: function anonymousFunc3(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc4",
+    value: function anonymousFunc4(e) {
+      ;
+    }
   }]);
 
   return Tabbar;
 }(_taroTt2.default.Component);
 
-Tabbar.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2"];
+Tabbar.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4"];
 Tabbar.$$componentPath = "components/tabbar/index";
 exports.default = Tabbar;
 

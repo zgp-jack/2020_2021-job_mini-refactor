@@ -1,19 +1,23 @@
-import Taro, { Config, useState, useRouter, createContext, useDidShow, useEffect } from '@tarojs/taro'
-import { View, Text, Image } from '@tarojs/components'
+import Taro, { Config, useState, useRouter, useShareAppMessage, useDidShow, useEffect } from '@tarojs/taro'
+import { View, Text, Image, Button } from '@tarojs/components'
 import { resumeDetailAction, recommendListAction, resumesGetTelAcrion, resumeSupportAction, resumeCollectAction, resumesComplainAction } from '../../../utils/request/index'
-import { IMGCDNURL } from '../../../config'
-import Msg, { showModalTip } from '../../../utils/msg'
+import { IMGCDNURL, ISCANSHARE } from '../../../config'
+import Msg, { ShowActionModal, showModalTip } from '../../../utils/msg'
 import { DataType, ListType, Injected } from './index.d'
-import CollectionRecruitList  from '../../../components/recommendList/index'
+// import CollectionRecruitList  from '../../../components/recommendList/index'
 import { isVaildVal } from '../../../utils/v'
+import { getUserShareMessage } from '../../../utils/helper'
 import Report from '../../../components/report';
-import { useSelector } from '@tarojs/redux'
+import { useSelector, useDispatch } from '@tarojs/redux'
 import Auth from '../../../components/auth'
+import { resumeDetailCertificatesRedux, resumeDetailProjectRedux } from '../../../utils/request/index.d';
 import { SubscribeToNews } from '../../../utils/subscribeToNews';
+import { setSubpackcertificate, setSubpackProject} from '../../../actions/resume_list';
 import './index.scss'
 
-export const detailContext = createContext<Injected>({} as Injected)
 export default function ResumeDetail() {
+  // 获取dispatch分发action
+  const dispatch = useDispatch()
   // 获取用户是否登录
   const login = useSelector<any, boolean>(state => state.User['login'])
   const router: Taro.RouterInfo = useRouter()
@@ -57,9 +61,9 @@ export default function ResumeDetail() {
     project:[],
   })
   // 相关推荐
-  const [list,setList ] = useState<ListType>({
-    item:[]
-  })
+  // const [list,setList ] = useState<ListType>({
+  //   item:[]
+  // })
   const [examine, setExamine] = useState<boolean>(true)
   // 查看电话
   const [onoff, seOnoff] = useState<boolean>(false);
@@ -82,15 +86,38 @@ export default function ResumeDetail() {
   // 点赞获取电话号码分享收藏需要先登陆
   const [isAuth, setIsAuth] = useState<boolean>(false)
   const [clickType,setClickType] = useState<string>('');
+
+  // 设置当前页面的分享内容
+  useShareAppMessage(()=>{
+    return {
+      ...getUserShareMessage()
+    }
+  })
+
   const getDataList = ()=>{
     const params = {
       location:location,
       resume_uuid: uuid
     }
     resumeDetailAction(params).then(res=>{
-      console.log(res);
       if(res.errcode === 'ok'){
-        console.log(res);
+        // 技能证书
+        let mylists = [...res.certificates]
+        let data: resumeDetailCertificatesRedux[] = [];
+        for(let i=0;i<mylists.length;i++){
+          let item = { ...mylists[i], images: mylists[i].images.split(',') }
+          data.push(item)
+        }
+        dispatch(setSubpackcertificate([...data]));
+        // 项目经验
+        let projectArr = [...res.project];
+        let projectData: resumeDetailProjectRedux[] = [];
+        // 职业技能
+        for (let i = 0; i < projectArr.length; i++) {
+          let item = { ...projectArr[i], images: projectArr[i].images.split(',') }
+          projectData.push(item)
+        }
+        dispatch(setSubpackProject([...projectData]));
         const date = new Date();
         const dateo = date.getTime()
         const dateone = new Date(dateo);
@@ -110,16 +137,17 @@ export default function ResumeDetail() {
         if (res.info.is_read == 0 && res.info.is_end != '2' && res.operation.status == 0){
           seOnoff(true)
         }
-        const listParams = {
-          page: 1,
-          type: 1,
-          area_id: res.info.city,
-          occupations: res.info.occupations_id,
-          uuid: res.info.uuid,
-        }
-        recommendListAction(listParams).then(res => {
-          setList({ item: res.data.list })
-        })
+        // 加载相关推荐数据列表
+        // const listParams = {
+        //   page: 1,
+        //   type: 1,
+        //   area_id: res.info.city,
+        //   occupations: res.info.occupations_id,
+        //   uuid: res.info.uuid,
+        // }
+        // recommendListAction(listParams).then(res => {
+        //   setList({ item: res.data.list })
+        // })
       }
     })
   }
@@ -127,10 +155,7 @@ export default function ResumeDetail() {
     getDataList();
   })
   useEffect(() => {
-    console.log(313213)
-    console.log(login)
     if (!login) return;
-    console.log(clickType, 'sss')
     // 授权获取内容
     if (clickType){
       if (clickType === 'support'){
@@ -227,8 +252,8 @@ export default function ResumeDetail() {
   }
   // 提交投诉
   const handleSubmit = () => {
-    if (!isVaildVal(textarea, 15, 500)) {
-      Msg('输入内容不少于15个字且必须包含文字')
+    if (!isVaildVal(textarea, 5, 500)) {
+      ShowActionModal({ msg: '输入内容不少于5个字且必须包含文字'})
       return false
     }
     const params = {
@@ -246,6 +271,8 @@ export default function ResumeDetail() {
             }
           })
         })
+      }else{
+        Msg(res.errmsg)
       }
     })
   }
@@ -268,12 +295,7 @@ export default function ResumeDetail() {
       urls: [e]
     })
   }
-  // 传递的值
-  const value:Injected = {
-    project: data.project,
-    certificates:data.certificates
-  }
-  console.log(value,'xxxx')
+
   const handleMap = ()=>{
     let locArr = data.info.location.split(",");
     Taro.openLocation({
@@ -284,9 +306,8 @@ export default function ResumeDetail() {
       scale: 18
     })
   }
-  console.log(isAuth,'isAuthx')
   return(
-    <detailContext.Provider value={value}>
+    <View>
       {isAuth && <Auth />}
     <View className='resumeDetail'>
       {/* 顶部 */}
@@ -299,7 +320,7 @@ export default function ResumeDetail() {
         <View className="resumeDetail-findingnamecardthreemobile">
           <View>
             <Image className='resumeDetail-findingnamecardthreemobile-image'  src={`${IMGCDNURL}newresume-catimg.png`}/>
-            <Text className='resumeDetail-findingnamecardthreemobile-text'>基础信息</Text>
+            <Text className='resumeDetail-findingnamecardthreemobile-text tips'>基础信息</Text>
             <Image className='resumeDetail-findingnamecardthreemobile-image' src={`${IMGCDNURL}newresume-catimg.png`} />
           </View>
         </View>
@@ -308,12 +329,12 @@ export default function ResumeDetail() {
         <View className='resumeDetail-basics-heard'>
           <Image className='resumeDetail-basics-heard-img' src={data.info.headerimg}/>
           <View>
-            <View>
+              <View className='resumeDetail-basics-heard-username'>
               {data.info.username}
               {data.info.authentication === '2' && <Image className='resumeDetail-basics-img' src={`${IMGCDNURL}new-list-realname-icon.png`}/>}
               {data.info.certificate_show === 1 && <Image className='resumeDetail-basics-img' src={`${IMGCDNURL}new-list-jnzs-icon.png`} />}
             </View>
-              <View>{data.info.gender && (data.info.gender === '1'?'男':'女') } {age} {data.info.nation}</View>
+              <View className='resumeDetail-basics-heard-content'>{data.info.gender && (data.info.gender === '1'?'男':'女') } {age} {data.info.nation}</View>
           </View>
         </View>
         <View className='lineone'>
@@ -322,8 +343,8 @@ export default function ResumeDetail() {
           <View className='cardotext'>
               <Text className='oworkotext'>手机</Text>
               <Text className='workotextone'>{phone}</Text>
-            {examine || !onoff && data.info.is_read === 1 && data.info.is_end !='2' && data.operation.status === 0  &&
-              <Text className='clioktel' onClick={handlePhone}>查看完整电话</Text>
+            {(examine || !onoff && data.info.is_read == 1) && data.info.is_end !='2' && data.operation.status === 0  &&
+              <Text className='clioktel' onClick={handlePhone}>查看找活电话</Text>
             }
           {onoff && 
           <View className='flex'>
@@ -370,7 +391,7 @@ export default function ResumeDetail() {
             <View className='cardotext-position'>
             {data.info.experience && 
               <View className='cardotext'>
-              <Text className='oworkotext'>工龄</Text>:
+              <Text className='oworkotext'>工龄</Text>
               <Text className='workotextone'>{data.info.experience}</Text>
             </View>
             }
@@ -378,7 +399,7 @@ export default function ResumeDetail() {
             <View className='cardotext-position'>
             {data.info.prof_degree_str && 
               <View className='cardotext'>
-              <Text className='oworkotext'>熟练</Text>:
+              <Text className='oworkotext'>熟练</Text>
               <Text className='workotextone'>{data.info.prof_degree_str}</Text>
             </View>
             }
@@ -386,7 +407,7 @@ export default function ResumeDetail() {
             <View className='cardotext-position'>
             {data.info.type_str && 
               <View className='cardotext'>
-              <Text className='oworkotext'>人员构成</Text>:
+              <Text className='oworkotext'>人员构成</Text>
               <Text className='workotextone'>{data.info.type_str}</Text>
             </View>
             }
@@ -394,7 +415,7 @@ export default function ResumeDetail() {
             <View className='cardotext-position'>
           {data.info.number_people && 
               <View className='cardotext'>
-              <Text className='oworkotext'>队伍人数</Text>:
+              <Text className='oworkotext'>队伍人数</Text>
               <Text className='workotextone'>{data.info.number_people}</Text>
             </View>
           }
@@ -402,11 +423,11 @@ export default function ResumeDetail() {
             <View className='cardotext-position'>
           {data.info.address &&
             <View className='cardotext'>
-              <Text className='oworkotext'>所在地区</Text>:
+              <Text className='oworkotext'>所在地区</Text>
             <Text className='workotextone-address'>{data.info.address}</Text>
             {/* 地图 */}
             {data.info.distance && 
-            <View onClick={handleMap}>
+            <View onClick={handleMap} className='map-distance-info'>
               <Image className='workotextone-address-img' src={`${IMGCDNURL}lpy/biaoqian.png`}/>
               {data.info.distance}
             </View>
@@ -417,7 +438,7 @@ export default function ResumeDetail() {
           <View className='cardotext-position'>
           {data.info.tags.length && 
             <View className='cardotext'>
-            <Text className='oworkotext'>标签</Text>:
+            <Text className='oworkotext'>标签</Text>
             <Text className='workotextone'>
             {data.info.tags.map(v=>(
               <Text className='resumeDetail-basics-list-right-labelName' key={v.id}>{v.label_name}</Text>
@@ -434,7 +455,7 @@ export default function ResumeDetail() {
         <View className="resumeDetail-findingnamecardthreemobile">
           <View>
             <Image className='resumeDetail-findingnamecardthreemobile-image' src={`${IMGCDNURL}newresume-catimg.png`} />
-            <Text className='resumeDetail-findingnamecardthreemobile-text'>自我介绍</Text>
+            <Text className='resumeDetail-findingnamecardthreemobile-text tips'>自我介绍</Text>
             <Image className='resumeDetail-findingnamecardthreemobile-image' src={`${IMGCDNURL}newresume-catimg.png`} />
           </View>
         </View>
@@ -448,7 +469,7 @@ export default function ResumeDetail() {
         <View className="resumeDetail-findingnamecardthreemobile">
           <View>
             <Image className='resumeDetail-findingnamecardthreemobile-image' src={`${IMGCDNURL}newresume-catimg.png`} />
-            <Text className='resumeDetail-findingnamecardthreemobile-text'>项目经验</Text>
+              <Text className='resumeDetail-findingnamecardthreemobile-text tips'>项目经验</Text>
             <Image className='resumeDetail-findingnamecardthreemobile-image' src={`${IMGCDNURL}newresume-catimg.png`} />
           </View>
         </View>
@@ -468,7 +489,7 @@ export default function ResumeDetail() {
               ))}
             </View>
           <View className='resumeDetail-more-box'>
-              <View className='resumeDetail-more' onClick={() => Taro.navigateTo({ url: `/pages/resume/projectList/index?preview=1&detail=1&location=${location}&uuid=${uuid}` })}>更多项目经验
+              <View className='resumeDetail-more' onClick={() => Taro.navigateTo({ url: '/subpackage/pages/projects/index'})}>更多项目经验
                 <Image src={`${IMGCDNURL}lpy/downward.png`} className="down"/>
               </View>
             </View>
@@ -491,7 +512,7 @@ export default function ResumeDetail() {
         <View className="resumeDetail-findingnamecardthreemobile">
           <View>
             <Image className='resumeDetail-findingnamecardthreemobile-image' src={`${IMGCDNURL}newresume-catimg.png`} />
-            <Text className='resumeDetail-findingnamecardthreemobile-text'>职业技能</Text>
+              <Text className='resumeDetail-findingnamecardthreemobile-text tips'>职业技能</Text>
             <Image className='resumeDetail-findingnamecardthreemobile-image' src={`${IMGCDNURL}newresume-catimg.png`} />
           </View>
         </View>
@@ -513,7 +534,7 @@ export default function ResumeDetail() {
               </View>
             </View>
           <View className='resumeDetail-more-box'>
-              <View className='resumeDetail-more' onClick={() => Taro.navigateTo({ url: `/pages/resume/skillList/index?preview=1&detail=1&location=${location}&uuid=${uuid}` })}>
+              <View className='resumeDetail-more' onClick={() => Taro.navigateTo({ url: '/subpackage/pages/skills/index' })}>
                 更多技能证书
                 <Image src={`${IMGCDNURL}lpy/downward.png`} className="down" />
               </View>
@@ -526,9 +547,9 @@ export default function ResumeDetail() {
         <View className='resumeDetail-recommend-top'>
           <Text className='resumeDetail-recommend-top-text'>相关推荐</Text></View>
       </View> */}
-      {list.item.length &&
+      {/* {list.item.length &&
       <CollectionRecruitList data={list.item} type={2}/>
-      }
+      } */}
       {/* <View className='resume-list-container'>
       {list.item.map(item=>(
         <Block key={item.id}>
@@ -574,10 +595,12 @@ export default function ResumeDetail() {
           <Image className="bossimg" src={praise === 0 ? `${IMGCDNURL}newresume-footer-star.png` : `${IMGCDNURL}newresume-footer-star-active.png`} />
           <View>赞</View>
         </View>
-        <View className='resumeDetail-footer-box'>
+        {ISCANSHARE && 
+        <Button openType='share' className='resumeDetail-footer-box'>
           <Image className="bossimg" src={`${IMGCDNURL}newresume-footer-share.png`} />
           <View>分享</View>
-        </View>
+        </Button>
+        }
         <View className='resumeDetail-footer-box' onClick={resumeCollect}>
           <Image className="bossimg" src={collect === 0 ? `${IMGCDNURL}newresume-footer-collect.png` : `${IMGCDNURL}newresume-footer-collect-active.png`}/>
           <View>收藏</View>
@@ -612,10 +635,13 @@ export default function ResumeDetail() {
           handleSubmit={handleSubmit}/>
         }
     </View>
-    </detailContext.Provider>
+    </View>
   )
 }
 
 ResumeDetail.config = {
   navigationBarTitleText: '找活名片',
+  navigationBarBackgroundColor: '#0099ff',
+  navigationBarTextStyle: 'white',
+  backgroundTextStyle: "dark"
 } as Config

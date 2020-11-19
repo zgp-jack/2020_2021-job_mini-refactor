@@ -2,7 +2,7 @@ import Taro, { useEffect, useState, createContext, Config } from '@tarojs/taro'
 import { View, Text, Image, Input } from '@tarojs/components'
 // import { context }  from '../../../subpackage/pages/basics';
 // import { context } from '../../recruit/publish'
-import { getAllAreas, checkAdcodeValid } from '../../../utils/request'
+import { getAllAreas, checkAdcodeAction } from '../../../utils/request'
 import { AllAreasDataItem } from '../../../utils/request/index.d'
 import { IMGCDNURL, UserPublishAreaHistoryMaxNum } from '../../../config'
 import Cities from '../../../components/citys'
@@ -11,18 +11,21 @@ import { UserLocationPromiss, getCityInfo, ChildItems } from '../../../models/ar
 import { getAmapPoiList } from '../../../utils/helper'
 import { InputPoiListTips } from '../../../utils/helper/index.d'
 import Msg, { ShowActionModal } from '../../../utils/msg'
+import { AreaData } from '../../../pages/recruit/index.d'
+import { useSelector, useDispatch } from '@tarojs/redux'
+import { setAreaInfo, setArea, setPositionStaus } from '../../../actions/recruit'//获取发布招工信息action
 import './index.scss'
 
 
 const PI = Math.PI;  // 数学 PI 常亮
 let EARTH_RADIUS = 6378137.0; // 地球半径
 
-interface UserLastPublishRecruitArea {
-  location: string,
-  adcode: string,
-  title: string,
-  info: string
-}
+// interface UserLastPublishRecruitArea {
+//   location: string,
+//   adcode: string,
+//   title: string,
+//   info: string,
+// }
 interface Injected {
   publishArea:string,
   location: string,
@@ -37,18 +40,18 @@ export const contextItem = createContext<Injected>({} as Injected)
 export default function ResumeMap() {
   // const router: Taro.RouterInfo = useRouter()
   // let { areaItem } = router.params;
-  // console.log(context,'context');
-  // console.log(contextItem,'contextItem')
+  // 获取dispatch分发action
+  const dispatch = useDispatch()
   const [area, setArea] = useState<string>('')
   // 城市数据
   const [areas, setAreas] = useState<AllAreasDataItem[][]>([])
   // 选择详细地址信息
-  const [areaInfo, setAreaInfo] = useState<UserLastPublishRecruitArea>({
-    title: '',
-    adcode: '',
-    location: '',
-    info: ''
-  })
+  // const [areaInfo, setAreaInfo] = useState<UserLastPublishRecruitArea>({
+  //   title: '',
+  //   adcode: '',
+  //   location: '',
+  //   info: '',
+  // })
   const [location, setLocation] = useState<string>('')
   // 用户定位城市
   const [userLoc, setUserLoc] = useState<AllAreasDataItem>({
@@ -94,7 +97,6 @@ export default function ResumeMap() {
         ad_name: data.ad_name,
         city: data.name
       }
-      console.log(data,'data')
       setArea(data.name)
       setUserLoc(userLocData)
     }
@@ -107,8 +109,8 @@ export default function ResumeMap() {
   }, [])
 
   // 用户切换城市
-  const userChangeCity = (city: string) => {
-    setArea(city)
+  const userChangeCity = (city: AreaData) => {
+    setArea(city.name)
   }
 
   // 用户点击取消 返回上一页
@@ -198,25 +200,34 @@ export default function ResumeMap() {
 
   // 用户选择小地区 检测adcode
   const userClickAreaItem = (item: InputPoiListTips) => {
-    checkAdcodeValid(item.adcode).then(res => {
+    checkAdcodeAction({adcode:item.adcode}).then(res => {
+      // debugger
       if (res.errcode == "ok") {
-        // console.log(item,'xxxx')
-        setLocation(item.location)
-        setAdcode(item.adcode)
-        if (setAreaInfo) {
-          setUserPublishAreaHistoryItem(item)
-          setAreaInfo({
+        // setLocation(item.location)
+        // setAdcode(item.adcode)
+        // if (setAreaInfo) {
+        //   setUserPublishAreaHistoryItem(item)
+        //   setAreaInfo({
+        //     title: item.name,
+        //     location: item.location,
+        //     adcode: item.adcode,
+        //     info: item.district,
+        //   })
+        //   setPublishArea && setPublishArea(item.name)
+          dispatch(setAreaInfo({
             title: item.name,
             location: item.location,
             adcode: item.adcode,
-            info: item.district
-          })
-          setPublishArea && setPublishArea(item.name)
-        }
+            info: item.district,
+            provice:res.province,
+            city:res.city
+          }))
+          // dispatch(setArea(item.cityName))
+        // }
         Taro.navigateBack()
       }
       else ShowActionModal({ msg: res.errmsg })
-    }).catch(() => {
+    }).catch((error) => {
       Msg("网络错误，请求失败！")
     })
   }

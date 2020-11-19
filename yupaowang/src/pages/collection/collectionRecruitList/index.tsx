@@ -20,9 +20,12 @@ export default function CollectionRecruitList({ data = [], onHandlerClick, recru
   // 弹窗内容
   const [modalContent, setModalContent] = useState<string>('')
   // 弹窗
-  const onHandleClick = (type: string) => {
+  const onHandleClick = (type: string,id: string) => {
     // 1 审核中 2 通过 0 失败
     if (type == '2') {
+      Taro.navigateTo({
+        url: `/pages/detail/info/index?id=${id}`
+      })
     } else if (type == '0') {
       setIsOpened(true)
       setModalContent('该信息未通过人工审核，审核通过后，即可查看')
@@ -38,7 +41,7 @@ export default function CollectionRecruitList({ data = [], onHandlerClick, recru
         <Block key={item.id}>
           {
             // item.map((d) => (
-            <View className='recruit-list-item' onClick={() => { onHandleClick(item.is_check)}} key={item.id}>
+            <View className='recruit-list-item' onClick={() => { onHandleClick(item.is_check,item.id)}} key={item.id}>
               {/* {item.top && <Image className='list-toprecruit-img' src={IMGCDNURL + 'newlist-jobzd.png'} />} */}
               {item.is_end == '2' && <Image className='recruit-findend-img' src={IMGCDNURL + 'newlist-jobfindend.png'} />}
               <View className='recruit-list-header'>
@@ -60,7 +63,7 @@ export default function CollectionRecruitList({ data = [], onHandlerClick, recru
               <View className='recruit-list-footer'>
                 {/* <Image className='recruit-list-loc' src={IMGCDNURL + 'newlist-jobposi.png'} /> */}
                 <View className='recruit-list-loctxt overwords'>{item.time}</View>
-                <Button size='mini' className='recruit-list-button' onClick={()=>{onHandlerClick(item.id)}}>取消收藏</Button>
+                <Button size='mini' className='recruit-list-button' onClick={(e) => { e.stopPropagation();onHandlerClick(item.id)}}>取消收藏</Button>
               </View>
             </View>
           // )

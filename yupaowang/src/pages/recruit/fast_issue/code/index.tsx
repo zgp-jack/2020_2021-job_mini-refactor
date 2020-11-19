@@ -58,7 +58,7 @@ export default function FastIssue() {
           <View className="issue-contact-title">温馨提示</View>
           <Image src={`${IMGCDNURL}new-publish-title-t-icon.png`} mode="widthFix" className="issue-tip-image"></Image>
         </View>
-        <View className="issue-contact-body">为了确保本条招工信息的真实性，鱼泡网已经向手机号<Text></Text>发送验证码，请您将收到的验证码填写到下方输入框内。</View>
+        <View className="issue-contact-body">为了确保本条招工信息的真实性，鱼泡网已经向手机号<Text>{recruitInfo.phone}</Text>发送验证码，请您将收到的验证码填写到下方输入框内。</View>
         <View className="issue-code-box">
           <Text>验证码：</Text>
           <Input className="issue-contact-input" placeholder="请输入验证码" onInput={(e) => userInputCode(e)}></Input>

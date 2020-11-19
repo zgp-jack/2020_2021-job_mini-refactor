@@ -1,4 +1,4 @@
-import { usePublishData } from './fastIssue'
+import { usePublishData } from './issue'
 import { FastIssueData } from '../../pages/recruit/index.d'
 import Taro, { useState, useEffect } from '@tarojs/taro'
 import { isVaildVal, isPhone } from '../../utils/v'
@@ -72,24 +72,39 @@ export function useFastIssue() {
   function fastPublish () {
     let data = { ...issueData }
     if (data.content == "") {
-      ShowActionModal('请输入招工详情。')
+      ShowActionModal({
+        title: '温馨提示',
+        msg: '请输入招工详情。'
+      })
       return
     }
     if (!isVaildVal(data.content, 3, 500)) {
-      ShowActionModal('请正确输入3~500字招工详情,必须含有汉字。')
+      ShowActionModal({
+        title: '温馨提示',
+        msg: '请正确输入3~500字招工详情,必须含有汉字。'
+      })
       return;
     }
     if (!data.phone ||　data.phone == "") {
-      ShowActionModal('请输入联系电话。')
+      ShowActionModal({
+        title: '温馨提示',
+        msg: '请输入联系电话。'
+      })
       setShowPhoneBox(true)
       return false
     }
     if (data.phone && !isPhone(data.phone)) {
-      ShowActionModal('请正确输入11位联系电话。')
+      ShowActionModal({
+        title: '温馨提示',
+        msg: '请正确输入11位联系电话。'
+      })
       return false;
     }
     if (data.phone == "18349296434") {
-      ShowActionModal('该手机号暂不支持发布招工信息，请重新输入。')
+      ShowActionModal({
+        title: '温馨提示',
+        msg: '该手机号暂不支持发布招工信息，请重新输入。'
+      })
       return false;
     }
     fastIssue(data).then(res => {

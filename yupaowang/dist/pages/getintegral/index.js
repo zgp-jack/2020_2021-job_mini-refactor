@@ -41,6 +41,10 @@ var _index2 = __webpack_require__(/*! ../../utils/helper/index */ "./src/utils/h
 
 __webpack_require__(/*! ./index.scss */ "./src/pages/getintegral/index.scss");
 
+var _classnames = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -57,8 +61,12 @@ var GetIntegral = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (GetIntegral.__proto__ || Object.getPrototypeOf(GetIntegral)).apply(this, arguments));
 
-    _this.$usedState = ["ios", "SERVERPHONE"];
-    _this.customComponents = [];
+    _this.config = {
+      navigationBarTitleText: "鱼泡网-获取积分"
+    };
+
+    _this.$usedState = ["anonymousState__temp", "ios", "turntable", "IMGCDNURL", "SERVERPHONE"];
+    _this.customComponents = ["Auth"];
     return _this;
   }
 
@@ -87,27 +95,52 @@ var GetIntegral = function (_Taro$Component) {
       var userCallPhone = function userCallPhone() {
         _taroTt2.default.makePhoneCall({ phoneNumber: _index.SERVERPHONE });
       };
+
+      var _useState3 = (0, _taroTt.useState)({
+        showBtn: 0,
+        show: 0
+      }),
+          _useState4 = _slicedToArray(_useState3, 2),
+          turntable = _useState4[0],
+          setTurntable = _useState4[1];
       // 判断客户端
+
+
       (0, _taroTt.useEffect)(function () {
+        // memberTurntable().then(res => {
+        //   if (res.errcode == "ok") {
+        //     let { is_turntable, show_turntable } = res.data;
+        //     turntable.showBtn = Number(is_turntable);
+        //     turntable.show = Number(show_turntable);
+        //     setTurntable({ ...turntable });
+        //   }
+        // });
         var system = _taroTt2.default.getSystemInfoSync();
-        if (system.platform !== 'ios') {
+        if (system.platform !== "ios") {
           setIos(false);
         }
       }, []);
       this.anonymousFunc0 = function () {
-        return userCallPhone();
+        return (0, _index2.userJumpPage)(_index.INVITEPATH);
       };
       this.anonymousFunc1 = function () {
-        return userCallPhone();
+        return (0, _index2.userJumpPage)("/pages/recharge/index");
       };
       this.anonymousFunc2 = function () {
-        return (0, _index2.userJumpPage)('/pages/invite/index');
+        return (0, _index2.userJumpPage)("/pages/turntable/index");
       };
+      var anonymousState__temp = turntable.show ? (0, _classnames2.default)({
+        "getintegral-item-btn": true,
+        "getintegral-list-btn-dis": !turntable.showBtn
+      }) : null;
       this.anonymousFunc3 = function () {
-        return (0, _index2.userJumpPage)('/pages/recharge/index');
+        return userCallPhone();
       };
       Object.assign(this.__state, {
+        anonymousState__temp: anonymousState__temp,
         ios: ios,
+        turntable: turntable,
+        IMGCDNURL: _index.IMGCDNURL,
         SERVERPHONE: _index.SERVERPHONE
       });
       return this.__state;
@@ -139,6 +172,7 @@ var GetIntegral = function (_Taro$Component) {
 
 GetIntegral.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3"];
 GetIntegral.$$componentPath = "pages/getintegral/index";
+GetIntegral.config = { navigationBarTitleText: "鱼泡网-获取积分" };
 exports.default = GetIntegral;
 
 Page(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(GetIntegral, true));

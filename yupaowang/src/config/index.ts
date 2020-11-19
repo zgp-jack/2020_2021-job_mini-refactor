@@ -8,12 +8,14 @@ export const MINICONFIG = require(`./minis/${MINIVERSION}.ts`)
 // * 全局请求接口域名
 // * 测试站
 export const DEVREQUESTURL: string = 'https://miniapi.zhaogong.vrtbbs.com/'  
+// * 预发布
+export const PREREQUESTURL: string = 'http://miniapi.kkbbi.com/'
 // * 正式站
 export const PROREQUESTURL: string = 'https://newyupaomini.54xiaoshuo.com/' 
-// * 当前测试
+// * 当前程序使用的请求地址
 export const REQUESTURL: string = DEVREQUESTURL;
 // * 默认上传图片
-export const UPLOADIMGURL: string = PROREQUESTURL + 'index/upload/'
+export const UPLOADIMGURL: string = `${PROREQUESTURL}index/upload/`
 // * 阿里云CDN域名
 export const ALIYUNCDN: string = 'http://cdn.yupao.com'
 // * 阿里云小程序普通路径
@@ -30,18 +32,42 @@ export const MAPKEY: string = '20f12aae660c04de86f993d3eff590a0'
 export const MAXCACHECITYNUM: number = 3
 // * 用户发布 选择地址 历史记录 最大数量
 export const UserPublishAreaHistoryMaxNum: number = 10
-// * 小程序tabbar msg统计 定时器请求间隔 1分钟
+// * 小程序tabbar msg统计 定时器请求间隔 60 秒
 export const MemberMsgTimerInterval: number = 1000 * 60
+// * 发布技能证书最大数量
+export const CertificateMaxNum: number = 3
+// * 发布技能证书图片最大数量
+export const CertificateImgMaxNum: number = 3
+// * 找活人员信息标签最大数量
+export const ResumeMemberLabelsMaxNum: number = 3
+// * 发布项目经验最大数量
+export const ProjectListMaxNum: number = 5
+// * 找活项目经验图片最大数量
+export const ProjectImgMaxNum: number = 6
 
 // ! 页面内常用路径配置
+// * 首页
+export const INDEXPATH: string = '/pages/index/index'
+// * 发布招工页面
+// export const PUBLISHRECRUIT: string = '/pages/recruit/publish/index'
+export const PUBLISHRECRUIT: string = '/pages/recruit/fast_issue/issue/index'
+// * 发布找活页面
+export const PUBLISHRESUME: string = '/pages/resume/publish/index'
+// * 发布二手交易
+export const PUBLISHUSED: string = '/pages/used/publish/index'
 // * 实名认证页面
 export const REALNAMEPATH: string = '/pages/realname/index'
 // * 授权登录页面
 export const AUTHPATH: string = '/pages/userauth/index'
 // * 微信外验证码登录
 export const CODEAUTHPATH: string = '/pages/login/index'
+// * 已发布招工列表
+export const PUBLISHEDRECRUIT: string = '/pages/published/recruit/index'
 // * 下载App
 export const DownloadApp: string ='https://android.myapp.com/myapp/detail.htm?apkName=io.dcloud.H576E6CC7&amp;ADTAG=mobile'
+// * 邀请好友
+export const INVITEPATH: string = '/pages/static/invite/index'
+
 
 // ! 所有小程序列表
 // 百度
@@ -61,3 +87,7 @@ export const UNITID: string = MINICONFIG.UNITID
 export const INVITESOURCE: string = MINICONFIG.INVITESOURCE
 // * 是否使用推送信息
 export const USESUBSCRIBEMESSAGE: boolean = MINICONFIG.USESUBSCRIBEMESSAGE
+// * 是否能分享
+export const ISCANSHARE: boolean = MINICONFIG.ISCANSHARE
+// * textarea能输入的最大字数
+export const TEXTAREAMAXLENGTH: number = MINICONFIG.TEXTAREAMAXLENGTH

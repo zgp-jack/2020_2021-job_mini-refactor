@@ -26,5 +26,9 @@
       text-align: center;
       border: 1px solid $bordercolor;
     }
+    .resume-tag-text-active{
+      background-color: $color;
+      color: white;
+    }
   }
 }

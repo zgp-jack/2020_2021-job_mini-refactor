@@ -1,5 +1,5 @@
 import { SETAREAINFO, GETAREAINFO, SETAREA, GETAREA, SETPOSITIONSTATUS, SETTOKEN, GETTOKEN, SETPHONE } from '../constants/recruit'
-import { UserLastPublishRecruitArea } from '../pages/recruit/index.d'
+import { UserLastPublishRecruitArea, AreaData } from '../pages/recruit/index.d'
 
 export function setAreaInfo(data:UserLastPublishRecruitArea) {
   return {
@@ -14,7 +14,7 @@ export function getAreaInfo() {
   }
 }
 
-export function setArea(data:string) {
+export function setArea(data: AreaData) {
   return {
     type: SETAREA,
     data: data

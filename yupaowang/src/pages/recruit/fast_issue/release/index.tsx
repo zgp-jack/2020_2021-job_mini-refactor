@@ -12,7 +12,7 @@ import './index.scss'
 
 export default function FastIssue() {
   // 获取发布招工hook数据
-  const { classifies, selectText, maxClassifyCount, choceClassfies, selectWorkType, countWorkNum, setShowUpload, showUpload, image, setImage, maxImageCount } = useRelease()
+  const { classifies, selectText, maxClassifyCount, choceClassfies, selectWorkType, countWorkNum, setShowUpload, showUpload, image, setImage, maxImageCount, pulishFindWorker } = useRelease()
 
   // 发布招工redux数据
   const recruitInfo: RecruitInfo = useSelector<any, RecruitInfo>(state => state.RecruitAction)
@@ -65,6 +65,10 @@ export default function FastIssue() {
     images.splice(i,1)
     setImage(images)
   }
+  // 确定发布招工
+  function recuritFindWork () {
+    pulishFindWorker()
+  }
   return (
     <View className="issue-area-container">
       <View className="issue-tip">
@@ -73,7 +77,7 @@ export default function FastIssue() {
       <View className="issue-contactbox">
         <View className="issue-box" onClick={() => showWorkArea()}>
           <Text>招工城市：</Text>
-          <Input placeholder="请选择招工城市"  className="issue-input" value={areaInfo && areaInfo.info}></Input>
+          <Input placeholder="请选择招工城市"  className="issue-input" value={areaInfo && areaInfo.title}></Input>
         </View>
         <View className="issue-box" onClick={() => showWorkType()}>
           <Text>所需工种：</Text>
@@ -103,7 +107,7 @@ export default function FastIssue() {
             </View>
           </View>:''}
         </View>
-        <Button className="issue-code-btn">确认发布</Button>
+        <Button className="issue-code-btn" onClick={()=>recuritFindWork()}>确认发布</Button>
       </View>
       {showPicker? <ClassifyPicker
         classifies={classifies}

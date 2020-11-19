@@ -1,4 +1,4 @@
-import { REQUESTURL, PROREQUESTURL } from '../../config'
+import {REQUESTURL, PROREQUESTURL} from '../../config'
 
 // 获取用户session_key
 export const GetUserSessionKey: string = REQUESTURL + 'user/user-info/'
@@ -85,11 +85,11 @@ export const userChangeUsedStatus: string = REQUESTURL + 'fleamarket/fleamarket-
 // 二手交易 刷新置顶
 export const userUpdateUserInfo: string = REQUESTURL + 'fleamarket/update-time/'
 // 收藏招工列表
-export const getCollectionRecruitList: string = REQUESTURL +'job/collect-list/'
+export const getCollectionRecruitList: string = REQUESTURL + 'job/collect-list/'
 // 收藏找活列表
-export const getCollectionResumeList: string = REQUESTURL +'resumes/collect-list/'
+export const getCollectionResumeList: string = REQUESTURL + 'resumes/collect-list/'
 // 招工取消收藏
-export const recruitCancelCollection: string = REQUESTURL +'job/collect/'
+export const recruitCancelCollection: string = REQUESTURL + 'job/collect/'
 // 招活取消收藏
 export const ResumeCancelCollection: string = REQUESTURL + 'resumes/resume-collect/'
 // 使用教程
@@ -123,15 +123,15 @@ export const integralExpendConfigUrl: string = REQUESTURL + 'integral/expend-con
 // 积分消耗积分数量
 export const integralExpendListsUrl: string = REQUESTURL + 'integral/expend-lists/'
 // 消耗积分弹窗内容
-export const integralUseInfoUrl: string = REQUESTURL +'integral/look-used-info/'
+export const integralUseInfoUrl: string = REQUESTURL + 'integral/look-used-info/'
 // 投诉
-export const publishComplainUrl: string = REQUESTURL +'publish/complain/'
+export const publishComplainUrl: string = REQUESTURL + 'publish/complain/'
 // 招工详情
 export const jobInfoUrl: string = REQUESTURL + 'job/job-info/'
 // 招工详情，没有用户信息
 export const jobNoUserInfoUrl: string = REQUESTURL + '/job/no-user-info/'
 // 获取完整电话好码
-export const jobGetTelUrl : string = REQUESTURL + 'job/get-tel/'
+export const jobGetTelUrl: string = REQUESTURL + 'job/get-tel/'
 // 修改状态
 export const jobEndStatusUrl: string = REQUESTURL + 'job/job-end-status/'
 // 置顶信息
@@ -141,7 +141,7 @@ export const jobTopHotAreasUrl: string = REQUESTURL + '/job/top-hot-areas-v1/'
 // 招工置顶
 export const jobDoTopUrl: string = REQUESTURL + 'job/do-top/'
 // 修改置顶获取数据
-export const jobGetTopAreasUrl: string = REQUESTURL +'job/get-top-areas/'
+export const jobGetTopAreasUrl: string = REQUESTURL + 'job/get-top-areas/'
 // 更新招工置顶城市
 export const jobChangeTopAreasUrl: string = REQUESTURL + 'job/change-top-areas/'
 // 取消置顶
@@ -159,45 +159,45 @@ export const resumeCollectUrl: string = REQUESTURL + 'resumes/resume-collect/'
 // 找活名片完善信息
 export const resumeListUrl: string = REQUESTURL + 'resumes/resume-list/'
 // 找活详情推荐
-export const jobRecommendListUrl: string = REQUESTURL +'/job/job-recommend-list/'
+export const jobRecommendListUrl: string = REQUESTURL + '/job/job-recommend-list/'
 // 删除技能证书
-export const delCertificateUrl: string = REQUESTURL +'resumes/del-certificate/'
+export const delCertificateUrl: string = REQUESTURL + 'resumes/del-certificate/'
 // 新增技能证书
 export const resumesCertificateUrl: string = REQUESTURL + 'resumes/certificate/'
 // 新增项目
 export const resumesProjectUrl: string = REQUESTURL + 'resumes/project/'
 // 基础信息
-export const addResumeUrl: string = REQUESTURL +'resumes/add-resume/'
+export const addResumeUrl: string = REQUESTURL + 'resumes/add-resume/'
 // 获取当前位置
-export const checkAdcodeUrl: string = REQUESTURL +'resumes/check-adcode/'
+export const checkAdcodeUrl: string = REQUESTURL + 'resumes/check-adcode/'
 // 在找活名片获取子页面公用数据只请求一次
-export const resumesGetDataUrl: string = REQUESTURL +'resumes/get-data/'
+export const resumesGetDataUrl: string = REQUESTURL + 'resumes/get-data/'
 //人员信息
-export const resumesIntroduceUrl: string = REQUESTURL +'resumes/introduce/'
+export const resumesIntroduceUrl: string = REQUESTURL + 'resumes/introduce/'
 // 找回名片修改状态
-export const resumesEditEndUrl: string = REQUESTURL +'resumes/edit-end/'
+export const resumesEditEndUrl: string = REQUESTURL + 'resumes/edit-end/'
 // 删除项目经验
-export const resumesDelProjectUrl: string = REQUESTURL +'resumes/del-project/'
+export const resumesDelProjectUrl: string = REQUESTURL + 'resumes/del-project/'
 // 找活置顶获取省
-export const resumesTopAreasUrl: string = REQUESTURL +'resumes/top-areas/'
+export const resumesTopAreasUrl: string = REQUESTURL + 'resumes/top-areas/'
 // 找活置顶内容
-export const resumesTopConfigUrl: string = REQUESTURL +'resumes/top-config/'
+export const resumesTopConfigUrl: string = REQUESTURL + 'resumes/top-config/'
 // 置顶找活
-export const resumesDoTopUrl: string = REQUESTURL +'resumes/do-top/'
+export const resumesDoTopUrl: string = REQUESTURL + 'resumes/do-top/'
 // 找活页面置顶修改
-export const resumesChangeTopStatusUrl: string = REQUESTURL +'resumes/change-top-status/'
+export const resumesChangeTopStatusUrl: string = REQUESTURL + 'resumes/change-top-status/'
 // 修改找活名片里的头像
-export const resumesEditImgUrl: string = REQUESTURL +'resumes/edit-img/'
+export const resumesEditImgUrl: string = REQUESTURL + 'resumes/edit-img/'
 // 找活置顶配置接口v2
-export const resumesTopConfigV2Url : string = REQUESTURL +'/resumes/top-config/'
+export const resumesTopConfigV2Url: string = REQUESTURL + '/resumes/top-config/'
 // 找活置顶v2
-export const resumesDoTopV2Url: string = REQUESTURL +'/resumes/do-top-v2/';
+export const resumesDoTopV2Url: string = REQUESTURL + '/resumes/do-top-v2/';
 // 修改找活置顶
-export const resumesUpdateTopResumeUrl : string = REQUESTURL +'/resumes/update-top-resume/'
+export const resumesUpdateTopResumeUrl: string = REQUESTURL + '/resumes/update-top-resume/'
 // 找活投诉
-export const resumesComplainUrl: string = REQUESTURL +'resumes/complain/'
+export const resumesComplainUrl: string = REQUESTURL + 'resumes/complain/'
 // 消息推送
-export const leavingMessageUrl: string = REQUESTURL +'leaving-message/add-subscribe-msg/'
+export const leavingMessageUrl: string = REQUESTURL + 'leaving-message/add-subscribe-msg/'
 // 用户账号登录
 export const userAccountUrl: string = REQUESTURL + 'baidu-auth/login/'
 // 用户验证码登录
@@ -212,3 +212,15 @@ export const realnameQueryUrl: string = REQUESTURL + 'resume/auth-worker-find/'
 export const getResumeAddInfoConfig: string = REQUESTURL + 'resumes/get-data/'
 // 发布招工验证码验证
 export const checkCodeUrl: string = REQUESTURL + 'fast-issue/check-code/'
+//排名规则
+export const getRankRulesList: string = REQUESTURL + 'resumes/sort/'
+// 大转盘获取抽奖次数
+export const turntableIndex: string = REQUESTURL + 'turntable/index/'
+// 大转盘 获取抽奖结果
+export const turntableDraw: string = REQUESTURL + 'turntable/draw/'
+// 大转盘看视频结束后的回调
+export const turntableVideoEnd: string = REQUESTURL + 'turntable/video-end/'
+// 获取鱼泡币页面大转盘展示控制
+export const memberTurntable: string = REQUESTURL + 'member/turntable/'
+// 发布招工信息
+export const FastRcruitUrl: string = REQUESTURL + 'fast-issue/complete/'

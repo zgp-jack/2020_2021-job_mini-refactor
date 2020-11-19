@@ -17,7 +17,6 @@ export interface SearchNormalFieldType {
 export interface SearchType{
   page: number,
   occupations: string,
-  province: string,
   keywords: string,
   sort: string,
   location: string,

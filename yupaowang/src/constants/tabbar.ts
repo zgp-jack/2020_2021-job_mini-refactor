@@ -1,7 +1,8 @@
-export const HOME = 'home'
-export const RECRUIT = 'recruit'
-export const RESUME = 'resume'
-export const MEMBER = 'member'
+export const HOME: string = 'home'
+export const RECRUIT: string = 'recruit'
+export const RESUME: string = 'resume'
+export const MEMBER: string = 'member'
+export const USED: string = 'used'
 
 const types: string[] = [HOME, RECRUIT, RESUME, MEMBER]
 

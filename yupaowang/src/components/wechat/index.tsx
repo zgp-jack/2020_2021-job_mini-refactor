@@ -8,6 +8,7 @@ import { getWechatNotice } from '../../utils/request'
 import { BannerNoticeNotice } from '../../utils/request/index.d'
 import SwiperNews from '../../components/swiper/news'
 import { IProps } from '../../components/swiper/index'
+import { copyWechatNumber, userCallPhone } from '../../utils/helper'
 import './index.scss'
 
 export default function WechatNotice(){
@@ -37,12 +38,26 @@ export default function WechatNotice(){
     })
   },[])
 
+  // 复制微信号
+  const userCopyWechatNumber = () => {
+    copyWechatNumber(wechatNoticeData.wechat.number)
+  }
+
+  // 用户拨打电话
+  const userCallPhoneAction = () => {
+    userCallPhone(wechatNoticeData.phone)
+  }
+
   return (
     <View className='wechatinfo-container'>
       <View className='wechat-container'>
         <Text className='wechat-addgroup'>加群：</Text>
-        加工友微信号：<Text className='wechat-text'>{ wechatNoticeData.wechat.number }</Text><Text className='wechat-btn'>复制</Text>
-        拉你进工人微信群。客服电话：<Text className='wechat-text'>{ wechatNoticeData.phone }</Text><Text className='wechat-btn'>呼叫</Text>
+        加工友微信号：
+        <Text className='wechat-text' onClick={() => userCopyWechatNumber() }>{ wechatNoticeData.wechat.number }</Text>
+        <Text className='wechat-btn' onClick={() => userCopyWechatNumber()} >复制</Text>
+        拉你进招工找活群。客服电话：
+        <Text className='wechat-text' onClick={() => userCallPhoneAction() } >{ wechatNoticeData.phone }</Text>
+        <Text className='wechat-btn' onClick={() => userCallPhoneAction() } >呼叫</Text>
       </View>
       <View className='notice-container'>
         <Text className='notice-tips'>鱼泡资讯：</Text>

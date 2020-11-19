@@ -1,27 +1,42 @@
-import Taro, { useState, useRouter } from '@tarojs/taro'
-import { View, Form, Text, Input, Textarea, ScrollView, Picker } from '@tarojs/components'
+import Taro, { useState, useRouter, Config, useDidShow } from '@tarojs/taro'
+import { View, Form, Text, Input, Textarea, ScrollView, Picker, Block } from '@tarojs/components'
 import { AtDrawer } from 'taro-ui'
 import WordsTotal from '../../../components/wordstotal'
 import useUsedInfo from '../../../hooks/publish/used'
 import classnames from 'classnames'
 import useCode from '../../../hooks/code'
-// import '../../recruit/publish/index.scss'
+import Auth from '../../../components/auth'
 import './index.scss'
 
 export default function UsedPublish() {
 
   const router = useRouter()
   const { id = '' } = router.params
-  const { model, setModel, initModel, parentCurrent, setParentCurrent, childCurrent, setChildCurrent, classifyName, setClassiryName, cityName, setCityName, setCIndex, setPIndex, areaProvince, areaCity, cIndex, pIndex, thisCurrentAreaCity, userTel, vaildPublishModelInfo } = useUsedInfo(id)
+  const { model, setModel, initModel, parentCurrent, setParentCurrent, childCurrent, setChildCurrent, classifyName, setClassiryName, cityName, setCityName, setCIndex, setPIndex, areaProvince, areaCity, cIndex, pIndex, thisCurrentAreaCity, userTel, vaildPublishModelInfo, initUsedPublishViewInfo } = useUsedInfo(id)
   const [showDrawer, setShowDrawer] = useState<boolean>(false)
   // 使用自定义验证码hook
   const { text, userGetCode } = useCode()
+  // 详情字数统计
+  const [num, setNum] = useState<number>(0)
+  // 判断是否是首次进入
+  const [first, setFirst] = useState<boolean>(true)
+
+  // 加载初始化数据
+  useDidShow(() => {
+    if (first) {
+      setFirst(false)
+      return
+    }
+    initUsedPublishViewInfo()
+  })
 
   // 用户填写信息
   const userEnterFrom = (e: any, key: string) => {
     let reModel = JSON.parse(JSON.stringify(model))
-    reModel[key] = e.detail.value
+    let val: string = e.detail.value
+    reModel[key] = val
     setModel(reModel)
+    if (key == 'detail') setNum(val.length)
   }
 
   // 用户点击父级
@@ -65,6 +80,8 @@ export default function UsedPublish() {
   }
 
   return (
+    <Block>
+    <Auth />
     <View>
       {/* 选择目的 */}
       <AtDrawer 
@@ -122,7 +139,7 @@ export default function UsedPublish() {
             <View className='publish-list-item' onClick={()=>userClickClassify(true)}>
               <Text className='pulish-list-title'>交易目的</Text>
               {classifyName ?
-                <View className='publish-list-input'>
+                <View className='publish-list-input publish-list-text'>
                   <Text className='publish-input-list'>{ classifyName }</Text>
                 </View>
                 :
@@ -176,19 +193,26 @@ export default function UsedPublish() {
             </View>
             }
             <View className='publish-list-textarea'>
-              <Text className='publish-textarea-title'>招工详情</Text>
+              <Text className='publish-textarea-title'>交易详情</Text>
+              {!showDrawer &&
               <Textarea
                 className='publish-textarea'
                 value={ model.detail }
                 placeholder={ initModel&&initModel.placeholder }
                 onInput={(e) => userEnterFrom(e, 'detail')}
-              ></Textarea>
-              <WordsTotal num={0} />
+                maxlength={500}
+              ></Textarea>}
+              <WordsTotal num={num} />
             </View>
           </View>
           <View className='publish-recruit-btn' onClick={() => vaildPublishModelInfo() } >确认发布</View>
         </Form>
       </View>
     </View>
+    </Block>
   )
 }
+
+UsedPublish.config = {
+  navigationBarTitleText: '发布二手交易'
+} as Config

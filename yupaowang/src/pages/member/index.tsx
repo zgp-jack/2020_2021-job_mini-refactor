@@ -1,16 +1,24 @@
-import Taro, { useState, useEffect, useDidShow } from '@tarojs/taro'
+import Taro, { useState, useEffect } from '@tarojs/taro'
 import { View, Image, Text } from '@tarojs/components'
 import { useSelector, useDispatch } from '@tarojs/redux'
 import { getMemberInfo } from '../../utils/request'
 import { MemberInfo } from '../../utils/request/index.d'
-import { IMGCDNURL, AUTHPATH, CODEAUTHPATH } from '../../config'
+import { IMGCDNURL, AUTHPATH, CODEAUTHPATH, PUBLISHRESUME, PUBLISHEDRECRUIT, INVITEPATH, PROREQUESTURL, REQUESTURL } from '../../config'
 import { setMemberInfo } from '../../actions/member'
-import { ShowActionModal } from '../../utils/msg'
+import Msg, { ShowActionModal } from '../../utils/msg'
 import { UserMemberInfo } from '../../reducers/member'
+import { loginOut } from '../../actions/user'
+import { resetMsg } from '../../actions/msg'
 import { isIos } from '../../utils/v'
 import './index.scss'
+import { UserInfo } from '../../config/store'
 
-export default function Member(){
+// index 页面 传入 useDidShow时候触发 然后重新加载会员中心的数据，保证数据同步
+interface MemberProps {
+  memberIndex?: number
+}
+
+export default function Member({memberIndex = 0}: MemberProps){
 
   const dispatch = useDispatch()
 
@@ -41,12 +49,15 @@ export default function Member(){
           username: data.member.username || data.member.nickname,
           avatar: data.member.headimgurl||'',
           phone: data.member.tel||'',
-          pwd_status: data.member.pwd_status || ''
+          pwd_status: data.member.pwd_status || '',
+          changeName: data.is_checking == 2 && data.member.is_check == '2' ? false : true
         }
         dispatch(setMemberInfo(value))
         setModel(data)
       }
-      else ShowActionModal(data.errmsg)
+      else ShowActionModal({
+        msg: data.errmsg
+      })
     })
   }
 
@@ -54,13 +65,19 @@ export default function Member(){
     setIos(isIos())
   },[])
 
-  useDidShow(()=>{
-    initMemberInfo()
-  })
-
   useEffect(()=>{
+    //Taro.setNavigationBarTitle({ title: IndexTabbarConfig[MEMBER].navigationBarTitleText })
+    if(!login) return
     initMemberInfo()
-  },[login])
+  }, [login, memberIndex])
+
+  // 清理用户登录信息
+  const userClearSession = () => {
+    Taro.removeStorageSync(UserInfo)
+    dispatch(loginOut())
+    dispatch(resetMsg())
+    Msg('您已成功退出该账号')
+  }
 
   return (
     <View className='member-container'>
@@ -71,7 +88,7 @@ export default function Member(){
           {login && model ? 
           <View className='member-userinfo'>
             <View className='member-userinfo-content'>
-              <Image className='member-userinfo-avatar' src='http://cdn.yupao.com/miniprogram/images/user.png' />
+              <Image className='member-userinfo-avatar' src={model.member.headimgurl} />
               <View className='member-username'>
                 <View className='member-username-text'>
                 { model.member.username || model.member.nickname }
@@ -112,12 +129,12 @@ export default function Member(){
       </View>
       <View className='member-body-container'>
         <View className='member-list-container'>
-          <View className='member-list-item' onClick={()=>userRouteJump('/pages/published/recruit/index')}>
+          <View className='member-list-item' onClick={() => userRouteJump(PUBLISHEDRECRUIT)}>
             <Image className='member-list-icon' src={ IMGCDNURL + 'lpy/ucenter/newcenter-recruit.png' } />
             <Text className='member-list-title'>我的招工</Text>
             {jobNumber && <Text className='member-list-tips'>状态有更新</Text>}
           </View>
-          <View className='member-list-item'>
+          <View className='member-list-item' onClick={() => userRouteJump(PUBLISHRESUME)}>
             <Image className='member-list-icon' src={ IMGCDNURL + 'lpy/ucenter/newcenter-resume.png'} />
             <Text className='member-list-title'>我的找活名片</Text>
             <Text className='member-list-tips'>{model && model.member.resume_status.resume_tips_string }</Text>
@@ -140,12 +157,12 @@ export default function Member(){
           </View>
         </View>
         <View className='member-list-container'>
-          <View className='member-list-item' onClick={() => userRouteJump('/pages/recharge/index')}>
+          <View className='member-list-item' onClick={() => userRouteJump('/pages/getintegral/index')}>
             <Image className='member-list-icon' src={ IMGCDNURL + 'lpy/ucenter/newcenter-integral.png'} />
             <Text className='member-list-title'>获取积分</Text>
             {!ios && <Text className='member-list-tips'>去充值</Text>}
           </View>
-          <View className='member-list-item' onClick={() => userRouteJump('/pages/invite/index')}>
+          <View className='member-list-item' onClick={() => userRouteJump(INVITEPATH)}>
             <Image className='member-list-icon' src={ IMGCDNURL + 'lpy/ucenter/newcenter-invite.png'} />
             <Text className='member-list-title'>邀请工友</Text>
             <Text className='member-list-tips'>邀请好友得积分</Text>
@@ -184,6 +201,13 @@ export default function Member(){
             <Text className='member-list-title'>帮助中心</Text>
             <Text className='member-list-tips'>使用教程</Text>
           </View>
+          {PROREQUESTURL != REQUESTURL &&
+          <View className='member-list-item' onClick={() => userClearSession()} >
+            <Image className='member-list-icon' src={IMGCDNURL + 'lpy/ucenter/newcenter-set.png'} />
+            <Text className='member-list-title'>清理缓存</Text>
+            <Text className='member-list-tips'>退出登录</Text>
+          </View>
+          }
         </View>
       </View>
     </View>

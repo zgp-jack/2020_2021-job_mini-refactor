@@ -220,6 +220,7 @@ function RecruitCondition({ data, setSearchData }: ConditionProps) {
       <AtDrawer
         show={current === ClassifyPickerKey}
         mask
+        width='80%'
         onClose={() => closeDrawer()}
       >
         <View className='common-drawer-item'>
@@ -245,7 +246,6 @@ function RecruitCondition({ data, setSearchData }: ConditionProps) {
               {classify[classifyIndex].children.map((item, i) => (
                 <View className={classnames({
                   'drawer-list-item overwords': true,
-                  'overwords': true,
                   'drawer-list-item-active': item.id.toString() === classifyId
                 })} onClick={() => sureClassifyCurrent(i)}>{item.name}</View>
               ))}

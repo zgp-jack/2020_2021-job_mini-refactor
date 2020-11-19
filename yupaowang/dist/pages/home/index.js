@@ -41,9 +41,17 @@ __webpack_require__(/*! ./index.scss */ "./src/pages/home/index.scss");
 
 var _index = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
 
+var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/redux/index.js");
+
+var _tabbar = __webpack_require__(/*! ../../actions/tabbar */ "./src/actions/tabbar.ts");
+
+var _tabbar2 = __webpack_require__(/*! ../../constants/tabbar */ "./src/constants/tabbar.ts");
+
 var _index2 = __webpack_require__(/*! ../../utils/request/index */ "./src/utils/request/index.ts");
 
 var _store = __webpack_require__(/*! ../../config/store */ "./src/config/store.ts");
+
+var _index3 = __webpack_require__(/*! ../../utils/helper/index */ "./src/utils/helper/index.ts");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -63,7 +71,7 @@ var Home = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (Home.__proto__ || Object.getPrototypeOf(Home)).apply(this, arguments));
 
-    _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "$compid__5", "$compid__6", "$compid__7", "$compid__8", "$compid__9", "$compid__10", "IMGCDNURL", "ISWEIXIN", "shwoCity", "area"];
+    _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "$compid__10", "$compid__11", "$compid__12", "$compid__13", "$compid__14", "$compid__15", "IMGCDNURL", "ISWEIXIN", "shwoCity", "area", "homeIndex"];
     _this.customComponents = ["SwiperComponent", "Projects", "Fastfun", "SwiperNews", "RecruitList", "ResumeList", "UsedList", "About", "HomeCity"];
     return _this;
   }
@@ -83,38 +91,59 @@ var Home = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__5"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__10"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__5 = _genCompid2[0],
-          $compid__5 = _genCompid2[1];
+          $prevCompid__10 = _genCompid2[0],
+          $compid__10 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__6"),
+      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__11"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__6 = _genCompid4[0],
-          $compid__6 = _genCompid4[1];
+          $prevCompid__11 = _genCompid4[0],
+          $compid__11 = _genCompid4[1];
 
-      var _genCompid5 = (0, _taroTt.genCompid)(__prefix + "$compid__7"),
+      var _genCompid5 = (0, _taroTt.genCompid)(__prefix + "$compid__12"),
           _genCompid6 = _slicedToArray(_genCompid5, 2),
-          $prevCompid__7 = _genCompid6[0],
-          $compid__7 = _genCompid6[1];
+          $prevCompid__12 = _genCompid6[0],
+          $compid__12 = _genCompid6[1];
 
-      var _genCompid7 = (0, _taroTt.genCompid)(__prefix + "$compid__8"),
+      var _genCompid7 = (0, _taroTt.genCompid)(__prefix + "$compid__13"),
           _genCompid8 = _slicedToArray(_genCompid7, 2),
-          $prevCompid__8 = _genCompid8[0],
-          $compid__8 = _genCompid8[1];
+          $prevCompid__13 = _genCompid8[0],
+          $compid__13 = _genCompid8[1];
 
-      var _genCompid9 = (0, _taroTt.genCompid)(__prefix + "$compid__9"),
+      var _genCompid9 = (0, _taroTt.genCompid)(__prefix + "$compid__14"),
           _genCompid10 = _slicedToArray(_genCompid9, 2),
-          $prevCompid__9 = _genCompid10[0],
-          $compid__9 = _genCompid10[1];
+          $prevCompid__14 = _genCompid10[0],
+          $compid__14 = _genCompid10[1];
 
-      var _genCompid11 = (0, _taroTt.genCompid)(__prefix + "$compid__10"),
+      var _genCompid11 = (0, _taroTt.genCompid)(__prefix + "$compid__15"),
           _genCompid12 = _slicedToArray(_genCompid11, 2),
-          $prevCompid__10 = _genCompid12[0],
-          $compid__10 = _genCompid12[1];
+          $prevCompid__15 = _genCompid12[0],
+          $compid__15 = _genCompid12[1];
 
-      var userChooseCity = _taroTt2.default.getStorageSync(_store.UserListChooseCity);
-      var location = _taroTt2.default.getStorageSync(_store.UserLocation);
+      var _props$homeIndex = this.__props.homeIndex,
+          homeIndex = _props$homeIndex === undefined ? 0 : _props$homeIndex;
+
+      var dispatch = (0, _redux.useDispatch)();
+      var tabbarJump = function tabbarJump(id) {
+        if (id === _tabbar2.USED) {
+          (0, _index3.userJumpPage)('/pages/used/lists/index');
+          return;
+        }
+        dispatch((0, _tabbar.changeTabbar)(id));
+      };
+      // 因为刷新页面就会改变，所以我们将获取选择的位置和当前定位经纬度声明变量先保存
+      var userChooseCity = void 0;
+      var location = void 0;
+      (0, _taroTt.useEffect)(function () {
+        userChooseCity = _taroTt2.default.getStorageSync(_store.UserListChooseCity);
+        location = _taroTt2.default.getStorageSync(_store.UserLocation);
+        setArea(userChooseCity ? userChooseCity.name : '全国');
+        setFilterData({
+          area: userChooseCity ? userChooseCity.id : 1,
+          location: location || ''
+        });
+      }, [homeIndex]);
       // 当前展示的城市
 
       var _useState = (0, _taroTt.useState)(userChooseCity ? userChooseCity.name : '全国'),
@@ -132,8 +161,8 @@ var Home = function (_Taro$Component) {
 
 
       var _useState5 = (0, _taroTt.useState)({
-        area: userChooseCity ? userChooseCity.id : 1,
-        location: location || ''
+        area: '',
+        location: ''
       }),
           _useState6 = _slicedToArray(_useState5, 2),
           filterData = _useState6[0],
@@ -185,6 +214,9 @@ var Home = function (_Taro$Component) {
       }, []);
       // 请求列表数据
       (0, _taroTt.useEffect)(function () {
+        if (!filterData.area) {
+          return;
+        }
         (0, _index2.getAllListItem)(filterData).then(function (res) {
           setLists(_extends({}, lists, {
             recruit: [[].concat(_toConsumableArray(res.job.lists))],
@@ -205,6 +237,18 @@ var Home = function (_Taro$Component) {
       this.anonymousFunc1 = function () {
         return userRouteJump('/subpackage/pages/download/index');
       };
+      this.anonymousFunc2 = function () {
+        return tabbarJump(_tabbar2.RECRUIT);
+      };
+      this.anonymousFunc3 = function () {
+        return tabbarJump(_tabbar2.RESUME);
+      };
+      this.anonymousFunc4 = function () {
+        return tabbarJump(_tabbar2.USED);
+      };
+      this.anonymousFunc5 = function () {
+        return userRouteJump(_index.PUBLISHRECRUIT);
+      };
       var anonymousState__temp = shwoCity ? function (val, id) {
         return setAreaInfo(val, id);
       } : null;
@@ -213,36 +257,39 @@ var Home = function (_Taro$Component) {
       } : null;
       _taroTt.propsManager.set({
         "data": swiper
-      }, $compid__5, $prevCompid__5);
+      }, $compid__10, $prevCompid__10);
       _taroTt.propsManager.set({
         "data": notice
-      }, $compid__6, $prevCompid__6);
+      }, $compid__11, $prevCompid__11);
       _taroTt.propsManager.set({
         "data": lists.recruit,
-        "bottom": false
-      }, $compid__7, $prevCompid__7);
+        "bottom": false,
+        "hasMore": true
+      }, $compid__12, $prevCompid__12);
       _taroTt.propsManager.set({
         "data": lists.resume,
-        "bottom": false
-      }, $compid__8, $prevCompid__8);
+        "bottom": false,
+        "hasMore": true
+      }, $compid__13, $prevCompid__13);
       _taroTt.propsManager.set({
         "data": lists.fleamarket,
-        "bottom": false
-      }, $compid__9, $prevCompid__9);
+        "bottom": false,
+        "hasMore": true
+      }, $compid__14, $prevCompid__14);
       shwoCity && _taroTt.propsManager.set({
         "show": shwoCity,
         "setAreaInfo": anonymousState__temp,
         "closeDrawer": anonymousState__temp2
-      }, $compid__10, $prevCompid__10);
+      }, $compid__15, $prevCompid__15);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
         anonymousState__temp2: anonymousState__temp2,
-        $compid__5: $compid__5,
-        $compid__6: $compid__6,
-        $compid__7: $compid__7,
-        $compid__8: $compid__8,
-        $compid__9: $compid__9,
         $compid__10: $compid__10,
+        $compid__11: $compid__11,
+        $compid__12: $compid__12,
+        $compid__13: $compid__13,
+        $compid__14: $compid__14,
+        $compid__15: $compid__15,
         IMGCDNURL: _index.IMGCDNURL,
         ISWEIXIN: false,
         shwoCity: shwoCity,
@@ -260,12 +307,32 @@ var Home = function (_Taro$Component) {
     value: function anonymousFunc1(e) {
       ;
     }
+  }, {
+    key: "anonymousFunc2",
+    value: function anonymousFunc2(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc3",
+    value: function anonymousFunc3(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc4",
+    value: function anonymousFunc4(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc5",
+    value: function anonymousFunc5(e) {
+      ;
+    }
   }]);
 
   return Home;
 }(_taroTt2.default.Component);
 
-Home.$$events = ["anonymousFunc0", "anonymousFunc1"];
+Home.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5"];
 Home.$$componentPath = "pages/home/index";
 exports.default = Home;
 

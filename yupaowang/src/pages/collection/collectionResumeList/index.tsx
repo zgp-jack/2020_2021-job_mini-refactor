@@ -18,9 +18,12 @@ export default function CollectionResumeList({ data = [], onHandlerClick, bottom
   // 弹窗内容
   const [modalContent, setModalContent] = useState<string>('') 
   // 弹窗
-  const onHandleClick = (type: string) => {
+  const onHandleClick = (type: string, uuid: string) => {
     // 1 审核中 2 通过 0 失败
     if (type == '2') {
+      Taro.navigateTo({
+        url: `/pages/resume/detail/index?uuid=${uuid}`
+      })
     } else if (type == '0') {
       setIsOpened(true)
       setModalContent('该信息未通过人工审核，审核通过后，即可查看')
@@ -35,14 +38,14 @@ export default function CollectionResumeList({ data = [], onHandlerClick, bottom
       { data && data.map((item) => (
         <Block key={item.id}>
           {
-            <View className='resume-list-item' onClick={() => onHandleClick(item.resume.check)} key={item.id}>
+            <View className='resume-list-item' onClick={() => onHandleClick(item.resume.check,item.resume_uuid)} key={item.id}>
               <View className='resume-list-header'>
                   <Image className='resume-list-user' src={item.resume.headerimg} />
                 <View className='resume-list-userinfo'>
                   <View className='resume-list-userinfo-detail'>
                       <Text className='resume-userinfo-name'>{item.resume.username}</Text>
-                    <Text className='resume-userinfo-birthday'>{item.resume.birthday || 0 }岁</Text>
-                    {item.resume.certificate == 1 && < Image className='resume-userinfo-img' src={`${IMGCDNURL}newresume-infolist-jnz.png?t=1`}/>}
+                      {item.resume.birthday && <Text className='resume-userinfo-birthday'>{item.resume.birthday}岁</Text>}
+                      {item.resume.certificate == 1 && < Image className='resume-userinfo-img' src={`${IMGCDNURL}newresume-infolist-jnz.png?t=1`}/>}
                   </View>
                     <Text className='resume-list-type'>{item.resume.type}</Text>
                   <View className='resume-otherinfo'>
@@ -60,7 +63,7 @@ export default function CollectionResumeList({ data = [], onHandlerClick, bottom
                 <View className='resume-list-content overwords'>{item.resume.introduce}</View>
               <View className='resume-list-footer'>
                   <View className='resume-list-loctxt overwords'>{item.resume.time}</View>
-                  <Button size='mini' className='resume-list-button' onClick={() => { onHandlerClick(item.resume_uuid)}}>取消收藏</Button>
+                <Button size='mini' className='resume-list-button' onClick={(e) => { e.stopPropagation(); onHandlerClick(item.resume_uuid)}}>取消收藏</Button>
               </View>
             </View>
           }

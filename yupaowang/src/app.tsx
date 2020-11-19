@@ -1,6 +1,6 @@
-import Taro, { Config } from '@tarojs/taro'
-import { Component } from 'react'
-import { Provider } from '@tarojs/redux'
+import Taro, {Config} from '@tarojs/taro'
+import {Component} from 'react'
+import {Provider} from '@tarojs/redux'
 import Index from './pages/index'
 import configStore from './store'
 import './app.scss'
@@ -18,7 +18,8 @@ class App extends Component {
       "pages/map/resume/index", //发布找活地图
       "pages/used/publish/index", //发布二手交易
       "pages/used/info/index", //二手交易详情
-      "pages/invite/index", //邀请好友
+      "pages/static/invite/index", //邀请好友
+      'pages/static/notice/index',//资讯详情
       "pages/getintegral/index", //获取积分
       "pages/integral/source/index", //积分来源记录
       "pages/integral/temp/index", //临时积分记录
@@ -37,8 +38,6 @@ class App extends Component {
       "pages/help/index", //帮助中心
       "pages/feedbacklist/index", //意见反馈列表
       "pages/feedback/index", //意见反馈
-      "pages/static/invite/index", //新闻资讯
-      "pages/query/index", //实名查询
       "pages/information/mymessage/index", //我的信息
       "pages/information/system/index", //我的信息详情
       'pages/integral/tabber/index', //积分来源顶部
@@ -53,18 +52,11 @@ class App extends Component {
       'pages/resume/add_project/index', //新增项目经验
       'pages/resume/projects/index', //项目经验列表
       'pages/resume/skills/index', //技能证书列表
-
-
+      'pages/rank-rules/index', //排名规则
+      'pages/turntable/index',// 大转盘
       'pages/resume/detail/index', // 找活详情
-      'pages/resume/skillList/index',//技能证书
-      'pages/resume/projectList/index',//项目经验
-      'pages/resume/addProject/index', //新增项目,
-      'pages/resume/addSkill/index',//新增技能
-      'pages/resume/basics/index',//基础信息
-      'pages/resume/mine/index',//新增
-      'pages/resume/recList/index', //更多招工信息
+      'pages/resume/newPreview/index', // 预览
       'pages/resume/preview/index', // 预览
-      'pages/resume/personInfo/index',//人员信息
       'pages/login/index',//用户登录
       'pages/recruit/fast_issue/issue/index',
       'pages/recruit/fast_issue/code/index',
@@ -74,14 +66,16 @@ class App extends Component {
       {
         root: 'subpackage/pages',
         pages: [
-          'checkauth/index',
+          'checkauth/index',// 实名查询
           'about/index',//关于我们
           'report/index',//举报骗子
-          'notice/index',//资讯详情
           'download/index',//下载app
           'ranking/index',//排名规则
           'course/index',//使用教程
           'anti-fraud/index', //防骗指南
+          'projects/index', //更多项目经验
+          'skills/index',//更多技能证书
+          'news/index', //鱼泡动态
         ]
       },
     ],
@@ -108,24 +102,28 @@ class App extends Component {
     }
   }
 
-  componentDidMount() { }
+  componentDidMount() {
+  }
 
-  componentDidShow() { }
+  componentDidShow(e) {
+  }
 
-  componentDidHide() { }
+  componentDidHide() {
+  }
 
-  componentDidCatchError() { }
+  componentDidCatchError() {
+  }
 
   // 在 App 类中的 render() 函数没有实际作用
   // 请勿修改此函数
   render() {
     return (
-      <Provider store={store} >
-        <Index />
+      <Provider store={store}>
+        <Index/>
       </Provider>
     )
   }
-  
+
 }
 
-Taro.render(<App />, document.getElementById('app'))
+Taro.render(<App/>, document.getElementById('app'))

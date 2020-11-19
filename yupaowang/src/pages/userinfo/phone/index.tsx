@@ -1,4 +1,4 @@
-import Taro, { useState } from '@tarojs/taro'
+import Taro, { useState, Config } from '@tarojs/taro'
 import { View, Text, Input } from '@tarojs/components'
 import useCode from '../../../hooks/code'
 import { userChangePhone } from '../../../utils/request'
@@ -14,7 +14,7 @@ interface BandPhone {
 }
 export default function UserBandPhone(){
   const dispatch =  useDispatch()
-  const { userGetCode, text } = useCode()
+  const { userGetCode, text } = useCode(false)
   const [info, setInfo] = useState<BandPhone>({
     tel: '',
     code: ''
@@ -58,6 +58,7 @@ export default function UserBandPhone(){
             type='number'
             placeholder='请输入您的手机号'
             value={ info.tel }
+            maxLength={11}
             onInput={(e) => userEnterForm(e, 'tel')}
           />
         </View>
@@ -77,3 +78,9 @@ export default function UserBandPhone(){
     </View>
   )
 }
+
+
+
+UserBandPhone.config = {
+  navigationBarTitleText: '修改手机号'
+} as Config

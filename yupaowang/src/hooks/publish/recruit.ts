@@ -90,7 +90,6 @@ export default function usePublishViewInfo(InitParams: InitRecruitView){
 
   // 初始化用户区域数据
   function initUserAreaInfo(data: any){
-    console.log(InitParams.infoId,'InitParams.infoId')
     //  如果传递参数有infoid代表是修改，保存修改的里面默认区域数据
     if (InitParams.infoId){ 
       dispatch(setArea(data.default_search_name.name))
@@ -99,9 +98,10 @@ export default function usePublishViewInfo(InitParams: InitRecruitView){
       if(userLoctionCity){
         dispatch(setArea(userLoctionCity.city.slice(0,2)))
       }else{
-        userAuthLoction().then(res=>{
+        userAuthLoction()
+        .then(res=>{
           dispatch(setArea(res.city))
-        }).then(()=>{
+        }).catch(()=>{
           dispatch(setArea(AREABEIJING.name))
         })
       }
@@ -113,7 +113,7 @@ export default function usePublishViewInfo(InitParams: InitRecruitView){
         title: data.model.address,
         location: data.model.location,
         info: '',
-        adcode: data.model.adcode || ''
+        adcode: data.model.adcode || '',
       }))
     }else{
       // 获取用户最后发布的区域信息
@@ -169,40 +169,43 @@ export default function usePublishViewInfo(InitParams: InitRecruitView){
       classifies: model.classifies,
       images: model.view_images.map(item => item.url)
     }
-    return data
+    const mydata = JSON.parse(JSON.stringify(data))
+    let imgs: string = mydata.images.join(',')
+    mydata.images = imgs
+    return mydata
   }
 
   function userPublishRecruitAction(){
     let data = getPublishedInfo()
     if (!data) return
     if (!isVaildVal(data.title, 3)){
-      Msg('请正确输入3~12字中文标题!')
+      ShowActionModal({ msg: '请正确输入3~12字中文标题!' })
       return
     }
     if (!data.classifies.length){
-      Msg('请选择您的工种!')
+      ShowActionModal({ msg: '请选择您的工种!' })
       return
     }
     if (!data.province_id && !data.address) {
-      Msg('请选择您的详细地址!')
+      ShowActionModal({ msg: '请选择您的详细地址!' })
       return
     }
     if (!isVaildVal(data.user_name, 2)) {
-      Msg('请正确输入2~6字中文姓名!')
+      ShowActionModal({ msg: '请正确输入2~6字中文姓名!' })
       return
     }
     if (!isPhone(data.user_mobile)) {
-      Msg('手机号输入有误!')
+      ShowActionModal({ msg: '手机号输入有误!' })
       return
     }
     if(phone != data.user_mobile){
       if (!data.code){
-        Msg('请输入正确的验证码!')
+        ShowActionModal({ msg: '请输入正确的验证码!' })
         return
       }
     }
     if (!isVaildVal(data.detail, 15)) {
-      Msg('请正确输入15~500字招工详情!')
+      ShowActionModal({ msg: '请正确输入15~500字招工详情!'})
       return
     }
     // 如果是审核失败 那么久必须强制修改
@@ -219,6 +222,7 @@ export default function usePublishViewInfo(InitParams: InitRecruitView){
     }
     // 拼接小地址的描述
     data.address += '@@@@@' + areaInfo.info
+
     publishRecruitInfo(data).then(res=>{
       if(res.errcode == 'ok'){
         SubscribeToNews("recruit", () => {

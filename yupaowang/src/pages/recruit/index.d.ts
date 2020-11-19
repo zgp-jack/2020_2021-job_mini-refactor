@@ -67,14 +67,21 @@ export interface UserLastPublishRecruitArea {
   location: string,
   adcode: string,
   title: string,
-  info: string
+  info: string,
+  city?: string,
+  provice?: string,
+  areaId?: string
+}
+export interface AreaData {
+  name: string,
+  id: string
 }
 export interface RecruitInfo {
   areaInfo: UserLastPublishRecruitArea,
-  area: string,
+  area: AreaData,
   token: string,
   positionStatus: boolean,
-  phone: string
+  phone: string,
 }
 
 // 初始化发布招工获取信息类型

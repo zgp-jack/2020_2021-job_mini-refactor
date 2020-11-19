@@ -25,6 +25,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -37,7 +39,9 @@ var _taroTt2 = _interopRequireDefault(_taroTt);
 
 var _index = __webpack_require__(/*! ../../../utils/request/index */ "./src/utils/request/index.ts");
 
-var _index2 = __webpack_require__(/*! ../../../config/index */ "./src/config/index.ts");
+var _index2 = __webpack_require__(/*! ../../../utils/helper/index */ "./src/utils/helper/index.ts");
+
+var _index3 = __webpack_require__(/*! ../../../config/index */ "./src/config/index.ts");
 
 __webpack_require__(/*! ./index.scss */ "./src/pages/resume/preview/index.scss");
 
@@ -61,7 +65,7 @@ var Preview = function (_Taro$Component) {
       navigationBarTitleText: '找活名片'
     };
 
-    _this.$usedState = ["data", "loopArray98", "loopArray99", "loopArray100", "loopArray101", "IMGCDNURL", "checkpan", "checkone", "headerimg", "age", "sex", "project", "skillbooksone", "telephone"];
+    _this.$usedState = ["data", "loopArray97", "loopArray98", "loopArray99", "loopArray100", "IMGCDNURL", "checkpan", "checkone", "headerimg", "age", "sex", "project", "skillbooksone", "ISCANSHARE", "telephone"];
     _this.anonymousFunc0Map = {};
     _this.anonymousFunc2Map = {};
     _this.customComponents = [];
@@ -84,65 +88,72 @@ var Preview = function (_Taro$Component) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      // 左上角图片
+      // uuid 
 
-      var _useState = (0, _taroTt.useState)(false),
+      var _useState = (0, _taroTt.useState)(''),
           _useState2 = _slicedToArray(_useState, 2),
-          checkpan = _useState2[0],
-          setCheckpan = _useState2[1];
-      // 图片审核中
+          uuid = _useState2[0],
+          setUuid = _useState2[1];
+      // 左上角图片
 
 
       var _useState3 = (0, _taroTt.useState)(false),
           _useState4 = _slicedToArray(_useState3, 2),
-          checkone = _useState4[0],
-          setCheckone = _useState4[1];
+          checkpan = _useState4[0],
+          setCheckpan = _useState4[1];
+      // 图片审核中
+
+
+      var _useState5 = (0, _taroTt.useState)(false),
+          _useState6 = _slicedToArray(_useState5, 2),
+          checkone = _useState6[0],
+          setCheckone = _useState6[1];
       // 头像
 
 
-      var _useState5 = (0, _taroTt.useState)(''),
-          _useState6 = _slicedToArray(_useState5, 2),
-          headerimg = _useState6[0],
-          setHeaderimg = _useState6[1];
+      var _useState7 = (0, _taroTt.useState)(''),
+          _useState8 = _slicedToArray(_useState7, 2),
+          headerimg = _useState8[0],
+          setHeaderimg = _useState8[1];
       // 性别
 
 
-      var _useState7 = (0, _taroTt.useState)('未填写'),
-          _useState8 = _slicedToArray(_useState7, 2),
-          sex = _useState8[0],
-          setSex = _useState8[1];
+      var _useState9 = (0, _taroTt.useState)('未填写'),
+          _useState10 = _slicedToArray(_useState9, 2),
+          sex = _useState10[0],
+          setSex = _useState10[1];
       // 年龄
 
 
-      var _useState9 = (0, _taroTt.useState)(''),
-          _useState10 = _slicedToArray(_useState9, 2),
-          age = _useState10[0],
-          setAge = _useState10[1];
+      var _useState11 = (0, _taroTt.useState)(''),
+          _useState12 = _slicedToArray(_useState11, 2),
+          age = _useState12[0],
+          setAge = _useState12[1];
       // 电话
 
 
-      var _useState11 = (0, _taroTt.useState)('未填写'),
-          _useState12 = _slicedToArray(_useState11, 2),
-          telephone = _useState12[0],
-          settelephone = _useState12[1];
-      // 项目
-
-
-      var _useState13 = (0, _taroTt.useState)([]),
+      var _useState13 = (0, _taroTt.useState)('未填写'),
           _useState14 = _slicedToArray(_useState13, 2),
-          project = _useState14[0],
-          setProject = _useState14[1];
-      // 技能
+          telephone = _useState14[0],
+          settelephone = _useState14[1];
+      // 项目
 
 
       var _useState15 = (0, _taroTt.useState)([]),
           _useState16 = _slicedToArray(_useState15, 2),
-          skillbooksone = _useState16[0],
-          setSkillbooksone = _useState16[1];
+          project = _useState16[0],
+          setProject = _useState16[1];
+      // 技能
+
+
+      var _useState17 = (0, _taroTt.useState)([]),
+          _useState18 = _slicedToArray(_useState17, 2),
+          skillbooksone = _useState18[0],
+          setSkillbooksone = _useState18[1];
       // 总数据
 
 
-      var _useState17 = (0, _taroTt.useState)({
+      var _useState19 = (0, _taroTt.useState)({
         info: {
           username: '未填写',
           authentication: '',
@@ -166,9 +177,9 @@ var Preview = function (_Taro$Component) {
           show_tips: 0
         }
       }),
-          _useState18 = _slicedToArray(_useState17, 2),
-          data = _useState18[0],
-          setData = _useState18[1];
+          _useState20 = _slicedToArray(_useState19, 2),
+          data = _useState20[0],
+          setData = _useState20[1];
 
       (0, _taroTt.useEffect)(function () {
         (0, _index.resumeListAction)().then(function (res) {
@@ -177,10 +188,10 @@ var Preview = function (_Taro$Component) {
             var dateo = date.getTime();
             var dateone = new Date(dateo);
             if (res.data.info.birthday) {
-              if (dateone.getFullYear() - (res.data.info.birthday.split("-")[0] - 0) == 0) {
+              if (dateone.getFullYear() - (+res.data.info.birthday.split("-")[0] - 0) == 0) {
                 setAge('');
               } else {
-                setAge(dateone.getFullYear() - (res.data.info.birthday.split("-")[0] - 0) + "岁");
+                setAge(dateone.getFullYear() - (+res.data.info.birthday.split("-")[0] - 0) + "岁");
               }
             }
             // Taro.setStorageSync("introinfo", res.data.info)
@@ -188,6 +199,7 @@ var Preview = function (_Taro$Component) {
             setCheckpan(res.data.info.check == '0' ? true : false);
             setCheckone(res.data.info.check == '0' ? true : false);
             setHeaderimg(res.data.info.headerimg);
+            setUuid(res.data.info.uuid);
             setData({ info: res.data.info, introduces: res.data.introduces, project: res.data.project, certificates: res.data.certificates, content: res.data.content });
             settelephone(res.data.info.tel);
             if (res.data.project.length === 0) {
@@ -198,11 +210,11 @@ var Preview = function (_Taro$Component) {
               if (res.data.project) {
                 if (new Date(res.data.project[0].completion_time).getTime() / 86400000 < new Date().getTime() / 86400000) {
                   var item = res.data.project[0];
-                  item.completiontime = 'zhijing';
+                  item.completion_timeTitle = 'zhijing';
                   setProject([item]);
                 } else {
                   var _item = res.data.project[0];
-                  _item.completiontime = 'zhijin';
+                  _item.completion_timeTitle = 'zhijin';
                   setProject([_item]);
                 }
               }
@@ -217,6 +229,12 @@ var Preview = function (_Taro$Component) {
           }
         });
       }, []);
+      // 设置分享
+      (0, _taroTt.useShareAppMessage)(function () {
+        return _extends({}, (0, _index2.getUserShareMessage)(), {
+          path: "/pages/resume/detail?uuid=" + uuid
+        });
+      });
       // 点击图片
       var handleImg = function handleImg(e) {
         _taroTt2.default.previewImage({
@@ -230,7 +248,7 @@ var Preview = function (_Taro$Component) {
       this.anonymousFunc4 = function () {
         return _taroTt2.default.navigateTo({ url: "/pages/resume/skillList/index?preview=1" });
       };
-      var loopArray98 = data.info.miniInfoOccupations.length ? data.info.miniInfoOccupations.map(function (v, i) {
+      var loopArray97 = data.info.miniInfoOccupations.length ? data.info.miniInfoOccupations.map(function (v, i) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
@@ -240,7 +258,7 @@ var Preview = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray99 = data.introduces.tags.length ? data.introduces.tags.map(function (v, i) {
+      var loopArray98 = data.introduces.tags.length ? data.introduces.tags.map(function (v, i) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
@@ -250,17 +268,17 @@ var Preview = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray100 = data.project.length ? project.map(function (item, i) {
+      var loopArray99 = data.project.length ? project.map(function (item, i) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
         var $loopState__temp6 = data.project.length ? i + i : null;
-        var $anonymousCallee__14 = data.project.length ? item.$original.image.map(function (v, i) {
+        var $anonymousCallee__11 = data.project.length ? item.$original.image.map(function (v, i) {
           v = {
             $original: (0, _taroTt.internal_get_original)(v)
           };
           var $loopState__temp8 = data.project.length ? i + i : null;
-          var _$indexKey = "badzz" + i + "-" + i;
+          var _$indexKey = "jfzzz" + i + "-" + i;
           _this2.anonymousFunc0Map[_$indexKey] = function () {
             return handleImg(v.$original);
           };
@@ -272,20 +290,20 @@ var Preview = function (_Taro$Component) {
         }) : [];
         return {
           $loopState__temp6: $loopState__temp6,
-          $anonymousCallee__14: $anonymousCallee__14,
+          $anonymousCallee__11: $anonymousCallee__11,
           $original: item.$original
         };
       }) : [];
-      var loopArray101 = data.certificates.length ? skillbooksone.map(function (item, __index3) {
+      var loopArray100 = data.certificates.length ? skillbooksone.map(function (item, __index3) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
-        var $anonymousCallee__15 = data.certificates.length ? item.$original.image.map(function (v, i) {
+        var $anonymousCallee__12 = data.certificates.length ? item.$original.image.map(function (v, i) {
           v = {
             $original: (0, _taroTt.internal_get_original)(v)
           };
           var $loopState__temp10 = data.certificates.length ? i + i : null;
-          var _$indexKey2 = "baezz" + __index3 + "-" + i;
+          var _$indexKey2 = "jgzzz" + __index3 + "-" + i;
           _this2.anonymousFunc2Map[_$indexKey2] = function () {
             return handleImg(v.$original);
           };
@@ -296,17 +314,17 @@ var Preview = function (_Taro$Component) {
           };
         }) : [];
         return {
-          $anonymousCallee__15: $anonymousCallee__15,
+          $anonymousCallee__12: $anonymousCallee__12,
           $original: item.$original
         };
       }) : [];
       Object.assign(this.__state, {
         data: data,
+        loopArray97: loopArray97,
         loopArray98: loopArray98,
         loopArray99: loopArray99,
         loopArray100: loopArray100,
-        loopArray101: loopArray101,
-        IMGCDNURL: _index2.IMGCDNURL,
+        IMGCDNURL: _index3.IMGCDNURL,
         checkpan: checkpan,
         checkone: checkone,
         headerimg: headerimg,
@@ -314,6 +332,7 @@ var Preview = function (_Taro$Component) {
         sex: sex,
         project: project,
         skillbooksone: skillbooksone,
+        ISCANSHARE: _index3.ISCANSHARE,
         telephone: telephone
       });
       return this.__state;

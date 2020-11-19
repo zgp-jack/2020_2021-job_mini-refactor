@@ -1,3 +1,10 @@
+/*
+ * @Author: zyb
+ * @Date: 2020-11-03 14:36:47
+ * @LastEditors: jsxin
+ * @LastEditTime: 2020-11-19 09:34:11
+ * @Description: 
+ */
 import { combineReducers } from 'redux'
 import tabbar from './tabbar'
 import WechatNotice from './wechat_notice'
@@ -11,6 +18,9 @@ import member from './member'
 import realname from './realname'
 import resumeAddInfo from './resume_addinfo'
 import publishData from './publish'
+import resumeData from './resume_data';
+import resumeList from './resume_list';
+import recruitTop from './recruit_top'
 
 //合并reducer
 export default combineReducers({
@@ -28,5 +38,8 @@ export default combineReducers({
   resumeAddInfo,
   PositionStatus,
   publishData,
-  RecruitAction
+  RecruitAction,
+  resumeData,
+  resumeList,
+  recruitTop
 })

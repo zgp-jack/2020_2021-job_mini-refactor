@@ -1,16 +1,17 @@
 import Taro from '@tarojs/taro'
 import { View, Text, Image, Block } from '@tarojs/components'
-import { IMGCDNURL } from '../../../config'
+import { IMGCDNURL, PUBLISHEDRECRUIT } from '../../../config'
 import Nodata from '../../../components/nodata'
 import './index.scss'
 import { RecruitListItem } from '../../../utils/request/index.d'
 
 interface PROPS {
   data: RecruitListItem[][],
-  bottom?: boolean
+  bottom?: boolean,
+  hasMore?: boolean
 }
 
-export default function RecruitList({ data, bottom = true }: PROPS){
+export default function RecruitList({ data, bottom = true, hasMore = false }: PROPS){
   // 用户页面跳转
   const userRouteJump = (url: string) => {
     Taro.navigateTo({
@@ -27,7 +28,7 @@ export default function RecruitList({ data, bottom = true }: PROPS){
               {d.is_end == 2 && <Image className='recruit-findend-img' src={IMGCDNURL + 'newlist-jobfindend.png'} /> }
               <View className='recruit-list-header'>
                 <View className='recruit-list-title overwords'>{ d.title }</View>
-                {d.top && <Text className='recruit-list-settop'>我要置顶</Text>}
+                {/* {d.top && <Text className='recruit-list-settop' onClick={() => userRouteJump(PUBLISHEDRECRUIT)}>我要置顶</Text>} */}
               </View>
               <View className='recruit-list-body'>
                 <Image className='recruit-list-user' src={ d.image } />
@@ -52,6 +53,7 @@ export default function RecruitList({ data, bottom = true }: PROPS){
         </Block>
         )
       )}
+      {data && data[0] && data[0].length && !hasMore && <View className='list-data-notmore'>没有更多数据了</View>} 
       {data&&data[0]&&!data[0].length && <Nodata text='暂无相关数据' />}
     </View>
   )

@@ -75,7 +75,6 @@ export default function useRealname(){
           birthday: initData.memberExt.birthday || '',
           gender: initData.memberExt.sex || ''
         }
-        console.log(modelData)
         // 设置地图显示的名称
         let area: string = getLongAreaAdname(modelData.address)
         setRealnameArea(area)
@@ -155,8 +154,6 @@ export default function useRealname(){
 
   // 用户提交实名表单
   const userPostAuthInfo = ()=> {
-    console.log(model)
-    console.log(initModel)
     // 验证用户是否填写完了表单
     if (!vaildUserAuthInfo()) return 
     const item = JSON.parse(JSON.stringify(model))
@@ -176,7 +173,6 @@ export default function useRealname(){
       gender: sexCurrent+1
     }
     postUserAuthInfo(params).then(res=>{
-      console.log(res);
       SubscribeToNews('auth', () => {
         ShowActionModal({
           msg: res.errmsg,
@@ -220,10 +216,12 @@ export default function useRealname(){
               birthall = birth + "-" + birthtwo + "-" + birththree;
             }
             // 性别
-            let sexIndex = 0;
+            let sexIndex: number = 0;
+            let sexId: string = ''; // 默认空 没有遍历到即假
             sexArray.map((v, i) => {
               if (memberExt.sex === v.name) {
                 sexIndex = i;
+                sexId = v.id
               }
             })
             setSexCurrent(sexIndex);
@@ -240,11 +238,11 @@ export default function useRealname(){
               code: '',
               address: memberExt.address,
               birthday: birthall || '',
-              gender: sexIndex && sexIndex != -1 ? sexIndex : "",
+              gender: sexId,
             }
             memberExt.birthday = birthall;
             setInitModel({ ...initModel, memberExt: { ...memberExt} })
-            setModel(dataItem)
+            setModel({ ...dataItem})
           }else{
             Msg(data.card_info.tips_message)
             memberExt.id_card_img_path = cardInfoFailImg
@@ -265,7 +263,6 @@ export default function useRealname(){
           url: res.url,
           httpurl: res.httpurl
         }
-        console.log(imageItem);
         memberExt.hand_img = imageItem.url
         memberExt.hand_img_path = imageItem.httpurl
         const item = JSON.parse(JSON.stringify(model))

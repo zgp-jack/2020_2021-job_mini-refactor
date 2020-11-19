@@ -10,6 +10,7 @@ import { getAmapPoiList } from '../../../utils/helper'
 import { InputPoiListTips } from '../../../utils/helper/index.d'
 import Msg, { ShowActionModal } from '../../../utils/msg'
 import { useSelector } from '@tarojs/redux' 
+import { AreaData } from '../../../pages/recruit/index.d'
 import './index.scss'
 
 const PI = Math.PI;  // 数学 PI 常亮
@@ -93,8 +94,8 @@ export default function RealnameMap() {
   }, [])
 
   // 用户切换城市
-  const userChangeCity = (city: string) => {
-    setArea(city)
+  const userChangeCity = (city: AreaData) => {
+    setArea(city.name)
   }
 
   // 用户点击取消 返回上一页
@@ -186,7 +187,6 @@ export default function RealnameMap() {
   const userClickAreaItem = (item: InputPoiListTips) => {
     checkAdcodeValid(item.adcode).then(res => {
       if (res.errcode == "ok") {
-        // console.log(item,'xxxx')
         // setLocation(item.location)
         // setAdcode(item.adcode)
         // if (setAreaInfo) {

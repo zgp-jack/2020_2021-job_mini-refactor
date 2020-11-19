@@ -1,18 +1,23 @@
 import Taro, { useEffect, useState } from '@tarojs/taro';
 import { useSelector, useDispatch } from '@tarojs/redux';
-import { PublishConfigData, UserLastPublishRecruitArea, MateDataItem, ImageData } from '../../pages/recruit/index.d'
+import { PublishConfigData, UserLastPublishRecruitArea, MateDataItem, RecruitImageModel, RecruitInfo } from '../../pages/recruit/index.d'
 import { PublishData, UserLocation } from '../../config/store'
-import { UserLocationPromiss, AREABEIJING } from '../../models/area'
+import { UserLocationPromiss, AREABEIJING, ChildItems, getCityInfo } from '../../models/area'
 import { UserLastPublishArea, UserLocationCity } from '../../config/store'
 import { setAreaInfo, setArea } from '../../actions/recruit'
 import { userAuthLoction } from '../../utils/helper'
 import { SelectedClassfies, RulesClassfies } from '../../components/classfiy_picker/index'
+import { publishFindWorker } from '../../utils/request'
+import { SubscribeToNews } from '../../utils/subscribeToNews'
+import { ShowActionModal } from '../../utils/msg'
 
 
 
 export default function useRelease () {
   // 获取redex数据
-  const publishData: PublishConfigData = useSelector<any, PublishConfigData>(state => state.publishData)
+  const publishData: PublishConfigData = useSelector<any, PublishConfigData>(state => state.publishData)  
+  // 发布招工redux数据
+  const recruitInfo: RecruitInfo = useSelector<any, RecruitInfo>(state => state.RecruitAction)
   // 工种数据、匹配库、不匹配库,最大工种选择数，最大图片上传数
   const { classifyTree, mateData, noMateData, maxClassifyCount, maxImageCount } = publishData
   // 将工种数据放入当前状态
@@ -26,7 +31,7 @@ export default function useRelease () {
   // 是否展开图片上传
   const [showUpload, setShowUpload] = useState<boolean>(false)
   // 上传图片数据
-  const [image, setImage] = useState<ImageData[]>([])
+  const [image, setImage] = useState<RecruitImageModel[]>([])
   // 获取分发action的dispatch
   const dispatch = useDispatch()
 
@@ -36,17 +41,18 @@ export default function useRelease () {
   },[])
   // 初始化用户区域数据
   function initUserAreaInfo() {
-    debugger
     let userLocation:string = Taro.getStorageSync(UserLocation)
     let userLoctionCity: UserLocationPromiss = Taro.getStorageSync(UserLocationCity)
     if (userLoctionCity) {
+      let data: ChildItems = getCityInfo(userLoctionCity, 1)
       let positionArea: UserLastPublishRecruitArea = {
         location: userLocation,
         adcode: userLoctionCity.adcode,
         title: userLoctionCity.title,
-        info: userLoctionCity.info
+        info: userLoctionCity.info,
+        areaId: data.id
       }
-      dispatch(setArea(userLoctionCity.city.slice(0, 2)))
+      dispatch(setArea({ name: userLoctionCity.city.slice(0, 2), id:data.id}))
       dispatch(setAreaInfo(positionArea))
     } else {
       userAuthLoction().then(res => {
@@ -57,9 +63,9 @@ export default function useRelease () {
           info: res.info
         }
         dispatch(setAreaInfo(positionArea))
-        dispatch(setArea(res.city))
-      }).then(() => {
-        dispatch(setArea(AREABEIJING.name))
+        dispatch(setArea({ name: res.city.slice(0, 2), id:''}))
+      }).catch(() => {
+        dispatch(setArea({ name: AREABEIJING.name, id: AREABEIJING.id}))
       })
     }
     // 获取用户最后发布的区域信息
@@ -188,7 +194,34 @@ export default function useRelease () {
   }
   // 发布招工
   function pulishFindWorker() {
-    
+    let images = image.map(item => item.url).join(",")
+    let data = {
+      token: recruitInfo.token,
+      trades: selectedClassifies.join(","),
+      images: showUpload?images:'',
+      area_id: recruitInfo.areaInfo.areaId,
+      location: recruitInfo.areaInfo.location,
+      ad_name: recruitInfo.areaInfo.title,
+      address: recruitInfo.areaInfo.info
+    }
+    publishFindWorker(data).then(res=>{
+      if (res.errcode == 'ok') {
+        SubscribeToNews("recruit", () => {
+          ShowActionModal({
+            msg: res.errmsg,
+            success: () => {
+              Taro.reLaunch({
+                url: '/pages/published/recruit/index'
+              })
+            }
+          })
+        })
+      } else {
+        ShowActionModal({
+          msg: res.errmsg
+        })
+      }
+    })
   }
   return {
     classifies,
@@ -201,6 +234,8 @@ export default function useRelease () {
     setShowUpload,
     image,
     setImage,
-    maxImageCount
+    maxImageCount,
+    pulishFindWorker
+    
   }
 }

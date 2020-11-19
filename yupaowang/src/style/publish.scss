@@ -21,6 +21,21 @@
         @include text-justify();
       }
     }
+    .pulish-list-title-address {
+      position: absolute;
+      width: 140px;
+      left: 0;
+      top: 25%;
+      display: block;
+      text-align: justify;
+      line-height: 80px;
+      font-weight: bold;
+      font-size: 30px;
+
+      &::after {
+        @include text-justify();
+      }
+    }
     .publish-list-input{
       position: relative;
       padding: $miniPublishInputPadding 0;
@@ -37,6 +52,9 @@
           margin-right: 0;
         }
       }
+    }
+    .publish-list-text{
+      padding:  20 0;
     }
   }
 

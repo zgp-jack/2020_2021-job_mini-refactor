@@ -1,11 +1,14 @@
-import Taro, { Config, useState, useEffect} from '@tarojs/taro'
-import { View, Text, Image} from '@tarojs/components'
+import Taro, { Config, useState, useEffect, useShareAppMessage } from '@tarojs/taro'
+import { View, Text, Image, Button } from '@tarojs/components'
 import { resumeListAction } from '../../../utils/request/index'
-import { IMGCDNURL } from '../../../config'
+import { getUserShareMessage } from '../../../utils/helper'
+import { IMGCDNURL, ISCANSHARE} from '../../../config'
 import { DataType } from './index.d'
 import './index.scss'
 
 export default function Preview() {
+  // uuid 
+  const [uuid, setUuid] = useState<string>('')
   // 左上角图片
   const [checkpan, setCheckpan] = useState<boolean>(false)
   // 图片审核中
@@ -23,7 +26,7 @@ export default function Preview() {
   // 技能
   const [skillbooksone, setSkillbooksone] = useState<any>([])
   // 总数据
-  const [data,setData]= useState<DataType>({
+  const [data,setData]= useState<any>({
     info:{
       username:'未填写',
       authentication:'',
@@ -54,10 +57,10 @@ export default function Preview() {
         const dateo = date.getTime()
         const dateone = new Date(dateo);
         if (res.data.info.birthday) {
-          if (dateone.getFullYear() - (res.data.info.birthday.split("-")[0] - 0) == 0) {
+          if (dateone.getFullYear() - (+res.data.info.birthday.split("-")[0] - 0) == 0) {
             setAge('')
           } else {
-            setAge(dateone.getFullYear() - (res.data.info.birthday.split("-")[0] - 0) + "岁")
+            setAge(dateone.getFullYear() - (+res.data.info.birthday.split("-")[0] - 0) + "岁")
           }
         }
         // Taro.setStorageSync("introinfo", res.data.info)
@@ -65,6 +68,7 @@ export default function Preview() {
         setCheckpan(res.data.info.check == '0' ? true : false)
         setCheckone(res.data.info.check == '0' ? true : false)
         setHeaderimg(res.data.info.headerimg);
+        setUuid(res.data.info.uuid)
         setData({ info: res.data.info, introduces: res.data.introduces, project: res.data.project, certificates: res.data.certificates,content:res.data.content})
         settelephone(res.data.info.tel);
         if (res.data.project.length === 0) {
@@ -75,11 +79,11 @@ export default function Preview() {
           if (res.data.project) {
             if (new Date(res.data.project[0].completion_time).getTime() / 86400000 < new Date().getTime() / 86400000) {
               const item = res.data.project[0];
-              item.completiontime = 'zhijing';
+              item.completion_timeTitle = 'zhijing';
               setProject([item])
             } else {
               const item = res.data.project[0];
-              item.completiontime = 'zhijin';
+              item.completion_timeTitle = 'zhijin';
               setProject([item])
             }
           }
@@ -94,6 +98,13 @@ export default function Preview() {
       }
     })
   },[])
+  // 设置分享
+  useShareAppMessage(()=>{
+    return {
+      ...getUserShareMessage(),
+      path: `/pages/resume/detail?uuid=${uuid}`
+    }
+  })
   // 点击图片
   const handleImg = (e: string) => {
     Taro.previewImage({
@@ -271,7 +282,7 @@ export default function Preview() {
                   </View>
                   <View className="cardsixthreeborder">
                     <View className="cardsixthree">
-                      <Text className='cardsixthree-text'>{item.start_time}-{item.completiontime == "zhijin" ? "至今" : item.completion_time}</Text>
+                      <Text className='cardsixthree-text'>{item.start_time}-{item.completion_timeTitle == "zhijin" ? "至今" : item.completion_time}</Text>
                       {item.city_name &&
                         <Text className='cardsixthree-text'>{item.province_name}-{item.city_name}</Text>
                       }
@@ -384,9 +395,11 @@ export default function Preview() {
         </View>
       }
       {/* 分享 */}
-      <View className='btn-box'>
+      {ISCANSHARE && 
+      <Button openType='share' className='btn-box'>
         <View className='btn'>分享</View>
-      </View>
+      </Button>
+      }
     </View>
   )
 }

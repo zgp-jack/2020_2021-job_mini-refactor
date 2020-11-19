@@ -1,22 +1,22 @@
 import { DataType } from './../../pages/resume/preview/index.d';
 import Taro from '@tarojs/taro'
 import * as api from '../api'
-import { TOKEN, VERSION } from '../../config'
+import {TOKEN, VERSION} from '../../config'
 import * as Inter from './index.d'
 import Msg from '../msg'
-import { UserOpenid } from '../../config/inter'
-import { SearchType as RecruitSearchType } from '../../pages/recruit/index.d'
-import { SearchType as ResumeSearchType } from '../../pages/resume/index.d'
-import { SearchType as FleamarketSearchType } from '../../pages/used/lists/index'
-import { AuthData } from '../../components/auth'
-import { FilterData } from '../../pages/home'
-import { User } from '../../reducers/user'
-import { IntegralData } from '../../pages/integral/config'
-import { InitRecruitView } from '../../pages/recruit/publish'
-import { UserInfo } from '../../config/store'
-import { CreateOrder } from '../../pages/recharge'
-import { UsedPublishModel } from '../../pages/used/index.d'
-import { UserPublishUsedInfo } from '../../pages/used/index.d'
+import {UserOpenid} from '../../config/inter'
+import {SearchType as RecruitSearchType} from '../../pages/recruit/index.d'
+import {SearchType as ResumeSearchType} from '../../pages/resume/index.d'
+import {SearchType as FleamarketSearchType} from '../../pages/used/lists/index'
+import {AuthData} from '../../components/auth'
+import {FilterData} from '../../pages/home'
+import {User} from '../../reducers/user'
+import {IntegralData} from '../../pages/integral/config'
+import {InitRecruitView} from '../../pages/recruit/publish'
+import {UserInfo} from '../../config/store'
+import {CreateOrder} from '../../pages/recharge'
+import {UsedPublishModel} from '../../pages/used/index.d'
+import {UserPublishUsedInfo} from '../../pages/used/index.d'
 import * as Hooks from '../../hooks/index.d'
 import { UserAddInfo } from '../../pages/userinfo/add'
 import { searchDataType } from '../../pages/published/recruit' 
@@ -38,7 +38,8 @@ interface RequestBase {
   data: any,
   failToast: boolean,
   loading: boolean,
-  title: string
+  title: string,
+  user: boolean
 }
 
 type Request = {
@@ -46,7 +47,7 @@ type Request = {
 }
 
 // 请求失败提示信息
-function requestShowToast(show: boolean):void {
+function requestShowToast(show: boolean): void {
   if (show) {
     setTimeout(() => {
       Msg('网络错误，请求失败')
@@ -55,7 +56,7 @@ function requestShowToast(show: boolean):void {
 }
 
 // 获取header请求头信息
-function getRequestHeaderInfo(): RequestHeader{
+function getRequestHeaderInfo(): RequestHeader {
   // 获取用户信息
   let userInfo: User = Taro.getStorageSync(UserInfo)
   const requestHeader: RequestHeader = userInfo.login ? {
@@ -63,38 +64,42 @@ function getRequestHeaderInfo(): RequestHeader{
     mid: userInfo.userId,
     token: userInfo.token,
     time: userInfo.tokenTime,
-    uuid: userInfo.uuid, 
+    uuid: userInfo.uuid,
     version: VERSION
-    } : {
-      'content-type': 'application/x-www-form-urlencoded',
-      version: VERSION
-    }
+  } : {
+    'content-type': 'application/x-www-form-urlencoded',
+    version: VERSION
+  }
   return requestHeader
 }
 
 // 配置默认请求参数
-const defaultRequestData: RequestBase = {
-  url: '',
-  method: 'GET',
-  header: getRequestHeaderInfo(),
-  data: {},
-  loading: true,
-  title: '数据加载中...',
-  failToast: true
+const getRequestHeaderInfoAction = (): RequestBase => {
+  let headers: RequestHeader = getRequestHeaderInfo()
+  return {
+    url: '',
+    method: 'GET',
+    header: { ...headers},
+    data: {},
+    loading: true,
+    title: '数据加载中...',
+    failToast: true,
+    user: true
+  }
 }
 
 // 全局通用请求方法
 export function doRequestAction(reqData: Request): Promise<any> {
-  let req: RequestBase = { ...defaultRequestData, ...reqData }
+  let req: RequestBase = { ...getRequestHeaderInfoAction(), ...reqData}
   if (req.loading) {
     Taro.showLoading({
       title: req.title
     })
   }
-  let data = { ...req.data, wechat_token: TOKEN }
+  let data = {...req.data, wechat_token: TOKEN}
   // 获取用户信息
   let userInfo: User = Taro.getStorageSync(UserInfo)
-  if(req.method === 'POST' && userInfo.login){
+  if (req.method === 'POST' && userInfo.login && req.user) {
     data.userId = userInfo.userId
     data.token = userInfo.token
     data.tokenTime = userInfo.tokenTime
@@ -102,12 +107,11 @@ export function doRequestAction(reqData: Request): Promise<any> {
 
   return new Promise((resolve, reject) => {
     Taro.request({
-      url: /^http(s?):\/\//.test(req.url) ? req.url :req.url,
+      url: /^http(s?):\/\//.test(req.url) ? req.url : req.url,
       method: req.method,
       header: req.header,
       data: data,
       success: (res) => {
-        //console.log(res)
         if (res.statusCode === 200) {
           resolve(res.data)
         } else {
@@ -116,7 +120,7 @@ export function doRequestAction(reqData: Request): Promise<any> {
         }
       },
       fail: (e) => {
-      // todo requestShowToast(req.failToast)
+        // todo requestShowToast(req.failToast)
         requestShowToast(req.failToast)
         reject(e)
       },
@@ -130,7 +134,7 @@ export function doRequestAction(reqData: Request): Promise<any> {
 }
 
 // 用户授权-获取session_key
-export function getUserSessionKey(code: string): Promise<Inter.SessionKey>{
+export function getUserSessionKey(code: string): Promise<Inter.SessionKey> {
   return doRequestAction({
     url: api.GetUserSessionKey,
     data: {
@@ -140,7 +144,7 @@ export function getUserSessionKey(code: string): Promise<Inter.SessionKey>{
 }
 
 // session_key换取userinfo
-export function GetUserInfo(data: AuthData): Promise<Inter.InitUserInfo>{
+export function GetUserInfo(data: AuthData): Promise<Inter.InitUserInfo> {
   return doRequestAction({
     url: api.GetUserInfo,
     data: data
@@ -167,12 +171,13 @@ export function getAllListItem(data: FilterData): Promise<Inter.HomeLists> {
 export function getRecruitList(data: RecruitSearchType): Promise<Inter.RecruitList> {
   return doRequestAction({
     url: api.GetRecruitlist,
-    data: data
+    data: data,
+    method: 'POST'
   })
 }
 
 // 获取找活列表
-export function getResumeList(data: ResumeSearchType): Promise<Inter.ResumeResult>{
+export function getResumeList(data: ResumeSearchType): Promise<Inter.ResumeResult> {
   return doRequestAction({
     url: api.GetResumelist,
     data: data
@@ -180,7 +185,7 @@ export function getResumeList(data: ResumeSearchType): Promise<Inter.ResumeResul
 }
 
 // 获取二手交易列表
-export function getFleamarketList(data: FleamarketSearchType): Promise<any>{
+export function getFleamarketList(data: FleamarketSearchType): Promise<any> {
   return doRequestAction({
     url: api.GetFleamarketlist,
     data: data
@@ -188,7 +193,7 @@ export function getFleamarketList(data: FleamarketSearchType): Promise<any>{
 }
 
 // 获取微信号以及公告
-export function getWechatNotice(){
+export function getWechatNotice() {
   return doRequestAction({
     url: api.GetWechatNotice,
     method: 'POST',
@@ -197,7 +202,7 @@ export function getWechatNotice(){
 }
 
 // 获取列表页筛选条件
-export function getListFilterData(): Promise<Inter.filterClassifyResult>{
+export function getListFilterData(): Promise<Inter.filterClassifyResult> {
   return doRequestAction({
     url: api.GetListFilterData,
     loading: false
@@ -205,7 +210,7 @@ export function getListFilterData(): Promise<Inter.filterClassifyResult>{
 }
 
 // tabbar未读消息统计
-export function getTabbarMsg(){
+export function getTabbarMsg() {
   return
 }
 
@@ -216,10 +221,10 @@ export function getIntegralList<T>(data: IntegralData): Promise<Inter.IntegralLi
     data: data,
     method: 'POST'
   })
-} 
+}
 
 // 初始化发布招工信息视图
-export function getPublishRecruitView(data: InitRecruitView): Promise<any>{
+export function getPublishRecruitView(data: InitRecruitView): Promise<any> {
   return doRequestAction({
     url: api.GetPublisRecruitView,
     data: data,
@@ -228,7 +233,7 @@ export function getPublishRecruitView(data: InitRecruitView): Promise<any>{
 }
 
 // 获取城市数据
-export function getAllAreas(loading: boolean = true): Promise<Inter.AllAreasDataItem[][]>{
+export function getAllAreas(loading: boolean = true): Promise<Inter.AllAreasDataItem[][]> {
   return doRequestAction({
     url: api.GetAllAreas,
     loading: loading
@@ -236,12 +241,12 @@ export function getAllAreas(loading: boolean = true): Promise<Inter.AllAreasData
 }
 
 // 获取热门城市
-export function getHotAreas(){
+export function getHotAreas() {
 
 }
 
 // 检验adcode是否有效
-export function checkAdcodeValid(adcode: string): Promise<Inter.CheckAdcodeValid>{
+export function checkAdcodeValid(adcode: string): Promise<Inter.CheckAdcodeValid> {
   return doRequestAction({
     url: api.CheckAdcodeValid,
     method: 'POST',
@@ -252,7 +257,7 @@ export function checkAdcodeValid(adcode: string): Promise<Inter.CheckAdcodeValid
 }
 
 // 获取用户邀请链接
-export function getUserInviteLink(): Promise<Inter.GetUserInviteLink>{
+export function getUserInviteLink(): Promise<Inter.GetUserInviteLink> {
   return doRequestAction({
     url: api.GetUserInviteLink,
     method: 'POST',
@@ -261,7 +266,7 @@ export function getUserInviteLink(): Promise<Inter.GetUserInviteLink>{
 }
 
 // 获取充值选项
-export function getRechargeList(): Promise<Inter.GetRechargeList>{
+export function getRechargeList(): Promise<Inter.GetRechargeList> {
   return doRequestAction({
     url: api.GetRechargeList,
     method: 'POST'
@@ -269,7 +274,7 @@ export function getRechargeList(): Promise<Inter.GetRechargeList>{
 }
 
 // 用户充值获取openid
-export function getRechargeOpenid(code: string): Promise<UserOpenid>{
+export function getRechargeOpenid(code: string): Promise<UserOpenid> {
   return doRequestAction({
     url: api.GetRechargeOpenid,
     method: 'POST',
@@ -280,7 +285,7 @@ export function getRechargeOpenid(code: string): Promise<UserOpenid>{
 }
 
 // 用户创建充值订单
-export function getRechargeOrder(data: CreateOrder): Promise<Inter.GetCreateOrderData>{
+export function getRechargeOrder(data: CreateOrder): Promise<Inter.GetCreateOrderData> {
   return doRequestAction({
     url: api.GetRechargeOrder,
     method: 'POST',
@@ -289,7 +294,7 @@ export function getRechargeOrder(data: CreateOrder): Promise<Inter.GetCreateOrde
 }
 
 // 初始化用户发布二手交易信息
-export function getUsedInfoModel(data: Hooks.InitUsedModelInfoParams): Promise<UsedPublishModel>{
+export function getUsedInfoModel(data: Hooks.InitUsedModelInfoParams): Promise<UsedPublishModel> {
   return doRequestAction({
     url: api.GetUsedInfoModel,
     data: data,
@@ -298,7 +303,7 @@ export function getUsedInfoModel(data: Hooks.InitUsedModelInfoParams): Promise<U
 }
 
 // 发布二手交易
-export function publishUsedInfo(data: UserPublishUsedInfo): Promise<Inter.PublishUsedInfoRusult>{
+export function publishUsedInfo(data: UserPublishUsedInfo): Promise<Inter.PublishUsedInfoRusult> {
   return doRequestAction({
     url: api.PublishUsedInfo,
     data: data,
@@ -307,7 +312,7 @@ export function publishUsedInfo(data: UserPublishUsedInfo): Promise<Inter.Publis
 }
 
 // 获取验证码
-export function getUserPhoneCode(data: Hooks.UserGetCodeData ): Promise<Inter.GetUserPhoneCode> {
+export function getUserPhoneCode(data: Hooks.UserGetCodeData): Promise<Inter.GetUserPhoneCode> {
   return doRequestAction({
     url: api.GetUserPhoneCode,
     method: 'POST',
@@ -327,7 +332,7 @@ export function GetUserLoginPhoneCode(data): Promise<Inter.GetUserPhoneCode> {
 }
 
 // 二手交易详情
-export function getUsedInfo(id: string): Promise<Inter.GetUsedInfo>{
+export function getUsedInfo(id: string): Promise<Inter.GetUsedInfo> {
   return doRequestAction({
     url: api.GetUsedInfo,
     method: 'POST',
@@ -338,7 +343,7 @@ export function getUsedInfo(id: string): Promise<Inter.GetUsedInfo>{
 }
 
 // 用户实名查询
-export function getUserIsAuth(tel: string): Promise<Inter.CheckUserAuth>{
+export function getUserIsAuth(tel: string): Promise<Inter.CheckUserAuth> {
   return doRequestAction({
     url: api.CheckAuth,
     method: 'POST',
@@ -349,7 +354,7 @@ export function getUserIsAuth(tel: string): Promise<Inter.CheckUserAuth>{
 }
 
 // 验证当前用户是否实名
-export function checkMineAuthInfo(): Promise<Inter.Result>{
+export function checkMineAuthInfo(): Promise<Inter.Result> {
   return doRequestAction({
     url: api.CheckMineAuthInfo,
     method: 'POST'
@@ -357,7 +362,7 @@ export function checkMineAuthInfo(): Promise<Inter.Result>{
 }
 
 // 用户会员中心
-export function getMemberInfo(): Promise<Inter.MemberInfo>{
+export function getMemberInfo(): Promise<Inter.MemberInfo> {
   return doRequestAction({
     url: api.getMemberInfo,
     method: 'POST'
@@ -365,19 +370,20 @@ export function getMemberInfo(): Promise<Inter.MemberInfo>{
 }
 
 // 获取当前用户的提示信息
-export function getMemberMsgNumber(type: boolean): Promise<Inter.ResultData<Inter.MemberMsgNumber>>{
+export function getMemberMsgNumber(type: boolean): Promise<Inter.ResultData<Inter.MemberMsgNumber>> {
   return doRequestAction({
     url: api.getMemberMsgNumber,
     method: 'POST',
     data: {
       terminal_type: type ? 'ios' : 'android'
     },
-    loading: false
+    loading: false,
+    failToast: false
   })
 }
 
 // 用户实名认证
-export function getUserAuthInfo(): Promise<Inter.UserAuthInfo>{
+export function getUserAuthInfo(): Promise<Inter.UserAuthInfo> {
   return doRequestAction({
     url: api.getUserAuthInfo,
     method: 'POST'
@@ -385,7 +391,7 @@ export function getUserAuthInfo(): Promise<Inter.UserAuthInfo>{
 }
 
 // 提交实名认证信息
-export function postUserAuthInfo(data: Hooks.PostUserAuthInfo): Promise<Inter.Result>{
+export function postUserAuthInfo(data: Hooks.PostUserAuthInfo): Promise<Inter.Result> {
   return doRequestAction({
     url: api.postUserAuthInfo,
     method: 'POST',
@@ -394,7 +400,7 @@ export function postUserAuthInfo(data: Hooks.PostUserAuthInfo): Promise<Inter.Re
 }
 
 // 用户完善信息
-export function postUserAddInfo(data: UserAddInfo): Promise<Inter.Result>{
+export function postUserAddInfo(data: UserAddInfo): Promise<Inter.Result> {
   return doRequestAction({
     url: api.postUserAddInfo,
     method: 'POST',
@@ -403,7 +409,7 @@ export function postUserAddInfo(data: UserAddInfo): Promise<Inter.Result>{
 }
 
 // 用户修改头像
-export function userChangeAvatar(img: string): Promise<Inter.Result>{
+export function userChangeAvatar(img: string): Promise<Inter.Result> {
   return doRequestAction({
     url: api.userChangeAvatar,
     method: 'POST',
@@ -414,7 +420,7 @@ export function userChangeAvatar(img: string): Promise<Inter.Result>{
 }
 
 // 用户修改名字
-export function userUpdateName(name: string): Promise<Inter.Result>{
+export function userUpdateName(name: string): Promise<Inter.Result> {
   return doRequestAction({
     url: api.userUpdateName,
     method: 'POST',
@@ -425,7 +431,7 @@ export function userUpdateName(name: string): Promise<Inter.Result>{
 }
 
 // 用户更换手机
-export function userChangePhone(tel: string, code: string): Promise<Inter.Result>{
+export function userChangePhone(tel: string, code: string): Promise<Inter.Result> {
   return doRequestAction({
     url: api.userChangePhone,
     method: 'POST',
@@ -437,7 +443,7 @@ export function userChangePhone(tel: string, code: string): Promise<Inter.Result
 }
 
 // 用户获取已发布招工列表
-export function userGetPublishedRecruitLists(data: searchDataType): Promise<Inter.UserPublishedRecruitData>{
+export function userGetPublishedRecruitLists(data: searchDataType): Promise<Inter.UserPublishedRecruitData> {
   return doRequestAction({
     url: api.userGetPublishedRecruitList,
     data: data,
@@ -446,10 +452,10 @@ export function userGetPublishedRecruitLists(data: searchDataType): Promise<Inte
 }
 
 // 用户改变发布招工状态
-export function userChangeRecruitStatus(id: string): Promise<Inter.UserChangePublishedRecruitStatus>{
+export function userChangeRecruitStatus(id: string): Promise<Inter.UserChangePublishedRecruitStatus> {
   return doRequestAction({
     url: api.userChangeRecruitStatus,
-    data: { infoId: id },
+    data: {infoId: id},
     method: 'POST'
   })
 }
@@ -467,34 +473,34 @@ export function userGetPublishedUsedLists(data: searchDataType): Promise<Inter.U
 export function userChangeUsedStatus(id: string): Promise<Inter.UserChangeUsedStatus> {
   return doRequestAction({
     url: api.userChangeUsedStatus,
-    data: { infoId: id },
+    data: {infoId: id},
     method: 'POST'
   })
 }
 
 // 二手交易刷新置顶
-export function userUpdateUsedInfo(id: string): Promise<Inter.Result>{
+export function userUpdateUsedInfo(id: string): Promise<Inter.Result> {
   return doRequestAction({
     url: api.userUpdateUserInfo,
-    data: { infoId: id },
+    data: {infoId: id},
     method: 'POST'
   })
 }
 
 // 收藏招工请求数据
-export function getCollectionRecruitListData(page: number): Promise<Inter.CollectionRecruitListData>{
+export function getCollectionRecruitListData(page: number): Promise<Inter.CollectionRecruitListData> {
   return doRequestAction({
     url: api.getCollectionRecruitList,
     method: 'POST',
     data: {
       page,
     },
-    failToast:true
+    failToast: true
   })
 }
 
 // 收藏找活请求数据
-export function getCollectionResumeListData(page: number): Promise<Inter.CollectionResumeListData>{
+export function getCollectionResumeListData(page: number): Promise<Inter.CollectionResumeListData> {
   return doRequestAction({
     url: api.getCollectionResumeList,
     method: 'POST',
@@ -506,7 +512,7 @@ export function getCollectionResumeListData(page: number): Promise<Inter.Collect
 }
 
 // 取消招工收藏
-export function recruitListCancelCollectionAction(id: string): Promise<Inter.recruitListCancelCollectionType>{
+export function recruitListCancelCollectionAction(id: string): Promise<Inter.recruitListCancelCollectionType> {
   return doRequestAction({
     url: api.recruitCancelCollection,
     method: 'POST',
@@ -516,8 +522,9 @@ export function recruitListCancelCollectionAction(id: string): Promise<Inter.rec
     }
   })
 }
+
 // 取消找活收藏
-export function ResumeCancelCollectionAction(resume_uuid:string): Promise<Inter.Result>{
+export function ResumeCancelCollectionAction(resume_uuid: string): Promise<Inter.Result> {
   return doRequestAction({
     url: api.ResumeCancelCollection,
     method: 'POST',
@@ -544,14 +551,14 @@ export function feedbackAction(page: number): Promise<Inter.feedbackList> {
     url: api.feedbackUrl,
     method: 'POST',
     failToast: true,
-    data:{
+    data: {
       page
     }
   })
 }
 
 // 意见返回提交
-export function feedbackSubmissionAction(params:object): Promise<Inter.Result> {
+export function feedbackSubmissionAction(params: object): Promise<Inter.Result> {
   return doRequestAction({
     url: api.feedbackSubmissionUrl,
     method: 'POST',
@@ -561,11 +568,11 @@ export function feedbackSubmissionAction(params:object): Promise<Inter.Result> {
 }
 
 // 帮助中心
-export function helpAction(page: number, system:string): Promise<Inter.helpData> {
+export function helpAction(page: number, system: string): Promise<Inter.helpData> {
   return doRequestAction({
     url: api.helpUrl,
     failToast: true,
-    data:{
+    data: {
       page,
       system,
     }
@@ -581,12 +588,12 @@ export function newsTypesAction(): Promise<Inter.newsTypesList> {
 }
 
 // 新闻列表
-export function newListAction(params:object): Promise<Inter.newList> {
+export function newListAction(params: object): Promise<Inter.newList> {
   return doRequestAction({
     url: api.newListUrl,
     method: 'POST',
     failToast: true,
-    data:params
+    data: params
   })
 }
 
@@ -596,7 +603,7 @@ export function newsInfoAction(id: string): Promise<Inter.consultationDetails> {
     url: api.newsInfoUrl,
     method: 'POST',
     failToast: true,
-    data:{
+    data: {
       id,
     }
   })
@@ -613,41 +620,41 @@ export function resumesSortAction(): Promise<Inter.resumesSort> {
 }
 
 // 排名规则点击按钮发请求
-export function resumesAddClickLogAction(type:number): Promise<Inter.Result> {
+export function resumesAddClickLogAction(type: number): Promise<Inter.Result> {
   return doRequestAction({
     url: api.resumesAddClickLog,
     method: 'POST',
     failToast: true,
-    data:{
+    data: {
       type
     }
   })
 }
 
 // 我的信息
-export function userMessagesAction(type:string): Promise<Inter.userMessagesList> {
+export function userMessagesAction(type: string): Promise<Inter.userMessagesList> {
   return doRequestAction({
     url: api.userMessagesUrl,
     method: 'POST',
     failToast: true,
-    data:{
-      terminal_type:type,
+    data: {
+      terminal_type: type,
     }
   })
 }
 
 // 我的信息详情
-export function messagesTypeAction(params:object): Promise<Inter.system> {
+export function messagesTypeAction(params: object): Promise<Inter.system> {
   return doRequestAction({
     url: api.messagesTypeUrl,
     method: 'POST',
     failToast: true,
-    data:params
+    data: params
   })
 }
 
 // 获取积分分类
-export function integralSourceConfigAction(params:object): Promise<Inter.integralSourceConfig> {
+export function integralSourceConfigAction(params: object): Promise<Inter.integralSourceConfig> {
   return doRequestAction({
     url: api.integralSourceConfigUrl,
     method: 'POST',
@@ -655,6 +662,7 @@ export function integralSourceConfigAction(params:object): Promise<Inter.integra
     data: params
   })
 }
+
 // 积分数据
 export function integralSourceListsAction(params: object): Promise<Inter.integralSourceLists> {
   return doRequestAction({
@@ -737,7 +745,7 @@ export function jobGetTelAction(params: object): Promise<Inter.jobGetTel> {
 }
 
 // 修改状态
-export function jobEndStatusAction(infoId:number): Promise<Inter.Result> {
+export function jobEndStatusAction(infoId: number): Promise<Inter.Result> {
   return doRequestAction({
     url: api.jobEndStatusUrl,
     method: 'POST',
@@ -769,7 +777,7 @@ export function jobTopHotAreasAction(): Promise<Inter.jobTopHotAreas> {
 
 
 // 招工置顶
-export function jobDoTopAction(detail:object): Promise<Inter.Result> {
+export function jobDoTopAction(detail): Promise<Inter.Result> {
   return doRequestAction({
     url: api.jobDoTopUrl,
     method: 'POST',
@@ -780,7 +788,7 @@ export function jobDoTopAction(detail:object): Promise<Inter.Result> {
 
 
 // 修改置顶获取数据
-export function jobGetTopAreasAction(detail: object): Promise<Inter.jobGetTopAreas> {
+export function jobGetTopAreasAction(detail): Promise<Inter.jobGetTopAreas> {
   return doRequestAction({
     url: api.jobGetTopAreasUrl,
     method: 'POST',
@@ -790,7 +798,7 @@ export function jobGetTopAreasAction(detail: object): Promise<Inter.jobGetTopAre
 }
 
 // 更新招工置顶城市
-export function jobChangeTopAreasAction(detail: object): Promise<Inter.Result> {
+export function jobChangeTopAreasAction(detail): Promise<Inter.Result> {
   return doRequestAction({
     url: api.jobChangeTopAreasUrl,
     method: 'POST',
@@ -798,8 +806,9 @@ export function jobChangeTopAreasAction(detail: object): Promise<Inter.Result> {
     data: detail,
   })
 }
+
 // 取消招工置顶
-export function jobUpdateTopStatusAction(detail: object): Promise<Inter.Result> {
+export function jobUpdateTopStatusAction(detail): Promise<Inter.Result> {
   return doRequestAction({
     url: api.jobUpdateTopStatusUrl,
     method: 'POST',
@@ -809,7 +818,7 @@ export function jobUpdateTopStatusAction(detail: object): Promise<Inter.Result> 
 }
 
 // 找活详情
-export function resumeDetailAction(obj): Promise<Inter.resumeDetail > {
+export function resumeDetailAction(obj): Promise<Inter.resumeDetail> {
   return doRequestAction({
     url: api.resumeDetailUrl,
     method: 'POST',
@@ -817,6 +826,7 @@ export function resumeDetailAction(obj): Promise<Inter.resumeDetail > {
     data: obj
   })
 }
+
 // 找活详情列表
 export function recommendListAction(obj): Promise<Inter.recommendList> {
   return doRequestAction({
@@ -836,6 +846,7 @@ export function resumesGetTelAcrion(obj): Promise<Inter.resumesGetTel> {
     data: obj
   })
 }
+
 // 赞
 export function resumeSupportAction(obj): Promise<Inter.resumeCollect> {
   return doRequestAction({
@@ -845,6 +856,7 @@ export function resumeSupportAction(obj): Promise<Inter.resumeCollect> {
     data: obj
   })
 }
+
 // 分享
 export function resumeCollectAction(obj): Promise<Inter.resumeCollect> {
   return doRequestAction({
@@ -854,6 +866,7 @@ export function resumeCollectAction(obj): Promise<Inter.resumeCollect> {
     data: obj
   })
 }
+
 // 找活名片完善
 export function resumeListAction(): Promise<Inter.resumeList> {
   return doRequestAction({
@@ -870,6 +883,16 @@ export function publishRecruitInfo(data): Promise<Inter.Result> {
     method: 'POST',
     data: data,
     failToast: true
+  })
+}
+// 快速发布招工信息
+export function publishFindWorker(data): Promise<Inter.Result>{
+  return doRequestAction({
+    url: api.FastRcruitUrl,
+    method: 'POST',
+    data: data,
+    failToast: true,
+    user: false
   })
 }
 // 快速发布招工信息
@@ -901,8 +924,9 @@ export function delCertificateAction(data): Promise<Inter.Result> {
     data,
   })
 }
+
 // 新增技能证书
-export function resumesCertificateAction(data): Promise<Inter.Result> {
+export function resumesCertificateAction(data): Promise<Inter.ResumeCertificateData> {
   return doRequestAction({
     url: api.resumesCertificateUrl,
     method: 'POST',
@@ -912,7 +936,7 @@ export function resumesCertificateAction(data): Promise<Inter.Result> {
 }
 
 // 新增项目
-export function resumesProjectAction(data): Promise<Inter.Result> {
+export function resumesProjectAction(data): Promise<Inter.ResumesProjectData> {
   // 获取用户信息
   let userInfo: User = Taro.getStorageSync(UserInfo)
   return doRequestAction({
@@ -930,8 +954,9 @@ export function resumesProjectAction(data): Promise<Inter.Result> {
     data,
   })
 }
+
 // 基础信息
-export function addResumeAction(data): Promise<Inter.Result> {
+export function addResumeAction(data): Promise<Inter.addResumeData> {
   return doRequestAction({
     url: api.addResumeUrl,
     method: 'POST',
@@ -941,10 +966,10 @@ export function addResumeAction(data): Promise<Inter.Result> {
 }
 
 // 获取当前位置
-export function checkAdcodeAction(data): Promise<Inter.Result> {
+export function checkAdcodeAction(data): Promise<Inter.checkAdcodeData> {
   return doRequestAction({
     url: api.checkAdcodeUrl,
-    method: 'POST',
+    method: 'GET',
     failToast: true,
     data,
   })
@@ -959,6 +984,7 @@ export function resumesGetDataAction(): Promise<Inter.resumesGetData> {
     failToast: true,
   })
 }
+
 // 人员信息
 export function resumesIntroduceAction(data): Promise<Inter.resumesIntroduce> {
   return doRequestAction({
@@ -968,6 +994,7 @@ export function resumesIntroduceAction(data): Promise<Inter.resumesIntroduce> {
     data,
   })
 }
+
 // 找活名片修改状态
 export function resumesEditEndAction(data): Promise<Inter.Result> {
   // 获取用户信息
@@ -976,7 +1003,7 @@ export function resumesEditEndAction(data): Promise<Inter.Result> {
     url: api.resumesEditEndUrl,
     method: 'POST',
     failToast: true,
-    header:{
+    header: {
       version: '1.0.1',
       'content-type': 'application/x-www-form-urlencoded',
       // mid: 95,
@@ -1000,6 +1027,7 @@ export function resumesDelProjectAction(data): Promise<Inter.Result> {
     data,
   })
 }
+
 // 找活置顶获取省
 export function resumesTopAreasAction(): Promise<Inter.resumesTopAreas> {
   return doRequestAction({
@@ -1037,6 +1065,7 @@ export function resumesChangeTopStatusAction(data): Promise<Inter.Result> {
     data,
   })
 }
+
 // 找活名片头像修改
 export function resumesEditImgAction(data): Promise<Inter.Result> {
   return doRequestAction({
@@ -1046,6 +1075,7 @@ export function resumesEditImgAction(data): Promise<Inter.Result> {
     data,
   })
 }
+
 //找活置顶配置
 export function resumesTopConfigV2Action(data): Promise<Inter.resumesTopConfig> {
   return doRequestAction({
@@ -1055,6 +1085,7 @@ export function resumesTopConfigV2Action(data): Promise<Inter.resumesTopConfig> 
     data,
   })
 }
+
 // 找活置顶v2
 export function resumesDoTopV2Action(data): Promise<Inter.Result> {
   return doRequestAction({
@@ -1096,7 +1127,7 @@ export function leavingMessageAction(data): Promise<Inter.Result> {
 }
 
 // 用户验证码登录
-export function userAccountLogin(data): Promise<Inter.userAccountOrCodeResult>{
+export function userAccountLogin(data): Promise<Inter.userAccountOrCodeResult> {
   return doRequestAction({
     url: api.userAccountUrl,
     method: 'POST',
@@ -1106,7 +1137,7 @@ export function userAccountLogin(data): Promise<Inter.userAccountOrCodeResult>{
 }
 
 // 用户账号登录
-export function userTelCodeLogin(data): Promise<Inter.userAccountOrCodeResult>{
+export function userTelCodeLogin(data): Promise<Inter.userAccountOrCodeResult> {
   return doRequestAction({
     url: api.userTelCodeLogin,
     method: 'POST',
@@ -1125,7 +1156,7 @@ export function userDouyinRecharge(data): Promise<any> {
 }
 
 // 检测抖音用户是否充值成功
-export function userCheckDouyinRecharge(data): Promise<Inter.userCheckDouyinOrderResult>{
+export function userCheckDouyinRecharge(data): Promise<Inter.userCheckDouyinOrderResult> {
   return doRequestAction({
     url: api.userCheckDouyinRecharge,
     method: 'POST',
@@ -1135,7 +1166,7 @@ export function userCheckDouyinRecharge(data): Promise<Inter.userCheckDouyinOrde
 
 
 // 用户修改密码
-export function updataPassword(data): Promise<Inter.Result>{
+export function updataPassword(data): Promise<Inter.Result> {
   return doRequestAction({
     url: api.updataPassword,
     method: 'POST',
@@ -1155,7 +1186,7 @@ export function queryAction(params): Promise<Inter.userQueryAuthInfoData> {
 }
 
 // 发布找活基本信息 配置项
-export function getResumeAddInfoConfig(): Promise<Inter.ResumeAddInfoConfig>{
+export function getResumeAddInfoConfig(): Promise<Inter.ResumeAddInfoConfig> {
   return doRequestAction({
     url: api.getResumeAddInfoConfig,
     method: 'POST'
@@ -1166,6 +1197,46 @@ export function checkCode(data): Promise<Inter.Result>{
   return doRequestAction({
     url: api.checkCodeUrl,
     method: 'POST',
-    data: data
+    data: data,
+    user: false
+  })
+}
+// 排名规则数据
+export function getRankRulesList(): Promise<any> {
+  return doRequestAction({
+    url: api.getRankRulesList,
+    method: 'POST'
+  })
+}
+// 大转盘获取抽奖次数
+export function turntableIndex():Promise<Inter.TurntableIndexType>{
+  return doRequestAction({
+    url: api.turntableIndex,
+    method: 'POST',
+    title: '正在初始化数据'
+  })
+}
+
+// 大转盘抽奖
+export function turntableDraw():Promise<Inter.TurntableDraw>{
+  return doRequestAction({
+    url: api.turntableDraw,
+    method: 'POST',
+  })
+}
+
+// 大转盘看视频结束后的回调
+export function turntableVideoEnd():Promise<Inter.TurntableVideoEnd>{
+  return doRequestAction({
+    url: api.turntableVideoEnd,
+    method: 'POST',
+  })
+}
+
+// 获取鱼泡币页面大转盘展示控制
+export function memberTurntable():Promise<Inter.memberTurntableType>{
+  return doRequestAction({
+    url: api.memberTurntable,
+    method: 'POST',
   })
 }

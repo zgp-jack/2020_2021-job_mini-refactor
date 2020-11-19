@@ -1,16 +1,16 @@
-import { GET, SET, SETAREA, SETFUN } from '../constants/realname'
+import { GETREALNAME, SETREALNAME, SETAREA, SETFUN } from '../constants/realname'
 import { RealnameDefaultStore } from '../reducers/realname'
 
 export function setData(data: RealnameDefaultStore) {
   return {
-    type: SET,
+    type: SETREALNAME,
     data: data
   }
 }
 
 export function getData() {
   return {
-    type: GET
+    type: GETREALNAME
   }
 }
 

@@ -1,5 +1,5 @@
 import Taro, { Config, useState, useEffect, useReachBottom, useRouter } from '@tarojs/taro'
-import { View, Text, Picker, Image } from '@tarojs/components'
+import { View, Text, Picker, Image, Block } from '@tarojs/components'
 import { integralSourceConfigAction, integralSourceListsAction, integralExpendListsAction, integralExpendConfigAction, integralUseInfoAction, publishComplainAction } from '../../../utils/request/index'
 import { getSystemInfo } from '../../../utils/helper/index'
 import { IMGCDNURL } from '../../../config'
@@ -8,7 +8,9 @@ import { integralSourceListsDataSum, integralSourceListsDataLists, integralUseIn
 import { SubscribeToNews } from '../../../utils/subscribeToNews';
 import  Report  from '../../../components/report';
 import { isVaildVal } from '../../../utils/v'
-import Msg, { SubPopup } from '../../../utils/msg'
+import { useSelector } from '@tarojs/redux'
+import Msg, { showModalTip } from '../../../utils/msg'
+import Auth from '../../../components/auth'
 import './index.scss'
 
 interface ParamsType {
@@ -36,6 +38,9 @@ interface SearchType{
 }
 // 只用temp和source
 export default function Tabber() {
+  // 检测用户是否登录
+  const login: boolean = useSelector<any, boolean>(store => store.User['login'])
+
   const router: Taro.RouterInfo = useRouter()
   const { info, office } = router.params;
   // 切换
@@ -121,6 +126,10 @@ export default function Tabber() {
   useEffect(()=>{
     let navigationBarTitleText = initInfo === '0' ? '鱼泡网-积分来源记录' : '鱼泡网-积分消耗记录'
     Taro.setNavigationBarTitle({title: navigationBarTitleText})
+
+    // 如果用户没有登录 直接断掉请求
+    if(!login) return
+
     // 获取现在时间
     let newTime = new Date();
     let nowyear = newTime.getFullYear();
@@ -182,7 +191,9 @@ export default function Tabber() {
       }
     }
   }, [initInfo])
+
   useEffect(()=>{
+    if (!login) return
     if(params.flag){
       if (initInfo === '0'){
         integralSourceLists();
@@ -465,7 +476,7 @@ export default function Tabber() {
     publishComplainAction(params).then((res)=>{
       if(res.errcode === 'ok' ){
         SubscribeToNews('complain',()=>{
-          SubPopup({
+          showModalTip({
             tips: res.errmsg,
             callback: () => {
             setComplaintModal(false);
@@ -477,6 +488,8 @@ export default function Tabber() {
     })
   }
   return (
+    <Block>
+    <Auth />
     <View className='tabber-content'>
       <View className='tabber-content-box'>
         <View className='tabber-content-box-time'>
@@ -498,8 +511,9 @@ export default function Tabber() {
       </View>
       <View className='integral-content'>
         {!data.lists.length && <Nodata text={initInfo === '0'?'暂无积分来源记录':'暂无积分消耗记录'}/>}
-        {data.lists.map((item,index)=>(
-          <View key={index+index} onClick={()=>handleModal(item.id)}>
+        {data.lists.map((item)=>(
+          <View key={item.id}>
+            {/*  onClick={()=>handleModal(item.id)} */}
             <View className='integral-list'>
               <View className='integral-list-time'>
                 <Text className='integral-time-year'>{item.y_m}</Text>
@@ -565,6 +579,7 @@ export default function Tabber() {
         handleSubmit={handleSubmit} />
       }
     </View>
+    </Block>
   )
 }
 

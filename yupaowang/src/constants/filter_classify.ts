@@ -1,2 +1,2 @@
-export const GET: string = 'get'
-export const SET: string = 'set'
+export const GETCLASSIFY: string = 'getClassify'
+export const SETCLASSIFY: string = 'setClassify'

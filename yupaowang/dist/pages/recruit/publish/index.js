@@ -34,13 +34,11 @@ var _index2 = __webpack_require__(/*! ../../utils/helper/index */ "./src/utils/h
 
 var _index3 = __webpack_require__(/*! ../../utils/msg/index */ "./src/utils/msg/index.ts");
 
-var _index4 = _interopRequireDefault(_index3);
-
-var _index5 = __webpack_require__(/*! ../../utils/subscribeToNews/index */ "./src/utils/subscribeToNews/index.ts");
+var _index4 = __webpack_require__(/*! ../../utils/subscribeToNews/index */ "./src/utils/subscribeToNews/index.ts");
 
 var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/redux/index.js");
 
-var _index6 = __webpack_require__(/*! ../../utils/v/index */ "./src/utils/v/index.ts");
+var _index5 = __webpack_require__(/*! ../../utils/v/index */ "./src/utils/v/index.ts");
 
 var _recruit = __webpack_require__(/*! ../../actions/recruit */ "./src/actions/recruit.ts");
 
@@ -158,7 +156,6 @@ function usePublishViewInfo(InitParams) {
   }, [login]);
   // 初始化用户区域数据
   function initUserAreaInfo(data) {
-    console.log(InitParams.infoId, 'InitParams.infoId');
     //  如果传递参数有infoid代表是修改，保存修改的里面默认区域数据
     if (InitParams.infoId) {
       dispatch((0, _recruit.setArea)(data.default_search_name.name));
@@ -169,7 +166,7 @@ function usePublishViewInfo(InitParams) {
       } else {
         (0, _index2.userAuthLoction)().then(function (res) {
           dispatch((0, _recruit.setArea)(res.city));
-        }).then(function () {
+        }).catch(function () {
           dispatch((0, _recruit.setArea)(_area.AREABEIJING.name));
         });
       }
@@ -237,39 +234,42 @@ function usePublishViewInfo(InitParams) {
         return item.url;
       })
     };
-    return data;
+    var mydata = JSON.parse(JSON.stringify(data));
+    var imgs = mydata.images.join(',');
+    mydata.images = imgs;
+    return mydata;
   }
   function userPublishRecruitAction() {
     var data = getPublishedInfo();
     if (!data) return;
-    if (!(0, _index6.isVaildVal)(data.title, 3)) {
-      (0, _index4.default)('请正确输入3~12字中文标题!');
+    if (!(0, _index5.isVaildVal)(data.title, 3)) {
+      (0, _index3.ShowActionModal)({ msg: '请正确输入3~12字中文标题!' });
       return;
     }
     if (!data.classifies.length) {
-      (0, _index4.default)('请选择您的工种!');
+      (0, _index3.ShowActionModal)({ msg: '请选择您的工种!' });
       return;
     }
     if (!data.province_id && !data.address) {
-      (0, _index4.default)('请选择您的详细地址!');
+      (0, _index3.ShowActionModal)({ msg: '请选择您的详细地址!' });
       return;
     }
-    if (!(0, _index6.isVaildVal)(data.user_name, 2)) {
-      (0, _index4.default)('请正确输入2~6字中文姓名!');
+    if (!(0, _index5.isVaildVal)(data.user_name, 2)) {
+      (0, _index3.ShowActionModal)({ msg: '请正确输入2~6字中文姓名!' });
       return;
     }
-    if (!(0, _index6.isPhone)(data.user_mobile)) {
-      (0, _index4.default)('手机号输入有误!');
+    if (!(0, _index5.isPhone)(data.user_mobile)) {
+      (0, _index3.ShowActionModal)({ msg: '手机号输入有误!' });
       return;
     }
     if (phone != data.user_mobile) {
       if (!data.code) {
-        (0, _index4.default)('请输入正确的验证码!');
+        (0, _index3.ShowActionModal)({ msg: '请输入正确的验证码!' });
         return;
       }
     }
-    if (!(0, _index6.isVaildVal)(data.detail, 15)) {
-      (0, _index4.default)('请正确输入15~500字招工详情!');
+    if (!(0, _index5.isVaildVal)(data.detail, 15)) {
+      (0, _index3.ShowActionModal)({ msg: '请正确输入15~500字招工详情!' });
       return;
     }
     // 如果是审核失败 那么久必须强制修改
@@ -288,7 +288,7 @@ function usePublishViewInfo(InitParams) {
     data.address += '@@@@@' + areaInfo.info;
     (0, _index.publishRecruitInfo)(data).then(function (res) {
       if (res.errcode == 'ok') {
-        (0, _index5.SubscribeToNews)("recruit", function () {
+        (0, _index4.SubscribeToNews)("recruit", function () {
           (0, _index3.ShowActionModal)({
             msg: res.errmsg,
             success: function success() {
@@ -363,17 +363,23 @@ var _index = __webpack_require__(/*! ../../../hooks/code/index */ "./src/hooks/c
 
 var _index2 = _interopRequireDefault(_index);
 
+var _index3 = __webpack_require__(/*! ../../../config/index */ "./src/config/index.ts");
+
 var _recruit = __webpack_require__(/*! ../../../hooks/publish/recruit */ "./src/hooks/publish/recruit.ts");
 
 var _recruit2 = _interopRequireDefault(_recruit);
 
-var _index3 = __webpack_require__(/*! ../../../utils/upload/index */ "./src/utils/upload/index.tsx");
+var _index4 = __webpack_require__(/*! ../../../utils/upload/index */ "./src/utils/upload/index.tsx");
 
-var _index4 = _interopRequireDefault(_index3);
+var _index5 = _interopRequireDefault(_index4);
 
-var _index5 = __webpack_require__(/*! ../../../utils/msg/index */ "./src/utils/msg/index.ts");
+var _index6 = __webpack_require__(/*! ../../../utils/msg/index */ "./src/utils/msg/index.ts");
 
-var _index6 = _interopRequireDefault(_index5);
+var _index7 = _interopRequireDefault(_index6);
+
+var _classnames = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+
+var _classnames2 = _interopRequireDefault(_classnames);
 
 __webpack_require__(/*! ./index.scss */ "./src/pages/recruit/publish/index.scss");
 
@@ -404,8 +410,8 @@ var PublishRecruit = function (_Taro$Component) {
       backgroundTextStyle: "dark"
     };
 
-    _this.$usedState = ["model", "$compid__30", "$compid__31", "$compid__32", "showProfession", "areaInfo", "phone", "showUpload", "text"];
-    _this.customComponents = ["Auth", "Profession", "WordsTotal", "ImageView"];
+    _this.$usedState = ["anonymousState__temp", "model", "$compid__35", "$compid__36", "showProfession", "areaInfo", "phone", "showUpload", "text", "num", "TEXTAREAMAXLENGTH"];
+    _this.customComponents = ["Auth", "Profession", "ImageView"];
     return _this;
   }
 
@@ -424,20 +430,15 @@ var PublishRecruit = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__30"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__35"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__30 = _genCompid2[0],
-          $compid__30 = _genCompid2[1];
+          $prevCompid__35 = _genCompid2[0],
+          $compid__35 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__31"),
+      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__36"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__31 = _genCompid4[0],
-          $compid__31 = _genCompid4[1];
-
-      var _genCompid5 = (0, _taroTt.genCompid)(__prefix + "$compid__32"),
-          _genCompid6 = _slicedToArray(_genCompid5, 2),
-          $prevCompid__32 = _genCompid6[0],
-          $compid__32 = _genCompid6[1];
+          $prevCompid__36 = _genCompid4[0],
+          $compid__36 = _genCompid4[1];
       // 获取路由参数
 
 
@@ -485,11 +486,7 @@ var PublishRecruit = function (_Taro$Component) {
         var value = e.detail.value;
         var state = JSON.parse(JSON.stringify(model));
         state[key] = value;
-        setModel(state);
-        // 如果是detail, 那么需要统计字数
-        if (key === 'detail') {
-          setNum(value.length);
-        }
+        setModel(_extends({}, state));
       };
       // 选择地址
       var userChooseArea = function userChooseArea() {
@@ -512,7 +509,7 @@ var PublishRecruit = function (_Taro$Component) {
           var max = model.maxClassifyCount;
           var _num = model.classifies.length;
           if (_num >= max) {
-            (0, _index6.default)('工种最多可以选择' + max + '个');
+            (0, _index7.default)('工种最多可以选择' + max + '个');
             return;
           }
         }
@@ -527,7 +524,7 @@ var PublishRecruit = function (_Taro$Component) {
       var userUploadImg = function userUploadImg() {
         var i = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : -1;
 
-        (0, _index4.default)().then(function (res) {
+        (0, _index5.default)().then(function (res) {
           var imageItem = {
             url: res.url,
             httpurl: res.httpurl
@@ -575,8 +572,14 @@ var PublishRecruit = function (_Taro$Component) {
       this.anonymousFunc7 = function () {
         return userGetCode(model.user_mobile);
       };
+      var anonymousState__temp = !showProfession ? (0, _classnames2.default)({
+        'publish-textarea': true,
+        'hide': showProfession
+      }) : null;
       this.anonymousFunc8 = function (e) {
-        return userEnterFrom(e, 'detail');
+        userEnterFrom(e, 'detail');
+        setNum(e.detail.value.length);
+        return false;
       };
       this.anonymousFunc9 = function () {
         return changeShowUpload();
@@ -589,26 +592,25 @@ var PublishRecruit = function (_Taro$Component) {
         "data": model && model.classifyTree,
         "onClickItem": this.anonymousFunc0,
         "num": 3
-      }, $compid__30, $prevCompid__30);
-      _taroTt.propsManager.set({
-        "num": num
-      }, $compid__31, $prevCompid__31);
+      }, $compid__35, $prevCompid__35);
       showUpload && model && _taroTt.propsManager.set({
         "images": model.view_images,
         "max": model.maxImageCount,
         "userUploadImg": userUploadImg,
         "userDelImg": userDelImg
-      }, $compid__32, $prevCompid__32);
+      }, $compid__36, $prevCompid__36);
       Object.assign(this.__state, {
+        anonymousState__temp: anonymousState__temp,
         model: model,
-        $compid__30: $compid__30,
-        $compid__31: $compid__31,
-        $compid__32: $compid__32,
+        $compid__35: $compid__35,
+        $compid__36: $compid__36,
         showProfession: showProfession,
         areaInfo: areaInfo,
         phone: phone,
         showUpload: showUpload,
-        text: text
+        text: text,
+        num: num,
+        TEXTAREAMAXLENGTH: _index3.TEXTAREAMAXLENGTH
       });
       return this.__state;
     }

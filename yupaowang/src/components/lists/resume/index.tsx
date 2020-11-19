@@ -4,25 +4,29 @@ import { IMGCDNURL } from '../../../config'
 import Nodata from '../../../components/nodata'
 import { ResumeList } from '../../../utils/request/index.d'
 import './index.scss'
+import { UserLocation } from '../../../config/store'
 
 interface PROPS {
   data: ResumeList[][],
-  bottom?: boolean
+  bottom?: boolean,
+  hasMore?: boolean
 }
 
-export default function ResumeList({ data, bottom = true }: PROPS){
+export default function ResumeList({ data, bottom = true, hasMore = true }: PROPS){
   // 用户页面跳转
-  const userRouteJump = (url: string) => {
+  const userRouteJump = (uuid: string) => {
+    let location = Taro.getStorageSync(UserLocation)
+    location = location ? location = location.split(',').reverse() : ''
     Taro.navigateTo({
-      url: url
+      url: `/pages/resume/detail/index?uuid=${uuid}&location=${location}`
     })
   }
   return (
     <View className='resume-list-container' style={ bottom ? '' : 'padding-bottom:0' }>
-      {data && data.map((item)=>(
-        <Block>
+      {data && data.map((item,di)=>(
+        <Block key={`${di}-${di}`}>
           {item && item.map((d)=>(
-            <View className='resume-list-item' key={d.id} onClick={() => userRouteJump(`/pages/resume/detail/index?uuid=${d.uuid}&location=${d.location}`)}>
+            <View className='resume-list-item' key={d.id} onClick={() => userRouteJump(d.uuid)}>
               <View className='resume-list-header'>
                 <Image className='resume-list-user' src={ d.headerimg } />
                 <View className='resume-list-userinfo'>
@@ -45,8 +49,8 @@ export default function ResumeList({ data, bottom = true }: PROPS){
                 </View>
               </View>
               <View className='resume-list-works'>
-                {d.occupations.map((i)=>(
-                  <Text className='resume-list-words-text'>{ i }</Text>
+                {d.occupations.map((i,ii)=>(
+                  <Text className='resume-list-words-text' key={`${d.id}-${ii}`}>{ i }</Text>
                 ))}
               </View>
                 <View className='resume-list-content overwords'>{ d.introduce }</View>
@@ -59,6 +63,7 @@ export default function ResumeList({ data, bottom = true }: PROPS){
           ))}
         </Block>
       ))}
+      {data && data[0] && data[0].length && !hasMore && <View className='list-data-notmore'>没有更多数据了</View>} 
       {data&&data[0]&&!data[0].length && <Nodata text='暂无相关数据' />}
     </View>
   )

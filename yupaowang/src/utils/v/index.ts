@@ -1,3 +1,10 @@
+/*
+ * @Author: zyb
+ * @Date: 2020-11-03 09:23:50
+ * @LastEditors: zyb
+ * @LastEditTime: 2020-11-10 11:53:46
+ * @Description: 
+ */
 import Taro from '@tarojs/taro'
 
 // 是否是电话号码
@@ -74,4 +81,22 @@ export function isIos(): boolean {
 //验证必填项且长度
 export function isRequireLen(str: string, _len: number = 6): boolean{
   return (str != '' && str != null && str != undefined && str.length >= _len) ? true : false;
+}
+
+// 含有中文
+export function isChinese(str:string){
+  const reg = new RegExp("[\\u4E00-\\u9FFF]+", "g");
+  if(reg.test(str)){
+    return true
+  }
+  return false;
+}
+
+// 2-5汉字
+export function allChinese(str:string){
+  const reg = new RegExp('^[\u4E00-\u9FA5]{2,5}$');
+  if (reg.test(str)) {
+    return true
+  }
+  return false;
 }

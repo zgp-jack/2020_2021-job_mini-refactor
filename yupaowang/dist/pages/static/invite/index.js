@@ -35,17 +35,17 @@ var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs
 
 var _taroTt2 = _interopRequireDefault(_taroTt);
 
-var _classnames = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+var _index = __webpack_require__(/*! ../../../config/index */ "./src/config/index.ts");
 
-var _classnames2 = _interopRequireDefault(_classnames);
+var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/redux/index.js");
 
-var _index = __webpack_require__(/*! ../../../utils/request/index */ "./src/utils/request/index.ts");
+var _index2 = __webpack_require__(/*! ../../../utils/request/index */ "./src/utils/request/index.ts");
+
+var _index3 = __webpack_require__(/*! ../../../utils/msg/index */ "./src/utils/msg/index.ts");
 
 __webpack_require__(/*! ./index.scss */ "./src/pages/static/invite/index.scss");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -53,238 +53,101 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var InvitePage = function (_Taro$Component) {
-  _inherits(InvitePage, _Taro$Component);
+var Invite = function (_Taro$Component) {
+  _inherits(Invite, _Taro$Component);
 
-  function InvitePage() {
-    _classCallCheck(this, InvitePage);
+  function Invite() {
+    _classCallCheck(this, Invite);
 
-    var _this = _possibleConstructorReturn(this, (InvitePage.__proto__ || Object.getPrototypeOf(InvitePage)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (Invite.__proto__ || Object.getPrototypeOf(Invite)).apply(this, arguments));
 
     _this.config = {
-      navigationBarTitleText: '鱼泡网-新闻资讯',
-      enablePullDownRefresh: true,
-      navigationBarBackgroundColor: '#0099ff',
-      navigationBarTextStyle: 'white',
-      backgroundTextStyle: 'dark'
+      navigationBarTitleText: "邀请好友"
     };
 
-    _this.$usedState = ["tab", "loopArray63", "loopArray64", "$compid__61", "scrollLeft", "list", "pull"];
-    _this.anonymousFunc1Map = {};
-    _this.anonymousFunc2Map = {};
-    _this.customComponents = ["Nodata"];
+    _this.$usedState = ["ISCANSHARE", "IMGCDNURL", "link"];
+    _this.customComponents = ["Auth"];
     return _this;
   }
 
-  _createClass(InvitePage, [{
-    key: '_constructor',
+  _createClass(Invite, [{
+    key: "_constructor",
     value: function _constructor(props) {
-      _get(InvitePage.prototype.__proto__ || Object.getPrototypeOf(InvitePage.prototype), '_constructor', this).call(this, props);
+      _get(Invite.prototype.__proto__ || Object.getPrototypeOf(Invite.prototype), "_constructor", this).call(this, props);
       this.$$refs = new _taroTt2.default.RefsArray();
     }
   }, {
-    key: '_createData',
+    key: "_createData",
     value: function _createData() {
-      var _this2 = this;
-
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
+      // 用户邀请链接
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__61"),
-          _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__61 = _genCompid2[0],
-          $compid__61 = _genCompid2[1];
-      // 默认table
-
-
-      var _useState = (0, _taroTt.useState)('-1'),
+      var _useState = (0, _taroTt.useState)(''),
           _useState2 = _slicedToArray(_useState, 2),
-          current = _useState2[0],
-          setCurrent = _useState2[1];
-      // 页数
+          link = _useState2[0],
+          setLink = _useState2[1];
+      // 获取用户是否登录
 
 
-      var _useState3 = (0, _taroTt.useState)({
-        page: 1
-      }),
-          _useState4 = _slicedToArray(_useState3, 2),
-          initPage = _useState4[0],
-          setInitPage = _useState4[1];
-      //  没有数据显示内容
-
-
-      var _useState5 = (0, _taroTt.useState)('暂无相关资讯'),
-          _useState6 = _slicedToArray(_useState5, 2),
-          noData = _useState6[0],
-          setNodata = _useState6[1];
-      // 数据
-
-
-      var _useState7 = (0, _taroTt.useState)([]),
-          _useState8 = _slicedToArray(_useState7, 2),
-          list = _useState8[0],
-          setList = _useState8[1];
-      // 能否再上拉
-
-
-      var _useState9 = (0, _taroTt.useState)(true),
-          _useState10 = _slicedToArray(_useState9, 2),
-          pull = _useState10[0],
-          setPull = _useState10[1];
-      // 设置滚动未知
-
-
-      var _useState11 = (0, _taroTt.useState)(0),
-          _useState12 = _slicedToArray(_useState11, 2),
-          scrollLeft = _useState12[0],
-          setScrollLeft = _useState12[1];
-
-      var handleTable = function handleTable(id, name, index) {
-        setScrollLeft(index * 80);
-        setCurrent(id);
-        setNodata(name);
-        setInitPage({ page: 1 });
-        setPull(true);
-        _taroTt2.default.pageScrollTo({
-          scrollTop: 0
-        });
-      };
-
-      var _useState13 = (0, _taroTt.useState)({
-        item: []
-      }),
-          _useState14 = _slicedToArray(_useState13, 2),
-          tab = _useState14[0],
-          setTab = _useState14[1];
-      // 获取新闻类型
-
-
-      (0, _taroTt.useEffect)(function () {
-        (0, _index.newsTypesAction)().then(function (res) {
-          setTab({ item: res.data });
-        });
-      }, []);
-      // 获取新闻列表
-      (0, _taroTt.useEffect)(function () {
-        var params = {
-          page: initPage.page,
-          newsType: current
-        };
-        (0, _index.newListAction)(params).then(function (res) {
-          _taroTt2.default.hideNavigationBarLoading();
-          if (!res.data.length) {
-            setPull(false);
-          }
-          if (params.page === 1) {
-            setList([].concat(_toConsumableArray(res.data)));
-          } else {
-            setList([].concat(_toConsumableArray(list), _toConsumableArray(res.data)));
-          }
-        });
-      }, [current, initPage]);
-      // 用户页面跳转
-      var userRouteJump = function userRouteJump(url) {
-        _taroTt2.default.navigateTo({
-          url: url
-        });
-      };
-      (0, _taroTt.useReachBottom)(function () {
-        if (pull) {
-          setInitPage({ page: initPage.page + 1 });
-        }
+      var login = (0, _redux.useSelector)(function (state) {
+        return state.User['login'];
       });
-      this.anonymousFunc0 = function (e) {
-        console.log(e);
+      // 初始化用户链接
+      (0, _taroTt.useEffect)(function () {
+        if (!login) {
+          return;
+        }
+        (0, _index2.getUserInviteLink)().then(function (res) {
+          if (res.errcode == 'ok') {
+            setLink(res.link);
+          } else (0, _index3.ShowActionModal)({ msg: res.errmsg, success: function success() {
+              return _taroTt2.default.navigateBack();
+            } });
+        });
+      }, [login]);
+      // 用户复制邀请链接
+      var copyUserInviteLink = function copyUserInviteLink() {
+        _taroTt2.default.setClipboardData({
+          data: link,
+          success: function success() {
+            _taroTt2.default.hideToast();
+            (0, _index3.ShowActionModal)({
+              title: '恭喜您',
+              msg: '您的邀请链接已复制到粘贴板，赶快去邀请好友吧！'
+            });
+          }
+        });
       };
-      var loopArray63 = tab.item ? tab.item.map(function (item, i) {
-        item = {
-          $original: (0, _taroTt.internal_get_original)(item)
-        };
-        var _$indexKey = "hdzzz" + i;
-        _this2.anonymousFunc1Map[_$indexKey] = function () {
-          handleTable(item.$original.index, item.$original.name, i);
-        };
-        var $loopState__temp2 = tab.item ? (0, _classnames2.default)({
-          'invite-tab-active': item.$original.index === current
-        }) : null;
-        return {
-          _$indexKey: _$indexKey,
-          $loopState__temp2: $loopState__temp2,
-          $original: item.$original
-        };
-      }) : [];
-      var loopArray64 = list ? list.map(function (v, __index2) {
-        v = {
-          $original: (0, _taroTt.internal_get_original)(v)
-        };
-        var _$indexKey2 = "hezzz" + __index2;
-        _this2.anonymousFunc2Map[_$indexKey2] = function () {
-          return userRouteJump("/subpackage/pages/notice/index?id=" + v.$original.id);
-        };
-        return {
-          _$indexKey2: _$indexKey2,
-          $original: v.$original
-        };
-      }) : [];
-      !list.length && _taroTt.propsManager.set({
-        "text": noData
-      }, $compid__61, $prevCompid__61);
+      this.anonymousFunc0 = function () {
+        return copyUserInviteLink();
+      };
       Object.assign(this.__state, {
-        tab: tab,
-        loopArray63: loopArray63,
-        loopArray64: loopArray64,
-        $compid__61: $compid__61,
-        scrollLeft: scrollLeft,
-        list: list,
-        pull: pull
+        ISCANSHARE: _index.ISCANSHARE,
+        IMGCDNURL: _index.IMGCDNURL,
+        link: link
       });
       return this.__state;
     }
   }, {
-    key: 'anonymousFunc0',
+    key: "anonymousFunc0",
     value: function anonymousFunc0(e) {
       ;
     }
-  }, {
-    key: 'anonymousFunc1',
-    value: function anonymousFunc1(_$indexKey) {
-      var _anonymousFunc1Map;
-
-      ;
-
-      for (var _len = arguments.length, e = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-        e[_key - 1] = arguments[_key];
-      }
-
-      return this.anonymousFunc1Map[_$indexKey] && (_anonymousFunc1Map = this.anonymousFunc1Map)[_$indexKey].apply(_anonymousFunc1Map, e);
-    }
-  }, {
-    key: 'anonymousFunc2',
-    value: function anonymousFunc2(_$indexKey2) {
-      var _anonymousFunc2Map;
-
-      ;
-
-      for (var _len2 = arguments.length, e = Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
-        e[_key2 - 1] = arguments[_key2];
-      }
-
-      return this.anonymousFunc2Map[_$indexKey2] && (_anonymousFunc2Map = this.anonymousFunc2Map)[_$indexKey2].apply(_anonymousFunc2Map, e);
-    }
   }]);
 
-  return InvitePage;
+  return Invite;
 }(_taroTt2.default.Component);
 
-InvitePage.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2"];
-InvitePage.$$componentPath = "pages/static/invite/index";
-InvitePage.config = { navigationBarTitleText: '鱼泡网-新闻资讯', enablePullDownRefresh: true, navigationBarBackgroundColor: '#0099ff', navigationBarTextStyle: 'white', backgroundTextStyle: 'dark' };
-exports.default = InvitePage;
+Invite.$$events = ["anonymousFunc0"];
+Invite.$$componentPath = "pages/static/invite/index";
+Invite.config = { navigationBarTitleText: "邀请好友" };
+exports.default = Invite;
 
-Page(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(InvitePage, true));
+Page(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(Invite, true));
 
 /***/ })
 

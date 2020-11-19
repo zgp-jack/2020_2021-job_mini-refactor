@@ -1,3 +1,6 @@
+@import '../../../common.scss';
+$commonMargin: 44px;
+
 .resume-container{
   position: relative;
   .resume-tips-header{
@@ -8,18 +11,18 @@
     line-height: 80px;
     font-weight: bold;
     color: #343434;
-    font-size: 28px;
+    font-size: 30px;
   }
   .resume-content{
     padding-bottom: 140px;
     .content-progress{
-      padding: 20px 44px;
-      margin: 20px 0;
+      padding: 30px $commonMargin 20px;
+      margin: 15px 0 0;
       background-color: #FFFFFF;
       .progress-header{
         display: flex;
         justify-content: space-between;
-        margin-bottom: 28px;
+        margin-bottom: 15px;
       }
       .progress-Improve{
         display: inline-block;
@@ -37,88 +40,125 @@
         }
       }
       .progress-txt{
-        margin-top: 22px;
-        font-size: 26px;
-        color: #0099FF;
+        padding:0;
+        margin-top: 10px;
+        font-size: 28px;
+        color: $color;
+        text-align: left;
+        background-color: white;
       }
       .progress-num{
+        margin-top: 10px;
         text-align: center;
         font-size: 32px;
         font-weight: bold;
-        color: #0099FF;
+        color: $color;
       }
       .progress-viewed{
-        margin-top: 22px;
-        font-size: 26px;
+        margin-top: 10px;
+        font-size: 28px;
         color: #626160;
       }
-      .progress-footer{
+      .progress-footer,
+      .progress-placed{
         display: flex;
         justify-content: space-between;
-        padding-top: 18px;
-        border-top: 2px dotted #DCDCDC;
-        Image{
+        align-items: baseline;
+        padding: 10px 0;
+        border-top: 2px dotted $bordercolor;
+        .progress-rank-img{
           display: inline-block;
           width: 20px;
           height: 24px;
           vertical-align: -2px;
         }
       }
+      .progress-place-top{
+        margin-top: 17px;
+        .progress-placed{
+          padding-bottom: 10px;
+          border-bottom: 2px dotted $bordercolor;
+        }
+        .progress-rank{
+          color: rgba(255, 77, 66, 1);
+        }
+        .progress-blue{
+          font-size: 28px;
+          line-height: $commonMargin;
+          font-weight: bold;
+          color: $color;
+        }
+        .progress-place-text{
+          margin-left: 34px;
+          padding-bottom: 10px;
+          font-size: 26px;
+          color: rgba(111, 108, 108, 1);
+        }
+        .place-text{
+          margin: 16px 0;
+        }
+        .progress-place-btn{
+          color: rgba(0, 153, 255, 1);
+        }
+      }
       .progress-text{
         display: inline-block;
         margin-left: 15px;
-        font-size: 24px;
+        font-size: 28px;
         font-weight: bold;
         color: #6F6C6C;
-        View{
-          display: inline-block;
-        }
       }
       .progress-rank{
-        font-size: 22px;
-        line-height: 44px;
+        font-size: 28px;
+        line-height: $commonMargin;
         font-weight: bold;
-        color: #0099FF;
+        color: $color;
       }
     }
     .content-basic-imformation,
     .content-personal-information,
     .content-project-experience,
     .content-professional-skill{
-      margin: 20px 0;
+      margin: 0;
       .basic-imformation{
-        margin: 20px 0;
+        margin: 0;
         text-align: center;
         position: relative;
-        Image{
+        .basic-jbinfo,
+        .basic-description-img,
+        .project-experience-img,
+        .professional-skill-img{
           display: inline-block;
-          width: 20px;
+          width: 24px;
           height: 24px;
-          vertical-align: -2px;
+          vertical-align: middle;
         }
         .basic-title{
           display: inline-block;
           margin-left: 11px;
-          font-size: 26px;
+          font-size: 28px;
           font-weight: bold;
           color: #343434;
         }
         .change{
           position: absolute;
           top: 6px;
-          right: 44px;
-          font-size: 26px;
+          right: $commonMargin;
+          font-size: 28px;
           font-weight: bold;
-          color: #0099FF;
+          color: $color;
         }
+      }
+      .basic-imformation{
+        line-height: 80px;
       }
       .basic-status{
         position: relative;
-        display: flex;
+        @include flex();
         justify-content: space-between;
-        padding: 40px 44px;
-        margin: 20px 0;
-        font-size: 26px;
+        padding: 20px $commonMargin;
+        margin-bottom: 10px;
+        font-size: 28px;
         background-color: #FFFFFF;
         &::before,
         &::after{
@@ -127,19 +167,28 @@
           bottom: -18px;
           width: 6px;
           height: 28px;
-          background-color: #0099FF;
+          background-color: $color;
           border-radius: 3px;
         }
         &::after{
-          right: 44px;
+          right: $commonMargin;
         }
         &::before{
-          left: 44px;
+          left: $commonMargin;
         }
         .status-txt{
           color: #161616;
         }
-        Image{
+        .z-index{
+          z-index: 10;
+        }
+        .status-txt-image{
+          width: 24px;
+          height: 22px;
+          margin-top: 4px;
+          transition: transform 0.3s
+        }
+        .basic-experience-img{
           width: 25px;
           height: 24px;
           margin-right: 25px;
@@ -152,36 +201,48 @@
       .basic-content,
       .project-information,
       .professional-information{
-        padding: 20px 44px;
+        .professional-information-noImage::before {
+          content: '';
+          width: 100px;
+          height: 100px;
+          position: absolute;
+          top: 0;
+          left: 0;
+          z-index: 10;
+          background-image: url('http://cdn.yupao.com/newyupao/images/newresume-status-nopass.png');
+          background-size: cover;
+        }
+        padding: 20px $commonMargin;
         text-align: center;
         background-color:  #FFFFFF;
         .basic-txt{
           margin-bottom: 28px;
-          font-size: 22px;
+          font-size: 28px;
           color: #828181;
         }
-        .basic-btn Button{
+        .basic-btn .btn{
           display: inline-block;
-          padding: 9px 32px;
+          padding: 9px 60px;
           border-radius: 32px;
           vertical-align: middle;
-          background-color: #0099FF;
+          background-color: $color;
           font-size: 26px;
           line-height: 46px;
           color: #FFFFFF;
         }
         .content-information{
+          position: relative;
           display: flex;
           justify-content: space-between;
           .information{
-            max-width: 88%;
+            max-width: 87%;
             text-align: left;
-            Image{
+            .basic-user-img{
               display: inline-block;
-              width: 77px;
-              height: 77px;
+              width: 90px;
+              height: 90px;
               border-radius: 50%;
-              background-color: #0099FF;
+              background-color: $color;
             }
             &>.infor{
               display: inline-block;
@@ -195,14 +256,23 @@
             .sexage{
               margin-top: 20px;
               font-weight: bold;
-              font-size: 26px;
+              font-size: 28px;
               color: #6C6B6B;
             }
           }
           .change{
-            font-size: 26px;
+            font-size: 28px;
             font-weight: bold;
-            color: #0099FF;
+            color: $color;
+            width: auto;
+          }
+          .audit {
+            width: 110px;
+            height: 110px;
+            position: absolute;
+            top: 10px;
+            right: 21px;
+            z-index: 99;
           }
         }
         .content{
@@ -220,50 +290,92 @@
             position: relative;
             text-align: left;
             margin: 26px 0;
-            font-size: 24px;
+            font-size: 28px;
             padding-left: 14px;
+            min-height: 40px;
             &::before{
               content: '';
               position: absolute;
               width: 14px;
               height: 14px;
-              background-color: #0099FF;
+              background-color: $color;
               background: url('http://cdn.yupao.com/newyupao/images/newjobinfo-steps.png');
               background-size: cover;
               left: -6px;
-              top: calc(50% - 6px);
-            }
-            &>View{
-              display: inline-block;
+              top: 14px;
+              // top: calc(50% - 6px);
             }
             .craft-txt{
-              width: 110px;
+              position: absolute;
+              left: 20px;
+              top: 0;
+              display: inline-block;
+              width: 20%;
               text-align: justify;
               color: #7A7A7A;
-              margin-right: 23px;
+              &::before{
+                content: ':';
+                height: 100%;
+                width: 6px;
+                position: absolute;
+                right: -6px;
+              }
+              &::after{
+                content: '';
+                width: 100%;
+                display: inline-block;
+                overflow: hidden;
+                height: 0;
+              }
             }
             .craft-text{
+              margin-left: 26%;
+              display: inline-block;
               color: #7A7A7A;
             }
+            .craft-list{
+              position: relative;
+              margin-left: 26%;
+              margin-top: -6px;
+              display: inline-block;
+            }
+            .craft-list-worker {
+              display: flex;
+              flex-wrap: wrap;
+            }
             .craft-name{
+              margin-right: 10px;
+              margin-bottom: 10px;
               padding: 7px 25px;
               color: #414141;
               background-color: #E7E7E7;
+              border-radius: 4px;
+            }
+            .craft-box{
+              color: $color;
+              font-size: 26px;
+              display: inline-block;
+              padding: 0 6px;
+              text-align: center;
+              margin-right: 17px;
+              border-radius: 8px;
+              border: 1px solid $color;
+              line-height: 40px;
             }
           }
           .introduce{
             text-align: left;
-            font-size: 24px;
+            font-size: 28px;
             color: #797979;
             padding-left: 14px;
           }
         }
       }
       .check-fail{
-        font-size: 24px;
-        padding: 21px 44px 21px 58px;
+        font-size: 28px;
+        padding: 21px $commonMargin 21px 58px;
         background-color: #FFFBF7;
-        &>View{
+        .check-fail-text{
           display: inline-block;
           color: #FA0819;
         }
@@ -271,9 +383,18 @@
     }
     .content-personal-information{
       .basic-content{
+        position: relative;
+        .audit{
+          width: 110px;
+          height: 110px;
+          position: absolute;
+          top: 10px;
+          right: 21px;
+          z-index: 99;
+        }
         .content{
           &::before{
-            height: 360px;
+            height: 400px;
           }
         }
         .content .craft:first-child{
@@ -286,37 +407,47 @@
     }
     .content-project-experience,
     .content-professional-skill{
+      .professional-information-noImage::before {
+        content: '';
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 10;
+        background-image: url('http://cdn.yupao.com/newyupao/images/newresume-status-nopass.png');
+        background-size: cover;
+      }
       .project-information,.professional-information{
         position: relative;
-        &::before{
-          content: '';
-          width: 100px;
-          height: 100px;
-          position: absolute;
-          top: 0;
-          left: 0;
-          background-image: url('http://cdn.yupao.com/newyupao/images/newresume-status-nopass.png');
-          background-size: cover;
-        }
         .content-information{
+          position: relative;
+          .audit{
+            width: 110px;
+            height: 110px;
+            position: absolute;
+            top: 10px;
+            right: 21px;
+            z-index: 99;
+          }
           .information .name{
-            font-size: 26px;
+            font-size: 28px;
           }
           .information .sexage{
-            font-size: 22px;
+            font-size: 26px;
           }
           .information .time{
             margin-top: 0;
-            margin-left: 50px;
+            // margin-left: 50px;
           }
         }
       }
       .project-content{
         .content-img{
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: space-between;
-          Image{
+          margin-top: 15px;
+          text-align: left;
+          .project-item-img,
+          .professional-item-img{
             width: 185px;
             height: 185px;
             margin: 25px 0;
@@ -325,19 +456,34 @@
         .project-failtxt{
           margin-bottom: 10px;
           text-align: left;
-          font-size: 22px;
+          font-size: 26px;
           color: #FE1901;
         }
       }
       .change-project{
         text-align: center;
-        Button{
+        .change-project-btn{
+          position: relative;
           display: inline-block;
-          padding: 10px 44px;
+          padding: 10px $commonMargin;
           color: #FFFFFF;
           font-size: 26px;
           line-height: 36px;
-          background-color: #0099FF;
+          background-color: $color;
+          .change-project-btn-icon{
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            color: white;
+            background: #dc0102;
+            border-radius: 50%;
+            right: -20px;
+            top: -14px;
+            text-align: center;
+            line-height: 24px;
+            font-size: 20px;
+            z-index: 10;
+          }
         }
         .nabla{
           display: inline-block;
@@ -355,26 +501,78 @@
         .content-information{
           align-items: baseline;
         }
-        .content-information .information>View{
-          display: inline-block;
+        .content-information .information{
+          .name,.time{
+            display: inline-block;
+          }
         }
       }
     }
     .content-btn{
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100%;
       display: flex;
       margin-top: 83px;
+      z-index: 100;
+      box-shadow: 0 0 5px $shadowcolor;
       background-color: #FFFFFF;
-      .preview-btn,.share-btn{
-        width: 50%;
-        padding: 29px 0;
-        border-top: 2px solid rgba(99, 98, 105, 0.22);
+      .content-btn-box{
+        width: 100%;
+        display: flex;
+      }
+      .preview{
+        display: flex;
+        width: 100%;
         text-align: center;
         font-size: 36px;
         color: #7D7D7D;
-        &>View{
+        padding: 29px 0;
+        .preview-box{
+          margin:  0 auto;
+          display: flex;
+          .preview-img {
+            display: inline-block;
+            width: 36px;
+            height: 36px;
+            vertical-align: -6px;
+            margin-right: 15px;
+            margin-top: 4px;
+          }
+        }
+      }
+      .preview-btn{
+        height: 100px;
+        width: 50%;
+        // padding: 29px 0;
+        margin: auto;
+        line-height: 100px;
+        text-align: center;
+        font-size: 36px;
+        color: #7D7D7D;
+        .preview-share-btn{
           display: inline-block;
         }
-        Image{
+        .preview-img{
+          display: inline-block;
+          width: 36px;
+          height: 36px;
+          vertical-align: -6px;
+          margin-right: 15px;
+        }
+      }
+      .preview-btn-share{
+        height: 100px;
+        width: 50%;
+        text-align: center;
+        font-size: 36px;
+        color: #7D7D7D;
+        background: #FFFFFF;
+        .preview-share-btn {
+          display: inline-block;
+        }
+        .preview-img {
           display: inline-block;
           width: 36px;
           height: 36px;
@@ -384,9 +582,9 @@
       }
       .preview-btn{
         border-right: 1px solid rgba(99, 98, 105, 0.22);
-      }
-      .share-btn{
-        border-left: 1px solid rgba(99, 98, 105, 0.22);
+        &:nth-last-child(1){
+          border-right: 0;
+        }
       }
     }
   }

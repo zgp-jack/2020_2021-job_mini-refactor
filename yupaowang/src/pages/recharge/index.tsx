@@ -1,4 +1,4 @@
-import Taro, { useEffect, useState } from '@tarojs/taro'
+import Taro, { useEffect, useState, Config } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
 import { SERVERPHONE, MINIVERSION, DOUYIN } from '../../config'
 import { getRechargeList, getRechargeOpenid, getRechargeOrder, userDouyinRecharge, userCheckDouyinRecharge } from '../../utils/request'
@@ -81,7 +81,6 @@ export default function Recharge(){
             resolve({ code: 0 })
           }
         }).catch((err) => {
-          console.log(err)
           Msg('支付失败')
           reject(err)
         })
@@ -100,7 +99,6 @@ export default function Recharge(){
           return getOrderStatusAction(order_no)
         },
         success: (res) => {
-          console.log(res)
           if (res.code == 0) {
             Msg('支付成功')
           }if(res.code == 9){
@@ -110,7 +108,6 @@ export default function Recharge(){
           }
         },
         fail: (err) => {
-          console.error(err)
           Msg('支付失败')
         },
       })
@@ -119,7 +116,6 @@ export default function Recharge(){
 
   // 微信支付
   const weixinProPay = (rechargeIntegral: number) => {
-    console.log('吊起微信支付')
     Taro.login({
       success: (res) => {
         getRechargeOpenid(res.code).then(openidData => {
@@ -150,7 +146,7 @@ export default function Recharge(){
             errMsg(`网络异常，充值失败，客服电话${SERVERPHONE}`)
           })
         }).catch(() => {
-          ShowActionModal(`充值失败，请联系客服电话${SERVERPHONE}`)
+          ShowActionModal({ msg: `充值失败，请联系客服电话${SERVERPHONE}`})
         })
       }
     })
@@ -193,3 +189,10 @@ export default function Recharge(){
     </View>
   )
 }
+
+Recharge.config = {
+  navigationBarTitleText: '用户充值积分',
+  navigationBarBackgroundColor: '#0099ff',
+  navigationBarTextStyle: 'white',
+  backgroundTextStyle: "dark"
+} as Config

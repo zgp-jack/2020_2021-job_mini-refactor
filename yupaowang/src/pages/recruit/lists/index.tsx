@@ -10,8 +10,10 @@ import { RecruitListItem } from '../../../utils/request/index.d'
 import { UserLocationPromiss, ChildItems, AREACHINA, getCityInfo } from '../../../models/area'
 import { UserListChooseCity, UserLocationCity } from '../../../config/store'
 import { userAuthLoction } from '../../../utils/helper'
+import { PUBLISHRECRUIT } from '../../../config'
 import { AreaPickerKey, ClassifyPickerKey, FilterPickerKey } from '../../../config/pages/lists'
 import './index.scss'
+import Msg from '../../../utils/msg'
 
 export interface conditionType {
   id: string,
@@ -22,13 +24,15 @@ export default function Recruit(){
 
   // 输入关键词 没搜索 备份
   const [remark, setRemark] = useState<string>('')
+  // 是否还有下一页
+  const [hasMore, setHasMore] = useState<boolean>(true)
   // * 获取选择城市缓存
   let userListChooseCity: ChildItems = Taro.getStorageSync(UserListChooseCity)
   // * 配置筛选条件
   const [condition, setCondition] = useState<conditionType[]>([
     { id: AreaPickerKey, text: userListChooseCity ? userListChooseCity.name : '全国' },
     { id: ClassifyPickerKey, text: '全部分类' },
-    { id: FilterPickerKey, text: '全部' }
+    { id: FilterPickerKey, text: '最新' }
   ])
   // * scrollTop 位置 回到顶部
   const [scrollTop,setScrollTop] = useState<number>(0)
@@ -90,10 +94,20 @@ export default function Recruit(){
   // 请求列表方法
   const getRecruitListAction = ()=> {
     getRecruitList(searchData).then(res => {
-      Taro.hideNavigationBarLoading()
-      if (searchData.page === 1) setLists([[...res.data]])
-      else setLists([...lists, [...res.data]])
-      if (refresh) setRefresh(false)
+      if(res.errcode == 'ok'){
+        if (res.data) {
+          if (!res.data.length) setHasMore(false)
+          Taro.hideNavigationBarLoading()
+          if (searchData.page === 1) setLists([[...res.data]])
+          else setLists([...lists, [...res.data]])
+        } else {
+          if (searchData.page === 1) setLists([[]])
+          setHasMore(false)
+        }
+        if (refresh) setRefresh(false)
+      }else{
+        Msg(res.errmsg)
+      }
     })
   }
 
@@ -105,6 +119,7 @@ export default function Recruit(){
 
   // * 触底加载下一页
   const getNextPageData = ()=> {
+    if(!hasMore) return
     Taro.showNavigationBarLoading()
     setSearchData({...searchData, page: searchData.page + 1})
   }
@@ -117,7 +132,7 @@ export default function Recruit(){
 
   // * 发布招工
   const userPublishRecruit = ()=> {
-    Taro.navigateTo({url: '/pages/recruit/publish/index'})
+    Taro.navigateTo({ url: PUBLISHRECRUIT})
   }
 
   // * 更新筛选条件
@@ -138,6 +153,7 @@ export default function Recruit(){
 
   // scroll-view 回到顶部
   const goToScrollTop = () => {
+    setHasMore(true)
     setScrollTop(scrollTop ? 0 : 0.1)
   }
 
@@ -166,7 +182,7 @@ export default function Recruit(){
       >
         <View style={{height: '8px'}}></View>
         <WechatNotice />
-        <RecruitList data={lists} />
+        <RecruitList data={lists} hasMore={hasMore} />
       </ScrollView>
       <View className='publish-list-btn' onClick={() => userPublishRecruit()}>发布招工</View>
     </View>

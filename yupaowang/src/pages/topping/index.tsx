@@ -1,10 +1,12 @@
 import Taro, { Config, useEffect, useState, createContext,useRouter } from '@tarojs/taro'
-import { View, Picker, Text, Image } from '@tarojs/components'
+import { View, Picker, Text, Image, Input } from '@tarojs/components'
 import { jobTopConfigAction, jobDoTopAction, jobGetTopAreasAction, jobChangeTopAreasAction, resumesTopConfigV2Action, resumesDoTopAction, resumesDoTopV2Action, resumesUpdateTopResumeAction } from '../../utils/request/index'
 import { SERVERPHONE, IMGCDNURL  } from '../../config'
 import { UserInfo } from '../../config/store'
-import './index.scss'
 import Msg from '../../utils/msg'
+import setRecruitTopArea from '../../actions/recruit_top'
+import { useDispatch, useSelector } from '@tarojs/redux'
+import './index.scss'
 
 interface Distruction{
   AreParams: ParamsType,
@@ -50,6 +52,8 @@ interface BasicsType{
 export const contextItem = createContext<Distruction>({} as Distruction)
 
 export default function Topping() {
+  const dispatch = useDispatch()
+  const AreParams = useSelector<any, ParamsType>(store => store.recruitTop['AreParams'])
   const router: Taro.RouterInfo = useRouter();
   let { id, type, rec, areaData, endTimes, endTimeStr } = router.params;
   // 获取userInfo
@@ -99,6 +103,12 @@ export default function Topping() {
     max_city:0,
     max_province:0,
   })
+
+  // 当redux更新后 ，立即更新视图区域
+  useEffect(() => { 
+    setParams({ ...AreParams})
+    calcPrice(AreParams.city, AreParams.province, AreParams.whole)
+  }, [AreParams])
   // 修改超过最大就显示消耗积分
   useEffect(()=>{
     if(type){
@@ -110,6 +120,7 @@ export default function Topping() {
         jobGetTopAreasAction(val).then(res=>{
           if(res.errcode === 'ok'){
             setParams({city:res.data.top_city,province:res.data.top_province,whole:res.data.top_country})
+            dispatch(setRecruitTopArea({ city: res.data.top_city, province: res.data.top_province, whole: res.data.top_country }))
             setEndTime(res.data.end_time_string)
             setEnd(res.data.end_time)
             setMaxNum(res.data.max_price)
@@ -135,8 +146,8 @@ export default function Topping() {
         if (res.errcode === 'ok') {
         setData({top_rules:res.data.top_rules})
         let array: string[] = []
-        for (let i = 0; i < res.data.max_top_days; i++) {
-          array.push(i + 1 + "天")
+        for (let i = 0; i < res.data.days.length; i++) {
+          array.push(i  + "天")
         }
         if(type){
           if (areaData){
@@ -161,11 +172,11 @@ export default function Topping() {
               maxPrice = recDay * res.data.country_integral
             }
             setParams({ city, province, whole})
+            dispatch(setRecruitTopArea({ city, province, whole }))
             setEndTime(endTimeStr)
             setEnd(parseInt(endTimes))
             setMaxNum(maxPrice)
           }
-          // console.log(resumeTop,'resumeTop');
         }
         setList(array)
         setCity({ max_city: res.data.max_city, max_province: res.data.max_province })
@@ -186,8 +197,9 @@ export default function Topping() {
           setData({ top_rules: res.data.top_rules })
           setCity({ max_city: res.data.max_city, max_province: res.data.max_province })
           let array: string[] = []
-          for (let i = 0; i < res.data.max_top_days; i++) {
-            array.push(i + 1 + "天")
+          let daysarr: string[] = res.data.days
+          for (let i = 0; i < daysarr.length; i++) {
+            array.push(daysarr[i] + "天")
           }
           setList(array)
         }else{
@@ -228,7 +240,6 @@ export default function Topping() {
       setdisplayTime(true)
       // 时间
       let all = 86400000 * (parseInt(e.detail.value) + 1) + ((end - 0) * 1000 - 0);
-      // console.log(all)
       const newTime = getMyDate(all);
       setNewTime(newTime);
       // 获取旧价格
@@ -253,14 +264,12 @@ export default function Topping() {
           if(rec){
             money = Math.round((newPrice - oldPrice) * remDay + ((params.city.length * 20 + params.province.length * 20) * (parseInt(e.detail.value) + 1)))
           }else{
-            console.log((newPrice - oldPrice) * remDay);
             money = Math.round((newPrice - oldPrice) * remDay + newPrice * (parseInt(e.detail.value) + 1))
           }
         } else {
           money = oldPrice * (parseInt(e.detail.value) + 1)
         }
       }
-      console.log(money,'xdsadasda')
       setNum(money);
     }else{
       if(params){
@@ -317,12 +326,9 @@ export default function Topping() {
       time: userInfo.tokenTime,
       update_integral: num,
     }
-    // console.log(321312321);
-    // console.log(editDetail,'editDetail');
     // return
     if(type){
       if(rec){
-        console.log(32312);
         resumesUpdateTopResumeAction(editDetail).then(res=>{
           if (res.errcode === 'ok') {
             Taro.showModal({
@@ -524,8 +530,8 @@ export default function Topping() {
   }
   // 传递方法
   const transferFun = ({ city, province, whole })=>{
-    setParams({ city, province, whole });
-    console.log(city, province, whole,'transferFun')
+    dispatch(setRecruitTopArea({ city, province, whole }))
+    setParams({ city, province, whole })
     calcPrice(city, province, whole);
   }
   const calcPrice = (city, province, whole) => {
@@ -537,8 +543,6 @@ export default function Topping() {
     //     setNum(numData);
     //   }
     // }else{
-    // console.log(city.length,'cityleng')
-    // console.log(province.length,'provincelenken')
     if (city || province || whole){
       if(type){
         // 获取旧价格
@@ -552,11 +556,6 @@ export default function Topping() {
         }else{
          newPrice = whole.length ? 500 * 1 : (city.length * 10 + province.length * 20) * 1;
         }
-        console.log(newPrice,'最新价格')
-        // console.log(end,'end');
-        // console.log(Math.round(new Date().getTime() / 1000));
-        // console.log((end - (Math.round(new Date().getTime() / 1000))) / 86400)
-        console.log(paramsDay,'paramsDay')
         // 修改区域
         const changeCity = true; //修改区域
         // 只改变时间
@@ -572,24 +571,17 @@ export default function Topping() {
               // 新的大于旧的金额
               // 新的减去旧的再*天数
               // money = Math.round((newPrice - oldPrice));
-              // console.log(money,'moneymoneymoney')
-              // console.log(remDay,'xxxx')
               // money = newPrice - oldPrice - moneys;
               money = Math.round((newPrice - oldPrice) * remDay);
             }else{
               money = Math.round((newPrice - oldPrice) * remDay);
             }
-            console.log(remDay,'newPrice > oldPrice')
           }
         } else {
           // 时间变了，城市变了
           if (newPrice - oldPrice > 0) {
-            // console.log(newPrice - oldPrice,'newPrice - oldPrice');
-            // console.log(remDay,'remDay');
-            // console.log(newPrice * paramsDay,'newPrice * paramsDay')
             if(rec){
               money = Math.round(newPrice - oldPrice + ((city.length * 20 + province.length * 20) * paramsDay) )
-              console.log(money,'价格是')
               // money = Math.round(newPrice - oldPrice + oldPrice * paramsDay + newPrice * paramsDay)
             }else{
               money = Math.round((newPrice - oldPrice) * remDay + newPrice * paramsDay)
@@ -604,10 +596,6 @@ export default function Topping() {
         } else {
           num = num;
         }
-        console.log(oldPrice,'oldPrice');
-        console.log(newPrice,'newPrice');
-        console.log(remDay,'remDay')
-        console.log(money,'money')
         setNum(money);
       }else{
         let numData = 0;
@@ -624,23 +612,13 @@ export default function Topping() {
       }
     }
   }
-  // 需要传递的值
-  const value: Distruction = {
-    AreParams: params,
-    setAreParams: (city: areDataChildrenType[], province: areDataChildrenType[], whole: areDataChildrenType[], ) => transferFun({ city, province, whole }),
-    // provinceParams: province,
-    // setProvinceParams: (province: areDataChildrenType[]) => modifyFun(province)
-  }
+
   const modifyFun = (province)=>{
-    console.log(province,'xxxx')
     setProvince(province);
     // 设置积分
     recIntegral(province);
   }
   const recIntegral = (province)=>{
-    console.log(basics.province_integral);
-    console.log(recDay);
-    console.log(province)
     let num = 0;
     if (province.length){
       num = basics.province_integral * province.length * parseInt(recDay);
@@ -651,7 +629,6 @@ export default function Topping() {
   }
   // 删除
   const handleDel = (v)=>{
-    console.log(v);
     if(rec){
       if (v.pid === '1') {
         params.city.map((val, i) => {
@@ -659,8 +636,8 @@ export default function Topping() {
             params.city.splice(i, 1)
           }
         })
-        console.log(params, 'xxxx');
         setParams({ city: params.city, province: params.province, whole: params.whole })
+        dispatch(setRecruitTopArea({ city: params.city, province: params.province, whole: params.whole }))
       }
     }
     if(v.pid === '1'){
@@ -669,8 +646,8 @@ export default function Topping() {
           params.province.splice(i,1)
         }
       })
-      console.log(params,'xxxx');
       setParams({ city:params.city,province:params.province,whole:params.whole})
+      dispatch(setRecruitTopArea({ city: params.city, province: params.province, whole: params.whole }))
     }else if(v.pid === '0'){
       params.whole.map((val, i) => {
         if (val.id === v.id) {
@@ -678,6 +655,7 @@ export default function Topping() {
         }
       })
       setParams({ city: params.city, province: params.province, whole: params.whole })
+      dispatch(setRecruitTopArea({ city: params.city, province: params.province, whole: params.whole }))
     }else{
       params.city.map((val, i) => {
         if (val.id === v.id) {
@@ -685,6 +663,7 @@ export default function Topping() {
         }
       })
       setParams({ city: params.city, province: params.province,whole:params.whole })
+      dispatch(setRecruitTopArea({ city: params.city, province: params.province, whole: params.whole }))
     }
     // 积分 
     // 省市大于原来的省市就改变，不然就是直接最大积分
@@ -697,7 +676,6 @@ export default function Topping() {
     }else{
       newPrice = params.whole.length ? 500 * 1 : (params.city.length * 10 + params.province.length * 20) * 1;
     }
-    console.log(newPrice,'删除价格')
     // const newPrice = (params.city.length * 10 + params.province.length * 20) * 1;
     // 时间差
     let remDay: any = (end - new Date().getTime()/1000) / 86400;
@@ -804,11 +782,8 @@ export default function Topping() {
       }
       return val;
     })
-    console.log(recDay,'222222')
     let num = 0;
     num = list.length * basics.province_integral * parseInt(recDay);
-    console.log(list);
-    console.log(num,'num')
     setProvince(list);
     setNum(num);
   }
@@ -840,7 +815,6 @@ export default function Topping() {
     }
     // const provinces = (province.map(v=>v.id)).join(',');
     // const citys = (city.map(v => v.id)).join(',');
-    // console.log(provinces,'xxx')
     // let params={
     //   days: parseInt(recDay),
     //   citys: 0,
@@ -851,7 +825,6 @@ export default function Topping() {
       citys: 0,
       provinces,
     }
-    // console.log(details,'111s')
     // return;
     if(type){
 
@@ -908,9 +881,7 @@ export default function Topping() {
       })
     }
   }
-  console.log(paramsDay,'aramsDayaaas')
   return(
-    <contextItem.Provider value={value}>
     <View className='topping'>
       <View className='topping-title'>当前选择置顶范围：</View>
       <View className='topping-list-box'>
@@ -947,7 +918,7 @@ export default function Topping() {
             <View onClick={handleAddJump} className='topping-list-add'>添加更多</View>
           }
           {!params.city.length && !params.province.length && !params.whole.length  &&
-          <View className='topping-change-btnBox' onClick={handleJump}><View className='topping-change-btnBox-btn'>点击选择置顶范围></View></View>
+          <View className='topping-change-btnBox' onClick={handleJump}><View className='topping-change-btnBox-btn'>点击选择置顶范围</View></View>
         }
         </View>:
         // 找活
@@ -956,7 +927,7 @@ export default function Topping() {
             <View onClick={handleAddJump} className='topping-list-add'>添加更多</View>
           }
           {!params.city.length && !params.province.length && !params.whole.length &&
-            <View className='topping-change-btnBox' onClick={handleJump}><View className='topping-change-btnBox-btn'>点击选择置顶范围></View></View>
+            <View className='topping-change-btnBox' onClick={handleJump}><View className='topping-change-btnBox-btn'>点击选择置顶范围</View></View>
           }
         </View>
         // <View>
@@ -992,11 +963,11 @@ export default function Topping() {
           {num !== 0 &&  <View className='topping-input-box-list'>消耗积分:<View className='topping-input-box-list-num'>{num}分</View></View>}
       </View> :
       <View className='topping-input-box'>
-        <View className='topping-input-box-list'>置顶天数:
-          <Picker mode='selector' range={list} value={0} onChange={(e) => handleClick(e)}>
+        <Picker mode='selector' range={list} value={0} onChange={(e) => handleClick(e)}>
+          <View className='topping-input-box-list'>置顶天数:
             <Text className='topping-input-box-list-input'>{day}</Text>
+          </View>
         </Picker>
-        </View>
         <View className='topping-input-box-list'>消耗积分:<View className='topping-input-box-list-num'>{num}分</View></View>
       </View>
     }
@@ -1021,7 +992,6 @@ export default function Topping() {
         {/* } */}
       </View>
     </View>
-    </contextItem.Provider>
   )
 }
 

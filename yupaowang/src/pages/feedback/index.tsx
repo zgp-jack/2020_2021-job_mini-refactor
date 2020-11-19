@@ -1,11 +1,12 @@
 import Taro, { Config, useState, useRouter } from '@tarojs/taro'
-import { View, Button, Textarea } from '@tarojs/components'
+import { View, Button, Textarea, Block } from '@tarojs/components'
 import { AtInput } from 'taro-ui'
 import WordsTotal from '../../components/wordstotal'
 import WechatNotice from '../../components/wechat'
 import ImageView from '../../components/imageview'
 import UploadImgAction from '../../utils/upload'
 import useCode from '../../hooks/code'
+import Auth from '../../components/auth'
 import { feedbackSubmissionAction } from '../../utils/request/index'
 import Msg, { ShowActionModal } from '../../utils/msg'
 import { SubscribeToNews } from '../../utils/subscribeToNews';
@@ -80,19 +81,19 @@ export default function Feedback() {
   const handleSubmission = ()=>{
     let images: string[] = image.item.map(item=>item.url)
     if (!isVaildVal(textarea, 15, 500)) {
-      Msg('输入内容不少于15个字且必须包含文字')
+      ShowActionModal({ msg: '输入内容不少于15个字且必须包含文字'})
       return false
     }
     if (!name) {
-      Msg('请输入联系人姓名')
+      ShowActionModal({ msg: '请输入联系人姓名'})
       return false
     }
     if (!isPhone(uphone)) {
-      Msg('请输入正确手机号')
+      ShowActionModal({ msg: '请输入正确手机号'})
       return false
     }
     if (uphone !== phone && !code){
-      Msg('请输入验证码')
+      ShowActionModal({ msg: '请输入验证码'})
       return false
     }
     const params = {
@@ -125,6 +126,8 @@ export default function Feedback() {
     setNum(val.length);
   }
   return (
+    <Block>
+    <Auth />
     <View className='feedback-content'>
       <WechatNotice />
       <View className='feedback-content-middle'>
@@ -187,6 +190,7 @@ export default function Feedback() {
       </View>
       <View><Button className='feedback-content-button' onClick={handleSubmission}>反馈意见</Button></View>
     </View>
+    </Block>
   )
 }
 

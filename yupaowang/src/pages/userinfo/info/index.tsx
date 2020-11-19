@@ -1,4 +1,4 @@
-import Taro, { useEffect, useState } from '@tarojs/taro'
+import Taro, { useEffect, useState, Config } from '@tarojs/taro'
 import { View, Text, Image, Input } from '@tarojs/components'
 import { userChangeAvatar, userUpdateName } from '../../../utils/request'
 import UploadImgAction from '../../../utils/upload'
@@ -74,6 +74,12 @@ export default function UserInfoIndex(){
     })
   }
 
+  // 用户修改姓名
+  const useEditName = () => {
+    if (!memberInfo.changeName) return
+    setShowModal(true)
+  }
+
   //修改密码
   const onSetPassword = ()=> {
     const url = "/pages/userinfo/updatePass/index";
@@ -89,7 +95,7 @@ export default function UserInfoIndex(){
           <View className='user-updatainfo-left'>头像</View>
           <Image className='user-updatainfo-right user-updatainfo-avatar' src={ headerImg } />
         </View>
-        <View className='user-updatainfo-item clearfix' onClick={()=>setShowModal(true)}>
+        <View className='user-updatainfo-item clearfix' onClick={()=>useEditName()}>
           <View className='user-updatainfo-left'>姓名</View>
           <View className='user-updatainfo-right'>{ name }</View>
         </View>
@@ -111,7 +117,7 @@ export default function UserInfoIndex(){
             <Input className='yupao-enter-wrap yupao-enter-input' value={ newName } placeholder='请输入您的姓名' onInput={(e)=>userEnterName(e)} />
           </View>
           <View className='yupao-enter-footer clearfix'>
-            <Text onClick={()=>setShowModal(false)}>取消</Text>
+            <Text onClick={() => { setShowModal(false);setNewName(name)}}>取消</Text>
             <Text onClick={()=>userSubmitName()}>确定</Text>
           </View>
         </View>
@@ -120,3 +126,8 @@ export default function UserInfoIndex(){
     </View>
   )
 }
+
+
+UserInfoIndex.config = {
+  navigationBarTitleText: '修改资料'
+} as Config

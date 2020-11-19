@@ -6,6 +6,7 @@ import { HistoryCities } from '../../config/store'
 import AREAS from '../../models/area'
 import { objDeepCopy } from '../../utils/helper'
 import './index.scss'
+import { AreaData } from 'src/pages/recruit'
 
 export interface IPROPS {
   data: AllAreasDataItem[][],
@@ -16,7 +17,7 @@ export interface IPROPS {
 export interface CitiesProps extends IPROPS {
   userTapCityBtn: (b: boolean) => void, // 显示关闭操作
   area: string,  // 当前选择城市
-  userChangeCity?: (city: string)=> void,
+  userChangeCity?: (city: AreaData)=> void,
   userLoc: AllAreasDataItem
 }
 
@@ -52,7 +53,7 @@ export default function Cities({
     }
     // 储存最新的用户点击历史城市数据
     Taro.setStorageSync(HistoryCities,historyCities)
-    userChangeCity && userChangeCity(city.city)
+    userChangeCity && userChangeCity({name:city.city,id:city.id})
     userTapCityBtn(false)
     userRecentlyCities()
   }

@@ -6,9 +6,11 @@ import { userGetPublishedUsedLists, userChangeUsedStatus, userUpdateUsedInfo } f
 import { UserPublishedUsedItem } from '../../../utils/request/index.d'
 import classnames from 'classnames'
 import { User } from '../../../reducers/user'
+import Tabbar from '../../../components/tabbar'
 import Nodata from '../../../components/nodata'
 import './index.scss'
-import { IMGCDNURL, SERVERPHONE } from '../../../config'
+import Auth from '../../../components/auth'
+import { IMGCDNURL } from '../../../config'
 import Msg from '../../../utils/msg'
 
 export interface searchDataType {
@@ -40,27 +42,37 @@ export default function PublishedUsed() {
     type: id
   })
 
+  // 当redux更新后 ， 立即更新用户数据
+  useEffect(()=>{
+    if(!user.login || loading) return
+    setSearchData({...searchData,mid: user.userId, uuid: user.uuid})
+  }, [user])
+
   // 加载数据类别
   const getPublishedUsedLists = () => {
     setLoading(true)
     userGetPublishedUsedLists(searchData)
       .then(res => {
-        let list = res.data.lists
-        let len = list.length
-        let page = searchData.page
-        setChecktip(res.data.checking_tips)
-        setMore(len ? true : false)
-        if (page === 1) {
-          setLists(list)
-        } else {
-          setLists([...lists, ...list])
+        if(res.errcode == 'ok'){
+          let list = res.data.lists
+          let len = list.length
+          let page = searchData.page
+          setChecktip(res.data.checking_tips)
+          setMore(len ? true : false)
+          if (page === 1) {
+            setLists(list)
+          } else {
+            setLists([...lists, ...list])
+          }
+          if (refresh) {
+            setRefresh(false)
+            Taro.stopPullDownRefresh()
+            Taro.hideNavigationBarLoading()
+          }
+          setLoading(false)
+        }else{
+          Msg(res.errmsg)
         }
-        if (refresh) {
-          setRefresh(false)
-          Taro.stopPullDownRefresh()
-          Taro.hideNavigationBarLoading()
-        }
-        setLoading(false)
       })
       .catch(() => {
         if (refresh) {
@@ -79,6 +91,7 @@ export default function PublishedUsed() {
   }
 
   useEffect(() => {
+    if(!user.login) return
     getPublishedUsedLists()
   }, [searchData])
 
@@ -137,6 +150,8 @@ export default function PublishedUsed() {
   }
 
   return (
+    <Block>
+    <Auth />
     <View className='user-published-container'>
       <View className='user-published-header'>
         {HeaderList.map(item => (
@@ -195,6 +210,8 @@ export default function PublishedUsed() {
         }
       </ScrollView>
     </View>
+      <Tabbar />
+    </Block>
   )
 }
 

@@ -25,6 +25,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -55,7 +57,7 @@ var CollectionResumeList = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (CollectionResumeList.__proto__ || Object.getPrototypeOf(CollectionResumeList)).apply(this, arguments));
 
-    _this.$usedState = ["anonymousState__temp", "loopArray60", "$compid__51", "$compid__52", "data", "IMGCDNURL", "recruitNoMoreData", "modalContent", "bottom", "onHandlerClick"];
+    _this.$usedState = ["anonymousState__temp", "loopArray64", "$compid__54", "$compid__55", "data", "IMGCDNURL", "recruitNoMoreData", "modalContent", "bottom", "onHandlerClick"];
     _this.anonymousFunc0Map = {};
     _this.anonymousFunc1Map = {};
     _this.customComponents = ["Nodata", "AtModal", "AtModalHeader", "AtModalContent", "AtModalAction"];
@@ -79,15 +81,15 @@ var CollectionResumeList = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__51"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__54"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__51 = _genCompid2[0],
-          $compid__51 = _genCompid2[1];
+          $prevCompid__54 = _genCompid2[0],
+          $compid__54 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__52"),
+      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__55"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__52 = _genCompid4[0],
-          $compid__52 = _genCompid4[1];
+          $prevCompid__55 = _genCompid4[0],
+          $compid__55 = _genCompid4[1];
 
       var _props = this.__props,
           _props$data = _props.data,
@@ -112,9 +114,13 @@ var CollectionResumeList = function (_Taro$Component) {
       // 弹窗
 
 
-      var onHandleClick = function onHandleClick(type) {
+      var onHandleClick = function onHandleClick(type, uuid) {
         // 1 审核中 2 通过 0 失败
-        if (type == '2') {} else if (type == '0') {
+        if (type == '2') {
+          _taroTt2.default.navigateTo({
+            url: "/pages/resume/detail/index?uuid=" + uuid
+          });
+        } else if (type == '0') {
           setIsOpened(true);
           setModalContent('该信息未通过人工审核，审核通过后，即可查看');
         } else if (type == '1') {
@@ -126,16 +132,17 @@ var CollectionResumeList = function (_Taro$Component) {
       this.anonymousFunc2 = function () {
         setIsOpened(false);
       };
-      var loopArray60 = data ? data.map(function (item, __index0) {
+      var loopArray64 = data ? data.map(function (item, __index0) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
-        var _$indexKey = "ghzzz" + __index0;
+        var _$indexKey = "gjzzz" + __index0;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
-          return onHandleClick(item.$original.resume.check);
+          return onHandleClick(item.$original.resume.check, item.$original.resume_uuid);
         };
-        var _$indexKey2 = "gizzz" + __index0;
-        _this2.anonymousFunc1Map[_$indexKey2] = function () {
+        var _$indexKey2 = "hazzz" + __index0;
+        _this2.anonymousFunc1Map[_$indexKey2] = function (e) {
+          e.stopPropagation();
           _this2.__props.onHandlerClick(item.$original.resume_uuid);
         };
         return {
@@ -146,15 +153,15 @@ var CollectionResumeList = function (_Taro$Component) {
       }) : [];
       !data.length && _taroTt.propsManager.set({
         "text": "\u6CA1\u6709\u627E\u5230\u76F8\u5173\u7684\u6570\u636E"
-      }, $compid__51, $prevCompid__51);
+      }, $compid__54, $prevCompid__54);
       _taroTt.propsManager.set({
         "isOpened": isOpened
-      }, $compid__52, $prevCompid__52);
+      }, $compid__55, $prevCompid__55);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
-        loopArray60: loopArray60,
-        $compid__51: $compid__51,
-        $compid__52: $compid__52,
+        loopArray64: loopArray64,
+        $compid__54: $compid__54,
+        $compid__55: $compid__55,
         data: data,
         IMGCDNURL: _index.IMGCDNURL,
         recruitNoMoreData: recruitNoMoreData,
@@ -180,12 +187,11 @@ var CollectionResumeList = function (_Taro$Component) {
     value: function anonymousFunc1(_$indexKey2) {
       var _anonymousFunc1Map;
 
-      ;
-
       for (var _len2 = arguments.length, e = Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
         e[_key2 - 1] = arguments[_key2];
       }
 
+      (typeof e === "undefined" ? "undefined" : _typeof(e)) === 'object' && e.stopPropagation && e.stopPropagation();
       return this.anonymousFunc1Map[_$indexKey2] && (_anonymousFunc1Map = this.anonymousFunc1Map)[_$indexKey2].apply(_anonymousFunc1Map, e);
     }
   }, {

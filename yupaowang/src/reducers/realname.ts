@@ -1,4 +1,4 @@
-import { GET, SET, SETAREA, SETFUN } from '../constants/realname'
+import { GETREALNAME, SETREALNAME, SETAREA, SETFUN } from '../constants/realname'
 
 export interface RealnameDefaultStore {
   RealnameArea: string,
@@ -17,10 +17,10 @@ const DEFAULT_STATE: RealnameDefaultStore = {
 
 export default function RealnameStore(state: RealnameDefaultStore = DEFAULT_STATE, action: RealnameAction){
   switch(action.type){
-    case GET:
+    case GETREALNAME:
       return state
       break
-    case SET:
+    case SETREALNAME:
       return { ...state, ...action.data }
       break
     case SETFUN:
