@@ -169,9 +169,10 @@ export default function usePublishViewInfo(InitParams: InitRecruitView){
       classifies: model.classifies,
       images: model.view_images.map(item => item.url)
     }
-    const mydata = JSON.parse(JSON.stringify(data))
+    let mydata = JSON.parse(JSON.stringify(data))
     let imgs: string = mydata.images.join(',')
-    mydata.images = imgs
+    let classifies: string = mydata.classifies.join(',')
+    mydata = {...mydata, images: imgs, classifies: classifies}
     return mydata
   }
 

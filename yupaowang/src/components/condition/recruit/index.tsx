@@ -154,19 +154,6 @@ function RecruitCondition({ data, setSearchData }: ConditionProps) {
 
   },[areaId])
 
-  const onScrollAction = (e: any, type: string) => {
-    let top: number = e.detail.scrollTop
-    switch (type) {
-      case AreaPickerKey:
-        setAreaScrollTop(top)
-        break
-      case ClassifyPickerKey:
-        setClassifyScrollTop(top)
-        break
-      default:
-        break
-    }
-  }
   return (
     <Block>
       <View className='recruit-condition-box'>
@@ -204,7 +191,6 @@ function RecruitCondition({ data, setSearchData }: ConditionProps) {
               className='drawer-full-lists drawer-half-lists'
               scrollY
               scrollTop={areaScrollTop}
-              onScroll={(e) => onScrollAction(e, AreaPickerKey)}
             >
               {childAreaList.map((item, i) => (
                 <View className={classnames({
@@ -241,7 +227,6 @@ function RecruitCondition({ data, setSearchData }: ConditionProps) {
               className='drawer-full-lists drawer-half-lists'
               scrollY
               scrollTop={classifyScrollTop}
-              onScroll={(e) => onScrollAction(e, ClassifyPickerKey)}
             >
               {classify[classifyIndex].children.map((item, i) => (
                 <View className={classnames({

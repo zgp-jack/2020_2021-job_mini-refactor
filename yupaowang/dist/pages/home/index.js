@@ -1,4 +1,4 @@
-(swan["webpackJsonp"] = swan["webpackJsonp"] || []).push([["pages/home/index"],{
+(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["pages/home/index"],{
 
 /***/ "./src/pages/home/index.scss":
 /*!***********************************!*\
@@ -33,9 +33,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
+var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
 
-var _taroSwan2 = _interopRequireDefault(_taroSwan);
+var _taroTt2 = _interopRequireDefault(_taroTt);
 
 __webpack_require__(/*! ./index.scss */ "./src/pages/home/index.scss");
 
@@ -71,7 +71,7 @@ var Home = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (Home.__proto__ || Object.getPrototypeOf(Home)).apply(this, arguments));
 
-    _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "$compid__10", "$compid__11", "$compid__12", "$compid__13", "$compid__14", "$compid__15", "IMGCDNURL", "ISWEIXIN", "shwoCity", "area", "homeIndex"];
+    _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "$compid__10", "$compid__11", "$compid__12", "$compid__13", "$compid__14", "$compid__15", "IMGCDNURL", "DOWNLOADAPP", "ISWEIXIN", "shwoCity", "area", "homeIndex"];
     _this.customComponents = ["SwiperComponent", "Projects", "Fastfun", "SwiperNews", "RecruitList", "ResumeList", "UsedList", "About", "HomeCity"];
     return _this;
   }
@@ -80,7 +80,7 @@ var Home = function (_Taro$Component) {
     key: "_constructor",
     value: function _constructor(props) {
       _get(Home.prototype.__proto__ || Object.getPrototypeOf(Home.prototype), "_constructor", this).call(this, props);
-      this.$$refs = new _taroSwan2.default.RefsArray();
+      this.$$refs = new _taroTt2.default.RefsArray();
     }
   }, {
     key: "_createData",
@@ -91,32 +91,32 @@ var Home = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__10"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__10"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
           $prevCompid__10 = _genCompid2[0],
           $compid__10 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroSwan.genCompid)(__prefix + "$compid__11"),
+      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__11"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
           $prevCompid__11 = _genCompid4[0],
           $compid__11 = _genCompid4[1];
 
-      var _genCompid5 = (0, _taroSwan.genCompid)(__prefix + "$compid__12"),
+      var _genCompid5 = (0, _taroTt.genCompid)(__prefix + "$compid__12"),
           _genCompid6 = _slicedToArray(_genCompid5, 2),
           $prevCompid__12 = _genCompid6[0],
           $compid__12 = _genCompid6[1];
 
-      var _genCompid7 = (0, _taroSwan.genCompid)(__prefix + "$compid__13"),
+      var _genCompid7 = (0, _taroTt.genCompid)(__prefix + "$compid__13"),
           _genCompid8 = _slicedToArray(_genCompid7, 2),
           $prevCompid__13 = _genCompid8[0],
           $compid__13 = _genCompid8[1];
 
-      var _genCompid9 = (0, _taroSwan.genCompid)(__prefix + "$compid__14"),
+      var _genCompid9 = (0, _taroTt.genCompid)(__prefix + "$compid__14"),
           _genCompid10 = _slicedToArray(_genCompid9, 2),
           $prevCompid__14 = _genCompid10[0],
           $compid__14 = _genCompid10[1];
 
-      var _genCompid11 = (0, _taroSwan.genCompid)(__prefix + "$compid__15"),
+      var _genCompid11 = (0, _taroTt.genCompid)(__prefix + "$compid__15"),
           _genCompid12 = _slicedToArray(_genCompid11, 2),
           $prevCompid__15 = _genCompid12[0],
           $compid__15 = _genCompid12[1];
@@ -135,9 +135,9 @@ var Home = function (_Taro$Component) {
       // 因为刷新页面就会改变，所以我们将获取选择的位置和当前定位经纬度声明变量先保存
       var userChooseCity = void 0;
       var location = void 0;
-      (0, _taroSwan.useEffect)(function () {
-        userChooseCity = _taroSwan2.default.getStorageSync(_store.UserListChooseCity);
-        location = _taroSwan2.default.getStorageSync(_store.UserLocation);
+      (0, _taroTt.useEffect)(function () {
+        userChooseCity = _taroTt2.default.getStorageSync(_store.UserListChooseCity);
+        location = _taroTt2.default.getStorageSync(_store.UserLocation);
         setArea(userChooseCity ? userChooseCity.name : '全国');
         setFilterData({
           area: userChooseCity ? userChooseCity.id : 1,
@@ -146,21 +146,21 @@ var Home = function (_Taro$Component) {
       }, [homeIndex]);
       // 当前展示的城市
 
-      var _useState = (0, _taroSwan.useState)(userChooseCity ? userChooseCity.name : '全国'),
+      var _useState = (0, _taroTt.useState)(userChooseCity ? userChooseCity.name : '全国'),
           _useState2 = _slicedToArray(_useState, 2),
           area = _useState2[0],
           setArea = _useState2[1];
       // * 是否展示城市选择
 
 
-      var _useState3 = (0, _taroSwan.useState)(false),
+      var _useState3 = (0, _taroTt.useState)(false),
           _useState4 = _slicedToArray(_useState3, 2),
           shwoCity = _useState4[0],
           setShowCity = _useState4[1];
       // * 获取列表数据的data
 
 
-      var _useState5 = (0, _taroSwan.useState)({
+      var _useState5 = (0, _taroTt.useState)({
         area: '',
         location: ''
       }),
@@ -176,7 +176,7 @@ var Home = function (_Taro$Component) {
       };
       // * 轮播图的基本参数配置
 
-      var _useState7 = (0, _taroSwan.useState)({
+      var _useState7 = (0, _taroTt.useState)({
         lists: []
       }),
           _useState8 = _slicedToArray(_useState7, 2),
@@ -185,7 +185,7 @@ var Home = function (_Taro$Component) {
       // * 公告列表
 
 
-      var _useState9 = (0, _taroSwan.useState)({
+      var _useState9 = (0, _taroTt.useState)({
         vertical: true,
         lists: []
       }),
@@ -195,7 +195,7 @@ var Home = function (_Taro$Component) {
       // * 数据列表
 
 
-      var _useState11 = (0, _taroSwan.useState)({
+      var _useState11 = (0, _taroTt.useState)({
         recruit: [],
         resume: [],
         fleamarket: []
@@ -206,14 +206,14 @@ var Home = function (_Taro$Component) {
       // 请求轮播数据
 
 
-      (0, _taroSwan.useEffect)(function () {
+      (0, _taroTt.useEffect)(function () {
         (0, _index2.getBannerNotice)().then(function (res) {
           setNotice(_extends({}, notice, { lists: [].concat(_toConsumableArray(res.notice)) }));
           setSwiper(_extends({}, swiper, { lists: [].concat(_toConsumableArray(res.banner)) }));
         });
       }, []);
       // 请求列表数据
-      (0, _taroSwan.useEffect)(function () {
+      (0, _taroTt.useEffect)(function () {
         if (!filterData.area) {
           return;
         }
@@ -227,7 +227,7 @@ var Home = function (_Taro$Component) {
       }, [filterData]);
       // 用户页面跳转
       var userRouteJump = function userRouteJump(url) {
-        _taroSwan2.default.navigateTo({
+        _taroTt2.default.navigateTo({
           url: url
         });
       };
@@ -238,15 +238,18 @@ var Home = function (_Taro$Component) {
         return userRouteJump('/subpackage/pages/download/index');
       };
       this.anonymousFunc2 = function () {
-        return tabbarJump(_tabbar2.RECRUIT);
+        return userRouteJump(_index.PUBLISHRECRUIT);
       };
       this.anonymousFunc3 = function () {
-        return tabbarJump(_tabbar2.RESUME);
+        return tabbarJump(_tabbar2.RECRUIT);
       };
       this.anonymousFunc4 = function () {
-        return tabbarJump(_tabbar2.USED);
+        return tabbarJump(_tabbar2.RESUME);
       };
       this.anonymousFunc5 = function () {
+        return tabbarJump(_tabbar2.USED);
+      };
+      this.anonymousFunc6 = function () {
         return userRouteJump(_index.PUBLISHRECRUIT);
       };
       var anonymousState__temp = shwoCity ? function (val, id) {
@@ -255,28 +258,28 @@ var Home = function (_Taro$Component) {
       var anonymousState__temp2 = shwoCity ? function () {
         return setShowCity(!shwoCity);
       } : null;
-      _taroSwan.propsManager.set({
+      _taroTt.propsManager.set({
         "data": swiper
       }, $compid__10, $prevCompid__10);
-      _taroSwan.propsManager.set({
+      _taroTt.propsManager.set({
         "data": notice
       }, $compid__11, $prevCompid__11);
-      _taroSwan.propsManager.set({
+      _taroTt.propsManager.set({
         "data": lists.recruit,
         "bottom": false,
         "hasMore": true
       }, $compid__12, $prevCompid__12);
-      _taroSwan.propsManager.set({
+      _taroTt.propsManager.set({
         "data": lists.resume,
         "bottom": false,
         "hasMore": true
       }, $compid__13, $prevCompid__13);
-      _taroSwan.propsManager.set({
+      _taroTt.propsManager.set({
         "data": lists.fleamarket,
         "bottom": false,
         "hasMore": true
       }, $compid__14, $prevCompid__14);
-      shwoCity && _taroSwan.propsManager.set({
+      shwoCity && _taroTt.propsManager.set({
         "show": shwoCity,
         "setAreaInfo": anonymousState__temp,
         "closeDrawer": anonymousState__temp2
@@ -291,6 +294,7 @@ var Home = function (_Taro$Component) {
         $compid__14: $compid__14,
         $compid__15: $compid__15,
         IMGCDNURL: _index.IMGCDNURL,
+        DOWNLOADAPP: _index.DOWNLOADAPP,
         ISWEIXIN: false,
         shwoCity: shwoCity,
         area: area
@@ -327,16 +331,21 @@ var Home = function (_Taro$Component) {
     value: function anonymousFunc5(e) {
       ;
     }
+  }, {
+    key: "anonymousFunc6",
+    value: function anonymousFunc6(e) {
+      ;
+    }
   }]);
 
   return Home;
-}(_taroSwan2.default.Component);
+}(_taroTt2.default.Component);
 
-Home.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5"];
+Home.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6"];
 Home.$$componentPath = "pages/home/index";
 exports.default = Home;
 
-Component(__webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js").default.createComponent(Home));
+Component(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(Home));
 
 /***/ })
 

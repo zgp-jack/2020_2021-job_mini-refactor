@@ -1,7 +1,7 @@
 require("./runtime");
 require("./vendors");
 
-(swan["webpackJsonp"] = swan["webpackJsonp"] || []).push([["app"],{
+(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["app"],{
 
 /***/ "./src/app.scss":
 /*!**********************!*\
@@ -30,9 +30,9 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
+var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
 
-var _taroSwan2 = _interopRequireDefault(_taroSwan);
+var _taroTt2 = _interopRequireDefault(_taroTt);
 
 var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
@@ -121,8 +121,8 @@ var _App = function (_BaseComponent) {
 
 exports.default = _App;
 
-App(__webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js").default.createApp(_App));
-_taroSwan2.default.initPxTransform({
+App(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createApp(_App));
+_taroTt2.default.initPxTransform({
   "designWidth": 750,
   "deviceRatio": {
     "640": 1.17,
@@ -892,9 +892,9 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 exports.default = User;
 
-var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
+var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
 
-var _taroSwan2 = _interopRequireDefault(_taroSwan);
+var _taroTt2 = _interopRequireDefault(_taroTt);
 
 var _store = __webpack_require__(/*! ../config/store */ "./src/config/store.ts");
 
@@ -902,7 +902,7 @@ var _user = __webpack_require__(/*! ../constants/user */ "./src/constants/user.t
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var userInfo = _taroSwan2.default.getStorageSync(_store.UserInfo);
+var userInfo = _taroTt2.default.getStorageSync(_store.UserInfo);
 var DEFAULT_STATE = userInfo ? userInfo : {
   userId: 0,
   uuid: '',
@@ -919,7 +919,7 @@ function User() {
       return _extends({}, state, action.data);
     case _user.GETUSER:
       if (!state.login) {
-        var _userInfo = _taroSwan2.default.getStorageSync(_store.UserInfo);
+        var _userInfo = _taroTt2.default.getStorageSync(_store.UserInfo);
         if (_userInfo) return _userInfo;
       }
       return state;

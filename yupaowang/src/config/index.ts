@@ -90,3 +90,5 @@ export const USESUBSCRIBEMESSAGE: boolean = MINICONFIG.USESUBSCRIBEMESSAGE
 export const ISCANSHARE: boolean = MINICONFIG.ISCANSHARE
 // * textarea能输入的最大字数
 export const TEXTAREAMAXLENGTH: number = MINICONFIG.TEXTAREAMAXLENGTH
+// * 应用内是否使用下载APP引流
+export const DOWNLOADAPP: boolean = MINICONFIG.DOWNLOADAPP
