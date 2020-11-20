@@ -1,0 +1,92 @@
+@import "../../common.scss";
+
+.login-container{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 500;
+  background-color: white;
+  .login-header{
+    position: relative;
+    width: 65%;
+    background: #f2f2f2;
+    border-radius: 50PX;
+    height: 70px;
+    margin: 50px auto 30px;
+    font-size: 30px;
+    overflow: hidden;
+    .login-header-item{
+      position: relative;
+      line-height: 70px;
+      width: 50%;
+      text-align: center;
+      float: left;
+      color: #b4b4b4;
+    }
+    .login-header-item-active{
+      background-color: $color;
+      color: white;
+    }
+  }
+  .login-body{
+    position: relative;
+    width: 100%;
+    padding: 20px 50px;
+    .login-input-item{
+      position: relative;
+      margin-top: 50px;
+      .input-item-title{
+        position: relative;
+        width: 100%;
+        font-size: 28px;
+        color: #000;
+      }
+      .input-item-form{
+        position: relative;
+        margin-top: 20px;
+        border-bottom: 1px solid #dcdcdc;
+        .input-item-text{
+          height: 75px;
+          font-size: 28px;
+        }
+        .input-item-codebtn{
+          position: absolute;
+          background: transparent;
+          font-size: 28px;
+          padding: 0 20px;
+          right: 0;
+          bottom: 0;
+          color: $color;
+          z-index: 5;
+          line-height: 75px;
+        }
+      }
+      .input-item-code{
+        padding-right: 260px;
+      }
+    }
+  }
+  .login-btns{
+    position: relative;
+    padding: 30px ;
+    @include flex();
+    .login-btn{
+      width: 45%;
+      position: relative;
+      line-height: 80px;
+      margin: 0 auto;
+      background: $color;
+      border: 1px solid $color;
+      color: white;
+      text-align: center;
+      font-size: 28px;
+      border-radius: 20PX;
+    }
+    .login-btn:nth-child(1){
+      border: 1px solid $bordercolor;
+      background-color: white;
+      color: #5e6d82;
+    }
+  }
+  
+}

@@ -1,4 +1,4 @@
-(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["pages/resume/lists/index"],{
+(qq["webpackJsonp"] = qq["webpackJsonp"] || []).push([["pages/resume/lists/index"],{
 
 /***/ "./src/pages/resume/lists/index.scss":
 /*!*******************************************!*\
@@ -33,9 +33,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroQq = __webpack_require__(/*! @tarojs/taro-qq */ "./node_modules/@tarojs/taro-qq/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroQq2 = _interopRequireDefault(_taroQq);
 
 var _lists = __webpack_require__(/*! ../../../config/pages/lists */ "./src/config/pages/lists.ts");
 
@@ -85,7 +85,7 @@ var ResumeLists = function (_Taro$Component) {
     key: '_constructor',
     value: function _constructor(props) {
       _get(ResumeLists.prototype.__proto__ || Object.getPrototypeOf(ResumeLists.prototype), '_constructor', this).call(this, props);
-      this.$$refs = new _taroTt2.default.RefsArray();
+      this.$$refs = new _taroQq2.default.RefsArray();
     }
   }, {
     key: '_createData',
@@ -96,17 +96,17 @@ var ResumeLists = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__27"),
+      var _genCompid = (0, _taroQq.genCompid)(__prefix + "$compid__27"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
           $prevCompid__27 = _genCompid2[0],
           $compid__27 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__28"),
+      var _genCompid3 = (0, _taroQq.genCompid)(__prefix + "$compid__28"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
           $prevCompid__28 = _genCompid4[0],
           $compid__28 = _genCompid4[1];
 
-      var _genCompid5 = (0, _taroTt.genCompid)(__prefix + "$compid__29"),
+      var _genCompid5 = (0, _taroQq.genCompid)(__prefix + "$compid__29"),
           _genCompid6 = _slicedToArray(_genCompid5, 2),
           $prevCompid__29 = _genCompid6[0],
           $compid__29 = _genCompid6[1];
@@ -120,54 +120,54 @@ var ResumeLists = function (_Taro$Component) {
       var lastSortFlagPos = '0';
       var lastTimePos = '0';
       // * 获取选择城市缓存
-      var userListChooseCity = _taroTt2.default.getStorageSync(_store.UserListChooseCity);
+      var userListChooseCity = _taroQq2.default.getStorageSync(_store.UserListChooseCity);
       // * 筛选数据
       var DEFAULT_CONDITION = [{ id: _lists.AreaPickerKey, text: userListChooseCity ? userListChooseCity.name : '全国' }, { id: _lists.ClassifyPickerKey, text: '工种' }, { id: _lists.MemberPickerKey, text: '队伍' }, { id: _lists.ResumeFilterPickerKey, text: '推荐' }];
       // 是否还有下一页
 
-      var _useState = (0, _taroTt.useState)(true),
+      var _useState = (0, _taroQq.useState)(true),
           _useState2 = _slicedToArray(_useState, 2),
           hasMore = _useState2[0],
           setHasMore = _useState2[1];
       // 滚动条高度
 
 
-      var _useState3 = (0, _taroTt.useState)(0),
+      var _useState3 = (0, _taroQq.useState)(0),
           _useState4 = _slicedToArray(_useState3, 2),
           scrollTop = _useState4[0],
           setScrollTop = _useState4[1];
       // 设置顶部筛选条件数据
 
 
-      var _useState5 = (0, _taroTt.useState)(DEFAULT_CONDITION),
+      var _useState5 = (0, _taroQq.useState)(DEFAULT_CONDITION),
           _useState6 = _slicedToArray(_useState5, 2),
           condition = _useState6[0],
           setCondition = _useState6[1];
       // * 搜索数据 备份
 
 
-      var _useState7 = (0, _taroTt.useState)(''),
+      var _useState7 = (0, _taroQq.useState)(''),
           _useState8 = _slicedToArray(_useState7, 2),
           remark = _useState8[0],
           setRemark = _useState8[1];
       // * 标记是否是在刷新状态
 
 
-      var _useState9 = (0, _taroTt.useState)(false),
+      var _useState9 = (0, _taroQq.useState)(false),
           _useState10 = _slicedToArray(_useState9, 2),
           refresh = _useState10[0],
           setRefresh = _useState10[1];
       // * 定义列表数组
 
 
-      var _useState11 = (0, _taroTt.useState)([]),
+      var _useState11 = (0, _taroQq.useState)([]),
           _useState12 = _slicedToArray(_useState11, 2),
           lists = _useState12[0],
           setLists = _useState12[1];
       // * 定义data
 
 
-      var _useState13 = (0, _taroTt.useState)({
+      var _useState13 = (0, _taroQq.useState)({
         page: 1,
         occupations: '',
         keywords: '',
@@ -192,14 +192,14 @@ var ResumeLists = function (_Taro$Component) {
       };
       // 单独处理特殊字段
 
-      var _useState15 = (0, _taroTt.useState)(normalFieldReset),
+      var _useState15 = (0, _taroQq.useState)(normalFieldReset),
           _useState16 = _slicedToArray(_useState15, 2),
           normalField = _useState16[0],
           setNormalField = _useState16[1];
       // * 请求列表数据
 
 
-      (0, _taroTt.useEffect)(function () {
+      (0, _taroQq.useEffect)(function () {
         (0, _index.getResumeList)(_extends({}, searchData, normalField)).then(function (res) {
           if (res.errcode == 'ok') {
             var mydata = res.data;
@@ -222,7 +222,7 @@ var ResumeLists = function (_Taro$Component) {
             if (mydata.list && !mydata.list.length) {
               setHasMore(false);
             }
-            _taroTt2.default.hideNavigationBarLoading();
+            _taroQq2.default.hideNavigationBarLoading();
             if (searchData.page === 1) {
               setLists([[].concat(_toConsumableArray(mydata.list))]);
             } else setLists([].concat(_toConsumableArray(lists), [[].concat(_toConsumableArray(mydata.list))]));
@@ -250,7 +250,7 @@ var ResumeLists = function (_Taro$Component) {
       };
       // 用户页面跳转
       var userRouteJump = function userRouteJump(url) {
-        _taroTt2.default.navigateTo({
+        _taroQq2.default.navigateTo({
           url: url
         });
       };
@@ -286,7 +286,7 @@ var ResumeLists = function (_Taro$Component) {
         goToScrollTop();
       };
       var handleClickToRankRules = function handleClickToRankRules() {
-        _taroTt2.default.navigateTo({ url: '/pages/rank-rules/index' });
+        _taroQq2.default.navigateTo({ url: '/pages/rank-rules/index' });
       };
       var anonymousState__temp = function anonymousState__temp(val) {
         return setRemark(val);
@@ -303,21 +303,21 @@ var ResumeLists = function (_Taro$Component) {
       this.anonymousFunc1 = function () {
         return getNextPageData();
       };
-      var anonymousState__temp4 = (0, _taroTt.internal_inline_style)({ height: '8px' });
+      var anonymousState__temp4 = (0, _taroQq.internal_inline_style)({ height: '8px' });
       this.anonymousFunc2 = function () {
         return userRouteJump(_index2.PUBLISHRESUME);
       };
-      _taroTt.propsManager.set({
+      _taroQq.propsManager.set({
         "placeholder": '\u627E\u5DE5\u4EBA\u3001\u627E\u961F\u4F0D\u3001\u627E\u73ED\u7EC4',
         "value": "",
         "setRemark": anonymousState__temp,
         "setSearchData": anonymousState__temp2
       }, $compid__27, $prevCompid__27);
-      _taroTt.propsManager.set({
+      _taroQq.propsManager.set({
         "data": condition,
         "setSearchData": anonymousState__temp3
       }, $compid__28, $prevCompid__28);
-      _taroTt.propsManager.set({
+      _taroQq.propsManager.set({
         "data": lists,
         "hasMore": hasMore
       }, $compid__29, $prevCompid__29);
@@ -352,14 +352,14 @@ var ResumeLists = function (_Taro$Component) {
   }]);
 
   return ResumeLists;
-}(_taroTt2.default.Component);
+}(_taroQq2.default.Component);
 
 ResumeLists.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2"];
 ResumeLists.$$componentPath = "pages/resume/lists/index";
 ResumeLists.config = { navigationBarTitleText: '工人找活列表', navigationBarBackgroundColor: '#0099ff', navigationBarTextStyle: 'white', backgroundTextStyle: "dark" };
 exports.default = ResumeLists;
 
-Component(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(ResumeLists));
+Component(__webpack_require__(/*! @tarojs/taro-qq */ "./node_modules/@tarojs/taro-qq/index.js").default.createComponent(ResumeLists));
 
 /***/ })
 

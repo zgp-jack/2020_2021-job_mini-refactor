@@ -1,0 +1,12 @@
+@import 'taro-ui/dist/style/index.scss';
+
+view,input,text,image,textarea,tt-view,tt-input,tt-text,tt-image,tt-textarea,div{
+  box-sizing: border-box;
+}
+
+button::after{
+  border: none;
+}
+page{
+  background-color: #f7f6f9 !important;
+}

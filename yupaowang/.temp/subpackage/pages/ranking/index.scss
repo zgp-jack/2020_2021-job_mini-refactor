@@ -1,0 +1,112 @@
+.rankingRules-content{
+  height: 100%;
+}
+.rankingRules-top{
+  margin: 0 auto;
+  background: white;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  padding: 20px 32px;
+  font-size: 0;
+  border-bottom: 1px solid rgb(233, 232, 232);
+  z-index: 2;
+}
+.rankingRules-list{
+  margin-top: 200px;
+  background: #fff;
+}
+.rankingRules-top-ranking{
+  font-size: 30px;
+  padding-bottom:10px;
+  color: #656668;
+}
+.rankingRules-top-ranking-num {
+  color: #0099ff;
+  font-weight: bold;
+}
+.rankingRules-top-careful{
+  font-size: 26px;
+  color: #f87a14;
+}
+.rankingRules-Tips{
+  width: 100%;
+  background: white;
+  margin-top: 14px;
+  margin-bottom: 80px;
+  padding: 20px 50px;
+}
+.rankingRules-Tips-title{
+  margin-bottom: 12px;
+  font-size:28px;
+  font-weight:400;
+  color:rgba(51, 51, 51, 1);
+}
+.rankingRules-Tips-text{
+  font-size: 26px;
+  font-weight:400;
+  color:rgba(153, 153, 153, 1);
+  line-height: 50px;
+}
+
+.rankingRules-list-content{
+  display: flex;
+  align-items: center;
+}
+.rankingRules-list-content-img{
+  height: 66px;
+  width: 66px;
+}
+.rankingRules-list-content-box{
+  flex: 1;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-size: 28px;
+}
+.rankingRules-list-content-box-text {
+  font-size: 26px;
+  color: #999999;
+}
+.rankingRules-list-content-button-disabled {
+  width: 150px;
+  background: #0099ff;
+  color: white;
+  font-size: 30px;
+  padding: 12px 0;
+  line-height: 40px;
+  border-radius: 12px;
+  text-align: center;
+}
+.rankingRules-list-box{
+  width: 94%;
+  border-bottom: 1px dashed rgb(209, 209, 209);
+  padding: 26px 0;
+  margin: auto;
+}
+.rankingRules-list-box:last-child {
+  border-bottom: none
+}
+.rankingRules-list-content-buttonBox{
+  width:97px;
+  height:44px;
+  line-height: 44px;
+  background:rgba(0, 153, 255, 1);
+  box-shadow:0px 2px 2px 0px rgba(141, 204, 246, 0.51);
+  border-radius:8px;
+  font-size:22px;
+  font-weight:400;
+  color:rgba(255, 255, 255, 1);
+  text-align: center;
+}
+.rankingRules-list-content-buttonBox-none {
+  width: 97px;
+  height: 44px;
+  line-height: 44px;
+  background: #D2D2D4;
+  color: white;
+  box-shadow: 0px 2px 2px 0px rgba(141, 204, 246, 0.51);
+  border-radius: 8px;
+  font-size: 22px;
+  font-weight: 400;
+  text-align: center;
+}

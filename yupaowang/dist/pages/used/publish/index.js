@@ -1,4 +1,4 @@
-(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["pages/used/publish/index"],{
+(qq["webpackJsonp"] = qq["webpackJsonp"] || []).push([["pages/used/publish/index"],{
 
 /***/ "./src/hooks/publish/used.ts":
 /*!***********************************!*\
@@ -20,9 +20,9 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
 exports.default = useUsedInfo;
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroQq = __webpack_require__(/*! @tarojs/taro-qq */ "./node_modules/@tarojs/taro-qq/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroQq2 = _interopRequireDefault(_taroQq);
 
 var _index = __webpack_require__(/*! ../../utils/request/index */ "./src/utils/request/index.ts");
 
@@ -55,7 +55,7 @@ function useUsedInfo(id) {
   };
   // 用户发布信息模型
 
-  var _useState = (0, _taroTt.useState)({
+  var _useState = (0, _taroQq.useState)({
     type: 'fleamarket',
     infoId: id,
     user_mobile: '',
@@ -74,68 +74,68 @@ function useUsedInfo(id) {
   // 用户初始化信息模型
 
 
-  var _useState3 = (0, _taroTt.useState)(),
+  var _useState3 = (0, _taroQq.useState)(),
       _useState4 = _slicedToArray(_useState3, 2),
       initModel = _useState4[0],
       setInitModel = _useState4[1];
   // 父级索引
 
 
-  var _useState5 = (0, _taroTt.useState)(0),
+  var _useState5 = (0, _taroQq.useState)(0),
       _useState6 = _slicedToArray(_useState5, 2),
       parentCurrent = _useState6[0],
       setParentCurrent = _useState6[1];
   // 子级索引
 
 
-  var _useState7 = (0, _taroTt.useState)(0),
+  var _useState7 = (0, _taroQq.useState)(0),
       _useState8 = _slicedToArray(_useState7, 2),
       childCurrent = _useState8[0],
       setChildCurrent = _useState8[1];
   // 目的名字
 
 
-  var _useState9 = (0, _taroTt.useState)(''),
+  var _useState9 = (0, _taroQq.useState)(''),
       _useState10 = _slicedToArray(_useState9, 2),
       classifyName = _useState10[0],
       setClassiryName = _useState10[1];
   // 城市名字
 
 
-  var _useState11 = (0, _taroTt.useState)(''),
+  var _useState11 = (0, _taroQq.useState)(''),
       _useState12 = _slicedToArray(_useState11, 2),
       cityName = _useState12[0],
       setCityName = _useState12[1];
   // picker 省份索引
 
 
-  var _useState13 = (0, _taroTt.useState)(0),
+  var _useState13 = (0, _taroQq.useState)(0),
       _useState14 = _slicedToArray(_useState13, 2),
       pIndex = _useState14[0],
       setPIndex = _useState14[1];
   // picker 省份数据
 
 
-  var _useState15 = (0, _taroTt.useState)([]),
+  var _useState15 = (0, _taroQq.useState)([]),
       _useState16 = _slicedToArray(_useState15, 2),
       areaProvince = _useState16[0],
       setAreaProvince = _useState16[1];
   // picker 市级索引
 
 
-  var _useState17 = (0, _taroTt.useState)(0),
+  var _useState17 = (0, _taroQq.useState)(0),
       _useState18 = _slicedToArray(_useState17, 2),
       cIndex = _useState18[0],
       setCIndex = _useState18[1];
   // picker 市级索引
 
 
-  var _useState19 = (0, _taroTt.useState)([]),
+  var _useState19 = (0, _taroQq.useState)([]),
       _useState20 = _slicedToArray(_useState19, 2),
       areaCity = _useState20[0],
       setAreaCity = _useState20[1];
 
-  (0, _taroTt.useEffect)(function () {
+  (0, _taroQq.useEffect)(function () {
     if (!login) return;
     initUsedPublishViewInfo();
   }, [login]);
@@ -151,16 +151,16 @@ function useUsedInfo(id) {
         initAreaPicker(data);
       } else if (data.errcode == 'to_auth') {
         // 用户当前未实名 或者实名没通过
-        _taroTt2.default.showModal({
+        _taroQq2.default.showModal({
           title: '温馨提示',
           content: data.errmsg,
           cancelText: '取消',
           confirmText: '去实名',
           success: function success(res) {
             if (res.cancel) {
-              _taroTt2.default.navigateBack();
+              _taroQq2.default.navigateBack();
             } else if (res.confirm) {
-              _taroTt2.default.navigateTo({
+              _taroQq2.default.navigateTo({
                 url: _index5.REALNAMEPATH
               });
             }
@@ -171,7 +171,7 @@ function useUsedInfo(id) {
         (0, _index2.ShowActionModal)({
           msg: data.errmsg,
           success: function success() {
-            return _taroTt2.default.navigateBack();
+            return _taroQq2.default.navigateBack();
           }
         });
       } else {
@@ -179,7 +179,7 @@ function useUsedInfo(id) {
         (0, _index2.ShowActionModal)({
           msg: data.errmsg,
           success: function success() {
-            _taroTt2.default.navigateBack();
+            _taroQq2.default.navigateBack();
           }
         });
       }
@@ -308,7 +308,7 @@ function useUsedInfo(id) {
         success: function success() {
           if (res.errcode == 'ok') {
             //发布成功跳转到已发布二手交易列表
-            _taroTt2.default.reLaunch({
+            _taroQq2.default.reLaunch({
               url: '/pages/published/used/index'
             });
           }
@@ -380,9 +380,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroQq = __webpack_require__(/*! @tarojs/taro-qq */ "./node_modules/@tarojs/taro-qq/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroQq2 = _interopRequireDefault(_taroQq);
 
 var _used = __webpack_require__(/*! ../../../hooks/publish/used */ "./src/hooks/publish/used.ts");
 
@@ -429,7 +429,7 @@ var UsedPublish = function (_Taro$Component) {
     key: '_constructor',
     value: function _constructor(props) {
       _get(UsedPublish.prototype.__proto__ || Object.getPrototypeOf(UsedPublish.prototype), '_constructor', this).call(this, props);
-      this.$$refs = new _taroTt2.default.RefsArray();
+      this.$$refs = new _taroQq2.default.RefsArray();
     }
   }, {
     key: '_createData',
@@ -442,17 +442,17 @@ var UsedPublish = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__44"),
+      var _genCompid = (0, _taroQq.genCompid)(__prefix + "$compid__44"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
           $prevCompid__44 = _genCompid2[0],
           $compid__44 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__45"),
+      var _genCompid3 = (0, _taroQq.genCompid)(__prefix + "$compid__45"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
           $prevCompid__45 = _genCompid4[0],
           $compid__45 = _genCompid4[1];
 
-      var router = (0, _taroTt.useRouter)();
+      var router = (0, _taroQq.useRouter)();
       var _router$params$id = router.params.id,
           id = _router$params$id === undefined ? '' : _router$params$id;
 
@@ -479,7 +479,7 @@ var UsedPublish = function (_Taro$Component) {
           vaildPublishModelInfo = _useUsedInfo.vaildPublishModelInfo,
           initUsedPublishViewInfo = _useUsedInfo.initUsedPublishViewInfo;
 
-      var _useState = (0, _taroTt.useState)(false),
+      var _useState = (0, _taroQq.useState)(false),
           _useState2 = _slicedToArray(_useState, 2),
           showDrawer = _useState2[0],
           setShowDrawer = _useState2[1];
@@ -492,21 +492,21 @@ var UsedPublish = function (_Taro$Component) {
       // 详情字数统计
 
 
-      var _useState3 = (0, _taroTt.useState)(0),
+      var _useState3 = (0, _taroQq.useState)(0),
           _useState4 = _slicedToArray(_useState3, 2),
           num = _useState4[0],
           setNum = _useState4[1];
       // 判断是否是首次进入
 
 
-      var _useState5 = (0, _taroTt.useState)(true),
+      var _useState5 = (0, _taroQq.useState)(true),
           _useState6 = _slicedToArray(_useState5, 2),
           first = _useState6[0],
           setFirst = _useState6[1];
       // 加载初始化数据
 
 
-      (0, _taroTt.useDidShow)(function () {
+      (0, _taroQq.useDidShow)(function () {
         if (first) {
           setFirst(false);
           return;
@@ -597,7 +597,7 @@ var UsedPublish = function (_Taro$Component) {
       };
       var loopArray50 = initModel ? initModel.classifyTree.map(function (item, index) {
         item = {
-          $original: (0, _taroTt.internal_get_original)(item)
+          $original: (0, _taroQq.internal_get_original)(item)
         };
         var $loopState__temp2 = initModel ? (0, _classnames2.default)({
           'drawer-list-item overwords': true,
@@ -615,7 +615,7 @@ var UsedPublish = function (_Taro$Component) {
       }) : [];
       var loopArray51 = initModel ? initModel.classifyTree[parentCurrent].attributes.map(function (item, k) {
         item = {
-          $original: (0, _taroTt.internal_get_original)(item)
+          $original: (0, _taroQq.internal_get_original)(item)
         };
         var $loopState__temp4 = initModel ? (0, _classnames2.default)({
           'drawer-list-item overwords': true,
@@ -631,11 +631,11 @@ var UsedPublish = function (_Taro$Component) {
           $original: item.$original
         };
       }) : [];
-      _taroTt.propsManager.set({
+      _taroQq.propsManager.set({
         "show": showDrawer,
         "onClose": this.anonymousFunc0
       }, $compid__44, $prevCompid__44);
-      _taroTt.propsManager.set({
+      _taroQq.propsManager.set({
         "num": num
       }, $compid__45, $prevCompid__45);
       Object.assign(this.__state, {
@@ -742,14 +742,14 @@ var UsedPublish = function (_Taro$Component) {
   }]);
 
   return UsedPublish;
-}(_taroTt2.default.Component);
+}(_taroQq2.default.Component);
 
 UsedPublish.$$events = ["anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6", "anonymousFunc7", "anonymousFunc8", "anonymousFunc9", "anonymousFunc10", "anonymousFunc11", "anonymousFunc12"];
 UsedPublish.$$componentPath = "pages/used/publish/index";
 UsedPublish.config = { navigationBarTitleText: '发布二手交易' };
 exports.default = UsedPublish;
 
-Page(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(UsedPublish, true));
+Component(__webpack_require__(/*! @tarojs/taro-qq */ "./node_modules/@tarojs/taro-qq/index.js").default.createComponent(UsedPublish, true));
 
 /***/ })
 

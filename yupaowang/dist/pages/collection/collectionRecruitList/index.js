@@ -1,4 +1,4 @@
-(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["pages/collection/collectionRecruitList/index"],{
+(qq["webpackJsonp"] = qq["webpackJsonp"] || []).push([["pages/collection/collectionRecruitList/index"],{
 
 /***/ "./src/pages/collection/collectionRecruitList/index.scss":
 /*!***************************************************************!*\
@@ -33,9 +33,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroQq = __webpack_require__(/*! @tarojs/taro-qq */ "./node_modules/@tarojs/taro-qq/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroQq2 = _interopRequireDefault(_taroQq);
 
 var _index = __webpack_require__(/*! ../../../config/index */ "./src/config/index.ts");
 
@@ -68,7 +68,7 @@ var CollectionRecruitList = function (_Taro$Component) {
     key: "_constructor",
     value: function _constructor(props) {
       _get(CollectionRecruitList.prototype.__proto__ || Object.getPrototypeOf(CollectionRecruitList.prototype), "_constructor", this).call(this, props);
-      this.$$refs = new _taroTt2.default.RefsArray();
+      this.$$refs = new _taroQq2.default.RefsArray();
     }
   }, {
     key: "_createData",
@@ -81,12 +81,12 @@ var CollectionRecruitList = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__50"),
+      var _genCompid = (0, _taroQq.genCompid)(__prefix + "$compid__50"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
           $prevCompid__50 = _genCompid2[0],
           $compid__50 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__51"),
+      var _genCompid3 = (0, _taroQq.genCompid)(__prefix + "$compid__51"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
           $prevCompid__51 = _genCompid4[0],
           $compid__51 = _genCompid4[1];
@@ -100,14 +100,14 @@ var CollectionRecruitList = function (_Taro$Component) {
           bottom = _props$bottom === undefined ? true : _props$bottom;
       // 定义弹窗
 
-      var _useState = (0, _taroTt.useState)(false),
+      var _useState = (0, _taroQq.useState)(false),
           _useState2 = _slicedToArray(_useState, 2),
           isOpened = _useState2[0],
           setIsOpened = _useState2[1];
       // 弹窗内容
 
 
-      var _useState3 = (0, _taroTt.useState)(''),
+      var _useState3 = (0, _taroQq.useState)(''),
           _useState4 = _slicedToArray(_useState3, 2),
           modalContent = _useState4[0],
           setModalContent = _useState4[1];
@@ -117,7 +117,7 @@ var CollectionRecruitList = function (_Taro$Component) {
       var onHandleClick = function onHandleClick(type, id) {
         // 1 审核中 2 通过 0 失败
         if (type == '2') {
-          _taroTt2.default.navigateTo({
+          _taroQq2.default.navigateTo({
             url: "/pages/detail/info/index?id=" + id
           });
         } else if (type == '0') {
@@ -128,13 +128,13 @@ var CollectionRecruitList = function (_Taro$Component) {
           setModalContent('该信息正在人工审核中，请稍后再试');
         }
       };
-      var anonymousState__temp = (0, _taroTt.internal_inline_style)(bottom ? '' : 'padding-bottom:0');
+      var anonymousState__temp = (0, _taroQq.internal_inline_style)(bottom ? '' : 'padding-bottom:0');
       this.anonymousFunc2 = function () {
         setIsOpened(false);
       };
       var loopArray63 = data ? data.map(function (item, __index0) {
         item = {
-          $original: (0, _taroTt.internal_get_original)(item)
+          $original: (0, _taroQq.internal_get_original)(item)
         };
         var _$indexKey = "ghzzz" + __index0;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
@@ -151,10 +151,10 @@ var CollectionRecruitList = function (_Taro$Component) {
           $original: item.$original
         };
       }) : [];
-      !data.length && _taroTt.propsManager.set({
+      !data.length && _taroQq.propsManager.set({
         "text": "\u6CA1\u6709\u627E\u5230\u76F8\u5173\u7684\u6570\u636E"
       }, $compid__50, $prevCompid__50);
-      _taroTt.propsManager.set({
+      _taroQq.propsManager.set({
         "isOpened": isOpened
       }, $compid__51, $prevCompid__51);
       Object.assign(this.__state, {
@@ -202,13 +202,13 @@ var CollectionRecruitList = function (_Taro$Component) {
   }]);
 
   return CollectionRecruitList;
-}(_taroTt2.default.Component);
+}(_taroQq2.default.Component);
 
 CollectionRecruitList.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2"];
 CollectionRecruitList.$$componentPath = "pages/collection/collectionRecruitList/index";
 exports.default = CollectionRecruitList;
 
-Component(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(CollectionRecruitList));
+Component(__webpack_require__(/*! @tarojs/taro-qq */ "./node_modules/@tarojs/taro-qq/index.js").default.createComponent(CollectionRecruitList));
 
 /***/ })
 
