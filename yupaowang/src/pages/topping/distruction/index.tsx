@@ -1,11 +1,12 @@
-import Taro, { Config, useEffect, useState, useRouter, useContext } from '@tarojs/taro'
+import Taro, { Config, useEffect, useState, useRouter } from '@tarojs/taro'
 import { View, Image, Input } from '@tarojs/components'
 import { jobTopHotAreasAction } from '../../../utils/request/index'
 import { jobTopHotAreasData } from '../../../utils/request/index.d'
 import AREAS from '../../../models/area'
 import { SearchList } from '../../../config/store'
 import { IMGCDNURL } from '../../../config';
-import { contextItem } from '../index'
+import { useDispatch, useSelector } from '@tarojs/redux'
+import setRecruitTopArea from '../../../actions/recruit_top'
 import './index.scss'
 
 interface DataType {
@@ -53,8 +54,11 @@ interface ParamsType {
 }
 
 export default function Distruction() {
-  const { AreParams, setAreParams } = useContext(contextItem);
+  
+  const AreParams = useSelector<any, ParamsType>(store => store.recruitTop['AreParams'])
   const router: Taro.RouterInfo = useRouter()
+  const dispatch = useDispatch()
+
   let { max_city, max_province  } = router.params;
   // 热门城市
   const [data, setData] = useState<DataType>({
@@ -513,7 +517,8 @@ export default function Distruction() {
   }
   // 确认选择
   const handleClick = ()=>{
-    setAreParams(params.city, params.province,params.whole);
+    console.log(params)
+    dispatch(setRecruitTopArea({ ...params}))
     Taro.navigateBack({
       delta: 1
     })

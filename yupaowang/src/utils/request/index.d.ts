@@ -853,6 +853,7 @@ export interface jobTopConfigData {
   top_rules:[],
   max_top_days:number,
   max_city:number,
+  days: string[],
   max_province:number
 }
 
@@ -1370,6 +1371,7 @@ export interface resumesTopConfigData{
   max_province:number,
   max_city:number,
   special_ids:[],
+  days: string[]
   country_integral:number,
 }
 

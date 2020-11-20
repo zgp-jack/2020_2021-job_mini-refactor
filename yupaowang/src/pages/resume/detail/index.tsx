@@ -2,7 +2,7 @@ import Taro, { Config, useState, useRouter, useShareAppMessage, useDidShow, useE
 import { View, Text, Image, Button } from '@tarojs/components'
 import { resumeDetailAction, recommendListAction, resumesGetTelAcrion, resumeSupportAction, resumeCollectAction, resumesComplainAction } from '../../../utils/request/index'
 import { IMGCDNURL, ISCANSHARE } from '../../../config'
-import Msg, { showModalTip } from '../../../utils/msg'
+import Msg, { ShowActionModal, showModalTip } from '../../../utils/msg'
 import { DataType, ListType, Injected } from './index.d'
 // import CollectionRecruitList  from '../../../components/recommendList/index'
 import { isVaildVal } from '../../../utils/v'
@@ -252,8 +252,8 @@ export default function ResumeDetail() {
   }
   // 提交投诉
   const handleSubmit = () => {
-    if (!isVaildVal(textarea, 15, 500)) {
-      Msg('输入内容不少于15个字且必须包含文字')
+    if (!isVaildVal(textarea, 5, 500)) {
+      ShowActionModal({ msg: '输入内容不少于5个字且必须包含文字'})
       return false
     }
     const params = {
@@ -344,7 +344,7 @@ export default function ResumeDetail() {
               <Text className='oworkotext'>手机</Text>
               <Text className='workotextone'>{phone}</Text>
             {(examine || !onoff && data.info.is_read == 1) && data.info.is_end !='2' && data.operation.status === 0  &&
-              <Text className='clioktel' onClick={handlePhone}>查看完整电话</Text>
+              <Text className='clioktel' onClick={handlePhone}>查看找活电话</Text>
             }
           {onoff && 
           <View className='flex'>
@@ -438,7 +438,7 @@ export default function ResumeDetail() {
           <View className='cardotext-position'>
           {data.info.tags.length && 
             <View className='cardotext'>
-            <Text className='oworkotext'>标签</Text>:
+            <Text className='oworkotext'>标签</Text>
             <Text className='workotextone'>
             {data.info.tags.map(v=>(
               <Text className='resumeDetail-basics-list-right-labelName' key={v.id}>{v.label_name}</Text>

@@ -98,7 +98,7 @@ var UsedList = function (_Taro$Component) {
           d = {
             $original: (0, _taroTt.internal_get_original)(d)
           };
-          var _$indexKey = "cazzz" + __index1 + "-" + __index0;
+          var _$indexKey = "bjzzz" + __index1 + "-" + __index0;
           _this2.anonymousFunc0Map[_$indexKey] = function () {
             return userLookUsedInfo(d.$original.id);
           };

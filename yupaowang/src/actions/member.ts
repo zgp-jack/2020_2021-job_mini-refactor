@@ -1,16 +1,16 @@
-import { GET, SET, TEL } from '../constants/member'
+import { GETMEMBERINFO, SETMEMBERINFO, TEL } from '../constants/member'
 import { UserMemberInfo } from '../reducers/member'
 
 export function setMemberInfo(member: UserMemberInfo) {
   return {
-    type: SET,
+    type: SETMEMBERINFO,
     data: member
   }
 }
 
 export function getUserInfo() {
   return {
-    type: GET
+    type: GETMEMBERINFO
   }
 }
 

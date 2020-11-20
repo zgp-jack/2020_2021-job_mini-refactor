@@ -25,6 +25,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -45,7 +47,11 @@ var _store = __webpack_require__(/*! ../../../config/store */ "./src/config/stor
 
 var _index2 = __webpack_require__(/*! ../../../config/index */ "./src/config/index.ts");
 
-var _index3 = __webpack_require__(/*! ../index */ "./src/pages/topping/index.tsx");
+var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/redux/index.js");
+
+var _recruit_top = __webpack_require__(/*! ../../../actions/recruit_top */ "./src/actions/recruit_top.ts");
+
+var _recruit_top2 = _interopRequireDefault(_recruit_top);
 
 __webpack_require__(/*! ./index.scss */ "./src/pages/topping/distruction/index.scss");
 
@@ -94,12 +100,11 @@ var Distruction = function (_Taro$Component) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-
-      var _useContext = (0, _taroTt.useContext)(_index3.contextItem),
-          AreParams = _useContext.AreParams,
-          setAreParams = _useContext.setAreParams;
-
+      var AreParams = (0, _redux.useSelector)(function (store) {
+        return store.recruitTop['AreParams'];
+      });
       var router = (0, _taroTt.useRouter)();
+      var dispatch = (0, _redux.useDispatch)();
       var _router$params = router.params,
           max_city = _router$params.max_city,
           max_province = _router$params.max_province;
@@ -605,7 +610,8 @@ var Distruction = function (_Taro$Component) {
       };
       // 确认选择
       var handleClick = function handleClick() {
-        setAreParams(params.city, params.province, params.whole);
+        console.log(params);
+        dispatch((0, _recruit_top2.default)(_extends({}, params)));
         _taroTt2.default.navigateBack({
           delta: 1
         });
@@ -620,7 +626,7 @@ var Distruction = function (_Taro$Component) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
-        var _$indexKey = "igzzz" + __index2;
+        var _$indexKey = "iczzz" + __index2;
         _this2.anonymousFunc2Map[_$indexKey] = function () {
           return handleSeach(v.$original);
         };
@@ -633,7 +639,7 @@ var Distruction = function (_Taro$Component) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
-        var _$indexKey2 = "ihzzz" + __index4;
+        var _$indexKey2 = "idzzz" + __index4;
         _this2.anonymousFunc4Map[_$indexKey2] = function () {
           return handleSeach(v.$original);
         };
@@ -646,7 +652,7 @@ var Distruction = function (_Taro$Component) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
-        var _$indexKey3 = "iizzz" + __index5;
+        var _$indexKey3 = "iezzz" + __index5;
         _this2.anonymousFunc5Map[_$indexKey3] = function () {
           handleAllAre(v.$original, 1);
         };
@@ -663,7 +669,7 @@ var Distruction = function (_Taro$Component) {
           val = {
             $original: (0, _taroTt.internal_get_original)(val)
           };
-          var _$indexKey4 = 'ijzzz' + __index7 + '-' + index;
+          var _$indexKey4 = 'ifzzz' + __index7 + '-' + index;
           _this2.anonymousFunc6Map[_$indexKey4] = function () {
             return handleAllAre(val.$original, 0);
           };

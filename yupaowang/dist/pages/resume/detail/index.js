@@ -117,7 +117,7 @@ var ResumeDetail = function (_Taro$Component) {
       backgroundTextStyle: "dark"
     };
 
-    _this.$usedState = ["data", "loopArray91", "loopArray93", "loopArray94", "$compid__78", "isAuth", "IMGCDNURL", "examine", "onoff", "praise", "ISCANSHARE", "collect", "shownewtips", "complaintModal", "age", "phone"];
+    _this.$usedState = ["data", "loopArray91", "loopArray93", "loopArray94", "$compid__76", "isAuth", "IMGCDNURL", "examine", "onoff", "praise", "ISCANSHARE", "collect", "shownewtips", "complaintModal", "age", "phone"];
     _this.anonymousFunc4Map = {};
     _this.anonymousFunc6Map = {};
     _this.customComponents = ["Auth", "Report"];
@@ -141,10 +141,10 @@ var ResumeDetail = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__78"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__76"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__78 = _genCompid2[0],
-          $compid__78 = _genCompid2[1];
+          $prevCompid__76 = _genCompid2[0],
+          $compid__76 = _genCompid2[1];
       // 获取dispatch分发action
 
 
@@ -449,8 +449,8 @@ var ResumeDetail = function (_Taro$Component) {
       };
       // 提交投诉
       var handleSubmit = function handleSubmit() {
-        if (!(0, _index5.isVaildVal)(textarea, 15, 500)) {
-          (0, _index4.default)('输入内容不少于15个字且必须包含文字');
+        if (!(0, _index5.isVaildVal)(textarea, 5, 500)) {
+          (0, _index3.ShowActionModal)({ msg: '输入内容不少于5个字且必须包含文字' });
           return false;
         }
         var params = {
@@ -537,7 +537,7 @@ var ResumeDetail = function (_Taro$Component) {
           $original: (0, _taroTt.internal_get_original)(v)
         };
         var $loopState__temp4 = data.project.length ? i + i : null;
-        var _$indexKey = "jhzzz" + i;
+        var _$indexKey = "jdzzz" + i;
         _this2.anonymousFunc4Map[_$indexKey] = function () {
           return handleImg(v.$original);
         };
@@ -552,7 +552,7 @@ var ResumeDetail = function (_Taro$Component) {
           $original: (0, _taroTt.internal_get_original)(val)
         };
         var $loopState__temp6 = data.certificates.length ? i + i : null;
-        var _$indexKey2 = "jizzz" + i;
+        var _$indexKey2 = "jezzz" + i;
         _this2.anonymousFunc6Map[_$indexKey2] = function () {
           return handleImg(val.$original);
         };
@@ -568,13 +568,13 @@ var ResumeDetail = function (_Taro$Component) {
         "handleTextarea": handleTextarea,
         "setComplaintModal": setComplaintModal,
         "handleSubmit": handleSubmit
-      }, $compid__78, $prevCompid__78);
+      }, $compid__76, $prevCompid__76);
       Object.assign(this.__state, {
         data: data,
         loopArray91: loopArray91,
         loopArray93: loopArray93,
         loopArray94: loopArray94,
-        $compid__78: $compid__78,
+        $compid__76: $compid__76,
         isAuth: isAuth,
         IMGCDNURL: _index2.IMGCDNURL,
         examine: examine,

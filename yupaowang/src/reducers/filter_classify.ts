@@ -1,5 +1,5 @@
 import { filterClassifyDataResult } from '../utils/request/index.d'
-import { GET, SET } from '../constants/filter_classify'
+import { GETCLASSIFY, SETCLASSIFY } from '../constants/filter_classify'
 
 export interface filterClassifyDataResultReduce extends filterClassifyDataResult{
   isSet: boolean
@@ -21,9 +21,9 @@ export interface ACTIONTYPE {
 
 export default function msg(state: filterClassifyDataResultReduce = DEFAULT_STATE, action: ACTIONTYPE) {
   switch (action.type) {
-    case GET:
+    case GETCLASSIFY:
       return state
-    case SET:
+    case SETCLASSIFY:
       return { ...state, ...action.data }
     default:
       return state

@@ -39,6 +39,8 @@ var _taroTt2 = _interopRequireDefault(_taroTt);
 
 var _index = __webpack_require__(/*! ../../utils/request/index */ "./src/utils/request/index.ts");
 
+var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/redux/index.js");
+
 var _index2 = __webpack_require__(/*! ../../utils/v/index */ "./src/utils/v/index.ts");
 
 __webpack_require__(/*! ./index.scss */ "./src/pages/help/index.scss");
@@ -87,6 +89,10 @@ var Help = function (_Taro$Component) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
+      // 获取用户是否登录
+      var login = (0, _redux.useSelector)(function (state) {
+        return state.User['login'];
+      });
       // * 标记是否是在刷新状态
 
       var _useState = (0, _taroTt.useState)(false),
@@ -162,6 +168,9 @@ var Help = function (_Taro$Component) {
       }, [initPage]);
       // 用户信息
       (0, _taroTt.useEffect)(function () {
+        if (!login) {
+          return;
+        }
         (0, _index.feedbackAction)(1).then(function (res) {
           setUserData(res.memberInfo);
         });
@@ -202,43 +211,43 @@ var Help = function (_Taro$Component) {
         return getNextPageData();
       };
       this.anonymousFunc3 = function () {
-        return userRouteJump("/pages/feedback/index?username=" + userData.username + "&phone=" + userData.phone);
+        return userRouteJump("/pages/feedback/index?username=" + (userData.username || '') + "&phone=" + (userData.phone || ''));
       };
       var loopArray65 = data.item.map(function (item, __index2) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
         var $loopState__temp2 = { value: 'help', color: '#09f', size: '15' };
-        var _$indexKey = "hfzzz" + __index2;
+        var _$indexKey = "hbzzz" + __index2;
         _this2.anonymousFunc2Map[_$indexKey] = function () {
           handleShow(item.$original.id);
         };
 
-        var _genCompid = (0, _taroTt.genCompid)(__prefix + "hgzzzzzzzz" + __index2, true),
+        var _genCompid = (0, _taroTt.genCompid)(__prefix + "hczzzzzzzz" + __index2, true),
             _genCompid2 = _slicedToArray(_genCompid, 2),
-            $prevCompid__57 = _genCompid2[0],
-            $compid__57 = _genCompid2[1];
+            $prevCompid__56 = _genCompid2[0],
+            $compid__56 = _genCompid2[1];
 
         _taroTt.propsManager.set({
           "icon": $loopState__temp2,
           "open": item.$original.isShow,
           "onClick": _this2.anonymousFunc2.bind(_this2, _$indexKey),
           "title": item.$original.question
-        }, $compid__57, $prevCompid__57);
+        }, $compid__56, $prevCompid__56);
 
-        var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "hhzzzzzzzz" + __index2, true),
+        var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "hdzzzzzzzz" + __index2, true),
             _genCompid4 = _slicedToArray(_genCompid3, 2),
-            $prevCompid__58 = _genCompid4[0],
-            $compid__58 = _genCompid4[1];
+            $prevCompid__57 = _genCompid4[0],
+            $compid__57 = _genCompid4[1];
 
         _taroTt.propsManager.set({
           "hasBorder": false
-        }, $compid__58, $prevCompid__58);
+        }, $compid__57, $prevCompid__57);
         return {
           $loopState__temp2: $loopState__temp2,
           _$indexKey: _$indexKey,
+          $compid__56: $compid__56,
           $compid__57: $compid__57,
-          $compid__58: $compid__58,
           $original: item.$original
         };
       });

@@ -55,7 +55,7 @@ export default function WechatNotice(){
         加工友微信号：
         <Text className='wechat-text' onClick={() => userCopyWechatNumber() }>{ wechatNoticeData.wechat.number }</Text>
         <Text className='wechat-btn' onClick={() => userCopyWechatNumber()} >复制</Text>
-        拉你进工人微信群。客服电话：
+        拉你进招工找活群。客服电话：
         <Text className='wechat-text' onClick={() => userCallPhoneAction() } >{ wechatNoticeData.phone }</Text>
         <Text className='wechat-btn' onClick={() => userCallPhoneAction() } >呼叫</Text>
       </View>

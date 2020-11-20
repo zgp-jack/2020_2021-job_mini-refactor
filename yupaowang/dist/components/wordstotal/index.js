@@ -33,6 +33,8 @@ var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs
 
 var _taroTt2 = _interopRequireDefault(_taroTt);
 
+var _index = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
+
 __webpack_require__(/*! ./index.scss */ "./src/components/wordstotal/index.scss");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -72,7 +74,7 @@ var WordsTotal = function (_Taro$Component) {
       ;
       var _props = this.__props,
           _props$total = _props.total,
-          total = _props$total === undefined ? 500 : _props$total,
+          total = _props$total === undefined ? _index.TEXTAREAMAXLENGTH || 500 : _props$total,
           _props$num = _props.num,
           num = _props$num === undefined ? 0 : _props$num,
           _props$classname = _props.classname,

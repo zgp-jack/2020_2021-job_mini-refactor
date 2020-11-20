@@ -1,4 +1,4 @@
-import Taro, { useState, useEffect, useDidShow } from '@tarojs/taro'
+import Taro, { useState, useEffect } from '@tarojs/taro'
 import { View, Text, Image } from '@tarojs/components'
 import { IProps } from '../../components/swiper/index'
 import SwiperComponent from '../../components/swiper/index/index'
@@ -6,7 +6,7 @@ import SwiperNews from '../../components/swiper/news'
 import Projects from '../../components/index/projects/index'
 import './index.scss'
 import Fastfun from '../../components/index/fastfun'
-import { IMGCDNURL } from '../../config'
+import { IMGCDNURL, PUBLISHRECRUIT, DOWNLOADAPP } from '../../config'
 import RecruitList from '../../components/lists/recruit'
 import ResumeList from '../../components/lists/resume'
 import UsedList from '../../components/lists/used'
@@ -41,7 +41,7 @@ export default function Home({ homeIndex = 0}: HomeProps){
 
   const tabbarJump = (id: string) => {
     if(id === USED){
-      userJumpPage('/pages/used/index')
+      userJumpPage('/pages/used/lists/index')
       return
     }
     dispatch(changeTabbar(id))
@@ -130,7 +130,11 @@ export default function Home({ homeIndex = 0}: HomeProps){
           <Text className='home-header-text'>{area }</Text>
           <Image className='home-header-select' src={ IMGCDNURL + 'areamore.png' }></Image>
         </View>
+        {DOWNLOADAPP ? 
         <Image onClick={() => userRouteJump('/subpackage/pages/download/index')} className='home-header-app' src={ IMGCDNURL + 'loadapp.png' }></Image>
+        :
+        <Image onClick={() => userRouteJump(PUBLISHRECRUIT)} className='home-header-app' src={IMGCDNURL + 'header-publish-recruit-icon.png'}></Image>
+        }
       </View>
       {/* // ? 轮播图  */}
       <SwiperComponent data={ swiper } />
@@ -153,7 +157,7 @@ export default function Home({ homeIndex = 0}: HomeProps){
             <Text className='home-lists-item-title'>最新招工信息</Text>
             <Text className='home-lists-item-more' onClick={() => tabbarJump(RECRUIT)}>更多</Text>
           </View>
-          <RecruitList data={ lists.recruit } bottom={ false } />
+          <RecruitList data={ lists.recruit } bottom={ false } hasMore={true} />
         </View>
         {/* // ? 找活列表  */}
         <View className='home-lists-item'>
@@ -169,10 +173,14 @@ export default function Home({ homeIndex = 0}: HomeProps){
             <Text className='home-lists-item-title'>最新二手交易信息</Text>
             <Text className='home-lists-item-more' onClick={() => tabbarJump(USED)}>更多</Text>
           </View>
-          <UsedList data={lists.fleamarket} bottom={false} />
+          <UsedList data={lists.fleamarket} bottom={false} hasMore={true} />
         </View>
       </View>
-
+      <Image 
+        className='fixed-publish-recruit' 
+        src={`${IMGCDNURL}fixed-publishrecruit.png`}
+        onClick={()=>userRouteJump(PUBLISHRECRUIT)} 
+      />
       {/* // ? 底部信息  */}
       <About />
       {shwoCity && <HomeCity show={shwoCity} setAreaInfo={(val: string,id: string) => setAreaInfo(val,id)} closeDrawer={() => setShowCity(!shwoCity)} />}

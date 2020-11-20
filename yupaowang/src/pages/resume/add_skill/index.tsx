@@ -109,7 +109,7 @@ export default function AddResumeInfo() {
     resumesCertificateAction({
       resume_uuid: resumeData.resume_uuid,
       certificate_uuid: certificateId,
-      image: skillBookInfo.imgs.map(item => item.url),
+      image: skillBookInfo.imgs.map(item => item.url).join(','),
       name: skillBookInfo.title,
       certificate_time: skillBookInfo.time
     }).then(res => {

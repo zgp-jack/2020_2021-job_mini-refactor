@@ -7,10 +7,10 @@ import { useSelector } from '@tarojs/redux'
 import { isVaildVal } from '../../../utils/v'
 import  Report  from '../../../components/report'
 import { getUserShareMessage } from '../../../utils/helper'
-import Msg, { showModalTip } from '../../../utils/msg'
+import Msg, { ShowActionModal, showModalTip } from '../../../utils/msg'
 import { SubscribeToNews } from '../../../utils/subscribeToNews';
 import  CollectionRecruitList from '../../../components/recommendList/index'
-import { UserInfo } from '../../../config/store'
+import { REFID, UserInfo } from '../../../config/store'
 import './index.scss'
 
 interface User {
@@ -49,7 +49,7 @@ interface DataType {
 }
 export default function DetailInfoPage() {
   const router: Taro.RouterInfo = useRouter()
-  let { id } = router.params;
+  let { id = '', refId = '' } = router.params;
   // 获取userInfo
   let userInfo: User = Taro.getStorageSync(UserInfo)
   const [data, setData] = useState<DataType>({
@@ -177,8 +177,8 @@ export default function DetailInfoPage() {
   }
   // 提交投诉
   const handleSubmit = () => {
-    if (!isVaildVal(textarea, 15, 500)) {
-      Msg('输入内容不少于15个字且必须包含文字')
+    if (!isVaildVal(textarea, 5, 500)) {
+      ShowActionModal({ msg: '输入内容不少于5个字且必须包含文字'})
       return false
     }
     const params = {
@@ -314,10 +314,18 @@ export default function DetailInfoPage() {
     }
   }
 
+  // 监听是否是别人分享的页面
+  useEffect(()=>{
+    if(refId) Taro.setStorageSync(REFID, refId)
+  },[refId])
+
   // 设置分享信息
   useShareAppMessage(() => {
+    let path = `/pages/detail/index/index?id=${id}`
+    let userInfo = Taro.getStorageSync(UserInfo)
     return {
       ...getUserShareMessage(),
+      path: userInfo ? `${path}&refId=${userInfo.userId}` : path
     }
   })
 
@@ -493,7 +501,7 @@ export default function DetailInfoPage() {
           // 判断是否已经找到
             (resCode === 'end' ? <View className='detailInfo-userContent-buttonBox-'><Button className='detailInfo-userContent-button-end'>已招到</Button></View> : 
             // 判断是够查看到电话号码
-              (editPhone ? <View className='detailInfo-userContent-buttonBox'><Button className='detailInfo-userContent-button' onClick={() => jobGetTel()}>查看完整电话</Button></View> :
+              (editPhone ? <View className='detailInfo-userContent-buttonBox'><Button className='detailInfo-userContent-button' onClick={() => jobGetTel()}>查看招工电话</Button></View> :
               <View className='detailInfo-userContent-buttonBox'>
                   <View className='detailInfo-userContent-button-call' onClick={() => { Taro.makePhoneCall({ phoneNumber: phone }) }}>点击拨打</View>
                 <View className='detailInfo-userContent-button-complaint' onClick={footerComplaint}>投诉</View>
@@ -551,8 +559,8 @@ export default function DetailInfoPage() {
       {/* 审核失败只有招工 */}
       {/* 审核后出现 （修改，停止招工，我要置顶） */}
       {/* 判断是自己发布的招工 */}
-      {resCode === 'own' ? 
-      (data.is_check === 1 || again? 
+      
+      {/* (data.is_check === 1 || again? 
       <View className='detailInfo-userfooter'>
         <View className='detailInfo-userfooter-examine'><Image className='detailInfo-userfooter-examine-image' src={`${IMGCDNURL}published-info.png`}/>提示:人工审核中，该信息仅自己可见。</View>
       </View> :
@@ -560,10 +568,9 @@ export default function DetailInfoPage() {
         <View className='detailInfo-edit'>
           <View className='detailInfo-edit-box'>
             <View className='detailInfo-edit-list'>修改</View>
-            {/* <View className={stopHiring || (data.is_end === 2) ? 'detailInfo-edit-list-none' : 'detailInfo-edit-list'}>修改</View> */}
+            <View className={stopHiring || (data.is_end === 2) ? 'detailInfo-edit-list-none' : 'detailInfo-edit-list'}>修改</View>
                 <View className={stopHiring || (data.is_end === 1) ? 'detailInfo-edit-list' : 'detailInfo-edit-list-none'} onClick={handleStatus}>停止招工</View>
               {data.has_top && data.top_info.is_top == '1' ? <View className='detailInfo-edit-list-edit' onClick={() => userRouteJump(`/pages/topping/index?id=${data.id}&type=1`)}>修改置顶</View> : (stopHiring || (data.is_end === 2) ? <View className='detailInfo-edit-list' onClick={handleStatus}>重新招工</View> : <View className='detailInfo-edit-list' onClick={() => handleTopping(data)
-                // userRouteJump(`/pages/topping/index?id=${data.id}`)
                 }>我要置顶</View>)}
           </View>
           </View> : 
@@ -575,8 +582,9 @@ export default function DetailInfoPage() {
           </View>)
         // 自己发布
         )
-        :
-        // 他人发布
+         */}
+        {/* // 他人发布 */}
+      {resCode !== 'own' &&
         <View className='detailInfo-footer-content'>
           <View className='detailInfo-footer-content-box'>
             <View className='detailInfo-footer-content-box-list' onClick={collection}>
@@ -594,8 +602,8 @@ export default function DetailInfoPage() {
             </Button>
             }
             <View>
-              {resCode === 'end' ? <Button className='detailInfo-footer-content-box-button'>已招到</Button> : (editPhone ?
-                <Button className='detailInfo-footer-content-box-button' onClick={() => jobGetTel()}>查看完整电话</Button> :
+              {resCode === 'end' ? <Button className='detailInfo-footer-content-box-button detailInfo-button-end'>已招到</Button> : (editPhone ?
+                <Button className='detailInfo-footer-content-box-button' onClick={() => jobGetTel()}>查看招工电话</Button> :
                 <Button className='detailInfo-footer-content-box-button' onClick={() => { Taro.makePhoneCall({ phoneNumber: phone }) }}>拨打电话</Button>)}
               {
               }

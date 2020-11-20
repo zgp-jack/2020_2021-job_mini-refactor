@@ -12040,13 +12040,13 @@ var _filter_classify = __webpack_require__(/*! ../constants/filter_classify */ "
 
 function setFilter(data) {
   return {
-    type: _filter_classify.SET,
+    type: _filter_classify.SETCLASSIFY,
     data: data
   };
 }
 function getFilter() {
   return {
-    type: _filter_classify.GET
+    type: _filter_classify.GETCLASSIFY
   };
 }
 
@@ -12073,19 +12073,57 @@ var _member = __webpack_require__(/*! ../constants/member */ "./src/constants/me
 
 function setMemberInfo(member) {
   return {
-    type: _member.SET,
+    type: _member.SETMEMBERINFO,
     data: member
   };
 }
 function getUserInfo() {
   return {
-    type: _member.GET
+    type: _member.GETMEMBERINFO
   };
 }
 function setMemberTel(val) {
   return {
     type: _member.TEL,
     data: val
+  };
+}
+
+/***/ }),
+
+/***/ "./src/actions/msg.ts":
+/*!****************************!*\
+  !*** ./src/actions/msg.ts ***!
+  \****************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.setMsg = setMsg;
+exports.getMsg = getMsg;
+exports.resetMsg = resetMsg;
+
+var _msg = __webpack_require__(/*! ../constants/msg */ "./src/constants/msg.ts");
+
+function setMsg(data) {
+  return {
+    type: _msg.SETMSG,
+    data: data
+  };
+}
+function getMsg() {
+  return {
+    type: _msg.GETMSG
+  };
+}
+function resetMsg() {
+  return {
+    type: _msg.RESETMSG
   };
 }
 
@@ -12163,6 +12201,32 @@ function setPhone(data) {
 
 /***/ }),
 
+/***/ "./src/actions/recruit_top.ts":
+/*!************************************!*\
+  !*** ./src/actions/recruit_top.ts ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = setRecruitTopArea;
+
+var _recruit_top = __webpack_require__(/*! ../constants/recruit_top */ "./src/constants/recruit_top.ts");
+
+function setRecruitTopArea(data) {
+  return {
+    type: _recruit_top.SET_RECRUIT_TOP_AREA,
+    data: data
+  };
+}
+
+/***/ }),
+
 /***/ "./src/actions/resume_addinfo.ts":
 /*!***************************************!*\
   !*** ./src/actions/resume_addinfo.ts ***!
@@ -12183,13 +12247,13 @@ var _resume_addinfo = __webpack_require__(/*! ../constants/resume_addinfo */ "./
 
 function setResumeInfoConfig(data) {
   return {
-    type: _resume_addinfo.SET,
+    type: _resume_addinfo.SETRESUMECONSIG,
     data: data
   };
 }
 function getResumeInfoConfig() {
   return {
-    type: _resume_addinfo.GET
+    type: _resume_addinfo.GETRESUMECONFIG
   };
 }
 
@@ -12294,18 +12358,24 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.setUserInfo = setUserInfo;
 exports.getUserInfo = getUserInfo;
+exports.loginOut = loginOut;
 
 var _user = __webpack_require__(/*! ../constants/user */ "./src/constants/user.tsx");
 
 function setUserInfo(user) {
   return {
-    type: _user.SET,
+    type: _user.SETUSER,
     data: user
   };
 }
 function getUserInfo() {
   return {
-    type: _user.GET
+    type: _user.GETUSER
+  };
+}
+function loginOut() {
+  return {
+    type: _user.LOGINOUT
   };
 }
 
@@ -12359,9 +12429,11 @@ var MINICONFIG = exports.MINICONFIG = __webpack_require__("./src/config/minis sy
 // * 全局请求接口域名
 // * 测试站
 var DEVREQUESTURL = exports.DEVREQUESTURL = 'https://miniapi.zhaogong.vrtbbs.com/';
+// * 预发布
+var PREREQUESTURL = exports.PREREQUESTURL = 'http://miniapi.kkbbi.com/';
 // * 正式站
 var PROREQUESTURL = exports.PROREQUESTURL = 'https://newyupaomini.54xiaoshuo.com/';
-// * 当前测试
+// * 当前程序使用的请求地址
 var REQUESTURL = exports.REQUESTURL = DEVREQUESTURL;
 // * 默认上传图片
 var UPLOADIMGURL = exports.UPLOADIMGURL = PROREQUESTURL + 'index/upload/';
@@ -12381,7 +12453,7 @@ var MAPKEY = exports.MAPKEY = '20f12aae660c04de86f993d3eff590a0';
 var MAXCACHECITYNUM = exports.MAXCACHECITYNUM = 3;
 // * 用户发布 选择地址 历史记录 最大数量
 var UserPublishAreaHistoryMaxNum = exports.UserPublishAreaHistoryMaxNum = 10;
-// * 小程序tabbar msg统计 定时器请求间隔 1分钟
+// * 小程序tabbar msg统计 定时器请求间隔 60 秒
 var MemberMsgTimerInterval = exports.MemberMsgTimerInterval = 60000;
 // * 发布技能证书最大数量
 var CertificateMaxNum = exports.CertificateMaxNum = 3;
@@ -12434,6 +12506,10 @@ var INVITESOURCE = exports.INVITESOURCE = MINICONFIG.INVITESOURCE;
 var USESUBSCRIBEMESSAGE = exports.USESUBSCRIBEMESSAGE = MINICONFIG.USESUBSCRIBEMESSAGE;
 // * 是否能分享
 var ISCANSHARE = exports.ISCANSHARE = MINICONFIG.ISCANSHARE;
+// * textarea能输入的最大字数
+var TEXTAREAMAXLENGTH = exports.TEXTAREAMAXLENGTH = MINICONFIG.TEXTAREAMAXLENGTH;
+// * 应用内是否使用下载APP引流
+var DOWNLOADAPP = exports.DOWNLOADAPP = MINICONFIG.DOWNLOADAPP;
 
 /***/ }),
 
@@ -12495,13 +12571,19 @@ var UNITID = 'adunit-80f40e8b4f60c3f6';
 var INVITESOURCE = "712790d9629c6dcea00e3f5bff60132b";
 // * 是否使用推送信息
 var USESUBSCRIBEMESSAGE = false;
+// * textarea能输入的最大字数
+var TEXTAREAMAXLENGTH = 500;
+// * 应用内是否存在下载APP引流
+var DOWNLOADAPP = true;
 module.exports = {
   PAGETITLE: PAGETITLE,
   TOKEN: TOKEN,
   UNITID: UNITID,
   INVITESOURCE: INVITESOURCE,
   USESUBSCRIBEMESSAGE: USESUBSCRIBEMESSAGE,
-  ISCANSHARE: ISCANSHARE
+  ISCANSHARE: ISCANSHARE,
+  TEXTAREAMAXLENGTH: TEXTAREAMAXLENGTH,
+  DOWNLOADAPP: DOWNLOADAPP
 };
 
 /***/ }),
@@ -12529,13 +12611,19 @@ var UNITID = 'adunit-80f40e8b4f60c3f6';
 var INVITESOURCE = "712790d9629c6dcea00e3f5bff60132b";
 // * 是否使用推送信息
 var USESUBSCRIBEMESSAGE = false;
+// * textarea能输入的最大字数
+var TEXTAREAMAXLENGTH = 140;
+// * 应用内是否存在下载APP引流
+var DOWNLOADAPP = false;
 module.exports = {
   PAGETITLE: PAGETITLE,
   TOKEN: TOKEN,
   UNITID: UNITID,
   INVITESOURCE: INVITESOURCE,
   USESUBSCRIBEMESSAGE: USESUBSCRIBEMESSAGE,
-  ISCANSHARE: ISCANSHARE
+  ISCANSHARE: ISCANSHARE,
+  TEXTAREAMAXLENGTH: TEXTAREAMAXLENGTH,
+  DOWNLOADAPP: DOWNLOADAPP
 };
 
 /***/ }),
@@ -12553,8 +12641,8 @@ module.exports = {
 /*
  * @Author: your name
  * @Date: 2020-10-28 11:04:26
- * @LastEditTime: 2020-11-06 17:06:57
- * @LastEditors: your name
+ * @LastEditTime: 2020-11-19 14:36:55
+ * @LastEditors: jsxin
  * @Description: In User Settings Edit
  * @FilePath: \yupaowang\src\config\minis\jizhao.ts
  */
@@ -12573,13 +12661,19 @@ var INVITESOURCE = "712790d9629c6dcea00e3f5bff60132b";
 var USESUBSCRIBEMESSAGE = true;
 // * 激励视频
 var VIDEOAD = 'adunit-31b05acadbd2a1d1';
+// * textarea能输入的最大字数
+var TEXTAREAMAXLENGTH = 500;
+// * 应用内是否存在下载APP引流
+var DOWNLOADAPP = true;
 module.exports = {
   PAGETITLE: PAGETITLE,
   TOKEN: TOKEN,
   UNITID: UNITID,
   INVITESOURCE: INVITESOURCE,
   USESUBSCRIBEMESSAGE: USESUBSCRIBEMESSAGE,
-  VIDEOAD: VIDEOAD
+  VIDEOAD: VIDEOAD,
+  TEXTAREAMAXLENGTH: TEXTAREAMAXLENGTH,
+  DOWNLOADAPP: DOWNLOADAPP
 };
 
 /***/ }),
@@ -12621,6 +12715,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 // * 本文件为小程序内部缓存声明文件
+// 邀请人用户id
+var REFID = exports.REFID = 'refId';
 // 用户信息
 var UserInfo = exports.UserInfo = 'userInfo';
 // 城市数据 发布招工 首页都会用到
@@ -12659,8 +12755,8 @@ var PublishData = exports.PublishData = 'publishData';
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var GET = exports.GET = 'get';
-var SET = exports.SET = 'set';
+var GETCLASSIFY = exports.GETCLASSIFY = 'getClassify';
+var SETCLASSIFY = exports.SETCLASSIFY = 'setClassify';
 
 /***/ }),
 
@@ -12677,8 +12773,8 @@ var SET = exports.SET = 'set';
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var GET = exports.GET = 'get';
-var SET = exports.SET = 'set';
+var GETMEMBERINFO = exports.GETMEMBERINFO = 'getMemberInfo';
+var SETMEMBERINFO = exports.SETMEMBERINFO = 'setMemberInfo';
 var TEL = exports.TEL = 'tel';
 
 /***/ }),
@@ -12696,8 +12792,9 @@ var TEL = exports.TEL = 'tel';
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var GET = exports.GET = 'get';
-var SET = exports.SET = 'set';
+var GETMSG = exports.GETMSG = 'getMsg';
+var SETMSG = exports.SETMSG = 'setMsg';
+var RESETMSG = exports.RESETMSG = 'resetMsg';
 
 /***/ }),
 
@@ -12732,8 +12829,8 @@ var SETPUBLISHDATA = exports.SETPUBLISHDATA = 'setpublishdata';
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var GET = exports.GET = 'get';
-var SET = exports.SET = 'set';
+var GETREALNAME = exports.GETREALNAME = 'getRealname';
+var SETREALNAME = exports.SETREALNAME = 'setRealname';
 var SETFUN = exports.SETFUN = 'setfun';
 var SETAREA = exports.SETAREA = 'setarea';
 
@@ -12763,6 +12860,23 @@ var SETPHONE = exports.SETPHONE = 'setphone';
 
 /***/ }),
 
+/***/ "./src/constants/recruit_top.ts":
+/*!**************************************!*\
+  !*** ./src/constants/recruit_top.ts ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var SET_RECRUIT_TOP_AREA = exports.SET_RECRUIT_TOP_AREA = 'set_recruit_top_area';
+
+/***/ }),
+
 /***/ "./src/constants/resume_addinfo.ts":
 /*!*****************************************!*\
   !*** ./src/constants/resume_addinfo.ts ***!
@@ -12776,8 +12890,8 @@ var SETPHONE = exports.SETPHONE = 'setphone';
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var GET = exports.GET = 'get';
-var SET = exports.SET = 'set';
+var GETRESUMECONFIG = exports.GETRESUMECONFIG = 'getResumeConfig';
+var SETRESUMECONSIG = exports.SETRESUMECONSIG = 'setResumeConfig';
 
 /***/ }),
 
@@ -12872,8 +12986,9 @@ function typeInTabbar(val) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var GET = exports.GET = 'get';
-var SET = exports.SET = 'set';
+var GETUSER = exports.GETUSER = 'getUser';
+var SETUSER = exports.SETUSER = 'setUser';
+var LOGINOUT = exports.LOGINOUT = 'loginout';
 
 /***/ }),
 
@@ -12931,7 +13046,7 @@ var SendTypeHave = exports.SendTypeHave = 'have';
 var SendTypeNo = exports.SendTypeNo = 'no';
 var title = '获取验证码';
 function useCode(type) {
-  var _useState = (0, _taroTt.useState)(type === false ? false : !!type),
+  var _useState = (0, _taroTt.useState)(false),
       _useState2 = _slicedToArray(_useState, 2),
       disabled = _useState2[0],
       setDisabled = _useState2[1];
@@ -12968,11 +13083,22 @@ function useCode(type) {
     var data = { tel: tel, sendType: sendType };
     setDisabled(true);
     (0, _index4.getUserPhoneCode)(data).then(function (res) {
-      (0, _index3.default)(res.errmsg, 2500);
       if (res.errcode == 'ok') {
-        timer(res.refresh);
+        (0, _index3.default)(res.errmsg, 2500);
+        var t = res.refresh || 60;
+        setText(t + 's后重新获取');
+        var _timer = setInterval(function () {
+          t--;
+          if (t === 0) {
+            setDisabled(false);
+            clearInterval(_timer);
+            setText(title);
+            return false;
+          }
+          setText(t + 's后重新获取');
+        }, 1000);
       } else {
-        setDisabled(false);
+        (0, _index2.ShowActionModal)({ msg: res.errmsg });
       }
     });
   };
@@ -13182,6 +13308,7 @@ function useResume() {
         var info = _extends({}, _data.INFODATA_DATA);
         info = _extends({}, info, res.data.info);
         setInfoData(_extends({}, info));
+        if (res.data.info.is_end == '2') setSelectDataIndex(1);
         // 清除地图redux
         dispatch((0, _recruit.setAreaInfo)({
           title: '',
@@ -13386,8 +13513,8 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }(); /*
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           * @Author: zyb
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           * @Date: 2020-11-03 09:23:50
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          * @LastEditors: zyb
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          * @LastEditTime: 2020-11-05 17:29:51
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          * @LastEditors: jsxin
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          * @LastEditTime: 2020-11-17 14:01:25
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           * @Description:
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           */
 
@@ -13431,6 +13558,8 @@ function useResumeAddInfo() {
 
 
   var startDatePicker = new Date().getFullYear() - 60 + '-01-01';
+  // 获取结束时间范围
+  var endDatePicker = new Date().getFullYear() - 18 + '-12-31';
   // 初始化基本信息数据
   //const 
   // 请求配置项数据
@@ -13445,7 +13574,8 @@ function useResumeAddInfo() {
   return {
     infoConfig: infoConfig,
     genderCurrent: genderCurrent,
-    startDatePicker: startDatePicker
+    startDatePicker: startDatePicker,
+    endDatePicker: endDatePicker
   };
 }
 
@@ -15845,1235 +15975,6 @@ var RESUME_TOP_DATA = exports.RESUME_TOP_DATA = {
 
 /***/ }),
 
-/***/ "./src/pages/topping/index.scss":
-/*!**************************************!*\
-  !*** ./src/pages/topping/index.scss ***!
-  \**************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
-
-/***/ }),
-
-/***/ "./src/pages/topping/index.tsx":
-/*!*************************************!*\
-  !*** ./src/pages/topping/index.tsx ***!
-  \*************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.contextItem = undefined;
-
-var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
-
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
-
-var _taroTt2 = _interopRequireDefault(_taroTt);
-
-var _index = __webpack_require__(/*! ../../utils/request/index */ "./src/utils/request/index.ts");
-
-var _index2 = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
-
-var _store = __webpack_require__(/*! ../../config/store */ "./src/config/store.ts");
-
-var _index3 = __webpack_require__(/*! ../../utils/msg/index */ "./src/utils/msg/index.ts");
-
-var _index4 = _interopRequireDefault(_index3);
-
-__webpack_require__(/*! ./index.scss */ "./src/pages/topping/index.scss");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var contextItem = exports.contextItem = (0, _taroTt.createContext)({});
-
-var Topping = function (_Taro$Component) {
-  _inherits(Topping, _Taro$Component);
-
-  function Topping() {
-    _classCallCheck(this, Topping);
-
-    var _this = _possibleConstructorReturn(this, (Topping.__proto__ || Object.getPrototypeOf(Topping)).apply(this, arguments));
-
-    _this.config = {
-      navigationBarTitleText: '招工置顶'
-    };
-
-    _this.$usedState = ["params", "data", "loopArray73", "loopArray74", "loopArray75", "loopArray76", "loopArray77", "province", "IMGCDNURL", "rec", "basics", "type", "list", "displayTime", "num", "endTime", "editData", "newTime", "day", "SERVERPHONE"];
-    _this.anonymousFunc0Map = {};
-    _this.anonymousFunc1Map = {};
-    _this.anonymousFunc2Map = {};
-    _this.anonymousFunc3Map = {};
-    _this.customComponents = [];
-    return _this;
-  }
-
-  _createClass(Topping, [{
-    key: "_constructor",
-    value: function _constructor(props) {
-      _get(Topping.prototype.__proto__ || Object.getPrototypeOf(Topping.prototype), "_constructor", this).call(this, props);
-      this.$$refs = new _taroTt2.default.RefsArray();
-    }
-  }, {
-    key: "_createData",
-    value: function _createData() {
-      var _this2 = this;
-
-      this.__state = arguments[0] || this.state || {};
-      this.__props = arguments[1] || this.props || {};
-      var __isRunloopRef = arguments[2];
-      var __prefix = this.$prefix;
-      ;
-      var router = (0, _taroTt.useRouter)();
-      var _router$params = router.params,
-          id = _router$params.id,
-          type = _router$params.type,
-          rec = _router$params.rec,
-          areaData = _router$params.areaData,
-          endTimes = _router$params.endTimes,
-          endTimeStr = _router$params.endTimeStr;
-      // 获取userInfo
-
-      var userInfo = _taroTt2.default.getStorageSync(_store.UserInfo);
-
-      var _useState = (0, _taroTt.useState)({
-        top_rules: []
-      }),
-          _useState2 = _slicedToArray(_useState, 2),
-          data = _useState2[0],
-          setData = _useState2[1];
-      // 积分
-
-
-      var _useState3 = (0, _taroTt.useState)(0),
-          _useState4 = _slicedToArray(_useState3, 2),
-          num = _useState4[0],
-          setNum = _useState4[1];
-      // 天
-
-
-      var _useState5 = (0, _taroTt.useState)(0),
-          _useState6 = _slicedToArray(_useState5, 2),
-          paramsDay = _useState6[0],
-          setParamsDay = _useState6[1];
-      //置顶天数
-
-
-      var _useState7 = (0, _taroTt.useState)('请选择置顶天数'),
-          _useState8 = _slicedToArray(_useState7, 2),
-          day = _useState8[0],
-          setDay = _useState8[1];
-      // 修改置顶天数
-
-
-      var _useState9 = (0, _taroTt.useState)('延长'),
-          _useState10 = _slicedToArray(_useState9, 2),
-          editData = _useState10[0],
-          seteditDay = _useState10[1];
-      // 下拉框总参数
-
-
-      var _useState11 = (0, _taroTt.useState)([]),
-          _useState12 = _slicedToArray(_useState11, 2),
-          list = _useState12[0],
-          setList = _useState12[1];
-      // 最大省市
-
-
-      var _useState13 = (0, _taroTt.useState)({
-        max_city: 0,
-        max_province: 0
-      }),
-          _useState14 = _slicedToArray(_useState13, 2),
-          city = _useState14[0],
-          setCity = _useState14[1];
-
-      var _useState15 = (0, _taroTt.useState)({
-        city: [],
-        province: [],
-        whole: []
-      }),
-          _useState16 = _slicedToArray(_useState15, 2),
-          params = _useState16[0],
-          setParams = _useState16[1];
-
-      var _useState17 = (0, _taroTt.useState)([]),
-          _useState18 = _slicedToArray(_useState17, 2),
-          province = _useState18[0],
-          setProvince = _useState18[1];
-      // 到期时间
-
-
-      var _useState19 = (0, _taroTt.useState)(''),
-          _useState20 = _slicedToArray(_useState19, 2),
-          endTime = _useState20[0],
-          setEndTime = _useState20[1];
-      // 到期时间时间戳
-
-
-      var _useState21 = (0, _taroTt.useState)(0),
-          _useState22 = _slicedToArray(_useState21, 2),
-          end = _useState22[0],
-          setEnd = _useState22[1];
-      // 显示最新到期时间
-
-
-      var _useState23 = (0, _taroTt.useState)(false),
-          _useState24 = _slicedToArray(_useState23, 2),
-          displayTime = _useState24[0],
-          setdisplayTime = _useState24[1];
-      // 最新时间
-
-
-      var _useState25 = (0, _taroTt.useState)(''),
-          _useState26 = _slicedToArray(_useState25, 2),
-          newTime = _useState26[0],
-          setNewTime = _useState26[1];
-      // 修改时最大积分
-
-
-      var _useState27 = (0, _taroTt.useState)(0),
-          _useState28 = _slicedToArray(_useState27, 2),
-          maxNum = _useState28[0],
-          setMaxNum = _useState28[1];
-      // 找活省份最大的长度
-
-
-      var _useState29 = (0, _taroTt.useState)(0),
-          _useState30 = _slicedToArray(_useState29, 2),
-          provinceNum = _useState30[0],
-          setProvinceNum = _useState30[1];
-      // 找活天数
-
-
-      var _useState31 = (0, _taroTt.useState)('1'),
-          _useState32 = _slicedToArray(_useState31, 2),
-          recDay = _useState32[0],
-          setRecDay = _useState32[1];
-
-      var _useState33 = (0, _taroTt.useState)({
-        max_number: 0,
-        province_integral: 0,
-        max_top_days: 0,
-        max_city: 0,
-        max_province: 0
-      }),
-          _useState34 = _slicedToArray(_useState33, 2),
-          basics = _useState34[0],
-          setBasics = _useState34[1];
-      // 修改超过最大就显示消耗积分
-
-
-      (0, _taroTt.useEffect)(function () {
-        if (type) {
-          if (!rec) {
-            var val = {
-              job_id: id,
-              time: userInfo.tokenTime
-            };
-            (0, _index.jobGetTopAreasAction)(val).then(function (res) {
-              if (res.errcode === 'ok') {
-                setParams({ city: res.data.top_city, province: res.data.top_province, whole: res.data.top_country });
-                setEndTime(res.data.end_time_string);
-                setEnd(res.data.end_time);
-                setMaxNum(res.data.max_price);
-              } else {
-                _taroTt2.default.showModal({
-                  title: '温馨提示',
-                  content: res.errmsg,
-                  showCancel: false
-                });
-              }
-            });
-          }
-        }
-        // 找活
-        if (rec) {
-          _taroTt2.default.setNavigationBarTitle({
-            title: '找活置顶'
-          });
-          var _params = {
-            interface_version: 'v2'
-          };
-          (0, _index.resumesTopConfigV2Action)(_params).then(function (res) {
-            if (res.errcode === 'ok') {
-              setData({ top_rules: res.data.top_rules });
-              var array = [];
-              for (var i = 0; i < res.data.max_top_days; i++) {
-                array.push(i + 1 + "天");
-              }
-              if (type) {
-                if (areaData) {
-                  var areList = JSON.parse(areaData);
-                  var _city = [];
-                  var _province = [];
-                  var whole = [];
-                  var _recDay = Math.ceil((parseInt(endTimes) - new Date().getTime() / 1000) / 86400);
-                  var maxPrice = 0;
-                  areList.map(function (v) {
-                    if (v.pid === '1') {
-                      _city.push(v);
-                    } else if (v.pid === '0') {
-                      whole.push(v);
-                    } else {
-                      _province.push(v);
-                    }
-                  });
-                  {
-                    maxPrice = (_city.length * 20 + _province.length * 20) * _recDay;
-                  }
-                  setParams({ city: _city, province: _province, whole: whole });
-                  setEndTime(endTimeStr);
-                  setEnd(parseInt(endTimes));
-                  setMaxNum(maxPrice);
-                }
-              }
-              setList(array);
-              setCity({ max_city: res.data.max_city, max_province: res.data.max_province });
-              setBasics({ province_integral: res.data.province_integral, max_number: res.data.max_number, max_top_days: res.data.max_top_days,
-                max_province: res.data.max_province, max_city: res.data.max_city
-              });
-            } else {
-              _taroTt2.default.showModal({
-                title: '温馨提示',
-                content: res.errmsg,
-                showCancel: false
-              });
-            }
-          });
-        } else {
-          (0, _index.jobTopConfigAction)().then(function (res) {
-            if (res.errcode === 'ok') {
-              setData({ top_rules: res.data.top_rules });
-              setCity({ max_city: res.data.max_city, max_province: res.data.max_province });
-              var array = [];
-              for (var i = 0; i < res.data.max_top_days; i++) {
-                array.push(i + 1 + "天");
-              }
-              setList(array);
-            } else {
-              _taroTt2.default.showModal({
-                title: '温馨提示',
-                content: res.errmsg,
-                showCancel: false
-              });
-            }
-          });
-        }
-      }, []);
-      var getMyDate = function getMyDate(str) {
-        var oDate = new Date(str),
-            oYear = oDate.getFullYear(),
-            oMonth = oDate.getMonth() + 1,
-            oDay = oDate.getDate(),
-            oHour = oDate.getHours(),
-            oMin = oDate.getMinutes(),
-            oSen = oDate.getSeconds(),
-            oTime = oYear + '-' + addZero(oMonth) + '-' + addZero(oDay) + ' ' + addZero(oHour) + ':' + addZero(oMin);
-        return oTime;
-      };
-      var addZero = function addZero(num) {
-        if (parseInt(num) < 10) {
-          num = '0' + num;
-        }
-        return num;
-      };
-      var handleClick = function handleClick(e) {
-        setDay(list[e.detail.value]);
-        if (type) {
-          // 增加时间 新增天数*新的单价
-          // 修改地区 单价比原单价大，差价*天数，
-          // 时间和城市都改变了 新单价大于原单价 ：新价-旧价*剩余天数+新价格*新增天数 新单价小于原单价：旧价格*新增天数
-          seteditDay('修改');
-          setdisplayTime(true);
-          // 时间
-          var all = 86400000 * (parseInt(e.detail.value) + 1) + ((end - 0) * 1000 - 0);
-          var _newTime = getMyDate(all);
-          setNewTime(_newTime);
-          // 获取旧价格
-          var oldPrice = maxNum;
-          // 获取价格
-          var newPrice = undefined;
-          if (rec) {
-            newPrice = params.whole.length ? 500 : (params.city.length * 20 + params.province.length * 20) * 1;
-          } else {
-            newPrice = params.whole.length ? 500 : (params.city.length * 10 + params.province.length * 20) * 1;
-          }
-          // const newPrice = (params.city.length * 10 + params.province.length * 20) * 1;
-          // 时间差
-          var remDay = (end - new Date().getTime() / 1000) / 86400;
-          // 修改区域
-          // 只改变时间
-          var money = undefined;
-          if (oldPrice === newPrice) {
-            money = newPrice * (parseInt(e.detail.value) + 1);
-          } else {
-            if (newPrice - oldPrice > 0) {
-              if (rec) {
-                money = Math.round((newPrice - oldPrice) * remDay + (params.city.length * 20 + params.province.length * 20) * (parseInt(e.detail.value) + 1));
-              } else {
-                money = Math.round((newPrice - oldPrice) * remDay + newPrice * (parseInt(e.detail.value) + 1));
-              }
-            } else {
-              money = oldPrice * (parseInt(e.detail.value) + 1);
-            }
-          }
-          setNum(money);
-        } else {
-          if (params) {
-            var numData = 0;
-            if (params.whole.length) {
-              numData = 500 * (parseInt(e.detail.value) + 1);
-            } else {
-              if (rec) {
-                numData = (params.city.length * 20 + params.province.length * 20) * (parseInt(e.detail.value) + 1);
-              } else {
-                numData = (params.city.length * 10 + params.province.length * 20) * (parseInt(e.detail.value) + 1);
-              }
-            }
-            setNum(numData);
-          }
-        }
-        setParamsDay(parseInt(e.detail.value) + 1);
-      };
-      // 用户页面跳转
-      var userRouteJump = function userRouteJump(url) {
-        _taroTt2.default.navigateTo({
-          url: url
-        });
-      };
-      // 置顶
-      var handleTopping = function handleTopping() {
-        var province_ids = params.province.map(function (v) {
-          return v.id;
-        });
-        var city_ids = params.city.map(function (v) {
-          return v.id;
-        });
-        var country_ids = params.whole.map(function (v) {
-          return v.id;
-        });
-        if (!province_ids.length && !city_ids.length && !country_ids.length) {
-          _taroTt2.default.showModal({
-            title: '温馨提示',
-            content: '请选择您的置顶城市',
-            showCancel: false
-          });
-          return;
-        }
-        var detail = {
-          is_country: country_ids.toString(),
-          mid: userInfo.userId,
-          province_ids: province_ids.toString(),
-          city_ids: city_ids.toString(),
-          day: paramsDay,
-          job_id: id,
-          time: userInfo.tokenTime
-        };
-        var editDetail = {
-          is_country: params.whole.length ? 1 : 0,
-          mid: userInfo.userId,
-          province_ids: province_ids.toString(),
-          city_ids: city_ids.toString(),
-          update_days: paramsDay,
-          job_id: id,
-          time: userInfo.tokenTime,
-          update_integral: num
-        };
-        // return
-        if (type) {
-          if (rec) {
-            (0, _index.resumesUpdateTopResumeAction)(editDetail).then(function (res) {
-              if (res.errcode === 'ok') {
-                _taroTt2.default.showModal({
-                  title: '温馨提示',
-                  content: res.errmsg,
-                  showCancel: false,
-                  success: function success() {
-                    _taroTt2.default.navigateBack({
-                      delta: 1
-                    });
-                  }
-                });
-                return;
-              } else if (res.errcode === 'get_integral') {
-                _taroTt2.default.showModal({
-                  title: '温馨提示',
-                  content: res.errmsg,
-                  showCancel: true,
-                  success: function success(res) {
-                    if (res.confirm == true) {
-                      _taroTt2.default.navigateTo({
-                        // 前往积分页面
-                        url: "/pages/getintegral/index"
-                      });
-                    }
-                  }
-                });
-                return;
-              } else if (res.errcode === 'auth_forbid') {
-                _taroTt2.default.showModal({
-                  title: '温馨提示',
-                  content: res.errmsg,
-                  cancelText: '取消',
-                  confirmText: '去实名',
-                  success: function success(res) {
-                    if (res.cancel) {
-                      _taroTt2.default.navigateBack({
-                        delta: 1
-                      });
-                    } else if (res.confirm) {
-                      var backtwo = "backtwo";
-                      _taroTt2.default.redirectTo({
-                        url: "/pages/realname/index?backtwo=backtwo"
-                      });
-                    }
-                  }
-                });
-                return;
-              } else if (res.errcode == "member_forbid") {
-                _taroTt2.default.showModal({
-                  title: '温馨提示',
-                  content: "mydata.errmsg",
-                  cancelText: "取消",
-                  confirmText: "联系客服",
-                  success: function success(res) {
-                    if (res.confirm) {
-                      var tel = _index2.SERVERPHONE;
-                      _taroTt2.default.makePhoneCall({
-                        phoneNumber: tel
-                      });
-                    }
-                  }
-                });
-                return;
-              } else {
-                _taroTt2.default.showToast({
-                  title: res.errmsg,
-                  icon: "none",
-                  duration: 1500
-                });
-              }
-            });
-          } else {
-            (0, _index.jobChangeTopAreasAction)(editDetail).then(function (res) {
-              if (res.errcode === 'ok') {
-                _taroTt2.default.showModal({
-                  title: '温馨提示',
-                  content: res.errmsg,
-                  showCancel: false,
-                  success: function success() {
-                    _taroTt2.default.navigateBack({
-                      delta: 1
-                    });
-                  }
-                });
-                return;
-              } else if (res.errcode === 'get_integral') {
-                _taroTt2.default.showModal({
-                  title: '温馨提示',
-                  content: res.errmsg,
-                  showCancel: true,
-                  success: function success(res) {
-                    if (res.confirm == true) {
-                      _taroTt2.default.navigateTo({
-                        // 前往积分页面
-                        url: "/pages/getintegral/index"
-                      });
-                    }
-                  }
-                });
-                return;
-              } else if (res.errcode === 'auth_forbid') {
-                _taroTt2.default.showModal({
-                  title: '温馨提示',
-                  content: res.errmsg,
-                  cancelText: '取消',
-                  confirmText: '去实名',
-                  success: function success(res) {
-                    if (res.cancel) {
-                      _taroTt2.default.navigateBack({
-                        delta: 1
-                      });
-                    } else if (res.confirm) {
-                      var backtwo = "backtwo";
-                      _taroTt2.default.redirectTo({
-                        url: "/pages/realname/index?backtwo=backtwo"
-                      });
-                    }
-                  }
-                });
-                return;
-              } else if (res.errcode == "member_forbid") {
-                _taroTt2.default.showModal({
-                  title: '温馨提示',
-                  content: "mydata.errmsg",
-                  cancelText: "取消",
-                  confirmText: "联系客服",
-                  success: function success(res) {
-                    if (res.confirm) {
-                      var tel = _index2.SERVERPHONE;
-                      _taroTt2.default.makePhoneCall({
-                        phoneNumber: tel
-                      });
-                    }
-                  }
-                });
-                return;
-              } else {
-                _taroTt2.default.showToast({
-                  title: res.errmsg,
-                  icon: "none",
-                  duration: 1500
-                });
-              }
-            });
-          }
-        } else {
-          if (!province_ids || !city_ids) {
-            _taroTt2.default.showModal({
-              title: '温馨提示',
-              content: '请设置置顶城市',
-              showCancel: false
-            });
-            return;
-          }
-          if (paramsDay === 0) {
-            _taroTt2.default.showModal({
-              title: '温馨提示',
-              content: '请设置置顶天数',
-              showCancel: false
-            });
-            return;
-          }
-          if (rec) {
-            (0, _index.resumesDoTopV2Action)(detail).then(function (res) {
-              if (res.errcode === 'ok') {
-                _taroTt2.default.showModal({
-                  title: '温馨提示',
-                  content: res.errmsg,
-                  showCancel: false,
-                  success: function success() {
-                    _taroTt2.default.navigateBack({
-                      delta: 1
-                    });
-                  }
-                });
-              }
-            });
-          } else {
-            (0, _index.jobDoTopAction)(detail).then(function (res) {
-              if (res.errcode === 'ok') {
-                _taroTt2.default.showModal({
-                  title: '温馨提示',
-                  content: res.errmsg,
-                  showCancel: false,
-                  success: function success() {
-                    _taroTt2.default.navigateBack({
-                      delta: 1
-                    });
-                  }
-                });
-              }
-            });
-          }
-        }
-      };
-      var handleAddJump = function handleAddJump() {
-        userRouteJump("/pages/topping/distruction/index?max_city=" + city.max_city + "&max_province=" + city.max_province);
-      };
-      // 传递方法
-      var transferFun = function transferFun(_ref) {
-        var city = _ref.city,
-            province = _ref.province,
-            whole = _ref.whole;
-
-        setParams({ city: city, province: province, whole: whole });
-        calcPrice(city, province, whole);
-      };
-      var calcPrice = function calcPrice(city, province, whole) {
-        // if (whole.length){
-        //   if(type){
-        //   }else{
-        //     const numData = 500 * (paramsDay)
-        //     setNum(numData);
-        //   }
-        // }else{
-        if (city || province || whole) {
-          if (type) {
-            // 获取旧价格
-            var oldPrice = maxNum;
-            // 获取价格
-            // 时间差
-            var remDay = (end - new Date().getTime() / 1000) / 86400;
-            var newPrice = undefined;
-            if (rec) {
-              newPrice = whole.length ? 500 : (city.length * 20 + province.length * 20) * 1;
-            } else {
-              newPrice = whole.length ? 500 : (city.length * 10 + province.length * 20) * 1;
-            }
-            // 修改区域
-            var changeCity = true; //修改区域
-            // 只改变时间
-            var money = undefined;
-            if (paramsDay !== 0 && oldPrice === newPrice) {
-              money = newPrice * paramsDay;
-            } else if (paramsDay === 0 && oldPrice > newPrice) {
-              money = (newPrice - oldPrice) * paramsDay;
-            } else if (paramsDay === 0 && changeCity) {
-              // 剩余天数
-              if (newPrice > oldPrice) {
-                if (rec) {
-                  // 新的大于旧的金额
-                  // 新的减去旧的再*天数
-                  // money = Math.round((newPrice - oldPrice));
-                  // money = newPrice - oldPrice - moneys;
-                  money = Math.round((newPrice - oldPrice) * remDay);
-                } else {
-                  money = Math.round((newPrice - oldPrice) * remDay);
-                }
-              }
-            } else {
-              // 时间变了，城市变了
-              if (newPrice - oldPrice > 0) {
-                if (rec) {
-                  money = Math.round(newPrice - oldPrice + (city.length * 20 + province.length * 20) * paramsDay);
-                  // money = Math.round(newPrice - oldPrice + oldPrice * paramsDay + newPrice * paramsDay)
-                } else {
-                  money = Math.round((newPrice - oldPrice) * remDay + newPrice * paramsDay);
-                }
-              } else {
-                money = oldPrice * paramsDay;
-              }
-            }
-            var _num = 0;
-            if (money <= 0) {
-              _num = 0;
-            } else {
-              _num = _num;
-            }
-            setNum(money);
-          } else {
-            var numData = 0;
-            if (whole.length) {
-              numData = 500 * paramsDay;
-            } else {
-              if (rec) {
-                numData = (city.length * 20 + province.length * 20) * paramsDay;
-              } else {
-                numData = (city.length * 10 + province.length * 20) * paramsDay;
-              }
-            }
-            setNum(numData);
-          }
-        }
-      };
-      // 需要传递的值
-      var value = {
-        AreParams: params,
-        setAreParams: function setAreParams(city, province, whole) {
-          return transferFun({ city: city, province: province, whole: whole });
-        }
-      };
-      var modifyFun = function modifyFun(province) {
-        setProvince(province);
-        // 设置积分
-        recIntegral(province);
-      };
-      var recIntegral = function recIntegral(province) {
-        var num = 0;
-        if (province.length) {
-          num = basics.province_integral * province.length * parseInt(recDay);
-        } else {
-          num = 0;
-        }
-        setNum(num);
-      };
-      // 删除
-      var handleDel = function handleDel(v) {
-        if (rec) {
-          if (v.pid === '1') {
-            params.city.map(function (val, i) {
-              if (val.id === v.id) {
-                params.city.splice(i, 1);
-              }
-            });
-            setParams({ city: params.city, province: params.province, whole: params.whole });
-          }
-        }
-        if (v.pid === '1') {
-          params.province.map(function (val, i) {
-            if (val.id === v.id) {
-              params.province.splice(i, 1);
-            }
-          });
-          setParams({ city: params.city, province: params.province, whole: params.whole });
-        } else if (v.pid === '0') {
-          params.whole.map(function (val, i) {
-            if (val.id === v.id) {
-              params.whole.splice(i, 1);
-            }
-          });
-          setParams({ city: params.city, province: params.province, whole: params.whole });
-        } else {
-          params.city.map(function (val, i) {
-            if (val.id === v.id) {
-              params.city.splice(i, 1);
-            }
-          });
-          setParams({ city: params.city, province: params.province, whole: params.whole });
-        }
-        // 积分 
-        // 省市大于原来的省市就改变，不然就是直接最大积分
-        // 获取旧价格
-        var oldPrice = maxNum;
-        // 获取价格
-        var newPrice = void 0;
-        if (rec) {
-          newPrice = params.whole.length ? 500 : (params.city.length * 20 + params.province.length * 20) * 1;
-        } else {
-          newPrice = params.whole.length ? 500 : (params.city.length * 10 + params.province.length * 20) * 1;
-        }
-        // const newPrice = (params.city.length * 10 + params.province.length * 20) * 1;
-        // 时间差
-        var remDay = (end - new Date().getTime() / 1000) / 86400;
-        // 修改区域
-        var changeCity = true; //修改区域
-        // 修改时间
-        var money = void 0;
-        // 只改变时间
-        if (paramsDay !== 0 && oldPrice === newPrice) {
-          money = newPrice * paramsDay;
-          // setShowNum(true);
-        } else if (paramsDay === 0 && oldPrice > newPrice) {
-          // var remDay =  (到期时间 - 现在时间)/ 86400
-          // var remDay =  (old_end_time - now_time)/ 86400
-          money = (newPrice - oldPrice) * paramsDay;
-        } else if (paramsDay === 0 && changeCity) {
-          // 剩余天数
-          if (newPrice > oldPrice) {
-            money = Math.round((newPrice - oldPrice) * remDay);
-          }
-        } else {
-          // 时间变了，城市变了
-          if (newPrice - oldPrice > 0) {
-            money = Math.round((newPrice - oldPrice) * remDay + newPrice * paramsDay);
-          } else {
-            money = oldPrice * paramsDay;
-          }
-        }
-        var num = 0;
-        if (money <= 0) {
-          num = 0;
-        } else {
-          num = money;
-        }
-        setNum(num);
-      };
-      // 取消
-      var handleCancel = function handleCancel() {
-        var oldPrice = maxNum;
-        // 获取价格
-        var newPrice = (params.city.length * 10 + params.province.length * 20) * 1;
-        // 时间差
-        var remDay = (end - new Date().getTime() / 1000) / 86400;
-        // 修改区域
-        // 修改时间
-        var money = void 0;
-        // 只改变时间
-        if (oldPrice > newPrice) {
-          var _num2 = (newPrice - oldPrice) * 1;
-          if (_num2 > 0) {
-            money = _num2;
-          } else {
-            money = 0;
-          }
-        } else if (oldPrice == newPrice) {
-          money = 0;
-          // 价格没变
-        } else {
-          // 剩余天数
-          if (newPrice > oldPrice) {
-            money = Math.round((newPrice - oldPrice) * remDay);
-          } else {
-            money = oldPrice;
-          }
-        }
-        setNum(money);
-        setdisplayTime(false);
-        setParamsDay(0);
-      };
-      var handleJump = function handleJump() {
-        if (!rec) {
-          userRouteJump("/pages/topping/distruction/index?max_city=" + city.max_city + "&max_province=" + city.max_province);
-        } else {
-          userRouteJump("/pages/topping/distruction/index?max_city=" + basics.max_city + "&max_province=" + basics.max_province);
-        }
-      };
-      var handleRecDay = function handleRecDay(e) {
-        var reg = /^\d{0,2}$/;
-        if (!reg.test(e.detail.value)) {
-          _taroTt2.default.showModal({
-            title: '温馨提示',
-            content: '只能输入整数，请重新输入',
-            showCancel: false,
-            success: function success() {
-              setRecDay('');
-            }
-          });
-          return;
-        }
-        var num = 0;
-        if (e.detail.value) {
-          num = basics.province_integral * province.length * parseInt(e.detail.value);
-        } else {
-          num = 0;
-        }
-        setRecDay(e.detail.value);
-        setNum(num);
-      };
-      var handleRecDel = function handleRecDel(v) {
-        var list = JSON.parse(JSON.stringify(province));
-        list.map(function (val, i) {
-          if (val.id === v.id) {
-            list.splice(i, 1);
-          }
-          return val;
-        });
-        var num = 0;
-        num = list.length * basics.province_integral * parseInt(recDay);
-        setProvince(list);
-        setNum(num);
-      };
-      // 找活置顶
-      var handleRecTopping = function handleRecTopping() {
-        var province_ids = params.province.map(function (v) {
-          return v.id;
-        });
-        var city_ids = params.city.map(function (v) {
-          return v.id;
-        });
-        var country_ids = params.whole.map(function (v) {
-          return v.id;
-        });
-        var provinces = [].concat(_toConsumableArray(province_ids), _toConsumableArray(city_ids), _toConsumableArray(country_ids));
-        if (!province_ids.length && !city_ids.length && !country_ids.length) {
-          _taroTt2.default.showModal({
-            title: '温馨提示',
-            content: '请选择您的置顶城市',
-            showCancel: false
-          });
-          return;
-        }
-        if (!parseInt(recDay) || parseInt(recDay) == 0) {
-          _taroTt2.default.showModal({
-            title: '温馨提示',
-            content: '输入的置顶天数不能为0或者为空',
-            showCancel: false
-          });
-          return;
-        }
-        if (parseInt(recDay) > basics.max_top_days) {
-          (0, _index4.default)("\u6700\u591A\u53EF\u7F6E\u9876" + basics.max_top_days + "\u5929\uFF01");
-          return;
-        }
-        // const provinces = (province.map(v=>v.id)).join(',');
-        // const citys = (city.map(v => v.id)).join(',');
-        // let params={
-        //   days: parseInt(recDay),
-        //   citys: 0,
-        //   provinces,
-        // }
-        var details = {
-          days: paramsDay,
-          citys: 0,
-          provinces: provinces
-        };
-        // return;
-        if (!type) {
-          (0, _index.resumesDoTopAction)(details).then(function (res) {
-            if (res.errcode === 'ok') {
-              _taroTt2.default.showModal({
-                title: '温馨提示',
-                content: res.errmsg,
-                showCancel: false,
-                success: function success() {
-                  _taroTt2.default.navigateBack({
-                    delta: 1
-                  });
-                }
-              });
-            } else if (res.errcode === 'resume_null') {
-              _taroTt2.default.showModal({
-                title: '温馨提示',
-                content: res.errmsg,
-                // showCancel: false,
-                success: function success() {
-                  _taroTt2.default.navigateTo({
-                    url: "pages/resume/newJobs/index"
-                  });
-                }
-              });
-              return;
-              //获取积分
-            } else if (res.errcode === 'get_integral') {
-              _taroTt2.default.showModal({
-                title: '温馨提示',
-                content: res.errmsg,
-                success: function success() {
-                  _taroTt2.default.navigateTo({
-                    url: "/pages/getintegral/index"
-                  });
-                }
-              });
-              return;
-            } else {
-              _taroTt2.default.showModal({
-                title: '温馨提示',
-                content: res.errmsg,
-                showCancel: false,
-                success: function success() {
-                  _taroTt2.default.navigateBack({
-                    delta: 1
-                  });
-                }
-              });
-              return;
-            }
-          });
-        }
-      };
-      contextItem.Provider(value);
-      this.anonymousFunc4 = handleAddJump;
-      this.anonymousFunc5 = handleJump;
-      this.anonymousFunc6 = handleAddJump;
-      this.anonymousFunc7 = handleJump;
-      this.anonymousFunc8 = function (e) {
-        return handleClick(e);
-      };
-      this.anonymousFunc9 = handleCancel;
-      this.anonymousFunc10 = function (e) {
-        return handleClick(e);
-      };
-      this.anonymousFunc11 = handleTopping;
-      this.anonymousFunc12 = function () {
-        _taroTt2.default.makePhoneCall({ phoneNumber: _index2.SERVERPHONE });
-      };
-      var loopArray73 = province ? province.map(function (v, __index0) {
-        v = {
-          $original: (0, _taroTt.internal_get_original)(v)
-        };
-        var _$indexKey = "iczzz" + __index0;
-        _this2.anonymousFunc0Map[_$indexKey] = function () {
-          return handleDel(v.$original);
-        };
-        return {
-          _$indexKey: _$indexKey,
-          $original: v.$original
-        };
-      }) : [];
-      var loopArray74 = params ? params.city.map(function (v, __index1) {
-        v = {
-          $original: (0, _taroTt.internal_get_original)(v)
-        };
-        var _$indexKey2 = "idzzz" + __index1;
-        _this2.anonymousFunc1Map[_$indexKey2] = function () {
-          return handleDel(v.$original);
-        };
-        return {
-          _$indexKey2: _$indexKey2,
-          $original: v.$original
-        };
-      }) : [];
-      var loopArray75 = params ? params.province.map(function (v, __index2) {
-        v = {
-          $original: (0, _taroTt.internal_get_original)(v)
-        };
-        var _$indexKey3 = "iezzz" + __index2;
-        _this2.anonymousFunc2Map[_$indexKey3] = function () {
-          return handleDel(v.$original);
-        };
-        return {
-          _$indexKey3: _$indexKey3,
-          $original: v.$original
-        };
-      }) : [];
-      var loopArray76 = params ? params.whole.map(function (v, __index3) {
-        v = {
-          $original: (0, _taroTt.internal_get_original)(v)
-        };
-        var _$indexKey4 = "ifzzz" + __index3;
-        _this2.anonymousFunc3Map[_$indexKey4] = function () {
-          return handleDel(v.$original);
-        };
-        return {
-          _$indexKey4: _$indexKey4,
-          $original: v.$original
-        };
-      }) : [];
-      var loopArray77 = data.top_rules.map(function (v, i) {
-        v = {
-          $original: (0, _taroTt.internal_get_original)(v)
-        };
-        var $loopState__temp2 = i + i;
-        return {
-          $loopState__temp2: $loopState__temp2,
-          $original: v.$original
-        };
-      });
-      Object.assign(this.__state, {
-        params: params,
-        data: data,
-        loopArray73: loopArray73,
-        loopArray74: loopArray74,
-        loopArray75: loopArray75,
-        loopArray76: loopArray76,
-        loopArray77: loopArray77,
-        province: province,
-        IMGCDNURL: _index2.IMGCDNURL,
-        rec: rec,
-        basics: basics,
-        type: type,
-        list: list,
-        displayTime: displayTime,
-        num: num,
-        endTime: endTime,
-        editData: editData,
-        newTime: newTime,
-        day: day,
-        SERVERPHONE: _index2.SERVERPHONE
-      });
-      return this.__state;
-    }
-  }, {
-    key: "anonymousFunc0",
-    value: function anonymousFunc0(_$indexKey) {
-      var _anonymousFunc0Map;
-
-      ;
-
-      for (var _len = arguments.length, e = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-        e[_key - 1] = arguments[_key];
-      }
-
-      return this.anonymousFunc0Map[_$indexKey] && (_anonymousFunc0Map = this.anonymousFunc0Map)[_$indexKey].apply(_anonymousFunc0Map, e);
-    }
-  }, {
-    key: "anonymousFunc1",
-    value: function anonymousFunc1(_$indexKey2) {
-      var _anonymousFunc1Map;
-
-      ;
-
-      for (var _len2 = arguments.length, e = Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
-        e[_key2 - 1] = arguments[_key2];
-      }
-
-      return this.anonymousFunc1Map[_$indexKey2] && (_anonymousFunc1Map = this.anonymousFunc1Map)[_$indexKey2].apply(_anonymousFunc1Map, e);
-    }
-  }, {
-    key: "anonymousFunc2",
-    value: function anonymousFunc2(_$indexKey3) {
-      var _anonymousFunc2Map;
-
-      ;
-
-      for (var _len3 = arguments.length, e = Array(_len3 > 1 ? _len3 - 1 : 0), _key3 = 1; _key3 < _len3; _key3++) {
-        e[_key3 - 1] = arguments[_key3];
-      }
-
-      return this.anonymousFunc2Map[_$indexKey3] && (_anonymousFunc2Map = this.anonymousFunc2Map)[_$indexKey3].apply(_anonymousFunc2Map, e);
-    }
-  }, {
-    key: "anonymousFunc3",
-    value: function anonymousFunc3(_$indexKey4) {
-      var _anonymousFunc3Map;
-
-      ;
-
-      for (var _len4 = arguments.length, e = Array(_len4 > 1 ? _len4 - 1 : 0), _key4 = 1; _key4 < _len4; _key4++) {
-        e[_key4 - 1] = arguments[_key4];
-      }
-
-      return this.anonymousFunc3Map[_$indexKey4] && (_anonymousFunc3Map = this.anonymousFunc3Map)[_$indexKey4].apply(_anonymousFunc3Map, e);
-    }
-  }, {
-    key: "anonymousFunc4",
-    value: function anonymousFunc4(e) {
-      ;
-    }
-  }, {
-    key: "anonymousFunc5",
-    value: function anonymousFunc5(e) {
-      ;
-    }
-  }, {
-    key: "anonymousFunc6",
-    value: function anonymousFunc6(e) {
-      ;
-    }
-  }, {
-    key: "anonymousFunc7",
-    value: function anonymousFunc7(e) {
-      ;
-    }
-  }, {
-    key: "anonymousFunc8",
-    value: function anonymousFunc8(e) {
-      ;
-    }
-  }, {
-    key: "anonymousFunc9",
-    value: function anonymousFunc9(e) {
-      ;
-    }
-  }, {
-    key: "anonymousFunc10",
-    value: function anonymousFunc10(e) {
-      ;
-    }
-  }, {
-    key: "anonymousFunc11",
-    value: function anonymousFunc11(e) {
-      ;
-    }
-  }, {
-    key: "anonymousFunc12",
-    value: function anonymousFunc12(e) {
-      ;
-    }
-  }]);
-
-  return Topping;
-}(_taroTt2.default.Component);
-
-Topping.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6", "anonymousFunc7", "anonymousFunc8", "anonymousFunc9", "anonymousFunc10", "anonymousFunc11", "anonymousFunc12"];
-Topping.$$componentPath = "pages/topping/index";
-Topping.config = { navigationBarTitleText: '招工置顶' };
-exports.default = Topping;
-
-Page(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(Topping, true));
-
-/***/ }),
-
 /***/ "./src/utils/api/index.ts":
 /*!********************************!*\
   !*** ./src/utils/api/index.ts ***!
@@ -17817,7 +16718,8 @@ var getRequestHeaderInfoAction = function getRequestHeaderInfoAction() {
     data: {},
     loading: true,
     title: '数据加载中...',
-    failToast: true
+    failToast: true,
+    user: true
   };
 };
 // 全局通用请求方法
@@ -17831,7 +16733,7 @@ function doRequestAction(reqData) {
   var data = _extends({}, req.data, { wechat_token: _index2.TOKEN });
   // 获取用户信息
   var userInfo = _taroTt2.default.getStorageSync(_store.UserInfo);
-  if (req.method === 'POST' && userInfo.login) {
+  if (req.method === 'POST' && userInfo.login && req.user) {
     data.userId = userInfo.userId;
     data.token = userInfo.token;
     data.tokenTime = userInfo.tokenTime;
@@ -18095,7 +16997,8 @@ function getMemberMsgNumber(type) {
     data: {
       terminal_type: type ? 'ios' : 'android'
     },
-    loading: false
+    loading: false,
+    failToast: false
   });
 }
 // 用户实名认证
@@ -19172,7 +18075,8 @@ function AppUploadImg(resolve, res) {
     },
     name: 'file',
     success: function success(response) {
-      var mydata = JSON.parse(response.data);
+      // 百度小程序出来之后是一个纯json 但是其他端就不是， 解决百度冲突
+      var mydata = _index.MINIVERSION == _index.BAIDU ? response.data : JSON.parse(response.data);
       // let resData = { local: response, remote: mydata}
       _taroTt2.default.showToast({
         title: mydata.errmsg,

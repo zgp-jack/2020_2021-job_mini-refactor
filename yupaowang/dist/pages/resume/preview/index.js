@@ -65,7 +65,7 @@ var Preview = function (_Taro$Component) {
       navigationBarTitleText: '找活名片'
     };
 
-    _this.$usedState = ["data", "loopArray95", "loopArray96", "loopArray97", "loopArray98", "IMGCDNURL", "checkpan", "checkone", "headerimg", "age", "sex", "project", "skillbooksone", "ISCANSHARE", "telephone"];
+    _this.$usedState = ["data", "loopArray97", "loopArray98", "loopArray99", "loopArray100", "IMGCDNURL", "checkpan", "checkone", "headerimg", "age", "sex", "project", "skillbooksone", "ISCANSHARE", "telephone"];
     _this.anonymousFunc0Map = {};
     _this.anonymousFunc2Map = {};
     _this.customComponents = [];
@@ -248,7 +248,7 @@ var Preview = function (_Taro$Component) {
       this.anonymousFunc4 = function () {
         return _taroTt2.default.navigateTo({ url: "/pages/resume/skillList/index?preview=1" });
       };
-      var loopArray95 = data.info.miniInfoOccupations.length ? data.info.miniInfoOccupations.map(function (v, i) {
+      var loopArray97 = data.info.miniInfoOccupations.length ? data.info.miniInfoOccupations.map(function (v, i) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
@@ -258,7 +258,7 @@ var Preview = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray96 = data.introduces.tags.length ? data.introduces.tags.map(function (v, i) {
+      var loopArray98 = data.introduces.tags.length ? data.introduces.tags.map(function (v, i) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
@@ -268,7 +268,7 @@ var Preview = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray97 = data.project.length ? project.map(function (item, i) {
+      var loopArray99 = data.project.length ? project.map(function (item, i) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
@@ -278,7 +278,7 @@ var Preview = function (_Taro$Component) {
             $original: (0, _taroTt.internal_get_original)(v)
           };
           var $loopState__temp8 = data.project.length ? i + i : null;
-          var _$indexKey = "jjzzz" + i + "-" + i;
+          var _$indexKey = "jfzzz" + i + "-" + i;
           _this2.anonymousFunc0Map[_$indexKey] = function () {
             return handleImg(v.$original);
           };
@@ -294,7 +294,7 @@ var Preview = function (_Taro$Component) {
           $original: item.$original
         };
       }) : [];
-      var loopArray98 = data.certificates.length ? skillbooksone.map(function (item, __index3) {
+      var loopArray100 = data.certificates.length ? skillbooksone.map(function (item, __index3) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
@@ -303,7 +303,7 @@ var Preview = function (_Taro$Component) {
             $original: (0, _taroTt.internal_get_original)(v)
           };
           var $loopState__temp10 = data.certificates.length ? i + i : null;
-          var _$indexKey2 = "baazz" + __index3 + "-" + i;
+          var _$indexKey2 = "jgzzz" + __index3 + "-" + i;
           _this2.anonymousFunc2Map[_$indexKey2] = function () {
             return handleImg(v.$original);
           };
@@ -320,10 +320,10 @@ var Preview = function (_Taro$Component) {
       }) : [];
       Object.assign(this.__state, {
         data: data,
-        loopArray95: loopArray95,
-        loopArray96: loopArray96,
         loopArray97: loopArray97,
         loopArray98: loopArray98,
+        loopArray99: loopArray99,
+        loopArray100: loopArray100,
         IMGCDNURL: _index3.IMGCDNURL,
         checkpan: checkpan,
         checkone: checkone,

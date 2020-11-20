@@ -79,6 +79,12 @@ export default function ResumePublish(){
       userRouteJump(url)
     }
   }
+  // 设置当前页面的分享内容
+  useShareAppMessage(() => {
+    return {
+      ...getUserShareMessage()
+    }
+  })
   return (
     <Block>
     <Auth />
@@ -194,6 +200,10 @@ export default function ResumePublish(){
                 }
               </View>
               <View className='content'>
+              <View className='craft'>
+                <Text className='craft-txt'>手机</Text>
+                <View className='craft-text'>{infoData.tel}</View>
+              </View>
                 <View className='craft'>
                   <Text className='craft-txt'>工种</Text>
                   <View className='craft-list'>
@@ -203,10 +213,6 @@ export default function ResumePublish(){
                     ))}
                     </View>
                   </View>
-                </View>
-                <View className='craft'>
-                  <Text className='craft-txt'>手机</Text>
-                  <View className='craft-text'>{infoData.tel}</View>
                 </View>
                 <View className='craft'>
                   <Text className='craft-txt'>所在地区</Text>
@@ -235,7 +241,7 @@ export default function ResumePublish(){
               <View className='change' onClick={() => userRouteJump('/pages/resume/add_member/index')}>编辑</View>
             }
             {
-              infoData.check == '0' && introducesData.check != '1' &&
+                infoData.check == '0' && introducesData.check != '1' && is_introduces &&
               <View className='change' onClick={() => userRouteJump('/pages/resume/add_member/index')}>待修改</View>
             }
           </View>
@@ -350,7 +356,7 @@ export default function ResumePublish(){
           </View>
           {/* 是否填写过技能证书 */}
           {certificates.length ?
-            <View className={certificates[0].check == '1' ? 'professional-information' : 'professional-information-noImage professional-information'}>
+              <View className={certificates[0].check == '0' ? 'professional-information-noImage professional-information' : 'professional-information'}>
               <View className='content-information'>
                 <View>
                 <View className='information'>
@@ -402,17 +408,19 @@ export default function ResumePublish(){
             <View className='content-btn-box'>
               <View className='preview-btn'>
                 <Image className='preview-img' src={`${IMGCDNURL}newresume-lookuinfo.png`} />
-                <View className='preview-share-btn' onClick={() => userRouteJump('/pages/resume/preview/index')}>预览</View>
+                  <View className='preview-share-btn' onClick={() => userRouteJump(`/pages/resume/newPreview/index?show_tips=${show_tips}`)}>预览</View>
               </View>
-              <View className='preview-btn'>
-                <Image className='preview-img' src={`${IMGCDNURL}newresume-footer-share.png`} />
-                <View className='preview-share-btn'>分享</View>
-              </View>
+              <Button openType='share' className='preview-btn-share'>
+                {/* <View className='preview-btn'> */}
+                  <Image className='preview-img' src={`${IMGCDNURL}newresume-footer-share.png`} />
+                    <View className='preview-share-btn'>分享</View>
+                {/* </View> */}
+                </Button>
             </View>
             : <View className='preview'>
               <View className='preview-box'>
                 <Image className='preview-img' src={`${IMGCDNURL}newresume-lookuinfo.png`} />
-                <View className='preview-share-btn' onClick={() => userRouteJump('/pages/resume/preview/index')}>预览</View>
+                  <View className='preview-share-btn' onClick={() => userRouteJump(`/pages/resume/newPreview/index?show_tips=${show_tips}`)}>预览</View>
               </View>
             </View>
           }

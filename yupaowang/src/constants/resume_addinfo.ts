@@ -1,2 +1,2 @@
-export const GET: string = 'get'
-export const SET: string = 'set'
+export const GETRESUMECONFIG: string = 'getResumeConfig'
+export const SETRESUMECONSIG: string = 'setResumeConfig'

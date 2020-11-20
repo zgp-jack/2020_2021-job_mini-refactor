@@ -2,7 +2,7 @@
  * @Author: zyb
  * @Date: 2020-11-03 14:36:47
  * @LastEditors: jsxin
- * @LastEditTime: 2020-11-09 17:11:58
+ * @LastEditTime: 2020-11-13 15:02:13
  * @Description: 
  */
 import { combineReducers } from 'redux'
@@ -19,7 +19,11 @@ import realname from './realname'
 import resumeAddInfo from './resume_addinfo'
 import resumeData from './resume_data';
 import resumeList from './resume_list';
+<<<<<<< HEAD
 import publishData from './publish'
+=======
+import recruitTop from './recruit_top'
+>>>>>>> be63084c2bce93282e0459e34ca999f0bca09a6c
 
 //合并reducer
 export default combineReducers({
@@ -38,6 +42,10 @@ export default combineReducers({
   PositionStatus,
   resumeData,
   resumeList,
+<<<<<<< HEAD
   publishData,
   RecruitAction
+=======
+  recruitTop
+>>>>>>> be63084c2bce93282e0459e34ca999f0bca09a6c
 })

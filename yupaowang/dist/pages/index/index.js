@@ -65,6 +65,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -84,6 +86,12 @@ var _index2 = _interopRequireDefault(_index);
 var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/redux/index.js");
 
 var _tabbar2 = __webpack_require__(/*! ../../actions/tabbar */ "./src/actions/tabbar.ts");
+
+var _index3 = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
+
+var _index4 = __webpack_require__(/*! ../../utils/helper/index */ "./src/utils/helper/index.ts");
+
+var _store = __webpack_require__(/*! ../../config/store */ "./src/config/store.ts");
 
 __webpack_require__(/*! ./index.scss */ "./src/pages/index/index.scss");
 
@@ -105,7 +113,7 @@ var Index = function (_Taro$Component) {
 
     _this.config = {
       navigationBarTitleText: '',
-      enablePullDownRefresh: true,
+      enablePullDownRefresh: false,
       navigationBarBackgroundColor: '#0099ff',
       navigationBarTextStyle: 'white',
       backgroundTextStyle: "dark"
@@ -149,12 +157,19 @@ var Index = function (_Taro$Component) {
       var dispatch = (0, _redux.useDispatch)();
       // 初始化页面参数
       var router = (0, _taroTt.useRouter)();
-      var _router$params$type = router.params.type,
-          type = _router$params$type === undefined ? _tabbar.RECRUIT : _router$params$type;
+      var _router$params = router.params,
+          _router$params$type = _router$params.type,
+          type = _router$params$type === undefined ? _tabbar.RECRUIT : _router$params$type,
+          _router$params$refId = _router$params.refId,
+          refId = _router$params$refId === undefined ? '' : _router$params$refId;
       // 获取当前tabbar高亮值
 
       var tabKey = (0, _redux.useSelector)(function (state) {
         return state.tabbar.key;
+      });
+      // 获取当前的用户id
+      var userId = (0, _redux.useSelector)(function (state) {
+        return state.User.userId;
       });
       // 标记是否触发下拉刷新
 
@@ -175,10 +190,26 @@ var Index = function (_Taro$Component) {
       (0, _taroTt.usePullDownRefresh)(function () {
         setPulldown(pulldown + 1);
       });
+      // 设置当前页面分享
+      (0, _taroTt.useShareAppMessage)(function () {
+        var path = _index3.INDEXPATH + "?type=" + tabKey;
+        return _extends({}, (0, _index4.getUserShareMessage)(), {
+          path: userId ? path + "&refId=" + userId : path
+        });
+      });
       // 当页面显示的 时候 触发
       (0, _taroTt.useDidShow)(function () {
+        if (tabKey) {
+          _taroTt2.default.setNavigationBarTitle({ title: _index2.default[tabKey].navigationBarTitleText });
+        }
         setShowIndex(showIndex + 1);
       });
+      // 进入页面的时候 ，如果有邀请人，我们将邀请人id存入缓存中， 等待新用户授权时使用
+      (0, _taroTt.useEffect)(function () {
+        if (refId) {
+          _taroTt2.default.setStorageSync(_store.REFID, refId);
+        }
+      }, [refId]);
       // 初始化底部显示页面
       (0, _taroTt.useEffect)(function () {
         if ((0, _tabbar.typeInTabbar)(type)) {
@@ -227,7 +258,7 @@ var Index = function (_Taro$Component) {
 
 Index.$$events = [];
 Index.$$componentPath = "pages/index/index";
-Index.config = { navigationBarTitleText: '', enablePullDownRefresh: true, navigationBarBackgroundColor: '#0099ff', navigationBarTextStyle: 'white', backgroundTextStyle: "dark" };
+Index.config = { navigationBarTitleText: '', enablePullDownRefresh: false, navigationBarBackgroundColor: '#0099ff', navigationBarTextStyle: 'white', backgroundTextStyle: "dark" };
 exports.default = Index;
 
 Page(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(Index, true));

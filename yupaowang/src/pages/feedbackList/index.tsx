@@ -125,7 +125,7 @@ export default function FeedbackList() {
         {!isDown && lists.item.length && <View className='feedback-noData'>没有更多数据了</View>}
       </View>
       <View className='feedback-bttonBox'>
-        <Button className='feedback-bttonBox-botton' onClick={() => userRouteJump(`/pages/feedback/index?username=${userData.username}&phone=${userData.phone}`)}>我要提意见</Button>
+        <Button className='feedback-bttonBox-botton' onClick={() => userRouteJump(`/pages/feedback/index?username=${userData.username || ''}&phone=${userData.phone || ''}`)}>我要提意见</Button>
       </View>
     </View>
   )

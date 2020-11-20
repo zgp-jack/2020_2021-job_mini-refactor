@@ -77,7 +77,7 @@ var DetailInfoPage = function (_Taro$Component) {
       navigationBarTitleText: ''
     };
 
-    _this.$usedState = ["data", "loopArray71", "loopArray72", "$compid__67", "resCode", "editPhone", "IMGCDNURL", "again", "stopHiring", "isCollection", "ISCANSHARE", "complaintModal", "phone"];
+    _this.$usedState = ["data", "loopArray71", "loopArray72", "$compid__66", "resCode", "editPhone", "IMGCDNURL", "isCollection", "ISCANSHARE", "complaintModal", "phone"];
     _this.anonymousFunc5Map = {};
     _this.customComponents = ["WechatNotice", "Report"];
     return _this;
@@ -100,13 +100,17 @@ var DetailInfoPage = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__67"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__66"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__67 = _genCompid2[0],
-          $compid__67 = _genCompid2[1];
+          $prevCompid__66 = _genCompid2[0],
+          $compid__66 = _genCompid2[1];
 
       var router = (0, _taroTt.useRouter)();
-      var id = router.params.id;
+      var _router$params = router.params,
+          _router$params$id = _router$params.id,
+          id = _router$params$id === undefined ? '' : _router$params$id,
+          _router$params$refId = _router$params.refId,
+          refId = _router$params$refId === undefined ? '' : _router$params$refId;
       // 获取userInfo
 
       var userInfo = _taroTt2.default.getStorageSync(_store.UserInfo);
@@ -304,8 +308,8 @@ var DetailInfoPage = function (_Taro$Component) {
       };
       // 提交投诉
       var handleSubmit = function handleSubmit() {
-        if (!(0, _index3.isVaildVal)(textarea, 15, 500)) {
-          (0, _index6.default)('输入内容不少于15个字且必须包含文字');
+        if (!(0, _index3.isVaildVal)(textarea, 5, 500)) {
+          (0, _index5.ShowActionModal)({ msg: '输入内容不少于5个字且必须包含文字' });
           return false;
         }
         var params = {
@@ -435,9 +439,19 @@ var DetailInfoPage = function (_Taro$Component) {
           });
         }
       };
+      // 监听是否是别人分享的页面
+      (0, _taroTt.useEffect)(function () {
+        if (refId) {
+          _taroTt2.default.setStorageSync(_store.REFID, refId);
+        }
+      }, [refId]);
       // 设置分享信息
       (0, _taroTt.useShareAppMessage)(function () {
-        return _extends({}, (0, _index4.getUserShareMessage)());
+        var path = "/pages/detail/index/index?id=" + id;
+        var userInfo = _taroTt2.default.getStorageSync(_store.UserInfo);
+        return _extends({}, (0, _index4.getUserShareMessage)(), {
+          path: userInfo ? path + "&refId=" + userInfo.userId : path
+        });
       });
       // 获取电话
       var jobGetTel = function jobGetTel() {
@@ -613,20 +627,12 @@ var DetailInfoPage = function (_Taro$Component) {
       this.anonymousFunc7 = function () {
         return userRouteJump('/subpackage/pages/download/index');
       };
-      this.anonymousFunc8 = handleStatus;
-      this.anonymousFunc9 = function () {
-        return userRouteJump("/pages/topping/index?id=" + data.id + "&type=1");
-      };
-      this.anonymousFunc10 = handleStatus;
-      this.anonymousFunc11 = function () {
-        return handleTopping(data);
-      };
-      this.anonymousFunc12 = collection;
-      this.anonymousFunc13 = footerComplaint;
-      this.anonymousFunc14 = function () {
+      this.anonymousFunc8 = collection;
+      this.anonymousFunc9 = footerComplaint;
+      this.anonymousFunc10 = function () {
         return jobGetTel();
       };
-      this.anonymousFunc15 = function () {
+      this.anonymousFunc11 = function () {
         _taroTt2.default.makePhoneCall({ phoneNumber: phone });
       };
       var loopArray71 = data.classifyName.map(function (v, i) {
@@ -644,7 +650,7 @@ var DetailInfoPage = function (_Taro$Component) {
           $original: (0, _taroTt.internal_get_original)(v)
         };
         var $loopState__temp4 = data.view_images.length ? i + i : null;
-        var _$indexKey = "ibzzz" + i;
+        var _$indexKey = "hhzzz" + i;
         _this2.anonymousFunc5Map[_$indexKey] = function () {
           return handleImage(v.$original);
         };
@@ -660,17 +666,15 @@ var DetailInfoPage = function (_Taro$Component) {
         "handleTextarea": handleTextarea,
         "setComplaintModal": setComplaintModal,
         "handleSubmit": handleSubmit
-      }, $compid__67, $prevCompid__67);
+      }, $compid__66, $prevCompid__66);
       Object.assign(this.__state, {
         data: data,
         loopArray71: loopArray71,
         loopArray72: loopArray72,
-        $compid__67: $compid__67,
+        $compid__66: $compid__66,
         resCode: resCode,
         editPhone: editPhone,
         IMGCDNURL: _index2.IMGCDNURL,
-        again: again,
-        stopHiring: stopHiring,
         isCollection: isCollection,
         ISCANSHARE: _index2.ISCANSHARE,
         complaintModal: complaintModal,
@@ -746,32 +750,12 @@ var DetailInfoPage = function (_Taro$Component) {
     value: function anonymousFunc11(e) {
       ;
     }
-  }, {
-    key: "anonymousFunc12",
-    value: function anonymousFunc12(e) {
-      ;
-    }
-  }, {
-    key: "anonymousFunc13",
-    value: function anonymousFunc13(e) {
-      ;
-    }
-  }, {
-    key: "anonymousFunc14",
-    value: function anonymousFunc14(e) {
-      ;
-    }
-  }, {
-    key: "anonymousFunc15",
-    value: function anonymousFunc15(e) {
-      ;
-    }
   }]);
 
   return DetailInfoPage;
 }(_taroTt2.default.Component);
 
-DetailInfoPage.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6", "anonymousFunc7", "anonymousFunc8", "anonymousFunc9", "anonymousFunc10", "anonymousFunc11", "anonymousFunc12", "anonymousFunc13", "anonymousFunc14", "anonymousFunc15"];
+DetailInfoPage.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6", "anonymousFunc7", "anonymousFunc8", "anonymousFunc9", "anonymousFunc10", "anonymousFunc11"];
 DetailInfoPage.$$componentPath = "pages/detail/info/index";
 DetailInfoPage.config = { navigationBarTitleText: '' };
 exports.default = DetailInfoPage;

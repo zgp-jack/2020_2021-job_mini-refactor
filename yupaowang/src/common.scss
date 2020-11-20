@@ -24,6 +24,11 @@ $miniPublishInputPadding: 0;
   text-overflow: ellipsis;
 }
 
+// 隐藏元素
+.hide{
+  display: none;
+}
+
 // 没有更多数据了
 .showMore{
   position: relative;
@@ -85,4 +90,13 @@ $miniPublishInputPadding: 0;
   color: #7f7e7e;
   text-align: center;
   line-height: 70px;
+}
+
+// 统计字数组件样式
+.words-total-box{
+  position: absolute;
+  font-size: 26px;
+  color: #333;
+  right: 20px;
+  bottom: 10px;
 }

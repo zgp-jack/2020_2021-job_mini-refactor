@@ -3,10 +3,12 @@ import { View, Image, Text } from '@tarojs/components'
 import { useSelector, useDispatch } from '@tarojs/redux'
 import { getMemberInfo } from '../../utils/request'
 import { MemberInfo } from '../../utils/request/index.d'
-import { IMGCDNURL, AUTHPATH, CODEAUTHPATH, PUBLISHRESUME, PUBLISHEDRECRUIT, INVITEPATH } from '../../config'
+import { IMGCDNURL, AUTHPATH, CODEAUTHPATH, PUBLISHRESUME, PUBLISHEDRECRUIT, INVITEPATH, PROREQUESTURL, REQUESTURL } from '../../config'
 import { setMemberInfo } from '../../actions/member'
 import Msg, { ShowActionModal } from '../../utils/msg'
 import { UserMemberInfo } from '../../reducers/member'
+import { loginOut } from '../../actions/user'
+import { resetMsg } from '../../actions/msg'
 import { isIos } from '../../utils/v'
 import './index.scss'
 import { UserInfo } from '../../config/store'
@@ -47,7 +49,8 @@ export default function Member({memberIndex = 0}: MemberProps){
           username: data.member.username || data.member.nickname,
           avatar: data.member.headimgurl||'',
           phone: data.member.tel||'',
-          pwd_status: data.member.pwd_status || ''
+          pwd_status: data.member.pwd_status || '',
+          changeName: data.is_checking == 2 && data.member.is_check == '2' ? false : true
         }
         dispatch(setMemberInfo(value))
         setModel(data)
@@ -63,13 +66,17 @@ export default function Member({memberIndex = 0}: MemberProps){
   },[])
 
   useEffect(()=>{
+    //Taro.setNavigationBarTitle({ title: IndexTabbarConfig[MEMBER].navigationBarTitleText })
+    if(!login) return
     initMemberInfo()
   }, [login, memberIndex])
 
   // 清理用户登录信息
   const userClearSession = () => {
     Taro.removeStorageSync(UserInfo)
-    Msg('退出抖音，重新扫码')
+    dispatch(loginOut())
+    dispatch(resetMsg())
+    Msg('您已成功退出该账号')
   }
 
   return (
@@ -81,7 +88,7 @@ export default function Member({memberIndex = 0}: MemberProps){
           {login && model ? 
           <View className='member-userinfo'>
             <View className='member-userinfo-content'>
-              <Image className='member-userinfo-avatar' src='http://cdn.yupao.com/miniprogram/images/user.png' />
+              <Image className='member-userinfo-avatar' src={model.member.headimgurl} />
               <View className='member-username'>
                 <View className='member-username-text'>
                 { model.member.username || model.member.nickname }
@@ -194,11 +201,13 @@ export default function Member({memberIndex = 0}: MemberProps){
             <Text className='member-list-title'>帮助中心</Text>
             <Text className='member-list-tips'>使用教程</Text>
           </View>
+          {PROREQUESTURL != REQUESTURL &&
           <View className='member-list-item' onClick={() => userClearSession()} >
-            <Image className='member-list-icon' src={IMGCDNURL + 'lpy/ucenter/newcenter-help.png'} />
+            <Image className='member-list-icon' src={IMGCDNURL + 'lpy/ucenter/newcenter-set.png'} />
             <Text className='member-list-title'>清理缓存</Text>
             <Text className='member-list-tips'>退出登录</Text>
           </View>
+          }
         </View>
       </View>
     </View>

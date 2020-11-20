@@ -229,7 +229,7 @@ export default function AddResumeInfo() {
       detail:projectInfo.detail,
       province: projectInfo.province,
       city: projectInfo.city,
-      image: projectInfo.imgs.map(item => item.url),
+      image: projectInfo.imgs.map(item => item.url).join(','),
       resume_uuid: resumeData.resume_uuid,
     }
     if(id){

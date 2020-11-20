@@ -204,7 +204,7 @@ export default function AddResumeMember() {
   const userClickTag = (i: number) => {
     let arrs = resumeLabels.filter(item => item.checked)
     let labels = JSON.parse(JSON.stringify(resumeLabels))
-    let id: string = labels[i].id
+    let id: string = labels[i].id.toString()
     if(resumeLabels[i].checked){
       // 如果之前是被选中的 那就取消选中并从提交数据中删除
       labels[i].checked = false
@@ -255,7 +255,10 @@ export default function AddResumeMember() {
       Msg('请选择个性标签')
       return
     }
-    resumesIntroduceAction(postData).then(res => {
+    const myparams = JSON.parse(JSON.stringify(postData))
+    let tags: string = myparams.tags.join(',')
+    myparams.tags = tags
+    resumesIntroduceAction(myparams).then(res => {
       if (res.errcode === 200){
         ShowActionModal({
           msg: res.errmsg,
@@ -278,6 +281,7 @@ export default function AddResumeMember() {
                 <Input
                   className='publish-list-input'
                   type='number'
+                  maxLength={2}
                   placeholder='请输入您的工龄'
                   value={postData.experience||''}
                   onInput={(e) => userEnterFrom(e, 'experience')}
@@ -328,6 +332,7 @@ export default function AddResumeMember() {
                   className='publish-list-input'
                   type='number'
                   placeholder='请输入队伍人数'
+                  maxLength={4}
                   value={postData.number_people}
                   onInput={(e) => userEnterFrom(e, 'number_people')}
                 />

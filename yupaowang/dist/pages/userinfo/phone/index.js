@@ -94,7 +94,7 @@ var UserBandPhone = function (_Taro$Component) {
       ;
       var dispatch = (0, _redux.useDispatch)();
 
-      var _useCode = (0, _index2.default)(),
+      var _useCode = (0, _index2.default)(false),
           userGetCode = _useCode.userGetCode,
           text = _useCode.text;
 

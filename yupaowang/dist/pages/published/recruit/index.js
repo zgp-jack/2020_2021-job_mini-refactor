@@ -120,9 +120,6 @@ var PublishedRecruit = function (_Taro$Component) {
     _this.anonymousFunc3Map = {};
     _this.anonymousFunc4Map = {};
     _this.anonymousFunc5Map = {};
-    _this.anonymousFunc6Map = {};
-    _this.anonymousFunc7Map = {};
-    _this.anonymousFunc8Map = {};
     _this.customComponents = ["Auth", "Nodata", "Tabbar"];
     return _this;
   }
@@ -208,6 +205,9 @@ var PublishedRecruit = function (_Taro$Component) {
       });
       // 加载数据类别
       var getPublishedRecruitLists = function getPublishedRecruitLists() {
+        if (!user.login) {
+          return;
+        }
         setLoading(true);
         (0, _index.userGetPublishedRecruitLists)(searchData).then(function (res) {
           if (res.errcode == 'ok') {
@@ -244,11 +244,12 @@ var PublishedRecruit = function (_Taro$Component) {
         setSearchData(_extends({}, searchData, { type: key, page: 1 }));
       };
       (0, _taroTt.useEffect)(function () {
+        console.log(searchData);
         if (!user.login || loading) {
           return;
         }
         getPublishedRecruitLists();
-      }, [searchData, user]);
+      }, [searchData]);
       // 加载下一页
       var getNextPageData = function getNextPageData() {
         if (!more || loading) {
@@ -383,7 +384,7 @@ var PublishedRecruit = function (_Taro$Component) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
-        var _$indexKey = "fizzz" + __index0;
+        var _$indexKey = "fhzzz" + __index0;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return userChangePublishedItem(item.$original.id);
         };
@@ -401,37 +402,22 @@ var PublishedRecruit = function (_Taro$Component) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
-        var _$indexKey2 = "fjzzz" + index;
+        var _$indexKey2 = "fizzz" + index;
         _this2.anonymousFunc3Map[_$indexKey2] = function () {
           return userRouteJump("/pages/detail/info/index?id=" + item.$original.id);
         };
-        var _$indexKey3 = "gazzz" + index;
+        var _$indexKey3 = "fjzzz" + index;
         _this2.anonymousFunc4Map[_$indexKey3] = function () {
           return userRouteJump("/pages/recruit/fastPublish/index?id=" + item.$original.id);
         };
-        var _$indexKey4 = "gbzzz" + index;
+        var _$indexKey4 = "gazzz" + index;
         _this2.anonymousFunc5Map[_$indexKey4] = function () {
           return userStopRecruit(item.$original.id, index);
-        };
-        var _$indexKey5 = "gczzz" + index;
-        _this2.anonymousFunc6Map[_$indexKey5] = function () {
-          return handlCancel(item.$original.id, index);
-        };
-        var _$indexKey6 = "gdzzz" + index;
-        _this2.anonymousFunc7Map[_$indexKey6] = function () {
-          return handleTopping(item.$original, index);
-        };
-        var _$indexKey7 = "gezzz" + index;
-        _this2.anonymousFunc8Map[_$indexKey7] = function () {
-          return userRouteJump("/pages/topping/index?id=" + item.$original.id + "&type=1");
         };
         return {
           _$indexKey2: _$indexKey2,
           _$indexKey3: _$indexKey3,
           _$indexKey4: _$indexKey4,
-          _$indexKey5: _$indexKey5,
-          _$indexKey6: _$indexKey6,
-          _$indexKey7: _$indexKey7,
           $original: item.$original
         };
       });
@@ -509,51 +495,12 @@ var PublishedRecruit = function (_Taro$Component) {
 
       return this.anonymousFunc5Map[_$indexKey4] && (_anonymousFunc5Map = this.anonymousFunc5Map)[_$indexKey4].apply(_anonymousFunc5Map, e);
     }
-  }, {
-    key: 'anonymousFunc6',
-    value: function anonymousFunc6(_$indexKey5) {
-      var _anonymousFunc6Map;
-
-      ;
-
-      for (var _len5 = arguments.length, e = Array(_len5 > 1 ? _len5 - 1 : 0), _key5 = 1; _key5 < _len5; _key5++) {
-        e[_key5 - 1] = arguments[_key5];
-      }
-
-      return this.anonymousFunc6Map[_$indexKey5] && (_anonymousFunc6Map = this.anonymousFunc6Map)[_$indexKey5].apply(_anonymousFunc6Map, e);
-    }
-  }, {
-    key: 'anonymousFunc7',
-    value: function anonymousFunc7(_$indexKey6) {
-      var _anonymousFunc7Map;
-
-      ;
-
-      for (var _len6 = arguments.length, e = Array(_len6 > 1 ? _len6 - 1 : 0), _key6 = 1; _key6 < _len6; _key6++) {
-        e[_key6 - 1] = arguments[_key6];
-      }
-
-      return this.anonymousFunc7Map[_$indexKey6] && (_anonymousFunc7Map = this.anonymousFunc7Map)[_$indexKey6].apply(_anonymousFunc7Map, e);
-    }
-  }, {
-    key: 'anonymousFunc8',
-    value: function anonymousFunc8(_$indexKey7) {
-      var _anonymousFunc8Map;
-
-      ;
-
-      for (var _len7 = arguments.length, e = Array(_len7 > 1 ? _len7 - 1 : 0), _key7 = 1; _key7 < _len7; _key7++) {
-        e[_key7 - 1] = arguments[_key7];
-      }
-
-      return this.anonymousFunc8Map[_$indexKey7] && (_anonymousFunc8Map = this.anonymousFunc8Map)[_$indexKey7].apply(_anonymousFunc8Map, e);
-    }
   }]);
 
   return PublishedRecruit;
 }(_taroTt2.default.Component);
 
-PublishedRecruit.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6", "anonymousFunc7", "anonymousFunc8"];
+PublishedRecruit.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5"];
 PublishedRecruit.$$componentPath = "pages/published/recruit/index";
 PublishedRecruit.config = { navigationBarTitleText: '我的招工信息', navigationBarBackgroundColor: '#0099ff', navigationBarTextStyle: 'white', backgroundTextStyle: "dark" };
 exports.default = PublishedRecruit;

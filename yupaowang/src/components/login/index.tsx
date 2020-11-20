@@ -7,7 +7,7 @@ import { isPhone } from '../../utils/v'
 import { User } from '../../reducers/user'
 import Msg from '../../utils/msg'
 import { setUserInfo } from '../../actions/user'
-import { UserInfo } from '../../config/store'
+import { UserInfo, REFID } from '../../config/store'
 import { INDEXPATH } from '../../config'
 import { userAccountLogin, userTelCodeLogin } from '../../utils/request'
 import './index.scss'
@@ -47,6 +47,8 @@ export default function LoginComponent({type = 2}: LoginComponentProps) {
         return
       }
       data.code = code
+      let refId: number = Taro.getStorageSync(REFID)
+      if (refId) data.refid = refId
       userTelCodeLogin(data).then(res => detailUserLoginInfo(res))
     } else {
       if (!password) {
@@ -111,6 +113,7 @@ export default function LoginComponent({type = 2}: LoginComponentProps) {
             <Input
               className='input-item-text'
               placeholder='请输入手机号码'
+              type='number'
               maxLength={11}
               onInput={(e) => setPhone(e.detail.value)}
             />
@@ -119,11 +122,12 @@ export default function LoginComponent({type = 2}: LoginComponentProps) {
         {current === codeLogin &&
           <View className='login-input-item'>
             <View className='input-item-title'>验证码</View>
-            <View className='input-item-form'>
+            <View className='input-item-form input-item-code'>
               <Input
                 className='input-item-text'
                 placeholder='请输入验证码'
                 onInput={(e) => setCode(e.detail.value)}
+                maxLength={8}
               />
               <Button
                 disabled={disabled}

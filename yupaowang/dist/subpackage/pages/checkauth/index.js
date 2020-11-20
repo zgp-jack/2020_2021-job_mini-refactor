@@ -107,7 +107,15 @@ var CheckAuth = function (_Taro$Component) {
       var login = (0, _redux.useSelector)(function (state) {
         return state.User['login'];
       });
+      // 是否是第一次进入页面
+
+      var _useState7 = (0, _taroTt.useState)(true),
+          _useState8 = _slicedToArray(_useState7, 2),
+          first = _useState8[0],
+          setFirst = _useState8[1];
       // 用户拨打电话
+
+
       var userCallPhone = function userCallPhone() {
         _taroTt2.default.makePhoneCall({
           phoneNumber: _index.SERVERPHONE
@@ -127,7 +135,7 @@ var CheckAuth = function (_Taro$Component) {
               success: function success(res) {
                 if (res.confirm) {
                   // 跳转实名
-                  _taroTt2.default.navigateTo({ url: '' });
+                  _taroTt2.default.navigateTo({ url: _index.REALNAMEPATH });
                 } else {
                   _taroTt2.default.reLaunch({ url: '/pages/index/index' });
                 }
@@ -144,6 +152,10 @@ var CheckAuth = function (_Taro$Component) {
         });
       };
       (0, _taroTt.useDidShow)(function () {
+        if (first) {
+          setFirst(false);
+          return;
+        }
         InitUserAuthInfo();
       });
       (0, _taroTt.useEffect)(function () {

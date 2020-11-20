@@ -1,4 +1,4 @@
-import Taro, { useEffect, onAppHide, useState } from '@tarojs/taro'
+import Taro, { useEffect, onAppHide, useState, onAppShow } from '@tarojs/taro'
 import { View, Text, Image, Block } from '@tarojs/components'
 import classnames from 'classnames'
 import { getMemberMsgNumber } from '../../utils/request'
@@ -20,7 +20,6 @@ export default function Tabbar({ notredirect }: PROPS) {
   const login: boolean = useSelector<any, boolean>(state => state.User['login'])
   const memberMsg: number = useSelector<any, number>(state => state.msg['messageNumber'])
   const dispatch = useDispatch()
-  let timer: NodeJS.Timeout; //定时器接收对象
   // 是否展示发布
   const [show, setShow] = useState<boolean>(false)
   // 展开发布的动画效果
@@ -69,17 +68,14 @@ export default function Tabbar({ notredirect }: PROPS) {
   }
 
   // 定时请求未读信息
-  // onAppShow(()=>{
-  //   getMemberMsg()
-  //   timer = setInterval(() => {
-  //     getMemberMsg()
-  //   }, MemberMsgTimerInterval)
-  // })
-
-  // 清除页面定时器
-  onAppHide(()=>{
-    clearInterval(timer)
-  })
+  useEffect(()=>{
+    getMemberMsg()
+    let timer = setInterval(() => {
+      getMemberMsg()
+    }, MemberMsgTimerInterval)
+    // 清除页面定时器
+    return () => clearInterval(timer)
+  },[])
 
   return (
     <Block>

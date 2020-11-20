@@ -1,37 +1,5 @@
 (tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["components/tabbar/index"],{
 
-/***/ "./src/actions/msg.ts":
-/*!****************************!*\
-  !*** ./src/actions/msg.ts ***!
-  \****************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.setMsg = setMsg;
-exports.getMsg = getMsg;
-
-var _msg = __webpack_require__(/*! ../constants/msg */ "./src/constants/msg.ts");
-
-function setMsg(data) {
-  return {
-    type: _msg.SET,
-    data: data
-  };
-}
-function getMsg() {
-  return {
-    type: _msg.GET
-  };
-}
-
-/***/ }),
-
 /***/ "./src/components/tabbar/index.scss":
 /*!******************************************!*\
   !*** ./src/components/tabbar/index.scss ***!
@@ -137,7 +105,6 @@ var Tabbar = function (_Taro$Component) {
         return state.msg['messageNumber'];
       });
       var dispatch = (0, _redux.useDispatch)();
-      var timer = void 0; //定时器接收对象
       // 是否展示发布
 
       var _useState = (0, _taroTt.useState)(false),
@@ -195,16 +162,16 @@ var Tabbar = function (_Taro$Component) {
         });
       };
       // 定时请求未读信息
-      // onAppShow(()=>{
-      //   getMemberMsg()
-      //   timer = setInterval(() => {
-      //     getMemberMsg()
-      //   }, MemberMsgTimerInterval)
-      // })
-      // 清除页面定时器
-      (0, _taroTt.onAppHide)(function () {
-        clearInterval(timer);
-      });
+      (0, _taroTt.useEffect)(function () {
+        getMemberMsg();
+        var timer = setInterval(function () {
+          getMemberMsg();
+        }, _index3.MemberMsgTimerInterval);
+        // 清除页面定时器
+        return function () {
+          return clearInterval(timer);
+        };
+      }, []);
       var anonymousState__temp3 = show ? (0, _classnames2.default)({
         'tabbar-publish-container': true,
         'tabbar-publish-container-active': active
@@ -237,7 +204,7 @@ var Tabbar = function (_Taro$Component) {
           'common-footer-tabbar-list': true,
           'common-footer-tabbar-list-active': item.$original.id === tabbar.key
         });
-        var _$indexKey = "dhzzz" + __index0;
+        var _$indexKey = "dgzzz" + __index0;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return changeTabbarAction(item.$original);
         };

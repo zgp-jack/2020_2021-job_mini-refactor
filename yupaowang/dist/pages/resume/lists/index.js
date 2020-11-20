@@ -170,11 +170,10 @@ var ResumeLists = function (_Taro$Component) {
       var _useState13 = (0, _taroTt.useState)({
         page: 1,
         occupations: '',
-        province: userListChooseCity ? userListChooseCity.id : '',
         keywords: '',
         sort: 'newest',
         location: '',
-        area_id: '',
+        area_id: userListChooseCity ? userListChooseCity.id : '',
         type: ''
       }),
           _useState14 = _slicedToArray(_useState13, 2),
@@ -309,7 +308,7 @@ var ResumeLists = function (_Taro$Component) {
         return userRouteJump(_index2.PUBLISHRESUME);
       };
       _taroTt.propsManager.set({
-        "placeholder": '\u627E\u5DE5\u4EBA\uFF0C\u627E\u961F\u4F0D\uFF0C\u627E\u73ED\u7EC4',
+        "placeholder": '\u627E\u5DE5\u4EBA\u3001\u627E\u961F\u4F0D\u3001\u627E\u73ED\u7EC4',
         "value": "",
         "setRemark": anonymousState__temp,
         "setSearchData": anonymousState__temp2

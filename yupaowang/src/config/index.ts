@@ -8,9 +8,11 @@ export const MINICONFIG = require(`./minis/${MINIVERSION}.ts`)
 // * 全局请求接口域名
 // * 测试站
 export const DEVREQUESTURL: string = 'https://miniapi.zhaogong.vrtbbs.com/'  
+// * 预发布
+export const PREREQUESTURL: string = 'http://miniapi.kkbbi.com/'
 // * 正式站
 export const PROREQUESTURL: string = 'https://newyupaomini.54xiaoshuo.com/' 
-// * 当前测试
+// * 当前程序使用的请求地址
 export const REQUESTURL: string = DEVREQUESTURL;
 // * 默认上传图片
 export const UPLOADIMGURL: string = `${PROREQUESTURL}index/upload/`
@@ -30,7 +32,7 @@ export const MAPKEY: string = '20f12aae660c04de86f993d3eff590a0'
 export const MAXCACHECITYNUM: number = 3
 // * 用户发布 选择地址 历史记录 最大数量
 export const UserPublishAreaHistoryMaxNum: number = 10
-// * 小程序tabbar msg统计 定时器请求间隔 1分钟
+// * 小程序tabbar msg统计 定时器请求间隔 60 秒
 export const MemberMsgTimerInterval: number = 1000 * 60
 // * 发布技能证书最大数量
 export const CertificateMaxNum: number = 3
@@ -88,3 +90,7 @@ export const INVITESOURCE: string = MINICONFIG.INVITESOURCE
 export const USESUBSCRIBEMESSAGE: boolean = MINICONFIG.USESUBSCRIBEMESSAGE
 // * 是否能分享
 export const ISCANSHARE: boolean = MINICONFIG.ISCANSHARE
+// * textarea能输入的最大字数
+export const TEXTAREAMAXLENGTH: number = MINICONFIG.TEXTAREAMAXLENGTH
+// * 应用内是否使用下载APP引流
+export const DOWNLOADAPP: boolean = MINICONFIG.DOWNLOADAPP

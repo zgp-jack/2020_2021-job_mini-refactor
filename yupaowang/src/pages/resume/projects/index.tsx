@@ -1,4 +1,4 @@
-import Taro,{ Config, useDidShow } from '@tarojs/taro'
+import Taro,{ Config, useDidShow, useRouter } from '@tarojs/taro'
 import { View, Text, Image } from '@tarojs/components'
 import Imglist from '../../../components/imglist'
 import useResume from '../../../hooks/publish/resume'
@@ -7,6 +7,10 @@ import { ProjectListMaxNum, IMGCDNURL } from '../../../config'
 import './index.scss'
 
 export default function Projects(){
+
+  const router = useRouter()
+  // type 1 为大列表查看更多  2是预览的时候 查看更多 这个时候没有添加按钮
+  const { type = '1' } = router.params
 
   const { projectData,initResumeData } = useResume()
   // 用户编辑该条项目经验
@@ -39,7 +43,7 @@ export default function Projects(){
         </View>
       ))}
       {!projectData.length && <Nodata />}
-      {projectData.length < ProjectListMaxNum &&
+      {(projectData.length < ProjectListMaxNum) && type == '1' &&
       <View className='add-certificate-btn' onClick={()=>Taro.navigateTo({url:'/pages/resume/add_project/index'})}>添加项目经验</View>
       }
     </View>

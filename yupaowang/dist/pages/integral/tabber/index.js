@@ -77,7 +77,7 @@ var Tabber = function (_Taro$Component) {
       navigationBarTitleText: ''
     };
 
-    _this.$usedState = ["data", "modalData", "loopArray70", "$compid__65", "$compid__66", "time", "start", "end", "IMGCDNURL", "initInfo", "sourceList", "consumeList", "startType", "modal", "complaintModal", "showTime", "title", "num"];
+    _this.$usedState = ["data", "modalData", "loopArray70", "$compid__64", "$compid__65", "time", "start", "end", "IMGCDNURL", "initInfo", "sourceList", "consumeList", "startType", "modal", "complaintModal", "showTime", "title", "num"];
     _this.customComponents = ["Auth", "Nodata", "Report"];
     return _this;
   }
@@ -97,15 +97,15 @@ var Tabber = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__65"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__64"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__65 = _genCompid2[0],
-          $compid__65 = _genCompid2[1];
+          $prevCompid__64 = _genCompid2[0],
+          $compid__64 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__66"),
+      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__65"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__66 = _genCompid4[0],
-          $compid__66 = _genCompid4[1];
+          $prevCompid__65 = _genCompid4[0],
+          $compid__65 = _genCompid4[1];
       // 检测用户是否登录
 
 
@@ -726,20 +726,20 @@ var Tabber = function (_Taro$Component) {
       }) : [];
       !data.lists.length && _taroTt.propsManager.set({
         "text": initInfo === '0' ? '暂无积分来源记录' : '暂无积分消耗记录'
-      }, $compid__65, $prevCompid__65);
+      }, $compid__64, $prevCompid__64);
       complaintModal && _taroTt.propsManager.set({
         "display": complaintModal,
         "textarea": textarea,
         "handleTextarea": handleTextarea,
         "setComplaintModal": setComplaintModal,
         "handleSubmit": handleSubmit
-      }, $compid__66, $prevCompid__66);
+      }, $compid__65, $prevCompid__65);
       Object.assign(this.__state, {
         data: data,
         modalData: modalData,
         loopArray70: loopArray70,
+        $compid__64: $compid__64,
         $compid__65: $compid__65,
-        $compid__66: $compid__66,
         time: time,
         start: start,
         end: end,

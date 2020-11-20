@@ -234,7 +234,11 @@ function usePublishViewInfo(InitParams) {
         return item.url;
       })
     };
-    return data;
+    var mydata = JSON.parse(JSON.stringify(data));
+    var imgs = mydata.images.join(',');
+    var classifies = mydata.classifies.join(',');
+    mydata = _extends({}, mydata, { images: imgs, classifies: classifies });
+    return mydata;
   }
   function userPublishRecruitAction() {
     var data = getPublishedInfo();
@@ -360,17 +364,23 @@ var _index = __webpack_require__(/*! ../../../hooks/code/index */ "./src/hooks/c
 
 var _index2 = _interopRequireDefault(_index);
 
+var _index3 = __webpack_require__(/*! ../../../config/index */ "./src/config/index.ts");
+
 var _recruit = __webpack_require__(/*! ../../../hooks/publish/recruit */ "./src/hooks/publish/recruit.ts");
 
 var _recruit2 = _interopRequireDefault(_recruit);
 
-var _index3 = __webpack_require__(/*! ../../../utils/upload/index */ "./src/utils/upload/index.tsx");
+var _index4 = __webpack_require__(/*! ../../../utils/upload/index */ "./src/utils/upload/index.tsx");
 
-var _index4 = _interopRequireDefault(_index3);
+var _index5 = _interopRequireDefault(_index4);
 
-var _index5 = __webpack_require__(/*! ../../../utils/msg/index */ "./src/utils/msg/index.ts");
+var _index6 = __webpack_require__(/*! ../../../utils/msg/index */ "./src/utils/msg/index.ts");
 
-var _index6 = _interopRequireDefault(_index5);
+var _index7 = _interopRequireDefault(_index6);
+
+var _classnames = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+
+var _classnames2 = _interopRequireDefault(_classnames);
 
 __webpack_require__(/*! ./index.scss */ "./src/pages/recruit/publish/index.scss");
 
@@ -401,8 +411,8 @@ var PublishRecruit = function (_Taro$Component) {
       backgroundTextStyle: "dark"
     };
 
-    _this.$usedState = ["model", "$compid__35", "$compid__36", "$compid__37", "showProfession", "areaInfo", "phone", "showUpload", "text"];
-    _this.customComponents = ["Auth", "Profession", "WordsTotal", "ImageView"];
+    _this.$usedState = ["anonymousState__temp", "model", "$compid__35", "$compid__36", "showProfession", "areaInfo", "phone", "showUpload", "text", "num", "TEXTAREAMAXLENGTH"];
+    _this.customComponents = ["Auth", "Profession", "ImageView"];
     return _this;
   }
 
@@ -430,11 +440,6 @@ var PublishRecruit = function (_Taro$Component) {
           _genCompid4 = _slicedToArray(_genCompid3, 2),
           $prevCompid__36 = _genCompid4[0],
           $compid__36 = _genCompid4[1];
-
-      var _genCompid5 = (0, _taroTt.genCompid)(__prefix + "$compid__37"),
-          _genCompid6 = _slicedToArray(_genCompid5, 2),
-          $prevCompid__37 = _genCompid6[0],
-          $compid__37 = _genCompid6[1];
       // 获取路由参数
 
 
@@ -482,11 +487,7 @@ var PublishRecruit = function (_Taro$Component) {
         var value = e.detail.value;
         var state = JSON.parse(JSON.stringify(model));
         state[key] = value;
-        setModel(state);
-        // 如果是detail, 那么需要统计字数
-        if (key === 'detail') {
-          setNum(value.length);
-        }
+        setModel(_extends({}, state));
       };
       // 选择地址
       var userChooseArea = function userChooseArea() {
@@ -509,7 +510,7 @@ var PublishRecruit = function (_Taro$Component) {
           var max = model.maxClassifyCount;
           var _num = model.classifies.length;
           if (_num >= max) {
-            (0, _index6.default)('工种最多可以选择' + max + '个');
+            (0, _index7.default)('工种最多可以选择' + max + '个');
             return;
           }
         }
@@ -524,7 +525,7 @@ var PublishRecruit = function (_Taro$Component) {
       var userUploadImg = function userUploadImg() {
         var i = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : -1;
 
-        (0, _index4.default)().then(function (res) {
+        (0, _index5.default)().then(function (res) {
           var imageItem = {
             url: res.url,
             httpurl: res.httpurl
@@ -572,8 +573,14 @@ var PublishRecruit = function (_Taro$Component) {
       this.anonymousFunc7 = function () {
         return userGetCode(model.user_mobile);
       };
+      var anonymousState__temp = !showProfession ? (0, _classnames2.default)({
+        'publish-textarea': true,
+        'hide': showProfession
+      }) : null;
       this.anonymousFunc8 = function (e) {
-        return userEnterFrom(e, 'detail');
+        userEnterFrom(e, 'detail');
+        setNum(e.detail.value.length);
+        return false;
       };
       this.anonymousFunc9 = function () {
         return changeShowUpload();
@@ -587,25 +594,24 @@ var PublishRecruit = function (_Taro$Component) {
         "onClickItem": this.anonymousFunc0,
         "num": 3
       }, $compid__35, $prevCompid__35);
-      _taroTt.propsManager.set({
-        "num": num
-      }, $compid__36, $prevCompid__36);
       showUpload && model && _taroTt.propsManager.set({
         "images": model.view_images,
         "max": model.maxImageCount,
         "userUploadImg": userUploadImg,
         "userDelImg": userDelImg
-      }, $compid__37, $prevCompid__37);
+      }, $compid__36, $prevCompid__36);
       Object.assign(this.__state, {
+        anonymousState__temp: anonymousState__temp,
         model: model,
         $compid__35: $compid__35,
         $compid__36: $compid__36,
-        $compid__37: $compid__37,
         showProfession: showProfession,
         areaInfo: areaInfo,
         phone: phone,
         showUpload: showUpload,
-        text: text
+        text: text,
+        num: num,
+        TEXTAREAMAXLENGTH: _index3.TEXTAREAMAXLENGTH
       });
       return this.__state;
     }

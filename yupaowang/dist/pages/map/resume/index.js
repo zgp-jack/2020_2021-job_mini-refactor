@@ -84,7 +84,7 @@ var ResumeMap = function (_Taro$Component) {
       navigationBarTitleText: '地址选择'
     };
 
-    _this.$usedState = ["loopArray48", "loopArray49", "$compid__44", "smAreaText", "showHistory", "histroyList", "lists", "IMGCDNURL", "showCity", "area"];
+    _this.$usedState = ["loopArray48", "loopArray49", "$compid__43", "smAreaText", "showHistory", "histroyList", "lists", "IMGCDNURL", "showCity", "area"];
     _this.anonymousFunc4Map = {};
     _this.anonymousFunc5Map = {};
     _this.customComponents = ["Cities"];
@@ -108,10 +108,10 @@ var ResumeMap = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__44"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__43"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__44 = _genCompid2[0],
-          $compid__44 = _genCompid2[1];
+          $prevCompid__43 = _genCompid2[0],
+          $compid__43 = _genCompid2[1];
       // const router: Taro.RouterInfo = useRouter()
       // let { areaItem } = router.params;
       // 获取dispatch分发action
@@ -378,7 +378,7 @@ var ResumeMap = function (_Taro$Component) {
           $original: (0, _taroTt.internal_get_original)(item)
         };
         var $loopState__temp2 = showHistory ? index + index : null;
-        var _$indexKey = "fbzzz" + index;
+        var _$indexKey = "fazzz" + index;
         _this2.anonymousFunc4Map[_$indexKey] = function () {
           return userClickAreaItem(item.$original);
         };
@@ -393,7 +393,7 @@ var ResumeMap = function (_Taro$Component) {
           $original: (0, _taroTt.internal_get_original)(item)
         };
         var $loopState__temp4 = index + index;
-        var _$indexKey2 = "fczzz" + index;
+        var _$indexKey2 = "fbzzz" + index;
         _this2.anonymousFunc5Map[_$indexKey2] = function () {
           return userClickAreaItem(item.$original);
         };
@@ -409,11 +409,11 @@ var ResumeMap = function (_Taro$Component) {
         "userLoc": userLoc,
         "userChangeCity": userChangeCity,
         "userTapCityBtn": userTapCityBtn
-      }, $compid__44, $prevCompid__44);
+      }, $compid__43, $prevCompid__43);
       Object.assign(this.__state, {
         loopArray48: loopArray48,
         loopArray49: loopArray49,
-        $compid__44: $compid__44,
+        $compid__43: $compid__43,
         smAreaText: smAreaText,
         showHistory: showHistory,
         histroyList: histroyList,

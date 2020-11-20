@@ -216,10 +216,12 @@ export default function useRealname(){
               birthall = birth + "-" + birthtwo + "-" + birththree;
             }
             // 性别
-            let sexIndex = 0;
+            let sexIndex: number = 0;
+            let sexId: string = ''; // 默认空 没有遍历到即假
             sexArray.map((v, i) => {
               if (memberExt.sex === v.name) {
                 sexIndex = i;
+                sexId = v.id
               }
             })
             setSexCurrent(sexIndex);
@@ -236,11 +238,11 @@ export default function useRealname(){
               code: '',
               address: memberExt.address,
               birthday: birthall || '',
-              gender: sexIndex && sexIndex != -1 ? sexIndex : "",
+              gender: sexId,
             }
             memberExt.birthday = birthall;
             setInitModel({ ...initModel, memberExt: { ...memberExt} })
-            setModel(dataItem)
+            setModel({ ...dataItem})
           }else{
             Msg(data.card_info.tips_message)
             memberExt.id_card_img_path = cardInfoFailImg

@@ -47,6 +47,10 @@ var _index3 = __webpack_require__(/*! ../../utils/msg/index */ "./src/utils/msg/
 
 var _index4 = _interopRequireDefault(_index3);
 
+var _user = __webpack_require__(/*! ../../actions/user */ "./src/actions/user.tsx");
+
+var _msg = __webpack_require__(/*! ../../actions/msg */ "./src/actions/msg.ts");
+
 var _index5 = __webpack_require__(/*! ../../utils/v/index */ "./src/utils/v/index.ts");
 
 __webpack_require__(/*! ./index.scss */ "./src/pages/member/index.scss");
@@ -69,7 +73,7 @@ var Member = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (Member.__proto__ || Object.getPrototypeOf(Member)).apply(this, arguments));
 
-    _this.$usedState = ["login", "model", "IMGCDNURL", "jobNumber", "msgNumber", "ios", "memberIndex"];
+    _this.$usedState = ["login", "model", "IMGCDNURL", "jobNumber", "msgNumber", "ios", "PROREQUESTURL", "REQUESTURL", "memberIndex"];
     _this.customComponents = [];
     return _this;
   }
@@ -137,7 +141,8 @@ var Member = function (_Taro$Component) {
               username: data.member.username || data.member.nickname,
               avatar: data.member.headimgurl || '',
               phone: data.member.tel || '',
-              pwd_status: data.member.pwd_status || ''
+              pwd_status: data.member.pwd_status || '',
+              changeName: data.is_checking == 2 && data.member.is_check == '2' ? false : true
             };
             dispatch((0, _member.setMemberInfo)(value));
             setModel(data);
@@ -150,12 +155,18 @@ var Member = function (_Taro$Component) {
         setIos((0, _index5.isIos)());
       }, []);
       (0, _taroTt.useEffect)(function () {
+        //Taro.setNavigationBarTitle({ title: IndexTabbarConfig[MEMBER].navigationBarTitleText })
+        if (!login) {
+          return;
+        }
         initMemberInfo();
       }, [login, memberIndex]);
       // 清理用户登录信息
       var userClearSession = function userClearSession() {
         _taroTt2.default.removeStorageSync(_store.UserInfo);
-        (0, _index4.default)('退出抖音，重新扫码');
+        dispatch((0, _user.loginOut)());
+        dispatch((0, _msg.resetMsg)());
+        (0, _index4.default)('您已成功退出该账号');
       };
       this.anonymousFunc0 = function () {
         return userRouteJump("/pages/userinfo/info/index");
@@ -217,7 +228,9 @@ var Member = function (_Taro$Component) {
         IMGCDNURL: _index2.IMGCDNURL,
         jobNumber: jobNumber,
         msgNumber: msgNumber,
-        ios: ios
+        ios: ios,
+        PROREQUESTURL: _index2.PROREQUESTURL,
+        REQUESTURL: _index2.REQUESTURL
       });
       return this.__state;
     }

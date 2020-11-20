@@ -1,3 +1,3 @@
-export const GET: string = 'get'
-export const SET: string = 'set'
+export const GETMEMBERINFO: string = 'getMemberInfo'
+export const SETMEMBERINFO: string = 'setMemberInfo'
 export const TEL: string = 'tel'

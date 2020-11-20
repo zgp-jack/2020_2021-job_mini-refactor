@@ -1,14 +1,15 @@
-import Taro, { useRouter, RouterInfo, Config } from '@tarojs/taro'
+import Taro, { useRouter, RouterInfo, Config, useEffect, useState } from '@tarojs/taro'
 import { View, Text, Form, Input, Textarea, Block } from '@tarojs/components'
 import { ProfessionRecruitData } from '../../../components/profession/index.d'
-import WordsTotal from '../../../components/wordstotal'
 import Profession from '../../../components/profession'
 import useCode from '../../../hooks/code'
+import { TEXTAREAMAXLENGTH } from '../../../config'
 import usePublishViewInfo from '../../../hooks/publish/recruit'
 import { RecruitModelInfo, UserLastPublishRecruitArea } from '../index.d'
 import UploadImgAction from '../../../utils/upload'
 import ImageView from '../../../components/imageview'
 import Msg from '../../../utils/msg'
+import classnames from 'classnames'
 import Auth from '../../../components/auth'
 import './index.scss'
 import { useSelector } from '@tarojs/redux'
@@ -53,11 +54,8 @@ export default function PublishRecruit() {
     const value: string = e.detail.value
     const state: RecruitModelInfo = JSON.parse(JSON.stringify(model))
     state[key] = value
-    setModel(state)
-    // 如果是detail, 那么需要统计字数
-    if(key === 'detail'){
-      setNum(value.length)
-    }
+    setModel({ ...state})
+    
   }
 
   // 选择地址
@@ -193,14 +191,18 @@ export default function PublishRecruit() {
                 </View>
               }
               <View className='publish-list-textarea'>
-                <Text className='publish-textarea-title'>招工详情</Text>
+              <Text className='publish-textarea-title'>招工详情</Text>
+                {!showProfession && 
                 <Textarea 
-                  className='publish-textarea'
+                  className={classnames({
+                    'publish-textarea': true,
+                    'hide': showProfession
+                  })} 
                   value={ model&&model.detail||'' }
                   placeholder='请输入招工详情'
-                  onInput={(e)=>userEnterFrom(e,'detail')}
-                ></Textarea>
-                <WordsTotal num={num} />
+                  onInput={(e) => { userEnterFrom(e, 'detail');setNum(e.detail.value.length);return false;}}
+                ></Textarea>}
+                <View className='words-total-box '>{num}<Text>/{TEXTAREAMAXLENGTH}</Text></View>
               </View>
             </View>
             <View className='publish-recruit-card'>

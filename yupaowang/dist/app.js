@@ -101,7 +101,7 @@ var _App = function (_BaseComponent) {
     value: function componentDidMount() {}
   }, {
     key: 'componentDidShow',
-    value: function componentDidShow() {}
+    value: function componentDidShow(e) {}
   }, {
     key: 'componentDidHide',
     value: function componentDidHide() {}
@@ -202,9 +202,9 @@ function msg() {
   var action = arguments[1];
 
   switch (action.type) {
-    case _filter_classify.GET:
+    case _filter_classify.GETCLASSIFY:
       return state;
-    case _filter_classify.SET:
+    case _filter_classify.SETCLASSIFY:
       return _extends({}, state, action.data);
     default:
       return state;
@@ -285,7 +285,6 @@ var _publish2 = _interopRequireDefault(_publish);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-//合并reducer
 //发布招工reducer
 exports.default = (0, _redux.combineReducers)({
   tabbar: _tabbar2.default,
@@ -309,7 +308,7 @@ exports.default = (0, _redux.combineReducers)({
      * @Author: zyb
      * @Date: 2020-11-03 14:36:47
      * @LastEditors: jsxin
-     * @LastEditTime: 2020-11-09 17:11:58
+     * @LastEditTime: 2020-11-13 15:02:13
      * @Description:
      */
 
@@ -340,17 +339,18 @@ var DEFAULT_MEMBER_INFO = {
   username: '',
   avatar: '',
   phone: '',
-  pwd_status: ''
+  pwd_status: '',
+  changeName: false
 };
 function UserMemberInfo() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : DEFAULT_MEMBER_INFO;
   var action = arguments[1];
 
   switch (action.type) {
-    case _member.GET:
+    case _member.GETMEMBERINFO:
       return state;
       break;
-    case _member.SET:
+    case _member.SETMEMBERINFO:
       return _extends({}, state, action.data);
       break;
     case _member.TEL:
@@ -392,10 +392,12 @@ function msg() {
   var action = arguments[1];
 
   switch (action.type) {
-    case _msg.GET:
+    case _msg.GETMSG:
       return state;
-    case _msg.SET:
+    case _msg.SETMSG:
       return _extends({}, state, action.data);
+    case _msg.RESETMSG:
+      return _extends({}, state, DEFAULT_STATE);
     default:
       return state;
   }
@@ -518,10 +520,10 @@ function RealnameStore() {
   var action = arguments[1];
 
   switch (action.type) {
-    case _realname.GET:
+    case _realname.GETREALNAME:
       return state;
       break;
-    case _realname.SET:
+    case _realname.SETREALNAME:
       return _extends({}, state, action.data);
       break;
     case _realname.SETFUN:
@@ -721,10 +723,10 @@ function resumeAddInfo() {
   var action = arguments[1];
 
   switch (action.type) {
-    case _resume_addinfo.GET:
+    case _resume_addinfo.GETRESUMECONFIG:
       return _extends({}, state);
       break;
-    case _resume_addinfo.SET:
+    case _resume_addinfo.SETRESUMECONSIG:
       return _extends({}, state, action.data);
       break;
     default:
@@ -948,14 +950,16 @@ function User() {
   var action = arguments[1];
 
   switch (action.type) {
-    case _user.SET:
+    case _user.SETUSER:
       return _extends({}, state, action.data);
-    case _user.GET:
+    case _user.GETUSER:
       if (!state.login) {
         var _userInfo = _taroTt2.default.getStorageSync(_store.UserInfo);
         if (_userInfo) return _userInfo;
       }
       return state;
+    case _user.LOGINOUT:
+      return _extends({}, state, DEFAULT_STATE);
     default:
       return state;
   }

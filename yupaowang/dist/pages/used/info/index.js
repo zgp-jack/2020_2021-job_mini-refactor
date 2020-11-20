@@ -25,6 +25,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -37,7 +39,9 @@ var _taroTt2 = _interopRequireDefault(_taroTt);
 
 var _index = __webpack_require__(/*! ../../../utils/request/index */ "./src/utils/request/index.ts");
 
-var _index2 = __webpack_require__(/*! ../../../utils/msg/index */ "./src/utils/msg/index.ts");
+var _index2 = __webpack_require__(/*! ../../../utils/helper/index */ "./src/utils/helper/index.ts");
+
+var _index3 = __webpack_require__(/*! ../../../utils/msg/index */ "./src/utils/msg/index.ts");
 
 __webpack_require__(/*! ./index.scss */ "./src/pages/used/info/index.scss");
 
@@ -49,23 +53,27 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var UserInfo = function (_Taro$Component) {
-  _inherits(UserInfo, _Taro$Component);
+var UsedInfo = function (_Taro$Component) {
+  _inherits(UsedInfo, _Taro$Component);
 
-  function UserInfo() {
-    _classCallCheck(this, UserInfo);
+  function UsedInfo() {
+    _classCallCheck(this, UsedInfo);
 
-    var _this = _possibleConstructorReturn(this, (UserInfo.__proto__ || Object.getPrototypeOf(UserInfo)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (UsedInfo.__proto__ || Object.getPrototypeOf(UsedInfo)).apply(this, arguments));
+
+    _this.config = {
+      navigationBarTitleText: '二手交易详情'
+    };
 
     _this.$usedState = ["model"];
     _this.customComponents = ["WechatNotice"];
     return _this;
   }
 
-  _createClass(UserInfo, [{
+  _createClass(UsedInfo, [{
     key: "_constructor",
     value: function _constructor(props) {
-      _get(UserInfo.prototype.__proto__ || Object.getPrototypeOf(UserInfo.prototype), "_constructor", this).call(this, props);
+      _get(UsedInfo.prototype.__proto__ || Object.getPrototypeOf(UsedInfo.prototype), "_constructor", this).call(this, props);
       this.$$refs = new _taroTt2.default.RefsArray();
     }
   }, {
@@ -83,15 +91,19 @@ var UserInfo = function (_Taro$Component) {
           _useState2 = _slicedToArray(_useState, 2),
           model = _useState2[0],
           setModel = _useState2[1];
+      // 设置用户分享信息
+
+
+      (0, _taroTt.useShareAppMessage)(function () {
+        return _extends({}, (0, _index2.getUserShareMessage)());
+      });
       // 初始化二手交易信息
-
-
       (0, _taroTt.useEffect)(function () {
         (0, _index.getUsedInfo)(id).then(function (data) {
           if (data.errcode == 'ok') {
             setModel(data.data);
           } else {
-            (0, _index2.ShowActionModal)({
+            (0, _index3.ShowActionModal)({
               msg: data.errmsg,
               success: function success() {
                 _taroTt2.default.navigateBack();
@@ -99,7 +111,7 @@ var UserInfo = function (_Taro$Component) {
             });
           }
         }).catch(function () {
-          (0, _index2.ShowActionModal)({
+          (0, _index3.ShowActionModal)({
             msg: '网络错误，获取失败',
             success: function success() {
               _taroTt2.default.navigateBack();
@@ -134,14 +146,15 @@ var UserInfo = function (_Taro$Component) {
     }
   }]);
 
-  return UserInfo;
+  return UsedInfo;
 }(_taroTt2.default.Component);
 
-UserInfo.$$events = ["anonymousFunc0"];
-UserInfo.$$componentPath = "pages/used/info/index";
-exports.default = UserInfo;
+UsedInfo.$$events = ["anonymousFunc0"];
+UsedInfo.$$componentPath = "pages/used/info/index";
+UsedInfo.config = { navigationBarTitleText: '二手交易详情' };
+exports.default = UsedInfo;
 
-Page(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(UserInfo, true));
+Page(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(UsedInfo, true));
 
 /***/ })
 

@@ -22,13 +22,13 @@ var _realname = __webpack_require__(/*! ../constants/realname */ "./src/constant
 
 function setData(data) {
   return {
-    type: _realname.SET,
+    type: _realname.SETREALNAME,
     data: data
   };
 }
 function getData() {
   return {
-    type: _realname.GET
+    type: _realname.GETREALNAME
   };
 }
 function setArea(data) {
@@ -334,9 +334,11 @@ function useRealname() {
               }
               // 性别
               var sexIndex = 0;
+              var sexId = ''; // 默认空 没有遍历到即假
               sexArray.map(function (v, i) {
                 if (memberExt.sex === v.name) {
                   sexIndex = i;
+                  sexId = v.id;
                 }
               });
               setSexCurrent(sexIndex);
@@ -353,11 +355,11 @@ function useRealname() {
                 code: '',
                 address: memberExt.address,
                 birthday: birthall || '',
-                gender: sexIndex && sexIndex != -1 ? sexIndex : ""
+                gender: sexId
               };
               memberExt.birthday = birthall;
               setInitModel(_extends({}, initModel, { memberExt: _extends({}, memberExt) }));
-              setModel(dataItem);
+              setModel(_extends({}, dataItem));
             } else {
               (0, _index3.default)(data.card_info.tips_message);
               memberExt.id_card_img_path = cardInfoFailImg;

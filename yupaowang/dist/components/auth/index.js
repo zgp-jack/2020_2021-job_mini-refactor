@@ -152,11 +152,12 @@ var Auth = function (_Taro$Component) {
           success: function success(res) {
             var encryptedData = res.encryptedData;
             var iv = res.iv;
+            var refId = _taroTt2.default.getStorageSync(_store.REFID);
             var data = {
               session_key: key,
               encryptedData: encryptedData,
               iv: iv,
-              refId: 0,
+              refId: refId || 0,
               source: ''
             };
             (0, _index2.GetUserInfo)(data).then(function (res) {

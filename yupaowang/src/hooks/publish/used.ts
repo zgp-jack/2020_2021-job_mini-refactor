@@ -5,6 +5,7 @@ import Msg, { ShowActionModal } from '../../utils/msg'
 import { objDeepCopy } from '../../utils/helper'
 import { REALNAMEPATH } from '../../config'
 import { isVaildVal, isPhone } from '../../utils/v'
+import { useSelector } from '@tarojs/redux'
 import { InitUsedModelInfoParams } from '../index.d'
 
 // 保存area地区数据
@@ -13,6 +14,9 @@ let userTel: string = ''
 let modelStr: string = ''
 
 export default function useUsedInfo(id: string){
+
+  // 检测用户是否登录
+  const login: boolean = useSelector<any, boolean>(store => store.User.login)
 
   let data: InitUsedModelInfoParams = {
     type: 'fleamarket',
@@ -51,16 +55,23 @@ export default function useUsedInfo(id: string){
   // picker 市级索引
   const [areaCity, setAreaCity] = useState<CityAreaPicker[]>([])
 
-  // 加载初始化数据
   useEffect(()=>{
-    getUsedInfoModel(data).then(data=>{
-      if(data.errcode == 'ok'){
+    if (!login) return
+    initUsedPublishViewInfo()
+  }, [login])
+
+
+  // 初始化用户发布信息的视图渲染
+  const initUsedPublishViewInfo = () => {
+    if (!login) return
+    getUsedInfoModel(data).then(data => {
+      if (data.errcode == 'ok') {
         // 正常获取到内容
         areaTree = data.areaTree
         setInitModel(data)
         initPublishModelInfo(data)
         initAreaPicker(data)
-      }else if(data.errcode == 'to_auth'){
+      } else if (data.errcode == 'to_auth') {
         // 用户当前未实名 或者实名没通过
         Taro.showModal({
           title: '温馨提示',
@@ -77,13 +88,13 @@ export default function useUsedInfo(id: string){
             }
           }
         })
-      } else if (data.errcode == 'auth_checking'){
+      } else if (data.errcode == 'auth_checking') {
         // 当前用户的实名信息正在审核中
         ShowActionModal({
           msg: data.errmsg,
           success: () => Taro.navigateBack()
         })
-      }else{
+      } else {
         // 其他状态
         ShowActionModal({
           msg: data.errmsg,
@@ -93,7 +104,7 @@ export default function useUsedInfo(id: string){
         })
       }
     })
-  },[])
+  }
 
   // 设置发布信息模型
   const initPublishModelInfo = (data: UsedPublishModel)=> {
@@ -199,7 +210,7 @@ export default function useUsedInfo(id: string){
       }
     }
     if (!isVaildVal(model.detail,15,500)) {
-      Msg('请正确输入5-500字的交易详情')
+      Msg('请正确输入15-500字的交易详情')
       return false
     }
 
@@ -253,7 +264,8 @@ export default function useUsedInfo(id: string){
     pIndex,
     thisCurrentAreaCity,
     userTel,
-    vaildPublishModelInfo
+    vaildPublishModelInfo,
+    initUsedPublishViewInfo
   }
   
 }

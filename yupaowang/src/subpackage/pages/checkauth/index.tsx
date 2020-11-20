@@ -1,6 +1,6 @@
 import Taro, { useEffect, useState, useDidShow, Config } from '@tarojs/taro'
 import { View, Text, Input, Block } from '@tarojs/components'
-import { SERVERPHONE } from '../../../config/index'
+import { SERVERPHONE, REALNAMEPATH } from '../../../config/index'
 import { isPhone } from '../../../utils/v'
 import { getUserIsAuth, checkMineAuthInfo } from '../../../utils/request'
 import { CheckUserAuthMember } from '../../../utils/request/index.d'
@@ -15,6 +15,8 @@ export default function CheckAuth(){
   const [model, setModel] = useState<CheckUserAuthMember>()
   const [show, setShow] = useState<boolean>(false)
   const login = useSelector<any, boolean>(state => state.User['login'])
+  // 是否是第一次进入页面
+  const [first, setFirst] = useState<boolean>(true)
   // 用户拨打电话
   const userCallPhone = () => {
     Taro.makePhoneCall({
@@ -34,7 +36,7 @@ export default function CheckAuth(){
           success: (res)=> {
             if(res.confirm){
               // 跳转实名
-              Taro.navigateTo({url: ''})
+              Taro.navigateTo({ url: REALNAMEPATH })
             }else{
               Taro.reLaunch({url: '/pages/index/index'})
             }
@@ -52,6 +54,10 @@ export default function CheckAuth(){
   }
 
   useDidShow(()=>{
+    if (first) {
+      setFirst(false)
+      return
+    }
     InitUserAuthInfo()
   })
 

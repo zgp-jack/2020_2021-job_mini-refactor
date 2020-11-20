@@ -79,6 +79,7 @@ export default function useResume(){
         let info: resInfoObj = { ...INFODATA_DATA };
         info = { ...info, ...res.data.info };
         setInfoData({ ...info });
+        if (res.data.info.is_end== '2') setSelectDataIndex(1)
         // 清除地图redux
         dispatch(setAreaInfo({
           title: '',

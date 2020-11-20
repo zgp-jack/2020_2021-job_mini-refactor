@@ -9,7 +9,7 @@
   .login-header{
     position: relative;
     width: 65%;
-    background: #e8e8f8;
+    background: #f2f2f2;
     border-radius: 50PX;
     height: 70px;
     margin: 50px auto 30px;
@@ -21,7 +21,7 @@
       width: 50%;
       text-align: center;
       float: left;
-      color: #333;
+      color: #b4b4b4;
     }
     .login-header-item-active{
       background-color: $color;
@@ -60,6 +60,9 @@
           z-index: 5;
           line-height: 75px;
         }
+      }
+      .input-item-code{
+        padding-right: 260px;
       }
     }
   }

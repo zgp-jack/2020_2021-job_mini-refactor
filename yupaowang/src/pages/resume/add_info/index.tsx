@@ -8,7 +8,7 @@ import { NationsType, OccupationType } from './index.d';
 import { addResumeAction, checkAdcodeAction } from '../../../utils/request/index'; 
 import { UserLastPublishRecruitArea } from '../../../pages/recruit/index.d'
 import Profession from '../../../components/profession'
-import WordsTotal from '../../../components/wordstotal'
+import { TEXTAREAMAXLENGTH } from '../../../config'
 import useCode from '../../../hooks/code'
 import Msg,{ ShowActionModal } from '../../../utils/msg';
 import { isChinese, isPhone, allChinese } from '../../../utils/v';
@@ -18,13 +18,14 @@ import { LocationDataType } from './index.d';
 import { setAreaInfo, setArea } from '../../../actions/recruit'//获取发布招工信息action
 import './index.scss'
 
+let first = false;
 export default function AddResumeInfo(){
   // 获取dispatch分发action
   const dispatch = useDispatch()
   // 获取基础信息的redux
   const infoData = useSelector<any, resInfoObj>(state => state.resumeData.info);
   // 获取hooks数据
-  const { infoConfig, genderCurrent, startDatePicker } = useResumeAddInfo();
+  const { infoConfig, genderCurrent, startDatePicker, endDatePicker } = useResumeAddInfo();
   // 发送验证码
   const { text, userGetCode } = useCode()
   // 输入数据
@@ -52,7 +53,7 @@ export default function AddResumeInfo(){
   //获取redux中发布招工区域详细数据
   const areaInfo: UserLastPublishRecruitArea = useSelector<any, UserLastPublishRecruitArea>(state => state.MyAreaInfo)
   // 不是第一次存areaInfo
-  const [first, setFirst] = useState<boolean>(false);
+  // const [first, setFirst] = useState<boolean>(false);
   useEffect(()=>{
     // 性别
     if(infoData.gender){
@@ -91,7 +92,8 @@ export default function AddResumeInfo(){
       setLocationData({ province: infoData.province, city: infoData.city, citycode: '', oadcode: '', regionone: infoData.title, longitude: infoData.location && infoData.location.split(',')[0].toString(), latitude: infoData.location && infoData.location.split(',')[1].toString(), address: infoData.address, adcode: infoData.ad_code, wardenryid: ''})
     }
     // 将数据保存到redux中的areaInfo中
-    setFirst(true);
+    first = true
+    // setFirst(true);
     let location:string='';
     if(infoData.location){
       location = location;
@@ -207,7 +209,8 @@ export default function AddResumeInfo(){
   }
   // 获取定位
   const handleGps =()=>{
-    setFirst(false);
+    // setFirst(false);
+    first = false
     Taro.getSetting({
       success:(res)=>{
         if (res.authSetting['scope.userLocation'] != undefined && res.authSetting['scope.userLocation'] != true) {//非初始化进入该页面,且未授权   
@@ -245,7 +248,8 @@ export default function AddResumeInfo(){
   
   // 选择地址
   const userChooseArea = () => {
-    setFirst(false);
+    // setFirst(false);
+    first = false
     let url = '/pages/map/resume/index'
     Taro.navigateTo({
       url: url
@@ -293,7 +297,8 @@ export default function AddResumeInfo(){
                   <Picker
                     mode="date"
                     value={inputVal.birthday}
-                    // start={startDatePicker}
+                    start={startDatePicker}
+                    end={endDatePicker}
                     onChange={(e) => onPickerChange(e,'birthday')}
                   >
                     <Input className='publish-list-input' type='text' disabled placeholder='请选择出生年月' value={inputVal.birthday} />
@@ -377,14 +382,15 @@ export default function AddResumeInfo(){
             <View className='resume-addinfo-body'>
               <View className='publish-list-textarea'>
                   <Text className='publish-textarea-title'>自我介绍</Text>
+                  {!showProssion &&
                   <Textarea
                     className='publish-textarea'
                     value={inputVal.introduce}
                     placeholder='请简要介绍您所从事的行业以及工作经验...'
                     onInput={(e) => userEnterFrom(e, 'introduce')}
                     maxlength={500}
-                  ></Textarea>
-                  <WordsTotal num={inputVal&&inputVal.introduce&&inputVal.introduce.length||0} />
+                  ></Textarea>}
+                  <View className='words-total-box '>{inputVal && inputVal.introduce && inputVal.introduce.length || 0}<Text>/{TEXTAREAMAXLENGTH}</Text></View>
                 </View>
               </View>
               <View className='publish-recruit-btn' onClick={handelSubmit} >确认发布</View>

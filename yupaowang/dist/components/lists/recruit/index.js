@@ -57,7 +57,6 @@ var RecruitList = function (_Taro$Component) {
 
     _this.$usedState = ["anonymousState__temp", "loopArray15", "$compid__16", "data", "IMGCDNURL", "hasMore", "bottom"];
     _this.anonymousFunc0Map = {};
-    _this.anonymousFunc2Map = {};
     _this.customComponents = ["Nodata"];
     return _this;
   }
@@ -110,13 +109,8 @@ var RecruitList = function (_Taro$Component) {
           _this2.anonymousFunc0Map[_$indexKey] = function () {
             return userRouteJump("/pages/detail/info/index?id=" + d.$original.id);
           };
-          var _$indexKey2 = "bizzz" + __index1 + "-" + __index0;
-          _this2.anonymousFunc2Map[_$indexKey2] = function () {
-            return userRouteJump(_index.PUBLISHEDRECRUIT);
-          };
           return {
             _$indexKey: _$indexKey,
-            _$indexKey2: _$indexKey2,
             $original: d.$original
           };
         }) : [];
@@ -151,25 +145,12 @@ var RecruitList = function (_Taro$Component) {
 
       return this.anonymousFunc0Map[_$indexKey] && (_anonymousFunc0Map = this.anonymousFunc0Map)[_$indexKey].apply(_anonymousFunc0Map, e);
     }
-  }, {
-    key: "anonymousFunc2",
-    value: function anonymousFunc2(_$indexKey2) {
-      var _anonymousFunc2Map;
-
-      ;
-
-      for (var _len2 = arguments.length, e = Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
-        e[_key2 - 1] = arguments[_key2];
-      }
-
-      return this.anonymousFunc2Map[_$indexKey2] && (_anonymousFunc2Map = this.anonymousFunc2Map)[_$indexKey2].apply(_anonymousFunc2Map, e);
-    }
   }]);
 
   return RecruitList;
 }(_taroTt2.default.Component);
 
-RecruitList.$$events = ["anonymousFunc0", "anonymousFunc2"];
+RecruitList.$$events = ["anonymousFunc0"];
 RecruitList.$$componentPath = "components/lists/recruit/index";
 exports.default = RecruitList;
 
