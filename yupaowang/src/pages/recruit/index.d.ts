@@ -45,6 +45,7 @@ export interface RecruitModelInfo extends RecruitBaseInfo {
   is_check: number,
   check_fail_msg: string
 }
+
 //极速发布基础信息
 export interface FastPublishBase{
   address: string,

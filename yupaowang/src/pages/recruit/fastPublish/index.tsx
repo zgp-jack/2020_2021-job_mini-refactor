@@ -1,18 +1,15 @@
-import Taro, { useRouter, RouterInfo, Config } from '@tarojs/taro'
-import { View, Text, Form, Input, Textarea, Block,Switch } from '@tarojs/components'
-import { ProfessionRecruitData } from '../../../components/profession/index.d'
+import Taro, { useRouter, RouterInfo, Config, useState } from '@tarojs/taro'
+import { View, Text, Form, Input, Textarea, Block, Switch } from '@tarojs/components'
 import WordsTotal from '../../../components/wordstotal'
-import Profession from '../../../components/profession'
 import useCode from '../../../hooks/code'
 import fastPublishInit from '../../../hooks/publish/fastPublish'
-import { UserLastPublishRecruitArea, FastPublishInit, MateDataType} from '../index.d'
+import { UserLastPublishRecruitArea, FastPublishInit, MateDataType } from '../index.d'
 import UploadImgAction from '../../../utils/upload'
 import ImageView from '../../../components/imageview'
-import Msg from '../../../utils/msg'
 import Auth from '../../../components/auth'
 import './index.scss'
 import { useSelector } from '@tarojs/redux'
-import ClassifyPicker from '../../../components/classfiy_picker/index'
+import ClassifyPicker, { RulesClassfies } from '../../../components/classfiy_picker/index'
 // 初始化获取信息类型
 export interface InitRecruitView {
   type: string,
@@ -25,29 +22,28 @@ export default function PublishRecruit() {
   const id: string = router.params.id || ''
   const type: string = 'job'
   const InitParams: InitRecruitView = { type: type, infoId: id }
-  //获取redux中发布招工区域详细数据
+  // 获取redux中发布招工区域详细数据
   const areaInfo: UserLastPublishRecruitArea = useSelector<any, UserLastPublishRecruitArea>(state => state.MyAreaInfo)
 
   // 初始化当前信息
-  const { model, setModel, showUpload, setShowUpload, showProfession, setShowProssion, userPublishRecruitAction, num, setNum, phone } =
+  const { model, setModel, showUpload, setShowUpload, showProfession, setShowProssion, userPublishRecruitAction, num, setNum, phone, classMateArr, setclassMateArr } =
     fastPublishInit(InitParams)
 
   // 使用自定义验证码hook
   const { text, userGetCode } = useCode()
-
+  // const [classMateArr, setclassMateArr] = useState<RulesClassfies[]>([])
   // 切换图片上传显示隐藏
   const changeShowUpload = () => {
     setShowUpload(!showUpload)
   }
-
+  // 显示工种选择组件
   const showProfessionAction = () => {
     setShowProssion(true)
   }
-
+  // 关闭工种选择组件
   const closeProfession = () => {
     setShowProssion(false)
   }
-
   // 用户填写表单
   const userEnterFrom = (e: any, key: string) => {
     const value: string = e.detail.value
@@ -60,7 +56,6 @@ export default function PublishRecruit() {
       setNum(value.length)
     }
   }
-
   // 选择地址
   const userChooseArea = () => {
     if (!model) return
@@ -69,26 +64,6 @@ export default function PublishRecruit() {
       url: url
     })
   }
-
-  // 点击工种
-  const userClickProfession = (i: number, k: number, id: string) => {
-    if (!model) return
-    let works: ProfessionRecruitData[] = JSON.parse(JSON.stringify(model.classifyTree))
-    let check: boolean = works[i].children[k].is_check
-    if (!check) {
-      let max: number = model.typeTextArr.maxClassifyCount
-      let num: number = model.classifies.length
-      if (num >= max) {
-        Msg('工种最多可以选择' + max + '个')
-        return
-      }
-    }
-    works[i].children[k].is_check = !check
-    let classifyArr = JSON.parse(JSON.stringify(model.classifies))
-    let newArr: string[] = (check) ? classifyArr.filter(item => item !== id) : [...classifyArr, id]
-    setModel({ ...model, classifyTree: works, classifies: newArr })
-  }
-
   // 用户上传图片
   const userUploadImg = (i: number = -1) => {
     UploadImgAction().then(res => {
@@ -106,7 +81,6 @@ export default function PublishRecruit() {
       }
     })
   }
-
   // 用户删除图片
   const userDelImg = (i: number) => {
     if (!model) return
@@ -114,6 +88,7 @@ export default function PublishRecruit() {
     bakModel.view_images.splice(i, 1)
     setModel(bakModel)
   }
+  let _classMateArr: RulesClassfies[] = []
   // 根据招工详情匹配
   const detailMatch = (e: any) => {
     if (!model) return
@@ -133,19 +108,32 @@ export default function PublishRecruit() {
       for (let i = 0; i < mate_data.length; i++) {
         if (detail.indexOf(mate_data[i].keywords) != -1) {
           //最多可选工种数量
-          if (mateArr.length === _model.typeTextArr.maxClassifyCount) return
-          mateArr.push(mate_data[i])
+          if (_classMateArr.length === _model.typeTextArr.maxClassifyCount) return
+          // debugger
+          _classMateArr.push({
+            id: mate_data[i].occupation_id,
+            name: mate_data[i].name
+          })
         }
       }
       //循环删除不需要匹配的
       for (let i = 0; i < not_mate_data.length; i++) {
-        for (let n = 0; n < mateArr.length; n++) {
-          if (not_mate_data[i].keywords === mateArr[n].keywords) {
-            mateArr.splice(n, 1)
+        for (let n = 0; n < _classMateArr.length; n++) {
+          if (not_mate_data[i].keywords === _classMateArr[n].name) {
+            _classMateArr.splice(n, 1)
           }
         }
       }
-
+      //去重
+      var result: RulesClassfies[] = []
+      var obj = {};
+      for (var i = 0; i < _classMateArr.length; i++) {
+        if (!obj[_classMateArr[i].id]) {
+          result.push(_classMateArr[i]);
+          obj[_classMateArr[i].id] = true;
+        }
+      }
+      _classMateArr = result
       let classarr = mateArr.map(i => { return i.occupation_id })
       state['classifies'] = classarr
       //改变model中的classifyTree
@@ -171,29 +159,26 @@ export default function PublishRecruit() {
         state.user_mobile = phone[0]
       }
     }
+    //保存匹配到的工种
+    setclassMateArr(_classMateArr)
     setModel(state)
   }
 
   //工种选择 确定
-  // const confrimClass = (r) => {
-  //   console.log(r)
-  // }
+  const selectClass = (data: RulesClassfies[]) => {
+    setclassMateArr(data)
+    setShowProssion(false)
+  }
   return (
     <Block>
       <Auth />
-
-
-
-      <ClassifyPicker></ClassifyPicker>
-
-
-
       {showProfession &&
-        <Profession
-          closeProfession={closeProfession}
-          data={model && model.classifyTree}
-          onClickItem={(i, k, id) => userClickProfession(i, k, id)}
-          num={3}
+        <ClassifyPicker
+          hiddenPickerModel={closeProfession}
+          selectClassfy={selectClass}
+          classifies={model && model.classifyTree}
+          maxClassifyCount={model && model.typeTextArr.maxClassifyCount}
+          choceClassfies={classMateArr}
         />}
       <View className='publish-recruit-container'>
         <View className='publish-list-textarea'>
@@ -216,15 +201,11 @@ export default function PublishRecruit() {
         <View className='publish-list-item work-type' onClick={() => showProfessionAction()}>
           <Text className='pulish-list-title input-title'>所需工种</Text>
           {
-            model && model.classifies.length ?
+            classMateArr.length > 0 ?
               <View className='publish-list-input item-work-type'>
-                {model.classifyTree.map(item => (
+                {classMateArr.map(item => (
                   <Block key={item.id}>
-                    {item.children.map(data => (
-                      <Block key={data.id}>
-                        {data.is_check && <Text className='publish-input-list' >{data.name} </Text>}
-                      </Block>
-                    ))}
+                    <Text className='publish-input-list' >{item.name} </Text>
                   </Block>
                 ))}
               </View>
@@ -270,7 +251,7 @@ export default function PublishRecruit() {
               {showUpload && model &&
                 <View className='publish-upload-tips'>可上传工地现场照片、工程图纸、承包合同等</View>
               }
-              </View>
+            </View>
             {showUpload && model &&
               <ImageView
                 images={model.view_images}
@@ -280,7 +261,7 @@ export default function PublishRecruit() {
               />
             }
           </View>
-          <View className='publish-recruit-btn' onClick={() => userPublishRecruitAction()} >确认发布</View>
+          <View className='publish-recruit-btn' onClick={() => userPublishRecruitAction(classMateArr)} >确认发布</View>
         </Form>
       </View>
     </Block>

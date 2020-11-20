@@ -10,7 +10,11 @@ import { SubscribeToNews } from '../../utils/subscribeToNews';
 import { useSelector, useDispatch } from '@tarojs/redux'
 import { isVaildVal, isPhone } from '../../utils/v'
 import { setAreaInfo, setArea } from '../../actions/recruit'//获取发布招工信息action
-
+import { RulesClassfies } from '../../components/classfiy_picker/index'
+interface ClassMateArr {
+  id: string
+  name: string
+}
 export default function fastPublishInit(InitParams: InitRecruitView) {
   // 获取用户信息
   const login = useSelector<any, boolean>(state => state.User['login'])
@@ -31,7 +35,8 @@ export default function fastPublishInit(InitParams: InitRecruitView) {
   // 获取redux中区域名称数据
   // 获取dispatch分发action
   const dispatch = useDispatch()
-  
+  //选中的工种数据
+  const [classMateArr, setclassMateArr] = useState<RulesClassfies[]>([])
   // 初始化招工信息
   useEffect(() => {
     // 判断是否登录，没有登录直接返回
@@ -48,7 +53,7 @@ export default function fastPublishInit(InitParams: InitRecruitView) {
           typeTextArr: res.typeTextArr,
           classifies: res.selectedClassifies,
           user_mobile: res.model.user_mobile || res.memberInfo.tel || '',
-          code:'',
+          code: '',
           view_images: res.view_image,
           detail: res.model.detail || '',
           address: res.model.address || '',
@@ -58,13 +63,13 @@ export default function fastPublishInit(InitParams: InitRecruitView) {
           province_id: res.model.province_id || '',
           city_id: res.model.city_id || '',
           location: res.model.location || '',
-          adcode:'',
+          adcode: '',
           county_id: res.model.county_id || '',
           is_check: res.model.hasOwnProperty('is_check') ? res.model.is_check : 1,
-          images:[],
+          images: [],
           check_fail_msg: res.model.check_fail_msg || ''
         }
-        
+
         // 数据保存到model中
         setModel(fastPublishInit)
         // 初始化用户区域数据
@@ -80,6 +85,19 @@ export default function fastPublishInit(InitParams: InitRecruitView) {
         if (res.view_image.length) setShowUpload(true)
         // 如果填写有招工详情数据，将填写数据长度保存到num中
         if (fastPublishInit.detail) setNum(fastPublishInit.detail.length)
+        //如果是修改 需要把之前选中的工种信息保存
+        if (res.selectedClassifies.length) {
+          let _Classifies: RulesClassfies[] = []
+          for (let i = 0; i < res.selectedClassifies.length;i++){
+            _Classifies.push({
+              id: res.selectedClassifies[i],
+              name:''
+            })
+          }
+          setclassMateArr(_Classifies)
+          console.log(classMateArr)
+          debugger
+        }
       } else {
         // 请求数据失败走提示框返回上一页面
         ShowActionModal({
@@ -175,7 +193,7 @@ export default function fastPublishInit(InitParams: InitRecruitView) {
     return data
   }
 
-  function userPublishRecruitAction() {
+  function userPublishRecruitAction(classMateArr: ClassMateArr[]) {
     let data = getPublishedInfo()
     if (!data) return
     if (!isVaildVal(data.detail, 15)) {
@@ -186,9 +204,11 @@ export default function fastPublishInit(InitParams: InitRecruitView) {
       Msg('请选择您的详细地址!')
       return
     }
-    if (!data.classifies.length) {
+    if (!classMateArr.length) {
       Msg('请选择您的工种!')
       return
+    } else {
+      data.classifies = classMateArr.map(item => item.id)
     }
     if (!isPhone(data.user_mobile)) {
       Msg('手机号输入有误!')
@@ -244,6 +264,8 @@ export default function fastPublishInit(InitParams: InitRecruitView) {
     userPublishRecruitAction,
     num,
     setNum,
-    phone
+    phone,
+    classMateArr,
+    setclassMateArr
   }
 }
