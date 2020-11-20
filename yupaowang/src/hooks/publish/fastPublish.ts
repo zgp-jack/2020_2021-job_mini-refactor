@@ -85,17 +85,24 @@ export default function fastPublishInit(InitParams: InitRecruitView) {
         if (res.view_image.length) setShowUpload(true)
         // 如果填写有招工详情数据，将填写数据长度保存到num中
         if (fastPublishInit.detail) setNum(fastPublishInit.detail.length)
-        //如果是修改 需要把之前选中的工种信息保存
+        //如果是修改 后台给的选中数据中只有ID 需要匹配name 再把之前选中的工种信息保存
         if (res.selectedClassifies.length) {
           let _Classifies: RulesClassfies[] = []
-          for (let i = 0; i < res.selectedClassifies.length;i++){
-            _Classifies.push({
-              id: res.selectedClassifies[i],
-              name:''
-            })
+          for (let i = 0; i < res.selectedClassifies.length; i++) {
+            for (let n = 0; n < fastPublishInit.classifyTree.length; n++) {
+              if (fastPublishInit.classifyTree[n].children.length > 0) {
+                for (let x = 0; x < fastPublishInit.classifyTree[n].children.length; x++) {
+                  if (fastPublishInit.classifyTree[n].children[x].id == res.selectedClassifies[i]) {
+                    _Classifies.push({
+                      id: fastPublishInit.classifyTree[n].children[x].id,
+                      name: fastPublishInit.classifyTree[n].children[x].name
+                    })
+                  }
+                }
+              }
+            }
           }
           setclassMateArr(_Classifies)
-          console.log(classMateArr)
           debugger
         }
       } else {
