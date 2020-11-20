@@ -103,7 +103,6 @@ export default function fastPublishInit(InitParams: InitRecruitView) {
             }
           }
           setclassMateArr(_Classifies)
-          debugger
         }
       } else {
         // 请求数据失败走提示框返回上一页面
