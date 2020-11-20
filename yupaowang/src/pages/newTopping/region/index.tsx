@@ -1,5 +1,5 @@
 import Taro, { Config, useDidShow, useState,useRouter } from '@tarojs/taro'
-import { View, Text, Image, Input } from '@tarojs/components'
+import { View, Text, Image, Input,ScrollView } from '@tarojs/components'
 import { IMGCDNURL } from '../../../config'
 import { hotAreas } from '../../../utils/request/index'; 
 import { useDispatch, useSelector } from '@tarojs/redux'
@@ -36,6 +36,8 @@ export default function Region() {
   const [inputVal,setInputVal] = useState<string>('');
   // 显示搜索
   const [isHistory, setIsHistory] = useState <boolean>(false);
+  // 索引
+  const [index,setIndex] = useState<string>('');
   useDidShow(()=>{
     hotAreas().then((res=>{
       if(res.errcode == 'ok'){
@@ -75,28 +77,49 @@ export default function Region() {
     setClickData([...clickResumeTopObj])
     // 获取历史记录
     const historyArr = Taro.getStorageSync(HistoryInfo);
-    setHistory(historyArr||[])
+    // 设置历史记录是否点击
+    const arrList = historyArr.map((v)=>{v.click =false ;return v});
+    for (let i = 0; i < arrList.length;i++){
+      for (let j = 0; j < clickResumeTopObj.length;j++){
+        if (arrList[i].id == clickResumeTopObj[j].id){
+          arrList[i].click = true;
+        }
+      }
+    }
+    setHistory(arrList||[])
     setIsHistory(false);
   })
+  const unique = (arr) => {
+    const res = new Map();
+    return arr.filter((arr) => !res.has(arr.id) && res.set(arr.id, 1));
+  }
   // 点击
-  const handleClick = (val,type?:string)=>{
+  const handleClick = (val,type?:string,historyType?:number)=>{
     // 缓存搜索
     if (type) {
       let data = Taro.getStorageSync(HistoryInfo);
-      console.error(data,'ddta')
       if (data.length) {
         let arr:HotType[] = [];
-        arr = [...data, val]
-        Taro.setStorageSync(HistoryInfo, arr);
-        setHistory(arr)
+        arr = [val,...data];
+        const list = unique(arr);
+        const listArr = list.slice(0,6);
+        Taro.setStorageSync(HistoryInfo, listArr);
+        setHistory(listArr)
       } else {
         Taro.setStorageSync(HistoryInfo, [val]);
         setHistory([val])
       }
     }
+    if (historyType){
+      if(val.click){
+        setOnFocus(false);
+      }
+      setIndex(`hot${val.pid}`)
+    }
     let data = [...areasData];
     let hotData = [...hot];
     let clickDataItem = [...clickData];
+    let historyData;
     // 全国
     if(val.pid == '0'){
       // 热门城市
@@ -122,6 +145,8 @@ export default function Region() {
         // 点击
         clickDataItem = [val];
       }
+      // 缓存
+      historyData = history.map((v)=>{v.click = false ;return v});
     }else{
       // 这是判断省市是否还能点击
       if(clickDataItem.length && !val.click){
@@ -138,7 +163,6 @@ export default function Region() {
           ShowActionModal({ 
             msg: `最多可同时置顶个${maxCity}市、${maxProvince}个省或直辖市` ,
             success:()=>{
-              console.error(1111)
             if(type){
               setHistory([]);
               setIsHistory(false);
@@ -153,7 +177,7 @@ export default function Region() {
         // 没有点击
         if(!val.click){
           for(let i =0;i<data.length;i++){
-            if(data[i].pid == val.pid){
+            if(data[i].id == val.id){
               for(let j=0;j<data[i].children.length;j++){
                 data[i].children[j].click = false;
                 if (data[i].children[j].id == val.id){
@@ -165,6 +189,13 @@ export default function Region() {
           clickDataItem = clickDataItem.filter(item => item.pid != val.id);
           clickDataItem = [...clickDataItem,val];
           clickDataItem = clickDataItem.filter(item =>item.pid !='0');
+          // 缓存
+          historyData = history.map((v)=>{
+            if (val.id == v.id) {
+              v.click = false;
+            }
+            return v;
+          })
         }else{
           for (let i = 0; i < data.length; i++) {
             for (let j = 0; j < data[i].children.length; j++) {
@@ -174,6 +205,15 @@ export default function Region() {
             }
           }
           clickDataItem = clickDataItem.filter(item => item.id != val.id);
+          // 缓存
+          historyData = history.map((v) => {
+            if (v.pid == val.id) {
+              if (val.id == v.id) {
+                v.click = true
+              }
+            }
+            return v;
+          })
         }
         hotData = handleHot(val);
       }else{
@@ -187,6 +227,13 @@ export default function Region() {
             }
           }
           clickDataItem = clickDataItem.filter(item => item.id != val.id);
+          // 缓存
+          historyData = history.map((v) => {
+            if (val.id == v.id) {
+              v.click = false
+            }
+            return v;
+          })
         }else{
           for (let i = 0; i < data.length; i++) {
             for (let j = 0; j < data[i].children.length; j++) {
@@ -206,7 +253,16 @@ export default function Region() {
           }
           clickDataItem = [...clickDataItem,val];
           clickDataItem = clickDataItem.filter(item=>item.pid != '0');
-          
+          // 缓存
+          historyData = history.map((v) => {
+            if (val.pid == v.id) {
+              v.click = false;
+            }
+            if (val.id == v.id) {
+              v.click = true;
+            }
+            return v;
+          })
         }
         hotData = handleHot(val);
       }
@@ -216,7 +272,7 @@ export default function Region() {
     setHot(hotData);
     setOnFocus(false);
     setSeachList([])
-    console.error(2312)
+    setHistory(historyData)
   }
   // 热门城市
   const handleHot = (val)=>{
@@ -245,17 +301,32 @@ export default function Region() {
   // 确认选择
   const handleJump = ()=>{
     const data = [...clickData];
-    console.error(data,'data');
-    dispatch(setClickResumeTop(data))
+    let province: resume_topObj_arrStr[] = [];
+    let country: resume_topObj_arrStr[] = [];
+    let city: resume_topObj_arrStr[] = [];
+    for (let i = 0; i < data.length;i++){
+      if(data[i].pid == '0'){
+        country.push(data[i])
+      }else if(data[i].pid == '1'){
+        province.push(data[i])
+      }else{
+        city.push(data[i]);
+      }
+    }
+    dispatch(setClickResumeTop([...country, ...province, ...city]))
     Taro.navigateBack();
   }
   // 输入搜索
   const handleInput = (e)=>{
     setIsHistory(false);
     setInputVal(e.detail.value);
-    const data = seachAreasList(e.detail.value);
-    console.error(data,'data');
-    setSeachList(data);
+    if(e.detail.value!=''){
+      const data = seachAreasList(e.detail.value);
+      setSeachList(data);
+    }else{
+      setIsHistory(true);
+      setSeachList([]);
+    }
   }
   // 清除搜索
   const handleEliminate = ()=>{
@@ -276,6 +347,7 @@ export default function Region() {
             </View>
             {!onFocus && <View className='region-top-tips'>请选择置顶范围：  </View>}
           </View>
+        <ScrollView className='ScrollView' scrollY scrollIntoView={index} scrollWithAnimation>
           <View className='region-content'>
             <View className='region-content-hotCity-content-title'>热门城市</View>
             <View className='region-content-hotCity-content'>
@@ -290,11 +362,11 @@ export default function Region() {
             <View className='region-content-allCity'>
               {areasData.map((v)=>(
                 <View>
-                  {v.children.length && <View>
+                  {v.children.length && <View id={`hot${v.id}`}>
                     <View className='region-content-allCity-tips'>{v.ad_name}</View>
                     <View className='region-content-allCity-box'>
                       {v.children.map(((val,i)=>(
-                        <View key={val.id} className={val.click ? 'region-content-allCity-box-list-click' : 'region-content-allCity-box-list'} onClick={()=>{handleClick(val)}}>{i == 0 ? '全省置顶' : val.name}
+                        <View key={val.id} className={val.click ? 'region-content-allCity-box-list-click' : 'region-content-allCity-box-list'} onClick={() => { handleClick(val)}}>{i == 0 ? '全省置顶' : val.name}
                           {i == 0 && <Image src={`${IMGCDNURL}lpy/recruit/settop-hot.png`} className='region-content-allCity-box-list-img' />}
                         </View>
                       )))}
@@ -307,6 +379,7 @@ export default function Region() {
               <View className='region-content-box-btn' onClick={handleJump}>确认选择</View>
             </View>
           </View>
+          </ScrollView>
         </View>
       }
       {onFocus &&
@@ -317,7 +390,7 @@ export default function Region() {
             <Text onClick={handleSeach} className='region-seachContent-seach-btn' >搜索</Text>
           </View>
           <View className='region-seachContent-seach-history'>
-            {history.length && isHistory &&
+            {history.length && isHistory && onFocus && 
               <View>
                 <View className='region-seachContent-seach-history-flex'>
                   <View>搜索历史</View><View onClick={handleEliminate}>
@@ -326,14 +399,14 @@ export default function Region() {
                 </View>
               <View className='region-seachContent-seach-history-flex-box'>
                   {history.map((v)=>(
-                    <View className='region-seachContent-seach-history-flex-box-list' key={v.id}>{v.name}</View>
+                    <View onClick={()=>handleClick(v,'',1)} className='region-seachContent-seach-history-flex-box-list' key={v.id}>{v.name}</View>
                   ))}
                 </View>
               </View>
               }
               <View className='region-seachContent-seach-seachList'>
                 {seachList.map((v)=>(
-                  <View onClick={()=>handleClick(v,'seach')} className='region-seachContent-seach-seachList-list' key={v.id}>{v.allName}</View>
+                  <View onClick={()=>handleClick(v,'seach',1)} className='region-seachContent-seach-seachList-list' key={v.id}>{v.allName}</View>
                 ))}
               </View>
             </View>

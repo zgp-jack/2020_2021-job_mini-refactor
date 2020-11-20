@@ -13247,6 +13247,13 @@ function useResume() {
       _useState34 = _slicedToArray(_useState33, 2),
       defaultTopArea = _useState34[0],
       setDefaultTopArea = _useState34[1];
+  // 置顶城市
+
+
+  var _useState35 = (0, _taroTt.useState)(''),
+      _useState36 = _slicedToArray(_useState35, 2),
+      topCity = _useState36[0],
+      setTopCity = _useState36[1];
   // 项目列表
 
 
@@ -13361,6 +13368,15 @@ function useResume() {
         setCheck(res.data.info.check);
         // 没有置顶的时候默认置顶城市
         setDefaultTopArea(res.data.default_top_area);
+        // 置顶中的置顶城市
+        var topCityArr = [].concat(_toConsumableArray(res.data.resume_top.top_provinces_str || []), _toConsumableArray(res.data.resume_top.top_citys_str || []));
+        var topCityStr = [];
+        if (topCityArr.length) {
+          for (var _i3 = 0; _i3 < topCityArr.length; _i3++) {
+            topCityStr.push(topCityArr[_i3].name);
+          }
+        }
+        setTopCity(topCityStr.length ? topCityStr.toString() : '');
         //人员信息
         var introduces = _extends({}, _data.INTRODUCERS_DATA);
         introduces = _extends({}, introduces, res.data.introduces);
@@ -13403,8 +13419,8 @@ function useResume() {
       for (var i = 0; i < selectData.length; i++) {
         selectdataList.push(selectData[i].name);
       }
-      for (var _i3 = 0; _i3 < selectData.length; _i3++) {
-        selectdataId.push(selectData[_i3].id);
+      for (var _i4 = 0; _i4 < selectData.length; _i4++) {
+        selectdataId.push(selectData[_i4].id);
       }
       _taroTt2.default.showActionSheet({
         itemList: selectdataList,
@@ -13463,7 +13479,8 @@ function useResume() {
     isModifyProject: isModifyProject,
     projectNum: projectNum,
     certificatesNum: certificatesNum,
-    defaultTopArea: defaultTopArea
+    defaultTopArea: defaultTopArea,
+    topCity: topCity
   };
 }
 
@@ -16434,22 +16451,11 @@ var addZero = exports.addZero = function addZero(num) {
   return num;
 };
 var getMyDate = exports.getMyDate = function getMyDate(str) {
-  // const oDate = new Date(str),
-  //   oYear = oDate.getFullYear(),
-  //   oMonth = oDate.getMonth() + 1,
-  //   oDay = oDate.getDate(),
-  //   oHour = oDate.getHours(),
-  //   oMin = oDate.getMinutes(),
-  //   oSen = oDate.getSeconds(),
-  //   oTime = oYear + '-' + addZero(oMonth) + '-' + addZero(oDay) + ' ' + addZero(oHour) + ':' +
-  //   addZero(oMin);
   var now = new Date(str),
       y = now.getFullYear(),
       m = now.getMonth() + 1,
       d = now.getDate();
-  console.error(now, '111');
   return y + "-" + (m < 10 ? "0" + m : m) + "-" + (d < 10 ? "0" + d : d) + " " + now.toTimeString().substr(0, 5);
-  // return oTime;
 };
 
 /***/ }),
@@ -16495,13 +16501,18 @@ function ShowActionModal(data) {
       _data$confirmText = data.confirmText,
       confirmText = _data$confirmText === undefined ? '确定' : _data$confirmText,
       msg = data.msg,
-      _success = data.success;
+      _success = data.success,
+      _data$showCancel = data.showCancel,
+      showCancel = _data$showCancel === undefined ? false : _data$showCancel,
+      _data$confirmColor = data.confirmColor,
+      confirmColor = _data$confirmColor === undefined ? '' : _data$confirmColor;
 
   _taroTt2.default.showModal({
     title: title,
     content: typeof data === 'string' ? data : msg,
-    showCancel: false,
+    showCancel: showCancel,
     confirmText: confirmText,
+    confirmColor: '#108EEF',
     success: function success() {
       _success && _success(data);
     }

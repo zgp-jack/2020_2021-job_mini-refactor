@@ -12,16 +12,19 @@ interface ShowBackModel {
   title?: string,
   msg: string,
   confirmText?: string,
-  success?: (data?) => void
+  success?: (data?) => void,
+  showCancel?:boolean,
+  confirmColor?:string,
 }
 
 export function ShowActionModal(data: ShowBackModel){
-  let { title = '温馨提示', confirmText = '确定', msg, success } = data
+  let { title = '温馨提示', confirmText = '确定', msg, success, showCancel = false, confirmColor='' } = data
   Taro.showModal({
     title: title,
     content: (typeof data === 'string') ? data : msg,
-    showCancel: false,
+    showCancel,
     confirmText: confirmText,
+    confirmColor: '#108EEF',
     success: ()=> {
       success && success(data)
     }

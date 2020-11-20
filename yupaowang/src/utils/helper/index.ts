@@ -189,20 +189,9 @@ export const addZero = (num) => {
   return num;
 }
 export const getMyDate = (str) => {
-  // const oDate = new Date(str),
-  //   oYear = oDate.getFullYear(),
-  //   oMonth = oDate.getMonth() + 1,
-  //   oDay = oDate.getDate(),
-  //   oHour = oDate.getHours(),
-  //   oMin = oDate.getMinutes(),
-  //   oSen = oDate.getSeconds(),
-  //   oTime = oYear + '-' + addZero(oMonth) + '-' + addZero(oDay) + ' ' + addZero(oHour) + ':' +
-  //   addZero(oMin);
   var now = new Date(str),
     y = now.getFullYear(),
     m = now.getMonth() + 1,
     d = now.getDate();
-    console.error(now,'111')
   return y + "-" + (m < 10 ? "0" + m : m) + "-" + (d < 10 ? "0" + d : d) + " " + now.toTimeString().substr(0, 5);
-  // return oTime;
 }

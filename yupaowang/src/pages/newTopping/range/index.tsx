@@ -25,7 +25,6 @@ export default function Range() {
   // 初始化页面参数
   const router = useRouter()
   const { defaultTopArea } = router.params;
-  console.error(defaultTopArea,'defaultTopArea')
   const dispatch = useDispatch();
   // 获取置顶信息
   const resumeTopData: useResumeType = useSelector<any, useResumeType>(state => state['resumeTop']);
@@ -78,7 +77,6 @@ export default function Range() {
   useEffect(()=>{
     first = false;
     resumesTopConfigAction({ interface_version:'v2'}).then((res)=>{
-      console.error(res);
       if(res.errcode == 'ok'){
         // 处理3天内显示“1天（24小时）”，超过3天显示“4天”
         let arr:string[] = [];
@@ -160,7 +158,6 @@ export default function Range() {
     isCity = true;
     setAreas(resumeTopData.clickResumeTopObj);
     getIntegral('', '', '',resumeTopData.clickResumeTopObj)
-    console.error(111)
   }, [resumeTopData.clickResumeTopObj])
   //跳转 
   const userRouteJump = (url: string) => {
@@ -191,7 +188,6 @@ export default function Range() {
   }
   // 获取积分
   const getIntegral = (day?, areasData?,obj?,dataItem?)=>{
-    console.error(isTime,isCity,'111')
     let num;
     if(day){
       num = day;
@@ -199,10 +195,8 @@ export default function Range() {
     }else{
       num = isTime?defultDay[pickIndex] :0;
     }
-    console.error(num,'num')
     // 获取所有的选择城市
     const data = dataItem ? dataItem: areasData ? areasData: [...areas] || [];
-    console.error(data,'data')
     let city = 0, whole = 0, province = 0;
     for (let i = 0; i < data.length; i++) {
       if (data[i].pid == '0') {
@@ -213,7 +207,6 @@ export default function Range() {
         city++;
       }
     }
-    console.error(city, whole, province)
     // 获取旧价格
     const oldPrice: number = +maxPrice;
     // 获取价格
@@ -224,9 +217,6 @@ export default function Range() {
     let oldTime = resumeTopData.resumeTopObj.end_time ? +resumeTopData.resumeTopObj.end_time : 0
     let remDay: number = (oldTime - new Date().getTime() / 1000) / 86400;
     let money;
-    console.error(newPrice,num,'2312321')
-    console.error(maxPrice,'1231231')
-    console.error(isTime, isCity,'isCity')
     if (isTime && !isCity){
       if (oldPrice == newPrice) {
         money = newPrice * num;
@@ -278,7 +268,6 @@ export default function Range() {
   const handleTopping = ()=>{
     // 市、省、全国
     const data = [...areas];
-    console.error(data,'data');
     let cityArr:string[] = [], provinceArr:string[] = [], is_country=0;
     for (let i = 0; i < data.length;i++){
       if(data[i].pid=='0'){
@@ -289,8 +278,6 @@ export default function Range() {
         cityArr.push(data[i].id);
       }
     }
-    console.error(cityArr, provinceArr)
-    console.error(integral,'integral')
     let params;
     // 进来的时间-提交时间+服务器时间
     const newTime: number = new Date().getTime() / 1000;
@@ -369,8 +356,6 @@ export default function Range() {
       }
     })
   }
-  console.error(areas,'areasareas')
-  console.error(integral,'integral')
   return (
     <View className='range'>
       <View>

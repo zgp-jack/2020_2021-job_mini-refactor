@@ -49,6 +49,8 @@ export default function useResume(){
   const [certificatesNum, setCertificatesNum] = useState<number>(0);
   // 默认城市
   const [defaultTopArea, setDefaultTopArea] = useState<number>(0);
+  // 置顶城市
+  const [topCity, setTopCity] = useState<string>('');
   // 项目列表
   useEffect(()=>{
     initResumeData()
@@ -163,6 +165,15 @@ export default function useResume(){
         setCheck(res.data.info.check);
         // 没有置顶的时候默认置顶城市
         setDefaultTopArea(res.data.default_top_area);
+        // 置顶中的置顶城市
+        const topCityArr = [...res.data.resume_top.top_provinces_str || [],...res.data.resume_top.top_citys_str||[]];
+        let topCityStr:string[]=[];
+        if (topCityArr.length){
+          for (let i = 0; i < topCityArr.length;i++){
+            topCityStr.push(topCityArr[i].name);
+          }
+        }
+        setTopCity(topCityStr.length ? topCityStr.toString():'');
         //人员信息
         let introduces: resIntroduceObj = { ...INTRODUCERS_DATA };
         introduces = { ...introduces, ...res.data.introduces }
@@ -267,5 +278,6 @@ export default function useResume(){
     projectNum,
     certificatesNum,
     defaultTopArea,
+    topCity,
   }
 }
