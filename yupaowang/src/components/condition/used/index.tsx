@@ -225,19 +225,6 @@ function UsedCondition({ setSearchData }: ConditionProps) {
     setChildAreaList(AREAS[areaIndex].children);
   }, [areaIndex]);
 
-  const onScrollAction = (e: any, type: string) => {
-    let top: number = e.detail.scrollTop;
-    switch (type) {
-      case AreaPickerKey:
-        setAreaScrollTop(top);
-        break;
-      case ClassifyPickerKey:
-        setClassifyScrollTop(top);
-        break;
-      default:
-        break;
-    }
-  };
   return (
     <Block>
       <View className="recruit-condition-box">
@@ -285,7 +272,6 @@ function UsedCondition({ setSearchData }: ConditionProps) {
               className="drawer-full-lists drawer-half-lists"
               scrollY
               scrollTop={areaScrollTop}
-              onScroll={e => onScrollAction(e, AreaPickerKey)}
             >
               {childAreaList.map((item, i) => (
                 <View
@@ -329,7 +315,6 @@ function UsedCondition({ setSearchData }: ConditionProps) {
               className="drawer-full-lists drawer-half-lists"
               scrollY
               scrollTop={classifyScrollTop}
-              onScroll={e => onScrollAction(e, ClassifyPickerKey)}
             >
               {fleamarketTreeChildData.map((item, i) => (
                 <View

@@ -14,7 +14,8 @@ var INVITESOURCE: string = "712790d9629c6dcea00e3f5bff60132b"
 var USESUBSCRIBEMESSAGE: boolean = false
 // * textarea能输入的最大字数
 var TEXTAREAMAXLENGTH: number = 500
-
+// * 应用内是否存在下载APP引流
+var DOWNLOADAPP: boolean = true
 
 module.exports = {
   PAGETITLE,
@@ -23,5 +24,6 @@ module.exports = {
   INVITESOURCE,
   USESUBSCRIBEMESSAGE,
   ISCANSHARE,
-  TEXTAREAMAXLENGTH
+  TEXTAREAMAXLENGTH,
+  DOWNLOADAPP
 }

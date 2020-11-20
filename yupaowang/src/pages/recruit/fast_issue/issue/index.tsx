@@ -1,8 +1,9 @@
 import Taro, { Config } from '@tarojs/taro'
-import { View, Textarea, Input, Image } from '@tarojs/components'
+import { View, Textarea, Input, Image, Block } from '@tarojs/components'
 import WordsTotal from '../../../../components/wordstotal'
-import { useFastIssue } from '../../../../hooks/publish/fast_issue'
+import { useFastIssue } from '../../../../hooks/publish/fastIssue/fast_issue'
 import { IMGCDNURL } from '../../../../config'
+import Auth from '../../../../components/auth'
 import './index.scss'
 
 
@@ -14,6 +15,8 @@ export default function FastIssue() {
     inputEnter(e, key)
   }
   return (
+    <Block>
+    <Auth />
     <View className="issue-container">
       <View className="issue-textarea-box">
         <Textarea
@@ -35,6 +38,7 @@ export default function FastIssue() {
       </View>:''}
       <View className="issue-btn" onClick={() => fastPublish()}>发布招工</View>
     </View >
+    </Block>
   )
 }
 FastIssue.config = {

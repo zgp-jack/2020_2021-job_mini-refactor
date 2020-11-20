@@ -1,5 +1,5 @@
 import Taro, { useState, useEffect } from '@tarojs/taro'
-import { RecruitModelInfo, RecruitPublishInfo, UserLastPublishRecruitArea } from '../../pages/recruit/index.d'
+import { RecruitModelInfo, RecruitPublishInfo, UserLastPublishRecruitArea} from '../../pages/recruit/index.d'
 import { getPublishRecruitView, publishRecruitInfo} from '../../utils/request'
 import { InitRecruitView } from '../../pages/recruit/publish'
 import { UserLastPublishArea, UserLocationCity } from '../../config/store'
@@ -15,7 +15,7 @@ import { setAreaInfo, setArea } from '../../actions/recruit'//获取发布招工
 export default function usePublishViewInfo(InitParams: InitRecruitView){
   // 获取用户信息
   const login = useSelector<any, boolean>(state => state.User['login'])
-  // 视图显示信息
+  // 极速发布基本信息
   const [model, setModel] = useState<RecruitModelInfo>()
   // 是否展开图片上传
   const [showUpload, setShowUpload] = useState<boolean>(false)
@@ -169,9 +169,10 @@ export default function usePublishViewInfo(InitParams: InitRecruitView){
       classifies: model.classifies,
       images: model.view_images.map(item => item.url)
     }
-    const mydata = JSON.parse(JSON.stringify(data))
+    let mydata = JSON.parse(JSON.stringify(data))
     let imgs: string = mydata.images.join(',')
-    mydata.images = imgs
+    let classifies: string = mydata.classifies.join(',')
+    mydata = {...mydata, images: imgs, classifies: classifies}
     return mydata
   }
 

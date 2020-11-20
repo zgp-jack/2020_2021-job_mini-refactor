@@ -74,7 +74,7 @@ var _App = function (_BaseComponent) {
     _this.config = {
       pages: ['pages/index/index', 'pages/userauth/index', "pages/recruit/publish/index", "pages/used/lists/index", "pages/map/recruit/index", "pages/map/resume/index", "pages/used/publish/index", "pages/used/info/index", "pages/static/invite/index", 'pages/static/notice/index', "pages/getintegral/index", "pages/integral/source/index", "pages/integral/temp/index", "pages/integral/official/index", "pages/integral/expend/index", "pages/recharge/index", "pages/realname/index", "pages/map/realname/index", "pages/userinfo/info/index", "pages/userinfo/add/index", "pages/userinfo/phone/index", "pages/userinfo/updatePass/index", "pages/published/recruit/index", "pages/published/used/index", "pages/collection/index", "pages/help/index", "pages/feedbacklist/index", "pages/feedback/index", "pages/information/mymessage/index", "pages/information/system/index", 'pages/integral/tabber/index', 'pages/detail/info/index', 'pages/topping/index', 'pages/topping/distruction/index',
       // 'pages/topping/recruit/index',//置顶找活范围
-      'pages/resume/publish/index', 'pages/resume/add_info/index', 'pages/resume/add_member/index', 'pages/resume/add_skill/index', 'pages/resume/add_project/index', 'pages/resume/projects/index', 'pages/resume/skills/index', 'pages/rank-rules/index', 'pages/turntable/index', 'pages/resume/detail/index', 'pages/resume/newPreview/index', 'pages/resume/preview/index', 'pages/login/index', 'pages/recruit/fast_issue/issue/index', 'pages/recruit/fast_issue/code/index', 'pages/recruit/fast_issue/release/index'],
+      'pages/resume/publish/index', 'pages/resume/add_info/index', 'pages/resume/add_member/index', 'pages/resume/add_skill/index', 'pages/resume/add_project/index', 'pages/resume/projects/index', 'pages/resume/skills/index', 'pages/rank-rules/index', 'pages/turntable/index', 'pages/resume/detail/index', 'pages/resume/newPreview/index', 'pages/resume/preview/index', 'pages/login/index', 'pages/recruit/fastPublish/index', 'pages/recruit/fast_issue/issue/index', 'pages/recruit/fast_issue/code/index', 'pages/recruit/fast_issue/release/index'],
       subPackages: [{
         root: 'subpackage/pages',
         pages: ['checkauth/index', 'about/index', 'report/index', 'download/index', 'ranking/index', 'course/index', 'anti-fraud/index', 'projects/index', 'skills/index', 'news/index']
@@ -287,16 +287,14 @@ var _recruit_top = __webpack_require__(/*! ./recruit_top */ "./src/reducers/recr
 
 var _recruit_top2 = _interopRequireDefault(_recruit_top);
 
+var _publishWay = __webpack_require__(/*! ./publishWay */ "./src/reducers/publishWay.ts");
+
+var _publishWay2 = _interopRequireDefault(_publishWay);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 //合并reducer
-/*
- * @Author: zyb
- * @Date: 2020-11-03 14:36:47
- * @LastEditors: jsxin
- * @LastEditTime: 2020-11-19 09:34:11
- * @Description:
- */
+//发布招工reducer
 exports.default = (0, _redux.combineReducers)({
   tabbar: _tabbar2.default,
   WechatNotice: _wechat_notice2.default,
@@ -315,8 +313,15 @@ exports.default = (0, _redux.combineReducers)({
   RecruitAction: _recruit.RecruitAction,
   resumeData: _resume_data2.default,
   resumeList: _resume_list2.default,
-  recruitTop: _recruit_top2.default
-}); //发布招工reducer
+  recruitTop: _recruit_top2.default,
+  publishWay: _publishWay2.default
+}); /*
+     * @Author: zyb
+     * @Date: 2020-11-03 14:36:47
+     * @LastEditors: jsxin
+     * @LastEditTime: 2020-11-20 17:01:57
+     * @Description:
+     */
 
 /***/ }),
 
@@ -490,6 +495,50 @@ function MyAreaInfo() {
     case _publish.SETPUBLISHDATA:
       state = action.data;
       return state;
+    default:
+      return state;
+  }
+}
+
+/***/ }),
+
+/***/ "./src/reducers/publishWay.ts":
+/*!************************************!*\
+  !*** ./src/reducers/publishWay.ts ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+exports.default = MyAreaInfo;
+
+var _publishWay = __webpack_require__(/*! ../constants/publishWay */ "./src/constants/publishWay.ts");
+
+// 默认发布招工state数据
+var DEFAULT_STATE_PUBLISHDATA = {
+  resumeText: "",
+  loginBefore: false,
+  loginAfter: false,
+  logoutWay: "",
+  loginWay: ""
+};
+function MyAreaInfo() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : DEFAULT_STATE_PUBLISHDATA;
+  var action = arguments[1];
+
+  switch (action.type) {
+    case _publishWay.GETPUBLISHWAY:
+      return state;
+    case _publishWay.SETPUBLISHWAY:
+      return _extends({}, state, action.data);
     default:
       return state;
   }

@@ -71,7 +71,7 @@ var Home = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (Home.__proto__ || Object.getPrototypeOf(Home)).apply(this, arguments));
 
-    _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "$compid__10", "$compid__11", "$compid__12", "$compid__13", "$compid__14", "$compid__15", "IMGCDNURL", "ISWEIXIN", "shwoCity", "area", "homeIndex"];
+    _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "$compid__10", "$compid__11", "$compid__12", "$compid__13", "$compid__14", "$compid__15", "IMGCDNURL", "DOWNLOADAPP", "ISWEIXIN", "shwoCity", "area", "homeIndex"];
     _this.customComponents = ["SwiperComponent", "Projects", "Fastfun", "SwiperNews", "RecruitList", "ResumeList", "UsedList", "About", "HomeCity"];
     return _this;
   }
@@ -238,15 +238,18 @@ var Home = function (_Taro$Component) {
         return userRouteJump('/subpackage/pages/download/index');
       };
       this.anonymousFunc2 = function () {
-        return tabbarJump(_tabbar2.RECRUIT);
+        return userRouteJump(_index.PUBLISHRECRUIT);
       };
       this.anonymousFunc3 = function () {
-        return tabbarJump(_tabbar2.RESUME);
+        return tabbarJump(_tabbar2.RECRUIT);
       };
       this.anonymousFunc4 = function () {
-        return tabbarJump(_tabbar2.USED);
+        return tabbarJump(_tabbar2.RESUME);
       };
       this.anonymousFunc5 = function () {
+        return tabbarJump(_tabbar2.USED);
+      };
+      this.anonymousFunc6 = function () {
         return userRouteJump(_index.PUBLISHRECRUIT);
       };
       var anonymousState__temp = shwoCity ? function (val, id) {
@@ -291,6 +294,7 @@ var Home = function (_Taro$Component) {
         $compid__14: $compid__14,
         $compid__15: $compid__15,
         IMGCDNURL: _index.IMGCDNURL,
+        DOWNLOADAPP: _index.DOWNLOADAPP,
         ISWEIXIN: false,
         shwoCity: shwoCity,
         area: area
@@ -327,12 +331,17 @@ var Home = function (_Taro$Component) {
     value: function anonymousFunc5(e) {
       ;
     }
+  }, {
+    key: "anonymousFunc6",
+    value: function anonymousFunc6(e) {
+      ;
+    }
   }]);
 
   return Home;
 }(_taroTt2.default.Component);
 
-Home.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5"];
+Home.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6"];
 Home.$$componentPath = "pages/home/index";
 exports.default = Home;
 

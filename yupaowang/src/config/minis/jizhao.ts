@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-10-28 11:04:26
- * @LastEditTime: 2020-11-16 10:20:41
+ * @LastEditTime: 2020-11-19 14:36:55
  * @LastEditors: jsxin
  * @Description: In User Settings Edit
  * @FilePath: \yupaowang\src\config\minis\jizhao.ts
@@ -24,6 +24,8 @@ var USESUBSCRIBEMESSAGE: boolean = true
 const VIDEOAD = 'adunit-31b05acadbd2a1d1'
 // * textarea能输入的最大字数
 var TEXTAREAMAXLENGTH: number = 500
+// * 应用内是否存在下载APP引流
+var DOWNLOADAPP: boolean = true
 
 
 module.exports = {
@@ -33,5 +35,6 @@ module.exports = {
   INVITESOURCE,
   USESUBSCRIBEMESSAGE,
   VIDEOAD,
-  TEXTAREAMAXLENGTH
+  TEXTAREAMAXLENGTH,
+  DOWNLOADAPP
 }

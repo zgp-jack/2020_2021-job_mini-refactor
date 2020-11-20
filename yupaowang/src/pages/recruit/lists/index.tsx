@@ -10,7 +10,7 @@ import { RecruitListItem } from '../../../utils/request/index.d'
 import { UserLocationPromiss, ChildItems, AREACHINA, getCityInfo } from '../../../models/area'
 import { UserListChooseCity, UserLocationCity } from '../../../config/store'
 import { userAuthLoction } from '../../../utils/helper'
-import { PUBLISHRECRUIT } from '../../../config'
+import { PUBLISHRECRUIT,PUBLISHFAST } from '../../../config'
 import { AreaPickerKey, ClassifyPickerKey, FilterPickerKey } from '../../../config/pages/lists'
 import './index.scss'
 import Msg from '../../../utils/msg'
@@ -132,7 +132,10 @@ export default function Recruit(){
 
   // * 发布招工
   const userPublishRecruit = ()=> {
-    Taro.navigateTo({ url: PUBLISHRECRUIT})
+    // Taro.navigateTo({url: '/pages/recruit/publish/index'})
+    // Taro.navigateTo({url: '/pages/recruit/fastPublish/index'})
+    // Taro.navigateTo({ url: PUBLISHRECRUIT})
+    Taro.navigateTo({ url: PUBLISHFAST})
   }
 
   // * 更新筛选条件

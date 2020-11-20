@@ -49,8 +49,9 @@ export const ProjectImgMaxNum: number = 6
 // * 首页
 export const INDEXPATH: string = '/pages/index/index'
 // * 发布招工页面
-// export const PUBLISHRECRUIT: string = '/pages/recruit/publish/index'
 export const PUBLISHRECRUIT: string = '/pages/recruit/fast_issue/issue/index'
+// * 急速发布
+export const PUBLISHFAST: string = '/pages/recruit/fastPublish/index'
 // * 发布找活页面
 export const PUBLISHRESUME: string = '/pages/resume/publish/index'
 // * 发布二手交易
@@ -91,3 +92,5 @@ export const USESUBSCRIBEMESSAGE: boolean = MINICONFIG.USESUBSCRIBEMESSAGE
 export const ISCANSHARE: boolean = MINICONFIG.ISCANSHARE
 // * textarea能输入的最大字数
 export const TEXTAREAMAXLENGTH: number = MINICONFIG.TEXTAREAMAXLENGTH
+// * 应用内是否使用下载APP引流
+export const DOWNLOADAPP: boolean = MINICONFIG.DOWNLOADAPP

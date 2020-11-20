@@ -82,7 +82,7 @@ var RealnameMap = function (_Taro$Component) {
       navigationBarTitleText: '地址选择'
     };
 
-    _this.$usedState = ["loopArray229", "loopArray230", "$compid__174", "smAreaText", "showHistory", "histroyList", "lists", "IMGCDNURL", "showCity", "area"];
+    _this.$usedState = ["loopArray56", "loopArray57", "$compid__46", "smAreaText", "showHistory", "histroyList", "lists", "IMGCDNURL", "showCity", "area"];
     _this.anonymousFunc4Map = {};
     _this.anonymousFunc5Map = {};
     _this.customComponents = ["Cities"];
@@ -106,10 +106,10 @@ var RealnameMap = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__174"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__46"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__174 = _genCompid2[0],
-          $compid__174 = _genCompid2[1];
+          $prevCompid__46 = _genCompid2[0],
+          $compid__46 = _genCompid2[1];
 
       var setRealnameArea = (0, _redux.useSelector)(function (store) {
         return store['realname'].setRealnameArea;
@@ -339,12 +339,12 @@ var RealnameMap = function (_Taro$Component) {
       this.anonymousFunc3 = function () {
         return userCloseMap();
       };
-      var loopArray229 = showHistory ? histroyList.map(function (item, index) {
+      var loopArray56 = showHistory ? histroyList.map(function (item, index) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
         var $loopState__temp2 = showHistory ? index + index : null;
-        var _$indexKey = "cbazz" + index;
+        var _$indexKey = "ffzzz" + index;
         _this2.anonymousFunc4Map[_$indexKey] = function () {
           return userClickAreaItem(item.$original);
         };
@@ -354,12 +354,12 @@ var RealnameMap = function (_Taro$Component) {
           $original: item.$original
         };
       }) : [];
-      var loopArray230 = lists.map(function (item, index) {
+      var loopArray57 = lists.map(function (item, index) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
         var $loopState__temp4 = index + index;
-        var _$indexKey2 = "cbbzz" + index;
+        var _$indexKey2 = "fgzzz" + index;
         _this2.anonymousFunc5Map[_$indexKey2] = function () {
           return userClickAreaItem(item.$original);
         };
@@ -375,11 +375,11 @@ var RealnameMap = function (_Taro$Component) {
         "userLoc": userLoc,
         "userChangeCity": userChangeCity,
         "userTapCityBtn": userTapCityBtn
-      }, $compid__174, $prevCompid__174);
+      }, $compid__46, $prevCompid__46);
       Object.assign(this.__state, {
-        loopArray229: loopArray229,
-        loopArray230: loopArray230,
-        $compid__174: $compid__174,
+        loopArray56: loopArray56,
+        loopArray57: loopArray57,
+        $compid__46: $compid__46,
         smAreaText: smAreaText,
         showHistory: showHistory,
         histroyList: histroyList,

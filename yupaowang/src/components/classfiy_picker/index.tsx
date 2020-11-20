@@ -20,8 +20,8 @@ export interface SelectedClassfies extends ProfessionBaseData{
 export interface ClassfiyProps {
   hiddenPickerModel: () => void,
   selectClassfy: (selectClassify: RulesClassfies[]) => void,
-  classifies: SelectedClassfies[],
-  maxClassifyCount: number,
+  classifies: SelectedClassfies[] | any,
+  maxClassifyCount: number | undefined,
   choceClassfies: RulesClassfies[],
 }
 
@@ -41,8 +41,9 @@ export default function ClassifyPicker ({
   const [childClassifies, setChildClassifies] = useState<ProfessionRecruitChildrenData[]>([])
   useEffect(() => {
     initChildWorkType()
+    //计算选中数量
+    findClassSelectNum()
   }, [])
-  
   // 初始化子类工种信息和选中状态
   function initChildWorkType (index:number=0) {
     // 选择工种字段
@@ -60,6 +61,30 @@ export default function ClassifyPicker ({
     // 设置父类对应子类工种数据
     setChildClassifies(data)
   }
+  //从所有工种里找出choceClassfies的工种计算选中数量
+  function findClassSelectNum() {
+    //所有工种
+    let _workType: SelectedClassfies[] = JSON.parse(JSON.stringify(workType))
+    //传过来的选中的工种xs
+    let _choceClassfies: RulesClassfies[] = choceClassfies
+    //循环所有工种和选中工种 进行匹配 
+    for (let i = 0; i < _workType.length;i++){
+      //如果有二级工种
+      if (_workType[i].children.length>0){
+        for (let n = 0; n < _workType[i].children.length;n++){
+          //二级工种中存在选中的工种 一级工种num+1
+          if (_choceClassfies.findIndex(item => item.id == workType[i].children[n].id) !== -1) {
+            //防止一级工种中没有num字段 默认0
+            let count = _workType[i].num || 0;
+            //一级工种选中数量+1
+            _workType[i].num = count + 1
+          }
+        }
+      }
+    }
+    setWorkType(_workType)
+  }
+
   // 选择一级工种信息
   function userCheckPindex(index:number) {
     // 一级工种index
@@ -70,7 +95,7 @@ export default function ClassifyPicker ({
   // 用户选择工种
   function userCheckWorkType (index:number) {
     // 获取最大工种数量
-    let num:number = maxClassifyCount
+    let num:number | undefined = maxClassifyCount
     // 选择工种id
     let id:string = childClassifies[index].id
     // 工种选择状态
@@ -98,7 +123,7 @@ export default function ClassifyPicker ({
       // 检查选择工种数量
       let len = ClassifyidsData.length
       // 大于规定数量给出提示
-      if (len >= num) {
+      if (len >= (num as number)) {
         Msg('工种最多可以选择' + num + '个')
         return false
       }

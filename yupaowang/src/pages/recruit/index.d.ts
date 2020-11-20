@@ -33,7 +33,7 @@ export interface RecruitBaseInfo {
   location: string,
   adcode: string,
   county_id: string,
-  code: string
+  code: string,
 }
 
 export interface RecruitModelInfo extends RecruitBaseInfo {
@@ -44,6 +44,65 @@ export interface RecruitModelInfo extends RecruitBaseInfo {
   view_images: RecruitImageModel[],
   is_check: number,
   check_fail_msg: string
+}
+
+//极速发布基础信息
+export interface FastPublishBase{
+  address: string,
+  infoId: string,
+  type: string,
+  user_name: string,
+  province_id: number,
+  city_id: number,
+  location: string,
+  adcode: string,
+  county_id: string,
+  images: string[],
+  detail: string,
+  user_mobile: string,
+  code: string,
+  classifies: string[],
+}
+
+// 极速发布数据
+export interface FastPublishInit extends FastPublishBase{
+  classifyTree: ProfessionRecruitData[],
+  mate_data: MateDataType[],
+  not_mate_data: MateDataType[],
+  placeholder:string,
+  memberInfo: FastPublishMenberInfo,
+  errcode:string,
+  typeTextArr: FasttypeTextArr,
+  classifies: string[],
+  view_images: RecruitImageModel[],
+  is_check: number,
+  check_fail_msg: string
+}
+export interface MateDataType {
+  keywords: string
+  name: string
+  occupation_id: string
+}
+export interface FastPublishMenberInfo {
+  check_degree: string,
+  headimgurl: string,
+  id: string,
+  is_check: string,
+  status: string,
+  tel: string,
+  username: string,
+  uuid: string,
+  user_name:string
+}
+
+export interface FasttypeTextArr {
+  classifyLabel: string,
+  headerText: string,
+  maxClassifyCount: number,
+  maxImageCount: number,
+  relationField: string,
+  relationModelName: string,
+  selectedClassifyLabel: string
 }
 
 export interface DefaultSearchName {
@@ -68,6 +127,7 @@ export interface UserLastPublishRecruitArea {
   adcode: string,
   title: string,
   info: string,
+<<<<<<< HEAD
   city?: string,
   provice?: string,
   areaId?: string
@@ -75,7 +135,12 @@ export interface UserLastPublishRecruitArea {
 export interface AreaData {
   name: string,
   id: string
+=======
+  city?:string,
+  provice?:string,
+>>>>>>> wangshuai
 }
+
 export interface RecruitInfo {
   areaInfo: UserLastPublishRecruitArea,
   area: AreaData,
@@ -122,9 +187,12 @@ export interface VaildCodeReq{
   token: string,
   phone: string,
   code: string
+<<<<<<< HEAD
 }
 // 上传图片
 export interface ImageData{
   url: string,
   httpurl: string
+=======
+>>>>>>> wangshuai
 }

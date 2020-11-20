@@ -2,7 +2,7 @@
  * @Author: zyb
  * @Date: 2020-11-03 14:36:47
  * @LastEditors: jsxin
- * @LastEditTime: 2020-11-19 09:34:11
+ * @LastEditTime: 2020-11-20 17:01:57
  * @Description: 
  */
 import { combineReducers } from 'redux'
@@ -21,6 +21,7 @@ import publishData from './publish'
 import resumeData from './resume_data';
 import resumeList from './resume_list';
 import recruitTop from './recruit_top'
+import publishWay from './publishWay'
 
 //合并reducer
 export default combineReducers({
@@ -41,5 +42,6 @@ export default combineReducers({
   RecruitAction,
   resumeData,
   resumeList,
-  recruitTop
+  recruitTop,
+  publishWay
 })

@@ -3,7 +3,7 @@ import { View, Input, Text, Switch, Button, Image } from '@tarojs/components'
 import { RecruitInfo } from '../../../../pages/recruit/index.d'
 import { useSelector } from '@tarojs/redux';
 import ClassifyPicker, { RulesClassfies } from '../../../../components/classfiy_picker/index'
-import useRelease from '../../../../hooks/publish/release'
+import useRelease from '../../../../hooks/publish/fastIssue/release'
 import { IMGCDNURL } from '../../../../config'
 import UploadImgAction from '../../../../utils/upload'
 import './index.scss'
@@ -21,16 +21,16 @@ export default function FastIssue() {
   // 招工信息的定位地址信息
   const areaInfo = recruitInfo.areaInfo
   // 点击招工城市，跳转到城市选择页面
-  function showWorkArea () {
+  function showWorkArea() {
     let url = '/pages/map/recruit/index'
     Taro.navigateTo({
       url: url
     })
   }
-  function hiddenPickerModel () {
+  function hiddenPickerModel() {
     setShowPicker(false)
   }
-  function showWorkType () {
+  function showWorkType() {
     setShowPicker(true)
   }
   function selectClassfy(data: RulesClassfies[]) {
@@ -109,13 +109,13 @@ export default function FastIssue() {
         </View>
         <Button className="issue-code-btn" onClick={()=>recuritFindWork()}>确认发布</Button>
       </View>
-      {showPicker? <ClassifyPicker
+      {showPicker ? <ClassifyPicker
         classifies={classifies}
         hiddenPickerModel={hiddenPickerModel}
         selectClassfy={selectClassfy}
         maxClassifyCount={maxClassifyCount}
         choceClassfies={choceClassfies}
-      />:''}
+      /> : ''}
     </View>
   )
 }

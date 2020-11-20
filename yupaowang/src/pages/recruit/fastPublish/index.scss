@@ -1,0 +1,213 @@
+@import '../../../common.scss';
+.publish-recruit-container{
+  position: relative;
+  padding: 20px;
+  .publish-list-textarea {
+    position: relative;
+  }
+  .textarea-publish {
+      width: 100%;
+      height: 240px;
+      background: #FFFFFF;
+      border-radius: 6px;
+      padding: 23px;
+      font-size: 28px;
+  }
+  .input-title {
+    line-height: 1;
+    padding-bottom: 20px;
+    display: inline-block;
+    font-size: 30px;
+    color: #444;
+  }
+  .publish-list-item {
+    width: 100%;
+    height: auto;
+    background: #fff;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    position: relative;
+    .pulish-list-title {
+      width: 200px;
+      padding-left: 20px;
+      padding-bottom: 0;
+      line-height: 104px;
+    }
+    .publish-list-input {
+      font-size: 28px;
+    }
+    &.work-type {
+      .item-work-type {
+        padding: 10px 0;
+      }
+    }
+    input {
+      color: #000 !important;
+    }
+    view {
+      flex: 1;
+    }
+    .publish-code-btn{
+        position: absolute;
+        border-radius: 8px;
+        background-color: $color;
+        color: white;
+        text-align: center;
+        right: 0;
+        top: 26px;
+        padding: 8px 12px;
+        font-size: 26px;
+      }
+  }
+  .phone-code {
+    background: #fff;
+    border-radius: 12px;
+    margin-bottom: 20px;
+  }
+
+
+
+
+
+  .publish-recruit-card{
+    position: relative;
+    width: 100%;
+    padding: 10px 20px;
+    border-radius: 10px;
+    background-color: white;
+    margin-bottom: 15px;
+    @include shadow();
+    .publish-list-item{
+      // position: relative;
+      // width: 100%;
+      // min-height: 110px;
+      // padding: 15px 0;
+      // padding-left: 180px;
+      // border-bottom: 1px solid #dcdcdc;
+      .pulish-list-title{
+        position: absolute;
+        width: 140px;
+        left: 0;
+        top: 15px;
+        display: block;
+        text-align: justify;
+        line-height: 80px;
+        font-weight: bold;
+        font-size: 30px;
+        &::after{
+          @include text-justify();
+        }
+      }
+      .publish-list-input{
+        position: relative;
+        padding: $miniPublishInputPadding 0;
+        width: 100%;
+        line-height: 45px;
+        min-height: 80px;
+        display: block;
+        font-size: 30px;
+        .publish-input-list{
+          position: relative;
+          display: inline-block;
+          margin-right: 20px;
+          &:nth-last-child(1){
+            margin-right: 0;
+          }
+        }
+      }
+    }
+    .publish-list-item-code{
+      .publish-list-input{
+        padding-right: 300px;
+      }
+      
+    }
+    .publish-list-textarea{
+      position: relative;
+      padding-top: 25px;
+      .publish-textarea-title{
+        position: relative;
+        font-size: 30px;
+        font-weight: bold;
+        text-align: justify;
+        display: block;
+        width: 140px;
+        height: 60px;
+        &::after{
+          @include text-justify();
+        }
+      }
+      .publish-textarea{
+        position: relative;
+        width: 100%;
+        display: block;
+        height: 200px;
+        font-size: 30px;
+        line-height: 40px;
+        padding-bottom: 60px;
+      }
+    }
+    .publish-upload-header{
+      position: relative;
+      .publish-upload-title{
+        position: relative;
+        padding: 20px 0;
+        .publish-upload-red{
+          position: relative;
+          color: #333;
+          font-size: 30px;
+          display: inline-block;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          .publish-upload-wbg{
+            position: absolute;
+            top: 2px;
+            right: 10px;
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: url("http://cdn.yupao.com/miniprogram/images/upload-bg.png") no-repeat;
+            background-size: 100% 100%;
+            .publish-upload-ibg{
+              position: absolute;
+              display: block;
+              width: 16px;
+              height: 16px;
+              bottom: 10px;
+              left: 12px;
+              background: url("http://cdn.yupao.com/miniprogram/images/upload-down.png") no-repeat;
+              background-size: 100% 100%;
+              transform-origin: center;
+              transition: 0.5s;
+            }
+          }
+        }
+        .publish-upload-smtips{
+          color: #ff0000;
+          font-size: 34px;
+        }
+      }
+      .publish-upload-tips{
+        font-size: 26px;
+        padding: 15px 0;
+        color: #999999;
+        border-bottom: 1px solid #dcdcdc;
+        border-top: 1px solid #dcdcdc;
+      }
+    }
+  }
+  .publish-recruit-btn{
+    position: relative;
+    width: 70%;
+    line-height: 85px;
+    background-color: $color;
+    color: white;
+    text-align: center;
+    margin: 30px auto;
+    font-size: 30px;
+    border-radius: 3px;
+  }
+}

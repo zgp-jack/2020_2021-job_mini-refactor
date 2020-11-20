@@ -232,6 +232,23 @@ export function getPublishRecruitView(data: InitRecruitView): Promise<any> {
   })
 }
 
+//获取发布招工模式 快速||极速
+export function gitPublish(): Promise<any> {
+  return doRequestAction({
+    url: api.publishModel,
+    method:'POST'
+  })
+}
+
+// 初始化极速发布招工
+export function fastPublisView(data: InitRecruitView): Promise<any> {
+  return doRequestAction({
+    url: api.fastPublisView,
+    data: data,
+    method: 'POST'
+  })
+}
+
 // 获取城市数据
 export function getAllAreas(loading: boolean = true): Promise<Inter.AllAreasDataItem[][]> {
   return doRequestAction({
@@ -904,6 +921,15 @@ export function fastIssue(data: FastIssueData): Promise<Inter.FastIssue<Inter.Fa
     failToast: true
   })
 }
+// 极速发布招工
+export function FastPublisInfo(data): Promise<Inter.Result> {
+  return doRequestAction({
+    url: api.FastPublisInfo,
+    method: 'POST',
+    data: data,
+    failToast: true
+  })
+}
 
 // 找活名片推荐
 export function jobRecommendListAction(data): Promise<Inter.jobRecommendList> {
@@ -1238,5 +1264,12 @@ export function memberTurntable():Promise<Inter.memberTurntableType>{
   return doRequestAction({
     url: api.memberTurntable,
     method: 'POST',
+  })
+}
+// 发布方式请求
+export function publishWayRea(): Promise<Inter.publishWay>{
+  return doRequestAction({
+    url: api.publishModel,
+    method: 'GET'
   })
 }

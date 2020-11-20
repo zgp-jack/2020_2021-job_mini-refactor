@@ -1,15 +1,15 @@
 import Taro, { useEffect, useState } from '@tarojs/taro';
 import { useSelector, useDispatch } from '@tarojs/redux';
-import { PublishConfigData, UserLastPublishRecruitArea, MateDataItem, RecruitImageModel, RecruitInfo } from '../../pages/recruit/index.d'
-import { PublishData, UserLocation } from '../../config/store'
-import { UserLocationPromiss, AREABEIJING, ChildItems, getCityInfo } from '../../models/area'
-import { UserLastPublishArea, UserLocationCity } from '../../config/store'
-import { setAreaInfo, setArea } from '../../actions/recruit'
-import { userAuthLoction } from '../../utils/helper'
-import { SelectedClassfies, RulesClassfies } from '../../components/classfiy_picker/index'
-import { publishFindWorker } from '../../utils/request'
-import { SubscribeToNews } from '../../utils/subscribeToNews'
-import { ShowActionModal } from '../../utils/msg'
+import { PublishConfigData, UserLastPublishRecruitArea, MateDataItem, RecruitImageModel, RecruitInfo } from '../../../pages/recruit/index.d'
+import { PublishData, UserLocation } from '../../../config/store'
+import { UserLocationPromiss, AREABEIJING, ChildItems, getCityInfo } from '../../../models/area'
+import { UserLastPublishArea, UserLocationCity } from '../../../config/store'
+import { setAreaInfo, setArea } from '../../../actions/recruit'
+import { userAuthLoction } from '../../../utils/helper'
+import { SelectedClassfies, RulesClassfies } from '../../../components/classfiy_picker/index'
+import { publishFindWorker } from '../../../utils/request'
+import { SubscribeToNews } from '../../../utils/subscribeToNews'
+import { ShowActionModal } from '../../../utils/msg'
 
 
 

@@ -13,3 +13,10 @@ export interface InputPoiListTips {
   cityName: string,
   areaId?: string
 }
+export interface publishFindWork {
+  resumeText: string,
+  loginBefore: boolean,
+  loginAfter: boolean,
+  logoutWay: string,
+  loginWay: string
+}

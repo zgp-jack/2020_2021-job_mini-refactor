@@ -26,6 +26,8 @@ export const GetIntegralList: string = REQUESTURL + 'integral/integral-record/'
 export const GetPublisRecruitView: string = REQUESTURL + 'publish/new-mate-job/'
 // 发布修改招工信息
 export const PublishRecruitInfo: string = REQUESTURL + 'publish/save-job/'
+// 极速发布招工
+export const FastPublisInfo: string = REQUESTURL + 'publish/new-save-job/'
 // 快速发布招工信息
 export const FastIssueInfo: string = REQUESTURL + 'fast-issue/issue/'
 // 获取城市数据
@@ -224,3 +226,7 @@ export const turntableVideoEnd: string = REQUESTURL + 'turntable/video-end/'
 export const memberTurntable: string = REQUESTURL + 'member/turntable/'
 // 发布招工信息
 export const FastRcruitUrl: string = REQUESTURL + 'fast-issue/complete/'
+// 初始化极速发布招工
+export const fastPublisView: string = REQUESTURL + 'publish/new-mate-job/'
+// 获取发布招工模式 快速发布||急速发布
+export const publishModel: string = REQUESTURL + 'index/get-job-view/'

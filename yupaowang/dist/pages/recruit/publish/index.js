@@ -50,7 +50,7 @@ function usePublishViewInfo(InitParams) {
   var login = (0, _redux.useSelector)(function (state) {
     return state.User['login'];
   });
-  // 视图显示信息
+  // 极速发布基本信息
 
   var _useState = (0, _taroTt.useState)(),
       _useState2 = _slicedToArray(_useState, 2),
@@ -236,7 +236,8 @@ function usePublishViewInfo(InitParams) {
     };
     var mydata = JSON.parse(JSON.stringify(data));
     var imgs = mydata.images.join(',');
-    mydata.images = imgs;
+    var classifies = mydata.classifies.join(',');
+    mydata = _extends({}, mydata, { images: imgs, classifies: classifies });
     return mydata;
   }
   function userPublishRecruitAction() {

@@ -256,7 +256,10 @@ var Recruit = function (_Taro$Component) {
       };
       // * 发布招工
       var userPublishRecruit = function userPublishRecruit() {
-        _taroTt2.default.navigateTo({ url: _index3.PUBLISHRECRUIT });
+        // Taro.navigateTo({url: '/pages/recruit/publish/index'})
+        // Taro.navigateTo({url: '/pages/recruit/fastPublish/index'})
+        // Taro.navigateTo({ url: PUBLISHRECRUIT})
+        _taroTt2.default.navigateTo({ url: _index3.PUBLISHFAST });
       };
       // * 更新筛选条件
       var setSearchDataAction = function setSearchDataAction(type, id, text) {
