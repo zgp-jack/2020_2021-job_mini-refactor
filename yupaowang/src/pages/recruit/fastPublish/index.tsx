@@ -261,7 +261,7 @@ export default function PublishRecruit() {
               />
             }
           </View>
-          <View className='publish-recruit-btn' onClick={() => userPublishRecruitAction(classMateArr)} >确认发布</View>
+          <View className='publish-recruit-btn' onClick={() => userPublishRecruitAction()} >确认发布</View>
         </Form>
       </View>
     </Block>

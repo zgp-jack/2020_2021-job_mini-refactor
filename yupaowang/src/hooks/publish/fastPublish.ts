@@ -193,7 +193,7 @@ export default function fastPublishInit(InitParams: InitRecruitView) {
     return data
   }
 
-  function userPublishRecruitAction(classMateArr: ClassMateArr[]) {
+  function userPublishRecruitAction() {
     let data = getPublishedInfo()
     if (!data) return
     if (!isVaildVal(data.detail, 15)) {
