@@ -173,7 +173,7 @@ export default function useResume(){
             topCityStr.push(topCityArr[i].name);
           }
         }
-        setTopCity(topCityStr.length ? topCityStr.toString():'');
+        setTopCity(topCityStr.length ? topCityStr.join(' '):'');
         //人员信息
         let introduces: resIntroduceObj = { ...INTRODUCERS_DATA };
         introduces = { ...introduces, ...res.data.introduces }

@@ -430,7 +430,7 @@ export interface UserPublishedRecruitListDataItem {
   is_check: string,
   is_end: string,
   sort_time: string,
-  top: number,
+  top: string,
   top_data: {
     end_time: string,
     information_id: string,

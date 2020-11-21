@@ -13376,7 +13376,7 @@ function useResume() {
             topCityStr.push(topCityArr[_i3].name);
           }
         }
-        setTopCity(topCityStr.length ? topCityStr.toString() : '');
+        setTopCity(topCityStr.length ? topCityStr.join(' ') : '');
         //人员信息
         var introduces = _extends({}, _data.INTRODUCERS_DATA);
         introduces = _extends({}, introduces, res.data.introduces);

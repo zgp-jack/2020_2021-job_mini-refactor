@@ -58,8 +58,10 @@ class App extends Component {
       'pages/resume/newPreview/index', // 预览
       'pages/resume/preview/index', // 预览
       'pages/login/index',//用户登录
-      'pages/newTopping/range/index', //找活置顶
-      'pages/newTopping/region/index',//置顶选择城市
+      'pages/newTopping/recRang/index', //找活置顶
+      'pages/newTopping/recGion/index',//置顶选择城市
+      'pages/newTopping/resRang/index',//找活置顶
+      'pages/newTopping/resGion/index',//新找活置顶选择城市
     ],
     subPackages: [
       {

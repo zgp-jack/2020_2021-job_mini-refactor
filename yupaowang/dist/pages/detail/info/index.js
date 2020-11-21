@@ -651,7 +651,7 @@ var DetailInfoPage = function (_Taro$Component) {
           $original: (0, _taroTt.internal_get_original)(v)
         };
         var $loopState__temp4 = data.view_images.length ? i + i : null;
-        var _$indexKey = "hizzz" + i;
+        var _$indexKey = "ibzzz" + i;
         _this2.anonymousFunc5Map[_$indexKey] = function () {
           return handleImage(v.$original);
         };

@@ -13,7 +13,7 @@ import { HistoryInfo } from '../../../config/store';
 import { setClickResumeTop } from '../../../actions/resume_top';
 import './index.scss'
 
-export default function Region() {
+export default function ResGion() {
   const dispatch = useDispatch();
   const router: Taro.RouterInfo = useRouter()
   //获取传过来的最大省市
@@ -418,6 +418,6 @@ export default function Region() {
     </View>
   )
 }
-Region.config = {
-  navigationBarTitleText: '招工置顶',
+ResGion.config = {
+  navigationBarTitleText: '找活置顶',
 } as Config
