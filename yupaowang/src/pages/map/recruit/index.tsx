@@ -38,7 +38,7 @@ export default function RecruitMap(){
       Taro.setStorageSync(Areas, res)
       setAreas(res)
     })
-    
+    debugger
   },[])
 
   // 用户定位城市
@@ -66,6 +66,7 @@ export default function RecruitMap(){
     let userLoc: UserLocationPromiss = Taro.getStorageSync(UserLocationCity)
     // 如果定位
     if (userLoc) {
+      debugger
       let data: ChildItems = getCityInfo(userLoc, 1)
       let userLocData: AllAreasDataItem = {
         id: data.id,
@@ -78,6 +79,31 @@ export default function RecruitMap(){
         dispatch(setPositionStaus(false))
       }
       setUserLoc(userLocData)
+    }else {
+      debugger
+      Taro.getSetting({
+        success: function (res) {
+          if (!res.authSetting['scope.userLocation']){
+            Taro.showModal({
+              title: '是否授权当前位置',
+              content: '需要获取您的地理位置，请确认授权，否则将不能为你自动推荐位置',
+              success: (res) => {
+                if (res.confirm) {
+                  Taro.openSetting({
+                    success: (data) => {
+                      if (data.authSetting["scope.userLocation"] == true) {
+                        Msg('授权成功')
+                      } else {
+                        Msg('授权失败')
+                      }
+                    }
+                  })
+                }
+              }
+            })
+          }
+        }
+      })
     }
   }
 

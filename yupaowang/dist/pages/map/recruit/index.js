@@ -79,7 +79,7 @@ var RecruitMap = function (_Taro$Component) {
       navigationBarTitleText: '选择发布地址'
     };
 
-    _this.$usedState = ["loopArray43", "loopArray44", "$compid__42", "smAreaText", "showHistory", "histroyList", "lists", "IMGCDNURL", "showCity", "area"];
+    _this.$usedState = ["loopArray111", "loopArray112", "$compid__91", "smAreaText", "showHistory", "histroyList", "lists", "IMGCDNURL", "showCity", "area"];
     _this.anonymousFunc5Map = {};
     _this.anonymousFunc6Map = {};
     _this.customComponents = ["Cities"];
@@ -103,10 +103,10 @@ var RecruitMap = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__42"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__91"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__42 = _genCompid2[0],
-          $compid__42 = _genCompid2[1];
+          $prevCompid__91 = _genCompid2[0],
+          $compid__91 = _genCompid2[1];
       // 城市数据
 
 
@@ -137,6 +137,7 @@ var RecruitMap = function (_Taro$Component) {
           _taroTt2.default.setStorageSync(_store.Areas, res);
           setAreas(res);
         });
+        debugger;
       }, []);
       // 用户定位城市
 
@@ -192,6 +193,7 @@ var RecruitMap = function (_Taro$Component) {
         var userLoc = _taroTt2.default.getStorageSync(_store.UserLocationCity);
         // 如果定位
         if (userLoc) {
+          debugger;
           var data = (0, _area.getCityInfo)(userLoc, 1);
           var userLocData = {
             id: data.id,
@@ -204,6 +206,31 @@ var RecruitMap = function (_Taro$Component) {
             dispatch((0, _recruit.setPositionStaus)(false));
           }
           setUserLoc(userLocData);
+        } else {
+          debugger;
+          _taroTt2.default.getSetting({
+            success: function success(res) {
+              if (!res.authSetting['scope.userLocation']) {
+                _taroTt2.default.showModal({
+                  title: '是否授权当前位置',
+                  content: '需要获取您的地理位置，请确认授权，否则将不能为你自动推荐位置',
+                  success: function success(res) {
+                    if (res.confirm) {
+                      _taroTt2.default.openSetting({
+                        success: function success(data) {
+                          if (data.authSetting["scope.userLocation"] == true) {
+                            (0, _index5.default)('授权成功');
+                          } else {
+                            (0, _index5.default)('授权失败');
+                          }
+                        }
+                      });
+                    }
+                  }
+                });
+              }
+            }
+          });
         }
       };
       // 初始化所需数据
@@ -336,12 +363,12 @@ var RecruitMap = function (_Taro$Component) {
       this.anonymousFunc4 = function () {
         return userCloseMap();
       };
-      var loopArray43 = showHistory ? histroyList.map(function (item, index) {
+      var loopArray111 = showHistory ? histroyList.map(function (item, index) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
         var $loopState__temp2 = showHistory ? index + index : null;
-        var _$indexKey = "efzzz" + index;
+        var _$indexKey = "bafzz" + index;
         _this2.anonymousFunc5Map[_$indexKey] = function () {
           return userClickAreaItem(item.$original);
         };
@@ -351,12 +378,12 @@ var RecruitMap = function (_Taro$Component) {
           $original: item.$original
         };
       }) : [];
-      var loopArray44 = lists.map(function (item, index) {
+      var loopArray112 = lists.map(function (item, index) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
         var $loopState__temp4 = index + index;
-        var _$indexKey2 = "egzzz" + index;
+        var _$indexKey2 = "bagzz" + index;
         _this2.anonymousFunc6Map[_$indexKey2] = function () {
           return userClickAreaItem(item.$original);
         };
@@ -372,11 +399,11 @@ var RecruitMap = function (_Taro$Component) {
         "userLoc": userLoc,
         "userChangeCity": userChangeCity,
         "userTapCityBtn": userTapCityBtn
-      }, $compid__42, $prevCompid__42);
+      }, $compid__91, $prevCompid__91);
       Object.assign(this.__state, {
-        loopArray43: loopArray43,
-        loopArray44: loopArray44,
-        $compid__42: $compid__42,
+        loopArray111: loopArray111,
+        loopArray112: loopArray112,
+        $compid__91: $compid__91,
         smAreaText: smAreaText,
         showHistory: showHistory,
         histroyList: histroyList,
