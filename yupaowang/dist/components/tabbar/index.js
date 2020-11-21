@@ -1,37 +1,5 @@
 (tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["components/tabbar/index"],{
 
-/***/ "./src/actions/publishWay.ts":
-/*!***********************************!*\
-  !*** ./src/actions/publishWay.ts ***!
-  \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.setPublishWay = setPublishWay;
-exports.getPublishWay = getPublishWay;
-
-var _publishWay = __webpack_require__(/*! ../constants/publishWay */ "./src/constants/publishWay.ts");
-
-function setPublishWay(data) {
-  return {
-    type: _publishWay.SETPUBLISHWAY,
-    data: data
-  };
-}
-function getPublishWay() {
-  return {
-    type: _publishWay.GETPUBLISHWAY
-  };
-}
-
-/***/ }),
-
 /***/ "./src/components/tabbar/index.scss":
 /*!******************************************!*\
   !*** ./src/components/tabbar/index.scss ***!
@@ -107,7 +75,7 @@ var Tabbar = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (Tabbar.__proto__ || Object.getPrototypeOf(Tabbar)).apply(this, arguments));
 
-    _this.$usedState = ["anonymousState__temp3", "anonymousState__temp4", "anonymousState__temp5", "tabbar", "loopArray107", "memberMsg", "show", "IMGCDNURL", "notredirect"];
+    _this.$usedState = ["anonymousState__temp3", "anonymousState__temp4", "anonymousState__temp5", "tabbar", "loopArray34", "memberMsg", "show", "IMGCDNURL", "notredirect"];
     _this.anonymousFunc0Map = {};
     _this.customComponents = [];
     return _this;
@@ -284,7 +252,7 @@ var Tabbar = function (_Taro$Component) {
       this.anonymousFunc4 = function () {
         return userTapPublishItem(_index3.PUBLISHUSED);
       };
-      var loopArray107 = tabbar.list.map(function (item, __index0) {
+      var loopArray34 = tabbar.list.map(function (item, __index0) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
@@ -292,7 +260,7 @@ var Tabbar = function (_Taro$Component) {
           'common-footer-tabbar-list': true,
           'common-footer-tabbar-list-active': item.$original.id === tabbar.key
         });
-        var _$indexKey = "baczz" + __index0;
+        var _$indexKey = "dgzzz" + __index0;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return changeTabbarAction(item.$original);
         };
@@ -307,7 +275,7 @@ var Tabbar = function (_Taro$Component) {
         anonymousState__temp4: anonymousState__temp4,
         anonymousState__temp5: anonymousState__temp5,
         tabbar: tabbar,
-        loopArray107: loopArray107,
+        loopArray34: loopArray34,
         memberMsg: memberMsg,
         show: show,
         IMGCDNURL: _index3.IMGCDNURL

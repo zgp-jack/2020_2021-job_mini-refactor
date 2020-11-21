@@ -10,6 +10,8 @@ import Auth from '../../../components/auth'
 import './index.scss'
 import { useSelector } from '@tarojs/redux'
 import ClassifyPicker, { RulesClassfies } from '../../../components/classfiy_picker/index'
+import { RecruitWorkInfo } from '../../../pages/recruit/index.d'
+import { PublishConfigData } from '../../../pages/recruit/index.d'
 // 初始化获取信息类型
 export interface InitRecruitView {
   type: string,
@@ -24,6 +26,14 @@ export default function PublishRecruit() {
   const InitParams: InitRecruitView = { type: type, infoId: id }
   // 获取redux中发布招工区域详细数据
   const areaInfo: UserLastPublishRecruitArea = useSelector<any, UserLastPublishRecruitArea>(state => state.MyAreaInfo)
+  // 获取redux中工种数据
+  const publishData: PublishConfigData = useSelector<any, PublishConfigData>(state => state.publishData)
+  const mateData = publishData.mateData
+  const noMateData = publishData.noMateData
+  const maxClassifyCount = publishData.maxClassifyCount
+  const maxImageCount = publishData.maxImageCount
+  const classifyTree = publishData.classifyTree
+  const placeholder = publishData.placeholder
 
   // 初始化当前信息
   const { model, setModel, showUpload, setShowUpload, showProfession, setShowProssion, userPublishRecruitAction, num, setNum, phone, classMateArr, setclassMateArr } = fastPublishInit(InitParams)
@@ -46,7 +56,7 @@ export default function PublishRecruit() {
   // 用户填写表单
   const userEnterFrom = (e: any, key: string) => {
     const value: string = e.detail.value
-    const state: FastPublishInit = JSON.parse(JSON.stringify(model))
+    const state: RecruitWorkInfo = JSON.parse(JSON.stringify(model))
     // debugger
     state[key] = value
     setModel(state)
@@ -93,32 +103,28 @@ export default function PublishRecruit() {
     if (!model) return
     const detail: string = e.detail.value
     if (detail.length < 2) return
-    let _model = (model as FastPublishInit)
+    let _model = (model as RecruitWorkInfo)
     //匹配到的数据
     let mateArr: MateDataType[] = [];
-    //需要匹配的工种
-    const mate_data = _model.mate_data;
-    //不需要匹配的工种
-    const not_mate_data = _model.not_mate_data;
-    const state: FastPublishInit = JSON.parse(JSON.stringify(model))
+    const state: RecruitWorkInfo = JSON.parse(JSON.stringify(model))
     //如果已经有选择的工种就不进行匹配
     if (state.classifies.length < 1) {
       //循环匹配
-      for (let i = 0; i < mate_data.length; i++) {
-        if (detail.indexOf(mate_data[i].keywords) != -1) {
+      for (let i = 0; i < mateData.length; i++) {
+        if (detail.indexOf(mateData[i].keywords) != -1) {
           //最多可选工种数量
-          if (_classMateArr.length === _model.typeTextArr.maxClassifyCount) return
+          if (_classMateArr.length === maxClassifyCount) return
           // debugger
           _classMateArr.push({
-            id: mate_data[i].occupation_id,
-            name: mate_data[i].name
+            id: mateData[i].occupation_id,
+            name: mateData[i].name
           })
         }
       }
       //循环删除不需要匹配的
-      for (let i = 0; i < not_mate_data.length; i++) {
+      for (let i = 0; i < noMateData.length; i++) {
         for (let n = 0; n < _classMateArr.length; n++) {
-          if (not_mate_data[i].keywords === _classMateArr[n].name) {
+          if (noMateData[i].keywords === _classMateArr[n].name) {
             _classMateArr.splice(n, 1)
           }
         }
@@ -136,12 +142,12 @@ export default function PublishRecruit() {
       let classarr = mateArr.map(i => { return i.occupation_id })
       state['classifies'] = classarr
       //改变model中的classifyTree
-      for (let i = 0; i < state.classifyTree.length; i++) {
-        if (state.classifyTree[i].children) {
-          for (let n = 0; n < state.classifyTree[i].children.length; n++) {
+      for (let i = 0; i < classifyTree.length; i++) {
+        if (classifyTree[i].children) {
+          for (let n = 0; n < classifyTree[i].children.length; n++) {
             for (let o = 0; o < mateArr.length; o++) {
-              if (state.classifyTree[i].children[n].id === mateArr[o].occupation_id) {
-                state.classifyTree[i].children[n].is_check = true
+              if (classifyTree[i].children[n].id === mateArr[o].occupation_id) {
+                classifyTree[i].children[n].is_check = true
               }
             }
           }
@@ -175,8 +181,8 @@ export default function PublishRecruit() {
         <ClassifyPicker
           hiddenPickerModel={closeProfession}
           selectClassfy={selectClass}
-          classifies={model && model.classifyTree}
-          maxClassifyCount={model && model.typeTextArr.maxClassifyCount}
+          classifies={classifyTree}
+          maxClassifyCount={maxClassifyCount}
           choceClassfies={classMateArr}
         />}
       <View className='publish-recruit-container'>
@@ -185,7 +191,7 @@ export default function PublishRecruit() {
           <Textarea
             className='textarea-publish'
             value={model && model.detail || ''}
-            placeholder={model && model.placeholder}
+            placeholder={placeholder}
             onInput={(e) => userEnterFrom(e, 'detail')}
             onBlur={(e) => detailMatch(e)}
           ></Textarea>
@@ -254,7 +260,7 @@ export default function PublishRecruit() {
             {showUpload && model &&
               <ImageView
                 images={model.view_images}
-                max={model.typeTextArr.maxImageCount}
+                max={maxImageCount}
                 userUploadImg={userUploadImg}
                 userDelImg={userDelImg}
               />

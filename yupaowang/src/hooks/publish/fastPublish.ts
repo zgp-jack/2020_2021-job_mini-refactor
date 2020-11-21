@@ -1,9 +1,9 @@
 import Taro, { useState, useEffect } from '@tarojs/taro'
-import { UserLastPublishRecruitArea, FastPublishInit, FastPublishBase } from '../../pages/recruit/index.d'
+import { UserLastPublishRecruitArea, FastPublishInit, FastPublishBase, AreaData } from '../../pages/recruit/index.d'
 import { fastPublisView, FastPublisInfo } from '../../utils/request'
 import { InitRecruitView } from '../../pages/recruit/publish'
-import { UserLastPublishArea, UserLocationCity } from '../../config/store'
-import { UserLocationPromiss, AREABEIJING } from '../../models/area'
+import { UserLastPublishArea, UserLocationCity, UserLocation } from '../../config/store'
+import { UserLocationPromiss, AREABEIJING, ChildItems, getCityInfo } from '../../models/area'
 import { userAuthLoction } from '../../utils/helper'
 import Msg, { ShowActionModal } from '../../utils/msg'
 import { SubscribeToNews } from '../../utils/subscribeToNews';
@@ -11,127 +11,90 @@ import { useSelector, useDispatch } from '@tarojs/redux'
 import { isVaildVal, isPhone } from '../../utils/v'
 import { setAreaInfo, setArea } from '../../actions/recruit'//获取发布招工信息action
 import { RulesClassfies } from '../../components/classfiy_picker/index'
+import { usePublishData } from './issue'
+import { ProfessionRecruitData } from '../../components/profession/index.d'
 interface ClassMateArr {
   id: string
   name: string
 }
 export default function fastPublishInit(InitParams: InitRecruitView) {
-  // 获取用户信息
-  const login = useSelector<any, boolean>(state => state.User['login'])
-  // 极速发布基本信息
-  const [model, setModel] = useState<FastPublishInit>()
-  // 是否展开图片上传
-  const [showUpload, setShowUpload] = useState<boolean>(false)
+  const { model, setModel, showUpload, setShowUpload, num, setNum, phone, setPhone } = usePublishData(InitParams)
   // 是否显示工种选择
   const [showProfession, setShowProssion] = useState<boolean>(false)
-  // 招工详情的字数
-  const [num, setNum] = useState<number>(0)
-  // 备份手机号码
-  const [phone, setPhone] = useState<string>('')
   // 备份当前数据 用于强制修改判断
   const [bakModel, setBakModel] = useState({})
   //获取redux中发布招工区域详细数据
-  const areaInfo: UserLastPublishRecruitArea = useSelector<any, UserLastPublishRecruitArea>(state => state.MyAreaInfo)
-  // 获取redux中区域名称数据
+  const areaInfo: UserLastPublishRecruitArea = useSelector<any, UserLastPublishRecruitArea>(state => state.RecruitAction["areaInfo"])
+  // 获取redux中工种数据
+  const classifyTree: ProfessionRecruitData[] = useSelector<any, ProfessionRecruitData[]>(state => state.publishData['classifyTree'])
+  // 修改发布招工默认的选择城市信息
+  const defaultSearchName: AreaData = useSelector<any, AreaData>(state => state.publishData['defaultSearchName'])
   // 获取dispatch分发action
   const dispatch = useDispatch()
   //选中的工种数据
   const [classMateArr, setclassMateArr] = useState<RulesClassfies[]>([])
   // 初始化招工信息
   useEffect(() => {
-    // 判断是否登录，没有登录直接返回
-    if (!login) return
-    fastPublisView(InitParams).then(res => {
-      if (res.errcode == 'ok') {
-        let fastPublishInit: FastPublishInit = {
-          classifyTree: res.classifyTree,
-          errcode: res.errcode,
-          mate_data: res.mate_data,
-          memberInfo: res.memberInfo,
-          not_mate_data: res.not_mate_data,
-          placeholder: res.placeholder,
-          typeTextArr: res.typeTextArr,
-          classifies: res.selectedClassifies,
-          user_mobile: res.model.user_mobile || res.memberInfo.tel || '',
-          code: '',
-          view_images: res.view_image,
-          detail: res.model.detail || '',
-          address: res.model.address || '',
-          infoId: res.model.id || InitParams.infoId,
-          type: res.type,
-          user_name: res.model.user_name,
-          province_id: res.model.province_id || '',
-          city_id: res.model.city_id || '',
-          location: res.model.location || '',
-          adcode: '',
-          county_id: res.model.county_id || '',
-          is_check: res.model.hasOwnProperty('is_check') ? res.model.is_check : 1,
-          images: [],
-          check_fail_msg: res.model.check_fail_msg || ''
-        }
-
-        // 数据保存到model中
-        setModel(fastPublishInit)
-        // 初始化用户区域数据
-        initUserAreaInfo(res)
-        if (fastPublishInit.is_check == 0) bakModelInfo(fastPublishInit)
-        // 保存手机号
-        setPhone(fastPublishInit.memberInfo.tel)
-        // 将数据保存到redux中的areaInfo中
-        dispatch(setAreaInfo({ ...areaInfo, title: fastPublishInit.address }))
-        // 保存手机号
-        setPhone(fastPublishInit.user_mobile)
-        // 如果有上传图片保存图片showUpload中
-        if (res.view_image.length) setShowUpload(true)
-        // 如果填写有招工详情数据，将填写数据长度保存到num中
-        if (fastPublishInit.detail) setNum(fastPublishInit.detail.length)
-        //如果是修改 后台给的选中数据中只有ID 需要匹配name 再把之前选中的工种信息保存
-        if (res.selectedClassifies.length) {
-          let _Classifies: RulesClassfies[] = []
-          for (let i = 0; i < res.selectedClassifies.length; i++) {
-            for (let n = 0; n < fastPublishInit.classifyTree.length; n++) {
-              if (fastPublishInit.classifyTree[n].children.length > 0) {
-                for (let x = 0; x < fastPublishInit.classifyTree[n].children.length; x++) {
-                  if (fastPublishInit.classifyTree[n].children[x].id == res.selectedClassifies[i]) {
-                    _Classifies.push({
-                      id: fastPublishInit.classifyTree[n].children[x].id,
-                      name: fastPublishInit.classifyTree[n].children[x].name
-                    })
-                  }
-                }
+    initUserAreaInfo(model)
+    if (model.is_check == 0) bakModelInfo(model)
+    // 保存手机号
+    setPhone(model.user_mobile)
+    // 将数据保存到redux中的areaInfo中
+    dispatch(setAreaInfo({ ...areaInfo, title: model.address }))
+    //如果是修改 后台给的选中数据中只有ID 需要匹配name 再把之前选中的工种信息保存
+    if (model.classifies.length) {
+      let _Classifies: RulesClassfies[] = []
+      for (let i = 0; i < model.classifies.length; i++) {
+        for (let n = 0; n < classifyTree.length; n++) {
+          if (classifyTree[n].children.length > 0) {
+            for (let x = 0; x < classifyTree[n].children.length; x++) {
+              if (classifyTree[n].children[x].id == model.classifies[i]) {
+                _Classifies.push({
+                  id: classifyTree[n].children[x].id,
+                  name: classifyTree[n].children[x].name
+                })
               }
             }
           }
-          setclassMateArr(_Classifies)
         }
-      } else {
-        // 请求数据失败走提示框返回上一页面
-        ShowActionModal({
-          msg: res.errmsg,
-          success: () => {
-            Taro.navigateBack()
-          }
-        })
       }
-    })
-  }, [login])
+      setclassMateArr(_Classifies)
+    }
+  }, [model])
 
   // 初始化用户区域数据
   function initUserAreaInfo(data: any) {
     console.log(InitParams.infoId, 'InitParams.infoId')
     //  如果传递参数有infoid代表是修改，保存修改的里面默认区域数据
     if (InitParams.infoId) {
-      dispatch(setArea(data.default_search_name.name))
+      dispatch(setArea(defaultSearchName))
     } else {
+      let userLocation: string = Taro.getStorageSync(UserLocation)
       let userLoctionCity: UserLocationPromiss = Taro.getStorageSync(UserLocationCity)
       if (userLoctionCity) {
-        dispatch(setArea(userLoctionCity.city))
+        let data: ChildItems = getCityInfo(userLoctionCity, 1)
+        let positionArea: UserLastPublishRecruitArea = {
+          location: userLocation,
+          adcode: userLoctionCity.adcode,
+          title: userLoctionCity.title,
+          info: userLoctionCity.info,
+          areaId: data.id
+        }
+        dispatch(setArea({ name: userLoctionCity.city.slice(0, 2), id: data.id }))
+        dispatch(setAreaInfo(positionArea))
       } else {
         userAuthLoction()
           .then(res => {
-            dispatch(setArea(res.city))
+            let positionArea: UserLastPublishRecruitArea = {
+              location: userLocation,
+              adcode: res.adcode,
+              title: res.title,
+              info: res.info
+            }
+            dispatch(setAreaInfo(positionArea))
+            dispatch(setArea({ name: res.city.slice(0, 2), id: '' }))
           }).catch(() => {
-            dispatch(setArea(AREABEIJING.name))
+            dispatch(setArea({ name: AREABEIJING.name, id: AREABEIJING.id }))
           })
       }
     }
@@ -139,10 +102,10 @@ export default function fastPublishInit(InitParams: InitRecruitView) {
     // 如果是修改设置详细发布地址
     if (InitParams.infoId) {
       dispatch(setAreaInfo({
-        title: data.model.address,
-        location: data.model.location,
+        title: data.address,
+        location: data.location,
         info: '',
-        adcode: data.model.adcode || '',
+        adcode: data.adcode || '',
       }))
     } else {
       // 获取用户最后发布的区域信息

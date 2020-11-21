@@ -1,3 +1,4 @@
+import { DefaultSearchName } from './index.d';
 import { ProfessionRecruitData } from '../../components/profession/index.d'
 
 export enum FilterMenu {
@@ -127,7 +128,6 @@ export interface UserLastPublishRecruitArea {
   adcode: string,
   title: string,
   info: string,
-<<<<<<< HEAD
   city?: string,
   provice?: string,
   areaId?: string
@@ -135,10 +135,6 @@ export interface UserLastPublishRecruitArea {
 export interface AreaData {
   name: string,
   id: string
-=======
-  city?:string,
-  provice?:string,
->>>>>>> wangshuai
 }
 
 export interface RecruitInfo {
@@ -166,7 +162,6 @@ export interface MateDataItem {
   name: string,
   occupation_id: string
 }
-
 // 获取发布招工、快速发布、急速发布的配置数据
 export interface PublishConfigData {
   classifyTree: ProfessionRecruitData[],
@@ -175,7 +170,9 @@ export interface PublishConfigData {
   user_mobile: string,
   maxClassifyCount: number,
   maxImageCount: number,
-  placeholder: string
+  placeholder: string,
+  reqStatus: boolean,
+  defaultSearchName: AreaData
 }
 
 export interface FastIssueData{
@@ -187,12 +184,9 @@ export interface VaildCodeReq{
   token: string,
   phone: string,
   code: string
-<<<<<<< HEAD
 }
 // 上传图片
 export interface ImageData{
   url: string,
   httpurl: string
-=======
->>>>>>> wangshuai
 }

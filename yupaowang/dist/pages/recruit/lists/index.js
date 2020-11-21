@@ -55,6 +55,10 @@ var _index4 = __webpack_require__(/*! ../../../utils/msg/index */ "./src/utils/m
 
 var _index5 = _interopRequireDefault(_index4);
 
+var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/redux/index.js");
+
+var _publishWay = __webpack_require__(/*! ../../../actions/publishWay */ "./src/actions/publishWay.ts");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
@@ -107,8 +111,15 @@ var Recruit = function (_Taro$Component) {
           _genCompid6 = _slicedToArray(_genCompid5, 2),
           $prevCompid__22 = _genCompid6[0],
           $compid__22 = _genCompid6[1];
-      // 输入关键词 没搜索 备份
 
+      var login = (0, _redux.useSelector)(function (state) {
+        return state.User['login'];
+      });
+      var dispatch = (0, _redux.useDispatch)();
+      var publishWay = (0, _redux.useSelector)(function (state) {
+        return state.publishWay;
+      });
+      // 输入关键词 没搜索 备份
 
       var _useState = (0, _taroTt.useState)(''),
           _useState2 = _slicedToArray(_useState, 2),
@@ -254,12 +265,57 @@ var Recruit = function (_Taro$Component) {
         setRefresh(true);
         setSearchData(_extends({}, searchData, { page: 1 }));
       };
+      //是否为极速发布与快速发布请求,快速发布与极速发布跳转
+      var initJobView = function initJobView() {
+        if (login) {
+          var flag = JSON.parse(JSON.stringify(publishWay));
+          if (!flag.loginAfter) {
+            (0, _index.publishWayRea)().then(function (res) {
+              var publishMethod = res.add_job_type;
+              dispatch((0, _publishWay.setPublishWay)(_extends({}, publishWay, { loginWay: publishMethod, loginAfter: true })));
+              var url = publishMethod == "fast_add_job" ? _index3.PUBLISHRECRUIT : _index3.PUBLISHFAST;
+              _taroTt2.default.navigateTo({
+                url: url
+              });
+            }).catch(function () {
+              _taroTt2.default.navigateTo({
+                url: _index3.PUBLISHFAST
+              });
+            });
+          } else {
+            var way = publishWay.loginWay;
+            var url = way == "fast_add_job" ? _index3.PUBLISHRECRUIT : _index3.PUBLISHFAST;
+            _taroTt2.default.navigateTo({
+              url: url
+            });
+          }
+        } else {
+          var _flag = JSON.parse(JSON.stringify(publishWay));
+          if (!_flag.loginBefore) {
+            (0, _index.publishWayRea)().then(function (res) {
+              var publishMethod = res.add_job_type;
+              dispatch((0, _publishWay.setPublishWay)(_extends({}, publishWay, { logoutWay: publishMethod, loginBefore: true })));
+              var url = publishMethod == "fast_add_job" ? _index3.PUBLISHRECRUIT : _index3.PUBLISHFAST;
+              _taroTt2.default.navigateTo({
+                url: url
+              });
+            }).catch(function () {
+              _taroTt2.default.navigateTo({
+                url: _index3.PUBLISHFAST
+              });
+            });
+          } else {
+            var _way = publishWay.logoutWay;
+            var _url = _way == "fast_add_job" ? _index3.PUBLISHRECRUIT : _index3.PUBLISHFAST;
+            _taroTt2.default.navigateTo({
+              url: _url
+            });
+          }
+        }
+      };
       // * 发布招工
       var userPublishRecruit = function userPublishRecruit() {
-        // Taro.navigateTo({url: '/pages/recruit/publish/index'})
-        // Taro.navigateTo({url: '/pages/recruit/fastPublish/index'})
-        // Taro.navigateTo({ url: PUBLISHRECRUIT})
-        _taroTt2.default.navigateTo({ url: _index3.PUBLISHFAST });
+        initJobView();
       };
       // * 更新筛选条件
       var setSearchDataAction = function setSearchDataAction(type, id, text) {

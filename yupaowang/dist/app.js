@@ -474,7 +474,8 @@ exports.default = MyAreaInfo;
 
 var _publish = __webpack_require__(/*! ../constants/publish */ "./src/constants/publish.ts");
 
-//定义发布招工获取设置区域信息的action
+var _area = __webpack_require__(/*! ../models/area */ "./src/models/area.ts");
+
 // 默认发布招工state数据
 var DEFAULT_STATE_PUBLISHDATA = {
   classifyTree: [],
@@ -483,8 +484,13 @@ var DEFAULT_STATE_PUBLISHDATA = {
   user_mobile: '',
   maxClassifyCount: 0,
   maxImageCount: 0,
-  placeholder: ''
-};
+  placeholder: '',
+  defaultSearchName: {
+    name: _area.AREABEIJING.name,
+    id: _area.AREABEIJING.id
+  },
+  reqStatus: false
+}; //定义发布招工获取设置区域信息的action
 function MyAreaInfo() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : DEFAULT_STATE_PUBLISHDATA;
   var action = arguments[1];

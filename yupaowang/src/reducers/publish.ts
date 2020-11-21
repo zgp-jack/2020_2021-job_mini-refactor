@@ -1,5 +1,7 @@
 import { SETPUBLISHDATA, GETPUBLISHDATA } from '../constants/publish' //定义发布招工获取设置区域信息的action
 import { PublishConfigData } from '../pages/recruit/index.d'
+import { AREABEIJING } from '../models/area'
+
 
 // 默认发布招工state数据
 const DEFAULT_STATE_PUBLISHDATA: PublishConfigData = {
@@ -9,7 +11,12 @@ const DEFAULT_STATE_PUBLISHDATA: PublishConfigData = {
   user_mobile: '',
   maxClassifyCount: 0,
   maxImageCount: 0,
-  placeholder:''
+  placeholder:'',
+  defaultSearchName: {
+    name: AREABEIJING.name,
+    id: AREABEIJING.id 
+  },
+  reqStatus: false
 }
 
 
