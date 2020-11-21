@@ -11,6 +11,7 @@ import { UserLocationPromiss, getCityInfo, ChildItems } from '../../../models/ar
 import { getAmapPoiList } from '../../../utils/helper'
 import { InputPoiListTips } from '../../../utils/helper/index.d'
 import Msg, { ShowActionModal } from '../../../utils/msg'
+import { AreaData } from '../../../pages/recruit/index.d'
 import { useSelector, useDispatch } from '@tarojs/redux'
 import { setAreaInfo, setArea, setPositionStaus } from '../../../actions/recruit'//获取发布招工信息action
 import './index.scss'
@@ -108,8 +109,8 @@ export default function ResumeMap() {
   }, [])
 
   // 用户切换城市
-  const userChangeCity = (city: string) => {
-    setArea(city)
+  const userChangeCity = (city: AreaData) => {
+    setArea(city.name)
   }
 
   // 用户点击取消 返回上一页

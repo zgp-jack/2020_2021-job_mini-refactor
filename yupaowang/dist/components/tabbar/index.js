@@ -1,5 +1,37 @@
 (tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["components/tabbar/index"],{
 
+/***/ "./src/actions/publishWay.ts":
+/*!***********************************!*\
+  !*** ./src/actions/publishWay.ts ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.setPublishWay = setPublishWay;
+exports.getPublishWay = getPublishWay;
+
+var _publishWay = __webpack_require__(/*! ../constants/publishWay */ "./src/constants/publishWay.ts");
+
+function setPublishWay(data) {
+  return {
+    type: _publishWay.SETPUBLISHWAY,
+    data: data
+  };
+}
+function getPublishWay() {
+  return {
+    type: _publishWay.GETPUBLISHWAY
+  };
+}
+
+/***/ }),
+
 /***/ "./src/components/tabbar/index.scss":
 /*!******************************************!*\
   !*** ./src/components/tabbar/index.scss ***!
@@ -24,6 +56,8 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
@@ -50,6 +84,8 @@ var _msg = __webpack_require__(/*! ../../actions/msg */ "./src/actions/msg.ts");
 var _tabbar = __webpack_require__(/*! ../../actions/tabbar */ "./src/actions/tabbar.ts");
 
 var _index3 = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
+
+var _publishWay = __webpack_require__(/*! ../../actions/publishWay */ "./src/actions/publishWay.ts");
 
 __webpack_require__(/*! ./index.scss */ "./src/components/tabbar/index.scss");
 
@@ -94,9 +130,13 @@ var Tabbar = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
       var notredirect = this.__props.notredirect;
+      // 发布方式数据
 
       var tabbar = (0, _redux.useSelector)(function (state) {
         return state.tabbar;
+      });
+      var publishWay = (0, _redux.useSelector)(function (state) {
+        return state.publishWay;
       });
       var login = (0, _redux.useSelector)(function (state) {
         return state.User['login'];
@@ -161,6 +201,54 @@ var Tabbar = function (_Taro$Component) {
           }
         });
       };
+      //是否为极速发布与快速发布请求,快速发布与极速发布跳转
+      var initJobView = function initJobView() {
+        if (login) {
+          var flag = JSON.parse(JSON.stringify(publishWay));
+          if (!flag.loginAfter) {
+            (0, _index.publishWayRea)().then(function (res) {
+              var publishMethod = res.add_job_type;
+              dispatch((0, _publishWay.setPublishWay)(_extends({}, publishWay, { loginWay: publishMethod, loginAfter: true })));
+              var url = publishMethod == "fast_add_job" ? _index3.PUBLISHRECRUIT : _index3.PUBLISHFAST;
+              _taroTt2.default.navigateTo({
+                url: url
+              });
+            }).catch(function () {
+              _taroTt2.default.navigateTo({
+                url: _index3.PUBLISHFAST
+              });
+            });
+          } else {
+            var way = publishWay.loginWay;
+            var url = way == "fast_add_job" ? _index3.PUBLISHRECRUIT : _index3.PUBLISHFAST;
+            _taroTt2.default.navigateTo({
+              url: url
+            });
+          }
+        } else {
+          var _flag = JSON.parse(JSON.stringify(publishWay));
+          if (!_flag.loginBefore) {
+            (0, _index.publishWayRea)().then(function (res) {
+              var publishMethod = res.add_job_type;
+              dispatch((0, _publishWay.setPublishWay)(_extends({}, publishWay, { logoutWay: publishMethod, loginBefore: true })));
+              var url = publishMethod == "fast_add_job" ? _index3.PUBLISHRECRUIT : _index3.PUBLISHFAST;
+              _taroTt2.default.navigateTo({
+                url: url
+              });
+            }).catch(function () {
+              _taroTt2.default.navigateTo({
+                url: _index3.PUBLISHFAST
+              });
+            });
+          } else {
+            var _way = publishWay.logoutWay;
+            var _url = _way == "fast_add_job" ? _index3.PUBLISHRECRUIT : _index3.PUBLISHFAST;
+            _taroTt2.default.navigateTo({
+              url: _url
+            });
+          }
+        }
+      };
       // 定时请求未读信息
       (0, _taroTt.useEffect)(function () {
         getMemberMsg();
@@ -188,7 +276,7 @@ var Tabbar = function (_Taro$Component) {
         'tabbar-publish-items-active': active
       }) : null;
       this.anonymousFunc2 = function () {
-        return userTapPublishItem('/pages/recruit/fast_issue/issue/index');
+        return initJobView();
       };
       this.anonymousFunc3 = function () {
         return userTapPublishItem(_index3.PUBLISHRESUME);

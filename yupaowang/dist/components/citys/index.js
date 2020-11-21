@@ -146,7 +146,7 @@ var Cities = function (_Taro$Component) {
         }
         // 储存最新的用户点击历史城市数据
         _taroTt2.default.setStorageSync(_store.HistoryCities, historyCities);
-        userChangeCity && userChangeCity(city.city);
+        userChangeCity && userChangeCity({ name: city.city, id: city.id });
         userTapCityBtn(false);
         userRecentlyCities();
       };

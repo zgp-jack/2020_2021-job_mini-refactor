@@ -1,7 +1,11 @@
-import { MemberInfo } from './index.d';
+
 export interface Result {
   errcode: string,
   errmsg: string
+}
+export interface publishWay{
+  errcode: string,
+  add_job_type: string
 }
 // 快速发布招工信息
 export interface FastIssue<T> extends Result{
@@ -1505,6 +1509,10 @@ export interface ResumeAddInfoGenderConfig {
   name: string
 }
 
+<<<<<<< HEAD
+// 
+=======
+>>>>>>> wangshuai
 // 添加技能证书返回值
 export interface ResumeCertificateData extends Result{
   count: number
@@ -1589,4 +1597,3 @@ export interface addResumeData {
   errcode: number
   errmsg: string
 }
-// 

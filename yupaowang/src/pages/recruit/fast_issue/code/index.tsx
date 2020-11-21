@@ -1,10 +1,11 @@
 import Taro, { Config, useEffect, useState } from '@tarojs/taro'
-import { View, Input, Text } from '@tarojs/components'
+import { View, Input, Text, Image } from '@tarojs/components'
 import useCode  from '../../../../hooks/code/index'
 import { useSelector } from '@tarojs/redux'
 import { RecruitInfo, VaildCodeReq } from '../../../../pages/recruit/index.d'
 import { checkCode } from '../../../../utils/request/index'
 import Msg from '../../../../utils/msg'
+import { IMGCDNURL } from '../../../../config'
 
 import './index.scss'
 
@@ -12,7 +13,7 @@ import './index.scss'
 
 export default function FastIssue() {
   // 初始化获取验证码
-  const { disabled, text, userGetCode, timer } = useCode(true)
+  const { text, userGetCode, timer } = useCode(true)
   // redux中存入的发布数据
   const recruitInfo: RecruitInfo = useSelector<any, RecruitInfo>(state => state.RecruitAction)
   // 手机验证码
@@ -53,11 +54,11 @@ export default function FastIssue() {
     <View className="code-container">
       <View className="issue-contactbox">
         <View className="issue-tip">
-          {/* <Image src="{{ imageUrl }}" mode="widthFix" className="issue-tip-image"></Image> */}
+          <Image src={`${IMGCDNURL}new-publish-title-t-icon.png`} mode="widthFix" className="issue-tip-image"></Image>
           <View className="issue-contact-title">温馨提示</View>
-          {/* <Image src="{{ imageUrl }}" mode="widthFix" className="issue-tip-image"></Image> */}
+          <Image src={`${IMGCDNURL}new-publish-title-t-icon.png`} mode="widthFix" className="issue-tip-image"></Image>
         </View>
-        <View className="issue-contact-body">为了确保本条招工信息的真实性，鱼泡网已经向手机号<Text></Text>发送验证码，请您将收到的验证码填写到下方输入框内。</View>
+        <View className="issue-contact-body">为了确保本条招工信息的真实性，鱼泡网已经向手机号<Text>{recruitInfo.phone}</Text>发送验证码，请您将收到的验证码填写到下方输入框内。</View>
         <View className="issue-code-box">
           <Text>验证码：</Text>
           <Input className="issue-contact-input" placeholder="请输入验证码" onInput={(e) => userInputCode(e)}></Input>

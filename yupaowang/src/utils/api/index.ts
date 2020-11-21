@@ -212,6 +212,8 @@ export const userCheckDouyinRecharge: string = REQUESTURL + '/pay/byte-check/'
 export const realnameQueryUrl: string = REQUESTURL + 'resume/auth-worker-find/'
 // 找活信息发布基本资料 配置项
 export const getResumeAddInfoConfig: string = REQUESTURL + 'resumes/get-data/'
+// 发布招工验证码验证
+export const checkCodeUrl: string = REQUESTURL + 'fast-issue/check-code/'
 //排名规则
 export const getRankRulesList: string = REQUESTURL + 'resumes/sort/'
 // 大转盘获取抽奖次数
@@ -222,9 +224,9 @@ export const turntableDraw: string = REQUESTURL + 'turntable/draw/'
 export const turntableVideoEnd: string = REQUESTURL + 'turntable/video-end/'
 // 获取鱼泡币页面大转盘展示控制
 export const memberTurntable: string = REQUESTURL + 'member/turntable/'
+// 发布招工信息
+export const FastRcruitUrl: string = REQUESTURL + 'fast-issue/complete/'
 // 初始化极速发布招工
 export const fastPublisView: string = REQUESTURL + 'publish/new-mate-job/'
-// 发布招工验证码验证
-export const checkCodeUrl: string = REQUESTURL + 'fast-issue/check-code/'
 // 获取发布招工模式 快速发布||急速发布
 export const publishModel: string = REQUESTURL + 'index/get-job-view/'

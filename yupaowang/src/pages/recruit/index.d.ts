@@ -127,16 +127,26 @@ export interface UserLastPublishRecruitArea {
   adcode: string,
   title: string,
   info: string,
+<<<<<<< HEAD
+  city?: string,
+  provice?: string,
+  areaId?: string
+}
+export interface AreaData {
+  name: string,
+  id: string
+=======
   city?:string,
   provice?:string,
+>>>>>>> wangshuai
 }
 
 export interface RecruitInfo {
   areaInfo: UserLastPublishRecruitArea,
-  area: string,
+  area: AreaData,
   token: string,
   positionStatus: boolean,
-  phone: string
+  phone: string,
 }
 
 // 初始化发布招工获取信息类型
@@ -177,4 +187,12 @@ export interface VaildCodeReq{
   token: string,
   phone: string,
   code: string
+<<<<<<< HEAD
+}
+// 上传图片
+export interface ImageData{
+  url: string,
+  httpurl: string
+=======
+>>>>>>> wangshuai
 }

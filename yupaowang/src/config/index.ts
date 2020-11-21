@@ -49,7 +49,7 @@ export const ProjectImgMaxNum: number = 6
 // * 首页
 export const INDEXPATH: string = '/pages/index/index'
 // * 发布招工页面
-export const PUBLISHRECRUIT: string = '/pages/recruit/publish/index'
+export const PUBLISHRECRUIT: string = '/pages/recruit/fast_issue/issue/index'
 // * 急速发布
 export const PUBLISHFAST: string = '/pages/recruit/fastPublish/index'
 // * 发布找活页面

@@ -1,15 +1,19 @@
-import { GETAREAINFO, SETAREAINFO, SETAREA, GETAREA, SETPOSITIONSTATUS, SETTOKEN, GETTOKEN, SETPHONE } from '../constants/recruit' //定义发布招工获取设置发布信息的action
-import { UserLastPublishRecruitArea, RecruitInfo } from '../pages/recruit/index.d'//招工信息发布区域信息类型
-import { UserLocationPromiss, AREABEIJING } from '../models/area'
+import { GETAREAINFO, SETAREAINFO, SETAREA, GETAREA, SETPOSITIONSTATUS, SETTOKEN, SETPHONE } from '../constants/recruit' //定义发布招工获取设置发布信息的action
+import { UserLastPublishRecruitArea, RecruitInfo, AreaData } from '../pages/recruit/index.d'//招工信息发布区域信息类型
+import { AREABEIJING } from '../models/area'
 
 const DEFAULT_STATE_RECRUIT: RecruitInfo = {
   areaInfo:{
     title: '',
     adcode: '',
     location: '',
-    info: ''
+    info: '',
+    areaId:''
   },
-  area: AREABEIJING.name,
+  area: {
+    name: AREABEIJING.name,
+    id: AREABEIJING.id
+  },
   token:'',
   positionStatus: true,
   phone: ''
@@ -20,10 +24,11 @@ const DEFAULT_STATE_AREAINFO: UserLastPublishRecruitArea = {
     adcode:'',
     location: '',
     info: '',
+    areaId:''
 }
 
 // 定义默认的区域数据
-const DEFAULT_STATE_AREA:string = AREABEIJING.name
+const DEFAULT_STATE_AREA: AreaData = { name: AREABEIJING.name, id: AREABEIJING.id}
 
 // action类型定义
 export interface ACTIONTYPE {
@@ -46,7 +51,7 @@ export function MyAreaInfo(state: UserLastPublishRecruitArea = DEFAULT_STATE_ARE
       return state
   }
 }
-export function MyArea(state:string = DEFAULT_STATE_AREA, action: ACTIONTYPE){
+export function MyArea(state: AreaData = DEFAULT_STATE_AREA, action: ACTIONTYPE){
     switch (action.type) {
         case GETAREA:
           return state;

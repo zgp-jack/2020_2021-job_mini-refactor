@@ -104,6 +104,7 @@ export function doRequestAction(reqData: Request): Promise<any> {
     data.token = userInfo.token
     data.tokenTime = userInfo.tokenTime
   }
+
   return new Promise((resolve, reject) => {
     Taro.request({
       url: /^http(s?):\/\//.test(req.url) ? req.url : req.url,
@@ -902,6 +903,16 @@ export function publishRecruitInfo(data): Promise<Inter.Result> {
   })
 }
 // 快速发布招工信息
+export function publishFindWorker(data): Promise<Inter.Result>{
+  return doRequestAction({
+    url: api.FastRcruitUrl,
+    method: 'POST',
+    data: data,
+    failToast: true,
+    user: false
+  })
+}
+// 快速发布招工信息
 export function fastIssue(data: FastIssueData): Promise<Inter.FastIssue<Inter.FastData>> {
   return doRequestAction({
     url: api.FastIssueInfo,
@@ -1207,7 +1218,15 @@ export function getResumeAddInfoConfig(): Promise<Inter.ResumeAddInfoConfig> {
     method: 'POST'
   })
 }
-
+// 发布招工，填写验证码后校验验证码
+export function checkCode(data): Promise<Inter.Result>{
+  return doRequestAction({
+    url: api.checkCodeUrl,
+    method: 'POST',
+    data: data,
+    user: false
+  })
+}
 // 排名规则数据
 export function getRankRulesList(): Promise<any> {
   return doRequestAction({
@@ -1247,11 +1266,10 @@ export function memberTurntable():Promise<Inter.memberTurntableType>{
     method: 'POST',
   })
 }
-// 发布招工，填写验证码后校验验证码
-export function checkCode(data): Promise<Inter.Result>{
+// 发布方式请求
+export function publishWayRea(): Promise<Inter.publishWay>{
   return doRequestAction({
-    url: api.checkCodeUrl,
-    method: 'POST',
-    data: data
+    url: api.publishModel,
+    method: 'GET'
   })
 }

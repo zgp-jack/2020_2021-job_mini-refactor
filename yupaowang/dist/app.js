@@ -271,6 +271,10 @@ var _resume_addinfo = __webpack_require__(/*! ./resume_addinfo */ "./src/reducer
 
 var _resume_addinfo2 = _interopRequireDefault(_resume_addinfo);
 
+var _publish = __webpack_require__(/*! ./publish */ "./src/reducers/publish.ts");
+
+var _publish2 = _interopRequireDefault(_publish);
+
 var _resume_data = __webpack_require__(/*! ./resume_data */ "./src/reducers/resume_data.ts");
 
 var _resume_data2 = _interopRequireDefault(_resume_data);
@@ -279,12 +283,17 @@ var _resume_list = __webpack_require__(/*! ./resume_list */ "./src/reducers/resu
 
 var _resume_list2 = _interopRequireDefault(_resume_list);
 
-var _publish = __webpack_require__(/*! ./publish */ "./src/reducers/publish.ts");
+var _recruit_top = __webpack_require__(/*! ./recruit_top */ "./src/reducers/recruit_top.ts");
 
-var _publish2 = _interopRequireDefault(_publish);
+var _recruit_top2 = _interopRequireDefault(_recruit_top);
+
+var _publishWay = __webpack_require__(/*! ./publishWay */ "./src/reducers/publishWay.ts");
+
+var _publishWay2 = _interopRequireDefault(_publishWay);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+//合并reducer
 //发布招工reducer
 exports.default = (0, _redux.combineReducers)({
   tabbar: _tabbar2.default,
@@ -300,15 +309,17 @@ exports.default = (0, _redux.combineReducers)({
   realname: _realname2.default,
   resumeAddInfo: _resume_addinfo2.default,
   PositionStatus: _recruit.PositionStatus,
+  publishData: _publish2.default,
+  RecruitAction: _recruit.RecruitAction,
   resumeData: _resume_data2.default,
   resumeList: _resume_list2.default,
-  publishData: _publish2.default,
-  RecruitAction: _recruit.RecruitAction
+  recruitTop: _recruit_top2.default,
+  publishWay: _publishWay2.default
 }); /*
      * @Author: zyb
      * @Date: 2020-11-03 14:36:47
      * @LastEditors: jsxin
-     * @LastEditTime: 2020-11-13 15:02:13
+     * @LastEditTime: 2020-11-20 17:01:57
      * @Description:
      */
 
@@ -491,6 +502,50 @@ function MyAreaInfo() {
 
 /***/ }),
 
+/***/ "./src/reducers/publishWay.ts":
+/*!************************************!*\
+  !*** ./src/reducers/publishWay.ts ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+exports.default = MyAreaInfo;
+
+var _publishWay = __webpack_require__(/*! ../constants/publishWay */ "./src/constants/publishWay.ts");
+
+// 默认发布招工state数据
+var DEFAULT_STATE_PUBLISHDATA = {
+  resumeText: "",
+  loginBefore: false,
+  loginAfter: false,
+  logoutWay: "",
+  loginWay: ""
+};
+function MyAreaInfo() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : DEFAULT_STATE_PUBLISHDATA;
+  var action = arguments[1];
+
+  switch (action.type) {
+    case _publishWay.GETPUBLISHWAY:
+      return state;
+    case _publishWay.SETPUBLISHWAY:
+      return _extends({}, state, action.data);
+    default:
+      return state;
+  }
+}
+
+/***/ }),
+
 /***/ "./src/reducers/realname.ts":
 /*!**********************************!*\
   !*** ./src/reducers/realname.ts ***!
@@ -570,9 +625,13 @@ var DEFAULT_STATE_RECRUIT = {
     title: '',
     adcode: '',
     location: '',
-    info: ''
+    info: '',
+    areaId: ''
   },
-  area: _area.AREABEIJING.name,
+  area: {
+    name: _area.AREABEIJING.name,
+    id: _area.AREABEIJING.id
+  },
   token: '',
   positionStatus: true,
   phone: ''
@@ -582,10 +641,11 @@ var DEFAULT_STATE_AREAINFO = {
   title: '',
   adcode: '',
   location: '',
-  info: ''
+  info: '',
+  areaId: ''
 };
 // 定义默认的区域数据
-var DEFAULT_STATE_AREA = _area.AREABEIJING.name;
+var DEFAULT_STATE_AREA = { name: _area.AREABEIJING.name, id: _area.AREABEIJING.id };
 function MyAreaInfo() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : DEFAULT_STATE_AREAINFO;
   var action = arguments[1];
@@ -641,6 +701,48 @@ function RecruitAction() {
       return _extends({}, state, { positionStatus: action.data });
     case _recruit.SETPHONE:
       return _extends({}, state, { phone: action.data });
+    default:
+      return state;
+  }
+}
+
+/***/ }),
+
+/***/ "./src/reducers/recruit_top.ts":
+/*!*************************************!*\
+  !*** ./src/reducers/recruit_top.ts ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+exports.default = RecruitTopRedux;
+
+var _recruit_top = __webpack_require__(/*! ../constants/recruit_top */ "./src/constants/recruit_top.ts");
+
+// 需要传递的值
+var value = {
+  AreParams: {
+    city: [],
+    province: [],
+    whole: []
+  }
+};
+function RecruitTopRedux() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : value;
+  var action = arguments[1];
+
+  switch (action.type) {
+    case _recruit_top.SET_RECRUIT_TOP_AREA:
+      return _extends({}, state, { AreParams: _extends({}, action.data) });
     default:
       return state;
   }

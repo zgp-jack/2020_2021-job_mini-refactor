@@ -26,8 +26,7 @@ export default function PublishRecruit() {
   const areaInfo: UserLastPublishRecruitArea = useSelector<any, UserLastPublishRecruitArea>(state => state.MyAreaInfo)
 
   // 初始化当前信息
-  const { model, setModel, showUpload, setShowUpload, showProfession, setShowProssion, userPublishRecruitAction, num, setNum, phone, classMateArr, setclassMateArr } =
-    fastPublishInit(InitParams)
+  const { model, setModel, showUpload, setShowUpload, showProfession, setShowProssion, userPublishRecruitAction, num, setNum, phone, classMateArr, setclassMateArr } = fastPublishInit(InitParams)
 
   // 使用自定义验证码hook
   const { text, userGetCode } = useCode()

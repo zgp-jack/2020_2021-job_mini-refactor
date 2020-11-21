@@ -8,15 +8,25 @@ import { DEFAULT_MENUS_TYPE, Menu } from '../../reducers/tabbar'
 import { setMsg } from '../../actions/msg'
 import { changeTabbar } from '../../actions/tabbar'
 // import { IMGCDNURL } from '../../config'
-import { MemberMsgTimerInterval, PUBLISHRECRUIT, PUBLISHRESUME, PUBLISHUSED, IMGCDNURL } from '../../config'
+import { MemberMsgTimerInterval, PUBLISHRECRUIT, PUBLISHRESUME, PUBLISHUSED, IMGCDNURL, PUBLISHFAST } from '../../config'
+import { setPublishWay } from '../../actions/publishWay'
+import { publishWayRea } from '../../utils/request/index'
 import './index.scss'
 
 interface PROPS {
   notredirect?: boolean
 }
-
+export interface publishFindWork {
+  resumeText: string,
+  loginBefore: boolean,
+  loginAfter: boolean,
+  logoutWay: string,
+  loginWay: string
+}
 export default function Tabbar({ notredirect }: PROPS) {
+  // 发布方式数据
   const tabbar: DEFAULT_MENUS_TYPE = useSelector<any, DEFAULT_MENUS_TYPE>(state => state.tabbar)
+  const publishWay = useSelector<any, publishFindWork>(state => state.publishWay)
   const login: boolean = useSelector<any, boolean>(state => state.User['login'])
   const memberMsg: number = useSelector<any, number>(state => state.msg['messageNumber'])
   const dispatch = useDispatch()
@@ -66,7 +76,54 @@ export default function Tabbar({ notredirect }: PROPS) {
         if (data.errcode == 'ok') dispatch(setMsg(data.data))
       })
   }
-
+  //是否为极速发布与快速发布请求,快速发布与极速发布跳转
+  const initJobView = ()=> {
+    if (login) {
+      let flag = JSON.parse(JSON.stringify(publishWay))
+      if (!flag.loginAfter) {
+        publishWayRea().then(res => {
+          let publishMethod = res.add_job_type
+          dispatch(setPublishWay({ ...publishWay, loginWay: publishMethod, loginAfter: true }))
+          let url = publishMethod == "fast_add_job" ? PUBLISHRECRUIT : PUBLISHFAST
+          Taro.navigateTo({
+            url: url
+          })
+        }).catch(() => {
+          Taro.navigateTo({
+            url: PUBLISHFAST
+          })
+        })
+      } else {
+        let way = publishWay.loginWay
+        let url = way == "fast_add_job" ? PUBLISHRECRUIT : PUBLISHFAST
+        Taro.navigateTo({
+          url: url
+        })
+      }
+    } else {
+      let flag = JSON.parse(JSON.stringify(publishWay))
+      if (!flag.loginBefore) {
+        publishWayRea().then(res => {
+          let publishMethod = res.add_job_type
+          dispatch(setPublishWay({ ...publishWay, logoutWay: publishMethod, loginBefore: true }))
+          let url = publishMethod == "fast_add_job" ? PUBLISHRECRUIT : PUBLISHFAST
+          Taro.navigateTo({
+            url: url
+          })
+        }).catch(() => {
+          Taro.navigateTo({
+            url: PUBLISHFAST
+          })
+        })
+      } else {
+        let way = publishWay.logoutWay
+        let url = way == "fast_add_job" ? PUBLISHRECRUIT : PUBLISHFAST
+        Taro.navigateTo({
+          url: url
+        })
+      }
+    }
+  }
   // 定时请求未读信息
   useEffect(()=>{
     getMemberMsg()
@@ -111,7 +168,7 @@ export default function Tabbar({ notredirect }: PROPS) {
           'tabbar-publish-items': true,
           'tabbar-publish-items-active': active
         })}>
-          <View className='tabbar-publish-item' onClick = {() => userTapPublishItem('/pages/recruit/fast_issue/issue/index')}>
+          <View className='tabbar-publish-item' onClick={() => initJobView()}>
             <Image className='tabbar-publih-item-img' src={IMGCDNURL +'publish-recruit.png'}></Image>
             <Text className='tabbar-publih-item-text'>发布招工</Text>
           </View>

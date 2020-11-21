@@ -6,26 +6,28 @@ import { IMGCDNURL, UserPublishAreaHistoryMaxNum } from '../../../config'
 import Cities from '../../../components/citys'
 import { Areas, UserLocationCity, UserPublishAreaHistory, UserLocation} from '../../../config/store'
 import { UserLocationPromiss, getCityInfo, ChildItems } from '../../../models/area'
-import { getAmapPoiList } from '../../../utils/helper'
+import { getAmapPoiList, userAuthLoction } from '../../../utils/helper'
 import { InputPoiListTips } from '../../../utils/helper/index.d'
 import Msg, { ShowActionModal } from '../../../utils/msg'
 import './index.scss'
 import { useSelector, useDispatch } from '@tarojs/redux'
 import { setAreaInfo, setArea, setPositionStaus } from '../../../actions/recruit'//获取发布招工信息action
+import { RecruitInfo, AreaData } from '../../../pages/recruit/index.d'
 
 
 const PI = Math.PI;  // 数学 PI 常亮
 let EARTH_RADIUS = 6378137.0; // 地球半径
 
 export default function RecruitMap(){
-
+  // 发布招工redux数据
+  const recruitInfo: RecruitInfo = useSelector<any, RecruitInfo>(state => state.RecruitAction)
   // 城市数据
   const [areas, setAreas] = useState<AllAreasDataItem[][]>([])
   // 定位城市
   // 获取redux中区域名称数据
-  const area:string = useSelector<any,string>(state=>state.MyArea)
+  const area: AreaData = recruitInfo.area
   // 获取redux中定位状态
-  const positionStatus:boolean = useSelector<any,boolean>(state=>state.PositionStatus)
+  const positionStatus: boolean = recruitInfo.positionStatus
   // 获取dispatch分发action
   const dispatch = useDispatch()
 
@@ -38,7 +40,6 @@ export default function RecruitMap(){
       Taro.setStorageSync(Areas, res)
       setAreas(res)
     })
-    debugger
   },[])
 
   // 用户定位城市
@@ -66,7 +67,6 @@ export default function RecruitMap(){
     let userLoc: UserLocationPromiss = Taro.getStorageSync(UserLocationCity)
     // 如果定位
     if (userLoc) {
-      debugger
       let data: ChildItems = getCityInfo(userLoc, 1)
       let userLocData: AllAreasDataItem = {
         id: data.id,
@@ -75,35 +75,12 @@ export default function RecruitMap(){
         city: data.name
       }
       if (positionStatus) {
-        dispatch(setArea(data.name))
+        dispatch(setArea({name:data.name,id:data.id}))
         dispatch(setPositionStaus(false))
       }
       setUserLoc(userLocData)
-    }else {
-      debugger
-      Taro.getSetting({
-        success: function (res) {
-          if (!res.authSetting['scope.userLocation']){
-            Taro.showModal({
-              title: '是否授权当前位置',
-              content: '需要获取您的地理位置，请确认授权，否则将不能为你自动推荐位置',
-              success: (res) => {
-                if (res.confirm) {
-                  Taro.openSetting({
-                    success: (data) => {
-                      if (data.authSetting["scope.userLocation"] == true) {
-                        Msg('授权成功')
-                      } else {
-                        Msg('授权失败')
-                      }
-                    }
-                  })
-                }
-              }
-            })
-          }
-        }
-      })
+    }else{
+      handleGps()
     }
   }
 
@@ -113,8 +90,49 @@ export default function RecruitMap(){
     initUserPublishAreaHistory()
   }, [])
 
+  // 获取定位
+  const handleGps = () => {
+    Taro.getSetting({
+      success: (res) => {
+        if (res.authSetting['scope.userLocation'] != undefined && res.authSetting['scope.userLocation'] != true) {//非初始化进入该页面,且未授权   
+          Taro.showModal({
+            title: '是否授权当前位置',
+            content: '需要获取您的地理位置，请确认授权，否则将不能为你自动推荐位置',
+            success: (res) => {
+              if (res.confirm) {
+                Taro.openSetting({
+                  success: (data) => {
+                    if (data.authSetting["scope.userLocation"] == true) {
+                      Msg('授权成功')
+                      userAuthLoction().then(res => {
+                        let userLoctionCity: UserLocationPromiss = Taro.getStorageSync(UserLocationCity)
+                        let data: ChildItems = getCityInfo(userLoctionCity, 1)
+                        dispatch(setArea({ name: res.city.slice(0, 2), id: data.id}))
+                        dispatch(setPositionStaus(false))
+                      })
+                    } else {
+                      Msg('授权失败')
+                    }
+                  }
+                })
+              }
+            }
+          })
+        } else {
+          userAuthLoction().then(res => {
+            if (res) {
+              let userLoctionCity: UserLocationPromiss = Taro.getStorageSync(UserLocationCity)
+              let data: ChildItems = getCityInfo(userLoctionCity, 1)
+              dispatch(setArea({ name: res.city.slice(0, 2), id: data.id }))
+              dispatch(setPositionStaus(false))
+            }
+          })
+        }
+      }
+    })
+  }
   // 用户切换城市
-  const userChangeCity = (city: string) => {
+  const userChangeCity = (city: AreaData) => {
     dispatch(setArea(city))
     // setArea(city)
   }
@@ -146,7 +164,7 @@ export default function RecruitMap(){
 
   // 获取关键词地区列表
   useEffect(() => {
-    getAmapPoiList(area + smAreaText).then(data => {
+    getAmapPoiList(area.name + smAreaText).then(data => {
       let loc: string = Taro.getStorageSync(UserLocation)
       let lists: InputPoiListTips[] = data.filter(item => {
         return item.name && item.adcode && (typeof item.location === 'string')
@@ -154,7 +172,9 @@ export default function RecruitMap(){
       lists.forEach(item => {
         item.distance = getGreatCircleDistance(loc, item.location)
         item.cityName = data[0].name.slice(0,2)
+        item.areaId = area.id
       })
+      console.log("lists", lists)
       setLists(lists)
     })
 
@@ -211,6 +231,7 @@ export default function RecruitMap(){
   }
   // 用户选择小地区 检测adcode
   const userClickAreaItem = (item: InputPoiListTips) => {
+    console.log("item", item)
     checkAdcodeValid(item.adcode).then(res => {
       if (res.errcode == "ok") {
         if (setAreaInfo) {
@@ -220,8 +241,9 @@ export default function RecruitMap(){
             location: item.location,
             adcode: item.adcode,
             info: item.district,
+            areaId: item.areaId
           })) 
-          dispatch(setArea(item.cityName)) 
+          dispatch(setArea({ name: item.cityName, id: ( item.areaId as string ) || ""})) 
         }
         Taro.navigateBack()
       }
@@ -234,7 +256,7 @@ export default function RecruitMap(){
   return (
     <View className='publishrecruit-container'>
         <View className='mapinfo-header'>
-          <View className='mapinfo-header-area' onClick={() => userTapCityBtn(true)}>{area}</View>
+          <View className='mapinfo-header-area' onClick={() => userTapCityBtn(true)}>{area.name}</View>
           <View className='mapinfo-header-inputbox'>
             <Input
               className='mapinfo-header-input'
@@ -284,7 +306,7 @@ export default function RecruitMap(){
           <View className='mapinfo-citys'>
             <Cities
               data={areas}
-              area={area}
+              area={area.name}
               userLoc={userLoc}
               userChangeCity={userChangeCity}
               userTapCityBtn={userTapCityBtn}

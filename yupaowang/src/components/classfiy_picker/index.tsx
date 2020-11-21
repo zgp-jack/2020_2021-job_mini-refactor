@@ -8,7 +8,7 @@ import './index.scss'
 // 匹配的工种
 export interface RulesClassfies{
   id: string,
-  name?: string
+  name: string
 }
 
 // 初始化选择工种

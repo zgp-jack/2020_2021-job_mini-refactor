@@ -40,21 +40,9 @@ export default function useCode(type?: boolean) {
     setDisabled(true)
     getUserPhoneCode(data).then(res=>{
       if(res.errcode == 'ok'){
-        Msg(res.errmsg, 2500)
-        let t: number = res.refresh || 60
-        setText(t + 's后重新获取')
-        let timer = setInterval(()=>{
-          t--
-          if(t === 0){
-            setDisabled(false)
-            clearInterval(timer)
-            setText(title)
-            return false
-          }
-          setText(t + 's后重新获取')
-        },1000)
+        timer(res.refresh)
       }else{
-        ShowActionModal({msg: res.errmsg})
+        setDisabled(false)
       }
     })
   }

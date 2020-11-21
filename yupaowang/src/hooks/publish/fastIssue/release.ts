@@ -1,32 +1,37 @@
 import Taro, { useEffect, useState } from '@tarojs/taro';
 import { useSelector, useDispatch } from '@tarojs/redux';
-import { PublishConfigData, UserLastPublishRecruitArea, MateDataItem } from '../../pages/recruit/index.d'
-import { PublishData } from '../../config/store'
-import { UserLocationPromiss, AREABEIJING } from '../../models/area'
-import { UserLastPublishArea, UserLocationCity } from '../../config/store'
-import { setAreaInfo, setArea } from '../../actions/recruit'
-import { userAuthLoction } from '../../utils/helper'
-import { SelectedClassfies, RulesClassfies } from '../../components/classfiy_picker/index'
-import { ProfessionRecruitChildrenData } from '../../components/profession/index.d'
+import { PublishConfigData, UserLastPublishRecruitArea, MateDataItem, RecruitImageModel, RecruitInfo } from '../../../pages/recruit/index.d'
+import { PublishData, UserLocation } from '../../../config/store'
+import { UserLocationPromiss, AREABEIJING, ChildItems, getCityInfo } from '../../../models/area'
+import { UserLastPublishArea, UserLocationCity } from '../../../config/store'
+import { setAreaInfo, setArea } from '../../../actions/recruit'
+import { userAuthLoction } from '../../../utils/helper'
+import { SelectedClassfies, RulesClassfies } from '../../../components/classfiy_picker/index'
+import { publishFindWorker } from '../../../utils/request'
+import { SubscribeToNews } from '../../../utils/subscribeToNews'
+import { ShowActionModal } from '../../../utils/msg'
+
 
 
 export default function useRelease () {
   // 获取redex数据
-  const publishData: PublishConfigData = useSelector<any, PublishConfigData>(state => state.publishData)
+  const publishData: PublishConfigData = useSelector<any, PublishConfigData>(state => state.publishData)  
+  // 发布招工redux数据
+  const recruitInfo: RecruitInfo = useSelector<any, RecruitInfo>(state => state.RecruitAction)
   // 工种数据、匹配库、不匹配库,最大工种选择数，最大图片上传数
-  const { classifyTree, mateData, noMateData, maxClassifyCount } = publishData
+  const { classifyTree, mateData, noMateData, maxClassifyCount, maxImageCount } = publishData
   // 将工种数据放入当前状态
   const [classifies, setClassifies] = useState<SelectedClassfies[]>(classifyTree)
-  // 匹配工种
-  const [rulesClassifyids, setRulesClassifyids] = useState<RulesClassfies[]>([])
-  // 用户选择工种
-  const [userClassifyids, setUserClassifyids] = useState<RulesClassfies[]>([])
   // 工种文本数据
   const [selectText, setSelectText] = useState<string>('')
   // 选中的工种字段
   const [selectedClassifies, setSelectedClassifies] = useState<string[]>([])
   // 选择工种字段
   const [choceClassfies, setChoceClassfies] = useState<RulesClassfies[]>([])
+  // 是否展开图片上传
+  const [showUpload, setShowUpload] = useState<boolean>(false)
+  // 上传图片数据
+  const [image, setImage] = useState<RecruitImageModel[]>([])
   // 获取分发action的dispatch
   const dispatch = useDispatch()
 
@@ -36,14 +41,31 @@ export default function useRelease () {
   },[])
   // 初始化用户区域数据
   function initUserAreaInfo() {
+    let userLocation:string = Taro.getStorageSync(UserLocation)
     let userLoctionCity: UserLocationPromiss = Taro.getStorageSync(UserLocationCity)
     if (userLoctionCity) {
-      dispatch(setArea(userLoctionCity.city.slice(0, 2)))
+      let data: ChildItems = getCityInfo(userLoctionCity, 1)
+      let positionArea: UserLastPublishRecruitArea = {
+        location: userLocation,
+        adcode: userLoctionCity.adcode,
+        title: userLoctionCity.title,
+        info: userLoctionCity.info,
+        areaId: data.id
+      }
+      dispatch(setArea({ name: userLoctionCity.city.slice(0, 2), id:data.id}))
+      dispatch(setAreaInfo(positionArea))
     } else {
       userAuthLoction().then(res => {
-        dispatch(setArea(res.city))
-      }).then(() => {
-        dispatch(setArea(AREABEIJING.name))
+        let positionArea: UserLastPublishRecruitArea = {
+          location: userLocation,
+          adcode: res.adcode,
+          title: res.title,
+          info: res.info
+        }
+        dispatch(setAreaInfo(positionArea))
+        dispatch(setArea({ name: res.city.slice(0, 2), id:''}))
+      }).catch(() => {
+        dispatch(setArea({ name: AREABEIJING.name, id: AREABEIJING.id}))
       })
     }
     // 获取用户最后发布的区域信息
@@ -62,6 +84,7 @@ export default function useRelease () {
     let text:string[] = data.map(item => item.name)
     // 拼接成字符串
     let selectText = text.join(",")
+    setChoceClassfies(data)
     setSelectText(selectText)
     setSelectedClassifies(selectWorkType)
   }
@@ -165,10 +188,40 @@ export default function useRelease () {
     }
     // 否则将匹配的数据长度等于总长度减去用户选择的长度
     needArr.splice(maxWorkNum)
-    setChoceClassfies(needArr)
     countWorkNum(needArr)
     selectWorkType(needArr)
     Taro.hideLoading()
+  }
+  // 发布招工
+  function pulishFindWorker() {
+    let images = image.map(item => item.url).join(",")
+    let data = {
+      token: recruitInfo.token,
+      trades: selectedClassifies.join(","),
+      images: showUpload?images:'',
+      area_id: recruitInfo.areaInfo.areaId,
+      location: recruitInfo.areaInfo.location,
+      ad_name: recruitInfo.areaInfo.title,
+      address: recruitInfo.areaInfo.info
+    }
+    publishFindWorker(data).then(res=>{
+      if (res.errcode == 'ok') {
+        SubscribeToNews("recruit", () => {
+          ShowActionModal({
+            msg: res.errmsg,
+            success: () => {
+              Taro.reLaunch({
+                url: '/pages/published/recruit/index'
+              })
+            }
+          })
+        })
+      } else {
+        ShowActionModal({
+          msg: res.errmsg
+        })
+      }
+    })
   }
   return {
     classifies,
@@ -176,6 +229,13 @@ export default function useRelease () {
     maxClassifyCount,
     choceClassfies,
     selectWorkType,
-    countWorkNum
+    countWorkNum,
+    showUpload,
+    setShowUpload,
+    image,
+    setImage,
+    maxImageCount,
+    pulishFindWorker
+    
   }
 }

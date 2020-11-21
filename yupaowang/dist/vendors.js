@@ -12469,7 +12469,7 @@ var ProjectImgMaxNum = exports.ProjectImgMaxNum = 6;
 // * 首页
 var INDEXPATH = exports.INDEXPATH = '/pages/index/index';
 // * 发布招工页面
-var PUBLISHRECRUIT = exports.PUBLISHRECRUIT = '/pages/recruit/publish/index';
+var PUBLISHRECRUIT = exports.PUBLISHRECRUIT = '/pages/recruit/fast_issue/issue/index';
 // * 急速发布
 var PUBLISHFAST = exports.PUBLISHFAST = '/pages/recruit/fastPublish/index';
 // * 发布找活页面
@@ -12816,6 +12816,24 @@ var SETPUBLISHDATA = exports.SETPUBLISHDATA = 'setpublishdata';
 
 /***/ }),
 
+/***/ "./src/constants/publishWay.ts":
+/*!*************************************!*\
+  !*** ./src/constants/publishWay.ts ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var SETPUBLISHWAY = exports.SETPUBLISHWAY = 'setPublishWay';
+var GETPUBLISHWAY = exports.GETPUBLISHWAY = 'getPublishWay';
+
+/***/ }),
+
 /***/ "./src/constants/realname.ts":
 /*!***********************************!*\
   !*** ./src/constants/realname.ts ***!
@@ -13084,21 +13102,9 @@ function useCode(type) {
     setDisabled(true);
     (0, _index4.getUserPhoneCode)(data).then(function (res) {
       if (res.errcode == 'ok') {
-        (0, _index3.default)(res.errmsg, 2500);
-        var t = res.refresh || 60;
-        setText(t + 's后重新获取');
-        var _timer = setInterval(function () {
-          t--;
-          if (t === 0) {
-            setDisabled(false);
-            clearInterval(_timer);
-            setText(title);
-            return false;
-          }
-          setText(t + 's后重新获取');
-        }, 1000);
+        timer(res.refresh);
       } else {
-        (0, _index2.ShowActionModal)({ msg: res.errmsg });
+        setDisabled(false);
       }
     });
   };
@@ -15988,7 +15994,7 @@ var RESUME_TOP_DATA = exports.RESUME_TOP_DATA = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.publishModel = exports.checkCodeUrl = exports.fastPublisView = exports.memberTurntable = exports.turntableVideoEnd = exports.turntableDraw = exports.turntableIndex = exports.getRankRulesList = exports.getResumeAddInfoConfig = exports.realnameQueryUrl = exports.userCheckDouyinRecharge = exports.userDouyinRecharge = exports.userTelCodeLogin = exports.userAccountUrl = undefined;
+exports.publishModel = exports.fastPublisView = exports.FastRcruitUrl = exports.memberTurntable = exports.turntableVideoEnd = exports.turntableDraw = exports.turntableIndex = exports.getRankRulesList = exports.checkCodeUrl = exports.getResumeAddInfoConfig = exports.realnameQueryUrl = exports.userCheckDouyinRecharge = exports.userDouyinRecharge = exports.userTelCodeLogin = exports.userAccountUrl = undefined;
 exports.leavingMessageUrl = exports.resumesComplainUrl = exports.resumesUpdateTopResumeUrl = exports.resumesDoTopV2Url = exports.resumesTopConfigV2Url = exports.resumesEditImgUrl = exports.resumesChangeTopStatusUrl = exports.resumesDoTopUrl = exports.resumesTopConfigUrl = exports.resumesTopAreasUrl = exports.resumesDelProjectUrl = exports.resumesEditEndUrl = exports.resumesIntroduceUrl = exports.resumesGetDataUrl = exports.checkAdcodeUrl = exports.addResumeUrl = exports.resumesProjectUrl = exports.resumesCertificateUrl = exports.delCertificateUrl = exports.jobRecommendListUrl = exports.resumeListUrl = exports.resumeCollectUrl = exports.resumeSupportUrl = exports.resumesGetTelUrl = exports.recommendListUrl = exports.resumeDetailUrl = exports.jobUpdateTopStatusUrl = exports.jobChangeTopAreasUrl = exports.jobGetTopAreasUrl = exports.jobDoTopUrl = exports.jobTopHotAreasUrl = exports.jobTopConfigUrl = exports.jobEndStatusUrl = exports.jobGetTelUrl = exports.jobNoUserInfoUrl = exports.jobInfoUrl = exports.publishComplainUrl = exports.integralUseInfoUrl = exports.integralExpendListsUrl = exports.integralExpendConfigUrl = exports.integralSourceListsUrl = exports.integralSourceConfigUrl = exports.messagesTypeUrl = exports.userMessagesUrl = exports.resumesAddClickLog = exports.resumesSortUrl = exports.newsInfoUrl = exports.newsTypesUrl = exports.newListUrl = exports.helpUrl = exports.feedbackSubmissionUrl = exports.feedbackUrl = exports.requestActionUrl = exports.ResumeCancelCollection = exports.recruitCancelCollection = exports.getCollectionResumeList = exports.getCollectionRecruitList = exports.userUpdateUserInfo = exports.userChangeUsedStatus = exports.userGetPublishedUsedList = exports.userChangeRecruitStatus = exports.userGetPublishedRecruitList = exports.updataPassword = exports.userChangePhone = exports.userUpdateName = exports.userChangeAvatar = exports.postUserAddInfo = exports.getIdcardAuthInfo = exports.postUserAuthInfo = exports.getUserAuthInfo = exports.getMemberMsgNumber = exports.getMemberInfo = exports.CheckMineAuthInfo = exports.CheckAuth = exports.GetUsedInfo = exports.GetUserLoginPhoneCode = exports.GetUserPhoneCode = exports.PublishUsedInfo = exports.GetUsedInfoModel = exports.GetRechargeOrder = exports.GetRechargeOpenid = exports.GetRechargeList = exports.GetUserInviteLink = exports.CheckAdcodeValid = exports.GetAllAreas = exports.FastIssueInfo = exports.FastPublisInfo = exports.PublishRecruitInfo = exports.GetPublisRecruitView = exports.GetIntegralList = exports.GetTabbarMsg = exports.GetListFilterData = exports.GetWechatNotice = exports.GetFleamarketlist = exports.GetResumelist = exports.GetRecruitlist = exports.GetAllListItem = exports.GetBannerNotice = exports.GetUserInfo = exports.GetUserSessionKey = undefined;
 
 var _index = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
@@ -16205,6 +16211,8 @@ var userCheckDouyinRecharge = exports.userCheckDouyinRecharge = _index.REQUESTUR
 var realnameQueryUrl = exports.realnameQueryUrl = _index.REQUESTURL + 'resume/auth-worker-find/';
 // 找活信息发布基本资料 配置项
 var getResumeAddInfoConfig = exports.getResumeAddInfoConfig = _index.REQUESTURL + 'resumes/get-data/';
+// 发布招工验证码验证
+var checkCodeUrl = exports.checkCodeUrl = _index.REQUESTURL + 'fast-issue/check-code/';
 //排名规则
 var getRankRulesList = exports.getRankRulesList = _index.REQUESTURL + 'resumes/sort/';
 // 大转盘获取抽奖次数
@@ -16215,10 +16223,10 @@ var turntableDraw = exports.turntableDraw = _index.REQUESTURL + 'turntable/draw/
 var turntableVideoEnd = exports.turntableVideoEnd = _index.REQUESTURL + 'turntable/video-end/';
 // 获取鱼泡币页面大转盘展示控制
 var memberTurntable = exports.memberTurntable = _index.REQUESTURL + 'member/turntable/';
+// 发布招工信息
+var FastRcruitUrl = exports.FastRcruitUrl = _index.REQUESTURL + 'fast-issue/complete/';
 // 初始化极速发布招工
 var fastPublisView = exports.fastPublisView = _index.REQUESTURL + 'publish/new-mate-job/';
-// 发布招工验证码验证
-var checkCodeUrl = exports.checkCodeUrl = _index.REQUESTURL + 'fast-issue/check-code/';
 // 获取发布招工模式 快速发布||急速发布
 var publishModel = exports.publishModel = _index.REQUESTURL + 'index/get-job-view/';
 
@@ -16290,13 +16298,16 @@ function userAuthLoction() {
     var GDMAP = new _amapWx2.default.AMapWX({ key: _index.MAPKEY });
     GDMAP.getRegeo({
       success: function success(data) {
+        var title = Array.isArray(data[0].regeocodeData.addressComponent.neighborhood.name) ? data[0].desc : data[0].regeocodeData.addressComponent.neighborhood.name;
         var city = data[0].regeocodeData.addressComponent.city;
         var bool = typeof data[0].regeocodeData.addressComponent.city == 'string';
         var gpsLocation = {
           province: data[0].regeocodeData.addressComponent.province,
           city: bool ? city : data[0].regeocodeData.addressComponent.province,
           adcode: data[0].regeocodeData.addressComponent.adcode,
-          citycode: data[0].regeocodeData.addressComponent.citycode
+          citycode: data[0].regeocodeData.addressComponent.citycode,
+          title: title,
+          info: data[0].regeocodeData.formatted_address
         };
         _taroTt2.default.setStorageSync(_store.UserLocationCity, gpsLocation); //定位信息
         resolve(gpsLocation);
@@ -16627,6 +16638,7 @@ exports.resumeSupportAction = resumeSupportAction;
 exports.resumeCollectAction = resumeCollectAction;
 exports.resumeListAction = resumeListAction;
 exports.publishRecruitInfo = publishRecruitInfo;
+exports.publishFindWorker = publishFindWorker;
 exports.fastIssue = fastIssue;
 exports.FastPublisInfo = FastPublisInfo;
 exports.jobRecommendListAction = jobRecommendListAction;
@@ -16656,12 +16668,13 @@ exports.userCheckDouyinRecharge = userCheckDouyinRecharge;
 exports.updataPassword = updataPassword;
 exports.queryAction = queryAction;
 exports.getResumeAddInfoConfig = getResumeAddInfoConfig;
+exports.checkCode = checkCode;
 exports.getRankRulesList = getRankRulesList;
 exports.turntableIndex = turntableIndex;
 exports.turntableDraw = turntableDraw;
 exports.turntableVideoEnd = turntableVideoEnd;
 exports.memberTurntable = memberTurntable;
-exports.checkCode = checkCode;
+exports.publishWayRea = publishWayRea;
 
 var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
 
@@ -17452,6 +17465,16 @@ function publishRecruitInfo(data) {
   });
 }
 // 快速发布招工信息
+function publishFindWorker(data) {
+  return doRequestAction({
+    url: api.FastRcruitUrl,
+    method: 'POST',
+    data: data,
+    failToast: true,
+    user: false
+  });
+}
+// 快速发布招工信息
 function fastIssue(data) {
   return doRequestAction({
     url: api.FastIssueInfo,
@@ -17727,6 +17750,15 @@ function getResumeAddInfoConfig() {
     method: 'POST'
   });
 }
+// 发布招工，填写验证码后校验验证码
+function checkCode(data) {
+  return doRequestAction({
+    url: api.checkCodeUrl,
+    method: 'POST',
+    data: data,
+    user: false
+  });
+}
 // 排名规则数据
 function getRankRulesList() {
   return doRequestAction({
@@ -17763,12 +17795,11 @@ function memberTurntable() {
     method: 'POST'
   });
 }
-// 发布招工，填写验证码后校验验证码
-function checkCode(data) {
+// 发布方式请求
+function publishWayRea() {
   return doRequestAction({
-    url: api.checkCodeUrl,
-    method: 'POST',
-    data: data
+    url: api.publishModel,
+    method: 'GET'
   });
 }
 
