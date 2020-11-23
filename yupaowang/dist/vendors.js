@@ -12279,6 +12279,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.setResumeTop = setResumeTop;
 exports.setClickResumeTop = setClickResumeTop;
+exports.setRecClickResumeTop = setRecClickResumeTop;
 
 var _resume_top = __webpack_require__(/*! ../constants/resume_top */ "./src/constants/resume_top.ts");
 
@@ -12289,10 +12290,17 @@ function setResumeTop(data) {
     data: data
   };
 }
-// 置顶页面城市
+// 找活置顶页面城市
 function setClickResumeTop(data) {
   return {
     type: _resume_top.SETCLICKRESUMETOP,
+    data: data
+  };
+}
+// 招工置顶页面
+function setRecClickResumeTop(data) {
+  return {
+    type: _resume_top.SETRESCLICKRESUMETOP,
     data: data
   };
 }
@@ -12927,6 +12935,8 @@ Object.defineProperty(exports, "__esModule", {
 var SETRESUMETOP = exports.SETRESUMETOP = 'resume_top';
 // 置顶页面城市
 var SETCLICKRESUMETOP = exports.SETCLICKRESUMETOP = 'click_resume_top';
+//找活置顶页面城市
+var SETRESCLICKRESUMETOP = exports.SETRESCLICKRESUMETOP = 'rec_click_resume_top';
 
 /***/ }),
 

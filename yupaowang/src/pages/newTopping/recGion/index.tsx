@@ -10,7 +10,7 @@ import { useResumeType } from '../../../reducers/resume_top';
 import { ParentItems } from '../../../models/area'
 import { resume_topObj_arrStr } from '../../../utils/request/index.d';
 import { HistoryInfo } from '../../../config/store';
-import { setClickResumeTop } from '../../../actions/resume_top';
+import { setRecClickResumeTop } from '../../../actions/resume_top';
 import './index.scss'
 
 export default function RecGion() {
@@ -56,7 +56,7 @@ export default function RecGion() {
         Msg(res.errmsg)
       }
     }))
-    const clickResumeTopObj = resumeTopData.clickResumeTopObj || [];
+    const clickResumeTopObj = resumeTopData.recClickResumeTopObj || [];
     const data = [...AREAS];
     // 全部城市
     for (let i = 0; i < data.length; i++) {
@@ -296,8 +296,14 @@ export default function RecGion() {
   }
   // 搜索
   const handleSeach = () => {
-    const data = seachAreasList(inputVal);
-    setSeachList(data);
+    if (inputVal == ''){
+      setIsHistory(true);
+      setOnFocus(false);
+      setSeachList([]);
+    }else{
+      const data = seachAreasList(inputVal);
+      setSeachList(data);
+    }
   }
   // 确认选择
   const handleJump = () => {
@@ -314,7 +320,7 @@ export default function RecGion() {
         city.push(data[i]);
       }
     }
-    dispatch(setClickResumeTop([...country, ...province, ...city]))
+    dispatch(setRecClickResumeTop([...country, ...province, ...city]))
     Taro.navigateBack();
   }
   // 输入搜索

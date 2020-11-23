@@ -295,8 +295,14 @@ export default function ResGion() {
   }
   // 搜索
   const handleSeach = ()=>{
-    const data = seachAreasList(inputVal);
-    setSeachList(data);
+    if (inputVal == '') {
+      setIsHistory(true);
+      setOnFocus(false);
+      setSeachList([]);
+    } else {
+      const data = seachAreasList(inputVal);
+      setSeachList(data);
+    }
   }
   // 确认选择
   const handleJump = ()=>{

@@ -431,6 +431,7 @@ export interface UserPublishedRecruitListDataItem {
   is_end: string,
   sort_time: string,
   top: string,
+  area_id:number,
   top_data: {
     end_time: string,
     information_id: string,
@@ -842,8 +843,13 @@ export interface jobTopConfigData {
   top_rules:[],
   max_top_days:number,
   max_city:number,
-  days: string[],
-  max_province:number
+  days: number[],
+  max_province:number,
+  default_days:number,
+  city_integral:string,
+  country_integral:string,
+  province_integral:string,
+  time:number,
 }
 
 

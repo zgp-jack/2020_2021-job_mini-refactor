@@ -1,9 +1,10 @@
-import { SETRESUMETOP, SETCLICKRESUMETOP } from '../constants/resume_top';
+import { SETRESUMETOP, SETCLICKRESUMETOP, SETRESCLICKRESUMETOP } from '../constants/resume_top';
 import { resume_topObj, resume_topObj_arrStr } from '../utils/request/index.d';
 
 export interface useResumeType {
   resumeTopObj: resume_topObj,
   clickResumeTopObj: resume_topObj_arrStr[],
+  recClickResumeTopObj:resume_topObj_arrStr[],
 }
 
 const DEFAULT_RESUME_TOP: resume_topObj = {
@@ -31,6 +32,7 @@ const DEFAULT_RESUME_TOP: resume_topObj = {
 const DEFAULT_STATE: useResumeType = {
   resumeTopObj: DEFAULT_RESUME_TOP,
   clickResumeTopObj: [],
+  recClickResumeTopObj: [],
 }
 
 
@@ -44,6 +46,8 @@ export default function resumeTop(state: useResumeType = DEFAULT_STATE, action: 
       return { ...state, resumeTopObj:action.data }
     case SETCLICKRESUMETOP:
       return { ...state, clickResumeTopObj:action.data}
+    case SETRESCLICKRESUMETOP:
+      return { ...state, recClickResumeTopObj:action.data}
     default:
       return state
   }

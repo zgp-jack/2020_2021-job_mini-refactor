@@ -844,7 +844,8 @@ var DEFAULT_RESUME_TOP = {
 };
 var DEFAULT_STATE = {
   resumeTopObj: DEFAULT_RESUME_TOP,
-  clickResumeTopObj: []
+  clickResumeTopObj: [],
+  recClickResumeTopObj: []
 };
 function resumeTop() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : DEFAULT_STATE;
@@ -855,6 +856,8 @@ function resumeTop() {
       return _extends({}, state, { resumeTopObj: action.data });
     case _resume_top.SETCLICKRESUMETOP:
       return _extends({}, state, { clickResumeTopObj: action.data });
+    case _resume_top.SETRESCLICKRESUMETOP:
+      return _extends({}, state, { recClickResumeTopObj: action.data });
     default:
       return state;
   }

@@ -9,6 +9,7 @@ import { useResumeType } from '../../../reducers/resume_top';
 import { setClickResumeTop } from '../../../actions/resume_top';
 import { resumesUpdateTopResumeAction, resumesDoTopV2Action } from '../../../utils/request';
 import AREAS from '../../../models/area'
+import { UserInfo } from '../../../config/store'
 import { ShowActionModal } from '../../../utils/msg'
 
 import './index.scss'
@@ -143,7 +144,7 @@ export default function ResRange() {
         setAreas(areasData);
         dispatch(setClickResumeTop(areasData));
         // 默认打开天数
-        setDefaultDay(res.data.default_days||0);
+        setDefaultDay(res.data.default_days && (res.data.default_days-1)||0);
         //置顶时间
         setEnd_time_str(resumeTopData.resumeTopObj.end_time_str||'');
         // 上一次找活设置置顶的最大值
@@ -212,8 +213,8 @@ export default function ResRange() {
     // 获取价格
     let newPrice;
     let defultData = obj ? obj : integralData;
-    newPrice = whole > 0 ? defultData.province_integral : (city * defultData.city_integral + province * defultData.province_integral);
-    // 时间差
+    newPrice = whole > 0 ? defultData.country_integrals : (city * defultData.city_integral + province * defultData.province_integral);
+    // 时间差s
     let oldTime = resumeTopData.resumeTopObj.end_time ? +resumeTopData.resumeTopObj.end_time : 0
     let remDay: number = (oldTime - new Date().getTime() / 1000) / 86400;
     let money;
@@ -271,12 +272,21 @@ export default function ResRange() {
     let cityArr:string[] = [], provinceArr:string[] = [], is_country=0;
     for (let i = 0; i < data.length;i++){
       if(data[i].pid=='0'){
-        is_country = 0;
+        is_country = 1;
       }else if(data[i].pid == '1'){
         provinceArr.push(data[i].id)
       }else{
         cityArr.push(data[i].id);
       }
+    }
+    const UserInfoData = Taro.getStorageSync(UserInfo)
+    if (!UserInfoData) {
+      ShowActionModal({ msg: '网络出错，请稍后重试' });
+      return
+    }
+    if (cityArr.length == 0 && provinceArr.length == 0 && is_country == 0) {
+      ShowActionModal({ msg: '请选择您的置顶城市' });
+      return
     }
     let params;
     // 进来的时间-提交时间+服务器时间
@@ -307,38 +317,46 @@ export default function ResRange() {
           delta: 1
         })
       } else if (res.errcode == 'member_forbid'){
-        ShowActionModal({msg:res.errmsg,success:(resData)=>{
-          if (resData.cancel) {
-            Taro.navigateBack({
-              delta: 1
-            })
-          } else if (resData.confirm) {
-            Taro.makePhoneCall({
-              phoneNumber: SERVERPHONE,
-            });
-          } 
-        }})
+        Taro.showModal({
+          title: '温馨提示',
+          content: res.errmsg,
+          success: function (res) {
+            if (res.confirm) {
+              Taro.makePhoneCall({
+                phoneNumber: SERVERPHONE,
+              });
+            } else if (res.cancel) {
+              Taro.navigateBack()
+            }
+          }
+        })
         return
       } else if (res.errcode == "auth_forbid"){
-        ShowActionModal({msg:res.errmsg,success:(resData)=>{
-          if (resData.cancel) {
-            Taro.navigateBack({
-              delta: 1
-            })
-          } else if (resData.confirm) {
-            let backtwo = "backtwo"
-            Taro.redirectTo({
-              url: `/pages/realname/realname?backtwo=${backtwo}`
-            })
+        // 去实名
+        Taro.showModal({
+          title: '温馨提示',
+          content: res.errmsg,
+          confirmColor: '#009CFFFF',
+          success: function (res) {
+            if (res.confirm) {
+              Taro.navigateTo({
+                url: '/pages/realname/index',
+              })
+            } else if (res.cancel) {
+              Taro.navigateBack()
+            }
           }
-        }})
+        })
         return
       } else if (res.errcode == 'get_integral'){
-        ShowActionModal({
-          msg: res.errmsg, success: (resData) => {
-            if (resData.confirm == true) {
+        Taro.showModal({
+          title: '温馨提示',
+          content: res.errmsg,
+          confirmColor: '#009CFFFF',
+          success: function (res) {
+            if (res.confirm) {
               Taro.navigateTo({
-                url: `/pages/getintegral/getintegral`,
+                url: '/pages/getintegral/index',
               })
             }
           }

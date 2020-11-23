@@ -1,10 +1,13 @@
 @import '../../../common.scss';
 
 .range {
+  background: #FFFFFF;
+  height: 100vh;
   font-size: 28px;
   color: rgba(32, 32, 33, 1);
-  .range-mt30{
-    margin: 30px;
+  .range-mt30 {
+    margin: 0px 30px 30px;
+    padding-top: 30px;
   }
   .mt15{
     margin-top: 15px;
@@ -22,7 +25,7 @@
     text-align: center;
     background: #0099FF;
     box-shadow: 0px 3px 3px 0px rgba(0, 153, 255, 0.5);
-    border-radius: 5px;
+    border-radius: 10px;
     margin-bottom: 45px;
     margin-left: 14px;
   }
@@ -37,7 +40,7 @@
       background: rgba(255, 255, 255, 0);
       border: 2px solid #B5B5B5;
       box-shadow: 0px 2px 5px 0px rgba(176, 174, 179, 0.38);
-      border-radius: 5px;
+      border-radius: 10px;
       text-align: center;
       line-height: 86px;
       margin: 0px 28px 18px 28px;
@@ -56,7 +59,7 @@
       height: 86px;
       background:$color;
       box-shadow: 0px 2px 5px 0px rgba(176, 174, 179, 0.38);
-      border-radius: 5px;
+      border-radius: 10px;
       text-align: center;
       line-height: 86px;
       margin: 0px 28px 18px 28px;
@@ -69,7 +72,7 @@
     padding-right: 30px;
     background: #FFFFFF;
     box-shadow: 0px 3px 6px 0px rgba(229, 224, 224, 0.75);
-    border-radius: 5px 5px 5px 5px;
+    border-radius: 10px;
     .range-content-list-time{
       display: flex;
       justify-content: space-between;
