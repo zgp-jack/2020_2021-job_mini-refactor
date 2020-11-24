@@ -15,6 +15,7 @@ import Msg,{ ShowActionModal } from '../../../utils/msg';
 import { isChinese, isPhone, allChinese } from '../../../utils/v';
 import { getLocation } from '../../../utils/helper';
 import { location } from './data';
+import { UserListChooseCity  } from '../../../config/store';
 import { LocationDataTypeAsGaode } from './index.d';
 import { setAreaInfo, setArea } from '../../../actions/recruit'//获取发布招工信息action
 import './index.scss'
@@ -101,6 +102,19 @@ export default function AddResumeInfo(){
       const areaProvince = infoData.province_and_city.split(',')[1];
       const provinceAdress = getCityInfoById(areaProvince).name;
       setProvinceAdress(provinceAdress);
+    }else{
+      // 没有就获取缓存授权地址
+      const areaProvince = Taro.getStorageSync(UserListChooseCity);
+      // 并且不等于全国
+      if (areaProvince && areaProvince.id !='1'){
+        const provinceAdress = areaProvince.name;
+        // console.error(provinceAdress,'provinceAdress')
+        setProvinceAdress(provinceAdress);
+      }else{
+        // 没有地址和没有设置默认北京
+        setProvinceAdress('北京');
+      }
+      // 没有就默认北京
     }
     let classifiesArr = infoData.occupations_id&&infoData.occupations_id.split(',')||[];
     const data = [...infoConfig.occupation] ||[];
@@ -265,7 +279,10 @@ export default function AddResumeInfo(){
                     if (data.authSetting["scope.userLocation"] == true) {
                       Msg('授权成功')
                       getLocation().then(res=> {
+                        console.error(res,'111')
                         setLocationData(res);
+                        const provinceAdress = getCityInfoById(res.city);
+                        setProvinceAdress(provinceAdress.name);
                       })
                     }else{
                       Msg('授权失败')
@@ -278,6 +295,8 @@ export default function AddResumeInfo(){
         }else{
           getLocation().then(res=>{
             if (res) {
+              const provinceAdress = getCityInfoById(res.city);
+              setProvinceAdress(provinceAdress.name);
               setLocationData(res);
             }
           })

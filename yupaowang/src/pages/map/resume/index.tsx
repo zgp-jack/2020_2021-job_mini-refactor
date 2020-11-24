@@ -39,6 +39,7 @@ export const contextItem = createContext<Injected>({} as Injected)
 export default function ResumeMap() {
   const router: Taro.RouterInfo = useRouter()
   let { provinceAdress } = router.params;
+  console.error(provinceAdress,'provinceAdress  ')
   // 获取dispatch分发action
   const dispatch = useDispatch()
   const [area, setArea] = useState<string>(provinceAdress)
