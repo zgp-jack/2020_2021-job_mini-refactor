@@ -10,7 +10,7 @@ import { UserLastPublishRecruitArea } from '../../../pages/recruit/index.d'
 import Profession from '../../../components/profession'
 import { TEXTAREAMAXLENGTH, USEGAODEMAPAPI } from '../../../config'
 import useCode from '../../../hooks/code'
-import { getCityAreaPicker, getAreaCurrentArr, SimpleChildItems} from '../../../models/area'
+import { getCityAreaPicker, getAreaCurrentArr, SimpleChildItems, getCityInfoById} from '../../../models/area'
 import Msg,{ ShowActionModal } from '../../../utils/msg';
 import { isChinese, isPhone, allChinese } from '../../../utils/v';
 import { getLocation } from '../../../utils/helper';
@@ -62,7 +62,8 @@ export default function AddResumeInfo(){
   const areaInfo: UserLastPublishRecruitArea = useSelector<any, UserLastPublishRecruitArea>(state => state.MyAreaInfo)
   // 不是第一次存areaInfo
   // const [first, setFirst] = useState<boolean>(false);
-
+  // 设置选择地址的省
+  const [provinceAdress, setProvinceAdress] = useState<string>('');
   useEffect(() => {
     let {province, cities} = getCityAreaPicker()
     setAreaProvincePicker(province)
@@ -94,6 +95,12 @@ export default function AddResumeInfo(){
           setNationsName(nations[nation_id - 1 ].mz_name);
         }
       }
+    }
+    // 选择地址时省份设置
+    if (infoData.province_and_city){
+      const areaProvince = infoData.province_and_city.split(',')[1];
+      const provinceAdress = getCityInfoById(areaProvince).name;
+      setProvinceAdress(provinceAdress);
     }
     let classifiesArr = infoData.occupations_id&&infoData.occupations_id.split(',')||[];
     const data = [...infoConfig.occupation] ||[];
@@ -134,6 +141,11 @@ export default function AddResumeInfo(){
     if(first) return;
     //设置所属地区
     const area = { ...areaInfo };
+    // 设置省份(切换省份后)
+    if (area.city){
+      const provinceAdress = getCityInfoById(area.city).name;
+      setProvinceAdress(provinceAdress);
+    }
     setLocationData({
       ...location, adcode: area.adcode, address: area.title, longitude: area.location && area.location.split(',')[0], latitude: area.location&& area.location.split(',')[1], city: area.city || '', province: area.provice || ''
     })
@@ -279,7 +291,7 @@ export default function AddResumeInfo(){
   const userChooseArea = () => {
     // setFirst(false);
     first = false
-    let url = '/pages/map/resume/index'
+    let url = `/pages/map/resume/index?provinceAdress=${provinceAdress}`
     Taro.navigateTo({
       url: url
     })

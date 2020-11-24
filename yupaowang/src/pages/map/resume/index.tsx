@@ -1,4 +1,4 @@
-import Taro, { useEffect, useState, createContext, Config } from '@tarojs/taro'
+import Taro, { useEffect, useState, createContext, Config,useRouter } from '@tarojs/taro'
 import { View, Text, Image, Input } from '@tarojs/components'
 // import { context }  from '../../../subpackage/pages/basics';
 // import { context } from '../../recruit/publish'
@@ -37,11 +37,11 @@ interface ResumeMapType{
 }
 export const contextItem = createContext<Injected>({} as Injected)
 export default function ResumeMap() {
-  // const router: Taro.RouterInfo = useRouter()
-  // let { areaItem } = router.params;
+  const router: Taro.RouterInfo = useRouter()
+  let { provinceAdress } = router.params;
   // 获取dispatch分发action
   const dispatch = useDispatch()
-  const [area, setArea] = useState<string>('')
+  const [area, setArea] = useState<string>(provinceAdress)
   // 城市数据
   const [areas, setAreas] = useState<AllAreasDataItem[][]>([])
   // 选择详细地址信息
@@ -61,7 +61,9 @@ export default function ResumeMap() {
   })
   // 是否显示城市
   const [showCity, setShowCity] = useState<boolean>(false)
-  // 使用发布招工hook处理数据
+  // 获取redux中区域名称数据
+  // const area: string = useSelector<any, string>(state => state.MyArea)
+  // 获取redux中定位状态
   // const { area, setArea, setAreaInfo, setPublishArea } = useContext(context)
   const [publishArea,setPublishArea] = useState<string>('')
   // 详细地址的输入框
@@ -96,7 +98,6 @@ export default function ResumeMap() {
         ad_name: data.ad_name,
         city: data.name
       }
-      setArea(data.name)
       setUserLoc(userLocData)
     }
   }
