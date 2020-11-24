@@ -1,8 +1,8 @@
 /*
  * @Author: zyb
  * @Date: 2020-11-03 18:49:37
- * @LastEditors: zyb
- * @LastEditTime: 2020-11-10 09:34:01
+ * @LastEditors: jsxin
+ * @LastEditTime: 2020-11-23 16:56:52
  * @Description: 
  */
 // 基础信息默认参数
@@ -62,6 +62,7 @@ export const INFODATA_DATA =  {
   age:'',
   title: '',
   code:'',
+  province_and_city: ''
 }
 
 // 人员信息

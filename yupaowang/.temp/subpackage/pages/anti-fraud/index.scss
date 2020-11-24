@@ -1,0 +1,51 @@
+.anti-fraudbox {
+  position: relative;
+  width: 100%;
+  padding: 20px 27px;
+}
+
+.anti-fraud-item {
+  position: relative;
+  width: 100%;
+}
+
+.anti-fraud-title {
+  position: relative;
+  font-size: 34px;
+  color: #f40521;
+  font-weight: bold;
+  line-height: 80px;
+}
+
+.anti-fraud-tips {
+  position: relative;
+  display: block;
+  font-size: 30px;
+  color: #f40521;
+  line-height: 60px;
+  padding-left: 50px;
+}
+
+.anti-fraud-tips::before {
+  position: absolute;
+  content: '';
+  display: block;
+  width: 36px;
+  height: 36px;
+  background: url("http://cdn.yupao.com/miniprogram/images/laba.png") no-repeat;
+  background-size: 100% 100%;
+  left: 0;
+  top: 50%;
+  margin-top: -15px;
+}
+
+.anti-fraud-info,
+.anti-fraud-other {
+  font-size: 28px;
+  line-height: 50px;
+  color: #555;
+}
+
+.anti-fraud-other {
+  color: #f40521;
+}

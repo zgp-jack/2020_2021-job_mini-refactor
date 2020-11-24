@@ -1,0 +1,13 @@
+@import '../projects/index.scss';
+
+.add-certificate-btn{
+  position: relative;
+  color: white;
+  width: 60%;
+  line-height: 80px;
+  background-color: $color;
+  border-radius: 20PX;
+  text-align: center;
+  margin: 30px auto;
+  font-size: 28px;
+}

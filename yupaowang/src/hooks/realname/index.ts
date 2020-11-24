@@ -8,7 +8,7 @@ import { CameraAndAlbum } from '../../utils/upload'
 import * as Hooks from '../../hooks/index.d'
 import UploadImgAction from '../../utils/upload'
 import { getIdcardAuthInfo } from '../../utils/api'
-import { ALIYUNCDNMINIIMG } from '../../config'
+import { ALIYUNCDNMINIIMG, USEGAODEMAPAPI } from '../../config'
 import { getLongAreaAdname } from '../../models/area'
 import { SubscribeToNews } from '../../utils/subscribeToNews'
 
@@ -136,6 +136,11 @@ export default function useRealname(){
     }
     if (!model.address) {
       Msg('请选择您的地址')
+      return false
+    }
+    // 如果不能使用高德api， 那么输入的地址至少需要5个字
+    if (!USEGAODEMAPAPI && model.address.length < 5) {
+      Msg('地址最少5个字')
       return false
     }
     if(!model.tel){

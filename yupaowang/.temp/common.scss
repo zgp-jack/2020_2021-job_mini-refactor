@@ -1,0 +1,102 @@
+
+// 主题色
+$color: #0099ff;
+// 主页底部内边距
+$paddingbottom : 150px;
+// tabbar高度
+$tabbarheight: 120px;
+// 边框颜色
+$bordercolor: #dcdcdc;
+// 阴影颜色
+$shadowcolor: #e7e6e4;
+// 间距
+$margin: 15px;
+// 小程序发布组件输入框padding
+// --微信
+// $miniPublishInputPadding: 20px;
+// --抖音
+$miniPublishInputPadding: 0;
+
+// 文字超出显示省略号
+.overwords{
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+// 隐藏元素
+.hide{
+  display: none;
+}
+
+// 没有更多数据了
+.showMore{
+  position: relative;
+  width: 100%;
+  padding: 20px 0;
+  text-align: center;
+  font-size: 26px;
+  color: #525252;
+}
+
+// 文字多行溢出
+@mixin textrow($row: 2) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: $row;
+  -webkit-box-orient: vertical;
+  word-break: break-all; 
+} 
+
+// 清除浮动
+.clearfix:after{
+  content: "";   
+  display: block;  
+  clear: both;  
+  visibility: hidden;
+  line-height: 0;  
+  height: 0;     
+  font-size:0; 
+}
+.clearfix{
+  zoom: 1;
+}
+
+// 弹性布局
+@mixin flex($direction:row) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin shadow($px:10px) {
+  box-shadow: 0 0 $px $shadowcolor;
+}
+
+@mixin text-justify{
+  content: '.';
+  width: 100%;
+  display: inline-block;
+  overflow: hidden;
+  height: 0;
+}
+
+// 列表页没有更多数据
+.list-data-notmore{
+  position: relative;
+  font-size: 28px;
+  color: #7f7e7e;
+  text-align: center;
+  line-height: 70px;
+}
+
+// 统计字数组件样式
+.words-total-box{
+  position: absolute;
+  font-size: 26px;
+  color: #333;
+  right: 20px;
+  bottom: 10px;
+}

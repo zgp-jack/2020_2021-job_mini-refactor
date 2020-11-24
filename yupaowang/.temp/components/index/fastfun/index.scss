@@ -1,0 +1,32 @@
+@import '../../../common.scss';
+
+.home-fastfun{
+  position: relative;
+  width: 100%;
+  margin-top: 15px;
+  background-color: white;
+  height: 110px;
+  @include flex();
+  .home-fastfun-item{
+    position: relative;
+    width: 50%;
+    height: 100%;
+    float: left;
+    border-right: 1px solid #f7f6f9;
+    @include flex();
+    &:nth-last-child(1){
+      border-right: 0;
+    }
+    .home-fastfun-img{
+      position: relative;
+      width: 40px;
+      height: 40px;
+      display: block;
+      margin-right: 10px;
+    }
+    .home-fastfun-text{
+      position: relative;
+      font-size: 28px;
+    }
+  }
+}

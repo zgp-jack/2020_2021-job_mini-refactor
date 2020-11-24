@@ -1,0 +1,89 @@
+@import '../../../common.scss';
+
+.usedlist-container{
+  position: relative;
+  width: 100%;
+  padding-bottom: 150px;
+  .lists-nodata{
+    text-align: center;
+    & >image{
+      display: inline-block;
+      width: 200px;
+      height: 200px;
+    }
+    & > text{
+      display: block;
+      font-size: 28px;
+      line-height: 100px;
+    }
+  }
+  .usedlist-item{
+    position: relative;
+    width: 100%;
+    background-color: white;
+    margin-top: 15px;
+    .usedlist-item-header{
+      position: relative;
+      width: 100%;
+      padding-right: 250px;
+      padding-left: 20px;
+      border-bottom: 1px dashed $bordercolor;
+      .usedlist-item-title{
+        position: relative;
+        font-size: 28px;
+        line-height: 80px;
+      }
+      .usedlist-item-time{
+        position: absolute;
+        display: inline-block;
+        right: 20px;
+        top: 0;
+        line-height: 80px;
+        font-size: 26px;
+        color: #828586;
+      }
+    }
+    .usedlist-item-body{
+      position: relative;
+      width: 100%;
+      padding-left: 150px;
+      .usedlist-item-user{
+        position: absolute;
+        display: block;
+        width: 135px;
+        height: 135px;
+        top:20px;
+        left: 20px;
+        border-radius: 50%;
+      }
+      .usedlist-item-content{
+        position: relative;
+        width: 100%;
+        padding: 20px;
+        height: 180px;
+        @include flex(column);
+        align-items: flex-start;
+        .usedlist-content-item{
+          flex:1;
+          position: relative;
+          .usedlist-content-item-img{
+            position: absolute;
+            width: 36px;
+            height: 36px;
+            display: block;
+            left: 0;
+            top: 2px;
+          }
+          .usedlist-content-info{
+            padding-left: 50px;
+            position: relative;
+            font-size: 28px;
+            .usedlist-content-status{
+              color: #ff0000;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,420 @@
+.preview{
+  overflow-y: scroll;
+}
+.cardcolore {
+  background: white;
+  position: relative;
+  box-shadow: 0 0 1px #e7e6e4;
+  margin-top: 20px;
+  padding-bottom: 20px;
+}
+.iconImage {
+  width: 120px;
+  height: 30px;
+  margin-left: 14px;
+}
+.header {
+  width: 93%;
+  margin: 0 auto;
+  height: 60px;
+  background: white;
+  font-size: 31px;
+  color: #f87a14;
+  text-align: center;
+  line-height: 60px;
+  font-weight: bold;
+}
+.findingnamecardthree {
+  width: 93%;
+  margin-top: 18px;
+  margin-bottom: 18px;
+  font-size: 0;
+  margin-left: 24px;
+}
+.findingnamecardthreemobile {
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.findingnamecardthree-image{
+  width: 27px;
+  height: 29px;
+  margin: 0 10px;
+}
+.audit {
+  display: inline-block;
+  width: 135px;
+  height: 130px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+.cardtwo {
+  width: 93%;
+  margin: 0 auto;
+  background-color: white;
+  padding-bottom: 6px;
+  position: relative;
+}
+.cardonetwof {
+  overflow: hidden;
+}
+.checkone {
+  width: 110px;
+  height: 110px;
+  position: absolute;
+  top: 10px;
+  right: 21px;
+  z-index: 99;
+}
+.cardtwosonone {
+  width: 100%;
+  margin-top: 22px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  position: relative;
+}
+.cardtwosononeimg {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  padding-right: 120px;
+}
+.oimg {
+  height: 98px;
+  width: 98px;
+  border-radius: 50%;
+  margin-left: 14px;
+}
+.oim-image {
+  height: 98px;
+  width: 98px;
+  border-radius: 50%;
+}
+.oimgone {
+  padding-left: 6px;
+}
+.otext {
+  color: #343434;
+  font-size: 32px;
+  font-weight: bold;
+}
+.otextone {
+  font-size: 30px;
+  color: black;
+  margin-top: 6px;
+}
+.ochange {
+  margin-left: 12px;
+}
+.lineone {
+  position: relative;
+  margin-bottom: 8px;
+  margin-top: 18px;
+}
+.linezo::before {
+  position: absolute;
+  content: '';
+  left: 14px;
+  top: 0;
+  width: 1px;
+  height: 100%;
+  background: #dcdcdc;
+  transform: scaleX(0.7);
+}
+.cardotext {
+  position: relative;
+  width: 100%;
+  display: flex;
+  vertical-align: baseline;
+  margin-bottom: 6px;
+}
+.oworkotext {
+  width: 20.5%;
+  margin: 0;
+  padding: 0;
+  height: 34px;
+  display: inline-block;
+  color: #555;
+  font-size: 30px;
+  text-align: justify;
+  position: relative;
+  margin-left: 52px;
+}
+
+.workotextone {
+  color: #222;
+  font-size: 30px;
+  padding-left: 28px;
+  width: 70%;
+}
+
+.cworkotype {
+  position: relative;
+  width: 100%;
+  margin-top: 12px;
+  padding-left: 190px;
+  min-height: 30px;
+  margin-bottom: -12px;
+}
+.cworkotype::before {
+  position: absolute;
+  content: '';
+  width: 20px;
+  height: 20px;
+  background: url(http://cdn.yupao.com/miniprogram/images/newjobinfo-steps.png?t=11) no-repeat;
+  background-size: 100% 100%;
+  left: 14px;
+  margin-left: -5px;
+  top: 10px;
+}
+.ocworkotype {
+  width: 20.5%;
+  left: 0;
+  top: 0;
+  display: inline-block;
+  color: #555;
+  font-size: 30px;
+  text-align: justify;
+  position: absolute;
+  margin-left: 52px;
+}
+.ocworkotypeoo {
+  padding-right: 30px;
+}
+.ocworkotype::after {
+  content: '';
+  width: 100%;
+  display: inline-block;
+  overflow: hidden;
+  height: 0;
+}
+.ocworkotype::before {
+  content: ':';
+  /* overflow: hidden; */
+  height: 100%;
+  width: 6px;
+  position: absolute;
+  right: -4px;
+}
+.ocworkotyp {
+  position: relative;
+  left: 28px;
+  font-size: 0;
+}
+.ocworkotyptu {
+  color: rgba(42, 42, 42, 1);
+  font-size: 28px;
+  display: inline-block;
+  padding: 4px 10px;
+  text-align: center;
+  margin-right: 17px;
+  margin-bottom: 12px;
+  background: rgba(238, 237, 239, 1);
+  border-radius: 6px;
+}
+.ocworkotyptu:nth-last-child(1) {
+  margin-right: 0;
+}
+.workotextone {
+  color: #222;
+  font-size: 30px;
+  padding-left: 28px;
+  width: 70%;
+}
+.labletu {
+  color: #09f;
+  font-size: 26px;
+  display: inline-block;
+  padding: 0 6px;
+  text-align: center;
+  margin-right: 17px;
+  border-radius: 8px;
+  border: 1px solid #09f;
+  line-height: 40px;
+}
+.cardotext::before {
+  position: absolute;
+  content: '';
+  width: 20px;
+  height: 20px;
+  background: url(http://cdn.yupao.com/miniprogram/images/newjobinfo-steps.png?t=11) no-repeat;
+  background-size: 100% 100%;
+  left: 14px;
+  margin-left: -5px;
+  top: 10px;
+}
+.oworkotext::after {
+  content: '';
+  width: 100%;
+  display: inline-block;
+  overflow: hidden;
+  height: 0;
+}
+
+.oworkotext::before {
+  content: ':';
+  height: 100%;
+  width: 6px;
+  position: absolute;
+  right: -4px;
+}
+.introcardtwo {
+  width: 93%;
+  margin: 0 auto;
+  background: white;
+  overflow: hidden;
+  font-size: 28px;
+  color: #575757;
+  position: relative;
+  min-height: 110px;
+}
+.introcontent{
+  margin-top: 21px;
+  margin-left: 54px;
+  margin-right: 54px;
+  word-break: break-all;
+  font-size: 30px;
+}
+.cardsix {
+  width: 93%;
+  margin: 0 auto;
+  background-color: white;
+}
+
+.cardsixzong {
+  display: flex;
+  flex-direction: row;
+}
+.checkfour {
+  width: 110px;
+  height: 110px;
+  position: absolute;
+  top: 10px;
+  right: 45px;
+  z-index: 99;
+}
+.audit {
+  display: inline-block;
+  width: 135px;
+  height: 130px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+.cardsixone {
+  width: 20px;
+  height: 20px;
+  margin-left: 20px;
+  margin-top: 30px;
+}
+.cardsixall {
+  width: 92%;
+}
+.cardsixtwo {
+  color: #343434;
+  font-size: 30px;
+  font-weight: bold;
+  margin-left: 14px;
+  margin-top: 20px;
+}
+.cardsixthree {
+  color: #8b8b8a;
+  font-size: 30px;
+  margin-left: 14px;
+  margin-top: 10px;
+}
+
+.cardsixthree-text:last-child {
+  margin-left: 26px;
+  font-size: 30px;
+}
+.cardsixfour {
+  color: #8b8b8a;
+  font-size: 30px;
+  margin-left: 14px;
+  margin-top: 10px;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+.cardsixfive-image {
+  width: 185px;
+  height: 185px;
+  margin-left: 16px;
+  margin-top: 16px;
+}
+
+.cardsixsixall {
+  margin: 0 auto;
+  width: 246px;
+}
+.cardsixsix {
+  padding: 0;
+  width: 246px;
+  background-color: #09f;
+  font-size: 30px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  margin-top: 14px;
+  position: relative;
+  border-radius: 8px;
+}
+.more {
+  display: flex;
+  padding: 6px 6px 6px 0px;
+}
+
+.more-view {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 6px;
+}
+.down {
+  width: 20px;
+  height: 15px;
+}
+.checkthree {
+  width: 110px;
+  height: 110px;
+  position: absolute;
+  top: 10px;
+  right: 45px;
+  z-index: 99;
+}
+.editor {
+  font-size: 30px;
+  color: #09f;
+  position: absolute;
+  top: 14px;
+  right: 26px;
+}
+.btn-box {
+  margin-top: 50px;
+  width: 100%;
+  height: 150px;
+}
+
+.btn {
+  background-color: #09f;
+  color: white;
+  width: 500px;
+  height: 70px;
+  line-height: 70px;
+  text-align: center;
+  margin: 0 auto;
+  border-radius: 10px
+}
+.alllabletu {
+  padding-left: 28px;
+  font-size: 0;
+  width: 70%;
+}

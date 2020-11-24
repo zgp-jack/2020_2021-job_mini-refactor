@@ -1273,3 +1273,12 @@ export function publishWayRea(): Promise<Inter.publishWay>{
     method: 'GET'
   })
 }
+
+// 获取百度支付tporderid
+export function getBaiduTpOrderId(data): Promise<any>{
+  return doRequestAction({
+    url: api.getBaiduTpOrderId,
+    method: 'POST',
+    data
+  })
+}

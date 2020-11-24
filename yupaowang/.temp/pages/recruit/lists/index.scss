@@ -1,0 +1,40 @@
+@import '../../../common.scss';
+
+$height: 180px;
+
+.recruit-container{
+  position: relative;
+  width: 100%;
+  .recruit-fiexd-header{
+    position: fixed;
+    z-index: 200;
+    width: 100%;
+    left: 0;
+    top: 0;
+  }
+  .recruit-lists-containerbox{
+    position: fixed;
+    width: 100%;
+    left: 0;
+    top:$height;
+    height: calc(100% - 180px);
+    z-index: 3;
+  }
+  .publish-list-btn{
+    position: fixed;
+    width: 280px;
+    line-height: 80px;
+    border-radius: 50px;
+    background-color: $color;
+    text-align: center;
+    color: white;
+    bottom: 150px;
+    left: 50%;
+    margin-left: -140px;
+    z-index: 10;
+    font-size: 30px;
+    font-weight: bold;
+    letter-spacing: 5px;
+    @include shadow();
+  }
+}

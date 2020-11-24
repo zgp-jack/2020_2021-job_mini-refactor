@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-10-28 11:04:26
- * @LastEditTime: 2020-11-19 14:36:55
+ * @LastEditTime: 2020-11-21 09:59:09
  * @LastEditors: jsxin
  * @Description: In User Settings Edit
  * @FilePath: \yupaowang\src\config\minis\jizhao.ts
@@ -26,6 +26,8 @@ const VIDEOAD = 'adunit-31b05acadbd2a1d1'
 var TEXTAREAMAXLENGTH: number = 500
 // * 应用内是否存在下载APP引流
 var DOWNLOADAPP: boolean = true
+// * 是否支持高德地图api
+var USEGAODEMAPAPI: boolean = false
 
 
 module.exports = {
@@ -36,5 +38,6 @@ module.exports = {
   USESUBSCRIBEMESSAGE,
   VIDEOAD,
   TEXTAREAMAXLENGTH,
-  DOWNLOADAPP
+  DOWNLOADAPP,
+  USEGAODEMAPAPI
 }

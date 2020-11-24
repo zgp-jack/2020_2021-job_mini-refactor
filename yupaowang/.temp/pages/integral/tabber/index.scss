@@ -1,0 +1,241 @@
+@import '../../../common.scss';
+
+.tabber-content{
+  height: 150px;
+  width: 100%;
+  background: #FFFFFF;
+}
+.tabber-content-box{
+  display: flex;
+  justify-content: space-between;
+  line-height: 74px;
+  height: 74px;
+  border-bottom: 1px solid rgba(238, 238, 238, 1);
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.tabber-content-box-numBox{
+  display: flex;
+  line-height: 75px;
+  height: 75px;
+  padding-left: 20px;
+  padding-right: 20px;
+  color: #4F4F4F;
+  font-size: 26px;
+}
+.tabber-content-box-numBox-num {
+  display: inline-block;
+  margin-left: 123px;
+}
+.tabber-content-box-num-color{
+  color: $color
+}
+.tabber-content-box-selector-text{
+  height:23px;
+  font-size:24px;
+  font-weight:400;
+  display: block;
+  margin-left: 10px;
+  float: left;
+  color:rgba(79, 79, 79, 1);
+}
+.tabber-content-box-selector {
+  width:150px;
+  height:43px;
+  line-height: 43px;
+  text-align: center;
+  background:rgba(246, 246, 246, 1);
+  border-radius:3px;
+  vertical-align: middle;
+  margin: auto 0;
+}
+.tabber-content-box-time-text {
+  height:25px;
+  font-size:26px;
+  font-weight:500;
+  color:rgba(48, 48, 48, 1);
+}
+.tabber-content-box-time-img{
+  width: 38px;
+  height: 34px;
+  vertical-align: middle;
+}
+.tabber-content-box-selector-img{
+  width: 38px;
+  height: 34px;
+  display: block;
+  margin-top: 6px;
+  float: left;
+}
+.integral-content {
+  position: relative;
+  padding-left: 80px;
+  padding-right: 20px;
+
+  .integral-list {
+    position: relative;
+    background-color: white;
+    height: 200px;
+    margin-top: 15px;
+    border-radius: 5px;
+    @include shadow(10px);
+
+    .integral-list-time {
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      background-color: $color;
+      padding: 10px 0;
+      border-radius: 5px;
+      color: white;
+      left: -60px;
+      top: 40px;
+      line-height: 50px;
+      text-align: center;
+
+      .integral-time-year {
+        font-size: 26px;
+        display: block;
+      }
+
+      .integral-time-day {
+        font-size: 28px;
+        display: block;
+      }
+    }
+
+    .integral-list-item {
+      position: relative;
+      padding: 10px;
+      padding-left: 80px;
+      padding-right: 20px;
+      position: relative;
+      display: block;
+      line-height: 60px;
+      color: #333;
+
+      .integral-list-title {
+        font-size: 32px;
+      }
+
+      .integral-list-words {
+        font-size: 30px;
+      }
+
+      .integral-item-time {
+        font-size: 30px;
+
+        text {
+          float: right;
+          font-size: 30px;
+          color: #fd4040;
+        }
+      }
+    }
+  }
+}
+
+.tabber-Modal{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 5;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.tabber-Modal-content{
+  position: absolute;
+  position: relative;
+  width: 90%;
+  height:70%;
+  background: white;
+  border-radius: 10px 10px 5px 5px;
+  padding-top: 50px;
+  box-shadow: #e7e6e4 0 0 10px;
+  font-size: 30px;
+  padding-bottom: 20px;
+}
+.tabber-Modal-content-scroll {
+  overflow-y: scroll;
+  width: 100%;
+  height:100%;
+}
+.tabber-Modal-content-flexBox{
+  padding: 30px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #EEEEEE;
+}
+.tabber-Modal-content-flexBox-classifyName{
+  padding: 30px;
+  border-bottom: 1px solid #EEEEEE;
+  // display: flex
+  float: left;
+}
+.clear{
+  clear: both;
+}
+.tabber-Modal-content-flexBox-classifyName-data{
+  margin-right: 10px;
+}
+.tabber-Modal-content-flexBox-last{
+  padding: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+.tabber-Modal-content-flexBox-left {
+  float: left;
+  min-width: 200px;
+}
+.tabber-Modal-content-flexBox-right{
+  color: $color;
+  float: right;
+  max-width: 100%;
+}
+.tabber-Modal-content-flexBox-classifyName{
+  color: $color;
+  margin-right: 10px;
+  width: 100%;
+}
+.tabber-Modal-content-close {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  left: 50%;
+  top: -50px;
+  margin-left: -50px;
+  background: url("http://cdn.yupao.com/miniprogram/images/expend-close.png") no-repeat;
+  background-size: 100% 100%;
+}
+.tabber-Modal-content-flexBox-phone{
+  display: inline - block;
+  color: #fff;
+  padding: 0 20px;
+  font-size: 26px;
+  border-radius: 8px;
+  background: #67C23A;
+  margin: 0 5px;
+}
+.tabber-Modal-content-flexBox-complaint{
+  display: inline - block;
+  color: #fff;
+  padding: 0 20px;
+  font-size: 26px;
+  border-radius: 8px;
+  background: #ff0000;
+  margin: 0 5px;
+}
+
+.integral-noData{
+  position: relative;
+  width: 100%;
+  padding: 20px 0;
+  text-align: center;
+  font-size: 26px;
+  color: #525252;
+}

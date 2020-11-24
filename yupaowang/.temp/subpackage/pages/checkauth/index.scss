@@ -1,0 +1,95 @@
+@import '../../../common.scss';
+
+.checkauth-container{
+  position: relative;
+  width: 100%;
+  padding: $margin 20px;
+  .checkauth-header{
+    position: relative;
+    background-color: white;
+    border-radius: 5px;
+    padding: 20px 50px;
+    text-align: center;
+    @include shadow();
+    .checkauth-input{
+      position: relative;
+      width: 100%;
+      line-height: 80px;
+      height: 80px;
+      font-size: 30px;
+      border-bottom: 1px solid #dcdcdc;
+    }
+    .checkauth-btn{
+      text-align: center;
+      margin-top: 20px;
+      width: 200px;
+      line-height: 70px;
+      border-radius: 5px;
+      color: white;
+      background-color: $color;
+      text-align: center;
+      display: inline-block;
+      padding: 0 30px;
+      font-size: 30px;
+    }
+  }
+  .checkauth-body{
+    position: relative;
+    width: 100%;
+    background-color: white;
+    margin-top: $margin;
+    border-radius: 5px;
+    padding: 0 20px;
+    @include shadow();
+    .checkauth-res-item{
+      position: relative;
+      padding: 20px;
+      min-height: 100px;
+      border-bottom: 1px solid #dcdcdc;
+      &:nth-last-child(1){
+        border-bottom: none;
+      }
+      .checkauth-res-title{
+        position: relative;
+        float: left;
+        font-size: 30px;
+        line-height: 60px;
+      }
+      .checkauth-res-text{
+        position: relative;
+        float: right;
+        font-size: 30px;
+        line-height: 60px;
+        color: $color;
+      }
+    }
+  }
+  .checkauth-footer{
+    position: relative;
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    margin-top: $margin;
+    @include shadow();
+    .chekcauth-tips{
+      position: relative;
+      background: #f86e09;
+      color: white;
+      display: inline-block;
+      height: 50px;
+      line-height: 50px;
+      padding: 0 20px;
+      font-size: 26px;
+      border-radius: 5px;
+      margin-bottom: 5px;
+    }
+    .checkauth-item{
+      position: relative;
+      line-height: 50px;
+      font-size: 30px;
+      .checkauth-item-tel{
+        color: $color;
+      }
+    }
+  }
+}

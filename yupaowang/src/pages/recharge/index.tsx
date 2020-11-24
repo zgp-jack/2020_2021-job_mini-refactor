@@ -1,7 +1,7 @@
 import Taro, { useEffect, useState, Config } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
-import { SERVERPHONE, MINIVERSION, DOUYIN } from '../../config'
-import { getRechargeList, getRechargeOpenid, getRechargeOrder, userDouyinRecharge, userCheckDouyinRecharge } from '../../utils/request'
+import { SERVERPHONE, MINIVERSION, DOUYIN, BAIDU } from '../../config'
+import { getRechargeList, getRechargeOpenid, getRechargeOrder, userDouyinRecharge, userCheckDouyinRecharge, getBaiduTpOrderId } from '../../utils/request'
 import { GetRechargeListType } from '../../utils/request/index.d'
 import Msg, { ShowActionModal, errMsg } from '../../utils/msg'
 import { useDispatch } from '@tarojs/redux'
@@ -66,6 +66,8 @@ export default function Recharge(){
       return false
     }else if(MINIVERSION == DOUYIN){
       douyinProPay()
+    }else if(MINIVERSION == BAIDU){
+      baiduProPay(rechargeIntegral)
     }
   }
 
@@ -148,6 +150,28 @@ export default function Recharge(){
         }).catch(() => {
           ShowActionModal({ msg: `充值失败，请联系客服电话${SERVERPHONE}`})
         })
+      }
+    })
+  }
+
+  // 百度支付
+  const baiduProPay = (rechargeIntegral: number) => {
+    let id: string = lists[current].id
+    getBaiduTpOrderId({ priceType: id}).then(res=>{
+      if(res.errcode == 'ok'){
+        swan.requestPolymerPayment({
+          orderInfo: {...res.payData},
+          success: () => {
+            let afterIntegral: number = integral + rechargeIntegral
+            setIntegral(afterIntegral)
+            ShowActionModal({ msg: '支付成功'})
+          },
+          fail: err => {
+            ShowActionModal({ msg: err.errMsg})
+          }
+        });
+      }else{
+        ShowActionModal({ msg: `支付失败，请联系客服电话 ${SERVERPHONE}`})
       }
     })
   }

@@ -1,8 +1,8 @@
 /*
  * @Author: zyb
  * @Date: 2020-11-05 09:43:52
- * @LastEditors: zyb
- * @LastEditTime: 2020-11-06 20:57:15
+ * @LastEditors: jsxin
+ * @LastEditTime: 2020-11-23 19:35:12
  * @Description: 
  */
 //默认参数
@@ -17,4 +17,5 @@ export const location ={
   latitude: '',
   wardenryid: '',
   regionone:'',
+  mini_type: 0
 }

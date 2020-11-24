@@ -94,3 +94,5 @@ export const ISCANSHARE: boolean = MINICONFIG.ISCANSHARE
 export const TEXTAREAMAXLENGTH: number = MINICONFIG.TEXTAREAMAXLENGTH
 // * 应用内是否使用下载APP引流
 export const DOWNLOADAPP: boolean = MINICONFIG.DOWNLOADAPP
+// * 是否能够使用高德地区api
+export const USEGAODEMAPAPI: boolean = MINICONFIG.USEGAODEMAPAPI

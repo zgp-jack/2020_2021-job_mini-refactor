@@ -1,0 +1,120 @@
+@import '../../../common.scss';
+
+.user-updatainfo-container{
+  position: relative;
+  @include shadow();
+  .user-updatainfo-item{
+    position: relative;
+    padding: 20px;
+    padding-right: 50px;
+    font-size: 28px;
+    color: #333;
+    background-color: white;
+    border-bottom: 1px solid #dcdcdc;
+    .user-updatainfo-left{
+      float: left;
+      line-height: 60px;
+    }
+    .user-updatainfo-right{
+      float: right;
+      line-height: 60px;
+    }
+    .user-updatainfo-avatar{
+      position: absolute;
+      right: 50px;
+      top: 10px;
+      display: inline-block;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+    }
+    &::before{
+      position: absolute;
+      content: '';
+      width: 14px;
+      height: 14px;
+      right: 20px;
+      top: 50%;
+      margin-top: -5px;
+      border-top: 1px solid #ccc;
+      border-right: 1px solid #ccc;
+      transform: rotate(45deg);
+    }
+  }
+}
+
+
+/* 鱼泡输入弹窗 */
+.yupao-common-enterbox{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.4);
+    left: 0;
+    top: 0;
+    z-index: 5;
+    @include flex();
+}
+.yupao-common-enter{
+    position: relative;
+    width: 80%;
+    background: white;
+    border-radius: 10px;
+    box-shadow: #e7e6e4 0 0 10px;
+}
+.yupao-enter-title{
+    position: relative;
+    display: block;
+    line-height:60px;
+    font-size: 30px;
+    text-align: center;
+    padding-top: 20px;
+}
+.yupao-enter-tips{
+    position: relative;
+    display: block;
+    text-align: center;
+    font-size: 28px;
+    padding: 10px 0 0;
+    line-height: 40px;
+    color: #666;
+}
+.yupao-enter-body{
+    position: relative;
+    padding:20px;
+    border-bottom: 1px solid #f2f2f2;
+}
+.yupao-enter-wrap{
+    position: relative;
+    display: block;
+    width: 100%;
+    font-size: 28px;
+    border: 1px solid #dcdcdc;
+    padding:0 20px;
+    border-radius: 5px;
+}
+.yupao-enter-input{
+    height:80px;
+}
+.yupao-enter-textarea{
+    height: 200px;
+    padding: 20px;
+}
+.yupao-enter-footer{
+    position: relative;
+    height: 100px;
+    line-height: 100px;
+}
+.yupao-enter-footer text{
+    position: relative;
+    display: block;
+    width: 50%;
+    float: left;
+    border-right: 1px solid #f2f2f2;
+    line-height: 100px;
+    font-size: 30px;
+    text-align: center;
+}
+.yupao-enter-footer text:nth-last-child(1){
+    border-right: 0;
+}

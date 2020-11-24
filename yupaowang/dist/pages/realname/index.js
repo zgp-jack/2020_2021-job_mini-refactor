@@ -255,6 +255,11 @@ function useRealname() {
       (0, _index3.default)('请选择您的地址');
       return false;
     }
+    // 如果不能使用高德api， 那么输入的地址至少需要5个字
+    if (!_index7.USEGAODEMAPAPI && model.address.length < 5) {
+      (0, _index3.default)('地址最少5个字');
+      return false;
+    }
     if (!model.tel) {
       (0, _index3.default)('请输入您的手机号');
       return false;

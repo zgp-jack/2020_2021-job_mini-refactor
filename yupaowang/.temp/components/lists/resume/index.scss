@@ -1,0 +1,137 @@
+@import '../../../common.scss';
+.resume-list-container{
+  position: relative;
+  width: 100%;
+  padding-bottom: 150px;
+  .resume-list-noData{
+    text-align: center;
+    display: block;
+    line-height: 100px;
+    font-size: 28px;
+    text-align: center;
+    letter-spacing: 2px;
+  }
+  .resume-list-item{
+    position: relative;
+    width: 100%;
+    padding:20px 20px 0;
+    background-color: white;
+    margin-top: 15px;
+    .resume-list-header{
+      position: relative;
+      padding-left: 120px;
+      line-height: 50px;
+      min-height: 100px;
+      .resume-list-user{
+        position: absolute;
+        width: 100%;
+        display: block;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        left:0;
+      }
+      .resume-list-userinfo{
+        position: relative;
+        .resume-list-userinfo-detail{
+          .resume-userinfo-name,.resume-userinfo-sex{
+            display: inline-block;
+            font-size: 30px;
+            margin-right: 15px;
+          }
+          .resume-userinfo-age{
+            position: relative;
+            color: #FB8732;
+            font-size: 30px;
+          }
+        }
+      }
+      .resume-otherinfo{
+        position: relative;
+        .resume-otherinfo-text{
+          font-size: 28px;
+          margin-right: 15px;
+          &:nth-last-child(1){
+            margin-right: 0;
+          }
+        }
+      }
+      .resume-list-type{
+        position: absolute;
+        right: 20px;
+        font-size: 28px;
+        line-height: 50px;
+        bottom:0;
+      }
+      .resume-list-tags{
+        position: relative;
+        .resume-list-tags-item{
+          border-radius: 5px;
+          color: $color;
+          border: 1px solid $color;
+          font-size: 26px;
+          padding: 0 10px;
+          margin-right: 15px;
+          line-height: 45px;
+          &:nth-last-child(1){
+            margin-right: 0;
+          }
+        }
+      }
+    }
+    .resume-list-works{
+      position: relative;
+      margin-top:15px;
+      .resume-list-words-text{
+        position: relative;
+        display: inline-block;
+        background-color: rgba(238, 237, 239, 1);
+        color:rgba(42, 42, 42, 1);
+        padding: 10px;
+        font-size: 26px;
+        margin-right: 15px;
+        border-radius: 5px;
+        margin-bottom: 10rpx;
+        &:nth-last-child(1){
+          margin-right: 0;
+        }
+      }
+    }
+    .resume-list-content{
+      position: relative;
+      color:#555;
+      line-height: 70px;
+      font-size: 28px;
+      margin-top: -10px;
+      border-bottom: 1px dashed $bordercolor;
+    }
+    .resume-list-footer{
+      position: relative;
+      padding:10px 0;
+      .resume-list-loc{
+        position: absolute;
+        display: block;
+        width: 20px;
+        height: 30px;
+        left: 0;
+        top: 25px;
+      }
+      .resume-list-loctxt{
+        position: relative;
+        padding-left: 35px;
+        padding-right: 300px;
+        font-size: 28px;
+        line-height: 60px;
+      }
+      .resume-list-time{
+        position: absolute;
+        display: inline-block;
+        right: 0;
+        top: 10px;
+        line-height: 60px;
+        font-size: 26px;
+        color: rgba(127, 126, 126, 1);
+      }
+    }
+  }
+}

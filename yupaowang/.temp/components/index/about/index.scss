@@ -1,0 +1,38 @@
+@import '../../../common.scss';
+
+.home-about{
+  position: relative;
+  margin-top: 30px;
+  @include flex(column);
+  .home-about-navlist{
+    position: relative;
+    margin-bottom: 5px;
+    .about-navlist-item{
+      position: relative;
+      display: block;
+      font-size: 26px;
+      float: left;
+      margin-right: 40px;
+      &:nth-last-child(1){
+        margin-right: 0;
+      }
+      &::after{
+        position: absolute;
+        content: '';
+        right: -20px;
+        height: 20px;
+        width: 1px;
+        top:10px;
+        background: #828586;
+      }
+      &:nth-last-child(1)::after{
+        content: none;
+      }
+    }
+  }
+  .home-about-icp,.home-about-version{
+    position: relative;
+    font-size: 26px;
+    line-height: 40px;
+  }
+}
