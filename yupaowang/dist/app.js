@@ -527,7 +527,10 @@ var DEFAULT_STATE_AREAINFO = {
   info: ''
 };
 // 定义默认的区域数据
-var DEFAULT_STATE_AREA = _area.AREABEIJING.name;
+var DEFAULT_STATE_AREA = {
+  name: _area.AREABEIJING.name,
+  ad_name: _area.AREABEIJING.name
+};
 function MyAreaInfo() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : DEFAULT_STATE_AREAINFO;
   var action = arguments[1];

@@ -1,4 +1,4 @@
-import Taro, { Config, useEffect, useState } from '@tarojs/taro'
+import Taro, { Config, useEffect, useState, RouterInfo, useRouter } from '@tarojs/taro'
 import { View, Text, Image, Input } from '@tarojs/components'
 import { getAllAreas, checkAdcodeValid } from '../../../utils/request'
 import { AllAreasDataItem } from '../../../utils/request/index.d'
@@ -12,18 +12,21 @@ import Msg, { ShowActionModal } from '../../../utils/msg'
 import './index.scss'
 import { useSelector, useDispatch } from '@tarojs/redux'
 import { setAreaInfo, setArea, setPositionStaus } from '../../../actions/recruit'//获取发布招工信息action
+import { AreaData } from '../../recruit/index.d'
 
 
 const PI = Math.PI;  // 数学 PI 常亮
 let EARTH_RADIUS = 6378137.0; // 地球半径
 
 export default function RecruitMap(){
-
+  // 获取路由参数
+  const router: RouterInfo = useRouter()
+  const id: string = router.params.id || ''
   // 城市数据
   const [areas, setAreas] = useState<AllAreasDataItem[][]>([])
   // 定位城市
   // 获取redux中区域名称数据
-  const area:string = useSelector<any,string>(state=>state.MyArea)
+  const area: AreaData = useSelector<any, AreaData>(state=>state.MyArea)
   // 获取redux中定位状态
   const positionStatus:boolean = useSelector<any,boolean>(state=>state.PositionStatus)
   // 获取dispatch分发action
@@ -66,18 +69,20 @@ export default function RecruitMap(){
     let userLoc: UserLocationPromiss = Taro.getStorageSync(UserLocationCity)
     // 如果定位
     if (userLoc) {
-      let data: ChildItems = getCityInfo(userLoc, 1)
-      let userLocData: AllAreasDataItem = {
-        id: data.id,
-        pid: data.pid,
-        ad_name: data.ad_name,
-        city: data.name
+      if(!id){
+        let data: ChildItems = getCityInfo(userLoc, 1)
+        let userLocData: AllAreasDataItem = {
+          id: data.id,
+          pid: data.pid,
+          ad_name: data.ad_name,
+          city: data.name
+        }
+        if (positionStatus) {
+          dispatch(setArea({ name: data.name, ad_name: data.ad_name }))
+          dispatch(setPositionStaus(false))
+        }
+        setUserLoc(userLocData)
       }
-      if (positionStatus) {
-        dispatch(setArea(data.name))
-        dispatch(setPositionStaus(false))
-      }
-      setUserLoc(userLocData)
     }
   }
 
@@ -89,7 +94,7 @@ export default function RecruitMap(){
 
   // 用户切换城市
   const userChangeCity = (city: string) => {
-    dispatch(setArea(city))
+    dispatch(setArea({name: city, ad_name: city + "市"}))
     // setArea(city)
   }
 
@@ -120,7 +125,7 @@ export default function RecruitMap(){
 
   // 获取关键词地区列表
   useEffect(() => {
-    getAmapPoiList(area + smAreaText).then(data => {
+    getAmapPoiList(area.ad_name + smAreaText).then(data => {
       let loc: string = Taro.getStorageSync(UserLocation)
       let lists: InputPoiListTips[] = data.filter(item => {
         return item.name && item.adcode && (typeof item.location === 'string')
@@ -137,6 +142,7 @@ export default function RecruitMap(){
   // 用户点击城市选择
   const userTapCityBtn = (b: boolean) => {
     setShowCity(b)
+    setShowHistory(false)
   }
 
   // 用户输入小地区名字
@@ -195,7 +201,7 @@ export default function RecruitMap(){
             adcode: item.adcode,
             info: item.district,
           })) 
-          dispatch(setArea(item.cityName)) 
+          dispatch(setArea({ name: item.cityName, ad_name: item.cityName + "市"})) 
         }
         Taro.navigateBack()
       }
@@ -208,7 +214,7 @@ export default function RecruitMap(){
   return (
     <View className='publishrecruit-container'>
         <View className='mapinfo-header'>
-          <View className='mapinfo-header-area' onClick={() => userTapCityBtn(true)}>{area}</View>
+          <View className='mapinfo-header-area' onClick={() => userTapCityBtn(true)}>{area.name}</View>
           <View className='mapinfo-header-inputbox'>
             <Input
               className='mapinfo-header-input'
@@ -258,7 +264,7 @@ export default function RecruitMap(){
           <View className='mapinfo-citys'>
             <Cities
               data={areas}
-              area={area}
+              area={area.name}
               userLoc={userLoc}
               userChangeCity={userChangeCity}
               userTapCityBtn={userTapCityBtn}

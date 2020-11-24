@@ -61,7 +61,7 @@ export default function PublishRecruit() {
   // 选择地址
   const userChooseArea = ()=> {
     if(!model) return
-    let url = '/pages/map/recruit/index'
+    let url = `/pages/map/recruit/index?id=${id}`
     Taro.navigateTo({
       url: url
     })
