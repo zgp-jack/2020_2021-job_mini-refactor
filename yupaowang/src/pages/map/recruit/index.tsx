@@ -69,21 +69,22 @@ export default function RecruitMap(){
     let userLoc: UserLocationPromiss = Taro.getStorageSync(UserLocationCity)
     // 如果定位
     if (userLoc) {
+      let data: ChildItems = getCityInfo(userLoc, 1)
+      let userLocData: AllAreasDataItem = {
+        id: data.id,
+        pid: data.pid,
+        ad_name: data.ad_name,
+        city: data.name
+      }
       if(!id){
-        let data: ChildItems = getCityInfo(userLoc, 1)
-        let userLocData: AllAreasDataItem = {
-          id: data.id,
-          pid: data.pid,
-          ad_name: data.ad_name,
-          city: data.name
-        }
         if (positionStatus) {
           dispatch(setArea({ name: data.name, ad_name: data.ad_name }))
           dispatch(setPositionStaus(false))
         }
-        setUserLoc(userLocData)
       }
+      setUserLoc(userLocData)
     }
+    
   }
 
   // 初始化所需数据
