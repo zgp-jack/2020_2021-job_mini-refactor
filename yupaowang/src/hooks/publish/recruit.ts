@@ -58,7 +58,7 @@ export default function usePublishViewInfo(InitParams: InitRecruitView){
           maxClassifyCount: res.typeTextArr.maxClassifyCount,
           classifyTree: res.classifyTree,
           title: res.model.title || '',
-          address: res.model.address || '',
+          address: res.model.address || res.show_address,
           detail: res.model.detail || '',
           infoId: res.model.id || InitParams.infoId,
           type: res.type,
