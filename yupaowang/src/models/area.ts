@@ -1,3 +1,5 @@
+import { Areas } from 'src/config/store'
+
 const AREAS: ParentItems[] = [
   {
     "id": "1",
@@ -2592,12 +2594,17 @@ const AREAS: ParentItems[] = [
   }
 ]
 
-export interface ChildItems {
+
+export interface SimpleChildItems {
   id: string,
+  name: string
+}
+
+export interface ChildItems extends SimpleChildItems {
   pid: string,
-  name: string,
   ad_name: string
 }
+
 
 export interface ParentItems {
   id: string,
@@ -2729,5 +2736,43 @@ export function getCityInfoById(id: string){
   if (flag) return AREAS[pCurrent].children[cCurrent]
   return AREAS[pCurrent]
 }
+
+// 省市选择picker 非高德地图场景最多
+export function getCityAreaPicker(){
+  let province: SimpleChildItems[] = []
+  let cities: SimpleChildItems[][] = []
+  for (let i = 1; i < AREAS.length; i ++){
+    let data = AREAS[i]
+    province.push({ id: data.id, name: data.name })
+    if (data.has_children){
+      let mydata: SimpleChildItems[] = []
+      let childrenData = data.children
+      for (let j = 1; j < childrenData.length;j ++){
+        mydata.push({ id: childrenData[j].id, name: childrenData[j].name })
+      }
+      cities.push(mydata)
+    }else{
+      cities.push([{ id: data.id, name: data.name }])
+    }
+  }
+  // 先将数据进行浅拷贝，避免没注意的情况改变了数据
+  province = [...province]
+  cities = [...cities]
+  return {
+    province,
+    cities
+  }
+}
+
+// 根据省市返回下标 如[2,5] 非高德地图经常会调用picker 这个时候使用场景最多
+export function getAreaCurrentArr(pid: string,cid: string): {pi: number, ci: number}{
+  let { province, cities } = getCityAreaPicker()
+  // 先获取父级的索引，然后通过父级索引直接定位到子集索引
+  let pi: number = province.findIndex(item => item.id == pid)
+  let citydata = JSON.parse(JSON.stringify(cities[pi]))
+  let ci: number = citydata.findIndex(item => item.id == cid)
+  return {pi ,ci}
+}
+
 
 export default AREAS

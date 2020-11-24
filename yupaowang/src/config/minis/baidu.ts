@@ -16,6 +16,8 @@ var USESUBSCRIBEMESSAGE: boolean = false
 var TEXTAREAMAXLENGTH: number = 500
 // * 应用内是否存在下载APP引流
 var DOWNLOADAPP: boolean = true
+// * 是否支持高德地图api
+var USEGAODEMAPAPI: boolean = false
 
 module.exports = {
   PAGETITLE,
@@ -25,5 +27,6 @@ module.exports = {
   USESUBSCRIBEMESSAGE,
   ISCANSHARE,
   TEXTAREAMAXLENGTH,
-  DOWNLOADAPP
+  DOWNLOADAPP,
+  USEGAODEMAPAPI
 }

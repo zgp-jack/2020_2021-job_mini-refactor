@@ -3,7 +3,8 @@ import { RecruitModelInfo, RecruitPublishInfo, UserLastPublishRecruitArea } from
 import { getPublishRecruitView, publishRecruitInfo} from '../../utils/request'
 import { InitRecruitView } from '../../pages/recruit/publish'
 import { UserLastPublishArea, UserLocationCity } from '../../config/store'
-import { UserLocationPromiss, AREABEIJING } from '../../models/area'
+import { USEGAODEMAPAPI } from '../../config'
+import { UserLocationPromiss, AREABEIJING, getAreaCurrentArr, getCityAreaPicker, SimpleChildItems } from '../../models/area'
 import { userAuthLoction } from '../../utils/helper'
 import Msg, { ShowActionModal } from '../../utils/msg'
 import { SubscribeToNews } from '../../utils/subscribeToNews';
@@ -27,6 +28,16 @@ export default function usePublishViewInfo(InitParams: InitRecruitView){
   const [phone, setPhone] = useState<string>('')
   // 备份当前数据 用于强制修改判断
   const [bakModel, setBakModel] = useState({})
+  // 设置招工 非高德地址，picker索引数组
+  const [areaIndex, setAreaIndex] = useState<number[]>([0,0])
+  // picker省份
+  const [areaProvincePicker, setAreaProvincePicker] = useState<SimpleChildItems[]>([])
+  // picker 城市
+  const [areaCityPicker, setAreaCityPicker] = useState<SimpleChildItems[][]>([])
+  // picker 组合数据
+  const [areaPickerData, setAreaPickerData] = useState <SimpleChildItems[][]>([])
+  // piccker 选择 城市名字
+  const [areaPickerName , setAreaPickerName] = useState<string>('')
   //获取redux中发布招工区域详细数据
   const areaInfo:UserLastPublishRecruitArea = useSelector<any,UserLastPublishRecruitArea>(state=>state.MyAreaInfo)
   // 获取redux中区域名称数据
@@ -76,6 +87,9 @@ export default function usePublishViewInfo(InitParams: InitRecruitView){
         if (res.view_image.length) setShowUpload(true)
         // 如果填写有招工详情数据，将填写数据长度保存到num中
         if (InitViewInfo.detail) setNum(InitViewInfo.detail.length)
+        // 如果有省市id，那我们想将其保存一份，如果不支持高德地图，这个时候初始化我们的picker城市选择器
+        if (USEGAODEMAPAPI) return
+        initChoosePickerArea(InitViewInfo.province_id, InitViewInfo.city_id)
       }else{
         // 请求数据失败走提示框返回上一页面
         ShowActionModal({
@@ -87,6 +101,29 @@ export default function usePublishViewInfo(InitParams: InitRecruitView){
       }
     })
   }, [login])
+
+  // 用户不支持高德地图，初始化原始的picker选择
+  const initChoosePickerArea = (pid,cid) => {
+    // 用户不支持高德地图，所以我们调用原始的picker选择 先拿到省市数据将其保存
+    let { province, cities } = getCityAreaPicker()
+    setAreaProvincePicker([...province])
+    setAreaCityPicker([...cities])
+    // 如果是修改信息
+    if (InitParams.infoId){
+      let { pi, ci } = getAreaCurrentArr(pid, cid)
+      let citydata = JSON.parse(JSON.stringify(cities[pi]))
+      setAreaPickerData([[...province], [...citydata]])
+      setAreaIndex([pi, ci])
+      let pname: string = province[pi].name
+      let cname: string = cities[pi][ci].name
+      let name: string = province[pi].id === cities[pi][ci].id ? pname : `${pname}-${cname}`
+      setAreaPickerName(name)
+    }else{
+      // 新发布信息那我们就默认第一个即可
+      setAreaPickerData([[...province], [...cities[0]]])
+    }
+    
+  }
 
   // 初始化用户区域数据
   function initUserAreaInfo(data: any){
@@ -258,6 +295,14 @@ export default function usePublishViewInfo(InitParams: InitRecruitView){
     // setAreaInfo,
     num,
     setNum,
-    phone
+    phone,
+    areaIndex,
+    setAreaIndex,
+    areaProvincePicker,
+    areaCityPicker,
+    areaPickerData,
+    setAreaPickerData,
+    areaPickerName,
+    setAreaPickerName
   }
 }

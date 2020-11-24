@@ -1,6 +1,6 @@
 import Taro, { Config, useDidShow } from '@tarojs/taro'
 import { View, Text, Input, Image, Button, Picker, Block } from '@tarojs/components'
-import { ALIYUNCDN, IMGCDNURL } from '../../config'
+import { ALIYUNCDN, IMGCDNURL, USEGAODEMAPAPI } from '../../config'
 import useRealname from '../../hooks/realname'
 import { PostUserAuthInfo } from '../../hooks/index.d'
 import useCode from '../../hooks/code'
@@ -97,6 +97,14 @@ export default function RealName(){
       url: `/pages/map/realname/index`
     })
   }
+  // 用户输入地区 针对不能 使用高德地图的小程序
+  const userEnterAddress =(e) => {
+    if(model){
+      setModel({ ...model, address: e.detail.value })
+    }
+  }
+
+
   return (
     <Block>
     <Auth />
@@ -201,6 +209,7 @@ export default function RealName(){
         </View>
         <View className='publish-list-item'>
           <Text className='pulish-list-title'>详细地址</Text>
+          {USEGAODEMAPAPI ? 
           <Input
             className='publish-list-input'
             type='text'
@@ -209,6 +218,15 @@ export default function RealName(){
             onClick={() => userChooseArea()}
             value={ model && model.address }
           />
+          :
+          <Input
+            className='publish-list-input'
+            type='text'
+            placeholder='请选择详细地址'
+            onInput={(e) => userEnterAddress(e)}
+            value={model && model.address}
+          />
+          }
         </View>
       </View>
 
