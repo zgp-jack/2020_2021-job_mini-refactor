@@ -111,8 +111,10 @@ export default function ResGion() {
       }
     }
     if (historyType){
-      if(val.click){
-        setOnFocus(false);
+      setOnFocus(false);
+      if (val.click) {
+        setIndex('')
+        return
       }
       setIndex(`hot${val.pid}`)
     }
@@ -272,6 +274,7 @@ export default function ResGion() {
     setHot(hotData);
     setOnFocus(false);
     setSeachList([])
+    setInputVal('');
     setHistory(historyData)
   }
   // 热门城市

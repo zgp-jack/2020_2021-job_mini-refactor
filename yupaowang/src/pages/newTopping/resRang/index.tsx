@@ -313,13 +313,20 @@ export default function ResRange() {
     let fnAction = one ? resumesDoTopV2Action : resumesUpdateTopResumeAction;
     fnAction(params).then(res=>{
       if(res.errcode == 'ok'){
-        Taro.navigateBack({
-          delta: 1
+        Taro.showModal({
+          content: res.errmsg,
+          confirmColor: '#009CFFFF',
+          success: function () {
+            Taro.navigateBack({
+              delta: 1
+            })
+          }
         })
       } else if (res.errcode == 'member_forbid'){
         Taro.showModal({
           title: '温馨提示',
           content: res.errmsg,
+          confirmColor: '#009CFFFF',
           success: function (res) {
             if (res.confirm) {
               Taro.makePhoneCall({

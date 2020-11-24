@@ -118,6 +118,10 @@
   .published-top-time{
     position: relative;
     font-size: 28px;
+    color: #333;
+    .published-top-time-color{
+      color: #777;
+    }
   }
   .published-status-img{
     position: absolute;

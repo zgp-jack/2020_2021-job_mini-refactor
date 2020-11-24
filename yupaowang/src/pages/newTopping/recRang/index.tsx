@@ -25,11 +25,11 @@ let isCity = false;
 export default function RecRange() {
   // 初始化页面参数
   const router = useRouter()
-  const { defaultTopArea, job_id } = router.params;
+  const { defaultTopArea, job_id, subscribe } = router.params;
+  console.error(router.params,'2313213213');
   const dispatch = useDispatch();
   // 获取置顶信息
   const resumeTopData: useResumeType = useSelector<any, useResumeType>(state => state['resumeTop']);
-  console.error(resumeTopData,'resumeTopDataresumeTopData')
   // 天数
   const [day, setDay] = useState<string[]>([]);
   // 默认天数参数
@@ -72,6 +72,8 @@ export default function RecRange() {
   const [defaultDay, setDefaultDay] = useState<number>(0);
   // 第一次置顶
   const [one, setOne] = useState<boolean>(false);
+  // 预约
+  const [isSubscribe, setSubscribe] = useState<boolean>(false);
   // 第一次置顶时间
   const [toppingTime, setToppingTime] = useState<string>('');
   // 进入的时候本地时间
@@ -137,7 +139,10 @@ export default function RecRange() {
             }
           }
           // 默认时间默认积分
-          setOne(true);
+          if (subscribe){
+            setSubscribe(true)
+          }
+            setOne(true);
           // 置顶时间
           const num = res.data.default_days ? res.data.default_days : 0;
           const time = res.data.days[num] > 0 ? res.data.days[num] - 1 : 0;
@@ -337,14 +342,21 @@ export default function RecRange() {
     let fnAction = one ? jobDoTopAction : jobChangeTopAreasAction;
     fnAction(params).then(res => {
       if (res.errcode == 'ok') {
-        Taro.navigateBack({
-          delta: 1
+        Taro.showModal({
+          content: res.errmsg,
+          confirmColor: '#009CFFFF',
+          success: function () {
+            Taro.navigateBack({
+              delta: 1
+            })
+          }
         })
         // 联系客服
       } else if (res.errcode == 'member_forbid') {
         Taro.showModal({
           title: '温馨提示',
           content: res.errmsg,
+          confirmColor: '#009CFFFF',
           success: function (res) {
             if (res.confirm) {
               Taro.makePhoneCall({
@@ -390,6 +402,7 @@ export default function RecRange() {
       } else if (res.errcode == 'status_error'){
         Taro.showModal({
           content: res.errmsg,
+          confirmColor: '#009CFFFF',
           success: function () {
             Taro.navigateBack({
               delta: 1
@@ -400,9 +413,26 @@ export default function RecRange() {
       } else if (res.errcode == 'checking_top'){
         setDisplay(true);
         setModalMsg(res.errmsg);
+      } else if (res.errcode == 'checking_top'){
+        Taro.showModal({
+          content: res.errmsg,
+          confirmColor: '#009CFFFF',
+          success: function () {
+            Taro.navigateBack({
+              delta: 1
+            })
+          }
+        })
+        return
       } else {
         Taro.showModal({
           content: res.errmsg,
+          confirmColor: '#009CFFFF',
+          success: function () {
+            Taro.navigateBack({
+              delta: 1
+            })
+          }
         })
         return
       }
@@ -476,7 +506,7 @@ export default function RecRange() {
               <View className='range-content-list-time'><View className='range-content-list-Day'>置顶时间：{toppingTime}
               </View>
               </View>}
-            {one &&
+            {one && !isSubscribe &&
               <View className='range-content-list-time'><View className='range-content-list-Day'>置顶到期时间：{newTime}
               </View>
               </View>

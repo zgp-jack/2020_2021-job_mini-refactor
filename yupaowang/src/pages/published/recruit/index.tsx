@@ -275,7 +275,7 @@ export default function PublishedRecruit(){
                 } */}
                 {(item.is_check == '2' || (item.is_check == '1' && item.top == '0' ) )&& item.is_end != '2' && item.is_check == '1' && (item.top && item.top_data.is_top == '1' ? '' :<View>
                   <View className='published-ischeking'>
-                    <View className='user-published-footer-item' onClick={() => userRouteJump(`/pages/newTopping/recRang/index?defaultTopArea=${item.area_id}&job_id=${item.id}`)}>预约置顶</View>
+                    <View className='user-published-footer-item' onClick={() => userRouteJump(`/pages/newTopping/recRang/index?defaultTopArea=${item.area_id}&job_id=${item.id}&subscribe=1`)}>预约置顶</View>
                   </View>
                 </View>)}
                 {item.is_check != '1' && <View className='user-published-footer-item' onClick={() => userRouteJump(`/pages/recruit/publish/index?id=${item.id}`)}>修改</View>}
@@ -298,7 +298,7 @@ export default function PublishedRecruit(){
               {/* // 置顶信息 */}
               {item.top && item.top_data && item.top_data.is_top == '1' &&
                 <View className='published-top-box'>
-                <View className='published-top-time'>到期时间：{item.top_data.time_str}</View>
+                <View className='published-top-time'>到期时间：<Text className='published-top-time-color'>{item.top_data.time_str}</Text></View>
                 <View className='published-top-cancel' onClick={() => userRouteJump(`/pages/newTopping/recRang/index?job_id=${item.id}`)}>修改置顶</View>
               </View>
               }

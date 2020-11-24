@@ -103,6 +103,7 @@ export default function RecGion() {
         arr = [val, ...data];
         const list = unique(arr);
         const listArr = list.slice(0, 6);
+        console.error(listArr,'listArrlistArr')
         Taro.setStorageSync(HistoryInfo, listArr);
         setHistory(listArr)
       } else {
@@ -111,8 +112,10 @@ export default function RecGion() {
       }
     }
     if (historyType) {
-      if (val.click) {
-        setOnFocus(false);
+      setOnFocus(false);
+      if(val.click){
+        setIndex('')
+        return
       }
       setIndex(`hot${val.pid}`)
     }
@@ -273,6 +276,7 @@ export default function RecGion() {
     setHot(hotData);
     setOnFocus(false);
     setSeachList([])
+    setInputVal('');
     setHistory(historyData)
   }
   // 热门城市
