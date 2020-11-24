@@ -1,4 +1,4 @@
-(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["pages/collection/resumeList/index"],{
+(swan["webpackJsonp"] = swan["webpackJsonp"] || []).push([["pages/collection/resumeList/index"],{
 
 /***/ "./src/pages/collection/resumeList/index.scss":
 /*!****************************************************!*\
@@ -33,9 +33,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroSwan2 = _interopRequireDefault(_taroSwan);
 
 var _index = __webpack_require__(/*! ../../../utils/request/index */ "./src/utils/request/index.ts");
 
@@ -68,7 +68,7 @@ var ResumeList = function (_Taro$Component) {
     key: "_constructor",
     value: function _constructor(props) {
       _get(ResumeList.prototype.__proto__ || Object.getPrototypeOf(ResumeList.prototype), "_constructor", this).call(this, props);
-      this.$$refs = new _taroTt2.default.RefsArray();
+      this.$$refs = new _taroSwan2.default.RefsArray();
     }
   }, {
     key: "_createData",
@@ -79,7 +79,7 @@ var ResumeList = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__53"),
+      var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__53"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
           $prevCompid__53 = _genCompid2[0],
           $compid__53 = _genCompid2[1];
@@ -89,21 +89,21 @@ var ResumeList = function (_Taro$Component) {
           initPage = _props.initPage;
       // * 标记是否是在刷新状态
 
-      var _useState = (0, _taroTt.useState)(false),
+      var _useState = (0, _taroSwan.useState)(false),
           _useState2 = _slicedToArray(_useState, 2),
           refresh = _useState2[0],
           setRefresh = _useState2[1];
       // * 定义找活列表数组
 
 
-      var _useState3 = (0, _taroTt.useState)([]),
+      var _useState3 = (0, _taroSwan.useState)([]),
           _useState4 = _slicedToArray(_useState3, 2),
           resLists = _useState4[0],
           setResLists = _useState4[1];
       // 找活初始页数
 
 
-      var _useState5 = (0, _taroTt.useState)({
+      var _useState5 = (0, _taroSwan.useState)({
         page: 1
       }),
           _useState6 = _slicedToArray(_useState5, 2),
@@ -112,17 +112,17 @@ var ResumeList = function (_Taro$Component) {
       // 没有更多数据
 
 
-      var _useState7 = (0, _taroTt.useState)(false),
+      var _useState7 = (0, _taroSwan.useState)(false),
           _useState8 = _slicedToArray(_useState7, 2),
           recruitNoMoreData = _useState8[0],
           setRecruitNoMoreData = _useState8[1];
       // 请求数据
 
 
-      (0, _taroTt.useEffect)(function () {
+      (0, _taroSwan.useEffect)(function () {
         (0, _index.getCollectionResumeListData)(initResPage.page).then(function (res) {
-          _taroTt2.default.hideNavigationBarLoading();
-          _taroTt2.default.stopPullDownRefresh();
+          _taroSwan2.default.hideNavigationBarLoading();
+          _taroSwan2.default.stopPullDownRefresh();
           if (!res.data.length) {
             setRecruitNoMoreData(true);
           }
@@ -137,7 +137,7 @@ var ResumeList = function (_Taro$Component) {
         });
       }, [initResPage]);
       // 上拉加载更多
-      (0, _taroTt.useEffect)(function () {
+      (0, _taroSwan.useEffect)(function () {
         if (!bottom) {
           return;
         }
@@ -147,7 +147,7 @@ var ResumeList = function (_Taro$Component) {
         setinitResPage(_extends({}, initResPage, { page: initResPage.page + 1 }));
       }, [bottom]);
       // 下拉
-      (0, _taroTt.useEffect)(function () {
+      (0, _taroSwan.useEffect)(function () {
         if (!initPage) {
           return;
         }
@@ -163,7 +163,7 @@ var ResumeList = function (_Taro$Component) {
         });
       };
       this.anonymousFunc0 = resumeListHandler;
-      _taroTt.propsManager.set({
+      _taroSwan.propsManager.set({
         "data": resLists,
         "onHandlerClick": this.anonymousFunc0,
         "recruitNoMoreData": recruitNoMoreData
@@ -181,13 +181,13 @@ var ResumeList = function (_Taro$Component) {
   }]);
 
   return ResumeList;
-}(_taroTt2.default.Component);
+}(_taroSwan2.default.Component);
 
 ResumeList.$$events = [];
 ResumeList.$$componentPath = "pages/collection/resumeList/index";
 exports.default = ResumeList;
 
-Component(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(ResumeList));
+Component(__webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js").default.createComponent(ResumeList));
 
 /***/ })
 

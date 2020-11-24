@@ -96,10 +96,15 @@ export default function Recruit(){
     getRecruitList(searchData).then(res => {
       if(res.errcode == 'ok'){
         if (res.data) {
-          if (!res.data.length) setHasMore(false)
           Taro.hideNavigationBarLoading()
-          if (searchData.page === 1) setLists([[...res.data]])
-          else setLists([...lists, [...res.data]])
+          if (!res.data.length) setHasMore(false)
+          if (searchData.page === 1){
+            goToScrollTop()
+            setLists([[...res.data]])
+          }else{
+            console.log('我就设置了这个')
+            setLists([...lists, [...res.data]])
+          }
         } else {
           if (searchData.page === 1) setLists([[]])
           setHasMore(false)
@@ -148,11 +153,11 @@ export default function Recruit(){
     }else{
       setSearchData({ ...searchData, joblisttype: id, page: 1 })
     }
-    goToScrollTop()
   }
 
   // scroll-view 回到顶部
   const goToScrollTop = () => {
+    console.log('我被触发了...')
     setHasMore(true)
     setScrollTop(scrollTop ? 0 : 0.1)
   }
@@ -160,7 +165,6 @@ export default function Recruit(){
   // 输入搜索关键词
   const setSearchValData = () => {
     setSearchData({ ...searchData, keywords: remark, page: 1 })
-    goToScrollTop()
   }
 
   return (

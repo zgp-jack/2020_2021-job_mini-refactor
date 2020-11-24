@@ -50,12 +50,11 @@ export default function PublishRecruit() {
   }
 
   // 用户填写表单
-  const userEnterFrom = (e: any,key: string)=> {
+  const userEnterFrom = (e: any,type: string)=> {
     const value: string = e.detail.value
     const state: RecruitModelInfo = JSON.parse(JSON.stringify(model))
-    state[key] = value
+    state[type] = value
     setModel({ ...state})
-    
   }
 
   // 选择地址
@@ -238,9 +237,9 @@ export default function PublishRecruit() {
                     'publish-textarea': true,
                     'hide': showProfession
                   })} 
-                  value={ model&&model.detail||'' }
+                  value={model.detail}
                   placeholder='请输入招工详情'
-                  onInput={(e) => { userEnterFrom(e, 'detail');setNum(e.detail.value.length);return false;}}
+                  onInput={(e) => { userEnterFrom(e, 'detail');setNum(e.detail.value.length);return false}}
                 ></Textarea>}
                 <View className='words-total-box '>{num}<Text>/{TEXTAREAMAXLENGTH}</Text></View>
               </View>

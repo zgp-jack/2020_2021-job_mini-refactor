@@ -29,9 +29,22 @@ export default function useRealname(){
   // 民族下标
   const [nationCurrent, setNationCurrent] = useState<number>(0)
   // 初始化返回模型
-  const [initModel, setInitModel] = useState<UserAuthInfoData>()
+  const [initModel, setInitModel] = useState<UserAuthInfoData>({} as UserAuthInfoData)
   // 保存数据提交模型
-  const [model, setModel] = useState<PostUserAuthInfo>()
+  const [model, setModel] = useState<PostUserAuthInfo>({
+    username: '',
+    age:  '',
+    nation_id: '',
+    nationality: '',
+    idCard: '',
+    idCardImg:  '',
+    handImg: '',
+    tel: '',
+    code: '',
+    address: '',
+    birthday: '',
+    gender: ''
+  } as PostUserAuthInfo)
   // 获取用户是否登录
   const login: boolean = useSelector<any, boolean>(state => state.User['login'])
   // 是否显示表单
