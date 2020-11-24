@@ -108,7 +108,6 @@ export default function AddResumeInfo(){
       // 并且不等于全国
       if (areaProvince && areaProvince.id !='1'){
         const provinceAdress = areaProvince.name;
-        // console.error(provinceAdress,'provinceAdress')
         setProvinceAdress(provinceAdress);
       }else{
         // 没有地址和没有设置默认北京
@@ -279,7 +278,6 @@ export default function AddResumeInfo(){
                     if (data.authSetting["scope.userLocation"] == true) {
                       Msg('授权成功')
                       getLocation().then(res=> {
-                        console.error(res,'111')
                         setLocationData(res);
                         const provinceAdress = getCityInfoById(res.city);
                         setProvinceAdress(provinceAdress.name);

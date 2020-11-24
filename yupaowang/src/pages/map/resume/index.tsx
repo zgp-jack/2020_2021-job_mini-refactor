@@ -39,7 +39,6 @@ export const contextItem = createContext<Injected>({} as Injected)
 export default function ResumeMap() {
   const router: Taro.RouterInfo = useRouter()
   let { provinceAdress } = router.params;
-  console.error(provinceAdress,'provinceAdress  ')
   // 获取dispatch分发action
   const dispatch = useDispatch()
   const [area, setArea] = useState<string>(provinceAdress)
@@ -237,6 +236,11 @@ export default function ResumeMap() {
     location,
     adcode,
   }
+  // 用户点击输入框后面的×关闭当前窗口
+  const closeHistoryClient = () => {
+    setShowHistory(false)
+    setSmAreaText('')
+  }
   return (
     <contextItem.Provider value={value}>
     <View className='publishrecruit-container'>
@@ -250,7 +254,7 @@ export default function ResumeMap() {
             placeholder='请输入您的详细地址'
             value={smAreaText}
           />
-          <Text className='at-icon at-icon-close mapinfo-header-clear'></Text>
+            <Text onClick={() => closeHistoryClient()} className='at-icon at-icon-close mapinfo-header-clear'></Text>
         </View>
         <Text className='mapinfo-header-close' onClick={() => userCloseMap()}>取消</Text>
       </View>
