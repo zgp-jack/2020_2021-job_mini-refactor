@@ -13216,6 +13216,8 @@ var _publish = __webpack_require__(/*! ../../actions/publish */ "./src/actions/p
 
 var _store = __webpack_require__(/*! ../../config/store */ "./src/config/store.ts");
 
+var _recruit = __webpack_require__(/*! ../../actions/recruit */ "./src/actions/recruit.ts");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function usePublishData(InitParams) {
@@ -13299,7 +13301,7 @@ function usePublishData(InitParams) {
           maxClassifyCount: res.typeTextArr.maxClassifyCount,
           maxImageCount: res.typeTextArr.maxImageCount,
           placeholder: res.placeholder,
-          defaultSearchName: { id: res.default_search_name.id, name: res.default_search_name.name },
+          defaultSearchName: { id: res.default_search_name.id, name: res.default_search_name.name, ad_name: res.default_search_name.name + "市" },
           reqStatus: true
         };
         // 发布招工获取的数据
@@ -13328,6 +13330,15 @@ function usePublishData(InitParams) {
         setModel(initIssueModel);
         // 保存手机号
         setPhone(initIssueModel.user_mobile);
+        if (InitParams.infoId) {
+          dispatch((0, _recruit.setAreaInfo)({
+            title: res.model.address,
+            location: res.model.location,
+            info: '',
+            adcode: res.model.adcode || ''
+          }));
+          dispatch((0, _recruit.setArea)({ id: res.default_search_name.id, name: res.default_search_name.name, ad_name: res.default_search_name.name + "市" }));
+        }
         // 如果有上传图片保存图片showUpload中
         if (res.view_image.length) setShowUpload(true);
         // 如果填写有招工详情数据，将填写数据长度保存到num中

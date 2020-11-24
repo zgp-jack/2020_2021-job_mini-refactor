@@ -39,8 +39,6 @@ export default function fastPublishInit(InitParams: InitRecruitView) {
     if (model.is_check == 0) bakModelInfo(model)
     // 保存手机号
     setPhone(model.user_mobile)
-    // 将数据保存到redux中的areaInfo中
-    dispatch(setAreaInfo({ ...areaInfo, title: model.address }))
     //如果是修改 后台给的选中数据中只有ID 需要匹配name 再把之前选中的工种信息保存
     if (model.classifies.length) {
       let _Classifies: RulesClassfies[] = []
@@ -64,59 +62,41 @@ export default function fastPublishInit(InitParams: InitRecruitView) {
 
   // 初始化用户区域数据
   function initUserAreaInfo(data: any) {
-    console.log(InitParams.infoId, 'InitParams.infoId')
-    //  如果传递参数有infoid代表是修改，保存修改的里面默认区域数据
-    if (InitParams.infoId) {
-      dispatch(setArea(defaultSearchName))
-    } else {
-      let userLocation: string = Taro.getStorageSync(UserLocation)
-      let userLoctionCity: UserLocationPromiss = Taro.getStorageSync(UserLocationCity)
-      if (userLoctionCity) {
-        let data: ChildItems = getCityInfo(userLoctionCity, 1)
-        let positionArea: UserLastPublishRecruitArea = {
-          location: userLocation,
-          adcode: userLoctionCity.adcode,
-          title: userLoctionCity.title,
-          info: userLoctionCity.info,
-          areaId: data.id
-        }
-        dispatch(setArea({ name: userLoctionCity.city.slice(0, 2), id: data.id }))
-        dispatch(setAreaInfo(positionArea))
-      } else {
-        userAuthLoction()
-          .then(res => {
-            let positionArea: UserLastPublishRecruitArea = {
-              location: userLocation,
-              adcode: res.adcode,
-              title: res.title,
-              info: res.info
-            }
-            dispatch(setAreaInfo(positionArea))
-            dispatch(setArea({ name: res.city.slice(0, 2), id: '' }))
-          }).catch(() => {
-            dispatch(setArea({ name: AREABEIJING.name, id: AREABEIJING.id }))
-          })
+    
+    let userLocation: string = Taro.getStorageSync(UserLocation)
+    let userLoctionCity: UserLocationPromiss = Taro.getStorageSync(UserLocationCity)
+    if (userLoctionCity) {
+      let data: ChildItems = getCityInfo(userLoctionCity, 1)
+      let positionArea: UserLastPublishRecruitArea = {
+        location: userLocation,
+        adcode: userLoctionCity.adcode,
+        title: userLoctionCity.title,
+        info: userLoctionCity.info,
+        areaId: data.id
       }
-    }
-
-    // 如果是修改设置详细发布地址
-    if (InitParams.infoId) {
-      dispatch(setAreaInfo({
-        title: data.address,
-        location: data.location,
-        info: '',
-        adcode: data.adcode || '',
-      }))
+      dispatch(setArea({ name: userLoctionCity.city.slice(0, 2), id: data.id, ad_name: userLoctionCity.city.slice(0, 2)+"市" }))
+      dispatch(setAreaInfo(positionArea))
     } else {
-      // 获取用户最后发布的区域信息
-      let userLastPublishArea: UserLastPublishRecruitArea = Taro.getStorageSync(UserLastPublishArea)
-      if (userLastPublishArea) {
-        dispatch(setAreaInfo(userLastPublishArea))
-      }
+      userAuthLoction()
+        .then(res => {
+          let positionArea: UserLastPublishRecruitArea = {
+            location: userLocation,
+            adcode: res.adcode,
+            title: res.title,
+            info: res.info
+          }
+          dispatch(setAreaInfo(positionArea))
+          dispatch(setArea({ name: res.city.slice(0, 2), id: '', ad_name: res.city + "市" }))
+        }).catch(() => {
+          dispatch(setArea({ name: AREABEIJING.name, id: AREABEIJING.id, ad_name: AREABEIJING.ad_name }))
+        })
     }
-
+    // 获取用户最后发布的区域信息
+    let userLastPublishArea: UserLastPublishRecruitArea = Taro.getStorageSync(UserLastPublishArea)
+    if (userLastPublishArea) {
+      dispatch(setAreaInfo(userLastPublishArea))
+    }
   }
-
   function bakModelInfo(model) {
     const data: FastPublishBase = {
       address: model.address,

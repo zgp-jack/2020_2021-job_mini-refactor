@@ -76,7 +76,7 @@ export default function RecruitMap(){
         city: data.name
       }
       if (positionStatus) {
-        dispatch(setArea({name:data.name,id:data.id}))
+        dispatch(setArea({name:data.name,id:data.id, ad_name: data.name + "市"}))
         dispatch(setPositionStaus(false))
       }
       setUserLoc(userLocData)
@@ -108,7 +108,7 @@ export default function RecruitMap(){
                       userAuthLoction().then(res => {
                         let userLoctionCity: UserLocationPromiss = Taro.getStorageSync(UserLocationCity)
                         let data: ChildItems = getCityInfo(userLoctionCity, 1)
-                        dispatch(setArea({ name: res.city.slice(0, 2), id: data.id}))
+                        dispatch(setArea({ name: res.city.slice(0, 2), id: data.id, ad_name: res.city.slice(0, 2)+"市"}))
                         dispatch(setPositionStaus(false))
                       })
                     } else {
@@ -124,7 +124,7 @@ export default function RecruitMap(){
             if (res) {
               let userLoctionCity: UserLocationPromiss = Taro.getStorageSync(UserLocationCity)
               let data: ChildItems = getCityInfo(userLoctionCity, 1)
-              dispatch(setArea({ name: res.city.slice(0, 2), id: data.id }))
+              dispatch(setArea({ name: res.city.slice(0, 2), id: data.id, ad_name: res.city.slice(0, 2)+"市" }))
               dispatch(setPositionStaus(false))
             }
           })
@@ -165,7 +165,7 @@ export default function RecruitMap(){
 
   // 获取关键词地区列表
   useEffect(() => {
-    getAmapPoiList(area.name + smAreaText).then(data => {
+    getAmapPoiList(area.ad_name + smAreaText).then(data => {
       let loc: string = Taro.getStorageSync(UserLocation)
       let lists: InputPoiListTips[] = data.filter(item => {
         return item.name && item.adcode && (typeof item.location === 'string')
@@ -244,7 +244,7 @@ export default function RecruitMap(){
             info: item.district,
             areaId: item.areaId
           })) 
-          dispatch(setArea({ name: item.cityName, id: ( item.areaId as string ) || ""})) 
+          dispatch(setArea({ name: item.cityName, id: (item.areaId as string) || "", ad_name: item.cityName+"市" })) 
         }
         Taro.navigateBack()
       }

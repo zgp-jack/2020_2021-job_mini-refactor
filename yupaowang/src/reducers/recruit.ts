@@ -12,11 +12,11 @@ const DEFAULT_STATE_RECRUIT: RecruitInfo = {
   },
   area: {
     name: AREABEIJING.name,
-    id: AREABEIJING.id
+    id: AREABEIJING.id,
+    ad_name: AREABEIJING.ad_name
   },
   token:'',
   positionStatus: true,
-  phone: ''
 }
 // 内容的参数
 const DEFAULT_STATE_AREAINFO: UserLastPublishRecruitArea = {
@@ -28,7 +28,7 @@ const DEFAULT_STATE_AREAINFO: UserLastPublishRecruitArea = {
 }
 
 // 定义默认的区域数据
-const DEFAULT_STATE_AREA: AreaData = { name: AREABEIJING.name, id: AREABEIJING.id}
+const DEFAULT_STATE_AREA: AreaData = { name: AREABEIJING.name, id: AREABEIJING.id, ad_name: AREABEIJING.ad_name}
 
 // action类型定义
 export interface ACTIONTYPE {

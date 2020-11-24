@@ -6,6 +6,7 @@ import { ShowActionModal } from '../../utils/msg'
 import { useSelector, useDispatch } from '@tarojs/redux'
 import { setPublishData } from '../../actions/publish'
 import { PublishData } from '../../config/store'
+import { setAreaInfo, setArea } from '../../actions/recruit'
 
 export function usePublishData(InitParams: InitRecruitView){
   // 初始化急速发布招工信息数据
@@ -61,7 +62,7 @@ export function usePublishData(InitParams: InitRecruitView){
           maxClassifyCount: res.typeTextArr.maxClassifyCount,
           maxImageCount: res.typeTextArr.maxImageCount,
           placeholder: res.placeholder,
-          defaultSearchName: { id: res.default_search_name.id, name: res.default_search_name.name},
+          defaultSearchName: { id: res.default_search_name.id, name: res.default_search_name.name, ad_name: res.default_search_name.name+"市"},
           reqStatus: true
         }
         // 发布招工获取的数据
@@ -90,6 +91,15 @@ export function usePublishData(InitParams: InitRecruitView){
         setModel(initIssueModel)
         // 保存手机号
         setPhone(initIssueModel.user_mobile)
+        if (InitParams.infoId){
+          dispatch(setAreaInfo({
+            title: res.model.address,
+            location: res.model.location,
+            info: '',
+            adcode: res.model.adcode || '',
+          }))
+          dispatch(setArea({ id: res.default_search_name.id, name: res.default_search_name.name, ad_name: res.default_search_name.name + "市" }))
+        }
         // 如果有上传图片保存图片showUpload中
         if (res.view_image.length) setShowUpload(true)
         // 如果填写有招工详情数据，将填写数据长度保存到num中

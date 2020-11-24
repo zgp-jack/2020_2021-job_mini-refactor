@@ -1,4 +1,3 @@
-import { DefaultSearchName } from './index.d';
 import { ProfessionRecruitData } from '../../components/profession/index.d'
 
 export enum FilterMenu {
@@ -134,7 +133,8 @@ export interface UserLastPublishRecruitArea {
 }
 export interface AreaData {
   name: string,
-  id: string
+  id: string,
+  ad_name: string
 }
 
 export interface RecruitInfo {
@@ -142,7 +142,6 @@ export interface RecruitInfo {
   area: AreaData,
   token: string,
   positionStatus: boolean,
-  phone: string,
 }
 
 // 初始化发布招工获取信息类型

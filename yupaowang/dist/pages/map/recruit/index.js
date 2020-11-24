@@ -201,7 +201,7 @@ var RecruitMap = function (_Taro$Component) {
             city: data.name
           };
           if (positionStatus) {
-            dispatch((0, _recruit.setArea)({ name: data.name, id: data.id }));
+            dispatch((0, _recruit.setArea)({ name: data.name, id: data.id, ad_name: data.name + "市" }));
             dispatch((0, _recruit.setPositionStaus)(false));
           }
           setUserLoc(userLocData);
@@ -232,7 +232,7 @@ var RecruitMap = function (_Taro$Component) {
                           (0, _index3.userAuthLoction)().then(function (res) {
                             var userLoctionCity = _taroTt2.default.getStorageSync(_store.UserLocationCity);
                             var data = (0, _area.getCityInfo)(userLoctionCity, 1);
-                            dispatch((0, _recruit.setArea)({ name: res.city.slice(0, 2), id: data.id }));
+                            dispatch((0, _recruit.setArea)({ name: res.city.slice(0, 2), id: data.id, ad_name: res.city.slice(0, 2) + "市" }));
                             dispatch((0, _recruit.setPositionStaus)(false));
                           });
                         } else {
@@ -248,7 +248,7 @@ var RecruitMap = function (_Taro$Component) {
                 if (res) {
                   var userLoctionCity = _taroTt2.default.getStorageSync(_store.UserLocationCity);
                   var data = (0, _area.getCityInfo)(userLoctionCity, 1);
-                  dispatch((0, _recruit.setArea)({ name: res.city.slice(0, 2), id: data.id }));
+                  dispatch((0, _recruit.setArea)({ name: res.city.slice(0, 2), id: data.id, ad_name: res.city.slice(0, 2) + "市" }));
                   dispatch((0, _recruit.setPositionStaus)(false));
                 }
               });
@@ -287,7 +287,7 @@ var RecruitMap = function (_Taro$Component) {
       };
       // 获取关键词地区列表
       (0, _taroTt.useEffect)(function () {
-        (0, _index3.getAmapPoiList)(area.name + smAreaText).then(function (data) {
+        (0, _index3.getAmapPoiList)(area.ad_name + smAreaText).then(function (data) {
           var loc = _taroTt2.default.getStorageSync(_store.UserLocation);
           var lists = data.filter(function (item) {
             return item.name && item.adcode && typeof item.location === 'string';
@@ -362,7 +362,7 @@ var RecruitMap = function (_Taro$Component) {
                 info: item.district,
                 areaId: item.areaId
               }));
-              dispatch((0, _recruit.setArea)({ name: item.cityName, id: item.areaId || "" }));
+              dispatch((0, _recruit.setArea)({ name: item.cityName, id: item.areaId || "", ad_name: item.cityName + "市" }));
             }
             _taroTt2.default.navigateBack();
           } else (0, _index4.ShowActionModal)({ msg: res.errmsg });

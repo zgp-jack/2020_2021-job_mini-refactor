@@ -14,7 +14,8 @@ const DEFAULT_STATE_PUBLISHDATA: PublishConfigData = {
   placeholder:'',
   defaultSearchName: {
     name: AREABEIJING.name,
-    id: AREABEIJING.id 
+    id: AREABEIJING.id,
+    ad_name: AREABEIJING.ad_name 
   },
   reqStatus: false
 }
