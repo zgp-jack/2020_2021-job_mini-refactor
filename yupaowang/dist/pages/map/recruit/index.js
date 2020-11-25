@@ -79,7 +79,7 @@ var RecruitMap = function (_Taro$Component) {
       navigationBarTitleText: '选择发布地址'
     };
 
-    _this.$usedState = ["loopArray105", "loopArray106", "$compid__85", "smAreaText", "showHistory", "histroyList", "lists", "IMGCDNURL", "showCity", "area"];
+    _this.$usedState = ["loopArray43", "loopArray44", "$compid__42", "smAreaText", "showHistory", "histroyList", "lists", "IMGCDNURL", "showCity", "area"];
     _this.anonymousFunc5Map = {};
     _this.anonymousFunc6Map = {};
     _this.customComponents = ["Cities"];
@@ -103,10 +103,10 @@ var RecruitMap = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__85"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__42"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__85 = _genCompid2[0],
-          $compid__85 = _genCompid2[1];
+          $prevCompid__42 = _genCompid2[0],
+          $compid__42 = _genCompid2[1];
       // 发布招工redux数据
 
 
@@ -385,12 +385,12 @@ var RecruitMap = function (_Taro$Component) {
       this.anonymousFunc4 = function () {
         return userCloseMap();
       };
-      var loopArray105 = showHistory ? histroyList.map(function (item, index) {
+      var loopArray43 = showHistory ? histroyList.map(function (item, index) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
         var $loopState__temp2 = showHistory ? index + index : null;
-        var _$indexKey = "baazz" + index;
+        var _$indexKey = "efzzz" + index;
         _this2.anonymousFunc5Map[_$indexKey] = function () {
           return userClickAreaItem(item.$original);
         };
@@ -400,12 +400,12 @@ var RecruitMap = function (_Taro$Component) {
           $original: item.$original
         };
       }) : [];
-      var loopArray106 = lists.map(function (item, index) {
+      var loopArray44 = lists.map(function (item, index) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
         var $loopState__temp4 = index + index;
-        var _$indexKey2 = "babzz" + index;
+        var _$indexKey2 = "egzzz" + index;
         _this2.anonymousFunc6Map[_$indexKey2] = function () {
           return userClickAreaItem(item.$original);
         };
@@ -421,11 +421,11 @@ var RecruitMap = function (_Taro$Component) {
         "userLoc": userLoc,
         "userChangeCity": userChangeCity,
         "userTapCityBtn": userTapCityBtn
-      }, $compid__85, $prevCompid__85);
+      }, $compid__42, $prevCompid__42);
       Object.assign(this.__state, {
-        loopArray105: loopArray105,
-        loopArray106: loopArray106,
-        $compid__85: $compid__85,
+        loopArray43: loopArray43,
+        loopArray44: loopArray44,
+        $compid__42: $compid__42,
         smAreaText: smAreaText,
         showHistory: showHistory,
         histroyList: histroyList,

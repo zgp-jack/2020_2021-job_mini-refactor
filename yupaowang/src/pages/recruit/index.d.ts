@@ -127,7 +127,6 @@ export interface UserLastPublishRecruitArea {
   adcode: string,
   title: string,
   info: string,
-<<<<<<< HEAD
   city?: string,
   provice?: string,
   areaId?: string
@@ -135,10 +134,8 @@ export interface UserLastPublishRecruitArea {
 export interface AreaData {
   name: string,
   id: string
-=======
   city?:string,
   provice?:string,
->>>>>>> wangshuai
 }
 
 export interface RecruitInfo {
@@ -187,12 +184,9 @@ export interface VaildCodeReq{
   token: string,
   phone: string,
   code: string
-<<<<<<< HEAD
 }
 // 上传图片
 export interface ImageData{
   url: string,
   httpurl: string
-=======
->>>>>>> wangshuai
 }

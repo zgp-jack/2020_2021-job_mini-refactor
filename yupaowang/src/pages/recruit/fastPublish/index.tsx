@@ -10,6 +10,7 @@ import Auth from '../../../components/auth'
 import './index.scss'
 import { useSelector } from '@tarojs/redux'
 import ClassifyPicker, { RulesClassfies } from '../../../components/classfiy_picker/index'
+import CityPicker from '../../../components/city_picker'
 // 初始化获取信息类型
 export interface InitRecruitView {
   type: string,
@@ -171,6 +172,7 @@ export default function PublishRecruit() {
   return (
     <Block>
       <Auth />
+      <CityPicker></CityPicker>
       {showProfession &&
         <ClassifyPicker
           hiddenPickerModel={closeProfession}
