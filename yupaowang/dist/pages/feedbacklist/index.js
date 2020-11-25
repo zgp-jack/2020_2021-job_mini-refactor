@@ -1,4 +1,4 @@
-(swan["webpackJsonp"] = swan["webpackJsonp"] || []).push([["pages/feedbacklist/index"],{
+(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["pages/feedbacklist/index"],{
 
 /***/ "./src/pages/feedbacklist/index.scss":
 /*!*******************************************!*\
@@ -33,9 +33,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
+var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
 
-var _taroSwan2 = _interopRequireDefault(_taroSwan);
+var _taroTt2 = _interopRequireDefault(_taroTt);
 
 var _index = __webpack_require__(/*! ../../utils/request/index */ "./src/utils/request/index.ts");
 
@@ -79,7 +79,7 @@ var FeedbackList = function (_Taro$Component) {
     key: "_constructor",
     value: function _constructor(props) {
       _get(FeedbackList.prototype.__proto__ || Object.getPrototypeOf(FeedbackList.prototype), "_constructor", this).call(this, props);
-      this.$$refs = new _taroSwan2.default.RefsArray();
+      this.$$refs = new _taroTt2.default.RefsArray();
     }
   }, {
     key: "_createData",
@@ -92,21 +92,21 @@ var FeedbackList = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__58"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__58"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
           $prevCompid__58 = _genCompid2[0],
           $compid__58 = _genCompid2[1];
       // * 标记是否是在刷新状态
 
 
-      var _useState = (0, _taroSwan.useState)(false),
+      var _useState = (0, _taroTt.useState)(false),
           _useState2 = _slicedToArray(_useState, 2),
           refresh = _useState2[0],
           setRefresh = _useState2[1];
       // 设置初始页面
 
 
-      var _useState3 = (0, _taroSwan.useState)({
+      var _useState3 = (0, _taroTt.useState)({
         page: 1
       }),
           _useState4 = _slicedToArray(_useState3, 2),
@@ -115,7 +115,7 @@ var FeedbackList = function (_Taro$Component) {
       // 定义数据
 
 
-      var _useState5 = (0, _taroSwan.useState)({
+      var _useState5 = (0, _taroTt.useState)({
         item: []
       }),
           _useState6 = _slicedToArray(_useState5, 2),
@@ -124,7 +124,7 @@ var FeedbackList = function (_Taro$Component) {
       // 用户信息
 
 
-      var _useState7 = (0, _taroSwan.useState)({
+      var _useState7 = (0, _taroTt.useState)({
         phone: '',
         username: ''
       }),
@@ -139,14 +139,14 @@ var FeedbackList = function (_Taro$Component) {
       });
       // 是否能上拉加载更多
 
-      var _useState9 = (0, _taroSwan.useState)(true),
+      var _useState9 = (0, _taroTt.useState)(true),
           _useState10 = _slicedToArray(_useState9, 2),
           isDown = _useState10[0],
           setIsDown = _useState10[1];
       // 判断是否登陆
 
 
-      (0, _taroSwan.useEffect)(function () {
+      (0, _taroTt.useEffect)(function () {
         if (!login) {
           return;
         }
@@ -155,8 +155,8 @@ var FeedbackList = function (_Taro$Component) {
       // 进来时获取数据
       var feedbackDataAction = function feedbackDataAction() {
         (0, _index.feedbackAction)(initPage.page).then(function (res) {
-          _taroSwan2.default.hideNavigationBarLoading();
-          _taroSwan2.default.stopPullDownRefresh();
+          _taroTt2.default.hideNavigationBarLoading();
+          _taroTt2.default.stopPullDownRefresh();
           if (initPage.page === 1) {
             setLists({ item: [].concat(_toConsumableArray(res.data)) });
           } else {
@@ -173,26 +173,26 @@ var FeedbackList = function (_Taro$Component) {
       };
       // 用户页面跳转
       var userRouteJump = function userRouteJump(url) {
-        _taroSwan2.default.navigateTo({
+        _taroTt2.default.navigateTo({
           url: url
         });
       };
       // 上拉加载更多
-      (0, _taroSwan.useReachBottom)(function () {
+      (0, _taroTt.useReachBottom)(function () {
         if (!isDown) {
           return;
         }
-        _taroSwan2.default.showNavigationBarLoading();
+        _taroTt2.default.showNavigationBarLoading();
         setPage(_extends({}, initPage, { page: initPage.page + 1 }));
       });
       var handleImg = function handleImg(e) {
-        _taroSwan2.default.previewImage({
+        _taroTt2.default.previewImage({
           current: e,
           urls: [e]
         });
       };
       // 下拉刷新
-      (0, _taroSwan.usePullDownRefresh)(function () {
+      (0, _taroTt.usePullDownRefresh)(function () {
         setIsDown(true);
         setPage({ page: 1 });
       });
@@ -201,29 +201,29 @@ var FeedbackList = function (_Taro$Component) {
       };
       var loopArray66 = lists.item ? lists.item.map(function (item, __index1) {
         item = {
-          privateOriginal: (0, _taroSwan.internal_get_original)(item)
+          $original: (0, _taroTt.internal_get_original)(item)
         };
-        var anonymousCallee__7 = item.privateOriginal.images ? item.privateOriginal.images.map(function (v, index) {
+        var $anonymousCallee__7 = item.$original.images ? item.$original.images.map(function (v, index) {
           v = {
-            privateOriginal: (0, _taroSwan.internal_get_original)(v)
+            $original: (0, _taroTt.internal_get_original)(v)
           };
-          var loopState__temp2 = item.privateOriginal.images ? index + index : null;
+          var $loopState__temp2 = item.$original.images ? index + index : null;
           var _$indexKey = "hezzz" + __index1 + "-" + index;
           _this2.anonymousFunc0Map[_$indexKey] = function () {
-            handleImg(v.privateOriginal);
+            handleImg(v.$original);
           };
           return {
-            loopState__temp2: loopState__temp2,
+            $loopState__temp2: $loopState__temp2,
             _$indexKey: _$indexKey,
-            privateOriginal: v.privateOriginal
+            $original: v.$original
           };
         }) : [];
         return {
-          anonymousCallee__7: anonymousCallee__7,
-          privateOriginal: item.privateOriginal
+          $anonymousCallee__7: $anonymousCallee__7,
+          $original: item.$original
         };
       }) : [];
-      !lists.item.length && _taroSwan.propsManager.set({
+      !lists.item.length && _taroTt.propsManager.set({
         "text": "\u6682\u65E0\u76F8\u5173\u6570\u636E\u53CD\u9988"
       }, $compid__58, $prevCompid__58);
       Object.assign(this.__state, {
@@ -255,14 +255,14 @@ var FeedbackList = function (_Taro$Component) {
   }]);
 
   return FeedbackList;
-}(_taroSwan2.default.Component);
+}(_taroTt2.default.Component);
 
 FeedbackList.$$events = ["anonymousFunc0", "anonymousFunc2"];
 FeedbackList.$$componentPath = "pages/feedbacklist/index";
 FeedbackList.config = { navigationBarTitleText: '鱼泡网-意见反馈列表', enablePullDownRefresh: true, navigationBarBackgroundColor: '#0099ff', navigationBarTextStyle: 'white', backgroundTextStyle: 'dark' };
 exports.default = FeedbackList;
 
-Page(__webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js").default.createComponent(FeedbackList, true));
+Page(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(FeedbackList, true));
 
 /***/ })
 

@@ -1,4 +1,4 @@
-(swan["webpackJsonp"] = swan["webpackJsonp"] || []).push([["pages/recruit/lists/index"],{
+(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["pages/recruit/lists/index"],{
 
 /***/ "./src/pages/recruit/lists/index.scss":
 /*!********************************************!*\
@@ -33,9 +33,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
+var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
 
-var _taroSwan2 = _interopRequireDefault(_taroSwan);
+var _taroTt2 = _interopRequireDefault(_taroTt);
 
 var _index = __webpack_require__(/*! ../../../utils/request/index */ "./src/utils/request/index.ts");
 
@@ -73,7 +73,7 @@ var Recruit = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (Recruit.__proto__ || Object.getPrototypeOf(Recruit)).apply(this, arguments));
 
-    _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "anonymousState__temp3", "anonymousState__temp4", "$compid__86", "$compid__87", "$compid__88", "scrollTop", "refresh"];
+    _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "anonymousState__temp3", "anonymousState__temp4", "$compid__20", "$compid__21", "$compid__22", "scrollTop", "refresh"];
     _this.customComponents = ["Search", "RecruitCondition", "WechatNotice", "RecruitList"];
     return _this;
   }
@@ -82,7 +82,7 @@ var Recruit = function (_Taro$Component) {
     key: "_constructor",
     value: function _constructor(props) {
       _get(Recruit.prototype.__proto__ || Object.getPrototypeOf(Recruit.prototype), "_constructor", this).call(this, props);
-      this.$$refs = new _taroSwan2.default.RefsArray();
+      this.$$refs = new _taroTt2.default.RefsArray();
     }
   }, {
     key: "_createData",
@@ -93,69 +93,69 @@ var Recruit = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__86"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__20"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__86 = _genCompid2[0],
-          $compid__86 = _genCompid2[1];
+          $prevCompid__20 = _genCompid2[0],
+          $compid__20 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroSwan.genCompid)(__prefix + "$compid__87"),
+      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__21"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__87 = _genCompid4[0],
-          $compid__87 = _genCompid4[1];
+          $prevCompid__21 = _genCompid4[0],
+          $compid__21 = _genCompid4[1];
 
-      var _genCompid5 = (0, _taroSwan.genCompid)(__prefix + "$compid__88"),
+      var _genCompid5 = (0, _taroTt.genCompid)(__prefix + "$compid__22"),
           _genCompid6 = _slicedToArray(_genCompid5, 2),
-          $prevCompid__88 = _genCompid6[0],
-          $compid__88 = _genCompid6[1];
+          $prevCompid__22 = _genCompid6[0],
+          $compid__22 = _genCompid6[1];
       // 输入关键词 没搜索 备份
 
 
-      var _useState = (0, _taroSwan.useState)(''),
+      var _useState = (0, _taroTt.useState)(''),
           _useState2 = _slicedToArray(_useState, 2),
           remark = _useState2[0],
           setRemark = _useState2[1];
       // 是否还有下一页
 
 
-      var _useState3 = (0, _taroSwan.useState)(true),
+      var _useState3 = (0, _taroTt.useState)(true),
           _useState4 = _slicedToArray(_useState3, 2),
           hasMore = _useState4[0],
           setHasMore = _useState4[1];
       // * 获取选择城市缓存
 
 
-      var userListChooseCity = _taroSwan2.default.getStorageSync(_store.UserListChooseCity);
+      var userListChooseCity = _taroTt2.default.getStorageSync(_store.UserListChooseCity);
       // * 配置筛选条件
 
-      var _useState5 = (0, _taroSwan.useState)([{ id: _lists.AreaPickerKey, text: userListChooseCity ? userListChooseCity.name : '全国' }, { id: _lists.ClassifyPickerKey, text: '全部分类' }, { id: _lists.FilterPickerKey, text: '最新' }]),
+      var _useState5 = (0, _taroTt.useState)([{ id: _lists.AreaPickerKey, text: userListChooseCity ? userListChooseCity.name : '全国' }, { id: _lists.ClassifyPickerKey, text: '全部分类' }, { id: _lists.FilterPickerKey, text: '最新' }]),
           _useState6 = _slicedToArray(_useState5, 2),
           condition = _useState6[0],
           setCondition = _useState6[1];
       // * scrollTop 位置 回到顶部
 
 
-      var _useState7 = (0, _taroSwan.useState)(0),
+      var _useState7 = (0, _taroTt.useState)(0),
           _useState8 = _slicedToArray(_useState7, 2),
           scrollTop = _useState8[0],
           setScrollTop = _useState8[1];
       // * 标记是否是在刷新状态
 
 
-      var _useState9 = (0, _taroSwan.useState)(false),
+      var _useState9 = (0, _taroTt.useState)(false),
           _useState10 = _slicedToArray(_useState9, 2),
           refresh = _useState10[0],
           setRefresh = _useState10[1];
       // * 定义列表数组
 
 
-      var _useState11 = (0, _taroSwan.useState)([]),
+      var _useState11 = (0, _taroTt.useState)([]),
           _useState12 = _slicedToArray(_useState11, 2),
           lists = _useState12[0],
           setLists = _useState12[1];
       // * 定义data
 
 
-      var _useState13 = (0, _taroSwan.useState)({
+      var _useState13 = (0, _taroTt.useState)({
         page: 1,
         list_type: 'job',
         area_id: userListChooseCity ? userListChooseCity.id : '',
@@ -182,7 +182,7 @@ var Recruit = function (_Taro$Component) {
       // 用户定位之后重新设置搜索条件
       var resetLocationSearch = function resetLocationSearch(data) {
         var city = (0, _area.getCityInfo)(data);
-        _taroSwan2.default.setStorageSync(_store.UserListChooseCity, city); //第一次默认选中
+        _taroTt2.default.setStorageSync(_store.UserListChooseCity, city); //第一次默认选中
         setLists([]);
         editConditionAction('area', city.name);
         setSearchData(_extends({}, searchData, { page: 1, area_id: city.id }));
@@ -193,7 +193,7 @@ var Recruit = function (_Taro$Component) {
         if (userListChooseCity) {
           setSearchData(_extends({}, searchData, { page: 1, area_id: userListChooseCity.id }));
         } else {
-          var userLocationCity = _taroSwan2.default.getStorageSync(_store.UserLocationCity);
+          var userLocationCity = _taroTt2.default.getStorageSync(_store.UserLocationCity);
           if (userLocationCity) {
             resetLocationSearch(userLocationCity);
             return;
@@ -202,7 +202,7 @@ var Recruit = function (_Taro$Component) {
             resetLocationSearch(gpsLocation);
           }).catch(function () {
             // 拒绝授权默认全国
-            _taroSwan2.default.setStorageSync(_store.UserListChooseCity, _area.AREACHINA);
+            _taroTt2.default.setStorageSync(_store.UserListChooseCity, _area.AREACHINA);
             setLists([]);
             setSearchData(_extends({}, searchData, { page: 1, area_id: _area.AREACHINA.id }));
           });
@@ -213,7 +213,7 @@ var Recruit = function (_Taro$Component) {
         (0, _index.getRecruitList)(searchData).then(function (res) {
           if (res.errcode == 'ok') {
             if (res.data) {
-              _taroSwan2.default.hideNavigationBarLoading();
+              _taroTt2.default.hideNavigationBarLoading();
               if (!res.data.length) {
                 setHasMore(false);
               }
@@ -238,7 +238,7 @@ var Recruit = function (_Taro$Component) {
         });
       };
       // * 请求列表数据
-      (0, _taroSwan.useEffect)(function () {
+      (0, _taroTt.useEffect)(function () {
         getRecruitListAction();
         if (!searchData.area_id) {
           getUserLocation();
@@ -249,7 +249,7 @@ var Recruit = function (_Taro$Component) {
         if (!hasMore) {
           return;
         }
-        _taroSwan2.default.showNavigationBarLoading();
+        _taroTt2.default.showNavigationBarLoading();
         setSearchData(_extends({}, searchData, { page: searchData.page + 1 }));
       };
       // * 监听下拉刷新
@@ -259,7 +259,7 @@ var Recruit = function (_Taro$Component) {
       };
       // * 发布招工
       var userPublishRecruit = function userPublishRecruit() {
-        _taroSwan2.default.navigateTo({ url: _index3.PUBLISHRECRUIT });
+        _taroTt2.default.navigateTo({ url: _index3.PUBLISHRECRUIT });
       };
       // * 更新筛选条件
       var setSearchDataAction = function setSearchDataAction(type, id, text) {
@@ -317,32 +317,32 @@ var Recruit = function (_Taro$Component) {
       this.anonymousFunc2 = function () {
         return getNextPageData();
       };
-      var anonymousState__temp4 = (0, _taroSwan.internal_inline_style)({ height: '8px' });
+      var anonymousState__temp4 = (0, _taroTt.internal_inline_style)({ height: '8px' });
       this.anonymousFunc3 = function () {
         return userPublishRecruit();
       };
-      _taroSwan.propsManager.set({
+      _taroTt.propsManager.set({
         "placeholder": "\u627E\u6D3B\u3001\u627E\u5DE5\u4F5C",
         "value": "",
         "setRemark": anonymousState__temp,
         "setSearchData": anonymousState__temp2
-      }, $compid__86, $prevCompid__86);
-      _taroSwan.propsManager.set({
+      }, $compid__20, $prevCompid__20);
+      _taroTt.propsManager.set({
         "data": condition,
         "setSearchData": anonymousState__temp3
-      }, $compid__87, $prevCompid__87);
-      _taroSwan.propsManager.set({
+      }, $compid__21, $prevCompid__21);
+      _taroTt.propsManager.set({
         "data": lists,
         "hasMore": hasMore
-      }, $compid__88, $prevCompid__88);
+      }, $compid__22, $prevCompid__22);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
         anonymousState__temp2: anonymousState__temp2,
         anonymousState__temp3: anonymousState__temp3,
         anonymousState__temp4: anonymousState__temp4,
-        $compid__86: $compid__86,
-        $compid__87: $compid__87,
-        $compid__88: $compid__88,
+        $compid__20: $compid__20,
+        $compid__21: $compid__21,
+        $compid__22: $compid__22,
         scrollTop: scrollTop,
         refresh: refresh
       });
@@ -371,13 +371,13 @@ var Recruit = function (_Taro$Component) {
   }]);
 
   return Recruit;
-}(_taroSwan2.default.Component);
+}(_taroTt2.default.Component);
 
 Recruit.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3"];
 Recruit.$$componentPath = "pages/recruit/lists/index";
 exports.default = Recruit;
 
-Component(__webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js").default.createComponent(Recruit));
+Component(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(Recruit));
 
 /***/ })
 

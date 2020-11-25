@@ -131,17 +131,17 @@ export default function usePublishViewInfo(InitParams: InitRecruitView){
   function initUserAreaInfo(data: any){
     //  如果传递参数有infoid代表是修改，保存修改的里面默认区域数据
     if (InitParams.infoId){ 
-      dispatch(setArea(data.default_search_name.name))
+      dispatch(setArea({ name: data.default_search_name.name, ad_name: data.default_search_name.name + "市"}))
     }else{
       let userLoctionCity: UserLocationPromiss = Taro.getStorageSync(UserLocationCity)
       if(userLoctionCity){
-        dispatch(setArea(userLoctionCity.city))
+        dispatch(setArea({ name: userLoctionCity.city, ad_name: userLoctionCity.city+"市"}))
       }else{
         userAuthLoction()
         .then(res=>{
-          dispatch(setArea(res.city))
+          dispatch(setArea({ name: res.city, ad_name: res.city+"市"}))
         }).catch(()=>{
-          dispatch(setArea(AREABEIJING.name))
+          dispatch(setArea({ name: AREABEIJING.name, ad_name: AREABEIJING.ad_name}))
         })
       }
     }

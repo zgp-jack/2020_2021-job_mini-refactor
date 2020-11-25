@@ -71,3 +71,9 @@ export interface UserLastPublishRecruitArea {
   city?:string,
   provice?:string,
 }
+
+// 招工城市
+export interface AreaData {
+  name: string,
+  ad_name: string
+}

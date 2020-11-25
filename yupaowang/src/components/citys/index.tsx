@@ -80,7 +80,8 @@ export default function Cities({
         }else{
           historyCities.splice(MAXCACHECITYNUM - 1)
         }
-        setRecentlyCities(historyCities)
+        console.log('我走进来了....')
+        setRecentlyCities([...historyCities])
         return
       }
     }
