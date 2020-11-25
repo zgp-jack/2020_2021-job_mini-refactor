@@ -76,7 +76,7 @@ var ResumeLists = function (_Taro$Component) {
       backgroundTextStyle: "dark"
     };
 
-    _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "anonymousState__temp3", "anonymousState__temp4", "$compid__27", "$compid__28", "$compid__29", "scrollTop", "refresh"];
+    _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "anonymousState__temp3", "anonymousState__temp4", "$compid__83", "$compid__84", "$compid__85", "scrollTop", "refresh"];
     _this.customComponents = ["Search", "ResumeCondition", "WechatNotice", "ResumeList"];
     return _this;
   }
@@ -96,20 +96,20 @@ var ResumeLists = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__27"),
+      var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__83"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__27 = _genCompid2[0],
-          $compid__27 = _genCompid2[1];
+          $prevCompid__83 = _genCompid2[0],
+          $compid__83 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroSwan.genCompid)(__prefix + "$compid__28"),
+      var _genCompid3 = (0, _taroSwan.genCompid)(__prefix + "$compid__84"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__28 = _genCompid4[0],
-          $compid__28 = _genCompid4[1];
+          $prevCompid__84 = _genCompid4[0],
+          $compid__84 = _genCompid4[1];
 
-      var _genCompid5 = (0, _taroSwan.genCompid)(__prefix + "$compid__29"),
+      var _genCompid5 = (0, _taroSwan.genCompid)(__prefix + "$compid__85"),
           _genCompid6 = _slicedToArray(_genCompid5, 2),
-          $prevCompid__29 = _genCompid6[0],
-          $compid__29 = _genCompid6[1];
+          $prevCompid__85 = _genCompid6[0],
+          $compid__85 = _genCompid6[1];
       // 设置字段默认值
 
 
@@ -277,7 +277,20 @@ var ResumeLists = function (_Taro$Component) {
       // scroll-view 回到顶部
       var goToScrollTop = function goToScrollTop() {
         setHasMore(true);
+        // ! 如果小程序必须监听滚动值 返回顶部直接为0 ，如果不需要我们就给个近似值 来达到效果
+        if (_index2.SCROLLVIEWSETTOP) {
+          setScrollTop(0);
+          return;
+        }
         setScrollTop(scrollTop ? 0 : 0.1);
+      };
+      // scroll-view 滚动操作
+      var setScrollTopAction = function setScrollTopAction(e) {
+        // ! 如果小程序必须监听onScroll滚动值 那么就设置 例如百度小程序
+        if (_index2.SCROLLVIEWSETTOP) {
+          var top = e.detail.scrollTop;
+          setScrollTop(top);
+        }
       };
       // 设置搜索内容
       var setSearchValData = function setSearchValData() {
@@ -303,8 +316,11 @@ var ResumeLists = function (_Taro$Component) {
       this.anonymousFunc1 = function () {
         return getNextPageData();
       };
+      this.anonymousFunc2 = function (e) {
+        return setScrollTopAction(e);
+      };
       var anonymousState__temp4 = (0, _taroSwan.internal_inline_style)({ height: '8px' });
-      this.anonymousFunc2 = function () {
+      this.anonymousFunc3 = function () {
         return userRouteJump(_index2.PUBLISHRESUME);
       };
       _taroSwan.propsManager.set({
@@ -312,23 +328,23 @@ var ResumeLists = function (_Taro$Component) {
         "value": "",
         "setRemark": anonymousState__temp,
         "setSearchData": anonymousState__temp2
-      }, $compid__27, $prevCompid__27);
+      }, $compid__83, $prevCompid__83);
       _taroSwan.propsManager.set({
         "data": condition,
         "setSearchData": anonymousState__temp3
-      }, $compid__28, $prevCompid__28);
+      }, $compid__84, $prevCompid__84);
       _taroSwan.propsManager.set({
         "data": lists,
         "hasMore": hasMore
-      }, $compid__29, $prevCompid__29);
+      }, $compid__85, $prevCompid__85);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
         anonymousState__temp2: anonymousState__temp2,
         anonymousState__temp3: anonymousState__temp3,
         anonymousState__temp4: anonymousState__temp4,
-        $compid__27: $compid__27,
-        $compid__28: $compid__28,
-        $compid__29: $compid__29,
+        $compid__83: $compid__83,
+        $compid__84: $compid__84,
+        $compid__85: $compid__85,
         scrollTop: scrollTop,
         refresh: refresh
       });
@@ -349,12 +365,17 @@ var ResumeLists = function (_Taro$Component) {
     value: function anonymousFunc2(e) {
       ;
     }
+  }, {
+    key: 'anonymousFunc3',
+    value: function anonymousFunc3(e) {
+      ;
+    }
   }]);
 
   return ResumeLists;
 }(_taroSwan2.default.Component);
 
-ResumeLists.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2"];
+ResumeLists.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3"];
 ResumeLists.$$componentPath = "pages/resume/lists/index";
 ResumeLists.config = { navigationBarTitleText: '工人找活列表', navigationBarBackgroundColor: '#0099ff', navigationBarTextStyle: 'white', backgroundTextStyle: "dark" };
 exports.default = ResumeLists;

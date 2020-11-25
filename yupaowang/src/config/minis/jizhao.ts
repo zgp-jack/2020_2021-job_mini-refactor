@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-10-28 11:04:26
- * @LastEditTime: 2020-11-21 09:59:09
+ * @LastEditTime: 2020-11-25 10:29:47
  * @LastEditors: jsxin
  * @Description: In User Settings Edit
  * @FilePath: \yupaowang\src\config\minis\jizhao.ts
@@ -30,6 +30,12 @@ var DOWNLOADAPP: boolean = true
 var USEGAODEMAPAPI: boolean = false
 
 
+// ! 百度系小程序 列表滚动必须设置值
+var SCROLLVIEWSETTOP: boolean = false
+// ! 百度系小程序  上传图片 JSON解析数据
+var ISPARSEUPLOADIMG: boolean = true
+
+
 module.exports = {
   PAGETITLE,
   TOKEN,
@@ -39,5 +45,7 @@ module.exports = {
   VIDEOAD,
   TEXTAREAMAXLENGTH,
   DOWNLOADAPP,
-  USEGAODEMAPAPI
+  USEGAODEMAPAPI,
+  SCROLLVIEWSETTOP,
+  ISPARSEUPLOADIMG
 }

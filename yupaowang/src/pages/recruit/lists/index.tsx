@@ -10,7 +10,7 @@ import { RecruitListItem } from '../../../utils/request/index.d'
 import { UserLocationPromiss, ChildItems, AREACHINA, getCityInfo } from '../../../models/area'
 import { UserListChooseCity, UserLocationCity } from '../../../config/store'
 import { userAuthLoction } from '../../../utils/helper'
-import { PUBLISHRECRUIT } from '../../../config'
+import { PUBLISHRECRUIT, SCROLLVIEWSETTOP } from '../../../config'
 import { AreaPickerKey, ClassifyPickerKey, FilterPickerKey } from '../../../config/pages/lists'
 import './index.scss'
 import Msg from '../../../utils/msg'
@@ -102,7 +102,6 @@ export default function Recruit(){
             goToScrollTop()
             setLists([[...res.data]])
           }else{
-            console.log('我就设置了这个')
             setLists([...lists, [...res.data]])
           }
         } else {
@@ -157,14 +156,26 @@ export default function Recruit(){
 
   // scroll-view 回到顶部
   const goToScrollTop = () => {
-    console.log('我被触发了...')
     setHasMore(true)
-    setScrollTop(scrollTop ? 0 : 0.1)
+    // ! 如果小程序必须监听滚动值 返回顶部直接为0 ，如果不需要我们就给个近似值 来达到效果
+    if(SCROLLVIEWSETTOP){
+      setScrollTop(0)
+      return
+    }
+    setScrollTop(scrollTop ? 0 : 0.01)
   }
 
   // 输入搜索关键词
   const setSearchValData = () => {
     setSearchData({ ...searchData, keywords: remark, page: 1 })
+  }
+  // scroll-view 滚动操作
+  const setScrollTopAction = (e) => {
+    // ! 如果小程序必须监听onScroll滚动值 那么就设置 例如百度小程序
+    if (SCROLLVIEWSETTOP){
+      let top = e.detail.scrollTop
+      setScrollTop(top)
+    }
   }
 
   return (
@@ -178,6 +189,7 @@ export default function Recruit(){
         scrollY
         refresherEnabled
         scrollTop={scrollTop}
+        onScroll={(e) => setScrollTopAction(e)}
         scrollWithAnimation
         refresherTriggered={ refresh }
         onRefresherRefresh={() => pullDownAction()}

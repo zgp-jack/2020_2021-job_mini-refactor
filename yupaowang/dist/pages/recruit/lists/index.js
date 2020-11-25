@@ -73,7 +73,7 @@ var Recruit = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (Recruit.__proto__ || Object.getPrototypeOf(Recruit)).apply(this, arguments));
 
-    _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "anonymousState__temp3", "anonymousState__temp4", "$compid__95", "$compid__96", "$compid__97", "scrollTop", "refresh"];
+    _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "anonymousState__temp3", "anonymousState__temp4", "$compid__86", "$compid__87", "$compid__88", "scrollTop", "refresh"];
     _this.customComponents = ["Search", "RecruitCondition", "WechatNotice", "RecruitList"];
     return _this;
   }
@@ -93,20 +93,20 @@ var Recruit = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__95"),
+      var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__86"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__95 = _genCompid2[0],
-          $compid__95 = _genCompid2[1];
+          $prevCompid__86 = _genCompid2[0],
+          $compid__86 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroSwan.genCompid)(__prefix + "$compid__96"),
+      var _genCompid3 = (0, _taroSwan.genCompid)(__prefix + "$compid__87"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__96 = _genCompid4[0],
-          $compid__96 = _genCompid4[1];
+          $prevCompid__87 = _genCompid4[0],
+          $compid__87 = _genCompid4[1];
 
-      var _genCompid5 = (0, _taroSwan.genCompid)(__prefix + "$compid__97"),
+      var _genCompid5 = (0, _taroSwan.genCompid)(__prefix + "$compid__88"),
           _genCompid6 = _slicedToArray(_genCompid5, 2),
-          $prevCompid__97 = _genCompid6[0],
-          $compid__97 = _genCompid6[1];
+          $prevCompid__88 = _genCompid6[0],
+          $compid__88 = _genCompid6[1];
       // 输入关键词 没搜索 备份
 
 
@@ -221,7 +221,6 @@ var Recruit = function (_Taro$Component) {
                 goToScrollTop();
                 setLists([[].concat(_toConsumableArray(res.data))]);
               } else {
-                console.log('我就设置了这个');
                 setLists([].concat(_toConsumableArray(lists), [[].concat(_toConsumableArray(res.data))]));
               }
             } else {
@@ -280,13 +279,25 @@ var Recruit = function (_Taro$Component) {
       };
       // scroll-view 回到顶部
       var goToScrollTop = function goToScrollTop() {
-        console.log('我被触发了...');
         setHasMore(true);
-        setScrollTop(scrollTop ? 0 : 0.1);
+        // ! 如果小程序必须监听滚动值 返回顶部直接为0 ，如果不需要我们就给个近似值 来达到效果
+        if (_index3.SCROLLVIEWSETTOP) {
+          setScrollTop(0);
+          return;
+        }
+        setScrollTop(scrollTop ? 0 : 0.01);
       };
       // 输入搜索关键词
       var setSearchValData = function setSearchValData() {
         setSearchData(_extends({}, searchData, { keywords: remark, page: 1 }));
+      };
+      // scroll-view 滚动操作
+      var setScrollTopAction = function setScrollTopAction(e) {
+        // ! 如果小程序必须监听onScroll滚动值 那么就设置 例如百度小程序
+        if (_index3.SCROLLVIEWSETTOP) {
+          var top = e.detail.scrollTop;
+          setScrollTop(top);
+        }
       };
       var anonymousState__temp = function anonymousState__temp(val) {
         return setRemark(val);
@@ -297,14 +308,17 @@ var Recruit = function (_Taro$Component) {
       var anonymousState__temp3 = function anonymousState__temp3(type, id, text) {
         return setSearchDataAction(type, id, text);
       };
-      this.anonymousFunc0 = function () {
-        return pullDownAction();
+      this.anonymousFunc0 = function (e) {
+        return setScrollTopAction(e);
       };
       this.anonymousFunc1 = function () {
+        return pullDownAction();
+      };
+      this.anonymousFunc2 = function () {
         return getNextPageData();
       };
       var anonymousState__temp4 = (0, _taroSwan.internal_inline_style)({ height: '8px' });
-      this.anonymousFunc2 = function () {
+      this.anonymousFunc3 = function () {
         return userPublishRecruit();
       };
       _taroSwan.propsManager.set({
@@ -312,23 +326,23 @@ var Recruit = function (_Taro$Component) {
         "value": "",
         "setRemark": anonymousState__temp,
         "setSearchData": anonymousState__temp2
-      }, $compid__95, $prevCompid__95);
+      }, $compid__86, $prevCompid__86);
       _taroSwan.propsManager.set({
         "data": condition,
         "setSearchData": anonymousState__temp3
-      }, $compid__96, $prevCompid__96);
+      }, $compid__87, $prevCompid__87);
       _taroSwan.propsManager.set({
         "data": lists,
         "hasMore": hasMore
-      }, $compid__97, $prevCompid__97);
+      }, $compid__88, $prevCompid__88);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
         anonymousState__temp2: anonymousState__temp2,
         anonymousState__temp3: anonymousState__temp3,
         anonymousState__temp4: anonymousState__temp4,
-        $compid__95: $compid__95,
-        $compid__96: $compid__96,
-        $compid__97: $compid__97,
+        $compid__86: $compid__86,
+        $compid__87: $compid__87,
+        $compid__88: $compid__88,
         scrollTop: scrollTop,
         refresh: refresh
       });
@@ -349,12 +363,17 @@ var Recruit = function (_Taro$Component) {
     value: function anonymousFunc2(e) {
       ;
     }
+  }, {
+    key: "anonymousFunc3",
+    value: function anonymousFunc3(e) {
+      ;
+    }
   }]);
 
   return Recruit;
 }(_taroSwan2.default.Component);
 
-Recruit.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2"];
+Recruit.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3"];
 Recruit.$$componentPath = "pages/recruit/lists/index";
 exports.default = Recruit;
 

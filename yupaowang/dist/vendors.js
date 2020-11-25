@@ -12364,6 +12364,10 @@ var TEXTAREAMAXLENGTH = exports.TEXTAREAMAXLENGTH = MINICONFIG.TEXTAREAMAXLENGTH
 var DOWNLOADAPP = exports.DOWNLOADAPP = MINICONFIG.DOWNLOADAPP;
 // * 是否能够使用高德地区api
 var USEGAODEMAPAPI = exports.USEGAODEMAPAPI = MINICONFIG.USEGAODEMAPAPI;
+// * scroll-view滚动过程中是否保存高度值
+var SCROLLVIEWSETTOP = exports.SCROLLVIEWSETTOP = MINICONFIG.SCROLLVIEWSETTOP;
+// * 上传图片 是否需要使用JSON解析数据
+var ISPARSEUPLOADIMG = exports.ISPARSEUPLOADIMG = MINICONFIG.ISPARSEUPLOADIMG;
 
 /***/ }),
 
@@ -12431,6 +12435,10 @@ var TEXTAREAMAXLENGTH = 500;
 var DOWNLOADAPP = true;
 // * 是否支持高德地图api
 var USEGAODEMAPAPI = false;
+// ! 百度系小程序 列表滚动必须设置值
+var SCROLLVIEWSETTOP = true;
+// ! 百度系小程序  上传图片 不能JSON解析数据
+var ISPARSEUPLOADIMG = false;
 module.exports = {
   PAGETITLE: PAGETITLE,
   TOKEN: TOKEN,
@@ -12440,7 +12448,9 @@ module.exports = {
   ISCANSHARE: ISCANSHARE,
   TEXTAREAMAXLENGTH: TEXTAREAMAXLENGTH,
   DOWNLOADAPP: DOWNLOADAPP,
-  USEGAODEMAPAPI: USEGAODEMAPAPI
+  USEGAODEMAPAPI: USEGAODEMAPAPI,
+  SCROLLVIEWSETTOP: SCROLLVIEWSETTOP,
+  ISPARSEUPLOADIMG: ISPARSEUPLOADIMG
 };
 
 /***/ }),
@@ -12474,6 +12484,10 @@ var TEXTAREAMAXLENGTH = 140;
 var DOWNLOADAPP = false;
 // * 是否支持高德地图api
 var USEGAODEMAPAPI = true;
+// ! 百度系小程序 列表滚动必须设置值
+var SCROLLVIEWSETTOP = false;
+// ! 百度系小程序  上传图片 JSON解析数据
+var ISPARSEUPLOADIMG = true;
 module.exports = {
   PAGETITLE: PAGETITLE,
   TOKEN: TOKEN,
@@ -12483,7 +12497,9 @@ module.exports = {
   ISCANSHARE: ISCANSHARE,
   TEXTAREAMAXLENGTH: TEXTAREAMAXLENGTH,
   DOWNLOADAPP: DOWNLOADAPP,
-  USEGAODEMAPAPI: USEGAODEMAPAPI
+  USEGAODEMAPAPI: USEGAODEMAPAPI,
+  SCROLLVIEWSETTOP: SCROLLVIEWSETTOP,
+  ISPARSEUPLOADIMG: ISPARSEUPLOADIMG
 };
 
 /***/ }),
@@ -12501,7 +12517,7 @@ module.exports = {
 /*
  * @Author: your name
  * @Date: 2020-10-28 11:04:26
- * @LastEditTime: 2020-11-21 09:59:09
+ * @LastEditTime: 2020-11-25 10:29:47
  * @LastEditors: jsxin
  * @Description: In User Settings Edit
  * @FilePath: \yupaowang\src\config\minis\jizhao.ts
@@ -12527,6 +12543,10 @@ var TEXTAREAMAXLENGTH = 500;
 var DOWNLOADAPP = true;
 // * 是否支持高德地图api
 var USEGAODEMAPAPI = false;
+// ! 百度系小程序 列表滚动必须设置值
+var SCROLLVIEWSETTOP = false;
+// ! 百度系小程序  上传图片 JSON解析数据
+var ISPARSEUPLOADIMG = true;
 module.exports = {
   PAGETITLE: PAGETITLE,
   TOKEN: TOKEN,
@@ -12536,7 +12556,9 @@ module.exports = {
   VIDEOAD: VIDEOAD,
   TEXTAREAMAXLENGTH: TEXTAREAMAXLENGTH,
   DOWNLOADAPP: DOWNLOADAPP,
-  USEGAODEMAPAPI: USEGAODEMAPAPI
+  USEGAODEMAPAPI: USEGAODEMAPAPI,
+  SCROLLVIEWSETTOP: SCROLLVIEWSETTOP,
+  ISPARSEUPLOADIMG: ISPARSEUPLOADIMG
 };
 
 /***/ }),
@@ -17903,8 +17925,7 @@ function AppUploadImg(resolve, res) {
     name: 'file',
     success: function success(response) {
       // 百度小程序出来之后是一个纯json 但是其他端就不是， 解决百度冲突
-      var mydata = _index.MINIVERSION == _index.BAIDU ? response.data : JSON.parse(response.data);
-      // let resData = { local: response, remote: mydata}
+      var mydata = _index.ISPARSEUPLOADIMG ? JSON.parse(response.data) : response.data;
       _taroSwan2.default.showToast({
         title: mydata.errmsg,
         icon: "none",

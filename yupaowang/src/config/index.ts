@@ -94,3 +94,7 @@ export const TEXTAREAMAXLENGTH: number = MINICONFIG.TEXTAREAMAXLENGTH
 export const DOWNLOADAPP: boolean = MINICONFIG.DOWNLOADAPP
 // * 是否能够使用高德地区api
 export const USEGAODEMAPAPI: boolean = MINICONFIG.USEGAODEMAPAPI
+// * scroll-view滚动过程中是否保存高度值
+export const SCROLLVIEWSETTOP: boolean = MINICONFIG.SCROLLVIEWSETTOP
+// * 上传图片 是否需要使用JSON解析数据
+export const ISPARSEUPLOADIMG: boolean = MINICONFIG.ISPARSEUPLOADIMG
