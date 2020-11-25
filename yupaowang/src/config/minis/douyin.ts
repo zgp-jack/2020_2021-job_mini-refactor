@@ -18,6 +18,10 @@ var TEXTAREAMAXLENGTH: number = 140
 var DOWNLOADAPP: boolean = false
 // * 是否支持高德地图api
 var USEGAODEMAPAPI: boolean = true
+// * 是否显示加工友微信号
+var SHOWWEIXINNUMBER: boolean = false
+// * 是否显示关注公众号
+var SHOWOFFICIALACCOUNT: boolean = false
 
 
 // ! 百度系小程序 列表滚动必须设置值
@@ -37,5 +41,7 @@ module.exports = {
   DOWNLOADAPP,
   USEGAODEMAPAPI,
   SCROLLVIEWSETTOP,
-  ISPARSEUPLOADIMG
+  ISPARSEUPLOADIMG,
+  SHOWOFFICIALACCOUNT,
+  SHOWWEIXINNUMBER
 }
