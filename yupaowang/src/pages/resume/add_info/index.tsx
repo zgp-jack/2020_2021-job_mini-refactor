@@ -10,7 +10,7 @@ import { UserLastPublishRecruitArea } from '../../../pages/recruit/index.d'
 import Profession from '../../../components/profession'
 import { TEXTAREAMAXLENGTH, USEGAODEMAPAPI } from '../../../config'
 import useCode from '../../../hooks/code'
-import { getCityAreaPicker, getAreaCurrentArr, SimpleChildItems, getCityInfoById} from '../../../models/area'
+import { getCityAreaPicker, getAreaCurrentArr, SimpleChildItems, getCityInfoById, AREABEIJING} from '../../../models/area'
 import Msg,{ ShowActionModal } from '../../../utils/msg';
 import { isChinese, isPhone, allChinese } from '../../../utils/v';
 import { getLocation } from '../../../utils/helper';
@@ -111,7 +111,7 @@ export default function AddResumeInfo(){
         setProvinceAdress(provinceAdress);
       }else{
         // 没有地址和没有设置默认北京
-        setProvinceAdress('北京');
+        setProvinceAdress(AREABEIJING.name);
       }
       // 没有就默认北京
     }
@@ -209,7 +209,7 @@ export default function AddResumeInfo(){
       return
     }
     let params = {
-      code: inputVal.code,
+      code: inputVal.code ? inputVal.code:'',
       username: inputVal.username,
       tel: inputVal.tel,
       gender: inputVal.gender,
