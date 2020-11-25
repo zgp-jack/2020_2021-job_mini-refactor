@@ -65,6 +65,7 @@ export default function AddResumeInfo(){
   // const [first, setFirst] = useState<boolean>(false);
   // 设置选择地址的省
   const [provinceAdress, setProvinceAdress] = useState<string>('');
+  const [provinceAdressName, setProvinceAdressName] = useState<string>('');
   useEffect(() => {
     let {province, cities} = getCityAreaPicker()
     setAreaProvincePicker(province)
@@ -100,18 +101,21 @@ export default function AddResumeInfo(){
     // 选择地址时省份设置
     if (infoData.province_and_city){
       const areaProvince = infoData.province_and_city.split(',')[1];
-      const provinceAdress = getCityInfoById(areaProvince).name;
-      setProvinceAdress(provinceAdress);
+      const provinceAdress = getCityInfoById(areaProvince);
+      setProvinceAdress(provinceAdress.name);
+      setProvinceAdressName(provinceAdress.ad_name)
     }else{
       // 没有就获取缓存授权地址
       const areaProvince = Taro.getStorageSync(UserListChooseCity);
       // 并且不等于全国
       if (areaProvince && areaProvince.id !='1'){
-        const provinceAdress = areaProvince.name;
-        setProvinceAdress(provinceAdress);
+        const provinceAdress = areaProvince;
+        setProvinceAdress(provinceAdress.name);
+        setProvinceAdressName(provinceAdress.ad_name);
       }else{
         // 没有地址和没有设置默认北京
         setProvinceAdress(AREABEIJING.name);
+        setProvinceAdressName(AREABEIJING.ad_name);
       }
       // 没有就默认北京
     }
@@ -156,8 +160,9 @@ export default function AddResumeInfo(){
     const area = { ...areaInfo };
     // 设置省份(切换省份后)
     if (area.city){
-      const provinceAdress = getCityInfoById(area.city).name;
-      setProvinceAdress(provinceAdress);
+      const provinceAdress = getCityInfoById(area.city);
+      setProvinceAdress(provinceAdress.ad_name);
+      setProvinceAdressName(provinceAdress.name);
     }
     setLocationData({
       ...location, adcode: area.adcode, address: area.title, longitude: area.location && area.location.split(',')[0], latitude: area.location&& area.location.split(',')[1], city: area.city || '', province: area.provice || ''
@@ -281,6 +286,7 @@ export default function AddResumeInfo(){
                         setLocationData(res);
                         const provinceAdress = getCityInfoById(res.city);
                         setProvinceAdress(provinceAdress.name);
+                        setProvinceAdressName(provinceAdress.ad_name)
                       })
                     }else{
                       Msg('授权失败')
@@ -295,6 +301,7 @@ export default function AddResumeInfo(){
             if (res) {
               const provinceAdress = getCityInfoById(res.city);
               setProvinceAdress(provinceAdress.name);
+              setProvinceAdressName(provinceAdress.ad_name);
               setLocationData(res);
             }
           })
@@ -308,7 +315,7 @@ export default function AddResumeInfo(){
   const userChooseArea = () => {
     // setFirst(false);
     first = false
-    let url = `/pages/map/resume/index?provinceAdress=${provinceAdress}`
+    let url = `/pages/map/resume/index?provinceAdress=${provinceAdress}&provinceAdressName=${provinceAdressName}`
     Taro.navigateTo({
       url: url
     })

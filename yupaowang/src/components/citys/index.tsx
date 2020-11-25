@@ -16,7 +16,7 @@ export interface IPROPS {
 export interface CitiesProps extends IPROPS {
   userTapCityBtn: (b: boolean) => void, // 显示关闭操作
   area: string,  // 当前选择城市
-  userChangeCity?: (city: string)=> void,
+  userChangeCity?: (city: string, citys: AllAreasDataItem)=> void,
   userLoc: AllAreasDataItem
 }
 
@@ -52,7 +52,7 @@ export default function Cities({
     }
     // 储存最新的用户点击历史城市数据
     Taro.setStorageSync(HistoryCities,historyCities)
-    userChangeCity && userChangeCity(city.city)
+    userChangeCity && userChangeCity(city.city, city)
     userTapCityBtn(false)
     userRecentlyCities()
   }

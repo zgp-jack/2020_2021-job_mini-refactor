@@ -1,4 +1,4 @@
-(swan["webpackJsonp"] = swan["webpackJsonp"] || []).push([["vendors"],{
+(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["vendors"],{
 
 /***/ "./node_modules/@tarojs/mini-runner/node_modules/webpack/buildin/amd-options.js":
 /*!****************************************!*\
@@ -785,10 +785,10 @@ module.exports.default = module.exports;
 
 /***/ }),
 
-/***/ "./node_modules/@tarojs/taro-swan/dist/index.js":
-/*!******************************************************!*\
-  !*** ./node_modules/@tarojs/taro-swan/dist/index.js ***!
-  \******************************************************/
+/***/ "./node_modules/@tarojs/taro-tt/dist/index.js":
+/*!****************************************************!*\
+  !*** ./node_modules/@tarojs/taro-tt/dist/index.js ***!
+  \****************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1093,7 +1093,7 @@ var nextTick = function nextTick(fn) {
   }
 
   fn = typeof fn === 'function' ? (_fn = fn).bind.apply(_fn, [null].concat(args)) : fn;
-  var timerFunc = swan.nextTick ? swan.nextTick : setTimeout;
+  var timerFunc = tt.nextTick ? tt.nextTick : setTimeout;
   timerFunc(fn);
 };
 
@@ -1517,21 +1517,79 @@ function diffObjToPath(to, from) {
 
   return res;
 }
+function queryToJson(str) {
+  var dec = decodeURIComponent;
+  var qp = str.split('&');
+  var ret = {};
+  var name;
+  var val;
+
+  for (var i = 0, l = qp.length, item; i < l; ++i) {
+    item = qp[i];
+
+    if (item.length) {
+      var s = item.indexOf('=');
+
+      if (s < 0) {
+        name = dec(item);
+        val = '';
+      } else {
+        name = dec(item.slice(0, s));
+        val = dec(item.slice(s + 1));
+      }
+
+      if (typeof ret[name] === 'string') {
+        // inline'd type check
+        ret[name] = [ret[name]];
+      }
+
+      if (isArray(ret[name])) {
+        ret[name].push(val);
+      } else {
+        ret[name] = val;
+      }
+    }
+  }
+
+  return ret; // Object
+}
 
 var _loadTime = new Date().getTime().toString();
-function getElementById(component, id, type) {
+
+var _i = 1;
+function getUniqueKey() {
+  return _loadTime + _i++;
+}
+
+function triggerLoopRef(that, dom, handler) {
+  var handlerType = _typeof(handler);
+
+  if (handlerType !== 'function' && handlerType !== 'object') {
+    return console.warn('\u5FAA\u73AF Ref \u53EA\u652F\u6301\u51FD\u6570\u6216 createRef()\uFF0C\u5F53\u524D\u7C7B\u578B\u4E3A\uFF1A'.concat(handlerType));
+  }
+
+  if (handlerType === 'object') {
+    handler.current = dom;
+  } else if (handlerType === 'function') {
+    handler.call(that, dom);
+  }
+}
+
+function handleLoopRef(component, id, type, handler) {
   if (!component) return null;
   var res;
 
   if (type === 'component') {
-    res = component.selectComponent(id);
-    res = res ? res.$component || res : null;
+    component.selectComponent(id, function (res) {
+      res = res ? res.$component || res : null;
+      res && triggerLoopRef(component.$component, res, handler);
+    });
   } else {
-    var query = swan.createSelectorQuery().in(component);
+    var query = wx.createSelectorQuery().in(component);
     res = query.select(id);
+    res && triggerLoopRef(component.$component, res, handler);
   }
 
-  if (res) return res;
   return null;
 }
 var id$1 = 0;
@@ -1646,19 +1704,30 @@ function () {
 var propsManager = new Manager();
 
 var anonymousFnNamePreffix = 'funPrivate';
+var preloadPrivateKey = '__preload_';
+var preloadInitedComponent = '$preloadComponent';
 var PRELOAD_DATA_KEY = 'preload';
 var pageExtraFns = ['onPullDownRefresh', 'onReachBottom', 'onShareAppMessage', 'onPageScroll', 'onTabItemTap'];
 
 function bindProperties(weappComponentConf, ComponentClass, isPage) {
   weappComponentConf.properties = {};
+
+  if (isPage) {
+    weappComponentConf.properties[preloadPrivateKey] = {
+      type: null,
+      value: null
+    };
+  }
+
   weappComponentConf.properties.compid = {
     type: null,
     value: null,
     observer: function observer(newVal, oldVal) {
       var _this = this;
 
-      initComponent.apply(this, [ComponentClass, isPage]);
-
+      // 头条基础库1.38.2后，太早 setData $taroCompReady 为 true 时，setData 虽然成功，但 slot 会不显示。
+      // 因此不在 observer 里 initComponent，在组件 attached 时 initComponent 吧。
+      // initComponent.apply(this, [ComponentClass, isPage])
       if (oldVal && oldVal !== newVal) {
         var extraProps = this.data.extraProps;
         var component = this.$component;
@@ -1733,7 +1802,8 @@ function processEvent(eventHandlerName, obj) {
 
     var dataset = event.currentTarget.dataset || {};
     var bindArgs = {};
-    var eventType = event.type.toLocaleLowerCase();
+    var eventType = event.type ? event.type.toLocaleLowerCase() : null;
+    if (event.detail && event.detail.__detail) Object.assign(dataset, event.detail.__detail);
     Object.keys(dataset).forEach(function (key) {
       var keyLower = key.toLocaleLowerCase();
 
@@ -1751,8 +1821,8 @@ function processEvent(eventHandlerName, obj) {
       }
     }); // 如果是通过triggerEvent触发,并且带有参数
 
-    if (event.__arguments && event.__arguments.length > 0) {
-      detailArgs = event.__arguments;
+    if (event.detail && event.detail.__arguments && event.detail.__arguments.length > 0) {
+      detailArgs = event.detail.__arguments;
     } // 普通的事件（非匿名函数），会直接call
 
 
@@ -1834,12 +1904,66 @@ function filterProps() {
   return newProps;
 }
 function componentTrigger(component, key, args) {
+  args = args || [];
+
+  if (key === 'componentDidMount') {
+    if (component['$$hasLoopRef']) {
+      taro.Current.current = component;
+      taro.Current.index = 0;
+      component._disableEffect = true;
+
+      component._createData(component.state, component.props, true);
+
+      component._disableEffect = false;
+      taro.Current.current = null;
+    }
+
+    if (component['$$refs'] && component['$$refs'].length > 0) {
+      var refs = {};
+      var refComponents = [];
+      component['$$refs'].forEach(function (ref) {
+        refComponents.push(new Promise(function (resolve, reject) {
+          var query = tt.createSelectorQuery().in(component.$scope);
+
+          if (ref.type === 'component') {
+            component.$scope.selectComponent("#".concat(ref.id), function (target) {
+              resolve({
+                target: target ? target.$component || target : null,
+                ref: ref
+              });
+            });
+          } else {
+            resolve({
+              target: query.select("#".concat(ref.id)),
+              ref: ref
+            });
+          }
+        }));
+      });
+      Promise.all(refComponents).then(function (targets) {
+        targets.forEach(function (_ref) {
+          var ref = _ref.ref,
+              target = _ref.target;
+          taro.commitAttachRef(ref, target, component, refs, true);
+          ref.target = target;
+        });
+        component.refs = Object.assign({}, component.refs || {}, refs); // 此处执行componentDidMount
+
+        component[key] && typeof component[key] === 'function' && component[key].apply(component, _toConsumableArray(args));
+      }).catch(function (err) {
+        console.error(err);
+        component[key] && typeof component[key] === 'function' && component[key].apply(component, _toConsumableArray(args));
+      }); // 此处跳过执行componentDidMount，在refComponents完成后再次执行
+
+      return;
+    }
+  }
+
   if (key === 'componentWillUnmount') {
     var compid = component.$scope.data.compid;
     if (compid) propsManager.delete(compid);
   }
 
-  args = args || [];
   component[key] && typeof component[key] === 'function' && component[key].apply(component, _toConsumableArray(args));
 
   if (key === 'componentWillUnmount') {
@@ -1921,18 +2045,31 @@ function createComponent(ComponentClass, isPage) {
     created: function created() {
       var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
       isPage && (hasPageInited = false);
-      this.$component = new ComponentClass({}, isPage);
+
+      if (isPage && cacheDataHas(preloadInitedComponent)) {
+        this.$component = cacheDataGet(preloadInitedComponent, true);
+        this.$component.$componentType = 'PAGE';
+      } else {
+        this.$component = new ComponentClass({}, isPage);
+      }
 
       this.$component._init(this);
 
       this.$component.render = this.$component._createData;
       this.$component.__propTypes = ComponentClass.propTypes;
-      Object.assign(this.$component.$router.params, options);
 
       if (isPage) {
         if (cacheDataHas(PRELOAD_DATA_KEY)) {
           var data = cacheDataGet(PRELOAD_DATA_KEY, true);
           this.$component.$router.preload = data;
+        }
+
+        Object.assign(this.$component.$router.params, options);
+
+        if (cacheDataHas(options[preloadPrivateKey])) {
+          this.$component.$preloadData = cacheDataGet(options[preloadPrivateKey], true);
+        } else {
+          this.$component.$preloadData = {};
         }
 
         this.$component.$router.path = getCurrentPageUrl();
@@ -1943,43 +2080,9 @@ function createComponent(ComponentClass, isPage) {
       initComponent.apply(this, [ComponentClass, isPage]);
     },
     ready: function ready() {
-      var _this2 = this;
-
-      var component = this.$component;
-
-      if (component['$$refs'] && component['$$refs'].length > 0) {
-        var refs = {};
-        component['$$refs'].forEach(function (ref) {
-          var target;
-          var query = swan.createSelectorQuery().in(_this2);
-
-          if (ref.type === 'component') {
-            target = _this2.selectComponent("#".concat(ref.id));
-            target = target && target.$component || target;
-          } else {
-            target = query.select("#".concat(ref.id));
-          }
-
-          taro.commitAttachRef(ref, target, component, refs, true);
-          ref.target = target;
-        });
-        component.refs = Object.assign({}, component.refs || {}, refs);
-      }
-
-      if (component['$$hasLoopRef']) {
-        taro.Current.current = component;
-        taro.Current.index = 0;
-        component._disableEffect = true;
-
-        component._createData(component.state, component.props, true);
-
-        component._disableEffect = false;
-        taro.Current.current = null;
-      }
-
-      if (!component.__mounted) {
-        component.__mounted = true;
-        componentTrigger(component, 'componentDidMount');
+      if (!this.$component.__mounted) {
+        this.$component.__mounted = true;
+        componentTrigger(this.$component, 'componentDidMount');
       }
     },
     detached: function detached() {
@@ -2024,16 +2127,7 @@ function createComponent(ComponentClass, isPage) {
         };
       }
     });
-  } else {
-    weappComponentConf.pageLifetimes = weappComponentConf.pageLifetimes || {};
-
-    weappComponentConf.pageLifetimes['show'] = function () {
-      componentTrigger(this.$component, 'componentDidShow');
-    };
-
-    weappComponentConf.pageLifetimes['hide'] = function () {
-      componentTrigger(this.$component, 'componentDidHide');
-    };
+    globPageRegistPath && cacheDataSet(globPageRegistPath, ComponentClass);
   }
 
   bindProperties(weappComponentConf, ComponentClass, isPage);
@@ -3557,7 +3651,7 @@ function doUpdate(component, prevProps, prevState) {
   }
 
   data['$taroCompReady'] = true;
-  var dataDiff = taro.getIsUsingDiff() ? diffObjToPath(data, component.$scope.data) : data;
+  var dataDiff = diffObjToPath(data, component.$scope.data);
   var __mounted = component.__mounted;
   var snapshot;
 
@@ -3574,21 +3668,22 @@ function doUpdate(component, prevProps, prevState) {
   }
 
   var cb = function cb() {
-    if (__mounted) {
+    if (component.__mounted) {
       taro.invokeEffects(component);
 
       if (component['$$refs'] && component['$$refs'].length > 0) {
         component['$$refs'].forEach(function (ref) {
           // 只有 component 类型能做判断。因为 querySelector 每次调用都一定返回 nodeRefs，无法得知 dom 类型的挂载状态。
           if (ref.type !== 'component') return;
-          var target = component.$scope.selectComponent("#".concat(ref.id));
-          target = target ? target.$component || target : null;
-          var prevRef = ref.target;
+          component.$scope.selectComponent("#".concat(ref.id), function (target) {
+            target = target ? target.$component || target : null;
+            var prevRef = ref.target;
 
-          if (target !== prevRef) {
-            taro.commitAttachRef(ref, target, component, component.refs);
-            ref.target = target;
-          }
+            if (target !== prevRef) {
+              taro.commitAttachRef(ref, target, component, component.refs);
+              ref.target = target;
+            }
+          });
         });
       }
 
@@ -3663,6 +3758,7 @@ function () {
   // 会在componentDidMount后置为true
   // hooks
   function BaseComponent() {
+    var props = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
     var isPage = arguments.length > 1 ? arguments[1] : undefined;
 
     _classCallCheck(this, BaseComponent);
@@ -3689,6 +3785,8 @@ function () {
 
     _defineProperty(this, "$componentType", '');
 
+    _defineProperty(this, "refs", {});
+
     _defineProperty(this, "$router", {
       params: {},
       path: ''
@@ -3705,7 +3803,7 @@ function () {
     _defineProperty(this, "layoutEffects", []);
 
     this.state = {};
-    this.props = {};
+    this.props = props;
     this.$componentType = isPage ? 'PAGE' : 'COMPONENT';
     this.$prefix = genCompPrefix();
     this.isTaroComponent = this.$componentType && this.$router && this._pendingStates;
@@ -3733,7 +3831,7 @@ function () {
       }
 
       if (!this._disable) {
-        enqueueRender(this, taro.internal_force_update);
+        enqueueRender(this, callback === taro.internal_force_update);
       }
     }
   }, {
@@ -3810,10 +3908,17 @@ function () {
       } else {
         // 普通的
         var keyLower = key.toLocaleLowerCase();
-        this.$scope.triggerEvent(keyLower, {
+        var payload = {
           __isCustomEvt: true,
           __arguments: args
-        });
+        };
+        var detail = this.$scope.dataset;
+
+        if (Object.keys(detail).length) {
+          payload.__detail = detail;
+        }
+
+        this.$scope.triggerEvent(keyLower, payload);
       }
     }
   }]);
@@ -3947,7 +4052,7 @@ var RequestQueue = {
       _this.pendingQueue.push(options);
 
       return {
-        v: swan.request(options)
+        v: tt.request(options)
       };
     };
 
@@ -4011,10 +4116,12 @@ function request(options) {
 
 function processApis(taro$$1) {
   var weApis = Object.assign({}, taro.onAndSyncApis, taro.noPromiseApis, taro.otherApis);
+  var preloadPrivateKey = '__preload_';
+  var preloadInitedComponent = '$preloadComponent';
   Object.keys(weApis).forEach(function (key) {
-    if (!(key in swan)) {
+    if (!(key in tt)) {
       taro$$1[key] = function () {
-        console.warn('\u767E\u5EA6\u5C0F\u7A0B\u5E8F\u6682\u4E0D\u652F\u6301 '.concat(key));
+        console.warn('\u5934\u6761\u5C0F\u7A0B\u5E8F\u6682\u4E0D\u652F\u6301 '.concat(key));
       };
 
       return;
@@ -4032,12 +4139,33 @@ function processApis(taro$$1) {
 
         if (typeof options === 'string') {
           if (args.length) {
-            var _swan;
+            var _tt;
 
-            return (_swan = swan)[key].apply(_swan, [options].concat(args));
+            return (_tt = tt)[key].apply(_tt, [options].concat(args));
           }
 
-          return swan[key](options);
+          return tt[key](options);
+        }
+
+        if (key === 'navigateTo' || key === 'redirectTo') {
+          var url = obj['url'] ? obj['url'].replace(/^\//, '') : '';
+          if (url.indexOf('?') > -1) url = url.split('?')[0];
+          var Component = cacheDataGet(url);
+
+          if (Component) {
+            var component = new Component();
+
+            if (component.componentWillPreload) {
+              var cacheKey = getUniqueKey();
+              var MarkIndex = obj.url.indexOf('?');
+              var hasMark = MarkIndex > -1;
+              var urlQueryStr = hasMark ? obj.url.substring(MarkIndex + 1, obj.url.length) : '';
+              var params = queryToJson(urlQueryStr);
+              obj.url += (hasMark ? '&' : '?') + "".concat(preloadPrivateKey, "=").concat(cacheKey);
+              cacheDataSet(cacheKey, component.componentWillPreload(params));
+              cacheDataSet(preloadInitedComponent, component);
+            }
+          }
         }
 
         var p = new Promise(function (resolve, reject) {
@@ -4060,11 +4188,11 @@ function processApis(taro$$1) {
           });
 
           if (args.length) {
-            var _swan2;
+            var _tt2;
 
-            task = (_swan2 = swan)[key].apply(_swan2, [obj].concat(args));
+            task = (_tt2 = tt)[key].apply(_tt2, [obj].concat(args));
           } else {
-            task = swan[key](obj);
+            task = tt[key](obj);
           }
         });
 
@@ -4104,7 +4232,7 @@ function processApis(taro$$1) {
           newArgs.splice(argsLen - 1, 1, lastArg.$scope);
         }
 
-        return swan[key].apply(swan, newArgs);
+        return tt[key].apply(tt, newArgs);
       };
     }
   });
@@ -4130,7 +4258,6 @@ function pxTransform(size) {
 
 function initNativeApi(taro$$1) {
   processApis(taro$$1);
-  taro$$1.requestPayment = taro$$1.requestPolymerPayment;
   taro$$1.request = link.request.bind(link);
   taro$$1.addInterceptor = link.addInterceptor.bind(link);
   taro$$1.cleanInterceptors = link.cleanInterceptors.bind(link);
@@ -4159,7 +4286,7 @@ var Taro = {
   internal_get_original: taro.internal_get_original,
   interceptors: taro.interceptors,
   RefsArray: taro.RefsArray,
-  handleLoopRef: taro.handleLoopRef(getElementById),
+  handleLoopRef: handleLoopRef,
   propsManager: propsManager,
   genCompid: genCompid,
   useEffect: taro.useEffect,
@@ -4183,8 +4310,7 @@ var Taro = {
   useContext: taro.useContext,
   createContext: taro.createContext,
   memo: taro.memo,
-  shallowEqual: shallowEqual,
-  setIsUsingDiff: taro.setIsUsingDiff
+  shallowEqual: shallowEqual
 };
 initNativeApi(Taro);
 
@@ -4195,17 +4321,17 @@ exports.default = Taro;
 
 /***/ }),
 
-/***/ "./node_modules/@tarojs/taro-swan/index.js":
-/*!*************************************************!*\
-  !*** ./node_modules/@tarojs/taro-swan/index.js ***!
-  \*************************************************/
+/***/ "./node_modules/@tarojs/taro-tt/index.js":
+/*!***********************************************!*\
+  !*** ./node_modules/@tarojs/taro-tt/index.js ***!
+  \***********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-module.exports = __webpack_require__(/*! ./dist/index */ "./node_modules/@tarojs/taro-swan/dist/index.js").default;
+module.exports = __webpack_require__(/*! ./dist/index */ "./node_modules/@tarojs/taro-tt/dist/index.js").default;
 module.exports.default = module.exports;
 
 /***/ }),
@@ -11620,9 +11746,9 @@ var _class, _temp;
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
+var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
 
-var _taroSwan2 = _interopRequireDefault(_taroSwan);
+var _taroTt2 = _interopRequireDefault(_taroTt);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -11666,7 +11792,7 @@ var AtComponent = (_temp = _class = function (_Component) {
   }]);
 
   return AtComponent;
-}(_taroSwan.Component), _class.options = {
+}(_taroTt.Component), _class.options = {
   addGlobalClass: true
 
   /**
@@ -11695,18 +11821,18 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.delayGetScrollOffset = exports.delayGetClientRect = exports.handleTouchScroll = exports.pxTransform = exports.isTest = exports.initTestEnv = exports.getEventDetail = exports.uuid = exports.delayQuerySelector = exports.delay = undefined;
 
-var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
+var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
 
-var _taroSwan2 = _interopRequireDefault(_taroSwan);
+var _taroTt2 = _interopRequireDefault(_taroTt);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var ENV = _taroSwan2.default.getEnv();
+var ENV = _taroTt2.default.getEnv();
 function delay() {
   var delayTime = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 500;
 
   return new Promise(function (resolve) {
-    if ([_taroSwan2.default.ENV_TYPE.WEB, _taroSwan2.default.ENV_TYPE.SWAN].includes(ENV)) {
+    if ([_taroTt2.default.ENV_TYPE.WEB, _taroTt2.default.ENV_TYPE.SWAN].includes(ENV)) {
       setTimeout(function () {
         resolve();
       }, delayTime);
@@ -11718,8 +11844,8 @@ function delay() {
 function delayQuerySelector(self, selectorStr) {
   var delayTime = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 500;
 
-  var $scope = ENV === _taroSwan2.default.ENV_TYPE.WEB ? self : self.$scope;
-  var selector = _taroSwan2.default.createSelectorQuery().in($scope);
+  var $scope = ENV === _taroTt2.default.ENV_TYPE.WEB ? self : self.$scope;
+  var selector = _taroTt2.default.createSelectorQuery().in($scope);
   return new Promise(function (resolve) {
     delay(delayTime).then(function () {
       selector.select(selectorStr).boundingClientRect().exec(function (res) {
@@ -11734,7 +11860,7 @@ function delayGetScrollOffset(_ref) {
 
   return new Promise(function (resolve) {
     delay(delayTime).then(function () {
-      _taroSwan2.default.createSelectorQuery().selectViewport().scrollOffset().exec(function (res) {
+      _taroTt2.default.createSelectorQuery().selectViewport().scrollOffset().exec(function (res) {
         resolve(res);
       });
     });
@@ -11746,8 +11872,8 @@ function delayGetClientRect(_ref2) {
       _ref2$delayTime = _ref2.delayTime,
       delayTime = _ref2$delayTime === undefined ? 500 : _ref2$delayTime;
 
-  var $scope = ENV === _taroSwan2.default.ENV_TYPE.WEB || ENV === _taroSwan2.default.ENV_TYPE.SWAN ? self : self.$scope;
-  var selector = _taroSwan2.default.createSelectorQuery().in($scope);
+  var $scope = ENV === _taroTt2.default.ENV_TYPE.WEB || ENV === _taroTt2.default.ENV_TYPE.SWAN ? self : self.$scope;
+  var selector = _taroTt2.default.createSelectorQuery().in($scope);
   return new Promise(function (resolve) {
     delay(delayTime).then(function () {
       selector.select(selectorStr).boundingClientRect().exec(function (res) {
@@ -11790,7 +11916,7 @@ function uuid() {
 function getEventDetail(event) {
   var detail = void 0;
   switch (ENV) {
-    case _taroSwan2.default.ENV_TYPE.WEB:
+    case _taroTt2.default.ENV_TYPE.WEB:
       detail = {
         pageX: event.pageX,
         pageY: event.pageY,
@@ -11802,7 +11928,7 @@ function getEventDetail(event) {
         y: event.y
       };
       break;
-    case _taroSwan2.default.ENV_TYPE.WEAPP:
+    case _taroTt2.default.ENV_TYPE.WEAPP:
       detail = {
         pageX: event.touches[0].pageX,
         pageY: event.touches[0].pageY,
@@ -11814,7 +11940,7 @@ function getEventDetail(event) {
         y: event.target.y
       };
       break;
-    case _taroSwan2.default.ENV_TYPE.ALIPAY:
+    case _taroTt2.default.ENV_TYPE.ALIPAY:
       detail = {
         pageX: event.target.pageX,
         pageY: event.target.pageY,
@@ -11826,7 +11952,7 @@ function getEventDetail(event) {
         y: event.target.y
       };
       break;
-    case _taroSwan2.default.ENV_TYPE.SWAN:
+    case _taroTt2.default.ENV_TYPE.SWAN:
       detail = {
         pageX: event.changedTouches[0].pageX,
         pageY: event.changedTouches[0].pageY,
@@ -11862,7 +11988,7 @@ function isTest() {
 }
 var scrollTop = 0;
 function handleTouchScroll(flag) {
-  if (ENV !== _taroSwan2.default.ENV_TYPE.WEB) {
+  if (ENV !== _taroTt2.default.ENV_TYPE.WEB) {
     return;
   }
   if (flag) {
@@ -11879,7 +12005,7 @@ function handleTouchScroll(flag) {
 }
 function pxTransform(size) {
   if (!size) return '';
-  return _taroSwan2.default.pxTransform(size);
+  return _taroTt2.default.pxTransform(size);
 }
 exports.delay = delay;
 exports.delayQuerySelector = delayQuerySelector;
@@ -12278,7 +12404,7 @@ Object.defineProperty(exports, "__esModule", {
 // ? 全局不动配置项 只做导出不做修改
 // ! 根据不同编译脚本打包不同小程序
 // * 当前打包版本
-var MINIVERSION = exports.MINIVERSION = "baidu";
+var MINIVERSION = exports.MINIVERSION = "douyin";
 var MINICONFIG = exports.MINICONFIG = __webpack_require__("./src/config/minis sync recursive ^\\.\\/.*\\.ts$")("./" + MINIVERSION + ".ts");
 // * 全局请求接口域名
 // * 测试站
@@ -12891,7 +13017,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
 exports.default = useCode;
 
-var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
+var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
 
 var _index = __webpack_require__(/*! ../../utils/v/index */ "./src/utils/v/index.ts");
 
@@ -12908,14 +13034,14 @@ var SendTypeHave = exports.SendTypeHave = 'have';
 var SendTypeNo = exports.SendTypeNo = 'no';
 var title = '获取验证码';
 function useCode(type) {
-  var _useState = (0, _taroSwan.useState)(false),
+  var _useState = (0, _taroTt.useState)(false),
       _useState2 = _slicedToArray(_useState, 2),
       disabled = _useState2[0],
       setDisabled = _useState2[1];
 
   var sendType = type === false ? SendTypeNo : SendTypeHave;
 
-  var _useState3 = (0, _taroSwan.useState)(title),
+  var _useState3 = (0, _taroTt.useState)(title),
       _useState4 = _slicedToArray(_useState3, 2),
       text = _useState4[0],
       setText = _useState4[1];
@@ -12977,9 +13103,9 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
 exports.default = useResume;
 
-var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
+var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
 
-var _taroSwan2 = _interopRequireDefault(_taroSwan);
+var _taroTt2 = _interopRequireDefault(_taroTt);
 
 var _index = __webpack_require__(/*! ../../utils/request/index */ "./src/utils/request/index.ts");
 
@@ -13011,123 +13137,123 @@ function useResume() {
   });
   // 基础信息
 
-  var _useState = (0, _taroSwan.useState)(resumeData.info),
+  var _useState = (0, _taroTt.useState)(resumeData.info),
       _useState2 = _slicedToArray(_useState, 2),
       infoData = _useState2[0],
       setInfoData = _useState2[1];
   // 人员信息
 
 
-  var _useState3 = (0, _taroSwan.useState)(resumeData.introducesData),
+  var _useState3 = (0, _taroTt.useState)(resumeData.introducesData),
       _useState4 = _slicedToArray(_useState3, 2),
       introducesData = _useState4[0],
       setIntroducesData = _useState4[1];
   // 项目
 
 
-  var _useState5 = (0, _taroSwan.useState)(resumeData.projectData),
+  var _useState5 = (0, _taroTt.useState)(resumeData.projectData),
       _useState6 = _slicedToArray(_useState5, 2),
       projectData = _useState6[0],
       setProjectData = _useState6[1];
   // 职业技能
 
 
-  var _useState7 = (0, _taroSwan.useState)(resumeData.certificates),
+  var _useState7 = (0, _taroTt.useState)(resumeData.certificates),
       _useState8 = _slicedToArray(_useState7, 2),
       certificates = _useState8[0],
       setCertificates = _useState8[1];
   //置顶
 
 
-  var _useState9 = (0, _taroSwan.useState)(_data.RESUME_TOP_DATA),
+  var _useState9 = (0, _taroTt.useState)(_data.RESUME_TOP_DATA),
       _useState10 = _slicedToArray(_useState9, 2),
       resume_top = _useState10[0],
       setResume_top = _useState10[1];
   // 人员信息
 
 
-  var _useState11 = (0, _taroSwan.useState)(0),
+  var _useState11 = (0, _taroTt.useState)(0),
       _useState12 = _slicedToArray(_useState11, 2),
       is_introduces = _useState12[0],
       setIs_introduces = _useState12[1];
   // 最大项目长度
 
 
-  var _useState13 = (0, _taroSwan.useState)(0),
+  var _useState13 = (0, _taroTt.useState)(0),
       _useState14 = _slicedToArray(_useState13, 2),
       project_count = _useState14[0],
       setProject_count = _useState14[1];
   // 最大技能长度
 
 
-  var _useState15 = (0, _taroSwan.useState)(0),
+  var _useState15 = (0, _taroTt.useState)(0),
       _useState16 = _slicedToArray(_useState15, 2),
       certificate_count = _useState16[0],
       setCertificate_count = _useState16[1];
   // 显示图标
 
 
-  var _useState17 = (0, _taroSwan.useState)(0),
+  var _useState17 = (0, _taroTt.useState)(0),
       _useState18 = _slicedToArray(_useState17, 2),
       show_tips = _useState18[0],
       setShow_tips = _useState18[1];
   // 工作状态
 
 
-  var _useState19 = (0, _taroSwan.useState)([]),
+  var _useState19 = (0, _taroTt.useState)([]),
       _useState20 = _slicedToArray(_useState19, 2),
       selectData = _useState20[0],
       setSelectData = _useState20[1];
   // 工作状态索引
 
 
-  var _useState21 = (0, _taroSwan.useState)(0),
+  var _useState21 = (0, _taroTt.useState)(0),
       _useState22 = _slicedToArray(_useState21, 2),
       selectDataIndex = _useState22[0],
       setSelectDataIndex = _useState22[1];
   // 工作状态
 
 
-  var _useState23 = (0, _taroSwan.useState)(''),
+  var _useState23 = (0, _taroTt.useState)(''),
       _useState24 = _slicedToArray(_useState23, 2),
       check = _useState24[0],
       setCheck = _useState24[1];
   // 是否修改项目经验
 
 
-  var _useState25 = (0, _taroSwan.useState)(''),
+  var _useState25 = (0, _taroTt.useState)(''),
       _useState26 = _slicedToArray(_useState25, 2),
       isModifyProject = _useState26[0],
       setIsModifyProject = _useState26[1];
   //是否修改技能证书
 
 
-  var _useState27 = (0, _taroSwan.useState)(''),
+  var _useState27 = (0, _taroTt.useState)(''),
       _useState28 = _slicedToArray(_useState27, 2),
       isModifySkill = _useState28[0],
       setIsModifySkill = _useState28[1];
   // 修改项目数量
 
 
-  var _useState29 = (0, _taroSwan.useState)(0),
+  var _useState29 = (0, _taroTt.useState)(0),
       _useState30 = _slicedToArray(_useState29, 2),
       projectNum = _useState30[0],
       setProjectNum = _useState30[1];
   // 修改职业技能数量
 
 
-  var _useState31 = (0, _taroSwan.useState)(0),
+  var _useState31 = (0, _taroTt.useState)(0),
       _useState32 = _slicedToArray(_useState31, 2),
       certificatesNum = _useState32[0],
       setCertificatesNum = _useState32[1];
   // 项目列表
 
 
-  (0, _taroSwan.useEffect)(function () {
+  (0, _taroTt.useEffect)(function () {
     initResumeData();
   }, [login]);
   // 当redux数据发生改变后， 将自动更新到页面上
-  (0, _taroSwan.useEffect)(function () {
+  (0, _taroTt.useEffect)(function () {
     if (!resumeData.isSet) return;
     setInfoData(resumeData.info);
     setIntroducesData(resumeData.introducesData);
@@ -13277,7 +13403,7 @@ function useResume() {
       for (var _i3 = 0; _i3 < selectData.length; _i3++) {
         selectdataId.push(selectData[_i3].id);
       }
-      _taroSwan2.default.showActionSheet({
+      _taroTt2.default.showActionSheet({
         itemList: selectdataList,
         success: function success(res) {
           if (selectDataIndex == res.tapIndex) {
@@ -13366,7 +13492,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
 exports.default = useResumeAddInfo;
 
-var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
+var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
 
 var _index = __webpack_require__(/*! ../../utils/request/index */ "./src/utils/request/index.ts");
 
@@ -13381,21 +13507,21 @@ function useResumeAddInfo() {
   });
   // 保存配置项
 
-  var _useState = (0, _taroSwan.useState)(addInfoConfig),
+  var _useState = (0, _taroTt.useState)(addInfoConfig),
       _useState2 = _slicedToArray(_useState, 2),
       infoConfig = _useState2[0],
       setInfoConfig = _useState2[1];
   // 当前性别的下标
 
 
-  var _useState3 = (0, _taroSwan.useState)(0),
+  var _useState3 = (0, _taroTt.useState)(0),
       _useState4 = _slicedToArray(_useState3, 2),
       genderCurrent = _useState4[0],
       setGenderCurrent = _useState4[1];
   // 当前民族的下标
 
 
-  var _useState5 = (0, _taroSwan.useState)(0),
+  var _useState5 = (0, _taroTt.useState)(0),
       _useState6 = _slicedToArray(_useState5, 2),
       nationCurrent = _useState6[0],
       setNationCurrent = _useState6[1];
@@ -13408,7 +13534,7 @@ function useResumeAddInfo() {
   // 初始化基本信息数据
   //const 
   // 请求配置项数据
-  (0, _taroSwan.useEffect)(function () {
+  (0, _taroTt.useEffect)(function () {
     if (addInfoConfig.isset) return;
     (0, _index.getResumeAddInfoConfig)().then(function (res) {
       var data = _extends({}, res, { isset: true });
@@ -16140,9 +16266,9 @@ exports.copyWechatNumber = copyWechatNumber;
 exports.userCallPhone = userCallPhone;
 exports.getUserShareMessage = getUserShareMessage;
 
-var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
+var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
 
-var _taroSwan2 = _interopRequireDefault(_taroSwan);
+var _taroTt2 = _interopRequireDefault(_taroTt);
 
 var _index = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
 
@@ -16171,7 +16297,7 @@ function objDeepCopy(source) {
 // 获取用户定位
 function userAuthLoction() {
   return new Promise(function (resolve, reject) {
-    var loc = _taroSwan2.default.getStorageSync(_store.UserLocationCity);
+    var loc = _taroTt2.default.getStorageSync(_store.UserLocationCity);
     if (loc) resolve(loc);
     var GDMAP = new _amapWx2.default.AMapWX({ key: _index.MAPKEY });
     GDMAP.getRegeo({
@@ -16184,7 +16310,7 @@ function userAuthLoction() {
           adcode: data[0].regeocodeData.addressComponent.adcode,
           citycode: data[0].regeocodeData.addressComponent.citycode
         };
-        _taroSwan2.default.setStorageSync(_store.UserLocationCity, gpsLocation); //定位信息
+        _taroTt2.default.setStorageSync(_store.UserLocationCity, gpsLocation); //定位信息
         resolve(gpsLocation);
       },
       fail: function fail() {
@@ -16210,7 +16336,7 @@ function getAmapPoiList(val) {
 }
 // 页面跳转
 function userJumpPage(url) {
-  _taroSwan2.default.navigateTo({ url: url });
+  _taroTt2.default.navigateTo({ url: url });
 }
 // 数字四舍五入并向下取2位小数
 function getPointNumber(p, n) {
@@ -16218,7 +16344,7 @@ function getPointNumber(p, n) {
 }
 // 获取设备系统
 function getSystemInfo() {
-  var system = _taroSwan2.default.getSystemInfoSync();
+  var system = _taroTt2.default.getSystemInfoSync();
   return system.platform;
 }
 // 找活基础页面获取定位
@@ -16237,7 +16363,7 @@ function recSerAuthLoction() {
 }
 // 用户取消授权
 function userCancelAuth() {
-  _taroSwan2.default.navigateBack();
+  _taroTt2.default.navigateBack();
 }
 // 用户获取定位
 function getLocation() {
@@ -16291,10 +16417,10 @@ function getLocation() {
 function setClipboardData(val) {
   var msg = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '内容已成功复制到粘贴板';
 
-  _taroSwan2.default.setClipboardData({
+  _taroTt2.default.setClipboardData({
     data: val,
     success: function success() {
-      _taroSwan2.default.hideToast();
+      _taroTt2.default.hideToast();
       (0, _index3.ShowActionModal)({
         msg: msg
       });
@@ -16308,7 +16434,7 @@ function copyWechatNumber(val) {
 }
 // 用户拨打电话
 function userCallPhone(val) {
-  _taroSwan2.default.makePhoneCall({
+  _taroTt2.default.makePhoneCall({
     phoneNumber: val
   });
 }
@@ -16342,16 +16468,16 @@ exports.warnMsg = warnMsg;
 exports.successMsg = successMsg;
 exports.showModalTip = showModalTip;
 
-var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
+var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
 
-var _taroSwan2 = _interopRequireDefault(_taroSwan);
+var _taroTt2 = _interopRequireDefault(_taroTt);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Msg(msg) {
   var duration = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 3000;
 
-  _taroSwan2.default.showToast({
+  _taroTt2.default.showToast({
     title: msg,
     icon: 'none',
     duration: duration
@@ -16365,7 +16491,7 @@ function ShowActionModal(data) {
       msg = data.msg,
       _success = data.success;
 
-  _taroSwan2.default.showModal({
+  _taroTt2.default.showModal({
     title: title,
     content: typeof data === 'string' ? data : msg,
     showCancel: false,
@@ -16378,7 +16504,7 @@ function ShowActionModal(data) {
 function errMsg() {
   var msg = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
 
-  _taroSwan2.default.atMessage({
+  _taroTt2.default.atMessage({
     'message': msg,
     'type': 'error'
   });
@@ -16386,7 +16512,7 @@ function errMsg() {
 function warnMsg() {
   var msg = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
 
-  _taroSwan2.default.atMessage({
+  _taroTt2.default.atMessage({
     'message': msg,
     'type': 'warning'
   });
@@ -16394,7 +16520,7 @@ function warnMsg() {
 function successMsg() {
   var msg = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
 
-  _taroSwan2.default.atMessage({
+  _taroTt2.default.atMessage({
     'message': msg,
     'type': 'success'
   });
@@ -16405,7 +16531,7 @@ function showModalTip(obj) {
       _obj$showCancel = obj.showCancel,
       showCancel = _obj$showCancel === undefined ? false : _obj$showCancel;
 
-  _taroSwan2.default.showModal({
+  _taroTt2.default.showModal({
     title: title,
     content: obj.tips,
     showCancel: showCancel,
@@ -16545,9 +16671,9 @@ exports.turntableVideoEnd = turntableVideoEnd;
 exports.memberTurntable = memberTurntable;
 exports.getBaiduTpOrderId = getBaiduTpOrderId;
 
-var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
+var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
 
-var _taroSwan2 = _interopRequireDefault(_taroSwan);
+var _taroTt2 = _interopRequireDefault(_taroTt);
 
 var _index = __webpack_require__(/*! ../api/index */ "./src/utils/api/index.ts");
 
@@ -16576,7 +16702,7 @@ function requestShowToast(show) {
 // 获取header请求头信息
 function getRequestHeaderInfo() {
   // 获取用户信息
-  var userInfo = _taroSwan2.default.getStorageSync(_store.UserInfo);
+  var userInfo = _taroTt2.default.getStorageSync(_store.UserInfo);
   var requestHeader = userInfo.login ? {
     'content-type': 'application/x-www-form-urlencoded',
     mid: userInfo.userId,
@@ -16608,20 +16734,20 @@ var getRequestHeaderInfoAction = function getRequestHeaderInfoAction() {
 function doRequestAction(reqData) {
   var req = _extends({}, getRequestHeaderInfoAction(), reqData);
   if (req.loading) {
-    _taroSwan2.default.showLoading({
+    _taroTt2.default.showLoading({
       title: req.title
     });
   }
   var data = _extends({}, req.data, { wechat_token: _index2.TOKEN });
   // 获取用户信息
-  var userInfo = _taroSwan2.default.getStorageSync(_store.UserInfo);
+  var userInfo = _taroTt2.default.getStorageSync(_store.UserInfo);
   if (req.method === 'POST' && userInfo.login && req.user) {
     data.userId = userInfo.userId;
     data.token = userInfo.token;
     data.tokenTime = userInfo.tokenTime;
   }
   return new Promise(function (resolve, reject) {
-    _taroSwan2.default.request({
+    _taroTt2.default.request({
       url: /^http(s?):\/\//.test(req.url) ? req.url : req.url,
       method: req.method,
       header: req.header,
@@ -16641,7 +16767,7 @@ function doRequestAction(reqData) {
       },
       complete: function complete() {
         if (req.loading) {
-          _taroSwan2.default.hideLoading();
+          _taroTt2.default.hideLoading();
         }
       }
     });
@@ -17348,7 +17474,7 @@ function resumesCertificateAction(data) {
 // 新增项目
 function resumesProjectAction(data) {
   // 获取用户信息
-  var userInfo = _taroSwan2.default.getStorageSync(_store.UserInfo);
+  var userInfo = _taroTt2.default.getStorageSync(_store.UserInfo);
   return doRequestAction({
     url: api.resumesProjectUrl,
     header: {
@@ -17402,7 +17528,7 @@ function resumesIntroduceAction(data) {
 // 找活名片修改状态
 function resumesEditEndAction(data) {
   // 获取用户信息
-  var userInfo = _taroSwan2.default.getStorageSync(_store.UserInfo);
+  var userInfo = _taroTt2.default.getStorageSync(_store.UserInfo);
   return doRequestAction({
     url: api.resumesEditEndUrl,
     method: 'POST',
@@ -17759,9 +17885,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.SubscribeToNews = SubscribeToNews;
 
-var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
+var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
 
-var _taroSwan2 = _interopRequireDefault(_taroSwan);
+var _taroTt2 = _interopRequireDefault(_taroTt);
 
 var _store = __webpack_require__(/*! ../../config/store */ "./src/config/store.ts");
 
@@ -17781,9 +17907,9 @@ function SubscribeToNews(type, callback) {
     callback();
     return;
   }
-  var userInfo = _taroSwan2.default.getStorageSync(_store.UserInfo);
-  if (_taroSwan2.default.canIUse('requestSubscribeMessage') === true) {
-    _taroSwan2.default.requestSubscribeMessage({
+  var userInfo = _taroTt2.default.getStorageSync(_store.UserInfo);
+  if (_taroTt2.default.canIUse('requestSubscribeMessage') === true) {
+    _taroTt2.default.requestSubscribeMessage({
       tmplIds: [_temp_ids2.default[type].id],
       success: function success(res) {
         callback();
@@ -17867,9 +17993,9 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = UploadImgAction;
 exports.CameraAndAlbum = CameraAndAlbum;
 
-var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
+var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
 
-var _taroSwan2 = _interopRequireDefault(_taroSwan);
+var _taroTt2 = _interopRequireDefault(_taroTt);
 
 var _store = __webpack_require__(/*! ../../config/store */ "./src/config/store.ts");
 
@@ -17882,7 +18008,7 @@ function UploadImgAction() {
 
   var uploadUrl = url || _index.UPLOADIMGURL;
   return new Promise(function (resolve) {
-    _taroSwan2.default.chooseImage({
+    _taroTt2.default.chooseImage({
       count: 1,
       sizeType: ['compressed'],
       sourceType: ['album', 'camera'],
@@ -17896,11 +18022,11 @@ function CameraAndAlbum() {
   var url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _index.UPLOADIMGURL;
 
   return new Promise(function (resolve) {
-    _taroSwan2.default.showActionSheet({
+    _taroTt2.default.showActionSheet({
       itemList: ['拍照', '从相册中选择']
     }).then(function (res) {
       var index = res.tapIndex;
-      _taroSwan2.default.chooseImage({
+      _taroTt2.default.chooseImage({
         count: 1,
         sizeType: ['compressed'],
         sourceType: index === 0 ? ['camera'] : ['album'],
@@ -17914,9 +18040,9 @@ function CameraAndAlbum() {
 function AppUploadImg(resolve, res) {
   var url = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : _index.UPLOADIMGURL;
 
-  var userInfo = _taroSwan2.default.getStorageSync(_store.UserInfo);
-  _taroSwan2.default.showLoading({ title: '图片上传中' });
-  _taroSwan2.default.uploadFile({
+  var userInfo = _taroTt2.default.getStorageSync(_store.UserInfo);
+  _taroTt2.default.showLoading({ title: '图片上传中' });
+  _taroTt2.default.uploadFile({
     url: url,
     filePath: res.tempFilePaths[0],
     header: {
@@ -17926,7 +18052,7 @@ function AppUploadImg(resolve, res) {
     success: function success(response) {
       // 百度小程序出来之后是一个纯json 但是其他端就不是， 解决百度冲突
       var mydata = _index.ISPARSEUPLOADIMG ? JSON.parse(response.data) : response.data;
-      _taroSwan2.default.showToast({
+      _taroTt2.default.showToast({
         title: mydata.errmsg,
         icon: "none",
         duration: 2000
@@ -17937,14 +18063,14 @@ function AppUploadImg(resolve, res) {
     },
 
     fail: function fail() {
-      _taroSwan2.default.showToast({
+      _taroTt2.default.showToast({
         title: "网络错误，上传失败！",
         icon: "none",
         duration: 2000
       });
     },
     complete: function complete() {
-      _taroSwan2.default.hideLoading();
+      _taroTt2.default.hideLoading();
     }
   });
 }
@@ -17979,9 +18105,9 @@ exports.isRequireLen = isRequireLen;
 exports.isChinese = isChinese;
 exports.allChinese = allChinese;
 
-var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
+var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
 
-var _taroSwan2 = _interopRequireDefault(_taroSwan);
+var _taroTt2 = _interopRequireDefault(_taroTt);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -18058,7 +18184,7 @@ function isType(data, type) {
 }
 // 检测是否是ios客户端
 function isIos() {
-  var system = _taroSwan2.default.getSystemInfoSync();
+  var system = _taroTt2.default.getSystemInfoSync();
   return system.platform === 'ios';
 }
 //验证必填项且长度
