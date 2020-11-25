@@ -79,7 +79,7 @@ var RecruitMap = function (_Taro$Component) {
       navigationBarTitleText: '选择发布地址'
     };
 
-    _this.$usedState = ["loopArray43", "loopArray44", "$compid__42", "smAreaText", "showHistory", "histroyList", "lists", "IMGCDNURL", "showCity", "area"];
+    _this.$usedState = ["loopArray112", "loopArray113", "$compid__84", "smAreaText", "showHistory", "histroyList", "lists", "IMGCDNURL", "showCity", "area"];
     _this.anonymousFunc5Map = {};
     _this.anonymousFunc6Map = {};
     _this.customComponents = ["Cities"];
@@ -103,10 +103,10 @@ var RecruitMap = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__42"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__84"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__42 = _genCompid2[0],
-          $compid__42 = _genCompid2[1];
+          $prevCompid__84 = _genCompid2[0],
+          $compid__84 = _genCompid2[1];
       // 获取路由参数
 
 
@@ -217,11 +217,6 @@ var RecruitMap = function (_Taro$Component) {
         initUserLocationCity();
         initUserPublishAreaHistory();
       }, []);
-      // 用户切换城市
-      var userChangeCity = function userChangeCity(city) {
-        dispatch((0, _recruit.setArea)({ name: city, ad_name: city + "市" }));
-        // setArea(city)
-      };
       // 用户点击取消 返回上一页
       var userCloseMap = function userCloseMap() {
         _taroTt2.default.navigateBack();
@@ -256,6 +251,7 @@ var RecruitMap = function (_Taro$Component) {
           lists.forEach(function (item) {
             item.distance = getGreatCircleDistance(loc, item.location);
             item.cityName = data[0].name.slice(0, 2);
+            item.ad_name = area.ad_name;
           });
           setLists(lists);
         });
@@ -320,7 +316,7 @@ var RecruitMap = function (_Taro$Component) {
                 adcode: item.adcode,
                 info: item.district
               }));
-              dispatch((0, _recruit.setArea)({ name: item.cityName, ad_name: item.cityName + "市" }));
+              dispatch((0, _recruit.setArea)({ name: item.cityName, ad_name: item.ad_name }));
             }
             _taroTt2.default.navigateBack();
           } else (0, _index4.ShowActionModal)({ msg: res.errmsg });
@@ -343,12 +339,12 @@ var RecruitMap = function (_Taro$Component) {
       this.anonymousFunc4 = function () {
         return userCloseMap();
       };
-      var loopArray43 = showHistory ? histroyList.map(function (item, index) {
+      var loopArray112 = showHistory ? histroyList.map(function (item, index) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
         var $loopState__temp2 = showHistory ? index + index : null;
-        var _$indexKey = "efzzz" + index;
+        var _$indexKey = "baizz" + index;
         _this2.anonymousFunc5Map[_$indexKey] = function () {
           return userClickAreaItem(item.$original);
         };
@@ -358,12 +354,12 @@ var RecruitMap = function (_Taro$Component) {
           $original: item.$original
         };
       }) : [];
-      var loopArray44 = lists.map(function (item, index) {
+      var loopArray113 = lists.map(function (item, index) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
         var $loopState__temp4 = index + index;
-        var _$indexKey2 = "egzzz" + index;
+        var _$indexKey2 = "bajzz" + index;
         _this2.anonymousFunc6Map[_$indexKey2] = function () {
           return userClickAreaItem(item.$original);
         };
@@ -377,13 +373,12 @@ var RecruitMap = function (_Taro$Component) {
         "data": areas,
         "area": area.name,
         "userLoc": userLoc,
-        "userChangeCity": userChangeCity,
         "userTapCityBtn": userTapCityBtn
-      }, $compid__42, $prevCompid__42);
+      }, $compid__84, $prevCompid__84);
       Object.assign(this.__state, {
-        loopArray43: loopArray43,
-        loopArray44: loopArray44,
-        $compid__42: $compid__42,
+        loopArray112: loopArray112,
+        loopArray113: loopArray113,
+        $compid__84: $compid__84,
         smAreaText: smAreaText,
         showHistory: showHistory,
         histroyList: histroyList,

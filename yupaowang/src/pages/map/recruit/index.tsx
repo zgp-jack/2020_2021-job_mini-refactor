@@ -93,12 +93,6 @@ export default function RecruitMap(){
     initUserPublishAreaHistory()
   }, [])
 
-  // 用户切换城市
-  const userChangeCity = (city: string) => {
-    dispatch(setArea({name: city, ad_name: city + "市"}))
-    // setArea(city)
-  }
-
   // 用户点击取消 返回上一页
   const userCloseMap = () => {
     Taro.navigateBack()
@@ -134,6 +128,7 @@ export default function RecruitMap(){
       lists.forEach(item => {
         item.distance = getGreatCircleDistance(loc, item.location)
         item.cityName = data[0].name.slice(0,2)
+        item.ad_name = area.ad_name
       })
       setLists(lists)
     })
@@ -202,7 +197,7 @@ export default function RecruitMap(){
             adcode: item.adcode,
             info: item.district,
           })) 
-          dispatch(setArea({ name: item.cityName, ad_name: item.cityName + "市"})) 
+          dispatch(setArea({ name: item.cityName, ad_name: (item.ad_name as string) })) 
         }
         Taro.navigateBack()
       }
@@ -267,7 +262,6 @@ export default function RecruitMap(){
               data={areas}
               area={area.name}
               userLoc={userLoc}
-              userChangeCity={userChangeCity}
               userTapCityBtn={userTapCityBtn}
             />
           </View>
