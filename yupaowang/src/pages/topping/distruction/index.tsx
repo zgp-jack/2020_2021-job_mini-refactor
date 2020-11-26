@@ -517,7 +517,6 @@ export default function Distruction() {
   }
   // 确认选择
   const handleClick = ()=>{
-    console.log(params)
     dispatch(setRecruitTopArea({ ...params}))
     Taro.navigateBack({
       delta: 1

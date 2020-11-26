@@ -96,7 +96,16 @@
       height: 82px;
       line-height: 82px;
       border-bottom: 1px solid rgba(220, 220, 220, 1);
-
+      .range-content-list-time-imgBox{
+        margin: auto 0;
+        height: 40px;
+        width: 40px;
+        .range-content-list-time-img{
+          height: 40px;
+          width: 20px;
+          transform: rotate(90deg);
+        }
+      }
       .range-content-list-noDay {
         color: rgba(198, 198, 199, 1);
       }

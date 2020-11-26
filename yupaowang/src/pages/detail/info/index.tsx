@@ -480,7 +480,7 @@ export default function DetailInfoPage() {
         return false
       }
     }
-    userRouteJump(`/pages/topping/index?id=${data.id}`)
+    userRouteJump(`/pages/newTopping/recRang/index?defaultTopArea=${data.area_id}&job_id=${data.id}`)
   }
   return(
     <View className='detailInfo'>
@@ -570,8 +570,8 @@ export default function DetailInfoPage() {
             <View className='detailInfo-edit-list'>修改</View>
             {/* <View className={stopHiring || (data.is_end === 2) ? 'detailInfo-edit-list-none' : 'detailInfo-edit-list'}>修改</View> */}
                 <View className={stopHiring || (data.is_end === 1) ? 'detailInfo-edit-list' : 'detailInfo-edit-list-none'} onClick={handleStatus}>停止招工</View>
-              {/* {data.has_top && data.top_info.is_top == '1' ? <View className='detailInfo-edit-list-edit' onClick={() => userRouteJump(`/pages/topping/index?id=${data.id}&type=1`)}>修改置顶</View> : (stopHiring || (data.is_end === 2) ? <View className='detailInfo-edit-list' onClick={handleStatus}>重新招工</View> : <View className='detailInfo-edit-list' onClick={() => handleTopping(data)
-                }>我要置顶</View>)} */}
+                {data.has_top && data.top_info.is_top == '1' ? <View className='detailInfo-edit-list-edit' onClick={() => userRouteJump(`/pages/newTopping/recRang/index?job_id=${data.id}`)}>修改置顶</View> : (stopHiring || (data.is_end === 2) ? <View className='detailInfo-edit-list' onClick={handleStatus}>重新招工</View> : <View className='detailInfo-edit-list' onClick={() => handleTopping(data)
+                }>我要置顶</View>)}
           </View>
           </View> : 
           // 失败的时候只有修改

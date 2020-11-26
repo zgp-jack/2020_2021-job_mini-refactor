@@ -26,7 +26,6 @@ export default function RecRange() {
   // 初始化页面参数
   const router = useRouter()
   const { defaultTopArea, job_id, subscribe } = router.params;
-  console.error(router.params,'2313213213');
   const dispatch = useDispatch();
   // 获取置顶信息
   const resumeTopData: useResumeType = useSelector<any, useResumeType>(state => state['resumeTop']);
@@ -166,6 +165,8 @@ export default function RecRange() {
               Msg(resItem.errmsg)
             }
           })
+          isTime = false;
+          isCity = false;
           // areasData = [...resumeTopData.resumeTopObj.top_provinces_str || [], ...resumeTopData.resumeTopObj.top_citys_str || []];
         }
         setAreas(areasData);
@@ -343,6 +344,7 @@ export default function RecRange() {
     fnAction(params).then(res => {
       if (res.errcode == 'ok') {
         Taro.showModal({
+          title: '温馨提示',
           content: res.errmsg,
           confirmColor: '#009CFFFF',
           success: function () {
@@ -401,6 +403,7 @@ export default function RecRange() {
         return
       } else if (res.errcode == 'status_error'){
         Taro.showModal({
+          title: '温馨提示',
           content: res.errmsg,
           confirmColor: '#009CFFFF',
           success: function () {
@@ -415,6 +418,7 @@ export default function RecRange() {
         setModalMsg(res.errmsg);
       } else if (res.errcode == 'checking_top'){
         Taro.showModal({
+          title: '温馨提示',
           content: res.errmsg,
           confirmColor: '#009CFFFF',
           success: function () {
@@ -426,6 +430,7 @@ export default function RecRange() {
         return
       } else {
         Taro.showModal({
+          title: '温馨提示',
           content: res.errmsg,
           confirmColor: '#009CFFFF',
           success: function () {
@@ -505,6 +510,7 @@ export default function RecRange() {
             {one &&
               <View className='range-content-list-time'><View className='range-content-list-Day'>置顶时间：{toppingTime}
               </View>
+              <View className='range-content-list-time-imgBox'><Image className='range-content-list-time-img' src={`${IMGCDNURL}new-center-rightarrow.png`}/></View>
               </View>}
             {one && !isSubscribe &&
               <View className='range-content-list-time'><View className='range-content-list-Day'>置顶到期时间：{newTime}

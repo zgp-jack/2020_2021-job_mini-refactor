@@ -47,7 +47,8 @@
   }
 
   .ScrollView {
-    height: 100vh;
+    height: calc(100vh - 200px);
+    margin-top: 200px;
   }
 
   .region-content {
@@ -63,7 +64,6 @@
     font-size: 36px;
     color: rgba(105, 105, 105, 1);
     font-weight: normal;
-    margin-top: 200px;
 
     .region-content-hotCity-content {
       display: flex;

@@ -103,21 +103,12 @@ export default function RecGion() {
         arr = [val, ...data];
         const list = unique(arr);
         const listArr = list.slice(0, 6);
-        console.error(listArr,'listArrlistArr')
         Taro.setStorageSync(HistoryInfo, listArr);
         setHistory(listArr)
       } else {
         Taro.setStorageSync(HistoryInfo, [val]);
         setHistory([val])
       }
-    }
-    if (historyType) {
-      setOnFocus(false);
-      if(val.click){
-        setIndex('')
-        return
-      }
-      setIndex(`hot${val.pid}`)
     }
     let data = [...areasData];
     let hotData = [...hot];
@@ -170,11 +161,20 @@ export default function RecGion() {
                 setHistory([]);
                 setIsHistory(false);
                 setOnFocus(false);
+                return;
               }
             }
           })
           return
         }
+      }
+      if (historyType) {
+        setOnFocus(false);
+        if (val.click) {
+          setIndex('')
+          return
+        }
+        setIndex(`hot${val.pid}`)
       }
       // 判断是省还是市
       if (val.pid == '1') {
@@ -358,7 +358,11 @@ export default function RecGion() {
             </View>
             {!onFocus && <View className='region-top-tips'>请选择置顶范围：  </View>}
           </View>
-          <ScrollView className='ScrollView' scrollY scrollIntoView={index} scrollWithAnimation>
+          <ScrollView 
+            className='ScrollView' 
+            scrollY 
+            scrollIntoView={index} 
+            scrollWithAnimation>
             <View className='region-content'>
               <View className='region-content-hotCity-content-title'>热门城市</View>
               <View className='region-content-hotCity-content'>
@@ -397,7 +401,7 @@ export default function RecGion() {
         <View className={history.length ? 'region-seachContent regin-hight100vh' : 'region-seachContent regin-hight'}>
           <View className='region-heard'>
             <View className='region-seachContent-seach'>
-              <Input placeholder='请输入城市名' onInput={(e) => { handleInput(e) }} onFocus={handleonFocus} className='region-seachContent-seach-input' />
+            <Input placeholder='请输入城市名' onInput={(e) => { handleInput(e) }} focus={onFocus} className='region-seachContent-seach-input' />
               <Text onClick={handleSeach} className='region-seachContent-seach-btn' >搜索</Text>
             </View>
             <View className='region-seachContent-seach-history'>

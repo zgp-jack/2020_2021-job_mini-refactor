@@ -92,7 +92,6 @@ export default function PublishedRecruit(){
   }
 
   useEffect(()=>{
-    console.log(searchData)
     if (!user.login || loading) return
     getPublishedRecruitLists()
   }, [searchData])
@@ -202,14 +201,12 @@ export default function PublishedRecruit(){
       })
       return false;
     }
-    console.log(item,'item');
     if (item.top == '1'){
       let now = new Date().getTime() / 1000 // 当前时间戳
       let data = item.top_data; //置顶数据
       let endtime = data.end_time //置顶到期时间
       let toping = data.is_top // 是否置顶状态
       let showTime = now > parseInt(endtime) ? true : false; // 置顶是否过期 已过期
-      console.log(showTime,'showTimeshowTime')
       if (showTime) { //如果置顶过期
         userRouteJump(`/pages/newTopping/recRang/index?defaultTopArea=${item.area_id}&job_id=${item.id}`)
         return false
@@ -274,7 +271,7 @@ export default function PublishedRecruit(){
                 </View>
                 } */}
                 {(item.is_check == '2' || (item.is_check == '1' && item.top == '0' ) )&& item.is_end != '2' && item.is_check == '1' && (item.top && item.top_data.is_top == '1' ? '' :<View>
-                  <View className='published-ischeking'>
+                  <View className='published-ischeking-subscribe'>
                     <View className='user-published-footer-item' onClick={() => userRouteJump(`/pages/newTopping/recRang/index?defaultTopArea=${item.area_id}&job_id=${item.id}&subscribe=1`)}>预约置顶</View>
                   </View>
                 </View>)}

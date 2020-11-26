@@ -139,6 +139,8 @@ export default function ResRange() {
           setNewTime(endTime)
           getIntegral(time, areasData, obj);
         }else{
+          isTime = false;
+          isCity = false;
           areasData = [...resumeTopData.resumeTopObj.top_provinces_str || [], ...resumeTopData.resumeTopObj.top_citys_str||[]];
         }
         setAreas(areasData);
@@ -314,6 +316,7 @@ export default function ResRange() {
     fnAction(params).then(res=>{
       if(res.errcode == 'ok'){
         Taro.showModal({
+          title: '温馨提示',
           content: res.errmsg,
           confirmColor: '#009CFFFF',
           success: function () {
