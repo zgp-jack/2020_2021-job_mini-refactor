@@ -24,7 +24,9 @@ const DEFAULT_STATE_AREAINFO: UserLastPublishRecruitArea = {
     adcode:'',
     location: '',
     info: '',
-    areaId:''
+    areaId:'',
+    name:'',
+    ad_name:''
 }
 
 // 定义默认的区域数据

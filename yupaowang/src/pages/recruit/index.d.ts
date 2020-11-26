@@ -129,7 +129,9 @@ export interface UserLastPublishRecruitArea {
   info: string,
   city?: string,
   provice?: string,
-  areaId?: string
+  areaId?: string,
+  name?: string,
+  ad_name?: string
 }
 export interface AreaData {
   name: string,
