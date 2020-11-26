@@ -144,7 +144,6 @@ export default function ResumeMap() {
 
   // 获取关键词地区列表
   useEffect(() => {
-    console.error(area,'1111')
     getAmapPoiList(areaName + smAreaText).then(data => {
       let loc: string = Taro.getStorageSync(UserLocation)
       let lists: InputPoiListTips[] = data.filter(item => {
