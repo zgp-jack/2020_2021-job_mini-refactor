@@ -42,6 +42,10 @@ utils/  逻辑js文件
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;---upload 图片上传文件
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;---v 共用验证文件
 
+开发注意事项
+1.所有的ios小程序都不能充值
+2.所有的积分不足跳转都是去到获取积分，而非充值
+
 
 测试注意事项
 1.检查 数据 是否是线上

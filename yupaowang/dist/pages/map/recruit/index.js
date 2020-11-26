@@ -113,6 +113,9 @@ var RecruitMap = function (_Taro$Component) {
       var recruitInfo = (0, _redux.useSelector)(function (state) {
         return state.RecruitAction;
       });
+      // 获取路由参数
+      var router = (0, _taroTt.useRouter)();
+      var id = router.params.id || '';
       // 城市数据
 
       var _useState = (0, _taroTt.useState)([]),
@@ -200,9 +203,11 @@ var RecruitMap = function (_Taro$Component) {
             ad_name: data.ad_name,
             city: data.name
           };
-          if (positionStatus) {
-            dispatch((0, _recruit.setArea)({ name: data.name, id: data.id, ad_name: data.name + "市" }));
-            dispatch((0, _recruit.setPositionStaus)(false));
+          if (!id) {
+            if (positionStatus) {
+              dispatch((0, _recruit.setArea)({ id: data.id, name: data.name, ad_name: data.ad_name }));
+              dispatch((0, _recruit.setPositionStaus)(false));
+            }
           }
           setUserLoc(userLocData);
         } else {
@@ -232,7 +237,7 @@ var RecruitMap = function (_Taro$Component) {
                           (0, _index3.userAuthLoction)().then(function (res) {
                             var userLoctionCity = _taroTt2.default.getStorageSync(_store.UserLocationCity);
                             var data = (0, _area.getCityInfo)(userLoctionCity, 1);
-                            dispatch((0, _recruit.setArea)({ name: res.city.slice(0, 2), id: data.id, ad_name: res.city.slice(0, 2) + "市" }));
+                            dispatch((0, _recruit.setArea)({ name: data.name, id: data.id, ad_name: data.ad_name }));
                             dispatch((0, _recruit.setPositionStaus)(false));
                           });
                         } else {
@@ -248,7 +253,7 @@ var RecruitMap = function (_Taro$Component) {
                 if (res) {
                   var userLoctionCity = _taroTt2.default.getStorageSync(_store.UserLocationCity);
                   var data = (0, _area.getCityInfo)(userLoctionCity, 1);
-                  dispatch((0, _recruit.setArea)({ name: res.city.slice(0, 2), id: data.id, ad_name: res.city.slice(0, 2) + "市" }));
+                  dispatch((0, _recruit.setArea)({ name: data.name, id: data.id, ad_name: data.ad_name }));
                   dispatch((0, _recruit.setPositionStaus)(false));
                 }
               });
@@ -296,14 +301,15 @@ var RecruitMap = function (_Taro$Component) {
             item.distance = getGreatCircleDistance(loc, item.location);
             item.cityName = data[0].name.slice(0, 2);
             item.areaId = area.id;
+            item.ad_name = area.ad_name;
           });
-          console.log("lists", lists);
           setLists(lists);
         });
       }, [smAreaText, area]);
       // 用户点击城市选择
       var userTapCityBtn = function userTapCityBtn(b) {
         setShowCity(b);
+        setShowHistory(false);
       };
       // 用户输入小地区名字
       var userEnterPosition = function userEnterPosition(e) {
@@ -362,7 +368,7 @@ var RecruitMap = function (_Taro$Component) {
                 info: item.district,
                 areaId: item.areaId
               }));
-              dispatch((0, _recruit.setArea)({ name: item.cityName, id: item.areaId || "", ad_name: item.cityName + "市" }));
+              dispatch((0, _recruit.setArea)({ name: item.cityName, id: item.areaId || "", ad_name: item.ad_name }));
             }
             _taroTt2.default.navigateBack();
           } else (0, _index4.ShowActionModal)({ msg: res.errmsg });
@@ -419,7 +425,6 @@ var RecruitMap = function (_Taro$Component) {
         "data": areas,
         "area": area.name,
         "userLoc": userLoc,
-        "userChangeCity": userChangeCity,
         "userTapCityBtn": userTapCityBtn
       }, $compid__42, $prevCompid__42);
       Object.assign(this.__state, {

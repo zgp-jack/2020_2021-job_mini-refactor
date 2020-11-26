@@ -51,7 +51,7 @@ export const INDEXPATH: string = '/pages/index/index'
 // * 发布招工页面
 export const PUBLISHRECRUIT: string = '/pages/recruit/fast_issue/issue/index'
 // * 急速发布
-export const PUBLISHFAST: string = '/pages/recruit/fastPublish/index'
+export const PUBLISHFAST: string = '/pages/recruit/jisu_issue/index'
 // * 发布找活页面
 export const PUBLISHRESUME: string = '/pages/resume/publish/index'
 // * 发布二手交易
@@ -96,3 +96,7 @@ export const TEXTAREAMAXLENGTH: number = MINICONFIG.TEXTAREAMAXLENGTH
 export const DOWNLOADAPP: boolean = MINICONFIG.DOWNLOADAPP
 // * 是否能够使用高德地区api
 export const USEGAODEMAPAPI: boolean = MINICONFIG.USEGAODEMAPAPI
+// * scroll-view滚动过程中是否保存高度值
+export const SCROLLVIEWSETTOP: boolean = MINICONFIG.SCROLLVIEWSETTOP
+// * 上传图片 是否需要使用JSON解析数据
+export const ISPARSEUPLOADIMG: boolean = MINICONFIG.ISPARSEUPLOADIMG

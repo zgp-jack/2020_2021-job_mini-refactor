@@ -223,7 +223,7 @@ var RealnameMap = function (_Taro$Component) {
       }, []);
       // 用户切换城市
       var userChangeCity = function userChangeCity(city) {
-        setArea(city.name);
+        setArea(city);
       };
       // 用户点击取消 返回上一页
       var userCloseMap = function userCloseMap() {

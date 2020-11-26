@@ -1,10 +1,10 @@
 import Taro, { useState, useEffect } from '@tarojs/taro'
-import { UserLastPublishRecruitArea, FastPublishInit, FastPublishBase, AreaData } from '../../pages/recruit/index.d'
-import { fastPublisView, FastPublisInfo } from '../../utils/request'
+import { UserLastPublishRecruitArea, FastPublishBase } from '../../pages/recruit/index.d'
+import { FastPublisInfo } from '../../utils/request'
 import { InitRecruitView } from '../../pages/recruit/publish'
 import { UserLastPublishArea, UserLocationCity, UserLocation } from '../../config/store'
 import { UserLocationPromiss, AREABEIJING, ChildItems, getCityInfo } from '../../models/area'
-import { userAuthLoction } from '../../utils/helper'
+import { recSerAuthLoction } from '../../utils/helper'
 import Msg, { ShowActionModal } from '../../utils/msg'
 import { SubscribeToNews } from '../../utils/subscribeToNews';
 import { useSelector, useDispatch } from '@tarojs/redux'
@@ -13,10 +13,9 @@ import { setAreaInfo, setArea } from '../../actions/recruit'//获取发布招工
 import { RulesClassfies } from '../../components/classfiy_picker/index'
 import { usePublishData } from './issue'
 import { ProfessionRecruitData } from '../../components/profession/index.d'
-interface ClassMateArr {
-  id: string
-  name: string
-}
+
+
+
 export default function fastPublishInit(InitParams: InitRecruitView) {
   const { model, setModel, showUpload, setShowUpload, num, setNum, phone, setPhone } = usePublishData(InitParams)
   // 是否显示工种选择
@@ -27,15 +26,13 @@ export default function fastPublishInit(InitParams: InitRecruitView) {
   const areaInfo: UserLastPublishRecruitArea = useSelector<any, UserLastPublishRecruitArea>(state => state.RecruitAction["areaInfo"])
   // 获取redux中工种数据
   const classifyTree: ProfessionRecruitData[] = useSelector<any, ProfessionRecruitData[]>(state => state.publishData['classifyTree'])
-  // 修改发布招工默认的选择城市信息
-  const defaultSearchName: AreaData = useSelector<any, AreaData>(state => state.publishData['defaultSearchName'])
   // 获取dispatch分发action
   const dispatch = useDispatch()
   //选中的工种数据
   const [classMateArr, setclassMateArr] = useState<RulesClassfies[]>([])
   // 初始化招工信息
   useEffect(() => {
-    initUserAreaInfo(model)
+    initUserAreaInfo()
     if (model.is_check == 0) bakModelInfo(model)
     // 保存手机号
     setPhone(model.user_mobile)
@@ -61,35 +58,33 @@ export default function fastPublishInit(InitParams: InitRecruitView) {
   }, [model])
 
   // 初始化用户区域数据
-  function initUserAreaInfo(data: any) {
-    
+  function initUserAreaInfo() {
+    // 获取用户定位location
     let userLocation: string = Taro.getStorageSync(UserLocation)
+    // 获取用户定位城市信息
     let userLoctionCity: UserLocationPromiss = Taro.getStorageSync(UserLocationCity)
+    // 如果用户有授权获取定位，则获取详细的定位地址信息并保存到redux
     if (userLoctionCity) {
       let data: ChildItems = getCityInfo(userLoctionCity, 1)
-      let positionArea: UserLastPublishRecruitArea = {
-        location: userLocation,
-        adcode: userLoctionCity.adcode,
-        title: userLoctionCity.title,
-        info: userLoctionCity.info,
-        areaId: data.id
-      }
-      dispatch(setArea({ name: userLoctionCity.city.slice(0, 2), id: data.id, ad_name: userLoctionCity.city.slice(0, 2)+"市" }))
-      dispatch(setAreaInfo(positionArea))
+      recSerAuthLoction().then(res=>{
+        let bool:boolean = typeof res[0].regeocodeData.addressComponent.neighborhood.name == "string"
+        let title: string = bool ? res[0].regeocodeData.addressComponent.neighborhood.name : res[0].desc 
+        let adcode:string = res[0].regeocodeData.addressComponent.adcode
+        let info:string = res[0].regeocodeData.formatted_address
+        let positionArea: UserLastPublishRecruitArea = {
+          location: userLocation,
+          adcode: adcode,
+          title: title,
+          info: info,
+          areaId: data.id,
+          name: data.name,
+          ad_name: data.ad_name
+        }
+        dispatch(setAreaInfo(positionArea))
+      })
+      dispatch(setArea({ name: data.name, id: data.id, ad_name: data.ad_name }))
     } else {
-      userAuthLoction()
-        .then(res => {
-          let positionArea: UserLastPublishRecruitArea = {
-            location: userLocation,
-            adcode: res.adcode,
-            title: res.title,
-            info: res.info
-          }
-          dispatch(setAreaInfo(positionArea))
-          dispatch(setArea({ name: res.city.slice(0, 2), id: '', ad_name: res.city + "市" }))
-        }).catch(() => {
-          dispatch(setArea({ name: AREABEIJING.name, id: AREABEIJING.id, ad_name: AREABEIJING.ad_name }))
-        })
+      dispatch(setArea({ name: AREABEIJING.name, id: AREABEIJING.id, ad_name: AREABEIJING.ad_name }))
     }
     // 获取用户最后发布的区域信息
     let userLastPublishArea: UserLastPublishRecruitArea = Taro.getStorageSync(UserLastPublishArea)

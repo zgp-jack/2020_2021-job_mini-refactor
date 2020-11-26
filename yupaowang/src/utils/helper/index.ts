@@ -25,7 +25,6 @@ export function userAuthLoction(): Promise<UserLocationPromiss>{
     const GDMAP = new AMapWX.AMapWX({ key: MAPKEY })
     GDMAP.getRegeo({
       success: function (data: any) {
-        let title: string = Array.isArray(data[0].regeocodeData.addressComponent.neighborhood.name) ? data[0].desc : data[0].regeocodeData.addressComponent.neighborhood.name;
         let city: string = data[0].regeocodeData.addressComponent.city
         let bool: boolean = typeof data[0].regeocodeData.addressComponent.city == 'string'
         let gpsLocation: UserLocationPromiss = {
@@ -33,8 +32,6 @@ export function userAuthLoction(): Promise<UserLocationPromiss>{
           city: bool ? city : data[0].regeocodeData.addressComponent.province,
           adcode: data[0].regeocodeData.addressComponent.adcode,
           citycode: data[0].regeocodeData.addressComponent.citycode,
-          title: title,
-          info: data[0].regeocodeData.formatted_address,
         }
         Taro.setStorageSync(UserLocationCity, gpsLocation) //定位信息
         resolve(gpsLocation)

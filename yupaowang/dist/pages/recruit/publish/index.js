@@ -30,7 +30,7 @@ var _store = __webpack_require__(/*! ../../config/store */ "./src/config/store.t
 
 var _index2 = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
 
-var _area = __webpack_require__(/*! ../../models/area */ "./src/models/area.ts");
+var _area2 = __webpack_require__(/*! ../../models/area */ "./src/models/area.ts");
 
 var _index3 = __webpack_require__(/*! ../../utils/helper/index */ "./src/utils/helper/index.ts");
 
@@ -54,9 +54,11 @@ function usePublishViewInfo(InitParams) {
   var login = (0, _redux.useSelector)(function (state) {
     return state.User['login'];
   });
-  // 极速发布基本信息
+  // 视图显示信息
 
-  var _useState = (0, _taroTt.useState)(),
+  var _useState = (0, _taroTt.useState)({
+    detail: ''
+  }),
       _useState2 = _slicedToArray(_useState, 2),
       model = _useState2[0],
       setModel = _useState2[1];
@@ -199,7 +201,7 @@ function usePublishViewInfo(InitParams) {
   // 用户不支持高德地图，初始化原始的picker选择
   var initChoosePickerArea = function initChoosePickerArea(pid, cid) {
     // 用户不支持高德地图，所以我们调用原始的picker选择 先拿到省市数据将其保存
-    var _getCityAreaPicker = (0, _area.getCityAreaPicker)(),
+    var _getCityAreaPicker = (0, _area2.getCityAreaPicker)(),
         province = _getCityAreaPicker.province,
         cities = _getCityAreaPicker.cities;
 
@@ -207,7 +209,7 @@ function usePublishViewInfo(InitParams) {
     setAreaCityPicker([].concat(_toConsumableArray(cities)));
     // 如果是修改信息
     if (InitParams.infoId) {
-      var _getAreaCurrentArr = (0, _area.getAreaCurrentArr)(pid, cid),
+      var _getAreaCurrentArr = (0, _area2.getAreaCurrentArr)(pid, cid),
           pi = _getAreaCurrentArr.pi,
           ci = _getAreaCurrentArr.ci;
 
@@ -227,16 +229,19 @@ function usePublishViewInfo(InitParams) {
   function initUserAreaInfo(data) {
     //  如果传递参数有infoid代表是修改，保存修改的里面默认区域数据
     if (InitParams.infoId) {
-      dispatch((0, _recruit.setArea)(data.default_search_name.name));
+      var area = (0, _area2.getCityInfoById)(data.default_search_name.id);
+      dispatch((0, _recruit.setArea)({ name: area.name, ad_name: area.ad_name }));
     } else {
       var userLoctionCity = _taroTt2.default.getStorageSync(_store.UserLocationCity);
       if (userLoctionCity) {
-        dispatch((0, _recruit.setArea)(userLoctionCity.city.slice(0, 2)));
+        var _area = (0, _area2.getCityInfo)(userLoctionCity, 1);
+        dispatch((0, _recruit.setArea)({ name: _area.name, ad_name: _area.ad_name }));
       } else {
         (0, _index3.userAuthLoction)().then(function (res) {
-          dispatch((0, _recruit.setArea)(res.city));
+          var area = (0, _area2.getCityInfo)(res, 1);
+          dispatch((0, _recruit.setArea)({ name: area.name, ad_name: area.ad_name }));
         }).catch(function () {
-          dispatch((0, _recruit.setArea)(_area.AREABEIJING.name));
+          dispatch((0, _recruit.setArea)({ name: _area2.AREABEIJING.name, ad_name: _area2.AREABEIJING.ad_name }));
         });
       }
     }
@@ -306,7 +311,7 @@ function usePublishViewInfo(InitParams) {
     var mydata = JSON.parse(JSON.stringify(data));
     var imgs = mydata.images.join(',');
     var classifies = mydata.classifies.join(',');
-    mydata = _extends({}, mydata, { images: imgs, classifies: classifies });
+    mydata = _extends({}, mydata, { images: imgs, classifies: classifies, location: areaInfo.location });
     return mydata;
   }
   function userPublishRecruitAction() {
@@ -488,7 +493,7 @@ var PublishRecruit = function (_Taro$Component) {
       backgroundTextStyle: "dark"
     };
 
-    _this.$usedState = ["anonymousState__temp", "model", "$compid__35", "$compid__36", "showProfession", "areaInfo", "phone", "showUpload", "text", "num", "TEXTAREAMAXLENGTH"];
+    _this.$usedState = ["anonymousState__temp", "model", "$compid__35", "$compid__36", "showProfession", "USEGAODEMAPAPI", "areaInfo", "areaIndex", "areaPickerData", "areaPickerName", "phone", "showUpload", "text", "num", "TEXTAREAMAXLENGTH"];
     _this.customComponents = ["Auth", "Profession", "ImageView"];
     return _this;
   }
@@ -540,7 +545,15 @@ var PublishRecruit = function (_Taro$Component) {
           userPublishRecruitAction = _usePublishViewInfo.userPublishRecruitAction,
           num = _usePublishViewInfo.num,
           setNum = _usePublishViewInfo.setNum,
-          phone = _usePublishViewInfo.phone;
+          phone = _usePublishViewInfo.phone,
+          areaIndex = _usePublishViewInfo.areaIndex,
+          areaPickerData = _usePublishViewInfo.areaPickerData,
+          areaCityPicker = _usePublishViewInfo.areaCityPicker,
+          areaProvincePicker = _usePublishViewInfo.areaProvincePicker,
+          setAreaPickerData = _usePublishViewInfo.setAreaPickerData,
+          setAreaIndex = _usePublishViewInfo.setAreaIndex,
+          areaPickerName = _usePublishViewInfo.areaPickerName,
+          setAreaPickerName = _usePublishViewInfo.setAreaPickerName;
       // 使用自定义验证码hook
 
 
@@ -560,10 +573,10 @@ var PublishRecruit = function (_Taro$Component) {
         setShowProssion(false);
       };
       // 用户填写表单
-      var userEnterFrom = function userEnterFrom(e, key) {
+      var userEnterFrom = function userEnterFrom(e, type) {
         var value = e.detail.value;
         var state = JSON.parse(JSON.stringify(model));
-        state[key] = value;
+        state[type] = value;
         setModel(_extends({}, state));
       };
       // 选择地址
@@ -571,7 +584,7 @@ var PublishRecruit = function (_Taro$Component) {
         if (!model) {
           return;
         }
-        var url = '/pages/map/recruit/index';
+        var url = "/pages/map/recruit/index?id=" + id;
         _taroTt2.default.navigateTo({
           url: url
         });
@@ -626,6 +639,29 @@ var PublishRecruit = function (_Taro$Component) {
         bakModel.view_images.splice(i, 1);
         setModel(bakModel);
       };
+      // 用户确定地址picker
+      var userChangePickerArea = function userChangePickerArea(e) {
+        var pid = areaProvincePicker[e.detail.value[0]].id;
+        var cid = areaPickerData[1][e.detail.value[1]].id;
+        if (model) {
+          setModel(_extends({}, model, { province_id: +pid, city_id: +cid }));
+        }
+        var name = pid === cid ? areaProvincePicker[e.detail.value[0]].name : areaProvincePicker[e.detail.value[0]].name + "-" + areaPickerData[1][e.detail.value[1]].name;
+        setAreaPickerName(name);
+      };
+      // 用户更改了地址picker
+      var userChangeColumn = function userChangeColumn(e) {
+        var column = e.detail.column;
+        var value = e.detail.value;
+        if (column === 0) {
+          var data = JSON.parse(JSON.stringify(areaPickerData));
+          data[1] = areaCityPicker[value];
+          setAreaPickerData(data);
+          setAreaIndex([value, 0]);
+        } else {
+          setAreaIndex([areaIndex[0], value]);
+        }
+      };
       this.anonymousFunc0 = function (i, k, id) {
         return userClickProfession(i, k, id);
       };
@@ -639,30 +675,36 @@ var PublishRecruit = function (_Taro$Component) {
         return userChooseArea();
       };
       this.anonymousFunc4 = function (e) {
-        return userEnterFrom(e, 'user_name');
+        return userChangePickerArea(e);
       };
       this.anonymousFunc5 = function (e) {
-        return userEnterFrom(e, 'user_mobile');
+        return userChangeColumn(e);
       };
       this.anonymousFunc6 = function (e) {
+        return userEnterFrom(e, 'user_name');
+      };
+      this.anonymousFunc7 = function (e) {
+        return userEnterFrom(e, 'user_mobile');
+      };
+      this.anonymousFunc8 = function (e) {
         return userEnterFrom(e, 'code');
       };
-      this.anonymousFunc7 = function () {
+      this.anonymousFunc9 = function () {
         return userGetCode(model.user_mobile);
       };
       var anonymousState__temp = !showProfession ? (0, _classnames2.default)({
         'publish-textarea': true,
         'hide': showProfession
       }) : null;
-      this.anonymousFunc8 = function (e) {
+      this.anonymousFunc10 = function (e) {
         userEnterFrom(e, 'detail');
         setNum(e.detail.value.length);
         return false;
       };
-      this.anonymousFunc9 = function () {
+      this.anonymousFunc11 = function () {
         return changeShowUpload();
       };
-      this.anonymousFunc10 = function () {
+      this.anonymousFunc12 = function () {
         return userPublishRecruitAction();
       };
       showProfession && _taroTt.propsManager.set({
@@ -683,7 +725,11 @@ var PublishRecruit = function (_Taro$Component) {
         $compid__35: $compid__35,
         $compid__36: $compid__36,
         showProfession: showProfession,
+        USEGAODEMAPAPI: _index3.USEGAODEMAPAPI,
         areaInfo: areaInfo,
+        areaIndex: areaIndex,
+        areaPickerData: areaPickerData,
+        areaPickerName: areaPickerName,
         phone: phone,
         showUpload: showUpload,
         text: text,
@@ -747,12 +793,22 @@ var PublishRecruit = function (_Taro$Component) {
     value: function anonymousFunc10(e) {
       ;
     }
+  }, {
+    key: "anonymousFunc11",
+    value: function anonymousFunc11(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc12",
+    value: function anonymousFunc12(e) {
+      ;
+    }
   }]);
 
   return PublishRecruit;
 }(_taroTt2.default.Component);
 
-PublishRecruit.$$events = ["anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6", "anonymousFunc7", "anonymousFunc8", "anonymousFunc9", "anonymousFunc10"];
+PublishRecruit.$$events = ["anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6", "anonymousFunc7", "anonymousFunc8", "anonymousFunc9", "anonymousFunc10", "anonymousFunc11", "anonymousFunc12"];
 PublishRecruit.$$componentPath = "pages/recruit/publish/index";
 PublishRecruit.config = { navigationBarTitleText: '发布招工', navigationBarBackgroundColor: '#0099ff', navigationBarTextStyle: 'white', backgroundTextStyle: "dark" };
 exports.default = PublishRecruit;

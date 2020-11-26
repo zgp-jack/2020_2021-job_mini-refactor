@@ -1,5 +1,5 @@
 import Taro, { useState, useEffect } from '@tarojs/taro'
-import { UserLastPublishRecruitArea, PublishConfigData, RecruitWorkInfo, RecruitInfo } from '../../pages/recruit/index.d'
+import { PublishConfigData, RecruitWorkInfo } from '../../pages/recruit/index.d'
 import { getPublishRecruitView } from '../../utils/request'
 import { InitRecruitView } from '../../pages/recruit/publish'
 import { ShowActionModal } from '../../utils/msg'
@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from '@tarojs/redux'
 import { setPublishData } from '../../actions/publish'
 import { PublishData } from '../../config/store'
 import { setAreaInfo, setArea } from '../../actions/recruit'
+import { getCityInfoById, AREABEIJING } from '../../models/area'
 
 export function usePublishData(InitParams: InitRecruitView){
   // 初始化急速发布招工信息数据
@@ -49,10 +50,12 @@ export function usePublishData(InitParams: InitRecruitView){
   
   useEffect(() => {
     // 判断是否登录，没有登录直接返回
-    if (!login && (!InitParams.infoId &&　reqStatus)) return
+    if (!login || (login && !InitParams.infoId &&　reqStatus)) return
     getPublishRecruitView(InitParams).then(res => {
       // 获取初始化发布招工数据，参数为{ type: type,infoId: id }
       if (res.errcode == 'ok') {
+        let initArea = { name: AREABEIJING.name, id: AREABEIJING.id, ad_name: AREABEIJING.ad_name }
+        let defaultArea = res.default_search_name ? getCityInfoById(res.default_search_name.id) : initArea
         //从发布招工请求中获取公共数据
         let InitViewInfo: PublishConfigData = {
           classifyTree: res.classifyTree,
@@ -62,7 +65,7 @@ export function usePublishData(InitParams: InitRecruitView){
           maxClassifyCount: res.typeTextArr.maxClassifyCount,
           maxImageCount: res.typeTextArr.maxImageCount,
           placeholder: res.placeholder,
-          defaultSearchName: { id: res.default_search_name.id, name: res.default_search_name.name, ad_name: res.default_search_name.name+"市"},
+          defaultSearchName: { id: defaultArea.id, name: defaultArea.name, ad_name: defaultArea.ad_name },
           reqStatus: true
         }
         // 发布招工获取的数据
@@ -98,7 +101,7 @@ export function usePublishData(InitParams: InitRecruitView){
             info: '',
             adcode: res.model.adcode || '',
           }))
-          dispatch(setArea({ id: res.default_search_name.id, name: res.default_search_name.name, ad_name: res.default_search_name.name + "市" }))
+          dispatch(setArea({ id: defaultArea.id, name: defaultArea.name, ad_name: defaultArea.ad_name }))
         }
         // 如果有上传图片保存图片showUpload中
         if (res.view_image.length) setShowUpload(true)

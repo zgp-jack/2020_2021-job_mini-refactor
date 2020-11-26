@@ -16,6 +16,7 @@ const DEFAULT_STATE_RECRUIT: RecruitInfo = {
     ad_name: AREABEIJING.ad_name
   },
   token:'',
+  phone:'',
   positionStatus: true,
 }
 // 内容的参数

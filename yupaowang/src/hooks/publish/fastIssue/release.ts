@@ -5,11 +5,11 @@ import { PublishData, UserLocation } from '../../../config/store'
 import { UserLocationPromiss, AREABEIJING, ChildItems, getCityInfo } from '../../../models/area'
 import { UserLastPublishArea, UserLocationCity } from '../../../config/store'
 import { setAreaInfo, setArea } from '../../../actions/recruit'
-import { userAuthLoction } from '../../../utils/helper'
 import { SelectedClassfies, RulesClassfies } from '../../../components/classfiy_picker/index'
 import { publishFindWorker } from '../../../utils/request'
 import { SubscribeToNews } from '../../../utils/subscribeToNews'
 import { ShowActionModal } from '../../../utils/msg'
+import { recSerAuthLoction } from '../../../utils/helper'
 
 
 
@@ -36,37 +36,38 @@ export default function useRelease () {
   const dispatch = useDispatch()
 
   useEffect(()=>{
+    console.log("wo jin lai le ")
     initUserAreaInfo()
     initWorkType()
   },[])
   // 初始化用户区域数据
   function initUserAreaInfo() {
-    let userLocation:string = Taro.getStorageSync(UserLocation)
+    // 获取用户定位location
+    let userLocation: string = Taro.getStorageSync(UserLocation)
+    // 获取用户定位城市信息
     let userLoctionCity: UserLocationPromiss = Taro.getStorageSync(UserLocationCity)
+    // 如果用户有授权获取定位，则获取详细的定位地址信息并保存到redux
     if (userLoctionCity) {
       let data: ChildItems = getCityInfo(userLoctionCity, 1)
-      let positionArea: UserLastPublishRecruitArea = {
-        location: userLocation,
-        adcode: userLoctionCity.adcode,
-        title: userLoctionCity.title,
-        info: userLoctionCity.info,
-        areaId: data.id
-      }
-      dispatch(setArea({ name: userLoctionCity.city.slice(0, 2), id:data.id}))
-      dispatch(setAreaInfo(positionArea))
-    } else {
-      userAuthLoction().then(res => {
+      recSerAuthLoction().then(res => {
+        let bool: boolean = typeof res[0].regeocodeData.addressComponent.neighborhood.name == "string"
+        let title: string = bool ? res[0].regeocodeData.addressComponent.neighborhood.name : res[0].desc
+        let adcode: string = res[0].regeocodeData.addressComponent.adcode
+        let info: string = res[0].regeocodeData.formatted_address
         let positionArea: UserLastPublishRecruitArea = {
           location: userLocation,
-          adcode: res.adcode,
-          title: res.title,
-          info: res.info
+          adcode: adcode,
+          title: title,
+          info: info,
+          areaId: data.id,
+          name: data.name,
+          ad_name: data.ad_name
         }
         dispatch(setAreaInfo(positionArea))
-        dispatch(setArea({ name: res.city.slice(0, 2), id:''}))
-      }).catch(() => {
-        dispatch(setArea({ name: AREABEIJING.name, id: AREABEIJING.id}))
       })
+      dispatch(setArea({ name: data.name, id: data.id, ad_name: data.ad_name }))
+    } else {
+      dispatch(setArea({ name: AREABEIJING.name, id: AREABEIJING.id, ad_name: AREABEIJING.ad_name }))
     }
     // 获取用户最后发布的区域信息
     let userLastPublishArea: UserLastPublishRecruitArea = Taro.getStorageSync(UserLastPublishArea)

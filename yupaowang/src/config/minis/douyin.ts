@@ -19,6 +19,13 @@ var DOWNLOADAPP: boolean = false
 // * 是否支持高德地图api
 var USEGAODEMAPAPI: boolean = true
 
+
+// ! 百度系小程序 列表滚动必须设置值
+var SCROLLVIEWSETTOP: boolean = false
+// ! 百度系小程序  上传图片 JSON解析数据
+var ISPARSEUPLOADIMG: boolean = true
+
+
 module.exports = {
   PAGETITLE,
   TOKEN,
@@ -28,5 +35,7 @@ module.exports = {
   ISCANSHARE,
   TEXTAREAMAXLENGTH,
   DOWNLOADAPP,
-  USEGAODEMAPAPI
+  USEGAODEMAPAPI,
+  SCROLLVIEWSETTOP,
+  ISPARSEUPLOADIMG
 }

@@ -2621,8 +2621,6 @@ export interface UserLocationPromiss {
   city: string,
   adcode: string,
   citycode: string,
-  title: string,
-  info: string
 }
 
 // * 默认全国数据

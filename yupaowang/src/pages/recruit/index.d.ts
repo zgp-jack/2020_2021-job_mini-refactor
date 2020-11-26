@@ -144,6 +144,7 @@ export interface RecruitInfo {
   area: AreaData,
   token: string,
   positionStatus: boolean,
+  phone:string
 }
 
 // 初始化发布招工获取信息类型
@@ -190,4 +191,12 @@ export interface VaildCodeReq{
 export interface ImageData{
   url: string,
   httpurl: string
+  city?:string,
+  provice?:string,
+}
+
+// 招工城市
+export interface AreaData {
+  name: string,
+  ad_name: string
 }

@@ -37,7 +37,7 @@ export default function FastIssue() {
     // 发送验证请求，验证通过跳转到城市工种选择页
     checkCode(params).then(res => {
       if(res.errcode == 'ok'){
-        Taro.navigateTo({
+        Taro.redirectTo({
           url: '/pages/recruit/fast_issue/release/index',
         })
       }else{

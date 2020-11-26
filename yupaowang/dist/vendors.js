@@ -12535,7 +12535,7 @@ var INDEXPATH = exports.INDEXPATH = '/pages/index/index';
 // * 发布招工页面
 var PUBLISHRECRUIT = exports.PUBLISHRECRUIT = '/pages/recruit/fast_issue/issue/index';
 // * 急速发布
-var PUBLISHFAST = exports.PUBLISHFAST = '/pages/recruit/fastPublish/index';
+var PUBLISHFAST = exports.PUBLISHFAST = '/pages/recruit/jisu_issue/index';
 // * 发布找活页面
 var PUBLISHRESUME = exports.PUBLISHRESUME = '/pages/resume/publish/index';
 // * 发布二手交易
@@ -12576,6 +12576,10 @@ var TEXTAREAMAXLENGTH = exports.TEXTAREAMAXLENGTH = MINICONFIG.TEXTAREAMAXLENGTH
 var DOWNLOADAPP = exports.DOWNLOADAPP = MINICONFIG.DOWNLOADAPP;
 // * 是否能够使用高德地区api
 var USEGAODEMAPAPI = exports.USEGAODEMAPAPI = MINICONFIG.USEGAODEMAPAPI;
+// * scroll-view滚动过程中是否保存高度值
+var SCROLLVIEWSETTOP = exports.SCROLLVIEWSETTOP = MINICONFIG.SCROLLVIEWSETTOP;
+// * 上传图片 是否需要使用JSON解析数据
+var ISPARSEUPLOADIMG = exports.ISPARSEUPLOADIMG = MINICONFIG.ISPARSEUPLOADIMG;
 
 /***/ }),
 
@@ -12643,6 +12647,10 @@ var TEXTAREAMAXLENGTH = 500;
 var DOWNLOADAPP = true;
 // * 是否支持高德地图api
 var USEGAODEMAPAPI = false;
+// ! 百度系小程序 列表滚动必须设置值
+var SCROLLVIEWSETTOP = true;
+// ! 百度系小程序  上传图片 不能JSON解析数据
+var ISPARSEUPLOADIMG = false;
 module.exports = {
   PAGETITLE: PAGETITLE,
   TOKEN: TOKEN,
@@ -12652,7 +12660,9 @@ module.exports = {
   ISCANSHARE: ISCANSHARE,
   TEXTAREAMAXLENGTH: TEXTAREAMAXLENGTH,
   DOWNLOADAPP: DOWNLOADAPP,
-  USEGAODEMAPAPI: USEGAODEMAPAPI
+  USEGAODEMAPAPI: USEGAODEMAPAPI,
+  SCROLLVIEWSETTOP: SCROLLVIEWSETTOP,
+  ISPARSEUPLOADIMG: ISPARSEUPLOADIMG
 };
 
 /***/ }),
@@ -12686,6 +12696,10 @@ var TEXTAREAMAXLENGTH = 140;
 var DOWNLOADAPP = false;
 // * 是否支持高德地图api
 var USEGAODEMAPAPI = true;
+// ! 百度系小程序 列表滚动必须设置值
+var SCROLLVIEWSETTOP = false;
+// ! 百度系小程序  上传图片 JSON解析数据
+var ISPARSEUPLOADIMG = true;
 module.exports = {
   PAGETITLE: PAGETITLE,
   TOKEN: TOKEN,
@@ -12695,7 +12709,9 @@ module.exports = {
   ISCANSHARE: ISCANSHARE,
   TEXTAREAMAXLENGTH: TEXTAREAMAXLENGTH,
   DOWNLOADAPP: DOWNLOADAPP,
-  USEGAODEMAPAPI: USEGAODEMAPAPI
+  USEGAODEMAPAPI: USEGAODEMAPAPI,
+  SCROLLVIEWSETTOP: SCROLLVIEWSETTOP,
+  ISPARSEUPLOADIMG: ISPARSEUPLOADIMG
 };
 
 /***/ }),
@@ -12713,7 +12729,7 @@ module.exports = {
 /*
  * @Author: your name
  * @Date: 2020-10-28 11:04:26
- * @LastEditTime: 2020-11-21 09:59:09
+ * @LastEditTime: 2020-11-25 10:29:47
  * @LastEditors: jsxin
  * @Description: In User Settings Edit
  * @FilePath: \yupaowang\src\config\minis\jizhao.ts
@@ -12739,6 +12755,10 @@ var TEXTAREAMAXLENGTH = 500;
 var DOWNLOADAPP = true;
 // * 是否支持高德地图api
 var USEGAODEMAPAPI = false;
+// ! 百度系小程序 列表滚动必须设置值
+var SCROLLVIEWSETTOP = false;
+// ! 百度系小程序  上传图片 JSON解析数据
+var ISPARSEUPLOADIMG = true;
 module.exports = {
   PAGETITLE: PAGETITLE,
   TOKEN: TOKEN,
@@ -12748,7 +12768,9 @@ module.exports = {
   VIDEOAD: VIDEOAD,
   TEXTAREAMAXLENGTH: TEXTAREAMAXLENGTH,
   DOWNLOADAPP: DOWNLOADAPP,
-  USEGAODEMAPAPI: USEGAODEMAPAPI
+  USEGAODEMAPAPI: USEGAODEMAPAPI,
+  SCROLLVIEWSETTOP: SCROLLVIEWSETTOP,
+  ISPARSEUPLOADIMG: ISPARSEUPLOADIMG
 };
 
 /***/ }),
@@ -13229,6 +13251,8 @@ var _store = __webpack_require__(/*! ../../config/store */ "./src/config/store.t
 
 var _recruit = __webpack_require__(/*! ../../actions/recruit */ "./src/actions/recruit.ts");
 
+var _area = __webpack_require__(/*! ../../models/area */ "./src/models/area.ts");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function usePublishData(InitParams) {
@@ -13299,10 +13323,12 @@ function usePublishData(InitParams) {
 
   (0, _taroTt.useEffect)(function () {
     // 判断是否登录，没有登录直接返回
-    if (!login && !InitParams.infoId && reqStatus) return;
+    if (!login || login && !InitParams.infoId && reqStatus) return;
     (0, _index.getPublishRecruitView)(InitParams).then(function (res) {
       // 获取初始化发布招工数据，参数为{ type: type,infoId: id }
       if (res.errcode == 'ok') {
+        var initArea = { name: _area.AREABEIJING.name, id: _area.AREABEIJING.id, ad_name: _area.AREABEIJING.ad_name };
+        var defaultArea = res.default_search_name ? (0, _area.getCityInfoById)(res.default_search_name.id) : initArea;
         //从发布招工请求中获取公共数据
         var InitViewInfo = {
           classifyTree: res.classifyTree,
@@ -13312,7 +13338,7 @@ function usePublishData(InitParams) {
           maxClassifyCount: res.typeTextArr.maxClassifyCount,
           maxImageCount: res.typeTextArr.maxImageCount,
           placeholder: res.placeholder,
-          defaultSearchName: { id: res.default_search_name.id, name: res.default_search_name.name, ad_name: res.default_search_name.name + "市" },
+          defaultSearchName: { id: defaultArea.id, name: defaultArea.name, ad_name: defaultArea.ad_name },
           reqStatus: true
         };
         // 发布招工获取的数据
@@ -13348,7 +13374,7 @@ function usePublishData(InitParams) {
             info: '',
             adcode: res.model.adcode || ''
           }));
-          dispatch((0, _recruit.setArea)({ id: res.default_search_name.id, name: res.default_search_name.name, ad_name: res.default_search_name.name + "市" }));
+          dispatch((0, _recruit.setArea)({ id: defaultArea.id, name: defaultArea.name, ad_name: defaultArea.ad_name }));
         }
         // 如果有上传图片保存图片showUpload中
         if (res.view_image.length) setShowUpload(true);
@@ -16639,16 +16665,13 @@ function userAuthLoction() {
     var GDMAP = new _amapWx2.default.AMapWX({ key: _index.MAPKEY });
     GDMAP.getRegeo({
       success: function success(data) {
-        var title = Array.isArray(data[0].regeocodeData.addressComponent.neighborhood.name) ? data[0].desc : data[0].regeocodeData.addressComponent.neighborhood.name;
         var city = data[0].regeocodeData.addressComponent.city;
         var bool = typeof data[0].regeocodeData.addressComponent.city == 'string';
         var gpsLocation = {
           province: data[0].regeocodeData.addressComponent.province,
           city: bool ? city : data[0].regeocodeData.addressComponent.province,
           adcode: data[0].regeocodeData.addressComponent.adcode,
-          citycode: data[0].regeocodeData.addressComponent.citycode,
-          title: title,
-          info: data[0].regeocodeData.formatted_address
+          citycode: data[0].regeocodeData.addressComponent.citycode
         };
         _taroTt2.default.setStorageSync(_store.UserLocationCity, gpsLocation); //定位信息
         resolve(gpsLocation);
@@ -18457,8 +18480,7 @@ function AppUploadImg(resolve, res) {
     name: 'file',
     success: function success(response) {
       // 百度小程序出来之后是一个纯json 但是其他端就不是， 解决百度冲突
-      var mydata = _index.MINIVERSION == _index.BAIDU ? response.data : JSON.parse(response.data);
-      // let resData = { local: response, remote: mydata}
+      var mydata = _index.ISPARSEUPLOADIMG ? JSON.parse(response.data) : response.data;
       _taroTt2.default.showToast({
         title: mydata.errmsg,
         icon: "none",

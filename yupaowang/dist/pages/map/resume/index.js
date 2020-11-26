@@ -85,8 +85,8 @@ var ResumeMap = function (_Taro$Component) {
     };
 
     _this.$usedState = ["loopArray48", "loopArray49", "$compid__43", "smAreaText", "showHistory", "histroyList", "lists", "IMGCDNURL", "showCity", "area"];
-    _this.anonymousFunc4Map = {};
     _this.anonymousFunc5Map = {};
+    _this.anonymousFunc6Map = {};
     _this.customComponents = ["Cities"];
     return _this;
   }
@@ -112,14 +112,14 @@ var ResumeMap = function (_Taro$Component) {
           _genCompid2 = _slicedToArray(_genCompid, 2),
           $prevCompid__43 = _genCompid2[0],
           $compid__43 = _genCompid2[1];
-      // const router: Taro.RouterInfo = useRouter()
-      // let { areaItem } = router.params;
-      // 获取dispatch分发action
 
+      var router = (0, _taroTt.useRouter)();
+      var provinceAdress = router.params.provinceAdress;
+      // 获取dispatch分发action
 
       var dispatch = (0, _redux.useDispatch)();
 
-      var _useState = (0, _taroTt.useState)(''),
+      var _useState = (0, _taroTt.useState)(provinceAdress),
           _useState2 = _slicedToArray(_useState, 2),
           area = _useState2[0],
           setArea = _useState2[1];
@@ -162,7 +162,9 @@ var ResumeMap = function (_Taro$Component) {
           _useState10 = _slicedToArray(_useState9, 2),
           showCity = _useState10[0],
           setShowCity = _useState10[1];
-      // 使用发布招工hook处理数据
+      // 获取redux中区域名称数据
+      // const area: string = useSelector<any, string>(state => state.MyArea)
+      // 获取redux中定位状态
       // const { area, setArea, setAreaInfo, setPublishArea } = useContext(context)
 
 
@@ -229,7 +231,6 @@ var ResumeMap = function (_Taro$Component) {
             ad_name: data.ad_name,
             city: data.name
           };
-          setArea(data.name);
           setUserLoc(userLocData);
         }
       };
@@ -242,7 +243,7 @@ var ResumeMap = function (_Taro$Component) {
       }, []);
       // 用户切换城市
       var userChangeCity = function userChangeCity(city) {
-        setArea(city.name);
+        setArea(city);
       };
       // 用户点击取消 返回上一页
       var userCloseMap = function userCloseMap() {
@@ -360,6 +361,11 @@ var ResumeMap = function (_Taro$Component) {
         location: location,
         adcode: adcode
       };
+      // 用户点击输入框后面的×关闭当前窗口
+      var closeHistoryClient = function closeHistoryClient() {
+        setShowHistory(false);
+        setSmAreaText('');
+      };
       contextItem.Provider(value);
       this.anonymousFunc0 = function () {
         return userTapCityBtn(true);
@@ -371,6 +377,9 @@ var ResumeMap = function (_Taro$Component) {
         return userEnterPosition(e);
       };
       this.anonymousFunc3 = function () {
+        return closeHistoryClient();
+      };
+      this.anonymousFunc4 = function () {
         return userCloseMap();
       };
       var loopArray48 = showHistory ? histroyList.map(function (item, index) {
@@ -379,7 +388,7 @@ var ResumeMap = function (_Taro$Component) {
         };
         var $loopState__temp2 = showHistory ? index + index : null;
         var _$indexKey = "fazzz" + index;
-        _this2.anonymousFunc4Map[_$indexKey] = function () {
+        _this2.anonymousFunc5Map[_$indexKey] = function () {
           return userClickAreaItem(item.$original);
         };
         return {
@@ -394,7 +403,7 @@ var ResumeMap = function (_Taro$Component) {
         };
         var $loopState__temp4 = index + index;
         var _$indexKey2 = "fbzzz" + index;
-        _this2.anonymousFunc5Map[_$indexKey2] = function () {
+        _this2.anonymousFunc6Map[_$indexKey2] = function () {
           return userClickAreaItem(item.$original);
         };
         return {
@@ -446,8 +455,13 @@ var ResumeMap = function (_Taro$Component) {
     }
   }, {
     key: "anonymousFunc4",
-    value: function anonymousFunc4(_$indexKey) {
-      var _anonymousFunc4Map;
+    value: function anonymousFunc4(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc5",
+    value: function anonymousFunc5(_$indexKey) {
+      var _anonymousFunc5Map;
 
       ;
 
@@ -455,12 +469,12 @@ var ResumeMap = function (_Taro$Component) {
         e[_key - 1] = arguments[_key];
       }
 
-      return this.anonymousFunc4Map[_$indexKey] && (_anonymousFunc4Map = this.anonymousFunc4Map)[_$indexKey].apply(_anonymousFunc4Map, e);
+      return this.anonymousFunc5Map[_$indexKey] && (_anonymousFunc5Map = this.anonymousFunc5Map)[_$indexKey].apply(_anonymousFunc5Map, e);
     }
   }, {
-    key: "anonymousFunc5",
-    value: function anonymousFunc5(_$indexKey2) {
-      var _anonymousFunc5Map;
+    key: "anonymousFunc6",
+    value: function anonymousFunc6(_$indexKey2) {
+      var _anonymousFunc6Map;
 
       ;
 
@@ -468,14 +482,14 @@ var ResumeMap = function (_Taro$Component) {
         e[_key2 - 1] = arguments[_key2];
       }
 
-      return this.anonymousFunc5Map[_$indexKey2] && (_anonymousFunc5Map = this.anonymousFunc5Map)[_$indexKey2].apply(_anonymousFunc5Map, e);
+      return this.anonymousFunc6Map[_$indexKey2] && (_anonymousFunc6Map = this.anonymousFunc6Map)[_$indexKey2].apply(_anonymousFunc6Map, e);
     }
   }]);
 
   return ResumeMap;
 }(_taroTt2.default.Component);
 
-ResumeMap.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5"];
+ResumeMap.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6"];
 ResumeMap.$$componentPath = "pages/map/resume/index";
 ResumeMap.config = { navigationBarTitleText: '地址选择' };
 exports.default = ResumeMap;

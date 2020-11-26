@@ -118,14 +118,27 @@ function useRealname() {
   // 初始化返回模型
 
 
-  var _useState7 = (0, _taroTt.useState)(),
+  var _useState7 = (0, _taroTt.useState)({}),
       _useState8 = _slicedToArray(_useState7, 2),
       initModel = _useState8[0],
       setInitModel = _useState8[1];
   // 保存数据提交模型
 
 
-  var _useState9 = (0, _taroTt.useState)(),
+  var _useState9 = (0, _taroTt.useState)({
+    username: '',
+    age: '',
+    nation_id: '',
+    nationality: '',
+    idCard: '',
+    idCardImg: '',
+    handImg: '',
+    tel: '',
+    code: '',
+    address: '',
+    birthday: '',
+    gender: ''
+  }),
       _useState10 = _slicedToArray(_useState9, 2),
       model = _useState10[0],
       setModel = _useState10[1];
@@ -495,7 +508,7 @@ var RealName = function (_Taro$Component) {
       navigationBarTitleText: '鱼泡网-实名认证'
     };
 
-    _this.$usedState = ["initModel", "ALIYUNCDN", "IMGCDNURL", "model", "sexCurrent", "sexArray", "sexName", "startDate", "endDate", "nationCurrent", "checkDegree", "text"];
+    _this.$usedState = ["initModel", "ALIYUNCDN", "IMGCDNURL", "model", "sexCurrent", "sexArray", "sexName", "startDate", "endDate", "nationCurrent", "USEGAODEMAPAPI", "checkDegree", "text"];
     _this.customComponents = ["Auth"];
     return _this;
   }
@@ -624,6 +637,12 @@ var RealName = function (_Taro$Component) {
           url: "/pages/map/realname/index"
         });
       };
+      // 用户输入地区 针对不能 使用高德地图的小程序
+      var userEnterAddress = function userEnterAddress(e) {
+        if (model) {
+          setModel(_extends({}, model, { address: e.detail.value }));
+        }
+      };
       this.anonymousFunc0 = function () {
         return userUploadIdcardImg(1);
       };
@@ -649,15 +668,18 @@ var RealName = function (_Taro$Component) {
         return userChooseArea();
       };
       this.anonymousFunc8 = function (e) {
-        return userEnterFormInfo('tel', e);
+        return userEnterAddress(e);
       };
       this.anonymousFunc9 = function (e) {
+        return userEnterFormInfo('tel', e);
+      };
+      this.anonymousFunc10 = function (e) {
         return userEnterFormInfo('code', e);
       };
-      this.anonymousFunc10 = function () {
+      this.anonymousFunc11 = function () {
         return userSendCode();
       };
-      this.anonymousFunc11 = function () {
+      this.anonymousFunc12 = function () {
         return userPostAuthInfo();
       };
       Object.assign(this.__state, {
@@ -671,6 +693,7 @@ var RealName = function (_Taro$Component) {
         startDate: startDate,
         endDate: endDate,
         nationCurrent: nationCurrent,
+        USEGAODEMAPAPI: _index.USEGAODEMAPAPI,
         checkDegree: checkDegree,
         text: text
       });
@@ -736,12 +759,17 @@ var RealName = function (_Taro$Component) {
     value: function anonymousFunc11(e) {
       ;
     }
+  }, {
+    key: "anonymousFunc12",
+    value: function anonymousFunc12(e) {
+      ;
+    }
   }]);
 
   return RealName;
 }(_taroTt2.default.Component);
 
-RealName.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6", "anonymousFunc7", "anonymousFunc8", "anonymousFunc9", "anonymousFunc10", "anonymousFunc11"];
+RealName.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6", "anonymousFunc7", "anonymousFunc8", "anonymousFunc9", "anonymousFunc10", "anonymousFunc11", "anonymousFunc12"];
 RealName.$$componentPath = "pages/realname/index";
 RealName.config = { navigationBarTitleText: '鱼泡网-实名认证' };
 exports.default = RealName;

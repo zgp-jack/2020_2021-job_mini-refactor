@@ -58,7 +58,7 @@ class App extends Component {
       'pages/resume/newPreview/index', // 预览
       'pages/resume/preview/index', // 预览
       'pages/login/index',//用户登录
-      'pages/recruit/fastPublish/index',//极速发布招工
+      'pages/recruit/jisu_issue/index',//极速发布招工
       'pages/recruit/fast_issue/issue/index',
       'pages/recruit/fast_issue/code/index',
       'pages/recruit/fast_issue/release/index'
