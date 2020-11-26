@@ -180,7 +180,7 @@ export default function PublishedUsed() {
             {item.is_check == '1' && <Image className='published-status-img' src={IMGCDNURL + 'published-recruit-checking.png'} />}
             {item.is_check == '0' && <Image className='published-status-img' src={IMGCDNURL + 'published-recruit-nopass.png'} />}
             {item.is_end == '2' && <Image className='published-status-img' src={IMGCDNURL + 'mini-used-endicon.png'} />}
-            <View onClick={() => userRouteJump(`/pages/detail/info/index?id=${item.id}`)}>
+            <View onClick={() => userRouteJump(`/pages/used/info/index?id=${item.id}`)}>
               <View className='user-published-title overwords'>{item.title}</View>
               <View className='user-published-content'>{item.detail}</View>
             </View>

@@ -18,6 +18,7 @@ export default function usePublishViewInfo(InitParams: InitRecruitView){
   const login = useSelector<any, boolean>(state => state.User['login'])
   // 视图显示信息
   const [model, setModel] = useState<RecruitModelInfo>({
+    title: '',
     detail: ''
   } as RecruitModelInfo)
   // 是否展开图片上传

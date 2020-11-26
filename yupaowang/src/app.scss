@@ -3,7 +3,9 @@
 view,input,text,image,textarea,tt-view,tt-input,tt-text,tt-image,tt-textarea,div{
   box-sizing: border-box;
 }
-
+swan-button{
+  background-color: transparent;
+}
 button::after{
   border: none;
 }

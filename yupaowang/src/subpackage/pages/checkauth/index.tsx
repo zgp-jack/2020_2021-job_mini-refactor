@@ -29,7 +29,7 @@ export default function CheckAuth(){
     checkMineAuthInfo().then(data => {
       if (data.errcode == 'auth_pass'){
         return
-      } else if (data.errcode == 'auth_not_pass'){
+      } else if (data.errcode == 'auth_not_pass' || data.errcode == 'not_auth'){
         Taro.showModal({
           title: '温馨提示',
           content: data.errmsg,
