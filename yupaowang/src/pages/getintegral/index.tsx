@@ -1,6 +1,6 @@
 import Taro, { useEffect, useState, Config } from "@tarojs/taro";
 import { View, Text, Image, Block } from "@tarojs/components";
-import { IMGCDNURL, SERVERPHONE, INVITEPATH } from "../../config";
+import { IMGCDNURL, SERVERPHONE, INVITEPATH, SHOWINVITEUSER } from "../../config";
 import { userJumpPage } from "../../utils/helper";
 import "./index.scss";
 import Auth from '../../components/auth'
@@ -43,6 +43,7 @@ export default function GetIntegral() {
     <Auth />
     <View className="getintegral-container">
       <View className="getintegral-body">
+        {SHOWINVITEUSER &&
         <View className="getintegral-item">
           <View className="getintegral-item-title">邀请工友获取积分</View>
           <View className="getintegral-item-content">
@@ -54,7 +55,7 @@ export default function GetIntegral() {
           >
             去邀请
           </View>
-        </View>
+        </View>}
         {!ios && (
           <View className="getintegral-item">
             <View className="getintegral-item-title">充值获取积分</View>

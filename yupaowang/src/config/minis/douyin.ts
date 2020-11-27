@@ -22,6 +22,8 @@ var USEGAODEMAPAPI: boolean = true
 var SHOWWEIXINNUMBER: boolean = false
 // * 是否显示关注公众号
 var SHOWOFFICIALACCOUNT: boolean = false
+// * 是否显示邀请好友链接
+var SHOWINVITEUSER: boolean = false
 
 
 // ! 百度系小程序 列表滚动必须设置值
@@ -43,5 +45,6 @@ module.exports = {
   SCROLLVIEWSETTOP,
   ISPARSEUPLOADIMG,
   SHOWOFFICIALACCOUNT,
-  SHOWWEIXINNUMBER
+  SHOWWEIXINNUMBER,
+  SHOWINVITEUSER
 }

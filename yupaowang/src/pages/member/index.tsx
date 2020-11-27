@@ -3,7 +3,7 @@ import { View, Image, Text } from '@tarojs/components'
 import { useSelector, useDispatch } from '@tarojs/redux'
 import { getMemberInfo, getMemberMsgNumber } from '../../utils/request'
 import { MemberInfo } from '../../utils/request/index.d'
-import { IMGCDNURL, AUTHPATH, CODEAUTHPATH, PUBLISHRESUME, PUBLISHEDRECRUIT, INVITEPATH, PROREQUESTURL, REQUESTURL } from '../../config'
+import { IMGCDNURL, AUTHPATH, CODEAUTHPATH, PUBLISHRESUME, PUBLISHEDRECRUIT, INVITEPATH, PROREQUESTURL, REQUESTURL, SHOWINVITEUSER } from '../../config'
 import { setMemberInfo } from '../../actions/member'
 import Msg, { ShowActionModal } from '../../utils/msg'
 import { UserMemberInfo } from '../../reducers/member'
@@ -165,11 +165,12 @@ export default function Member({memberIndex = 0}: MemberProps){
             <Text className='member-list-title'>获取积分</Text>
             {!ios && <Text className='member-list-tips'>去充值</Text>}
           </View>
+          {SHOWINVITEUSER &&
           <View className='member-list-item' onClick={() => userRouteJump(INVITEPATH)}>
             <Image className='member-list-icon' src={ IMGCDNURL + 'lpy/ucenter/newcenter-invite.png'} />
             <Text className='member-list-title'>邀请工友</Text>
             <Text className='member-list-tips'>邀请好友得积分</Text>
-          </View>
+          </View>}
           <View className='member-list-item' onClick={() => userRouteJump(`/pages/integral/tabber/index?info=1`)}>
             <Image className='member-list-icon' src={ IMGCDNURL + 'lpy/ucenter/newcenter-expend.png'} />
             <Text className='member-list-title'>积分消耗记录</Text>
@@ -199,11 +200,12 @@ export default function Member({memberIndex = 0}: MemberProps){
             </View>
             {model && model.member.has_notice_msg.hasNoticeMsg && <Text className='member-list-tips'>有最新回复</Text>}
           </View>
+          {SHOWINVITEUSER &&
           <View className='member-list-item' onClick={() => userRouteJump('/pages/help/index')} >
             <Image className='member-list-icon' src={ IMGCDNURL + 'lpy/ucenter/newcenter-help.png'} />
             <Text className='member-list-title'>帮助中心</Text>
             <Text className='member-list-tips'>使用教程</Text>
-          </View>
+          </View>}
           {PROREQUESTURL != REQUESTURL &&
           <View className='member-list-item' onClick={() => userClearSession()} >
             <Image className='member-list-icon' src={IMGCDNURL + 'lpy/ucenter/newcenter-set.png'} />

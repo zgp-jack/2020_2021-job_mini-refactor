@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-10-28 11:04:26
- * @LastEditTime: 2020-11-26 16:47:33
+ * @LastEditTime: 2020-11-27 19:22:59
  * @LastEditors: jsxin
  * @Description: In User Settings Edit
  * @FilePath: \yupaowang\src\config\minis\jizhao.ts
@@ -34,10 +34,13 @@ var SHOWWEIXINNUMBER: boolean = true
 var SHOWOFFICIALACCOUNT: boolean = true
 
 
+
 // ! 百度系小程序 列表滚动必须设置值
 var SCROLLVIEWSETTOP: boolean = false
 // ! 百度系小程序  上传图片 JSON解析数据
 var ISPARSEUPLOADIMG: boolean = true
+// * 是否显示邀请好友链接
+var SHOWINVITEUSER: boolean = true
 
 
 module.exports = {
@@ -53,5 +56,6 @@ module.exports = {
   SCROLLVIEWSETTOP,
   ISPARSEUPLOADIMG,
   SHOWWEIXINNUMBER,
-  SHOWOFFICIALACCOUNT
+  SHOWOFFICIALACCOUNT,
+  SHOWINVITEUSER
 }
