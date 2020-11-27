@@ -169,10 +169,13 @@ export default function PublishRecruit() {
     setclassMateArr(data)
     setShowProssion(false)
   }
+
+  const pickerDom = <Input className='publish-list-input' type='text' disabled placeholder='请选择招工城市'/>
+
   return (
     <Block>
       <Auth />
-      <CityPicker></CityPicker>
+      <CityPicker PickerDom={pickerDom}></CityPicker>
       {showProfession &&
         <ClassifyPicker
           hiddenPickerModel={closeProfession}

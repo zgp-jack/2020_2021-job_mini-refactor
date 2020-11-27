@@ -9,9 +9,9 @@ interface CityTownPicker {
   name: string
 }
 
-export default function CityPicker() {
+export default function CityPicker({PickerDom}) {
   const [cityPickerData, setCityPickerData] = useState<CityTownPicker[][]>([])
-
+  // cityi是选中的省的index
   const initCityData = (cityi: number) => {
     let copyArr = JSON.parse(JSON.stringify(AREAS))
     copyArr.splice(0, 1) // 切掉第一项 全国数据
@@ -27,7 +27,7 @@ export default function CityPicker() {
       parentArr.push(data)
       if (item.has_children) {
         let itemArr = item.children.map(({ id, pid, name }) => ({ id, pid, name }))
-        childArr.push(itemArr)
+        childArr.push(itemArr) 
       } else {
         childArr.push([data])
       }
@@ -52,6 +52,8 @@ export default function CityPicker() {
   }
 
   useEffect(() => {
+    console.log(PickerDom)
+    debugger
     initCityData(0)
   },[])
 
@@ -65,7 +67,7 @@ export default function CityPicker() {
         onChange={(e) => { onChange(e) }}
         onColumnChange={(e) => { onColumnChange(e) }}
       >
-        当前选择
+        {PickerDom}
       </Picker>
     </View>
   )
