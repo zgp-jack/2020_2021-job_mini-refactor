@@ -1,4 +1,4 @@
-import Taro, { Config, useDidShow, useState, useRouter } from '@tarojs/taro'
+import Taro, { Config, useDidShow, useState, useRouter,useEffect } from '@tarojs/taro'
 import { View, Text, Image, Input, ScrollView } from '@tarojs/components'
 import { IMGCDNURL } from '../../../config'
 import { hotAreas } from '../../../utils/request/index';
@@ -12,6 +12,9 @@ import { resume_topObj_arrStr } from '../../../utils/request/index.d';
 import { HistoryInfo } from '../../../config/store';
 import { setRecClickResumeTop } from '../../../actions/resume_top';
 import './index.scss'
+
+// 判断是否是第一次
+let first = false;
 
 export default function RecGion() {
   const dispatch = useDispatch();
@@ -38,6 +41,18 @@ export default function RecGion() {
   const [isHistory, setIsHistory] = useState<boolean>(false);
   // 索引
   const [index, setIndex] = useState<string>('');
+  useEffect(()=>{
+    if(first) return;
+    // 第一次进来的时候，滑动到第一个选择的位置
+    if (clickData.length>0){
+      first = true;
+      console.error(clickData[0]);
+      console.error(clickData)
+      setTimeout(()=>{
+        setIndex(`hot${clickData[0].pid}`);
+      },1000)
+    }
+  }, [areasData])
   useDidShow(() => {
     hotAreas().then((res => {
       if (res.errcode == 'ok') {
@@ -70,11 +85,13 @@ export default function RecGion() {
       }
     }
     setAreasData(data);
+    first = false;
     for (let i = 0; i < clickResumeTopObj.length; i++) {
       clickResumeTopObj[i].click = true;
     }
     // 所有点击的值
     setClickData([...clickResumeTopObj])
+
     // 获取历史记录
     const historyArr = Taro.getStorageSync(HistoryInfo);
     // 设置历史记录是否点击
@@ -345,6 +362,7 @@ export default function RecGion() {
     setHistory([]);
     setIsHistory(false);
   }
+  console.error(index,'index')
   return (
     <View className='region'>
       {!onFocus &&

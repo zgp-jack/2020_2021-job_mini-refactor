@@ -347,6 +347,7 @@ export default function RecRange() {
           title: '温馨提示',
           content: res.errmsg,
           confirmColor: '#009CFFFF',
+          showCancel: false,
           success: function () {
             Taro.navigateBack({
               delta: 1
@@ -406,6 +407,7 @@ export default function RecRange() {
           title: '温馨提示',
           content: res.errmsg,
           confirmColor: '#009CFFFF',
+          showCancel: false,
           success: function () {
             Taro.navigateBack({
               delta: 1
@@ -433,6 +435,7 @@ export default function RecRange() {
           title: '温馨提示',
           content: res.errmsg,
           confirmColor: '#009CFFFF',
+          showCancel: false,
           success: function () {
             Taro.navigateBack({
               delta: 1
@@ -475,7 +478,7 @@ export default function RecRange() {
             </View>
             :
             //  没选择
-            <View className='range-noChangeBtn' onClick={handleJump}>点击选择置顶范围 ></View>
+            <View className='range-noChangeBtn' onClick={handleJump}>点击选择置顶范围 `{'>'}`</View>
           }
         </View>
       </View>
