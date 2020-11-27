@@ -11,6 +11,7 @@ import Report from '../../../components/report';
 import { useSelector, useDispatch } from '@tarojs/redux'
 import Auth from '../../../components/auth'
 import classnames from 'classnames'
+import { User } from '../../../reducers/user'
 import { resumeDetailCertificatesRedux, resumeDetailProjectRedux } from '../../../utils/request/index.d';
 import { SubscribeToNews } from '../../../utils/subscribeToNews';
 import { setSubpackcertificate, setSubpackProject} from '../../../actions/resume_list';
@@ -21,6 +22,7 @@ export default function ResumeDetail() {
   const dispatch = useDispatch()
   // 获取用户是否登录
   const login = useSelector<any, boolean>(state => state.User['login'])
+  const user = useSelector<any, User>(state => state.User)
   const router: Taro.RouterInfo = useRouter()
   //获取uuid和location,location需要修改，用一个共同的，最外层使用的
   let { uuid, location } = router.params;
@@ -45,6 +47,7 @@ export default function ResumeDetail() {
       is_end:'',
       certificate_show:0,
       uuid:'',
+      user_uuid: '',
       gender:'',
       tags: [],
       distance:'',
@@ -594,6 +597,7 @@ export default function ResumeDetail() {
         <View className="seemore-recommend-recruit">查看更多找活信息</View>
       </View> */}
       {/* 底部 */}
+      {(!login || user.uuid != data.info.user_uuid) &&
       <View className='resumeDetail-footer'>
         <View className='resumeDetail-footer-box' onClick={resumeSupport}>
           <Image className="bossimg" src={praise === 0 ? `${IMGCDNURL}newresume-footer-star.png` : `${IMGCDNURL}newresume-footer-star-active.png`} />
@@ -610,6 +614,7 @@ export default function ResumeDetail() {
           <View>收藏</View>
         </View>
       </View>
+      }
       {/* 弹框 */}
         {shownewtips && 
         <View className="newdetail-fixedshadow">

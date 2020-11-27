@@ -131,7 +131,8 @@ export interface ResumeList {
   show_address: string,
   tags: string[],
   prof_degree: string,
-  time: string
+  time: string,
+  resume_top: number
 }
 
 // 二手列表数据
@@ -347,7 +348,7 @@ export interface MemberInfoMember {
 }
 
 export interface MemberInfoNoticeMsg {
-  hasNoticeMsgg: number
+  hasNoticeMsg: number
 }
 
 export interface MemberInfoResumeStatus {
@@ -1578,4 +1579,12 @@ export interface memberTurntableType extends TurntableIndexTypePortion {
 export interface addResumeData {
   errcode: number
   errmsg: string
+}
+
+// 百度支付状态检测
+export interface BaiduOrderStatus extends Result{
+  data: {
+    tpOrderId: string,
+    order_status: number
+  }
 }

@@ -1154,6 +1154,15 @@ export function updataPassword(data): Promise<Inter.Result> {
   })
 }
 
+// 用户设置密码
+export function userSetPassword(data): Promise<Inter.Result> {
+  return doRequestAction({
+    url: api.userSetPassword,
+    method: 'POST',
+    failToast: true,
+    data
+  })
+}
 
 // 实名查询
 export function queryAction(params): Promise<Inter.userQueryAuthInfoData> {
@@ -1216,6 +1225,15 @@ export function memberTurntable():Promise<Inter.memberTurntableType>{
 export function getBaiduTpOrderId(data): Promise<any>{
   return doRequestAction({
     url: api.getBaiduTpOrderId,
+    method: 'POST',
+    data
+  })
+}
+
+// 校验百度支付是否成功
+export function checkBaiduOrderStatusAction(data): Promise<Inter.BaiduOrderStatus>{
+  return doRequestAction({
+    url: api.checkBaiduTpOrderId,
     method: 'POST',
     data
   })

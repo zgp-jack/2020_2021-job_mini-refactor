@@ -51,7 +51,7 @@ export default function ResumeLists() {
     page: 1,
     occupations: '',
     keywords: '',
-    sort: 'newest',
+    sort: 'recommend',
     location: '',
     area_id: userListChooseCity ? userListChooseCity.id : '',
     type: '',

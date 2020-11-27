@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-10-28 11:04:26
- * @LastEditTime: 2020-11-25 14:49:56
+ * @LastEditTime: 2020-11-26 16:47:33
  * @LastEditors: jsxin
  * @Description: In User Settings Edit
  * @FilePath: \yupaowang\src\config\minis\jizhao.ts
@@ -27,7 +27,7 @@ var TEXTAREAMAXLENGTH: number = 500
 // * 应用内是否存在下载APP引流
 var DOWNLOADAPP: boolean = true
 // * 是否支持高德地图api
-var USEGAODEMAPAPI: boolean = false
+var USEGAODEMAPAPI: boolean = true
 // * 是否显示加工友微信号
 var SHOWWEIXINNUMBER: boolean = true
 // * 是否显示关注公众号

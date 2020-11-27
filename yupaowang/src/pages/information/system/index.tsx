@@ -112,7 +112,11 @@ export default function System (){
     })  
   }
   // 用户页面跳转
-  const userRouteJump = (type:number) => {
+  const userRouteJump = (type:number, index: number) => {
+    let lists = JSON.parse(JSON.stringify(data.item))
+    let time: number = new Date().getTime()
+    lists[index].read_time = time
+    setData({item: [...lists]})
     Taro.navigateTo({
       url: newmessageinfo[type].url
     })
@@ -126,11 +130,11 @@ export default function System (){
   return(
     <View>
       {!data.item.length && <Nodata />}
-      {data.item.map((item)=>(
+      {data.item.map((item,index)=>(
         <View
           className='system-lists'
           key={item.id}
-          onClick={() => userRouteJump(item.type)}>
+          onClick={() => userRouteJump(item.type, index)}>
           <View className='system-lists-top'>
             <View className='system-num' >
               <Image src={item.image_url} className='system-num-img' />

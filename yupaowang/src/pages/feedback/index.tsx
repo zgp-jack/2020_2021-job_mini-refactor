@@ -97,7 +97,7 @@ export default function Feedback() {
       return false
     }
     const params = {
-      images,
+      images: images.join(','),
       content: textarea,
       username:name,
       tel:uphone,

@@ -1,14 +1,14 @@
 import Taro, { useState, useEffect } from '@tarojs/taro'
 import { View, Image, Text } from '@tarojs/components'
 import { useSelector, useDispatch } from '@tarojs/redux'
-import { getMemberInfo } from '../../utils/request'
+import { getMemberInfo, getMemberMsgNumber } from '../../utils/request'
 import { MemberInfo } from '../../utils/request/index.d'
 import { IMGCDNURL, AUTHPATH, CODEAUTHPATH, PUBLISHRESUME, PUBLISHEDRECRUIT, INVITEPATH, PROREQUESTURL, REQUESTURL } from '../../config'
 import { setMemberInfo } from '../../actions/member'
 import Msg, { ShowActionModal } from '../../utils/msg'
 import { UserMemberInfo } from '../../reducers/member'
 import { loginOut } from '../../actions/user'
-import { resetMsg } from '../../actions/msg'
+import { resetMsg, setMsg } from '../../actions/msg'
 import { isIos } from '../../utils/v'
 import './index.scss'
 import { UserInfo } from '../../config/store'
@@ -58,6 +58,9 @@ export default function Member({memberIndex = 0}: MemberProps){
       else ShowActionModal({
         msg: data.errmsg
       })
+    })
+    getMemberMsgNumber(isIos()).then(data => {
+      if (data.errcode == 'ok') dispatch(setMsg(data.data))
     })
   }
 
@@ -192,9 +195,9 @@ export default function Member({memberIndex = 0}: MemberProps){
             <Image className='member-list-icon' src={ IMGCDNURL + 'lpy/ucenter/newcenter-feedback.png'} />
             <View className='member-list-title'>
               <Text>意见反馈</Text>
-              {model && model.member.has_notice_msg.hasNoticeMsgg && <Text className='member-list-dot'></Text>}
+              {model && model.member.has_notice_msg.hasNoticeMsg && <Text className='member-list-dot'></Text>}
             </View>
-            {model && model.member.has_notice_msg.hasNoticeMsgg && <Text className='member-list-tips'>有最新回复</Text>}
+            {model && model.member.has_notice_msg.hasNoticeMsg && <Text className='member-list-tips'>有最新回复</Text>}
           </View>
           <View className='member-list-item' onClick={() => userRouteJump('/pages/help/index')} >
             <Image className='member-list-icon' src={ IMGCDNURL + 'lpy/ucenter/newcenter-help.png'} />

@@ -27,6 +27,7 @@ export default function ResumeList({ data, bottom = true, hasMore = true }: PROP
         <Block key={`${di}-${di}`}>
           {item && item.map((d)=>(
             <View className='resume-list-item' key={d.id} onClick={() => userRouteJump(d.uuid)}>
+              {d.resume_top && <Image className='list-topresume-img' src={IMGCDNURL + 'newlist-jobzd.png'} />}
               <View className='resume-list-header'>
                 <Image className='resume-list-user' src={ d.headerimg } />
                 <View className='resume-list-userinfo'>

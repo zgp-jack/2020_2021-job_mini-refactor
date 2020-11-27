@@ -11,14 +11,17 @@ interface TabListType {
   item: newsTypesListData[]
 }
 interface InitPageType {
+  newsType: string
   page: number
 }
 export default function InvitePage() {
+  const defaultCurrent: string = '-1'
   // 默认table
-  const [current, setCurrent] = useState<string>('-1')
+  const [current, setCurrent] = useState<string>(defaultCurrent)
   // 页数
-  const [initPage, setInitPage] = useState<InitPageType>({
+  const [searchData, setSearchData] = useState<InitPageType>({
     page: 1,
+    newsType: defaultCurrent
   })
   //  没有数据显示内容
   const [noData, setNodata] = useState<string>('暂无相关资讯')
@@ -29,11 +32,12 @@ export default function InvitePage() {
   // 设置滚动未知
   const [scrollLeft, setScrollLeft] = useState<number>(0)
   const handleTable = (id: string, name: string, index: number) => {
+    console.log(id, name, index)
+    setPull(true)
+    setNodata(name)
     setScrollLeft(index * 80)
     setCurrent(id);
-    setNodata(name)
-    setInitPage({ page: 1 })
-    setPull(true)
+    setSearchData({ ...searchData, page: 1, newsType: id })
     Taro.pageScrollTo({
       scrollTop: 0
     })
@@ -49,22 +53,19 @@ export default function InvitePage() {
   }, [])
   // 获取新闻列表
   useEffect(() => {
-    const params = {
-      page: initPage.page,
-      newsType: current,
-    }
-    newListAction(params).then(res => {
+    console.log(searchData)
+    newListAction(searchData).then(res => {
       Taro.hideNavigationBarLoading()
       if (!res.data.length) {
         setPull(false)
       }
-      if (params.page === 1) {
+      if (searchData.page === 1) {
         setList([...res.data])
       } else {
         setList([...list, ...res.data])
       }
     })
-  }, [current, initPage])
+  }, [searchData])
   // 用户页面跳转
   const userRouteJump = (url: string) => {
     Taro.navigateTo({
@@ -73,7 +74,7 @@ export default function InvitePage() {
   }
   useReachBottom(() => {
     if (pull) {
-      setInitPage({ page: initPage.page + 1 })
+      setSearchData({ ...searchData, page: searchData.page + 1 })
     }
   })
 
@@ -91,7 +92,7 @@ export default function InvitePage() {
       >
         <View className='invite-tab'>
           {tab.item && tab.item.map((item, i) => (
-            <View key={item.index} className='invite-tab-box' onClick={() => { handleTable(item.index, item.name, i) }}>
+            <View key={item.index} className='invite-tab-box' onClick={() => handleTable(item.index, item.name, i)}>
               <View className={classnames({
                 'invite-tab-active': item.index === current
               })}>
@@ -101,8 +102,8 @@ export default function InvitePage() {
           ))}
         </View>
       </ScrollView>
-      {!list.length && <Nodata text={noData} />}
       <View className='invite-content-box'>
+        {!list.length && <Nodata text={`暂无${noData}`} />}
         {list && list.map((v) => (
           <View key={v.id} className='invite-content' onClick={() => userRouteJump(`/pages/static/notice/index?id=${v.id}`)}>
             <View>
