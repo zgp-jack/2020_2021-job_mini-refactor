@@ -93,13 +93,15 @@ export default function Recruit(){
 
   // 请求列表方法
   const getRecruitListAction = ()=> {
+    // 判断搜索的时候把内容清空回到顶部，再设置值
+    if (searchData.page === 1) setLists([]);
     getRecruitList(searchData).then(res => {
       if(res.errcode == 'ok'){
         if (res.data) {
           Taro.hideNavigationBarLoading()
           if (!res.data.length) setHasMore(false)
           if (searchData.page === 1){
-            goToScrollTop()
+            console.error(231321);
             setLists([[...res.data]])
           }else{
             setLists([...lists, [...res.data]])
@@ -188,8 +190,8 @@ export default function Recruit(){
         className='recruit-lists-containerbox' 
         scrollY
         refresherEnabled
-        scrollTop={scrollTop}
-        onScroll={(e) => setScrollTopAction(e)}
+        // scrollTop={scrollTop}
+        // onScroll={(e) => setScrollTopAction(e)}
         scrollWithAnimation
         refresherTriggered={ refresh }
         onRefresherRefresh={() => pullDownAction()}
