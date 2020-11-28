@@ -1,5 +1,5 @@
 import Taro, { useEffect, useState } from '@tarojs/taro'
-import { View, Text } from '@tarojs/components'
+import { View, Text, Block } from '@tarojs/components'
 import { useSelector, useDispatch } from '@tarojs/redux'
 import changeWechatNotice from '../../actions/wechat_notice'
 import SUCCESS from '../../constants/wechat_notice'
@@ -9,6 +9,7 @@ import { BannerNoticeNotice } from '../../utils/request/index.d'
 import SwiperNews from '../../components/swiper/news'
 import { IProps } from '../../components/swiper/index'
 import { copyWechatNumber, userCallPhone } from '../../utils/helper'
+import { SHOWWEIXINNUMBER } from '../../config'
 import './index.scss'
 
 export default function WechatNotice(){
@@ -51,11 +52,15 @@ export default function WechatNotice(){
   return (
     <View className='wechatinfo-container'>
       <View className='wechat-container'>
+        {SHOWWEIXINNUMBER &&
+        <Block>
         <Text className='wechat-addgroup'>加群：</Text>
         加工友微信号：
         <Text className='wechat-text' onClick={() => userCopyWechatNumber() }>{ wechatNoticeData.wechat.number }</Text>
         <Text className='wechat-btn' onClick={() => userCopyWechatNumber()} >复制</Text>
-        拉你进招工找活群。客服电话：
+        拉你进招工找活群。
+        </Block>}
+        客服电话：
         <Text className='wechat-text' onClick={() => userCallPhoneAction() } >{ wechatNoticeData.phone }</Text>
         <Text className='wechat-btn' onClick={() => userCallPhoneAction() } >呼叫</Text>
       </View>

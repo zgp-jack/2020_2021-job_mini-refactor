@@ -31,7 +31,7 @@ export function MyAreaInfo(state: UserLastPublishRecruitArea = DEFAULT_STATE_ARE
       return state
   }
 }
-export function MyArea(state:string = DEFAULT_STATE_AREA, action: ACTIONTYPE){
+export function MyArea(state: AreaData = DEFAULT_STATE_AREA, action: ACTIONTYPE){
     switch (action.type) {
         case GETAREA:
           return state;

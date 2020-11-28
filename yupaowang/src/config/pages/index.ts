@@ -7,14 +7,15 @@ interface TabbarItem {
 }
 
 interface IndexTabbarConfig {
-  [HOME]: TabbarItem,
-  [RECRUIT]: TabbarItem,
-  [RESUME]: TabbarItem,
-  [MEMBER]: TabbarItem,
+  [key: string]: TabbarItem
+  // [HOME]: TabbarItem,
+  // [RECRUIT]: TabbarItem,
+  // [RESUME]: TabbarItem,
+  // [MEMBER ]: TabbarItem,
 }
 
 const IndexTabbarConfig: IndexTabbarConfig = {
-  'home': {
+  [HOME]: {
     navigationBarTitleText: '首页',
     enablePullDownRefresh: true
   },

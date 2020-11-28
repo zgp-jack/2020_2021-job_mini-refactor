@@ -5,6 +5,8 @@ import { MAXCACHECITYNUM, IMGCDNURL } from '../../config'
 import { HistoryCities } from '../../config/store'
 import AREAS from '../../models/area'
 import { objDeepCopy } from '../../utils/helper'
+import { useDispatch } from '@tarojs/redux'
+import { setArea } from '../../actions/recruit'//获取发布招工信息action
 import './index.scss'
 
 export interface IPROPS {
@@ -37,7 +39,8 @@ export default function Cities({
   const [text, setText] = useState<string>('')
   const [inputCity, setInputCity] = useState<AllAreasInputDataItem[]>([])
   const [saveAreaData, setSaveAreaData] = useState<AllAreasInputDataItem[]>([])
-
+  // 获取dispatch分发action
+  const dispatch = useDispatch()
   // 用户点击城市
   const userTapCity = (city: AllAreasDataItem)=> {
     let historyCities: AllAreasDataItem[] = Taro.getStorageSync(HistoryCities)
@@ -50,6 +53,8 @@ export default function Cities({
     }else{
       historyCities = [city]
     }
+    // 用户切换城市
+    dispatch(setArea({ name: city.city, ad_name: city.ad_name }))
     // 储存最新的用户点击历史城市数据
     Taro.setStorageSync(HistoryCities,historyCities)
     userChangeCity && userChangeCity(city.city, city)

@@ -4,7 +4,7 @@ import { getPublishRecruitView, publishRecruitInfo} from '../../utils/request'
 import { InitRecruitView } from '../../pages/recruit/publish'
 import { UserLastPublishArea, UserLocationCity } from '../../config/store'
 import { USEGAODEMAPAPI } from '../../config'
-import { UserLocationPromiss, AREABEIJING, getAreaCurrentArr, getCityAreaPicker, SimpleChildItems } from '../../models/area'
+import { UserLocationPromiss, AREABEIJING, getAreaCurrentArr, getCityAreaPicker, SimpleChildItems, getCityInfoById, getCityInfo } from '../../models/area'
 import { userAuthLoction } from '../../utils/helper'
 import Msg, { ShowActionModal } from '../../utils/msg'
 import { SubscribeToNews } from '../../utils/subscribeToNews';
@@ -18,6 +18,7 @@ export default function usePublishViewInfo(InitParams: InitRecruitView){
   const login = useSelector<any, boolean>(state => state.User['login'])
   // 视图显示信息
   const [model, setModel] = useState<RecruitModelInfo>({
+    title: '',
     detail: ''
   } as RecruitModelInfo)
   // 是否展开图片上传
@@ -131,15 +132,18 @@ export default function usePublishViewInfo(InitParams: InitRecruitView){
   function initUserAreaInfo(data: any){
     //  如果传递参数有infoid代表是修改，保存修改的里面默认区域数据
     if (InitParams.infoId){ 
-      dispatch(setArea({ name: data.default_search_name.name, ad_name: data.default_search_name.name + "市"}))
+      let area = getCityInfoById(data.default_search_name.id)
+      dispatch(setArea({ name: area.name, ad_name: area.ad_name}))
     }else{
       let userLoctionCity: UserLocationPromiss = Taro.getStorageSync(UserLocationCity)
       if(userLoctionCity){
-        dispatch(setArea({ name: userLoctionCity.city, ad_name: userLoctionCity.city+"市"}))
+        let area = getCityInfo(userLoctionCity,1)
+        dispatch(setArea({ name: area.name, ad_name: area.ad_name}))
       }else{
         userAuthLoction()
         .then(res=>{
-          dispatch(setArea({ name: res.city, ad_name: res.city+"市"}))
+          let area = getCityInfo(res, 1)
+          dispatch(setArea({ name: area.name, ad_name: area.ad_name}))
         }).catch(()=>{
           dispatch(setArea({ name: AREABEIJING.name, ad_name: AREABEIJING.ad_name}))
         })
@@ -211,7 +215,7 @@ export default function usePublishViewInfo(InitParams: InitRecruitView){
     let mydata = JSON.parse(JSON.stringify(data))
     let imgs: string = mydata.images.join(',')
     let classifies: string = mydata.classifies.join(',')
-    mydata = {...mydata, images: imgs, classifies: classifies}
+    mydata = { ...mydata, images: imgs, classifies: classifies, location: areaInfo.location}
     return mydata
   }
 
