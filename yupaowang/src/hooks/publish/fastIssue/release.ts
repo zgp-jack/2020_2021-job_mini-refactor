@@ -20,13 +20,11 @@ export default function useRelease () {
   const recruitInfo: RecruitInfo = useSelector<any, RecruitInfo>(state => state.RecruitAction)
   // 工种数据、匹配库、不匹配库,最大工种选择数，最大图片上传数
   const { classifyTree, mateData, noMateData, maxClassifyCount, maxImageCount } = publishData
-  // 将工种数据放入当前状态
-  const [classifies, setClassifies] = useState<SelectedClassfies[]>(classifyTree)
   // 工种文本数据
   const [selectText, setSelectText] = useState<string>('')
-  // 选中的工种字段
+  // 选中的工种字段[id,id,id]
   const [selectedClassifies, setSelectedClassifies] = useState<string[]>([])
-  // 选择工种字段
+  // 选择工种字段[{id:xx,name:xx}]
   const [choceClassfies, setChoceClassfies] = useState<RulesClassfies[]>([])
   // 是否展开图片上传
   const [showUpload, setShowUpload] = useState<boolean>(false)
@@ -89,41 +87,6 @@ export default function useRelease () {
     setSelectText(selectText)
     setSelectedClassifies(selectWorkType)
   }
-  // 匹配的工种数量
-  function countWorkNum(data: RulesClassfies[]) {
-    //根据详情匹配工种字段
-    let choceClassfiesData: RulesClassfies[] = data
-    //匹配工种字段与用户选择工种字段组成一个数组
-    let ClassifyidsAll: RulesClassfies[] = [...choceClassfiesData]
-    //返回所有工种字段id数组
-    let ClassifyAllids: string[] = ClassifyidsAll.map(item => item.id)
-    //rulesClassifyids数组长度
-    let ruleLen: number = ClassifyAllids.length
-    let classifyids: SelectedClassfies[] = classifies
-    //所有工种数组长度
-    let len: number = classifyids.length
-    //如果既没有选择工种也没有匹配工种那么就将num置为0
-    if (!ruleLen) {
-      classifyids.forEach(function (item) {
-        if (item.num) {
-          item.num = 0
-        }
-      })
-    }
-    //记录选择或者详情匹配工种的数量
-    for (let i = 0; i < len; i++) {
-      let data = classifyids[i].children
-      let inum = 0
-      for (let j = 0; j < data.length; j++) {
-        let has = ClassifyAllids.indexOf(data[j].id)
-        if (has !== -1) {
-          inum++
-        }
-        classifyids[i].num = inum
-      }
-    }
-    setClassifies(classifyids)
-  }
   // 初始化匹配工种
   function initWorkType() {
     Taro.showLoading({
@@ -150,8 +113,6 @@ export default function useRelease () {
     let needArr: RulesClassfies[] = [];
     // 如果没有详情内容直接返回
     if (!content) {
-      countWorkNum([])
-      // getWorkText()
       Taro.hideLoading()
       return false;
     }
@@ -189,7 +150,6 @@ export default function useRelease () {
     }
     // 否则将匹配的数据长度等于总长度减去用户选择的长度
     needArr.splice(maxWorkNum)
-    countWorkNum(needArr)
     selectWorkType(needArr)
     Taro.hideLoading()
   }
@@ -225,12 +185,11 @@ export default function useRelease () {
     })
   }
   return {
-    classifies,
+    classifyTree,
     selectText,
     maxClassifyCount,
     choceClassfies,
     selectWorkType,
-    countWorkNum,
     showUpload,
     setShowUpload,
     image,

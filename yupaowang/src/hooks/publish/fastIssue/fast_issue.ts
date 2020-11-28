@@ -1,4 +1,4 @@
-import { usePublishData } from '../issue'
+import { usePublishData } from '../commonIssue'
 import Taro, { useState, useEffect } from '@tarojs/taro'
 import { isVaildVal, isPhone } from '../../../utils/v'
 import { ShowActionModal } from '../../../utils/msg'
@@ -34,6 +34,10 @@ export function useFastIssue() {
   // 获取dispatch分发action
   const dispatch = useDispatch()
 
+  // 初始化电话号码
+  useEffect(()=>{
+    setTelPhone(phone)
+  },[phone])
   // 监听输入电话或者详情变化，存入缓存
   useEffect(() => {
     if (dataType == 'phone') {
@@ -43,6 +47,7 @@ export function useFastIssue() {
       setEnterInfo(dataType, content)
     }
   }, [dataType,telPhone, content])
+  // 设置匹配到电话号码设置缓存
   useEffect(() => {
     setEnterInfo("phone", telPhone)
   },[telPhone])

@@ -61,12 +61,12 @@ export function usePublishData(InitParams: InitRecruitView){
           classifyTree: res.classifyTree,
           mateData: res.mate_data,
           noMateData: res.not_mate_data,
-          user_mobile: res.memberInfo.tel,
+          user_mobile: InitParams.infoId ? userPhone : res.memberInfo.tel ,
           maxClassifyCount: res.typeTextArr.maxClassifyCount,
           maxImageCount: res.typeTextArr.maxImageCount,
           placeholder: res.placeholder,
           defaultSearchName: { id: defaultArea.id, name: defaultArea.name, ad_name: defaultArea.ad_name },
-          reqStatus: true
+          reqStatus: InitParams.infoId ? reqStatus: true
         }
         // 发布招工获取的数据
         let initIssueModel: RecruitWorkInfo = {
@@ -90,10 +90,10 @@ export function usePublishData(InitParams: InitRecruitView){
         }
         // 将数据存到redux中
         dispatch(setPublishData({ ...InitViewInfo }))
+        // 保存手机号
+        setPhone(reqStatus ? userPhone : initIssueModel.user_mobile)
         // 数据保存到model中
         setModel(initIssueModel)
-        // 保存手机号
-        setPhone(initIssueModel.user_mobile)
         if (InitParams.infoId){
           dispatch(setAreaInfo({
             title: res.model.address,

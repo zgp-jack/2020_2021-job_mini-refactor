@@ -11,7 +11,7 @@ import { useSelector, useDispatch } from '@tarojs/redux'
 import { isVaildVal, isPhone } from '../../utils/v'
 import { setAreaInfo, setArea } from '../../actions/recruit'//获取发布招工信息action
 import { RulesClassfies } from '../../components/classfiy_picker/index'
-import { usePublishData } from './issue'
+import { usePublishData } from './commonIssue'
 import { ProfessionRecruitData } from '../../components/profession/index.d'
 
 

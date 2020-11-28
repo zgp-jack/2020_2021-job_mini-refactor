@@ -12,7 +12,7 @@ import './index.scss'
 
 export default function FastIssue() {
   // 获取发布招工hook数据
-  const { classifies, selectText, maxClassifyCount, choceClassfies, selectWorkType, countWorkNum, setShowUpload, showUpload, image, setImage, maxImageCount, pulishFindWorker } = useRelease()
+  const { classifyTree, selectText, maxClassifyCount, choceClassfies, selectWorkType, setShowUpload, showUpload, image, setImage, maxImageCount, pulishFindWorker } = useRelease()
 
   // 发布招工redux数据
   const recruitInfo: RecruitInfo = useSelector<any, RecruitInfo>(state => state.RecruitAction)
@@ -35,7 +35,6 @@ export default function FastIssue() {
   }
   function selectClassfy(data: RulesClassfies[]) {
     selectWorkType(data)
-    countWorkNum(data)
     setShowPicker(false)
   }
   // 切换上传图片
@@ -81,7 +80,7 @@ export default function FastIssue() {
         </View>
         <View className="issue-box" onClick={() => showWorkType()}>
           <Text>所需工种：</Text>
-          {selectText ? <View className="input-item-text">{selectText}</View> : <Input placeholder="请选择工种（可多选）" className="issue-input"></Input>}
+          {selectText ? <View className="input-item-text">{selectText}</View> : <Input placeholder="请选择工种（可多选）" disabled={true} className="issue-input"></Input>}
         </View>
         <View className="issue-form-upload">
           <View className="issue-form-header">
@@ -110,7 +109,7 @@ export default function FastIssue() {
         <Button className="issue-code-btn" onClick={()=>recuritFindWork()}>确认发布</Button>
       </View>
       {showPicker ? <ClassifyPicker
-        classifies={classifies}
+        classifies={classifyTree}
         hiddenPickerModel={hiddenPickerModel}
         selectClassfy={selectClassfy}
         maxClassifyCount={maxClassifyCount}
