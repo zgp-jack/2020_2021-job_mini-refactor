@@ -29,9 +29,6 @@ var SHOWINVITEUSER: boolean = false
 // * 详情是否需要替换微信关键词
 var REPLACEWEIXINTEXT: boolean = false
 
-
-// ! 百度系小程序 列表滚动必须设置值
-var SCROLLVIEWSETTOP: boolean = false
 // ! 百度系小程序  上传图片 JSON解析数据
 var ISPARSEUPLOADIMG: boolean = true
 
@@ -47,7 +44,6 @@ module.exports = {
   TEXTAREAMAXLENGTH,
   DOWNLOADAPP,
   USEGAODEMAPAPI,
-  SCROLLVIEWSETTOP,
   ISPARSEUPLOADIMG,
   SHOWOFFICIALACCOUNT,
   SHOWWEIXINNUMBER,

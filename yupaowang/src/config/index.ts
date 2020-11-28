@@ -13,7 +13,7 @@ export const PREREQUESTURL: string = 'http://miniapi.kkbbi.com/'
 // * 正式站
 export const PROREQUESTURL: string = 'https://newyupaomini.54xiaoshuo.com/' 
 // * 当前程序使用的请求地址
-export const REQUESTURL: string = DEVREQUESTURL
+export const REQUESTURL: string = PROREQUESTURL
 // * 默认上传图片
 export const UPLOADIMGURL: string = `${PROREQUESTURL}index/upload/`
 // * 阿里云CDN域名
@@ -98,8 +98,6 @@ export const TEXTAREAMAXLENGTH: number = MINICONFIG.TEXTAREAMAXLENGTH
 export const DOWNLOADAPP: boolean = MINICONFIG.DOWNLOADAPP
 // * 是否能够使用高德地区api
 export const USEGAODEMAPAPI: boolean = MINICONFIG.USEGAODEMAPAPI
-// * scroll-view滚动过程中是否保存高度值
-export const SCROLLVIEWSETTOP: boolean = MINICONFIG.SCROLLVIEWSETTOP
 // * 上传图片 是否需要使用JSON解析数据
 export const ISPARSEUPLOADIMG: boolean = MINICONFIG.ISPARSEUPLOADIMG
 // * 是否显示加工友微信号

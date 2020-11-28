@@ -10,7 +10,7 @@ import { RecruitListItem } from '../../../utils/request/index.d'
 import { UserLocationPromiss, ChildItems, AREACHINA, getCityInfo } from '../../../models/area'
 import { UserListChooseCity, UserLocationCity } from '../../../config/store'
 import { userAuthLoction } from '../../../utils/helper'
-import { PUBLISHRECRUIT, SCROLLVIEWSETTOP } from '../../../config'
+import { PUBLISHRECRUIT } from '../../../config'
 import { AreaPickerKey, ClassifyPickerKey, FilterPickerKey } from '../../../config/pages/lists'
 import './index.scss'
 import Msg from '../../../utils/msg'
@@ -34,8 +34,6 @@ export default function Recruit(){
     { id: ClassifyPickerKey, text: '全部分类' },
     { id: FilterPickerKey, text: '最新' }
   ])
-  // * scrollTop 位置 回到顶部
-  const [scrollTop,setScrollTop] = useState<number>(0)
   // * 标记是否是在刷新状态
   const [refresh, setRefresh] = useState<boolean>(false)
   // * 定义列表数组
@@ -93,15 +91,13 @@ export default function Recruit(){
 
   // 请求列表方法
   const getRecruitListAction = ()=> {
-    // 判断搜索的时候把内容清空回到顶部，再设置值
-    if (searchData.page === 1) setLists([]);
+    if (searchData.page == 1) setLists([])
     getRecruitList(searchData).then(res => {
+      Taro.hideNavigationBarLoading()
       if(res.errcode == 'ok'){
         if (res.data) {
-          Taro.hideNavigationBarLoading()
           if (!res.data.length) setHasMore(false)
-          if (searchData.page === 1){
-            console.error(231321);
+          if (searchData.page === 1) {
             setLists([[...res.data]])
           }else{
             setLists([...lists, [...res.data]])
@@ -156,28 +152,9 @@ export default function Recruit(){
     }
   }
 
-  // scroll-view 回到顶部
-  const goToScrollTop = () => {
-    setHasMore(true)
-    // ! 如果小程序必须监听滚动值 返回顶部直接为0 ，如果不需要我们就给个近似值 来达到效果
-    if(SCROLLVIEWSETTOP){
-      setScrollTop(0)
-      return
-    }
-    setScrollTop(scrollTop ? 0 : 0.01)
-  }
-
   // 输入搜索关键词
   const setSearchValData = () => {
     setSearchData({ ...searchData, keywords: remark, page: 1 })
-  }
-  // scroll-view 滚动操作
-  const setScrollTopAction = (e) => {
-    // ! 如果小程序必须监听onScroll滚动值 那么就设置 例如百度小程序
-    if (SCROLLVIEWSETTOP){
-      let top = e.detail.scrollTop
-      setScrollTop(top)
-    }
   }
 
   return (
@@ -190,8 +167,6 @@ export default function Recruit(){
         className='recruit-lists-containerbox' 
         scrollY
         refresherEnabled
-        // scrollTop={scrollTop}
-        // onScroll={(e) => setScrollTopAction(e)}
         scrollWithAnimation
         refresherTriggered={ refresh }
         onRefresherRefresh={() => pullDownAction()}
