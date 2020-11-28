@@ -4,6 +4,7 @@ import WechatNotice from '../../../components/wechat'
 import { getUsedInfo } from '../../../utils/request'
 import { getUserShareMessage } from '../../../utils/helper'
 import { ShowActionModal } from '../../../utils/msg'
+import { REPLACEWEIXINTEXT, FILTERWEIXINREG } from '../../../config'
 import { GetUsedInfoData } from '../../../utils/request/index.d'
 import './index.scss'
 
@@ -90,7 +91,7 @@ export default function UsedInfo(){
           <View className='usedinfo-item-title'>要求/备注</View>
         </View>
         <View className='usedinfo-item usedinfo-full-item clearfix'>
-          <View className='usedinfo-item-title'>{ model&&model.detail }</View>
+          <View className='usedinfo-item-title'>{model ? (REPLACEWEIXINTEXT ? model.detail.replace(FILTERWEIXINREG,'') : model.detail) : '' }</View>
         </View>
       </View>
     </View>

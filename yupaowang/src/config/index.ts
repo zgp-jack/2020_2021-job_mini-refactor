@@ -13,7 +13,7 @@ export const PREREQUESTURL: string = 'http://miniapi.kkbbi.com/'
 // * 正式站
 export const PROREQUESTURL: string = 'https://newyupaomini.54xiaoshuo.com/' 
 // * 当前程序使用的请求地址
-export const REQUESTURL: string = PROREQUESTURL
+export const REQUESTURL: string = DEVREQUESTURL
 // * 默认上传图片
 export const UPLOADIMGURL: string = `${PROREQUESTURL}index/upload/`
 // * 阿里云CDN域名
@@ -67,19 +67,23 @@ export const DownloadApp: string ='https://android.myapp.com/myapp/detail.htm?ap
 // * 邀请好友
 export const INVITEPATH: string = '/pages/static/invite/index'
 
-
-// ! 所有小程序列表
+// ! 所有小程序公司体系集合
 // 百度
-export const BAIDU: string = 'baidu'
-// 抖音
-export const DOUYIN: string = 'douyin'
-
+export const BAIDUSERIES: string = 'baidu'
+// 字节
+export const ZIJIESERIES: string = 'zijie'
+// 微信
+export const WEIXINSERIES: string = 'weixin'
+// QQ
+export const QQSERIES: string = 'qq'
 
 // ! 以下内容为每个小程序独立配置  
 // * page-title-global
 export const PAGETITLE: string = MINICONFIG.PAGETITLE
 // * 小程序token 
 export const TOKEN: string = MINICONFIG.TOKEN
+// * 小程序公司体系
+export const SERIES: string = MINICONFIG.SERIES
 // * 小程序广告unitid
 export const UNITID: string = MINICONFIG.UNITID
 // * 小程序邀请key
@@ -104,3 +108,9 @@ export const SHOWWEIXINNUMBER: boolean = MINICONFIG.SHOWWEIXINNUMBER
 export const SHOWOFFICIALACCOUNT: boolean = MINICONFIG.SHOWOFFICIALACCOUNT
 // * 是否显示邀请好友
 export const SHOWINVITEUSER: boolean = MINICONFIG.SHOWINVITEUSER
+// * 是否替换微信类关键词
+export const REPLACEWEIXINTEXT: boolean = MINICONFIG.REPLACEWEIXINTEXT
+
+
+// 去除微信文本正则
+export const FILTERWEIXINREG: RegExp = /[微信|vx|VX|Vx|vx|v❤]/g

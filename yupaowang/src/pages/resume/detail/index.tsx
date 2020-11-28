@@ -1,7 +1,7 @@
 import Taro, { Config, useState, useRouter, useShareAppMessage, useDidShow, useEffect } from '@tarojs/taro'
 import { View, Text, Image, Button } from '@tarojs/components'
 import { resumeDetailAction, recommendListAction, resumesGetTelAcrion, resumeSupportAction, resumeCollectAction, resumesComplainAction } from '../../../utils/request/index'
-import { IMGCDNURL, ISCANSHARE } from '../../../config'
+import { IMGCDNURL, ISCANSHARE, FILTERWEIXINREG, REPLACEWEIXINTEXT } from '../../../config'
 import Msg, { ShowActionModal, showModalTip } from '../../../utils/msg'
 import { DataType, ListType, Injected } from './index.d'
 // import CollectionRecruitList  from '../../../components/recommendList/index'
@@ -468,7 +468,7 @@ export default function ResumeDetail() {
         </View>
       </View>
       <View className='resumeDetail-introduce'>
-        {data.info.introduce||'暂未填写'}
+          {data.info.introduce ? (REPLACEWEIXINTEXT ? data.info.introduce.replace(FILTERWEIXINREG, '') : data.info.introduce) : '暂未填写'}
       </View>
       {/* 项目经验 */}
       {data.project.length &&

@@ -2,8 +2,10 @@
 
 // * page-title-global
 var PAGETITLE: string = '鱼泡网-'
-// * 小程序token 
+// ! 小程序token 
 var TOKEN: string = 'douyin'
+// ! 小程序公司体系
+var SERIES: string = 'zijie'
 // * 小程序是否能被分享
 var ISCANSHARE: boolean = true
 // * 小程序广告unitid
@@ -24,6 +26,8 @@ var SHOWWEIXINNUMBER: boolean = false
 var SHOWOFFICIALACCOUNT: boolean = false
 // * 是否显示邀请好友链接
 var SHOWINVITEUSER: boolean = false
+// * 详情是否需要替换微信关键词
+var REPLACEWEIXINTEXT: boolean = false
 
 
 // ! 百度系小程序 列表滚动必须设置值
@@ -35,6 +39,7 @@ var ISPARSEUPLOADIMG: boolean = true
 module.exports = {
   PAGETITLE,
   TOKEN,
+  SERIES,
   UNITID,
   INVITESOURCE,
   USESUBSCRIBEMESSAGE,
@@ -46,5 +51,6 @@ module.exports = {
   ISPARSEUPLOADIMG,
   SHOWOFFICIALACCOUNT,
   SHOWWEIXINNUMBER,
-  SHOWINVITEUSER
+  SHOWINVITEUSER,
+  REPLACEWEIXINTEXT
 }

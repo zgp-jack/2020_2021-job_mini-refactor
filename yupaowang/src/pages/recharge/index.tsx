@@ -1,6 +1,6 @@
 import Taro, { useEffect, useState, Config } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
-import { SERVERPHONE, MINIVERSION, DOUYIN, BAIDU } from '../../config'
+import { SERVERPHONE, BAIDUSERIES, ZIJIESERIES, WEIXINSERIES, QQSERIES, SERIES } from '../../config'
 import { getRechargeList, getRechargeOpenid, getRechargeOrder, userDouyinRecharge, userCheckDouyinRecharge, getBaiduTpOrderId, checkBaiduOrderStatusAction } from '../../utils/request'
 import { GetRechargeListType } from '../../utils/request/index.d'
 import Msg, { ShowActionModal, errMsg } from '../../utils/msg'
@@ -61,13 +61,15 @@ export default function Recharge(){
   // 用户充值
   const userRechargeAction = ()=> {
     let rechargeIntegral: number = lists[current].integral
-    if(ISWEIXIN){
+    if (SERIES == WEIXINSERIES){
       weixinProPay(rechargeIntegral)
       return false
-    }else if(MINIVERSION == DOUYIN){
+    } else if (SERIES == ZIJIESERIES){
       douyinProPay()
-    }else if(MINIVERSION == BAIDU){
+    } else if (SERIES == BAIDUSERIES){
       baiduProPay(rechargeIntegral)
+    } else if (SERIES == QQSERIES){
+      // qq支付
     }
   }
 

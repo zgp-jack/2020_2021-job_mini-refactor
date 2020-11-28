@@ -2,8 +2,10 @@
 
 // * page-title-global
 var PAGETITLE: string = '鱼泡网-'
-// * 小程序token 
+// ! 小程序token 
 var TOKEN: string = 'baidu'
+// ! 小程序公司体系
+var SERIES: string = 'baidu'
 // * 小程序是否能被分享
 var ISCANSHARE: boolean = true
 // * 小程序广告unitid
@@ -15,15 +17,17 @@ var USESUBSCRIBEMESSAGE: boolean = false
 // * textarea能输入的最大字数
 var TEXTAREAMAXLENGTH: number = 500
 // * 应用内是否存在下载APP引流
-var DOWNLOADAPP: boolean = true
+var DOWNLOADAPP: boolean = false
 // * 是否支持高德地图api
 var USEGAODEMAPAPI: boolean = false
 // * 是否显示加工友微信号
-var SHOWWEIXINNUMBER: boolean = true
+var SHOWWEIXINNUMBER: boolean = false
 // * 是否显示关注公众号
-var SHOWOFFICIALACCOUNT: boolean = true
+var SHOWOFFICIALACCOUNT: boolean = false
 // * 是否显示邀请好友链接
 var SHOWINVITEUSER: boolean = true
+// * 详情是否需要替换微信关键词
+var REPLACEWEIXINTEXT: boolean = true
 
 
 // ! 百度系小程序 列表滚动必须设置值
@@ -34,6 +38,7 @@ var ISPARSEUPLOADIMG: boolean = false
 module.exports = {
   PAGETITLE,
   TOKEN,
+  SERIES,
   UNITID,
   INVITESOURCE,
   USESUBSCRIBEMESSAGE,
@@ -45,5 +50,6 @@ module.exports = {
   ISPARSEUPLOADIMG,
   SHOWWEIXINNUMBER,
   SHOWOFFICIALACCOUNT,
-  SHOWINVITEUSER
+  SHOWINVITEUSER,
+  REPLACEWEIXINTEXT
 }

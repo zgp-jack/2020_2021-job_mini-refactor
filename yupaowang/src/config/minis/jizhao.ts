@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-10-28 11:04:26
- * @LastEditTime: 2020-11-27 19:22:59
+ * @LastEditTime: 2020-11-28 11:32:25
  * @LastEditors: jsxin
  * @Description: In User Settings Edit
  * @FilePath: \yupaowang\src\config\minis\jizhao.ts
@@ -10,8 +10,10 @@
 
 // * page-title-global
 var PAGETITLE: string = '鱼泡网-'
-// * 小程序token 
+// ! 小程序token 
 var TOKEN: string = 'jizhao'
+// ! 小程序公司体系
+var SERIES: string = 'weixin'
 // * 小程序是否能被分享
 var ISCANSHARE: boolean = true
 // * 小程序广告unitid
@@ -32,7 +34,8 @@ var USEGAODEMAPAPI: boolean = true
 var SHOWWEIXINNUMBER: boolean = true
 // * 是否显示关注公众号
 var SHOWOFFICIALACCOUNT: boolean = true
-
+// * 详情是否需要替换微信关键词
+var REPLACEWEIXINTEXT: boolean = false
 
 
 // ! 百度系小程序 列表滚动必须设置值
@@ -46,6 +49,7 @@ var SHOWINVITEUSER: boolean = true
 module.exports = {
   PAGETITLE,
   TOKEN,
+  SERIES,
   UNITID,
   INVITESOURCE,
   USESUBSCRIBEMESSAGE,
@@ -57,5 +61,6 @@ module.exports = {
   ISPARSEUPLOADIMG,
   SHOWWEIXINNUMBER,
   SHOWOFFICIALACCOUNT,
-  SHOWINVITEUSER
+  SHOWINVITEUSER,
+  REPLACEWEIXINTEXT
 }

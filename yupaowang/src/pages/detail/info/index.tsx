@@ -2,7 +2,7 @@ import Taro, { Config, useState, useRouter, useDidShow, useEffect, useShareAppMe
 import { View, Text, Image, Icon, Button } from '@tarojs/components'
 import { jobInfoAction, publishComplainAction, jobGetTelAction, recruitListCancelCollectionAction, jobEndStatusAction, jobUpdateTopStatusAction, jobNoUserInfoAction, jobRecommendListAction } from '../../../utils/request/index'
 import WechatNotice from '../../../components/wechat'
-import { IMGCDNURL, SERVERPHONE, AUTHPATH, CODEAUTHPATH, ISCANSHARE, DOWNLOADAPP, SHOWOFFICIALACCOUNT} from '../../../config'
+import { IMGCDNURL, SERVERPHONE, AUTHPATH, CODEAUTHPATH, ISCANSHARE, DOWNLOADAPP, SHOWOFFICIALACCOUNT, REPLACEWEIXINTEXT, FILTERWEIXINREG} from '../../../config'
 import { useSelector } from '@tarojs/redux'
 import { isVaildVal } from '../../../utils/v'
 import  Report  from '../../../components/report'
@@ -535,7 +535,7 @@ export default function DetailInfoPage() {
           <View key={i + i} className='detailInfo-project-content-classifyName'>{v}</View>
         ))}
         </View>
-        <View className='detailInfo-project-content-detail'>{data.detail}</View>
+        <View className='detailInfo-project-content-detail'>{REPLACEWEIXINTEXT ? data.detail.replace(FILTERWEIXINREG, '') : data.detail}</View>
         {data.view_images.length && 
           <View className='detailInfo-project-content-image-box'>
             {data.view_images.map((v,i)=>(
