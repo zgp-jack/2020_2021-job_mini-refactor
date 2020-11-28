@@ -71,7 +71,10 @@ export default function ResumeLists() {
 
   // * 请求列表数据
   useEffect(() => {
+    console.error(1)
+    if (searchData.page === 1) setLists([]);
     getResumeList({...searchData, ...normalField}).then(res => {
+      // 判断搜索的时候把内容清空回到顶部，再设置值
       if(res.errcode == 'ok'){
         let mydata = res.data
         if (mydata.list && mydata.list.length) {
@@ -152,7 +155,7 @@ export default function ResumeLists() {
   const setSearchValData = () => {
     setNormalField(normalFieldReset)
     setSearchData({...searchData, keywords: remark, page: 1})
-    goToScrollTop()
+    // goToScrollTop()
   }
   const handleClickToRankRules = () => {
     Taro.navigateTo({url: '/pages/rank-rules/index'})
@@ -167,14 +170,14 @@ export default function ResumeLists() {
       <ScrollView
         className='recruit-lists-containerbox'
         scrollY
-        lowerThreshold={200}
         refresherEnabled
+        // scrollTop={scrollTop}
+        // onScroll={(e) => setScrollTopAction(e)}
         scrollWithAnimation
-        scrollTop={scrollTop}
         refresherTriggered={refresh}
         onRefresherRefresh={() => pullDownAction()}
+        lowerThreshold={200}
         onScrollToLower={() => getNextPageData()}
-        onScroll={(e) => setScrollTopAction(e)}
       >
         <View style={{height: '8px'}}></View>
         <WechatNotice/>
