@@ -47,6 +47,10 @@ utils/  逻辑js文件
 2.所有的积分不足跳转都是去到获取积分，而非充值
 3.百度类小程序发布需要勾选基础版本未3.180.14及以上
 
+如何新建一个小程序
+1.yupaowang/src/config/minis中以标识符新建一个配置文件，然后根据需要调整
+2.yupaowang/project.config.js中声明当前小程序的appid,projectname等关键字段信息
+3.yupaowang/package.json中，scripts里面配置自己的相关编译命令
 
 测试注意事项
 1.检查 数据 是否是线上

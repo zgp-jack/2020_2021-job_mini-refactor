@@ -12680,56 +12680,41 @@ webpackContext.id = "./src/config/minis sync recursive ^\\.\\/.*\\.ts$";
 
 
 // * 每个小程序单独配置  工地急招
-// * page-title-global
-var PAGETITLE = '鱼泡网-';
-// ! 小程序token 
-var TOKEN = 'baidu';
-// ! 小程序公司体系
-var SERIES = 'baidu';
-// * 小程序是否能被分享
-var ISCANSHARE = true;
-// * 小程序广告unitid
-var UNITID = 'adunit-80f40e8b4f60c3f6';
-// * 激励视频
-var VIDEOAD = '';
-// * 邀请key
-var INVITESOURCE = "712790d9629c6dcea00e3f5bff60132b";
-// * 是否使用推送信息
-var USESUBSCRIBEMESSAGE = false;
-// * textarea能输入的最大字数
-var TEXTAREAMAXLENGTH = 500;
-// * 应用内是否存在下载APP引流
-var DOWNLOADAPP = false;
-// * 是否支持高德地图api
-var USEGAODEMAPAPI = false;
-// * 是否显示加工友微信号
-var SHOWWEIXINNUMBER = false;
-// * 是否显示关注公众号
-var SHOWOFFICIALACCOUNT = false;
-// * 是否显示邀请好友链接
-var SHOWINVITEUSER = true;
-// * 详情是否需要替换微信关键词
-var REPLACEWEIXINTEXT = true;
-// ! 百度系小程序  上传图片 不能JSON解析数据
-var ISPARSEUPLOADIMG = false;
-module.exports = {
-  PAGETITLE: PAGETITLE,
-  TOKEN: TOKEN,
-  SERIES: SERIES,
-  UNITID: UNITID,
-  INVITESOURCE: INVITESOURCE,
-  USESUBSCRIBEMESSAGE: USESUBSCRIBEMESSAGE,
-  ISCANSHARE: ISCANSHARE,
-  TEXTAREAMAXLENGTH: TEXTAREAMAXLENGTH,
-  DOWNLOADAPP: DOWNLOADAPP,
-  USEGAODEMAPAPI: USEGAODEMAPAPI,
-  ISPARSEUPLOADIMG: ISPARSEUPLOADIMG,
-  SHOWWEIXINNUMBER: SHOWWEIXINNUMBER,
-  SHOWOFFICIALACCOUNT: SHOWOFFICIALACCOUNT,
-  SHOWINVITEUSER: SHOWINVITEUSER,
-  REPLACEWEIXINTEXT: REPLACEWEIXINTEXT,
-  VIDEOAD: VIDEOAD
+var miniConfig = {
+  // * page-title-global
+  PAGETITLE: '鱼泡网-',
+  // ! 小程序token 
+  TOKEN: 'baidu',
+  // ! 小程序公司体系
+  SERIES: 'baidu',
+  // * 小程序是否能被分享
+  ISCANSHARE: true,
+  // * 小程序广告unitid
+  UNITID: '',
+  // * 激励视频
+  VIDEOAD: '',
+  // * 邀请key
+  INVITESOURCE: "",
+  // * 是否使用推送信息
+  USESUBSCRIBEMESSAGE: false,
+  // * textarea能输入的最大字数
+  TEXTAREAMAXLENGTH: 500,
+  // * 应用内是否存在下载APP引流
+  DOWNLOADAPP: false,
+  // * 是否支持高德地图api
+  USEGAODEMAPAPI: false,
+  // * 是否显示加工友微信号
+  SHOWWEIXINNUMBER: false,
+  // * 是否显示关注公众号
+  SHOWOFFICIALACCOUNT: false,
+  // * 是否显示邀请好友链接
+  SHOWINVITEUSER: true,
+  // * 详情是否需要替换微信关键词
+  REPLACEWEIXINTEXT: true,
+  // ! 百度系小程序  上传图片 不能JSON解析数据
+  ISPARSEUPLOADIMG: false
 };
+module.exports = miniConfig;
 
 /***/ }),
 
@@ -12744,56 +12729,41 @@ module.exports = {
 
 
 // * 每个小程序单独配置  工地急招
-// * page-title-global
-var PAGETITLE = '鱼泡网-';
-// ! 小程序token 
-var TOKEN = 'douyin';
-// ! 小程序公司体系
-var SERIES = 'zijie';
-// * 小程序是否能被分享
-var ISCANSHARE = true;
-// * 小程序广告unitid
-var UNITID = 'adunit-80f40e8b4f60c3f6';
-// * 激励视频
-var VIDEOAD = '';
-// * 邀请key
-var INVITESOURCE = "712790d9629c6dcea00e3f5bff60132b";
-// * 是否使用推送信息
-var USESUBSCRIBEMESSAGE = false;
-// * textarea能输入的最大字数
-var TEXTAREAMAXLENGTH = 140;
-// * 应用内是否存在下载APP引流
-var DOWNLOADAPP = false;
-// * 是否支持高德地图api
-var USEGAODEMAPAPI = true;
-// * 是否显示加工友微信号
-var SHOWWEIXINNUMBER = false;
-// * 是否显示关注公众号
-var SHOWOFFICIALACCOUNT = false;
-// * 是否显示邀请好友链接
-var SHOWINVITEUSER = false;
-// * 详情是否需要替换微信关键词
-var REPLACEWEIXINTEXT = false;
-// ! 百度系小程序  上传图片 JSON解析数据
-var ISPARSEUPLOADIMG = true;
-module.exports = {
-  PAGETITLE: PAGETITLE,
-  TOKEN: TOKEN,
-  SERIES: SERIES,
-  UNITID: UNITID,
-  INVITESOURCE: INVITESOURCE,
-  USESUBSCRIBEMESSAGE: USESUBSCRIBEMESSAGE,
-  VIDEOAD: VIDEOAD,
-  ISCANSHARE: ISCANSHARE,
-  TEXTAREAMAXLENGTH: TEXTAREAMAXLENGTH,
-  DOWNLOADAPP: DOWNLOADAPP,
-  USEGAODEMAPAPI: USEGAODEMAPAPI,
-  ISPARSEUPLOADIMG: ISPARSEUPLOADIMG,
-  SHOWOFFICIALACCOUNT: SHOWOFFICIALACCOUNT,
-  SHOWWEIXINNUMBER: SHOWWEIXINNUMBER,
-  SHOWINVITEUSER: SHOWINVITEUSER,
-  REPLACEWEIXINTEXT: REPLACEWEIXINTEXT
+var miniConfig = {
+  // * page-title-global
+  PAGETITLE: '鱼泡网-',
+  // ! 小程序token 
+  TOKEN: 'douyin',
+  // ! 小程序公司体系
+  SERIES: 'zijie',
+  // * 小程序是否能被分享
+  ISCANSHARE: true,
+  // * 小程序广告unitid
+  UNITID: '',
+  // * 激励视频
+  VIDEOAD: '',
+  // * 邀请key
+  INVITESOURCE: '',
+  // * 是否使用推送信息
+  USESUBSCRIBEMESSAGE: false,
+  // * textarea能输入的最大字数
+  TEXTAREAMAXLENGTH: 140,
+  // * 应用内是否存在下载APP引流
+  DOWNLOADAPP: false,
+  // * 是否支持高德地图api
+  USEGAODEMAPAPI: true,
+  // * 是否显示加工友微信号
+  SHOWWEIXINNUMBER: false,
+  // * 是否显示关注公众号
+  SHOWOFFICIALACCOUNT: false,
+  // * 是否显示邀请好友链接
+  SHOWINVITEUSER: false,
+  // * 详情是否需要替换微信关键词
+  REPLACEWEIXINTEXT: false,
+  // ! 百度系小程序  上传图片 不能JSON解析数据
+  ISPARSEUPLOADIMG: true
 };
+module.exports = miniConfig;
 
 /***/ }),
 
@@ -12810,61 +12780,48 @@ module.exports = {
 /*
  * @Author: your name
  * @Date: 2020-10-28 11:04:26
- * @LastEditTime: 2020-11-28 14:34:43
+ * @LastEditTime: 2020-11-30 18:08:36
  * @LastEditors: jsxin
  * @Description: In User Settings Edit
  * @FilePath: \yupaowang\src\config\minis\jizhao.ts
  */
 // * 每个小程序单独配置  工地急招
-// * page-title-global
-var PAGETITLE = '鱼泡网-';
-// ! 小程序token 
-var TOKEN = 'jizhao';
-// ! 小程序公司体系
-var SERIES = 'weixin';
-// * 小程序是否能被分享
-var ISCANSHARE = true;
-// * 小程序广告unitid
-var UNITID = 'adunit-80f40e8b4f60c3f6';
-// * 邀请key
-var INVITESOURCE = "712790d9629c6dcea00e3f5bff60132b";
-// * 是否使用推送信息
-var USESUBSCRIBEMESSAGE = true;
-// * 激励视频
-var VIDEOAD = 'adunit-31b05acadbd2a1d1';
-// * textarea能输入的最大字数
-var TEXTAREAMAXLENGTH = 500;
-// * 应用内是否存在下载APP引流
-var DOWNLOADAPP = true;
-// * 是否支持高德地图api
-var USEGAODEMAPAPI = true;
-// * 是否显示加工友微信号
-var SHOWWEIXINNUMBER = true;
-// * 是否显示关注公众号
-var SHOWOFFICIALACCOUNT = true;
-// * 详情是否需要替换微信关键词
-var REPLACEWEIXINTEXT = false;
-// ! 百度系小程序  上传图片 JSON解析数据
-var ISPARSEUPLOADIMG = true;
-// * 是否显示邀请好友链接
-var SHOWINVITEUSER = true;
-module.exports = {
-  PAGETITLE: PAGETITLE,
-  TOKEN: TOKEN,
-  SERIES: SERIES,
-  UNITID: UNITID,
-  INVITESOURCE: INVITESOURCE,
-  USESUBSCRIBEMESSAGE: USESUBSCRIBEMESSAGE,
-  VIDEOAD: VIDEOAD,
-  TEXTAREAMAXLENGTH: TEXTAREAMAXLENGTH,
-  DOWNLOADAPP: DOWNLOADAPP,
-  USEGAODEMAPAPI: USEGAODEMAPAPI,
-  ISPARSEUPLOADIMG: ISPARSEUPLOADIMG,
-  SHOWWEIXINNUMBER: SHOWWEIXINNUMBER,
-  SHOWOFFICIALACCOUNT: SHOWOFFICIALACCOUNT,
-  SHOWINVITEUSER: SHOWINVITEUSER,
-  REPLACEWEIXINTEXT: REPLACEWEIXINTEXT
+// * 每个小程序单独配置  工地急招
+var miniConfig = {
+  // * page-title-global
+  PAGETITLE: '工地急招-',
+  // ! 小程序token 
+  TOKEN: 'jizhao',
+  // ! 小程序公司体系
+  SERIES: 'weixin',
+  // * 小程序是否能被分享
+  ISCANSHARE: true,
+  // * 小程序广告unitid
+  UNITID: 'adunit-80f40e8b4f60c3f6',
+  // * 激励视频
+  VIDEOAD: 'adunit-31b05acadbd2a1d1',
+  // * 邀请key
+  INVITESOURCE: '712790d9629c6dcea00e3f5bff60132b',
+  // * 是否使用推送信息
+  USESUBSCRIBEMESSAGE: true,
+  // * textarea能输入的最大字数
+  TEXTAREAMAXLENGTH: 500,
+  // * 应用内是否存在下载APP引流
+  DOWNLOADAPP: true,
+  // * 是否支持高德地图api
+  USEGAODEMAPAPI: true,
+  // * 是否显示加工友微信号
+  SHOWWEIXINNUMBER: true,
+  // * 是否显示关注公众号
+  SHOWOFFICIALACCOUNT: true,
+  // * 是否显示邀请好友链接
+  SHOWINVITEUSER: true,
+  // * 详情是否需要替换微信关键词
+  REPLACEWEIXINTEXT: false,
+  // ! 百度系小程序  上传图片 不能JSON解析数据
+  ISPARSEUPLOADIMG: true
 };
+module.exports = miniConfig;
 
 /***/ }),
 
