@@ -28,21 +28,25 @@ var _index = __webpack_require__(/*! ../../utils/request/index */ "./src/utils/r
 
 var _store = __webpack_require__(/*! ../../config/store */ "./src/config/store.ts");
 
-var _area = __webpack_require__(/*! ../../models/area */ "./src/models/area.ts");
+var _index2 = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
 
-var _index2 = __webpack_require__(/*! ../../utils/helper/index */ "./src/utils/helper/index.ts");
+var _area2 = __webpack_require__(/*! ../../models/area */ "./src/models/area.ts");
 
-var _index3 = __webpack_require__(/*! ../../utils/msg/index */ "./src/utils/msg/index.ts");
+var _index3 = __webpack_require__(/*! ../../utils/helper/index */ "./src/utils/helper/index.ts");
 
-var _index4 = __webpack_require__(/*! ../../utils/subscribeToNews/index */ "./src/utils/subscribeToNews/index.ts");
+var _index4 = __webpack_require__(/*! ../../utils/msg/index */ "./src/utils/msg/index.ts");
+
+var _index5 = __webpack_require__(/*! ../../utils/subscribeToNews/index */ "./src/utils/subscribeToNews/index.ts");
 
 var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/redux/index.js");
 
-var _index5 = __webpack_require__(/*! ../../utils/v/index */ "./src/utils/v/index.ts");
+var _index6 = __webpack_require__(/*! ../../utils/v/index */ "./src/utils/v/index.ts");
 
 var _recruit = __webpack_require__(/*! ../../actions/recruit */ "./src/actions/recruit.ts");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 //获取发布招工信息action
 function usePublishViewInfo(InitParams) {
@@ -50,9 +54,11 @@ function usePublishViewInfo(InitParams) {
   var login = (0, _redux.useSelector)(function (state) {
     return state.User['login'];
   });
-  // 极速发布基本信息
+  // 视图显示信息
 
-  var _useState = (0, _taroTt.useState)(),
+  var _useState = (0, _taroTt.useState)({
+    detail: ''
+  }),
       _useState2 = _slicedToArray(_useState, 2),
       model = _useState2[0],
       setModel = _useState2[1];
@@ -91,6 +97,41 @@ function usePublishViewInfo(InitParams) {
       _useState12 = _slicedToArray(_useState11, 2),
       bakModel = _useState12[0],
       setBakModel = _useState12[1];
+  // 设置招工 非高德地址，picker索引数组
+
+
+  var _useState13 = (0, _taroTt.useState)([0, 0]),
+      _useState14 = _slicedToArray(_useState13, 2),
+      areaIndex = _useState14[0],
+      setAreaIndex = _useState14[1];
+  // picker省份
+
+
+  var _useState15 = (0, _taroTt.useState)([]),
+      _useState16 = _slicedToArray(_useState15, 2),
+      areaProvincePicker = _useState16[0],
+      setAreaProvincePicker = _useState16[1];
+  // picker 城市
+
+
+  var _useState17 = (0, _taroTt.useState)([]),
+      _useState18 = _slicedToArray(_useState17, 2),
+      areaCityPicker = _useState18[0],
+      setAreaCityPicker = _useState18[1];
+  // picker 组合数据
+
+
+  var _useState19 = (0, _taroTt.useState)([]),
+      _useState20 = _slicedToArray(_useState19, 2),
+      areaPickerData = _useState20[0],
+      setAreaPickerData = _useState20[1];
+  // piccker 选择 城市名字
+
+
+  var _useState21 = (0, _taroTt.useState)(''),
+      _useState22 = _slicedToArray(_useState21, 2),
+      areaPickerName = _useState22[0],
+      setAreaPickerName = _useState22[1];
   //获取redux中发布招工区域详细数据
 
 
@@ -114,7 +155,7 @@ function usePublishViewInfo(InitParams) {
           maxClassifyCount: res.typeTextArr.maxClassifyCount,
           classifyTree: res.classifyTree,
           title: res.model.title || '',
-          address: res.model.address || '',
+          address: res.model.address || res.show_address,
           detail: res.model.detail || '',
           infoId: res.model.id || InitParams.infoId,
           type: res.type,
@@ -143,9 +184,12 @@ function usePublishViewInfo(InitParams) {
         if (res.view_image.length) setShowUpload(true);
         // 如果填写有招工详情数据，将填写数据长度保存到num中
         if (InitViewInfo.detail) setNum(InitViewInfo.detail.length);
+        // 如果有省市id，那我们想将其保存一份，如果不支持高德地图，这个时候初始化我们的picker城市选择器
+        if (_index2.USEGAODEMAPAPI) return;
+        initChoosePickerArea(InitViewInfo.province_id, InitViewInfo.city_id);
       } else {
         // 请求数据失败走提示框返回上一页面
-        (0, _index3.ShowActionModal)({
+        (0, _index4.ShowActionModal)({
           msg: res.errmsg,
           success: function success() {
             _taroTt2.default.navigateBack();
@@ -154,20 +198,50 @@ function usePublishViewInfo(InitParams) {
       }
     });
   }, [login]);
+  // 用户不支持高德地图，初始化原始的picker选择
+  var initChoosePickerArea = function initChoosePickerArea(pid, cid) {
+    // 用户不支持高德地图，所以我们调用原始的picker选择 先拿到省市数据将其保存
+    var _getCityAreaPicker = (0, _area2.getCityAreaPicker)(),
+        province = _getCityAreaPicker.province,
+        cities = _getCityAreaPicker.cities;
+
+    setAreaProvincePicker([].concat(_toConsumableArray(province)));
+    setAreaCityPicker([].concat(_toConsumableArray(cities)));
+    // 如果是修改信息
+    if (InitParams.infoId) {
+      var _getAreaCurrentArr = (0, _area2.getAreaCurrentArr)(pid, cid),
+          pi = _getAreaCurrentArr.pi,
+          ci = _getAreaCurrentArr.ci;
+
+      var citydata = JSON.parse(JSON.stringify(cities[pi]));
+      setAreaPickerData([[].concat(_toConsumableArray(province)), [].concat(_toConsumableArray(citydata))]);
+      setAreaIndex([pi, ci]);
+      var pname = province[pi].name;
+      var cname = cities[pi][ci].name;
+      var name = province[pi].id === cities[pi][ci].id ? pname : pname + "-" + cname;
+      setAreaPickerName(name);
+    } else {
+      // 新发布信息那我们就默认第一个即可
+      setAreaPickerData([[].concat(_toConsumableArray(province)), [].concat(_toConsumableArray(cities[0]))]);
+    }
+  };
   // 初始化用户区域数据
   function initUserAreaInfo(data) {
     //  如果传递参数有infoid代表是修改，保存修改的里面默认区域数据
     if (InitParams.infoId) {
-      dispatch((0, _recruit.setArea)(data.default_search_name.name));
+      var area = (0, _area2.getCityInfoById)(data.default_search_name.id);
+      dispatch((0, _recruit.setArea)({ name: area.name, ad_name: area.ad_name }));
     } else {
       var userLoctionCity = _taroTt2.default.getStorageSync(_store.UserLocationCity);
       if (userLoctionCity) {
-        dispatch((0, _recruit.setArea)(userLoctionCity.city.slice(0, 2)));
+        var _area = (0, _area2.getCityInfo)(userLoctionCity, 1);
+        dispatch((0, _recruit.setArea)({ name: _area.name, ad_name: _area.ad_name }));
       } else {
-        (0, _index2.userAuthLoction)().then(function (res) {
-          dispatch((0, _recruit.setArea)(res.city));
+        (0, _index3.userAuthLoction)().then(function (res) {
+          var area = (0, _area2.getCityInfo)(res, 1);
+          dispatch((0, _recruit.setArea)({ name: area.name, ad_name: area.ad_name }));
         }).catch(function () {
-          dispatch((0, _recruit.setArea)(_area.AREABEIJING.name));
+          dispatch((0, _recruit.setArea)({ name: _area2.AREABEIJING.name, ad_name: _area2.AREABEIJING.ad_name }));
         });
       }
     }
@@ -208,7 +282,7 @@ function usePublishViewInfo(InitParams) {
       })
     };
     setBakModel(data);
-    (0, _index3.ShowActionModal)({
+    (0, _index4.ShowActionModal)({
       title: '审核失败',
       msg: model.check_fail_msg
     });
@@ -237,40 +311,40 @@ function usePublishViewInfo(InitParams) {
     var mydata = JSON.parse(JSON.stringify(data));
     var imgs = mydata.images.join(',');
     var classifies = mydata.classifies.join(',');
-    mydata = _extends({}, mydata, { images: imgs, classifies: classifies });
+    mydata = _extends({}, mydata, { images: imgs, classifies: classifies, location: areaInfo.location });
     return mydata;
   }
   function userPublishRecruitAction() {
     var data = getPublishedInfo();
     if (!data) return;
-    if (!(0, _index5.isVaildVal)(data.title, 3)) {
-      (0, _index3.ShowActionModal)({ msg: '请正确输入3~12字中文标题!' });
+    if (!(0, _index6.isVaildVal)(data.title, 3)) {
+      (0, _index4.ShowActionModal)({ msg: '请正确输入3~12字中文标题!' });
       return;
     }
     if (!data.classifies.length) {
-      (0, _index3.ShowActionModal)({ msg: '请选择您的工种!' });
+      (0, _index4.ShowActionModal)({ msg: '请选择您的工种!' });
       return;
     }
     if (!data.province_id && !data.address) {
-      (0, _index3.ShowActionModal)({ msg: '请选择您的详细地址!' });
+      (0, _index4.ShowActionModal)({ msg: '请选择您的详细地址!' });
       return;
     }
-    if (!(0, _index5.isVaildVal)(data.user_name, 2)) {
-      (0, _index3.ShowActionModal)({ msg: '请正确输入2~6字中文姓名!' });
+    if (!(0, _index6.isVaildVal)(data.user_name, 2)) {
+      (0, _index4.ShowActionModal)({ msg: '请正确输入2~6字中文姓名!' });
       return;
     }
-    if (!(0, _index5.isPhone)(data.user_mobile)) {
-      (0, _index3.ShowActionModal)({ msg: '手机号输入有误!' });
+    if (!(0, _index6.isPhone)(data.user_mobile)) {
+      (0, _index4.ShowActionModal)({ msg: '手机号输入有误!' });
       return;
     }
     if (phone != data.user_mobile) {
       if (!data.code) {
-        (0, _index3.ShowActionModal)({ msg: '请输入正确的验证码!' });
+        (0, _index4.ShowActionModal)({ msg: '请输入正确的验证码!' });
         return;
       }
     }
-    if (!(0, _index5.isVaildVal)(data.detail, 15)) {
-      (0, _index3.ShowActionModal)({ msg: '请正确输入15~500字招工详情!' });
+    if (!(0, _index6.isVaildVal)(data.detail, 15)) {
+      (0, _index4.ShowActionModal)({ msg: '请正确输入15~500字招工详情!' });
       return;
     }
     // 如果是审核失败 那么久必须强制修改
@@ -278,7 +352,7 @@ function usePublishViewInfo(InitParams) {
       var bak = JSON.stringify(bakModel);
       var mydata = JSON.stringify(data);
       if (bak == mydata) {
-        (0, _index3.ShowActionModal)({
+        (0, _index4.ShowActionModal)({
           title: '审核失败',
           msg: model && model.check_fail_msg
         });
@@ -289,8 +363,8 @@ function usePublishViewInfo(InitParams) {
     data.address += '@@@@@' + areaInfo.info;
     (0, _index.publishRecruitInfo)(data).then(function (res) {
       if (res.errcode == 'ok') {
-        (0, _index4.SubscribeToNews)("recruit", function () {
-          (0, _index3.ShowActionModal)({
+        (0, _index5.SubscribeToNews)("recruit", function () {
+          (0, _index4.ShowActionModal)({
             msg: res.errmsg,
             success: function success() {
               _taroTt2.default.reLaunch({
@@ -300,7 +374,7 @@ function usePublishViewInfo(InitParams) {
           });
         });
       } else {
-        (0, _index3.ShowActionModal)({
+        (0, _index4.ShowActionModal)({
           msg: res.errmsg
         });
       }
@@ -317,7 +391,15 @@ function usePublishViewInfo(InitParams) {
     num: num,
     setNum: setNum,
     phone: phone,
-    setPhone: setPhone
+    setPhone: setPhone,
+    areaIndex: areaIndex,
+    setAreaIndex: setAreaIndex,
+    areaProvincePicker: areaProvincePicker,
+    areaCityPicker: areaCityPicker,
+    areaPickerData: areaPickerData,
+    setAreaPickerData: setAreaPickerData,
+    areaPickerName: areaPickerName,
+    setAreaPickerName: setAreaPickerName
   };
 }
 

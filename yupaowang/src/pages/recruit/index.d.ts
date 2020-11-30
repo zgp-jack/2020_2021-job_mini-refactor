@@ -129,13 +129,14 @@ export interface UserLastPublishRecruitArea {
   info: string,
   city?: string,
   provice?: string,
-  areaId?: string
+  areaId?: string,
+  name?: string,
+  ad_name?: string
 }
 export interface AreaData {
   name: string,
-  id: string
-  city?:string,
-  provice?:string,
+  id: string,
+  ad_name: string
 }
 
 export interface RecruitInfo {
@@ -143,7 +144,7 @@ export interface RecruitInfo {
   area: AreaData,
   token: string,
   positionStatus: boolean,
-  phone: string,
+  phone:string
 }
 
 // 初始化发布招工获取信息类型
@@ -163,7 +164,6 @@ export interface MateDataItem {
   name: string,
   occupation_id: string
 }
-
 // 获取发布招工、快速发布、急速发布的配置数据
 export interface PublishConfigData {
   classifyTree: ProfessionRecruitData[],
@@ -172,7 +172,9 @@ export interface PublishConfigData {
   user_mobile: string,
   maxClassifyCount: number,
   maxImageCount: number,
-  placeholder: string
+  placeholder: string,
+  reqStatus: boolean,
+  defaultSearchName: AreaData
 }
 
 export interface FastIssueData{

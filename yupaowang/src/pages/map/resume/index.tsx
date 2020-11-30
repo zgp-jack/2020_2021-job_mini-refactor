@@ -1,4 +1,4 @@
-import Taro, { useEffect, useState, createContext, Config } from '@tarojs/taro'
+import Taro, { useEffect, useState, createContext, Config,useRouter } from '@tarojs/taro'
 import { View, Text, Image, Input } from '@tarojs/components'
 // import { context }  from '../../../subpackage/pages/basics';
 // import { context } from '../../recruit/publish'
@@ -38,11 +38,11 @@ interface ResumeMapType{
 }
 export const contextItem = createContext<Injected>({} as Injected)
 export default function ResumeMap() {
-  // const router: Taro.RouterInfo = useRouter()
-  // let { areaItem } = router.params;
+  const router: Taro.RouterInfo = useRouter()
+  let { provinceAdress } = router.params;
   // 获取dispatch分发action
   const dispatch = useDispatch()
-  const [area, setArea] = useState<string>('')
+  const [area, setArea] = useState<string>(provinceAdress)
   // 城市数据
   const [areas, setAreas] = useState<AllAreasDataItem[][]>([])
   // 选择详细地址信息
@@ -62,7 +62,9 @@ export default function ResumeMap() {
   })
   // 是否显示城市
   const [showCity, setShowCity] = useState<boolean>(false)
-  // 使用发布招工hook处理数据
+  // 获取redux中区域名称数据
+  // const area: string = useSelector<any, string>(state => state.MyArea)
+  // 获取redux中定位状态
   // const { area, setArea, setAreaInfo, setPublishArea } = useContext(context)
   const [publishArea,setPublishArea] = useState<string>('')
   // 详细地址的输入框
@@ -97,7 +99,6 @@ export default function ResumeMap() {
         ad_name: data.ad_name,
         city: data.name
       }
-      setArea(data.name)
       setUserLoc(userLocData)
     }
   }
@@ -109,8 +110,8 @@ export default function ResumeMap() {
   }, [])
 
   // 用户切换城市
-  const userChangeCity = (city: AreaData) => {
-    setArea(city.name)
+  const userChangeCity = (city:string) => {
+    setArea(city)
   }
 
   // 用户点击取消 返回上一页
@@ -236,6 +237,11 @@ export default function ResumeMap() {
     location,
     adcode,
   }
+  // 用户点击输入框后面的×关闭当前窗口
+  const closeHistoryClient = () => {
+    setShowHistory(false)
+    setSmAreaText('')
+  }
   return (
     <contextItem.Provider value={value}>
     <View className='publishrecruit-container'>
@@ -249,7 +255,7 @@ export default function ResumeMap() {
             placeholder='请输入您的详细地址'
             value={smAreaText}
           />
-          <Text className='at-icon at-icon-close mapinfo-header-clear'></Text>
+            <Text onClick={() => closeHistoryClient()} className='at-icon at-icon-close mapinfo-header-clear'></Text>
         </View>
         <Text className='mapinfo-header-close' onClick={() => userCloseMap()}>取消</Text>
       </View>

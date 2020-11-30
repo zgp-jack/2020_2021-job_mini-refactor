@@ -5,6 +5,8 @@ import { MAXCACHECITYNUM, IMGCDNURL } from '../../config'
 import { HistoryCities } from '../../config/store'
 import AREAS from '../../models/area'
 import { objDeepCopy } from '../../utils/helper'
+import { useDispatch } from '@tarojs/redux'
+import { setArea } from '../../actions/recruit'//获取发布招工信息action
 import './index.scss'
 import { AreaData } from 'src/pages/recruit'
 
@@ -17,7 +19,7 @@ export interface IPROPS {
 export interface CitiesProps extends IPROPS {
   userTapCityBtn: (b: boolean) => void, // 显示关闭操作
   area: string,  // 当前选择城市
-  userChangeCity?: (city: AreaData)=> void,
+  userChangeCity?: (city: string)=> void,
   userLoc: AllAreasDataItem
 }
 
@@ -38,7 +40,8 @@ export default function Cities({
   const [text, setText] = useState<string>('')
   const [inputCity, setInputCity] = useState<AllAreasInputDataItem[]>([])
   const [saveAreaData, setSaveAreaData] = useState<AllAreasInputDataItem[]>([])
-
+  // 获取dispatch分发action
+  const dispatch = useDispatch()
   // 用户点击城市
   const userTapCity = (city: AllAreasDataItem)=> {
     let historyCities: AllAreasDataItem[] = Taro.getStorageSync(HistoryCities)
@@ -51,9 +54,11 @@ export default function Cities({
     }else{
       historyCities = [city]
     }
+    // 用户切换城市
+    dispatch(setArea({ name: city.city, ad_name: city.ad_name, id: city.id }))
     // 储存最新的用户点击历史城市数据
     Taro.setStorageSync(HistoryCities,historyCities)
-    userChangeCity && userChangeCity({name:city.city,id:city.id})
+    userChangeCity && userChangeCity(city.city)
     userTapCityBtn(false)
     userRecentlyCities()
   }
@@ -81,7 +86,8 @@ export default function Cities({
         }else{
           historyCities.splice(MAXCACHECITYNUM - 1)
         }
-        setRecentlyCities(historyCities)
+        console.log('我走进来了....')
+        setRecentlyCities([...historyCities])
         return
       }else{
         setRecentlyCities(historyCities)

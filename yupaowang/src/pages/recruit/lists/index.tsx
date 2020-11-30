@@ -10,10 +10,14 @@ import { RecruitListItem } from '../../../utils/request/index.d'
 import { UserLocationPromiss, ChildItems, AREACHINA, getCityInfo } from '../../../models/area'
 import { UserListChooseCity, UserLocationCity } from '../../../config/store'
 import { userAuthLoction } from '../../../utils/helper'
-import { PUBLISHRECRUIT,PUBLISHFAST } from '../../../config'
+import { PUBLISHRECRUIT, PUBLISHFAST, SCROLLVIEWSETTOP } from '../../../config'
 import { AreaPickerKey, ClassifyPickerKey, FilterPickerKey } from '../../../config/pages/lists'
 import './index.scss'
 import Msg from '../../../utils/msg'
+import { useSelector, useDispatch } from '@tarojs/redux'
+import { setPublishWay } from '../../../actions/publishWay'
+import { publishWayRea } from '../../../utils/request/index'
+import { publishFindWork } from '../../../components/tabbar/index'
 
 export interface conditionType {
   id: string,
@@ -21,7 +25,9 @@ export interface conditionType {
 }
 
 export default function Recruit(){
-
+  const login: boolean = useSelector<any, boolean>(state => state.User['login'])
+  const dispatch = useDispatch()
+  const publishWay = useSelector<any, publishFindWork>(state => state.publishWay)
   // 输入关键词 没搜索 备份
   const [remark, setRemark] = useState<string>('')
   // 是否还有下一页
@@ -96,10 +102,14 @@ export default function Recruit(){
     getRecruitList(searchData).then(res => {
       if(res.errcode == 'ok'){
         if (res.data) {
-          if (!res.data.length) setHasMore(false)
           Taro.hideNavigationBarLoading()
-          if (searchData.page === 1) setLists([[...res.data]])
-          else setLists([...lists, [...res.data]])
+          if (!res.data.length) setHasMore(false)
+          if (searchData.page === 1){
+            goToScrollTop()
+            setLists([[...res.data]])
+          }else{
+            setLists([...lists, [...res.data]])
+          }
         } else {
           if (searchData.page === 1) setLists([[]])
           setHasMore(false)
@@ -129,13 +139,57 @@ export default function Recruit(){
     setRefresh(true) 
     setSearchData({ ...searchData, page: 1 })
   }
-
+  //是否为极速发布与快速发布请求,快速发布与极速发布跳转
+  const initJobView = () => {
+    if (login) {
+      let flag = JSON.parse(JSON.stringify(publishWay))
+      if (!flag.loginAfter) {
+        publishWayRea().then(res => {
+          let publishMethod = res.add_job_type
+          dispatch(setPublishWay({ ...publishWay, loginWay: publishMethod, loginAfter: true }))
+          let url = publishMethod == "fast_add_job" ? PUBLISHRECRUIT : PUBLISHFAST
+          Taro.navigateTo({
+            url: url
+          })
+        }).catch(() => {
+          Taro.navigateTo({
+            url: PUBLISHFAST
+          })
+        })
+      } else {
+        let way = publishWay.loginWay
+        let url = way == "fast_add_job" ? PUBLISHRECRUIT : PUBLISHFAST
+        Taro.navigateTo({
+          url: url
+        })
+      }
+    } else {
+      let flag = JSON.parse(JSON.stringify(publishWay))
+      if (!flag.loginBefore) {
+        publishWayRea().then(res => {
+          let publishMethod = res.add_job_type
+          dispatch(setPublishWay({ ...publishWay, logoutWay: publishMethod, loginBefore: true }))
+          let url = publishMethod == "fast_add_job" ? PUBLISHRECRUIT : PUBLISHFAST
+          Taro.navigateTo({
+            url: url
+          })
+        }).catch(() => {
+          Taro.navigateTo({
+            url: PUBLISHFAST
+          })
+        })
+      } else {
+        let way = publishWay.logoutWay
+        let url = way == "fast_add_job" ? PUBLISHRECRUIT : PUBLISHFAST
+        Taro.navigateTo({
+          url: url
+        })
+      }
+    }
+  }
   // * 发布招工
   const userPublishRecruit = ()=> {
-    // Taro.navigateTo({url: '/pages/recruit/publish/index'})
-    // Taro.navigateTo({url: '/pages/recruit/fastPublish/index'})
-    // Taro.navigateTo({ url: PUBLISHRECRUIT})
-    Taro.navigateTo({ url: PUBLISHFAST})
+    initJobView()
   }
 
   // * 更新筛选条件
@@ -151,19 +205,30 @@ export default function Recruit(){
     }else{
       setSearchData({ ...searchData, joblisttype: id, page: 1 })
     }
-    goToScrollTop()
   }
 
   // scroll-view 回到顶部
   const goToScrollTop = () => {
     setHasMore(true)
-    setScrollTop(scrollTop ? 0 : 0.1)
+    // ! 如果小程序必须监听滚动值 返回顶部直接为0 ，如果不需要我们就给个近似值 来达到效果
+    if(SCROLLVIEWSETTOP){
+      setScrollTop(0)
+      return
+    }
+    setScrollTop(scrollTop ? 0 : 0.01)
   }
 
   // 输入搜索关键词
   const setSearchValData = () => {
     setSearchData({ ...searchData, keywords: remark, page: 1 })
-    goToScrollTop()
+  }
+  // scroll-view 滚动操作
+  const setScrollTopAction = (e) => {
+    // ! 如果小程序必须监听onScroll滚动值 那么就设置 例如百度小程序
+    if (SCROLLVIEWSETTOP){
+      let top = e.detail.scrollTop
+      setScrollTop(top)
+    }
   }
 
   return (
@@ -177,6 +242,7 @@ export default function Recruit(){
         scrollY
         refresherEnabled
         scrollTop={scrollTop}
+        onScroll={(e) => setScrollTopAction(e)}
         scrollWithAnimation
         refresherTriggered={ refresh }
         onRefresherRefresh={() => pullDownAction()}

@@ -118,14 +118,27 @@ function useRealname() {
   // 初始化返回模型
 
 
-  var _useState7 = (0, _taroTt.useState)(),
+  var _useState7 = (0, _taroTt.useState)({}),
       _useState8 = _slicedToArray(_useState7, 2),
       initModel = _useState8[0],
       setInitModel = _useState8[1];
   // 保存数据提交模型
 
 
-  var _useState9 = (0, _taroTt.useState)(),
+  var _useState9 = (0, _taroTt.useState)({
+    username: '',
+    age: '',
+    nation_id: '',
+    nationality: '',
+    idCard: '',
+    idCardImg: '',
+    handImg: '',
+    tel: '',
+    code: '',
+    address: '',
+    birthday: '',
+    gender: ''
+  }),
       _useState10 = _slicedToArray(_useState9, 2),
       model = _useState10[0],
       setModel = _useState10[1];
@@ -253,6 +266,11 @@ function useRealname() {
     }
     if (!model.address) {
       (0, _index3.default)('请选择您的地址');
+      return false;
+    }
+    // 如果不能使用高德api， 那么输入的地址至少需要5个字
+    if (!_index7.USEGAODEMAPAPI && model.address.length < 5) {
+      (0, _index3.default)('地址最少5个字');
       return false;
     }
     if (!model.tel) {

@@ -1,6 +1,6 @@
 import Taro from '@tarojs/taro'
 import { UserInfo } from '../../config/store'
-import { UPLOADIMGURL, BAIDU, MINIVERSION } from '../../config'
+import { UPLOADIMGURL, ISPARSEUPLOADIMG } from '../../config'
 
 interface ResultImage {
   errcode: string,
@@ -71,8 +71,7 @@ function AppUploadImg(resolve, res: any, url: string = UPLOADIMGURL){
     name: 'file',
     success(response) {
       // 百度小程序出来之后是一个纯json 但是其他端就不是， 解决百度冲突
-      let mydata = (MINIVERSION == BAIDU) ? response.data :  JSON.parse(response.data);
-      // let resData = { local: response, remote: mydata}
+      let mydata = (ISPARSEUPLOADIMG) ? JSON.parse(response.data) : response.data;
       Taro.showToast({
         title: mydata.errmsg,
         icon: "none",

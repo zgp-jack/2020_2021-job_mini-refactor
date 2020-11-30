@@ -8,7 +8,7 @@ import { CameraAndAlbum } from '../../utils/upload'
 import * as Hooks from '../../hooks/index.d'
 import UploadImgAction from '../../utils/upload'
 import { getIdcardAuthInfo } from '../../utils/api'
-import { ALIYUNCDNMINIIMG } from '../../config'
+import { ALIYUNCDNMINIIMG, USEGAODEMAPAPI } from '../../config'
 import { getLongAreaAdname } from '../../models/area'
 import { SubscribeToNews } from '../../utils/subscribeToNews'
 
@@ -29,9 +29,22 @@ export default function useRealname(){
   // 民族下标
   const [nationCurrent, setNationCurrent] = useState<number>(0)
   // 初始化返回模型
-  const [initModel, setInitModel] = useState<UserAuthInfoData>()
+  const [initModel, setInitModel] = useState<UserAuthInfoData>({} as UserAuthInfoData)
   // 保存数据提交模型
-  const [model, setModel] = useState<PostUserAuthInfo>()
+  const [model, setModel] = useState<PostUserAuthInfo>({
+    username: '',
+    age:  '',
+    nation_id: '',
+    nationality: '',
+    idCard: '',
+    idCardImg:  '',
+    handImg: '',
+    tel: '',
+    code: '',
+    address: '',
+    birthday: '',
+    gender: ''
+  } as PostUserAuthInfo)
   // 获取用户是否登录
   const login: boolean = useSelector<any, boolean>(state => state.User['login'])
   // 是否显示表单
@@ -136,6 +149,11 @@ export default function useRealname(){
     }
     if (!model.address) {
       Msg('请选择您的地址')
+      return false
+    }
+    // 如果不能使用高德api， 那么输入的地址至少需要5个字
+    if (!USEGAODEMAPAPI && model.address.length < 5) {
+      Msg('地址最少5个字')
       return false
     }
     if(!model.tel){

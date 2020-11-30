@@ -11,7 +11,7 @@ import {conditionType} from '../../recruit/lists'
 import {AreaPickerKey, ClassifyPickerKey, MemberPickerKey, ResumeFilterPickerKey} from '../../../config/pages/lists'
 import {UserListChooseCity} from '../../../config/store'
 import { getResumeList } from '../../../utils/request'
-import { PUBLISHRESUME } from '../../../config'
+import { PUBLISHRESUME, SCROLLVIEWSETTOP } from '../../../config'
 import './index.scss'
 import Msg from '../../../utils/msg'
 
@@ -131,7 +131,21 @@ export default function ResumeLists() {
   // scroll-view 回到顶部
   const goToScrollTop = () => {
     setHasMore(true)
+    // ! 如果小程序必须监听滚动值 返回顶部直接为0 ，如果不需要我们就给个近似值 来达到效果
+    if (SCROLLVIEWSETTOP) {
+      setScrollTop(0)
+      return
+    }
     setScrollTop(scrollTop ? 0 : 0.1)
+  }
+
+  // scroll-view 滚动操作
+  const setScrollTopAction = (e) => {
+    // ! 如果小程序必须监听onScroll滚动值 那么就设置 例如百度小程序
+    if (SCROLLVIEWSETTOP) {
+      let top = e.detail.scrollTop
+      setScrollTop(top)
+    }
   }
 
   // 设置搜索内容
@@ -160,6 +174,7 @@ export default function ResumeLists() {
         refresherTriggered={refresh}
         onRefresherRefresh={() => pullDownAction()}
         onScrollToLower={() => getNextPageData()}
+        onScroll={(e) => setScrollTopAction(e)}
       >
         <View style={{height: '8px'}}></View>
         <WechatNotice/>

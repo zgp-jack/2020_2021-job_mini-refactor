@@ -94,8 +94,8 @@ export default function RealnameMap() {
   }, [])
 
   // 用户切换城市
-  const userChangeCity = (city: AreaData) => {
-    setArea(city.name)
+  const userChangeCity = (city: string) => {
+    setArea(city)
   }
 
   // 用户点击取消 返回上一页

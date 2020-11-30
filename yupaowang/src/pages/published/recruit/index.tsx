@@ -266,7 +266,7 @@ export default function PublishedRecruit(){
                   提示：人工审核中，该信息仅自己可见。
                 </View>
                 }
-                {item.is_check != '1' && <View className='user-published-footer-item' onClick={() => userRouteJump(`/pages/recruit/fastPublish/index?id=${item.id}`)}>修改</View>}
+                {item.is_check != '1' && <View className='user-published-footer-item' onClick={() => userRouteJump(`/pages/recruit/jisu_issue/index?id=${item.id}`)}>修改</View>}
                 {item.is_check == '2' &&
                 <Block >
                   <View className='user-published-footer-item' onClick={() => userStopRecruit(item.id, index)}>{item.is_end == '2'?'重新招工':'停止招工'}</View>

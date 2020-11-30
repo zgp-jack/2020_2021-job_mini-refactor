@@ -16,6 +16,14 @@ var USESUBSCRIBEMESSAGE: boolean = false
 var TEXTAREAMAXLENGTH: number = 500
 // * 应用内是否存在下载APP引流
 var DOWNLOADAPP: boolean = true
+// * 是否支持高德地图api
+var USEGAODEMAPAPI: boolean = false
+
+
+// ! 百度系小程序 列表滚动必须设置值
+var SCROLLVIEWSETTOP: boolean = true
+// ! 百度系小程序  上传图片 不能JSON解析数据
+var ISPARSEUPLOADIMG: boolean = false
 
 module.exports = {
   PAGETITLE,
@@ -25,5 +33,8 @@ module.exports = {
   USESUBSCRIBEMESSAGE,
   ISCANSHARE,
   TEXTAREAMAXLENGTH,
-  DOWNLOADAPP
+  DOWNLOADAPP,
+  USEGAODEMAPAPI,
+  SCROLLVIEWSETTOP,
+  ISPARSEUPLOADIMG
 }

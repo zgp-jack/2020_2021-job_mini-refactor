@@ -4,14 +4,15 @@ export interface InputPoiList{
 }
 
 export interface InputPoiListTips {
-  adcode: string
-  address: string
-  district: string
-  location: string
+  adcode: string,
+  address: string,
+  district: string,
+  location: string,
   name: string,
   distance: string,
   cityName: string,
-  areaId?: string
+  areaId?: string,
+  ad_name?: string
 }
 export interface publishFindWork {
   resumeText: string,

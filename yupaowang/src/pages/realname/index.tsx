@@ -1,6 +1,6 @@
 import Taro, { Config, useDidShow } from '@tarojs/taro'
 import { View, Text, Input, Image, Button, Picker, Block } from '@tarojs/components'
-import { ALIYUNCDN, IMGCDNURL } from '../../config'
+import { ALIYUNCDN, IMGCDNURL, USEGAODEMAPAPI } from '../../config'
 import useRealname from '../../hooks/realname'
 import { PostUserAuthInfo } from '../../hooks/index.d'
 import useCode from '../../hooks/code'
@@ -97,6 +97,14 @@ export default function RealName(){
       url: `/pages/map/realname/index`
     })
   }
+  // 用户输入地区 针对不能 使用高德地图的小程序
+  const userEnterAddress =(e) => {
+    if(model){
+      setModel({ ...model, address: e.detail.value })
+    }
+  }
+
+
   return (
     <Block>
     <Auth />
@@ -149,7 +157,7 @@ export default function RealName(){
             type='text'
             placeholder='请输入姓名'
             onInput={(e)=>userEnterFormInfo('username', e)}
-            value={ model && model.username }
+            value={ model.username }
           />
         </View>
         <View className='publish-list-item'>
@@ -172,7 +180,7 @@ export default function RealName(){
               type='text'
               disabled
               placeholder='请选择出生日期'
-              value={ model && model.birthday }
+              value={ model.birthday }
             />
           </Picker>
         </View>
@@ -196,19 +204,29 @@ export default function RealName(){
             placeholder='请输入身份证号码'
             maxLength={18}
             onInput={(e) => userEnterFormInfo('idCard', e)}
-            value={ model&&model.idCard }
+            value={ model.idCard }
           />
         </View>
         <View className='publish-list-item'>
           <Text className='pulish-list-title'>详细地址</Text>
+          {USEGAODEMAPAPI ? 
           <Input
             className='publish-list-input'
             type='text'
             disabled
             placeholder='请选择详细地址'
             onClick={() => userChooseArea()}
-            value={ model && model.address }
+            value={ model.address }
           />
+          :
+          <Input
+            className='publish-list-input'
+            type='text'
+            placeholder='请选择详细地址'
+            onInput={(e) => userEnterAddress(e)}
+            value={ model.address }
+          />
+          }
         </View>
       </View>
 
@@ -221,7 +239,7 @@ export default function RealName(){
             type='text'
             placeholder='请输入电话号码'
             onInput={(e)=>userEnterFormInfo('tel', e)}
-            value={ model && model.tel }
+            value={ model.tel }
           />
         </View>
         <View className='publish-list-item publish-list-item-code'>
@@ -231,7 +249,7 @@ export default function RealName(){
             type='text'
             placeholder='请输入验证码'
             onInput={(e)=>userEnterFormInfo('code', e)}
-            value={ model&&model.code }
+            value={ model.code }
           />
           <View className='publish-code-btn' onClick={()=>userSendCode()}>{ text }</View>
         </View>

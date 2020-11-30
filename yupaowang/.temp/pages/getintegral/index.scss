@@ -1,0 +1,88 @@
+@import "../../common.scss";
+
+.getintegral-container {
+  position: relative;
+  width: 100%;
+  padding: 20px;
+  .getintegral-footer {
+    position: relative;
+    padding: 20px;
+    background-color: white;
+    line-height: 50px;
+    margin-top: $margin;
+    color: #7f7e7e;
+    font-size: 30px;
+    @include shadow();
+    .getintegral-tel {
+      color: $color;
+    }
+    .getintegral-footer-header {
+      position: relative;
+      text-align: center;
+      font-weight: bold;
+      text {
+        margin: 0 10rpx;
+        color: $color;
+      }
+      .tips-icon {
+        position: relative;
+        display: inline-block;
+        width: 25px;
+        height: 25px;
+      }
+    }
+
+    .getintegral-tel-copy {
+      background-color: $color;
+      color: white;
+      padding: 0 10px;
+      border-radius: 8px;
+      display: inline-block;
+      justify-content: center;
+      margin-left: $margin;
+      font-size: 26px;
+    }
+  }
+  .getintegral-body {
+    padding: 0 20px;
+    @include shadow();
+    border-radius: 5px;
+    background-color: white;
+    .getintegral-item {
+      position: relative;
+      padding: 30px 220px 30px 0;
+      border-bottom: 1rpx solid $bordercolor;
+      .getintegral-item-title {
+        color: #333;
+        font-size: 32px;
+      }
+      .getintegral-item-content {
+        position: relative;
+        margin-top: 10px;
+        font-size: 26px;
+        color: #b4b4b4;
+        line-height: 40px;
+      }
+      .getintegral-item-btn {
+        position: absolute;
+        background-color: $color;
+        color: white;
+        right: 0;
+        top: 40px;
+        width: 180px;
+        height: 70px;
+        line-height: 70px;
+        font-size: 28px;
+        text-align: center;
+        border-radius: 10px;
+      }
+      .getintegral-list-btn-dis {
+        background-color: #eee;
+        color: #333;
+      }
+    }
+    & > .getintegral-item:nth-last-child(1) {
+      border: none;
+    }
+  }
+}

@@ -474,7 +474,8 @@ exports.default = MyAreaInfo;
 
 var _publish = __webpack_require__(/*! ../constants/publish */ "./src/constants/publish.ts");
 
-//定义发布招工获取设置区域信息的action
+var _area = __webpack_require__(/*! ../models/area */ "./src/models/area.ts");
+
 // 默认发布招工state数据
 var DEFAULT_STATE_PUBLISHDATA = {
   classifyTree: [],
@@ -483,8 +484,14 @@ var DEFAULT_STATE_PUBLISHDATA = {
   user_mobile: '',
   maxClassifyCount: 0,
   maxImageCount: 0,
-  placeholder: ''
-};
+  placeholder: '',
+  defaultSearchName: {
+    name: _area.AREABEIJING.name,
+    id: _area.AREABEIJING.id,
+    ad_name: _area.AREABEIJING.ad_name
+  },
+  reqStatus: false
+}; //定义发布招工获取设置区域信息的action
 function MyAreaInfo() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : DEFAULT_STATE_PUBLISHDATA;
   var action = arguments[1];
@@ -630,11 +637,12 @@ var DEFAULT_STATE_RECRUIT = {
   },
   area: {
     name: _area.AREABEIJING.name,
-    id: _area.AREABEIJING.id
+    id: _area.AREABEIJING.id,
+    ad_name: _area.AREABEIJING.ad_name
   },
   token: '',
-  positionStatus: true,
-  phone: ''
+  phone: '',
+  positionStatus: true
 };
 // 内容的参数
 var DEFAULT_STATE_AREAINFO = {
@@ -642,10 +650,12 @@ var DEFAULT_STATE_AREAINFO = {
   adcode: '',
   location: '',
   info: '',
-  areaId: ''
+  areaId: '',
+  name: '',
+  ad_name: ''
 };
 // 定义默认的区域数据
-var DEFAULT_STATE_AREA = { name: _area.AREABEIJING.name, id: _area.AREABEIJING.id };
+var DEFAULT_STATE_AREA = { name: _area.AREABEIJING.name, id: _area.AREABEIJING.id, ad_name: _area.AREABEIJING.ad_name };
 function MyAreaInfo() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : DEFAULT_STATE_AREAINFO;
   var action = arguments[1];

@@ -1,9 +1,9 @@
 import Taro, { useRouter, RouterInfo, Config, useEffect, useState } from '@tarojs/taro'
-import { View, Text, Form, Input, Textarea, Block } from '@tarojs/components'
+import { View, Text, Form, Input, Textarea, Block, Picker } from '@tarojs/components'
 import { ProfessionRecruitData } from '../../../components/profession/index.d'
 import Profession from '../../../components/profession'
 import useCode from '../../../hooks/code'
-import { TEXTAREAMAXLENGTH } from '../../../config'
+import { TEXTAREAMAXLENGTH,USEGAODEMAPAPI } from '../../../config'
 import usePublishViewInfo from '../../../hooks/publish/recruit'
 import { RecruitModelInfo, UserLastPublishRecruitArea } from '../index.d'
 import UploadImgAction from '../../../utils/upload'
@@ -31,7 +31,7 @@ export default function PublishRecruit() {
   const areaInfo:UserLastPublishRecruitArea = useSelector<any,UserLastPublishRecruitArea>(state=>state.MyAreaInfo)
   
   // 初始化当前信息
-  const { model, setModel, showUpload, setShowUpload, showProfession, setShowProssion, userPublishRecruitAction, num, setNum, phone } = usePublishViewInfo(InitParams)
+  const { model, setModel, showUpload, setShowUpload, showProfession, setShowProssion, userPublishRecruitAction, num, setNum, phone, areaIndex, areaPickerData, areaCityPicker, areaProvincePicker, setAreaPickerData, setAreaIndex, areaPickerName, setAreaPickerName } = usePublishViewInfo(InitParams)
 
   // 使用自定义验证码hook
   const { text, userGetCode } = useCode()
@@ -50,18 +50,17 @@ export default function PublishRecruit() {
   }
 
   // 用户填写表单
-  const userEnterFrom = (e: any,key: string)=> {
+  const userEnterFrom = (e: any,type: string)=> {
     const value: string = e.detail.value
     const state: RecruitModelInfo = JSON.parse(JSON.stringify(model))
-    state[key] = value
+    state[type] = value
     setModel({ ...state})
-    
   }
 
   // 选择地址
   const userChooseArea = ()=> {
     if(!model) return
-    let url = '/pages/map/recruit/index'
+    let url = `/pages/map/recruit/index?id=${id}`
     Taro.navigateTo({
       url: url
     })
@@ -111,6 +110,30 @@ export default function PublishRecruit() {
     bakModel.view_images.splice(i,1)
     setModel(bakModel)
   }
+
+  // 用户确定地址picker
+  const userChangePickerArea = (e: any) => {
+    let pid: string = areaProvincePicker[e.detail.value[0]].id
+    let cid: string = areaPickerData[1][e.detail.value[1]].id
+    if(model) setModel({...model,province_id: +pid, city_id: +cid})
+    let name: string = pid === cid ? areaProvincePicker[e.detail.value[0]].name : `${areaProvincePicker[e.detail.value[0]].name}-${areaPickerData[1][e.detail.value[1]].name}`
+    setAreaPickerName(name)
+  }
+
+  // 用户更改了地址picker
+  const userChangeColumn = (e: any) => {
+    let column: number = e.detail.column
+    let value: number = e.detail.value
+    if(column === 0){
+      let data = JSON.parse(JSON.stringify(areaPickerData))
+      data[1] = areaCityPicker[value]
+      setAreaPickerData(data)
+      setAreaIndex([value,0])
+    }else{
+      setAreaIndex([areaIndex[0],value])
+    }
+  }
+
   return (
       <Block>
         <Auth />
@@ -153,10 +176,26 @@ export default function PublishRecruit() {
                 <Input className='publish-list-input' disabled type='text' placeholder='请选择所属工种' />
                 }
               </View>
+              {USEGAODEMAPAPI ?
               <View className='publish-list-item' onClick={()=>userChooseArea()}>
                 <Text className='pulish-list-title'>详细地址</Text>
                 <Input className='publish-list-input' type='text' disabled placeholder='请输入详细地址' value={ areaInfo&&areaInfo.title } />
               </View>
+              :
+              <View className='publish-list-item'>
+                <Text className='pulish-list-title'>招工地址</Text>
+                <Picker 
+                  mode='multiSelector' 
+                  value={areaIndex} 
+                  range={areaPickerData} 
+                  rangeKey='name'
+                  onChange={(e)=>userChangePickerArea(e)}
+                  onColumnChange={(e) => userChangeColumn(e)}
+                >
+                  <Input className='publish-list-input' type='text' disabled placeholder='请选择招工地址' value={areaPickerName} />
+                </Picker>
+              </View>
+              }
               <View className='publish-list-item'>
                 <Text className='pulish-list-title'>联系人</Text>
                 <Input 
@@ -198,9 +237,9 @@ export default function PublishRecruit() {
                     'publish-textarea': true,
                     'hide': showProfession
                   })} 
-                  value={ model&&model.detail||'' }
+                  value={model.detail}
                   placeholder='请输入招工详情'
-                  onInput={(e) => { userEnterFrom(e, 'detail');setNum(e.detail.value.length);return false;}}
+                  onInput={(e) => { userEnterFrom(e, 'detail');setNum(e.detail.value.length);return false}}
                 ></Textarea>}
                 <View className='words-total-box '>{num}<Text>/{TEXTAREAMAXLENGTH}</Text></View>
               </View>

@@ -1,5 +1,4 @@
-import { usePublishData } from '../issue'
-import { FastIssueData } from '../../../pages/recruit/index.d'
+import { usePublishData } from '../commonIssue'
 import Taro, { useState, useEffect } from '@tarojs/taro'
 import { isVaildVal, isPhone } from '../../../utils/v'
 import { ShowActionModal } from '../../../utils/msg'
@@ -24,7 +23,8 @@ export function useFastIssue() {
   // 发送获取数据请求
   const { phone, setEnterInfo } = usePublishData(InitParams)
   // 定义快速发布数据
-  const [issueData, setIssueData] = useState<FastIssueData>({ phone: phone , content:''})
+  const [telPhone, setTelPhone] = useState<string>(phone)
+  const [content, setContent] = useState<string>('')
   // 数据变化的标题
   const [dataType, setDataType] = useState<string>('')
   // 展示或者隐藏电话框
@@ -33,25 +33,31 @@ export function useFastIssue() {
   const [num, setNum] = useState<number>(0)
   // 获取dispatch分发action
   const dispatch = useDispatch()
-  // 存入电话号码
-  useEffect(() => {
-    setIssueData({ ...issueData, phone: phone })
-  }, [phone])
+
+  // 初始化电话号码
+  useEffect(()=>{
+    setTelPhone(phone)
+  },[phone])
   // 监听输入电话或者详情变化，存入缓存
   useEffect(() => {
     if (dataType == 'phone') {
-      setEnterInfo(dataType, issueData[dataType])
+      setEnterInfo(dataType, telPhone)
     }
     if (dataType == 'content') {
-      setEnterInfo(dataType, issueData[dataType])
+      setEnterInfo(dataType, content)
     }
-  }, [dataType, issueData])
+  }, [dataType,telPhone, content])
+  // 设置匹配到电话号码设置缓存
+  useEffect(() => {
+    setEnterInfo("phone", telPhone)
+  },[telPhone])
   // 用户填写发布信息
   function inputEnter (e: any, key: string) {
     const value: string = e.detail.value
-    setIssueData({ ...issueData, [key]:value})
     setDataType(key)
+    if (key == 'phone') setTelPhone(value)
     if (key == 'content'){
+      setContent(value)
       setNum(value.length)
       let content:string = value.replace(/\s+/g, "")
       // 匹配电话正则表达式
@@ -61,7 +67,7 @@ export function useFastIssue() {
       let phoneNum = result && result[0]
       if (phoneNum){
         // 如果匹配有手机号码，保存最新的手机号并显示电话框
-        setIssueData({ ...issueData, phone: phoneNum })
+        setTelPhone(phoneNum)
         // 如果匹配的手机号等于账号手机号也不显示电话框
         if (phoneNum == phone) return
         setShowPhoneBox(true)
@@ -70,22 +76,28 @@ export function useFastIssue() {
   }
   // 发布招工详情
   function fastPublish () {
-    let data = { ...issueData }
-    if (data.content == "") {
+    if (content == "") {
       ShowActionModal({
         title: '温馨提示',
         msg: '请输入招工详情。'
       })
       return
     }
-    if (!isVaildVal(data.content, 3, 500)) {
+    if (content.length < 3 || content.length > 500) {
+      ShowActionModal({
+        title: '提示',
+        msg: '请正确输入3~500字招工详情。'
+      })
+      return false;
+    }
+    if (!isVaildVal(content, 1, 500)) {
       ShowActionModal({
         title: '温馨提示',
         msg: '请正确输入3~500字招工详情,必须含有汉字。'
       })
       return;
     }
-    if (!data.phone ||　data.phone == "") {
+    if (!telPhone ||　telPhone == "") {
       ShowActionModal({
         title: '温馨提示',
         msg: '请输入联系电话。'
@@ -93,19 +105,23 @@ export function useFastIssue() {
       setShowPhoneBox(true)
       return false
     }
-    if (data.phone && !isPhone(data.phone)) {
+    if (telPhone && !isPhone(telPhone)) {
       ShowActionModal({
         title: '温馨提示',
         msg: '请正确输入11位联系电话。'
       })
       return false;
     }
-    if (data.phone == "18349296434") {
+    if (telPhone == "18349296434") {
       ShowActionModal({
         title: '温馨提示',
         msg: '该手机号暂不支持发布招工信息，请重新输入。'
       })
       return false;
+    }
+    let data = {
+      phone:telPhone,
+      content
     }
     fastIssue(data).then(res => {
       if (res.errcode == 'ok') {
@@ -116,7 +132,7 @@ export function useFastIssue() {
         // token存入redux
         dispatch(setToken(token))
         // 发布手机号存入redux
-        dispatch(setPhone(issueData.phone))
+        dispatch(setPhone(telPhone))
         if (checked){
           Taro.navigateTo({
             url: '/pages/recruit/fast_issue/release/index',
@@ -149,8 +165,10 @@ export function useFastIssue() {
     })
   }
   return {
-    issueData, 
-    setIssueData,
+    telPhone,
+    setTelPhone,
+    content,
+    setContent, 
     inputEnter,
     setDataType,
     dataType,

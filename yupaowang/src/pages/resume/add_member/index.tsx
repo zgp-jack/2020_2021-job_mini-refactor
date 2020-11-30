@@ -283,7 +283,7 @@ export default function AddResumeMember() {
                   type='number'
                   maxLength={2}
                   placeholder='请输入您的工龄'
-                  value={postData.experience||''}
+                  value={postData.experience}
                   onInput={(e) => userEnterFrom(e, 'experience')}
                 />
               </View>

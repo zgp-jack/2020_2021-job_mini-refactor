@@ -20,8 +20,8 @@ export interface SelectedClassfies extends ProfessionBaseData{
 export interface ClassfiyProps {
   hiddenPickerModel: () => void,
   selectClassfy: (selectClassify: RulesClassfies[]) => void,
-  classifies: SelectedClassfies[] | any,
-  maxClassifyCount: number | undefined,
+  classifies: SelectedClassfies[],
+  maxClassifyCount: number,
   choceClassfies: RulesClassfies[],
 }
 
@@ -42,8 +42,42 @@ export default function ClassifyPicker ({
   useEffect(() => {
     initChildWorkType()
     //计算选中数量
-    findClassSelectNum()
+    countWorkNum()
   }, [])
+  // 匹配的工种数量
+  function countWorkNum() {
+    //选择或匹配工种字段组成一个数组
+    let ClassifyidsAll: RulesClassfies[] = [...choceWorkType]
+    //返回所有工种字段id数组
+    let ClassifyAllids: string[] = ClassifyidsAll.map(item => item.id)
+    //数组长度
+    let ruleLen: number = ClassifyAllids.length
+    // 所有工种数据
+    let classifyids: SelectedClassfies[] = JSON.parse(JSON.stringify(workType))
+    //所有工种数组长度
+    let len: number = classifyids.length
+    //如果没有选择工种也没有匹配工种那么就将num置为0
+    if (!ruleLen) {
+      classifyids.forEach(function (item) {
+        if (item.num) {
+          item.num = 0
+        }
+      })
+    }
+    //记录选择或者详情匹配工种的数量
+    for (let i = 0; i < len; i++) {
+      let data = classifyids[i].children
+      let inum = 0
+      for (let j = 0; j < data.length; j++) {
+        let has = ClassifyAllids.indexOf(data[j].id)
+        if (has !== -1) {
+          inum++
+        }
+        classifyids[i].num = inum
+      }
+    }
+    setWorkType(classifyids)
+  }
   // 初始化子类工种信息和选中状态
   function initChildWorkType (index:number=0) {
     // 选择工种字段
@@ -61,30 +95,7 @@ export default function ClassifyPicker ({
     // 设置父类对应子类工种数据
     setChildClassifies(data)
   }
-  //从所有工种里找出choceClassfies的工种计算选中数量
-  function findClassSelectNum() {
-    //所有工种
-    let _workType: SelectedClassfies[] = JSON.parse(JSON.stringify(workType))
-    //传过来的选中的工种xs
-    let _choceClassfies: RulesClassfies[] = choceClassfies
-    //循环所有工种和选中工种 进行匹配 
-    for (let i = 0; i < _workType.length;i++){
-      //如果有二级工种
-      if (_workType[i].children.length>0){
-        for (let n = 0; n < _workType[i].children.length;n++){
-          //二级工种中存在选中的工种 一级工种num+1
-          if (_choceClassfies.findIndex(item => item.id == workType[i].children[n].id) !== -1) {
-            //防止一级工种中没有num字段 默认0
-            let count = _workType[i].num || 0;
-            //一级工种选中数量+1
-            _workType[i].num = count + 1
-          }
-        }
-      }
-    }
-    setWorkType(_workType)
-  }
-
+  
   // 选择一级工种信息
   function userCheckPindex(index:number) {
     // 一级工种index

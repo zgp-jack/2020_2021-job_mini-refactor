@@ -12471,7 +12471,7 @@ var INDEXPATH = exports.INDEXPATH = '/pages/index/index';
 // * 发布招工页面
 var PUBLISHRECRUIT = exports.PUBLISHRECRUIT = '/pages/recruit/fast_issue/issue/index';
 // * 急速发布
-var PUBLISHFAST = exports.PUBLISHFAST = '/pages/recruit/fastPublish/index';
+var PUBLISHFAST = exports.PUBLISHFAST = '/pages/recruit/jisu_issue/index';
 // * 发布找活页面
 var PUBLISHRESUME = exports.PUBLISHRESUME = '/pages/resume/publish/index';
 // * 发布二手交易
@@ -12510,6 +12510,12 @@ var ISCANSHARE = exports.ISCANSHARE = MINICONFIG.ISCANSHARE;
 var TEXTAREAMAXLENGTH = exports.TEXTAREAMAXLENGTH = MINICONFIG.TEXTAREAMAXLENGTH;
 // * 应用内是否使用下载APP引流
 var DOWNLOADAPP = exports.DOWNLOADAPP = MINICONFIG.DOWNLOADAPP;
+// * 是否能够使用高德地区api
+var USEGAODEMAPAPI = exports.USEGAODEMAPAPI = MINICONFIG.USEGAODEMAPAPI;
+// * scroll-view滚动过程中是否保存高度值
+var SCROLLVIEWSETTOP = exports.SCROLLVIEWSETTOP = MINICONFIG.SCROLLVIEWSETTOP;
+// * 上传图片 是否需要使用JSON解析数据
+var ISPARSEUPLOADIMG = exports.ISPARSEUPLOADIMG = MINICONFIG.ISPARSEUPLOADIMG;
 
 /***/ }),
 
@@ -12575,6 +12581,12 @@ var USESUBSCRIBEMESSAGE = false;
 var TEXTAREAMAXLENGTH = 500;
 // * 应用内是否存在下载APP引流
 var DOWNLOADAPP = true;
+// * 是否支持高德地图api
+var USEGAODEMAPAPI = false;
+// ! 百度系小程序 列表滚动必须设置值
+var SCROLLVIEWSETTOP = true;
+// ! 百度系小程序  上传图片 不能JSON解析数据
+var ISPARSEUPLOADIMG = false;
 module.exports = {
   PAGETITLE: PAGETITLE,
   TOKEN: TOKEN,
@@ -12583,7 +12595,10 @@ module.exports = {
   USESUBSCRIBEMESSAGE: USESUBSCRIBEMESSAGE,
   ISCANSHARE: ISCANSHARE,
   TEXTAREAMAXLENGTH: TEXTAREAMAXLENGTH,
-  DOWNLOADAPP: DOWNLOADAPP
+  DOWNLOADAPP: DOWNLOADAPP,
+  USEGAODEMAPAPI: USEGAODEMAPAPI,
+  SCROLLVIEWSETTOP: SCROLLVIEWSETTOP,
+  ISPARSEUPLOADIMG: ISPARSEUPLOADIMG
 };
 
 /***/ }),
@@ -12615,6 +12630,12 @@ var USESUBSCRIBEMESSAGE = false;
 var TEXTAREAMAXLENGTH = 140;
 // * 应用内是否存在下载APP引流
 var DOWNLOADAPP = false;
+// * 是否支持高德地图api
+var USEGAODEMAPAPI = true;
+// ! 百度系小程序 列表滚动必须设置值
+var SCROLLVIEWSETTOP = false;
+// ! 百度系小程序  上传图片 JSON解析数据
+var ISPARSEUPLOADIMG = true;
 module.exports = {
   PAGETITLE: PAGETITLE,
   TOKEN: TOKEN,
@@ -12623,7 +12644,10 @@ module.exports = {
   USESUBSCRIBEMESSAGE: USESUBSCRIBEMESSAGE,
   ISCANSHARE: ISCANSHARE,
   TEXTAREAMAXLENGTH: TEXTAREAMAXLENGTH,
-  DOWNLOADAPP: DOWNLOADAPP
+  DOWNLOADAPP: DOWNLOADAPP,
+  USEGAODEMAPAPI: USEGAODEMAPAPI,
+  SCROLLVIEWSETTOP: SCROLLVIEWSETTOP,
+  ISPARSEUPLOADIMG: ISPARSEUPLOADIMG
 };
 
 /***/ }),
@@ -12641,7 +12665,7 @@ module.exports = {
 /*
  * @Author: your name
  * @Date: 2020-10-28 11:04:26
- * @LastEditTime: 2020-11-19 14:36:55
+ * @LastEditTime: 2020-11-25 10:29:47
  * @LastEditors: jsxin
  * @Description: In User Settings Edit
  * @FilePath: \yupaowang\src\config\minis\jizhao.ts
@@ -12665,6 +12689,12 @@ var VIDEOAD = 'adunit-31b05acadbd2a1d1';
 var TEXTAREAMAXLENGTH = 500;
 // * 应用内是否存在下载APP引流
 var DOWNLOADAPP = true;
+// * 是否支持高德地图api
+var USEGAODEMAPAPI = false;
+// ! 百度系小程序 列表滚动必须设置值
+var SCROLLVIEWSETTOP = false;
+// ! 百度系小程序  上传图片 JSON解析数据
+var ISPARSEUPLOADIMG = true;
 module.exports = {
   PAGETITLE: PAGETITLE,
   TOKEN: TOKEN,
@@ -12673,7 +12703,10 @@ module.exports = {
   USESUBSCRIBEMESSAGE: USESUBSCRIBEMESSAGE,
   VIDEOAD: VIDEOAD,
   TEXTAREAMAXLENGTH: TEXTAREAMAXLENGTH,
-  DOWNLOADAPP: DOWNLOADAPP
+  DOWNLOADAPP: DOWNLOADAPP,
+  USEGAODEMAPAPI: USEGAODEMAPAPI,
+  SCROLLVIEWSETTOP: SCROLLVIEWSETTOP,
+  ISPARSEUPLOADIMG: ISPARSEUPLOADIMG
 };
 
 /***/ }),
@@ -13603,6 +13636,11 @@ Object.defineProperty(exports, "__esModule", {
 exports.getCityInfo = getCityInfo;
 exports.getLongAreaAdname = getLongAreaAdname;
 exports.getCityInfoById = getCityInfoById;
+exports.getCityAreaPicker = getCityAreaPicker;
+exports.getAreaCurrentArr = getAreaCurrentArr;
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 var AREAS = [{
   "id": "1",
   "pid": "0",
@@ -15862,6 +15900,49 @@ function getCityInfoById(id) {
   if (flag) return AREAS[pCurrent].children[cCurrent];
   return AREAS[pCurrent];
 }
+// 省市选择picker 非高德地图场景最多
+function getCityAreaPicker() {
+  var province = [];
+  var cities = [];
+  for (var i = 1; i < AREAS.length; i++) {
+    var data = AREAS[i];
+    province.push({ id: data.id, name: data.name });
+    if (data.has_children) {
+      var mydata = [];
+      var childrenData = data.children;
+      for (var j = 1; j < childrenData.length; j++) {
+        mydata.push({ id: childrenData[j].id, name: childrenData[j].name });
+      }
+      cities.push(mydata);
+    } else {
+      cities.push([{ id: data.id, name: data.name }]);
+    }
+  }
+  // 先将数据进行浅拷贝，避免没注意的情况改变了数据
+  province = [].concat(_toConsumableArray(province));
+  cities = [].concat(_toConsumableArray(cities));
+  return {
+    province: province,
+    cities: cities
+  };
+}
+// 根据省市返回下标 如[2,5] 非高德地图经常会调用picker 这个时候使用场景最多
+function getAreaCurrentArr(pid, cid) {
+  var _getCityAreaPicker = getCityAreaPicker(),
+      province = _getCityAreaPicker.province,
+      cities = _getCityAreaPicker.cities;
+  // 先获取父级的索引，然后通过父级索引直接定位到子集索引
+
+
+  var pi = province.findIndex(function (item) {
+    return item.id == pid;
+  });
+  var citydata = JSON.parse(JSON.stringify(cities[pi]));
+  var ci = citydata.findIndex(function (item) {
+    return item.id == cid;
+  });
+  return { pi: pi, ci: ci };
+}
 exports.default = AREAS;
 
 /***/ }),
@@ -15893,8 +15974,8 @@ Object.defineProperty(exports, "__esModule", {
 /*
  * @Author: zyb
  * @Date: 2020-11-03 18:49:37
- * @LastEditors: zyb
- * @LastEditTime: 2020-11-10 09:34:01
+ * @LastEditors: jsxin
+ * @LastEditTime: 2020-11-23 16:56:52
  * @Description:
  */
 // 基础信息默认参数
@@ -15953,7 +16034,8 @@ var INFODATA_DATA = exports.INFODATA_DATA = {
   zan_num: '',
   age: '',
   title: '',
-  code: ''
+  code: '',
+  province_and_city: ''
 };
 // 人员信息
 var INTRODUCERS_DATA = exports.INTRODUCERS_DATA = {
@@ -15994,7 +16076,7 @@ var RESUME_TOP_DATA = exports.RESUME_TOP_DATA = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.publishModel = exports.fastPublisView = exports.FastRcruitUrl = exports.memberTurntable = exports.turntableVideoEnd = exports.turntableDraw = exports.turntableIndex = exports.getRankRulesList = exports.checkCodeUrl = exports.getResumeAddInfoConfig = exports.realnameQueryUrl = exports.userCheckDouyinRecharge = exports.userDouyinRecharge = exports.userTelCodeLogin = exports.userAccountUrl = undefined;
+exports.getBaiduTpOrderId = exports.publishModel = exports.fastPublisView = exports.FastRcruitUrl = exports.memberTurntable = exports.turntableVideoEnd = exports.turntableDraw = exports.turntableIndex = exports.getRankRulesList = exports.checkCodeUrl = exports.getResumeAddInfoConfig = exports.realnameQueryUrl = exports.userCheckDouyinRecharge = exports.userDouyinRecharge = exports.userTelCodeLogin = exports.userAccountUrl = undefined;
 exports.leavingMessageUrl = exports.resumesComplainUrl = exports.resumesUpdateTopResumeUrl = exports.resumesDoTopV2Url = exports.resumesTopConfigV2Url = exports.resumesEditImgUrl = exports.resumesChangeTopStatusUrl = exports.resumesDoTopUrl = exports.resumesTopConfigUrl = exports.resumesTopAreasUrl = exports.resumesDelProjectUrl = exports.resumesEditEndUrl = exports.resumesIntroduceUrl = exports.resumesGetDataUrl = exports.checkAdcodeUrl = exports.addResumeUrl = exports.resumesProjectUrl = exports.resumesCertificateUrl = exports.delCertificateUrl = exports.jobRecommendListUrl = exports.resumeListUrl = exports.resumeCollectUrl = exports.resumeSupportUrl = exports.resumesGetTelUrl = exports.recommendListUrl = exports.resumeDetailUrl = exports.jobUpdateTopStatusUrl = exports.jobChangeTopAreasUrl = exports.jobGetTopAreasUrl = exports.jobDoTopUrl = exports.jobTopHotAreasUrl = exports.jobTopConfigUrl = exports.jobEndStatusUrl = exports.jobGetTelUrl = exports.jobNoUserInfoUrl = exports.jobInfoUrl = exports.publishComplainUrl = exports.integralUseInfoUrl = exports.integralExpendListsUrl = exports.integralExpendConfigUrl = exports.integralSourceListsUrl = exports.integralSourceConfigUrl = exports.messagesTypeUrl = exports.userMessagesUrl = exports.resumesAddClickLog = exports.resumesSortUrl = exports.newsInfoUrl = exports.newsTypesUrl = exports.newListUrl = exports.helpUrl = exports.feedbackSubmissionUrl = exports.feedbackUrl = exports.requestActionUrl = exports.ResumeCancelCollection = exports.recruitCancelCollection = exports.getCollectionResumeList = exports.getCollectionRecruitList = exports.userUpdateUserInfo = exports.userChangeUsedStatus = exports.userGetPublishedUsedList = exports.userChangeRecruitStatus = exports.userGetPublishedRecruitList = exports.updataPassword = exports.userChangePhone = exports.userUpdateName = exports.userChangeAvatar = exports.postUserAddInfo = exports.getIdcardAuthInfo = exports.postUserAuthInfo = exports.getUserAuthInfo = exports.getMemberMsgNumber = exports.getMemberInfo = exports.CheckMineAuthInfo = exports.CheckAuth = exports.GetUsedInfo = exports.GetUserLoginPhoneCode = exports.GetUserPhoneCode = exports.PublishUsedInfo = exports.GetUsedInfoModel = exports.GetRechargeOrder = exports.GetRechargeOpenid = exports.GetRechargeList = exports.GetUserInviteLink = exports.CheckAdcodeValid = exports.GetAllAreas = exports.FastIssueInfo = exports.FastPublisInfo = exports.PublishRecruitInfo = exports.GetPublisRecruitView = exports.GetIntegralList = exports.GetTabbarMsg = exports.GetListFilterData = exports.GetWechatNotice = exports.GetFleamarketlist = exports.GetResumelist = exports.GetRecruitlist = exports.GetAllListItem = exports.GetBannerNotice = exports.GetUserInfo = exports.GetUserSessionKey = undefined;
 
 var _index = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
@@ -16229,6 +16311,8 @@ var FastRcruitUrl = exports.FastRcruitUrl = _index.REQUESTURL + 'fast-issue/comp
 var fastPublisView = exports.fastPublisView = _index.REQUESTURL + 'publish/new-mate-job/';
 // 获取发布招工模式 快速发布||急速发布
 var publishModel = exports.publishModel = _index.REQUESTURL + 'index/get-job-view/';
+// 获取百度tpOrderId
+var getBaiduTpOrderId = exports.getBaiduTpOrderId = _index.REQUESTURL + 'pay/baidu-order/';
 
 /***/ }),
 
@@ -16298,16 +16382,13 @@ function userAuthLoction() {
     var GDMAP = new _amapWx2.default.AMapWX({ key: _index.MAPKEY });
     GDMAP.getRegeo({
       success: function success(data) {
-        var title = Array.isArray(data[0].regeocodeData.addressComponent.neighborhood.name) ? data[0].desc : data[0].regeocodeData.addressComponent.neighborhood.name;
         var city = data[0].regeocodeData.addressComponent.city;
         var bool = typeof data[0].regeocodeData.addressComponent.city == 'string';
         var gpsLocation = {
           province: data[0].regeocodeData.addressComponent.province,
           city: bool ? city : data[0].regeocodeData.addressComponent.province,
           adcode: data[0].regeocodeData.addressComponent.adcode,
-          citycode: data[0].regeocodeData.addressComponent.citycode,
-          title: title,
-          info: data[0].regeocodeData.formatted_address
+          citycode: data[0].regeocodeData.addressComponent.citycode
         };
         _taroTt2.default.setStorageSync(_store.UserLocationCity, gpsLocation); //定位信息
         resolve(gpsLocation);
@@ -16675,6 +16756,7 @@ exports.turntableDraw = turntableDraw;
 exports.turntableVideoEnd = turntableVideoEnd;
 exports.memberTurntable = memberTurntable;
 exports.publishWayRea = publishWayRea;
+exports.getBaiduTpOrderId = getBaiduTpOrderId;
 
 var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
 
@@ -17802,6 +17884,14 @@ function publishWayRea() {
     method: 'GET'
   });
 }
+// 获取百度支付tporderid
+function getBaiduTpOrderId(data) {
+  return doRequestAction({
+    url: api.getBaiduTpOrderId,
+    method: 'POST',
+    data: data
+  });
+}
 
 /***/ }),
 
@@ -18107,8 +18197,7 @@ function AppUploadImg(resolve, res) {
     name: 'file',
     success: function success(response) {
       // 百度小程序出来之后是一个纯json 但是其他端就不是， 解决百度冲突
-      var mydata = _index.MINIVERSION == _index.BAIDU ? response.data : JSON.parse(response.data);
-      // let resData = { local: response, remote: mydata}
+      var mydata = _index.ISPARSEUPLOADIMG ? JSON.parse(response.data) : response.data;
       _taroTt2.default.showToast({
         title: mydata.errmsg,
         icon: "none",

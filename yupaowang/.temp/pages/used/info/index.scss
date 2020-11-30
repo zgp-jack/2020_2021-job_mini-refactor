@@ -1,0 +1,51 @@
+@import '../../../common.scss';
+
+.usedinfo-container{
+  position: relative;
+  width: 100%;
+  padding-top: $margin;
+  .usedinfo-body{
+    position: relative;
+    margin-top: $margin;
+    background-color: white;
+    @include shadow();
+    .usedinfo-report{
+      position: relative;
+      padding: 20px;
+      font-size: 30px;
+      color: #333;
+      line-height: 50px;
+      border-bottom: 1px solid #dcdcdc;
+      .usedinfo-report-text{
+        color: #ff0000;
+      }
+    }
+    .usedinfo-item{
+      position: relative;
+      padding: 20px;
+      border-bottom: 1px solid #dcdcdc;
+      font-size: 30px;
+      .usedinfo-item-title{
+        position: relative;
+        line-height: 60px;
+        width: 200px;
+        float: left;
+      }
+      .usedinfo-item-text{
+        position: relative;
+        color: $color;
+        line-height: 60px;
+        float: right;
+        .usedinfo-item-end{
+          color: #ff0000;
+        }
+      }
+    }
+    .usedinfo-full-item{
+      width: 100%;
+      .usedinfo-item-title{
+        width: 100%;
+      }
+    }
+  }
+}

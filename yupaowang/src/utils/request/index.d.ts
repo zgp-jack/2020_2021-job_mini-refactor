@@ -1238,6 +1238,7 @@ export interface resInfoObj {
   zan_num: string,
   age:string|number,
   code?:string,
+  province_and_city: string
 }
 export interface resContentObj {
   check_tips_string: string,

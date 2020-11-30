@@ -45,6 +45,7 @@ $miniPublishInputPadding: 0;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: $row;
+  /* autoprefixer: off */
   -webkit-box-orient: vertical;
   word-break: break-all; 
 } 

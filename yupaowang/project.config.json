@@ -35,7 +35,7 @@
 		"packNpmRelationList": []
 	},
 	"compileType": "miniprogram",
-	"simulatorType": "wechat",
+	"simulatorType": "鱼泡网",
 	"simulatorPluginLibVersion": {},
 	"libVersion": "2.8.3",
 	"condition": {

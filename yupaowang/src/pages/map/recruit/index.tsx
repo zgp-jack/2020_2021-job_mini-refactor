@@ -1,4 +1,4 @@
-import Taro, { Config, useEffect, useState } from '@tarojs/taro'
+import Taro, { Config, useEffect, useState, RouterInfo, useRouter } from '@tarojs/taro'
 import { View, Text, Image, Input } from '@tarojs/components'
 import { getAllAreas, checkAdcodeValid } from '../../../utils/request'
 import { AllAreasDataItem } from '../../../utils/request/index.d'
@@ -21,6 +21,9 @@ let EARTH_RADIUS = 6378137.0; // 地球半径
 export default function RecruitMap(){
   // 发布招工redux数据
   const recruitInfo: RecruitInfo = useSelector<any, RecruitInfo>(state => state.RecruitAction)
+  // 获取路由参数
+  const router: RouterInfo = useRouter()
+  const id: string = router.params.id || ''
   // 城市数据
   const [areas, setAreas] = useState<AllAreasDataItem[][]>([])
   // 定位城市
@@ -74,14 +77,17 @@ export default function RecruitMap(){
         ad_name: data.ad_name,
         city: data.name
       }
-      if (positionStatus) {
-        dispatch(setArea({name:data.name,id:data.id}))
-        dispatch(setPositionStaus(false))
+      if(!id){
+        if (positionStatus) {
+          dispatch(setArea({ id: data.id, name: data.name, ad_name: data.ad_name }))
+          dispatch(setPositionStaus(false))
+        }
       }
       setUserLoc(userLocData)
     }else{
       handleGps()
     }
+    
   }
 
   // 初始化所需数据
@@ -107,7 +113,7 @@ export default function RecruitMap(){
                       userAuthLoction().then(res => {
                         let userLoctionCity: UserLocationPromiss = Taro.getStorageSync(UserLocationCity)
                         let data: ChildItems = getCityInfo(userLoctionCity, 1)
-                        dispatch(setArea({ name: res.city.slice(0, 2), id: data.id}))
+                        dispatch(setArea({ name: data.name, id: data.id, ad_name: data.ad_name}))
                         dispatch(setPositionStaus(false))
                       })
                     } else {
@@ -123,7 +129,7 @@ export default function RecruitMap(){
             if (res) {
               let userLoctionCity: UserLocationPromiss = Taro.getStorageSync(UserLocationCity)
               let data: ChildItems = getCityInfo(userLoctionCity, 1)
-              dispatch(setArea({ name: res.city.slice(0, 2), id: data.id }))
+              dispatch(setArea({ name: data.name, id: data.id, ad_name: data.ad_name }))
               dispatch(setPositionStaus(false))
             }
           })
@@ -132,7 +138,7 @@ export default function RecruitMap(){
     })
   }
   // 用户切换城市
-  const userChangeCity = (city: AreaData) => {
+  const userChangeCity = (city: string) => {
     dispatch(setArea(city))
     // setArea(city)
   }
@@ -164,7 +170,7 @@ export default function RecruitMap(){
 
   // 获取关键词地区列表
   useEffect(() => {
-    getAmapPoiList(area.name + smAreaText).then(data => {
+    getAmapPoiList(area.ad_name + smAreaText).then(data => {
       let loc: string = Taro.getStorageSync(UserLocation)
       let lists: InputPoiListTips[] = data.filter(item => {
         return item.name && item.adcode && (typeof item.location === 'string')
@@ -173,8 +179,8 @@ export default function RecruitMap(){
         item.distance = getGreatCircleDistance(loc, item.location)
         item.cityName = data[0].name.slice(0,2)
         item.areaId = area.id
+        item.ad_name = area.ad_name
       })
-      console.log("lists", lists)
       setLists(lists)
     })
 
@@ -183,6 +189,7 @@ export default function RecruitMap(){
   // 用户点击城市选择
   const userTapCityBtn = (b: boolean) => {
     setShowCity(b)
+    setShowHistory(false)
   }
 
   // 用户输入小地区名字
@@ -243,7 +250,7 @@ export default function RecruitMap(){
             info: item.district,
             areaId: item.areaId
           })) 
-          dispatch(setArea({ name: item.cityName, id: ( item.areaId as string ) || ""})) 
+          dispatch(setArea({ name: item.cityName, id: (item.areaId as string) || "", ad_name: (item.ad_name as string) })) 
         }
         Taro.navigateBack()
       }
@@ -308,7 +315,6 @@ export default function RecruitMap(){
               data={areas}
               area={area.name}
               userLoc={userLoc}
-              userChangeCity={userChangeCity}
               userTapCityBtn={userTapCityBtn}
             />
           </View>

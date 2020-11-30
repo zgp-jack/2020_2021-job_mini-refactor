@@ -2,7 +2,7 @@ import Taro, { Config, useState, useRouter, useDidShow, useEffect, useShareAppMe
 import { View, Text, Image, Icon, Button } from '@tarojs/components'
 import { jobInfoAction, publishComplainAction, jobGetTelAction, recruitListCancelCollectionAction, jobEndStatusAction, jobUpdateTopStatusAction, jobNoUserInfoAction, jobRecommendListAction } from '../../../utils/request/index'
 import WechatNotice from '../../../components/wechat'
-import { IMGCDNURL, SERVERPHONE, AUTHPATH, CODEAUTHPATH, ISCANSHARE} from '../../../config'
+import { IMGCDNURL, SERVERPHONE, AUTHPATH, CODEAUTHPATH, ISCANSHARE, DOWNLOADAPP} from '../../../config'
 import { useSelector } from '@tarojs/redux'
 import { isVaildVal } from '../../../utils/v'
 import  Report  from '../../../components/report'
@@ -547,9 +547,10 @@ export default function DetailInfoPage() {
         }
         </View>
       </View>
+      {DOWNLOADAPP &&
       <View className='detailInfo-Image-box'>
         <Image src={`${IMGCDNURL}download.png`} className='detailInfo-Image' onClick={() => userRouteJump('/subpackage/pages/download/index')}/>
-      </View>
+      </View>}
       {/* 判断是否是自己发布的招工 停止招工状态 
         判断是否查看完成电话 
       */}

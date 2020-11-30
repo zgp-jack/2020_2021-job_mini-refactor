@@ -230,3 +230,5 @@ export const FastRcruitUrl: string = REQUESTURL + 'fast-issue/complete/'
 export const fastPublisView: string = REQUESTURL + 'publish/new-mate-job/'
 // 获取发布招工模式 快速发布||急速发布
 export const publishModel: string = REQUESTURL + 'index/get-job-view/'
+// 获取百度tpOrderId
+export const getBaiduTpOrderId: string = REQUESTURL + 'pay/baidu-order/'

@@ -5,16 +5,18 @@ import { useDispatch, useSelector } from '@tarojs/redux'
 import { resInfoObj } from '../../../utils/request/index.d';
 import { ProfessionRecruitData } from '../../../components/profession/index.d'
 import { NationsType, OccupationType } from './index.d';
-import { addResumeAction, checkAdcodeAction } from '../../../utils/request/index'; 
+import { addResumeAction, checkAdcodeAction, } from '../../../utils/request/index'; 
 import { UserLastPublishRecruitArea } from '../../../pages/recruit/index.d'
 import Profession from '../../../components/profession'
-import { TEXTAREAMAXLENGTH } from '../../../config'
+import { TEXTAREAMAXLENGTH, USEGAODEMAPAPI } from '../../../config'
 import useCode from '../../../hooks/code'
+import { getCityAreaPicker, getAreaCurrentArr, SimpleChildItems, getCityInfoById} from '../../../models/area'
 import Msg,{ ShowActionModal } from '../../../utils/msg';
 import { isChinese, isPhone, allChinese } from '../../../utils/v';
 import { getLocation } from '../../../utils/helper';
 import { location } from './data';
-import { LocationDataType } from './index.d';
+import { UserListChooseCity  } from '../../../config/store';
+import { LocationDataTypeAsGaode } from './index.d';
 import { setAreaInfo, setArea } from '../../../actions/recruit'//获取发布招工信息action
 import './index.scss'
 
@@ -49,11 +51,34 @@ export default function AddResumeInfo(){
   // 已选择工种
   const [classifies, setClassifies] = useState<string[]>([]);
   //位置
-  const [locationData, setLocationData] = useState<LocationDataType>(location)
+  const [locationData, setLocationData] = useState<LocationDataTypeAsGaode>(location)
+  // 当前小程序如果不支持高德定位  那么我将会保存省市id，生成picker
+  const [areaProvincePicker, setAreaProvincePicker] = useState<SimpleChildItems[]>([])
+  const [areaIndex, setAreaIndex] = useState<number[]>([0,0])
+  const [areaCityPicker, setAreaCityPicker] = useState <SimpleChildItems[][]>([])
+  const [areaPickerData, setAreaPickerData] = useState<SimpleChildItems[][]>([])
+  // --结束 请不要随意在该段中间加入任务非高德定位无关的状态值
+
   //获取redux中发布招工区域详细数据
   const areaInfo: UserLastPublishRecruitArea = useSelector<any, UserLastPublishRecruitArea>(state => state.MyAreaInfo)
   // 不是第一次存areaInfo
   // const [first, setFirst] = useState<boolean>(false);
+  // 设置选择地址的省
+  const [provinceAdress, setProvinceAdress] = useState<string>('');
+  useEffect(() => {
+    let {province, cities} = getCityAreaPicker()
+    setAreaProvincePicker(province)
+    setAreaCityPicker(cities)
+    if (inputVal && inputVal.province_and_city){
+      let ids = inputVal.province_and_city.split(',')
+      let { pi, ci } = getAreaCurrentArr(ids[0], ids[1])
+      setAreaPickerData([province, cities[pi]])
+      setAreaIndex([pi,ci])
+    }else{
+      setAreaPickerData([province, cities[0]])
+    }
+  }, [inputVal])
+
   useEffect(()=>{
     // 性别
     if(infoData.gender){
@@ -71,6 +96,24 @@ export default function AddResumeInfo(){
           setNationsName(nations[nation_id - 1 ].mz_name);
         }
       }
+    }
+    // 选择地址时省份设置
+    if (infoData.province_and_city){
+      const areaProvince = infoData.province_and_city.split(',')[1];
+      const provinceAdress = getCityInfoById(areaProvince).name;
+      setProvinceAdress(provinceAdress);
+    }else{
+      // 没有就获取缓存授权地址
+      const areaProvince = Taro.getStorageSync(UserListChooseCity);
+      // 并且不等于全国
+      if (areaProvince && areaProvince.id !='1'){
+        const provinceAdress = areaProvince.name;
+        setProvinceAdress(provinceAdress);
+      }else{
+        // 没有地址和没有设置默认北京
+        setProvinceAdress('北京');
+      }
+      // 没有就默认北京
     }
     let classifiesArr = infoData.occupations_id&&infoData.occupations_id.split(',')||[];
     const data = [...infoConfig.occupation] ||[];
@@ -111,6 +154,11 @@ export default function AddResumeInfo(){
     if(first) return;
     //设置所属地区
     const area = { ...areaInfo };
+    // 设置省份(切换省份后)
+    if (area.city){
+      const provinceAdress = getCityInfoById(area.city).name;
+      setProvinceAdress(provinceAdress);
+    }
     setLocationData({
       ...location, adcode: area.adcode, address: area.title, longitude: area.location && area.location.split(',')[0], latitude: area.location&& area.location.split(',')[1], city: area.city || '', province: area.provice || ''
     })
@@ -175,10 +223,16 @@ export default function AddResumeInfo(){
       lng: locationData.longitude,
       address:locationData.address,
       adcode: locationData.adcode,
+      mini_type: locationData.mini_type || 0
     };
     addResumeAction(params).then(res=>{
       if (res.errcode == 200){
-        Taro.navigateBack({delta:1})
+        ShowActionModal({
+          msg: res.errmsg,
+          success: () => {
+            Taro.navigateBack({ delta: 1 })
+          }
+        })
       }else{
         ShowActionModal({ msg: res.errmsg});
       }
@@ -225,6 +279,8 @@ export default function AddResumeInfo(){
                       Msg('授权成功')
                       getLocation().then(res=> {
                         setLocationData(res);
+                        const provinceAdress = getCityInfoById(res.city);
+                        setProvinceAdress(provinceAdress.name);
                       })
                     }else{
                       Msg('授权失败')
@@ -237,6 +293,8 @@ export default function AddResumeInfo(){
         }else{
           getLocation().then(res=>{
             if (res) {
+              const provinceAdress = getCityInfoById(res.city);
+              setProvinceAdress(provinceAdress.name);
               setLocationData(res);
             }
           })
@@ -250,11 +308,42 @@ export default function AddResumeInfo(){
   const userChooseArea = () => {
     // setFirst(false);
     first = false
-    let url = '/pages/map/resume/index'
+    let url = `/pages/map/resume/index?provinceAdress=${provinceAdress}`
     Taro.navigateTo({
       url: url
     })
   }
+
+  // 用户确定地址picker
+  const userChangePickerArea = (e) => {
+    let pid: string = areaProvincePicker[e.detail.value[0]].id
+    let cid: string = areaPickerData[1][e.detail.value[1]].id
+    let name: string = pid === cid ? areaProvincePicker[e.detail.value[0]].name : `${areaProvincePicker[e.detail.value[0]].name}-${areaPickerData[1][e.detail.value[1]].name}`
+    let mydata = JSON.parse(JSON.stringify(locationData))
+    mydata.address = name;
+    mydata.province = pid
+    mydata.city = cid
+    mydata.latitude = ''
+    mydata.longitude = ''
+    mydata.adcode = ''
+    mydata.mini_type = 1
+    setLocationData({ ...mydata})
+  }
+  // 用户更改了地址picker
+  const userChangeColumn = (e) => {
+    let column: number = e.detail.column
+    let value: number = e.detail.value
+    if (column === 0) {
+      let data = JSON.parse(JSON.stringify(areaPickerData))
+      data[1] = areaCityPicker[value]
+      setAreaPickerData(data)
+      setAreaIndex([value, 0])
+    } else {
+      setAreaIndex([areaIndex[0], value])
+    }
+  }
+
+
   return (
     <View className='resume-addinfo-container'>
       {showProssion && 
@@ -341,17 +430,32 @@ export default function AddResumeInfo(){
                     <Input className='publish-list-input' disabled type='text' placeholder='请选择所属工种' />
                 }
                 </View>
+              {USEGAODEMAPAPI ? 
               <View className='publish-list-item adressInput' onClick={()=>userChooseArea()}>
                 <Text className='pulish-list-title-address'>所在地区</Text>
                 <View className='flex'>
                   {locationData && locationData.adcode ? 
                     <Text className='flexContent'>{locationData && locationData.address}</Text>:
-                    <Input placeholder='请选你所在地址' className='flexContent-input' disabled/> 
-                    // <Text className={locationData && locationData.address ? 'flexContent' :'flexContent-no'}>{locationData && locationData.address ? locationData.address:'请选你所在地址'}</Text>
+                    <Input placeholder='请选你所在地址' className='flexContent-input' disabled/>
                   }
                   <Text className='flexTitle' onClick={(e)=>{e.stopPropagation(),handleGps()}}>获取定位</Text>
                 </View>
               </View>
+              :
+              <View className='publish-list-item'>
+                <Text className='pulish-list-title'>所在地区</Text>
+                  <Picker 
+                    mode='multiSelector'
+                    value={areaIndex}
+                    range={areaPickerData}
+                    rangeKey='name'
+                    onChange={(e) => userChangePickerArea(e)}
+                    onColumnChange={(e) => userChangeColumn(e)}
+                  >
+                    <Input placeholder='请选你所在地址' className='publish-list-input' disabled value={locationData && locationData.address || ''}/>
+                  </Picker>
+              </View>
+              }
             </View>
             <View className='resume-addinfo-body'>
                 <View className='publish-list-item'>
