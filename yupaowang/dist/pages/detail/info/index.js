@@ -77,7 +77,7 @@ var DetailInfoPage = function (_Taro$Component) {
       navigationBarTitleText: ''
     };
 
-    _this.$usedState = ["data", "loopArray71", "loopArray72", "$compid__66", "resCode", "editPhone", "DOWNLOADAPP", "IMGCDNURL", "isCollection", "ISCANSHARE", "complaintModal", "phone"];
+    _this.$usedState = ["data", "loopArray71", "loopArray72", "$compid__66", "resCode", "editPhone", "IMGCDNURL", "isCollection", "ISCANSHARE", "complaintModal", "phone"];
     _this.anonymousFunc5Map = {};
     _this.customComponents = ["WechatNotice", "Report"];
     return _this;
@@ -674,7 +674,6 @@ var DetailInfoPage = function (_Taro$Component) {
         $compid__66: $compid__66,
         resCode: resCode,
         editPhone: editPhone,
-        DOWNLOADAPP: _index2.DOWNLOADAPP,
         IMGCDNURL: _index2.IMGCDNURL,
         isCollection: isCollection,
         ISCANSHARE: _index2.ISCANSHARE,
