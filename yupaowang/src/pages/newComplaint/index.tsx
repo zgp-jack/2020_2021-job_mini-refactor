@@ -13,7 +13,7 @@ interface ImageItem{
   url: string,
   httpurl: string
 }
-export default function ComplaintPage() {
+export default function NewComplaintPage() {
   const router = useRouter();
   let { page, type, infoId } = router.params;
   const [display, setDisplay] = useState<boolean>(false);
@@ -109,6 +109,6 @@ export default function ComplaintPage() {
   )
 }
 
-ComplaintPage.config = {
+NewComplaintPage.config = {
   navigationBarTitleText: '投诉',
 } as Config

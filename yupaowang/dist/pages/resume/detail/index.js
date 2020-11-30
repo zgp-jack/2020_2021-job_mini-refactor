@@ -121,7 +121,7 @@ var ResumeDetail = function (_Taro$Component) {
       backgroundTextStyle: "dark"
     };
 
-    _this.$usedState = ["anonymousState__temp3", "data", "loopArray110", "loopArray112", "loopArray113", "$compid__84", "isAuth", "IMGCDNURL", "examine", "onoff", "praise", "ISCANSHARE", "collect", "shownewtips", "complaintModal", "age", "phone"];
+    _this.$usedState = ["anonymousState__temp3", "data", "loopArray102", "loopArray104", "loopArray105", "$compid__82", "isAuth", "IMGCDNURL", "examine", "onoff", "praise", "ISCANSHARE", "collect", "shownewtips", "complaintModal", "age", "phone"];
     _this.anonymousFunc4Map = {};
     _this.anonymousFunc6Map = {};
     _this.customComponents = ["Auth", "Report"];
@@ -145,10 +145,10 @@ var ResumeDetail = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__84"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__82"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__84 = _genCompid2[0],
-          $compid__84 = _genCompid2[1];
+          $prevCompid__82 = _genCompid2[0],
+          $compid__82 = _genCompid2[1];
       // 获取dispatch分发action
 
 
@@ -486,7 +486,7 @@ var ResumeDetail = function (_Taro$Component) {
             showCancel: false
           });
         } else {
-          userRouteJump("/pages/complaint/index?infoId=" + uuid + "&type=resume&page=detail");
+          userRouteJump("/pages/newComplaint/index?infoId=" + uuid + "&type=resume&page=detail");
           // setComplaintModal(true)
         }
       };
@@ -537,7 +537,7 @@ var ResumeDetail = function (_Taro$Component) {
         setShownewtips(false);
       };
       this.anonymousFunc11 = handleTellPhone;
-      var loopArray110 = data.info.occupations.length ? data.info.occupations.map(function (v, i) {
+      var loopArray102 = data.info.occupations.length ? data.info.occupations.map(function (v, i) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
@@ -547,12 +547,12 @@ var ResumeDetail = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray112 = data.project.length ? data.project[0].image.map(function (v, i) {
+      var loopArray104 = data.project.length ? data.project[0].image.map(function (v, i) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
         var $loopState__temp5 = data.project.length ? i + i : null;
-        var _$indexKey = "badzz" + i;
+        var _$indexKey = "jjzzz" + i;
         _this2.anonymousFunc4Map[_$indexKey] = function () {
           return handleImg(v.$original);
         };
@@ -562,12 +562,12 @@ var ResumeDetail = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray113 = data.certificates.length ? data.certificates[0].image.map(function (val, i) {
+      var loopArray105 = data.certificates.length ? data.certificates[0].image.map(function (val, i) {
         val = {
           $original: (0, _taroTt.internal_get_original)(val)
         };
         var $loopState__temp7 = data.certificates.length ? i + i : null;
-        var _$indexKey2 = "baezz" + i;
+        var _$indexKey2 = "baazz" + i;
         _this2.anonymousFunc6Map[_$indexKey2] = function () {
           return handleImg(val.$original);
         };
@@ -583,14 +583,14 @@ var ResumeDetail = function (_Taro$Component) {
         "handleTextarea": handleTextarea,
         "setComplaintModal": setComplaintModal,
         "handleSubmit": handleSubmit
-      }, $compid__84, $prevCompid__84);
+      }, $compid__82, $prevCompid__82);
       Object.assign(this.__state, {
         anonymousState__temp3: anonymousState__temp3,
         data: data,
-        loopArray110: loopArray110,
-        loopArray112: loopArray112,
-        loopArray113: loopArray113,
-        $compid__84: $compid__84,
+        loopArray102: loopArray102,
+        loopArray104: loopArray104,
+        loopArray105: loopArray105,
+        $compid__82: $compid__82,
         isAuth: isAuth,
         IMGCDNURL: _index2.IMGCDNURL,
         examine: examine,

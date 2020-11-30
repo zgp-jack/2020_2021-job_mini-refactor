@@ -77,7 +77,7 @@ var DetailInfoPage = function (_Taro$Component) {
       navigationBarTitleText: ''
     };
 
-    _this.$usedState = ["data", "loopArray116", "loopArray117", "$compid__86", "resCode", "editPhone", "SHOWOFFICIALACCOUNT", "DOWNLOADAPP", "IMGCDNURL", "isCollection", "ISCANSHARE", "complaintModal", "phone"];
+    _this.$usedState = ["data", "loopArray71", "loopArray72", "$compid__66", "resCode", "editPhone", "SHOWOFFICIALACCOUNT", "DOWNLOADAPP", "IMGCDNURL", "isCollection", "ISCANSHARE", "complaintModal", "phone"];
     _this.anonymousFunc5Map = {};
     _this.customComponents = ["WechatNotice", "Report"];
     return _this;
@@ -100,10 +100,10 @@ var DetailInfoPage = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__86"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__66"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__86 = _genCompid2[0],
-          $compid__86 = _genCompid2[1];
+          $prevCompid__66 = _genCompid2[0],
+          $compid__66 = _genCompid2[1];
 
       var router = (0, _taroTt.useRouter)();
       var _router$params = router.params,
@@ -490,7 +490,7 @@ var DetailInfoPage = function (_Taro$Component) {
             // 查看电话可以投诉一次
             if (complaintInfo) {
               // infoId = ${ infoId }& type=job & page=detail
-              userRouteJump("/pages/complaint/index?infoId=" + data.id + "&type=job&page=detail");
+              userRouteJump("/pages/newComplaint/index?infoId=" + data.id + "&type=job&page=detail");
               // setComplaintModal(true);
               // 没有看到电话不能投诉
             } else if (data.show_ajax_btn) {
@@ -503,7 +503,7 @@ var DetailInfoPage = function (_Taro$Component) {
                   showCancel: false
                 });
               } else {
-                userRouteJump("/pages/complaint/index?infoId=" + data.id + "&type=job&page=detail");
+                userRouteJump("/pages/newComplaint/index?infoId=" + data.id + "&type=job&page=detail");
                 // setComplaintModal(true)
               }
             }
@@ -638,7 +638,7 @@ var DetailInfoPage = function (_Taro$Component) {
       this.anonymousFunc11 = function () {
         _taroTt2.default.makePhoneCall({ phoneNumber: phone });
       };
-      var loopArray116 = data.classifyName.map(function (v, i) {
+      var loopArray71 = data.classifyName.map(function (v, i) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
@@ -648,12 +648,12 @@ var DetailInfoPage = function (_Taro$Component) {
           $original: v.$original
         };
       });
-      var loopArray117 = data.view_images.length ? data.view_images.map(function (v, i) {
+      var loopArray72 = data.view_images.length ? data.view_images.map(function (v, i) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
         var $loopState__temp4 = data.view_images.length ? i + i : null;
-        var _$indexKey = "bagzz" + i;
+        var _$indexKey = "hhzzz" + i;
         _this2.anonymousFunc5Map[_$indexKey] = function () {
           return handleImage(v.$original);
         };
@@ -669,12 +669,12 @@ var DetailInfoPage = function (_Taro$Component) {
         "handleTextarea": handleTextarea,
         "setComplaintModal": setComplaintModal,
         "handleSubmit": handleSubmit
-      }, $compid__86, $prevCompid__86);
+      }, $compid__66, $prevCompid__66);
       Object.assign(this.__state, {
         data: data,
-        loopArray116: loopArray116,
-        loopArray117: loopArray117,
-        $compid__86: $compid__86,
+        loopArray71: loopArray71,
+        loopArray72: loopArray72,
+        $compid__66: $compid__66,
         resCode: resCode,
         editPhone: editPhone,
         SHOWOFFICIALACCOUNT: _index2.SHOWOFFICIALACCOUNT,

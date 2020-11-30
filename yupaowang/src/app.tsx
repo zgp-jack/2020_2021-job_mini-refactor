@@ -58,7 +58,7 @@ class App extends Component {
       'pages/resume/newPreview/index', // 预览
       'pages/resume/preview/index', // 预览
       'pages/login/index',//用户登录
-      'pages/complaint/index',//投诉
+      'pages/newComplaint/index',//投诉
     ],
     subPackages: [
       {
