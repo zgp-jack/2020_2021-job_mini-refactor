@@ -1538,14 +1538,14 @@ export interface TurntableIndexTypePortion {
 }
 
 export interface TurntableDrawData {
-  video?: string,
-  all_video_times?: number,
-  integral?: number,
-  over_video_times?: number,
-  rotate?: number,
-  times?: number,
-  video_times?: number,
-  win_integral?: number,
+  video: string,
+  all_video_times: number,
+  integral: number,
+  over_video_times: number,
+  rotate: number,
+  times: number,
+  video_times: number,
+  win_integral: number,
 }
 
 export interface TurntableDraw extends TurntableIndexTypePortion {

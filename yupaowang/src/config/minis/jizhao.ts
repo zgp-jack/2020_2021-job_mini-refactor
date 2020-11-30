@@ -23,7 +23,7 @@ var INVITESOURCE: string = "712790d9629c6dcea00e3f5bff60132b"
 // * 是否使用推送信息
 var USESUBSCRIBEMESSAGE: boolean = true
 // * 激励视频
-const VIDEOAD = 'adunit-31b05acadbd2a1d1'
+var VIDEOAD = 'adunit-31b05acadbd2a1d1'
 // * textarea能输入的最大字数
 var TEXTAREAMAXLENGTH: number = 500
 // * 应用内是否存在下载APP引流

@@ -1198,9 +1198,10 @@ export function turntableIndex():Promise<Inter.TurntableIndexType>{
 }
 
 // 大转盘抽奖
-export function turntableDraw():Promise<Inter.TurntableDraw>{
+export function turntableDraw(data):Promise<Inter.TurntableDraw>{
   return doRequestAction({
     url: api.turntableDraw,
+    data,
     method: 'POST',
   })
 }

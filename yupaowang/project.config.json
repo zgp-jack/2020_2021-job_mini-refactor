@@ -85,21 +85,21 @@
 				{
 					"id": -1,
 					"name": "意见反馈",
-					"pathName": "pages/feedback/index",
+					"pathName": "subpackage/pages/feedback/index",
 					"query": "",
 					"scene": null
 				},
 				{
 					"id": 5,
 					"name": "帮助中心",
-					"pathName": "pages/help/index",
+					"pathName": "subpackage/pages/help/index",
 					"query": "",
 					"scene": null
 				},
 				{
 					"id": 6,
 					"name": "我的意见反馈列表",
-					"pathName": "pages/feedbacklist/index",
+					"pathName": "subpackage/pages/feedbacklist/index",
 					"query": "",
 					"scene": null
 				},
@@ -141,14 +141,14 @@
 				{
 					"id": 12,
 					"name": "我的信息",
-					"pathName": "pages/information/mymessage/index",
+					"pathName": "subpackage/pages/information/mymessage/index",
 					"query": "",
 					"scene": null
 				},
 				{
 					"id": -1,
 					"name": "我的信息-分类",
-					"pathName": "pages/information/system/index",
+					"pathName": "subpackage/pages/information/system/index",
 					"query": "",
 					"scene": null
 				},
@@ -267,7 +267,7 @@
 				{
 					"id": -1,
 					"name": "大转盘",
-					"pathName": "pages/turntable/index",
+					"pathName": "subpackage/pages/turntable/index",
 					"query": "",
 					"scene": null
 				},

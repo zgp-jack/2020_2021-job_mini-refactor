@@ -13,7 +13,7 @@ export const PREREQUESTURL: string = 'http://miniapi.kkbbi.com/'
 // * 正式站
 export const PROREQUESTURL: string = 'https://newyupaomini.54xiaoshuo.com/' 
 // * 当前程序使用的请求地址
-export const REQUESTURL: string = PROREQUESTURL
+export const REQUESTURL: string = DEVREQUESTURL
 // * 默认上传图片
 export const UPLOADIMGURL: string = `${PROREQUESTURL}index/upload/`
 // * 阿里云CDN域名
@@ -88,6 +88,8 @@ export const TOKEN: string = MINICONFIG.TOKEN
 export const SERIES: string = MINICONFIG.SERIES
 // * 小程序广告unitid
 export const UNITID: string = MINICONFIG.UNITID
+// * 小程序激励视频广告
+export const VIDEOAD: string = MINICONFIG.VIDEOAD
 // * 小程序邀请key
 export const INVITESOURCE: string = MINICONFIG.INVITESOURCE
 // * 是否使用推送信息

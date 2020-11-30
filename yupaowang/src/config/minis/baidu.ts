@@ -10,6 +10,8 @@ var SERIES: string = 'baidu'
 var ISCANSHARE: boolean = true
 // * 小程序广告unitid
 var UNITID: string = 'adunit-80f40e8b4f60c3f6'
+// * 激励视频
+var VIDEOAD: string = ''
 // * 邀请key
 var INVITESOURCE: string = "712790d9629c6dcea00e3f5bff60132b"
 // * 是否使用推送信息
@@ -47,5 +49,6 @@ module.exports = {
   SHOWWEIXINNUMBER,
   SHOWOFFICIALACCOUNT,
   SHOWINVITEUSER,
-  REPLACEWEIXINTEXT
+  REPLACEWEIXINTEXT,
+  VIDEOAD
 }

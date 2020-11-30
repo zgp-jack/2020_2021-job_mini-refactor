@@ -1,49 +1,46 @@
 import Taro, { useState, useEffect, Config } from "@tarojs/taro";
 import { Image, Swiper, SwiperItem, View } from "@tarojs/components";
-import { IMGCDNURL } from "../../../config";
+import { IMGCDNURL, VIDEOAD } from "../../../config";
 import "./index.scss";
-import { turntableDraw,turntableIndex, turntableVideoEnd } from "../../../utils/request";
+import { turntableDraw, turntableIndex, turntableVideoEnd } from "../../../utils/request";
 import Msg, { showModalTip } from "../../../utils/msg";
 import { userCancelAuth } from "../../../utils/helper";
 interface NameType {
-  name?: string,
-  integral?: number,
+  name?: string;
+  integral?: number;
 }
 
 interface ScrollnameType {
-  num: number,
-  current: number,
-  autoplay: boolean,
-  circleTime: number,
-  indicatorDots: boolean,
-  circular: boolean,
-  vertical: boolean,
-  interval: number,
-  duration: number,
-  nameArr: NameType[][]
+  num: number;
+  autoplay: boolean;
+  circleTime: number;
+  indicatorDots: boolean;
+  circular: boolean;
+  vertical: boolean;
+  interval: number;
+  duration: number;
+  nameArr: NameType[][];
 }
 
 interface ServerType {
-  userTimes: number,
-  overVideoTimes: number,
-  allVideoTimes: number
+  userTimes: number;
+  overVideoTimes: number;
+  allVideoTimes: number;
 }
 
 interface rotateType {
-  rotateDeg: number,
-  transTime: number,
+  rotateDeg: number;
+  transTime: number;
 }
 
 let videoAd;
-let JZ = require("../../../src/config/minis/jizhao");
 
 export default function Turntable() {
   // * 中奖名单
   const [scrollname, setScrollname] = useState<ScrollnameType>({
     num: 100,
-    current: 0, 
     autoplay: true, // * banner循环
-    circleTime: 15,// * 选择圈数
+    circleTime: 15, // * 旋转圈数
     indicatorDots: false, // * banner是否显示面板指示点
     circular: true, // * 是否采用衔接滑动
     vertical: true, // * 滑动方向是否为纵向
@@ -60,13 +57,20 @@ export default function Turntable() {
   });
 
   // * 转盘是否停止
-  let [isComplete, setIsComplete] = useState<Boolean>(true)
+  let [isComplete, setIsComplete] = useState<boolean>(true);
 
-  // * 选择角度/时间
+  // * 旋转角度/时间
   let [rotateDegTime, setRotateDegTime] = useState<rotateType>({
     rotateDeg: 0,
-    transTime: 5,
-  })
+    transTime: 5
+  });
+
+  // * 展示规则
+  let [showRules, setShowRules] = useState<boolean>(false);
+
+  const onShowRules = () => {
+    setShowRules(!showRules);
+  };
 
   const getRand = (start: number, end: number): number => {
     if (start == 0) return Math.floor((end + 1) * Math.random());
@@ -94,7 +98,6 @@ export default function Turntable() {
       let integral = _integral[getRand(0, _integral.length - 1)];
       nameArr.push({ name: nameStr, integral: integral });
     }
-    scrollname.current = scrollname.num / 4 - 1;
     scrollname.nameArr = sliceArrGroup(nameArr);
     setScrollname({ ...scrollname });
   };
@@ -113,121 +116,115 @@ export default function Turntable() {
   };
 
   // * 旋转角度/时间
-  function rotationAngle( edg, time){
-    rotateDegTime.rotateDeg = edg;
-    rotateDegTime.transTime = time;
-    setRotateDegTime({...rotateDegTime})
+  function rotationAngle(rotateDeg, transTime) {
+    setRotateDegTime({ rotateDeg, transTime });
   }
 
   // * 开始抽奖
   const startTurntable = () => {
-    if( !isComplete ) return false;
-    isComplete = false
-    setIsComplete(isComplete)
-    turntableDraw().then(res => {
-      if (res.code == 200) {
-        let { all_video_times, over_video_times, rotate } = res.data;
-        let userTimes = all_video_times - over_video_times;
-        // 旋转角度
-        rotationAngle( rotate - 30, 5 )
+    if (!isComplete) return false;
+    setIsComplete(false);
+    turntableDraw({
+      is_new: 1
+    })
+      .then(res => {
+        if (res.code == 200) {
+          let { all_video_times, over_video_times, rotate } = res.data;
+          let userTimes = all_video_times - over_video_times;
+          // 旋转角度
+          rotationAngle(rotate, 5);
 
-        let timer = setTimeout(function() {
+          setTimeout(function () {
+            setIsComplete(true);
+            Taro.showModal({
+              title: "恭喜中奖",
+              content: res.errmsg,
+              confirmText: "确定",
+              success: response => {
+                if (response.confirm) {
+                  // 旋转角度
+                  rotationAngle(0, 0);
+                  setServersData({ ...serversData, userTimes });
+                }
+              }
+            });
+          }, 5000);
+        } else if (res.code == 206 || res.code == 207) {
+          let { all_video_times, over_video_times, rotate } = res.data;
+          let userTimes = all_video_times - over_video_times;
+          // 旋转角度
+          rotationAngle(rotate, 5);
+
+          setTimeout(function () {
+            setIsComplete(true);
+            Taro.showModal({
+              title: "谢谢参与",
+              content: res.errmsg,
+              showCancel: false,
+              confirmText: res.code == 206 ? "再来一次" : "确定",
+              success: () => {
+                // 旋转角度
+                rotationAngle(0, 0);
+                setServersData({ ...serversData, userTimes });
+              }
+            });
+          }, 5000);
+        } else if (res.code == 405) {
           setIsComplete(true);
-          clearTimeout(timer);
           Taro.showModal({
-            title: "恭喜中奖",
+            title: "温馨提示",
             content: res.errmsg,
-            confirmText: "确定",
+            cancelText: "取消",
+            confirmText: "去观看",
             success: response => {
               if (response.confirm) {
-                // 旋转角度
-                rotationAngle( 0, 0 )
-
-                serversData.userTimes = userTimes;
-                setServersData({ ...serversData });
+                userSeeVideo();
               }
             }
           });
-        }, 5000);
-      } else if(res.code == 206 || res.code == 207){
-        let { all_video_times, over_video_times, rotate } = res.data;
-        let userTimes = all_video_times - over_video_times;
-        // 旋转角度
-        rotationAngle( rotate - 30, 5 )
-
-        let timer = setTimeout(function(){
-            setIsComplete(true);
-            clearTimeout(timer)
-            Taro.showModal({
-              title: '谢谢参与',
-              content: res.errmsg,
-              showCancel: false,
-              confirmText: res.code == 206 ? '再来一次' : '确定',
-              success:()=>{
-                // 旋转角度
-                rotationAngle( 0, 0 )
-
-                serversData.userTimes = userTimes;
-                setServersData({ ...serversData });
-              }
-            })
-        },5000)
-      }
-      else if (res.code == 405) {
-        Taro.showModal({
-          title: "温馨提示",
-          content: res.errmsg,
-          cancelText: "取消",
-          confirmText: "去观看",
-          success: response => {
-            if (response.confirm) {
-              Taro.showLoading({
-                title: '',
-                mask: true
-              })
-              userSeeVideo()
-            }
-          }
-        });
+        } else {
+          showModalTip({
+            title: "温馨提示",
+            tips: res.errmsg
+          });
+          setIsComplete(true);
+        }
+      })
+      .catch(err => {
         setIsComplete(true);
-      } else {
-        showModalTip({
-          title: "温馨提示",
-          tips: res.errmsg
-        });
-      }
-      setIsComplete(true);
-    });
+      });
   };
 
-  function userSeeVideo(){
+  function userSeeVideo() {
     if (videoAd) {
-        videoAd.show()
-        .then(()=>{
-          Taro.hideLoading()
+      videoAd
+        .show()
+        .then(() => {
+          Taro.hideLoading();
         })
         .catch(() => {
           // 失败重试
-          videoAd.load()
+          videoAd
+            .load()
             .then(() => {
-                videoAd.show()
+              videoAd.show();
             })
             .catch(err => {
-                Taro.hideLoading()
-                //两次展示广告失败，直接获得奖励
-                console.log('两次展示广告失败，直接获得奖励')
-            })
-        })
+              Taro.hideLoading();
+              //两次展示广告失败，直接获得奖励
+              console.log("两次展示广告失败，直接获得奖励");
+            });
+        });
     }
-}
+  }
 
   // * 创建视频
   const createVideo = () => {
     if (Taro.createRewardedVideoAd) {
       videoAd = Taro.createRewardedVideoAd({
-        adUnitId: JZ.VIDEOAD
+        adUnitId: VIDEOAD
       });
-      videoAd.onLoad(() => {});
+      videoAd.onLoad(() => { });
       videoAd.onError(err => {
         showModalTip({
           title: "温馨提示",
@@ -247,17 +244,7 @@ export default function Turntable() {
 
   function videoAdStop() {
     turntableVideoEnd().then(res => {
-      if (res.code == 200) {
-        Taro.showLoading({
-          title: "视频加载中",
-          mask: true
-        });
-        startTurntable();
-      } else if (res.code == 205) {
-        Taro.showLoading({
-          title: '',
-          mask: true
-        });
+      if (res.code == 200 || res.code == 205) {
         startTurntable();
       } else {
         Msg(res.errmsg);
@@ -272,7 +259,7 @@ export default function Turntable() {
   }, []);
 
   return (
-    <View>
+    <View className="outer-box">
       <View className="yupao-common-container">
         <View className="turntable-container">
           <Image
@@ -333,6 +320,28 @@ export default function Turntable() {
           </View>
         </View>
       </View>
+
+      <View className="turntable-rules-btn" onClick={onShowRules}>
+        规则
+      </View>
+      {showRules && (
+        <View className="turntable-rules-box">
+          <View className="turntable-rules-container">
+            <View className="turntable-rules-title">玩法说明</View>
+            <View className="turntable-rules-body">
+              <View>1、每天每人有次抽奖机会。</View>
+              <View>2、每天0点刷新抽奖机会。</View>
+              <View>3、本活动最终解释权归鱼泡网平台所有。</View>
+              <View>
+                4、若发现用户存在恶意违规行为，鱼泡网平台有权取消其抽奖资格。
+              </View>
+            </View>
+            <View className="turantable-rules-footer" onClick={onShowRules}>
+              确定
+            </View>
+          </View>
+        </View>
+      )}
     </View>
   );
 }

@@ -12533,7 +12533,7 @@ var PREREQUESTURL = exports.PREREQUESTURL = 'http://miniapi.kkbbi.com/';
 // * 正式站
 var PROREQUESTURL = exports.PROREQUESTURL = 'https://newyupaomini.54xiaoshuo.com/';
 // * 当前程序使用的请求地址
-var REQUESTURL = exports.REQUESTURL = PROREQUESTURL;
+var REQUESTURL = exports.REQUESTURL = DEVREQUESTURL;
 // * 默认上传图片
 var UPLOADIMGURL = exports.UPLOADIMGURL = PROREQUESTURL + 'index/upload/';
 // * 阿里云CDN域名
@@ -12605,6 +12605,8 @@ var TOKEN = exports.TOKEN = MINICONFIG.TOKEN;
 var SERIES = exports.SERIES = MINICONFIG.SERIES;
 // * 小程序广告unitid
 var UNITID = exports.UNITID = MINICONFIG.UNITID;
+// * 小程序激励视频广告
+var VIDEOAD = exports.VIDEOAD = MINICONFIG.VIDEOAD;
 // * 小程序邀请key
 var INVITESOURCE = exports.INVITESOURCE = MINICONFIG.INVITESOURCE;
 // * 是否使用推送信息
@@ -12688,6 +12690,8 @@ var SERIES = 'baidu';
 var ISCANSHARE = true;
 // * 小程序广告unitid
 var UNITID = 'adunit-80f40e8b4f60c3f6';
+// * 激励视频
+var VIDEOAD = '';
 // * 邀请key
 var INVITESOURCE = "712790d9629c6dcea00e3f5bff60132b";
 // * 是否使用推送信息
@@ -12723,7 +12727,8 @@ module.exports = {
   SHOWWEIXINNUMBER: SHOWWEIXINNUMBER,
   SHOWOFFICIALACCOUNT: SHOWOFFICIALACCOUNT,
   SHOWINVITEUSER: SHOWINVITEUSER,
-  REPLACEWEIXINTEXT: REPLACEWEIXINTEXT
+  REPLACEWEIXINTEXT: REPLACEWEIXINTEXT,
+  VIDEOAD: VIDEOAD
 };
 
 /***/ }),
@@ -12749,6 +12754,8 @@ var SERIES = 'zijie';
 var ISCANSHARE = true;
 // * 小程序广告unitid
 var UNITID = 'adunit-80f40e8b4f60c3f6';
+// * 激励视频
+var VIDEOAD = '';
 // * 邀请key
 var INVITESOURCE = "712790d9629c6dcea00e3f5bff60132b";
 // * 是否使用推送信息
@@ -12776,6 +12783,7 @@ module.exports = {
   UNITID: UNITID,
   INVITESOURCE: INVITESOURCE,
   USESUBSCRIBEMESSAGE: USESUBSCRIBEMESSAGE,
+  VIDEOAD: VIDEOAD,
   ISCANSHARE: ISCANSHARE,
   TEXTAREAMAXLENGTH: TEXTAREAMAXLENGTH,
   DOWNLOADAPP: DOWNLOADAPP,
@@ -17905,9 +17913,10 @@ function turntableIndex() {
   });
 }
 // 大转盘抽奖
-function turntableDraw() {
+function turntableDraw(data) {
   return doRequestAction({
     url: api.turntableDraw,
+    data: data,
     method: 'POST'
   });
 }
