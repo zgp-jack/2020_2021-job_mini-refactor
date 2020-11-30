@@ -1,6 +1,6 @@
 import Taro from '@tarojs/taro'
-import { UserInfo } from '../../config/store'
-import { UPLOADIMGURL, ISPARSEUPLOADIMG } from '../../config'
+import {UserInfo} from '../../config/store'
+import {UPLOADIMGURL} from '../../config'
 
 interface ResultImage {
   errcode: string,
@@ -23,9 +23,9 @@ interface ResultCardInfoImage {
   sex: string
 }
 
-export default function UploadImgAction(url: string = UPLOADIMGURL): Promise<ResultImage>{
+export default function UploadImgAction(url: string = UPLOADIMGURL): Promise<ResultImage> {
   let uploadUrl = url || UPLOADIMGURL
-  return new Promise((resolve)=>{
+  return new Promise((resolve) => {
     Taro.chooseImage({
       count: 1,
       sizeType: ['compressed'],
@@ -38,30 +38,30 @@ export default function UploadImgAction(url: string = UPLOADIMGURL): Promise<Res
 }
 
 
-export function CameraAndAlbum(url: string = UPLOADIMGURL): Promise<ResultImage>{
-  return new Promise((resolve)=>{
+export function CameraAndAlbum(url: string = UPLOADIMGURL): Promise<ResultImage> {
+  return new Promise((resolve) => {
     Taro.showActionSheet({
       itemList: ['拍照', '从相册中选择'],
     })
-    .then(res => {
-      let index = res.tapIndex
-      Taro.chooseImage({
-        count: 1,
-        sizeType: ['compressed'],
-        sourceType: index === 0 ? ['camera'] : ['album'],
-        success: function (res) {
-          AppUploadImg(resolve,res, url)
-        },
+      .then(res => {
+        let index = res.tapIndex
+        Taro.chooseImage({
+          count: 1,
+          sizeType: ['compressed'],
+          sourceType: index === 0 ? ['camera'] : ['album'],
+          success: function (res) {
+            AppUploadImg(resolve, res, url)
+          },
+        })
       })
-    })
   })
 }
 
 
-function AppUploadImg(resolve, res: any, url: string = UPLOADIMGURL){
+function AppUploadImg(resolve, res: any, url: string = UPLOADIMGURL) {
 
   const userInfo = Taro.getStorageSync(UserInfo)
-  Taro.showLoading({title:'图片上传中'})
+  Taro.showLoading({title: '图片上传中'})
   Taro.uploadFile({
     url: url,
     filePath: res.tempFilePaths[0],
@@ -88,7 +88,7 @@ function AppUploadImg(resolve, res: any, url: string = UPLOADIMGURL){
         duration: 2000
       })
     },
-    complete: function(){
+    complete: function () {
       Taro.hideLoading()
     }
   })

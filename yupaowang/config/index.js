@@ -1,6 +1,6 @@
 const webpack = require('webpack-bundle-analyzer')
 // * 非微信小程序标识集合
-const unweixinmins = ["baidu","douyin"]
+const unweixinmins = ["baidu", "douyin"]
 // * 当前编译小程序集合
 const miniflag = JSON.stringify(process.argv[2])
 const reminiflag = miniflag.replace(/\"/g, "")
@@ -10,11 +10,11 @@ const config = {
   projectName: '鱼泡网',
   date: '2020-2-13',
   designWidth: 750,
-  deviceRatio: {
-    '640': 2.34 / 2,
-    '750': 1,
-    '828': 1.81 / 2
-  },
+  // deviceRatio: {
+  //   '640': 2.34 / 2,
+  //   '750': 1,
+  //   '828': 1.81 / 2
+  // },
   sourceRoot: 'src',
   outputRoot: 'dist',
   babel: {

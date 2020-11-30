@@ -75,10 +75,10 @@ export const BAIDU: string = 'baidu'
 export const DOUYIN: string = 'douyin'
 
 
-// ! 以下内容为每个小程序独立配置  
+// ! 以下内容为每个小程序独立配置
 // * page-title-global
 export const PAGETITLE: string = MINICONFIG.PAGETITLE
-// * 小程序token 
+// * 小程序token
 export const TOKEN: string = MINICONFIG.TOKEN
 // * 小程序广告unitid
 export const UNITID: string = MINICONFIG.UNITID
