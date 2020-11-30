@@ -121,7 +121,7 @@ var ResumeDetail = function (_Taro$Component) {
       backgroundTextStyle: "dark"
     };
 
-    _this.$usedState = ["anonymousState__temp3", "anonymousState__temp4", "data", "loopArray91", "loopArray93", "loopArray94", "$compid__76", "isAuth", "IMGCDNURL", "examine", "onoff", "login", "user", "praise", "ISCANSHARE", "collect", "shownewtips", "complaintModal", "age", "phone"];
+    _this.$usedState = ["anonymousState__temp3", "anonymousState__temp4", "data", "loopArray85", "loopArray87", "loopArray88", "$compid__76", "isAuth", "IMGCDNURL", "examine", "onoff", "login", "user", "praise", "ISCANSHARE", "collect", "shownewtips", "complaintModal", "age", "phone"];
     _this.anonymousFunc4Map = {};
     _this.anonymousFunc6Map = {};
     _this.customComponents = ["Auth", "Report"];
@@ -535,7 +535,7 @@ var ResumeDetail = function (_Taro$Component) {
         setShownewtips(false);
       };
       this.anonymousFunc11 = handleTellPhone;
-      var loopArray91 = data.info.occupations.length ? data.info.occupations.map(function (v, i) {
+      var loopArray85 = data.info.occupations.length ? data.info.occupations.map(function (v, i) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
@@ -545,12 +545,12 @@ var ResumeDetail = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray93 = data.project.length ? data.project[0].image.map(function (v, i) {
+      var loopArray87 = data.project.length ? data.project[0].image.map(function (v, i) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
         var $loopState__temp6 = data.project.length ? i + i : null;
-        var _$indexKey = "jdzzz" + i;
+        var _$indexKey = "ijzzz" + i;
         _this2.anonymousFunc4Map[_$indexKey] = function () {
           return handleImg(v.$original);
         };
@@ -560,12 +560,12 @@ var ResumeDetail = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray94 = data.certificates.length ? data.certificates[0].image.map(function (val, i) {
+      var loopArray88 = data.certificates.length ? data.certificates[0].image.map(function (val, i) {
         val = {
           $original: (0, _taroWeapp.internal_get_original)(val)
         };
         var $loopState__temp8 = data.certificates.length ? i + i : null;
-        var _$indexKey2 = "jezzz" + i;
+        var _$indexKey2 = "jazzz" + i;
         _this2.anonymousFunc6Map[_$indexKey2] = function () {
           return handleImg(val.$original);
         };
@@ -586,9 +586,9 @@ var ResumeDetail = function (_Taro$Component) {
         anonymousState__temp3: anonymousState__temp3,
         anonymousState__temp4: anonymousState__temp4,
         data: data,
-        loopArray91: loopArray91,
-        loopArray93: loopArray93,
-        loopArray94: loopArray94,
+        loopArray85: loopArray85,
+        loopArray87: loopArray87,
+        loopArray88: loopArray88,
         $compid__76: $compid__76,
         isAuth: isAuth,
         IMGCDNURL: _index2.IMGCDNURL,

@@ -146,7 +146,7 @@ export default function Member({memberIndex = 0}: MemberProps){
             <Image className='member-list-icon' src={ IMGCDNURL + 'lpy/ucenter/newcenter-used.png'} />
             <Text className='member-list-title'>我的二手交易</Text>
           </View>
-          <View className='member-list-item' onClick={() => userRouteJump('/pages/information/mymessage/index')}>
+          <View className='member-list-item' onClick={() => userRouteJump('/subpackage/pages/information/mymessage/index')}>
             <Image className='member-list-icon' src={ IMGCDNURL + 'lpy/ucenter/newcenter-info.png'} />
             <View className='member-list-title'>
               <Text>我的信息</Text>
@@ -192,7 +192,7 @@ export default function Member({memberIndex = 0}: MemberProps){
           </View>
         </View>
         <View className='member-list-container'>
-          <View className='member-list-item' onClick={() => userRouteJump('/pages/feedbacklist/index')}>
+          <View className='member-list-item' onClick={() => userRouteJump('/subpackage/pages/feedbacklist/index')}>
             <Image className='member-list-icon' src={ IMGCDNURL + 'lpy/ucenter/newcenter-feedback.png'} />
             <View className='member-list-title'>
               <Text>意见反馈</Text>
@@ -201,7 +201,7 @@ export default function Member({memberIndex = 0}: MemberProps){
             {model && model.member.has_notice_msg.hasNoticeMsg && <Text className='member-list-tips'>有最新回复</Text>}
           </View>
           {SHOWINVITEUSER &&
-          <View className='member-list-item' onClick={() => userRouteJump('/pages/help/index')} >
+          <View className='member-list-item' onClick={() => userRouteJump('/subpackage/pages/help/index')} >
             <Image className='member-list-icon' src={ IMGCDNURL + 'lpy/ucenter/newcenter-help.png'} />
             <Text className='member-list-title'>帮助中心</Text>
             <Text className='member-list-tips'>使用教程</Text>

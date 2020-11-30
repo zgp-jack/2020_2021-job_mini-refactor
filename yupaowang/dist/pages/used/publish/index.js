@@ -428,7 +428,7 @@ var UsedPublish = function (_Taro$Component) {
       navigationBarTitleText: '发布二手交易'
     };
 
-    _this.$usedState = ["initModel", "loopArray50", "loopArray51", "$compid__44", "$compid__45", "parentCurrent", "model", "classifyName", "areaProvince", "areaCity", "pIndex", "cIndex", "cityName", "userTel", "showDrawer", "text"];
+    _this.$usedState = ["initModel", "loopArray55", "loopArray56", "$compid__52", "$compid__53", "parentCurrent", "model", "classifyName", "areaProvince", "areaCity", "pIndex", "cIndex", "cityName", "userTel", "showDrawer", "text"];
     _this.anonymousFunc1Map = {};
     _this.anonymousFunc2Map = {};
     _this.customComponents = ["Auth", "AtDrawer", "WordsTotal"];
@@ -452,15 +452,15 @@ var UsedPublish = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__44"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__52"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__44 = _genCompid2[0],
-          $compid__44 = _genCompid2[1];
+          $prevCompid__52 = _genCompid2[0],
+          $compid__52 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__45"),
+      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__53"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__45 = _genCompid4[0],
-          $compid__45 = _genCompid4[1];
+          $prevCompid__53 = _genCompid4[0],
+          $compid__53 = _genCompid4[1];
 
       var router = (0, _taroWeapp.useRouter)();
       var _router$params$id = router.params.id,
@@ -600,7 +600,7 @@ var UsedPublish = function (_Taro$Component) {
       this.anonymousFunc12 = function () {
         return vaildPublishModelInfo();
       };
-      var loopArray50 = initModel ? initModel.classifyTree.map(function (item, index) {
+      var loopArray55 = initModel ? initModel.classifyTree.map(function (item, index) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
@@ -608,7 +608,7 @@ var UsedPublish = function (_Taro$Component) {
           'drawer-list-item overwords': true,
           'drawer-list-item-active': index === parentCurrent
         }) : null;
-        var _$indexKey = "fczzz" + index;
+        var _$indexKey = "fizzz" + index;
         _this2.anonymousFunc1Map[_$indexKey] = function () {
           return useClickClassifyParentId(index);
         };
@@ -618,7 +618,7 @@ var UsedPublish = function (_Taro$Component) {
           $original: item.$original
         };
       }) : [];
-      var loopArray51 = initModel ? initModel.classifyTree[parentCurrent].attributes.map(function (item, k) {
+      var loopArray56 = initModel ? initModel.classifyTree[parentCurrent].attributes.map(function (item, k) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
@@ -626,7 +626,7 @@ var UsedPublish = function (_Taro$Component) {
           'drawer-list-item overwords': true,
           'drawer-list-item-active': k == childCurrent && item.$original.id == model.attribute_id
         }) : null;
-        var _$indexKey2 = "fdzzz" + k;
+        var _$indexKey2 = "fjzzz" + k;
         _this2.anonymousFunc2Map[_$indexKey2] = function () {
           return useClickClassifyChildId(k);
         };
@@ -639,16 +639,16 @@ var UsedPublish = function (_Taro$Component) {
       _taroWeapp.propsManager.set({
         "show": showDrawer,
         "onClose": this.anonymousFunc0
-      }, $compid__44, $prevCompid__44);
+      }, $compid__52, $prevCompid__52);
       _taroWeapp.propsManager.set({
         "num": num
-      }, $compid__45, $prevCompid__45);
+      }, $compid__53, $prevCompid__53);
       Object.assign(this.__state, {
         initModel: initModel,
-        loopArray50: loopArray50,
-        loopArray51: loopArray51,
-        $compid__44: $compid__44,
-        $compid__45: $compid__45,
+        loopArray55: loopArray55,
+        loopArray56: loopArray56,
+        $compid__52: $compid__52,
+        $compid__53: $compid__53,
         parentCurrent: parentCurrent,
         model: model,
         classifyName: classifyName,

@@ -127,7 +127,7 @@ var GetIntegral = function (_Taro$Component) {
         return (0, _index2.userJumpPage)("/pages/recharge/index");
       };
       this.anonymousFunc2 = function () {
-        return (0, _index2.userJumpPage)("/pages/turntable/index");
+        return (0, _index2.userJumpPage)("/subpackage/pages/turntable/index");
       };
       var anonymousState__temp = turntable.show ? (0, _classnames2.default)({
         "getintegral-item-btn": true,

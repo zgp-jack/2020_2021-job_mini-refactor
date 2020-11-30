@@ -1,15 +1,10 @@
-import Taro, { useState, useEffect } from "@tarojs/taro";
+import Taro, { useState, useEffect, Config } from "@tarojs/taro";
 import { Image, Swiper, SwiperItem, View } from "@tarojs/components";
-import { Config } from "@tarojs/taro";
-import { IMGCDNURL } from "../../../src/config";
+import { IMGCDNURL } from "../../../config";
 import "./index.scss";
-import {
-  turntableDraw,
-  turntableIndex,
-  turntableVideoEnd
-} from "../../../src/utils/request";
-import Msg, { ShowActionModal, showModalTip } from "../../../src/utils/msg";
-import { userCancelAuth } from "../../../src/utils/helper";
+import { turntableDraw,turntableIndex, turntableVideoEnd } from "../../../utils/request";
+import Msg, { showModalTip } from "../../../utils/msg";
+import { userCancelAuth } from "../../../utils/helper";
 interface NameType {
   name?: string,
   integral?: number,
@@ -187,6 +182,7 @@ export default function Turntable() {
           success: response => {
             if (response.confirm) {
               Taro.showLoading({
+                title: '',
                 mask: true
               })
               userSeeVideo()
@@ -259,6 +255,7 @@ export default function Turntable() {
         startTurntable();
       } else if (res.code == 205) {
         Taro.showLoading({
+          title: '',
           mask: true
         });
         startTurntable();

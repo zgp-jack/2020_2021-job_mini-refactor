@@ -77,7 +77,7 @@ export default function GetIntegral() {
               玩游戏，每天可获1~300分。（推荐）
             </View>
             <View
-              onClick={() => userJumpPage("/pages/turntable/index")}
+              onClick={() => userJumpPage("/subpackage/pages/turntable/index")}
               className={classnames({
                 "getintegral-item-btn": true,
                 "getintegral-list-btn-dis": !turntable.showBtn

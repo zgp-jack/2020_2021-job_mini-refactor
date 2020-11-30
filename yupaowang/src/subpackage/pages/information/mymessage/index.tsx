@@ -1,12 +1,12 @@
 import Taro, { useState, useEffect, Config } from '@tarojs/taro'
 import { View, Text, Image } from '@tarojs/components'
-import { userMessagesAction } from '../../../utils/request/index'
-import { userMessagesListDataList  } from '../../../utils/request/index.d';
-import { IMGCDNURL } from '../../../config'
-import Auth from '../../../components/auth'
+import { userMessagesAction } from '../../../../utils/request/index'
+import { userMessagesListDataList  } from '../../../../utils/request/index.d';
+import { IMGCDNURL } from '../../../../config'
+import Auth from '../../../../components/auth'
 import { useSelector } from '@tarojs/redux'
-import Nodata from '../../../components/nodata'
-import { isIos } from '../../../utils/v'
+import Nodata from '../../../../components/nodata'
+import { isIos } from '../../../../utils/v'
 import './index.scss'
 
 interface DataType {
@@ -43,7 +43,7 @@ export default function Mymessage (){
     let lists = JSON.parse(JSON.stringify(data.item))
     lists[index].count = 0
     setData({ item: [...lists] })
-    userRouteJump(`/pages/information/system/index?type=${type}`)
+    userRouteJump(`/subpackage/pages/information/system/index?type=${type}`)
   }
 
   return (

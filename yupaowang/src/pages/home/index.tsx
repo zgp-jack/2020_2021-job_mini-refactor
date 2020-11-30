@@ -6,7 +6,7 @@ import SwiperNews from '../../components/swiper/news'
 import Projects from '../../components/index/projects/index'
 import './index.scss'
 import Fastfun from '../../components/index/fastfun'
-import { IMGCDNURL, PUBLISHRECRUIT, DOWNLOADAPP } from '../../config'
+import { IMGCDNURL, PUBLISHRECRUIT, DOWNLOADAPP, DOWNLOADAPPPATH } from '../../config'
 import RecruitList from '../../components/lists/recruit'
 import ResumeList from '../../components/lists/resume'
 import UsedList from '../../components/lists/used'
@@ -131,7 +131,7 @@ export default function Home({ homeIndex = 0}: HomeProps){
           <Image className='home-header-select' src={ IMGCDNURL + 'areamore.png' }></Image>
         </View>
         {DOWNLOADAPP ? 
-        <Image onClick={() => userRouteJump('/subpackage/pages/download/index')} className='home-header-app' src={ IMGCDNURL + 'loadapp.png' }></Image>
+          <Image onClick={() => userRouteJump(DOWNLOADAPPPATH)} className='home-header-app' src={ IMGCDNURL + 'loadapp.png' }></Image>
         :
         <Image onClick={() => userRouteJump(PUBLISHRECRUIT)} className='home-header-app' src={IMGCDNURL + 'header-publish-recruit-icon.png'}></Image>
         }

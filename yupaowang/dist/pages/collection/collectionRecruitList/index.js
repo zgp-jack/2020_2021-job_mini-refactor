@@ -57,7 +57,7 @@ var CollectionRecruitList = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (CollectionRecruitList.__proto__ || Object.getPrototypeOf(CollectionRecruitList)).apply(this, arguments));
 
-    _this.$usedState = ["anonymousState__temp", "loopArray63", "$compid__50", "$compid__51", "data", "IMGCDNURL", "recruitNoMoreData", "modalContent", "bottom", "onHandlerClick"];
+    _this.$usedState = ["anonymousState__temp", "loopArray68", "$compid__58", "$compid__59", "data", "IMGCDNURL", "recruitNoMoreData", "modalContent", "bottom", "onHandlerClick"];
     _this.anonymousFunc0Map = {};
     _this.anonymousFunc1Map = {};
     _this.customComponents = ["Nodata", "AtModal", "AtModalHeader", "AtModalContent", "AtModalAction"];
@@ -81,15 +81,15 @@ var CollectionRecruitList = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__50"),
+      var _genCompid = (0, _taroWeapp.genCompid)(__prefix + "$compid__58"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__50 = _genCompid2[0],
-          $compid__50 = _genCompid2[1];
+          $prevCompid__58 = _genCompid2[0],
+          $compid__58 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__51"),
+      var _genCompid3 = (0, _taroWeapp.genCompid)(__prefix + "$compid__59"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__51 = _genCompid4[0],
-          $compid__51 = _genCompid4[1];
+          $prevCompid__59 = _genCompid4[0],
+          $compid__59 = _genCompid4[1];
 
       var _props = this.__props,
           _props$data = _props.data,
@@ -132,15 +132,15 @@ var CollectionRecruitList = function (_Taro$Component) {
       this.anonymousFunc2 = function () {
         setIsOpened(false);
       };
-      var loopArray63 = data ? data.map(function (item, __index0) {
+      var loopArray68 = data ? data.map(function (item, __index0) {
         item = {
           $original: (0, _taroWeapp.internal_get_original)(item)
         };
-        var _$indexKey = "ghzzz" + __index0;
+        var _$indexKey = "hdzzz" + __index0;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           onHandleClick(item.$original.is_check, item.$original.id);
         };
-        var _$indexKey2 = "gizzz" + __index0;
+        var _$indexKey2 = "hezzz" + __index0;
         _this2.anonymousFunc1Map[_$indexKey2] = function (e) {
           e.stopPropagation();
           _this2.__props.onHandlerClick(item.$original.id);
@@ -153,15 +153,15 @@ var CollectionRecruitList = function (_Taro$Component) {
       }) : [];
       !data.length && _taroWeapp.propsManager.set({
         "text": "\u6CA1\u6709\u627E\u5230\u76F8\u5173\u7684\u6570\u636E"
-      }, $compid__50, $prevCompid__50);
+      }, $compid__58, $prevCompid__58);
       _taroWeapp.propsManager.set({
         "isOpened": isOpened
-      }, $compid__51, $prevCompid__51);
+      }, $compid__59, $prevCompid__59);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
-        loopArray63: loopArray63,
-        $compid__50: $compid__50,
-        $compid__51: $compid__51,
+        loopArray68: loopArray68,
+        $compid__58: $compid__58,
+        $compid__59: $compid__59,
         data: data,
         IMGCDNURL: _index.IMGCDNURL,
         recruitNoMoreData: recruitNoMoreData,

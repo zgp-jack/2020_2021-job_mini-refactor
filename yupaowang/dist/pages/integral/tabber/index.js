@@ -77,7 +77,7 @@ var Tabber = function (_Taro$Component) {
       navigationBarTitleText: ''
     };
 
-    _this.$usedState = ["data", "modalData", "loopArray70", "$compid__64", "$compid__65", "time", "start", "end", "IMGCDNURL", "initInfo", "sourceList", "consumeList", "startType", "modal", "complaintModal", "showTime", "title", "num"];
+    _this.$usedState = ["data", "modalData", "loopArray71", "$compid__64", "$compid__65", "time", "start", "end", "IMGCDNURL", "initInfo", "sourceList", "consumeList", "startType", "modal", "complaintModal", "showTime", "title", "num"];
     _this.customComponents = ["Auth", "Nodata", "Report"];
     return _this;
   }
@@ -714,7 +714,7 @@ var Tabber = function (_Taro$Component) {
       this.anonymousFunc5 = function () {
         return handleComplaint(modalData.id);
       };
-      var loopArray70 = initInfo === '1' && modal && modalData ? modalData.classifyName.map(function (v, i) {
+      var loopArray71 = initInfo === '1' && modal && modalData ? modalData.classifyName.map(function (v, i) {
         v = {
           $original: (0, _taroWeapp.internal_get_original)(v)
         };
@@ -737,7 +737,7 @@ var Tabber = function (_Taro$Component) {
       Object.assign(this.__state, {
         data: data,
         modalData: modalData,
-        loopArray70: loopArray70,
+        loopArray71: loopArray71,
         $compid__64: $compid__64,
         $compid__65: $compid__65,
         time: time,

@@ -1,10 +1,10 @@
 import Taro, { useState, useEffect, Config, useRouter, RouterInfo, useReachBottom } from '@tarojs/taro'
 import { View, Text, Image } from '@tarojs/components'
-import { messagesTypeAction } from '../../../utils/request';
-import { systemDataList } from '../../../utils/request/index.d'
-import { IMGCDNURL } from '../../../config'
-import Nodata from '../../../components/nodata'
-import { isIos } from '../../../utils/v'
+import { messagesTypeAction } from '../../../../utils/request';
+import { systemDataList } from '../../../../utils/request/index.d'
+import { IMGCDNURL } from '../../../../config'
+import Nodata from '../../../../components/nodata'
+import { isIos } from '../../../../utils/v'
 import './index.scss'
 
 interface DataType {

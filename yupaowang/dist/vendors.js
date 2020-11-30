@@ -12326,32 +12326,6 @@ function setPositionStaus(data) {
 
 /***/ }),
 
-/***/ "./src/actions/recruit_top.ts":
-/*!************************************!*\
-  !*** ./src/actions/recruit_top.ts ***!
-  \************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = setRecruitTopArea;
-
-var _recruit_top = __webpack_require__(/*! ../constants/recruit_top */ "./src/constants/recruit_top.ts");
-
-function setRecruitTopArea(data) {
-  return {
-    type: _recruit_top.SET_RECRUIT_TOP_AREA,
-    data: data
-  };
-}
-
-/***/ }),
-
 /***/ "./src/actions/resume_addinfo.ts":
 /*!***************************************!*\
   !*** ./src/actions/resume_addinfo.ts ***!
@@ -12607,7 +12581,9 @@ var AUTHPATH = exports.AUTHPATH = '/pages/userauth/index';
 var CODEAUTHPATH = exports.CODEAUTHPATH = '/pages/login/index';
 // * 已发布招工列表
 var PUBLISHEDRECRUIT = exports.PUBLISHEDRECRUIT = '/pages/published/recruit/index';
-// * 下载App
+// * 下载APP
+var DOWNLOADAPPPATH = exports.DOWNLOADAPPPATH = '/subpackage/pages/download/index';
+// * 下载App链接
 var DownloadApp = exports.DownloadApp = 'https://android.myapp.com/myapp/detail.htm?apkName=io.dcloud.H576E6CC7&amp;ADTAG=mobile';
 // * 邀请好友
 var INVITEPATH = exports.INVITEPATH = '/pages/static/invite/index';

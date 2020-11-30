@@ -62,7 +62,9 @@ export const AUTHPATH: string = '/pages/userauth/index'
 export const CODEAUTHPATH: string = '/pages/login/index'
 // * 已发布招工列表
 export const PUBLISHEDRECRUIT: string = '/pages/published/recruit/index'
-// * 下载App
+// * 下载APP
+export const DOWNLOADAPPPATH: string = '/subpackage/pages/download/index'
+// * 下载App链接
 export const DownloadApp: string ='https://android.myapp.com/myapp/detail.htm?apkName=io.dcloud.H576E6CC7&amp;ADTAG=mobile'
 // * 邀请好友
 export const INVITEPATH: string = '/pages/static/invite/index'
