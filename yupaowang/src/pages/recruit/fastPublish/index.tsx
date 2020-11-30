@@ -170,7 +170,10 @@ export default function PublishRecruit() {
     setShowProssion(false)
   }
 
-  const pickerDom = <Input className='publish-list-input' type='text' disabled placeholder='请选择招工城市'/>
+  const pickerDom = ()=>{
+  <Input className='publish-list-input' type='text' disabled placeholder='请选择招工城市'/>
+  return
+}
 
   return (
     <Block>
