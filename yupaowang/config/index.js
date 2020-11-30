@@ -1,10 +1,15 @@
 const webpack = require('webpack-bundle-analyzer')
+// * 引入自己的打包文件 json匹配操作插件
+const initProjectBuild = require('../build')
 // * 非微信小程序标识集合
 const unweixinmins = ["baidu","douyin"]
 // * 当前编译小程序集合
 const miniflag = JSON.stringify(process.argv[2])
 const reminiflag = miniflag.replace(/\"/g, "")
 const ISWEIXIN = unweixinmins.find(item => item == reminiflag) ? false : true
+
+// 根据标识去初始化自己的项目配置
+initProjectBuild(reminiflag)
 
 const config = {
   projectName: '鱼泡网',
