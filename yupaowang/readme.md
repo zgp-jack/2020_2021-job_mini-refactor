@@ -49,6 +49,7 @@ utils/  逻辑js文件
 
 如何新建一个小程序
 1.yupaowang/src/config/minis中以标识符新建一个配置文件，然后根据需要调整
+
 2.yupaowang/project.config.js中声明当前小程序的appid,projectname等关键字段信息
 3.yupaowang/package.json中，scripts里面配置自己的相关编译命令
 
