@@ -1,37 +1,5 @@
 (tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["components/tabbar/index"],{
 
-/***/ "./src/actions/publishWay.ts":
-/*!***********************************!*\
-  !*** ./src/actions/publishWay.ts ***!
-  \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.setPublishWay = setPublishWay;
-exports.getPublishWay = getPublishWay;
-
-var _publishWay = __webpack_require__(/*! ../constants/publishWay */ "./src/constants/publishWay.ts");
-
-function setPublishWay(data) {
-  return {
-    type: _publishWay.SETPUBLISHWAY,
-    data: data
-  };
-}
-function getPublishWay() {
-  return {
-    type: _publishWay.GETPUBLISHWAY
-  };
-}
-
-/***/ }),
-
 /***/ "./src/components/tabbar/index.scss":
 /*!******************************************!*\
   !*** ./src/components/tabbar/index.scss ***!

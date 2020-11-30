@@ -277,7 +277,20 @@ var ResumeLists = function (_Taro$Component) {
       // scroll-view 回到顶部
       var goToScrollTop = function goToScrollTop() {
         setHasMore(true);
+        // ! 如果小程序必须监听滚动值 返回顶部直接为0 ，如果不需要我们就给个近似值 来达到效果
+        if (_index2.SCROLLVIEWSETTOP) {
+          setScrollTop(0);
+          return;
+        }
         setScrollTop(scrollTop ? 0 : 0.1);
+      };
+      // scroll-view 滚动操作
+      var setScrollTopAction = function setScrollTopAction(e) {
+        // ! 如果小程序必须监听onScroll滚动值 那么就设置 例如百度小程序
+        if (_index2.SCROLLVIEWSETTOP) {
+          var top = e.detail.scrollTop;
+          setScrollTop(top);
+        }
       };
       // 设置搜索内容
       var setSearchValData = function setSearchValData() {
@@ -303,8 +316,11 @@ var ResumeLists = function (_Taro$Component) {
       this.anonymousFunc1 = function () {
         return getNextPageData();
       };
+      this.anonymousFunc2 = function (e) {
+        return setScrollTopAction(e);
+      };
       var anonymousState__temp4 = (0, _taroTt.internal_inline_style)({ height: '8px' });
-      this.anonymousFunc2 = function () {
+      this.anonymousFunc3 = function () {
         return userRouteJump(_index2.PUBLISHRESUME);
       };
       _taroTt.propsManager.set({
@@ -349,12 +365,17 @@ var ResumeLists = function (_Taro$Component) {
     value: function anonymousFunc2(e) {
       ;
     }
+  }, {
+    key: 'anonymousFunc3',
+    value: function anonymousFunc3(e) {
+      ;
+    }
   }]);
 
   return ResumeLists;
 }(_taroTt2.default.Component);
 
-ResumeLists.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2"];
+ResumeLists.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3"];
 ResumeLists.$$componentPath = "pages/resume/lists/index";
 ResumeLists.config = { navigationBarTitleText: '工人找活列表', navigationBarBackgroundColor: '#0099ff', navigationBarTextStyle: 'white', backgroundTextStyle: "dark" };
 exports.default = ResumeLists;

@@ -493,7 +493,7 @@ var PublishRecruit = function (_Taro$Component) {
       backgroundTextStyle: "dark"
     };
 
-    _this.$usedState = ["anonymousState__temp", "model", "$compid__35", "$compid__36", "showProfession", "areaInfo", "phone", "showUpload", "text", "num", "TEXTAREAMAXLENGTH"];
+    _this.$usedState = ["anonymousState__temp", "model", "$compid__35", "$compid__36", "showProfession", "USEGAODEMAPAPI", "areaInfo", "areaIndex", "areaPickerData", "areaPickerName", "phone", "showUpload", "text", "num", "TEXTAREAMAXLENGTH"];
     _this.customComponents = ["Auth", "Profession", "ImageView"];
     return _this;
   }
@@ -545,7 +545,15 @@ var PublishRecruit = function (_Taro$Component) {
           userPublishRecruitAction = _usePublishViewInfo.userPublishRecruitAction,
           num = _usePublishViewInfo.num,
           setNum = _usePublishViewInfo.setNum,
-          phone = _usePublishViewInfo.phone;
+          phone = _usePublishViewInfo.phone,
+          areaIndex = _usePublishViewInfo.areaIndex,
+          areaPickerData = _usePublishViewInfo.areaPickerData,
+          areaCityPicker = _usePublishViewInfo.areaCityPicker,
+          areaProvincePicker = _usePublishViewInfo.areaProvincePicker,
+          setAreaPickerData = _usePublishViewInfo.setAreaPickerData,
+          setAreaIndex = _usePublishViewInfo.setAreaIndex,
+          areaPickerName = _usePublishViewInfo.areaPickerName,
+          setAreaPickerName = _usePublishViewInfo.setAreaPickerName;
       // 使用自定义验证码hook
 
 
@@ -565,10 +573,10 @@ var PublishRecruit = function (_Taro$Component) {
         setShowProssion(false);
       };
       // 用户填写表单
-      var userEnterFrom = function userEnterFrom(e, key) {
+      var userEnterFrom = function userEnterFrom(e, type) {
         var value = e.detail.value;
         var state = JSON.parse(JSON.stringify(model));
-        state[key] = value;
+        state[type] = value;
         setModel(_extends({}, state));
       };
       // 选择地址
@@ -576,7 +584,7 @@ var PublishRecruit = function (_Taro$Component) {
         if (!model) {
           return;
         }
-        var url = '/pages/map/recruit/index';
+        var url = "/pages/map/recruit/index?id=" + id;
         _taroTt2.default.navigateTo({
           url: url
         });
@@ -631,6 +639,29 @@ var PublishRecruit = function (_Taro$Component) {
         bakModel.view_images.splice(i, 1);
         setModel(bakModel);
       };
+      // 用户确定地址picker
+      var userChangePickerArea = function userChangePickerArea(e) {
+        var pid = areaProvincePicker[e.detail.value[0]].id;
+        var cid = areaPickerData[1][e.detail.value[1]].id;
+        if (model) {
+          setModel(_extends({}, model, { province_id: +pid, city_id: +cid }));
+        }
+        var name = pid === cid ? areaProvincePicker[e.detail.value[0]].name : areaProvincePicker[e.detail.value[0]].name + "-" + areaPickerData[1][e.detail.value[1]].name;
+        setAreaPickerName(name);
+      };
+      // 用户更改了地址picker
+      var userChangeColumn = function userChangeColumn(e) {
+        var column = e.detail.column;
+        var value = e.detail.value;
+        if (column === 0) {
+          var data = JSON.parse(JSON.stringify(areaPickerData));
+          data[1] = areaCityPicker[value];
+          setAreaPickerData(data);
+          setAreaIndex([value, 0]);
+        } else {
+          setAreaIndex([areaIndex[0], value]);
+        }
+      };
       this.anonymousFunc0 = function (i, k, id) {
         return userClickProfession(i, k, id);
       };
@@ -644,30 +675,36 @@ var PublishRecruit = function (_Taro$Component) {
         return userChooseArea();
       };
       this.anonymousFunc4 = function (e) {
-        return userEnterFrom(e, 'user_name');
+        return userChangePickerArea(e);
       };
       this.anonymousFunc5 = function (e) {
-        return userEnterFrom(e, 'user_mobile');
+        return userChangeColumn(e);
       };
       this.anonymousFunc6 = function (e) {
+        return userEnterFrom(e, 'user_name');
+      };
+      this.anonymousFunc7 = function (e) {
+        return userEnterFrom(e, 'user_mobile');
+      };
+      this.anonymousFunc8 = function (e) {
         return userEnterFrom(e, 'code');
       };
-      this.anonymousFunc7 = function () {
+      this.anonymousFunc9 = function () {
         return userGetCode(model.user_mobile);
       };
       var anonymousState__temp = !showProfession ? (0, _classnames2.default)({
         'publish-textarea': true,
         'hide': showProfession
       }) : null;
-      this.anonymousFunc8 = function (e) {
+      this.anonymousFunc10 = function (e) {
         userEnterFrom(e, 'detail');
         setNum(e.detail.value.length);
         return false;
       };
-      this.anonymousFunc9 = function () {
+      this.anonymousFunc11 = function () {
         return changeShowUpload();
       };
-      this.anonymousFunc10 = function () {
+      this.anonymousFunc12 = function () {
         return userPublishRecruitAction();
       };
       showProfession && _taroTt.propsManager.set({
@@ -688,7 +725,11 @@ var PublishRecruit = function (_Taro$Component) {
         $compid__35: $compid__35,
         $compid__36: $compid__36,
         showProfession: showProfession,
+        USEGAODEMAPAPI: _index3.USEGAODEMAPAPI,
         areaInfo: areaInfo,
+        areaIndex: areaIndex,
+        areaPickerData: areaPickerData,
+        areaPickerName: areaPickerName,
         phone: phone,
         showUpload: showUpload,
         text: text,
@@ -752,12 +793,22 @@ var PublishRecruit = function (_Taro$Component) {
     value: function anonymousFunc10(e) {
       ;
     }
+  }, {
+    key: "anonymousFunc11",
+    value: function anonymousFunc11(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc12",
+    value: function anonymousFunc12(e) {
+      ;
+    }
   }]);
 
   return PublishRecruit;
 }(_taroTt2.default.Component);
 
-PublishRecruit.$$events = ["anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6", "anonymousFunc7", "anonymousFunc8", "anonymousFunc9", "anonymousFunc10"];
+PublishRecruit.$$events = ["anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6", "anonymousFunc7", "anonymousFunc8", "anonymousFunc9", "anonymousFunc10", "anonymousFunc11", "anonymousFunc12"];
 PublishRecruit.$$componentPath = "pages/recruit/publish/index";
 PublishRecruit.config = { navigationBarTitleText: '发布招工', navigationBarBackgroundColor: '#0099ff', navigationBarTextStyle: 'white', backgroundTextStyle: "dark" };
 exports.default = PublishRecruit;

@@ -55,6 +55,10 @@ var _index4 = __webpack_require__(/*! ../../../utils/msg/index */ "./src/utils/m
 
 var _index5 = _interopRequireDefault(_index4);
 
+var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/redux/index.js");
+
+var _publishWay = __webpack_require__(/*! ../../../actions/publishWay */ "./src/actions/publishWay.ts");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
@@ -107,8 +111,15 @@ var Recruit = function (_Taro$Component) {
           _genCompid6 = _slicedToArray(_genCompid5, 2),
           $prevCompid__22 = _genCompid6[0],
           $compid__22 = _genCompid6[1];
-      // 输入关键词 没搜索 备份
 
+      var login = (0, _redux.useSelector)(function (state) {
+        return state.User['login'];
+      });
+      var dispatch = (0, _redux.useDispatch)();
+      var publishWay = (0, _redux.useSelector)(function (state) {
+        return state.publishWay;
+      });
+      // 输入关键词 没搜索 备份
 
       var _useState = (0, _taroTt.useState)(''),
           _useState2 = _slicedToArray(_useState, 2),
@@ -213,13 +224,16 @@ var Recruit = function (_Taro$Component) {
         (0, _index.getRecruitList)(searchData).then(function (res) {
           if (res.errcode == 'ok') {
             if (res.data) {
+              _taroTt2.default.hideNavigationBarLoading();
               if (!res.data.length) {
                 setHasMore(false);
               }
-              _taroTt2.default.hideNavigationBarLoading();
               if (searchData.page === 1) {
+                goToScrollTop();
                 setLists([[].concat(_toConsumableArray(res.data))]);
-              } else setLists([].concat(_toConsumableArray(lists), [[].concat(_toConsumableArray(res.data))]));
+              } else {
+                setLists([].concat(_toConsumableArray(lists), [[].concat(_toConsumableArray(res.data))]));
+              }
             } else {
               if (searchData.page === 1) {
                 setLists([[]]);
@@ -254,12 +268,57 @@ var Recruit = function (_Taro$Component) {
         setRefresh(true);
         setSearchData(_extends({}, searchData, { page: 1 }));
       };
+      //是否为极速发布与快速发布请求,快速发布与极速发布跳转
+      var initJobView = function initJobView() {
+        if (login) {
+          var flag = JSON.parse(JSON.stringify(publishWay));
+          if (!flag.loginAfter) {
+            (0, _index.publishWayRea)().then(function (res) {
+              var publishMethod = res.add_job_type;
+              dispatch((0, _publishWay.setPublishWay)(_extends({}, publishWay, { loginWay: publishMethod, loginAfter: true })));
+              var url = publishMethod == "fast_add_job" ? _index3.PUBLISHRECRUIT : _index3.PUBLISHFAST;
+              _taroTt2.default.navigateTo({
+                url: url
+              });
+            }).catch(function () {
+              _taroTt2.default.navigateTo({
+                url: _index3.PUBLISHFAST
+              });
+            });
+          } else {
+            var way = publishWay.loginWay;
+            var url = way == "fast_add_job" ? _index3.PUBLISHRECRUIT : _index3.PUBLISHFAST;
+            _taroTt2.default.navigateTo({
+              url: url
+            });
+          }
+        } else {
+          var _flag = JSON.parse(JSON.stringify(publishWay));
+          if (!_flag.loginBefore) {
+            (0, _index.publishWayRea)().then(function (res) {
+              var publishMethod = res.add_job_type;
+              dispatch((0, _publishWay.setPublishWay)(_extends({}, publishWay, { logoutWay: publishMethod, loginBefore: true })));
+              var url = publishMethod == "fast_add_job" ? _index3.PUBLISHRECRUIT : _index3.PUBLISHFAST;
+              _taroTt2.default.navigateTo({
+                url: url
+              });
+            }).catch(function () {
+              _taroTt2.default.navigateTo({
+                url: _index3.PUBLISHFAST
+              });
+            });
+          } else {
+            var _way = publishWay.logoutWay;
+            var _url = _way == "fast_add_job" ? _index3.PUBLISHRECRUIT : _index3.PUBLISHFAST;
+            _taroTt2.default.navigateTo({
+              url: _url
+            });
+          }
+        }
+      };
       // * 发布招工
       var userPublishRecruit = function userPublishRecruit() {
-        // Taro.navigateTo({url: '/pages/recruit/publish/index'})
-        // Taro.navigateTo({url: '/pages/recruit/fastPublish/index'})
-        // Taro.navigateTo({ url: PUBLISHRECRUIT})
-        _taroTt2.default.navigateTo({ url: _index3.PUBLISHFAST });
+        initJobView();
       };
       // * 更新筛选条件
       var setSearchDataAction = function setSearchDataAction(type, id, text) {
@@ -276,17 +335,28 @@ var Recruit = function (_Taro$Component) {
         } else {
           setSearchData(_extends({}, searchData, { joblisttype: id, page: 1 }));
         }
-        goToScrollTop();
       };
       // scroll-view 回到顶部
       var goToScrollTop = function goToScrollTop() {
         setHasMore(true);
-        setScrollTop(scrollTop ? 0 : 0.1);
+        // ! 如果小程序必须监听滚动值 返回顶部直接为0 ，如果不需要我们就给个近似值 来达到效果
+        if (_index3.SCROLLVIEWSETTOP) {
+          setScrollTop(0);
+          return;
+        }
+        setScrollTop(scrollTop ? 0 : 0.01);
       };
       // 输入搜索关键词
       var setSearchValData = function setSearchValData() {
         setSearchData(_extends({}, searchData, { keywords: remark, page: 1 }));
-        goToScrollTop();
+      };
+      // scroll-view 滚动操作
+      var setScrollTopAction = function setScrollTopAction(e) {
+        // ! 如果小程序必须监听onScroll滚动值 那么就设置 例如百度小程序
+        if (_index3.SCROLLVIEWSETTOP) {
+          var top = e.detail.scrollTop;
+          setScrollTop(top);
+        }
       };
       var anonymousState__temp = function anonymousState__temp(val) {
         return setRemark(val);
@@ -297,14 +367,17 @@ var Recruit = function (_Taro$Component) {
       var anonymousState__temp3 = function anonymousState__temp3(type, id, text) {
         return setSearchDataAction(type, id, text);
       };
-      this.anonymousFunc0 = function () {
-        return pullDownAction();
+      this.anonymousFunc0 = function (e) {
+        return setScrollTopAction(e);
       };
       this.anonymousFunc1 = function () {
+        return pullDownAction();
+      };
+      this.anonymousFunc2 = function () {
         return getNextPageData();
       };
       var anonymousState__temp4 = (0, _taroTt.internal_inline_style)({ height: '8px' });
-      this.anonymousFunc2 = function () {
+      this.anonymousFunc3 = function () {
         return userPublishRecruit();
       };
       _taroTt.propsManager.set({
@@ -349,12 +422,17 @@ var Recruit = function (_Taro$Component) {
     value: function anonymousFunc2(e) {
       ;
     }
+  }, {
+    key: "anonymousFunc3",
+    value: function anonymousFunc3(e) {
+      ;
+    }
   }]);
 
   return Recruit;
 }(_taroTt2.default.Component);
 
-Recruit.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2"];
+Recruit.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3"];
 Recruit.$$componentPath = "pages/recruit/lists/index";
 exports.default = Recruit;
 

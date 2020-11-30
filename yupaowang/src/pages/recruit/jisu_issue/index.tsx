@@ -10,12 +10,9 @@ import Auth from '../../../components/auth'
 import './index.scss'
 import { useSelector } from '@tarojs/redux'
 import ClassifyPicker, { RulesClassfies } from '../../../components/classfiy_picker/index'
-<<<<<<< HEAD:yupaowang/src/pages/recruit/fastPublish/index.tsx
 import CityPicker from '../../../components/city_picker'
-=======
 import { RecruitWorkInfo } from '../../../pages/recruit/index.d'
 import { PublishConfigData } from '../../../pages/recruit/index.d'
->>>>>>> d377ecab0891a8b232315f3cc973462fd8b57f97:yupaowang/src/pages/recruit/jisu_issue/index.tsx
 // 初始化获取信息类型
 export interface InitRecruitView {
   type: string,
@@ -187,7 +184,6 @@ export default function PublishRecruit() {
   return (
     <Block>
       <Auth />
-      <CityPicker PickerDom={pickerDom}></CityPicker>
       {showProfession &&
         <ClassifyPicker
           hiddenPickerModel={closeProfession}
@@ -209,9 +205,11 @@ export default function PublishRecruit() {
           <WordsTotal num={num} />
         </View>
 
-        <View className='publish-list-item' onClick={() => userChooseArea()}>
+    {/* <View className='publish-list-item' onClick={() => userChooseArea()}> */}
+        <View className='publish-list-item'>
           <Text className='pulish-list-title input-title'>招工城市:</Text>
-          <Input className='publish-list-input' type='text' disabled placeholder='请选择招工城市' value={areaInfo && areaInfo.title} />
+          <CityPicker></CityPicker>
+          {/* <Input className='publish-list-input' type='text' disabled placeholder='请选择招工城市' value={areaInfo && areaInfo.title} /> */}
         </View>
 
         <View className='publish-list-item work-type' onClick={() => showProfessionAction()}>

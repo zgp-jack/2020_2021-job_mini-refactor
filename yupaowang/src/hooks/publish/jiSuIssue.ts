@@ -55,7 +55,7 @@ export default function fastPublishInit(InitParams: InitRecruitView) {
       }
       setclassMateArr(_Classifies)
     }
-  }, [model])
+  }, [])
 
   // 初始化用户区域数据
   function initUserAreaInfo() {

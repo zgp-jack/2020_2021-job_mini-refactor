@@ -166,6 +166,8 @@ var Recharge = function (_Taro$Component) {
         var rechargeIntegral = lists[current].integral;
         if (false) {} else if (_index.MINIVERSION == _index.DOUYIN) {
           douyinProPay();
+        } else if (_index.MINIVERSION == _index.BAIDU) {
+          baiduProPay(rechargeIntegral);
         }
       };
       // 检测订单
@@ -247,6 +249,27 @@ var Recharge = function (_Taro$Component) {
             }).catch(function () {
               (0, _index3.ShowActionModal)({ msg: "\u5145\u503C\u5931\u8D25\uFF0C\u8BF7\u8054\u7CFB\u5BA2\u670D\u7535\u8BDD" + _index.SERVERPHONE });
             });
+          }
+        });
+      };
+      // 百度支付
+      var baiduProPay = function baiduProPay(rechargeIntegral) {
+        var id = lists[current].id;
+        (0, _index2.getBaiduTpOrderId)({ priceType: id }).then(function (res) {
+          if (res.errcode == 'ok') {
+            swan.requestPolymerPayment({
+              orderInfo: _extends({}, res.payData),
+              success: function success() {
+                var afterIntegral = integral + rechargeIntegral;
+                setIntegral(afterIntegral);
+                (0, _index3.ShowActionModal)({ msg: '支付成功' });
+              },
+              fail: function fail(err) {
+                (0, _index3.ShowActionModal)({ msg: err.errMsg });
+              }
+            });
+          } else {
+            (0, _index3.ShowActionModal)({ msg: "\u652F\u4ED8\u5931\u8D25\uFF0C\u8BF7\u8054\u7CFB\u5BA2\u670D\u7535\u8BDD " + _index.SERVERPHONE });
           }
         });
       };

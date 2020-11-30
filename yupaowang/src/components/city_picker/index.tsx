@@ -1,5 +1,5 @@
 import Taro, { useEffect, useState } from '@tarojs/taro'
-import { View, Picker } from '@tarojs/components'
+import { View, Picker,Input } from '@tarojs/components'
 import AREAS from '../../models/area'
 import './index.css'
 
@@ -9,8 +9,12 @@ interface CityTownPicker {
   name: string
 }
 
-export default function CityPicker({PickerDom}) {
+export default function CityPicker() {
+  //城市初始化数据
   const [cityPickerData, setCityPickerData] = useState<CityTownPicker[][]>([])
+  //选中的城市数据
+  const [selectCity, setSelectCity] = useState <CityTownPicker[]>([])
+  let selectCityIndex = [3,3]
   // cityi是选中的省的index
   const initCityData = (cityi: number) => {
     let copyArr = JSON.parse(JSON.stringify(AREAS))
@@ -43,17 +47,22 @@ export default function CityPicker({PickerDom}) {
 
   //点击确定
   const onChange = (e) => {
-    console.log(e.detail.value)
-    debugger
+    let cityData: CityTownPicker[] = []
+    cityData[0] = cityPickerData[0][e.detail.value[0]]
+    cityData[1] = cityPickerData[1][e.detail.value[1]]
+    setSelectCity(cityData)
   }
   //发生改变
   const onColumnChange = (e) => {
-    if (e.detail.column == 0) initCityData(e.detail.value)
+    // console.log(e.detail)
+
+    //如果是省发生改变
+    if (e.detail.column == 0) {
+      initCityData(e.detail.value)
+    }
   }
 
   useEffect(() => {
-    console.log(PickerDom)
-    debugger
     initCityData(0)
   },[])
 
@@ -63,11 +72,11 @@ export default function CityPicker({PickerDom}) {
         mode="multiSelector"
         range={cityPickerData}
         rangeKey='name'
-        value={[]}
+        value={selectCityIndex}
         onChange={(e) => { onChange(e) }}
         onColumnChange={(e) => { onColumnChange(e) }}
       >
-        {PickerDom}
+        <Input className='city-picker-input' value={selectCity[0].name ? selectCity[0].name + '-' +selectCity[1].name:''} type='text' disabled placeholder='请选择招工城市'/>
       </Picker>
     </View>
   )

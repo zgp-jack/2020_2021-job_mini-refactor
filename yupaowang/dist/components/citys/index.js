@@ -45,15 +45,22 @@ var _area2 = _interopRequireDefault(_area);
 
 var _index2 = __webpack_require__(/*! ../../utils/helper/index */ "./src/utils/helper/index.ts");
 
+var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/redux/index.js");
+
+var _recruit = __webpack_require__(/*! ../../actions/recruit */ "./src/actions/recruit.ts");
+
 __webpack_require__(/*! ./index.scss */ "./src/components/citys/index.scss");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } //获取发布招工信息action
+
 
 var Cities = function (_Taro$Component) {
   _inherits(Cities, _Taro$Component);
@@ -126,9 +133,11 @@ var Cities = function (_Taro$Component) {
           _useState10 = _slicedToArray(_useState9, 2),
           saveAreaData = _useState10[0],
           setSaveAreaData = _useState10[1];
+      // 获取dispatch分发action
+
+
+      var dispatch = (0, _redux.useDispatch)();
       // 用户点击城市
-
-
       var userTapCity = function userTapCity(city) {
         var historyCities = _taroTt2.default.getStorageSync(_store.HistoryCities);
         if (historyCities) {
@@ -144,9 +153,11 @@ var Cities = function (_Taro$Component) {
         } else {
           historyCities = [city];
         }
+        // 用户切换城市
+        dispatch((0, _recruit.setArea)({ name: city.city, ad_name: city.ad_name, id: city.id }));
         // 储存最新的用户点击历史城市数据
         _taroTt2.default.setStorageSync(_store.HistoryCities, historyCities);
-        userChangeCity && userChangeCity({ name: city.city, id: city.id });
+        userChangeCity && userChangeCity(city.city);
         userTapCityBtn(false);
         userRecentlyCities();
       };
@@ -172,7 +183,8 @@ var Cities = function (_Taro$Component) {
             } else {
               historyCities.splice(_index.MAXCACHECITYNUM - 1);
             }
-            setRecentlyCities(historyCities);
+            console.log('我走进来了....');
+            setRecentlyCities([].concat(_toConsumableArray(historyCities)));
             return;
           } else {
             setRecentlyCities(historyCities);
