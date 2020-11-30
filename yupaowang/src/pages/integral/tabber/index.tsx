@@ -452,8 +452,15 @@ export default function Tabber() {
       }
     })
   }
+  // 用户页面跳转
+  const userRouteJump = (url: string) => {
+    Taro.navigateTo({
+      url: url
+    })
+  }
   // 投诉弹窗
   const handleComplaint = (id:string)=>{
+    userRouteJump(`/pages/complaint/index?infoId=${id}&type=job&page=detail`)
     setComplaintModal(true);
     setComplaintId(id);
   }

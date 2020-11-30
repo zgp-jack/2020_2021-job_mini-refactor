@@ -1,0 +1,63 @@
+@import '../../common.scss';
+
+.complaintPage{
+  .complaintPage-tips{
+    height: 80px;
+    line-height: 80px;
+    background: rgba(255, 239, 225, 1);
+    color: rgba(255, 136, 31, 1);
+    font-size: 30px;
+    text-align: center;
+  }
+  .complaintPage-content{
+    position: relative;
+    padding: 30px;
+    .complaintPage-content-title{
+      font-size: 38px;
+      color: rgba(70, 70, 70, 1);
+      .complaintPage-content-title-text{
+        color: rgba(153, 153, 153, 1);
+        font-size: 30px;
+      }
+    }
+    .complaintPage-content-textArea{
+      border: none;
+      font-size: 28px;
+      margin-top: 15px;
+    }
+  }
+  .complaintPage-imgBox{
+    padding: 30px;
+    .complaintPage-imgBox-top{
+      display: flex;
+      justify-content: space-between;
+      .complaintPage-imgBox-title{
+        font-size: 38px;
+        color: rgba(70, 70, 70, 1);
+        .complaintPage-imgBox-title-text {
+          color: rgba(153, 153, 153, 1);
+          font-size: 30px;
+        }
+      }
+      .complaintPage-imgBox-btn{
+        .complaintPage-imgBox-btn-switch{
+          height: 46px !important;
+          width: 90px !important;
+        }
+      }
+    }
+  }
+  .complaintPage-footer{
+    margin: 30px auto;
+    .complaintPage-footer-btn {
+      width: 658px;
+      height: 95px;
+      background: rgba(0, 153, 255, 1);
+      border-radius: 8px;
+      line-height: 95px;
+      color: rgba(255, 255, 255, 1);
+      font-size: 35px;
+      text-align: center;
+    }
+  }
+}

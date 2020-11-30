@@ -286,8 +286,15 @@ export default function ResumeDetail() {
         showCancel: false,
       })
     }else{
-      setComplaintModal(true)
+      userRouteJump(`/pages/complaint/index?infoId=${uuid}&type=resume&page=detail`)
+      // setComplaintModal(true)
     }
+  }
+  // 用户页面跳转
+  const userRouteJump = (url: string) => {
+    Taro.navigateTo({
+      url: url
+    })
   }
   // 点击方法
   const handleImg = (e: string) => {

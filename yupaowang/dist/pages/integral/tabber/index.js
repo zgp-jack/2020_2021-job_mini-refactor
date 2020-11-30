@@ -663,8 +663,15 @@ var Tabber = function (_Taro$Component) {
           }
         });
       };
+      // 用户页面跳转
+      var userRouteJump = function userRouteJump(url) {
+        _taroTt2.default.navigateTo({
+          url: url
+        });
+      };
       // 投诉弹窗
       var handleComplaint = function handleComplaint(id) {
+        userRouteJump("/pages/complaint/index?infoId=" + id + "&type=job&page=detail");
         setComplaintModal(true);
         setComplaintId(id);
       };
