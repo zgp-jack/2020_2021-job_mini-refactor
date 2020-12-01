@@ -408,7 +408,7 @@ var PublishedRecruit = function (_Taro$Component) {
         };
         var _$indexKey3 = "fjzzz" + index;
         _this2.anonymousFunc4Map[_$indexKey3] = function () {
-          return userRouteJump("/pages/recruit/fastPublish/index?id=" + item.$original.id);
+          return userRouteJump("/pages/recruit/jisu_issue/index?id=" + item.$original.id);
         };
         var _$indexKey4 = "gazzz" + index;
         _this2.anonymousFunc5Map[_$indexKey4] = function () {

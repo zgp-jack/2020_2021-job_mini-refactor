@@ -11,12 +11,21 @@ export interface publishWay{
 export interface FastIssue<T> extends Result{
   data?: T
 }
+// 请求返回的文本信息处理规则
+export interface TextRules {
+  length: number
+  start: number
+  type: string
+  value: string
+}
 // 快速发布招工信息返回值data类型
 export interface FastData {
   token: string,
   checked: boolean,
   sendcode: string,
-  sendmsg: string
+  sendmsg: string,
+  rules?: TextRules[],
+  text?: string
 }
 export interface ResultData<T> extends Result {
   data: T

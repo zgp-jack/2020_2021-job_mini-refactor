@@ -1,22 +1,32 @@
 import Taro, { Config } from '@tarojs/taro'
 import { View, Textarea, Input, Image, Block } from '@tarojs/components'
-// import WordsTotal from '../../../../components/wordstotal'
 import { useFastIssue } from '../../../../hooks/publish/fastIssue/fast_issue'
 import { IMGCDNURL } from '../../../../config'
 import Auth from '../../../../components/auth'
+import PromptBox from '../../../../components/prompt_box/index'
 import './index.scss'
-
 
 export default function FastIssue() {
   // 初始化当前信息
-  const { telPhone, content, inputEnter, fastPublish, showPhoneBox } = useFastIssue()
+  const { telPhone, content, inputEnter, fastPublish, showPhoneBox, showModel, prompt, cancel, confirm } = useFastIssue()
   // 监听输入事件
   const userInput = (e:any, key:string) =>{
     inputEnter(e, key)
   }
+
   return (
     <Block>
     <Auth />
+      {showModel ? <PromptBox 
+        showClose={prompt.showClose}
+        showTitle={prompt.showTitle}
+        cancelText={prompt.cancelText}
+        confirmText={prompt.confirmText}
+        titleText={prompt.titleText}
+        content={prompt.content}
+        cancel={cancel}
+        confirm={confirm}
+      />: ''}
     <View className="issue-container">
       <View className="issue-textarea-box">
         <Textarea
@@ -26,7 +36,6 @@ export default function FastIssue() {
           value={content}
           maxlength = {500}
         ></Textarea>
-        {/* <WordsTotal num={num} /> */}
       </View>
       {showPhoneBox?<View className="issue-contactbox">
         <View className="issue-phone">

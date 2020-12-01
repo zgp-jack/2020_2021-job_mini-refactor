@@ -1,12 +1,16 @@
+import { PromptBoxProps } from './../../../components/prompt_box/index';
 import { usePublishData } from '../commonIssue'
-import Taro, { useState, useEffect } from '@tarojs/taro'
+import Taro, { useState, useEffect, useDidShow } from '@tarojs/taro'
 import { isVaildVal, isPhone } from '../../../utils/v'
 import { ShowActionModal } from '../../../utils/msg'
 import { fastIssue } from '../../../utils/request'
-import { FastData } from '../../../utils/request/index.d'
+import { FastData, TextRules } from '../../../utils/request/index.d'
 import { setToken, setPhone } from '../../../actions/recruit'//获取发布招工信息action
 import { useDispatch } from '@tarojs/redux'
 import { SERVERPHONE } from '../../../config'
+import { PublishData } from '../../../config/store'
+import { textData } from '../../../components/prompt_box/index'
+import { changeTabbar } from '../../../actions/tabbar'
 
 
 // 初始化获取信息类型
@@ -14,7 +18,6 @@ export interface InitRecruitView {
   type: string,
   infoId: string
 }
-
 export function useFastIssue() {
   // 定义请求参数
   const id: string = ''
@@ -31,6 +34,20 @@ export function useFastIssue() {
   const [showPhoneBox, setShowPhoneBox] = useState<boolean>(false)
   // 详情输入框输入内容
   const [num, setNum] = useState<number>(0)
+  // 当点击发布后，返回参数是paid_issue提示框显示内容
+  const [tipContent, setTipContent] = useState<textData[]>([])
+  // 当点击发布后，返回参数是paid_issue显示文本
+  const [text, setText] = useState<string>('')
+  // 当点击发布后，返回参数是paid_issue文本显示规则
+  const [rules, setRules] = useState<TextRules[]>([])
+  // 响应状态
+  const [response, setResponse] = useState<string>('')
+  // 是否显示发布成功提示框
+  const [showModel, setShowModel] = useState<boolean>(false)
+  // 从选择城市、工种页面返回的标识
+  const [pageMark, setPageMark] = useState<boolean>(false)
+  // 子组件提示框的显示属性
+  const [prompt, setPrompt] = useState<any>({})
   // 获取dispatch分发action
   const dispatch = useDispatch()
 
@@ -38,6 +55,8 @@ export function useFastIssue() {
   useEffect(()=>{
     setTelPhone(phone)
   },[phone])
+
+
   // 监听输入电话或者详情变化，存入缓存
   useEffect(() => {
     if (dataType == 'phone') {
@@ -47,10 +66,85 @@ export function useFastIssue() {
       setEnterInfo(dataType, content)
     }
   }, [dataType,telPhone, content])
+
+
   // 设置匹配到电话号码设置缓存
   useEffect(() => {
     setEnterInfo("phone", telPhone)
   },[telPhone])
+
+
+  // 监听text跟rules变化
+  useEffect(() => {
+    if (response == 'publishSuccess') {
+      // 发布成功提示框
+      const promptData = {
+        showClose: true,
+        showTitle: true,
+        cancelText: '筛选找活简历',
+        confirmText: '管理招工信息',
+        titleText: '提示',
+        content: [{ des: '发布成功' }]
+      }
+      setPrompt(promptData)
+    } else if (response == 'paid_issue') {
+      handleText()
+      // 发布成功提示框
+      const promptData = {
+        showClose: true,
+        showTitle: true,
+        cancelText: '不了，谢谢',
+        confirmText: '确认发布',
+        titleText: '提示',
+        content: [{ text: tipContent}]
+      }
+      setPrompt(promptData)
+      setShowModel(true)
+    }
+  }, [response, tipContent])
+
+
+  // 页面显示的时候
+  useDidShow(() => {
+    // 获取页面栈
+    let pages: Taro.Page[] = Taro.getCurrentPages();
+    if (pages.length > 1) {
+      //当前页面栈
+      let currentPage = pages[pages.length - 1];
+      // 获取当前页面的页面栈中从发布招工城市选择页设置的最新标识
+      let mark = currentPage.data.pageMark;
+      // 如果是从城市选择发布页面返回，则显示发布成功弹窗和清空缓存与data数据
+      if (mark) {
+        let jisuData = Taro.getStorageSync(PublishData)
+        if (jisuData && jisuData.content) {
+          jisuData.content = '';
+          Taro.setStorageSync(PublishData, jisuData)
+        }
+        setContent('')
+        setResponse('publishSuccess')
+        setShowModel(true)
+      }
+      setPageMark(false)
+    }
+  })
+  // 点击取消（筛选找活简历）
+  const cancel = () => {
+    if (response == 'publishSuccess'){
+      Taro.reLaunch({ url: '/pages/index/index?type=resume' })
+    } else if (response == 'paid_issue'){
+      setShowModel(false)
+    }
+    
+  }
+  // 点击确定跳转到招工信息列表
+  const confirm = () => {
+    if (response == 'publishSuccess'){
+      dispatch(changeTabbar("member"))
+      Taro.reLaunch({ url: '/pages/published/recruit/index' })
+    }else if (response == 'paid_issue'){
+      fastPublish()
+    }
+  }
   // 用户填写发布信息
   function inputEnter (e: any, key: string) {
     const value: string = e.detail.value
@@ -73,6 +167,25 @@ export function useFastIssue() {
         setShowPhoneBox(true)
       }
     }
+  }
+  // 当请求返回值是paid_issue表示付费发布，处理提示框文字显示内容
+  function handleText(){
+    let texts: textData[] = []
+    for (let i = 0; i < rules.length; i++) {
+      if (i === 0) {
+        texts.push({ text: text.substring(i, rules[i].start), color: "#000000" })
+      } else {
+        texts.push({ text: text.substring(rules[i - 1].start + rules[i - 1].length, rules[i].start), color: "#000000" })
+      }
+      texts.push({
+        text: text.substring(rules[i].start, rules[i].start + rules[i].length),
+        color: rules[i].value,
+      })
+      if (i === rules.length - 1) {
+        texts.push({ text: text.substring(rules[i].start + rules[i].length), color: "#000000"})
+      }
+    }
+    setTipContent(texts)
   }
   // 发布招工详情
   function fastPublish () {
@@ -157,6 +270,11 @@ export function useFastIssue() {
             }
           }
         })
+      } else if (res.errcode == "paid_issue"){
+        // paid_issue代表付费发布
+        setText((res.data as FastData).text as string)
+        setRules((res.data as FastData).rules as TextRules[])
+        setResponse(res.errcode)
       } else {
         ShowActionModal({
           msg: res.errmsg
@@ -176,6 +294,10 @@ export function useFastIssue() {
     showPhoneBox,
     setShowPhoneBox,
     num,
-    setNum
+    setNum,
+    cancel,
+    confirm,
+    showModel,
+    prompt
   }
 }

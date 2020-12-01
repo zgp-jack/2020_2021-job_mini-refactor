@@ -1,4 +1,4 @@
-import Taro, { Config, useState } from '@tarojs/taro'
+import Taro, { Config, useDidShow, useState } from '@tarojs/taro'
 import { View, Input, Text, Switch, Button, Image } from '@tarojs/components'
 import { RecruitInfo } from '../../../../pages/recruit/index.d'
 import { useSelector } from '@tarojs/redux';
@@ -20,6 +20,18 @@ export default function FastIssue() {
   const [showPicker, setShowPicker] = useState<boolean>(false)
   // 招工信息的定位地址信息
   const areaInfo = recruitInfo.areaInfo
+  
+  useDidShow(()=>{
+    let pages: Taro.Page[] = Taro.getCurrentPages();
+    if(pages.length > 1 ){
+      //上一个页面实例对象
+      var prePage = pages[pages.length - 2];
+      // 如果上一页是发布招工填写招工详情页面，设置标识信息
+      if (prePage.route == 'pages/recruit/fast_issue/issue/index'){
+        prePage.setData({pageMark:true})
+      }
+    }
+  })
   // 点击招工城市，跳转到城市选择页面
   function showWorkArea() {
     let url = '/pages/map/recruit/index'
