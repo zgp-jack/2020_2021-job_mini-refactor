@@ -119,7 +119,8 @@ export default function fastPublishInit(InitParams: InitRecruitView) {
   function getPublishedInfo() {
     if (!model) return
     const data: FastPublishBase = {
-      address: areaInfo.title,
+      // address: areaInfo.title,
+      address: '@@@@@',
       detail: model.detail,
       infoId: model.infoId,
       type: model.type,
@@ -177,7 +178,8 @@ export default function fastPublishInit(InitParams: InitRecruitView) {
       }
     }
     // 拼接小地址的描述
-    data.address += '@@@@@' + areaInfo.info
+    // data.address += '@@@@@' + areaInfo.info
+    debugger
     FastPublisInfo(data).then(res => {
       if (res.errcode == 'ok') {
         SubscribeToNews("recruit", () => {

@@ -3,18 +3,18 @@ import { View, Picker,Input } from '@tarojs/components'
 import AREAS from '../../models/area'
 import './index.css'
 
-interface CityTownPicker {
+export interface CityTownPicker {
   id: string,
   pid: string,
   name: string
 }
 
-export default function CityPicker() {
+export default function CityPicker({onCity}) {
   //城市初始化数据
   const [cityPickerData, setCityPickerData] = useState<CityTownPicker[][]>([])
   //选中的城市数据
   const [selectCity, setSelectCity] = useState <CityTownPicker[]>([])
-  let selectCityIndex = [3,3]
+  let selectCityIndex = [0,0]
   // cityi是选中的省的index
   const initCityData = (cityi: number) => {
     let copyArr = JSON.parse(JSON.stringify(AREAS))
@@ -51,6 +51,7 @@ export default function CityPicker() {
     cityData[0] = cityPickerData[0][e.detail.value[0]]
     cityData[1] = cityPickerData[1][e.detail.value[1]]
     setSelectCity(cityData)
+    onCity(cityData)
   }
   //发生改变
   const onColumnChange = (e) => {
