@@ -108,10 +108,10 @@ export default function Complaint() {
         <View className="picker-box">
           {
             images.map((item, i) => (
-              <View className="select-img" key={i}>
+              <View className="select-img" key={`i${i}`}>
                 <Image className='upload-img' src={item.httpurl} onClick={() => handlePreview(i)}/>
                 <Image className="img-close" src={IMGCDNURL + 'new-published-close-icon.png'}
-                       onClick={() => handleDelete(i)}/>
+                  onClick={() => handleDelete(i)}/>
               </View>
             ))
           }

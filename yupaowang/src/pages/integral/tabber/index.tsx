@@ -529,7 +529,7 @@ export default function Tabber() {
       <View className="integral-tab">
         {
           tabBar.map((item, i) => (
-            <View className="tab-item" key={i} onClick={() => handleJump(item.type)}>
+            <View className="tab-item" key={`i${i}`} onClick={() => handleJump(item.type)}>
               <Text
                 className={"tab-item-text " + (initInfo == item.type ? 'tab-item-text-active' : '')}>{item.name}</Text>
             </View>
@@ -563,7 +563,7 @@ export default function Tabber() {
       {!data.lists.length && <Nodata text={initInfo === '0' ? '暂无积分来源记录' : '暂无积分消耗记录'}/>}
       <View className='integral-list-container'>
         {data.lists.map((item, index) => (
-          <View className="integral-list-item" key={index} onClick={() => handleModal(item.id, item.time)}>
+          <View className="integral-list-item" key={`i${index}`} onClick={() => handleModal(item.id, item.time)}>
             <View className="item-container">
               <View className="icon-bor">
                 <Image className="icon" src={item.icon}/>
@@ -830,8 +830,8 @@ export default function Tabber() {
       }
       {/* 投诉 */}
       {complaintModal && <Report display={complaintModal} textarea={textarea} handleTextarea={handleTextarea}
-                                 setComplaintModal={setComplaintModal}
-                                 handleSubmit={handleSubmit}/>
+      setComplaintModal={setComplaintModal}
+      handleSubmit={handleSubmit}/>
       }
     </View>
   )
