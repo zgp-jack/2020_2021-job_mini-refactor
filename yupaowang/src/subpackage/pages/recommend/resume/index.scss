@@ -1,9 +1,8 @@
-@import '../../../common.scss';
+@import '../../../../common.scss';
 
 .resume-list-container {
   position: relative;
   width: 100%;
-  padding-bottom: 150px;
   margin-top: 8px;
 
   .resume-lists-noData {
@@ -26,7 +25,7 @@
       position: relative;
       padding-left: 120px;
       line-height: 50px;
-
+      min-height: 100px;
       .resume-list-user {
         position: absolute;
         width: 100%;
@@ -188,42 +187,6 @@
     }
   }
 }
-.resumeDetail-recommend {
-  width: 100%;
-  margin-top: 20px;
-  position: relative;
-  width: 100%;
-  margin-top: 20px;
-}
-
-.resumeDetail-recommend-top {
-  position: relative;
-  font-size: 34px;
-  text-align: center;
-  line-height: 80px;
-  background: white;
-}
-.resumeDetail-recommend-top-text::after{
-  position: absolute;
-  display: block;
-  content: '';
-  height: 1px;
-  width: 100px;
-  background: #E5E5E5;
-  top: 40px;
-  right: 15%
-}
-.resumeDetail-recommend-top-text::before {
-  position: absolute;
-  display: block;
-  content: '';
-  height: 1px;
-  width: 100px;
-  background: #E5E5E5;
-  top: 40px;
-  left: 15%
-}
-
 .seemore-recommend-recruit {
   background: white;
   line-height: 100px;

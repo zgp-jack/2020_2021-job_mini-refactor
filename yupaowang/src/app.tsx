@@ -71,6 +71,8 @@ class App extends Component {
           'information/mymessage/index', //我的信息
           'information/system/index', //我的信息详情
           'turntable/index',// 大转盘
+          'recommend/recruit/index', //招工推荐
+          'recommend/resume/index', //找活推荐
         ]
       },
     ],

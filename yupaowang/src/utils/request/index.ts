@@ -834,6 +834,16 @@ export function recommendListAction(obj): Promise<Inter.recommendList> {
   })
 }
 
+// 找活详情里推荐列表
+export function detailsRecommendAction(obj): Promise<Inter.detailsRecommendList> {
+  return doRequestAction({
+    url: api.detailsRecommendListUrl,
+    method: 'POST',
+    failToast: true,
+    data: obj
+  })
+}
+
 // 找活详情查看电话
 export function resumesGetTelAcrion(obj): Promise<Inter.resumesGetTel> {
   return doRequestAction({
@@ -888,6 +898,16 @@ export function publishRecruitInfo(data): Promise<Inter.Result> {
 export function jobRecommendListAction(data): Promise<Inter.jobRecommendList> {
   return doRequestAction({
     url: api.jobRecommendListUrl,
+    method: 'POST',
+    failToast: true,
+    data,
+  })
+}
+
+// 找活名片-推荐适合的工作
+export function jobDetailsListAction(data): Promise<Inter.jobRecommendList> {
+  return doRequestAction({
+    url: api.jobDetailsUrl,
     method: 'POST',
     failToast: true,
     data,

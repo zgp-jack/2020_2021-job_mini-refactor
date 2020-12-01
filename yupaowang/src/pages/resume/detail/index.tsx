@@ -1,10 +1,10 @@
 import Taro, { Config, useState, useRouter, useShareAppMessage, useDidShow, useEffect } from '@tarojs/taro'
 import { View, Text, Image, Button } from '@tarojs/components'
-import { resumeDetailAction, recommendListAction, resumesGetTelAcrion, resumeSupportAction, resumeCollectAction, resumesComplainAction } from '../../../utils/request/index'
+import { resumeDetailAction, recommendListAction, detailsRecommendAction, resumesGetTelAcrion, resumeSupportAction, resumeCollectAction, resumesComplainAction } from '../../../utils/request/index'
 import { IMGCDNURL, ISCANSHARE, FILTERWEIXINREG, REPLACEWEIXINTEXT } from '../../../config'
 import Msg, { ShowActionModal, showModalTip } from '../../../utils/msg'
 import { DataType, ListType, Injected } from './index.d'
-// import CollectionRecruitList  from '../../../components/recommendList/index'
+import CollectionRecruitList  from '../../../components/recommendList/index'
 import { isVaildVal } from '../../../utils/v'
 import { getUserShareMessage } from '../../../utils/helper'
 import Report from '../../../components/report';
@@ -24,6 +24,8 @@ export default function ResumeDetail() {
   const login = useSelector<any, boolean>(state => state.User['login'])
   const user = useSelector<any, User>(state => state.User)
   const router: Taro.RouterInfo = useRouter()
+  // 相关推荐
+  const [recommendRe, setRecommend] = useState<any[]>([])
   //获取uuid和location,location需要修改，用一个共同的，最外层使用的
   let { uuid, location } = router.params;
   //总数据
@@ -91,6 +93,12 @@ export default function ResumeDetail() {
   const [isAuth, setIsAuth] = useState<boolean>(false)
   const [clickType,setClickType] = useState<string>('');
 
+  // 更多招工省市
+  const [areasId,setAreasId] = useState<number>(0);
+  // 更多招工工种
+  const [occupations,setOccupations] = useState<string>('');
+  // 更多招工job_ids
+  const [jobIds,setJobIds] = useState<number>(0);
   // 设置当前页面的分享内容
   useShareAppMessage(()=>{
     return {
@@ -132,6 +140,13 @@ export default function ResumeDetail() {
             setAge(dateone.getFullYear() - parseInt(res.info.birthday) + "岁")
           }
         }
+        // 设置更多招工信息的省/市
+        let area_id : number = parseInt(res.info.city ? res.info.city : res.info.province);
+        setAreasId(area_id);
+        let occupations :string = res.info.occupations_id;
+        setOccupations(occupations)
+        let jobIds : number = parseInt(res.info.id) 
+        setJobIds(jobIds)
         // Taro.setStorageSync("introinfo", res.info)
         setDate({ certificates: res.certificates,info:res.info,operation:res.operation,project:res.project})
         setPhone(res.info.tel);
@@ -142,16 +157,20 @@ export default function ResumeDetail() {
           seOnoff(true)
         }
         // 加载相关推荐数据列表
-        // const listParams = {
-        //   page: 1,
-        //   type: 1,
-        //   area_id: res.info.city,
-        //   occupations: res.info.occupations_id,
-        //   uuid: res.info.uuid,
-        // }
-        // recommendListAction(listParams).then(res => {
-        //   setList({ item: res.data.list })
-        // })
+        const listParams = {
+          page: 1,
+          type: 1,
+          area_id: res.info.city,
+          occupations: res.info.occupations_id,
+          uuid: res.info.uuid,
+        }
+        detailsRecommendAction(listParams).then(res => {
+          if (res.errcode === 'ok') {
+            setRecommend(res.data.list);
+          }else{
+            Msg(res.errmsg)
+          }
+        })
       }
     })
   }
@@ -549,14 +568,7 @@ export default function ResumeDetail() {
         </View>
       </View>
         }
-      {/* 相关推荐 */}
-      {/* <View className='resumeDetail-recommend'>
-        <View className='resumeDetail-recommend-top'>
-          <Text className='resumeDetail-recommend-top-text'>相关推荐</Text></View>
-      </View> */}
-      {/* {list.item.length &&
-      <CollectionRecruitList data={list.item} type={2}/>
-      } */}
+ 
       {/* <View className='resume-list-container'>
       {list.item.map(item=>(
         <Block key={item.id}>
@@ -638,6 +650,10 @@ export default function ResumeDetail() {
             </View>
           </View>
         </View>
+        }
+        {/* 相关推荐 */}
+        {recommendRe.length && 
+          <CollectionRecruitList data={recommendRe} type={2} areasId={areasId} occupations={occupations}  jobIds={jobIds}/>
         }
         {/* 投诉 */}
         {complaintModal && <Report display={complaintModal} textarea={textarea} handleTextarea={handleTextarea} setComplaintModal={setComplaintModal} 
