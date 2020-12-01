@@ -46,8 +46,6 @@ export default function ResGion() {
     // 第一次进来的时候，滑动到第一个选择的位置
     if (clickData.length > 0) {
       first = true;
-      console.error(clickData[0]);
-      console.error(clickData)
       setTimeout(() => {
         setIndex(`hot${clickData[0].pid}`);
       }, 1000)

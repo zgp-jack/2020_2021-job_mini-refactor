@@ -13,10 +13,10 @@ import { HistoryInfo } from '../../../config/store';
 import { setRecClickResumeTop } from '../../../actions/resume_top';
 import './index.scss'
 
-// 判断是否是第一次
-let first = false;
 
 export default function RecGion() {
+  // 判断是否是第一次
+  let first = false;
   const dispatch = useDispatch();
   const router: Taro.RouterInfo = useRouter()
   //获取传过来的最大省市
@@ -45,12 +45,12 @@ export default function RecGion() {
     if(first) return;
     // 第一次进来的时候，滑动到第一个选择的位置
     if (clickData.length>0){
+      console.error(clickData,'clickDataclickData')
       first = true;
-      console.error(clickData[0]);
-      console.error(clickData)
+      console.error(`hot${clickData[0].pid}`,'111')
       setTimeout(()=>{
         setIndex(`hot${clickData[0].pid}`);
-      },1000)
+      }, 1000)
     }
   }, [areasData])
   useDidShow(() => {
@@ -112,6 +112,7 @@ export default function RecGion() {
   }
   // 点击
   const handleClick = (val, type?: string, historyType?: number) => {
+    console.error(val, '1111')
     // 缓存搜索
     if (type) {
       let data = Taro.getStorageSync(HistoryInfo);
@@ -191,6 +192,7 @@ export default function RecGion() {
           setIndex('')
           return
         }
+        console.error(val.pid,'val.pid')
         setIndex(`hot${val.pid}`)
       }
       // 判断是省还是市
@@ -362,7 +364,6 @@ export default function RecGion() {
     setHistory([]);
     setIsHistory(false);
   }
-  console.error(index,'index')
   return (
     <View className='region'>
       {!onFocus &&

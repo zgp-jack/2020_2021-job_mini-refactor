@@ -402,7 +402,7 @@ export default function ResRange() {
             </View>
             :
             //  没选择
-            <View className='range-noChangeBtn' onClick={handleJump}>点击选择置顶范围  `{'>'}`</View>
+            <View className='range-noChangeBtn' onClick={handleJump}>点击选择置顶范围  {`${'>'}`}</View>
             }
         </View>
       </View>

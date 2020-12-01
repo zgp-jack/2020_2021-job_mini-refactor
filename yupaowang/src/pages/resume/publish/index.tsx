@@ -121,8 +121,10 @@ export default function ResumePublish(){
   // })
   // 继续置顶
   const handleContinue = ((e)=>{
+    console.error(e,'11')
     // 如果是置顶到期那么就跟初次置顶一样跳转到对应界面
-    if (e.istop == '2'){
+    if (e.is_top == 2){
+      handleJump(`/pages/newTopping/resRang/index?defaultTopArea=${defaultTopArea}`, resume_top)
       // 如果是置顶未到期且继续置顶发送置顶请求
     }else{
       if (e.is_show_tips == 1) {
