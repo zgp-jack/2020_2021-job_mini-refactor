@@ -48,7 +48,11 @@ export default function RecGion() {
       console.error(clickData,'clickDataclickData')
       first = true;
       setTimeout(()=>{
-        setIndex(`hot${clickData[0].id}`);
+        if (clickData[0].pid !== '1') {
+          setIndex(`hot${clickData[0].pid}`);
+        } else {
+          setIndex(`hot${clickData[0].id}`);
+        }
       }, 1000)
     }
   }, [areasData])

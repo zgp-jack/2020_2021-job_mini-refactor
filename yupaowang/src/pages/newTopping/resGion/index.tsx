@@ -47,7 +47,14 @@ export default function ResGion() {
     if (clickData.length > 0) {
       first = true;
       setTimeout(() => {
-        setIndex(`hot${clickData[0].id}`);
+        // console.error(`hot${clickData[0].id}`)
+        // console.error(`hot${clickData[0].pid}`)
+        // console.error(clickData[0])
+        if (clickData[0].pid !== '1'){
+          setIndex(`hot${clickData[0].pid}`);
+        }else{
+          setIndex(`hot${clickData[0].id}`);
+        }
       }, 1000)
     }
   }, [areasData])
