@@ -23,6 +23,10 @@ var miniConfig = {
   DOWNLOADAPP: false,
   // * 是否支持高德地图api
   USEGAODEMAPAPI: false,
+  // * 是否显示客服电话
+  SHOWSERVERPHONE: true,
+  // * 是否显示列表公告信息
+  SHOWLISTSNOTICE: true,
   // * 是否显示加工友微信号
   SHOWWEIXINNUMBER: false,
   // * 是否显示关注公众号
@@ -33,7 +37,10 @@ var miniConfig = {
   REPLACEWEIXINTEXT: true,
   // ! 百度系小程序  上传图片 不能JSON解析数据
   ISPARSEUPLOADIMG: false,
+  
 }
+
+
 
 
 module.exports = miniConfig

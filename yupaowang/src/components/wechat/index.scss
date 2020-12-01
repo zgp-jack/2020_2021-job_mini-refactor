@@ -6,6 +6,9 @@
   padding:10px 20px 0;
   background-color: white;
   @include shadow();
+  &.wechatinfo-container-notop{
+    padding-top: 0;
+  }
   .wechat-container{
     position: relative;
     font-size: 28px;
@@ -32,6 +35,10 @@
     border-top: 1px dashed $color;
     height: 80px;
     padding-left: 150px;
+    &.notice-container-notop{
+      margin-top: 0;
+      border-top: 0;
+    }
     .notice-tips{
       position: absolute;
       line-height: 60px;

@@ -104,6 +104,10 @@ export const DOWNLOADAPP: boolean = MINICONFIG.DOWNLOADAPP
 export const USEGAODEMAPAPI: boolean = MINICONFIG.USEGAODEMAPAPI
 // * 上传图片 是否需要使用JSON解析数据
 export const ISPARSEUPLOADIMG: boolean = MINICONFIG.ISPARSEUPLOADIMG
+// * 是否显示客服电话
+export const SHOWSERVERPHONE: boolean = MINICONFIG.SHOWSERVERPHONE
+// * 是否显示列表公告信息
+export const SHOWLISTSNOTICE: boolean = MINICONFIG.SHOWLISTSNOTICE
 // * 是否显示加工友微信号
 export const SHOWWEIXINNUMBER: boolean = MINICONFIG.SHOWWEIXINNUMBER
 // * 是否显示关注公众号
@@ -112,7 +116,6 @@ export const SHOWOFFICIALACCOUNT: boolean = MINICONFIG.SHOWOFFICIALACCOUNT
 export const SHOWINVITEUSER: boolean = MINICONFIG.SHOWINVITEUSER
 // * 是否替换微信类关键词
 export const REPLACEWEIXINTEXT: boolean = MINICONFIG.REPLACEWEIXINTEXT
-
 
 // 去除微信文本正则
 export const FILTERWEIXINREG: RegExp = /[微信|vx|VX|Vx|vx|v❤]/g

@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-10-28 11:04:26
- * @LastEditTime: 2020-11-30 18:08:36
+ * @LastEditTime: 2020-12-01 15:40:23
  * @LastEditors: jsxin
  * @Description: In User Settings Edit
  * @FilePath: \yupaowang\src\config\minis\jizhao.ts
@@ -32,8 +32,12 @@ var miniConfig = {
   DOWNLOADAPP: true,
   // * 是否支持高德地图api
   USEGAODEMAPAPI: true,
+  // * 是否显示客服电话
+  SHOWSERVERPHONE: true,
   // * 是否显示加工友微信号
   SHOWWEIXINNUMBER: true,
+  // * 是否显示列表公告信息
+  SHOWLISTSNOTICE: true,
   // * 是否显示关注公众号
   SHOWOFFICIALACCOUNT: true,
   // * 是否显示邀请好友链接
@@ -42,6 +46,7 @@ var miniConfig = {
   REPLACEWEIXINTEXT: false,
   // ! 百度系小程序  上传图片 不能JSON解析数据
   ISPARSEUPLOADIMG: true,
+  
 }
 
 

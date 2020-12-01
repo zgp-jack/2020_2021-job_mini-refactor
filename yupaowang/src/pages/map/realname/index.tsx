@@ -7,26 +7,23 @@ import Cities from '../../../components/citys'
 import { Areas, UserLocationCity, UserPublishAreaHistory, UserLocation } from '../../../config/store'
 import { UserLocationPromiss, getCityInfo, ChildItems } from '../../../models/area'
 import { getAmapPoiList } from '../../../utils/helper'
+import { RealnameDefaultStore } from '../../../reducers/realname'
 import { InputPoiListTips } from '../../../utils/helper/index.d'
 import Msg, { ShowActionModal } from '../../../utils/msg'
-import { useSelector } from '@tarojs/redux' 
+import { useDispatch, useSelector } from '@tarojs/redux' 
+import { setArea as setRnArea } from '../../../actions/realname'
 import './index.scss'
 
 const PI = Math.PI;  // 数学 PI 常亮
 let EARTH_RADIUS = 6378137.0; // 地球半径
 
-// interface UserLastPublishRecruitArea {
-//   location: string,
-//   adcode: string,
-//   title: string,
-//   info: string
-// }
-
 export default function RealnameMap() {
 
-  const setRealnameArea = useSelector<any, (str: string) => void>(store => store['realname'].setRealnameArea)
+  const dispatch = useDispatch()
+  const RealnameAreaRedux = useSelector<any, RealnameDefaultStore>(store => store['realname'])
+  console.log(RealnameAreaRedux)
 
-  const [area, setArea] = useState<string>('')
+  const [area, setArea] = useState<string>(RealnameAreaRedux.RealnameArea)
   // 城市数据
   const [areas, setAreas] = useState<AllAreasDataItem[][]>([])
   // 选择详细地址信息
@@ -94,6 +91,7 @@ export default function RealnameMap() {
 
   // 用户切换城市
   const userChangeCity = (city: string) => {
+    dispatch(setRnArea(city))
     setArea(city)
   }
 
@@ -197,7 +195,7 @@ export default function RealnameMap() {
           //   info: item.district
           // })
           // setPublishArea && setPublishArea(item.name)
-          setRealnameArea(item.name)
+          RealnameAreaRedux.setRealnameAddress(item.name)
         // }
         Taro.navigateBack()
       }
