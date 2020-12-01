@@ -47,7 +47,7 @@ const newmessageinfo = {
   },
   7: {
     title: '留言信息',
-    url: '/pages/feedbacklist/index',
+    url: '/subpackage/pages/feedbacklist/index',
     titleText: '我的信息-留言',
   },
   8: {
