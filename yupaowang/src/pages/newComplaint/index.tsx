@@ -1,6 +1,8 @@
 import Taro, { Config, useState,useRouter } from '@tarojs/taro'
 import { View, Text, Switch, Button, Textarea } from '@tarojs/components'
 import UploadImgAction from '../../utils/upload'
+import { isVaildVal } from "../../utils/v";
+import Msg from "../../utils/msg";
 import { resumesComplainAction, publishComplainAction } from '../../utils/request/index';
 import NewImageview from '../../components/newImageview';
 import WordsTotal from '../../components/wordstotal/index';
@@ -16,6 +18,7 @@ interface ImageItem{
 export default function NewComplaintPage() {
   const router = useRouter();
   let { page, type, infoId } = router.params;
+  console.error(router.params,'1111')
   const [display, setDisplay] = useState<boolean>(false);
   const [imageArr, setImageArr] = useState <ImageArrType>({
     item:[],
@@ -45,8 +48,12 @@ export default function NewComplaintPage() {
   // 提交
   const handleSub = ()=>{
     const image = display ? imageArr.item :[];
+    if (!isVaildVal(details, 15, 300)) {
+      Msg('输入内容不少于15个字且必须包含文字')
+      return
+    }
      // 找工作投诉请求参数
-    let jobParams = { infoId, type: type, content: details, image  };
+    let jobParams = { infoId, type, content: details, image  };
     // 找工人投诉请求参数
     let resumeParams = { resume_uuid: infoId, content: details, image};
     let params = (page === "detail" && type === "resume") ? resumeParams : jobParams;

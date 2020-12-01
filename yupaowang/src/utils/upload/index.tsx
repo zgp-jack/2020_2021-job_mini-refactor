@@ -1,6 +1,7 @@
 import Taro from '@tarojs/taro'
 import {UserInfo} from '../../config/store'
-import {UPLOADIMGURL} from '../../config'
+import { UPLOADIMGURL, ISPARSEUPLOADIMG} from '../../config'
+
 
 interface ResultImage {
   errcode: string,

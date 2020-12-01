@@ -22,3 +22,5 @@ export const SearchList: string = 'searchList'
 export const UserLocation: string = 'userLocation'
 // 找活名片info信息
 export const Introinfo: string = 'introinfo'
+// 消耗积分是否显示举报
+export const IsReport: string = 'isReport'

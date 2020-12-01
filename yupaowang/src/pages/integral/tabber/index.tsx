@@ -1,4 +1,4 @@
-import Taro, {Config, useState, useEffect, useReachBottom, useRouter} from '@tarojs/taro'
+import Taro, {Config, useState, useEffect, useReachBottom, useRouter,useDidShow} from '@tarojs/taro'
 import {View, Text, Picker, Image} from '@tarojs/components'
 import {
   integralSourceConfigAction,
@@ -20,7 +20,8 @@ import {
 import {SubscribeToNews} from '../../../utils/subscribeToNews';
 import Report from '../../../components/report';
 import {isVaildVal} from '../../../utils/v'
-import Msg, {SubPopup} from '../../../utils/msg'
+import Msg, { showModalTip} from '../../../utils/msg'
+import { IsReport }from '../../../config/store';
 import './index.scss'
 
 interface ParamsType {
@@ -136,6 +137,8 @@ export default function Tabber() {
   //顶部tab数据
   const [tabBar] = useState<{ type: string, name: string }[]>([{type: '0', name: '积分来源'}, {type: '1', name: '积分消耗'}])
   const [modelType, setModelType] = useState<string>('')
+  // 是否显示投诉哦
+  const [showIsReport, setShowIsReport] = useState<boolean>(false);
   useEffect(() => {
     let navigationBarTitleText = initInfo === '0' ? '鱼泡网-积分来源记录' : '鱼泡网-积分消耗记录'
     Taro.setNavigationBarTitle({title: navigationBarTitleText})
@@ -209,6 +212,10 @@ export default function Tabber() {
       }
     }
   }, [params])
+  useDidShow(()=>{
+    const isReport = Taro.getStorageSync(IsReport);
+    setShowIsReport(isReport);
+  })
   // 积分消耗
   const integralExpendConfig = () => {
     integralExpendConfigAction().then(res => {
@@ -472,6 +479,13 @@ export default function Tabber() {
       } else {
         setModelType(errcode)
       }
+      let showComplain;
+      if(data){
+        showComplain = data.show_complain;
+      }else{
+        showComplain = info.show_complain;
+      }
+      console.error(showComplain)
       setModalData(info || data);
       setModal(true);
     })
@@ -479,7 +493,7 @@ export default function Tabber() {
   // 投诉弹窗
   const handleComplaint = (id: string) => {
     Taro.navigateTo({
-      url: '/pages/complaint/index?id=' + id,
+      url: `/pages/newComplaint/index?infoId=${id}&type=job&page=detai`,
     })
     // setComplaintModal(true);
     // setComplaintId(id);
@@ -503,7 +517,7 @@ export default function Tabber() {
     publishComplainAction(params).then((res) => {
       if (res.errcode === 'ok') {
         SubscribeToNews('complain', () => {
-          SubPopup({
+          showModalTip({
             tips: res.errmsg,
             callback: () => {
               setComplaintModal(false);
@@ -757,7 +771,7 @@ export default function Tabber() {
                           Taro.makePhoneCall({phoneNumber: modalData.user_mobile})
                         }} className='tabber-Modal-content-flexBox-phone'>拨打</View>
                         {modalData.show_complain !== 0 && <View className='tabber-Modal-content-flexBox-complaint'
-                                                                onClick={() => handleComplaint(modalData.id)}>投诉</View>}
+                        onClick={() => handleComplaint(modalData.id)}>投诉</View>}
                       </View>
                     </View>
                   </View>

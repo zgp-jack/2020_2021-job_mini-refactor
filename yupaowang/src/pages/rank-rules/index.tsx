@@ -251,7 +251,7 @@ export default function () {
       <View className="rank-list">
         {
           list.map((item, i) => (
-            <View className="rank-item" key={i}>
+            <View className="rank-item" key={`i${i}`}>
               <View className="item-info-box">
                 <View className="info-img-bor">
                   <Image className="info-img" src={item.img_url}/>
