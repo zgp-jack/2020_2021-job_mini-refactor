@@ -6,6 +6,7 @@ import Msg from "../../utils/msg";
 import { resumesComplainAction, publishComplainAction } from '../../utils/request/index';
 import NewImageview from '../../components/newImageview';
 import WordsTotal from '../../components/wordstotal/index';
+import { IsReport } from '../../config/store';
 import './index.scss'
 
 interface ImageArrType{
@@ -18,7 +19,6 @@ interface ImageItem{
 export default function NewComplaintPage() {
   const router = useRouter();
   let { page, type, infoId } = router.params;
-  console.error(router.params,'1111')
   const [display, setDisplay] = useState<boolean>(false);
   const [imageArr, setImageArr] = useState <ImageArrType>({
     item:[],
@@ -61,6 +61,7 @@ export default function NewComplaintPage() {
     let url = (page === "detail" && type === "resume") ? resumesComplainAction : publishComplainAction;
     url(params).then(res=>{
       if (res.errcode == "ok") {
+        Taro.setStorageSync(IsReport,0)
         Taro.navigateBack({delta:1})
       }else{
         Taro.showModal({

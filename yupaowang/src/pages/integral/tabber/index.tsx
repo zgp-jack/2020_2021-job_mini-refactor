@@ -138,7 +138,7 @@ export default function Tabber() {
   const [tabBar] = useState<{ type: string, name: string }[]>([{type: '0', name: '积分来源'}, {type: '1', name: '积分消耗'}])
   const [modelType, setModelType] = useState<string>('')
   // 是否显示投诉哦
-  const [showIsReport, setShowIsReport] = useState<boolean>(false);
+  const [showIsReport, setShowIsReport] = useState<number>(0);
   useEffect(() => {
     let navigationBarTitleText = initInfo === '0' ? '鱼泡网-积分来源记录' : '鱼泡网-积分消耗记录'
     Taro.setNavigationBarTitle({title: navigationBarTitleText})
@@ -214,7 +214,9 @@ export default function Tabber() {
   }, [params])
   useDidShow(()=>{
     const isReport = Taro.getStorageSync(IsReport);
-    setShowIsReport(isReport);
+    if (isReport||isReport == 0){
+      setShowIsReport(+isReport);
+    }
   })
   // 积分消耗
   const integralExpendConfig = () => {
@@ -485,7 +487,7 @@ export default function Tabber() {
       }else{
         showComplain = info.show_complain;
       }
-      console.error(showComplain)
+      setShowIsReport(showComplain);
       setModalData(info || data);
       setModal(true);
     })
@@ -770,7 +772,7 @@ export default function Tabber() {
                         <View onClick={() => {
                           Taro.makePhoneCall({phoneNumber: modalData.user_mobile})
                         }} className='tabber-Modal-content-flexBox-phone'>拨打</View>
-                        {modalData.show_complain !== 0 && <View className='tabber-Modal-content-flexBox-complaint'
+                        {showIsReport && showIsReport !== 0 && <View className='tabber-Modal-content-flexBox-complaint'
                         onClick={() => handleComplaint(modalData.id)}>投诉</View>}
                       </View>
                     </View>
@@ -839,7 +841,7 @@ export default function Tabber() {
                 </View>
               }
             </View>
-          </View>
+        </View>
         </View>
       }
       {/* 投诉 */}
