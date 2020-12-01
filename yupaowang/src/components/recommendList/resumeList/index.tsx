@@ -39,12 +39,12 @@ export default function ResumeListPage({ data = [], occupations, areasId, type }
                 <View className='resume-list-userinfo'>
                   <View className='resume-list-userinfo-detail'>
                     <Text className='resume-userinfo-name'>{item.username}</Text>
-                    <Text className='resume-userinfo-birthday'>{item.birthday}岁</Text>
+                    {item.birthday && <Text className='resume-userinfo-birthday'>{item.birthday}岁</Text>}
                     {item.certificate == 1 && < Image className='resume-userinfo-img' src={`${IMGCDNURL}newresume-infolist-jnz.png?t=1`} />}
                   </View>
                   <Text className='resume-list-type'>{item.type}</Text>
                   <View className='resume-otherinfo'>
-                    <Text className='resume-otherinfo-text'>{item.nation}</Text>
+                    {item.nation && <Text className='resume-otherinfo-text'>{item.nation}</Text>}
                     <Text className='resume-otherinfo-text'>{item.experience}</Text>
                   </View>
                 </View>
