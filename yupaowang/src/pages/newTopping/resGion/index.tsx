@@ -20,7 +20,7 @@ export default function ResGion() {
   const dispatch = useDispatch();
   const router: Taro.RouterInfo = useRouter()
   //获取传过来的最大省市
-  let { maxCity, maxProvince } = router.params;
+  let { maxCity, maxProvince, max_number_tips } = router.params;
   // 获取置顶信息
   const resumeTopData: useResumeType = useSelector<any, useResumeType>(state => state['resumeTop']);
   // 热门城市
@@ -47,7 +47,7 @@ export default function ResGion() {
     if (clickData.length > 0) {
       first = true;
       setTimeout(() => {
-        setIndex(`hot${clickData[0].pid}`);
+        setIndex(`hot${clickData[0].id}`);
       }, 1000)
     }
   }, [areasData])
@@ -169,7 +169,7 @@ export default function ResGion() {
         }
         if ((+maxProvince == provinces && val.pid == '1') || (+maxCity == city && val.pid != '1')) {
           ShowActionModal({ 
-            msg: `最多可同时置顶个${maxCity}市、${maxProvince}个省或直辖市` ,
+            msg: max_number_tips,
             success:()=>{
             if(type){
               setHistory([]);
@@ -436,7 +436,14 @@ export default function ResGion() {
             </View>
         </View>
         {seachList.length == 0 && inputVal!='' && onFocus &&
-        <View className='region-seachContent-noContent'>暂未找到相关城市</View>
+        <View className='region-seachContent-noContent'>
+          <View>
+            <View>
+              <Image src={`${IMGCDNURL}nodata.png`} className='region-seachContent-noContent-img'/>
+            </View>
+            <View className='region-seachContent-noContent-text'>暂未找到相关城市</View>
+          </View>
+        </View>
         }
       </View>}
     </View>

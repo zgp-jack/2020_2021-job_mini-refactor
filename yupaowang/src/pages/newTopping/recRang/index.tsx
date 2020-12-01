@@ -83,6 +83,8 @@ export default function RecRange() {
   const [display,setDisplay] = useState<boolean>(false);
   // 弹窗内容
   const [modalMsg, setModalMsg] = useState<string>('');
+  // 置顶提示
+  const [max_number_tips, setMax_number_tips] = useState<string>('');
   useEffect(() => {
     first = false;
     jobTopConfigAction().then((res) => {
@@ -98,6 +100,7 @@ export default function RecRange() {
             }
           }
         }
+        setMax_number_tips(res.data.max_number_tips);
         // 默认天
         setDefultDay(res.data.days);
         // 天数
@@ -283,7 +286,7 @@ export default function RecRange() {
   //跳转
   const handleJump = () => {
     first = true;
-    userRouteJump(`/pages/newTopping/recGion/index?maxCity=${maxCity}&maxProvince=${maxProvince}`)
+    userRouteJump(`/pages/newTopping/recGion/index?maxCity=${maxCity}&maxProvince=${maxProvince}&max_number_tips=${max_number_tips}`)
   }
   //  取消最新时间
   const handleClose = () => {

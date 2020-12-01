@@ -850,6 +850,7 @@ export interface jobTopConfigData {
   country_integral:string,
   province_integral:string,
   time:number,
+  max_number_tips:string
 }
 
 
@@ -1390,6 +1391,7 @@ export interface resumesTopConfigData{
   days: number[]
   country_integral:number,
   city_integral:number,
+  max_number_tips:string,
   default_days?:number,
 }
 

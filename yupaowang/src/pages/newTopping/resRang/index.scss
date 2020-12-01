@@ -1,9 +1,9 @@
 @import '../../../common.scss';
 
 .range {
-  background: #FFFFFF;
+  background: #f7f6f9;
   height: 100vh;
-  font-size: 28px;
+  font-size: 32px;
   color: rgba(32, 32, 33, 1);
   .range-mt30 {
     margin: 0px 30px 30px;
@@ -13,7 +13,6 @@
     margin-top: 15px;
   }
   .range-tips {
-    font-weight: bold;
     margin-bottom: 30px;
     margin-left: 30px;
   }
@@ -67,7 +66,7 @@
     }
   }
   .range-content{
-    font-size: 26px;
+    font-size: 30px;
     padding-left: 30px;
     padding-right: 30px;
     background: #FFFFFF;
@@ -79,17 +78,16 @@
     }
     .range-content-list,
     .range-content-list-time {
-      font-size: 26px;
+      font-size: 30px;
       display: flex;
       height: 82px;
       line-height: 82px;
-      border-bottom: 1px solid rgba(220, 220, 220, 1);
+      border-bottom: 1px dashed rgba(220, 220, 220, 1);
       .range-content-list-noDay{
         color: rgba(198, 198, 199, 1);
       }
       .range-content-list-Day {
         color: rgba(32, 32, 33, 1);
-        font-weight: bold;
       }
       .range-content-list-blued{
         color: $color;
@@ -120,17 +118,16 @@
     }
   }
   .range-rule{
-    font-size: 24px;
-    font-weight: bold;
+    font-size: 30px;
     text-align: center;
     margin-bottom: 30px;
   }
   .range-rule-phone{
     color: $color;
-    font-size: 24px;
+    font-size: 30px;
   }
   .range-rule-content{
-    font-size: 24px;
+    font-size: 30px;
     color: rgba(32, 32, 33, 1);
   }
 }

@@ -75,6 +75,7 @@ export default function ResRange() {
   const [localTime, setLocalTime]=useState<number>(0)
   // 服务器时间
   const [serverTime, setServerTime] = useState<number>(0);
+  const [max_number_tips, setMax_number_tips] = useState<string>('');
   useEffect(()=>{
     first = false;
     resumesTopConfigAction({ interface_version:'v2'}).then((res)=>{
@@ -90,6 +91,7 @@ export default function ResRange() {
             }
           }
         }
+        setMax_number_tips(res.data.max_number_tips)
         // 默认天
         setDefultDay(res.data.days);
         // 天数
@@ -258,7 +260,7 @@ export default function ResRange() {
   //跳转
   const handleJump = ()=>{
     first = true;
-    userRouteJump(`/pages/newTopping/resGion/index?maxCity=${maxCity}&maxProvince=${maxProvince}`)
+    userRouteJump(`/pages/newTopping/resGion/index?maxCity=${maxCity}&maxProvince=${maxProvince}&max_number_tips=${max_number_tips}`)
   }
   //  取消最新时间
   const handleClose = ()=>{

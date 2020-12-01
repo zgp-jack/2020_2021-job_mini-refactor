@@ -52,7 +52,7 @@
       margin-left: 23px;
       font-weight: bold;
     }
-    font-size: 36px;
+    font-size: 32px;
     color: rgba(105, 105, 105, 1);
     font-weight: normal;
     .region-content-hotCity-content{
@@ -64,7 +64,7 @@
         height: 86px;
         line-height: 86px;
         color: rgba(111, 111, 111, 1);
-        font-size: 36px;
+        font-size: 32px;
         font-weight: normal;
         background: #FFFFFF;
         border-radius: 5px;
@@ -84,7 +84,7 @@
         height: 86px;
         line-height: 86px;
         color: #FFFFFF;
-        font-size: 36px;
+        font-size: 32px;
         font-weight: normal;
         background: $color;
         border-radius: 5px;
@@ -117,7 +117,7 @@
         height: 86px;
         line-height: 86px;
         color: rgba(111, 111, 111, 1);
-        font-size: 36px;
+        font-size: 32px;
         font-weight: normal;
         background: #FFFFFF;
         border-radius: 5px;
@@ -137,7 +137,7 @@
         height: 86px;
         line-height: 86px;
         color: #FFFFFF;
-        font-size: 36px;
+        font-size: 32px;
         font-weight: normal;
         background: $color;
         border-radius: 5px;
@@ -227,7 +227,7 @@
             background: #F5F5F5;
             border-radius: 5px;
             color: rgba(111, 111, 111, 1);
-            font-size: 36px;
+            font-size: 32px;
             text-align: center;
             line-height: 74px;
             margin-top: 30px;
@@ -241,7 +241,14 @@
       text-align: center;
       font-size: 28px;
       font-weight: bold;
-      margin-top: 50%;
+      margin-top: 30%;
+      .region-seachContent-noContent-img{
+        height: 200px;
+        width: 200px;
+      }
+      .region-seachContent-noContent-text{
+        color: $color;
+      }
     }
     .region-seachContent-seach-seachList{
       background: #FFFFFF;
@@ -254,6 +261,7 @@
       .region-seachContent-seach-seachList-list:last-child {
         padding: 0 20px;
         line-height: 80px;
+        border-bottom: none;
         font-size: 28px;
       }
     }
