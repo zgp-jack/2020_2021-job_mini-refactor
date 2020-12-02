@@ -208,7 +208,7 @@ export default function PublishedRecruit(){
       let toping = data.is_top // 是否置顶状态
       let showTime = now > parseInt(endtime) ? true : false; // 置顶是否过期 已过期
       if (showTime) { //如果置顶过期
-        userRouteJump(`/pages/newTopping/recRang/index?defaultTopArea=${item.area_id}&job_id=${item.id}`)
+        userRouteJump(`/pages/newtopping/recRang/index?defaultTopArea=${item.area_id}&job_id=${item.id}`)
         return false
       }
       const params = {
@@ -219,7 +219,7 @@ export default function PublishedRecruit(){
         detailUserSetTopAction(res, index)
       })
     }else{
-      userRouteJump(`/pages/newTopping/recRang/index?defaultTopArea=${item.area_id}&job_id=${item.id}`)
+      userRouteJump(`/pages/newtopping/recRang/index?defaultTopArea=${item.area_id}&job_id=${item.id}`)
     }
     
   }
@@ -267,12 +267,12 @@ export default function PublishedRecruit(){
                 }
                 {/* {item.is_check == '1' && !(item.top && item.top_data.is_top == '1')&& 
                 <View className='published-ischeking'>
-                  <View className='user-published-footer-item' onClick={() => userRouteJump(`/pages/newTopping/recRang/index?defaultTopArea=${item.area_id}&job_id=${item.id}`)}>预约置顶</View>
+                  <View className='user-published-footer-item' onClick={() => userRouteJump(`/pages/newtopping/recRang/index?defaultTopArea=${item.area_id}&job_id=${item.id}`)}>预约置顶</View>
                 </View>
                 } */}
                 {(item.is_check == '2' || (item.is_check == '1' && item.top == '0' ) )&& item.is_end != '2' && item.is_check == '1' && (item.top && item.top_data.is_top == '1' ? '' :<View>
                   <View className='published-ischeking-subscribe'>
-                    <View className='user-published-footer-item' onClick={() => userRouteJump(`/pages/newTopping/recRang/index?defaultTopArea=${item.area_id}&job_id=${item.id}&subscribe=1`)}>预约置顶</View>
+                    <View className='user-published-footer-item' onClick={() => userRouteJump(`/pages/newtopping/recRang/index?defaultTopArea=${item.area_id}&job_id=${item.id}&subscribe=1`)}>预约置顶</View>
                   </View>
                 </View>)}
                 {item.is_check != '1' && <View className='user-published-footer-item' onClick={() => userRouteJump(`/pages/recruit/publish/index?id=${item.id}`)}>修改</View>}
@@ -296,7 +296,7 @@ export default function PublishedRecruit(){
               {item.top && item.top_data && item.top_data.is_top == '1' &&
                 <View className='published-top-box'>
                 <View className='published-top-time'>到期时间：<Text className='published-top-time-color'>{item.top_data.time_str}</Text></View>
-                <View className='published-top-cancel' onClick={() => userRouteJump(`/pages/newTopping/recRang/index?job_id=${item.id}`)}>修改置顶</View>
+                <View className='published-top-cancel' onClick={() => userRouteJump(`/pages/newtopping/recRang/index?job_id=${item.id}`)}>修改置顶</View>
               </View>
               }
             </View>

@@ -255,7 +255,7 @@ export default function Range() {
   //跳转
   const handleJump = ()=>{
     first = true;
-    userRouteJump(`/pages/newTopping/region/index?maxCity=${maxCity}&maxProvince=${maxProvince}`)
+    userRouteJump(`/pages/newtopping/region/index?maxCity=${maxCity}&maxProvince=${maxProvince}`)
   }
   //  取消最新时间
   const handleClose = ()=>{

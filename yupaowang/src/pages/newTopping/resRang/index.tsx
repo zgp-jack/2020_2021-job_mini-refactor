@@ -260,7 +260,7 @@ export default function ResRange() {
   //跳转
   const handleJump = ()=>{
     first = true;
-    userRouteJump(`/pages/newTopping/resGion/index?maxCity=${maxCity}&maxProvince=${maxProvince}&max_number_tips=${max_number_tips}`)
+    userRouteJump(`/pages/newtopping/resGion/index?maxCity=${maxCity}&maxProvince=${maxProvince}&max_number_tips=${max_number_tips}`)
   }
   //  取消最新时间
   const handleClose = ()=>{

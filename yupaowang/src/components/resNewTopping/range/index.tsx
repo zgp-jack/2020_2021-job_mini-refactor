@@ -254,7 +254,7 @@ export default function ResRange({ defaultTopArea}:PRPS) {
   //跳转
   const handleJump = () => {
     first = true;
-    userRouteJump(`/pages/newTopping/res/index?maxCity=${maxCity}&maxProvince=${maxProvince}`)
+    userRouteJump(`/pages/newtopping/res/index?maxCity=${maxCity}&maxProvince=${maxProvince}`)
   }
   //  取消最新时间
   const handleClose = () => {

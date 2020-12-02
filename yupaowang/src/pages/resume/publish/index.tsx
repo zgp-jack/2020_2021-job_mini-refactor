@@ -124,7 +124,7 @@ export default function ResumePublish(){
     console.error(e,'11')
     // 如果是置顶到期那么就跟初次置顶一样跳转到对应界面
     if (e.is_top == 2){
-      handleJump(`/pages/newTopping/resRang/index?defaultTopArea=${defaultTopArea}`, resume_top)
+      handleJump(`/pages/newtopping/resRang/index?defaultTopArea=${defaultTopArea}`, resume_top)
       // 如果是置顶未到期且继续置顶发送置顶请求
     }else{
       if (e.is_show_tips == 1) {
@@ -203,8 +203,8 @@ export default function ResumePublish(){
               <View className='progress-viewed'>浏览次数</View>
             </View>
           </View>
-            {/* <View onClick={() => handleJump(`/pages/newTopping/range/index?defaultTopArea=${defaultTopArea}`)}>置顶</View>
-            <View onClick={() => handleJump(`/pages/newTopping/range/index`)}>置顶1</View>
+            {/* <View onClick={() => handleJump(`/pages/newtopping/range/index?defaultTopArea=${defaultTopArea}`)}>置顶</View>
+            <View onClick={() => handleJump(`/pages/newtopping/range/index`)}>置顶1</View>
                    */}
           {/* <View className='progress-footer'> */}
             {/* <View>
@@ -224,7 +224,7 @@ export default function ResumePublish(){
                   {resume_top.has_top != 0 && resume_top.is_top == 1 && <Text>置顶中</Text>}
                 </View>
               </View>
-                {resume_top.has_top == 0 && <View className='progress-blue' onClick={() => handleJump(`/pages/newTopping/resRang/index?defaultTopArea=${defaultTopArea}`, resume_top)}> 马上去置顶&gt;&gt;</View>}
+                {resume_top.has_top == 0 && <View className='progress-blue' onClick={() => handleJump(`/pages/newtopping/resRang/index?defaultTopArea=${defaultTopArea}`, resume_top)}> 马上去置顶&gt;&gt;</View>}
               {resume_top.has_top != 0 && <View className='progress-rank'>
                   {resume_top.is_top != 1 && <View onClick={()=>handleContinue(resume_top)}>继续置顶</View>}
                 {resume_top.is_top == 1 && <View onClick={handleCloseTopp}>取消置顶</View>}
@@ -234,7 +234,7 @@ export default function ResumePublish(){
             <View className='progress-place-text'>
                 <View className='place-text'>置顶地区：{topCity}</View>
               <View className='place-text'>置顶时间：{resume_top.start_time_str}~{resume_top.end_time_str}</View>
-                <View className='progress-place-btn' onClick={() => handleJump(`/pages/newTopping/resRang/index`)}>点击修改找活置顶信息&gt;&gt;</View>
+                <View className='progress-place-btn' onClick={() => handleJump(`/pages/newtopping/resRang/index`)}>点击修改找活置顶信息&gt;&gt;</View>
             </View>
             }
           </View>
