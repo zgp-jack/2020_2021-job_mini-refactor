@@ -286,7 +286,7 @@ export default function ResumeDetail() {
         showCancel: false,
       })
     }else{
-      userRouteJump(`/pages/newComplaint/index?infoId=${uuid}&type=resume&page=detail`)
+      userRouteJump(`/pages/newcomplaint/index?infoId=${uuid}&type=resume&page=detail`)
       // setComplaintModal(true)
     }
   }

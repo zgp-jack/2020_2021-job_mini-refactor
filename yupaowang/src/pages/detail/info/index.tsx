@@ -364,7 +364,7 @@ export default function DetailInfoPage() {
         // 查看电话可以投诉一次
         if (complaintInfo) {
           // infoId = ${ infoId }& type=job & page=detail
-          userRouteJump(`/pages/newComplaint/index?infoId=${data.id}&type=job&page=detail`)
+          userRouteJump(`/pages/newcomplaint/index?infoId=${data.id}&type=job&page=detail`)
           // setComplaintModal(true);
           // 没有看到电话不能投诉
         } else if (data.show_ajax_btn) {
@@ -377,7 +377,7 @@ export default function DetailInfoPage() {
               showCancel: false,
             })
           } else {
-            userRouteJump(`/pages/newComplaint/index?infoId=${data.id}&type=job&page=detail`)
+            userRouteJump(`/pages/newcomplaint/index?infoId=${data.id}&type=job&page=detail`)
             // setComplaintModal(true)
           }
         }

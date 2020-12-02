@@ -495,7 +495,7 @@ export default function Tabber() {
   // 投诉弹窗
   const handleComplaint = (id: string) => {
     Taro.navigateTo({
-      url: `/pages/newComplaint/index?infoId=${id}&type=job&page=detai`,
+      url: `/pages/newcomplaint/index?infoId=${id}&type=job&page=detai`,
     })
     // setComplaintModal(true);
     // setComplaintId(id);
