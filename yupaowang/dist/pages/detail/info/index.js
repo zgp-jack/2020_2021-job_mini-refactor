@@ -608,7 +608,7 @@ var DetailInfoPage = function (_Taro$Component) {
             return false;
           }
         }
-        userRouteJump("/pages/newTopping/recRang/index?defaultTopArea=" + data.area_id + "&job_id=" + data.id);
+        userRouteJump("/pages/newtopping/recRang/index?defaultTopArea=" + data.area_id + "&job_id=" + data.id);
       };
       this.anonymousFunc0 = function () {
         return jobGetTel();
@@ -629,7 +629,7 @@ var DetailInfoPage = function (_Taro$Component) {
       };
       this.anonymousFunc8 = handleStatus;
       this.anonymousFunc9 = function () {
-        return userRouteJump("/pages/newTopping/recRang/index?job_id=" + data.id);
+        return userRouteJump("/pages/newtopping/recRang/index?job_id=" + data.id);
       };
       this.anonymousFunc10 = handleStatus;
       this.anonymousFunc11 = function () {

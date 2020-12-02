@@ -516,7 +516,7 @@ export default function RecRange() {
             {one &&
               <View className='range-content-list-time'><View className='range-content-list-Day'>置顶时间：{toppingTime}
               </View>
-              <View className='range-content-list-time-imgBox'><Image className='range-content-list-time-img' src={`${IMGCDNURL}new-center-rightarrow.png`}/></View>
+              <View className='range-content-list-time-imgBox'><Image className='range-content-list-time-img' src={`${IMGCDNURL}zyb/downIcon-zyb.png`}/></View>
               </View>}
             {one && !isSubscribe &&
               <View className='range-content-list-time'><View className='range-content-list-Day'>置顶到期时间：{newTime}
