@@ -6,8 +6,12 @@ let mini_normal_json = ''
 // 需要打包的配置项文件
 let mini_config_json = ''
 
+function consoleProgressInfo(str){
+  console.log(`\x1B[31m当前进度：\x1B[0m \x1B[32m${str}\x1B[0m\n`)
+}
+
 function initProjectBuild(type){// type 被解析出来的标识符
-  console.log(`当前进度：解析出当前项目标识为${type}...\n`)
+  consoleProgressInfo(`解析出当前项目标识为${type}`)
   // 根据标识先将当前配置项取出，如果没有找到则表示在project.config.js中未声明，抛出异常
   let project_data = projects[type]
   if (!project_data) throw ('当前标识暂未在配置项中声明，请先声明后再执行打包操作！')
@@ -33,13 +37,14 @@ function initProjectBuild(type){// type 被解析出来的标识符
     replaceArr.push(data_item)
   })
   // ! 执行打包文件匹配写入
-  console.log('当前进度：执行打包文件匹配写入...\n')
+  consoleProgressInfo('执行打包文件匹配写入')
   readTempFileAction(replaceArr)
-  console.log('当前进度：文件写入执行完毕...\n')
+  consoleProgressInfo('文件写入执行完毕')
+  console.log(`\x1B[1mΨ(￣∀￣)Ψ\x1B[0m   \x1B[35m前端组最可耐的系小波童鞋哟~\x1B[0m \n\n`)
 }
 
 function readTempFileAction(replaceArr) {
-  console.log('当前进度：开始读取默认配置文件...\n')
+  consoleProgressInfo('开始读取默认配置文件')
   // 将所有默认数据取出
   let data = fs.readFileSync(mini_normal_json, 'utf-8')
   // 如果失败 直接抛出异常
@@ -64,13 +69,13 @@ function replaceConfig(str, arr) {
 
 // 将自己的文件内容写入到文件
 async function writeFileData(filePath, data) {
-  console.log('当前进度：正在执行文件替换操作...\n')
+  consoleProgressInfo('正在执行文件替换操作')
   data = new Uint8Array(Buffer.from(data))
   try{
     await fs.writeFileSync(filePath, data, 'utf8', err => {
       console.log(err)
       if (err) throw ('写入文件出错')
-      console.log('当前进度：编译配置项写入成功，进入打包环节...\n')
+      consoleProgressInfo('编译配置项写入成功，进入打包环节')
     })
   }catch(err){
     console.log(err)
