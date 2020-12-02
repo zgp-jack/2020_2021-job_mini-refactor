@@ -41,13 +41,12 @@
     .range-cityBox-list {
       position: relative;
       width: 194px;
-      height: 86px;
-      background: rgba(255, 255, 255, 0);
-      border: 2px solid #B5B5B5;
-      box-shadow: 0px 2px 5px 0px rgba(176, 174, 179, 0.38);
+      line-height: 86px;
+      font-size: 32px;
+      font-weight: normal;
+      background: #FFFFFF;
       border-radius: 10px;
       text-align: center;
-      line-height: 86px;
       margin: 0px 28px 18px 28px;
 
       .range-cityBox-list-close {
@@ -63,14 +62,14 @@
     .range-cityBox-list-last {
       position: relative;
       width: 194px;
-      height: 86px;
+      line-height: 86px;
+      color: #FFFFFF;
+      font-size: 32px;
+      font-weight: normal;
       background: $color;
-      box-shadow: 0px 2px 5px 0px rgba(176, 174, 179, 0.38);
       border-radius: 10px;
       text-align: center;
-      line-height: 86px;
-      margin: 0px 28px 18px 28px;
-      color: #fff;
+      margin:0px 28px 18px 28px;
     }
   }
 
@@ -94,12 +93,12 @@
       display: flex;
       justify-items: center;
       justify-content: space-between;
-      height: 82px;
-      line-height: 82px;
+      height: 100px;
+      line-height: 100px;
       border-bottom: 1px dashed rgba(220, 220, 220, 1);
       .range-content-list-time-imgBox{
-        height: 82px;
-        line-height: 82px;
+        height: 100px;
+        line-height: 100px;
         width: 40px;
         .range-content-list-time-img{
           margin-top: 30px;
@@ -127,8 +126,8 @@
 
     .range-content-list:last-child,
     .range-content-list-time:last-child {
-      height: 82px;
-      line-height: 82px;
+      height: 100px;
+      line-height: 100px;
       border-bottom: none;
     }
   }
@@ -138,11 +137,11 @@
 
     .range-change-btn {
       width: 418px;
-      height: 78px;
+      height: 86px;
       background: rgba(16, 142, 239, 1);
       border-radius: 10px;
       text-align: center;
-      line-height: 78px;
+      line-height: 86px;
       color: #fff;
       text-align: center;
       margin: 40px auto;

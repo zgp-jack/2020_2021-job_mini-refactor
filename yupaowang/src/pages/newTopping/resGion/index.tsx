@@ -116,6 +116,7 @@ export default function ResGion() {
   }
   // 点击
   const handleClick = (val,type?:string,historyType?:number)=>{
+    const valData = JSON.parse(JSON.stringify(val));
     // 缓存搜索
     if (type) {
       let data = Taro.getStorageSync(HistoryInfo);
@@ -239,7 +240,7 @@ export default function ResGion() {
             return v;
           })
         }
-        hotData = handleHot(val);
+        hotData = handleHot(valData);
       }else{
         // 判断为市
         if(val.click){
@@ -288,9 +289,10 @@ export default function ResGion() {
             return v;
           })
         }
-        hotData = handleHot(val);
+        hotData = handleHot(valData);
       }
     }
+    first = true;
     setAreasData(data);
     setClickData(clickDataItem);
     setHot(hotData);

@@ -14,9 +14,9 @@ import { setRecClickResumeTop } from '../../../actions/resume_top';
 import './index.scss'
 
 
+// 判断是否是第一次
+let first = false;
 export default function RecGion() {
-  // 判断是否是第一次
-  let first = false;
   const dispatch = useDispatch();
   const router: Taro.RouterInfo = useRouter()
   //获取传过来的最大省市
@@ -88,6 +88,7 @@ export default function RecGion() {
       }
     }
     setAreasData(data);
+    console.error('eeee')
     first = false;
     for (let i = 0; i < clickResumeTopObj.length; i++) {
       clickResumeTopObj[i].click = true;
@@ -115,7 +116,15 @@ export default function RecGion() {
   }
   // 点击
   const handleClick = (val, type?: string, historyType?: number) => {
-    console.error(val, '1111')
+    const valData = JSON.parse(JSON.stringify(val));
+    if (historyType) {
+      setOnFocus(false);
+      if (val.click) {
+        setIndex('')
+        return
+      }
+      setIndex(`hot${val.pid}`)
+    }
     // 缓存搜索
     if (type) {
       let data = Taro.getStorageSync(HistoryInfo);
@@ -189,15 +198,6 @@ export default function RecGion() {
           return
         }
       }
-      if (historyType) {
-        setOnFocus(false);
-        if (val.click) {
-          setIndex('')
-          return
-        }
-        console.error(val.pid,'val.pid')
-        setIndex(`hot${val.pid}`)
-      }
       // 判断是省还是市
       if (val.pid == '1') {
         // 没有点击
@@ -241,7 +241,7 @@ export default function RecGion() {
             return v;
           })
         }
-        hotData = handleHot(val);
+        hotData = handleHot(valData);
       } else {
         // 判断为市
         if (val.click) {
@@ -290,9 +290,11 @@ export default function RecGion() {
             return v;
           })
         }
-        hotData = handleHot(val);
+        console.error(valData,'dsadsbakjdbkjsa')
+        hotData = handleHot(valData);
       }
     }
+    first = true;
     setAreasData(data);
     setClickData(clickDataItem);
     setHot(hotData);
@@ -309,9 +311,12 @@ export default function RecGion() {
         hotData[0].click = false;
       }
       if (hotData[i].id == val.id) {
+        console.error(val);
+        console.error(val.click)
         hotData[i].click = !val.click;
       }
     }
+    console.error(hotData,'1111')
     return hotData;
   }
   // 获取光标
