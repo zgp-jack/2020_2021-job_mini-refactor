@@ -903,7 +903,7 @@ export function publishRecruitInfo(data): Promise<Inter.Result> {
   })
 }
 // 快速发布招工信息
-export function publishFindWorker(data): Promise<Inter.Result>{
+export function publishFindWorker(data): Promise<Inter.PublishResponse>{
   return doRequestAction({
     url: api.FastRcruitUrl,
     method: 'POST',
@@ -1281,4 +1281,12 @@ export function getBaiduTpOrderId(data): Promise<any>{
     method: 'POST',
     data
   })
+}
+
+// 获取免费发布招工信息的配置请求
+export function getFreeIssueConfig(): Promise<Inter.freeIssueData>{
+  return doRequestAction({
+    url: api.getFreeIssueConfig,
+    method: 'GET',
+  }) 
 }

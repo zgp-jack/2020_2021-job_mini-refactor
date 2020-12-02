@@ -4,7 +4,7 @@ import Taro, { useState, useEffect, useDidShow } from '@tarojs/taro'
 import { isVaildVal, isPhone } from '../../../utils/v'
 import { ShowActionModal } from '../../../utils/msg'
 import { fastIssue } from '../../../utils/request'
-import { FastData, TextRules } from '../../../utils/request/index.d'
+import { FastData, TextRules, FastIssue } from '../../../utils/request/index.d'
 import { setToken, setPhone } from '../../../actions/recruit'//获取发布招工信息action
 import { useDispatch } from '@tarojs/redux'
 import { SERVERPHONE } from '../../../config'
@@ -76,6 +76,7 @@ export function useFastIssue() {
 
   // 监听text跟rules变化
   useEffect(() => {
+    console.log("wo  lao  dfkjdkfjkdfjd")
     if (response == 'publishSuccess') {
       // 发布成功提示框
       const promptData = {
@@ -88,7 +89,6 @@ export function useFastIssue() {
       }
       setPrompt(promptData)
     } else if (response == 'paid_issue') {
-      handleText()
       // 发布成功提示框
       const promptData = {
         showClose: true,
@@ -102,10 +102,15 @@ export function useFastIssue() {
       setShowModel(true)
     }
   }, [response, tipContent])
-
+  
+  // 根据请求text值变化设置最新的弹窗显示内容
+  useEffect(() => {
+    handleText()
+  },[text,rules])
 
   // 页面显示的时候
   useDidShow(() => {
+    setResponse('')
     // 获取页面栈
     let pages: Taro.Page[] = Taro.getCurrentPages();
     if (pages.length > 1) {
@@ -168,7 +173,7 @@ export function useFastIssue() {
       }
     }
   }
-  // 当请求返回值是paid_issue表示付费发布，处理提示框文字显示内容
+  // 处理发布招工请求返回值中data提示框文字显示内容
   function handleText(){
     let texts: textData[] = []
     for (let i = 0; i < rules.length; i++) {
@@ -186,6 +191,12 @@ export function useFastIssue() {
       }
     }
     setTipContent(texts)
+  }
+  // 根据请求返回的结果，保存提示文本信息和显示的文本规则
+  function saveData(res: FastIssue<FastData>){
+    setText((res.data as FastData).text as string)
+    setRules((res.data as FastData).rules as TextRules[])
+    setResponse(res.errcode)
   }
   // 发布招工详情
   function fastPublish () {
@@ -234,7 +245,8 @@ export function useFastIssue() {
     }
     let data = {
       phone:telPhone,
-      content
+      content,
+      paid_issue: response == 'paid_issue' ? 1 : 0
     }
     fastIssue(data).then(res => {
       if (res.errcode == 'ok') {
@@ -246,6 +258,8 @@ export function useFastIssue() {
         dispatch(setToken(token))
         // 发布手机号存入redux
         dispatch(setPhone(telPhone))
+        // 手机号验证通过（即登录状态，用户信息中手机号跟发布填写手机号一致的情况）
+        // 是：跳转到城市地址选择页，否：验证码页面
         if (checked){
           Taro.navigateTo({
             url: '/pages/recruit/fast_issue/release/index',
@@ -256,9 +270,10 @@ export function useFastIssue() {
           })
         }
       } else if (res.errcode == "unusable") {
+        // 后台限制用户
         Taro.showModal({
           title: '温馨提示',
-          content: "mydata.errmsg",
+          content: res.errmsg,
           cancelText: "知道了",
           confirmText: "联系客服",
           success(res) {
@@ -272,10 +287,24 @@ export function useFastIssue() {
         })
       } else if (res.errcode == "paid_issue"){
         // paid_issue代表付费发布
-        setText((res.data as FastData).text as string)
-        setRules((res.data as FastData).rules as TextRules[])
-        setResponse(res.errcode)
-      } else {
+        saveData(res)
+      } else if (res.errcode == "integral_lack"){
+        // integral_lack付费发布积分不足提示
+        saveData(res)
+      } else if (res.errcode == "auth_forbid"){
+        // auth_forbid 用户实名认证限制提示
+        ShowActionModal({
+          title: '提示',
+          confirmText: '去实名',
+          msg: res.errmsg,
+          success: function(){
+            Taro.navigateTo({ url:"pages/realname/index"})
+          }
+        })
+      } else if (res.errcode == "fail" &&　res.data) {
+        // 到达每天的付费发布次数提示
+        saveData(res)
+      }else {
         ShowActionModal({
           msg: res.errmsg
         })

@@ -5,11 +5,12 @@ import { PublishData, UserLocation } from '../../../config/store'
 import { UserLocationPromiss, AREABEIJING, ChildItems, getCityInfo } from '../../../models/area'
 import { UserLastPublishArea, UserLocationCity } from '../../../config/store'
 import { setAreaInfo, setArea } from '../../../actions/recruit'
-import { SelectedClassfies, RulesClassfies } from '../../../components/classfiy_picker/index'
+import { RulesClassfies } from '../../../components/classfiy_picker/index'
 import { publishFindWorker } from '../../../utils/request'
 import { SubscribeToNews } from '../../../utils/subscribeToNews'
 import { ShowActionModal } from '../../../utils/msg'
 import { recSerAuthLoction } from '../../../utils/helper'
+import { changeTabbar } from '../../../actions/tabbar'
 
 
 
@@ -34,7 +35,6 @@ export default function useRelease () {
   const dispatch = useDispatch()
 
   useEffect(()=>{
-    console.log("wo jin lai le ")
     initUserAreaInfo()
     initWorkType()
   },[])
@@ -171,8 +171,9 @@ export default function useRelease () {
           ShowActionModal({
             msg: res.errmsg,
             success: () => {
+              dispatch(changeTabbar("member"))
               Taro.reLaunch({
-                url: '/pages/published/recruit/index'
+                url: `/pages/published/recruit/index?id=${res.data.job_id}&type=${res.data.tip_type}&text=${res.data.top_tips.text}`
               })
             }
           })

@@ -232,3 +232,5 @@ export const fastPublisView: string = REQUESTURL + 'publish/new-mate-job/'
 export const publishModel: string = REQUESTURL + 'index/get-job-view/'
 // 获取百度tpOrderId
 export const getBaiduTpOrderId: string = REQUESTURL + 'pay/baidu-order/'
+// 获取招工免费发布的配置请求
+export const getFreeIssueConfig: string = REQUESTURL + 'fast-issue/issue-config/'

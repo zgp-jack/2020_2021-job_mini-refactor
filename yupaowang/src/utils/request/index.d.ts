@@ -11,6 +11,19 @@ export interface publishWay{
 export interface FastIssue<T> extends Result{
   data?: T
 }
+export interface TopTips {
+  text: string
+}
+// 快速发布招工信息地址选择页确定发布请求返回数据DATA字段
+export interface PublishRespData{
+  job_id: number,
+  top_tips: TopTips,
+  tip_type: string
+}
+// 快速发布招工信息地址选择页确定发布请求返回数据
+export interface PublishResponse extends Result{
+  data: PublishRespData
+}
 // 请求返回的文本信息处理规则
 export interface TextRules {
   length: number
@@ -24,6 +37,7 @@ export interface FastData {
   checked: boolean,
   sendcode: string,
   sendmsg: string,
+  tip_type: string,
   rules?: TextRules[],
   text?: string
 }
@@ -1519,10 +1533,6 @@ export interface ResumeAddInfoGenderConfig {
   name: string
 }
 
-<<<<<<< HEAD
-// 
-=======
->>>>>>> wangshuai
 // 添加技能证书返回值
 export interface ResumeCertificateData extends Result{
   count: number
@@ -1606,4 +1616,24 @@ export interface memberTurntableType extends TurntableIndexTypePortion {
 export interface addResumeData {
   errcode: number
   errmsg: string
+}
+
+// 发布招工免费发布的配置请求返回数据
+export interface freeIssueRule{
+  length: number
+  start: number
+  type: string
+  value: string
+}
+export interface freeIssueTip{
+  text: string
+  rules: freeIssueRule[]
+}
+export interface freeData {
+  num: number
+  tips: freeIssueTip
+  type: string
+}
+export interface freeIssueData extends Result {
+  data: freeData
 }

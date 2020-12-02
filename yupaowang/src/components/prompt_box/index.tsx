@@ -53,7 +53,6 @@ export default function PromptBox ({
   cancel,
   confirm
 }: PromptBoxProps){
-  console.log("zi zu jian wo jin lai le ~~~")
   return (
     <View className= "prompt-container">
       <View className= "prompt-box" >

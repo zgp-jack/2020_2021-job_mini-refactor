@@ -179,7 +179,8 @@ export interface PublishConfigData {
 
 export interface FastIssueData{
   content: string,
-  phone: string
+  phone: string,
+  paid_issue: number
 }
 // 手机验证码校验请求参数
 export interface VaildCodeReq{

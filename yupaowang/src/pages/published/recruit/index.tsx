@@ -1,8 +1,8 @@
-import Taro, { useState, useEffect, Config,useDidShow } from '@tarojs/taro'
+import Taro, { useState, useEffect, Config, useDidShow, useRouter, RouterInfo } from '@tarojs/taro'
 import { View, Text, Image, Block, ScrollView } from '@tarojs/components'
 import { useSelector } from '@tarojs/redux'
 import HeaderList from './config'
-import { userGetPublishedRecruitLists, userChangeRecruitStatus, jobUpdateTopStatusAction } from '../../../utils/request'
+import { userGetPublishedRecruitLists, userChangeRecruitStatus, jobUpdateTopStatusAction, getFreeIssueConfig } from '../../../utils/request'
 import { UserPublishedRecruitListDataItem } from '../../../utils/request/index.d'
 import classnames from 'classnames'
 import { User } from '../../../reducers/user'
@@ -11,7 +11,10 @@ import Tabbar from '../../../components/tabbar'
 import Auth from '../../../components/auth'
 import './index.scss'
 import { IMGCDNURL, SERVERPHONE } from '../../../config'
+import PromptBox from '../../../components/prompt_box/index'
 import Msg from '../../../utils/msg'
+import { textData } from '../../../components/prompt_box/index'
+import { freeIssueRule } from '../../../utils/request/index.d'
 
 export interface searchDataType {
   type: string,
@@ -21,6 +24,16 @@ export interface searchDataType {
 }
 
 export default function PublishedRecruit(){
+  // 获取路由参数
+  const router: RouterInfo = useRouter()
+  // 发布招工id
+  const jobId: number = router.params.id
+  // 发布招工提示信息类型member_first:用户第一次发布day_first：用户当日第一次发布 
+  // day_last：用户当日最后一条免费发布
+  // ' '：用户未登录或不是上方任何一种情况，不弹窗
+  const type: string = router.params.type
+  // 提示文本内容
+  const text: string = router.params.text
   // 当前高亮key
   const [id, setId] = useState<string>(HeaderList[0].id)
   // 是否还有下一页
@@ -31,6 +44,8 @@ export default function PublishedRecruit(){
   const [refresh, setRefresh] = useState<boolean>(false)
   // 已发布招工列表
   const [lists, setLists] = useState<UserPublishedRecruitListDataItem[]>([])
+  // 子组件提示框的显示属性
+  const [prompt, setPrompt] = useState<any>({})
   // 获取用户信息
   const user = useSelector<any, User>(state => state.User)
   const [searchData, setSearchData] = useState<searchDataType>({
@@ -39,6 +54,27 @@ export default function PublishedRecruit(){
     page: 1,
     type: id
   })
+
+  // 根据type是否显示弹窗
+  useEffect(() => {
+    if (type == 'member_first'){
+
+    } else if (type == 'day_first'){
+      // 发布成功提示框
+      const promptData = {
+        showClose: true,
+        showTitle: true,
+        cancelText: '暂不提醒',
+        confirmText: '去增加曝光率',
+        titleText: '温馨提示',
+        content: [{ des: text}]
+      }
+      setPrompt(promptData)
+    } else if (type == 'day_last'){
+      // 发布成功提示框
+      getFreeConfig()
+    }
+  },[])
   // 当redux更新后 ， 立即更新用户数据
   useEffect(() => {
     if (!user.login || loading) return
@@ -49,6 +85,45 @@ export default function PublishedRecruit(){
   useDidShow(()=>{
     setSearchData({ ...searchData, page: 1 })
   })
+  // 处理发布招工请求返回值中data提示框文字显示内容
+  const handleText = (text: string, rules: freeIssueRule[]) => {
+    let texts: textData[] = []
+    for (let i = 0; i < rules.length; i++) {
+      if (i === 0) {
+        texts.push({ text: text.substring(i, rules[i].start), color: "#000000" })
+      } else {
+        texts.push({ text: text.substring(rules[i - 1].start + rules[i - 1].length, rules[i].start), color: "#000000" })
+      }
+      texts.push({
+        text: text.substring(rules[i].start, rules[i].start + rules[i].length),
+        color: rules[i].value,
+      })
+      if (i === rules.length - 1) {
+        texts.push({ text: text.substring(rules[i].start + rules[i].length), color: "#000000" })
+      }
+    }
+    const promptData = {
+      showClose: true,
+      showTitle: true,
+      cancelText: '不了，谢谢',
+      confirmText: '去发布',
+      titleText: '提示',
+      content: [{ text: texts }]
+    }
+    setPrompt(promptData)
+  }
+  // 获取后台配置的免费发布招工条数配置信息
+  const getFreeConfig = () => {
+    getFreeIssueConfig().then(res => {
+      if (res.errcode == "ok") {
+        if (res.data.type == "paid_issue") {
+          handleText(res.data.tips.text, res.data.tips.rules)
+        }
+      } else if (res.errcode == "fail") {
+        
+      }
+    })
+  }
   // 加载数据类别
   const getPublishedRecruitLists = () =>  {
     if (!user.login) return
@@ -227,6 +302,16 @@ export default function PublishedRecruit(){
   return (
     <Block>
       <Auth />
+      {showModel ? <PromptBox
+        showClose={prompt.showClose}
+        showTitle={prompt.showTitle}
+        cancelText={prompt.cancelText}
+        confirmText={prompt.confirmText}
+        titleText={prompt.titleText}
+        content={prompt.content}
+        cancel={cancel}
+        confirm={confirm}
+      /> : ''}
       <View className='user-published-container'>
         <View className='user-published-header'>
           {HeaderList.map(item => (
