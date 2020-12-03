@@ -90,6 +90,10 @@ var _index3 = __webpack_require__(/*! ../../../utils/msg/index */ "./src/utils/m
 
 var _index4 = _interopRequireDefault(_index3);
 
+var _index5 = __webpack_require__(/*! ../../../hooks/init_job_view/index */ "./src/hooks/init_job_view/index.ts");
+
+var _index6 = _interopRequireDefault(_index5);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
@@ -115,12 +119,12 @@ var PublishedRecruit = function (_Taro$Component) {
       backgroundTextStyle: "dark"
     };
 
-    _this.$usedState = ["loopArray107", "loopArray108", "HeaderList", "refresh", "lists", "IMGCDNURL", "more", "searchData"];
+    _this.$usedState = ["loopArray111", "loopArray112", "$compid__88", "showModel", "HeaderList", "refresh", "lists", "IMGCDNURL", "more", "searchData"];
     _this.anonymousFunc0Map = {};
     _this.anonymousFunc3Map = {};
     _this.anonymousFunc4Map = {};
     _this.anonymousFunc5Map = {};
-    _this.customComponents = ["Auth", "Nodata", "Tabbar"];
+    _this.customComponents = ["Auth", "PromptBox", "Nodata", "Tabbar"];
     return _this;
   }
 
@@ -140,7 +144,17 @@ var PublishedRecruit = function (_Taro$Component) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
+
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__88"),
+          _genCompid2 = _slicedToArray(_genCompid, 2),
+          $prevCompid__88 = _genCompid2[0],
+          $compid__88 = _genCompid2[1];
+
+      var _useJobView = (0, _index6.default)(),
+          initJobView = _useJobView.initJobView;
       // 获取路由参数
+
+
       var router = (0, _taroTt.useRouter)();
       // 发布招工id
       var jobId = router.params.id;
@@ -184,6 +198,20 @@ var PublishedRecruit = function (_Taro$Component) {
           _useState10 = _slicedToArray(_useState9, 2),
           lists = _useState10[0],
           setLists = _useState10[1];
+      // 子组件提示框的显示属性
+
+
+      var _useState11 = (0, _taroTt.useState)({}),
+          _useState12 = _slicedToArray(_useState11, 2),
+          prompt = _useState12[0],
+          setPrompt = _useState12[1];
+      // 是否展示提示框
+
+
+      var _useState13 = (0, _taroTt.useState)(false),
+          _useState14 = _slicedToArray(_useState13, 2),
+          showModel = _useState14[0],
+          setShowModel = _useState14[1];
       // 获取用户信息
 
 
@@ -191,18 +219,36 @@ var PublishedRecruit = function (_Taro$Component) {
         return state.User;
       });
 
-      var _useState11 = (0, _taroTt.useState)({
+      var _useState15 = (0, _taroTt.useState)({
         mid: user.userId,
         uuid: user.uuid,
         page: 1,
         type: id
       }),
-          _useState12 = _slicedToArray(_useState11, 2),
-          searchData = _useState12[0],
-          setSearchData = _useState12[1];
+          _useState16 = _slicedToArray(_useState15, 2),
+          searchData = _useState16[0],
+          setSearchData = _useState16[1];
+      // 根据type是否显示弹窗
+
+
+      (0, _taroTt.useEffect)(function () {
+        if (type == 'member_first') {} else if (type == 'day_first') {
+          // 发布成功提示框
+          var promptData = {
+            showClose: true,
+            showTitle: true,
+            cancelText: '暂不提醒',
+            confirmText: '去增加曝光率',
+            titleText: '温馨提示',
+            content: [{ des: text }]
+          };
+          setPrompt(promptData);
+        } else if (type == 'day_last') {
+          // 发布成功提示框
+          getFreeConfig();
+        }
+      }, []);
       // 当redux更新后 ， 立即更新用户数据
-
-
       (0, _taroTt.useEffect)(function () {
         if (!user.login || loading) {
           return;
@@ -213,6 +259,44 @@ var PublishedRecruit = function (_Taro$Component) {
       (0, _taroTt.useDidShow)(function () {
         setSearchData(_extends({}, searchData, { page: 1 }));
       });
+      // 处理发布招工请求返回值中data提示框文字显示内容
+      var handleText = function handleText(text, rules) {
+        var texts = [];
+        for (var i = 0; i < rules.length; i++) {
+          if (i === 0) {
+            texts.push({ text: text.substring(i, rules[i].start), color: "#000000" });
+          } else {
+            texts.push({ text: text.substring(rules[i - 1].start + rules[i - 1].length, rules[i].start), color: "#000000" });
+          }
+          texts.push({
+            text: text.substring(rules[i].start, rules[i].start + rules[i].length),
+            color: rules[i].value
+          });
+          if (i === rules.length - 1) {
+            texts.push({ text: text.substring(rules[i].start + rules[i].length), color: "#000000" });
+          }
+        }
+        var promptData = {
+          showClose: true,
+          showTitle: true,
+          cancelText: '不了，谢谢',
+          confirmText: '去发布',
+          titleText: '提示',
+          content: [{ text: texts }]
+        };
+        setPrompt(promptData);
+        setShowModel(true);
+      };
+      // 获取后台配置的免费发布招工条数配置信息
+      var getFreeConfig = function getFreeConfig() {
+        (0, _index.getFreeIssueConfig)().then(function (res) {
+          if (res.errcode == "ok") {
+            if (res.data.type == "paid_issue") {
+              handleText(res.data.tips.text, res.data.tips.rules);
+            }
+          } else if (res.errcode == "fail") {}
+        });
+      };
       // 加载数据类别
       var getPublishedRecruitLists = function getPublishedRecruitLists() {
         if (!user.login) {
@@ -384,17 +468,35 @@ var PublishedRecruit = function (_Taro$Component) {
           userRouteJump("/pages/topping/index?id=" + item.id);
         }
       };
+      // 用户当天第一免费发布弹窗的 暂不提醒 按钮请求
+      var notRemindReq = function notRemindReq() {
+        (0, _index.getNotRemind)();
+      };
+      // 当天免费的最后一条发布招工信息弹窗，点击 去发布 去发布招工
+      var confirm = function confirm() {
+        if (type == 'day_first') {} else if (type == 'day_last') {
+          initJobView();
+        }
+      };
+      // 当天免费的最后一条发布招工信息弹窗，点击 不了谢谢 关闭弹窗
+      var cancel = function cancel() {
+        if (type == 'day_first') {
+          notRemindReq();
+        } else if (type == 'day_last') {
+          setShowModel(false);
+        }
+      };
       this.anonymousFunc1 = function () {
         return reloadPage();
       };
       this.anonymousFunc2 = function () {
         return getNextPageData();
       };
-      var loopArray107 = _config2.default.map(function (item, __index0) {
+      var loopArray111 = _config2.default.map(function (item, __index0) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
-        var _$indexKey = "baazz" + __index0;
+        var _$indexKey = "bajzz" + __index0;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return userChangePublishedItem(item.$original.id);
         };
@@ -408,19 +510,19 @@ var PublishedRecruit = function (_Taro$Component) {
           $original: item.$original
         };
       });
-      var loopArray108 = lists.map(function (item, index) {
+      var loopArray112 = lists.map(function (item, index) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
-        var _$indexKey2 = "babzz" + index;
+        var _$indexKey2 = "bbazz" + index;
         _this2.anonymousFunc3Map[_$indexKey2] = function () {
           return userRouteJump("/pages/detail/info/index?id=" + item.$original.id);
         };
-        var _$indexKey3 = "baczz" + index;
+        var _$indexKey3 = "bbbzz" + index;
         _this2.anonymousFunc4Map[_$indexKey3] = function () {
           return userRouteJump("/pages/recruit/jisu_issue/index?id=" + item.$original.id);
         };
-        var _$indexKey4 = "badzz" + index;
+        var _$indexKey4 = "bbczz" + index;
         _this2.anonymousFunc5Map[_$indexKey4] = function () {
           return userStopRecruit(item.$original.id, index);
         };
@@ -431,9 +533,21 @@ var PublishedRecruit = function (_Taro$Component) {
           $original: item.$original
         };
       });
+      showModel && _taroTt.propsManager.set({
+        "showClose": prompt.showClose,
+        "showTitle": prompt.showTitle,
+        "cancelText": prompt.cancelText,
+        "confirmText": prompt.confirmText,
+        "titleText": prompt.titleText,
+        "content": prompt.content,
+        "cancel": cancel,
+        "confirm": confirm
+      }, $compid__88, $prevCompid__88);
       Object.assign(this.__state, {
-        loopArray107: loopArray107,
-        loopArray108: loopArray108,
+        loopArray111: loopArray111,
+        loopArray112: loopArray112,
+        $compid__88: $compid__88,
+        showModel: showModel,
         HeaderList: _config2.default,
         refresh: refresh,
         lists: lists,

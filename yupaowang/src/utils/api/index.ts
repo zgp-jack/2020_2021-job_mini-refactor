@@ -234,3 +234,5 @@ export const publishModel: string = REQUESTURL + 'index/get-job-view/'
 export const getBaiduTpOrderId: string = REQUESTURL + 'pay/baidu-order/'
 // 获取招工免费发布的配置请求
 export const getFreeIssueConfig: string = REQUESTURL + 'fast-issue/issue-config/'
+// 发布招工第一次免费发布提示框  暂不提醒 请求
+export const getNotRemind: string = REQUESTURL + '/fast-issue/hide-tips/'

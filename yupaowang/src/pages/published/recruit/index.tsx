@@ -2,7 +2,7 @@ import Taro, { useState, useEffect, Config, useDidShow, useRouter, RouterInfo } 
 import { View, Text, Image, Block, ScrollView } from '@tarojs/components'
 import { useSelector } from '@tarojs/redux'
 import HeaderList from './config'
-import { userGetPublishedRecruitLists, userChangeRecruitStatus, jobUpdateTopStatusAction, getFreeIssueConfig } from '../../../utils/request'
+import { userGetPublishedRecruitLists, userChangeRecruitStatus, jobUpdateTopStatusAction, getFreeIssueConfig, getNotRemind } from '../../../utils/request'
 import { UserPublishedRecruitListDataItem } from '../../../utils/request/index.d'
 import classnames from 'classnames'
 import { User } from '../../../reducers/user'
@@ -15,6 +15,7 @@ import PromptBox from '../../../components/prompt_box/index'
 import Msg from '../../../utils/msg'
 import { textData } from '../../../components/prompt_box/index'
 import { freeIssueRule } from '../../../utils/request/index.d'
+import useJobView from '../../../hooks/init_job_view/index'
 
 export interface searchDataType {
   type: string,
@@ -24,6 +25,7 @@ export interface searchDataType {
 }
 
 export default function PublishedRecruit(){
+  const { initJobView } = useJobView()
   // 获取路由参数
   const router: RouterInfo = useRouter()
   // 发布招工id
@@ -46,6 +48,8 @@ export default function PublishedRecruit(){
   const [lists, setLists] = useState<UserPublishedRecruitListDataItem[]>([])
   // 子组件提示框的显示属性
   const [prompt, setPrompt] = useState<any>({})
+  // 是否展示提示框
+  const [showModel, setShowModel] = useState<boolean>(false)
   // 获取用户信息
   const user = useSelector<any, User>(state => state.User)
   const [searchData, setSearchData] = useState<searchDataType>({
@@ -111,6 +115,7 @@ export default function PublishedRecruit(){
       content: [{ text: texts }]
     }
     setPrompt(promptData)
+    setShowModel(true)
   }
   // 获取后台配置的免费发布招工条数配置信息
   const getFreeConfig = () => {
@@ -298,6 +303,26 @@ export default function PublishedRecruit(){
       userRouteJump(`/pages/topping/index?id=${item.id}`)
     }
     
+  }
+  // 用户当天第一免费发布弹窗的 暂不提醒 按钮请求
+  const notRemindReq = () => {
+    getNotRemind()
+  }
+  // 当天免费的最后一条发布招工信息弹窗，点击 去发布 去发布招工
+  const confirm = () =>{
+    if (type == 'day_first'){
+      
+    } else if (type == 'day_last'){
+      initJobView()
+    } 
+  }
+  // 当天免费的最后一条发布招工信息弹窗，点击 不了谢谢 关闭弹窗
+  const cancel = () => {
+    if (type == 'day_first') {
+      notRemindReq()
+    } else if (type == 'day_last') {
+      setShowModel(false)
+    }
   }
   return (
     <Block>

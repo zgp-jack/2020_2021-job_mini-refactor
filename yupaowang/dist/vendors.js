@@ -13215,6 +13215,101 @@ function useCode(type) {
 
 /***/ }),
 
+/***/ "./src/hooks/init_job_view/index.ts":
+/*!******************************************!*\
+  !*** ./src/hooks/init_job_view/index.ts ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+exports.default = useJobView;
+
+var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+
+var _taroTt2 = _interopRequireDefault(_taroTt);
+
+var _index = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
+
+var _publishWay = __webpack_require__(/*! ../../actions/publishWay */ "./src/actions/publishWay.ts");
+
+var _index2 = __webpack_require__(/*! ../../utils/request/index */ "./src/utils/request/index.ts");
+
+var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/redux/index.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function useJobView() {
+  var publishWay = (0, _redux.useSelector)(function (state) {
+    return state.publishWay;
+  });
+  var login = (0, _redux.useSelector)(function (state) {
+    return state.User['login'];
+  });
+  var dispatch = (0, _redux.useDispatch)();
+  //是否为极速发布与快速发布请求,快速发布与极速发布跳转
+  var initJobView = function initJobView() {
+    if (login) {
+      var flag = JSON.parse(JSON.stringify(publishWay));
+      if (!flag.loginAfter) {
+        (0, _index2.publishWayRea)().then(function (res) {
+          var publishMethod = res.add_job_type;
+          dispatch((0, _publishWay.setPublishWay)(_extends({}, publishWay, { loginWay: publishMethod, loginAfter: true })));
+          var url = publishMethod == "fast_add_job" ? _index.PUBLISHRECRUIT : _index.PUBLISHFAST;
+          _taroTt2.default.navigateTo({
+            url: url
+          });
+        }).catch(function () {
+          _taroTt2.default.navigateTo({
+            url: _index.PUBLISHFAST
+          });
+        });
+      } else {
+        var way = publishWay.loginWay;
+        var url = way == "fast_add_job" ? _index.PUBLISHRECRUIT : _index.PUBLISHFAST;
+        _taroTt2.default.navigateTo({
+          url: url
+        });
+      }
+    } else {
+      var _flag = JSON.parse(JSON.stringify(publishWay));
+      if (!_flag.loginBefore) {
+        (0, _index2.publishWayRea)().then(function (res) {
+          var publishMethod = res.add_job_type;
+          dispatch((0, _publishWay.setPublishWay)(_extends({}, publishWay, { logoutWay: publishMethod, loginBefore: true })));
+          var url = publishMethod == "fast_add_job" ? _index.PUBLISHRECRUIT : _index.PUBLISHFAST;
+          _taroTt2.default.navigateTo({
+            url: url
+          });
+        }).catch(function () {
+          _taroTt2.default.navigateTo({
+            url: _index.PUBLISHFAST
+          });
+        });
+      } else {
+        var _way = publishWay.logoutWay;
+        var _url = _way == "fast_add_job" ? _index.PUBLISHRECRUIT : _index.PUBLISHFAST;
+        _taroTt2.default.navigateTo({
+          url: _url
+        });
+      }
+    }
+  };
+  return {
+    initJobView: initJobView
+  };
+}
+
+/***/ }),
+
 /***/ "./src/hooks/publish/commonIssue.ts":
 /*!******************************************!*\
   !*** ./src/hooks/publish/commonIssue.ts ***!
@@ -16359,7 +16454,7 @@ var RESUME_TOP_DATA = exports.RESUME_TOP_DATA = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.getBaiduTpOrderId = exports.publishModel = exports.fastPublisView = exports.FastRcruitUrl = exports.memberTurntable = exports.turntableVideoEnd = exports.turntableDraw = exports.turntableIndex = exports.getRankRulesList = exports.checkCodeUrl = exports.getResumeAddInfoConfig = exports.realnameQueryUrl = exports.userCheckDouyinRecharge = exports.userDouyinRecharge = exports.userTelCodeLogin = exports.userAccountUrl = undefined;
+exports.getNotRemind = exports.getFreeIssueConfig = exports.getBaiduTpOrderId = exports.publishModel = exports.fastPublisView = exports.FastRcruitUrl = exports.memberTurntable = exports.turntableVideoEnd = exports.turntableDraw = exports.turntableIndex = exports.getRankRulesList = exports.checkCodeUrl = exports.getResumeAddInfoConfig = exports.realnameQueryUrl = exports.userCheckDouyinRecharge = exports.userDouyinRecharge = exports.userTelCodeLogin = exports.userAccountUrl = undefined;
 exports.leavingMessageUrl = exports.resumesComplainUrl = exports.resumesUpdateTopResumeUrl = exports.resumesDoTopV2Url = exports.resumesTopConfigV2Url = exports.resumesEditImgUrl = exports.resumesChangeTopStatusUrl = exports.resumesDoTopUrl = exports.resumesTopConfigUrl = exports.resumesTopAreasUrl = exports.resumesDelProjectUrl = exports.resumesEditEndUrl = exports.resumesIntroduceUrl = exports.resumesGetDataUrl = exports.checkAdcodeUrl = exports.addResumeUrl = exports.resumesProjectUrl = exports.resumesCertificateUrl = exports.delCertificateUrl = exports.jobRecommendListUrl = exports.resumeListUrl = exports.resumeCollectUrl = exports.resumeSupportUrl = exports.resumesGetTelUrl = exports.recommendListUrl = exports.resumeDetailUrl = exports.jobUpdateTopStatusUrl = exports.jobChangeTopAreasUrl = exports.jobGetTopAreasUrl = exports.jobDoTopUrl = exports.jobTopHotAreasUrl = exports.jobTopConfigUrl = exports.jobEndStatusUrl = exports.jobGetTelUrl = exports.jobNoUserInfoUrl = exports.jobInfoUrl = exports.publishComplainUrl = exports.integralUseInfoUrl = exports.integralExpendListsUrl = exports.integralExpendConfigUrl = exports.integralSourceListsUrl = exports.integralSourceConfigUrl = exports.messagesTypeUrl = exports.userMessagesUrl = exports.resumesAddClickLog = exports.resumesSortUrl = exports.newsInfoUrl = exports.newsTypesUrl = exports.newListUrl = exports.helpUrl = exports.feedbackSubmissionUrl = exports.feedbackUrl = exports.requestActionUrl = exports.ResumeCancelCollection = exports.recruitCancelCollection = exports.getCollectionResumeList = exports.getCollectionRecruitList = exports.userUpdateUserInfo = exports.userChangeUsedStatus = exports.userGetPublishedUsedList = exports.userChangeRecruitStatus = exports.userGetPublishedRecruitList = exports.updataPassword = exports.userChangePhone = exports.userUpdateName = exports.userChangeAvatar = exports.postUserAddInfo = exports.getIdcardAuthInfo = exports.postUserAuthInfo = exports.getUserAuthInfo = exports.getMemberMsgNumber = exports.getMemberInfo = exports.CheckMineAuthInfo = exports.CheckAuth = exports.GetUsedInfo = exports.GetUserLoginPhoneCode = exports.GetUserPhoneCode = exports.PublishUsedInfo = exports.GetUsedInfoModel = exports.GetRechargeOrder = exports.GetRechargeOpenid = exports.GetRechargeList = exports.GetUserInviteLink = exports.CheckAdcodeValid = exports.GetAllAreas = exports.FastIssueInfo = exports.FastPublisInfo = exports.PublishRecruitInfo = exports.GetPublisRecruitView = exports.GetIntegralList = exports.GetTabbarMsg = exports.GetListFilterData = exports.GetWechatNotice = exports.GetFleamarketlist = exports.GetResumelist = exports.GetRecruitlist = exports.GetAllListItem = exports.GetBannerNotice = exports.GetUserInfo = exports.GetUserSessionKey = undefined;
 
 var _index = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
@@ -16596,6 +16691,10 @@ var fastPublisView = exports.fastPublisView = _index.REQUESTURL + 'publish/new-m
 var publishModel = exports.publishModel = _index.REQUESTURL + 'index/get-job-view/';
 // 获取百度tpOrderId
 var getBaiduTpOrderId = exports.getBaiduTpOrderId = _index.REQUESTURL + 'pay/baidu-order/';
+// 获取招工免费发布的配置请求
+var getFreeIssueConfig = exports.getFreeIssueConfig = _index.REQUESTURL + 'fast-issue/issue-config/';
+// 发布招工第一次免费发布提示框  暂不提醒 请求
+var getNotRemind = exports.getNotRemind = _index.REQUESTURL + '/fast-issue/hide-tips/';
 
 /***/ }),
 
@@ -17040,6 +17139,8 @@ exports.turntableVideoEnd = turntableVideoEnd;
 exports.memberTurntable = memberTurntable;
 exports.publishWayRea = publishWayRea;
 exports.getBaiduTpOrderId = getBaiduTpOrderId;
+exports.getFreeIssueConfig = getFreeIssueConfig;
+exports.getNotRemind = getNotRemind;
 
 var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
 
@@ -18173,6 +18274,20 @@ function getBaiduTpOrderId(data) {
     url: api.getBaiduTpOrderId,
     method: 'POST',
     data: data
+  });
+}
+// 获取免费发布招工信息的配置请求
+function getFreeIssueConfig() {
+  return doRequestAction({
+    url: api.getFreeIssueConfig,
+    method: 'GET'
+  });
+}
+// 用户第一次免费发布提示框 暂不提醒 请求
+function getNotRemind() {
+  return doRequestAction({
+    url: api.getNotRemind,
+    method: 'GET'
   });
 }
 

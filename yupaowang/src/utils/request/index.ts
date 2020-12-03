@@ -1290,3 +1290,10 @@ export function getFreeIssueConfig(): Promise<Inter.freeIssueData>{
     method: 'GET',
   }) 
 }
+// 用户第一次免费发布提示框 暂不提醒 请求
+export function getNotRemind(): Promise<Inter.Result>{
+  return doRequestAction({
+    url: api.getNotRemind,
+    method: 'GET'
+  })
+}

@@ -122,7 +122,7 @@ var System = function (_Taro$Component) {
       enablePullDownRefresh: true
     };
 
-    _this.$usedState = ["data", "loopArray68", "IMGCDNURL", "isDown"];
+    _this.$usedState = ["data", "loopArray69", "IMGCDNURL", "isDown"];
     _this.anonymousFunc0Map = {};
     _this.customComponents = ["Nodata"];
     return _this;
@@ -221,7 +221,7 @@ var System = function (_Taro$Component) {
         _taroTt2.default.showNavigationBarLoading();
         setPage(_extends({}, initPage, { page: initPage.page + 1 }));
       });
-      var loopArray68 = data.item.map(function (item, __index0) {
+      var loopArray69 = data.item.map(function (item, __index0) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
@@ -236,7 +236,7 @@ var System = function (_Taro$Component) {
       });
       Object.assign(this.__state, {
         data: data,
-        loopArray68: loopArray68,
+        loopArray69: loopArray69,
         IMGCDNURL: _index2.IMGCDNURL,
         isDown: isDown
       });

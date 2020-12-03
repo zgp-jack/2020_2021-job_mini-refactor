@@ -69,7 +69,7 @@ var FeedbackList = function (_Taro$Component) {
       backgroundTextStyle: 'dark'
     };
 
-    _this.$usedState = ["lists", "loopArray66", "$compid__58", "isDown"];
+    _this.$usedState = ["lists", "loopArray67", "$compid__59", "isDown"];
     _this.anonymousFunc0Map = {};
     _this.customComponents = ["Auth", "WechatNotice", "Nodata"];
     return _this;
@@ -92,10 +92,10 @@ var FeedbackList = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__58"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__59"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__58 = _genCompid2[0],
-          $compid__58 = _genCompid2[1];
+          $prevCompid__59 = _genCompid2[0],
+          $compid__59 = _genCompid2[1];
       // * 标记是否是在刷新状态
 
 
@@ -199,11 +199,11 @@ var FeedbackList = function (_Taro$Component) {
       this.anonymousFunc2 = function () {
         return userRouteJump("/pages/feedback/index?username=" + (userData.username || '') + "&phone=" + (userData.phone || ''));
       };
-      var loopArray66 = lists.item ? lists.item.map(function (item, __index1) {
+      var loopArray67 = lists.item ? lists.item.map(function (item, __index1) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
-        var $anonymousCallee__7 = item.$original.images ? item.$original.images.map(function (v, index) {
+        var $anonymousCallee__8 = item.$original.images ? item.$original.images.map(function (v, index) {
           v = {
             $original: (0, _taroTt.internal_get_original)(v)
           };
@@ -219,17 +219,17 @@ var FeedbackList = function (_Taro$Component) {
           };
         }) : [];
         return {
-          $anonymousCallee__7: $anonymousCallee__7,
+          $anonymousCallee__8: $anonymousCallee__8,
           $original: item.$original
         };
       }) : [];
       !lists.item.length && _taroTt.propsManager.set({
         "text": "\u6682\u65E0\u76F8\u5173\u6570\u636E\u53CD\u9988"
-      }, $compid__58, $prevCompid__58);
+      }, $compid__59, $prevCompid__59);
       Object.assign(this.__state, {
         lists: lists,
-        loopArray66: loopArray66,
-        $compid__58: $compid__58,
+        loopArray67: loopArray67,
+        $compid__59: $compid__59,
         isDown: isDown
       });
       return this.__state;

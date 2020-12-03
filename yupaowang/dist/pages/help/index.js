@@ -67,7 +67,7 @@ var Help = function (_Taro$Component) {
       navigationBarTitleText: '帮助中心'
     };
 
-    _this.$usedState = ["data", "loopArray65", "refresh", "isDown"];
+    _this.$usedState = ["data", "loopArray66", "refresh", "isDown"];
     _this.anonymousFunc2Map = {};
     _this.customComponents = ["Nodata", "AtAccordion", "AtList"];
     return _this;
@@ -213,7 +213,7 @@ var Help = function (_Taro$Component) {
       this.anonymousFunc3 = function () {
         return userRouteJump("/pages/feedback/index?username=" + (userData.username || '') + "&phone=" + (userData.phone || ''));
       };
-      var loopArray65 = data.item.map(function (item, __index2) {
+      var loopArray66 = data.item.map(function (item, __index2) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
@@ -225,35 +225,35 @@ var Help = function (_Taro$Component) {
 
         var _genCompid = (0, _taroTt.genCompid)(__prefix + "hczzzzzzzz" + __index2, true),
             _genCompid2 = _slicedToArray(_genCompid, 2),
-            $prevCompid__56 = _genCompid2[0],
-            $compid__56 = _genCompid2[1];
+            $prevCompid__57 = _genCompid2[0],
+            $compid__57 = _genCompid2[1];
 
         _taroTt.propsManager.set({
           "icon": $loopState__temp2,
           "open": item.$original.isShow,
           "onClick": _this2.anonymousFunc2.bind(_this2, _$indexKey),
           "title": item.$original.question
-        }, $compid__56, $prevCompid__56);
+        }, $compid__57, $prevCompid__57);
 
         var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "hdzzzzzzzz" + __index2, true),
             _genCompid4 = _slicedToArray(_genCompid3, 2),
-            $prevCompid__57 = _genCompid4[0],
-            $compid__57 = _genCompid4[1];
+            $prevCompid__58 = _genCompid4[0],
+            $compid__58 = _genCompid4[1];
 
         _taroTt.propsManager.set({
           "hasBorder": false
-        }, $compid__57, $prevCompid__57);
+        }, $compid__58, $prevCompid__58);
         return {
           $loopState__temp2: $loopState__temp2,
           _$indexKey: _$indexKey,
-          $compid__56: $compid__56,
           $compid__57: $compid__57,
+          $compid__58: $compid__58,
           $original: item.$original
         };
       });
       Object.assign(this.__state, {
         data: data,
-        loopArray65: loopArray65,
+        loopArray66: loopArray66,
         refresh: refresh,
         isDown: isDown
       });
