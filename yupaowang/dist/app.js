@@ -74,7 +74,7 @@ var _App = function (_BaseComponent) {
     _this.config = {
       pages: ['pages/index/index', 'pages/userauth/index', "pages/recruit/publish/index", "pages/used/lists/index", "pages/map/recruit/index", "pages/map/resume/index", "pages/used/publish/index", "pages/used/info/index", "pages/static/invite/index", 'pages/static/notice/index', "pages/getintegral/index", "pages/integral/source/index", "pages/integral/temp/index", "pages/integral/official/index", "pages/integral/expend/index", "pages/recharge/index", "pages/realname/index", "pages/map/realname/index", "pages/userinfo/info/index", "pages/userinfo/add/index", "pages/userinfo/phone/index", "pages/userinfo/updatePass/index", "pages/published/recruit/index", "pages/published/used/index", "pages/collection/index", "pages/help/index", "pages/feedbacklist/index", "pages/feedback/index", "pages/information/mymessage/index", "pages/information/system/index", 'pages/integral/tabber/index', 'pages/detail/info/index', 'pages/topping/index', 'pages/topping/distruction/index',
       // 'pages/topping/recruit/index',//置顶找活范围
-      'pages/resume/publish/index', 'pages/resume/add_info/index', 'pages/resume/add_member/index', 'pages/resume/add_skill/index', 'pages/resume/add_project/index', 'pages/resume/projects/index', 'pages/resume/skills/index', 'pages/rank-rules/index', 'pages/turntable/index', 'pages/resume/detail/index', 'pages/resume/newPreview/index', 'pages/resume/preview/index', 'pages/login/index', 'pages/recruit/jisu_issue/index', 'pages/recruit/fast_issue/issue/index', 'pages/recruit/fast_issue/code/index', 'pages/recruit/fast_issue/release/index'],
+      'pages/resume/publish/index', 'pages/resume/add_info/index', 'pages/resume/add_member/index', 'pages/resume/add_skill/index', 'pages/resume/add_project/index', 'pages/resume/projects/index', 'pages/resume/skills/index', 'pages/rank-rules/index', 'pages/turntable/index', 'pages/resume/detail/index', 'pages/resume/newPreview/index', 'pages/resume/preview/index', 'pages/login/index', 'pages/recruit/jisu_issue/index', 'pages/recruit/fast_issue/issue/index', 'pages/recruit/fast_issue/code/index', 'pages/recruit/fast_issue/release/index', 'pages/newtopping/recRang/index', 'pages/newtopping/recGion/index', 'pages/newtopping/resRang/index', 'pages/newtopping/resGion/index', 'pages/marketing_page/index'],
       subPackages: [{
         root: 'subpackage/pages',
         pages: ['checkauth/index', 'about/index', 'report/index', 'download/index', 'ranking/index', 'course/index', 'anti-fraud/index', 'projects/index', 'skills/index', 'news/index']
@@ -291,10 +291,20 @@ var _publishWay = __webpack_require__(/*! ./publishWay */ "./src/reducers/publis
 
 var _publishWay2 = _interopRequireDefault(_publishWay);
 
+var _resume_top = __webpack_require__(/*! ./resume_top */ "./src/reducers/resume_top.ts");
+
+var _resume_top2 = _interopRequireDefault(_resume_top);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 //合并reducer
-//发布招工reducer
+/*
+ * @Author: zyb
+ * @Date: 2020-11-03 14:36:47
+ * @LastEditors: jsxin
+ * @LastEditTime: 2020-11-20 17:01:57
+ * @Description:
+ */
 exports.default = (0, _redux.combineReducers)({
   tabbar: _tabbar2.default,
   WechatNotice: _wechat_notice2.default,
@@ -314,14 +324,9 @@ exports.default = (0, _redux.combineReducers)({
   resumeData: _resume_data2.default,
   resumeList: _resume_list2.default,
   recruitTop: _recruit_top2.default,
-  publishWay: _publishWay2.default
-}); /*
-     * @Author: zyb
-     * @Date: 2020-11-03 14:36:47
-     * @LastEditors: jsxin
-     * @LastEditTime: 2020-11-20 17:01:57
-     * @Description:
-     */
+  publishWay: _publishWay2.default,
+  resumeTop: _resume_top2.default
+}); //发布招工reducer
 
 /***/ }),
 
@@ -734,7 +739,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-exports.default = RecruitTopRedux;
+exports.default = recruitTop;
 
 var _recruit_top = __webpack_require__(/*! ../constants/recruit_top */ "./src/constants/recruit_top.ts");
 
@@ -746,7 +751,7 @@ var value = {
     whole: []
   }
 };
-function RecruitTopRedux() {
+function recruitTop() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : value;
   var action = arguments[1];
 
@@ -938,6 +943,70 @@ function resumeList() {
       return _extends({}, state, { certificates: action.data });
     case _resume_list.SETSUBPACKPROJECT:
       return _extends({}, state, { project: action.data });
+    default:
+      return state;
+  }
+}
+
+/***/ }),
+
+/***/ "./src/reducers/resume_top.ts":
+/*!************************************!*\
+  !*** ./src/reducers/resume_top.ts ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+exports.default = resumeTop;
+
+var _resume_top = __webpack_require__(/*! ../constants/resume_top */ "./src/constants/resume_top.ts");
+
+var DEFAULT_RESUME_TOP = {
+  has_top: 0,
+  is_top: 0,
+  is_top_text: '',
+  is_top_to_text: '',
+  top_tips_string: '',
+  max_number: '',
+  max_price: '',
+  end_time: '',
+  start_time: '',
+  start_time_str: '',
+  end_time_str: '',
+  top_citys_str: [],
+  top_provinces_str: [],
+  top_citys: '',
+  top_provinces: '',
+  is_show_tips: 0,
+  is_country: '',
+  first_province_num: '',
+  first_city_num: ''
+};
+var DEFAULT_STATE = {
+  resumeTopObj: DEFAULT_RESUME_TOP,
+  clickResumeTopObj: [],
+  recClickResumeTopObj: []
+};
+function resumeTop() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : DEFAULT_STATE;
+  var action = arguments[1];
+
+  switch (action.type) {
+    case _resume_top.SETRESUMETOP:
+      return _extends({}, state, { resumeTopObj: action.data });
+    case _resume_top.SETCLICKRESUMETOP:
+      return _extends({}, state, { clickResumeTopObj: action.data });
+    case _resume_top.SETRESCLICKRESUMETOP:
+      return _extends({}, state, { recClickResumeTopObj: action.data });
     default:
       return state;
   }

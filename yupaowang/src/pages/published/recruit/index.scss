@@ -82,6 +82,39 @@
       line-height: 60px;
       text-align: center;
     }
+    .published-ischeking-img-box{
+      position: relative;
+      padding-left: 60px;
+      line-height: 60px;
+      font-size: 28px;
+      color: #ff0000;
+      .published-checking-img {
+        position: absolute;
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        top: 15px;
+        left: 0;
+      }
+    }
+    .published-ischeking-subscribe{
+      position: relative;
+      // padding-left: 60px;
+      line-height: 60px;
+      font-size: 28px;
+      color: #ff0000;
+
+      .published-checking-img {
+        position: absolute;
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        top: 15px;
+        left: 0;
+      }
+    }
     .published-ischeking{
       position: relative;
       padding-left: 60px;
@@ -102,6 +135,10 @@
   .published-top-time{
     position: relative;
     font-size: 28px;
+    color: #333;
+    .published-top-time-color{
+      color: #777;
+    }
   }
   .published-status-img{
     position: absolute;

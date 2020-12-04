@@ -182,7 +182,7 @@ var AtDrawer = (_temp2 = _class = function (_AtComponent) {
         };
         var $loopState__temp5 = _show ? items.length ? name.$original + "-" + index : null : null;
 
-        var _genCompid = (0, _taroTt.genCompid)(__prefix + 'cczzzzzzzz' + index, true),
+        var _genCompid = (0, _taroTt.genCompid)(__prefix + 'cdzzzzzzzz' + index, true),
             _genCompid2 = _slicedToArray(_genCompid, 2),
             $prevCompid__19 = _genCompid2[0],
             $compid__19 = _genCompid2[1];

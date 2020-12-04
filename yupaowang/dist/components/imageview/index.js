@@ -91,11 +91,11 @@ var ImageView = function (_Taro$Component) {
           $original: (0, _taroTt.internal_get_original)(item)
         };
         var $loopState__temp2 = images ? index + 'a' : null;
-        var _$indexKey = "dizzz" + index;
+        var _$indexKey = "djzzz" + index;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return userUploadImg && userUploadImg(index);
         };
-        var _$indexKey2 = "djzzz" + index;
+        var _$indexKey2 = "eazzz" + index;
         _this2.anonymousFunc1Map[_$indexKey2] = function (e) {
           e.stopPropagation();
           userDelImg && userDelImg(index);

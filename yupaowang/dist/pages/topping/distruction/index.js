@@ -610,7 +610,6 @@ var Distruction = function (_Taro$Component) {
       };
       // 确认选择
       var handleClick = function handleClick() {
-        console.log(params);
         dispatch((0, _recruit_top2.default)(_extends({}, params)));
         _taroTt2.default.navigateBack({
           delta: 1
@@ -626,7 +625,7 @@ var Distruction = function (_Taro$Component) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
-        var _$indexKey = "iczzz" + __index2;
+        var _$indexKey = "ihzzz" + __index2;
         _this2.anonymousFunc2Map[_$indexKey] = function () {
           return handleSeach(v.$original);
         };
@@ -639,7 +638,7 @@ var Distruction = function (_Taro$Component) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
-        var _$indexKey2 = "idzzz" + __index4;
+        var _$indexKey2 = "iizzz" + __index4;
         _this2.anonymousFunc4Map[_$indexKey2] = function () {
           return handleSeach(v.$original);
         };
@@ -652,7 +651,7 @@ var Distruction = function (_Taro$Component) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
-        var _$indexKey3 = "iezzz" + __index5;
+        var _$indexKey3 = "ijzzz" + __index5;
         _this2.anonymousFunc5Map[_$indexKey3] = function () {
           handleAllAre(v.$original, 1);
         };
@@ -669,7 +668,7 @@ var Distruction = function (_Taro$Component) {
           val = {
             $original: (0, _taroTt.internal_get_original)(val)
           };
-          var _$indexKey4 = 'ifzzz' + __index7 + '-' + index;
+          var _$indexKey4 = 'jazzz' + __index7 + '-' + index;
           _this2.anonymousFunc6Map[_$indexKey4] = function () {
             return handleAllAre(val.$original, 0);
           };

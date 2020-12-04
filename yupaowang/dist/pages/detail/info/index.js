@@ -608,7 +608,7 @@ var DetailInfoPage = function (_Taro$Component) {
             return false;
           }
         }
-        userRouteJump("/pages/topping/index?id=" + data.id);
+        userRouteJump("/pages/newtopping/recRang/index?defaultTopArea=" + data.area_id + "&job_id=" + data.id);
       };
       this.anonymousFunc0 = function () {
         return jobGetTel();
@@ -650,7 +650,7 @@ var DetailInfoPage = function (_Taro$Component) {
           $original: (0, _taroTt.internal_get_original)(v)
         };
         var $loopState__temp4 = data.view_images.length ? i + i : null;
-        var _$indexKey = "hhzzz" + i;
+        var _$indexKey = "iczzz" + i;
         _this2.anonymousFunc5Map[_$indexKey] = function () {
           return handleImage(v.$original);
         };

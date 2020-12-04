@@ -1064,11 +1064,12 @@ export function resumesTopAreasAction(): Promise<Inter.resumesTopAreas> {
 }
 
 // 找活置顶内容
-export function resumesTopConfigAction(): Promise<Inter.resumesTopConfig> {
+export function resumesTopConfigAction(data): Promise<Inter.resumesTopConfig> {
   return doRequestAction({
     url: api.resumesTopConfigUrl,
     method: 'POST',
     failToast: true,
+    data,
   })
 }
 
@@ -1295,5 +1296,13 @@ export function getNotRemind(): Promise<Inter.Result>{
   return doRequestAction({
     url: api.getNotRemind,
     method: 'GET'
+  })
+}
+
+// 获取热门城市
+export function hotAreas(): Promise<Inter.hotAreasType> {
+  return doRequestAction({
+    url: api.hotAreas,
+    method: 'POST',
   })
 }

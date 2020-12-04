@@ -49,15 +49,15 @@ var _index3 = __webpack_require__(/*! ../../../config/index */ "./src/config/ind
 
 var _lists = __webpack_require__(/*! ../../../config/pages/lists */ "./src/config/pages/lists.ts");
 
-__webpack_require__(/*! ./index.scss */ "./src/pages/recruit/lists/index.scss");
-
 var _index4 = __webpack_require__(/*! ../../../utils/msg/index */ "./src/utils/msg/index.ts");
 
 var _index5 = _interopRequireDefault(_index4);
 
-var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/redux/index.js");
+var _index6 = __webpack_require__(/*! ../../../hooks/init_job_view/index */ "./src/hooks/init_job_view/index.ts");
 
-var _publishWay = __webpack_require__(/*! ../../../actions/publishWay */ "./src/actions/publishWay.ts");
+var _index7 = _interopRequireDefault(_index6);
+
+__webpack_require__(/*! ./index.scss */ "./src/pages/recruit/lists/index.scss");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -111,15 +111,13 @@ var Recruit = function (_Taro$Component) {
           _genCompid6 = _slicedToArray(_genCompid5, 2),
           $prevCompid__22 = _genCompid6[0],
           $compid__22 = _genCompid6[1];
+      // 发布招工跳转不同模式（急速或者快速）
 
-      var login = (0, _redux.useSelector)(function (state) {
-        return state.User['login'];
-      });
-      var dispatch = (0, _redux.useDispatch)();
-      var publishWay = (0, _redux.useSelector)(function (state) {
-        return state.publishWay;
-      });
+
+      var _useJobView = (0, _index7.default)(),
+          initJobView = _useJobView.initJobView;
       // 输入关键词 没搜索 备份
+
 
       var _useState = (0, _taroTt.useState)(''),
           _useState2 = _slicedToArray(_useState, 2),
@@ -267,54 +265,6 @@ var Recruit = function (_Taro$Component) {
       var pullDownAction = function pullDownAction() {
         setRefresh(true);
         setSearchData(_extends({}, searchData, { page: 1 }));
-      };
-      //是否为极速发布与快速发布请求,快速发布与极速发布跳转
-      var initJobView = function initJobView() {
-        if (login) {
-          var flag = JSON.parse(JSON.stringify(publishWay));
-          if (!flag.loginAfter) {
-            (0, _index.publishWayRea)().then(function (res) {
-              var publishMethod = res.add_job_type;
-              dispatch((0, _publishWay.setPublishWay)(_extends({}, publishWay, { loginWay: publishMethod, loginAfter: true })));
-              var url = publishMethod == "fast_add_job" ? _index3.PUBLISHRECRUIT : _index3.PUBLISHFAST;
-              _taroTt2.default.navigateTo({
-                url: url
-              });
-            }).catch(function () {
-              _taroTt2.default.navigateTo({
-                url: _index3.PUBLISHFAST
-              });
-            });
-          } else {
-            var way = publishWay.loginWay;
-            var url = way == "fast_add_job" ? _index3.PUBLISHRECRUIT : _index3.PUBLISHFAST;
-            _taroTt2.default.navigateTo({
-              url: url
-            });
-          }
-        } else {
-          var _flag = JSON.parse(JSON.stringify(publishWay));
-          if (!_flag.loginBefore) {
-            (0, _index.publishWayRea)().then(function (res) {
-              var publishMethod = res.add_job_type;
-              dispatch((0, _publishWay.setPublishWay)(_extends({}, publishWay, { logoutWay: publishMethod, loginBefore: true })));
-              var url = publishMethod == "fast_add_job" ? _index3.PUBLISHRECRUIT : _index3.PUBLISHFAST;
-              _taroTt2.default.navigateTo({
-                url: url
-              });
-            }).catch(function () {
-              _taroTt2.default.navigateTo({
-                url: _index3.PUBLISHFAST
-              });
-            });
-          } else {
-            var _way = publishWay.logoutWay;
-            var _url = _way == "fast_add_job" ? _index3.PUBLISHRECRUIT : _index3.PUBLISHFAST;
-            _taroTt2.default.navigateTo({
-              url: _url
-            });
-          }
-        }
       };
       // * 发布招工
       var userPublishRecruit = function userPublishRecruit() {

@@ -1,6 +1,6 @@
 import { View, Button, Image, Text  } from '@tarojs/components';
 import Taro from '@tarojs/taro'
-import { ALIYUNCDNMINIIMG } from '../../config/index'
+import { IMGCDNURL } from '../../config/index'
 import './index.scss'
 
 
@@ -41,7 +41,7 @@ export default function PromptBox ({
   showClose = false,
   showTitle = true,
   showIcon = false,
-  iconUrl = `${ALIYUNCDNMINIIMG}yc/findwork-publish-success.png`,
+  iconUrl = `${IMGCDNURL}yc/findwork-publish-success.png`,
   cancelText ='取消',
   cancelColor = '#000000',
   confirmColor = '#576B95',
@@ -49,7 +49,7 @@ export default function PromptBox ({
   titleText = '温馨提示',
   showContent = true,
   content = [{des:'',color:'',text:[{text:'',color:''}]}],
-  closeIcon = `${ALIYUNCDNMINIIMG}mini-close-icon.png`,
+  closeIcon = `${IMGCDNURL}mini-close-icon.png`,
   cancel,
   confirm
 }: PromptBoxProps){

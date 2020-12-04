@@ -225,7 +225,7 @@ var System = function (_Taro$Component) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
-        var _$indexKey = "hgzzz" + __index0;
+        var _$indexKey = "ibzzz" + __index0;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return userRouteJump(item.$original.type);
         };

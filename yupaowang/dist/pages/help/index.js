@@ -218,12 +218,12 @@ var Help = function (_Taro$Component) {
           $original: (0, _taroTt.internal_get_original)(item)
         };
         var $loopState__temp2 = { value: 'help', color: '#09f', size: '15' };
-        var _$indexKey = "hbzzz" + __index2;
+        var _$indexKey = "hgzzz" + __index2;
         _this2.anonymousFunc2Map[_$indexKey] = function () {
           handleShow(item.$original.id);
         };
 
-        var _genCompid = (0, _taroTt.genCompid)(__prefix + "hczzzzzzzz" + __index2, true),
+        var _genCompid = (0, _taroTt.genCompid)(__prefix + "hhzzzzzzzz" + __index2, true),
             _genCompid2 = _slicedToArray(_genCompid, 2),
             $prevCompid__57 = _genCompid2[0],
             $compid__57 = _genCompid2[1];
@@ -235,7 +235,7 @@ var Help = function (_Taro$Component) {
           "title": item.$original.question
         }, $compid__57, $prevCompid__57);
 
-        var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "hdzzzzzzzz" + __index2, true),
+        var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "hizzzzzzzz" + __index2, true),
             _genCompid4 = _slicedToArray(_genCompid3, 2),
             $prevCompid__58 = _genCompid4[0],
             $compid__58 = _genCompid4[1];

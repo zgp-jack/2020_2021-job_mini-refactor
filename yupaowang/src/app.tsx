@@ -61,7 +61,12 @@ class App extends Component {
       'pages/recruit/jisu_issue/index',//极速发布招工
       'pages/recruit/fast_issue/issue/index',
       'pages/recruit/fast_issue/code/index',
-      'pages/recruit/fast_issue/release/index'
+      'pages/recruit/fast_issue/release/index',
+      'pages/newtopping/recRang/index', //找活置顶
+      'pages/newtopping/recGion/index',//置顶选择城市
+      'pages/newtopping/resRang/index',//找活置顶
+      'pages/newtopping/resGion/index',//新找活置顶选择城市
+      'pages/marketing_page/index',//用户首次发布招工成功后的营销页
     ],
     subPackages: [
       {

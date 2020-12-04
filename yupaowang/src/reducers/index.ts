@@ -22,6 +22,7 @@ import resumeData from './resume_data';
 import resumeList from './resume_list';
 import recruitTop from './recruit_top'
 import publishWay from './publishWay'
+import resumeTop from './resume_top';
 
 //合并reducer
 export default combineReducers({
@@ -43,5 +44,6 @@ export default combineReducers({
   resumeData,
   resumeList,
   recruitTop,
-  publishWay
+  publishWay,
+  resumeTop
 })

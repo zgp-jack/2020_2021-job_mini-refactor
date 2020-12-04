@@ -82,8 +82,6 @@ var _classnames = __webpack_require__(/*! classnames */ "./node_modules/classnam
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
-__webpack_require__(/*! ./index.scss */ "./src/pages/published/recruit/index.scss");
-
 var _index2 = __webpack_require__(/*! ../../../config/index */ "./src/config/index.ts");
 
 var _index3 = __webpack_require__(/*! ../../../utils/msg/index */ "./src/utils/msg/index.ts");
@@ -93,6 +91,8 @@ var _index4 = _interopRequireDefault(_index3);
 var _index5 = __webpack_require__(/*! ../../../hooks/init_job_view/index */ "./src/hooks/init_job_view/index.ts");
 
 var _index6 = _interopRequireDefault(_index5);
+
+__webpack_require__(/*! ./index.scss */ "./src/pages/published/recruit/index.scss");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -119,11 +119,15 @@ var PublishedRecruit = function (_Taro$Component) {
       backgroundTextStyle: "dark"
     };
 
-    _this.$usedState = ["loopArray111", "loopArray112", "$compid__88", "showModel", "HeaderList", "refresh", "lists", "IMGCDNURL", "more", "searchData"];
+    _this.$usedState = ["loopArray58", "loopArray59", "$compid__47", "showModel", "HeaderList", "refresh", "lists", "IMGCDNURL", "more", "searchData"];
     _this.anonymousFunc0Map = {};
     _this.anonymousFunc3Map = {};
     _this.anonymousFunc4Map = {};
     _this.anonymousFunc5Map = {};
+    _this.anonymousFunc6Map = {};
+    _this.anonymousFunc7Map = {};
+    _this.anonymousFunc8Map = {};
+    _this.anonymousFunc9Map = {};
     _this.customComponents = ["Auth", "PromptBox", "Nodata", "Tabbar"];
     return _this;
   }
@@ -145,10 +149,10 @@ var PublishedRecruit = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__88"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__47"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__88 = _genCompid2[0],
-          $compid__88 = _genCompid2[1];
+          $prevCompid__47 = _genCompid2[0],
+          $compid__47 = _genCompid2[1];
 
       var _useJobView = (0, _index6.default)(),
           initJobView = _useJobView.initJobView;
@@ -212,6 +216,13 @@ var PublishedRecruit = function (_Taro$Component) {
           _useState14 = _slicedToArray(_useState13, 2),
           showModel = _useState14[0],
           setShowModel = _useState14[1];
+      // 请求状态
+
+
+      var _useState15 = (0, _taroTt.useState)(true),
+          _useState16 = _slicedToArray(_useState15, 2),
+          reqStatus = _useState16[0],
+          setReqStatus = _useState16[1];
       // 获取用户信息
 
 
@@ -219,20 +230,28 @@ var PublishedRecruit = function (_Taro$Component) {
         return state.User;
       });
 
-      var _useState15 = (0, _taroTt.useState)({
+      var _useState17 = (0, _taroTt.useState)({
         mid: user.userId,
         uuid: user.uuid,
         page: 1,
         type: id
       }),
-          _useState16 = _slicedToArray(_useState15, 2),
-          searchData = _useState16[0],
-          setSearchData = _useState16[1];
-      // 根据type是否显示弹窗
-
+          _useState18 = _slicedToArray(_useState17, 2),
+          searchData = _useState18[0],
+          setSearchData = _useState18[1];
 
       (0, _taroTt.useEffect)(function () {
-        if (type == 'member_first') {} else if (type == 'day_first') {
+        if (type == 'member_first' && lists.length > 0 && reqStatus) {
+          var itemIndex = lists.findIndex(function (item) {
+            return item.id == jobId;
+          });
+          var item = lists[itemIndex];
+          userRouteJump("/pages/marketing_page/index?defaultTopArea=" + item.area_id + "&job_id=" + item.id);
+        }
+      }, [lists]);
+      // 根据type是否显示弹窗
+      (0, _taroTt.useEffect)(function () {
+        if (type == 'day_first') {
           // 发布成功提示框
           var promptData = {
             showClose: true,
@@ -243,6 +262,7 @@ var PublishedRecruit = function (_Taro$Component) {
             content: [{ des: text }]
           };
           setPrompt(promptData);
+          setShowModel(true);
         } else if (type == 'day_last') {
           // 发布成功提示框
           getFreeConfig();
@@ -259,44 +279,6 @@ var PublishedRecruit = function (_Taro$Component) {
       (0, _taroTt.useDidShow)(function () {
         setSearchData(_extends({}, searchData, { page: 1 }));
       });
-      // 处理发布招工请求返回值中data提示框文字显示内容
-      var handleText = function handleText(text, rules) {
-        var texts = [];
-        for (var i = 0; i < rules.length; i++) {
-          if (i === 0) {
-            texts.push({ text: text.substring(i, rules[i].start), color: "#000000" });
-          } else {
-            texts.push({ text: text.substring(rules[i - 1].start + rules[i - 1].length, rules[i].start), color: "#000000" });
-          }
-          texts.push({
-            text: text.substring(rules[i].start, rules[i].start + rules[i].length),
-            color: rules[i].value
-          });
-          if (i === rules.length - 1) {
-            texts.push({ text: text.substring(rules[i].start + rules[i].length), color: "#000000" });
-          }
-        }
-        var promptData = {
-          showClose: true,
-          showTitle: true,
-          cancelText: '不了，谢谢',
-          confirmText: '去发布',
-          titleText: '提示',
-          content: [{ text: texts }]
-        };
-        setPrompt(promptData);
-        setShowModel(true);
-      };
-      // 获取后台配置的免费发布招工条数配置信息
-      var getFreeConfig = function getFreeConfig() {
-        (0, _index.getFreeIssueConfig)().then(function (res) {
-          if (res.errcode == "ok") {
-            if (res.data.type == "paid_issue") {
-              handleText(res.data.tips.text, res.data.tips.rules);
-            }
-          } else if (res.errcode == "fail") {}
-        });
-      };
       // 加载数据类别
       var getPublishedRecruitLists = function getPublishedRecruitLists() {
         if (!user.login) {
@@ -320,8 +302,10 @@ var PublishedRecruit = function (_Taro$Component) {
               _taroTt2.default.hideNavigationBarLoading();
             }
             setLoading(false);
+            setReqStatus(false);
           } else {
             (0, _index4.default)(res.errmsg);
+            setReqStatus(false);
           }
         }).catch(function () {
           if (refresh) {
@@ -338,7 +322,6 @@ var PublishedRecruit = function (_Taro$Component) {
         setSearchData(_extends({}, searchData, { type: key, page: 1 }));
       };
       (0, _taroTt.useEffect)(function () {
-        console.log(searchData);
         if (!user.login || loading) {
           return;
         }
@@ -454,7 +437,7 @@ var PublishedRecruit = function (_Taro$Component) {
           var showTime = now > parseInt(endtime) ? true : false; // 置顶是否过期 已过期
           if (showTime) {
             //如果置顶过期
-            userRouteJump("/pages/topping/index?id=" + item.id);
+            userRouteJump("/pages/newtopping/recRang/index?defaultTopArea=" + item.area_id + "&job_id=" + item.id);
             return false;
           }
           var params = {
@@ -465,8 +448,49 @@ var PublishedRecruit = function (_Taro$Component) {
             detailUserSetTopAction(res, index);
           });
         } else {
-          userRouteJump("/pages/topping/index?id=" + item.id);
+          userRouteJump("/pages/newtopping/recRang/index?defaultTopArea=" + item.area_id + "&job_id=" + item.id);
         }
+      };
+      // *提示框处理
+      // 处理发布招工请求返回值中data提示框文字显示内容
+      var handleText = function handleText(text, rules) {
+        var texts = [];
+        for (var i = 0; i < rules.length; i++) {
+          if (i === 0) {
+            texts.push({ text: text.substring(i, rules[i].start), color: "#000000" });
+          } else {
+            texts.push({ text: text.substring(rules[i - 1].start + rules[i - 1].length, rules[i].start), color: "#000000" });
+          }
+          texts.push({
+            text: text.substring(rules[i].start, rules[i].start + rules[i].length),
+            color: rules[i].value
+          });
+          if (i === rules.length - 1) {
+            texts.push({ text: text.substring(rules[i].start + rules[i].length), color: "#000000" });
+          }
+        }
+        var promptData = {
+          showClose: true,
+          showTitle: true,
+          cancelText: '不了，谢谢',
+          confirmText: '去发布',
+          titleText: '提示',
+          content: [{ text: texts }]
+        };
+        setPrompt(promptData);
+        setShowModel(true);
+      };
+      // 获取后台配置的免费发布招工条数配置信息
+      var getFreeConfig = function getFreeConfig() {
+        (0, _index.getFreeIssueConfig)().then(function (res) {
+          if (res.errcode == "ok") {
+            if (res.data.type == "paid_issue") {
+              handleText(res.data.tips.text, res.data.tips.rules);
+            }
+          } else if (res.errcode == "fail") {
+            (0, _index4.default)(res.errmsg);
+          }
+        });
       };
       // 用户当天第一免费发布弹窗的 暂不提醒 按钮请求
       var notRemindReq = function notRemindReq() {
@@ -474,14 +498,28 @@ var PublishedRecruit = function (_Taro$Component) {
       };
       // 当天免费的最后一条发布招工信息弹窗，点击 去发布 去发布招工
       var confirm = function confirm() {
-        if (type == 'day_first') {} else if (type == 'day_last') {
+        // 当天第一次免费发布
+        if (type == 'day_first') {
+          if (jobId) {
+            //根据jobId获取对应招工详细信息
+            var itemIndex = lists.findIndex(function (item) {
+              return item.id == jobId;
+            });
+            var item = lists[itemIndex];
+            userRouteJump("/pages/newtopping/recRang/index?defaultTopArea=" + item.area_id + "&job_id=" + item.id);
+          }
+          setShowModel(false);
+        } else if (type == 'day_last') {
+          // 当天最后一次免费发布
           initJobView();
+          setShowModel(false);
         }
       };
       // 当天免费的最后一条发布招工信息弹窗，点击 不了谢谢 关闭弹窗
       var cancel = function cancel() {
         if (type == 'day_first') {
           notRemindReq();
+          setShowModel(false);
         } else if (type == 'day_last') {
           setShowModel(false);
         }
@@ -492,11 +530,11 @@ var PublishedRecruit = function (_Taro$Component) {
       this.anonymousFunc2 = function () {
         return getNextPageData();
       };
-      var loopArray111 = _config2.default.map(function (item, __index0) {
+      var loopArray58 = _config2.default.map(function (item, __index0) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
-        var _$indexKey = "bajzz" + __index0;
+        var _$indexKey = "fizzz" + __index0;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return userChangePublishedItem(item.$original.id);
         };
@@ -510,26 +548,46 @@ var PublishedRecruit = function (_Taro$Component) {
           $original: item.$original
         };
       });
-      var loopArray112 = lists.map(function (item, index) {
+      var loopArray59 = lists.map(function (item, index) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
-        var _$indexKey2 = "bbazz" + index;
+        var _$indexKey2 = "fjzzz" + index;
         _this2.anonymousFunc3Map[_$indexKey2] = function () {
           return userRouteJump("/pages/detail/info/index?id=" + item.$original.id);
         };
-        var _$indexKey3 = "bbbzz" + index;
+        var _$indexKey3 = "gazzz" + index;
         _this2.anonymousFunc4Map[_$indexKey3] = function () {
-          return userRouteJump("/pages/recruit/jisu_issue/index?id=" + item.$original.id);
+          return userRouteJump("/pages/newtopping/recRang/index?defaultTopArea=" + item.$original.area_id + "&job_id=" + item.$original.id + "&subscribe=1");
         };
-        var _$indexKey4 = "bbczz" + index;
+        var _$indexKey4 = "gbzzz" + index;
         _this2.anonymousFunc5Map[_$indexKey4] = function () {
+          return userRouteJump("/pages/recruit/publish/index?id=" + item.$original.id);
+        };
+        var _$indexKey5 = "gczzz" + index;
+        _this2.anonymousFunc6Map[_$indexKey5] = function () {
           return userStopRecruit(item.$original.id, index);
+        };
+        var _$indexKey6 = "gdzzz" + index;
+        _this2.anonymousFunc7Map[_$indexKey6] = function () {
+          return handlCancel(item.$original.id, index);
+        };
+        var _$indexKey7 = "gezzz" + index;
+        _this2.anonymousFunc8Map[_$indexKey7] = function () {
+          return handleTopping(item.$original, index);
+        };
+        var _$indexKey8 = "gfzzz" + index;
+        _this2.anonymousFunc9Map[_$indexKey8] = function () {
+          return userRouteJump("/pages/newtopping/recRang/index?job_id=" + item.$original.id);
         };
         return {
           _$indexKey2: _$indexKey2,
           _$indexKey3: _$indexKey3,
           _$indexKey4: _$indexKey4,
+          _$indexKey5: _$indexKey5,
+          _$indexKey6: _$indexKey6,
+          _$indexKey7: _$indexKey7,
+          _$indexKey8: _$indexKey8,
           $original: item.$original
         };
       });
@@ -542,11 +600,11 @@ var PublishedRecruit = function (_Taro$Component) {
         "content": prompt.content,
         "cancel": cancel,
         "confirm": confirm
-      }, $compid__88, $prevCompid__88);
+      }, $compid__47, $prevCompid__47);
       Object.assign(this.__state, {
-        loopArray111: loopArray111,
-        loopArray112: loopArray112,
-        $compid__88: $compid__88,
+        loopArray58: loopArray58,
+        loopArray59: loopArray59,
+        $compid__47: $compid__47,
         showModel: showModel,
         HeaderList: _config2.default,
         refresh: refresh,
@@ -619,12 +677,64 @@ var PublishedRecruit = function (_Taro$Component) {
 
       return this.anonymousFunc5Map[_$indexKey4] && (_anonymousFunc5Map = this.anonymousFunc5Map)[_$indexKey4].apply(_anonymousFunc5Map, e);
     }
+  }, {
+    key: 'anonymousFunc6',
+    value: function anonymousFunc6(_$indexKey5) {
+      var _anonymousFunc6Map;
+
+      ;
+
+      for (var _len5 = arguments.length, e = Array(_len5 > 1 ? _len5 - 1 : 0), _key5 = 1; _key5 < _len5; _key5++) {
+        e[_key5 - 1] = arguments[_key5];
+      }
+
+      return this.anonymousFunc6Map[_$indexKey5] && (_anonymousFunc6Map = this.anonymousFunc6Map)[_$indexKey5].apply(_anonymousFunc6Map, e);
+    }
+  }, {
+    key: 'anonymousFunc7',
+    value: function anonymousFunc7(_$indexKey6) {
+      var _anonymousFunc7Map;
+
+      ;
+
+      for (var _len6 = arguments.length, e = Array(_len6 > 1 ? _len6 - 1 : 0), _key6 = 1; _key6 < _len6; _key6++) {
+        e[_key6 - 1] = arguments[_key6];
+      }
+
+      return this.anonymousFunc7Map[_$indexKey6] && (_anonymousFunc7Map = this.anonymousFunc7Map)[_$indexKey6].apply(_anonymousFunc7Map, e);
+    }
+  }, {
+    key: 'anonymousFunc8',
+    value: function anonymousFunc8(_$indexKey7) {
+      var _anonymousFunc8Map;
+
+      ;
+
+      for (var _len7 = arguments.length, e = Array(_len7 > 1 ? _len7 - 1 : 0), _key7 = 1; _key7 < _len7; _key7++) {
+        e[_key7 - 1] = arguments[_key7];
+      }
+
+      return this.anonymousFunc8Map[_$indexKey7] && (_anonymousFunc8Map = this.anonymousFunc8Map)[_$indexKey7].apply(_anonymousFunc8Map, e);
+    }
+  }, {
+    key: 'anonymousFunc9',
+    value: function anonymousFunc9(_$indexKey8) {
+      var _anonymousFunc9Map;
+
+      ;
+
+      for (var _len8 = arguments.length, e = Array(_len8 > 1 ? _len8 - 1 : 0), _key8 = 1; _key8 < _len8; _key8++) {
+        e[_key8 - 1] = arguments[_key8];
+      }
+
+      return this.anonymousFunc9Map[_$indexKey8] && (_anonymousFunc9Map = this.anonymousFunc9Map)[_$indexKey8].apply(_anonymousFunc9Map, e);
+    }
   }]);
 
   return PublishedRecruit;
 }(_taroTt2.default.Component);
 
-PublishedRecruit.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5"];
+PublishedRecruit.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6", "anonymousFunc7", "anonymousFunc8", "anonymousFunc9"];
 PublishedRecruit.$$componentPath = "pages/published/recruit/index";
 PublishedRecruit.config = { navigationBarTitleText: '我的招工信息', navigationBarBackgroundColor: '#0099ff', navigationBarTextStyle: 'white', backgroundTextStyle: "dark" };
 exports.default = PublishedRecruit;

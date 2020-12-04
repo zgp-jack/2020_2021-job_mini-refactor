@@ -236,3 +236,6 @@ export const getBaiduTpOrderId: string = REQUESTURL + 'pay/baidu-order/'
 export const getFreeIssueConfig: string = REQUESTURL + 'fast-issue/issue-config/'
 // 发布招工第一次免费发布提示框  暂不提醒 请求
 export const getNotRemind: string = REQUESTURL + '/fast-issue/hide-tips/'
+// 获取热门城市
+export const hotAreas = REQUESTURL + 'resumes/hot-areas/';
+

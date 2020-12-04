@@ -468,7 +468,8 @@ export interface UserPublishedRecruitListDataItem {
   is_check: string,
   is_end: string,
   sort_time: string,
-  top: number,
+  top: string,
+  area_id:number,
   top_data: {
     end_time: string,
     information_id: string,
@@ -880,8 +881,14 @@ export interface jobTopConfigData {
   top_rules:[],
   max_top_days:number,
   max_city:number,
-  days: string[],
-  max_province:number
+  days: number[],
+  max_province:number,
+  default_days:number,
+  city_integral:string,
+  country_integral:string,
+  province_integral:string,
+  time:number,
+  max_number_tips:string
 }
 
 
@@ -1153,8 +1160,28 @@ export interface resume_topObj {
   is_top_text: string,
   is_top_to_text: string,
   top_tips_string: string,
+  max_number?:string,
+  max_price?:string,
+  end_time?:string,
+  start_time?:string,
   start_time_str?:string,
   end_time_str?:string,
+  top_citys_str?: resume_topObj_arrStr[],
+  top_provinces_str?: resume_topObj_arrStr[],
+  top_citys:string,
+  top_provinces:string,
+  is_show_tips?:number,
+  is_country?:string,
+  first_province_num?:string,
+  first_city_num?:string,
+}
+export interface resume_topObj_arrStr {
+  id: string,
+  letter?: string,
+  name: string,
+  pid: string,
+  is_hot?: string,
+  click?:boolean
 }
 // 项目
 export interface resProjectArr {
@@ -1398,9 +1425,13 @@ export interface resumesTopConfigData{
   province_integral:number,
   max_province:number,
   max_city:number,
+  time:number,
   special_ids:[],
-  days: string[]
+  days: number[]
   country_integral:number,
+  city_integral:number,
+  max_number_tips:string,
+  default_days?:number,
 }
 
 // 用户账号/验证码登录
@@ -1636,4 +1667,16 @@ export interface freeData {
 }
 export interface freeIssueData extends Result {
   data: freeData
+}
+// 热门城市
+export interface hotAreasType extends Result{
+  data: hotAreasTypeData[],
+}
+export interface hotAreasTypeData {
+  id: string,
+  is_hot: string,
+  name: string,
+  pid: string,
+  click?:boolean,
+  allName?:string,
 }

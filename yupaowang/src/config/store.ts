@@ -24,3 +24,5 @@ export const UserLocation: string = 'userLocation'
 export const Introinfo: string = 'introinfo'
 // 用户发布填写发布信息
 export const PublishData: string = 'publishData'
+// 搜索历史
+export const HistoryInfo: string = 'historyInfo'

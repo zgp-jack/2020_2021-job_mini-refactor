@@ -10,14 +10,12 @@ import { RecruitListItem } from '../../../utils/request/index.d'
 import { UserLocationPromiss, ChildItems, AREACHINA, getCityInfo } from '../../../models/area'
 import { UserListChooseCity, UserLocationCity } from '../../../config/store'
 import { userAuthLoction } from '../../../utils/helper'
-import { PUBLISHRECRUIT, PUBLISHFAST, SCROLLVIEWSETTOP } from '../../../config'
+import { SCROLLVIEWSETTOP } from '../../../config'
 import { AreaPickerKey, ClassifyPickerKey, FilterPickerKey } from '../../../config/pages/lists'
-import './index.scss'
 import Msg from '../../../utils/msg'
-import { useSelector, useDispatch } from '@tarojs/redux'
-import { setPublishWay } from '../../../actions/publishWay'
-import { publishWayRea } from '../../../utils/request/index'
-import { publishFindWork } from '../../../components/tabbar/index'
+import useJobView from '../../../hooks/init_job_view/index'
+import './index.scss'
+
 
 export interface conditionType {
   id: string,
@@ -25,9 +23,8 @@ export interface conditionType {
 }
 
 export default function Recruit(){
-  const login: boolean = useSelector<any, boolean>(state => state.User['login'])
-  const dispatch = useDispatch()
-  const publishWay = useSelector<any, publishFindWork>(state => state.publishWay)
+  // 发布招工跳转不同模式（急速或者快速）
+  const { initJobView } = useJobView()
   // 输入关键词 没搜索 备份
   const [remark, setRemark] = useState<string>('')
   // 是否还有下一页
@@ -138,54 +135,6 @@ export default function Recruit(){
   const pullDownAction = ()=> {
     setRefresh(true) 
     setSearchData({ ...searchData, page: 1 })
-  }
-  //是否为极速发布与快速发布请求,快速发布与极速发布跳转
-  const initJobView = () => {
-    if (login) {
-      let flag = JSON.parse(JSON.stringify(publishWay))
-      if (!flag.loginAfter) {
-        publishWayRea().then(res => {
-          let publishMethod = res.add_job_type
-          dispatch(setPublishWay({ ...publishWay, loginWay: publishMethod, loginAfter: true }))
-          let url = publishMethod == "fast_add_job" ? PUBLISHRECRUIT : PUBLISHFAST
-          Taro.navigateTo({
-            url: url
-          })
-        }).catch(() => {
-          Taro.navigateTo({
-            url: PUBLISHFAST
-          })
-        })
-      } else {
-        let way = publishWay.loginWay
-        let url = way == "fast_add_job" ? PUBLISHRECRUIT : PUBLISHFAST
-        Taro.navigateTo({
-          url: url
-        })
-      }
-    } else {
-      let flag = JSON.parse(JSON.stringify(publishWay))
-      if (!flag.loginBefore) {
-        publishWayRea().then(res => {
-          let publishMethod = res.add_job_type
-          dispatch(setPublishWay({ ...publishWay, logoutWay: publishMethod, loginBefore: true }))
-          let url = publishMethod == "fast_add_job" ? PUBLISHRECRUIT : PUBLISHFAST
-          Taro.navigateTo({
-            url: url
-          })
-        }).catch(() => {
-          Taro.navigateTo({
-            url: PUBLISHFAST
-          })
-        })
-      } else {
-        let way = publishWay.logoutWay
-        let url = way == "fast_add_job" ? PUBLISHRECRUIT : PUBLISHFAST
-        Taro.navigateTo({
-          url: url
-        })
-      }
-    }
   }
   // * 发布招工
   const userPublishRecruit = ()=> {

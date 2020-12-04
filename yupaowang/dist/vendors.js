@@ -12386,6 +12386,49 @@ function setProjectList(data) {
 
 /***/ }),
 
+/***/ "./src/actions/resume_top.ts":
+/*!***********************************!*\
+  !*** ./src/actions/resume_top.ts ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.setResumeTop = setResumeTop;
+exports.setClickResumeTop = setClickResumeTop;
+exports.setRecClickResumeTop = setRecClickResumeTop;
+
+var _resume_top = __webpack_require__(/*! ../constants/resume_top */ "./src/constants/resume_top.ts");
+
+// 找活存的置顶信息
+function setResumeTop(data) {
+  return {
+    type: _resume_top.SETRESUMETOP,
+    data: data
+  };
+}
+// 找活置顶页面城市
+function setClickResumeTop(data) {
+  return {
+    type: _resume_top.SETCLICKRESUMETOP,
+    data: data
+  };
+}
+// 招工置顶页面
+function setRecClickResumeTop(data) {
+  return {
+    type: _resume_top.SETRESCLICKRESUMETOP,
+    data: data
+  };
+}
+
+/***/ }),
+
 /***/ "./src/actions/tabbar.ts":
 /*!*******************************!*\
   !*** ./src/actions/tabbar.ts ***!
@@ -12836,6 +12879,8 @@ var UserLocation = exports.UserLocation = 'userLocation';
 var Introinfo = exports.Introinfo = 'introinfo';
 // 用户发布填写发布信息
 var PublishData = exports.PublishData = 'publishData';
+// 搜索历史
+var HistoryInfo = exports.HistoryInfo = 'historyInfo';
 
 /***/ }),
 
@@ -13059,6 +13104,28 @@ Object.defineProperty(exports, "__esModule", {
 var SETSUBPACKPROJECT = exports.SETSUBPACKPROJECT = 'setSubpackageProject';
 // 技能证书
 var SETSUBPACKCERTIFICATE = exports.SETSUBPACKCERTIFICATE = 'setSubpackCertificate';
+
+/***/ }),
+
+/***/ "./src/constants/resume_top.ts":
+/*!*************************************!*\
+  !*** ./src/constants/resume_top.ts ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+// 找活存的置顶信息
+var SETRESUMETOP = exports.SETRESUMETOP = 'resume_top';
+// 置顶页面城市
+var SETCLICKRESUMETOP = exports.SETCLICKRESUMETOP = 'click_resume_top';
+//找活置顶页面城市
+var SETRESCLICKRESUMETOP = exports.SETRESCLICKRESUMETOP = 'rec_click_resume_top';
 
 /***/ }),
 
@@ -13563,6 +13630,8 @@ var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/re
 
 var _recruit = __webpack_require__(/*! ../../actions/recruit */ "./src/actions/recruit.ts");
 
+var _resume_top = __webpack_require__(/*! ../../actions/resume_top */ "./src/actions/resume_top.ts");
+
 var _index2 = __webpack_require__(/*! ../../utils/msg/index */ "./src/utils/msg/index.ts");
 
 var _index3 = _interopRequireDefault(_index2);
@@ -13692,6 +13761,20 @@ function useResume() {
       _useState32 = _slicedToArray(_useState31, 2),
       certificatesNum = _useState32[0],
       setCertificatesNum = _useState32[1];
+  // 默认城市
+
+
+  var _useState33 = (0, _taroTt.useState)(0),
+      _useState34 = _slicedToArray(_useState33, 2),
+      defaultTopArea = _useState34[0],
+      setDefaultTopArea = _useState34[1];
+  // 置顶城市
+
+
+  var _useState35 = (0, _taroTt.useState)(''),
+      _useState36 = _slicedToArray(_useState35, 2),
+      topCity = _useState36[0],
+      setTopCity = _useState36[1];
   // 项目列表
 
 
@@ -13805,6 +13888,17 @@ function useResume() {
         setSelectData(res.data.status);
         // 工作状态用来选择是正在找工作还是已找到工作
         setCheck(res.data.info.check);
+        // 没有置顶的时候默认置顶城市
+        setDefaultTopArea(res.data.default_top_area);
+        // 置顶中的置顶城市
+        var topCityArr = [].concat(_toConsumableArray(res.data.resume_top.top_provinces_str || []), _toConsumableArray(res.data.resume_top.top_citys_str || []));
+        var topCityStr = [];
+        if (topCityArr.length) {
+          for (var _i3 = 0; _i3 < topCityArr.length; _i3++) {
+            topCityStr.push(topCityArr[_i3].name);
+          }
+        }
+        setTopCity(topCityStr.length ? topCityStr.join(' ') : '');
         //人员信息
         var introduces = _extends({}, _data.INTRODUCERS_DATA);
         introduces = _extends({}, introduces, res.data.introduces);
@@ -13816,6 +13910,7 @@ function useResume() {
         setCertificates([].concat(_toConsumableArray(res.data.certificates)));
         setResume_top(_extends({}, res.data.resume_top));
         // 存redux
+        dispatch((0, _resume_top.setResumeTop)(_extends({}, res.data.resume_top)));
         dispatch((0, _resume_data.setUseResume)({
           info: res.data.info,
           introducesData: res.data.introduces,
@@ -13846,8 +13941,8 @@ function useResume() {
       for (var i = 0; i < selectData.length; i++) {
         selectdataList.push(selectData[i].name);
       }
-      for (var _i3 = 0; _i3 < selectData.length; _i3++) {
-        selectdataId.push(selectData[_i3].id);
+      for (var _i4 = 0; _i4 < selectData.length; _i4++) {
+        selectdataId.push(selectData[_i4].id);
       }
       _taroTt2.default.showActionSheet({
         itemList: selectdataList,
@@ -13905,7 +14000,9 @@ function useResume() {
     isModifySkill: isModifySkill,
     isModifyProject: isModifyProject,
     projectNum: projectNum,
-    certificatesNum: certificatesNum
+    certificatesNum: certificatesNum,
+    defaultTopArea: defaultTopArea,
+    topCity: topCity
   };
 }
 
@@ -14016,6 +14113,7 @@ exports.getLongAreaAdname = getLongAreaAdname;
 exports.getCityInfoById = getCityInfoById;
 exports.getCityAreaPicker = getCityAreaPicker;
 exports.getAreaCurrentArr = getAreaCurrentArr;
+exports.seachAreasList = seachAreasList;
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
@@ -16321,6 +16419,20 @@ function getAreaCurrentArr(pid, cid) {
   });
   return { pi: pi, ci: ci };
 }
+// 搜索返回城市列表
+function seachAreasList(title) {
+  var data = [].concat(AREAS);
+  var arr = [];
+  for (var i = 0; i < data.length; i++) {
+    for (var j = 0; j < data[i].children.length; j++) {
+      if (data[i].name.indexOf(title) != -1 || data[i].children[j].name.indexOf(title) != -1) {
+        data[i].children[j].allName = data[i].name + '-' + data[i].children[j].name;
+        arr.push(data[i].children[j]);
+      }
+    }
+  }
+  return arr;
+}
 exports.default = AREAS;
 
 /***/ }),
@@ -16436,7 +16548,21 @@ var RESUME_TOP_DATA = exports.RESUME_TOP_DATA = {
   is_top: 0,
   is_top_text: '',
   is_top_to_text: '',
-  top_tips_string: ''
+  top_tips_string: '',
+  max_number: '',
+  max_price: '',
+  end_time: '',
+  start_time: '',
+  start_time_str: '',
+  end_time_str: '',
+  top_citys_str: [],
+  top_provinces_str: [],
+  top_citys: '',
+  top_provinces: '',
+  is_show_tips: 0,
+  is_country: '',
+  first_province_num: '',
+  first_city_num: ''
 };
 
 /***/ }),
@@ -16454,7 +16580,7 @@ var RESUME_TOP_DATA = exports.RESUME_TOP_DATA = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.getNotRemind = exports.getFreeIssueConfig = exports.getBaiduTpOrderId = exports.publishModel = exports.fastPublisView = exports.FastRcruitUrl = exports.memberTurntable = exports.turntableVideoEnd = exports.turntableDraw = exports.turntableIndex = exports.getRankRulesList = exports.checkCodeUrl = exports.getResumeAddInfoConfig = exports.realnameQueryUrl = exports.userCheckDouyinRecharge = exports.userDouyinRecharge = exports.userTelCodeLogin = exports.userAccountUrl = undefined;
+exports.hotAreas = exports.getNotRemind = exports.getFreeIssueConfig = exports.getBaiduTpOrderId = exports.publishModel = exports.fastPublisView = exports.FastRcruitUrl = exports.memberTurntable = exports.turntableVideoEnd = exports.turntableDraw = exports.turntableIndex = exports.getRankRulesList = exports.checkCodeUrl = exports.getResumeAddInfoConfig = exports.realnameQueryUrl = exports.userCheckDouyinRecharge = exports.userDouyinRecharge = exports.userTelCodeLogin = exports.userAccountUrl = undefined;
 exports.leavingMessageUrl = exports.resumesComplainUrl = exports.resumesUpdateTopResumeUrl = exports.resumesDoTopV2Url = exports.resumesTopConfigV2Url = exports.resumesEditImgUrl = exports.resumesChangeTopStatusUrl = exports.resumesDoTopUrl = exports.resumesTopConfigUrl = exports.resumesTopAreasUrl = exports.resumesDelProjectUrl = exports.resumesEditEndUrl = exports.resumesIntroduceUrl = exports.resumesGetDataUrl = exports.checkAdcodeUrl = exports.addResumeUrl = exports.resumesProjectUrl = exports.resumesCertificateUrl = exports.delCertificateUrl = exports.jobRecommendListUrl = exports.resumeListUrl = exports.resumeCollectUrl = exports.resumeSupportUrl = exports.resumesGetTelUrl = exports.recommendListUrl = exports.resumeDetailUrl = exports.jobUpdateTopStatusUrl = exports.jobChangeTopAreasUrl = exports.jobGetTopAreasUrl = exports.jobDoTopUrl = exports.jobTopHotAreasUrl = exports.jobTopConfigUrl = exports.jobEndStatusUrl = exports.jobGetTelUrl = exports.jobNoUserInfoUrl = exports.jobInfoUrl = exports.publishComplainUrl = exports.integralUseInfoUrl = exports.integralExpendListsUrl = exports.integralExpendConfigUrl = exports.integralSourceListsUrl = exports.integralSourceConfigUrl = exports.messagesTypeUrl = exports.userMessagesUrl = exports.resumesAddClickLog = exports.resumesSortUrl = exports.newsInfoUrl = exports.newsTypesUrl = exports.newListUrl = exports.helpUrl = exports.feedbackSubmissionUrl = exports.feedbackUrl = exports.requestActionUrl = exports.ResumeCancelCollection = exports.recruitCancelCollection = exports.getCollectionResumeList = exports.getCollectionRecruitList = exports.userUpdateUserInfo = exports.userChangeUsedStatus = exports.userGetPublishedUsedList = exports.userChangeRecruitStatus = exports.userGetPublishedRecruitList = exports.updataPassword = exports.userChangePhone = exports.userUpdateName = exports.userChangeAvatar = exports.postUserAddInfo = exports.getIdcardAuthInfo = exports.postUserAuthInfo = exports.getUserAuthInfo = exports.getMemberMsgNumber = exports.getMemberInfo = exports.CheckMineAuthInfo = exports.CheckAuth = exports.GetUsedInfo = exports.GetUserLoginPhoneCode = exports.GetUserPhoneCode = exports.PublishUsedInfo = exports.GetUsedInfoModel = exports.GetRechargeOrder = exports.GetRechargeOpenid = exports.GetRechargeList = exports.GetUserInviteLink = exports.CheckAdcodeValid = exports.GetAllAreas = exports.FastIssueInfo = exports.FastPublisInfo = exports.PublishRecruitInfo = exports.GetPublisRecruitView = exports.GetIntegralList = exports.GetTabbarMsg = exports.GetListFilterData = exports.GetWechatNotice = exports.GetFleamarketlist = exports.GetResumelist = exports.GetRecruitlist = exports.GetAllListItem = exports.GetBannerNotice = exports.GetUserInfo = exports.GetUserSessionKey = undefined;
 
 var _index = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
@@ -16695,6 +16821,8 @@ var getBaiduTpOrderId = exports.getBaiduTpOrderId = _index.REQUESTURL + 'pay/bai
 var getFreeIssueConfig = exports.getFreeIssueConfig = _index.REQUESTURL + 'fast-issue/issue-config/';
 // 发布招工第一次免费发布提示框  暂不提醒 请求
 var getNotRemind = exports.getNotRemind = _index.REQUESTURL + '/fast-issue/hide-tips/';
+// 获取热门城市
+var hotAreas = exports.hotAreas = _index.REQUESTURL + 'resumes/hot-areas/';
 
 /***/ }),
 
@@ -16711,6 +16839,7 @@ var getNotRemind = exports.getNotRemind = _index.REQUESTURL + '/fast-issue/hide-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.getMyDate = exports.addZero = undefined;
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
@@ -16907,6 +17036,19 @@ function getUserShareMessage() {
     imageUrl: _index.IMGCDNURL + "minishare.png"
   };
 }
+var addZero = exports.addZero = function addZero(num) {
+  if (parseInt(num) < 10) {
+    num = '0' + num;
+  }
+  return num;
+};
+var getMyDate = exports.getMyDate = function getMyDate(str) {
+  var now = new Date(str),
+      y = now.getFullYear(),
+      m = now.getMonth() + 1,
+      d = now.getDate();
+  return y + "-" + (m < 10 ? "0" + m : m) + "-" + (d < 10 ? "0" + d : d) + " " + now.toTimeString().substr(0, 5);
+};
 
 /***/ }),
 
@@ -16951,15 +17093,20 @@ function ShowActionModal(data) {
       _data$confirmText = data.confirmText,
       confirmText = _data$confirmText === undefined ? '确定' : _data$confirmText,
       msg = data.msg,
-      _success = data.success;
+      _success = data.success,
+      _data$showCancel = data.showCancel,
+      showCancel = _data$showCancel === undefined ? false : _data$showCancel,
+      _data$confirmColor = data.confirmColor,
+      confirmColor = _data$confirmColor === undefined ? '' : _data$confirmColor;
 
   _taroTt2.default.showModal({
     title: title,
     content: typeof data === 'string' ? data : msg,
-    showCancel: false,
+    showCancel: showCancel,
     confirmText: confirmText,
+    confirmColor: '#108EEF',
     success: function success() {
-      _success && _success();
+      _success && _success(data);
     }
   });
 }
@@ -17141,6 +17288,7 @@ exports.publishWayRea = publishWayRea;
 exports.getBaiduTpOrderId = getBaiduTpOrderId;
 exports.getFreeIssueConfig = getFreeIssueConfig;
 exports.getNotRemind = getNotRemind;
+exports.hotAreas = hotAreas;
 
 var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
 
@@ -18079,11 +18227,12 @@ function resumesTopAreasAction() {
   });
 }
 // 找活置顶内容
-function resumesTopConfigAction() {
+function resumesTopConfigAction(data) {
   return doRequestAction({
     url: api.resumesTopConfigUrl,
     method: 'POST',
-    failToast: true
+    failToast: true,
+    data: data
   });
 }
 // 找活置顶
@@ -18288,6 +18437,13 @@ function getNotRemind() {
   return doRequestAction({
     url: api.getNotRemind,
     method: 'GET'
+  });
+}
+// 获取热门城市
+function hotAreas() {
+  return doRequestAction({
+    url: api.hotAreas,
+    method: 'POST'
   });
 }
 

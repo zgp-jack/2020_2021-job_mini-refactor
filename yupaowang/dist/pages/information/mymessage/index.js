@@ -131,7 +131,7 @@ var Mymessage = function (_Taro$Component) {
           $original: (0, _taroTt.internal_get_original)(item)
         };
         var $loopState__temp2 = index + index;
-        var _$indexKey = "hfzzz" + index;
+        var _$indexKey = "iazzz" + index;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return userRouteJump("/pages/information/system/index?type=" + item.$original.type);
         };

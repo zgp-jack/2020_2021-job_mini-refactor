@@ -9,13 +9,13 @@ import { User } from '../../../reducers/user'
 import Nodata from '../../../components/nodata'
 import Tabbar from '../../../components/tabbar'
 import Auth from '../../../components/auth'
-import './index.scss'
 import { IMGCDNURL, SERVERPHONE } from '../../../config'
 import PromptBox from '../../../components/prompt_box/index'
 import Msg from '../../../utils/msg'
 import { textData } from '../../../components/prompt_box/index'
 import { freeIssueRule } from '../../../utils/request/index.d'
 import useJobView from '../../../hooks/init_job_view/index'
+import './index.scss'
 
 export interface searchDataType {
   type: string,
@@ -29,7 +29,7 @@ export default function PublishedRecruit(){
   // 获取路由参数
   const router: RouterInfo = useRouter()
   // 发布招工id
-  const jobId: number = router.params.id
+  const jobId: string = router.params.id
   // 发布招工提示信息类型member_first:用户第一次发布day_first：用户当日第一次发布 
   // day_last：用户当日最后一条免费发布
   // ' '：用户未登录或不是上方任何一种情况，不弹窗
@@ -50,6 +50,8 @@ export default function PublishedRecruit(){
   const [prompt, setPrompt] = useState<any>({})
   // 是否展示提示框
   const [showModel, setShowModel] = useState<boolean>(false)
+  // 请求状态
+  const [reqStatus, setReqStatus] = useState<boolean>(true)
   // 获取用户信息
   const user = useSelector<any, User>(state => state.User)
   const [searchData, setSearchData] = useState<searchDataType>({
@@ -59,11 +61,16 @@ export default function PublishedRecruit(){
     type: id
   })
 
+  useEffect(() => {
+    if (type == 'member_first' && lists.length > 0 && reqStatus) {
+      let itemIndex: number = lists.findIndex(item => item.id == jobId)
+      let item = lists[itemIndex]
+      userRouteJump(`/pages/marketing_page/index?defaultTopArea=${item.area_id}&job_id=${item.id}`)
+    }
+  },[lists])
   // 根据type是否显示弹窗
   useEffect(() => {
-    if (type == 'member_first'){
-
-    } else if (type == 'day_first'){
+    if (type == 'day_first'){
       // 发布成功提示框
       const promptData = {
         showClose: true,
@@ -74,6 +81,7 @@ export default function PublishedRecruit(){
         content: [{ des: text}]
       }
       setPrompt(promptData)
+      setShowModel(true)
     } else if (type == 'day_last'){
       // 发布成功提示框
       getFreeConfig()
@@ -89,46 +97,6 @@ export default function PublishedRecruit(){
   useDidShow(()=>{
     setSearchData({ ...searchData, page: 1 })
   })
-  // 处理发布招工请求返回值中data提示框文字显示内容
-  const handleText = (text: string, rules: freeIssueRule[]) => {
-    let texts: textData[] = []
-    for (let i = 0; i < rules.length; i++) {
-      if (i === 0) {
-        texts.push({ text: text.substring(i, rules[i].start), color: "#000000" })
-      } else {
-        texts.push({ text: text.substring(rules[i - 1].start + rules[i - 1].length, rules[i].start), color: "#000000" })
-      }
-      texts.push({
-        text: text.substring(rules[i].start, rules[i].start + rules[i].length),
-        color: rules[i].value,
-      })
-      if (i === rules.length - 1) {
-        texts.push({ text: text.substring(rules[i].start + rules[i].length), color: "#000000" })
-      }
-    }
-    const promptData = {
-      showClose: true,
-      showTitle: true,
-      cancelText: '不了，谢谢',
-      confirmText: '去发布',
-      titleText: '提示',
-      content: [{ text: texts }]
-    }
-    setPrompt(promptData)
-    setShowModel(true)
-  }
-  // 获取后台配置的免费发布招工条数配置信息
-  const getFreeConfig = () => {
-    getFreeIssueConfig().then(res => {
-      if (res.errcode == "ok") {
-        if (res.data.type == "paid_issue") {
-          handleText(res.data.tips.text, res.data.tips.rules)
-        }
-      } else if (res.errcode == "fail") {
-        
-      }
-    })
-  }
   // 加载数据类别
   const getPublishedRecruitLists = () =>  {
     if (!user.login) return
@@ -151,8 +119,10 @@ export default function PublishedRecruit(){
           Taro.hideNavigationBarLoading()
         }
         setLoading(false)
+        setReqStatus(false)
       }else{
         Msg(res.errmsg)
+        setReqStatus(false)
       }
     })
     .catch(()=>{
@@ -172,7 +142,6 @@ export default function PublishedRecruit(){
   }
 
   useEffect(()=>{
-    console.log(searchData)
     if (!user.login || loading) return
     getPublishedRecruitLists()
   }, [searchData])
@@ -289,7 +258,7 @@ export default function PublishedRecruit(){
       let toping = data.is_top // 是否置顶状态
       let showTime = now > parseInt(endtime) ? true : false; // 置顶是否过期 已过期
       if (showTime) { //如果置顶过期
-        userRouteJump(`/pages/topping/index?id=${item.id}`)
+        userRouteJump(`/pages/newtopping/recRang/index?defaultTopArea=${item.area_id}&job_id=${item.id}`)
         return false
       }
       const params = {
@@ -300,30 +269,86 @@ export default function PublishedRecruit(){
         detailUserSetTopAction(res, index)
       })
     }else{
-      userRouteJump(`/pages/topping/index?id=${item.id}`)
+      userRouteJump(`/pages/newtopping/recRang/index?defaultTopArea=${item.area_id}&job_id=${item.id}`)
     }
     
   }
+
+  // *提示框处理
+  // 处理发布招工请求返回值中data提示框文字显示内容
+  const handleText = (text: string, rules: freeIssueRule[]) => {
+    let texts: textData[] = []
+    for (let i = 0; i < rules.length; i++) {
+      if (i === 0) {
+        texts.push({ text: text.substring(i, rules[i].start), color: "#000000" })
+      } else {
+        texts.push({ text: text.substring(rules[i - 1].start + rules[i - 1].length, rules[i].start), color: "#000000" })
+      }
+      texts.push({
+        text: text.substring(rules[i].start, rules[i].start + rules[i].length),
+        color: rules[i].value,
+      })
+      if (i === rules.length - 1) {
+        texts.push({ text: text.substring(rules[i].start + rules[i].length), color: "#000000" })
+      }
+    }
+    const promptData = {
+      showClose: true,
+      showTitle: true,
+      cancelText: '不了，谢谢',
+      confirmText: '去发布',
+      titleText: '提示',
+      content: [{ text: texts }]
+    }
+    setPrompt(promptData)
+    setShowModel(true)
+  }
+
+  // 获取后台配置的免费发布招工条数配置信息
+  const getFreeConfig = () => {
+    getFreeIssueConfig().then(res => {
+      if (res.errcode == "ok") {
+        if (res.data.type == "paid_issue") {
+          handleText(res.data.tips.text, res.data.tips.rules)
+        }
+      } else if (res.errcode == "fail") {
+        Msg(res.errmsg)
+      }
+    })
+  }
+
   // 用户当天第一免费发布弹窗的 暂不提醒 按钮请求
   const notRemindReq = () => {
     getNotRemind()
   }
+
   // 当天免费的最后一条发布招工信息弹窗，点击 去发布 去发布招工
   const confirm = () =>{
+    // 当天第一次免费发布
     if (type == 'day_first'){
-      
+      if (jobId) {//根据jobId获取对应招工详细信息
+        let itemIndex: number = lists.findIndex(item => item.id == jobId)
+        let item = lists[itemIndex]
+        userRouteJump(`/pages/newtopping/recRang/index?defaultTopArea=${item.area_id}&job_id=${item.id}`)
+      }
+      setShowModel(false)
     } else if (type == 'day_last'){
+      // 当天最后一次免费发布
       initJobView()
+      setShowModel(false)
     } 
   }
+
   // 当天免费的最后一条发布招工信息弹窗，点击 不了谢谢 关闭弹窗
   const cancel = () => {
     if (type == 'day_first') {
       notRemindReq()
+      setShowModel(false)
     } else if (type == 'day_last') {
       setShowModel(false)
     }
   }
+
   return (
     <Block>
       <Auth />
@@ -370,36 +395,46 @@ export default function PublishedRecruit(){
               <View className='user-published-content'>{ item.detail }</View>
               </View>
               <View className='user-published-footer'>
-                {item.is_check == '1' &&
-                <View className='published-ischeking'>
-                  <Image className='published-checking-img' src={ IMGCDNURL + 'published-info.png' } />
-                  提示：人工审核中，该信息仅自己可见。
-                </View>
+                {item.is_check == '1' && item.top == '1' &&
+                  <View className='published-ischeking-img-box'>
+                    <Image className='published-checking-img' src={ IMGCDNURL + 'published-info.png' } />
+                    提示：人工审核中，该信息仅自己可见。
+                  </View>
                 }
-                {item.is_check != '1' && <View className='user-published-footer-item' onClick={() => userRouteJump(`/pages/recruit/jisu_issue/index?id=${item.id}`)}>修改</View>}
+                {/* {item.is_check == '1' && !(item.top && item.top_data.is_top == '1')&& 
+                <View className='published-ischeking'>
+                  <View className='user-published-footer-item' onClick={() => userRouteJump(`/pages/newtopping/recRang/index?defaultTopArea=${item.area_id}&job_id=${item.id}`)}>预约置顶</View>
+                </View>
+                } */}
+                {(item.is_check == '2' || (item.is_check == '1' && item.top == '0' ) )&& item.is_end != '2' && item.is_check == '1' && (item.top && item.top_data.is_top == '1' ? '' :<View>
+                  <View className='published-ischeking-subscribe'>
+                    <View className='user-published-footer-item' onClick={() => userRouteJump(`/pages/newtopping/recRang/index?defaultTopArea=${item.area_id}&job_id=${item.id}&subscribe=1`)}>预约置顶</View>
+                  </View>
+                </View>)}
+                {item.is_check != '1' && <View className='user-published-footer-item' onClick={() => userRouteJump(`/pages/recruit/publish/index?id=${item.id}`)}>修改</View>}
                 {item.is_check == '2' &&
                 <Block >
                   <View className='user-published-footer-item' onClick={() => userStopRecruit(item.id, index)}>{item.is_end == '2'?'重新招工':'停止招工'}</View>
                 {/* // 置顶按钮 */}
-                {/* {item.is_end != '2' && 
+                {item.is_end != '2' && 
                   <View>
                       {item.top && item.top_data && item.top_data.is_top == '1' ?
                           <View className='user-published-footer-item' onClick={()=>handlCancel(item.id, index)}>取消置顶</View> :
                           <View className='user-published-footer-item' onClick={()=>handleTopping(item, index)}>我要置顶</View>
                       }
                   </View>
-                } */}
+                }
                   {/* <View className='user-published-footer-item' onClick={() => userRouteJump(`/pages/topping/index?id=${item.id}&type=1`)}>修改置顶</View> */}
                 </Block>
                 }
               </View>
               {/* // 置顶信息 */}
-              {/* {item.top && item.top_data && item.top_data.is_top == '1' &&
+              {item.top && item.top_data && item.top_data.is_top == '1' &&
                 <View className='published-top-box'>
-                <View className='published-top-time'>到期时间：2020年04月30日11:31:38</View>
-                <View className='published-top-cancel' onClick={() => userRouteJump(`/pages/topping/index?id=${item.id}&type=1`)}>修改置顶</View>
+                <View className='published-top-time'>到期时间：<Text className='published-top-time-color'>{item.top_data.time_str}</Text></View>
+                <View className='published-top-cancel' onClick={() => userRouteJump(`/pages/newtopping/recRang/index?job_id=${item.id}`)}>修改置顶</View>
               </View>
-              } */}
+              }
             </View>
           ))}
           {!more && searchData.page > 1 && <View className='showMore'>没有更多数据了</View>}
