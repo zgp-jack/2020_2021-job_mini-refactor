@@ -1,12 +1,12 @@
-import { WEIXINSERIES } from '../index'
+import { QQSERIES } from '../index'
 
 var miniConfig = {
   // * page-title-global
-  PAGETITLE:  '工地急招-',
+  PAGETITLE: '鱼泡网-',
   // ! 小程序token 
   TOKEN: 'jizhao',
   // ! 小程序公司体系
-  SERIES: WEIXINSERIES,
+  SERIES: QQSERIES,
   // * 小程序是否能被分享
   ISCANSHARE: true,
   // * 小程序广告unitid
@@ -37,7 +37,7 @@ var miniConfig = {
   REPLACEWEIXINTEXT: false,
   // ! 百度系小程序  上传图片 不能JSON解析数据
   ISPARSEUPLOADIMG: true,
-  
+
 }
 
 

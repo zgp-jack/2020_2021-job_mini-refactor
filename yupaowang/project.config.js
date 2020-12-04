@@ -2,7 +2,7 @@
  * @Author: jsxin
  * @Date: 2020-11-30 09:34:43
  * @LastEditors: jsxin
- * @LastEditTime: 2020-11-30 16:06:13
+ * @LastEditTime: 2020-12-04 10:37:02
  * @Description: 项目打包配置项 appid-project对应项 
  */
 // 小程序类别列表
@@ -34,9 +34,13 @@ const projects = {
     appid: '21569591',
     projectname: '鱼泡网',
     type: type_baidu
-  }
+  },
   // QQ类
-  
+  qq: {
+    appid: '1111223114',
+    projectname: '鱼泡网',
+    type: type_qq
+  }
 }
 
 module.exports = projects

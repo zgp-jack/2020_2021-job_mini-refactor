@@ -1759,7 +1759,7 @@ const AREAS: ParentItems[] = [
       {
         "id": "279",
         "pid": "21",
-        "name": "海南",
+        "name": "海南州",
         "ad_name": "海南藏族自治州"
       },
       {

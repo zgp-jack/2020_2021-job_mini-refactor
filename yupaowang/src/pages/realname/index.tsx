@@ -222,7 +222,7 @@ export default function RealName(){
           <Input
             className='publish-list-input'
             type='text'
-            placeholder='请选择详细地址'
+            placeholder='请输入详细地址'
             onInput={(e) => userEnterAddress(e)}
             value={ model.address }
           />

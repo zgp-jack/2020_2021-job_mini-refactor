@@ -12,7 +12,7 @@ export interface resumeDetailInfo {
   username: string,
   tel: string,
   hometown: string,
-  occupations: [],
+  occupations: string[],
   experience: string,
   prof_degree_str: string,
   type_str: string,

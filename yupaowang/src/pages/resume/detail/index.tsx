@@ -1,7 +1,7 @@
 import Taro, { Config, useState, useRouter, useShareAppMessage, useDidShow, useEffect } from '@tarojs/taro'
 import { View, Text, Image, Button } from '@tarojs/components'
 import { resumeDetailAction, recommendListAction, resumesGetTelAcrion, resumeSupportAction, resumeCollectAction, resumesComplainAction } from '../../../utils/request/index'
-import { IMGCDNURL, ISCANSHARE, FILTERWEIXINREG, REPLACEWEIXINTEXT } from '../../../config'
+import { IMGCDNURL, ISCANSHARE, FILTERWEIXINREG, REPLACEWEIXINTEXT, SERIES, BAIDUSERIES } from '../../../config'
 import Msg, { ShowActionModal, showModalTip } from '../../../utils/msg'
 import { DataType, ListType, Injected } from './index.d'
 // import CollectionRecruitList  from '../../../components/recommendList/index'
@@ -69,7 +69,7 @@ export default function ResumeDetail() {
   //   item:[]
   // })
   const [examine, setExamine] = useState<boolean>(true)
-  // 查看电话
+  // 是否查看过电话
   const [onoff, seOnoff] = useState<boolean>(false);
   // 手机号码
   const [phone,setPhone ] = useState<string>('')
@@ -100,11 +100,22 @@ export default function ResumeDetail() {
 
   const getDataList = ()=>{
     const params = {
+      userId: user ? user.userId : '',
       location:location,
       resume_uuid: uuid
     }
     resumeDetailAction(params).then(res=>{
       if(res.errcode === 'ok'){
+        // 如果是百度系小程序，则直接设置seo等相关信息
+        if (SERIES == BAIDUSERIES) {
+          let keywords = res.info.occupations[0]
+          let split_keywords: string = keywords.split('/').map(item => `找${item}工作`).join(',')
+          Taro.setPageInfo({
+            title: `${res.info.username}在${res.info.address}找${keywords}工作`,
+            description: `${res.info.introduce}, ${res.info.address}找${res.info.occupations}工作`  ,
+            keywords: `${split_keywords},鱼泡网,建筑招聘,建筑人才,工地招工,工人找活,施工队找活,工程信息,找工人,建筑工地`
+          })
+        }
         // 技能证书
         let mylists = [...res.certificates]
         let data: resumeDetailCertificatesRedux[] = [];

@@ -1,4 +1,4 @@
-// * 每个小程序单独配置  工地急招
+import { BAIDUSERIES } from '../index'
 
 var miniConfig = {
   // * page-title-global
@@ -6,7 +6,7 @@ var miniConfig = {
   // ! 小程序token 
   TOKEN: 'baidu',
   // ! 小程序公司体系
-  SERIES: 'baidu',
+  SERIES: BAIDUSERIES,
   // * 小程序是否能被分享
   ISCANSHARE: true,
   // * 小程序广告unitid

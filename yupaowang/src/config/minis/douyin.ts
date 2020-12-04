@@ -1,3 +1,5 @@
+import { ZIJIESERIES } from '../index'
+
 // * 每个小程序单独配置  工地急招
 var miniConfig = {
   // * page-title-global
@@ -5,7 +7,7 @@ var miniConfig = {
   // ! 小程序token 
   TOKEN: 'douyin',
   // ! 小程序公司体系
-  SERIES: 'zijie',
+  SERIES: ZIJIESERIES,
   // * 小程序是否能被分享
   ISCANSHARE: true,
   // * 小程序广告unitid

@@ -1,10 +1,19 @@
-import Taro, { Config } from '@tarojs/taro'
+import Taro, { Config, useDidShow } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
-import { SERVERPHONE } from '../../../config'
+import { SERVERPHONE, BAIDUSERIES, SERIES } from '../../../config'
 import './index.scss'
 
 
 export default function DetailInfoPage() {
+  useDidShow(()=>{
+    if(SERIES == BAIDUSERIES){
+      Taro.setPageInfo({
+        title: '鱼泡网,建筑招聘,建筑人才,工地招工,施工队找活,工程信息',
+        description: '鱼泡网每日发布建筑招聘、建筑人才、工地招工、工地招人、找施工队等工程信息，方便建筑工人找活、找项目，为建筑劳务公司寻找优秀的建筑工人、建筑人才、建筑班组、施工队。',
+        keywords: '鱼泡网,建筑招聘,建筑人才,工地招工,施工队找活,工程信息'
+      })
+    }
+  })
   return(
     <View className="anti-fraudbox">
       <View className='anti-fraud-item'>
