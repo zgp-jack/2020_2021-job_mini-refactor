@@ -65,7 +65,7 @@ var Mymessage = function (_Taro$Component) {
       navigationBarTitleText: '鱼泡网-我的信息'
     };
 
-    _this.$usedState = ["data", "loopArray68", "IMGCDNURL"];
+    _this.$usedState = ["data", "loopArray69", "IMGCDNURL"];
     _this.anonymousFunc0Map = {};
     _this.customComponents = ["Auth", "Nodata"];
     return _this;
@@ -126,12 +126,12 @@ var Mymessage = function (_Taro$Component) {
           url: url
         });
       };
-      var loopArray68 = data.item.map(function (item, index) {
+      var loopArray69 = data.item.map(function (item, index) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
         var $loopState__temp2 = index + index;
-        var _$indexKey = "iazzz" + index;
+        var _$indexKey = "idzzz" + index;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return userRouteJump("/pages/information/system/index?type=" + item.$original.type);
         };
@@ -143,7 +143,7 @@ var Mymessage = function (_Taro$Component) {
       });
       Object.assign(this.__state, {
         data: data,
-        loopArray68: loopArray68,
+        loopArray69: loopArray69,
         IMGCDNURL: _index2.IMGCDNURL
       });
       return this.__state;

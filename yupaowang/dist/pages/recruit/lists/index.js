@@ -45,17 +45,15 @@ var _store = __webpack_require__(/*! ../../../config/store */ "./src/config/stor
 
 var _index2 = __webpack_require__(/*! ../../../utils/helper/index */ "./src/utils/helper/index.ts");
 
-var _index3 = __webpack_require__(/*! ../../../config/index */ "./src/config/index.ts");
-
 var _lists = __webpack_require__(/*! ../../../config/pages/lists */ "./src/config/pages/lists.ts");
 
-var _index4 = __webpack_require__(/*! ../../../utils/msg/index */ "./src/utils/msg/index.ts");
+var _index3 = __webpack_require__(/*! ../../../utils/msg/index */ "./src/utils/msg/index.ts");
 
-var _index5 = _interopRequireDefault(_index4);
+var _index4 = _interopRequireDefault(_index3);
 
-var _index6 = __webpack_require__(/*! ../../../hooks/init_job_view/index */ "./src/hooks/init_job_view/index.ts");
+var _index5 = __webpack_require__(/*! ../../../hooks/init_job_view/index */ "./src/hooks/init_job_view/index.ts");
 
-var _index7 = _interopRequireDefault(_index6);
+var _index6 = _interopRequireDefault(_index5);
 
 __webpack_require__(/*! ./index.scss */ "./src/pages/recruit/lists/index.scss");
 
@@ -77,7 +75,7 @@ var Recruit = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (Recruit.__proto__ || Object.getPrototypeOf(Recruit)).apply(this, arguments));
 
-    _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "anonymousState__temp3", "anonymousState__temp4", "$compid__20", "$compid__21", "$compid__22", "scrollTop", "refresh"];
+    _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "anonymousState__temp3", "anonymousState__temp4", "$compid__20", "$compid__21", "$compid__22", "refresh"];
     _this.customComponents = ["Search", "RecruitCondition", "WechatNotice", "RecruitList"];
     return _this;
   }
@@ -114,7 +112,7 @@ var Recruit = function (_Taro$Component) {
       // 发布招工跳转不同模式（急速或者快速）
 
 
-      var _useJobView = (0, _index7.default)(),
+      var _useJobView = (0, _index6.default)(),
           initJobView = _useJobView.initJobView;
       // 输入关键词 没搜索 备份
 
@@ -222,16 +220,14 @@ var Recruit = function (_Taro$Component) {
         (0, _index.getRecruitList)(searchData).then(function (res) {
           if (res.errcode == 'ok') {
             if (res.data) {
-              _taroTt2.default.hideNavigationBarLoading();
               if (!res.data.length) {
                 setHasMore(false);
               }
+              _taroTt2.default.hideNavigationBarLoading();
               if (searchData.page === 1) {
-                goToScrollTop();
                 setLists([[].concat(_toConsumableArray(res.data))]);
-              } else {
-                setLists([].concat(_toConsumableArray(lists), [[].concat(_toConsumableArray(res.data))]));
-              }
+                scrollTo(0, 0);
+              } else setLists([].concat(_toConsumableArray(lists), [[].concat(_toConsumableArray(res.data))]));
             } else {
               if (searchData.page === 1) {
                 setLists([[]]);
@@ -242,7 +238,7 @@ var Recruit = function (_Taro$Component) {
               setRefresh(false);
             }
           } else {
-            (0, _index5.default)(res.errmsg);
+            (0, _index4.default)(res.errmsg);
           }
         });
       };
@@ -285,28 +281,17 @@ var Recruit = function (_Taro$Component) {
         } else {
           setSearchData(_extends({}, searchData, { joblisttype: id, page: 1 }));
         }
+        goToScrollTop();
       };
       // scroll-view 回到顶部
       var goToScrollTop = function goToScrollTop() {
         setHasMore(true);
-        // ! 如果小程序必须监听滚动值 返回顶部直接为0 ，如果不需要我们就给个近似值 来达到效果
-        if (_index3.SCROLLVIEWSETTOP) {
-          setScrollTop(0);
-          return;
-        }
-        setScrollTop(scrollTop ? 0 : 0.01);
+        setScrollTop(scrollTop ? 0 : 0.1);
       };
       // 输入搜索关键词
       var setSearchValData = function setSearchValData() {
         setSearchData(_extends({}, searchData, { keywords: remark, page: 1 }));
-      };
-      // scroll-view 滚动操作
-      var setScrollTopAction = function setScrollTopAction(e) {
-        // ! 如果小程序必须监听onScroll滚动值 那么就设置 例如百度小程序
-        if (_index3.SCROLLVIEWSETTOP) {
-          var top = e.detail.scrollTop;
-          setScrollTop(top);
-        }
+        goToScrollTop();
       };
       var anonymousState__temp = function anonymousState__temp(val) {
         return setRemark(val);
@@ -317,17 +302,14 @@ var Recruit = function (_Taro$Component) {
       var anonymousState__temp3 = function anonymousState__temp3(type, id, text) {
         return setSearchDataAction(type, id, text);
       };
-      this.anonymousFunc0 = function (e) {
-        return setScrollTopAction(e);
-      };
-      this.anonymousFunc1 = function () {
+      this.anonymousFunc0 = function () {
         return pullDownAction();
       };
-      this.anonymousFunc2 = function () {
+      this.anonymousFunc1 = function () {
         return getNextPageData();
       };
       var anonymousState__temp4 = (0, _taroTt.internal_inline_style)({ height: '8px' });
-      this.anonymousFunc3 = function () {
+      this.anonymousFunc2 = function () {
         return userPublishRecruit();
       };
       _taroTt.propsManager.set({
@@ -352,7 +334,6 @@ var Recruit = function (_Taro$Component) {
         $compid__20: $compid__20,
         $compid__21: $compid__21,
         $compid__22: $compid__22,
-        scrollTop: scrollTop,
         refresh: refresh
       });
       return this.__state;
@@ -372,17 +353,12 @@ var Recruit = function (_Taro$Component) {
     value: function anonymousFunc2(e) {
       ;
     }
-  }, {
-    key: "anonymousFunc3",
-    value: function anonymousFunc3(e) {
-      ;
-    }
   }]);
 
   return Recruit;
 }(_taroTt2.default.Component);
 
-Recruit.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3"];
+Recruit.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2"];
 Recruit.$$componentPath = "pages/recruit/lists/index";
 exports.default = Recruit;
 

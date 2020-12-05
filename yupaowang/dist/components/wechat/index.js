@@ -74,6 +74,8 @@ var _index = __webpack_require__(/*! ../../utils/request/index */ "./src/utils/r
 
 var _index2 = __webpack_require__(/*! ../../utils/helper/index */ "./src/utils/helper/index.ts");
 
+var _index3 = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
+
 __webpack_require__(/*! ./index.scss */ "./src/components/wechat/index.scss");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -92,7 +94,7 @@ var WechatNotice = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (WechatNotice.__proto__ || Object.getPrototypeOf(WechatNotice)).apply(this, arguments));
 
-    _this.$usedState = ["$compid__26", "wechatNoticeData"];
+    _this.$usedState = ["$compid__26", "SHOWWEIXINNUMBER", "wechatNoticeData"];
     _this.customComponents = ["SwiperNews"];
     return _this;
   }
@@ -170,6 +172,7 @@ var WechatNotice = function (_Taro$Component) {
       }, $compid__26, $prevCompid__26);
       Object.assign(this.__state, {
         $compid__26: $compid__26,
+        SHOWWEIXINNUMBER: _index3.SHOWWEIXINNUMBER,
         wechatNoticeData: wechatNoticeData
       });
       return this.__state;

@@ -16,6 +16,7 @@ export default function Search({ placeholder, value, setSearchData, setRemark }:
       <Input 
         className='search-input' 
         placeholder={placeholder} 
+        placeholderClass='search-input-placeholder'
         value={value} 
         onInput={(e) => setRemark(e.detail.value)} 
         onConfirm={() => setSearchData()} 

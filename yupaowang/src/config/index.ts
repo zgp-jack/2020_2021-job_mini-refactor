@@ -13,7 +13,7 @@ export const PREREQUESTURL: string = 'http://miniapi.kkbbi.com/'
 // * 正式站
 export const PROREQUESTURL: string = 'https://newyupaomini.54xiaoshuo.com/' 
 // * 当前程序使用的请求地址
-export const REQUESTURL: string = DEVREQUESTURL;
+export const REQUESTURL: string = DEVREQUESTURL
 // * 默认上传图片
 export const UPLOADIMGURL: string = `${PROREQUESTURL}index/upload/`
 // * 阿里云CDN域名
@@ -77,10 +77,10 @@ export const BAIDU: string = 'baidu'
 export const DOUYIN: string = 'douyin'
 
 
-// ! 以下内容为每个小程序独立配置  
+// ! 以下内容为每个小程序独立配置
 // * page-title-global
 export const PAGETITLE: string = MINICONFIG.PAGETITLE
-// * 小程序token 
+// * 小程序token
 export const TOKEN: string = MINICONFIG.TOKEN
 // * 小程序广告unitid
 export const UNITID: string = MINICONFIG.UNITID
@@ -100,3 +100,7 @@ export const USEGAODEMAPAPI: boolean = MINICONFIG.USEGAODEMAPAPI
 export const SCROLLVIEWSETTOP: boolean = MINICONFIG.SCROLLVIEWSETTOP
 // * 上传图片 是否需要使用JSON解析数据
 export const ISPARSEUPLOADIMG: boolean = MINICONFIG.ISPARSEUPLOADIMG
+// * 是否显示加工友微信号
+export const SHOWWEIXINNUMBER: boolean = MINICONFIG.SHOWWEIXINNUMBER
+// * 是否显示关注公众号
+export const SHOWOFFICIALACCOUNT: boolean = MINICONFIG.SHOWOFFICIALACCOUNT

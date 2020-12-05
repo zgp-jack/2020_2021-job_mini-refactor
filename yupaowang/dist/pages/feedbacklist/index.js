@@ -69,7 +69,7 @@ var FeedbackList = function (_Taro$Component) {
       backgroundTextStyle: 'dark'
     };
 
-    _this.$usedState = ["lists", "loopArray67", "$compid__59", "isDown"];
+    _this.$usedState = ["lists", "loopArray68", "$compid__60", "isDown"];
     _this.anonymousFunc0Map = {};
     _this.customComponents = ["Auth", "WechatNotice", "Nodata"];
     return _this;
@@ -92,10 +92,10 @@ var FeedbackList = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__59"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__60"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__59 = _genCompid2[0],
-          $compid__59 = _genCompid2[1];
+          $prevCompid__60 = _genCompid2[0],
+          $compid__60 = _genCompid2[1];
       // * 标记是否是在刷新状态
 
 
@@ -199,16 +199,16 @@ var FeedbackList = function (_Taro$Component) {
       this.anonymousFunc2 = function () {
         return userRouteJump("/pages/feedback/index?username=" + (userData.username || '') + "&phone=" + (userData.phone || ''));
       };
-      var loopArray67 = lists.item ? lists.item.map(function (item, __index1) {
+      var loopArray68 = lists.item ? lists.item.map(function (item, __index1) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
-        var $anonymousCallee__8 = item.$original.images ? item.$original.images.map(function (v, index) {
+        var $anonymousCallee__9 = item.$original.images ? item.$original.images.map(function (v, index) {
           v = {
             $original: (0, _taroTt.internal_get_original)(v)
           };
           var $loopState__temp2 = item.$original.images ? index + index : null;
-          var _$indexKey = "hjzzz" + __index1 + "-" + index;
+          var _$indexKey = "iczzz" + __index1 + "-" + index;
           _this2.anonymousFunc0Map[_$indexKey] = function () {
             handleImg(v.$original);
           };
@@ -219,17 +219,17 @@ var FeedbackList = function (_Taro$Component) {
           };
         }) : [];
         return {
-          $anonymousCallee__8: $anonymousCallee__8,
+          $anonymousCallee__9: $anonymousCallee__9,
           $original: item.$original
         };
       }) : [];
       !lists.item.length && _taroTt.propsManager.set({
         "text": "\u6682\u65E0\u76F8\u5173\u6570\u636E\u53CD\u9988"
-      }, $compid__59, $prevCompid__59);
+      }, $compid__60, $prevCompid__60);
       Object.assign(this.__state, {
         lists: lists,
-        loopArray67: loopArray67,
-        $compid__59: $compid__59,
+        loopArray68: loopArray68,
+        $compid__60: $compid__60,
         isDown: isDown
       });
       return this.__state;

@@ -26,3 +26,5 @@ export const Introinfo: string = 'introinfo'
 export const PublishData: string = 'publishData'
 // 搜索历史
 export const HistoryInfo: string = 'historyInfo'
+// 消耗积分是否显示举报
+export const IsReport: string = 'isReport'

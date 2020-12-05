@@ -75,7 +75,7 @@ var Distruction = function (_Taro$Component) {
       navigationBarTitleText: '招工置顶'
     };
 
-    _this.$usedState = ["searchData", "history", "data", "are", "loopArray79", "loopArray80", "loopArray81", "loopArray82", "clickInput", "inputVal", "onInput", "IMGCDNURL"];
+    _this.$usedState = ["searchData", "history", "data", "are", "loopArray87", "loopArray88", "loopArray89", "loopArray90", "clickInput", "inputVal", "onInput", "IMGCDNURL"];
     _this.anonymousFunc2Map = {};
     _this.anonymousFunc4Map = {};
     _this.anonymousFunc5Map = {};
@@ -621,11 +621,11 @@ var Distruction = function (_Taro$Component) {
       };
       this.anonymousFunc3 = handleCloseHistory;
       this.anonymousFunc8 = handleClick;
-      var loopArray79 = searchData.list.length > 0 ? searchData.list.map(function (v, __index2) {
+      var loopArray87 = searchData.list.length > 0 ? searchData.list.map(function (v, __index2) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
-        var _$indexKey = "ihzzz" + __index2;
+        var _$indexKey = "jczzz" + __index2;
         _this2.anonymousFunc2Map[_$indexKey] = function () {
           return handleSeach(v.$original);
         };
@@ -634,11 +634,11 @@ var Distruction = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray80 = clickInput && !onInput && history.historylist.length > 0 ? history.historylist.map(function (v, __index4) {
+      var loopArray88 = clickInput && !onInput && history.historylist.length > 0 ? history.historylist.map(function (v, __index4) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
-        var _$indexKey2 = "iizzz" + __index4;
+        var _$indexKey2 = "jdzzz" + __index4;
         _this2.anonymousFunc4Map[_$indexKey2] = function () {
           return handleSeach(v.$original);
         };
@@ -647,11 +647,11 @@ var Distruction = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray81 = data.item.map(function (v, __index5) {
+      var loopArray89 = data.item.map(function (v, __index5) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
-        var _$indexKey3 = "ijzzz" + __index5;
+        var _$indexKey3 = "jezzz" + __index5;
         _this2.anonymousFunc5Map[_$indexKey3] = function () {
           handleAllAre(v.$original, 1);
         };
@@ -660,15 +660,15 @@ var Distruction = function (_Taro$Component) {
           $original: v.$original
         };
       });
-      var loopArray82 = are.areData.map(function (v, __index7) {
+      var loopArray90 = are.areData.map(function (v, __index7) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
-        var $anonymousCallee__9 = v.$original.children.map(function (val, index) {
+        var $anonymousCallee__10 = v.$original.children.map(function (val, index) {
           val = {
             $original: (0, _taroTt.internal_get_original)(val)
           };
-          var _$indexKey4 = 'jazzz' + __index7 + '-' + index;
+          var _$indexKey4 = 'jfzzz' + __index7 + '-' + index;
           _this2.anonymousFunc6Map[_$indexKey4] = function () {
             return handleAllAre(val.$original, 0);
           };
@@ -678,7 +678,7 @@ var Distruction = function (_Taro$Component) {
           };
         });
         return {
-          $anonymousCallee__9: $anonymousCallee__9,
+          $anonymousCallee__10: $anonymousCallee__10,
           $original: v.$original
         };
       });
@@ -687,10 +687,10 @@ var Distruction = function (_Taro$Component) {
         history: history,
         data: data,
         are: are,
-        loopArray79: loopArray79,
-        loopArray80: loopArray80,
-        loopArray81: loopArray81,
-        loopArray82: loopArray82,
+        loopArray87: loopArray87,
+        loopArray88: loopArray88,
+        loopArray89: loopArray89,
+        loopArray90: loopArray90,
         clickInput: clickInput,
         inputVal: inputVal,
         onInput: onInput,

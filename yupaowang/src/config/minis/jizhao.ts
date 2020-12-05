@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-10-28 11:04:26
- * @LastEditTime: 2020-11-25 10:29:47
+ * @LastEditTime: 2020-11-25 14:49:56
  * @LastEditors: jsxin
  * @Description: In User Settings Edit
  * @FilePath: \yupaowang\src\config\minis\jizhao.ts
@@ -28,6 +28,10 @@ var TEXTAREAMAXLENGTH: number = 500
 var DOWNLOADAPP: boolean = true
 // * 是否支持高德地图api
 var USEGAODEMAPAPI: boolean = false
+// * 是否显示加工友微信号
+var SHOWWEIXINNUMBER: boolean = true
+// * 是否显示关注公众号
+var SHOWOFFICIALACCOUNT: boolean = true
 
 
 // ! 百度系小程序 列表滚动必须设置值
@@ -47,5 +51,7 @@ module.exports = {
   DOWNLOADAPP,
   USEGAODEMAPAPI,
   SCROLLVIEWSETTOP,
-  ISPARSEUPLOADIMG
+  ISPARSEUPLOADIMG,
+  SHOWWEIXINNUMBER,
+  SHOWOFFICIALACCOUNT
 }

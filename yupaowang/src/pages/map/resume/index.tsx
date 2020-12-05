@@ -39,10 +39,11 @@ interface ResumeMapType{
 export const contextItem = createContext<Injected>({} as Injected)
 export default function ResumeMap() {
   const router: Taro.RouterInfo = useRouter()
-  let { provinceAdress } = router.params;
+  let { provinceAdress, provinceAdressName } = router.params;
   // 获取dispatch分发action
   const dispatch = useDispatch()
-  const [area, setArea] = useState<string>(provinceAdress)
+  const [area, setArea] = useState<string>(provinceAdress);
+  const [areaName, setAreasName] = useState<string>(provinceAdressName);
   // 城市数据
   const [areas, setAreas] = useState<AllAreasDataItem[][]>([])
   // 选择详细地址信息
@@ -105,12 +106,15 @@ export default function ResumeMap() {
 
   // 初始化所需数据
   useEffect(() => {
-    if (!area) initUserLocationCity()
+    if (!areaName) initUserLocationCity()
     initUserPublishAreaHistory()
   }, [])
 
   // 用户切换城市
-  const userChangeCity = (city:string) => {
+  const userChangeCity = (city: string,citys?) => {
+    if (citys){
+      setAreasName(citys.ad_name);
+    }
     setArea(city)
   }
 
@@ -141,7 +145,7 @@ export default function ResumeMap() {
 
   // 获取关键词地区列表
   useEffect(() => {
-    getAmapPoiList(area + smAreaText).then(data => {
+    getAmapPoiList(areaName + smAreaText).then(data => {
       let loc: string = Taro.getStorageSync(UserLocation)
       let lists: InputPoiListTips[] = data.filter(item => {
         return item.name && item.adcode && (typeof item.location === 'string')
@@ -152,7 +156,7 @@ export default function ResumeMap() {
       setLists(lists)
     })
 
-  }, [smAreaText, area])
+  }, [smAreaText, areaName])
 
   // 用户点击城市选择
   const userTapCityBtn = (b: boolean) => {

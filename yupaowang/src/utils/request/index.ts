@@ -585,13 +585,38 @@ export function feedbackSubmissionAction(params: object): Promise<Inter.Result> 
 }
 
 // 帮助中心
-export function helpAction(page: number, system: string): Promise<Inter.helpData> {
+export function helpAction(system: string): Promise<any> {
   return doRequestAction({
     url: api.helpUrl,
     failToast: true,
     data: {
-      page,
       system,
+    }
+  })
+}
+
+// 帮助中心问题详情
+export function helpQuestionDetailsAction(id: string, system: string): Promise<any> {
+  return doRequestAction({
+    url: api.getQuestionDetails,
+    method: 'GET',
+    failToast: true,
+    data: {
+      system,
+      id
+    }
+  })
+}
+
+// 帮助中心问题详情反馈
+export function helpQuestionDetailsFeedBankAction(id: string, val: string): Promise<any> {
+  return doRequestAction({
+    url: api.getQuestionDetailsFeedBank,
+    method: 'GET',
+    failToast: true,
+    data: {
+      val,
+      id
     }
   })
 }
@@ -710,13 +735,14 @@ export function integralExpendListsAction(params: object): Promise<Inter.integra
 }
 
 // 消耗积分弹窗内容
-export function integralUseInfoAction(logId: string): Promise<Inter.integralUseInfo> {
+export function integralUseInfoAction(logId: string, time: string): Promise<Inter.integralUseInfo> {
   return doRequestAction({
     url: api.integralUseInfoUrl,
     method: 'POST',
     failToast: true,
     data: {
-      logId
+      logId,
+      time
     }
   })
 }
@@ -1233,6 +1259,16 @@ export function getRankRulesList(): Promise<any> {
   return doRequestAction({
     url: api.getRankRulesList,
     method: 'POST'
+  })
+}
+
+//调用播放广告
+///member/get-adv-status/
+export function getAdvStatus(params: any): Promise<any> {
+  return doRequestAction({
+    url: api.getAdvStatusConfig,
+    method: 'GET',
+    data: params
   })
 }
 // 大转盘获取抽奖次数

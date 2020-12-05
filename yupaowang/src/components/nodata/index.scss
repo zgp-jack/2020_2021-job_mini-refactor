@@ -1,6 +1,7 @@
 @import '../../common.scss';
 
 .nodata-container{
+  margin-top: 100px;
   position: relative;
   @include flex(column);
   .nodata-img{

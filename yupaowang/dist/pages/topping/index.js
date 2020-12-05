@@ -80,7 +80,7 @@ var Topping = function (_Taro$Component) {
       navigationBarTitleText: '招工置顶'
     };
 
-    _this.$usedState = ["params", "data", "loopArray74", "loopArray75", "loopArray76", "loopArray77", "loopArray78", "province", "IMGCDNURL", "rec", "basics", "type", "list", "displayTime", "num", "endTime", "editData", "newTime", "day", "SERVERPHONE"];
+    _this.$usedState = ["params", "data", "loopArray82", "loopArray83", "loopArray84", "loopArray85", "loopArray86", "province", "IMGCDNURL", "rec", "basics", "type", "list", "displayTime", "num", "endTime", "editData", "newTime", "day", "SERVERPHONE"];
     _this.anonymousFunc0Map = {};
     _this.anonymousFunc1Map = {};
     _this.anonymousFunc2Map = {};
@@ -1049,11 +1049,11 @@ var Topping = function (_Taro$Component) {
       this.anonymousFunc12 = function () {
         _taroTt2.default.makePhoneCall({ phoneNumber: _index2.SERVERPHONE });
       };
-      var loopArray74 = province ? province.map(function (v, __index0) {
+      var loopArray82 = province ? province.map(function (v, __index0) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
-        var _$indexKey = "idzzz" + __index0;
+        var _$indexKey = "iizzz" + __index0;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return handleDel(v.$original);
         };
@@ -1062,11 +1062,11 @@ var Topping = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray75 = params ? params.city.map(function (v, __index1) {
+      var loopArray83 = params ? params.city.map(function (v, __index1) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
-        var _$indexKey2 = "iezzz" + __index1;
+        var _$indexKey2 = "ijzzz" + __index1;
         _this2.anonymousFunc1Map[_$indexKey2] = function () {
           return handleDel(v.$original);
         };
@@ -1075,11 +1075,11 @@ var Topping = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray76 = params ? params.province.map(function (v, __index2) {
+      var loopArray84 = params ? params.province.map(function (v, __index2) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
-        var _$indexKey3 = "ifzzz" + __index2;
+        var _$indexKey3 = "jazzz" + __index2;
         _this2.anonymousFunc2Map[_$indexKey3] = function () {
           return handleDel(v.$original);
         };
@@ -1088,11 +1088,11 @@ var Topping = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray77 = params ? params.whole.map(function (v, __index3) {
+      var loopArray85 = params ? params.whole.map(function (v, __index3) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
-        var _$indexKey4 = "igzzz" + __index3;
+        var _$indexKey4 = "jbzzz" + __index3;
         _this2.anonymousFunc3Map[_$indexKey4] = function () {
           return handleDel(v.$original);
         };
@@ -1101,7 +1101,7 @@ var Topping = function (_Taro$Component) {
           $original: v.$original
         };
       }) : [];
-      var loopArray78 = data.top_rules.map(function (v, i) {
+      var loopArray86 = data.top_rules.map(function (v, i) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
@@ -1114,11 +1114,11 @@ var Topping = function (_Taro$Component) {
       Object.assign(this.__state, {
         params: params,
         data: data,
-        loopArray74: loopArray74,
-        loopArray75: loopArray75,
-        loopArray76: loopArray76,
-        loopArray77: loopArray77,
-        loopArray78: loopArray78,
+        loopArray82: loopArray82,
+        loopArray83: loopArray83,
+        loopArray84: loopArray84,
+        loopArray85: loopArray85,
+        loopArray86: loopArray86,
         province: province,
         IMGCDNURL: _index2.IMGCDNURL,
         rec: rec,

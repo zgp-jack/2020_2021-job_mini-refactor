@@ -57,6 +57,7 @@ function usePublishViewInfo(InitParams) {
   // 视图显示信息
 
   var _useState = (0, _taroTt.useState)({
+    title: '',
     detail: ''
   }),
       _useState2 = _slicedToArray(_useState, 2),

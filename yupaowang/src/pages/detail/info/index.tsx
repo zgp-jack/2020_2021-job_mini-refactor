@@ -2,14 +2,14 @@ import Taro, { Config, useState, useRouter, useDidShow, useEffect, useShareAppMe
 import { View, Text, Image, Icon, Button } from '@tarojs/components'
 import { jobInfoAction, publishComplainAction, jobGetTelAction, recruitListCancelCollectionAction, jobEndStatusAction, jobUpdateTopStatusAction, jobNoUserInfoAction, jobRecommendListAction } from '../../../utils/request/index'
 import WechatNotice from '../../../components/wechat'
-import { IMGCDNURL, SERVERPHONE, AUTHPATH, CODEAUTHPATH, ISCANSHARE, DOWNLOADAPP} from '../../../config'
+import { IMGCDNURL, SERVERPHONE, AUTHPATH, CODEAUTHPATH, ISCANSHARE, DOWNLOADAPP, SHOWOFFICIALACCOUNT } from '../../../config'
 import { useSelector } from '@tarojs/redux'
 import { isVaildVal } from '../../../utils/v'
-import  Report  from '../../../components/report'
+import Report from '../../../components/report'
 import { getUserShareMessage } from '../../../utils/helper'
 import Msg, { ShowActionModal, showModalTip } from '../../../utils/msg'
 import { SubscribeToNews } from '../../../utils/subscribeToNews';
-import  CollectionRecruitList from '../../../components/recommendList/index'
+import CollectionRecruitList from '../../../components/recommendList/index'
 import { REFID, UserInfo } from '../../../config/store'
 import './index.scss'
 
@@ -37,10 +37,10 @@ interface DataType {
   is_collect: number,
   view_images: [],
   is_end: number,
-  is_check:number,
+  is_check: number,
   has_top: number,
-  top_info:{
-    is_top:string,
+  top_info: {
+    is_top: string,
   }
   show_complaint: {
     show_complaint: number,
@@ -60,23 +60,23 @@ export default function DetailInfoPage() {
     classifyName: [],
     detail: '',
     show_full_address: '',
-    location:'',
+    location: '',
     map_address_name: '',
     map_street_name: '',
-    tel_str : '',
-    show_ajax_btn:false,
-    id:0,
-    is_collect:0,
-    view_images:[],
-    is_end:0,
-    is_check:0,
-    has_top:0,
-    show_complaint:{
+    tel_str: '',
+    show_ajax_btn: false,
+    id: 0,
+    is_collect: 0,
+    view_images: [],
+    is_end: 0,
+    is_check: 0,
+    has_top: 0,
+    show_complaint: {
       show_complaint: 0,
       tips_message: ''
     },
-    top_info:{
-      is_top:''
+    top_info: {
+      is_top: ''
     }
   })
   // 投诉
@@ -84,19 +84,19 @@ export default function DetailInfoPage() {
   // textarea
   const [textarea, setTextarea] = useState<string>('')
   // 刷新一次
-  const [refresh,setRefresh] = useState<boolean>(false)
+  const [refresh, setRefresh] = useState<boolean>(false)
   // 是否收藏
   const [isCollection, setIsCollection] = useState<number>(0)
   // 判断招聘类型
-  const [resCode,setResCode] = useState<string>('')
+  const [resCode, setResCode] = useState<string>('')
   // 是否显示停止招工
   const [stopHiring, setStopHiring] = useState<boolean>(false)
   // 是够能继续投诉
   const [complaint, setComplaint] = useState<boolean>(false)
   // 重新招工
-  const [again,setAgain] = useState<boolean>(false)
+  const [again, setAgain] = useState<boolean>(false)
   // 电话
-  const [phone,setPhone] = useState<string>('')
+  const [phone, setPhone] = useState<string>('')
   // 修改电话后投诉
   const [complaintInfo, setComplaintInfo] = useState<boolean>(false)
   // 修改电话后，显示投诉和拨打
@@ -106,8 +106,8 @@ export default function DetailInfoPage() {
   // 相关推荐
   const [recommend, setRecommend] = useState<any[]>([])
   // 返回刷新页面
-  useDidShow(()=>{
-    if(refresh){
+  useDidShow(() => {
+    if (refresh) {
       setRefresh(false)
       return
     }
@@ -125,7 +125,7 @@ export default function DetailInfoPage() {
     // 用户没有认证
     let result = login ? jobInfoAction(params) : jobNoUserInfoAction(params)
     result.then(res => {
-      detailGetTelAction(res,()=>{
+      detailGetTelAction(res, () => {
         setRefresh(false)
         setData(res.result);
         setPhone(res.result.tel_str);
@@ -154,7 +154,7 @@ export default function DetailInfoPage() {
     })
   }
   // 地图
-  const handleMap = ()=>{
+  const handleMap = () => {
     let locArr = data.location.split(",");
     setRefresh(true)
     Taro.openLocation({
@@ -171,14 +171,14 @@ export default function DetailInfoPage() {
       url: url
     })
   }
-  const handleTextarea = (e:any)=>{
+  const handleTextarea = (e: any) => {
     let val: string = e.detail.value;
     setTextarea(val);
   }
   // 提交投诉
   const handleSubmit = () => {
     if (!isVaildVal(textarea, 5, 500)) {
-      ShowActionModal({ msg: '输入内容不少于5个字且必须包含文字'})
+      ShowActionModal({ msg: '输入内容不少于5个字且必须包含文字' })
       return false
     }
     const params = {
@@ -187,7 +187,7 @@ export default function DetailInfoPage() {
       infoId: data.id
     };
     // publishComplainAction(params).then((res) => {
-      
+
     //   Msg('提交成功')
     //   setComplaintModal(false);
     //   setComplaint(true)
@@ -218,9 +218,9 @@ export default function DetailInfoPage() {
   }
 
   // 处理获取电话号码的不同状态码
-  const detailGetTelAction = (res,callback) => {
+  const detailGetTelAction = (res, callback) => {
     if (res.errcode == 'ok' || res.errcode == 'end' || res.errcode == 'ajax') {
-      callback&&callback()
+      callback && callback()
     } else if (res.errcode == 'end') {
       Msg(res.errmsg)
     } else if (res.errcode == 'auth_not_pass' || res.errcode == 'to_auth') {
@@ -315,9 +315,9 @@ export default function DetailInfoPage() {
   }
 
   // 监听是否是别人分享的页面
-  useEffect(()=>{
-    if(refId) Taro.setStorageSync(REFID, refId)
-  },[refId])
+  useEffect(() => {
+    if (refId) Taro.setStorageSync(REFID, refId)
+  }, [refId])
 
   // 设置分享信息
   useShareAppMessage(() => {
@@ -330,14 +330,14 @@ export default function DetailInfoPage() {
   })
 
   // 获取电话
-  const jobGetTel = ()=>{
+  const jobGetTel = () => {
     if (!vaildUserLogin()) return
     const params = {
-      type:'job',
-      infoId:data.id,
+      type: 'job',
+      infoId: data.id,
     }
-    jobGetTelAction(params).then(res=>{
-      detailGetTelAction(res,()=>{
+    jobGetTelAction(params).then(res => {
+      detailGetTelAction(res, () => {
         setRefresh(true)
         setPhone(res.tel)
         setComplaintInfo(true);
@@ -345,14 +345,14 @@ export default function DetailInfoPage() {
       })
     })
   }
-  const footerComplaint = ()=>{
-    if(resCode === 'end'){
+  const footerComplaint = () => {
+    if (resCode === 'end') {
       Taro.showModal({
         title: '温馨提示',
         content: '该招工信息已招到，暂时不能投诉',
         showCancel: false,
       })
-    }else{
+    } else {
       // 投诉过一次就不能投诉了
       if (complaint) {
         Taro.showModal({
@@ -360,66 +360,69 @@ export default function DetailInfoPage() {
           content: '您已投诉该信息，请勿重复操作！',
           showCancel: false,
         })
-      }else{
+      } else {
         // 查看电话可以投诉一次
         if (complaintInfo) {
-          setComplaintModal(true);
+          // infoId = ${ infoId }& type=job & page=detail
+          userRouteJump(`/pages/newcomplaint/index?infoId=${data.id}&type=job&page=detail`)
+          // setComplaintModal(true);
           // 没有看到电话不能投诉
-        }else if(data.show_ajax_btn){
+        } else if (data.show_ajax_btn) {
           Msg('请查看完整的手机号码后再操作！')
-        }else{
-          if (data.is_end === 2 || !data.show_complaint.show_complaint ){
+        } else {
+          if (data.is_end === 2 || !data.show_complaint.show_complaint) {
             Taro.showModal({
               title: '提示',
               content: '您已投诉该信息，请勿重复投诉！',
               showCancel: false,
             })
-          }else{
-            setComplaintModal(true)
+          } else {
+            userRouteJump(`/pages/newcomplaint/index?infoId=${data.id}&type=job&page=detail`)
+            // setComplaintModal(true)
           }
         }
       }
     }
   }
   // 收藏
-  const collection = ()=>{
+  const collection = () => {
     if (!vaildUserLogin()) return
-    recruitListCancelCollectionAction(data.id.toString()).then(res=>{
+    recruitListCancelCollectionAction(data.id.toString()).then(res => {
       Msg(res.errmsg)
-      if (res.action === 'add'){
+      if (res.action === 'add') {
         setIsCollection(1)
-      }else{
+      } else {
         setIsCollection(0)
       }
     })
   }
-  const handleImage = (v:string)=>{
+  const handleImage = (v: string) => {
     setRefresh(true)
     Taro.previewImage({
       current: v,
       urls: [v]
     })
   }
-  const handleStatus = ()=>{
-    jobEndStatusAction(data.id).then(res=>{
-      if(res.errcode === 'ok'){
+  const handleStatus = () => {
+    jobEndStatusAction(data.id).then(res => {
+      if (res.errcode === 'ok') {
         // if (stopHiring || (data.is_end === 2)) {
         //   setAgain(true);
         // }else{
-          //   setStopHiring(true);
-          // setStopHiring se
-          Msg(res.errmsg)
-          setStopHiring(false);
-          setRefresh(true)
-          // }
-      }else{
+        //   setStopHiring(true);
+        // setStopHiring se
+        Msg(res.errmsg)
+        setStopHiring(false);
+        setRefresh(true)
+        // }
+      } else {
         Msg(res.errmsg)
       }
     })
   }
   // 置顶
-  const handleTopping = (data)=>{
-    if(data.has_top){
+  const handleTopping = (data) => {
+    if (data.has_top) {
       let endtime = parseInt(data.top_info.end_time)
       let timestr = new Date().getTime() / 1000
       if (timestr < endtime) {
@@ -431,12 +434,12 @@ export default function DetailInfoPage() {
           status: data.toping == '0' ? '1' : "0"
         }
         jobUpdateTopStatusAction(params).then(res => {
-          if (res.errcode ==='ok') {
+          if (res.errcode === 'ok') {
             Msg(res.errmsg)
             setRefresh(true)
             setStopHiring(true);
             // setSearchData({ ...searchData, page: searchData.page })
-          } else if (res.errcode === 'auth_forbid'){
+          } else if (res.errcode === 'auth_forbid') {
             // 去实名
             Taro.showModal({
               title: '温馨提示',
@@ -482,7 +485,7 @@ export default function DetailInfoPage() {
     }
     userRouteJump(`/pages/newtopping/recRang/index?defaultTopArea=${data.area_id}&job_id=${data.id}`)
   }
-  return(
+  return (
     <View className='detailInfo'>
       <WechatNotice />
       <View className='detailInfo-head'>
@@ -491,22 +494,22 @@ export default function DetailInfoPage() {
           <View className='detailInfo-head-titleBox-time'>发布时间: {data.time}</View>
         </View>
         <View className='detailInfo-userContent'>
-          <Image className='detailInfo-userContent-image' src={data.image}/>
+          <Image className='detailInfo-userContent-image' src={data.image} />
           <View className='detailInfo-userContent-content'>
             <View className='detailInfo-userContent-content-list'>{data.user_name}</View>
             <View className='detailInfo-userContent-content-list'>{phone}</View>
           </View>
           {/* 判断是否是自己发布的招工 */}
-          {resCode === 'own' ? <View></View>:
-          // 判断是否已经找到
-            (resCode === 'end' ? <View className='detailInfo-userContent-buttonBox-'><Button className='detailInfo-userContent-button-end'>已招到</Button></View> : 
-            // 判断是够查看到电话号码
+          {resCode === 'own' ? <View></View> :
+            // 判断是否已经找到
+            (resCode === 'end' ? <View className='detailInfo-userContent-buttonBox-'><Button className='detailInfo-userContent-button-end'>已招到</Button></View> :
+              // 判断是够查看到电话号码
               (editPhone ? <View className='detailInfo-userContent-buttonBox'><Button className='detailInfo-userContent-button' onClick={() => jobGetTel()}>查看招工电话</Button></View> :
-              <View className='detailInfo-userContent-buttonBox'>
+                <View className='detailInfo-userContent-buttonBox'>
                   <View className='detailInfo-userContent-button-call' onClick={() => { Taro.makePhoneCall({ phoneNumber: phone }) }}>点击拨打</View>
-                <View className='detailInfo-userContent-button-complaint' onClick={footerComplaint}>投诉</View>
-              </View>))
-        }
+                  <View className='detailInfo-userContent-button-complaint' onClick={footerComplaint}>投诉</View>
+                </View>))
+          }
           {/* {
           } */}
         </View>
@@ -516,41 +519,43 @@ export default function DetailInfoPage() {
       </View>
       <View className='detailInfo-prompt-content'>
         <View className='detailInfo-prompt-content-title'>
-          <Icon type='info' color='#F94046' size='15' className='detailInfo-prompt-content-title-icon'/> 
+          <Icon type='info' color='#F94046' size='15' className='detailInfo-prompt-content-title-icon' />
           <View className='detailInfo-prompt-content-title-tips'>鱼泡提示</View>
         </View>
         <View>
           {/* 工作前，确认好对方身份、签好合同，招工、找活中不要交任何费 用。工作中拍照、录视频留有证据！若双方发生经济纠纷，请立即 报警或前往劳动局投诉，鱼泡网可配合调查，但概不负责。如遇诈 骗信息，请<Text className='detailInfo-prompt-content-red'>立即举报</Text> */}
 
           <View onClick={() => userRouteJump('/subpackage/pages/anti-fraud/index')}><Text className='detailInfo-prompt-content-blued' >《防骗指南》</Text>：此信息由鱼泡网用户提供，但联系时仍需注意识信息真伪。</View>
-          <View onClick={() => userRouteJump(`/pages/static/notice/index?id=32`)}> <View>关注“鱼泡网”微信公众号接收新工作提醒  <Text className='detailInfo-prompt-content-blued' >如何关注</Text></View></View>
+          {SHOWOFFICIALACCOUNT &&
+            <View onClick={() => userRouteJump(`/pages/static/notice/index?id=32`)}> <View>关注“鱼泡网”微信公众号接收新工作提醒  <Text className='detailInfo-prompt-content-blued' >如何关注</Text></View></View>
+          }
         </View>
       </View>
       <View className='detailInfo-project-content'>
         <View className='detailInfo-project-content-title'>项目描述:</View>
         <View className='detailInfo-project-content-classifyName-box'>
-        {data.classifyName.map((v,i)=>(
-          <View key={i + i} className='detailInfo-project-content-classifyName'>{v}</View>
-        ))}
+          {data.classifyName.map((v, i) => (
+            <View key={i + i} className='detailInfo-project-content-classifyName'>{v}</View>
+          ))}
         </View>
         <View className='detailInfo-project-content-detail'>{data.detail}</View>
-        {data.view_images.length && 
+        {data.view_images.length &&
           <View className='detailInfo-project-content-image-box'>
-            {data.view_images.map((v,i)=>(
-              <Image src={v} key={i + i} className='detailInfo-project-content-image' onClick={()=>handleImage(v)}/>
-              ))}
+            {data.view_images.map((v, i) => (
+              <Image src={v} key={i + i} className='detailInfo-project-content-image' onClick={() => handleImage(v)} />
+            ))}
           </View>
         }
-        <View className='detailInfo-project-content-address'>项目地址: 
-        {data.location ? <View className='detailInfo-project-content-address-color'>{data.show_full_address}</View> : <Text className='detailInfo-project-content-address-color'>{ data.show_full_address }</Text> }
+        <View className='detailInfo-project-content-address'>项目地址:
+        {data.location ? <View className='detailInfo-project-content-address-color'>{data.show_full_address}</View> : <Text className='detailInfo-project-content-address-color'>{data.show_full_address}</Text>}
           {data.location && <View className='detailInfo-project-content-map' onClick={handleMap}>查看地图</View>
-        }
+          }
         </View>
       </View>
       {DOWNLOADAPP &&
-      <View className='detailInfo-Image-box'>
-        <Image src={`${IMGCDNURL}download.png`} className='detailInfo-Image' onClick={() => userRouteJump('/subpackage/pages/download/index')}/>
-      </View>}
+        <View className='detailInfo-Image-box'>
+          <Image src={`${IMGCDNURL}download.png`} className='detailInfo-Image' onClick={() => userRouteJump('/subpackage/pages/download/index')} />
+        </View>}
       {/* 判断是否是自己发布的招工 停止招工状态 
         判断是否查看完成电话 
       */}
@@ -560,7 +565,7 @@ export default function DetailInfoPage() {
       {/* 审核失败只有招工 */}
       {/* 审核后出现 （修改，停止招工，我要置顶） */}
       {/* 判断是自己发布的招工 */}
-      
+
       {/* (data.is_check === 1 || again? 
       <View className='detailInfo-userfooter'>
         <View className='detailInfo-userfooter-examine'><Image className='detailInfo-userfooter-examine-image' src={`${IMGCDNURL}published-info.png`}/>提示:人工审核中，该信息仅自己可见。</View>
@@ -584,7 +589,7 @@ export default function DetailInfoPage() {
         // 自己发布
         )
          */}
-        {/* // 他人发布 */}
+      {/* // 他人发布 */}
       {resCode !== 'own' &&
         <View className='detailInfo-footer-content'>
           <View className='detailInfo-footer-content-box'>
@@ -597,10 +602,10 @@ export default function DetailInfoPage() {
               <View className='detailInfo-footer-content-box-text'>投诉</View>
             </View>
             {ISCANSHARE &&
-            <Button openType='share' className='detailInfo-footer-content-box-list'>
-              <View><Image src={`${IMGCDNURL}newjobinfo-share.png`} className='detailInfo-footer-content-box-image' /></View>
-              <View className='detailInfo-footer-content-box-text'>分享</View>
-            </Button>
+              <Button openType='share' className='detailInfo-footer-content-box-list'>
+                <View><Image src={`${IMGCDNURL}newjobinfo-share.png`} className='detailInfo-footer-content-box-image' /></View>
+                <View className='detailInfo-footer-content-box-text'>分享</View>
+              </Button>
             }
             <View>
               {resCode === 'end' ? <Button className='detailInfo-footer-content-box-button detailInfo-button-end'>已招到</Button> : (editPhone ?

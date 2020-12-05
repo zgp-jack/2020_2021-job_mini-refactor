@@ -1,34 +1,36 @@
+
 .rank-rules {
-  padding-top: 192px;
+  padding-top: 175px;
 
   .header {
     background-color: white;
     position: fixed;
     width: 100%;
     top: 0;
-    padding: 20px 32px;
+    padding: 22px 43px 20px 33px;
     border-bottom: 1px solid rgb(233, 232, 232);
     z-index: 2;
 
     .header-point {
-      padding-bottom: 10px;
+      margin-bottom: 17px;
+      height: 35px;
+      line-height: 35px;
+      font-size: 30px;
+      font-weight: 500;
 
       .point-text {
-        font-size: 32px;
+        color: #656668;
 
         &:last-child {
-          color: #0099ff;
-          font-weight: bold;
+          color: #0099FF;
         }
       }
     }
 
     .header-detail {
-      color: #f87a14;
+      font-size: 28px;
+      color: #FF7E00;
 
-      .detail-text {
-        font-size: 30px;
-      }
     }
   }
 
@@ -37,9 +39,8 @@
     overflow: hidden;
 
     .rank-item {
-      width: 94%;
       border-bottom: 1px dashed rgb(209, 209, 209);
-      padding: 26px 0;
+      padding: 25px 32px;
       margin: 0 auto;
       display: flex;
       align-items: center;
@@ -56,9 +57,9 @@
         margin-right: 14px;
 
         .info-img-bor {
-          width: 80px;
-          height: 80px;
-          margin-right: 14px;
+          width: 82px;
+          height: 82px;
+          margin-right: 21px;
 
           .info-img {
             display: block;
@@ -69,28 +70,41 @@
 
         .infos {
           .info-name {
-            font-size: 30px;
+            font-size: 28px;
+            color: #333333;
           }
 
           .info-dec {
-            font-size: 28px;
+            font-size: 26px;
             color: #999999;
-            line-height: 35px;
           }
         }
       }
 
-      .item-btn {
-        width: 150px;
-        min-width: 150px;
-        line-height: 33px;
-        background: #0099ff;
-        color: white;
-        font-size: 30px;
-        padding: 12px 0;
-        //line-height: 40px;
-        border-radius: 12px;
+      .ranking-obtngray {
+        background: #D2D2D4;
+        width: 120px;
+        height: 50px;
+        line-height: 50px;
         text-align: center;
+        padding: 0;
+        box-shadow: 0 2px 2px 0 rgba(141, 204, 246, 0.51);
+        border-radius: 8px;
+        font-size: 26px;
+        color: #FFFFFF;
+      }
+
+      .item-btn {
+        width: 120px;
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
+        padding: 0;
+        background: #0099FF;
+        box-shadow: 0 2px 2px 0 rgba(141, 204, 246, 0.51);
+        border-radius: 8px;
+        font-size: 26px;
+        color: #FFFFFF;
       }
     }
   }
@@ -98,17 +112,19 @@
   .rank-tips {
     background: white;
     margin-top: 14px;
-    margin-bottom: 80px;
-    padding: 20px 50px;
+    margin-bottom: 125px;
+    padding: 25px 40px 32px 50px;
 
     .tips-title {
-      font-size: 32px;
-      margin-bottom: 12px;
+      font-size: 28px;
+      color: #333333;
+      margin-bottom: 20px;
     }
 
     .tips-content {
-      font-size: 30px;
+      font-size: 26px;
       color: #999999;
+      line-height: 34px;
       text-align: justify;
     }
   }

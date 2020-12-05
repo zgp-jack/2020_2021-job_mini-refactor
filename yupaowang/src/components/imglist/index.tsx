@@ -6,19 +6,11 @@ interface PROPS {
   data:string[],
 }
 export default function Imglist({data}: PROPS){
-  // 需要预览的图片列表
-  const imgs:string[] = [
-    'http://cdn.yupao.com/miniprogram/images/20201019/1603091875eUvb2r.jpg',
-    'http://cdn.yupao.com/miniprogram/images/20201019/1603091875eUvb2r.jpg',
-    'http://cdn.yupao.com/miniprogram/images/20201019/1603091875eUvb2r.jpg',
-    'http://cdn.yupao.com/miniprogram/images/20201019/1603091875eUvb2r.jpg',
-    'http://cdn.yupao.com/miniprogram/images/20201019/1603091875eUvb2r.jpg',
-  ]
 
   // 用户点击图片预览
-  const userPreViewImg = () => {
+  const userPreViewImg = (index: number) => {
     Taro.previewImage({
-      current:data[0],
+      current:data[index],
       urls: data
     })
   }
@@ -26,7 +18,7 @@ export default function Imglist({data}: PROPS){
   return (
     <View className='imgslist-container'>
       {data && data.map((item,index) => (
-        <Image className='imgslist-item' src={item} key={index+index} onClick={() => userPreViewImg()}/>
+        <Image className='imgslist-item' src={item} key={index+index} onClick={() => userPreViewImg(index)}/>
       ))}
     </View>
   )

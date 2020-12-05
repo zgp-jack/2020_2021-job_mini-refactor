@@ -10,6 +10,7 @@ import { getUserShareMessage } from '../../../utils/helper'
 import Report from '../../../components/report';
 import { useSelector, useDispatch } from '@tarojs/redux'
 import Auth from '../../../components/auth'
+import classnames from 'classnames'
 import { resumeDetailCertificatesRedux, resumeDetailProjectRedux } from '../../../utils/request/index.d';
 import { SubscribeToNews } from '../../../utils/subscribeToNews';
 import { setSubpackcertificate, setSubpackProject} from '../../../actions/resume_list';
@@ -285,8 +286,15 @@ export default function ResumeDetail() {
         showCancel: false,
       })
     }else{
-      setComplaintModal(true)
+      userRouteJump(`/pages/newcomplaint/index?infoId=${uuid}&type=resume&page=detail`)
+      // setComplaintModal(true)
     }
+  }
+  // 用户页面跳转
+  const userRouteJump = (url: string) => {
+    Taro.navigateTo({
+      url: url
+    })
   }
   // 点击方法
   const handleImg = (e: string) => {
@@ -424,7 +432,10 @@ export default function ResumeDetail() {
           {data.info.address &&
             <View className='cardotext'>
               <Text className='oworkotext'>所在地区</Text>
-            <Text className='workotextone-address'>{data.info.address}</Text>
+            <Text className={classnames({
+              'workotextone-address': true,
+              'workotextone-noaddress': !data.info.distance
+            })}>{data.info.address}</Text>
             {/* 地图 */}
             {data.info.distance && 
             <View onClick={handleMap} className='map-distance-info'>

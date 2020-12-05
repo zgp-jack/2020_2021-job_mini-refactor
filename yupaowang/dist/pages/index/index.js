@@ -20,12 +20,10 @@ var _tabbar = __webpack_require__(/*! ../../constants/tabbar */ "./src/constants
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var IndexTabbarConfig = (_IndexTabbarConfig = {
-  'home': {
-    navigationBarTitleText: '首页',
-    enablePullDownRefresh: true
-  }
-}, _defineProperty(_IndexTabbarConfig, _tabbar.RECRUIT, {
+var IndexTabbarConfig = (_IndexTabbarConfig = {}, _defineProperty(_IndexTabbarConfig, _tabbar.HOME, {
+  navigationBarTitleText: '首页',
+  enablePullDownRefresh: true
+}), _defineProperty(_IndexTabbarConfig, _tabbar.RECRUIT, {
   navigationBarTitleText: '招工',
   enablePullDownRefresh: true
 }), _defineProperty(_IndexTabbarConfig, _tabbar.RESUME, {

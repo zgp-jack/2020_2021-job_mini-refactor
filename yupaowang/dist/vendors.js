@@ -12600,10 +12600,10 @@ var INVITEPATH = exports.INVITEPATH = '/pages/static/invite/index';
 var BAIDU = exports.BAIDU = 'baidu';
 // 抖音
 var DOUYIN = exports.DOUYIN = 'douyin';
-// ! 以下内容为每个小程序独立配置  
+// ! 以下内容为每个小程序独立配置
 // * page-title-global
 var PAGETITLE = exports.PAGETITLE = MINICONFIG.PAGETITLE;
-// * 小程序token 
+// * 小程序token
 var TOKEN = exports.TOKEN = MINICONFIG.TOKEN;
 // * 小程序广告unitid
 var UNITID = exports.UNITID = MINICONFIG.UNITID;
@@ -12623,6 +12623,10 @@ var USEGAODEMAPAPI = exports.USEGAODEMAPAPI = MINICONFIG.USEGAODEMAPAPI;
 var SCROLLVIEWSETTOP = exports.SCROLLVIEWSETTOP = MINICONFIG.SCROLLVIEWSETTOP;
 // * 上传图片 是否需要使用JSON解析数据
 var ISPARSEUPLOADIMG = exports.ISPARSEUPLOADIMG = MINICONFIG.ISPARSEUPLOADIMG;
+// * 是否显示加工友微信号
+var SHOWWEIXINNUMBER = exports.SHOWWEIXINNUMBER = MINICONFIG.SHOWWEIXINNUMBER;
+// * 是否显示关注公众号
+var SHOWOFFICIALACCOUNT = exports.SHOWOFFICIALACCOUNT = MINICONFIG.SHOWOFFICIALACCOUNT;
 
 /***/ }),
 
@@ -12690,6 +12694,10 @@ var TEXTAREAMAXLENGTH = 500;
 var DOWNLOADAPP = true;
 // * 是否支持高德地图api
 var USEGAODEMAPAPI = false;
+// * 是否显示加工友微信号
+var SHOWWEIXINNUMBER = true;
+// * 是否显示关注公众号
+var SHOWOFFICIALACCOUNT = true;
 // ! 百度系小程序 列表滚动必须设置值
 var SCROLLVIEWSETTOP = true;
 // ! 百度系小程序  上传图片 不能JSON解析数据
@@ -12705,7 +12713,9 @@ module.exports = {
   DOWNLOADAPP: DOWNLOADAPP,
   USEGAODEMAPAPI: USEGAODEMAPAPI,
   SCROLLVIEWSETTOP: SCROLLVIEWSETTOP,
-  ISPARSEUPLOADIMG: ISPARSEUPLOADIMG
+  ISPARSEUPLOADIMG: ISPARSEUPLOADIMG,
+  SHOWWEIXINNUMBER: SHOWWEIXINNUMBER,
+  SHOWOFFICIALACCOUNT: SHOWOFFICIALACCOUNT
 };
 
 /***/ }),
@@ -12739,6 +12749,10 @@ var TEXTAREAMAXLENGTH = 140;
 var DOWNLOADAPP = false;
 // * 是否支持高德地图api
 var USEGAODEMAPAPI = true;
+// * 是否显示加工友微信号
+var SHOWWEIXINNUMBER = false;
+// * 是否显示关注公众号
+var SHOWOFFICIALACCOUNT = false;
 // ! 百度系小程序 列表滚动必须设置值
 var SCROLLVIEWSETTOP = false;
 // ! 百度系小程序  上传图片 JSON解析数据
@@ -12754,7 +12768,9 @@ module.exports = {
   DOWNLOADAPP: DOWNLOADAPP,
   USEGAODEMAPAPI: USEGAODEMAPAPI,
   SCROLLVIEWSETTOP: SCROLLVIEWSETTOP,
-  ISPARSEUPLOADIMG: ISPARSEUPLOADIMG
+  ISPARSEUPLOADIMG: ISPARSEUPLOADIMG,
+  SHOWOFFICIALACCOUNT: SHOWOFFICIALACCOUNT,
+  SHOWWEIXINNUMBER: SHOWWEIXINNUMBER
 };
 
 /***/ }),
@@ -12772,7 +12788,7 @@ module.exports = {
 /*
  * @Author: your name
  * @Date: 2020-10-28 11:04:26
- * @LastEditTime: 2020-11-25 10:29:47
+ * @LastEditTime: 2020-11-25 14:49:56
  * @LastEditors: jsxin
  * @Description: In User Settings Edit
  * @FilePath: \yupaowang\src\config\minis\jizhao.ts
@@ -12798,6 +12814,10 @@ var TEXTAREAMAXLENGTH = 500;
 var DOWNLOADAPP = true;
 // * 是否支持高德地图api
 var USEGAODEMAPAPI = false;
+// * 是否显示加工友微信号
+var SHOWWEIXINNUMBER = true;
+// * 是否显示关注公众号
+var SHOWOFFICIALACCOUNT = true;
 // ! 百度系小程序 列表滚动必须设置值
 var SCROLLVIEWSETTOP = false;
 // ! 百度系小程序  上传图片 JSON解析数据
@@ -12813,7 +12833,9 @@ module.exports = {
   DOWNLOADAPP: DOWNLOADAPP,
   USEGAODEMAPAPI: USEGAODEMAPAPI,
   SCROLLVIEWSETTOP: SCROLLVIEWSETTOP,
-  ISPARSEUPLOADIMG: ISPARSEUPLOADIMG
+  ISPARSEUPLOADIMG: ISPARSEUPLOADIMG,
+  SHOWWEIXINNUMBER: SHOWWEIXINNUMBER,
+  SHOWOFFICIALACCOUNT: SHOWOFFICIALACCOUNT
 };
 
 /***/ }),
@@ -12881,6 +12903,8 @@ var Introinfo = exports.Introinfo = 'introinfo';
 var PublishData = exports.PublishData = 'publishData';
 // 搜索历史
 var HistoryInfo = exports.HistoryInfo = 'historyInfo';
+// 消耗积分是否显示举报
+var IsReport = exports.IsReport = 'isReport';
 
 /***/ }),
 
@@ -16580,7 +16604,7 @@ var RESUME_TOP_DATA = exports.RESUME_TOP_DATA = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.hotAreas = exports.getNotRemind = exports.getFreeIssueConfig = exports.getBaiduTpOrderId = exports.publishModel = exports.fastPublisView = exports.FastRcruitUrl = exports.memberTurntable = exports.turntableVideoEnd = exports.turntableDraw = exports.turntableIndex = exports.getRankRulesList = exports.checkCodeUrl = exports.getResumeAddInfoConfig = exports.realnameQueryUrl = exports.userCheckDouyinRecharge = exports.userDouyinRecharge = exports.userTelCodeLogin = exports.userAccountUrl = undefined;
+exports.getQuestionDetailsFeedBank = exports.getQuestionDetails = exports.getAdvStatusConfig = exports.hotAreas = exports.getNotRemind = exports.getFreeIssueConfig = exports.getBaiduTpOrderId = exports.publishModel = exports.fastPublisView = exports.FastRcruitUrl = exports.memberTurntable = exports.turntableVideoEnd = exports.turntableDraw = exports.turntableIndex = exports.getRankRulesList = exports.checkCodeUrl = exports.getResumeAddInfoConfig = exports.realnameQueryUrl = exports.userCheckDouyinRecharge = exports.userDouyinRecharge = exports.userTelCodeLogin = exports.userAccountUrl = undefined;
 exports.leavingMessageUrl = exports.resumesComplainUrl = exports.resumesUpdateTopResumeUrl = exports.resumesDoTopV2Url = exports.resumesTopConfigV2Url = exports.resumesEditImgUrl = exports.resumesChangeTopStatusUrl = exports.resumesDoTopUrl = exports.resumesTopConfigUrl = exports.resumesTopAreasUrl = exports.resumesDelProjectUrl = exports.resumesEditEndUrl = exports.resumesIntroduceUrl = exports.resumesGetDataUrl = exports.checkAdcodeUrl = exports.addResumeUrl = exports.resumesProjectUrl = exports.resumesCertificateUrl = exports.delCertificateUrl = exports.jobRecommendListUrl = exports.resumeListUrl = exports.resumeCollectUrl = exports.resumeSupportUrl = exports.resumesGetTelUrl = exports.recommendListUrl = exports.resumeDetailUrl = exports.jobUpdateTopStatusUrl = exports.jobChangeTopAreasUrl = exports.jobGetTopAreasUrl = exports.jobDoTopUrl = exports.jobTopHotAreasUrl = exports.jobTopConfigUrl = exports.jobEndStatusUrl = exports.jobGetTelUrl = exports.jobNoUserInfoUrl = exports.jobInfoUrl = exports.publishComplainUrl = exports.integralUseInfoUrl = exports.integralExpendListsUrl = exports.integralExpendConfigUrl = exports.integralSourceListsUrl = exports.integralSourceConfigUrl = exports.messagesTypeUrl = exports.userMessagesUrl = exports.resumesAddClickLog = exports.resumesSortUrl = exports.newsInfoUrl = exports.newsTypesUrl = exports.newListUrl = exports.helpUrl = exports.feedbackSubmissionUrl = exports.feedbackUrl = exports.requestActionUrl = exports.ResumeCancelCollection = exports.recruitCancelCollection = exports.getCollectionResumeList = exports.getCollectionRecruitList = exports.userUpdateUserInfo = exports.userChangeUsedStatus = exports.userGetPublishedUsedList = exports.userChangeRecruitStatus = exports.userGetPublishedRecruitList = exports.updataPassword = exports.userChangePhone = exports.userUpdateName = exports.userChangeAvatar = exports.postUserAddInfo = exports.getIdcardAuthInfo = exports.postUserAuthInfo = exports.getUserAuthInfo = exports.getMemberMsgNumber = exports.getMemberInfo = exports.CheckMineAuthInfo = exports.CheckAuth = exports.GetUsedInfo = exports.GetUserLoginPhoneCode = exports.GetUserPhoneCode = exports.PublishUsedInfo = exports.GetUsedInfoModel = exports.GetRechargeOrder = exports.GetRechargeOpenid = exports.GetRechargeList = exports.GetUserInviteLink = exports.CheckAdcodeValid = exports.GetAllAreas = exports.FastIssueInfo = exports.FastPublisInfo = exports.PublishRecruitInfo = exports.GetPublisRecruitView = exports.GetIntegralList = exports.GetTabbarMsg = exports.GetListFilterData = exports.GetWechatNotice = exports.GetFleamarketlist = exports.GetResumelist = exports.GetRecruitlist = exports.GetAllListItem = exports.GetBannerNotice = exports.GetUserInfo = exports.GetUserSessionKey = undefined;
 
 var _index = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
@@ -16686,7 +16710,7 @@ var feedbackUrl = exports.feedbackUrl = _index.REQUESTURL + 'leaving-message/lis
 // 意见反馈提交
 var feedbackSubmissionUrl = exports.feedbackSubmissionUrl = _index.REQUESTURL + 'leaving-message/publish/';
 // 帮助中心
-var helpUrl = exports.helpUrl = _index.REQUESTURL + 'others/help-feedback/';
+var helpUrl = exports.helpUrl = _index.REQUESTURL + 'others/feedback-tree/';
 // 新闻列表
 var newListUrl = exports.newListUrl = _index.REQUESTURL + 'news/list/';
 // 新闻类型
@@ -16823,6 +16847,12 @@ var getFreeIssueConfig = exports.getFreeIssueConfig = _index.REQUESTURL + 'fast-
 var getNotRemind = exports.getNotRemind = _index.REQUESTURL + '/fast-issue/hide-tips/';
 // 获取热门城市
 var hotAreas = exports.hotAreas = _index.REQUESTURL + 'resumes/hot-areas/';
+// 播放广告
+var getAdvStatusConfig = exports.getAdvStatusConfig = _index.REQUESTURL + '/member/get-adv-status/';
+//帮助中心问题详情
+var getQuestionDetails = exports.getQuestionDetails = _index.REQUESTURL + 'others/feedback-detail/';
+//帮助中心问题详情是否解决问题
+var getQuestionDetailsFeedBank = exports.getQuestionDetailsFeedBank = _index.REQUESTURL + 'others/feedback-effective/';
 
 /***/ }),
 
@@ -16839,7 +16869,6 @@ var hotAreas = exports.hotAreas = _index.REQUESTURL + 'resumes/hot-areas/';
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.getMyDate = exports.addZero = undefined;
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
@@ -16851,11 +16880,6 @@ exports.getPointNumber = getPointNumber;
 exports.getSystemInfo = getSystemInfo;
 exports.recSerAuthLoction = recSerAuthLoction;
 exports.userCancelAuth = userCancelAuth;
-exports.getLocation = getLocation;
-exports.setClipboardData = setClipboardData;
-exports.copyWechatNumber = copyWechatNumber;
-exports.userCallPhone = userCallPhone;
-exports.getUserShareMessage = getUserShareMessage;
 
 var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
 
@@ -16868,12 +16892,6 @@ var _amapWx = __webpack_require__(/*! ../source/amap-wx */ "./src/utils/source/a
 var _amapWx2 = _interopRequireDefault(_amapWx);
 
 var _store = __webpack_require__(/*! ../../config/store */ "./src/config/store.ts");
-
-var _index2 = __webpack_require__(/*! ../request/index */ "./src/utils/request/index.ts");
-
-var _index3 = __webpack_require__(/*! ../msg/index */ "./src/utils/msg/index.ts");
-
-var _index4 = _interopRequireDefault(_index3);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -16956,99 +16974,10 @@ function recSerAuthLoction() {
 function userCancelAuth() {
   _taroTt2.default.navigateBack();
 }
-// 用户获取定位
-function getLocation() {
-  (0, _index4.default)('位置获取中...');
-  return new Promise(function (resolve, reject) {
-    var myAmapFun = new _amapWx2.default.AMapWX({
-      key: _index.MAPKEY
-    }); //key注册高德地图开发者
-    myAmapFun.getRegeo({
-      type: 'gcj02',
-      success: function success(data) {
-        var mydata = data[0].regeocodeData.addressComponent;
-        var params = {
-          adcode: mydata.adcode
-        };
-        (0, _index2.checkAdcodeAction)(params).then(function (res) {
-          if (res.errcode == 'ok') {
-            var province = res.province;
-            // let city: string = mydata.city
-            // city = typeof city === 'string' ? city : province
-            var gpsLocation = {
-              province: province,
-              city: res.city,
-              adcode: mydata.adcode,
-              citycode: mydata.citycode,
-              address: data[0].name,
-              oadcode: mydata.adcode,
-              longitude: data[0].longitude + "",
-              latitude: data[0].latitude + "",
-              wardenryid: res.city,
-              regionone: ''
-            };
-            resolve(gpsLocation);
-          } else {
-            (0, _index4.default)('定位失败,请重新定位');
-            reject();
-          }
-        }).catch(function (err) {
-          (0, _index4.default)('定位失败,请重新定位');
-          reject(err);
-        });
-      },
-      fail: function fail(err) {
-        (0, _index4.default)('定位失败,请重新定位');
-        reject(err);
-      }
-    });
-  });
-}
-// 复制内容到粘贴板
-function setClipboardData(val) {
-  var msg = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '内容已成功复制到粘贴板';
-
-  _taroTt2.default.setClipboardData({
-    data: val,
-    success: function success() {
-      _taroTt2.default.hideToast();
-      (0, _index3.ShowActionModal)({
-        msg: msg
-      });
-    }
-  });
-}
-// 复制微信号到粘贴板
-function copyWechatNumber(val) {
-  var msg = "\u5FAE\u4FE1\u53F7:" + val + "\u5DF2\u590D\u5236\u5230\u7C98\u8D34\u677F\uFF0C\u53BB\u5FAE\u4FE1-\u6DFB\u52A0\u670B\u53CB-\u641C\u7D22\u6846\u7C98\u8D34";
-  setClipboardData(val, msg);
-}
-// 用户拨打电话
-function userCallPhone(val) {
-  _taroTt2.default.makePhoneCall({
-    phoneNumber: val
-  });
-}
-// 用户统一分享内容
-function getUserShareMessage() {
-  return {
-    title: '全国建筑工地招工平台',
-    imageUrl: _index.IMGCDNURL + "minishare.png"
-  };
-}
-var addZero = exports.addZero = function addZero(num) {
-  if (parseInt(num) < 10) {
-    num = '0' + num;
-  }
-  return num;
-};
-var getMyDate = exports.getMyDate = function getMyDate(str) {
-  var now = new Date(str),
-      y = now.getFullYear(),
-      m = now.getMonth() + 1,
-      d = now.getDate();
-  return y + "-" + (m < 10 ? "0" + m : m) + "-" + (d < 10 ? "0" + d : d) + " " + now.toTimeString().substr(0, 5);
-};
+//调用播放广告公告函数
+// export const handleAdvConfig = (callback, flag) => {
+//
+// }
 
 /***/ }),
 
@@ -17218,6 +17147,8 @@ exports.requestAction = requestAction;
 exports.feedbackAction = feedbackAction;
 exports.feedbackSubmissionAction = feedbackSubmissionAction;
 exports.helpAction = helpAction;
+exports.helpQuestionDetailsAction = helpQuestionDetailsAction;
+exports.helpQuestionDetailsFeedBankAction = helpQuestionDetailsFeedBankAction;
 exports.newsTypesAction = newsTypesAction;
 exports.newListAction = newListAction;
 exports.newsInfoAction = newsInfoAction;
@@ -17280,6 +17211,7 @@ exports.queryAction = queryAction;
 exports.getResumeAddInfoConfig = getResumeAddInfoConfig;
 exports.checkCode = checkCode;
 exports.getRankRulesList = getRankRulesList;
+exports.getAdvStatus = getAdvStatus;
 exports.turntableIndex = turntableIndex;
 exports.turntableDraw = turntableDraw;
 exports.turntableVideoEnd = turntableVideoEnd;
@@ -17795,13 +17727,36 @@ function feedbackSubmissionAction(params) {
   });
 }
 // 帮助中心
-function helpAction(page, system) {
+function helpAction(system) {
   return doRequestAction({
     url: api.helpUrl,
     failToast: true,
     data: {
-      page: page,
       system: system
+    }
+  });
+}
+// 帮助中心问题详情
+function helpQuestionDetailsAction(id, system) {
+  return doRequestAction({
+    url: api.getQuestionDetails,
+    method: 'GET',
+    failToast: true,
+    data: {
+      system: system,
+      id: id
+    }
+  });
+}
+// 帮助中心问题详情反馈
+function helpQuestionDetailsFeedBankAction(id, val) {
+  return doRequestAction({
+    url: api.getQuestionDetailsFeedBank,
+    method: 'GET',
+    failToast: true,
+    data: {
+      val: val,
+      id: id
     }
   });
 }
@@ -17907,13 +17862,14 @@ function integralExpendListsAction(params) {
   });
 }
 // 消耗积分弹窗内容
-function integralUseInfoAction(logId) {
+function integralUseInfoAction(logId, time) {
   return doRequestAction({
     url: api.integralUseInfoUrl,
     method: 'POST',
     failToast: true,
     data: {
-      logId: logId
+      logId: logId,
+      time: time
     }
   });
 }
@@ -18379,6 +18335,15 @@ function getRankRulesList() {
   return doRequestAction({
     url: api.getRankRulesList,
     method: 'POST'
+  });
+}
+//调用播放广告
+///member/get-adv-status/
+function getAdvStatus(params) {
+  return doRequestAction({
+    url: api.getAdvStatusConfig,
+    method: 'GET',
+    data: params
   });
 }
 // 大转盘获取抽奖次数
