@@ -24,7 +24,7 @@ export interface RecruitBaseInfo {
   user_mobile: string,
   user_name: string,
   province_id: number,
-  city_id: number,
+  city_id: number | string,
   type: string,
   infoId: string,
   detail: string,
@@ -53,7 +53,7 @@ export interface FastPublishBase{
   type: string,
   user_name: string,
   province_id: number,
-  city_id: number,
+  city_id: number | string,
   location: string,
   adcode: string,
   county_id: string,
@@ -192,12 +192,4 @@ export interface VaildCodeReq{
 export interface ImageData{
   url: string,
   httpurl: string
-  city?:string,
-  provice?:string,
-}
-
-// 招工城市
-export interface AreaData {
-  name: string,
-  ad_name: string
 }

@@ -43,7 +43,6 @@ export default function RecruitMap(){
       Taro.setStorageSync(Areas, res)
       setAreas(res)
     })
-    
   },[])
 
   // 用户定位城市
