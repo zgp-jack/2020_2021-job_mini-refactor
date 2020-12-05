@@ -1,4 +1,4 @@
-import { BAIDUSERIES } from '../index'
+import { BAIDU_SERIES } from '../series'
 
 var miniConfig = {
   // * page-title-global
@@ -6,7 +6,7 @@ var miniConfig = {
   // ! 小程序token 
   TOKEN: 'baidu',
   // ! 小程序公司体系
-  SERIES: BAIDUSERIES,
+  SERIES: BAIDU_SERIES,
   // * 小程序是否能被分享
   ISCANSHARE: true,
   // * 小程序广告unitid

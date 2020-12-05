@@ -1,4 +1,4 @@
-import { ZIJIESERIES } from '../index'
+import { ZIJIE_SERIES } from '../series'
 
 // * 每个小程序单独配置  工地急招
 var miniConfig = {
@@ -7,7 +7,7 @@ var miniConfig = {
   // ! 小程序token 
   TOKEN: 'douyin',
   // ! 小程序公司体系
-  SERIES: ZIJIESERIES,
+  SERIES: ZIJIE_SERIES,
   // * 小程序是否能被分享
   ISCANSHARE: true,
   // * 小程序广告unitid

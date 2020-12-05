@@ -1,4 +1,5 @@
 // ? 全局不动配置项 只做导出不做修改
+import { BAIDU_SERIES, WEIXIN_SERIES, ZIJIE_SERIES, QQ_SERIES } from './series'
 
 // ! 根据不同编译脚本打包不同小程序
 // * 当前打包版本
@@ -13,7 +14,7 @@ export const PREREQUESTURL: string = 'http://miniapi.kkbbi.com/'
 // * 正式站
 export const PROREQUESTURL: string = 'https://newyupaomini.54xiaoshuo.com/' 
 // * 当前程序使用的请求地址
-export const REQUESTURL: string = DEVREQUESTURL
+export const REQUESTURL: string = PROREQUESTURL
 // * 默认上传图片
 export const UPLOADIMGURL: string = `${PROREQUESTURL}index/upload/`
 // * 阿里云CDN域名
@@ -71,13 +72,13 @@ export const INVITEPATH: string = '/pages/static/invite/index'
 
 // ! 所有小程序公司体系集合
 // 百度
-export const BAIDUSERIES: string = 'baidu'
+export const BAIDUSERIES: string = BAIDU_SERIES
 // 字节
-export const ZIJIESERIES: string = 'zijie'
+export const ZIJIESERIES: string = ZIJIE_SERIES
 // 微信
-export const WEIXINSERIES: string = 'weixin'
+export const WEIXINSERIES: string = WEIXIN_SERIES
 // QQ
-export const QQSERIES: string = 'qq'
+export const QQSERIES: string = QQ_SERIES
 
 // ! 以下内容为每个小程序独立配置  
 // * page-title-global
