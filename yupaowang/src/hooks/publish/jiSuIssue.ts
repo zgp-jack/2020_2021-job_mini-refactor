@@ -13,6 +13,7 @@ import { setAreaInfo, setArea } from '../../actions/recruit'//获取发布招工
 import { RulesClassfies } from '../../components/classfiy_picker/index'
 import { usePublishData } from './commonIssue'
 import { ProfessionRecruitData } from '../../components/profession/index.d'
+import { USEGAODEMAPAPI } from '../../config'
 
 
 
@@ -32,8 +33,11 @@ export default function fastPublishInit(InitParams: InitRecruitView) {
   const [classMateArr, setclassMateArr] = useState<RulesClassfies[]>([])
   // 初始化招工信息
   useEffect(() => {
-    initUserAreaInfo()
-    if (model.is_check == 0) bakModelInfo(model)
+    //如果已经有定位信息 不在获取定位
+    if (!areaInfo.location){
+      initUserAreaInfo()
+    }
+    // if (model.is_check == 0) bakModelInfo(model)
     // 保存手机号
     setPhone(model.user_mobile)
     //如果是修改 后台给的选中数据中只有ID 需要匹配name 再把之前选中的工种信息保存
@@ -55,7 +59,7 @@ export default function fastPublishInit(InitParams: InitRecruitView) {
       }
       setclassMateArr(_Classifies)
     }
-  }, [])
+  }, [model])
 
   // 初始化用户区域数据
   function initUserAreaInfo() {
@@ -119,8 +123,7 @@ export default function fastPublishInit(InitParams: InitRecruitView) {
   function getPublishedInfo() {
     if (!model) return
     const data: FastPublishBase = {
-      // address: areaInfo.title,
-      address: '@@@@@',
+      address: areaInfo.title,
       detail: model.detail,
       infoId: model.infoId,
       type: model.type,
@@ -178,8 +181,13 @@ export default function fastPublishInit(InitParams: InitRecruitView) {
       }
     }
     // 拼接小地址的描述
-    // data.address += '@@@@@' + areaInfo.info
-    debugger
+    if (USEGAODEMAPAPI){
+      data.address += '@@@@@' + areaInfo.info
+    }else{
+      data.address = '@@@@@'
+      data.adcode = ''
+    }
+    
     FastPublisInfo(data).then(res => {
       if (res.errcode == 'ok') {
         SubscribeToNews("recruit", () => {

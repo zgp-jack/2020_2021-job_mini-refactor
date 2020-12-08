@@ -1,4 +1,4 @@
-import { GETMSG, SETMSG, RESETMSG } from '../constants/msg'
+import { GETMSG, SETMSG, RESETMSG, SETMEMBERMSG } from '../constants/msg'
 import { MemberMsgNumber } from '../utils/request/index.d'
 
 export function setMsg(data: MemberMsgNumber){
@@ -17,5 +17,12 @@ export function getMsg(){
 export function resetMsg(){
   return {
     type: RESETMSG
+  }
+}
+
+export function setMemberMsg(data: number){
+  return {
+    type: SETMEMBERMSG,
+    data
   }
 }

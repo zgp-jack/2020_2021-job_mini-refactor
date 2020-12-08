@@ -128,7 +128,7 @@ var CheckAuth = function (_Taro$Component) {
         (0, _index3.checkMineAuthInfo)().then(function (data) {
           if (data.errcode == 'auth_pass') {
             return;
-          } else if (data.errcode == 'auth_not_pass') {
+          } else if (data.errcode == 'auth_not_pass' || data.errcode == 'not_auth') {
             _taroTt2.default.showModal({
               title: '温馨提示',
               content: data.errmsg,

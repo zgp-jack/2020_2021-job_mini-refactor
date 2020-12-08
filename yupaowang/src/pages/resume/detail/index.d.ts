@@ -23,6 +23,7 @@ export interface resumeDetailInfo {
   is_end: string,
   certificate_show: number,
   uuid: string,
+  user_uuid: string,
   gender: string,
   distance: string,
   location: string,

@@ -43,6 +43,8 @@ var _index2 = __webpack_require__(/*! ../../../utils/helper/index */ "./src/util
 
 var _index3 = __webpack_require__(/*! ../../../utils/msg/index */ "./src/utils/msg/index.ts");
 
+var _index4 = __webpack_require__(/*! ../../../config/index */ "./src/config/index.ts");
+
 __webpack_require__(/*! ./index.scss */ "./src/pages/used/info/index.scss");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -65,7 +67,7 @@ var UsedInfo = function (_Taro$Component) {
       navigationBarTitleText: '二手交易详情'
     };
 
-    _this.$usedState = ["model"];
+    _this.$usedState = ["anonymousState__temp", "model"];
     _this.customComponents = ["WechatNotice"];
     return _this;
   }
@@ -134,7 +136,9 @@ var UsedInfo = function (_Taro$Component) {
       this.anonymousFunc0 = function () {
         return userCallPhone();
       };
+      var anonymousState__temp = model ? _index4.REPLACEWEIXINTEXT ? model.detail.replace(_index4.FILTERWEIXINREG, '') : model.detail : '';
       Object.assign(this.__state, {
+        anonymousState__temp: anonymousState__temp,
         model: model
       });
       return this.__state;

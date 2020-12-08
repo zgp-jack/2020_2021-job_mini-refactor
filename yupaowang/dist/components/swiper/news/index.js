@@ -57,7 +57,7 @@ var SwiperNews = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (SwiperNews.__proto__ || Object.getPrototypeOf(SwiperNews)).apply(this, arguments));
 
-    _this.$usedState = ["swiper", "loopArray14", "data"];
+    _this.$usedState = ["swiper", "loopArray13", "data"];
     _this.anonymousFunc0Map = {};
     _this.customComponents = [];
     return _this;
@@ -82,11 +82,11 @@ var SwiperNews = function (_Taro$Component) {
       var data = this.__props.data;
 
       var swiper = _extends({}, _index.DEFAULT_PROPS, data);
-      var loopArray14 = swiper.lists.map(function (item, __index0) {
+      var loopArray13 = swiper.lists.map(function (item, __index0) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
-        var _$indexKey = "bgzzz" + __index0;
+        var _$indexKey = "bizzz" + __index0;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return (0, _index2.userJumpPage)("/pages/static/notice/index?id=" + item.$original.id);
         };
@@ -97,7 +97,7 @@ var SwiperNews = function (_Taro$Component) {
       });
       Object.assign(this.__state, {
         swiper: swiper,
-        loopArray14: loopArray14
+        loopArray13: loopArray13
       });
       return this.__state;
     }

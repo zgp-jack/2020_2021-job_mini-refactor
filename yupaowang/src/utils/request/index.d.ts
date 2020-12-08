@@ -146,7 +146,8 @@ export interface ResumeList {
   show_address: string,
   tags: string[],
   prof_degree: string,
-  time: string
+  time: string,
+  resume_top: number
 }
 
 // 二手列表数据
@@ -362,7 +363,7 @@ export interface MemberInfoMember {
 }
 
 export interface MemberInfoNoticeMsg {
-  hasNoticeMsgg: number
+  hasNoticeMsg: number
 }
 
 export interface MemberInfoResumeStatus {
@@ -1556,14 +1557,14 @@ export interface TurntableIndexTypePortion {
 }
 
 export interface TurntableDrawData {
-  video?: string,
-  all_video_times?: number,
-  integral?: number,
-  over_video_times?: number,
-  rotate?: number,
-  times?: number,
-  video_times?: number,
-  win_integral?: number,
+  video: string,
+  all_video_times: number,
+  integral: number,
+  over_video_times: number,
+  rotate: number,
+  times: number,
+  video_times: number,
+  win_integral: number,
 }
 
 export interface TurntableDraw extends TurntableIndexTypePortion {
@@ -1598,3 +1599,14 @@ export interface addResumeData {
   errcode: number
   errmsg: string
 }
+<<<<<<< HEAD
+=======
+
+// 百度支付状态检测
+export interface BaiduOrderStatus extends Result{
+  data: {
+    tpOrderId: string,
+    order_status: number
+  }
+}
+>>>>>>> a2f6d4e95df6c5708d1bc802e2166f448a2c1151

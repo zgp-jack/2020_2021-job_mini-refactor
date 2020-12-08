@@ -13,7 +13,7 @@ export const PREREQUESTURL: string = 'http://miniapi.kkbbi.com/'
 // * 正式站
 export const PROREQUESTURL: string = 'https://newyupaomini.54xiaoshuo.com/' 
 // * 当前程序使用的请求地址
-export const REQUESTURL: string = DEVREQUESTURL;
+export const REQUESTURL: string = DEVREQUESTURL
 // * 默认上传图片
 export const UPLOADIMGURL: string = `${PROREQUESTURL}index/upload/`
 // * 阿里云CDN域名
@@ -64,26 +64,34 @@ export const AUTHPATH: string = '/pages/userauth/index'
 export const CODEAUTHPATH: string = '/pages/login/index'
 // * 已发布招工列表
 export const PUBLISHEDRECRUIT: string = '/pages/published/recruit/index'
-// * 下载App
+// * 下载APP
+export const DOWNLOADAPPPATH: string = '/subpackage/pages/download/index'
+// * 下载App链接
 export const DownloadApp: string ='https://android.myapp.com/myapp/detail.htm?apkName=io.dcloud.H576E6CC7&amp;ADTAG=mobile'
 // * 邀请好友
 export const INVITEPATH: string = '/pages/static/invite/index'
 
-
-// ! 所有小程序列表
+// ! 所有小程序公司体系集合
 // 百度
-export const BAIDU: string = 'baidu'
-// 抖音
-export const DOUYIN: string = 'douyin'
-
+export const BAIDUSERIES: string = 'baidu'
+// 字节
+export const ZIJIESERIES: string = 'zijie'
+// 微信
+export const WEIXINSERIES: string = 'weixin'
+// QQ
+export const QQSERIES: string = 'qq'
 
 // ! 以下内容为每个小程序独立配置  
 // * page-title-global
 export const PAGETITLE: string = MINICONFIG.PAGETITLE
 // * 小程序token 
 export const TOKEN: string = MINICONFIG.TOKEN
+// * 小程序公司体系
+export const SERIES: string = MINICONFIG.SERIES
 // * 小程序广告unitid
 export const UNITID: string = MINICONFIG.UNITID
+// * 小程序激励视频广告
+export const VIDEOAD: string = MINICONFIG.VIDEOAD
 // * 小程序邀请key
 export const INVITESOURCE: string = MINICONFIG.INVITESOURCE
 // * 是否使用推送信息
@@ -96,7 +104,17 @@ export const TEXTAREAMAXLENGTH: number = MINICONFIG.TEXTAREAMAXLENGTH
 export const DOWNLOADAPP: boolean = MINICONFIG.DOWNLOADAPP
 // * 是否能够使用高德地区api
 export const USEGAODEMAPAPI: boolean = MINICONFIG.USEGAODEMAPAPI
-// * scroll-view滚动过程中是否保存高度值
-export const SCROLLVIEWSETTOP: boolean = MINICONFIG.SCROLLVIEWSETTOP
 // * 上传图片 是否需要使用JSON解析数据
 export const ISPARSEUPLOADIMG: boolean = MINICONFIG.ISPARSEUPLOADIMG
+// * 是否显示加工友微信号
+export const SHOWWEIXINNUMBER: boolean = MINICONFIG.SHOWWEIXINNUMBER
+// * 是否显示关注公众号
+export const SHOWOFFICIALACCOUNT: boolean = MINICONFIG.SHOWOFFICIALACCOUNT
+// * 是否显示邀请好友
+export const SHOWINVITEUSER: boolean = MINICONFIG.SHOWINVITEUSER
+// * 是否替换微信类关键词
+export const REPLACEWEIXINTEXT: boolean = MINICONFIG.REPLACEWEIXINTEXT
+
+
+// 去除微信文本正则
+export const FILTERWEIXINREG: RegExp = /[微信|vx|VX|Vx|vx|v❤]/g

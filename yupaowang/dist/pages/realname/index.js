@@ -576,13 +576,13 @@ var RealName = function (_Taro$Component) {
           setModel(_extends({}, model, { gender: id }));
         }
       };
-      (0, _taroTt.useDidShow)(function () {
-        if (RealnameArea) {
-          var modelItem = JSON.parse(JSON.stringify(model));
-          modelItem.address = RealnameArea;
-          setModel(modelItem);
-        }
-      });
+      // useDidShow(()=>{
+      //   if (RealnameArea){
+      //     const modelItem = JSON.parse(JSON.stringify(model));
+      //     modelItem.address = RealnameArea;
+      //     setModel(modelItem);
+      //   }
+      // })
       // 用户填写信息
       var userEnterFormInfo = function userEnterFormInfo(title, e) {
         var modelInfo = JSON.parse(JSON.stringify(model));

@@ -68,6 +68,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+// import { PUBLISHRECRUIT } from '../../../config'
+
 
 var Recruit = function (_Taro$Component) {
   _inherits(Recruit, _Taro$Component);
@@ -77,7 +79,7 @@ var Recruit = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (Recruit.__proto__ || Object.getPrototypeOf(Recruit)).apply(this, arguments));
 
-    _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "anonymousState__temp3", "anonymousState__temp4", "$compid__20", "$compid__21", "$compid__22", "scrollTop", "refresh"];
+    _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "anonymousState__temp3", "anonymousState__temp4", "$compid__29", "$compid__30", "$compid__31", "refresh"];
     _this.customComponents = ["Search", "RecruitCondition", "WechatNotice", "RecruitList"];
     return _this;
   }
@@ -97,20 +99,20 @@ var Recruit = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__20"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__29"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__20 = _genCompid2[0],
-          $compid__20 = _genCompid2[1];
+          $prevCompid__29 = _genCompid2[0],
+          $compid__29 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__21"),
+      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__30"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__21 = _genCompid4[0],
-          $compid__21 = _genCompid4[1];
+          $prevCompid__30 = _genCompid4[0],
+          $compid__30 = _genCompid4[1];
 
-      var _genCompid5 = (0, _taroTt.genCompid)(__prefix + "$compid__22"),
+      var _genCompid5 = (0, _taroTt.genCompid)(__prefix + "$compid__31"),
           _genCompid6 = _slicedToArray(_genCompid5, 2),
-          $prevCompid__22 = _genCompid6[0],
-          $compid__22 = _genCompid6[1];
+          $prevCompid__31 = _genCompid6[0],
+          $compid__31 = _genCompid6[1];
 
       var login = (0, _redux.useSelector)(function (state) {
         return state.User['login'];
@@ -142,31 +144,24 @@ var Recruit = function (_Taro$Component) {
           _useState6 = _slicedToArray(_useState5, 2),
           condition = _useState6[0],
           setCondition = _useState6[1];
-      // * scrollTop 位置 回到顶部
-
-
-      var _useState7 = (0, _taroTt.useState)(0),
-          _useState8 = _slicedToArray(_useState7, 2),
-          scrollTop = _useState8[0],
-          setScrollTop = _useState8[1];
       // * 标记是否是在刷新状态
 
 
-      var _useState9 = (0, _taroTt.useState)(false),
-          _useState10 = _slicedToArray(_useState9, 2),
-          refresh = _useState10[0],
-          setRefresh = _useState10[1];
+      var _useState7 = (0, _taroTt.useState)(false),
+          _useState8 = _slicedToArray(_useState7, 2),
+          refresh = _useState8[0],
+          setRefresh = _useState8[1];
       // * 定义列表数组
 
 
-      var _useState11 = (0, _taroTt.useState)([]),
-          _useState12 = _slicedToArray(_useState11, 2),
-          lists = _useState12[0],
-          setLists = _useState12[1];
+      var _useState9 = (0, _taroTt.useState)([]),
+          _useState10 = _slicedToArray(_useState9, 2),
+          lists = _useState10[0],
+          setLists = _useState10[1];
       // * 定义data
 
 
-      var _useState13 = (0, _taroTt.useState)({
+      var _useState11 = (0, _taroTt.useState)({
         page: 1,
         list_type: 'job',
         area_id: userListChooseCity ? userListChooseCity.id : '',
@@ -175,9 +170,9 @@ var Recruit = function (_Taro$Component) {
         joblisttype: 'newest',
         token: ''
       }),
-          _useState14 = _slicedToArray(_useState13, 2),
-          searchData = _useState14[0],
-          setSearchData = _useState14[1];
+          _useState12 = _slicedToArray(_useState11, 2),
+          searchData = _useState12[0],
+          setSearchData = _useState12[1];
       // 更改某一项操作条件
 
 
@@ -221,15 +216,17 @@ var Recruit = function (_Taro$Component) {
       };
       // 请求列表方法
       var getRecruitListAction = function getRecruitListAction() {
+        if (searchData.page == 1) {
+          setLists([]);
+        }
         (0, _index.getRecruitList)(searchData).then(function (res) {
+          _taroTt2.default.hideNavigationBarLoading();
           if (res.errcode == 'ok') {
             if (res.data) {
-              _taroTt2.default.hideNavigationBarLoading();
               if (!res.data.length) {
                 setHasMore(false);
               }
               if (searchData.page === 1) {
-                goToScrollTop();
                 setLists([[].concat(_toConsumableArray(res.data))]);
               } else {
                 setLists([].concat(_toConsumableArray(lists), [[].concat(_toConsumableArray(res.data))]));
@@ -336,27 +333,9 @@ var Recruit = function (_Taro$Component) {
           setSearchData(_extends({}, searchData, { joblisttype: id, page: 1 }));
         }
       };
-      // scroll-view 回到顶部
-      var goToScrollTop = function goToScrollTop() {
-        setHasMore(true);
-        // ! 如果小程序必须监听滚动值 返回顶部直接为0 ，如果不需要我们就给个近似值 来达到效果
-        if (_index3.SCROLLVIEWSETTOP) {
-          setScrollTop(0);
-          return;
-        }
-        setScrollTop(scrollTop ? 0 : 0.01);
-      };
       // 输入搜索关键词
       var setSearchValData = function setSearchValData() {
         setSearchData(_extends({}, searchData, { keywords: remark, page: 1 }));
-      };
-      // scroll-view 滚动操作
-      var setScrollTopAction = function setScrollTopAction(e) {
-        // ! 如果小程序必须监听onScroll滚动值 那么就设置 例如百度小程序
-        if (_index3.SCROLLVIEWSETTOP) {
-          var top = e.detail.scrollTop;
-          setScrollTop(top);
-        }
       };
       var anonymousState__temp = function anonymousState__temp(val) {
         return setRemark(val);
@@ -367,17 +346,14 @@ var Recruit = function (_Taro$Component) {
       var anonymousState__temp3 = function anonymousState__temp3(type, id, text) {
         return setSearchDataAction(type, id, text);
       };
-      this.anonymousFunc0 = function (e) {
-        return setScrollTopAction(e);
-      };
-      this.anonymousFunc1 = function () {
+      this.anonymousFunc0 = function () {
         return pullDownAction();
       };
-      this.anonymousFunc2 = function () {
+      this.anonymousFunc1 = function () {
         return getNextPageData();
       };
       var anonymousState__temp4 = (0, _taroTt.internal_inline_style)({ height: '8px' });
-      this.anonymousFunc3 = function () {
+      this.anonymousFunc2 = function () {
         return userPublishRecruit();
       };
       _taroTt.propsManager.set({
@@ -385,24 +361,23 @@ var Recruit = function (_Taro$Component) {
         "value": "",
         "setRemark": anonymousState__temp,
         "setSearchData": anonymousState__temp2
-      }, $compid__20, $prevCompid__20);
+      }, $compid__29, $prevCompid__29);
       _taroTt.propsManager.set({
         "data": condition,
         "setSearchData": anonymousState__temp3
-      }, $compid__21, $prevCompid__21);
+      }, $compid__30, $prevCompid__30);
       _taroTt.propsManager.set({
         "data": lists,
         "hasMore": hasMore
-      }, $compid__22, $prevCompid__22);
+      }, $compid__31, $prevCompid__31);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
         anonymousState__temp2: anonymousState__temp2,
         anonymousState__temp3: anonymousState__temp3,
         anonymousState__temp4: anonymousState__temp4,
-        $compid__20: $compid__20,
-        $compid__21: $compid__21,
-        $compid__22: $compid__22,
-        scrollTop: scrollTop,
+        $compid__29: $compid__29,
+        $compid__30: $compid__30,
+        $compid__31: $compid__31,
         refresh: refresh
       });
       return this.__state;
@@ -422,17 +397,12 @@ var Recruit = function (_Taro$Component) {
     value: function anonymousFunc2(e) {
       ;
     }
-  }, {
-    key: "anonymousFunc3",
-    value: function anonymousFunc3(e) {
-      ;
-    }
   }]);
 
   return Recruit;
 }(_taroTt2.default.Component);
 
-Recruit.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3"];
+Recruit.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2"];
 Recruit.$$componentPath = "pages/recruit/lists/index";
 exports.default = Recruit;
 

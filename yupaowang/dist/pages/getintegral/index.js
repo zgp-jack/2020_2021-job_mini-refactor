@@ -65,7 +65,7 @@ var GetIntegral = function (_Taro$Component) {
       navigationBarTitleText: "鱼泡网-获取积分"
     };
 
-    _this.$usedState = ["anonymousState__temp", "ios", "turntable", "IMGCDNURL", "SERVERPHONE"];
+    _this.$usedState = ["anonymousState__temp", "SHOWINVITEUSER", "ios", "turntable", "IMGCDNURL", "SERVERPHONE"];
     _this.customComponents = ["Auth"];
     return _this;
   }
@@ -127,7 +127,7 @@ var GetIntegral = function (_Taro$Component) {
         return (0, _index2.userJumpPage)("/pages/recharge/index");
       };
       this.anonymousFunc2 = function () {
-        return (0, _index2.userJumpPage)("/pages/turntable/index");
+        return (0, _index2.userJumpPage)("/subpackage/pages/turntable/index");
       };
       var anonymousState__temp = turntable.show ? (0, _classnames2.default)({
         "getintegral-item-btn": true,
@@ -138,6 +138,7 @@ var GetIntegral = function (_Taro$Component) {
       };
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
+        SHOWINVITEUSER: _index.SHOWINVITEUSER,
         ios: ios,
         turntable: turntable,
         IMGCDNURL: _index.IMGCDNURL,

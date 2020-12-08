@@ -282,8 +282,8 @@ $commonMargin: 44px;
             content: '';
             left: 0;
             width: 2px;
-            top: -18px;
-            height: 260px;
+            top: -10px;
+            height: 100%;
             background: #f2f2f2;
           }
           .craft{
@@ -331,7 +331,7 @@ $commonMargin: 44px;
             .craft-text{
               margin-left: 26%;
               display: inline-block;
-              color: #7A7A7A;
+              color: #2A2A2A;
             }
             .craft-list{
               position: relative;

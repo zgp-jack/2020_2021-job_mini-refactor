@@ -12107,6 +12107,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.setMsg = setMsg;
 exports.getMsg = getMsg;
 exports.resetMsg = resetMsg;
+exports.setMemberMsg = setMemberMsg;
 
 var _msg = __webpack_require__(/*! ../constants/msg */ "./src/constants/msg.ts");
 
@@ -12124,6 +12125,12 @@ function getMsg() {
 function resetMsg() {
   return {
     type: _msg.RESETMSG
+  };
+}
+function setMemberMsg(data) {
+  return {
+    type: _msg.SETMEMBERMSG,
+    data: data
   };
 }
 
@@ -12259,32 +12266,6 @@ function getToken() {
 function setPhone(data) {
   return {
     type: _recruit.SETPHONE,
-    data: data
-  };
-}
-
-/***/ }),
-
-/***/ "./src/actions/recruit_top.ts":
-/*!************************************!*\
-  !*** ./src/actions/recruit_top.ts ***!
-  \************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = setRecruitTopArea;
-
-var _recruit_top = __webpack_require__(/*! ../constants/recruit_top */ "./src/constants/recruit_top.ts");
-
-function setRecruitTopArea(data) {
-  return {
-    type: _recruit_top.SET_RECRUIT_TOP_AREA,
     data: data
   };
 }
@@ -12548,22 +12529,32 @@ var AUTHPATH = exports.AUTHPATH = '/pages/userauth/index';
 var CODEAUTHPATH = exports.CODEAUTHPATH = '/pages/login/index';
 // * 已发布招工列表
 var PUBLISHEDRECRUIT = exports.PUBLISHEDRECRUIT = '/pages/published/recruit/index';
-// * 下载App
+// * 下载APP
+var DOWNLOADAPPPATH = exports.DOWNLOADAPPPATH = '/subpackage/pages/download/index';
+// * 下载App链接
 var DownloadApp = exports.DownloadApp = 'https://android.myapp.com/myapp/detail.htm?apkName=io.dcloud.H576E6CC7&amp;ADTAG=mobile';
 // * 邀请好友
 var INVITEPATH = exports.INVITEPATH = '/pages/static/invite/index';
-// ! 所有小程序列表
+// ! 所有小程序公司体系集合
 // 百度
-var BAIDU = exports.BAIDU = 'baidu';
-// 抖音
-var DOUYIN = exports.DOUYIN = 'douyin';
+var BAIDUSERIES = exports.BAIDUSERIES = 'baidu';
+// 字节
+var ZIJIESERIES = exports.ZIJIESERIES = 'zijie';
+// 微信
+var WEIXINSERIES = exports.WEIXINSERIES = 'weixin';
+// QQ
+var QQSERIES = exports.QQSERIES = 'qq';
 // ! 以下内容为每个小程序独立配置  
 // * page-title-global
 var PAGETITLE = exports.PAGETITLE = MINICONFIG.PAGETITLE;
 // * 小程序token 
 var TOKEN = exports.TOKEN = MINICONFIG.TOKEN;
+// * 小程序公司体系
+var SERIES = exports.SERIES = MINICONFIG.SERIES;
 // * 小程序广告unitid
 var UNITID = exports.UNITID = MINICONFIG.UNITID;
+// * 小程序激励视频广告
+var VIDEOAD = exports.VIDEOAD = MINICONFIG.VIDEOAD;
 // * 小程序邀请key
 var INVITESOURCE = exports.INVITESOURCE = MINICONFIG.INVITESOURCE;
 // * 是否使用推送信息
@@ -12576,10 +12567,18 @@ var TEXTAREAMAXLENGTH = exports.TEXTAREAMAXLENGTH = MINICONFIG.TEXTAREAMAXLENGTH
 var DOWNLOADAPP = exports.DOWNLOADAPP = MINICONFIG.DOWNLOADAPP;
 // * 是否能够使用高德地区api
 var USEGAODEMAPAPI = exports.USEGAODEMAPAPI = MINICONFIG.USEGAODEMAPAPI;
-// * scroll-view滚动过程中是否保存高度值
-var SCROLLVIEWSETTOP = exports.SCROLLVIEWSETTOP = MINICONFIG.SCROLLVIEWSETTOP;
 // * 上传图片 是否需要使用JSON解析数据
 var ISPARSEUPLOADIMG = exports.ISPARSEUPLOADIMG = MINICONFIG.ISPARSEUPLOADIMG;
+// * 是否显示加工友微信号
+var SHOWWEIXINNUMBER = exports.SHOWWEIXINNUMBER = MINICONFIG.SHOWWEIXINNUMBER;
+// * 是否显示关注公众号
+var SHOWOFFICIALACCOUNT = exports.SHOWOFFICIALACCOUNT = MINICONFIG.SHOWOFFICIALACCOUNT;
+// * 是否显示邀请好友
+var SHOWINVITEUSER = exports.SHOWINVITEUSER = MINICONFIG.SHOWINVITEUSER;
+// * 是否替换微信类关键词
+var REPLACEWEIXINTEXT = exports.REPLACEWEIXINTEXT = MINICONFIG.REPLACEWEIXINTEXT;
+// 去除微信文本正则
+var FILTERWEIXINREG = exports.FILTERWEIXINREG = /[微信|vx|VX|Vx|vx|v❤]/g;
 
 /***/ }),
 
@@ -12629,41 +12628,41 @@ webpackContext.id = "./src/config/minis sync recursive ^\\.\\/.*\\.ts$";
 
 
 // * 每个小程序单独配置  工地急招
-// * page-title-global
-var PAGETITLE = '鱼泡网-';
-// * 小程序token 
-var TOKEN = 'baidu';
-// * 小程序是否能被分享
-var ISCANSHARE = true;
-// * 小程序广告unitid
-var UNITID = 'adunit-80f40e8b4f60c3f6';
-// * 邀请key
-var INVITESOURCE = "712790d9629c6dcea00e3f5bff60132b";
-// * 是否使用推送信息
-var USESUBSCRIBEMESSAGE = false;
-// * textarea能输入的最大字数
-var TEXTAREAMAXLENGTH = 500;
-// * 应用内是否存在下载APP引流
-var DOWNLOADAPP = true;
-// * 是否支持高德地图api
-var USEGAODEMAPAPI = false;
-// ! 百度系小程序 列表滚动必须设置值
-var SCROLLVIEWSETTOP = true;
-// ! 百度系小程序  上传图片 不能JSON解析数据
-var ISPARSEUPLOADIMG = false;
-module.exports = {
-  PAGETITLE: PAGETITLE,
-  TOKEN: TOKEN,
-  UNITID: UNITID,
-  INVITESOURCE: INVITESOURCE,
-  USESUBSCRIBEMESSAGE: USESUBSCRIBEMESSAGE,
-  ISCANSHARE: ISCANSHARE,
-  TEXTAREAMAXLENGTH: TEXTAREAMAXLENGTH,
-  DOWNLOADAPP: DOWNLOADAPP,
-  USEGAODEMAPAPI: USEGAODEMAPAPI,
-  SCROLLVIEWSETTOP: SCROLLVIEWSETTOP,
-  ISPARSEUPLOADIMG: ISPARSEUPLOADIMG
+var miniConfig = {
+  // * page-title-global
+  PAGETITLE: '鱼泡网-',
+  // ! 小程序token 
+  TOKEN: 'baidu',
+  // ! 小程序公司体系
+  SERIES: 'baidu',
+  // * 小程序是否能被分享
+  ISCANSHARE: true,
+  // * 小程序广告unitid
+  UNITID: '',
+  // * 激励视频
+  VIDEOAD: '',
+  // * 邀请key
+  INVITESOURCE: "",
+  // * 是否使用推送信息
+  USESUBSCRIBEMESSAGE: false,
+  // * textarea能输入的最大字数
+  TEXTAREAMAXLENGTH: 500,
+  // * 应用内是否存在下载APP引流
+  DOWNLOADAPP: false,
+  // * 是否支持高德地图api
+  USEGAODEMAPAPI: false,
+  // * 是否显示加工友微信号
+  SHOWWEIXINNUMBER: false,
+  // * 是否显示关注公众号
+  SHOWOFFICIALACCOUNT: false,
+  // * 是否显示邀请好友链接
+  SHOWINVITEUSER: true,
+  // * 详情是否需要替换微信关键词
+  REPLACEWEIXINTEXT: true,
+  // ! 百度系小程序  上传图片 不能JSON解析数据
+  ISPARSEUPLOADIMG: false
 };
+module.exports = miniConfig;
 
 /***/ }),
 
@@ -12678,41 +12677,41 @@ module.exports = {
 
 
 // * 每个小程序单独配置  工地急招
-// * page-title-global
-var PAGETITLE = '鱼泡网-';
-// * 小程序token 
-var TOKEN = 'douyin';
-// * 小程序是否能被分享
-var ISCANSHARE = true;
-// * 小程序广告unitid
-var UNITID = 'adunit-80f40e8b4f60c3f6';
-// * 邀请key
-var INVITESOURCE = "712790d9629c6dcea00e3f5bff60132b";
-// * 是否使用推送信息
-var USESUBSCRIBEMESSAGE = false;
-// * textarea能输入的最大字数
-var TEXTAREAMAXLENGTH = 140;
-// * 应用内是否存在下载APP引流
-var DOWNLOADAPP = false;
-// * 是否支持高德地图api
-var USEGAODEMAPAPI = true;
-// ! 百度系小程序 列表滚动必须设置值
-var SCROLLVIEWSETTOP = false;
-// ! 百度系小程序  上传图片 JSON解析数据
-var ISPARSEUPLOADIMG = true;
-module.exports = {
-  PAGETITLE: PAGETITLE,
-  TOKEN: TOKEN,
-  UNITID: UNITID,
-  INVITESOURCE: INVITESOURCE,
-  USESUBSCRIBEMESSAGE: USESUBSCRIBEMESSAGE,
-  ISCANSHARE: ISCANSHARE,
-  TEXTAREAMAXLENGTH: TEXTAREAMAXLENGTH,
-  DOWNLOADAPP: DOWNLOADAPP,
-  USEGAODEMAPAPI: USEGAODEMAPAPI,
-  SCROLLVIEWSETTOP: SCROLLVIEWSETTOP,
-  ISPARSEUPLOADIMG: ISPARSEUPLOADIMG
+var miniConfig = {
+  // * page-title-global
+  PAGETITLE: '鱼泡网-',
+  // ! 小程序token 
+  TOKEN: 'douyin',
+  // ! 小程序公司体系
+  SERIES: 'zijie',
+  // * 小程序是否能被分享
+  ISCANSHARE: true,
+  // * 小程序广告unitid
+  UNITID: '',
+  // * 激励视频
+  VIDEOAD: '',
+  // * 邀请key
+  INVITESOURCE: '',
+  // * 是否使用推送信息
+  USESUBSCRIBEMESSAGE: false,
+  // * textarea能输入的最大字数
+  TEXTAREAMAXLENGTH: 140,
+  // * 应用内是否存在下载APP引流
+  DOWNLOADAPP: false,
+  // * 是否支持高德地图api
+  USEGAODEMAPAPI: true,
+  // * 是否显示加工友微信号
+  SHOWWEIXINNUMBER: false,
+  // * 是否显示关注公众号
+  SHOWOFFICIALACCOUNT: false,
+  // * 是否显示邀请好友链接
+  SHOWINVITEUSER: false,
+  // * 详情是否需要替换微信关键词
+  REPLACEWEIXINTEXT: false,
+  // ! 百度系小程序  上传图片 不能JSON解析数据
+  ISPARSEUPLOADIMG: true
 };
+module.exports = miniConfig;
 
 /***/ }),
 
@@ -12729,49 +12728,48 @@ module.exports = {
 /*
  * @Author: your name
  * @Date: 2020-10-28 11:04:26
- * @LastEditTime: 2020-11-25 10:29:47
+ * @LastEditTime: 2020-11-30 18:08:36
  * @LastEditors: jsxin
  * @Description: In User Settings Edit
  * @FilePath: \yupaowang\src\config\minis\jizhao.ts
  */
 // * 每个小程序单独配置  工地急招
-// * page-title-global
-var PAGETITLE = '鱼泡网-';
-// * 小程序token 
-var TOKEN = 'jizhao';
-// * 小程序是否能被分享
-var ISCANSHARE = true;
-// * 小程序广告unitid
-var UNITID = 'adunit-80f40e8b4f60c3f6';
-// * 邀请key
-var INVITESOURCE = "712790d9629c6dcea00e3f5bff60132b";
-// * 是否使用推送信息
-var USESUBSCRIBEMESSAGE = true;
-// * 激励视频
-var VIDEOAD = 'adunit-31b05acadbd2a1d1';
-// * textarea能输入的最大字数
-var TEXTAREAMAXLENGTH = 500;
-// * 应用内是否存在下载APP引流
-var DOWNLOADAPP = true;
-// * 是否支持高德地图api
-var USEGAODEMAPAPI = false;
-// ! 百度系小程序 列表滚动必须设置值
-var SCROLLVIEWSETTOP = false;
-// ! 百度系小程序  上传图片 JSON解析数据
-var ISPARSEUPLOADIMG = true;
-module.exports = {
-  PAGETITLE: PAGETITLE,
-  TOKEN: TOKEN,
-  UNITID: UNITID,
-  INVITESOURCE: INVITESOURCE,
-  USESUBSCRIBEMESSAGE: USESUBSCRIBEMESSAGE,
-  VIDEOAD: VIDEOAD,
-  TEXTAREAMAXLENGTH: TEXTAREAMAXLENGTH,
-  DOWNLOADAPP: DOWNLOADAPP,
-  USEGAODEMAPAPI: USEGAODEMAPAPI,
-  SCROLLVIEWSETTOP: SCROLLVIEWSETTOP,
-  ISPARSEUPLOADIMG: ISPARSEUPLOADIMG
+// * 每个小程序单独配置  工地急招
+var miniConfig = {
+  // * page-title-global
+  PAGETITLE: '工地急招-',
+  // ! 小程序token 
+  TOKEN: 'jizhao',
+  // ! 小程序公司体系
+  SERIES: 'weixin',
+  // * 小程序是否能被分享
+  ISCANSHARE: true,
+  // * 小程序广告unitid
+  UNITID: 'adunit-80f40e8b4f60c3f6',
+  // * 激励视频
+  VIDEOAD: 'adunit-31b05acadbd2a1d1',
+  // * 邀请key
+  INVITESOURCE: '712790d9629c6dcea00e3f5bff60132b',
+  // * 是否使用推送信息
+  USESUBSCRIBEMESSAGE: true,
+  // * textarea能输入的最大字数
+  TEXTAREAMAXLENGTH: 500,
+  // * 应用内是否存在下载APP引流
+  DOWNLOADAPP: true,
+  // * 是否支持高德地图api
+  USEGAODEMAPAPI: true,
+  // * 是否显示加工友微信号
+  SHOWWEIXINNUMBER: true,
+  // * 是否显示关注公众号
+  SHOWOFFICIALACCOUNT: true,
+  // * 是否显示邀请好友链接
+  SHOWINVITEUSER: true,
+  // * 详情是否需要替换微信关键词
+  REPLACEWEIXINTEXT: false,
+  // ! 百度系小程序  上传图片 不能JSON解析数据
+  ISPARSEUPLOADIMG: true
 };
+module.exports = miniConfig;
 
 /***/ }),
 
@@ -12892,6 +12890,7 @@ Object.defineProperty(exports, "__esModule", {
 var GETMSG = exports.GETMSG = 'getMsg';
 var SETMSG = exports.SETMSG = 'setMsg';
 var RESETMSG = exports.RESETMSG = 'resetMsg';
+var SETMEMBERMSG = exports.SETMEMBERMSG = 'setMemberMsg';
 
 /***/ }),
 
@@ -16359,8 +16358,8 @@ var RESUME_TOP_DATA = exports.RESUME_TOP_DATA = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.getBaiduTpOrderId = exports.publishModel = exports.fastPublisView = exports.FastRcruitUrl = exports.memberTurntable = exports.turntableVideoEnd = exports.turntableDraw = exports.turntableIndex = exports.getRankRulesList = exports.checkCodeUrl = exports.getResumeAddInfoConfig = exports.realnameQueryUrl = exports.userCheckDouyinRecharge = exports.userDouyinRecharge = exports.userTelCodeLogin = exports.userAccountUrl = undefined;
-exports.leavingMessageUrl = exports.resumesComplainUrl = exports.resumesUpdateTopResumeUrl = exports.resumesDoTopV2Url = exports.resumesTopConfigV2Url = exports.resumesEditImgUrl = exports.resumesChangeTopStatusUrl = exports.resumesDoTopUrl = exports.resumesTopConfigUrl = exports.resumesTopAreasUrl = exports.resumesDelProjectUrl = exports.resumesEditEndUrl = exports.resumesIntroduceUrl = exports.resumesGetDataUrl = exports.checkAdcodeUrl = exports.addResumeUrl = exports.resumesProjectUrl = exports.resumesCertificateUrl = exports.delCertificateUrl = exports.jobRecommendListUrl = exports.resumeListUrl = exports.resumeCollectUrl = exports.resumeSupportUrl = exports.resumesGetTelUrl = exports.recommendListUrl = exports.resumeDetailUrl = exports.jobUpdateTopStatusUrl = exports.jobChangeTopAreasUrl = exports.jobGetTopAreasUrl = exports.jobDoTopUrl = exports.jobTopHotAreasUrl = exports.jobTopConfigUrl = exports.jobEndStatusUrl = exports.jobGetTelUrl = exports.jobNoUserInfoUrl = exports.jobInfoUrl = exports.publishComplainUrl = exports.integralUseInfoUrl = exports.integralExpendListsUrl = exports.integralExpendConfigUrl = exports.integralSourceListsUrl = exports.integralSourceConfigUrl = exports.messagesTypeUrl = exports.userMessagesUrl = exports.resumesAddClickLog = exports.resumesSortUrl = exports.newsInfoUrl = exports.newsTypesUrl = exports.newListUrl = exports.helpUrl = exports.feedbackSubmissionUrl = exports.feedbackUrl = exports.requestActionUrl = exports.ResumeCancelCollection = exports.recruitCancelCollection = exports.getCollectionResumeList = exports.getCollectionRecruitList = exports.userUpdateUserInfo = exports.userChangeUsedStatus = exports.userGetPublishedUsedList = exports.userChangeRecruitStatus = exports.userGetPublishedRecruitList = exports.updataPassword = exports.userChangePhone = exports.userUpdateName = exports.userChangeAvatar = exports.postUserAddInfo = exports.getIdcardAuthInfo = exports.postUserAuthInfo = exports.getUserAuthInfo = exports.getMemberMsgNumber = exports.getMemberInfo = exports.CheckMineAuthInfo = exports.CheckAuth = exports.GetUsedInfo = exports.GetUserLoginPhoneCode = exports.GetUserPhoneCode = exports.PublishUsedInfo = exports.GetUsedInfoModel = exports.GetRechargeOrder = exports.GetRechargeOpenid = exports.GetRechargeList = exports.GetUserInviteLink = exports.CheckAdcodeValid = exports.GetAllAreas = exports.FastIssueInfo = exports.FastPublisInfo = exports.PublishRecruitInfo = exports.GetPublisRecruitView = exports.GetIntegralList = exports.GetTabbarMsg = exports.GetListFilterData = exports.GetWechatNotice = exports.GetFleamarketlist = exports.GetResumelist = exports.GetRecruitlist = exports.GetAllListItem = exports.GetBannerNotice = exports.GetUserInfo = exports.GetUserSessionKey = undefined;
+exports.checkBaiduTpOrderId = exports.getBaiduTpOrderId = exports.publishModel = exports.fastPublisView = exports.FastRcruitUrl = exports.memberTurntable = exports.turntableVideoEnd = exports.turntableDraw = exports.turntableIndex = exports.getRankRulesList = exports.checkCodeUrl = exports.getResumeAddInfoConfig = exports.realnameQueryUrl = exports.userCheckDouyinRecharge = exports.userDouyinRecharge = exports.userTelCodeLogin = exports.userAccountUrl = exports.leavingMessageUrl = undefined;
+exports.resumesComplainUrl = exports.resumesUpdateTopResumeUrl = exports.resumesDoTopV2Url = exports.resumesTopConfigV2Url = exports.resumesEditImgUrl = exports.resumesChangeTopStatusUrl = exports.resumesDoTopUrl = exports.resumesTopConfigUrl = exports.resumesTopAreasUrl = exports.resumesDelProjectUrl = exports.resumesEditEndUrl = exports.resumesIntroduceUrl = exports.resumesGetDataUrl = exports.checkAdcodeUrl = exports.addResumeUrl = exports.resumesProjectUrl = exports.resumesCertificateUrl = exports.delCertificateUrl = exports.jobRecommendListUrl = exports.resumeListUrl = exports.resumeCollectUrl = exports.resumeSupportUrl = exports.resumesGetTelUrl = exports.recommendListUrl = exports.resumeDetailUrl = exports.jobUpdateTopStatusUrl = exports.jobChangeTopAreasUrl = exports.jobGetTopAreasUrl = exports.jobDoTopUrl = exports.jobTopHotAreasUrl = exports.jobTopConfigUrl = exports.jobEndStatusUrl = exports.jobGetTelUrl = exports.jobNoUserInfoUrl = exports.jobInfoUrl = exports.publishComplainUrl = exports.integralUseInfoUrl = exports.integralExpendListsUrl = exports.integralExpendConfigUrl = exports.integralSourceListsUrl = exports.integralSourceConfigUrl = exports.messagesTypeUrl = exports.userMessagesUrl = exports.resumesAddClickLog = exports.resumesSortUrl = exports.newsInfoUrl = exports.newsTypesUrl = exports.newListUrl = exports.helpUrl = exports.feedbackSubmissionUrl = exports.feedbackUrl = exports.requestActionUrl = exports.ResumeCancelCollection = exports.recruitCancelCollection = exports.getCollectionResumeList = exports.getCollectionRecruitList = exports.userUpdateUserInfo = exports.userChangeUsedStatus = exports.userGetPublishedUsedList = exports.userChangeRecruitStatus = exports.userGetPublishedRecruitList = exports.userSetPassword = exports.updataPassword = exports.userChangePhone = exports.userUpdateName = exports.userChangeAvatar = exports.postUserAddInfo = exports.getIdcardAuthInfo = exports.postUserAuthInfo = exports.getUserAuthInfo = exports.getMemberMsgNumber = exports.getMemberInfo = exports.CheckMineAuthInfo = exports.CheckAuth = exports.GetUsedInfo = exports.GetUserLoginPhoneCode = exports.GetUserPhoneCode = exports.PublishUsedInfo = exports.GetUsedInfoModel = exports.GetRechargeOrder = exports.GetRechargeOpenid = exports.GetRechargeList = exports.GetUserInviteLink = exports.CheckAdcodeValid = exports.GetAllAreas = exports.FastIssueInfo = exports.FastPublisInfo = exports.PublishRecruitInfo = exports.GetPublisRecruitView = exports.GetIntegralList = exports.GetTabbarMsg = exports.GetListFilterData = exports.GetWechatNotice = exports.GetFleamarketlist = exports.GetResumelist = exports.GetRecruitlist = exports.GetAllListItem = exports.GetBannerNotice = exports.GetUserInfo = exports.GetUserSessionKey = undefined;
 
 var _index = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
 
@@ -16438,8 +16437,10 @@ var userChangeAvatar = exports.userChangeAvatar = _index.REQUESTURL + 'user/upda
 var userUpdateName = exports.userUpdateName = _index.REQUESTURL + 'user/update-username/';
 // 用户更换手机
 var userChangePhone = exports.userChangePhone = _index.REQUESTURL + 'user/update-tel/';
-//修改电话号码
+//修改密码
 var updataPassword = exports.updataPassword = _index.REQUESTURL + 'user/update-pwd/';
+//设置密码
+var userSetPassword = exports.userSetPassword = _index.REQUESTURL + 'user/set-pwd/';
 // 用户获取已发布招工列表
 var userGetPublishedRecruitList = exports.userGetPublishedRecruitList = _index.REQUESTURL + 'job/issue-lists/';
 // 用户改变招工状态
@@ -16596,6 +16597,8 @@ var fastPublisView = exports.fastPublisView = _index.REQUESTURL + 'publish/new-m
 var publishModel = exports.publishModel = _index.REQUESTURL + 'index/get-job-view/';
 // 获取百度tpOrderId
 var getBaiduTpOrderId = exports.getBaiduTpOrderId = _index.REQUESTURL + 'pay/baidu-order/';
+// 校验百度支付是否成功
+var checkBaiduTpOrderId = exports.checkBaiduTpOrderId = _index.REQUESTURL + 'pay/query-order-status/';
 
 /***/ }),
 
@@ -17030,6 +17033,7 @@ exports.userTelCodeLogin = userTelCodeLogin;
 exports.userDouyinRecharge = userDouyinRecharge;
 exports.userCheckDouyinRecharge = userCheckDouyinRecharge;
 exports.updataPassword = updataPassword;
+exports.userSetPassword = userSetPassword;
 exports.queryAction = queryAction;
 exports.getResumeAddInfoConfig = getResumeAddInfoConfig;
 exports.checkCode = checkCode;
@@ -18100,6 +18104,15 @@ function updataPassword(data) {
     data: data
   });
 }
+// 用户设置密码
+function userSetPassword(data) {
+  return doRequestAction({
+    url: api.userSetPassword,
+    method: 'POST',
+    failToast: true,
+    data: data
+  });
+}
 // 实名查询
 function queryAction(params) {
   return doRequestAction({
@@ -18140,9 +18153,10 @@ function turntableIndex() {
   });
 }
 // 大转盘抽奖
-function turntableDraw() {
+function turntableDraw(data) {
   return doRequestAction({
     url: api.turntableDraw,
+    data: data,
     method: 'POST'
   });
 }

@@ -57,6 +57,7 @@ function usePublishViewInfo(InitParams) {
   // 视图显示信息
 
   var _useState = (0, _taroTt.useState)({
+    title: '',
     detail: ''
   }),
       _useState2 = _slicedToArray(_useState, 2),
@@ -493,7 +494,7 @@ var PublishRecruit = function (_Taro$Component) {
       backgroundTextStyle: "dark"
     };
 
-    _this.$usedState = ["anonymousState__temp", "model", "$compid__35", "$compid__36", "showProfession", "USEGAODEMAPAPI", "areaInfo", "areaIndex", "areaPickerData", "areaPickerName", "phone", "showUpload", "text", "num", "TEXTAREAMAXLENGTH"];
+    _this.$usedState = ["anonymousState__temp", "model", "$compid__43", "$compid__44", "showProfession", "USEGAODEMAPAPI", "areaInfo", "areaIndex", "areaPickerData", "areaPickerName", "phone", "showUpload", "text", "num", "TEXTAREAMAXLENGTH"];
     _this.customComponents = ["Auth", "Profession", "ImageView"];
     return _this;
   }
@@ -513,15 +514,15 @@ var PublishRecruit = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__35"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__43"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__35 = _genCompid2[0],
-          $compid__35 = _genCompid2[1];
+          $prevCompid__43 = _genCompid2[0],
+          $compid__43 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__36"),
+      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__44"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__36 = _genCompid4[0],
-          $compid__36 = _genCompid4[1];
+          $prevCompid__44 = _genCompid4[0],
+          $compid__44 = _genCompid4[1];
       // 获取路由参数
 
 
@@ -712,18 +713,18 @@ var PublishRecruit = function (_Taro$Component) {
         "data": model && model.classifyTree,
         "onClickItem": this.anonymousFunc0,
         "num": 3
-      }, $compid__35, $prevCompid__35);
+      }, $compid__43, $prevCompid__43);
       showUpload && model && _taroTt.propsManager.set({
         "images": model.view_images,
         "max": model.maxImageCount,
         "userUploadImg": userUploadImg,
         "userDelImg": userDelImg
-      }, $compid__36, $prevCompid__36);
+      }, $compid__44, $prevCompid__44);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
         model: model,
-        $compid__35: $compid__35,
-        $compid__36: $compid__36,
+        $compid__43: $compid__43,
+        $compid__44: $compid__44,
         showProfession: showProfession,
         USEGAODEMAPAPI: _index3.USEGAODEMAPAPI,
         areaInfo: areaInfo,

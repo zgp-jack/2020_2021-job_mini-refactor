@@ -12,12 +12,10 @@ export default function UsedPublish() {
 
   const router = useRouter()
   const { id = '' } = router.params
-  const { model, setModel, initModel, parentCurrent, setParentCurrent, childCurrent, setChildCurrent, classifyName, setClassiryName, cityName, setCityName, setCIndex, setPIndex, areaProvince, areaCity, cIndex, pIndex, thisCurrentAreaCity, userTel, vaildPublishModelInfo, initUsedPublishViewInfo } = useUsedInfo(id)
+  const { model, setModel, initModel, parentCurrent, setParentCurrent, childCurrent, setChildCurrent, classifyName, setClassiryName, cityName, setCityName, setCIndex, setPIndex, areaProvince, areaCity, cIndex, pIndex, thisCurrentAreaCity, userTel, vaildPublishModelInfo, initUsedPublishViewInfo, num ,setNum } = useUsedInfo(id)
   const [showDrawer, setShowDrawer] = useState<boolean>(false)
   // 使用自定义验证码hook
   const { text, userGetCode } = useCode()
-  // 详情字数统计
-  const [num, setNum] = useState<number>(0)
   // 判断是否是首次进入
   const [first, setFirst] = useState<boolean>(true)
 

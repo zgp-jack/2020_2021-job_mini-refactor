@@ -72,12 +72,10 @@ var _App = function (_BaseComponent) {
     var _this = _possibleConstructorReturn(this, (_App.__proto__ || Object.getPrototypeOf(_App)).apply(this, arguments));
 
     _this.config = {
-      pages: ['pages/index/index', 'pages/userauth/index', "pages/recruit/publish/index", "pages/used/lists/index", "pages/map/recruit/index", "pages/map/resume/index", "pages/used/publish/index", "pages/used/info/index", "pages/static/invite/index", 'pages/static/notice/index', "pages/getintegral/index", "pages/integral/source/index", "pages/integral/temp/index", "pages/integral/official/index", "pages/integral/expend/index", "pages/recharge/index", "pages/realname/index", "pages/map/realname/index", "pages/userinfo/info/index", "pages/userinfo/add/index", "pages/userinfo/phone/index", "pages/userinfo/updatePass/index", "pages/published/recruit/index", "pages/published/used/index", "pages/collection/index", "pages/help/index", "pages/feedbacklist/index", "pages/feedback/index", "pages/information/mymessage/index", "pages/information/system/index", 'pages/integral/tabber/index', 'pages/detail/info/index', 'pages/topping/index', 'pages/topping/distruction/index',
-      // 'pages/topping/recruit/index',//置顶找活范围
-      'pages/resume/publish/index', 'pages/resume/add_info/index', 'pages/resume/add_member/index', 'pages/resume/add_skill/index', 'pages/resume/add_project/index', 'pages/resume/projects/index', 'pages/resume/skills/index', 'pages/rank-rules/index', 'pages/turntable/index', 'pages/resume/detail/index', 'pages/resume/newPreview/index', 'pages/resume/preview/index', 'pages/login/index', 'pages/recruit/jisu_issue/index', 'pages/recruit/fast_issue/issue/index', 'pages/recruit/fast_issue/code/index', 'pages/recruit/fast_issue/release/index'],
+      pages: ['pages/index/index', 'pages/userauth/index', "pages/recruit/publish/index", "pages/used/lists/index", "pages/map/recruit/index", "pages/map/resume/index", "pages/used/publish/index", "pages/used/info/index", "pages/static/invite/index", 'pages/static/notice/index', "pages/getintegral/index", "pages/integral/source/index", "pages/integral/temp/index", "pages/integral/official/index", "pages/integral/expend/index", "pages/recharge/index", "pages/realname/index", "pages/map/realname/index", "pages/userinfo/info/index", "pages/userinfo/add/index", "pages/userinfo/phone/index", "pages/userinfo/updatePass/index", "pages/userinfo/pass/index", "pages/published/recruit/index", "pages/published/used/index", "pages/collection/index", 'pages/integral/tabber/index', 'pages/detail/info/index', 'pages/topping/index', 'pages/resume/publish/index', 'pages/resume/add_info/index', 'pages/resume/add_member/index', 'pages/resume/add_skill/index', 'pages/resume/add_project/index', 'pages/resume/projects/index', 'pages/resume/skills/index', 'pages/resume/detail/index', 'pages/resume/newPreview/index', 'pages/resume/preview/index', 'pages/login/index', 'pages/recruit/jisu_issue/index', 'pages/recruit/fast_issue/issue/index', 'pages/recruit/fast_issue/code/index', 'pages/recruit/fast_issue/release/index'],
       subPackages: [{
         root: 'subpackage/pages',
-        pages: ['checkauth/index', 'about/index', 'report/index', 'download/index', 'ranking/index', 'course/index', 'anti-fraud/index', 'projects/index', 'skills/index', 'news/index']
+        pages: ['checkauth/index', 'about/index', 'report/index', 'download/index', 'ranking/index', 'course/index', 'anti-fraud/index', 'projects/index', 'skills/index', 'news/index', 'help/index', 'feedbacklist/index', 'feedback/index', 'information/mymessage/index', 'information/system/index', 'turntable/index']
       }],
       window: {
         backgroundTextStyle: 'light',
@@ -409,6 +407,8 @@ function msg() {
       return _extends({}, state, action.data);
     case _msg.RESETMSG:
       return _extends({}, state, DEFAULT_STATE);
+    case _msg.SETMEMBERMSG:
+      return _extends({}, state, { messageNumber: action.data });
     default:
       return state;
   }

@@ -19,15 +19,18 @@ var _index = __webpack_require__(/*! ../../../config/index */ "./src/config/inde
 var Config = [{
   url: _index.INVITEPATH,
   img: _index.IMGCDNURL + 'yqhy.png',
-  text: '邀请好友'
+  text: '邀请好友',
+  show: _index.SHOWINVITEUSER
 }, {
   url: '/subpackage/pages/checkauth/index',
   img: _index.IMGCDNURL + 'smcx.png',
-  text: '实名查询'
+  text: '实名查询',
+  show: true
 }, {
   url: '/subpackage/pages/news/index',
   img: _index.IMGCDNURL + 'index-newzjxm.png',
-  text: '鱼泡动态'
+  text: '鱼泡动态',
+  show: true
 }];
 exports.default = Config;
 
@@ -88,7 +91,7 @@ var Fastfun = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (Fastfun.__proto__ || Object.getPrototypeOf(Fastfun)).apply(this, arguments));
 
-    _this.$usedState = ["loopArray13", "Config", "ISWEIXIN"];
+    _this.$usedState = ["loopArray20", "Config", "ISWEIXIN"];
     _this.anonymousFunc0Map = {};
     _this.customComponents = [];
     return _this;
@@ -119,12 +122,12 @@ var Fastfun = function (_Taro$Component) {
       this.anonymousFunc1 = function () {
         return userRouteJump("/pages/used/lists/index");
       };
-      var loopArray13 = _config2.default.map(function (item, index) {
+      var loopArray20 = _config2.default.map(function (item, index) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
-        var $loopState__temp2 = index + index;
-        var _$indexKey = "bfzzz" + index;
+        var $loopState__temp2 = item.$original.show ? index + index : null;
+        var _$indexKey = "cezzz" + index;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return userRouteJump(item.$original.url);
         };
@@ -135,7 +138,7 @@ var Fastfun = function (_Taro$Component) {
         };
       });
       Object.assign(this.__state, {
-        loopArray13: loopArray13,
+        loopArray20: loopArray20,
         Config: _config2.default,
         ISWEIXIN: false
       });

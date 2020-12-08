@@ -53,7 +53,7 @@ var UsedList = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (UsedList.__proto__ || Object.getPrototypeOf(UsedList)).apply(this, arguments));
 
-    _this.$usedState = ["anonymousState__temp", "loopArray17", "data", "IMGCDNURL", "hasMore", "ALIYUNCDN", "bottom"];
+    _this.$usedState = ["anonymousState__temp", "loopArray23", "data", "IMGCDNURL", "hasMore", "ALIYUNCDN", "bottom"];
     _this.anonymousFunc0Map = {};
     _this.customComponents = [];
     return _this;
@@ -90,15 +90,15 @@ var UsedList = function (_Taro$Component) {
         });
       };
       var anonymousState__temp = (0, _taroTt.internal_inline_style)(bottom ? '' : 'padding-bottom:0');
-      var loopArray17 = data.length ? data.map(function (item, __index1) {
+      var loopArray23 = data.length ? data.map(function (item, __index1) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
-        var $anonymousCallee__3 = data.length ? item.$original.map(function (d, __index0) {
+        var $anonymousCallee__5 = data.length ? item.$original.map(function (d, __index0) {
           d = {
             $original: (0, _taroTt.internal_get_original)(d)
           };
-          var _$indexKey = "bjzzz" + __index1 + "-" + __index0;
+          var _$indexKey = "chzzz" + __index1 + "-" + __index0;
           _this2.anonymousFunc0Map[_$indexKey] = function () {
             return userLookUsedInfo(d.$original.id);
           };
@@ -108,13 +108,13 @@ var UsedList = function (_Taro$Component) {
           };
         }) : [];
         return {
-          $anonymousCallee__3: $anonymousCallee__3,
+          $anonymousCallee__5: $anonymousCallee__5,
           $original: item.$original
         };
       }) : [];
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
-        loopArray17: loopArray17,
+        loopArray23: loopArray23,
         data: data,
         IMGCDNURL: _index.IMGCDNURL,
         hasMore: hasMore,

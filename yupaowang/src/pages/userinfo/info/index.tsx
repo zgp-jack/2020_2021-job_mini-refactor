@@ -82,9 +82,11 @@ export default function UserInfoIndex(){
 
   //修改密码
   const onSetPassword = ()=> {
-    const url = "/pages/userinfo/updatePass/index";
+    // 判断用户是修改密码还是设置密码
+    const updateUrl: string = "/pages/userinfo/updatePass/index";
+    const setUrl: string = "/pages/userinfo/pass/index"
     Taro.navigateTo({
-      url
+      url: memberInfo.pwd_status == 'set' ? setUrl : updateUrl
     })
   }
 
@@ -100,7 +102,7 @@ export default function UserInfoIndex(){
           <View className='user-updatainfo-right'>{ name }</View>
         </View>
         <View className='user-updatainfo-item clearfix' onClick={onSetPassword}>
-          <View className='user-updatainfo-left'>修改密码</View>
+        <View className='user-updatainfo-left'>{memberInfo.pwd_status == 'set' ? '设置密码' : '修改密码'}</View>
           <View className='user-updatainfo-right'></View>
         </View>
         <View className='user-updatainfo-item clearfix' onClick={()=>userJumpPhonePage()}>

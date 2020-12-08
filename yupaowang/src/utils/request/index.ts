@@ -1201,6 +1201,15 @@ export function updataPassword(data): Promise<Inter.Result> {
   })
 }
 
+// 用户设置密码
+export function userSetPassword(data): Promise<Inter.Result> {
+  return doRequestAction({
+    url: api.userSetPassword,
+    method: 'POST',
+    failToast: true,
+    data
+  })
+}
 
 // 实名查询
 export function queryAction(params): Promise<Inter.userQueryAuthInfoData> {
@@ -1244,9 +1253,10 @@ export function turntableIndex():Promise<Inter.TurntableIndexType>{
 }
 
 // 大转盘抽奖
-export function turntableDraw():Promise<Inter.TurntableDraw>{
+export function turntableDraw(data):Promise<Inter.TurntableDraw>{
   return doRequestAction({
     url: api.turntableDraw,
+    data,
     method: 'POST',
   })
 }
@@ -1282,3 +1292,15 @@ export function getBaiduTpOrderId(data): Promise<any>{
     data
   })
 }
+<<<<<<< HEAD
+=======
+
+// 校验百度支付是否成功
+export function checkBaiduOrderStatusAction(data): Promise<Inter.BaiduOrderStatus>{
+  return doRequestAction({
+    url: api.checkBaiduTpOrderId,
+    method: 'POST',
+    data
+  })
+}
+>>>>>>> a2f6d4e95df6c5708d1bc802e2166f448a2c1151

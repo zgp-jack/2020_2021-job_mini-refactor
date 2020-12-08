@@ -77,7 +77,7 @@ var DetailInfoPage = function (_Taro$Component) {
       navigationBarTitleText: ''
     };
 
-    _this.$usedState = ["data", "loopArray71", "loopArray72", "$compid__66", "resCode", "editPhone", "DOWNLOADAPP", "IMGCDNURL", "isCollection", "ISCANSHARE", "complaintModal", "phone"];
+    _this.$usedState = ["anonymousState__temp3", "data", "loopArray72", "loopArray73", "$compid__66", "resCode", "editPhone", "SHOWOFFICIALACCOUNT", "DOWNLOADAPP", "IMGCDNURL", "isCollection", "ISCANSHARE", "complaintModal", "phone"];
     _this.anonymousFunc5Map = {};
     _this.customComponents = ["WechatNotice", "Report"];
     return _this;
@@ -623,9 +623,10 @@ var DetailInfoPage = function (_Taro$Component) {
       this.anonymousFunc4 = function () {
         return userRouteJump("/pages/static/notice/index?id=32");
       };
+      var anonymousState__temp3 = _index2.REPLACEWEIXINTEXT ? data.detail.replace(_index2.FILTERWEIXINREG, '') : data.detail;
       this.anonymousFunc6 = handleMap;
       this.anonymousFunc7 = function () {
-        return userRouteJump('/subpackage/pages/download/index');
+        return userRouteJump(_index2.DOWNLOADAPPPATH);
       };
       this.anonymousFunc8 = collection;
       this.anonymousFunc9 = footerComplaint;
@@ -635,7 +636,7 @@ var DetailInfoPage = function (_Taro$Component) {
       this.anonymousFunc11 = function () {
         _taroTt2.default.makePhoneCall({ phoneNumber: phone });
       };
-      var loopArray71 = data.classifyName.map(function (v, i) {
+      var loopArray72 = data.classifyName.map(function (v, i) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
@@ -645,17 +646,17 @@ var DetailInfoPage = function (_Taro$Component) {
           $original: v.$original
         };
       });
-      var loopArray72 = data.view_images.length ? data.view_images.map(function (v, i) {
+      var loopArray73 = data.view_images.length ? data.view_images.map(function (v, i) {
         v = {
           $original: (0, _taroTt.internal_get_original)(v)
         };
-        var $loopState__temp4 = data.view_images.length ? i + i : null;
+        var $loopState__temp5 = data.view_images.length ? i + i : null;
         var _$indexKey = "hhzzz" + i;
         _this2.anonymousFunc5Map[_$indexKey] = function () {
           return handleImage(v.$original);
         };
         return {
-          $loopState__temp4: $loopState__temp4,
+          $loopState__temp5: $loopState__temp5,
           _$indexKey: _$indexKey,
           $original: v.$original
         };
@@ -668,12 +669,14 @@ var DetailInfoPage = function (_Taro$Component) {
         "handleSubmit": handleSubmit
       }, $compid__66, $prevCompid__66);
       Object.assign(this.__state, {
+        anonymousState__temp3: anonymousState__temp3,
         data: data,
-        loopArray71: loopArray71,
         loopArray72: loopArray72,
+        loopArray73: loopArray73,
         $compid__66: $compid__66,
         resCode: resCode,
         editPhone: editPhone,
+        SHOWOFFICIALACCOUNT: _index2.SHOWOFFICIALACCOUNT,
         DOWNLOADAPP: _index2.DOWNLOADAPP,
         IMGCDNURL: _index2.IMGCDNURL,
         isCollection: isCollection,

@@ -82,7 +82,7 @@ var Recharge = function (_Taro$Component) {
       backgroundTextStyle: "dark"
     };
 
-    _this.$usedState = ["loopArray55", "lists", "integral", "current", "price"];
+    _this.$usedState = ["loopArray60", "lists", "integral", "current", "price"];
     _this.anonymousFunc0Map = {};
     _this.customComponents = ["AtMessage"];
     return _this;
@@ -164,10 +164,15 @@ var Recharge = function (_Taro$Component) {
       // 用户充值
       var userRechargeAction = function userRechargeAction() {
         var rechargeIntegral = lists[current].integral;
-        if (false) {} else if (_index.MINIVERSION == _index.DOUYIN) {
+        if (_index.SERIES == _index.WEIXINSERIES) {
+          weixinProPay(rechargeIntegral);
+          return false;
+        } else if (_index.SERIES == _index.ZIJIESERIES) {
           douyinProPay();
-        } else if (_index.MINIVERSION == _index.BAIDU) {
+        } else if (_index.SERIES == _index.BAIDUSERIES) {
           baiduProPay(rechargeIntegral);
+        } else if (_index.SERIES == _index.QQSERIES) {
+          // qq支付
         }
       };
       // 检测订单
@@ -260,9 +265,16 @@ var Recharge = function (_Taro$Component) {
             swan.requestPolymerPayment({
               orderInfo: _extends({}, res.payData),
               success: function success() {
-                var afterIntegral = integral + rechargeIntegral;
-                setIntegral(afterIntegral);
-                (0, _index3.ShowActionModal)({ msg: '支付成功' });
+                // 校验百度支付是否成功
+                (0, _index2.checkBaiduOrderStatusAction)({ tpOrderId: res.payData.tpOrderId }).then(function (res) {
+                  if (res.errcode == 'ok') {
+                    if (res.data.order_status == 2) {
+                      var afterIntegral = integral + rechargeIntegral;
+                      setIntegral(afterIntegral);
+                      (0, _index3.ShowActionModal)({ msg: '支付成功' });
+                    }
+                  }
+                });
               },
               fail: function fail(err) {
                 (0, _index3.ShowActionModal)({ msg: err.errMsg });
@@ -276,11 +288,11 @@ var Recharge = function (_Taro$Component) {
       this.anonymousFunc1 = function () {
         return userRechargeAction();
       };
-      var loopArray55 = lists.map(function (item, index) {
+      var loopArray60 = lists.map(function (item, index) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
-        var _$indexKey = "fezzz" + index;
+        var _$indexKey = "gazzz" + index;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return userChooseItem(index);
         };
@@ -295,7 +307,7 @@ var Recharge = function (_Taro$Component) {
         };
       });
       Object.assign(this.__state, {
-        loopArray55: loopArray55,
+        loopArray60: loopArray60,
         lists: lists,
         integral: integral,
         current: current,

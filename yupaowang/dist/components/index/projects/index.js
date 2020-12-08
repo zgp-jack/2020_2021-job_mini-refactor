@@ -156,7 +156,7 @@ var Projects = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (Projects.__proto__ || Object.getPrototypeOf(Projects)).apply(this, arguments));
 
-    _this.$usedState = ["loopArray12", "FastBarConfig"];
+    _this.$usedState = ["loopArray19", "FastBarConfig"];
     _this.anonymousFunc0Map = {};
     _this.customComponents = [];
     return _this;
@@ -189,12 +189,12 @@ var Projects = function (_Taro$Component) {
           _taroTt2.default.navigateTo({ url: item.url });
         }
       };
-      var loopArray12 = _config2.default.map(function (item, index) {
+      var loopArray19 = _config2.default.map(function (item, index) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
         var $loopState__temp2 = index + item.$original.appid;
-        var _$indexKey = "bezzz" + index;
+        var _$indexKey = "cdzzz" + index;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return FastbarAction(item.$original);
         };
@@ -205,7 +205,7 @@ var Projects = function (_Taro$Component) {
         };
       });
       Object.assign(this.__state, {
-        loopArray12: loopArray12,
+        loopArray19: loopArray19,
         FastBarConfig: _config2.default
       });
       return this.__state;

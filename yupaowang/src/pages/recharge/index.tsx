@@ -1,7 +1,7 @@
 import Taro, { useEffect, useState, Config } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
-import { SERVERPHONE, MINIVERSION, DOUYIN, BAIDU } from '../../config'
-import { getRechargeList, getRechargeOpenid, getRechargeOrder, userDouyinRecharge, userCheckDouyinRecharge, getBaiduTpOrderId } from '../../utils/request'
+import { SERVERPHONE, BAIDUSERIES, ZIJIESERIES, WEIXINSERIES, QQSERIES, SERIES } from '../../config'
+import { getRechargeList, getRechargeOpenid, getRechargeOrder, userDouyinRecharge, userCheckDouyinRecharge, getBaiduTpOrderId, checkBaiduOrderStatusAction } from '../../utils/request'
 import { GetRechargeListType } from '../../utils/request/index.d'
 import Msg, { ShowActionModal, errMsg } from '../../utils/msg'
 import { useDispatch } from '@tarojs/redux'
@@ -61,13 +61,15 @@ export default function Recharge(){
   // 用户充值
   const userRechargeAction = ()=> {
     let rechargeIntegral: number = lists[current].integral
-    if(ISWEIXIN){
+    if (SERIES == WEIXINSERIES){
       weixinProPay(rechargeIntegral)
       return false
-    }else if(MINIVERSION == DOUYIN){
+    } else if (SERIES == ZIJIESERIES){
       douyinProPay()
-    }else if(MINIVERSION == BAIDU){
+    } else if (SERIES == BAIDUSERIES){
       baiduProPay(rechargeIntegral)
+    } else if (SERIES == QQSERIES){
+      // qq支付
     }
   }
 
@@ -162,9 +164,17 @@ export default function Recharge(){
         swan.requestPolymerPayment({
           orderInfo: {...res.payData},
           success: () => {
-            let afterIntegral: number = integral + rechargeIntegral
-            setIntegral(afterIntegral)
-            ShowActionModal({ msg: '支付成功'})
+            // 校验百度支付是否成功
+            checkBaiduOrderStatusAction({ tpOrderId: res.payData.tpOrderId }).then(res => {
+              if(res.errcode == 'ok'){
+                if (res.data.order_status == 2){
+                  let afterIntegral: number = integral + rechargeIntegral
+                  setIntegral(afterIntegral)
+                  ShowActionModal({ msg: '支付成功' })
+                }
+              }
+            })
+            
           },
           fail: err => {
             ShowActionModal({ msg: err.errMsg})
@@ -175,6 +185,7 @@ export default function Recharge(){
       }
     })
   }
+
 
   return (
     <View className='recharge-container'>

@@ -1,12 +1,12 @@
 import Taro, { useState, useEffect, Config } from '@tarojs/taro'
 import { View, Text, Image } from '@tarojs/components'
-import { userMessagesAction } from '../../../utils/request/index'
-import { userMessagesListDataList  } from '../../../utils/request/index.d';
-import { IMGCDNURL } from '../../../config'
-import Auth from '../../../components/auth'
+import { userMessagesAction } from '../../../../utils/request/index'
+import { userMessagesListDataList  } from '../../../../utils/request/index.d';
+import { IMGCDNURL } from '../../../../config'
+import Auth from '../../../../components/auth'
 import { useSelector } from '@tarojs/redux'
-import Nodata from '../../../components/nodata'
-import { isIos } from '../../../utils/v'
+import Nodata from '../../../../components/nodata'
+import { isIos } from '../../../../utils/v'
 import './index.scss'
 
 interface DataType {
@@ -37,6 +37,15 @@ export default function Mymessage (){
       url: url
     })
   }
+  // 用户点击每一项
+  const userClickThisInfo = (type: number, index: number) => {
+    // 先清空当前项的数字，然后跳转到指定页面
+    let lists = JSON.parse(JSON.stringify(data.item))
+    lists[index].count = 0
+    setData({ item: [...lists] })
+    userRouteJump(`/subpackage/pages/information/system/index?type=${type}`)
+  }
+
   return (
     <View>
       <Auth />
@@ -45,7 +54,7 @@ export default function Mymessage (){
         <View 
           className='messsage-lists' 
           key={index+index} 
-          onClick={() => userRouteJump(`/pages/information/system/index?type=${item.type}`)}>
+          onClick={() => userClickThisInfo(item.type,index)}>
           <View className='messsage-lists-top'>
             <View className='messsage-num' >
               <Image src={item.imageUrl} className='messsage-num-img' />

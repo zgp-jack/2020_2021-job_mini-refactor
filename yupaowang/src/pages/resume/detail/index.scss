@@ -609,6 +609,9 @@
   padding-left: 28px;
   width: 50%;
 }
+.workotextone-noaddress{
+  width: 79%;
+}
 .workotextone-address-img{
   margin-right: 10px;
   width: 20px;
@@ -668,8 +671,9 @@
   content: '';
   width: 25px;
   height: 25px;
-  background: url('http://cdn.yupao.com/miniprogram/images/newjobinfo-steps.png') no-repeat;
-  background-size: 100% 100%;
+  background-image: url('http://cdn.yupao.com/miniprogram/images/newjobinfo-steps.png');
+  background-repeat: no-repeat;
+  background-size: cover;
   left: 14px;
   margin-left: -5px;
   top: 10px;
@@ -679,8 +683,9 @@
   content: '';
   width: 25px;
   height: 25px;
-  background: url(http://cdn.yupao.com/miniprogram/images/newjobinfo-steps.png?t=11) no-repeat;
-  background-size: 100% 100%;
+  background-image: url(http://cdn.yupao.com/miniprogram/images/newjobinfo-steps.png?t=11);
+  background-repeat: no-repeat;
+  background-size: cover;
   left: 14px;
   margin-left: -5px;
   top: 10px;

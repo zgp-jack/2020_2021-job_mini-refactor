@@ -1,7 +1,7 @@
 import Taro, { Config, useState, useRouter, useShareAppMessage, useDidShow, useEffect } from '@tarojs/taro'
 import { View, Text, Image, Button } from '@tarojs/components'
 import { resumeDetailAction, recommendListAction, resumesGetTelAcrion, resumeSupportAction, resumeCollectAction, resumesComplainAction } from '../../../utils/request/index'
-import { IMGCDNURL, ISCANSHARE } from '../../../config'
+import { IMGCDNURL, ISCANSHARE, FILTERWEIXINREG, REPLACEWEIXINTEXT } from '../../../config'
 import Msg, { ShowActionModal, showModalTip } from '../../../utils/msg'
 import { DataType, ListType, Injected } from './index.d'
 // import CollectionRecruitList  from '../../../components/recommendList/index'
@@ -10,6 +10,8 @@ import { getUserShareMessage } from '../../../utils/helper'
 import Report from '../../../components/report';
 import { useSelector, useDispatch } from '@tarojs/redux'
 import Auth from '../../../components/auth'
+import classnames from 'classnames'
+import { User } from '../../../reducers/user'
 import { resumeDetailCertificatesRedux, resumeDetailProjectRedux } from '../../../utils/request/index.d';
 import { SubscribeToNews } from '../../../utils/subscribeToNews';
 import { setSubpackcertificate, setSubpackProject} from '../../../actions/resume_list';
@@ -20,6 +22,7 @@ export default function ResumeDetail() {
   const dispatch = useDispatch()
   // 获取用户是否登录
   const login = useSelector<any, boolean>(state => state.User['login'])
+  const user = useSelector<any, User>(state => state.User)
   const router: Taro.RouterInfo = useRouter()
   //获取uuid和location,location需要修改，用一个共同的，最外层使用的
   let { uuid, location } = router.params;
@@ -44,6 +47,7 @@ export default function ResumeDetail() {
       is_end:'',
       certificate_show:0,
       uuid:'',
+      user_uuid: '',
       gender:'',
       tags: [],
       distance:'',
@@ -424,7 +428,10 @@ export default function ResumeDetail() {
           {data.info.address &&
             <View className='cardotext'>
               <Text className='oworkotext'>所在地区</Text>
-            <Text className='workotextone-address'>{data.info.address}</Text>
+            <Text className={classnames({
+              'workotextone-address': true,
+              'workotextone-noaddress': !data.info.distance
+            })}>{data.info.address}</Text>
             {/* 地图 */}
             {data.info.distance && 
             <View onClick={handleMap} className='map-distance-info'>
@@ -461,7 +468,7 @@ export default function ResumeDetail() {
         </View>
       </View>
       <View className='resumeDetail-introduce'>
-        {data.info.introduce||'暂未填写'}
+          {data.info.introduce ? (REPLACEWEIXINTEXT ? data.info.introduce.replace(FILTERWEIXINREG, '') : data.info.introduce) : '暂未填写'}
       </View>
       {/* 项目经验 */}
       {data.project.length &&
@@ -590,6 +597,7 @@ export default function ResumeDetail() {
         <View className="seemore-recommend-recruit">查看更多找活信息</View>
       </View> */}
       {/* 底部 */}
+      {(!login || user.uuid != data.info.user_uuid) &&
       <View className='resumeDetail-footer'>
         <View className='resumeDetail-footer-box' onClick={resumeSupport}>
           <Image className="bossimg" src={praise === 0 ? `${IMGCDNURL}newresume-footer-star.png` : `${IMGCDNURL}newresume-footer-star-active.png`} />
@@ -606,6 +614,7 @@ export default function ResumeDetail() {
           <View>收藏</View>
         </View>
       </View>
+      }
       {/* 弹框 */}
         {shownewtips && 
         <View className="newdetail-fixedshadow">

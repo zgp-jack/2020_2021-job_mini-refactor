@@ -17,6 +17,14 @@
     padding:20px 20px 0;
     background-color: white;
     margin-top: 15px;
+    .list-topresume-img{
+      position: absolute;
+      width: 70px;
+      height: 70px;
+      left: 0;
+      top: 0;
+      z-index: 2;
+    }
     .resume-list-header{
       position: relative;
       padding-left: 120px;

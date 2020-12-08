@@ -13,6 +13,7 @@ import ClassifyPicker, { RulesClassfies } from '../../../components/classfiy_pic
 import CityPicker, { CityTownPicker } from '../../../components/city_picker'
 import { RecruitWorkInfo } from '../../../pages/recruit/index.d'
 import { PublishConfigData } from '../../../pages/recruit/index.d'
+import { USEGAODEMAPAPI } from '../../../config'
 // 初始化获取信息类型
 export interface InitRecruitView {
   type: string,
@@ -163,6 +164,7 @@ export default function PublishRecruit() {
       let phone = detail.match(p);
       if (phone) {
         state.user_mobile = phone[0]
+        phone = []
       }
     }
     //保存匹配到的工种
@@ -180,9 +182,6 @@ export default function PublishRecruit() {
     const state: RecruitWorkInfo = JSON.parse(JSON.stringify(model))
     state.province_id = data[0].id
     state.city_id = data[1].id
-    state.address = data[0].name == data[1].name ? data[1].name : data[0].name + '-' + data[1].name
-    console.log(data[0].id, '===', data[1].id)
-    debugger
     setModel(state)
   }
 
@@ -209,14 +208,18 @@ export default function PublishRecruit() {
           ></Textarea>
           <WordsTotal num={num} />
         </View>
-
-        {/* <View className='publish-list-item' onClick={() => userChooseArea()}> */}
-        <View className='publish-list-item'>
-          <Text className='pulish-list-title input-title'>招工城市:</Text>
-          <CityPicker onCity={selectCity}></CityPicker>
-          {/* <Input className='publish-list-input' type='text' disabled placeholder='请选择招工城市' value={areaInfo && areaInfo.title} /> */}
-        </View>
-
+        {
+          USEGAODEMAPAPI ? 
+             <View className='publish-list-item' onClick={() => userChooseArea()}>
+              <Text className='pulish-list-title input-title'>招工城市:</Text>
+              <Input className='publish-list-input' type='text' disabled placeholder='请选择招工城市' value={areaInfo && areaInfo.title} />
+            </View>
+            :
+            <View className='publish-list-item'>
+              <Text className='pulish-list-title input-title'>招工城市:</Text>
+              <CityPicker onCity={selectCity} modle={model}></CityPicker>
+            </View>
+        }
         <View className='publish-list-item work-type' onClick={() => showProfessionAction()}>
           <Text className='pulish-list-title input-title'>所需工种</Text>
           {
@@ -288,7 +291,7 @@ export default function PublishRecruit() {
 }
 
 PublishRecruit.config = {
-  navigationBarTitleText: '急速发布',
+  navigationBarTitleText: '极速发布',
   navigationBarBackgroundColor: '#0099ff',
   navigationBarTextStyle: 'white',
   backgroundTextStyle: "dark"

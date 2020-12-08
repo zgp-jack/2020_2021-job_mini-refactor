@@ -25,6 +25,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -42,6 +44,8 @@ var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/re
 var _index2 = __webpack_require__(/*! ../../../utils/request/index */ "./src/utils/request/index.ts");
 
 var _index3 = __webpack_require__(/*! ../../../utils/msg/index */ "./src/utils/msg/index.ts");
+
+var _index4 = __webpack_require__(/*! ../../../utils/helper/index */ "./src/utils/helper/index.ts");
 
 __webpack_require__(/*! ./index.scss */ "./src/pages/static/invite/index.scss");
 
@@ -109,6 +113,12 @@ var Invite = function (_Taro$Component) {
             } });
         });
       }, [login]);
+      // 设置用户分享
+      (0, _taroTt.useShareAppMessage)(function () {
+        return _extends({}, (0, _index4.getUserShareMessage)(), {
+          path: '/pages/index/index'
+        });
+      });
       // 用户复制邀请链接
       var copyUserInviteLink = function copyUserInviteLink() {
         _taroTt2.default.setClipboardData({

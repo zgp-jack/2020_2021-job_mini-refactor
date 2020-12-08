@@ -73,7 +73,7 @@ var Member = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (Member.__proto__ || Object.getPrototypeOf(Member)).apply(this, arguments));
 
-    _this.$usedState = ["login", "model", "IMGCDNURL", "jobNumber", "msgNumber", "ios", "PROREQUESTURL", "REQUESTURL", "memberIndex"];
+    _this.$usedState = ["login", "model", "IMGCDNURL", "jobNumber", "msgNumber", "ios", "SHOWINVITEUSER", "PROREQUESTURL", "REQUESTURL", "memberIndex"];
     _this.customComponents = [];
     return _this;
   }
@@ -150,6 +150,11 @@ var Member = function (_Taro$Component) {
             msg: data.errmsg
           });
         });
+        (0, _index.getMemberMsgNumber)((0, _index5.isIos)()).then(function (data) {
+          if (data.errcode == 'ok') {
+            dispatch((0, _msg.setMsg)(data.data));
+          }
+        });
       };
       (0, _taroTt.useEffect)(function () {
         setIos((0, _index5.isIos)());
@@ -193,7 +198,7 @@ var Member = function (_Taro$Component) {
         return userRouteJump('/pages/published/used/index');
       };
       this.anonymousFunc8 = function () {
-        return userRouteJump('/pages/information/mymessage/index');
+        return userRouteJump('/subpackage/pages/information/mymessage/index');
       };
       this.anonymousFunc9 = function () {
         return userRouteJump('/pages/getintegral/index');
@@ -214,10 +219,10 @@ var Member = function (_Taro$Component) {
         return userRouteJump('/pages/collection/index');
       };
       this.anonymousFunc15 = function () {
-        return userRouteJump('/pages/feedbacklist/index');
+        return userRouteJump('/subpackage/pages/feedbacklist/index');
       };
       this.anonymousFunc16 = function () {
-        return userRouteJump('/pages/help/index');
+        return userRouteJump('/subpackage/pages/help/index');
       };
       this.anonymousFunc17 = function () {
         return userClearSession();
@@ -229,6 +234,7 @@ var Member = function (_Taro$Component) {
         jobNumber: jobNumber,
         msgNumber: msgNumber,
         ios: ios,
+        SHOWINVITEUSER: _index2.SHOWINVITEUSER,
         PROREQUESTURL: _index2.PROREQUESTURL,
         REQUESTURL: _index2.REQUESTURL
       });

@@ -43,13 +43,13 @@ export default function RealName(){
     setSexName(sexArray[current].name)
     if(model) setModel({...model, gender: id})
   }
-  useDidShow(()=>{
-    if (RealnameArea){
-      const modelItem = JSON.parse(JSON.stringify(model));
-      modelItem.address = RealnameArea;
-      setModel(modelItem);
-    }
-  })
+  // useDidShow(()=>{
+  //   if (RealnameArea){
+  //     const modelItem = JSON.parse(JSON.stringify(model));
+  //     modelItem.address = RealnameArea;
+  //     setModel(modelItem);
+  //   }
+  // })
   // 用户填写信息
   const userEnterFormInfo = (title: string, e: any)=> {
     let modelInfo: PostUserAuthInfo = JSON.parse(JSON.stringify(model))

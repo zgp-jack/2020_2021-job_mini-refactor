@@ -9,12 +9,14 @@ export interface CityTownPicker {
   name: string
 }
 
-export default function CityPicker({onCity}) {
+export default function CityPicker({ onCity, modle}) {
   //城市初始化数据
   const [cityPickerData, setCityPickerData] = useState<CityTownPicker[][]>([])
   //选中的城市数据
   const [selectCity, setSelectCity] = useState <CityTownPicker[]>([])
-  let selectCityIndex = [0,0]
+
+  //默认选中
+  const [selectCityIndex, setSelectCityIndex] = useState <number[]>([0,0])
   // cityi是选中的省的index
   const initCityData = (cityi: number) => {
     let copyArr = JSON.parse(JSON.stringify(AREAS))
@@ -63,9 +65,32 @@ export default function CityPicker({onCity}) {
     }
   }
 
+
   useEffect(() => {
     initCityData(0)
-  },[])
+    
+    if (modle.province_id || modle.city_id){
+      for (let i = 0; i < cityPickerData[0].length;i++) {
+        if (modle.province_id == cityPickerData[0][i].id){
+          initCityData(i)
+          let copyArr = JSON.parse(JSON.stringify(AREAS))
+          copyArr.splice(0, 1) // 切掉第一项 全国数据
+          for(let n = 0;n<copyArr[i].children.length;n++){
+            if (copyArr[i].children[n].id == modle.city_id){
+              setSelectCityIndex([i,n])
+
+
+              let cityData: CityTownPicker[] = []
+              cityData[0] = cityPickerData[0][i]
+              cityData[1] = copyArr[i].children[n]
+              setSelectCity(cityData)
+              onCity(cityData)
+            }
+          }
+        }
+      }
+    }
+  }, [modle.province_id])
 
   return (
     <View>

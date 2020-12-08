@@ -84,7 +84,7 @@ var ResumeMap = function (_Taro$Component) {
       navigationBarTitleText: '地址选择'
     };
 
-    _this.$usedState = ["loopArray48", "loopArray49", "$compid__43", "smAreaText", "showHistory", "histroyList", "lists", "IMGCDNURL", "showCity", "area"];
+    _this.$usedState = ["loopArray53", "loopArray54", "$compid__51", "smAreaText", "showHistory", "histroyList", "lists", "IMGCDNURL", "showCity", "area"];
     _this.anonymousFunc5Map = {};
     _this.anonymousFunc6Map = {};
     _this.customComponents = ["Cities"];
@@ -108,13 +108,15 @@ var ResumeMap = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__43"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__51"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__43 = _genCompid2[0],
-          $compid__43 = _genCompid2[1];
+          $prevCompid__51 = _genCompid2[0],
+          $compid__51 = _genCompid2[1];
 
       var router = (0, _taroTt.useRouter)();
-      var provinceAdress = router.params.provinceAdress;
+      var _router$params = router.params,
+          provinceAdress = _router$params.provinceAdress,
+          provinceAdressName = _router$params.provinceAdressName;
       // 获取dispatch分发action
 
       var dispatch = (0, _redux.useDispatch)();
@@ -123,13 +125,18 @@ var ResumeMap = function (_Taro$Component) {
           _useState2 = _slicedToArray(_useState, 2),
           area = _useState2[0],
           setArea = _useState2[1];
+
+      var _useState3 = (0, _taroTt.useState)(provinceAdressName),
+          _useState4 = _slicedToArray(_useState3, 2),
+          areaName = _useState4[0],
+          setAreasName = _useState4[1];
       // 城市数据
 
 
-      var _useState3 = (0, _taroTt.useState)([]),
-          _useState4 = _slicedToArray(_useState3, 2),
-          areas = _useState4[0],
-          setAreas = _useState4[1];
+      var _useState5 = (0, _taroTt.useState)([]),
+          _useState6 = _slicedToArray(_useState5, 2),
+          areas = _useState6[0],
+          setAreas = _useState6[1];
       // 选择详细地址信息
       // const [areaInfo, setAreaInfo] = useState<UserLastPublishRecruitArea>({
       //   title: '',
@@ -139,74 +146,74 @@ var ResumeMap = function (_Taro$Component) {
       // })
 
 
-      var _useState5 = (0, _taroTt.useState)(''),
-          _useState6 = _slicedToArray(_useState5, 2),
-          location = _useState6[0],
-          setLocation = _useState6[1];
+      var _useState7 = (0, _taroTt.useState)(''),
+          _useState8 = _slicedToArray(_useState7, 2),
+          location = _useState8[0],
+          setLocation = _useState8[1];
       // 用户定位城市
 
 
-      var _useState7 = (0, _taroTt.useState)({
+      var _useState9 = (0, _taroTt.useState)({
         id: '',
         pid: '',
         city: '',
         ad_name: ''
       }),
-          _useState8 = _slicedToArray(_useState7, 2),
-          userLoc = _useState8[0],
-          setUserLoc = _useState8[1];
+          _useState10 = _slicedToArray(_useState9, 2),
+          userLoc = _useState10[0],
+          setUserLoc = _useState10[1];
       // 是否显示城市
 
 
-      var _useState9 = (0, _taroTt.useState)(false),
-          _useState10 = _slicedToArray(_useState9, 2),
-          showCity = _useState10[0],
-          setShowCity = _useState10[1];
+      var _useState11 = (0, _taroTt.useState)(false),
+          _useState12 = _slicedToArray(_useState11, 2),
+          showCity = _useState12[0],
+          setShowCity = _useState12[1];
       // 获取redux中区域名称数据
       // const area: string = useSelector<any, string>(state => state.MyArea)
       // 获取redux中定位状态
       // const { area, setArea, setAreaInfo, setPublishArea } = useContext(context)
 
 
-      var _useState11 = (0, _taroTt.useState)(''),
-          _useState12 = _slicedToArray(_useState11, 2),
-          publishArea = _useState12[0],
-          setPublishArea = _useState12[1];
+      var _useState13 = (0, _taroTt.useState)(''),
+          _useState14 = _slicedToArray(_useState13, 2),
+          publishArea = _useState14[0],
+          setPublishArea = _useState14[1];
       // 详细地址的输入框
 
 
-      var _useState13 = (0, _taroTt.useState)(''),
-          _useState14 = _slicedToArray(_useState13, 2),
-          smAreaText = _useState14[0],
-          setSmAreaText = _useState14[1];
-      // 关键词地区列表
-
-
-      var _useState15 = (0, _taroTt.useState)([]),
+      var _useState15 = (0, _taroTt.useState)(''),
           _useState16 = _slicedToArray(_useState15, 2),
-          lists = _useState16[0],
-          setLists = _useState16[1];
-      // 关键词地区列表的历史记录
+          smAreaText = _useState16[0],
+          setSmAreaText = _useState16[1];
+      // 关键词地区列表
 
 
       var _useState17 = (0, _taroTt.useState)([]),
           _useState18 = _slicedToArray(_useState17, 2),
-          histroyList = _useState18[0],
-          setHistoryList = _useState18[1];
+          lists = _useState18[0],
+          setLists = _useState18[1];
+      // 关键词地区列表的历史记录
+
+
+      var _useState19 = (0, _taroTt.useState)([]),
+          _useState20 = _slicedToArray(_useState19, 2),
+          histroyList = _useState20[0],
+          setHistoryList = _useState20[1];
       // 显示关键词列表还是历史记录
 
 
-      var _useState19 = (0, _taroTt.useState)(false),
-          _useState20 = _slicedToArray(_useState19, 2),
-          showHistory = _useState20[0],
-          setShowHistory = _useState20[1];
+      var _useState21 = (0, _taroTt.useState)(false),
+          _useState22 = _slicedToArray(_useState21, 2),
+          showHistory = _useState22[0],
+          setShowHistory = _useState22[1];
       // 设置adcode
 
 
-      var _useState21 = (0, _taroTt.useState)(''),
-          _useState22 = _slicedToArray(_useState21, 2),
-          adcode = _useState22[0],
-          setAdcode = _useState22[1];
+      var _useState23 = (0, _taroTt.useState)(''),
+          _useState24 = _slicedToArray(_useState23, 2),
+          adcode = _useState24[0],
+          setAdcode = _useState24[1];
       // 获取城市数据
 
 
@@ -236,13 +243,16 @@ var ResumeMap = function (_Taro$Component) {
       };
       // 初始化所需数据
       (0, _taroTt.useEffect)(function () {
-        if (!area) {
+        if (!areaName) {
           initUserLocationCity();
         }
         initUserPublishAreaHistory();
       }, []);
       // 用户切换城市
-      var userChangeCity = function userChangeCity(city) {
+      var userChangeCity = function userChangeCity(city, citys) {
+        if (citys) {
+          setAreasName(citys.ad_name);
+        }
         setArea(city);
       };
       // 用户点击取消 返回上一页
@@ -271,7 +281,8 @@ var ResumeMap = function (_Taro$Component) {
       };
       // 获取关键词地区列表
       (0, _taroTt.useEffect)(function () {
-        (0, _index3.getAmapPoiList)(area + smAreaText).then(function (data) {
+        console.error(area, '1111');
+        (0, _index3.getAmapPoiList)(areaName + smAreaText).then(function (data) {
           var loc = _taroTt2.default.getStorageSync(_store.UserLocation);
           var lists = data.filter(function (item) {
             return item.name && item.adcode && typeof item.location === 'string';
@@ -281,7 +292,7 @@ var ResumeMap = function (_Taro$Component) {
           });
           setLists(lists);
         });
-      }, [smAreaText, area]);
+      }, [smAreaText, areaName]);
       // 用户点击城市选择
       var userTapCityBtn = function userTapCityBtn(b) {
         setShowCity(b);
@@ -382,12 +393,12 @@ var ResumeMap = function (_Taro$Component) {
       this.anonymousFunc4 = function () {
         return userCloseMap();
       };
-      var loopArray48 = showHistory ? histroyList.map(function (item, index) {
+      var loopArray53 = showHistory ? histroyList.map(function (item, index) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
         var $loopState__temp2 = showHistory ? index + index : null;
-        var _$indexKey = "fazzz" + index;
+        var _$indexKey = "fgzzz" + index;
         _this2.anonymousFunc5Map[_$indexKey] = function () {
           return userClickAreaItem(item.$original);
         };
@@ -397,12 +408,12 @@ var ResumeMap = function (_Taro$Component) {
           $original: item.$original
         };
       }) : [];
-      var loopArray49 = lists.map(function (item, index) {
+      var loopArray54 = lists.map(function (item, index) {
         item = {
           $original: (0, _taroTt.internal_get_original)(item)
         };
         var $loopState__temp4 = index + index;
-        var _$indexKey2 = "fbzzz" + index;
+        var _$indexKey2 = "fhzzz" + index;
         _this2.anonymousFunc6Map[_$indexKey2] = function () {
           return userClickAreaItem(item.$original);
         };
@@ -418,11 +429,11 @@ var ResumeMap = function (_Taro$Component) {
         "userLoc": userLoc,
         "userChangeCity": userChangeCity,
         "userTapCityBtn": userTapCityBtn
-      }, $compid__43, $prevCompid__43);
+      }, $compid__51, $prevCompid__51);
       Object.assign(this.__state, {
-        loopArray48: loopArray48,
-        loopArray49: loopArray49,
-        $compid__43: $compid__43,
+        loopArray53: loopArray53,
+        loopArray54: loopArray54,
+        $compid__51: $compid__51,
         smAreaText: smAreaText,
         showHistory: showHistory,
         histroyList: histroyList,

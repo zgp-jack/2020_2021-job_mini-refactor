@@ -71,7 +71,7 @@ var Home = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (Home.__proto__ || Object.getPrototypeOf(Home)).apply(this, arguments));
 
-    _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "$compid__10", "$compid__11", "$compid__12", "$compid__13", "$compid__14", "$compid__15", "IMGCDNURL", "DOWNLOADAPP", "ISWEIXIN", "shwoCity", "area", "homeIndex"];
+    _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "$compid__19", "$compid__20", "$compid__21", "$compid__22", "$compid__23", "$compid__24", "IMGCDNURL", "DOWNLOADAPP", "ISWEIXIN", "shwoCity", "area", "homeIndex"];
     _this.customComponents = ["SwiperComponent", "Projects", "Fastfun", "SwiperNews", "RecruitList", "ResumeList", "UsedList", "About", "HomeCity"];
     return _this;
   }
@@ -91,35 +91,35 @@ var Home = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__10"),
+      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__19"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__10 = _genCompid2[0],
-          $compid__10 = _genCompid2[1];
+          $prevCompid__19 = _genCompid2[0],
+          $compid__19 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__11"),
+      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__20"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__11 = _genCompid4[0],
-          $compid__11 = _genCompid4[1];
+          $prevCompid__20 = _genCompid4[0],
+          $compid__20 = _genCompid4[1];
 
-      var _genCompid5 = (0, _taroTt.genCompid)(__prefix + "$compid__12"),
+      var _genCompid5 = (0, _taroTt.genCompid)(__prefix + "$compid__21"),
           _genCompid6 = _slicedToArray(_genCompid5, 2),
-          $prevCompid__12 = _genCompid6[0],
-          $compid__12 = _genCompid6[1];
+          $prevCompid__21 = _genCompid6[0],
+          $compid__21 = _genCompid6[1];
 
-      var _genCompid7 = (0, _taroTt.genCompid)(__prefix + "$compid__13"),
+      var _genCompid7 = (0, _taroTt.genCompid)(__prefix + "$compid__22"),
           _genCompid8 = _slicedToArray(_genCompid7, 2),
-          $prevCompid__13 = _genCompid8[0],
-          $compid__13 = _genCompid8[1];
+          $prevCompid__22 = _genCompid8[0],
+          $compid__22 = _genCompid8[1];
 
-      var _genCompid9 = (0, _taroTt.genCompid)(__prefix + "$compid__14"),
+      var _genCompid9 = (0, _taroTt.genCompid)(__prefix + "$compid__23"),
           _genCompid10 = _slicedToArray(_genCompid9, 2),
-          $prevCompid__14 = _genCompid10[0],
-          $compid__14 = _genCompid10[1];
+          $prevCompid__23 = _genCompid10[0],
+          $compid__23 = _genCompid10[1];
 
-      var _genCompid11 = (0, _taroTt.genCompid)(__prefix + "$compid__15"),
+      var _genCompid11 = (0, _taroTt.genCompid)(__prefix + "$compid__24"),
           _genCompid12 = _slicedToArray(_genCompid11, 2),
-          $prevCompid__15 = _genCompid12[0],
-          $compid__15 = _genCompid12[1];
+          $prevCompid__24 = _genCompid12[0],
+          $compid__24 = _genCompid12[1];
 
       var _props$homeIndex = this.__props.homeIndex,
           homeIndex = _props$homeIndex === undefined ? 0 : _props$homeIndex;
@@ -235,7 +235,7 @@ var Home = function (_Taro$Component) {
         return setShowCity(true);
       };
       this.anonymousFunc1 = function () {
-        return userRouteJump('/subpackage/pages/download/index');
+        return userRouteJump(_index.DOWNLOADAPPPATH);
       };
       this.anonymousFunc2 = function () {
         return userRouteJump(_index.PUBLISHRECRUIT);
@@ -260,39 +260,39 @@ var Home = function (_Taro$Component) {
       } : null;
       _taroTt.propsManager.set({
         "data": swiper
-      }, $compid__10, $prevCompid__10);
+      }, $compid__19, $prevCompid__19);
       _taroTt.propsManager.set({
         "data": notice
-      }, $compid__11, $prevCompid__11);
+      }, $compid__20, $prevCompid__20);
       _taroTt.propsManager.set({
         "data": lists.recruit,
         "bottom": false,
         "hasMore": true
-      }, $compid__12, $prevCompid__12);
+      }, $compid__21, $prevCompid__21);
       _taroTt.propsManager.set({
         "data": lists.resume,
         "bottom": false,
         "hasMore": true
-      }, $compid__13, $prevCompid__13);
+      }, $compid__22, $prevCompid__22);
       _taroTt.propsManager.set({
         "data": lists.fleamarket,
         "bottom": false,
         "hasMore": true
-      }, $compid__14, $prevCompid__14);
+      }, $compid__23, $prevCompid__23);
       shwoCity && _taroTt.propsManager.set({
         "show": shwoCity,
         "setAreaInfo": anonymousState__temp,
         "closeDrawer": anonymousState__temp2
-      }, $compid__15, $prevCompid__15);
+      }, $compid__24, $prevCompid__24);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
         anonymousState__temp2: anonymousState__temp2,
-        $compid__10: $compid__10,
-        $compid__11: $compid__11,
-        $compid__12: $compid__12,
-        $compid__13: $compid__13,
-        $compid__14: $compid__14,
-        $compid__15: $compid__15,
+        $compid__19: $compid__19,
+        $compid__20: $compid__20,
+        $compid__21: $compid__21,
+        $compid__22: $compid__22,
+        $compid__23: $compid__23,
+        $compid__24: $compid__24,
         IMGCDNURL: _index.IMGCDNURL,
         DOWNLOADAPP: _index.DOWNLOADAPP,
         ISWEIXIN: false,

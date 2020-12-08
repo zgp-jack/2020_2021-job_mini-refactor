@@ -1,16 +1,16 @@
 import Taro, { Config, useState, useRouter } from '@tarojs/taro'
 import { View, Button, Textarea, Block } from '@tarojs/components'
 import { AtInput } from 'taro-ui'
-import WordsTotal from '../../components/wordstotal'
-import WechatNotice from '../../components/wechat'
-import ImageView from '../../components/imageview'
-import UploadImgAction from '../../utils/upload'
-import useCode from '../../hooks/code'
-import Auth from '../../components/auth'
-import { feedbackSubmissionAction } from '../../utils/request/index'
-import Msg, { ShowActionModal } from '../../utils/msg'
-import { SubscribeToNews } from '../../utils/subscribeToNews';
-import { isVaildVal, isPhone } from '../../utils/v'
+import WordsTotal from '../../../components/wordstotal'
+import WechatNotice from '../../../components/wechat'
+import ImageView from '../../../components/imageview'
+import UploadImgAction from '../../../utils/upload'
+import useCode from '../../../hooks/code'
+import Auth from '../../../components/auth'
+import { feedbackSubmissionAction } from '../../../utils/request/index'
+import Msg, { ShowActionModal } from '../../../utils/msg'
+import { SubscribeToNews } from '../../../utils/subscribeToNews';
+import { isVaildVal, isPhone } from '../../../utils/v'
 import './index.scss'
 
 export interface DataType {
@@ -97,7 +97,7 @@ export default function Feedback() {
       return false
     }
     const params = {
-      images,
+      images: images.join(','),
       content: textarea,
       username:name,
       tel:uphone,

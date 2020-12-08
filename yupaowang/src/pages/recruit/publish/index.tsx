@@ -8,7 +8,7 @@ import usePublishViewInfo from '../../../hooks/publish/recruit'
 import { RecruitModelInfo, UserLastPublishRecruitArea } from '../index.d'
 import UploadImgAction from '../../../utils/upload'
 import ImageView from '../../../components/imageview'
-import Msg from '../../../utils/msg'
+import Msg, { ShowActionModal } from '../../../utils/msg'
 import classnames from 'classnames'
 import Auth from '../../../components/auth'
 import './index.scss'
@@ -153,7 +153,7 @@ export default function PublishRecruit() {
                   className='publish-list-input' 
                   type='text' 
                   placeholder='请输入标题（3-30个字）' 
-                  value={ model&&model.title }
+                  value={ model.title }
                   onInput={(e)=>userEnterFrom(e,'title')}
                 />
               </View>

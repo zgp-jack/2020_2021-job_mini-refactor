@@ -1,6 +1,6 @@
 import Taro from '@tarojs/taro'
 import { View, Text, Image, Block } from '@tarojs/components'
-import { IMGCDNURL } from '../../../config'
+import { IMGCDNURL, FILTERWEIXINREG, REPLACEWEIXINTEXT } from '../../../config'
 import Nodata from '../../../components/nodata'
 import { ResumeList } from '../../../utils/request/index.d'
 import './index.scss'
@@ -27,6 +27,7 @@ export default function ResumeList({ data, bottom = true, hasMore = true }: PROP
         <Block key={`${di}-${di}`}>
           {item && item.map((d)=>(
             <View className='resume-list-item' key={d.id} onClick={() => userRouteJump(d.uuid)}>
+              {d.resume_top && <Image className='list-topresume-img' src={IMGCDNURL + 'newlist-jobzd.png'} />}
               <View className='resume-list-header'>
                 <Image className='resume-list-user' src={ d.headerimg } />
                 <View className='resume-list-userinfo'>
@@ -53,7 +54,7 @@ export default function ResumeList({ data, bottom = true, hasMore = true }: PROP
                   <Text className='resume-list-words-text' key={`${d.id}-${ii}`}>{ i }</Text>
                 ))}
               </View>
-                <View className='resume-list-content overwords'>{ d.introduce }</View>
+              <View className='resume-list-content overwords'>{REPLACEWEIXINTEXT ? d.introduce.replace(FILTERWEIXINREG, '') : d.introduce }</View>
               <View className='resume-list-footer'>
                 <Image className='resume-list-loc' src={IMGCDNURL + 'lpy/biaoqian.png'} />
                 <View className='resume-list-loctxt overwords'>{ d.show_address }</View>
