@@ -310,7 +310,7 @@ export interface GetUsedInfoData {
   title: string,
   user_mobile: string,
   user_name: string,
-  showCateAttr?: string
+  showCateAttr: string
 }
 
 // 用户实名查询
@@ -805,7 +805,7 @@ export interface jobInfoData extends Result{
 export interface jobInfoDataResult {
   address: string
   city_id: number
-  classifyName: []
+  classifyName: string[]
   county_id: number
   detail: string
   download_app: string
@@ -952,7 +952,7 @@ export interface resumeDetailInfo{
   nation_id: string
   note: string
   number_people: string
-  occupations: []
+  occupations: string[]
   occupations_id: string
   prof_degree: string
   prof_degree_str: string

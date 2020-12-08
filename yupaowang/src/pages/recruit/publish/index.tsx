@@ -202,7 +202,7 @@ export default function PublishRecruit() {
                   className='publish-list-input' 
                   type='text' 
                   placeholder='请输入联系人' 
-                  value={ model&&model.user_name } 
+                  value={ model.user_name } 
                   onInput={(e) => userEnterFrom(e,'user_name')}
                 />
               </View>
@@ -212,7 +212,7 @@ export default function PublishRecruit() {
                   className='publish-list-input' 
                   type='text' 
                   placeholder='请输入联系电话' 
-                  value={ model&&model.user_mobile }
+                  value={ model.user_mobile }
                   onInput={(e)=>userEnterFrom(e,'user_mobile')}
                 />
               </View>

@@ -1,4 +1,4 @@
-import Taro, { Config, useDidShow } from '@tarojs/taro'
+import Taro, { Config } from '@tarojs/taro'
 import { View, Text, Input, Image, Button, Picker, Block } from '@tarojs/components'
 import { ALIYUNCDN, IMGCDNURL, USEGAODEMAPAPI } from '../../config'
 import useRealname from '../../hooks/realname'
@@ -6,27 +6,24 @@ import { PostUserAuthInfo } from '../../hooks/index.d'
 import useCode from '../../hooks/code'
 import { UserAuthInfoMemberExtData } from '../../utils/request/index.d'
 import { isPhone } from '../../utils/v'
-import { useDispatch } from '@tarojs/redux'
-import { setData } from '../../actions/realname'
 import Msg from '../../utils/msg'
+import { useDispatch } from '@tarojs/redux'
+import { setAddressFun } from '../../actions/realname'
 import Auth from '../../components/auth'
 import './index.scss'
 
-export interface Injected {
-  RealnameArea: string,
-  setRealnameArea: (city: string) => void,
-}
-
 export default function RealName(){
-  // 使用 实名hook 与 获取短信验证码hook
-  const { checkDegree, userUploadIdcard, sexArray, sexCurrent, setSexCurrent, setSexName, sexName, nationCurrent, initModel, setNationCurrent, setInitModel, model, setModel, userPostAuthInfo, RealnameArea, setRealnameArea } = useRealname()
-  const { text, userGetCode } = useCode()
-  const value: Injected = {
-    RealnameArea: RealnameArea,
-    setRealnameArea: (city: string) => setRealnameArea(city)
-  }
   const dispatch = useDispatch()
-  dispatch(setData(value))
+  // 使用 实名hook 与 获取短信验证码hook
+  const { checkDegree, userUploadIdcard, sexArray, sexCurrent, setSexCurrent, setSexName, sexName, nationCurrent, initModel, setNationCurrent, setInitModel, model, setModel, userPostAuthInfo, RealnameArea } = useRealname()
+  const { text, userGetCode } = useCode()
+
+  // 地图跳转之后，地图页设置详细地址
+  const setRealnameAddress = (area: string) => {
+    setModel({ ...model, address: area })
+  }
+  dispatch(setAddressFun(setRealnameAddress))
+
   // 初始化生日选择时间
   const date = new Date()
   const year: number = date.getFullYear()
@@ -43,13 +40,16 @@ export default function RealName(){
     setSexName(sexArray[current].name)
     if(model) setModel({...model, gender: id})
   }
+
+  // 如果状态机的地址发生了改变就代表用户选择了地址
   // useDidShow(()=>{
-  //   if (RealnameArea){
+  //   if (realnameData.RealnameArea){
   //     const modelItem = JSON.parse(JSON.stringify(model));
   //     modelItem.address = RealnameArea;
   //     setModel(modelItem);
   //   }
   // })
+
   // 用户填写信息
   const userEnterFormInfo = (title: string, e: any)=> {
     let modelInfo: PostUserAuthInfo = JSON.parse(JSON.stringify(model))
@@ -222,7 +222,7 @@ export default function RealName(){
           <Input
             className='publish-list-input'
             type='text'
-            placeholder='请选择详细地址'
+            placeholder='请输入详细地址'
             onInput={(e) => userEnterAddress(e)}
             value={ model.address }
           />

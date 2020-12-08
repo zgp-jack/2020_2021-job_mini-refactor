@@ -1,4 +1,4 @@
-import Taro, { useEffect, useState, Config } from '@tarojs/taro'
+import Taro, { useEffect, useState, Config, useDidHide } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
 import { SERVERPHONE, BAIDUSERIES, ZIJIESERIES, WEIXINSERIES, QQSERIES, SERIES } from '../../config'
 import { getRechargeList, getRechargeOpenid, getRechargeOrder, userDouyinRecharge, userCheckDouyinRecharge, getBaiduTpOrderId, checkBaiduOrderStatusAction } from '../../utils/request'
@@ -159,22 +159,14 @@ export default function Recharge(){
   // 百度支付
   const baiduProPay = (rechargeIntegral: number) => {
     let id: string = lists[current].id
+    console.log(id)
     getBaiduTpOrderId({ priceType: id}).then(res=>{
       if(res.errcode == 'ok'){
         swan.requestPolymerPayment({
           orderInfo: {...res.payData},
           success: () => {
-            // 校验百度支付是否成功
-            checkBaiduOrderStatusAction({ tpOrderId: res.payData.tpOrderId }).then(res => {
-              if(res.errcode == 'ok'){
-                if (res.data.order_status == 2){
-                  let afterIntegral: number = integral + rechargeIntegral
-                  setIntegral(afterIntegral)
-                  ShowActionModal({ msg: '支付成功' })
-                }
-              }
-            })
-            
+            // 校验百度支付是否成功 // 每3秒发起一次 直到成功
+            checkBaiduOrderStatusFun(res, rechargeIntegral)
           },
           fail: err => {
             ShowActionModal({ msg: err.errMsg})
@@ -186,6 +178,21 @@ export default function Recharge(){
     })
   }
 
+  const checkBaiduOrderStatusFun = (res, rechargeIntegral: number) => {
+    var mytimer = setInterval(()=>{
+      checkBaiduOrderStatusAction({ tpOrderId: res.payData.tpOrderId }).then(res => {
+        console.log(JSON.stringify(res))
+        if (res.errcode == 'ok') {
+          if (res.data.order_status == 2) {
+            let afterIntegral: number = integral + rechargeIntegral
+            setIntegral(afterIntegral)
+            clearInterval(mytimer)
+            ShowActionModal({ msg: '支付成功' })
+          }
+        }
+      })
+    },1000)
+  }
 
   return (
     <View className='recharge-container'>

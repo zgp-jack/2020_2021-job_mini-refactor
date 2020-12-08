@@ -1300,7 +1300,8 @@ export function checkBaiduOrderStatusAction(data): Promise<Inter.BaiduOrderStatu
   return doRequestAction({
     url: api.checkBaiduTpOrderId,
     method: 'POST',
-    data
+    data,
+    loading: false
   })
 }
 >>>>>>> a2f6d4e95df6c5708d1bc802e2166f448a2c1151

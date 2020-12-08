@@ -1,3 +1,5 @@
+import { ZIJIE_SERIES } from '../series'
+
 // * 每个小程序单独配置  工地急招
 var miniConfig = {
   // * page-title-global
@@ -5,7 +7,7 @@ var miniConfig = {
   // ! 小程序token 
   TOKEN: 'douyin',
   // ! 小程序公司体系
-  SERIES: 'zijie',
+  SERIES: ZIJIE_SERIES,
   // * 小程序是否能被分享
   ISCANSHARE: true,
   // * 小程序广告unitid
@@ -22,8 +24,12 @@ var miniConfig = {
   DOWNLOADAPP: false,
   // * 是否支持高德地图api
   USEGAODEMAPAPI: true,
+  // * 是否显示客服电话
+  SHOWSERVERPHONE: false,
   // * 是否显示加工友微信号
   SHOWWEIXINNUMBER: false,
+  // * 是否显示列表公告信息
+  SHOWLISTSNOTICE: false,
   // * 是否显示关注公众号
   SHOWOFFICIALACCOUNT: false,
   // * 是否显示邀请好友链接
@@ -31,7 +37,7 @@ var miniConfig = {
   // * 详情是否需要替换微信关键词
   REPLACEWEIXINTEXT: false,
   // ! 百度系小程序  上传图片 不能JSON解析数据
-  ISPARSEUPLOADIMG: true,
+  ISPARSEUPLOADIMG: true
 }
 
 

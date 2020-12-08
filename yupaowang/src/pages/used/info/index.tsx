@@ -1,10 +1,10 @@
-import Taro, { useEffect, useRouter, RouterInfo, useState, Config, useShareAppMessage } from '@tarojs/taro'
+import Taro, { useEffect, useRouter, RouterInfo, useState, Config, useShareAppMessage, useDidShow } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
 import WechatNotice from '../../../components/wechat'
 import { getUsedInfo } from '../../../utils/request'
 import { getUserShareMessage } from '../../../utils/helper'
 import { ShowActionModal } from '../../../utils/msg'
-import { REPLACEWEIXINTEXT, FILTERWEIXINREG } from '../../../config'
+import { REPLACEWEIXINTEXT, FILTERWEIXINREG, SERIES, BAIDUSERIES } from '../../../config'
 import { GetUsedInfoData } from '../../../utils/request/index.d'
 import './index.scss'
 
@@ -19,9 +19,19 @@ export default function UsedInfo(){
     }
   })
   // 初始化二手交易信息
-  useEffect(()=>{
+  useDidShow(()=>{
     getUsedInfo(id).then((data)=>{
       if(data.errcode == 'ok'){
+        // 如果是百度系小程序，则直接设置seo等相关信息
+        if (SERIES == BAIDUSERIES) {
+          let keywords = data.data.showCateAttr.split('-').reverse().join('')
+          let address = data.data.showAddress.split('-').join('')
+          Taro.setPageInfo({
+            title: `${data.data.title}-鱼泡网`,
+            description: `${data.data.title}${data.data.detail}`,
+            keywords: `${keywords},${data.data.title},${address}${keywords}`
+          })
+        }
         setModel(data.data)
       }else{
         ShowActionModal({
@@ -39,7 +49,7 @@ export default function UsedInfo(){
         }
       })
     })
-  },[])
+  })
 
   // 用户拨打电话
   const userCallPhone = ()=> {

@@ -2,7 +2,7 @@ import Taro, { Config, useState, useRouter, useDidShow, useEffect, useShareAppMe
 import { View, Text, Image, Icon, Button } from '@tarojs/components'
 import { jobInfoAction, publishComplainAction, jobGetTelAction, recruitListCancelCollectionAction, jobEndStatusAction, jobUpdateTopStatusAction, jobNoUserInfoAction, jobRecommendListAction } from '../../../utils/request/index'
 import WechatNotice from '../../../components/wechat'
-import { IMGCDNURL, SERVERPHONE, AUTHPATH, CODEAUTHPATH, ISCANSHARE, DOWNLOADAPP, SHOWOFFICIALACCOUNT, REPLACEWEIXINTEXT, FILTERWEIXINREG, DOWNLOADAPPPATH} from '../../../config'
+import { IMGCDNURL, SERVERPHONE, AUTHPATH, CODEAUTHPATH, ISCANSHARE, DOWNLOADAPP, SHOWOFFICIALACCOUNT, REPLACEWEIXINTEXT, FILTERWEIXINREG, DOWNLOADAPPPATH, SERIES, BAIDUSERIES } from '../../../config'
 import { useSelector } from '@tarojs/redux'
 import { isVaildVal } from '../../../utils/v'
 import  Report  from '../../../components/report'
@@ -25,7 +25,7 @@ interface DataType {
   time: string,
   image: string,
   user_name: string,
-  classifyName: [],
+  classifyName: string[],
   detail: string,
   show_full_address: string,
   location: string,
@@ -133,6 +133,15 @@ export default function DetailInfoPage() {
         Taro.setNavigationBarTitle({
           title: res.result.title
         })
+        if (SERIES == BAIDUSERIES){
+          let keywords = res.result.classifyName[0]
+          let split_keywords: string = keywords.split('/').map(item => `招${item}师傅`).join(',')
+          Taro.setPageInfo({
+            title: res.result.title,
+            description: res.result.title + res.result.detail,
+            keywords: `${res.result.show_full_address}招${keywords}师傅,${split_keywords},工地招工,找工人,建筑工地`
+          })
+        }
         setIsCollection(res.result.is_collect);
         if (userInfo.userId === res.result.user_id) {
           // 判断是自己发布的招工
@@ -141,16 +150,13 @@ export default function DetailInfoPage() {
           setResCode(res.errcode)
         }
       })
-      // let paramsObj = {
-      //   page:1,
-      //   type:1,
-      //   area_id: res.result.city_id,
-      //   job_ids: res.result.id,
-      //   classify_id:[res.result.occupations].join(','),
-      // }
-      // jobRecommendListAction(paramsObj).then(res=>{
-      //   setRecommend(res.data.list);
-      // })
+    }).catch(()=>{
+      ShowActionModal({
+        msg: '网络异常，请重新进入',
+        success: () => {
+          Taro.navigateBack()
+        }
+      })
     })
   }
   // 地图

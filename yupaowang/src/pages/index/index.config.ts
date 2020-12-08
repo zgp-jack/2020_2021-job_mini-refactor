@@ -1,3 +1,3 @@
 export default {
-  navigationBarTitleText: '记工记账'
+  navigationBarTitleText: '鱼泡网'
 }

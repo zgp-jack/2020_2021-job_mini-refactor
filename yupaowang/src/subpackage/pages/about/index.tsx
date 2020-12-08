@@ -1,9 +1,18 @@
-import Taro, { Config } from '@tarojs/taro'
+import Taro, { Config, useDidShow } from '@tarojs/taro'
 import { View, Text, Image} from '@tarojs/components'
-import { SERVERPHONE, ALIYUNCDN } from '../../../config'
+import { SERVERPHONE, ALIYUNCDN, SERIES, BAIDUSERIES } from '../../../config'
 import './index.scss'
 
 export default function About(){
+  useDidShow(()=>{
+    if(SERIES == BAIDUSERIES){
+      Taro.setPageInfo({
+        title: '技术团队|建筑招工服务|农民工的聚集地-鱼泡建筑网',
+        description: '鱼泡建筑网是由广大建筑工友与互联网专业人士共同组建而成,致力服务于全国5000万建筑工友。公司是一个由130多位精英组成的优秀团队,利用互联网大数据来改变和优化建筑行业,使建筑行业信息公开化、流程化、规范化,更好的为全国5000万建筑工友提供优质服务,充分解决了建筑工友们招工难、找活难等问题。',
+        keywords: '关于鱼泡建筑网,鱼泡建筑网技术团队,优化建筑行业,服务建筑工友'
+      })
+    }
+  })
   return (
     <View className='yupao-common-container'>
       <View className='about-content'>

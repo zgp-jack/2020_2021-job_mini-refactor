@@ -1,4 +1,4 @@
-import { GETREALNAME, SETREALNAME, SETAREA, SETFUN } from '../constants/realname'
+import { GETREALNAME, SETREALNAME, SETAREA, SETFUN, SETADDRESSFUN } from '../constants/realname'
 import { RealnameDefaultStore } from '../reducers/realname'
 
 export function setData(data: RealnameDefaultStore) {
@@ -24,6 +24,13 @@ export function setArea(data: string){
 export function setFun(data:() => void){
   return {
     type: SETFUN,
+    data
+  }
+}
+
+export function setAddressFun(data: (area: string) => void) {
+  return {
+    type: SETADDRESSFUN,
     data
   }
 }

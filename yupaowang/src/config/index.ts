@@ -1,4 +1,5 @@
 // ? 全局不动配置项 只做导出不做修改
+import { BAIDU_SERIES, WEIXIN_SERIES, ZIJIE_SERIES, QQ_SERIES } from './series'
 
 // ! 根据不同编译脚本打包不同小程序
 // * 当前打包版本
@@ -73,13 +74,13 @@ export const INVITEPATH: string = '/pages/static/invite/index'
 
 // ! 所有小程序公司体系集合
 // 百度
-export const BAIDUSERIES: string = 'baidu'
+export const BAIDUSERIES: string = BAIDU_SERIES
 // 字节
-export const ZIJIESERIES: string = 'zijie'
+export const ZIJIESERIES: string = ZIJIE_SERIES
 // 微信
-export const WEIXINSERIES: string = 'weixin'
+export const WEIXINSERIES: string = WEIXIN_SERIES
 // QQ
-export const QQSERIES: string = 'qq'
+export const QQSERIES: string = QQ_SERIES
 
 // ! 以下内容为每个小程序独立配置  
 // * page-title-global
@@ -106,6 +107,10 @@ export const DOWNLOADAPP: boolean = MINICONFIG.DOWNLOADAPP
 export const USEGAODEMAPAPI: boolean = MINICONFIG.USEGAODEMAPAPI
 // * 上传图片 是否需要使用JSON解析数据
 export const ISPARSEUPLOADIMG: boolean = MINICONFIG.ISPARSEUPLOADIMG
+// * 是否显示客服电话
+export const SHOWSERVERPHONE: boolean = MINICONFIG.SHOWSERVERPHONE
+// * 是否显示列表公告信息
+export const SHOWLISTSNOTICE: boolean = MINICONFIG.SHOWLISTSNOTICE
 // * 是否显示加工友微信号
 export const SHOWWEIXINNUMBER: boolean = MINICONFIG.SHOWWEIXINNUMBER
 // * 是否显示关注公众号
@@ -114,7 +119,6 @@ export const SHOWOFFICIALACCOUNT: boolean = MINICONFIG.SHOWOFFICIALACCOUNT
 export const SHOWINVITEUSER: boolean = MINICONFIG.SHOWINVITEUSER
 // * 是否替换微信类关键词
 export const REPLACEWEIXINTEXT: boolean = MINICONFIG.REPLACEWEIXINTEXT
-
 
 // 去除微信文本正则
 export const FILTERWEIXINREG: RegExp = /[微信|vx|VX|Vx|vx|v❤]/g
