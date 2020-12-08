@@ -1,4 +1,4 @@
-import Taro, { useEffect, useState, useDidShow, setPageInfo } from '@tarojs/taro'
+import Taro, { useEffect, useState, useDidShow, useRouter } from '@tarojs/taro'
 import { View, ScrollView, Block } from '@tarojs/components'
 import Search from '../../../components/search'
 import UsedCondition from '../../../components/condition/used'
@@ -10,6 +10,9 @@ import Tabbar from '../../../components/tabbar'
 import { SERIES, BAIDUSERIES } from '../../../config'
 import { UserListChooseCity } from '../../../config/store'
 import { ChildItems } from '../../../models/area'
+import { getUsedListSeoInfo } from '../../../utils/seo'
+import { useSelector } from '@tarojs/redux'
+import { filterClassifyDataResultReduce } from '../../../reducers/filter_classify'
 import './index.scss'
 
 export interface SearchType {
@@ -22,6 +25,9 @@ export interface SearchType {
 }
 
 export default function Fleamarket() {
+
+  const router = useRouter()
+  
   // 是否已是最后一页
   const [hasMore, setHasMore] = useState<boolean>(true)
 
@@ -44,10 +50,11 @@ export default function Fleamarket() {
 
   useDidShow(()=>{
     if(SERIES == BAIDUSERIES){
+      const filterData = useSelector<any, filterClassifyDataResultReduce>(
+        state => state.filterClassify
+      );
       Taro.setPageInfo({
-        title: '工地二手交易_工程机械二手买卖_工程设备废料回收_建筑资质租用转让—鱼泡网',
-        description: '建筑工地二手交易板块，为建筑工程工人、老板、公司提供二手工程机械、工程设备、建筑材料废料、二手电动工具、建筑资质租用转让的信息。方便卖家能很快的找到合适买家，让买家能收到合适的工程二手材料。',
-        keywords: '工地二手交易,工程机械二手买卖,工程设备废料回收,建筑资质租用转让'
+        ...getUsedListSeoInfo(router.params,filterData)
       })
     }
   })

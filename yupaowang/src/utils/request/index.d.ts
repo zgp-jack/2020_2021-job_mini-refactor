@@ -1400,6 +1400,7 @@ export interface filterClassifyResultClassTreeBase {
   id: number,
   pid: number,
   name: string,
+  letter: string,
 }
 
 // 筛选工种数据
@@ -1413,7 +1414,7 @@ export interface filterClassifyResultClassTree extends filterClassifyResultClass
 export interface filterClassifyResultFleamarketTree extends filterClassifyResultClassTreeBase {
   letter: string,
   has_attribute: number,
-  attributes: Pick<filterClassifyResultClassTreeBase,'id'|'name'>[],
+  attributes: Pick<filterClassifyResultClassTreeBase,'id'|'name'|'letter'>[],
 }
 
 // 找活筛选分类信息数据

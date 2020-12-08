@@ -1,6 +1,6 @@
 import Taro, { Config, useDidShow } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
-import { SERVERPHONE, BAIDUSERIES, SERIES } from '../../../config'
+import { SERVERPHONE, BAIDUSERIES, SERIES, SHOWSERVERPHONE } from '../../../config'
 import './index.scss'
 
 
@@ -38,7 +38,9 @@ export default function DetailInfoPage() {
         <View className='anti-fraud-info'>4、在查看招工信息确实无误后，为有效保障您的合法权益，建议您与招工方签订用工协议，明确薪酬、用工时间、工作内容及工地制度等约定条款，并签字盖章。</View>
         <View className='anti-fraud-info'>5、如遇恶意拖欠工人工资情况，请及时报请劳动监察大队处理，利用法律有效保护自身合法权益。</View>
         <View className='anti-fraud-other'>祝广大鱼泡工友顺利找到自己理想的工作和合适的工人。</View>
-        <View className='anti-fraud-other'>如有疑问，敬请拨打鱼泡客服咨询热线： <Text onClick={() => { Taro.makePhoneCall({ phoneNumber: SERVERPHONE }) }}>{SERVERPHONE}</Text></View>
+        {SHOWSERVERPHONE &&
+          <View className='anti-fraud-other'>如有疑问，敬请拨打鱼泡客服咨询热线： <Text onClick={() => { Taro.makePhoneCall({ phoneNumber: SERVERPHONE }) }}>{SERVERPHONE}</Text></View>
+        }
       </View>
 
     </View>

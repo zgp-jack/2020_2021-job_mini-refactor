@@ -1,10 +1,10 @@
 import Taro from '@tarojs/taro'
-import { IMGCDNURL, MAPKEY } from '../../config'
+import { IMGCDNURL, MAPKEY, SERIES, ZIJIESERIES } from '../../config'
 import AMapWX from '../../utils/source/amap-wx'
 import { UserLocationPromiss } from '../../models/area'
 import { UserLocationCity } from '../../config/store'
 import { InputPoiList, InputPoiListTips } from './index.d'
-import { checkAdcodeAction } from '../request/index';
+import { checkAdcodeAction } from '../request'
 import { LocationDataType  } from '../..//pages/resume/add_info/index.d';
 import Msg, { ShowActionModal } from '../msg';
 
@@ -176,8 +176,12 @@ export function userCallPhone(val: string) {
 
 // 用户统一分享内容
 export function getUserShareMessage(){
+  let title: string = '全国建筑工地招工平台'
+  if(SERIES == ZIJIESERIES){
+    title = '鱼泡网-建筑招工找活平台'
+  }
   return {
-    title: '全国建筑工地招工平台',
+    title,
     imageUrl: `${IMGCDNURL}minishare.png`
   }
 }

@@ -1,6 +1,6 @@
 import Taro, { Config, useDidShow } from '@tarojs/taro'
 import { View, Text, Image} from '@tarojs/components'
-import { SERVERPHONE, ALIYUNCDN, SERIES, BAIDUSERIES } from '../../../config'
+import { SERVERPHONE, ALIYUNCDN, SERIES, BAIDUSERIES, SHOWSERVERPHONE, SHOWINVITEUSER } from '../../../config'
 import './index.scss'
 
 export default function About(){
@@ -76,8 +76,16 @@ export default function About(){
         </View>
         <View className='yupao-about-footer common-shaded-box'>
           <Text className='yupao-about-footer-text'>鱼泡网值得每一位建筑人的期待，定不负你所望！</Text>
-          <Text className='yupao-about-footer-text' onClick={() => { Taro.makePhoneCall({ phoneNumber: SERVERPHONE })}}>鱼泡客服热线：{SERVERPHONE}</Text>
+          {SHOWSERVERPHONE &&
+            <Text 
+              className='yupao-about-footer-text' 
+              onClick={() => { Taro.makePhoneCall({ phoneNumber: SERVERPHONE }) }}>
+                鱼泡客服热线：{SERVERPHONE}
+            </Text>
+          }
+          {SHOWINVITEUSER &&
           <Text className='yupao-about-footer-text'>鱼泡网：yupao.com</Text>
+          }
         </View>
       </View>
     </View>

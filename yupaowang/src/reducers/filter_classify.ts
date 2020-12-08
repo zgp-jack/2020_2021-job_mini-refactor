@@ -19,7 +19,7 @@ export interface ACTIONTYPE {
   data: filterClassifyDataResultReduce
 }
 
-export default function msg(state: filterClassifyDataResultReduce = DEFAULT_STATE, action: ACTIONTYPE) {
+export default function filterClassify(state: filterClassifyDataResultReduce = DEFAULT_STATE, action: ACTIONTYPE) {
   switch (action.type) {
     case GETCLASSIFY:
       return state

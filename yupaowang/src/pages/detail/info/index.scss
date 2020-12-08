@@ -146,7 +146,7 @@
   line-height: 40px;
   padding-bottom: 10px;
   border-bottom: 1px solid #dcdcdc;
-  @include textrow();
+  // @include textrow();
 }
 .detailInfo-project-content-image-box{
   display: flex;

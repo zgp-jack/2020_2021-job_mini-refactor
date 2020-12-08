@@ -207,7 +207,7 @@ function UsedCondition({ setSearchData }: ConditionProps) {
   // 获取筛选条件数据
   useEffect(() => {
     resetCity();
-    if (!filterData.isSet) {
+    if (filterData.isSet) {
       if (seted) return;
       setSeted(true);
       setFleamarketTree(filterData.fleamarketTree);

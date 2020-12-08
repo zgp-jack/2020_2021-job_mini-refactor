@@ -13,7 +13,6 @@ import Resume from '../resume/lists'
 import Member from '../member'
 import { REFID } from '../../config/store'
 import './index.scss'
-import recruit from 'src/components/condition/recruit'
 
 export default function Index(){
 
@@ -21,7 +20,8 @@ export default function Index(){
 
   // 初始化页面参数
   const router: RouterInfo = useRouter()
-  const { type = RECRUIT, refId = '' } = router.params
+  // type 类型(会重置tabbar)，默认招工列表 refId 邀请人id 谁分享出去就是谁 classify 工种参数 area 地区参数 listtype 类型 keywords关键词
+  const { type = RECRUIT, refId = '', classify = '', area = '', listtype = '', keywords = '' } = router.params
   // 获取当前tabbar高亮值
   const tabKey: string = useSelector<any, string>(state=>state.tabbar.key)
   // 获取当前的用户id
@@ -39,6 +39,8 @@ export default function Index(){
   // 设置当前页面分享
   useShareAppMessage(()=>{
     let path: string = `${INDEXPATH}?type=${tabKey}`
+    const pages = Taro.getCurrentPages()
+    console.log(pages)
     return {
       ...getUserShareMessage(),
       path: userId ? `${path}&refId=${userId}` : path
@@ -47,10 +49,13 @@ export default function Index(){
 
   // 当页面显示的 时候 触发
   useDidShow(()=>{
+    // 显示的时候重置当前标题
     if(tabKey){
       Taro.setNavigationBarTitle({ title: IndexTabbarConfig[tabKey].navigationBarTitleText })
     }
+    // 由于index容纳了home/recruit/resume/member 4个页面，在需要使用当前页面展示的时候监听当前字段
     setShowIndex(showIndex + 1)
+    console.log(type,classify,area,listtype,keywords)
     // 设置百度seo相关信息
     if (SERIES == BAIDUSERIES) {
       Taro.setPageInfo({
