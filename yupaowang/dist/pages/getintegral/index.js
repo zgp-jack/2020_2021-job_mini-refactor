@@ -65,7 +65,11 @@ var GetIntegral = function (_Taro$Component) {
       navigationBarTitleText: "鱼泡网-获取积分"
     };
 
+<<<<<<< HEAD
     _this.$usedState = ["anonymousState__temp", "SHOWINVITEUSER", "ios", "turntable", "IMGCDNURL", "SHOWSERVERPHONE", "SERVERPHONE"];
+=======
+    _this.$usedState = ["anonymousState__temp", "SHOWINVITEUSER", "ios", "turntable", "IMGCDNURL", "SERVERPHONE"];
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
     _this.customComponents = ["Auth"];
     return _this;
   }
@@ -142,7 +146,10 @@ var GetIntegral = function (_Taro$Component) {
         ios: ios,
         turntable: turntable,
         IMGCDNURL: _index.IMGCDNURL,
+<<<<<<< HEAD
         SHOWSERVERPHONE: _index.SHOWSERVERPHONE,
+=======
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
         SERVERPHONE: _index.SERVERPHONE
       });
       return this.__state;

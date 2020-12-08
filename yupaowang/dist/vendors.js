@@ -1,5 +1,92 @@
 (swan["webpackJsonp"] = swan["webpackJsonp"] || []).push([["vendors"],{
 
+<<<<<<< HEAD
+=======
+/***/ "./node_modules/@tarojs/mini-runner/node_modules/webpack/buildin/amd-options.js":
+/*!****************************************!*\
+  !*** (webpack)/buildin/amd-options.js ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/* WEBPACK VAR INJECTION */(function(__webpack_amd_options__) {/* globals __webpack_amd_options__ */
+module.exports = __webpack_amd_options__;
+
+/* WEBPACK VAR INJECTION */}.call(this, {}))
+
+/***/ }),
+
+/***/ "./node_modules/@tarojs/mini-runner/node_modules/webpack/buildin/global.js":
+/*!***********************************!*\
+  !*** (webpack)/buildin/global.js ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var g;
+
+// This works in non-strict mode
+g = function () {
+  return this;
+}();
+
+try {
+  // This works if eval is allowed (see CSP)
+  g = g || new Function("return this")();
+} catch (e) {
+  // This works if the window reference is available
+  if ((typeof window === "undefined" ? "undefined" : _typeof(window)) === "object") g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
+
+/***/ }),
+
+/***/ "./node_modules/@tarojs/mini-runner/node_modules/webpack/buildin/module.js":
+/*!***********************************!*\
+  !*** (webpack)/buildin/module.js ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = function (module) {
+  if (!module.webpackPolyfill) {
+    module.deprecate = function () {};
+    module.paths = [];
+    // module.parent = undefined by default
+    if (!module.children) module.children = [];
+    Object.defineProperty(module, "loaded", {
+      enumerable: true,
+      get: function get() {
+        return module.l;
+      }
+    });
+    Object.defineProperty(module, "id", {
+      enumerable: true,
+      get: function get() {
+        return module.i;
+      }
+    });
+    module.webpackPolyfill = 1;
+  }
+  return module;
+};
+
+/***/ }),
+
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
 /***/ "./node_modules/@tarojs/redux/dist/index.js":
 /*!**************************************************!*\
   !*** ./node_modules/@tarojs/redux/dist/index.js ***!
@@ -682,7 +769,11 @@ exports.useSelector = useSelector;
 exports.useStore = useStore;
 exports.ReduxContext = ReduxContext;
 //# sourceMappingURL=index.js.map
+<<<<<<< HEAD
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
+=======
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../mini-runner/node_modules/webpack/buildin/global.js */ "./node_modules/@tarojs/mini-runner/node_modules/webpack/buildin/global.js")))
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
 
 /***/ }),
 
@@ -4107,7 +4198,11 @@ initNativeApi(Taro);
 exports.Taro = Taro;
 exports.default = Taro;
 //# sourceMappingURL=index.js.map
+<<<<<<< HEAD
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js"), __webpack_require__(/*! ./../../../process/browser.js */ "./node_modules/process/browser.js")))
+=======
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../mini-runner/node_modules/webpack/buildin/global.js */ "./node_modules/@tarojs/mini-runner/node_modules/webpack/buildin/global.js"), __webpack_require__(/*! ./../../../process/browser.js */ "./node_modules/process/browser.js")))
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
 
 /***/ }),
 
@@ -6833,7 +6928,11 @@ exports.getIsUsingDiff = getIsUsingDiff;
 exports.setIsUsingDiff = setIsUsingDiff;
 exports.default = index;
 //# sourceMappingURL=index.js.map
+<<<<<<< HEAD
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
+=======
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../mini-runner/node_modules/webpack/buildin/global.js */ "./node_modules/@tarojs/mini-runner/node_modules/webpack/buildin/global.js")))
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
 
 /***/ }),
 
@@ -6907,7 +7006,11 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
   if ( true && module.exports) {
     classNames.default = classNames;
     module.exports = classNames;
+<<<<<<< HEAD
   } else if ( true && _typeof(__webpack_require__(/*! !webpack amd options */ "./node_modules/webpack/buildin/amd-options.js")) === 'object' && __webpack_require__(/*! !webpack amd options */ "./node_modules/webpack/buildin/amd-options.js")) {
+=======
+  } else if ( true && _typeof(__webpack_require__(/*! !webpack amd options */ "./node_modules/@tarojs/mini-runner/node_modules/webpack/buildin/amd-options.js")) === 'object' && __webpack_require__(/*! !webpack amd options */ "./node_modules/@tarojs/mini-runner/node_modules/webpack/buildin/amd-options.js")) {
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
     // register as 'classnames', consistent with npm package name
     !(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
       return classNames;
@@ -6994,7 +7097,11 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 var freeGlobal = (typeof global === 'undefined' ? 'undefined' : _typeof(global)) == 'object' && global && global.Object === Object && global;
 
 module.exports = freeGlobal;
+<<<<<<< HEAD
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
+=======
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../@tarojs/mini-runner/node_modules/webpack/buildin/global.js */ "./node_modules/@tarojs/mini-runner/node_modules/webpack/buildin/global.js")))
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
 
 /***/ }),
 
@@ -10723,7 +10830,11 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         r = e.getState;return "function" == typeof t || "function" == typeof r ? S()({ dispatch: t, getState: r }) : undefined;
   };e.defaults = L, e.createLogger = S, e.logger = T, e.default = T, Object.defineProperty(e, "__esModule", { value: true });
 });
+<<<<<<< HEAD
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
+=======
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../@tarojs/mini-runner/node_modules/webpack/buildin/global.js */ "./node_modules/@tarojs/mini-runner/node_modules/webpack/buildin/global.js")))
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
 
 /***/ }),
 
@@ -11477,7 +11588,11 @@ if (typeof self !== 'undefined') {
 
 var result = (0, _ponyfill2['default'])(root);
 exports['default'] = result;
+<<<<<<< HEAD
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js"), __webpack_require__(/*! ./../../webpack/buildin/module.js */ "./node_modules/webpack/buildin/module.js")(module)))
+=======
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../@tarojs/mini-runner/node_modules/webpack/buildin/global.js */ "./node_modules/@tarojs/mini-runner/node_modules/webpack/buildin/global.js"), __webpack_require__(/*! ./../../@tarojs/mini-runner/node_modules/webpack/buildin/module.js */ "./node_modules/@tarojs/mini-runner/node_modules/webpack/buildin/module.js")(module)))
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
 
 /***/ }),
 
@@ -11810,6 +11925,7 @@ exports.delayGetScrollOffset = delayGetScrollOffset;
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ "./node_modules/webpack/buildin/amd-options.js":
 /*!****************************************!*\
   !*** (webpack)/buildin/amd-options.js ***!
@@ -11894,6 +12010,8 @@ module.exports = function (module) {
 
 /***/ }),
 
+=======
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
 /***/ "./src/actions/filter_classify.ts":
 /*!****************************************!*\
   !*** ./src/actions/filter_classify.ts ***!
@@ -12325,7 +12443,11 @@ var PREREQUESTURL = exports.PREREQUESTURL = 'http://miniapi.kkbbi.com/';
 // * 正式站
 var PROREQUESTURL = exports.PROREQUESTURL = 'https://newyupaomini.54xiaoshuo.com/';
 // * 当前程序使用的请求地址
+<<<<<<< HEAD
 var REQUESTURL = exports.REQUESTURL = DEVREQUESTURL;
+=======
+var REQUESTURL = exports.REQUESTURL = PROREQUESTURL;
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
 // * 默认上传图片
 var UPLOADIMGURL = exports.UPLOADIMGURL = PROREQUESTURL + 'index/upload/';
 // * 阿里云CDN域名
@@ -13598,7 +13720,10 @@ var AREAS = [{
   "pid": "0",
   "name": "全国",
   "ad_name": "中国",
+<<<<<<< HEAD
   "letter": "quanguo",
+=======
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   "has_children": 0,
   "children": []
 }, {
@@ -13606,7 +13731,10 @@ var AREAS = [{
   "pid": "1",
   "name": "北京",
   "ad_name": "北京市",
+<<<<<<< HEAD
   "letter": "beijing",
+=======
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   "has_children": 0,
   "children": []
 }, {
@@ -13614,2013 +13742,3302 @@ var AREAS = [{
   "pid": "1",
   "name": "安徽",
   "ad_name": "安徽省",
+<<<<<<< HEAD
   "letter": "anhui",
+=======
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   "has_children": 1,
   "children": [{
     "id": "3",
     "pid": "1",
     "name": "安徽",
+<<<<<<< HEAD
     "ad_name": "安徽省",
     "letter": "anhui"
+=======
+    "ad_name": "安徽省"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "36",
     "pid": "3",
     "name": "安庆",
+<<<<<<< HEAD
     "ad_name": "安庆市",
     "letter": "anqing"
+=======
+    "ad_name": "安庆市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "37",
     "pid": "3",
     "name": "蚌埠",
+<<<<<<< HEAD
     "ad_name": "蚌埠市",
     "letter": "bengbu"
+=======
+    "ad_name": "蚌埠市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "39",
     "pid": "3",
     "name": "池州",
+<<<<<<< HEAD
     "ad_name": "池州市",
     "letter": "chizhou"
+=======
+    "ad_name": "池州市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "40",
     "pid": "3",
     "name": "滁州",
+<<<<<<< HEAD
     "ad_name": "滁州市",
     "letter": "chuzhou"
+=======
+    "ad_name": "滁州市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "41",
     "pid": "3",
     "name": "阜阳",
+<<<<<<< HEAD
     "ad_name": "阜阳市",
     "letter": "fuyang"
+=======
+    "ad_name": "阜阳市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "42",
     "pid": "3",
     "name": "淮北",
+<<<<<<< HEAD
     "ad_name": "淮北市",
     "letter": "huaibei"
+=======
+    "ad_name": "淮北市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "43",
     "pid": "3",
     "name": "淮南",
+<<<<<<< HEAD
     "ad_name": "淮南市",
     "letter": "huainan"
+=======
+    "ad_name": "淮南市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "44",
     "pid": "3",
     "name": "黄山",
+<<<<<<< HEAD
     "ad_name": "黄山市",
     "letter": "huangshan"
+=======
+    "ad_name": "黄山市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "45",
     "pid": "3",
     "name": "六安",
+<<<<<<< HEAD
     "ad_name": "六安市",
     "letter": "liuan"
+=======
+    "ad_name": "六安市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "46",
     "pid": "3",
     "name": "马鞍山",
+<<<<<<< HEAD
     "ad_name": "马鞍山市",
     "letter": "maanshan"
+=======
+    "ad_name": "马鞍山市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "47",
     "pid": "3",
     "name": "宿州",
+<<<<<<< HEAD
     "ad_name": "宿州市",
     "letter": "anhuisuzhou"
+=======
+    "ad_name": "宿州市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "48",
     "pid": "3",
     "name": "铜陵",
+<<<<<<< HEAD
     "ad_name": "铜陵市",
     "letter": "tongling"
+=======
+    "ad_name": "铜陵市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "49",
     "pid": "3",
     "name": "芜湖",
+<<<<<<< HEAD
     "ad_name": "芜湖市",
     "letter": "wuhu"
+=======
+    "ad_name": "芜湖市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "50",
     "pid": "3",
     "name": "宣城",
+<<<<<<< HEAD
     "ad_name": "宣城市",
     "letter": "xuancheng"
+=======
+    "ad_name": "宣城市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "51",
     "pid": "3",
     "name": "亳州",
+<<<<<<< HEAD
     "ad_name": "亳州市",
     "letter": "bozhou"
+=======
+    "ad_name": "亳州市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "3401",
     "pid": "3",
     "name": "合肥",
+<<<<<<< HEAD
     "ad_name": "合肥市",
     "letter": "hefei"
+=======
+    "ad_name": "合肥市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }]
 }, {
   "id": "4",
   "pid": "1",
   "name": "福建",
   "ad_name": "福建省",
+<<<<<<< HEAD
   "letter": "fujian",
+=======
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   "has_children": 1,
   "children": [{
     "id": "4",
     "pid": "1",
     "name": "福建",
+<<<<<<< HEAD
     "ad_name": "福建省",
     "letter": "fujian"
+=======
+    "ad_name": "福建省"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "53",
     "pid": "4",
     "name": "福州",
+<<<<<<< HEAD
     "ad_name": "福州市",
     "letter": "fuzhou"
+=======
+    "ad_name": "福州市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "54",
     "pid": "4",
     "name": "龙岩",
+<<<<<<< HEAD
     "ad_name": "龙岩市",
     "letter": "longyan"
+=======
+    "ad_name": "龙岩市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "55",
     "pid": "4",
     "name": "南平",
+<<<<<<< HEAD
     "ad_name": "南平市",
     "letter": "nanping"
+=======
+    "ad_name": "南平市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "56",
     "pid": "4",
     "name": "宁德",
+<<<<<<< HEAD
     "ad_name": "宁德市",
     "letter": "ningde"
+=======
+    "ad_name": "宁德市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "57",
     "pid": "4",
     "name": "莆田",
+<<<<<<< HEAD
     "ad_name": "莆田市",
     "letter": "putian"
+=======
+    "ad_name": "莆田市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "58",
     "pid": "4",
     "name": "泉州",
+<<<<<<< HEAD
     "ad_name": "泉州市",
     "letter": "quanzhou"
+=======
+    "ad_name": "泉州市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "59",
     "pid": "4",
     "name": "三明",
+<<<<<<< HEAD
     "ad_name": "三明市",
     "letter": "sanming"
+=======
+    "ad_name": "三明市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "60",
     "pid": "4",
     "name": "厦门",
+<<<<<<< HEAD
     "ad_name": "厦门市",
     "letter": "xiamen"
+=======
+    "ad_name": "厦门市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "61",
     "pid": "4",
     "name": "漳州",
+<<<<<<< HEAD
     "ad_name": "漳州市",
     "letter": "zhangzhou"
+=======
+    "ad_name": "漳州市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }]
 }, {
   "id": "5",
   "pid": "1",
   "name": "甘肃",
   "ad_name": "甘肃省",
+<<<<<<< HEAD
   "letter": "gansu",
+=======
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   "has_children": 1,
   "children": [{
     "id": "5",
     "pid": "1",
     "name": "甘肃",
+<<<<<<< HEAD
     "ad_name": "甘肃省",
     "letter": "gansu"
+=======
+    "ad_name": "甘肃省"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "62",
     "pid": "5",
     "name": "兰州",
+<<<<<<< HEAD
     "ad_name": "兰州市",
     "letter": "lanzhou"
+=======
+    "ad_name": "兰州市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "63",
     "pid": "5",
     "name": "白银",
+<<<<<<< HEAD
     "ad_name": "白银市",
     "letter": "baiyin"
+=======
+    "ad_name": "白银市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "64",
     "pid": "5",
     "name": "定西",
+<<<<<<< HEAD
     "ad_name": "定西市",
     "letter": "dingxi"
+=======
+    "ad_name": "定西市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "65",
     "pid": "5",
     "name": "甘南",
+<<<<<<< HEAD
     "ad_name": "甘南藏族自治州",
     "letter": "gannan"
+=======
+    "ad_name": "甘南藏族自治州"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "66",
     "pid": "5",
     "name": "嘉峪关",
+<<<<<<< HEAD
     "ad_name": "嘉峪关市",
     "letter": "jiayuguan"
+=======
+    "ad_name": "嘉峪关市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "67",
     "pid": "5",
     "name": "金昌",
+<<<<<<< HEAD
     "ad_name": "金昌市",
     "letter": "jinchang"
+=======
+    "ad_name": "金昌市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "68",
     "pid": "5",
     "name": "酒泉",
+<<<<<<< HEAD
     "ad_name": "酒泉市",
     "letter": "jiuquan"
+=======
+    "ad_name": "酒泉市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "69",
     "pid": "5",
     "name": "临夏",
+<<<<<<< HEAD
     "ad_name": "临夏回族自治州",
     "letter": "linxia"
+=======
+    "ad_name": "临夏回族自治州"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "70",
     "pid": "5",
     "name": "陇南",
+<<<<<<< HEAD
     "ad_name": "陇南市",
     "letter": "longnan"
+=======
+    "ad_name": "陇南市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "71",
     "pid": "5",
     "name": "平凉",
+<<<<<<< HEAD
     "ad_name": "平凉市",
     "letter": "pingliang"
+=======
+    "ad_name": "平凉市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "72",
     "pid": "5",
     "name": "庆阳",
+<<<<<<< HEAD
     "ad_name": "庆阳市",
     "letter": "qingyang"
+=======
+    "ad_name": "庆阳市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "73",
     "pid": "5",
     "name": "天水",
+<<<<<<< HEAD
     "ad_name": "天水市",
     "letter": "tianshui"
+=======
+    "ad_name": "天水市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "74",
     "pid": "5",
     "name": "武威",
+<<<<<<< HEAD
     "ad_name": "武威市",
     "letter": "wuwei"
+=======
+    "ad_name": "武威市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "75",
     "pid": "5",
     "name": "张掖",
+<<<<<<< HEAD
     "ad_name": "张掖市",
     "letter": "zhangye"
+=======
+    "ad_name": "张掖市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }]
 }, {
   "id": "6",
   "pid": "1",
   "name": "广东",
   "ad_name": "广东省",
+<<<<<<< HEAD
   "letter": "guangdong",
+=======
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   "has_children": 1,
   "children": [{
     "id": "6",
     "pid": "1",
     "name": "广东",
+<<<<<<< HEAD
     "ad_name": "广东省",
     "letter": "guangdong"
+=======
+    "ad_name": "广东省"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "76",
     "pid": "6",
     "name": "广州",
+<<<<<<< HEAD
     "ad_name": "广州市",
     "letter": "guangzhou"
+=======
+    "ad_name": "广州市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "77",
     "pid": "6",
     "name": "深圳",
+<<<<<<< HEAD
     "ad_name": "深圳市",
     "letter": "shenzhen"
+=======
+    "ad_name": "深圳市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "78",
     "pid": "6",
     "name": "潮州",
+<<<<<<< HEAD
     "ad_name": "潮州市",
     "letter": "chaozhou"
+=======
+    "ad_name": "潮州市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "79",
     "pid": "6",
     "name": "东莞",
+<<<<<<< HEAD
     "ad_name": "东莞市",
     "letter": "dongguan"
+=======
+    "ad_name": "东莞市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "80",
     "pid": "6",
     "name": "佛山",
+<<<<<<< HEAD
     "ad_name": "佛山市",
     "letter": "foshan"
+=======
+    "ad_name": "佛山市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "81",
     "pid": "6",
     "name": "河源",
+<<<<<<< HEAD
     "ad_name": "河源市",
     "letter": "heyuan"
+=======
+    "ad_name": "河源市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "82",
     "pid": "6",
     "name": "惠州",
+<<<<<<< HEAD
     "ad_name": "惠州市",
     "letter": "huizhou"
+=======
+    "ad_name": "惠州市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "83",
     "pid": "6",
     "name": "江门",
+<<<<<<< HEAD
     "ad_name": "江门市",
     "letter": "jiangmen"
+=======
+    "ad_name": "江门市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "84",
     "pid": "6",
     "name": "揭阳",
+<<<<<<< HEAD
     "ad_name": "揭阳市",
     "letter": "jieyang"
+=======
+    "ad_name": "揭阳市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "85",
     "pid": "6",
     "name": "茂名",
+<<<<<<< HEAD
     "ad_name": "茂名市",
     "letter": "maoming"
+=======
+    "ad_name": "茂名市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "86",
     "pid": "6",
     "name": "梅州",
+<<<<<<< HEAD
     "ad_name": "梅州市",
     "letter": "meizhou"
+=======
+    "ad_name": "梅州市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "87",
     "pid": "6",
     "name": "清远",
+<<<<<<< HEAD
     "ad_name": "清远市",
     "letter": "qingyuan"
+=======
+    "ad_name": "清远市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "88",
     "pid": "6",
     "name": "汕头",
+<<<<<<< HEAD
     "ad_name": "汕头市",
     "letter": "shantou"
+=======
+    "ad_name": "汕头市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "89",
     "pid": "6",
     "name": "汕尾",
+<<<<<<< HEAD
     "ad_name": "汕尾市",
     "letter": "shanwei"
+=======
+    "ad_name": "汕尾市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "90",
     "pid": "6",
     "name": "韶关",
+<<<<<<< HEAD
     "ad_name": "韶关市",
     "letter": "shaoguan"
+=======
+    "ad_name": "韶关市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "91",
     "pid": "6",
     "name": "阳江",
+<<<<<<< HEAD
     "ad_name": "阳江市",
     "letter": "yangjiang"
+=======
+    "ad_name": "阳江市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "92",
     "pid": "6",
     "name": "云浮",
+<<<<<<< HEAD
     "ad_name": "云浮市",
     "letter": "yunfu"
+=======
+    "ad_name": "云浮市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "93",
     "pid": "6",
     "name": "湛江",
+<<<<<<< HEAD
     "ad_name": "湛江市",
     "letter": "zhanjiang"
+=======
+    "ad_name": "湛江市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "94",
     "pid": "6",
     "name": "肇庆",
+<<<<<<< HEAD
     "ad_name": "肇庆市",
     "letter": "zhaoqing"
+=======
+    "ad_name": "肇庆市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "95",
     "pid": "6",
     "name": "中山",
+<<<<<<< HEAD
     "ad_name": "中山市",
     "letter": "zhongshan"
+=======
+    "ad_name": "中山市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "96",
     "pid": "6",
     "name": "珠海",
+<<<<<<< HEAD
     "ad_name": "珠海市",
     "letter": "zhuhai"
+=======
+    "ad_name": "珠海市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }]
 }, {
   "id": "7",
   "pid": "1",
   "name": "广西",
   "ad_name": "广西壮族自治区",
+<<<<<<< HEAD
   "letter": "guangxi",
+=======
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   "has_children": 1,
   "children": [{
     "id": "7",
     "pid": "1",
     "name": "广西",
+<<<<<<< HEAD
     "ad_name": "广西壮族自治区",
     "letter": "guangxi"
+=======
+    "ad_name": "广西壮族自治区"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "97",
     "pid": "7",
     "name": "南宁",
+<<<<<<< HEAD
     "ad_name": "南宁市",
     "letter": "nanning"
+=======
+    "ad_name": "南宁市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "98",
     "pid": "7",
     "name": "桂林",
+<<<<<<< HEAD
     "ad_name": "桂林市",
     "letter": "guilin"
+=======
+    "ad_name": "桂林市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "99",
     "pid": "7",
     "name": "百色",
+<<<<<<< HEAD
     "ad_name": "百色市",
     "letter": "baise"
+=======
+    "ad_name": "百色市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "100",
     "pid": "7",
     "name": "北海",
+<<<<<<< HEAD
     "ad_name": "北海市",
     "letter": "beihai"
+=======
+    "ad_name": "北海市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "101",
     "pid": "7",
     "name": "崇左",
+<<<<<<< HEAD
     "ad_name": "崇左市",
     "letter": "chongzuo"
+=======
+    "ad_name": "崇左市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "102",
     "pid": "7",
     "name": "防城港",
+<<<<<<< HEAD
     "ad_name": "防城港市",
     "letter": "fangchenggang"
+=======
+    "ad_name": "防城港市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "103",
     "pid": "7",
     "name": "贵港",
+<<<<<<< HEAD
     "ad_name": "贵港市",
     "letter": "guigang"
+=======
+    "ad_name": "贵港市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "104",
     "pid": "7",
     "name": "河池",
+<<<<<<< HEAD
     "ad_name": "河池市",
     "letter": "hechi"
+=======
+    "ad_name": "河池市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "105",
     "pid": "7",
     "name": "贺州",
+<<<<<<< HEAD
     "ad_name": "贺州市",
     "letter": "hezhou"
+=======
+    "ad_name": "贺州市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "106",
     "pid": "7",
     "name": "来宾",
+<<<<<<< HEAD
     "ad_name": "来宾市",
     "letter": "laibin"
+=======
+    "ad_name": "来宾市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "107",
     "pid": "7",
     "name": "柳州",
+<<<<<<< HEAD
     "ad_name": "柳州市",
     "letter": "liuzhou"
+=======
+    "ad_name": "柳州市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "108",
     "pid": "7",
     "name": "钦州",
+<<<<<<< HEAD
     "ad_name": "钦州市",
     "letter": "qinzhou"
+=======
+    "ad_name": "钦州市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "109",
     "pid": "7",
     "name": "梧州",
+<<<<<<< HEAD
     "ad_name": "梧州市",
     "letter": "wuzhou"
+=======
+    "ad_name": "梧州市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "110",
     "pid": "7",
     "name": "玉林",
+<<<<<<< HEAD
     "ad_name": "玉林市",
     "letter": "yulin"
+=======
+    "ad_name": "玉林市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }]
 }, {
   "id": "8",
   "pid": "1",
   "name": "贵州",
   "ad_name": "贵州省",
+<<<<<<< HEAD
   "letter": "guizhou",
+=======
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   "has_children": 1,
   "children": [{
     "id": "8",
     "pid": "1",
     "name": "贵州",
+<<<<<<< HEAD
     "ad_name": "贵州省",
     "letter": "guizhou"
+=======
+    "ad_name": "贵州省"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "111",
     "pid": "8",
     "name": "贵阳",
+<<<<<<< HEAD
     "ad_name": "贵阳市",
     "letter": "guiyang"
+=======
+    "ad_name": "贵阳市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "112",
     "pid": "8",
     "name": "安顺",
+<<<<<<< HEAD
     "ad_name": "安顺市",
     "letter": "anshun"
+=======
+    "ad_name": "安顺市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "113",
     "pid": "8",
     "name": "毕节",
+<<<<<<< HEAD
     "ad_name": "毕节市",
     "letter": "bijie"
+=======
+    "ad_name": "毕节市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "114",
     "pid": "8",
     "name": "六盘水",
+<<<<<<< HEAD
     "ad_name": "六盘水市",
     "letter": "liupanshui"
+=======
+    "ad_name": "六盘水市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "115",
     "pid": "8",
     "name": "黔东南",
+<<<<<<< HEAD
     "ad_name": "黔东南苗族侗族自治州",
     "letter": "qiandongnan"
+=======
+    "ad_name": "黔东南苗族侗族自治州"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "116",
     "pid": "8",
     "name": "黔南",
+<<<<<<< HEAD
     "ad_name": "黔南布依族苗族自治州",
     "letter": "qiannan"
+=======
+    "ad_name": "黔南布依族苗族自治州"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "117",
     "pid": "8",
     "name": "黔西南",
+<<<<<<< HEAD
     "ad_name": "黔西南布依族苗族自治州",
     "letter": "qianxinan"
+=======
+    "ad_name": "黔西南布依族苗族自治州"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "118",
     "pid": "8",
     "name": "铜仁",
+<<<<<<< HEAD
     "ad_name": "铜仁市",
     "letter": "tongren"
+=======
+    "ad_name": "铜仁市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "119",
     "pid": "8",
     "name": "遵义",
+<<<<<<< HEAD
     "ad_name": "遵义市",
     "letter": "zunyi"
+=======
+    "ad_name": "遵义市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }]
 }, {
   "id": "9",
   "pid": "1",
   "name": "海南",
   "ad_name": "海南省",
+<<<<<<< HEAD
   "letter": "hainan",
+=======
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   "has_children": 1,
   "children": [{
     "id": "9",
     "pid": "1",
     "name": "海南",
+<<<<<<< HEAD
     "ad_name": "海南省",
     "letter": "hainan"
+=======
+    "ad_name": "海南省"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "120",
     "pid": "9",
     "name": "海口",
+<<<<<<< HEAD
     "ad_name": "海口市",
     "letter": "haikou"
+=======
+    "ad_name": "海口市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "121",
     "pid": "9",
     "name": "三亚",
+<<<<<<< HEAD
     "ad_name": "三亚市",
     "letter": "sanya"
+=======
+    "ad_name": "三亚市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "122",
     "pid": "9",
     "name": "白沙",
+<<<<<<< HEAD
     "ad_name": "白沙黎族自治县",
     "letter": "baisha"
+=======
+    "ad_name": "白沙黎族自治县"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "123",
     "pid": "9",
     "name": "保亭",
+<<<<<<< HEAD
     "ad_name": "保亭黎族苗族自治县",
     "letter": "baoting"
+=======
+    "ad_name": "保亭黎族苗族自治县"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "124",
     "pid": "9",
     "name": "昌江",
+<<<<<<< HEAD
     "ad_name": "昌江",
     "letter": "changjiang"
+=======
+    "ad_name": "昌江"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "125",
     "pid": "9",
     "name": "澄迈县",
+<<<<<<< HEAD
     "ad_name": "澄迈县",
     "letter": "chengmai"
+=======
+    "ad_name": "澄迈县"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "126",
     "pid": "9",
     "name": "定安县",
+<<<<<<< HEAD
     "ad_name": "定安县",
     "letter": "dingan"
+=======
+    "ad_name": "定安县"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "127",
     "pid": "9",
     "name": "东方",
+<<<<<<< HEAD
     "ad_name": "东方市",
     "letter": "dongfang"
+=======
+    "ad_name": "东方市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "128",
     "pid": "9",
     "name": "乐东",
+<<<<<<< HEAD
     "ad_name": "乐东黎族自治县",
     "letter": "ledong"
+=======
+    "ad_name": "乐东黎族自治县"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "129",
     "pid": "9",
     "name": "临高县",
+<<<<<<< HEAD
     "ad_name": "临高县",
     "letter": "lingao"
+=======
+    "ad_name": "临高县"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "130",
     "pid": "9",
     "name": "陵水",
+<<<<<<< HEAD
     "ad_name": "陵水黎族自治县",
     "letter": "lingshui"
+=======
+    "ad_name": "陵水黎族自治县"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "131",
     "pid": "9",
     "name": "琼海",
+<<<<<<< HEAD
     "ad_name": "琼海市",
     "letter": "qionghai"
+=======
+    "ad_name": "琼海市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "132",
     "pid": "9",
     "name": "琼中",
+<<<<<<< HEAD
     "ad_name": "琼中黎族苗族自治县",
     "letter": "qiongzhong"
+=======
+    "ad_name": "琼中黎族苗族自治县"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "133",
     "pid": "9",
     "name": "屯昌县",
+<<<<<<< HEAD
     "ad_name": "屯昌县",
     "letter": "tunchang"
+=======
+    "ad_name": "屯昌县"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "134",
     "pid": "9",
     "name": "万宁",
+<<<<<<< HEAD
     "ad_name": "万宁市",
     "letter": "wanning"
+=======
+    "ad_name": "万宁市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "135",
     "pid": "9",
     "name": "文昌",
+<<<<<<< HEAD
     "ad_name": "文昌市",
     "letter": "wenchang"
+=======
+    "ad_name": "文昌市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "136",
     "pid": "9",
     "name": "五指山",
+<<<<<<< HEAD
     "ad_name": "五指山市",
     "letter": "wuzhishan"
+=======
+    "ad_name": "五指山市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "137",
     "pid": "9",
     "name": "儋州",
+<<<<<<< HEAD
     "ad_name": "儋州市",
     "letter": "danzhou"
+=======
+    "ad_name": "儋州市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }]
 }, {
   "id": "10",
   "pid": "1",
   "name": "河北",
   "ad_name": "河北省",
+<<<<<<< HEAD
   "letter": "hebei",
+=======
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   "has_children": 1,
   "children": [{
     "id": "10",
     "pid": "1",
     "name": "河北",
+<<<<<<< HEAD
     "ad_name": "河北省",
     "letter": "hebei"
+=======
+    "ad_name": "河北省"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "138",
     "pid": "10",
     "name": "石家庄",
+<<<<<<< HEAD
     "ad_name": "石家庄市",
     "letter": "shijiazhuang"
+=======
+    "ad_name": "石家庄市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "139",
     "pid": "10",
     "name": "保定",
+<<<<<<< HEAD
     "ad_name": "保定市",
     "letter": "baoding"
+=======
+    "ad_name": "保定市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "140",
     "pid": "10",
     "name": "沧州",
+<<<<<<< HEAD
     "ad_name": "沧州市",
     "letter": "cangzhou"
+=======
+    "ad_name": "沧州市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "141",
     "pid": "10",
     "name": "承德",
+<<<<<<< HEAD
     "ad_name": "承德市",
     "letter": "chengde"
+=======
+    "ad_name": "承德市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "142",
     "pid": "10",
     "name": "邯郸",
+<<<<<<< HEAD
     "ad_name": "邯郸市",
     "letter": "handan"
+=======
+    "ad_name": "邯郸市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "143",
     "pid": "10",
     "name": "衡水",
+<<<<<<< HEAD
     "ad_name": "衡水市",
     "letter": "hengshui"
+=======
+    "ad_name": "衡水市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "144",
     "pid": "10",
     "name": "廊坊",
+<<<<<<< HEAD
     "ad_name": "廊坊市",
     "letter": "langfang"
+=======
+    "ad_name": "廊坊市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "145",
     "pid": "10",
     "name": "秦皇岛",
+<<<<<<< HEAD
     "ad_name": "秦皇岛市",
     "letter": "qinhuangdao"
+=======
+    "ad_name": "秦皇岛市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "146",
     "pid": "10",
     "name": "唐山",
+<<<<<<< HEAD
     "ad_name": "唐山市",
     "letter": "tangshan"
+=======
+    "ad_name": "唐山市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "147",
     "pid": "10",
     "name": "邢台",
+<<<<<<< HEAD
     "ad_name": "邢台市",
     "letter": "xingtai"
+=======
+    "ad_name": "邢台市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "148",
     "pid": "10",
     "name": "张家口",
+<<<<<<< HEAD
     "ad_name": "张家口市",
     "letter": "zhangjiakou"
+=======
+    "ad_name": "张家口市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }]
 }, {
   "id": "11",
   "pid": "1",
   "name": "河南",
   "ad_name": "河南省",
+<<<<<<< HEAD
   "letter": "henan",
+=======
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   "has_children": 1,
   "children": [{
     "id": "11",
     "pid": "1",
     "name": "河南",
+<<<<<<< HEAD
     "ad_name": "河南省",
     "letter": "henan"
+=======
+    "ad_name": "河南省"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "149",
     "pid": "11",
     "name": "郑州",
+<<<<<<< HEAD
     "ad_name": "郑州市",
     "letter": "zhengzhou"
+=======
+    "ad_name": "郑州市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "150",
     "pid": "11",
     "name": "洛阳",
+<<<<<<< HEAD
     "ad_name": "洛阳市",
     "letter": "luoyang"
+=======
+    "ad_name": "洛阳市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "151",
     "pid": "11",
     "name": "开封",
+<<<<<<< HEAD
     "ad_name": "开封市",
     "letter": "kaifeng"
+=======
+    "ad_name": "开封市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "152",
     "pid": "11",
     "name": "安阳",
+<<<<<<< HEAD
     "ad_name": "安阳市",
     "letter": "anyang"
+=======
+    "ad_name": "安阳市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "153",
     "pid": "11",
     "name": "鹤壁",
+<<<<<<< HEAD
     "ad_name": "鹤壁市",
     "letter": "hebi"
+=======
+    "ad_name": "鹤壁市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "154",
     "pid": "11",
     "name": "济源",
+<<<<<<< HEAD
     "ad_name": "济源市",
     "letter": "jiyuan"
+=======
+    "ad_name": "济源市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "155",
     "pid": "11",
     "name": "焦作",
+<<<<<<< HEAD
     "ad_name": "焦作市",
     "letter": "jiaozuo"
+=======
+    "ad_name": "焦作市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "156",
     "pid": "11",
     "name": "南阳",
+<<<<<<< HEAD
     "ad_name": "南阳市",
     "letter": "nanyang"
+=======
+    "ad_name": "南阳市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "157",
     "pid": "11",
     "name": "平顶山",
+<<<<<<< HEAD
     "ad_name": "平顶山市",
     "letter": "pingdingshan"
+=======
+    "ad_name": "平顶山市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "158",
     "pid": "11",
     "name": "三门峡",
+<<<<<<< HEAD
     "ad_name": "三门峡市",
     "letter": "sanmenxia"
+=======
+    "ad_name": "三门峡市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "159",
     "pid": "11",
     "name": "商丘",
+<<<<<<< HEAD
     "ad_name": "商丘市",
     "letter": "shangqiu"
+=======
+    "ad_name": "商丘市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "160",
     "pid": "11",
     "name": "新乡",
+<<<<<<< HEAD
     "ad_name": "新乡市",
     "letter": "xinxiang"
+=======
+    "ad_name": "新乡市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "161",
     "pid": "11",
     "name": "信阳",
+<<<<<<< HEAD
     "ad_name": "信阳市",
     "letter": "xinyang"
+=======
+    "ad_name": "信阳市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "162",
     "pid": "11",
     "name": "许昌",
+<<<<<<< HEAD
     "ad_name": "许昌市",
     "letter": "xuchang"
+=======
+    "ad_name": "许昌市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "163",
     "pid": "11",
     "name": "周口",
+<<<<<<< HEAD
     "ad_name": "周口市",
     "letter": "zhoukou"
+=======
+    "ad_name": "周口市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "164",
     "pid": "11",
     "name": "驻马店",
+<<<<<<< HEAD
     "ad_name": "驻马店市",
     "letter": "zhumadian"
+=======
+    "ad_name": "驻马店市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "165",
     "pid": "11",
     "name": "漯河",
+<<<<<<< HEAD
     "ad_name": "漯河市",
     "letter": "luohe"
+=======
+    "ad_name": "漯河市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "166",
     "pid": "11",
     "name": "濮阳",
+<<<<<<< HEAD
     "ad_name": "濮阳市",
     "letter": "puyang"
+=======
+    "ad_name": "濮阳市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }]
 }, {
   "id": "12",
   "pid": "1",
   "name": "黑龙江",
   "ad_name": "黑龙江省",
+<<<<<<< HEAD
   "letter": "heilongjiang",
+=======
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   "has_children": 1,
   "children": [{
     "id": "12",
     "pid": "1",
     "name": "黑龙江",
+<<<<<<< HEAD
     "ad_name": "黑龙江省",
     "letter": "heilongjiang"
+=======
+    "ad_name": "黑龙江省"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "167",
     "pid": "12",
     "name": "哈尔滨",
+<<<<<<< HEAD
     "ad_name": "哈尔滨市",
     "letter": "haerbin"
+=======
+    "ad_name": "哈尔滨市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "168",
     "pid": "12",
     "name": "大庆",
+<<<<<<< HEAD
     "ad_name": "大庆市",
     "letter": "daqing"
+=======
+    "ad_name": "大庆市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "169",
     "pid": "12",
     "name": "大兴安岭",
+<<<<<<< HEAD
     "ad_name": "大兴安岭地区",
     "letter": "daxinganling"
+=======
+    "ad_name": "大兴安岭地区"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "170",
     "pid": "12",
     "name": "鹤岗",
+<<<<<<< HEAD
     "ad_name": "鹤岗市",
     "letter": "hegang"
+=======
+    "ad_name": "鹤岗市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "171",
     "pid": "12",
     "name": "黑河",
+<<<<<<< HEAD
     "ad_name": "黑河市",
     "letter": "heihe"
+=======
+    "ad_name": "黑河市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "172",
     "pid": "12",
     "name": "鸡西",
+<<<<<<< HEAD
     "ad_name": "鸡西市",
     "letter": "jixi"
+=======
+    "ad_name": "鸡西市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "173",
     "pid": "12",
     "name": "佳木斯",
+<<<<<<< HEAD
     "ad_name": "佳木斯市",
     "letter": "jiamusi"
+=======
+    "ad_name": "佳木斯市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "174",
     "pid": "12",
     "name": "牡丹江",
+<<<<<<< HEAD
     "ad_name": "牡丹江市",
     "letter": "mudanjiang"
+=======
+    "ad_name": "牡丹江市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "175",
     "pid": "12",
     "name": "七台河",
+<<<<<<< HEAD
     "ad_name": "七台河市",
     "letter": "qitaihe"
+=======
+    "ad_name": "七台河市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "176",
     "pid": "12",
     "name": "齐齐哈尔",
+<<<<<<< HEAD
     "ad_name": "齐齐哈尔市",
     "letter": "jijihaer"
+=======
+    "ad_name": "齐齐哈尔市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "177",
     "pid": "12",
     "name": "双鸭山",
+<<<<<<< HEAD
     "ad_name": "双鸭山市",
     "letter": "shuangyashan"
+=======
+    "ad_name": "双鸭山市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "178",
     "pid": "12",
     "name": "绥化",
+<<<<<<< HEAD
     "ad_name": "绥化市",
     "letter": "suihua"
+=======
+    "ad_name": "绥化市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "179",
     "pid": "12",
     "name": "伊春",
+<<<<<<< HEAD
     "ad_name": "伊春市",
     "letter": "yichun"
+=======
+    "ad_name": "伊春市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }]
 }, {
   "id": "13",
   "pid": "1",
   "name": "湖北",
   "ad_name": "湖北省",
+<<<<<<< HEAD
   "letter": "hubei",
+=======
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   "has_children": 1,
   "children": [{
     "id": "13",
     "pid": "1",
     "name": "湖北",
+<<<<<<< HEAD
     "ad_name": "湖北省",
     "letter": "hubei"
+=======
+    "ad_name": "湖北省"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "180",
     "pid": "13",
     "name": "武汉",
+<<<<<<< HEAD
     "ad_name": "武汉市",
     "letter": "wuhan"
+=======
+    "ad_name": "武汉市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "181",
     "pid": "13",
     "name": "仙桃",
+<<<<<<< HEAD
     "ad_name": "仙桃市",
     "letter": "xiantao"
+=======
+    "ad_name": "仙桃市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "182",
     "pid": "13",
     "name": "鄂州",
+<<<<<<< HEAD
     "ad_name": "鄂州市",
     "letter": "ezhou"
+=======
+    "ad_name": "鄂州市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "183",
     "pid": "13",
     "name": "黄冈",
+<<<<<<< HEAD
     "ad_name": "黄冈市",
     "letter": "huanggang"
+=======
+    "ad_name": "黄冈市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "184",
     "pid": "13",
     "name": "黄石",
+<<<<<<< HEAD
     "ad_name": "黄石市",
     "letter": "huangshi"
+=======
+    "ad_name": "黄石市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "185",
     "pid": "13",
     "name": "荆门",
+<<<<<<< HEAD
     "ad_name": "荆门市",
     "letter": "jingmen"
+=======
+    "ad_name": "荆门市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "186",
     "pid": "13",
     "name": "荆州",
+<<<<<<< HEAD
     "ad_name": "荆州市",
     "letter": "jingzhou"
+=======
+    "ad_name": "荆州市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "187",
     "pid": "13",
     "name": "潜江",
+<<<<<<< HEAD
     "ad_name": "潜江市",
     "letter": "qianjiang"
+=======
+    "ad_name": "潜江市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "188",
     "pid": "13",
     "name": "神农架林区",
+<<<<<<< HEAD
     "ad_name": "神农架林区",
     "letter": "shennongjia"
+=======
+    "ad_name": "神农架林区"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "189",
     "pid": "13",
     "name": "十堰",
+<<<<<<< HEAD
     "ad_name": "十堰市",
     "letter": "shiyan"
+=======
+    "ad_name": "十堰市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "190",
     "pid": "13",
     "name": "随州",
+<<<<<<< HEAD
     "ad_name": "随州市",
     "letter": "suizhou"
+=======
+    "ad_name": "随州市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "191",
     "pid": "13",
     "name": "天门",
+<<<<<<< HEAD
     "ad_name": "天门市",
     "letter": "tianmen"
+=======
+    "ad_name": "天门市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "192",
     "pid": "13",
     "name": "咸宁",
+<<<<<<< HEAD
     "ad_name": "咸宁市",
     "letter": "xianning"
+=======
+    "ad_name": "咸宁市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "193",
     "pid": "13",
     "name": "襄阳",
+<<<<<<< HEAD
     "ad_name": "襄阳市",
     "letter": "xiangfan"
+=======
+    "ad_name": "襄阳市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "194",
     "pid": "13",
     "name": "孝感",
+<<<<<<< HEAD
     "ad_name": "孝感市",
     "letter": "xiaogan"
+=======
+    "ad_name": "孝感市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "195",
     "pid": "13",
     "name": "宜昌",
+<<<<<<< HEAD
     "ad_name": "宜昌市",
     "letter": "yichang"
+=======
+    "ad_name": "宜昌市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "196",
     "pid": "13",
     "name": "恩施",
+<<<<<<< HEAD
     "ad_name": "恩施",
     "letter": "enshi"
+=======
+    "ad_name": "恩施"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }]
 }, {
   "id": "14",
   "pid": "1",
   "name": "湖南",
   "ad_name": "湖南省",
+<<<<<<< HEAD
   "letter": "hunan",
+=======
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   "has_children": 1,
   "children": [{
     "id": "14",
     "pid": "1",
     "name": "湖南",
+<<<<<<< HEAD
     "ad_name": "湖南省",
     "letter": "hunan"
+=======
+    "ad_name": "湖南省"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "197",
     "pid": "14",
     "name": "长沙",
+<<<<<<< HEAD
     "ad_name": "长沙市",
     "letter": "changsha"
+=======
+    "ad_name": "长沙市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "198",
     "pid": "14",
     "name": "张家界",
+<<<<<<< HEAD
     "ad_name": "张家界市",
     "letter": "zhangjiajie"
+=======
+    "ad_name": "张家界市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "199",
     "pid": "14",
     "name": "常德",
+<<<<<<< HEAD
     "ad_name": "常德市",
     "letter": "changde"
+=======
+    "ad_name": "常德市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "200",
     "pid": "14",
     "name": "郴州",
+<<<<<<< HEAD
     "ad_name": "郴州市",
     "letter": "chenzhou"
+=======
+    "ad_name": "郴州市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "201",
     "pid": "14",
     "name": "衡阳",
+<<<<<<< HEAD
     "ad_name": "衡阳市",
     "letter": "hengyang"
+=======
+    "ad_name": "衡阳市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "202",
     "pid": "14",
     "name": "怀化",
+<<<<<<< HEAD
     "ad_name": "怀化市",
     "letter": "huaihua"
+=======
+    "ad_name": "怀化市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "203",
     "pid": "14",
     "name": "娄底",
+<<<<<<< HEAD
     "ad_name": "娄底市",
     "letter": "loudi"
+=======
+    "ad_name": "娄底市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "204",
     "pid": "14",
     "name": "邵阳",
+<<<<<<< HEAD
     "ad_name": "邵阳市",
     "letter": "shaoyang"
+=======
+    "ad_name": "邵阳市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "205",
     "pid": "14",
     "name": "湘潭",
+<<<<<<< HEAD
     "ad_name": "湘潭市",
     "letter": "xiangtan"
+=======
+    "ad_name": "湘潭市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "206",
     "pid": "14",
     "name": "湘西",
+<<<<<<< HEAD
     "ad_name": "湘西土家族苗族自治州",
     "letter": "xiangxi"
+=======
+    "ad_name": "湘西土家族苗族自治州"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "207",
     "pid": "14",
     "name": "益阳",
+<<<<<<< HEAD
     "ad_name": "益阳市",
     "letter": "yiyang"
+=======
+    "ad_name": "益阳市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "208",
     "pid": "14",
     "name": "永州",
+<<<<<<< HEAD
     "ad_name": "永州市",
     "letter": "yongzhou"
+=======
+    "ad_name": "永州市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "209",
     "pid": "14",
     "name": "岳阳",
+<<<<<<< HEAD
     "ad_name": "岳阳市",
     "letter": "yueyang"
+=======
+    "ad_name": "岳阳市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "210",
     "pid": "14",
     "name": "株洲",
+<<<<<<< HEAD
     "ad_name": "株洲市",
     "letter": "zhuzhou"
+=======
+    "ad_name": "株洲市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }]
 }, {
   "id": "15",
   "pid": "1",
   "name": "吉林",
   "ad_name": "吉林省",
+<<<<<<< HEAD
   "letter": "jilin",
+=======
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   "has_children": 1,
   "children": [{
     "id": "15",
     "pid": "1",
     "name": "吉林",
+<<<<<<< HEAD
     "ad_name": "吉林省",
     "letter": "jilin"
+=======
+    "ad_name": "吉林省"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "211",
     "pid": "15",
     "name": "长春",
+<<<<<<< HEAD
     "ad_name": "长春市",
     "letter": "changchun"
+=======
+    "ad_name": "长春市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "212",
     "pid": "15",
     "name": "吉林",
+<<<<<<< HEAD
     "ad_name": "吉林市",
     "letter": "jilinshi"
+=======
+    "ad_name": "吉林市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "213",
     "pid": "15",
     "name": "白城",
+<<<<<<< HEAD
     "ad_name": "白城市",
     "letter": "baicheng"
+=======
+    "ad_name": "白城市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "214",
     "pid": "15",
     "name": "白山",
+<<<<<<< HEAD
     "ad_name": "白山市",
     "letter": "baishan"
+=======
+    "ad_name": "白山市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "215",
     "pid": "15",
     "name": "辽源",
+<<<<<<< HEAD
     "ad_name": "辽源市",
     "letter": "liaoyuan"
+=======
+    "ad_name": "辽源市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "216",
     "pid": "15",
     "name": "四平",
+<<<<<<< HEAD
     "ad_name": "四平市",
     "letter": "siping"
+=======
+    "ad_name": "四平市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "217",
     "pid": "15",
     "name": "松原",
+<<<<<<< HEAD
     "ad_name": "松原市",
     "letter": "songyuan"
+=======
+    "ad_name": "松原市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "218",
     "pid": "15",
     "name": "通化",
+<<<<<<< HEAD
     "ad_name": "通化市",
     "letter": "tonghua"
+=======
+    "ad_name": "通化市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "219",
     "pid": "15",
     "name": "延边",
+<<<<<<< HEAD
     "ad_name": "延边朝鲜族自治州",
     "letter": "yanbian"
+=======
+    "ad_name": "延边朝鲜族自治州"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }]
 }, {
   "id": "16",
   "pid": "1",
   "name": "江苏",
   "ad_name": "江苏省",
+<<<<<<< HEAD
   "letter": "jiangsu",
+=======
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   "has_children": 1,
   "children": [{
     "id": "16",
     "pid": "1",
     "name": "江苏",
+<<<<<<< HEAD
     "ad_name": "江苏省",
     "letter": "jiangsu"
+=======
+    "ad_name": "江苏省"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "220",
     "pid": "16",
     "name": "南京",
+<<<<<<< HEAD
     "ad_name": "南京市",
     "letter": "nanjing"
+=======
+    "ad_name": "南京市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "221",
     "pid": "16",
     "name": "苏州",
+<<<<<<< HEAD
     "ad_name": "苏州市",
     "letter": "suzhou"
+=======
+    "ad_name": "苏州市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "222",
     "pid": "16",
     "name": "无锡",
+<<<<<<< HEAD
     "ad_name": "无锡市",
     "letter": "wuxi"
+=======
+    "ad_name": "无锡市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "223",
     "pid": "16",
     "name": "常州",
+<<<<<<< HEAD
     "ad_name": "常州市",
     "letter": "changzhou"
+=======
+    "ad_name": "常州市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "224",
     "pid": "16",
     "name": "淮安",
+<<<<<<< HEAD
     "ad_name": "淮安市",
     "letter": "huaian"
+=======
+    "ad_name": "淮安市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "225",
     "pid": "16",
     "name": "连云港",
+<<<<<<< HEAD
     "ad_name": "连云港市",
     "letter": "lianyungang"
+=======
+    "ad_name": "连云港市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "226",
     "pid": "16",
     "name": "南通",
+<<<<<<< HEAD
     "ad_name": "南通市",
     "letter": "nantong"
+=======
+    "ad_name": "南通市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "227",
     "pid": "16",
     "name": "宿迁",
+<<<<<<< HEAD
     "ad_name": "宿迁市",
     "letter": "suqian"
+=======
+    "ad_name": "宿迁市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "228",
     "pid": "16",
     "name": "泰州",
+<<<<<<< HEAD
     "ad_name": "泰州市",
     "letter": "taizhou"
+=======
+    "ad_name": "泰州市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "229",
     "pid": "16",
     "name": "徐州",
+<<<<<<< HEAD
     "ad_name": "徐州市",
     "letter": "xuzhou"
+=======
+    "ad_name": "徐州市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "230",
     "pid": "16",
     "name": "盐城",
+<<<<<<< HEAD
     "ad_name": "盐城市",
     "letter": "yancheng"
+=======
+    "ad_name": "盐城市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "231",
     "pid": "16",
     "name": "扬州",
+<<<<<<< HEAD
     "ad_name": "扬州市",
     "letter": "yangzhou"
+=======
+    "ad_name": "扬州市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "232",
     "pid": "16",
     "name": "镇江",
+<<<<<<< HEAD
     "ad_name": "镇江市",
     "letter": "zhenjiang"
+=======
+    "ad_name": "镇江市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }]
 }, {
   "id": "17",
   "pid": "1",
   "name": "江西",
   "ad_name": "江西省",
+<<<<<<< HEAD
   "letter": "jiangxi",
+=======
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   "has_children": 1,
   "children": [{
     "id": "17",
     "pid": "1",
     "name": "江西",
+<<<<<<< HEAD
     "ad_name": "江西省",
     "letter": "jiangxi"
+=======
+    "ad_name": "江西省"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "233",
     "pid": "17",
     "name": "南昌",
+<<<<<<< HEAD
     "ad_name": "南昌市",
     "letter": "nanchang"
+=======
+    "ad_name": "南昌市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "234",
     "pid": "17",
     "name": "抚州",
+<<<<<<< HEAD
     "ad_name": "抚州市",
     "letter": "jiangxifuzhou"
+=======
+    "ad_name": "抚州市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "235",
     "pid": "17",
     "name": "赣州",
+<<<<<<< HEAD
     "ad_name": "赣州市",
     "letter": "ganzhou"
+=======
+    "ad_name": "赣州市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "236",
     "pid": "17",
     "name": "吉安",
+<<<<<<< HEAD
     "ad_name": "吉安市",
     "letter": "jian"
+=======
+    "ad_name": "吉安市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "237",
     "pid": "17",
     "name": "景德镇",
+<<<<<<< HEAD
     "ad_name": "景德镇市",
     "letter": "jingdezhen"
+=======
+    "ad_name": "景德镇市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "238",
     "pid": "17",
     "name": "九江",
+<<<<<<< HEAD
     "ad_name": "九江市",
     "letter": "jiujiang"
+=======
+    "ad_name": "九江市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "239",
     "pid": "17",
     "name": "萍乡",
+<<<<<<< HEAD
     "ad_name": "萍乡市",
     "letter": "pingxiang"
+=======
+    "ad_name": "萍乡市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "240",
     "pid": "17",
     "name": "上饶",
+<<<<<<< HEAD
     "ad_name": "上饶市",
     "letter": "shangrao"
+=======
+    "ad_name": "上饶市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "241",
     "pid": "17",
     "name": "新余",
+<<<<<<< HEAD
     "ad_name": "新余市",
     "letter": "xinyu"
+=======
+    "ad_name": "新余市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "242",
     "pid": "17",
     "name": "宜春",
+<<<<<<< HEAD
     "ad_name": "宜春市",
     "letter": "jxyichun"
+=======
+    "ad_name": "宜春市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "243",
     "pid": "17",
     "name": "鹰潭",
+<<<<<<< HEAD
     "ad_name": "鹰潭市",
     "letter": "yingtan"
+=======
+    "ad_name": "鹰潭市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }]
 }, {
   "id": "18",
   "pid": "1",
   "name": "辽宁",
   "ad_name": "辽宁省",
+<<<<<<< HEAD
   "letter": "liaoning",
+=======
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   "has_children": 1,
   "children": [{
     "id": "18",
     "pid": "1",
     "name": "辽宁",
+<<<<<<< HEAD
     "ad_name": "辽宁省",
     "letter": "liaoning"
+=======
+    "ad_name": "辽宁省"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "244",
     "pid": "18",
     "name": "沈阳",
+<<<<<<< HEAD
     "ad_name": "沈阳市",
     "letter": "shenyang"
+=======
+    "ad_name": "沈阳市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "245",
     "pid": "18",
     "name": "大连",
+<<<<<<< HEAD
     "ad_name": "大连市",
     "letter": "dalian"
+=======
+    "ad_name": "大连市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "246",
     "pid": "18",
     "name": "鞍山",
+<<<<<<< HEAD
     "ad_name": "鞍山市",
     "letter": "anshan"
+=======
+    "ad_name": "鞍山市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "247",
     "pid": "18",
     "name": "本溪",
+<<<<<<< HEAD
     "ad_name": "本溪市",
     "letter": "benxi"
+=======
+    "ad_name": "本溪市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "248",
     "pid": "18",
     "name": "朝阳",
+<<<<<<< HEAD
     "ad_name": "朝阳市",
     "letter": "chaoyang"
+=======
+    "ad_name": "朝阳市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "249",
     "pid": "18",
     "name": "丹东",
+<<<<<<< HEAD
     "ad_name": "丹东市",
     "letter": "dandong"
+=======
+    "ad_name": "丹东市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "250",
     "pid": "18",
     "name": "抚顺",
+<<<<<<< HEAD
     "ad_name": "抚顺市",
     "letter": "fushun"
+=======
+    "ad_name": "抚顺市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "251",
     "pid": "18",
     "name": "阜新",
+<<<<<<< HEAD
     "ad_name": "阜新市",
     "letter": "fuxin"
+=======
+    "ad_name": "阜新市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "252",
     "pid": "18",
     "name": "葫芦岛",
+<<<<<<< HEAD
     "ad_name": "葫芦岛市",
     "letter": "huludao"
+=======
+    "ad_name": "葫芦岛市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "253",
     "pid": "18",
     "name": "锦州",
+<<<<<<< HEAD
     "ad_name": "锦州市",
     "letter": "jinzhou"
+=======
+    "ad_name": "锦州市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "254",
     "pid": "18",
     "name": "辽阳",
+<<<<<<< HEAD
     "ad_name": "辽阳市",
     "letter": "liaoyang"
+=======
+    "ad_name": "辽阳市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "255",
     "pid": "18",
     "name": "盘锦",
+<<<<<<< HEAD
     "ad_name": "盘锦市",
     "letter": "panjin"
+=======
+    "ad_name": "盘锦市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "256",
     "pid": "18",
     "name": "铁岭",
+<<<<<<< HEAD
     "ad_name": "铁岭市",
     "letter": "tieling"
+=======
+    "ad_name": "铁岭市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "257",
     "pid": "18",
     "name": "营口",
+<<<<<<< HEAD
     "ad_name": "营口市",
     "letter": "yingkou"
+=======
+    "ad_name": "营口市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }]
 }, {
   "id": "19",
   "pid": "1",
   "name": "内蒙古",
   "ad_name": "内蒙古自治区",
+<<<<<<< HEAD
   "letter": "neimenggu",
+=======
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   "has_children": 1,
   "children": [{
     "id": "19",
     "pid": "1",
     "name": "内蒙古",
+<<<<<<< HEAD
     "ad_name": "内蒙古自治区",
     "letter": "neimenggu"
+=======
+    "ad_name": "内蒙古自治区"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "258",
     "pid": "19",
     "name": "呼和浩特",
+<<<<<<< HEAD
     "ad_name": "呼和浩特市",
     "letter": "huhehaote"
+=======
+    "ad_name": "呼和浩特市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "259",
     "pid": "19",
     "name": "阿拉善盟",
+<<<<<<< HEAD
     "ad_name": "阿拉善盟",
     "letter": "alashan"
+=======
+    "ad_name": "阿拉善盟"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "260",
     "pid": "19",
     "name": "巴彦淖尔盟",
+<<<<<<< HEAD
     "ad_name": "巴彦淖尔市",
     "letter": "bayannaoer"
+=======
+    "ad_name": "巴彦淖尔市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "261",
     "pid": "19",
     "name": "包头",
+<<<<<<< HEAD
     "ad_name": "包头市",
     "letter": "baotou"
+=======
+    "ad_name": "包头市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "262",
     "pid": "19",
     "name": "赤峰",
+<<<<<<< HEAD
     "ad_name": "赤峰市",
     "letter": "chifeng"
+=======
+    "ad_name": "赤峰市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "263",
     "pid": "19",
     "name": "鄂尔多斯",
+<<<<<<< HEAD
     "ad_name": "鄂尔多斯市",
     "letter": "eerduosi"
+=======
+    "ad_name": "鄂尔多斯市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "264",
     "pid": "19",
     "name": "呼伦贝尔",
+<<<<<<< HEAD
     "ad_name": "呼伦贝尔市",
     "letter": "hulunbeier"
+=======
+    "ad_name": "呼伦贝尔市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "265",
     "pid": "19",
     "name": "通辽",
+<<<<<<< HEAD
     "ad_name": "通辽市",
     "letter": "tongliao"
+=======
+    "ad_name": "通辽市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "266",
     "pid": "19",
     "name": "乌海",
+<<<<<<< HEAD
     "ad_name": "乌海市",
     "letter": "wuhai"
+=======
+    "ad_name": "乌海市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "267",
     "pid": "19",
     "name": "乌兰察布市",
+<<<<<<< HEAD
     "ad_name": "乌兰察布市",
     "letter": "wulanchabu"
+=======
+    "ad_name": "乌兰察布市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "268",
     "pid": "19",
     "name": "锡林郭勒盟",
+<<<<<<< HEAD
     "ad_name": "锡林郭勒盟",
     "letter": "xilingele"
+=======
+    "ad_name": "锡林郭勒盟"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "269",
     "pid": "19",
     "name": "兴安盟",
+<<<<<<< HEAD
     "ad_name": "兴安盟",
     "letter": "xingan"
+=======
+    "ad_name": "兴安盟"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }]
 }, {
   "id": "20",
   "pid": "1",
   "name": "宁夏",
   "ad_name": "宁夏回族自治区",
+<<<<<<< HEAD
   "letter": "ningxia",
+=======
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   "has_children": 1,
   "children": [{
     "id": "20",
     "pid": "1",
     "name": "宁夏",
+<<<<<<< HEAD
     "ad_name": "宁夏回族自治区",
     "letter": "ningxia"
+=======
+    "ad_name": "宁夏回族自治区"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "270",
     "pid": "20",
     "name": "银川",
+<<<<<<< HEAD
     "ad_name": "银川市",
     "letter": "yinchuan"
+=======
+    "ad_name": "银川市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "271",
     "pid": "20",
     "name": "固原",
+<<<<<<< HEAD
     "ad_name": "固原市",
     "letter": "guyuan"
+=======
+    "ad_name": "固原市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "272",
     "pid": "20",
     "name": "石嘴山",
+<<<<<<< HEAD
     "ad_name": "石嘴山市",
     "letter": "shizuishan"
+=======
+    "ad_name": "石嘴山市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "273",
     "pid": "20",
     "name": "吴忠",
+<<<<<<< HEAD
     "ad_name": "吴忠市",
     "letter": "wuzhong"
+=======
+    "ad_name": "吴忠市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "274",
     "pid": "20",
     "name": "中卫",
+<<<<<<< HEAD
     "ad_name": "中卫市",
     "letter": "zhongwei"
+=======
+    "ad_name": "中卫市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }]
 }, {
   "id": "21",
   "pid": "1",
   "name": "青海",
   "ad_name": "青海省",
+<<<<<<< HEAD
   "letter": "qinghai",
+=======
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   "has_children": 1,
   "children": [{
     "id": "21",
     "pid": "1",
     "name": "青海",
+<<<<<<< HEAD
     "ad_name": "青海省",
     "letter": "qinghai"
+=======
+    "ad_name": "青海省"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "275",
     "pid": "21",
     "name": "西宁",
+<<<<<<< HEAD
     "ad_name": "西宁市",
     "letter": "xining"
+=======
+    "ad_name": "西宁市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "276",
     "pid": "21",
     "name": "果洛",
+<<<<<<< HEAD
     "ad_name": "果洛藏族自治州",
     "letter": "guoluo"
+=======
+    "ad_name": "果洛藏族自治州"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "277",
     "pid": "21",
     "name": "海北",
+<<<<<<< HEAD
     "ad_name": "海北藏族自治州",
     "letter": "haibei"
+=======
+    "ad_name": "海北藏族自治州"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "278",
     "pid": "21",
     "name": "海东",
+<<<<<<< HEAD
     "ad_name": "海东市",
     "letter": "haidong"
+=======
+    "ad_name": "海东市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "279",
     "pid": "21",
     "name": "海南州",
+<<<<<<< HEAD
     "ad_name": "海南藏族自治州",
     "letter": "hainanzhou"
+=======
+    "ad_name": "海南藏族自治州"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "280",
     "pid": "21",
     "name": "海西",
+<<<<<<< HEAD
     "ad_name": "海西蒙古族藏族自治州",
     "letter": "haixi"
+=======
+    "ad_name": "海西蒙古族藏族自治州"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "281",
     "pid": "21",
     "name": "黄南",
+<<<<<<< HEAD
     "ad_name": "黄南藏族自治州",
     "letter": "huangnan"
+=======
+    "ad_name": "黄南藏族自治州"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "282",
     "pid": "21",
     "name": "玉树",
+<<<<<<< HEAD
     "ad_name": "玉树",
     "letter": "yushu"
+=======
+    "ad_name": "玉树"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }]
 }, {
   "id": "22",
   "pid": "1",
   "name": "山东",
   "ad_name": "山东省",
+<<<<<<< HEAD
   "letter": "shandong",
+=======
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   "has_children": 1,
   "children": [{
     "id": "22",
     "pid": "1",
     "name": "山东",
+<<<<<<< HEAD
     "ad_name": "山东省",
     "letter": "shandong"
+=======
+    "ad_name": "山东省"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "283",
     "pid": "22",
     "name": "济南",
+<<<<<<< HEAD
     "ad_name": "济南市",
     "letter": "jinan"
+=======
+    "ad_name": "济南市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "284",
     "pid": "22",
     "name": "青岛",
+<<<<<<< HEAD
     "ad_name": "青岛市",
     "letter": "qingdao"
+=======
+    "ad_name": "青岛市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "285",
     "pid": "22",
     "name": "滨州",
+<<<<<<< HEAD
     "ad_name": "滨州市",
     "letter": "binzhou"
+=======
+    "ad_name": "滨州市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "286",
     "pid": "22",
     "name": "德州",
+<<<<<<< HEAD
     "ad_name": "德州市",
     "letter": "dezhou"
+=======
+    "ad_name": "德州市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "287",
     "pid": "22",
     "name": "东营",
+<<<<<<< HEAD
     "ad_name": "东营市",
     "letter": "dongying"
+=======
+    "ad_name": "东营市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "288",
     "pid": "22",
     "name": "菏泽",
+<<<<<<< HEAD
     "ad_name": "菏泽市",
     "letter": "heze"
+=======
+    "ad_name": "菏泽市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "289",
     "pid": "22",
     "name": "济宁",
+<<<<<<< HEAD
     "ad_name": "济宁市",
     "letter": "jining"
+=======
+    "ad_name": "济宁市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "291",
     "pid": "22",
     "name": "聊城",
+<<<<<<< HEAD
     "ad_name": "聊城市",
     "letter": "liaocheng"
+=======
+    "ad_name": "聊城市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "292",
     "pid": "22",
     "name": "临沂",
+<<<<<<< HEAD
     "ad_name": "临沂市",
     "letter": "linyi"
+=======
+    "ad_name": "临沂市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "293",
     "pid": "22",
     "name": "日照",
+<<<<<<< HEAD
     "ad_name": "日照市",
     "letter": "rizhao"
+=======
+    "ad_name": "日照市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "294",
     "pid": "22",
     "name": "泰安",
+<<<<<<< HEAD
     "ad_name": "泰安市",
     "letter": "taian"
+=======
+    "ad_name": "泰安市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "295",
     "pid": "22",
     "name": "威海",
+<<<<<<< HEAD
     "ad_name": "威海市",
     "letter": "weihai"
+=======
+    "ad_name": "威海市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "296",
     "pid": "22",
     "name": "潍坊",
+<<<<<<< HEAD
     "ad_name": "潍坊市",
     "letter": "weifang"
+=======
+    "ad_name": "潍坊市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "297",
     "pid": "22",
     "name": "烟台",
+<<<<<<< HEAD
     "ad_name": "烟台市",
     "letter": "yantai"
+=======
+    "ad_name": "烟台市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "298",
     "pid": "22",
     "name": "枣庄",
+<<<<<<< HEAD
     "ad_name": "枣庄市",
     "letter": "zaozhuang"
+=======
+    "ad_name": "枣庄市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "299",
     "pid": "22",
     "name": "淄博",
+<<<<<<< HEAD
     "ad_name": "淄博市",
     "letter": "zibo"
+=======
+    "ad_name": "淄博市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }]
 }, {
   "id": "23",
   "pid": "1",
   "name": "山西",
   "ad_name": "山西省",
+<<<<<<< HEAD
   "letter": "shanxi",
+=======
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   "has_children": 1,
   "children": [{
     "id": "23",
     "pid": "1",
     "name": "山西",
+<<<<<<< HEAD
     "ad_name": "山西省",
     "letter": "shanxi"
+=======
+    "ad_name": "山西省"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "300",
     "pid": "23",
     "name": "太原",
+<<<<<<< HEAD
     "ad_name": "太原市",
     "letter": "taiyuan"
+=======
+    "ad_name": "太原市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "301",
     "pid": "23",
     "name": "长治",
+<<<<<<< HEAD
     "ad_name": "长治市",
     "letter": "changzhi"
+=======
+    "ad_name": "长治市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "302",
     "pid": "23",
     "name": "大同",
+<<<<<<< HEAD
     "ad_name": "大同市",
     "letter": "datong"
+=======
+    "ad_name": "大同市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "303",
     "pid": "23",
     "name": "晋城",
+<<<<<<< HEAD
     "ad_name": "晋城市",
     "letter": "jincheng"
+=======
+    "ad_name": "晋城市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "304",
     "pid": "23",
     "name": "晋中",
+<<<<<<< HEAD
     "ad_name": "晋中市",
     "letter": "jinzhong"
+=======
+    "ad_name": "晋中市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "305",
     "pid": "23",
     "name": "临汾",
+<<<<<<< HEAD
     "ad_name": "临汾市",
     "letter": "linfen"
+=======
+    "ad_name": "临汾市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "306",
     "pid": "23",
     "name": "吕梁",
+<<<<<<< HEAD
     "ad_name": "吕梁市",
     "letter": "lvliang"
+=======
+    "ad_name": "吕梁市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "307",
     "pid": "23",
     "name": "朔州",
+<<<<<<< HEAD
     "ad_name": "朔州市",
     "letter": "shuozhou"
+=======
+    "ad_name": "朔州市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "308",
     "pid": "23",
     "name": "忻州",
+<<<<<<< HEAD
     "ad_name": "忻州市",
     "letter": "xinzhou"
+=======
+    "ad_name": "忻州市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "309",
     "pid": "23",
     "name": "阳泉",
+<<<<<<< HEAD
     "ad_name": "阳泉市",
     "letter": "yangquan"
+=======
+    "ad_name": "阳泉市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "310",
     "pid": "23",
     "name": "运城",
+<<<<<<< HEAD
     "ad_name": "运城市",
     "letter": "yuncheng"
+=======
+    "ad_name": "运城市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }]
 }, {
   "id": "24",
   "pid": "1",
   "name": "陕西",
   "ad_name": "陕西省",
+<<<<<<< HEAD
   "letter": "sx",
+=======
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   "has_children": 1,
   "children": [{
     "id": "24",
     "pid": "1",
     "name": "陕西",
+<<<<<<< HEAD
     "ad_name": "陕西省",
     "letter": "sx"
+=======
+    "ad_name": "陕西省"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "311",
     "pid": "24",
     "name": "西安",
+<<<<<<< HEAD
     "ad_name": "西安市",
     "letter": "xian"
+=======
+    "ad_name": "西安市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "312",
     "pid": "24",
     "name": "安康",
+<<<<<<< HEAD
     "ad_name": "安康市",
     "letter": "ankang"
+=======
+    "ad_name": "安康市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "313",
     "pid": "24",
     "name": "宝鸡",
+<<<<<<< HEAD
     "ad_name": "宝鸡市",
     "letter": "baoji"
+=======
+    "ad_name": "宝鸡市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "314",
     "pid": "24",
     "name": "汉中",
+<<<<<<< HEAD
     "ad_name": "汉中市",
     "letter": "hanzhong"
+=======
+    "ad_name": "汉中市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "315",
     "pid": "24",
     "name": "商洛",
+<<<<<<< HEAD
     "ad_name": "商洛市",
     "letter": "shangluo"
+=======
+    "ad_name": "商洛市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "316",
     "pid": "24",
     "name": "铜川",
+<<<<<<< HEAD
     "ad_name": "铜川市",
     "letter": "tongchuan"
+=======
+    "ad_name": "铜川市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "317",
     "pid": "24",
     "name": "渭南",
+<<<<<<< HEAD
     "ad_name": "渭南市",
     "letter": "weinan"
+=======
+    "ad_name": "渭南市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "318",
     "pid": "24",
     "name": "咸阳",
+<<<<<<< HEAD
     "ad_name": "咸阳市",
     "letter": "xianyang"
+=======
+    "ad_name": "咸阳市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "319",
     "pid": "24",
     "name": "延安",
+<<<<<<< HEAD
     "ad_name": "延安市",
     "letter": "yanan"
+=======
+    "ad_name": "延安市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "320",
     "pid": "24",
     "name": "榆林",
+<<<<<<< HEAD
     "ad_name": "榆林市",
     "letter": "shanxiyulin"
+=======
+    "ad_name": "榆林市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }]
 }, {
   "id": "25",
   "pid": "1",
   "name": "上海",
   "ad_name": "上海市",
+<<<<<<< HEAD
   "letter": "shanghai",
+=======
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   "has_children": 0,
   "children": []
 }, {
@@ -15628,147 +17045,241 @@ var AREAS = [{
   "pid": "1",
   "name": "四川",
   "ad_name": "四川省",
+<<<<<<< HEAD
   "letter": "sichuan",
+=======
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   "has_children": 1,
   "children": [{
     "id": "26",
     "pid": "1",
     "name": "四川",
+<<<<<<< HEAD
     "ad_name": "四川省",
     "letter": "sichuan"
+=======
+    "ad_name": "四川省"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "322",
     "pid": "26",
     "name": "成都",
+<<<<<<< HEAD
     "ad_name": "成都市",
     "letter": "chengdu"
+=======
+    "ad_name": "成都市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "323",
     "pid": "26",
     "name": "绵阳",
+<<<<<<< HEAD
     "ad_name": "绵阳市",
     "letter": "mianyang"
+=======
+    "ad_name": "绵阳市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "324",
     "pid": "26",
     "name": "阿坝",
+<<<<<<< HEAD
     "ad_name": "阿坝藏族羌族自治州",
     "letter": "aba"
+=======
+    "ad_name": "阿坝藏族羌族自治州"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "325",
     "pid": "26",
     "name": "巴中",
+<<<<<<< HEAD
     "ad_name": "巴中市",
     "letter": "bazhong"
+=======
+    "ad_name": "巴中市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "326",
     "pid": "26",
     "name": "达州",
+<<<<<<< HEAD
     "ad_name": "达州市",
     "letter": "dazhou"
+=======
+    "ad_name": "达州市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "327",
     "pid": "26",
     "name": "德阳",
+<<<<<<< HEAD
     "ad_name": "德阳市",
     "letter": "deyang"
+=======
+    "ad_name": "德阳市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "328",
     "pid": "26",
     "name": "甘孜",
+<<<<<<< HEAD
     "ad_name": "甘孜藏族自治州",
     "letter": "ganzi"
+=======
+    "ad_name": "甘孜藏族自治州"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "329",
     "pid": "26",
     "name": "广安",
+<<<<<<< HEAD
     "ad_name": "广安市",
     "letter": "guangan"
+=======
+    "ad_name": "广安市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "330",
     "pid": "26",
     "name": "广元",
+<<<<<<< HEAD
     "ad_name": "广元市",
     "letter": "guangyuan"
+=======
+    "ad_name": "广元市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "331",
     "pid": "26",
     "name": "乐山",
+<<<<<<< HEAD
     "ad_name": "乐山市",
     "letter": "leshan"
+=======
+    "ad_name": "乐山市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "332",
     "pid": "26",
     "name": "凉山",
+<<<<<<< HEAD
     "ad_name": "凉山彝族自治州",
     "letter": "liangshan"
+=======
+    "ad_name": "凉山彝族自治州"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "333",
     "pid": "26",
     "name": "眉山",
+<<<<<<< HEAD
     "ad_name": "眉山市",
     "letter": "meishan"
+=======
+    "ad_name": "眉山市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "334",
     "pid": "26",
     "name": "南充",
+<<<<<<< HEAD
     "ad_name": "南充市",
     "letter": "nanchong"
+=======
+    "ad_name": "南充市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "335",
     "pid": "26",
     "name": "内江",
+<<<<<<< HEAD
     "ad_name": "内江市",
     "letter": "neijiang"
+=======
+    "ad_name": "内江市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "336",
     "pid": "26",
     "name": "攀枝花",
+<<<<<<< HEAD
     "ad_name": "攀枝花市",
     "letter": "panzhihua"
+=======
+    "ad_name": "攀枝花市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "337",
     "pid": "26",
     "name": "遂宁",
+<<<<<<< HEAD
     "ad_name": "遂宁市",
     "letter": "suining"
+=======
+    "ad_name": "遂宁市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "338",
     "pid": "26",
     "name": "雅安",
+<<<<<<< HEAD
     "ad_name": "雅安市",
     "letter": "yaan"
+=======
+    "ad_name": "雅安市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "339",
     "pid": "26",
     "name": "宜宾",
+<<<<<<< HEAD
     "ad_name": "宜宾市",
     "letter": "yibin"
+=======
+    "ad_name": "宜宾市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "340",
     "pid": "26",
     "name": "资阳",
+<<<<<<< HEAD
     "ad_name": "资阳市",
     "letter": "ziyang"
+=======
+    "ad_name": "资阳市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "341",
     "pid": "26",
     "name": "自贡",
+<<<<<<< HEAD
     "ad_name": "自贡市",
     "letter": "zigong"
+=======
+    "ad_name": "自贡市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "342",
     "pid": "26",
     "name": "泸州",
+<<<<<<< HEAD
     "ad_name": "泸州市",
     "letter": "luzhou"
+=======
+    "ad_name": "泸州市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }]
 }, {
   "id": "27",
   "pid": "1",
   "name": "天津",
   "ad_name": "天津市",
+<<<<<<< HEAD
   "letter": "tianjin",
+=======
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   "has_children": 0,
   "children": []
 }, {
@@ -15776,375 +17287,614 @@ var AREAS = [{
   "pid": "1",
   "name": "西藏",
   "ad_name": "西藏自治区",
+<<<<<<< HEAD
   "letter": "xizang",
+=======
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   "has_children": 1,
   "children": [{
     "id": "28",
     "pid": "1",
     "name": "西藏",
+<<<<<<< HEAD
     "ad_name": "西藏自治区",
     "letter": "xizang"
+=======
+    "ad_name": "西藏自治区"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "344",
     "pid": "28",
     "name": "拉萨",
+<<<<<<< HEAD
     "ad_name": "拉萨市",
     "letter": "lasa"
+=======
+    "ad_name": "拉萨市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "345",
     "pid": "28",
     "name": "阿里",
+<<<<<<< HEAD
     "ad_name": "阿里地区",
     "letter": "ali"
+=======
+    "ad_name": "阿里地区"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "346",
     "pid": "28",
     "name": "昌都",
+<<<<<<< HEAD
     "ad_name": "昌都市",
     "letter": "changdu"
+=======
+    "ad_name": "昌都市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "347",
     "pid": "28",
     "name": "林芝",
+<<<<<<< HEAD
     "ad_name": "林芝市",
     "letter": "linzhi"
+=======
+    "ad_name": "林芝市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "348",
     "pid": "28",
     "name": "那曲",
+<<<<<<< HEAD
     "ad_name": "那曲市",
     "letter": "naqu"
+=======
+    "ad_name": "那曲市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "349",
     "pid": "28",
     "name": "日喀则",
+<<<<<<< HEAD
     "ad_name": "日喀则市",
     "letter": "rikeze"
+=======
+    "ad_name": "日喀则市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "350",
     "pid": "28",
     "name": "山南",
+<<<<<<< HEAD
     "ad_name": "山南市",
     "letter": "shannan"
+=======
+    "ad_name": "山南市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }]
 }, {
   "id": "29",
   "pid": "1",
   "name": "新疆",
   "ad_name": "新疆维吾尔自治区",
+<<<<<<< HEAD
   "letter": "xinjiang",
+=======
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   "has_children": 1,
   "children": [{
     "id": "29",
     "pid": "1",
     "name": "新疆",
+<<<<<<< HEAD
     "ad_name": "新疆维吾尔自治区",
     "letter": "xinjiang"
+=======
+    "ad_name": "新疆维吾尔自治区"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "351",
     "pid": "29",
     "name": "乌鲁木齐",
+<<<<<<< HEAD
     "ad_name": "乌鲁木齐市",
     "letter": "wulumuqi"
+=======
+    "ad_name": "乌鲁木齐市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "352",
     "pid": "29",
     "name": "阿克苏",
+<<<<<<< HEAD
     "ad_name": "阿克苏地区",
     "letter": "akesu"
+=======
+    "ad_name": "阿克苏地区"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "353",
     "pid": "29",
     "name": "阿拉尔",
+<<<<<<< HEAD
     "ad_name": "阿拉尔市",
     "letter": "alaer"
+=======
+    "ad_name": "阿拉尔市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "354",
     "pid": "29",
     "name": "巴音郭楞",
+<<<<<<< HEAD
     "ad_name": "巴音郭楞蒙古自治州",
     "letter": "bayingeleng"
+=======
+    "ad_name": "巴音郭楞蒙古自治州"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "355",
     "pid": "29",
     "name": "博尔塔拉",
+<<<<<<< HEAD
     "ad_name": "博尔塔拉蒙古自治州",
     "letter": "boerdala"
+=======
+    "ad_name": "博尔塔拉蒙古自治州"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "356",
     "pid": "29",
     "name": "昌吉",
+<<<<<<< HEAD
     "ad_name": "昌吉回族自治州",
     "letter": "changji"
+=======
+    "ad_name": "昌吉回族自治州"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "357",
     "pid": "29",
     "name": "哈密",
+<<<<<<< HEAD
     "ad_name": "哈密市",
     "letter": "hami"
+=======
+    "ad_name": "哈密市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "358",
     "pid": "29",
     "name": "和田",
+<<<<<<< HEAD
     "ad_name": "和田地区",
     "letter": "hetian"
+=======
+    "ad_name": "和田地区"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "359",
     "pid": "29",
     "name": "喀什",
+<<<<<<< HEAD
     "ad_name": "喀什地区",
     "letter": "kashi"
+=======
+    "ad_name": "喀什地区"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "360",
     "pid": "29",
     "name": "克拉玛依",
+<<<<<<< HEAD
     "ad_name": "克拉玛依市",
     "letter": "kalamayi"
+=======
+    "ad_name": "克拉玛依市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "361",
     "pid": "29",
     "name": "克孜勒苏",
+<<<<<<< HEAD
     "ad_name": "克孜勒苏柯尔克孜自治州",
     "letter": "kezilesu"
+=======
+    "ad_name": "克孜勒苏柯尔克孜自治州"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "362",
     "pid": "29",
     "name": "石河子",
+<<<<<<< HEAD
     "ad_name": "石河子市",
     "letter": "shihezi"
+=======
+    "ad_name": "石河子市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "363",
     "pid": "29",
     "name": "图木舒克",
+<<<<<<< HEAD
     "ad_name": "图木舒克市",
     "letter": "tumushuke"
+=======
+    "ad_name": "图木舒克市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "364",
     "pid": "29",
     "name": "吐鲁番",
+<<<<<<< HEAD
     "ad_name": "吐鲁番市",
     "letter": "tulufan"
+=======
+    "ad_name": "吐鲁番市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "365",
     "pid": "29",
     "name": "五家渠",
+<<<<<<< HEAD
     "ad_name": "五家渠市",
     "letter": "wujiaqu"
+=======
+    "ad_name": "五家渠市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "366",
     "pid": "29",
     "name": "伊犁",
+<<<<<<< HEAD
     "ad_name": "伊犁哈萨克自治州",
     "letter": "yili"
+=======
+    "ad_name": "伊犁哈萨克自治州"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "6156",
     "pid": "29",
     "name": "塔城地区",
+<<<<<<< HEAD
     "ad_name": "塔城地区",
     "letter": "tachengdiqu"
+=======
+    "ad_name": "塔城地区"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "6157",
     "pid": "29",
     "name": "阿勒泰地区",
+<<<<<<< HEAD
     "ad_name": "阿勒泰地区",
     "letter": "aertai"
+=======
+    "ad_name": "阿勒泰地区"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }]
 }, {
   "id": "30",
   "pid": "1",
   "name": "云南",
   "ad_name": "云南省",
+<<<<<<< HEAD
   "letter": "yunnan",
+=======
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   "has_children": 1,
   "children": [{
     "id": "30",
     "pid": "1",
     "name": "云南",
+<<<<<<< HEAD
     "ad_name": "云南省",
     "letter": "yunnan"
+=======
+    "ad_name": "云南省"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "367",
     "pid": "30",
     "name": "昆明",
+<<<<<<< HEAD
     "ad_name": "昆明市",
     "letter": "kunming"
+=======
+    "ad_name": "昆明市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "368",
     "pid": "30",
     "name": "怒江",
+<<<<<<< HEAD
     "ad_name": "怒江",
     "letter": "nujiang"
+=======
+    "ad_name": "怒江"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "369",
     "pid": "30",
     "name": "普洱",
+<<<<<<< HEAD
     "ad_name": "普洱市",
     "letter": "puer"
+=======
+    "ad_name": "普洱市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "370",
     "pid": "30",
     "name": "丽江",
+<<<<<<< HEAD
     "ad_name": "丽江市",
     "letter": "lijiang"
+=======
+    "ad_name": "丽江市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "371",
     "pid": "30",
     "name": "保山",
+<<<<<<< HEAD
     "ad_name": "保山市",
     "letter": "baoshan"
+=======
+    "ad_name": "保山市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "372",
     "pid": "30",
     "name": "楚雄",
+<<<<<<< HEAD
     "ad_name": "楚雄彝族自治州",
     "letter": "chuxiong"
+=======
+    "ad_name": "楚雄彝族自治州"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "373",
     "pid": "30",
     "name": "大理",
+<<<<<<< HEAD
     "ad_name": "大理白族自治州",
     "letter": "dali"
+=======
+    "ad_name": "大理白族自治州"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "374",
     "pid": "30",
     "name": "德宏",
+<<<<<<< HEAD
     "ad_name": "德宏傣族景颇族自治州",
     "letter": "dehong"
+=======
+    "ad_name": "德宏傣族景颇族自治州"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "375",
     "pid": "30",
     "name": "迪庆",
+<<<<<<< HEAD
     "ad_name": "迪庆藏族自治州",
     "letter": "diqing"
+=======
+    "ad_name": "迪庆藏族自治州"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "376",
     "pid": "30",
     "name": "红河",
+<<<<<<< HEAD
     "ad_name": "红河哈尼族彝族自治州",
     "letter": "honghe"
+=======
+    "ad_name": "红河哈尼族彝族自治州"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "377",
     "pid": "30",
     "name": "临沧",
+<<<<<<< HEAD
     "ad_name": "临沧市",
     "letter": "lincang"
+=======
+    "ad_name": "临沧市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "378",
     "pid": "30",
     "name": "曲靖",
+<<<<<<< HEAD
     "ad_name": "曲靖市",
     "letter": "qujing"
+=======
+    "ad_name": "曲靖市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "379",
     "pid": "30",
     "name": "文山",
+<<<<<<< HEAD
     "ad_name": "文山壮族苗族自治州",
     "letter": "wenshan"
+=======
+    "ad_name": "文山壮族苗族自治州"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "380",
     "pid": "30",
     "name": "西双版纳",
+<<<<<<< HEAD
     "ad_name": "西双版纳傣族自治州",
     "letter": "xishuangbanna"
+=======
+    "ad_name": "西双版纳傣族自治州"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "381",
     "pid": "30",
     "name": "玉溪",
+<<<<<<< HEAD
     "ad_name": "玉溪市",
     "letter": "yuxi"
+=======
+    "ad_name": "玉溪市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "382",
     "pid": "30",
     "name": "昭通",
+<<<<<<< HEAD
     "ad_name": "昭通市",
     "letter": "zhaotong"
+=======
+    "ad_name": "昭通市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }]
 }, {
   "id": "31",
   "pid": "1",
   "name": "浙江",
   "ad_name": "浙江省",
+<<<<<<< HEAD
   "letter": "zhejiang",
+=======
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   "has_children": 1,
   "children": [{
     "id": "31",
     "pid": "1",
     "name": "浙江",
+<<<<<<< HEAD
     "ad_name": "浙江省",
     "letter": "zhejiang"
+=======
+    "ad_name": "浙江省"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "383",
     "pid": "31",
     "name": "杭州",
+<<<<<<< HEAD
     "ad_name": "杭州市",
     "letter": "hangzhou"
+=======
+    "ad_name": "杭州市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "384",
     "pid": "31",
     "name": "湖州",
+<<<<<<< HEAD
     "ad_name": "湖州市",
     "letter": "huzhou"
+=======
+    "ad_name": "湖州市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "385",
     "pid": "31",
     "name": "嘉兴",
+<<<<<<< HEAD
     "ad_name": "嘉兴市",
     "letter": "jiaxing"
+=======
+    "ad_name": "嘉兴市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "386",
     "pid": "31",
     "name": "金华",
+<<<<<<< HEAD
     "ad_name": "金华市",
     "letter": "jinhua"
+=======
+    "ad_name": "金华市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "387",
     "pid": "31",
     "name": "丽水",
+<<<<<<< HEAD
     "ad_name": "丽水市",
     "letter": "lishui"
+=======
+    "ad_name": "丽水市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "388",
     "pid": "31",
     "name": "宁波",
+<<<<<<< HEAD
     "ad_name": "宁波市",
     "letter": "ningbo"
+=======
+    "ad_name": "宁波市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "389",
     "pid": "31",
     "name": "绍兴",
+<<<<<<< HEAD
     "ad_name": "绍兴市",
     "letter": "shaoxing"
+=======
+    "ad_name": "绍兴市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "390",
     "pid": "31",
     "name": "台州",
+<<<<<<< HEAD
     "ad_name": "台州市",
     "letter": "zhejiangtaizhou"
+=======
+    "ad_name": "台州市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "391",
     "pid": "31",
     "name": "温州",
+<<<<<<< HEAD
     "ad_name": "温州市",
     "letter": "wenzhou"
+=======
+    "ad_name": "温州市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "392",
     "pid": "31",
     "name": "舟山",
+<<<<<<< HEAD
     "ad_name": "舟山市",
     "letter": "zhoushan"
+=======
+    "ad_name": "舟山市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }, {
     "id": "393",
     "pid": "31",
     "name": "衢州",
+<<<<<<< HEAD
     "ad_name": "衢州市",
     "letter": "quzhou"
+=======
+    "ad_name": "衢州市"
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   }]
 }, {
   "id": "32",
   "pid": "1",
   "name": "重庆",
   "ad_name": "重庆市",
+<<<<<<< HEAD
   "letter": "chongqing",
+=======
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   "has_children": 0,
   "children": []
 }];
@@ -16178,8 +17928,12 @@ function getCityInfo(data) {
                 id: item.id,
                 pid: item.pid,
                 ad_name: item.ad_name,
+<<<<<<< HEAD
                 name: item.name,
                 letter: item.letter
+=======
+                name: item.name
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
               };
               flag = true;
               return province;
@@ -16880,12 +18634,17 @@ function userCallPhone(val) {
 }
 // 用户统一分享内容
 function getUserShareMessage() {
+<<<<<<< HEAD
   var title = '全国建筑工地招工平台';
   if (_index.SERIES == _index.ZIJIESERIES) {
     title = '鱼泡网-建筑招工找活平台';
   }
   return {
     title: title,
+=======
+  return {
+    title: '全国建筑工地招工平台',
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
     imageUrl: _index.IMGCDNURL + "minishare.png"
   };
 }

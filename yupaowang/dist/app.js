@@ -183,7 +183,11 @@ Object.defineProperty(exports, "__esModule", {
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
+<<<<<<< HEAD
 exports.default = filterClassify;
+=======
+exports.default = msg;
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
 
 var _filter_classify = __webpack_require__(/*! ../constants/filter_classify */ "./src/constants/filter_classify.ts");
 
@@ -195,7 +199,11 @@ var DEFAULT_STATE = {
   staffTree: [],
   isSet: false
 };
+<<<<<<< HEAD
 function filterClassify() {
+=======
+function msg() {
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : DEFAULT_STATE;
   var action = arguments[1];
 
@@ -306,7 +314,11 @@ exports.default = (0, _redux.combineReducers)({
      * @Author: zyb
      * @Date: 2020-11-03 14:36:47
      * @LastEditors: jsxin
+<<<<<<< HEAD
      * @LastEditTime: 2020-12-08 17:52:51
+=======
+     * @LastEditTime: 2020-11-13 15:02:13
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
      * @Description:
      */
 

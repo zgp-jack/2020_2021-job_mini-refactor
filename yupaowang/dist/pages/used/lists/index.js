@@ -43,10 +43,13 @@ var _index2 = __webpack_require__(/*! ../../../config/index */ "./src/config/ind
 
 var _store = __webpack_require__(/*! ../../../config/store */ "./src/config/store.ts");
 
+<<<<<<< HEAD
 var _index3 = __webpack_require__(/*! ../../../utils/seo/index */ "./src/utils/seo/index.ts");
 
 var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/redux/index.js");
 
+=======
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
 __webpack_require__(/*! ./index.scss */ "./src/pages/used/lists/index.scss");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -109,10 +112,16 @@ var Fleamarket = function (_Taro$Component) {
           _genCompid6 = _slicedToArray(_genCompid5, 2),
           $prevCompid__47 = _genCompid6[0],
           $compid__47 = _genCompid6[1];
+<<<<<<< HEAD
 
       var router = (0, _taroSwan.useRouter)();
       // 是否已是最后一页
 
+=======
+      // 是否已是最后一页
+
+
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
       var _useState = (0, _taroSwan.useState)(true),
           _useState2 = _slicedToArray(_useState, 2),
           hasMore = _useState2[0],
@@ -151,10 +160,18 @@ var Fleamarket = function (_Taro$Component) {
 
       (0, _taroSwan.useDidShow)(function () {
         if (_index2.SERIES == _index2.BAIDUSERIES) {
+<<<<<<< HEAD
           var filterData = (0, _redux.useSelector)(function (state) {
             return state.filterClassify;
           });
           _taroSwan2.default.setPageInfo(_extends({}, (0, _index3.getUsedListSeoInfo)(router.params, filterData)));
+=======
+          _taroSwan2.default.setPageInfo({
+            title: '工地二手交易_工程机械二手买卖_工程设备废料回收_建筑资质租用转让—鱼泡网',
+            description: '建筑工地二手交易板块，为建筑工程工人、老板、公司提供二手工程机械、工程设备、建筑材料废料、二手电动工具、建筑资质租用转让的信息。方便卖家能很快的找到合适买家，让买家能收到合适的工程二手材料。',
+            keywords: '工地二手交易,工程机械二手买卖,工程设备废料回收,建筑资质租用转让'
+          });
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
         }
       });
 
@@ -275,6 +292,7 @@ exports.default = Fleamarket;
 
 Page(__webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js").default.createComponent(Fleamarket, true));
 
+<<<<<<< HEAD
 /***/ }),
 
 /***/ "./src/utils/seo/index.ts":
@@ -371,6 +389,8 @@ function detailUsedListSeoInfo(params, fleamarketTree) {
   return _extends({}, DEFAULTUSEDSEOINFO);
 }
 
+=======
+>>>>>>> 8a29f05149940d0b279a3aa433b25d18897cba43
 /***/ })
 
 },[["./src/pages/used/lists/index.tsx","runtime","vendors"]]]);

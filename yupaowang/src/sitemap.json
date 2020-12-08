@@ -1,0 +1,277 @@
+{
+  "rules":[
+    {
+      "action": "allow",
+      "page": "pages/index/index",
+      "params": ["type"],
+      "matching": "inclusive"
+    },
+    {
+      "action": "allow",
+      "page": "pages/detail/info/index",
+      "params": ["id"],
+      "matching": "inclusive"
+    },
+    {
+      "action": "allow",
+      "page": "pages/resume/detail/index",
+      "params": ["uuid","location"],
+      "matching": "inclusive"
+    },
+    {
+      "action": "allow",
+      "page": "pages/published/used/index"
+    },
+    {
+      "action": "allow",
+      "page": "pages/integral/tabber/index",
+      "params": ["info"],
+      "matching": "inclusive"
+    },
+    {
+      "action": "allow",
+      "page": "pages/resume/publish/index"
+    },
+    {
+      "action": "allow",
+      "page": "pages/published/recruit/index"
+    },
+    {
+      "action": "allow",
+      "page": "pages/realname/index"
+    },
+    {
+      "action": "allow",
+      "page": "pages/recruit/publish/index"
+    },
+    {
+      "action": "allow",
+      "page": "pages/used/publish/index"
+    },
+    {
+      "action": "allow",
+      "page": "pages/getintegral/index"
+    },
+    {
+      "action": "allow",
+      "page": "pages/integral/tabber/index",
+      "params": ["info"],
+      "matching": "inclusive"
+    },
+    {
+      "action": "allow",
+      "page": "pages/collection/index"
+    },
+    {
+      "action": "allow",
+      "page": "pages/login/index"
+    },
+    {
+      "action": "allow",
+      "page": "pages/resume/preview/index"
+    },
+    {
+      "action": "allow",
+      "page": "pages/resume/preview/index"
+    },
+    {
+      "action": "allow",
+      "page": "pages/resume/newPreview/index",
+      "params":["show_tips"],
+      "matching":"inclusive"
+    },
+    {
+      "action": "allow",
+      "page": "pages/resume/skills/index",
+      "params":["type"],
+      "matching":"inclusive"
+    },
+    {
+      "action": "allow",
+      "page": "pages/resume/projects/index",
+      "params":["type"],
+      "matching":"inclusive" 
+    },
+    {
+      "action": "allow",
+      "page": "pages/resume/projects/index",
+      "params":["id"],
+      "matching":"inclusive" 
+    },
+    {
+      "action": "allow",
+      "page": "pages/resume/add_project/index",
+      "params":["id"],
+      "matching":"inclusive" 
+    },
+    {
+      "action": "allow",
+      "page": "pages/resume/add_skill/index",
+      "params":["id"],
+      "matching":"inclusive" 
+    },
+    {
+      "action": "allow",
+      "page": "pages/resume/add_member/index"
+    },
+    {
+      "action": "allow",
+      "page": "pages/resume/add_info/index"
+    },
+    {
+      "action": "allow",
+      "page": "pages/topping/index",
+      "params":["id", "type", "rec", "areaData", "endTimes", "endTimeStr"]
+    },
+    {
+      "action":"allow",
+      "page":"pages/userinfo/pass/index"
+    },
+    {
+      "action":"allow",
+      "page":"pages/userinfo/phone/index"
+    },
+    {
+      "action":"allow",
+      "page":"pages/userinfo/add/index"
+    },
+    {
+      "action":"allow",
+      "page":"pages/userinfo/info/index"
+    },
+    {
+      "action":"allow",
+      "page":"pages/map/realname/index"
+    },
+    {
+      "action":"allow",
+      "page":"pages/map/realname/index",
+      "params":["id"],
+      "matching":"inclusive" 
+    },
+    {
+      "action":"allow",
+      "page":"pages/realname/index"
+    },
+    {
+      "action":"allow",
+      "page":"pages/recharge/index"
+    },
+    {
+      "action":"allow",
+      "page":"pages/integral/expend/index"
+    },
+    {
+      "action":"allow",
+      "page":"pages/integral/official/index"
+    },
+    {
+      "action":"allow",
+      "page":"pages/integral/temp/index"
+    },
+    {
+      "action":"allow",
+      "page":"pages/integral/source/index"
+    },
+    {
+      "action":"allow",
+      "page":"pages/static/notice/index"
+    },
+    {
+      "action":"allow",
+      "page":"pages/static/invite/index"
+    },
+    {
+      "action":"allow",
+      "page":"pages/static/invite/index"
+    },
+    {
+      "action":"allow",
+      "page":"pages/static/invite/index"
+    },
+    {
+      "action":"allow",
+      "page":"pages/map/recruit/index",
+      "params":["id"],
+      "matching":"inclusive" 
+    },
+    {
+      "action":"allow",
+      "page":"pages/used/lists/index"
+    },
+    {
+      "action":"allow",
+      "page":"pages/userauth/index"
+    },
+    {
+      "action":"allow",
+      "page":"pages/map/resume/index",
+      "params":["provinceAdress","provinceAdressName"],
+      "matching":"inclusive" 
+    },
+    {
+      "action":"allow",
+      "page":"subpackage/pages/checkauth/index"
+    },
+    {
+      "action":"allow",
+      "page":"subpackage/pages/about/index"
+    },
+    {
+      "action":"allow",
+      "page":"subpackage/pages/download/index"
+    },
+    {
+      "action":"allow",
+      "page":"subpackage/pages/ranking/index"
+    },
+    {
+      "action":"allow",
+      "page":"subpackage/pages/course/index"
+    },
+    {
+      "action":"allow",
+      "page":"subpackage/pages/anti-fraud/index"
+    },
+    {
+      "action":"allow",
+      "page":"subpackage/pages/projects/index"
+    },
+    {
+      "action":"allow",
+      "page":"subpackage/pages/skills/index"
+    },
+    {
+      "action":"allow",
+      "page":"subpackage/pages/news/index"
+    },
+    {
+      "action":"allow",
+      "page":"subpackage/pages/help/index"
+    },
+    {
+      "action":"allow",
+      "page":"subpackage/pages/feedbacklist/index"
+    },
+    {
+      "action":"allow",
+      "page":"subpackage/pages/feedback/index"
+    }, 
+    {
+      "action":"allow",
+      "page":"subpackage/pages/information/mymessage/index"
+    }, 
+    {
+      "action":"allow",
+      "page":"subpackage/pages/information/system/index"
+    }, 
+    {
+      "action":"allow",
+      "page":"subpackage/pages/turntable/index"
+    },
+    {
+      "action": "allow",
+      "page": "*"
+    }
+]
+}
