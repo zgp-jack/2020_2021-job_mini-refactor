@@ -1331,6 +1331,8 @@ export interface resInfoObj {
   view_num: string,
   zan_num: string,
   age: string | number,
+  province_and_city: string,
+  code: string
 }
 
 export interface resContentObj {

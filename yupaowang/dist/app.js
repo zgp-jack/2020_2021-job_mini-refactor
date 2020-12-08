@@ -298,7 +298,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @Author: zyb
  * @Date: 2020-11-03 14:36:47
  * @LastEditors: jsxin
- * @LastEditTime: 2020-11-20 17:01:57
+ * @LastEditTime: 2020-12-08 11:55:13
  * @Description:
  */
 exports.default = (0, _redux.combineReducers)({
@@ -309,12 +309,9 @@ exports.default = (0, _redux.combineReducers)({
   Personnel: _personnel2.default,
   Myresume: _resume2.default,
   filterClassify: _filter_classify2.default,
-  MyAreaInfo: _recruit.MyAreaInfo,
-  MyArea: _recruit.MyArea,
   member: _member2.default,
   realname: _realname2.default,
   resumeAddInfo: _resume_addinfo2.default,
-  PositionStatus: _recruit.PositionStatus,
   publishData: _publish2.default,
   RecruitAction: _recruit.RecruitAction,
   resumeData: _resume_data2.default,
@@ -526,19 +523,18 @@ Object.defineProperty(exports, "__esModule", {
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-exports.default = MyAreaInfo;
+exports.default = MyPublishWay;
 
 var _publishWay = __webpack_require__(/*! ../constants/publishWay */ "./src/constants/publishWay.ts");
 
 // 默认发布招工state数据
 var DEFAULT_STATE_PUBLISHDATA = {
-  resumeText: "",
   loginBefore: false,
   loginAfter: false,
   logoutWay: "",
   loginWay: ""
 };
-function MyAreaInfo() {
+function MyPublishWay() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : DEFAULT_STATE_PUBLISHDATA;
   var action = arguments[1];
 
@@ -619,9 +615,6 @@ Object.defineProperty(exports, "__esModule", {
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; //定义发布招工获取设置发布信息的action
 
 
-exports.MyAreaInfo = MyAreaInfo;
-exports.MyArea = MyArea;
-exports.PositionStatus = PositionStatus;
 exports.RecruitAction = RecruitAction;
 
 var _recruit = __webpack_require__(/*! ../constants/recruit */ "./src/constants/recruit.ts");
@@ -645,58 +638,6 @@ var DEFAULT_STATE_RECRUIT = {
   phone: '',
   positionStatus: true
 };
-// 内容的参数
-var DEFAULT_STATE_AREAINFO = {
-  title: '',
-  adcode: '',
-  location: '',
-  info: '',
-  areaId: '',
-  name: '',
-  ad_name: ''
-};
-// 定义默认的区域数据
-var DEFAULT_STATE_AREA = { name: _area.AREABEIJING.name, id: _area.AREABEIJING.id, ad_name: _area.AREABEIJING.ad_name };
-function MyAreaInfo() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : DEFAULT_STATE_AREAINFO;
-  var action = arguments[1];
-
-  switch (action.type) {
-    case _recruit.GETAREAINFO:
-      return state;
-    case _recruit.SETAREAINFO:
-      state = _extends({}, state, action.data);
-      return state;
-    default:
-      return state;
-  }
-}
-function MyArea() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : DEFAULT_STATE_AREA;
-  var action = arguments[1];
-
-  switch (action.type) {
-    case _recruit.GETAREA:
-      return state;
-    case _recruit.SETAREA:
-      state = action.data;
-      return state;
-    default:
-      return state;
-  }
-}
-function PositionStatus() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
-  var action = arguments[1];
-
-  switch (action.type) {
-    case _recruit.SETPOSITIONSTATUS:
-      state = action.data;
-      return state;
-    default:
-      return state;
-  }
-}
 function RecruitAction() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : DEFAULT_STATE_RECRUIT;
   var action = arguments[1];

@@ -15,7 +15,6 @@ export interface InputPoiListTips {
   ad_name?: string
 }
 export interface publishFindWork {
-  resumeText: string,
   loginBefore: boolean,
   loginAfter: boolean,
   logoutWay: string,

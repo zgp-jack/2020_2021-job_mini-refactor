@@ -156,7 +156,7 @@ var AtMessage = (_temp2 = _class = function (_AtComponent) {
   }]);
 
   return AtMessage;
-}(_component2.default), _class.$$events = [], _class.$$componentPath = 'Users/sidewang/Desktop/TS\u91CD\u6784/yupao-ts-recode/yupaowang/node_modules/taro-ui/dist/weapp/components/message/index', _temp2);
+}(_component2.default), _class.$$events = [], _class.$$componentPath = "D:/project/yupao-ts-recode/yupaowang/node_modules/taro-ui/dist/weapp/components/message/index", _temp2);
 
 
 AtMessage.defaultProps = {

@@ -3,7 +3,6 @@ import { publishFindWork } from '../utils/helper/index.d'
 
 // 默认发布招工state数据
 const DEFAULT_STATE_PUBLISHDATA: publishFindWork = {
-  resumeText: "",
   loginBefore: false,
   loginAfter: false,
   logoutWay: "",
@@ -17,7 +16,7 @@ export interface ACTIONTYPE {
   data: publishFindWork
 }
 
-export default function MyAreaInfo(state: publishFindWork = DEFAULT_STATE_PUBLISHDATA, action: ACTIONTYPE) {
+export default function MyPublishWay(state: publishFindWork = DEFAULT_STATE_PUBLISHDATA, action: ACTIONTYPE) {
   switch (action.type) {
     case GETPUBLISHWAY:
       return state;

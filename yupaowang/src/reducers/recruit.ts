@@ -1,5 +1,5 @@
-import { GETAREAINFO, SETAREAINFO, SETAREA, GETAREA, SETPOSITIONSTATUS, SETTOKEN, SETPHONE } from '../constants/recruit' //定义发布招工获取设置发布信息的action
-import { UserLastPublishRecruitArea, RecruitInfo, AreaData } from '../pages/recruit/index.d'//招工信息发布区域信息类型
+import { SETAREAINFO, SETAREA, SETPOSITIONSTATUS, SETTOKEN, SETPHONE } from '../constants/recruit' //定义发布招工获取设置发布信息的action
+import { UserLastPublishRecruitArea, RecruitInfo } from '../pages/recruit/index.d'//招工信息发布区域信息类型
 import { AREABEIJING } from '../models/area'
 
 const DEFAULT_STATE_RECRUIT: RecruitInfo = {
@@ -19,19 +19,6 @@ const DEFAULT_STATE_RECRUIT: RecruitInfo = {
   phone:'',
   positionStatus: true,
 }
-// 内容的参数
-const DEFAULT_STATE_AREAINFO: UserLastPublishRecruitArea = {
-    title: '',
-    adcode:'',
-    location: '',
-    info: '',
-    areaId:'',
-    name:'',
-    ad_name:''
-}
-
-// 定义默认的区域数据
-const DEFAULT_STATE_AREA: AreaData = { name: AREABEIJING.name, id: AREABEIJING.id, ad_name: AREABEIJING.ad_name}
 
 // action类型定义
 export interface ACTIONTYPE {
@@ -42,39 +29,6 @@ export interface ACTIONTYPE {
 export interface ACTIONTYPES {
   type: string,
   data: UserLastPublishRecruitArea | string | boolean
-}
-export function MyAreaInfo(state: UserLastPublishRecruitArea = DEFAULT_STATE_AREAINFO, action: ACTIONTYPE) {
-  switch (action.type) {
-    case GETAREAINFO:
-      return state;
-    case SETAREAINFO:
-      state = { ...state, ...action.data }
-      return state;
-    default:
-      return state
-  }
-}
-export function MyArea(state: AreaData = DEFAULT_STATE_AREA, action: ACTIONTYPE){
-    switch (action.type) {
-        case GETAREA:
-          return state;
-        case SETAREA:
-          state = action.data
-          return state;
-        default:
-          return state
-    }
-}
-
-export function PositionStatus(state:boolean = true, action:ACTIONTYPE){
-  switch (action.type) {
-    case SETPOSITIONSTATUS:
-      state = action.data
-      return state;
-    default:
-      return state
-
-  }
 }
 
 export function RecruitAction(state: RecruitInfo = DEFAULT_STATE_RECRUIT, action: ACTIONTYPES){

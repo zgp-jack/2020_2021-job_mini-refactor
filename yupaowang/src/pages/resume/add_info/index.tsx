@@ -60,7 +60,7 @@ export default function AddResumeInfo(){
   // --结束 请不要随意在该段中间加入任务非高德定位无关的状态值
 
   //获取redux中发布招工区域详细数据
-  const areaInfo: UserLastPublishRecruitArea = useSelector<any, UserLastPublishRecruitArea>(state => state.MyAreaInfo)
+  const areaInfo: UserLastPublishRecruitArea = useSelector<any, UserLastPublishRecruitArea>(state => state.RecruitAction.areaInfo)
   // 不是第一次存areaInfo
   // const [first, setFirst] = useState<boolean>(false);
   // 设置选择地址的省

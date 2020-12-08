@@ -26,7 +26,7 @@ export default function PublishRecruit() {
   const type: string = 'job'
   const InitParams: InitRecruitView = { type: type, infoId: id }
   // 获取redux中发布招工区域详细数据
-  const areaInfo: UserLastPublishRecruitArea = useSelector<any, UserLastPublishRecruitArea>(state => state.MyAreaInfo)
+  const areaInfo: UserLastPublishRecruitArea = useSelector<any, UserLastPublishRecruitArea>(state => state.RecruitAction.areaInfo)
   // 获取redux中工种数据
   const publishData: PublishConfigData = useSelector<any, PublishConfigData>(state => state.publishData)
   const mateData = publishData.mateData
