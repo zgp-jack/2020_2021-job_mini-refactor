@@ -204,6 +204,8 @@ export const userAccountUrl: string = REQUESTURL + 'baidu-auth/login/'
 export const userTelCodeLogin: string = REQUESTURL + 'baidu-auth/code-login/'
 // 抖音用户充值
 export const userDouyinRecharge: string = REQUESTURL + 'pay/bytedance-order/'
+//qq用户充值
+export const userQQRecharge: string = REQUESTURL + 'pay/qq-order/'
 // 都要用户充值订单检测
 export const userCheckDouyinRecharge: string = REQUESTURL + '/pay/byte-check/'
 // 实名查询

@@ -1142,7 +1142,14 @@ export function userCheckDouyinRecharge(data): Promise<Inter.userCheckDouyinOrde
     data
   })
 }
-
+// 发起qq支付
+export function userQQRecharge(data): Promise<any> {
+  return doRequestAction({
+    url: api.userQQRecharge,
+    method: 'POST',
+    data
+  })
+}
 
 // 用户修改密码
 export function updataPassword(data): Promise<Inter.Result> {
