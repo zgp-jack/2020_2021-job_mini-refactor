@@ -178,7 +178,7 @@ export function userCallPhone(val: string) {
 export function getUserShareMessage(){
   let title: string = '全国建筑工地招工平台'
   if(SERIES == ZIJIESERIES){
-    title = '鱼泡网-建筑招工找活平台'
+    title = '鱼泡网-建筑装修找活平台'
   }
   return {
     title,

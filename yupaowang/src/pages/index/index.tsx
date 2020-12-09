@@ -39,8 +39,6 @@ export default function Index(){
   // 设置当前页面分享
   useShareAppMessage(()=>{
     let path: string = `${INDEXPATH}?type=${tabKey}`
-    const pages = Taro.getCurrentPages()
-    console.log(pages)
     return {
       ...getUserShareMessage(),
       path: userId ? `${path}&refId=${userId}` : path

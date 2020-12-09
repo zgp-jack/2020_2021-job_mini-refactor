@@ -40,6 +40,12 @@ const config = {
     MINI: miniflag,
     ISWEIXIN: ISWEIXIN
   },
+  copy: {
+    patterns: [
+      { from: 'src/sitemap/sitemap.json', to: 'dist/sitemap.json' }
+    ],
+    options: {}
+  },
   mini: {
     postcss: {
       pxtransform: {

@@ -7,8 +7,12 @@ import './app.scss'
 
 const store = configStore()
 
+interface AppConfig extends Config {
+  sitemapLocation: string
+}
+
 class App extends Component {
-  config: Config = {
+  config: AppConfig = {
     pages: [
       'pages/index/index', //首页
       'pages/userauth/index', //用户授权
@@ -94,7 +98,8 @@ class App extends Component {
       "scope.userLocation": {
         "desc": "获取您的位置将会为您推荐该地区最新信息"
       }
-    }
+    },
+    "sitemapLocation": 'sitemap.json'
   }
 
   componentDidMount() {

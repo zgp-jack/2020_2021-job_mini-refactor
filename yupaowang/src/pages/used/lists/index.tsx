@@ -50,12 +50,15 @@ export default function Fleamarket() {
 
   useDidShow(()=>{
     if(SERIES == BAIDUSERIES){
-      const filterData = useSelector<any, filterClassifyDataResultReduce>(
-        state => state.filterClassify
-      );
       Taro.setPageInfo({
-        ...getUsedListSeoInfo(router.params,filterData)
+        title: '工地二手交易_工程机械二手买卖_工程设备废料回收_建筑资质租用转让—鱼泡网',
+        description: '建筑工地二手交易板块，为建筑工程工人、老板、公司提供二手工程机械、工程设备、建筑材料废料、二手电动工具、建筑资质租用转让的信息。方便卖家能很快的找到合适买家，让买家能收到合适的工程二手材料。',
+        keywords: '工地二手交易,工程机械二手买卖,工程设备废料回收,建筑资质租用转让'
       })
+      // const filterData = useSelector<any, filterClassifyDataResultReduce>(
+      //   state => state.filterClassify
+      // );
+      //getUsedListSeoInfo(router.params, filterData)
     }
   })
 

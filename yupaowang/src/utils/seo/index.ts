@@ -1,3 +1,4 @@
+import Taro from '@tarojs/taro'
 import { filterClassifyDataResultReduce } from '../../reducers/filter_classify'
 import { getListFilterData } from '../request'
 import { filterClassifyResultFleamarketTree } from '../request/index.d'
@@ -19,30 +20,30 @@ const DEFAULTUSEDSEOINFO: PAGESEOINFO = {
 }
 
 // 获得二手交易页面seo信息
-export function getUsedListSeoInfo(params, filterData: filterClassifyDataResultReduce): PAGESEOINFO {
+export async function getUsedListSeoInfo(params, filterData: filterClassifyDataResultReduce) {
   // 如果有城市信息就代表当前页面被分享，需要动态组成 seo信息
   if (params.area) {
     // 先判断redux中是否已经有值 没有就请求新数据 有就直接遍历
     if (filterData.isSet) {
-      return {
-        ...detailUsedListSeoInfo(params, filterData.fleamarketTree)
-      }
+      let pageInfo: PAGESEOINFO = detailUsedListSeoInfo(params, filterData.fleamarketTree)
+      Taro.setPageInfo({ ...pageInfo})
+      return
     } else {
       getListFilterData().then(res => {
-        return {
-          ...detailUsedListSeoInfo(params, res.data.fleamarketTree)
-        }
+        let pageInfo: PAGESEOINFO = detailUsedListSeoInfo(params, res.data.fleamarketTree)
+        Taro.setPageInfo({ ...pageInfo })
+        return
       })
     }
   }
   // 默认返回的seo信息
-  return { ...DEFAULTUSEDSEOINFO }
+  Taro.setPageInfo({ ...DEFAULTUSEDSEOINFO })
 }
 
 // 返回二手的seo信息  遍历数据
 export function detailUsedListSeoInfo(params, fleamarketTree: filterClassifyResultFleamarketTree[]): PAGESEOINFO {
   let areaText: string = '全国'
-  let classifyText: string = '二手交易'
+  let classifyText: string = ''
   let attributeText: string = ''
   // 如果说能走到该函数，说明页面都是带了参数，那我们直接给默认值
   const { area = 'quanguo', classify = 'quanbufenlei', attribute = PURPOSE, keywords = '' } = params
