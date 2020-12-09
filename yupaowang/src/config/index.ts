@@ -1,5 +1,5 @@
 // ? 全局不动配置项 只做导出不做修改
-import { BAIDU_SERIES, WEIXIN_SERIES, ZIJIE_SERIES, QQ_SERIES } from './series'
+import {BAIDU_SERIES, WEIXIN_SERIES, ZIJIE_SERIES, QQ_SERIES} from './series'
 
 // ! 根据不同编译脚本打包不同小程序
 // * 当前打包版本
@@ -8,11 +8,11 @@ export const MINICONFIG = require(`./minis/${MINIVERSION}.ts`)
 
 // * 全局请求接口域名
 // * 测试站
-export const DEVREQUESTURL: string = 'https://miniapi.zhaogong.vrtbbs.com/'  
+export const DEVREQUESTURL: string = 'https://miniapi.zhaogong.vrtbbs.com/'
 // * 预发布
 export const PREREQUESTURL: string = 'http://miniapi.kkbbi.com/'
 // * 正式站
-export const PROREQUESTURL: string = 'https://newyupaomini.54xiaoshuo.com/' 
+export const PROREQUESTURL: string = 'https://newyupaomini.54xiaoshuo.com/'
 // * 当前程序使用的请求地址
 export const REQUESTURL: string = PROREQUESTURL
 // * 默认上传图片
@@ -45,7 +45,8 @@ export const ResumeMemberLabelsMaxNum: number = 3
 export const ProjectListMaxNum: number = 5
 // * 找活项目经验图片最大数量
 export const ProjectImgMaxNum: number = 6
-
+//商户申请 H5 支付时提交的授权域名
+export const QQWECHATPAYURLREFERER: string = 'http://p.54xiaoshuo.com'
 // ! 页面内常用路径配置
 // * 首页
 export const INDEXPATH: string = '/pages/index/index'
@@ -66,7 +67,7 @@ export const PUBLISHEDRECRUIT: string = '/pages/published/recruit/index'
 // * 下载APP
 export const DOWNLOADAPPPATH: string = '/subpackage/pages/download/index'
 // * 下载App链接
-export const DownloadApp: string ='https://android.myapp.com/myapp/detail.htm?apkName=io.dcloud.H576E6CC7&amp;ADTAG=mobile'
+export const DownloadApp: string = 'https://android.myapp.com/myapp/detail.htm?apkName=io.dcloud.H576E6CC7&amp;ADTAG=mobile'
 // * 邀请好友
 export const INVITEPATH: string = '/pages/static/invite/index'
 
@@ -80,10 +81,10 @@ export const WEIXINSERIES: string = WEIXIN_SERIES
 // QQ
 export const QQSERIES: string = QQ_SERIES
 
-// ! 以下内容为每个小程序独立配置  
+// ! 以下内容为每个小程序独立配置
 // * page-title-global
 export const PAGETITLE: string = MINICONFIG.PAGETITLE
-// * 小程序token 
+// * 小程序token
 export const TOKEN: string = MINICONFIG.TOKEN
 // * 小程序公司体系
 export const SERIES: string = MINICONFIG.SERIES

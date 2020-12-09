@@ -1,16 +1,23 @@
 import Nerv from "nervjs";
-import Taro, { login as _login, requestPayment as _requestPayment, showModal as _showModal } from "@tarojs/taro-h5";
-import { View, Text } from '@tarojs/components';
-import { SERVERPHONE, MINIVERSION, DOUYIN } from "../../config/index";
-import { getRechargeList, getRechargeOpenid, getRechargeOrder, userDouyinRecharge, userCheckDouyinRecharge } from "../../utils/request/index";
-import Msg, { ShowActionModal, errMsg } from "../../utils/msg/index";
-import { useDispatch } from "@tarojs/redux-h5";
+import Taro, {login as _login, requestPayment as _requestPayment, showModal as _showModal} from "@tarojs/taro-h5";
+import {View, Text} from '@tarojs/components';
+import {SERVERPHONE, MINIVERSION, DOUYIN} from "../../config/index";
+import {
+  getRechargeList,
+  getRechargeOpenid,
+  getRechargeOrder,
+  userDouyinRecharge,
+  userCheckDouyinRecharge
+} from "../../utils/request/index";
+import Msg, {ShowActionModal, errMsg} from "../../utils/msg/index";
+import {useDispatch} from "@tarojs/redux-h5";
 // import { changeTabbar } from '../../actions/tabbar'
 import classnames from 'classnames';
-import { AtMessage } from 'taro-ui';
-import { MEMBER } from '../../constants/tabbar';
-import { getPointNumber } from "../../utils/helper/index";
+import {AtMessage} from 'taro-ui';
+import {MEMBER} from '../../constants/tabbar';
+import {getPointNumber} from "../../utils/helper/index";
 import './index.scss';
+
 export default class Recharge extends Taro.Component {
   config = {
     navigationBarTitleText: '用户充值积分',
@@ -70,12 +77,12 @@ export default class Recharge extends Taro.Component {
     // 检测订单
     const getOrderStatusAction = order_no => {
       return new Promise((resolve, reject) => {
-        resolve({ code: 0 });
-        userCheckDouyinRecharge({ order_no: order_no }).then(res => {
+        resolve({code: 0});
+        userCheckDouyinRecharge({order_no: order_no}).then(res => {
           Msg(res.errmsg);
           if (res.errcode == 'ok') {
             setIntegral(res.integral);
-            resolve({ code: 0 });
+            resolve({code: 0});
           }
         }).catch(err => {
           Msg('支付失败');
@@ -86,7 +93,7 @@ export default class Recharge extends Taro.Component {
     // 抖音支付
     const douyinProPay = () => {
       let id = lists[current].id;
-      userDouyinRecharge({ integral_price_id: id }).then(res => {
+      userDouyinRecharge({integral_price_id: id}).then(res => {
         let order_no = res.data.biteOrderInfo.out_order_no;
         tt.pay({
           orderInfo: res.data.biteOrderInfo,
@@ -120,7 +127,7 @@ export default class Recharge extends Taro.Component {
               openid: openidData.openid
             };
             getRechargeOrder(data).then(orderData => {
-              _requestPayment({ ...orderData.payData }).then(() => {
+              _requestPayment({...orderData.payData}).then(() => {
                 let afterIntegral = integral + rechargeIntegral;
                 setIntegral(afterIntegral);
                 _showModal({
@@ -131,7 +138,7 @@ export default class Recharge extends Taro.Component {
                   success: res => {
                     if (res.cancel) {
                       // dispatch(changeTabbar(MEMBER))
-                      Taro.reLaunch({ url: '/pages/index/index?type=' + MEMBER });
+                      Taro.reLaunch({url: '/pages/index/index?type=' + MEMBER});
                     }
                   }
                 });
@@ -142,13 +149,13 @@ export default class Recharge extends Taro.Component {
               errMsg(`网络异常，充值失败，客服电话${SERVERPHONE}`);
             });
           }).catch(() => {
-            ShowActionModal({ msg: `充值失败，请联系客服电话${SERVERPHONE}` });
+            ShowActionModal({msg: `充值失败，请联系客服电话${SERVERPHONE}`});
           });
         }
       });
     };
     return <View className="recharge-container">
-      <AtMessage />
+      <AtMessage/>
       <View className="recharge-header">
         <View className="recharge-info-item">
           剩余积分：<Text className="recharge-info-text">{integral}</Text>
@@ -160,21 +167,23 @@ export default class Recharge extends Taro.Component {
           积分价格：<Text className="recharge-info-text">{price}元/个</Text>
         </View>
         <View className="recharge-info-item">
-          充值积分：<Text className="recharge-info-text">{lists[current].integral}积分（可查看{lists[current].integral}个电话号码）</Text>
+          充值积分：<Text
+          className="recharge-info-text">{lists[current].integral}积分（可查看{lists[current].integral}个电话号码）</Text>
         </View>
       </View>
       <View className="recharge-body">
         <View className="recharge-title">请选择充值金额</View>
         <View className="recharge-content clearfix">
-          {lists.map((item, index) => <View className="recharge-list" key={item.id} onClick={() => userChooseItem(index)}>
-              <View className={classnames({
+          {lists.map((item, index) => <View className="recharge-list" key={item.id}
+                                            onClick={() => userChooseItem(index)}>
+            <View className={classnames({
               'recharge-list-box': true,
               'recharge-list-box-active': index === current
             })}>
-                <View className="recharge-money">{item.price}元</View>
-                <View className="recharge-num">{item.integral}积分</View>
-              </View>
-            </View>)}
+              <View className="recharge-money">{item.price}元</View>
+              <View className="recharge-num">{item.integral}积分</View>
+            </View>
+          </View>)}
         </View>
       </View>
       <View className="recharge-btn" onClick={() => userRechargeAction()}>充值</View>
@@ -194,4 +203,9 @@ export default class Recharge extends Taro.Component {
   }
 
 }
-Recharge.config = { navigationBarTitleText: '用户充值积分', navigationBarBackgroundColor: '#0099ff', navigationBarTextStyle: 'white', backgroundTextStyle: "dark" };
+Recharge.config = {
+  navigationBarTitleText: '用户充值积分',
+  navigationBarBackgroundColor: '#0099ff',
+  navigationBarTextStyle: 'white',
+  backgroundTextStyle: "dark"
+};

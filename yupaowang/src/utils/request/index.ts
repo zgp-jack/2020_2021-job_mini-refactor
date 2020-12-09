@@ -77,7 +77,7 @@ const getRequestHeaderInfoAction = (): RequestBase => {
   return {
     url: '',
     method: 'GET',
-    header: { ...headers},
+    header: {...headers},
     data: {},
     loading: true,
     title: '数据加载中...',
@@ -88,7 +88,7 @@ const getRequestHeaderInfoAction = (): RequestBase => {
 
 // 全局通用请求方法
 export function doRequestAction(reqData: Request): Promise<any> {
-  let req: RequestBase = { ...getRequestHeaderInfoAction(), ...reqData}
+  let req: RequestBase = {...getRequestHeaderInfoAction(), ...reqData}
   if (req.loading) {
     Taro.showLoading({
       title: req.title
@@ -1142,10 +1142,20 @@ export function userCheckDouyinRecharge(data): Promise<Inter.userCheckDouyinOrde
     data
   })
 }
+
 // 发起qq支付
 export function userQQRecharge(data): Promise<any> {
   return doRequestAction({
     url: api.userQQRecharge,
+    method: 'POST',
+    data
+  })
+}
+
+// qq内发起微信支付
+export function userQQWeChatRecharge(data): Promise<any> {
+  return doRequestAction({
+    url: api.userQQWeCharRecharge,
     method: 'POST',
     data
   })
@@ -1195,8 +1205,9 @@ export function getRankRulesList(): Promise<any> {
     method: 'POST'
   })
 }
+
 // 大转盘获取抽奖次数
-export function turntableIndex():Promise<Inter.TurntableIndexType>{
+export function turntableIndex(): Promise<Inter.TurntableIndexType> {
   return doRequestAction({
     url: api.turntableIndex,
     method: 'POST',
@@ -1205,7 +1216,7 @@ export function turntableIndex():Promise<Inter.TurntableIndexType>{
 }
 
 // 大转盘抽奖
-export function turntableDraw(data):Promise<Inter.TurntableDraw>{
+export function turntableDraw(data): Promise<Inter.TurntableDraw> {
   return doRequestAction({
     url: api.turntableDraw,
     data,
@@ -1214,7 +1225,7 @@ export function turntableDraw(data):Promise<Inter.TurntableDraw>{
 }
 
 // 大转盘看视频结束后的回调
-export function turntableVideoEnd():Promise<Inter.TurntableVideoEnd>{
+export function turntableVideoEnd(): Promise<Inter.TurntableVideoEnd> {
   return doRequestAction({
     url: api.turntableVideoEnd,
     method: 'POST',
@@ -1222,7 +1233,7 @@ export function turntableVideoEnd():Promise<Inter.TurntableVideoEnd>{
 }
 
 // 获取鱼泡币页面大转盘展示控制
-export function memberTurntable():Promise<Inter.memberTurntableType>{
+export function memberTurntable(): Promise<Inter.memberTurntableType> {
   return doRequestAction({
     url: api.memberTurntable,
     method: 'POST',
@@ -1230,7 +1241,7 @@ export function memberTurntable():Promise<Inter.memberTurntableType>{
 }
 
 // 获取百度支付tporderid
-export function getBaiduTpOrderId(data): Promise<any>{
+export function getBaiduTpOrderId(data): Promise<any> {
   return doRequestAction({
     url: api.getBaiduTpOrderId,
     method: 'POST',
@@ -1239,7 +1250,7 @@ export function getBaiduTpOrderId(data): Promise<any>{
 }
 
 // 校验百度支付是否成功
-export function checkBaiduOrderStatusAction(data): Promise<Inter.BaiduOrderStatus>{
+export function checkBaiduOrderStatusAction(data): Promise<Inter.BaiduOrderStatus> {
   return doRequestAction({
     url: api.checkBaiduTpOrderId,
     method: 'POST',

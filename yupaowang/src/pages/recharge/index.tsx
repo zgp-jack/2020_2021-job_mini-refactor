@@ -1,6 +1,15 @@
 import Taro, {useEffect, useState, Config, useDidHide} from '@tarojs/taro'
 import {View, Text} from '@tarojs/components'
-import {SERVERPHONE, BAIDUSERIES, ZIJIESERIES, WEIXINSERIES, QQSERIES, SERIES} from '../../config'
+import {
+  SERVERPHONE,
+  BAIDUSERIES,
+  ZIJIESERIES,
+  WEIXINSERIES,
+  QQSERIES,
+  SERIES,
+  REQUESTURL,
+  QQWECHATPAYURLREFERER
+} from '../../config'
 import {
   getRechargeList,
   getRechargeOpenid,
@@ -8,7 +17,7 @@ import {
   userDouyinRecharge,
   userCheckDouyinRecharge,
   getBaiduTpOrderId,
-  checkBaiduOrderStatusAction, userQQRecharge
+  checkBaiduOrderStatusAction, userQQRecharge, userQQWeChatRecharge
 } from '../../utils/request'
 import {GetRechargeListType} from '../../utils/request/index.d'
 import Msg, {ShowActionModal, errMsg} from '../../utils/msg'
@@ -77,8 +86,20 @@ export default function Recharge() {
     } else if (SERIES == BAIDUSERIES) {
       baiduProPay(rechargeIntegral)
     } else if (SERIES == QQSERIES) {
-      // qq支付
-      handleQQPay()
+      Taro.showActionSheet({
+        itemList: ['QQ支付', '微信支付'],
+        success: function (res) {
+          if (res.tapIndex == 0) {
+            handleQQPay(rechargeIntegral)
+          }
+          if (res.tapIndex == 1) {
+            handleQQWeChatPay(rechargeIntegral)
+          }
+        },
+        fail: function (res) {
+          console.log(res)
+        }
+      })
     }
   }
 
@@ -128,7 +149,7 @@ export default function Recharge() {
     }).catch(err => console.log(err))
   }
   //qq支付
-  const handleQQPay = () => {
+  const handleQQPay = (rechargeIntegral: number) => {
     //当前选中的充值套餐id
     let priceType = lists[current].id
     userQQRecharge({priceType}).then(res => {
@@ -139,6 +160,7 @@ export default function Recharge() {
         // bargainor_id: "",
         success(res) {
           Msg('支付成功')
+          setIntegral(integral + rechargeIntegral)
         },
         fail(res) {
           Msg('支付失败')
@@ -146,6 +168,25 @@ export default function Recharge() {
       })
     })
   }
+  //qq内调用微信支付
+  const handleQQWeChatPay = (rechargeIntegral: number) => {
+    let priceType = lists[current].id
+    userQQRecharge({priceType, is_wx: true}).then(res => {
+      const {mweb_url, order_no, referer} = res.data
+      // checkBaiduOrderStatusFun(order_no, rechargeIntegral)
+      qq.requestWxPayment({
+        url: mweb_url,
+        referer: referer,
+        success(res) {
+          console.log(res)
+        },
+        fail(res) {
+          Taro.showModal({content: '支付失败' + JSON.stringify(res)})
+        }
+      })
+    })
+  }
+
   // 微信支付
   const weixinProPay = (rechargeIntegral: number) => {
     Taro.login({
@@ -194,7 +235,7 @@ export default function Recharge() {
           orderInfo: {...res.payData},
           success: () => {
             // 校验百度支付是否成功 // 每3秒发起一次 直到成功
-            checkBaiduOrderStatusFun(res, rechargeIntegral)
+            checkBaiduOrderStatusFun(res.payData.tpOrderId, rechargeIntegral)
           },
           fail: err => {
             ShowActionModal({msg: err.errMsg})
@@ -206,9 +247,9 @@ export default function Recharge() {
     })
   }
 
-  const checkBaiduOrderStatusFun = (res, rechargeIntegral: number) => {
+  const checkBaiduOrderStatusFun = (tpOrderId, rechargeIntegral: number) => {
     var mytimer = setInterval(() => {
-      checkBaiduOrderStatusAction({tpOrderId: res.payData.tpOrderId}).then(res => {
+      checkBaiduOrderStatusAction({tpOrderId}).then(res => {
         console.log(JSON.stringify(res))
         if (res.errcode == 'ok') {
           if (res.data.order_status == 2) {
