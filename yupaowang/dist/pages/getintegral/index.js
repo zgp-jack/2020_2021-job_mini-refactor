@@ -1,4 +1,4 @@
-(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["pages/getintegral/index"],{
+(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["pages/getintegral/index"],{
 
 /***/ "./src/pages/getintegral/index.scss":
 /*!******************************************!*\
@@ -31,9 +31,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
 
 var _index = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
 
@@ -74,7 +74,7 @@ var GetIntegral = function (_Taro$Component) {
     key: "_constructor",
     value: function _constructor(props) {
       _get(GetIntegral.prototype.__proto__ || Object.getPrototypeOf(GetIntegral.prototype), "_constructor", this).call(this, props);
-      this.$$refs = new _taroTt2.default.RefsArray();
+      this.$$refs = new _taroWeapp2.default.RefsArray();
     }
   }, {
     key: "_createData",
@@ -85,7 +85,7 @@ var GetIntegral = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _useState = (0, _taroTt.useState)(true),
+      var _useState = (0, _taroWeapp.useState)(true),
           _useState2 = _slicedToArray(_useState, 2),
           ios = _useState2[0],
           setIos = _useState2[1];
@@ -93,10 +93,10 @@ var GetIntegral = function (_Taro$Component) {
 
 
       var userCallPhone = function userCallPhone() {
-        _taroTt2.default.makePhoneCall({ phoneNumber: _index.SERVERPHONE });
+        _taroWeapp2.default.makePhoneCall({ phoneNumber: _index.SERVERPHONE });
       };
 
-      var _useState3 = (0, _taroTt.useState)({
+      var _useState3 = (0, _taroWeapp.useState)({
         showBtn: 0,
         show: 0
       }),
@@ -106,7 +106,7 @@ var GetIntegral = function (_Taro$Component) {
       // 判断客户端
 
 
-      (0, _taroTt.useEffect)(function () {
+      (0, _taroWeapp.useEffect)(function () {
         // memberTurntable().then(res => {
         //   if (res.errcode == "ok") {
         //     let { is_turntable, show_turntable } = res.data;
@@ -115,7 +115,7 @@ var GetIntegral = function (_Taro$Component) {
         //     setTurntable({ ...turntable });
         //   }
         // });
-        var system = _taroTt2.default.getSystemInfoSync();
+        var system = _taroWeapp2.default.getSystemInfoSync();
         if (system.platform !== "ios") {
           setIos(false);
         }
@@ -170,14 +170,14 @@ var GetIntegral = function (_Taro$Component) {
   }]);
 
   return GetIntegral;
-}(_taroTt2.default.Component);
+}(_taroWeapp2.default.Component);
 
 GetIntegral.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3"];
 GetIntegral.$$componentPath = "pages/getintegral/index";
 GetIntegral.config = { navigationBarTitleText: "鱼泡网-获取积分" };
 exports.default = GetIntegral;
 
-Page(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(GetIntegral, true));
+Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(GetIntegral, true));
 
 /***/ })
 

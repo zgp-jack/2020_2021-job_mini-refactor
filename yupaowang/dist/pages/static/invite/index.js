@@ -1,4 +1,4 @@
-(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["pages/static/invite/index"],{
+(wx["webpackJsonp"] = wx["webpackJsonp"] || []).push([["pages/static/invite/index"],{
 
 /***/ "./src/pages/static/invite/index.scss":
 /*!********************************************!*\
@@ -33,9 +33,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroWeapp = __webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroWeapp2 = _interopRequireDefault(_taroWeapp);
 
 var _index = __webpack_require__(/*! ../../../config/index */ "./src/config/index.ts");
 
@@ -78,7 +78,7 @@ var Invite = function (_Taro$Component) {
     key: "_constructor",
     value: function _constructor(props) {
       _get(Invite.prototype.__proto__ || Object.getPrototypeOf(Invite.prototype), "_constructor", this).call(this, props);
-      this.$$refs = new _taroTt2.default.RefsArray();
+      this.$$refs = new _taroWeapp2.default.RefsArray();
     }
   }, {
     key: "_createData",
@@ -90,7 +90,7 @@ var Invite = function (_Taro$Component) {
       ;
       // 用户邀请链接
 
-      var _useState = (0, _taroTt.useState)(''),
+      var _useState = (0, _taroWeapp.useState)(''),
           _useState2 = _slicedToArray(_useState, 2),
           link = _useState2[0],
           setLink = _useState2[1];
@@ -101,7 +101,7 @@ var Invite = function (_Taro$Component) {
         return state.User['login'];
       });
       // 初始化用户链接
-      (0, _taroTt.useEffect)(function () {
+      (0, _taroWeapp.useEffect)(function () {
         if (!login) {
           return;
         }
@@ -109,22 +109,22 @@ var Invite = function (_Taro$Component) {
           if (res.errcode == 'ok') {
             setLink(res.link);
           } else (0, _index3.ShowActionModal)({ msg: res.errmsg, success: function success() {
-              return _taroTt2.default.navigateBack();
+              return _taroWeapp2.default.navigateBack();
             } });
         });
       }, [login]);
       // 设置用户分享
-      (0, _taroTt.useShareAppMessage)(function () {
+      (0, _taroWeapp.useShareAppMessage)(function () {
         return _extends({}, (0, _index4.getUserShareMessage)(), {
           path: '/pages/index/index'
         });
       });
       // 用户复制邀请链接
       var copyUserInviteLink = function copyUserInviteLink() {
-        _taroTt2.default.setClipboardData({
+        _taroWeapp2.default.setClipboardData({
           data: link,
           success: function success() {
-            _taroTt2.default.hideToast();
+            _taroWeapp2.default.hideToast();
             (0, _index3.ShowActionModal)({
               title: '恭喜您',
               msg: '您的邀请链接已复制到粘贴板，赶快去邀请好友吧！'
@@ -150,14 +150,14 @@ var Invite = function (_Taro$Component) {
   }]);
 
   return Invite;
-}(_taroTt2.default.Component);
+}(_taroWeapp2.default.Component);
 
 Invite.$$events = ["anonymousFunc0"];
 Invite.$$componentPath = "pages/static/invite/index";
 Invite.config = { navigationBarTitleText: "邀请好友" };
 exports.default = Invite;
 
-Page(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(Invite, true));
+Component(__webpack_require__(/*! @tarojs/taro-weapp */ "./node_modules/@tarojs/taro-weapp/index.js").default.createComponent(Invite, true));
 
 /***/ })
 
