@@ -1,4 +1,5 @@
 const projects = require('../project.config')
+const createSiteMap = require('../src/sitemap/create')
 
 const webpack = require('webpack-bundle-analyzer')
 // * 引入自己的打包文件 json匹配操作插件
@@ -35,17 +36,20 @@ const config = {
       'transform-object-rest-spread'
     ]
   },
-  plugins: [],
+  plugins: [
+    // 自动生成sitemap.json文件
+    new createSiteMap()
+  ],
   defineConstants: {
     MINI: miniflag,
     ISWEIXIN: ISWEIXIN
   },
-  copy: {
-    patterns: [
-      { from: 'src/sitemap/sitemap.json', to: 'dist/sitemap.json' }
-    ],
-    options: {}
-  },
+  // copy: {
+  //   patterns: [
+  //     { from: 'src/sitemap/sitemap.json', to: 'dist/sitemap.json' }
+  //   ],
+  //   options: {}
+  // },
   mini: {
     postcss: {
       pxtransform: {
