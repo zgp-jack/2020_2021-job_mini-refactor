@@ -34,6 +34,10 @@ export interface CreateOrder {
   priceType: string
 }
 
+interface QqSeriesRes extends Taro.General.CallbackResult{
+  tapIndex:number
+}
+
 export default function Recharge() {
 
   const dispatch = useDispatch()
@@ -88,7 +92,7 @@ export default function Recharge() {
     } else if (SERIES == QQSERIES) {
       Taro.showActionSheet({
         itemList: ['QQ支付', '微信支付'],
-        success: function (res) {
+        success: function (res:QqSeriesRes) {
           if (res.tapIndex == 0) {
             handleQQPay(rechargeIntegral)
           }
@@ -97,7 +101,7 @@ export default function Recharge() {
           }
         },
         fail: function (res) {
-          console.log(res)
+          Msg('支付失败')
         }
       })
     }
@@ -154,7 +158,6 @@ export default function Recharge() {
     let priceType = lists[current].id
     userQQRecharge({priceType}).then(res => {
       let data = res.data
-      console.log("prepay_id=" + data.prepay_id)
       qq.requestPayment({
         package: "prepay_id=" + data.prepay_id,
         // bargainor_id: "",
@@ -173,12 +176,11 @@ export default function Recharge() {
     let priceType = lists[current].id
     userQQRecharge({priceType, is_wx: true}).then(res => {
       const {mweb_url, order_no, referer} = res.data
-      // checkBaiduOrderStatusFun(order_no, rechargeIntegral)
       qq.requestWxPayment({
         url: mweb_url,
         referer: referer,
-        success(res) {
-          console.log(res)
+        success(resquest) {
+          checkQqOrderStatusFun(order_no,rechargeIntegral)
         },
         fail(res) {
           Taro.showModal({content: '支付失败' + JSON.stringify(res)})
@@ -247,10 +249,23 @@ export default function Recharge() {
     })
   }
 
+  const checkQqOrderStatusFun = (tpOrderId, rechargeIntegral: number) => {
+    checkBaiduOrderStatusAction({tpOrderId}).then(res => {
+      if (res.errcode == 'ok') {
+        if (res.data.order_status == 2) {
+          let afterIntegral: number = integral + rechargeIntegral
+          setIntegral(afterIntegral)
+          Taro.showToast({title:'支付成功',icon:'none'});
+        }else{
+          Taro.showToast({title:'支付失败',icon:'none'});
+        }
+      }
+    })
+  }
+
   const checkBaiduOrderStatusFun = (tpOrderId, rechargeIntegral: number) => {
     var mytimer = setInterval(() => {
       checkBaiduOrderStatusAction({tpOrderId}).then(res => {
-        console.log(JSON.stringify(res))
         if (res.errcode == 'ok') {
           if (res.data.order_status == 2) {
             let afterIntegral: number = integral + rechargeIntegral
