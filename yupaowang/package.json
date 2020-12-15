@@ -25,16 +25,12 @@
     "dev:rn": "npm run build:rn -- --watch",
     "dev:qq": "npm run build:qq -- --watch",
     "dev:quickapp": "npm run build:quickapp -- --watch",
-
     "dev-baidu": "npm run build:swan baidu -- --watch",
     "build-baidu": "taro build baidu --type swan ",
-
     "dev-douyin": "npm run build:tt douyin -- --watch",
     "build-douyin": "taro build douyin --type tt ",
-
     "dev-qq": "npm run build:qq qq -- --watch",
     "build-qq": "taro build qq --type qq",
-
     "dev": "npm run build:weapp jizhao -- --watch",
     "build": "taro build jizhao --type weapp ",
     "jizhao": "npm run build:weapp jizhao -- --watch",

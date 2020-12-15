@@ -190,8 +190,10 @@ export default function NewPreview() {
         </View>
         }
         { ISCANSHARE && <View className='newPreview-btn'>
-          <Button openType='share'>
-            <View className='newPreview-btn-btn'>分享</View>
+          <Button openType='share' className='newPreview-btn-btn'>
+            {/* <View className='newPreview-btn-btn'> */}
+              分享
+              {/* </View> */}
           </Button>
         </View> }
       </View>
