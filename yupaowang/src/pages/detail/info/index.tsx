@@ -2,7 +2,7 @@ import Taro, { Config, useState, useRouter, useDidShow, useEffect, useShareAppMe
 import { View, Text, Image, Icon, Button } from '@tarojs/components'
 import { jobInfoAction, publishComplainAction, jobGetTelAction, recruitListCancelCollectionAction, jobEndStatusAction, jobUpdateTopStatusAction, jobNoUserInfoAction, jobRecommendListAction } from '../../../utils/request/index'
 import WechatNotice from '../../../components/wechat'
-import { IMGCDNURL, SERVERPHONE, AUTHPATH, CODEAUTHPATH, ISCANSHARE, DOWNLOADAPP, SHOWOFFICIALACCOUNT, REPLACEWEIXINTEXT, FILTERWEIXINREG, DOWNLOADAPPPATH, SERIES, BAIDUSERIES } from '../../../config'
+import { IMGCDNURL, SERVERPHONE, AUTHPATH, CODEAUTHPATH, ISCANSHARE, DOWNLOADAPP, SHOWOFFICIALACCOUNT, REPLACEWEIXINTEXT, FILTERWEIXINREG, DOWNLOADAPPPATH, SERIES, BAIDUSERIES, INDEXPATH } from '../../../config'
 import { useSelector } from '@tarojs/redux'
 import { isVaildVal } from '../../../utils/v'
 import  Report  from '../../../components/report'
@@ -488,6 +488,17 @@ export default function DetailInfoPage() {
     }
     userRouteJump(`/pages/topping/index?id=${data.id}`)
   }
+  // 查看更多招工信息
+  const seeMoreRecruit = () => {
+    let pages = Taro.getCurrentPages()
+    if(pages.length < 2){
+      Taro.reLaunch({ url: INDEXPATH})
+    }else{
+      Taro.navigateBack()
+    }
+  }
+
+
   return(
     <View className='detailInfo'>
       <WechatNotice />
@@ -559,6 +570,10 @@ export default function DetailInfoPage() {
       <View className='detailInfo-Image-box'>
         <Image src={`${IMGCDNURL}download.png`} className='detailInfo-Image' onClick={() => userRouteJump(DOWNLOADAPPPATH)}/>
       </View>}
+
+      {/* 返回首页 */}
+      <View className='see-recruit-list-btn' onClick={()=>seeMoreRecruit()}>查看更多招工信息</View>  
+
       {/* 判断是否是自己发布的招工 停止招工状态 
         判断是否查看完成电话 
       */}

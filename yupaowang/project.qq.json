@@ -32,16 +32,12 @@
 		"useCompilerModule": true,
 		"userConfirmedUseCompilerModuleSwitch": false,
 		"packNpmManually": false,
-		"packNpmRelationList": [],
-		"remoteDebugLogEnable": false,
-		"prefetch": false
+		"packNpmRelationList": []
 	},
 	"compileType": "miniprogram",
 	"simulatorType": "鱼泡网",
 	"simulatorPluginLibVersion": {},
 	"libVersion": "2.8.3",
-	"qqappid": "1108100302",
-	"scripts": {},
 	"condition": {
 		"search": {
 			"current": -1,
