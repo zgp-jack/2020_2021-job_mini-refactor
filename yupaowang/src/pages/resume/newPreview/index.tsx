@@ -41,7 +41,11 @@ export default function NewPreview() {
                   <View className='information'>
                     <Image className='basic-user-img' src={info.headerimg} />
                     <View className='infor'>
-                      <View className='name'>{info.username}</View>
+                      <View className='name'>
+                        {info.username}
+                        {info.authentication == '2' && <Image src={`${IMGCDNURL}new-list-realname-icon.png`} className='information-img' />}
+                        {info.certificate_show == 1 && <Image src={`${IMGCDNURL}new-list-jnzs-icon.png?t=1`} className='information-img' />}
+                        </View>
                       <View className='sexage'>{info.gender == '1' ? '男' : '女'}  {info.age}  {info.nation}</View>
                     </View>
                   </View>

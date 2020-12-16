@@ -737,15 +737,15 @@
 }
 
 .ocworkotyp .ocworkotyptu {
-  color: rgba(42, 42, 42, 1);
   font-size: 28px;
   display: inline-block;
   padding: 4px 10px;
   text-align: center;
   margin-right: 17px;
   margin-bottom: 12px;
-  background: rgba(238, 237, 239, 1);
   border-radius: 6px;
+  color: #666;
+  background-color: #f7f7f7;
 }
 
 .ocworkotyp .ocworkotyptu:nth-last-child(1) {
@@ -798,4 +798,5 @@
   font-size: 34px;
   letter-spacing: 2px;
   font-weight: bold;
+  margin-bottom: 120px;
 }

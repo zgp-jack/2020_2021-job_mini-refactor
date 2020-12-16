@@ -69,6 +69,12 @@ export default function Feedback() {
       }
     })
   }
+  // 用户删除图片
+  const userDelImg = (i: number) => {
+    let imageData = JSON.parse(JSON.stringify(image))
+    imageData.item.splice(i, 1)
+    setImage(imageData)
+  }
   const handlePhone = (e:string)=>{
     if (e !== phone || !phone){
       setIsShow(true)
@@ -144,7 +150,7 @@ export default function Feedback() {
         </View>
           <View className='feedback-content-middle-imgBox'>
             {image.item &&
-              <ImageView images={image.item} max={9} userUploadImg={userUploadImg} />
+                <ImageView images={image.item} max={9} userDelImg={userDelImg} userUploadImg={userUploadImg}  />
             }
         </View>
       </View>
