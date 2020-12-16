@@ -1,7 +1,7 @@
 import Taro, { Config, useState, useRouter, useShareAppMessage, useDidShow, useEffect } from '@tarojs/taro'
 import { View, Text, Image, Button } from '@tarojs/components'
 import { resumeDetailAction, recommendListAction, resumesGetTelAcrion, resumeSupportAction, resumeCollectAction, resumesComplainAction } from '../../../utils/request/index'
-import { IMGCDNURL, ISCANSHARE, FILTERWEIXINREG, REPLACEWEIXINTEXT, SERIES, BAIDUSERIES } from '../../../config'
+import { IMGCDNURL, ISCANSHARE, FILTERWEIXINREG, REPLACEWEIXINTEXT, SERIES, BAIDUSERIES, INDEXPATH } from '../../../config'
 import Msg, { ShowActionModal, showModalTip } from '../../../utils/msg'
 import { DataType, ListType, Injected } from './index.d'
 // import CollectionRecruitList  from '../../../components/recommendList/index'
@@ -323,6 +323,17 @@ export default function ResumeDetail() {
       scale: 18
     })
   }
+
+  // 查看更多招工信息
+  const seeMoreResume = () => {
+    let pages = Taro.getCurrentPages()
+    if (pages.length < 2) {
+      Taro.reLaunch({ url: `${INDEXPATH}?type=resume`  })
+    } else {
+      Taro.navigateBack()
+    }
+  }
+
   return(
     <View>
       {isAuth && <Auth />}
@@ -657,6 +668,10 @@ export default function ResumeDetail() {
           handleSubmit={handleSubmit}/>
         }
     </View>
+
+      {/* 返回首页 */}
+      <View className='see-recruit-list-btn' onClick={() => seeMoreResume()}>查看更多找活信息</View> 
+    
     </View>
   )
 }

@@ -60,6 +60,17 @@ export default function UsedInfo(){
     })
   }
 
+
+  // 查看更多招工信息
+  const seeMoreUsed = () => {
+    let pages = Taro.getCurrentPages()
+    if (pages.length < 2) {
+      Taro.reLaunch({ url: `/pages/used/lists/index` })
+    } else {
+      Taro.navigateBack()
+    }
+  }
+
   return (
     <View className='usedinfo-container'>
       <WechatNotice />
@@ -104,6 +115,8 @@ export default function UsedInfo(){
           <View className='usedinfo-item-title'>{model ? (REPLACEWEIXINTEXT ? model.detail.replace(FILTERWEIXINREG,'') : model.detail) : '' }</View>
         </View>
       </View>
+      {/* 返回首页 */}
+      <View className='see-recruit-list-btn' onClick={() => seeMoreUsed()}>查看更多二手交易信息</View> 
     </View>
   )
 }
