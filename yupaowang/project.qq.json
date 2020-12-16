@@ -63,7 +63,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 31,
 			"list": [
 				{
 					"id": -1,
@@ -281,6 +281,13 @@
 					"pathName": "pages/used/lists/index",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "1",
+					"pathName": "pages/resume/detail/index",
+					"query": "uuid=1589439800775529&location=30.5702,104.06476&__key_=16080237099692",
+					"scene": ""
 				}
 			]
 		}
