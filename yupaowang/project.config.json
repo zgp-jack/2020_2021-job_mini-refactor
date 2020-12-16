@@ -1,6 +1,6 @@
 {
 	"miniprogramRoot": "dist/",
-	"projectname": "工地急招",
+	"projectname": "%E5%B7%A5%E5%9C%B0%E6%80%A5%E6%8B%9B",
 	"description": "yupaowang",
 	"appid": "wx456feacb0e86162f",
 	"setting": {
@@ -18,7 +18,7 @@
 		"scopeDataCheck": false,
 		"uglifyFileName": false,
 		"checkInvalidKey": true,
-    "checkSiteMap": true,
+		"checkSiteMap": true,
 		"uploadWithSourceMap": true,
 		"compileHotReLoad": false,
 		"useMultiFrameRuntime": false,
@@ -32,12 +32,16 @@
 		"useCompilerModule": true,
 		"userConfirmedUseCompilerModuleSwitch": false,
 		"packNpmManually": false,
-		"packNpmRelationList": []
+		"packNpmRelationList": [],
+		"remoteDebugLogEnable": false,
+		"prefetch": false
 	},
 	"compileType": "miniprogram",
 	"simulatorType": "鱼泡网",
 	"simulatorPluginLibVersion": {},
 	"libVersion": "2.8.3",
+	"qqappid": "1111223114",
+	"scripts": {},
 	"condition": {
 		"search": {
 			"current": -1,
@@ -59,7 +63,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 31,
 			"list": [
 				{
 					"id": -1,
@@ -277,6 +281,13 @@
 					"pathName": "pages/used/lists/index",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "1",
+					"pathName": "pages/resume/detail/index",
+					"query": "uuid=1589439800775529&location=30.5702,104.06476&__key_=16080237099692",
+					"scene": ""
 				}
 			]
 		}

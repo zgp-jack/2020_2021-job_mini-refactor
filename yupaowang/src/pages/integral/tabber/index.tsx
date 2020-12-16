@@ -2,12 +2,12 @@ import Taro, { Config, useState, useEffect, useReachBottom, useRouter } from '@t
 import { View, Text, Picker, Image, Block } from '@tarojs/components'
 import { integralSourceConfigAction, integralSourceListsAction, integralExpendListsAction, integralExpendConfigAction, integralUseInfoAction, publishComplainAction } from '../../../utils/request/index'
 import { getSystemInfo } from '../../../utils/helper/index'
-import { IMGCDNURL } from '../../../config'
 import Nodata from '../../../components/nodata'
 import { integralSourceListsDataSum, integralSourceListsDataLists, integralUseInfoData, integralSourceConfigDataType  } from '../../../utils/request/index.d'
+import { SERIES, QQSERIES, IMGCDNURL } from '../../../config'
 import { SubscribeToNews } from '../../../utils/subscribeToNews';
 import  Report  from '../../../components/report';
-import { isVaildVal } from '../../../utils/v'
+import { isVaildVal, isIos } from '../../../utils/v'
 import { useSelector } from '@tarojs/redux'
 import Msg, { showModalTip } from '../../../utils/msg'
 import Auth from '../../../components/auth'
@@ -123,7 +123,10 @@ export default function Tabber() {
   const [issource, setIssource] = useState<boolean>(false);
   // 积分是否获取到list
   const [isconsume, setIsconsume] = useState<boolean>(false);
+  // 判断是否是ios
+  const [ios, setIos] = useState<boolean>(false)
   useEffect(()=>{
+    setIos(isIos())
     let navigationBarTitleText = initInfo === '0' ? '鱼泡网-积分来源记录' : '鱼泡网-积分消耗记录'
     Taro.setNavigationBarTitle({title: navigationBarTitleText})
 
@@ -201,7 +204,7 @@ export default function Tabber() {
         integralExpendLists();
       }
     }
-  },[params])
+  }, [params, login])
   // 积分消耗
   const integralExpendConfig = ()=>{
     integralExpendConfigAction().then(res=>{
@@ -493,10 +496,16 @@ export default function Tabber() {
     <View className='tabber-content'>
       <View className='tabber-content-box'>
         <View className='tabber-content-box-time'>
-          <Picker mode='date' fields='month' value={time} start={start} end={end} onChange={(e)=>handleClckTime(e)}>
+        {SERIES == QQSERIES  && !ios?
+          <Picker mode='date' fields='month' value={time} onChange={(e)=>handleClckTime(e)}>
             <Text className='tabber-content-box-time-text'>{showTime}</Text>
             <Image className='tabber-content-box-time-img' src={`${IMGCDNURL}lpy/integral/select2.png`}/>
+          </Picker>:
+          <Picker mode='date' fields='month' value={time} start={start} end={end} onChange={(e) => handleClckTime(e)}>
+            <Text className='tabber-content-box-time-text'>{showTime}</Text>
+            <Image className='tabber-content-box-time-img' src={`${IMGCDNURL}lpy/integral/select2.png`} />
           </Picker>
+          }
         </View>
         <View className='tabber-content-box-selector'>
           <Picker mode='selector' range={initInfo === '0' ? sourceList : consumeList} value={startType} onChange={(e)=>handleClick(e)}>

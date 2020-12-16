@@ -120,7 +120,8 @@ export default function ResumeDetail() {
         let mylists = [...res.certificates]
         let data: resumeDetailCertificatesRedux[] = [];
         for(let i=0;i<mylists.length;i++){
-          let item = { ...mylists[i], images: mylists[i].images.split(',') }
+          let images = mylists[i].images ? mylists[i].images.split(','):[];
+          let item = { ...mylists[i], images: images }
           data.push(item)
         }
         dispatch(setSubpackcertificate([...data]));
@@ -129,7 +130,8 @@ export default function ResumeDetail() {
         let projectData: resumeDetailProjectRedux[] = [];
         // 职业技能
         for (let i = 0; i < projectArr.length; i++) {
-          let item = { ...projectArr[i], images: projectArr[i].images.split(',') }
+          let images = projectArr[i].images ? projectArr[i].images.split(','):[];
+          let item = { ...projectArr[i], images: images }
           projectData.push(item)
         }
         dispatch(setSubpackProject([...projectData]));
@@ -312,7 +314,7 @@ export default function ResumeDetail() {
   }
 
   const handleMap = ()=>{
-    let locArr = data.info.location.split(",");
+    let locArr = data.info.location? data.info.location.split(","):[];
     Taro.openLocation({
       latitude: parseFloat(locArr[1]),
       longitude: parseFloat(locArr[0]),
