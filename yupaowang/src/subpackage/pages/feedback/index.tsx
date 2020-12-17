@@ -11,6 +11,7 @@ import { feedbackSubmissionAction } from '../../../utils/request/index'
 import Msg, { ShowActionModal } from '../../../utils/msg'
 import { SubscribeToNews } from '../../../utils/subscribeToNews';
 import { isVaildVal, isPhone } from '../../../utils/v'
+import { SERIES, QQSERIES } from '../../../config'
 import './index.scss'
 
 export interface DataType {
@@ -67,7 +68,14 @@ export default function Feedback() {
         image.item[i] = imageItem
         setImage({ ...image })
       }
+      setName(name);
     })
+  }
+  // 用户删除图片
+  const userDelImg = (i: number) => {
+    let imageData = JSON.parse(JSON.stringify(image))
+    imageData.item.splice(i, 1)
+    setImage(imageData)
   }
   const handlePhone = (e:string)=>{
     if (e !== phone || !phone){
@@ -116,7 +124,15 @@ export default function Feedback() {
           })
         })
       }else{
-        Msg(res.errmsg)
+        // qq换成模态框
+        if (SERIES == QQSERIES){
+          Taro.showModal({
+            title: '温馨提示',
+            content: res.errmsg,
+          })
+        }else{
+          Msg(res.errmsg)
+        }
       }
     })
   }
@@ -144,7 +160,7 @@ export default function Feedback() {
         </View>
           <View className='feedback-content-middle-imgBox'>
             {image.item &&
-              <ImageView images={image.item} max={9} userUploadImg={userUploadImg} />
+                <ImageView images={image.item} max={9} userDelImg={userDelImg} userUploadImg={userUploadImg}  />
             }
         </View>
       </View>

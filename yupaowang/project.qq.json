@@ -41,7 +41,11 @@
 	"simulatorPluginLibVersion": {},
 	"libVersion": "2.8.3",
 	"qqappid": "1111223114",
-	"scripts": {},
+	"scripts": {
+		"beforeCompile": "",
+		"beforePreview": "",
+		"beforeUpload": ""
+	},
 	"condition": {
 		"search": {
 			"current": -1,
@@ -281,6 +285,13 @@
 					"pathName": "pages/used/lists/index",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "1",
+					"pathName": "pages/resume/detail/index",
+					"query": "uuid=1589439800775529&location=30.5702,104.06476&__key_=16080237099692",
+					"scene": ""
 				}
 			]
 		}

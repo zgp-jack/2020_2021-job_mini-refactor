@@ -249,6 +249,8 @@ $commonMargin: 44px;
               margin-left: 40px;
             }
             .name{
+              display: flex;
+              justify-items: center;
               font-size: 28px;
               font-weight: bold;
               color: #343434;
@@ -258,6 +260,12 @@ $commonMargin: 44px;
               font-weight: bold;
               font-size: 28px;
               color: #6C6B6B;
+            }
+            .information-img{
+              width: 120px;
+              height: 30px;
+              margin: auto 0 ;
+              margin-left: 14px;
             }
           }
           .change{
@@ -347,8 +355,8 @@ $commonMargin: 44px;
               margin-right: 10px;
               margin-bottom: 10px;
               padding: 7px 25px;
-              color: #414141;
-              background-color: #E7E7E7;
+              color: #666;
+              background-color: #f7f7f7;
               border-radius: 4px;
             }
             .craft-box{

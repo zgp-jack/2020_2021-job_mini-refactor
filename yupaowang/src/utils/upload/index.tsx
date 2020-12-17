@@ -1,6 +1,6 @@
 import Taro from '@tarojs/taro'
 import { UserInfo } from '../../config/store'
-import { UPLOADIMGURL, ISPARSEUPLOADIMG } from '../../config'
+import { UPLOADIMGURL, ISPARSEUPLOADIMG, SERIES, QQSERIES } from '../../config'
 
 interface ResultImage {
   errcode: string,
@@ -25,11 +25,18 @@ interface ResultCardInfoImage {
 
 export default function UploadImgAction(url: string = UPLOADIMGURL): Promise<ResultImage>{
   let uploadUrl = url || UPLOADIMGURL
+  // 判断qq小程序无法调用摄像头
+  let sourceType;
+  if (SERIES == QQSERIES){
+    sourceType = ['album'];
+  }else{
+    sourceType = ['album', 'camera'];
+  }
   return new Promise((resolve)=>{
     Taro.chooseImage({
       count: 1,
       sizeType: ['compressed'],
-      sourceType: ['album', 'camera'],
+      sourceType: sourceType,
       success: res => {
         AppUploadImg(resolve, res, uploadUrl)
       }

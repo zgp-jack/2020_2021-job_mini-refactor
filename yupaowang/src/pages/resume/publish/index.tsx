@@ -181,7 +181,11 @@ export default function ResumePublish(){
                 <View className='information'>
                   <Image className='basic-user-img' src={infoData.headerimg} />
                   <View className='infor'>
-                    <View className='name'>{infoData.username}</View>
+                    <View className='name'>
+                      <Text>{infoData.username}</Text>
+                      {infoData.authentication == '2' && <Image src={`${IMGCDNURL}new-list-realname-icon.png`} className='information-img' />}
+                      {infoData.certificate_show == 1 && <Image src={`${IMGCDNURL}new-list-jnzs-icon.png?t=1`} className='information-img' />}
+                    </View>
                     <View className='sexage'>{infoData.gender == '1' ? '男' : '女'}  {infoData.age}  {infoData.nation}</View>
                   </View>
                 </View>
