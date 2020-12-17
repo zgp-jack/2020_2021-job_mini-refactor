@@ -667,11 +667,9 @@ export default function ResumeDetail() {
         {complaintModal && <Report display={complaintModal} textarea={textarea} handleTextarea={handleTextarea} setComplaintModal={setComplaintModal} 
           handleSubmit={handleSubmit}/>
         }
-    </View>
-
       {/* 返回首页 */}
       <View className='see-recruit-list-btn' onClick={() => seeMoreResume()}>查看更多找活信息</View> 
-    
+    </View>
     </View>
   )
 }

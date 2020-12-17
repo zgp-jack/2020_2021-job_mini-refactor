@@ -11,6 +11,7 @@ import { feedbackSubmissionAction } from '../../../utils/request/index'
 import Msg, { ShowActionModal } from '../../../utils/msg'
 import { SubscribeToNews } from '../../../utils/subscribeToNews';
 import { isVaildVal, isPhone } from '../../../utils/v'
+import { SERIES, QQSERIES } from '../../../config'
 import './index.scss'
 
 export interface DataType {
@@ -67,6 +68,7 @@ export default function Feedback() {
         image.item[i] = imageItem
         setImage({ ...image })
       }
+      setName(name);
     })
   }
   // 用户删除图片
@@ -122,7 +124,15 @@ export default function Feedback() {
           })
         })
       }else{
-        Msg(res.errmsg)
+        // qq换成模态框
+        if (SERIES == QQSERIES){
+          Taro.showModal({
+            title: '温馨提示',
+            content: res.errmsg,
+          })
+        }else{
+          Msg(res.errmsg)
+        }
       }
     })
   }
