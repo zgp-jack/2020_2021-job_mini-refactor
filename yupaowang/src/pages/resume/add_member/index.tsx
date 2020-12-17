@@ -366,7 +366,7 @@ export default function AddResumeMember() {
 }
 
 AddResumeMember.config = {
-  navigationBarTitleText: '编辑人员信息',
+  navigationBarTitleText: '人员信息',
   navigationBarBackgroundColor: '#0099ff',
   navigationBarTextStyle: 'white',
   backgroundTextStyle: "dark"

@@ -1,11 +1,16 @@
-import Taro, { Config, useDidShow } from '@tarojs/taro'
+import Taro, { Config, useDidShow, useState } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
 import { SERVERPHONE, BAIDUSERIES, SERIES, SHOWSERVERPHONE } from '../../../config'
+import { useSelector } from '@tarojs/redux'
 import './index.scss'
 
 
 export default function DetailInfoPage() {
+  const phone = useSelector<any, string>(state => state.WechatNotice['phone']);
+  const [tel,setTel] = useState<string>('');
   useDidShow(()=>{
+    let tel = phone ? phone : SERVERPHONE;
+    setTel(tel);
     if(SERIES == BAIDUSERIES){
       Taro.setPageInfo({
         title: '鱼泡网,建筑招聘,建筑人才,工地招工,施工队找活,工程信息',
@@ -39,7 +44,7 @@ export default function DetailInfoPage() {
         <View className='anti-fraud-info'>5、如遇恶意拖欠工人工资情况，请及时报请劳动监察大队处理，利用法律有效保护自身合法权益。</View>
         <View className='anti-fraud-other'>祝广大鱼泡工友顺利找到自己理想的工作和合适的工人。</View>
         {SHOWSERVERPHONE &&
-          <View className='anti-fraud-other'>如有疑问，敬请拨打鱼泡客服咨询热线： <Text onClick={() => { Taro.makePhoneCall({ phoneNumber: SERVERPHONE }) }}>{SERVERPHONE}</Text></View>
+          <View className='anti-fraud-other'>如有疑问，敬请拨打鱼泡客服咨询热线： <Text onClick={() => { Taro.makePhoneCall({ phoneNumber: tel }) }}>{tel}</Text></View>
         }
       </View>
 

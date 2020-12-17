@@ -1,5 +1,5 @@
 import Taro, { Config, useState, useRouter, useShareAppMessage, useDidShow, useEffect } from '@tarojs/taro'
-import { View, Text, Image, Button } from '@tarojs/components'
+import { View, Text, Image, Button, Ad } from '@tarojs/components'
 import { resumeDetailAction, recommendListAction, resumesGetTelAcrion, resumeSupportAction, resumeCollectAction, resumesComplainAction } from '../../../utils/request/index'
 import { IMGCDNURL, ISCANSHARE, FILTERWEIXINREG, REPLACEWEIXINTEXT, SERIES, BAIDUSERIES, INDEXPATH } from '../../../config'
 import Msg, { ShowActionModal, showModalTip } from '../../../utils/msg'
@@ -314,6 +314,10 @@ export default function ResumeDetail() {
   }
 
   const handleMap = ()=>{
+    
+    Taro.getSetting().then(res=>{
+      console.error(res,1111);
+    })
     let locArr = data.info.location? data.info.location.split(","):[];
     Taro.openLocation({
       latitude: parseFloat(locArr[1]),
@@ -666,6 +670,18 @@ export default function ResumeDetail() {
         {/* 投诉 */}
         {complaintModal && <Report display={complaintModal} textarea={textarea} handleTextarea={handleTextarea} setComplaintModal={setComplaintModal} 
           handleSubmit={handleSubmit}/>
+        }
+        {/* 百度广告 */}
+        {SERIES == BAIDUSERIES && 
+        <View>
+          {/* <Ad
+            unitId='7294000'
+            ad-intervals={60}
+            onLoad={() => console.log('ad onLoad')}
+            onError={() => console.log('ad onError')}
+            // onClose={() => console.log('ad onClose')}
+          /> */}
+        </View>
         }
       {/* 返回首页 */}
       <View className='see-recruit-list-btn' onClick={() => seeMoreResume()}>查看更多找活信息</View> 

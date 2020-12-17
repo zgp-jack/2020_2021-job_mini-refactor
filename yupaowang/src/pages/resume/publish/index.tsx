@@ -51,7 +51,7 @@ export default function ResumePublish(){
   const userEditCardInfo = () => {
     if(!uuid){
       userRouteJump(`/pages/resume/add_info/index`)
-    } else if (!is_introduces){
+    } else if (is_introduces == 0 ){
       userRouteJump(`/pages/resume/add_member/index`)
     }else if(!projectData.length){
       userRouteJump(`/pages/resume/add_project/index`)

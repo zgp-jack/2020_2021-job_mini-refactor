@@ -19,7 +19,6 @@ export default function WechatNotice(){
     vertical: true,
     lists: []
   })
-
   const dispatch = useDispatch()
   const wechatNoticeData = useSelector<any, WechatNoticeType>(state => state.WechatNotice)
 

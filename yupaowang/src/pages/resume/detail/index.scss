@@ -503,8 +503,10 @@
   width: 100%;
   background: white;
   height: 100px;
+  line-height: 100px;
   display: flex;
   justify-content: space-around;
+  justify-items: center;
   font-size: 30px;
   color: #7d7d7d;
   position: fixed;
@@ -519,14 +521,17 @@
   color: #7d7d7d;
   padding-right: 8px;
   margin-top:7px;
+  margin: auto 0;
 }
 .resumeDetail-footer-box {
   padding-left: 0;
   padding-right: 0;
-  margin: 0;
-  line-height: inherit;
-  margin-top: 30px;
   display: flex;
+  justify-content: center;
+  justify-items: center;
+  width: 33%;
+  height: 100px;
+  line-height: 100px;
   background-color: #fff;
   border-radius: 0;
   font-size: 30px;
@@ -788,15 +793,20 @@
 
 .see-recruit-list-btn{
   position: relative;
-  margin: 20px 0;
-  width: 100%;
+  margin: 20px auto;
+  width: 60%;
+  border-radius: 60px;
   background-color: $color;
   color: white;
-  line-height: 120px;
+  line-height: 80px;
   text-align: center;
-  font-size: 34px;
+  font-size: 28px;
   letter-spacing: 2px;
   font-weight: bold;
   margin-bottom: 120px;
   margin-top: 150px;
+}
+
+.adCss{
+  width: 100%;
 }

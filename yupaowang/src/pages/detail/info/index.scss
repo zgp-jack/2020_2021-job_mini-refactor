@@ -334,13 +334,14 @@
 }
 .see-recruit-list-btn{
   position: relative;
-  margin: 20px 0;
-  width: 100%;
+  margin: 20px auto;
+  width: 60%;
+  border-radius: 60px;
   background-color: $color;
   color: white;
-  line-height: 120px;
+  line-height: 80px;
   text-align: center;
-  font-size: 34px;
+  font-size: 28px;
   letter-spacing: 2px;
   font-weight: bold;
 }
