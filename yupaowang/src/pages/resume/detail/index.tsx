@@ -678,12 +678,13 @@ export default function ResumeDetail() {
         {SERIES == BAIDUSERIES && 
         <View>
           {/* <Ad
-            unitId='7294000'
+            unitId='adunit-f43849b0be35aeae'
             ad-intervals={60}
             onLoad={() => console.log('ad onLoad')}
             onError={() => console.log('ad onError')}
             // onClose={() => console.log('ad onClose')}
           /> */}
+          {/* <ad appid="a288ea78" apid="7294000" class="ad" type="feed" ></ad> */}
         </View>
         }
       {/* 返回首页 */}

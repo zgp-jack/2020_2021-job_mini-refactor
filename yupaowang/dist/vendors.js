@@ -18496,11 +18496,18 @@ function UploadImgAction() {
   var url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _index.UPLOADIMGURL;
 
   var uploadUrl = url || _index.UPLOADIMGURL;
+  // 判断qq小程序无法调用摄像头
+  var sourceType = void 0;
+  if (_index.SERIES == _index.QQSERIES) {
+    sourceType = ['album'];
+  } else {
+    sourceType = ['album', 'camera'];
+  }
   return new Promise(function (resolve) {
     _taroSwan2.default.chooseImage({
       count: 1,
       sizeType: ['compressed'],
-      sourceType: ['album', 'camera'],
+      sourceType: sourceType,
       success: function success(res) {
         AppUploadImg(resolve, res, uploadUrl);
       }
