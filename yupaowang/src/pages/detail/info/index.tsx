@@ -2,9 +2,9 @@ import Taro, { Config, useState, useRouter, useDidShow, useEffect, useShareAppMe
 import { View, Text, Image, Icon, Button } from '@tarojs/components'
 import { jobInfoAction, publishComplainAction, jobGetTelAction, recruitListCancelCollectionAction, jobEndStatusAction, jobUpdateTopStatusAction, jobNoUserInfoAction, jobRecommendListAction } from '../../../utils/request/index'
 import WechatNotice from '../../../components/wechat'
-import { IMGCDNURL, SERVERPHONE, AUTHPATH, CODEAUTHPATH, ISCANSHARE, DOWNLOADAPP, SHOWOFFICIALACCOUNT, REPLACEWEIXINTEXT, FILTERWEIXINREG, DOWNLOADAPPPATH, SERIES, BAIDUSERIES, INDEXPATH } from '../../../config'
+import { IMGCDNURL, SERVERPHONE, AUTHPATH, CODEAUTHPATH, ISCANSHARE, DOWNLOADAPP, SHOWOFFICIALACCOUNT, REPLACEWEIXINTEXT, FILTERWEIXINREG, DOWNLOADAPPPATH, SERIES, QQSERIES ,BAIDUSERIES, INDEXPATH } from '../../../config'
 import { useSelector } from '@tarojs/redux'
-import { isVaildVal } from '../../../utils/v'
+import { isVaildVal, isIos } from '../../../utils/v'
 import  Report  from '../../../components/report'
 import { getUserShareMessage } from '../../../utils/helper'
 import Msg, { ShowActionModal, showModalTip } from '../../../utils/msg'
@@ -105,8 +105,11 @@ export default function DetailInfoPage() {
   const login = useSelector<any, boolean>(state => state.User['login'])
   // 相关推荐
   const [recommend, setRecommend] = useState<any[]>([])
+  // 判断是否是ios
+  const [ios, setIos] = useState<boolean>(false)
   // 返回刷新页面
   useDidShow(()=>{
+    setIos(isIos())
     if(refresh){
       setRefresh(false)
       return
@@ -562,7 +565,7 @@ export default function DetailInfoPage() {
         }
         <View className='detailInfo-project-content-address'>项目地址: 
         {data.location ? <View className='detailInfo-project-content-address-color'>{data.show_full_address}</View> : <Text className='detailInfo-project-content-address-color'>{ data.show_full_address }</Text> }
-          {data.location && <View className='detailInfo-project-content-map' onClick={handleMap}>查看地图</View>
+          {data.location && (SERIES == QQSERIES && !ios) && <View className='detailInfo-project-content-map' onClick={handleMap}>查看地图</View>
         }
         </View>
       </View>

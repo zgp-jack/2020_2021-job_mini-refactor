@@ -1,11 +1,11 @@
 import Taro, { Config, useState, useRouter, useShareAppMessage, useDidShow, useEffect } from '@tarojs/taro'
 import { View, Text, Image, Button, Ad } from '@tarojs/components'
 import { resumeDetailAction, recommendListAction, resumesGetTelAcrion, resumeSupportAction, resumeCollectAction, resumesComplainAction } from '../../../utils/request/index'
-import { IMGCDNURL, ISCANSHARE, FILTERWEIXINREG, REPLACEWEIXINTEXT, SERIES, BAIDUSERIES, INDEXPATH } from '../../../config'
+import { IMGCDNURL, ISCANSHARE, FILTERWEIXINREG, REPLACEWEIXINTEXT, SERIES, QQSERIES, BAIDUSERIES, INDEXPATH } from '../../../config'
 import Msg, { ShowActionModal, showModalTip } from '../../../utils/msg'
 import { DataType, ListType, Injected } from './index.d'
 // import CollectionRecruitList  from '../../../components/recommendList/index'
-import { isVaildVal } from '../../../utils/v'
+import { isVaildVal, isIos } from '../../../utils/v'
 import { getUserShareMessage } from '../../../utils/helper'
 import Report from '../../../components/report';
 import { useSelector, useDispatch } from '@tarojs/redux'
@@ -26,6 +26,8 @@ export default function ResumeDetail() {
   const router: Taro.RouterInfo = useRouter()
   //获取uuid和location,location需要修改，用一个共同的，最外层使用的
   let { uuid, location } = router.params;
+  // 判断是否是ios
+  const [ios, setIos] = useState<boolean>(false)
   //总数据
   const [data, setDate] = useState<DataType>({
     certificates:[],
@@ -169,6 +171,7 @@ export default function ResumeDetail() {
     })
   }
   useDidShow(() => {
+    setIos(isIos())
     getDataList();
   })
   useEffect(() => {
@@ -461,7 +464,7 @@ export default function ResumeDetail() {
               'workotextone-noaddress': !data.info.distance
             })}>{data.info.address}</Text>
             {/* 地图 */}
-            {data.info.distance && 
+            {data.info.distance && (SERIES == QQSERIES && !ios) &&
             <View onClick={handleMap} className='map-distance-info'>
               <Image className='workotextone-address-img' src={`${IMGCDNURL}lpy/biaoqian.png`}/>
               {data.info.distance}
