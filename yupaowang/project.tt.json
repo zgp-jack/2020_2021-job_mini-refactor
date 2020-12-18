@@ -41,11 +41,15 @@
 	"simulatorPluginLibVersion": {},
 	"libVersion": "2.8.3",
 	"qqappid": "1111223114",
+<<<<<<< HEAD
+	"scripts": {},
+=======
 	"scripts": {
 		"beforeCompile": "",
 		"beforePreview": "",
 		"beforeUpload": ""
 	},
+>>>>>>> 340269d5e8c1133a47bd873ce167f4c74c02430f
 	"condition": {
 		"search": {
 			"current": -1,
@@ -67,7 +71,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 31,
 			"list": [
 				{
 					"id": -1,
