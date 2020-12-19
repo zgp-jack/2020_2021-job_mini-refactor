@@ -46,6 +46,8 @@ export default function Recharge() {
   const [integral, setIntegral] = useState<number>(0)
   const [current, setCurrent] = useState<number>(0)
   const [price, setPrice] = useState<number>(0)
+  // 判断是是否能用扣扣吊起微信支付
+  const [isWxPayment, setIsWxPayment] = useState<boolean>(false);
   // 初始化积分充值选项
   useEffect(() => {
     getRechargeList().then(res => {
@@ -65,6 +67,12 @@ export default function Recharge() {
         })
       }
     })
+    // 判断是是否能用扣扣吊起微信支付
+    const isWxPayment = Taro.canIUse && Taro.canIUse('requestWxPayment');
+    console.error(isWxPayment,'111')
+    if(isWxPayment){
+      setIsWxPayment(true)
+    }
   }, [])
 
   // 用户选择充值项
@@ -90,8 +98,14 @@ export default function Recharge() {
     } else if (SERIES == BAIDUSERIES) {
       baiduProPay(rechargeIntegral)
     } else if (SERIES == QQSERIES) {
+      let itemList:string[] = [];
+      if (isWxPayment){
+        itemList =  ['QQ支付', '微信支付'];
+      }else{
+        itemList = ['QQ支付'];
+      }
       Taro.showActionSheet({
-        itemList: ['QQ支付', '微信支付'],
+        itemList: itemList,
         success: function (res:QqSeriesRes) {
           if (res.tapIndex == 0) {
             handleQQPay(rechargeIntegral)

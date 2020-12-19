@@ -4,7 +4,7 @@ var miniConfig = {
   // * page-title-global
   PAGETITLE: '鱼泡网-',
   // ! 小程序token 
-  TOKEN: 'jizhao',
+  TOKEN: 'qq_ypw',
   // ! 小程序公司体系
   SERIES: QQ_SERIES,
   // * 小程序是否能被分享
