@@ -330,7 +330,7 @@ export default function DetailInfoPage() {
 
   // 设置分享信息
   useShareAppMessage(() => {
-    let path = `/pages/detail/index/index?id=${id}`
+    let path = `/pages/detail/info/index?id=${id}`
     let userInfo = Taro.getStorageSync(UserInfo)
     return {
       ...getUserShareMessage(),
