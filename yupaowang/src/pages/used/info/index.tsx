@@ -4,22 +4,33 @@ import WechatNotice from '../../../components/wechat'
 import { getUsedInfo } from '../../../utils/request'
 import { getUserShareMessage } from '../../../utils/helper'
 import { ShowActionModal } from '../../../utils/msg'
-import { REPLACEWEIXINTEXT, FILTERWEIXINREG, SERIES, BAIDUSERIES } from '../../../config'
+import { REPLACEWEIXINTEXT, FILTERWEIXINREG, SERIES, BAIDUSERIES, MaxUsedInfoId } from '../../../config'
 import { GetUsedInfoData } from '../../../utils/request/index.d'
 import './index.scss'
 
 export default function UsedInfo(){
   const router: RouterInfo = useRouter()
-  const id: string = router.params.id
+  // id为二手详情id used 因为百度收录问题， 当id>MaxUsedInfoId 时都会带used=1来保证最新资源收录
+  const { id, used  } = router.params
   const [model, setModel] = useState<GetUsedInfoData>()
   // 设置用户分享信息
   useShareAppMessage(()=>{
     return {
-      ...getUserShareMessage()
+      ...getUserShareMessage(),
+      path: `/pages/used/info/index?id=${id}&more=1`
     }
   })
   // 初始化二手交易信息
   useDidShow(()=>{
+    if (!used || (used != '1')){
+      if (parseInt(id) > MaxUsedInfoId){
+        Taro.redirectTo({
+          url:  `/pages/detail/info/index?id=${id}`
+        })
+        return
+      }
+    }
+    // 获取场景值
     getUsedInfo(id).then((data)=>{
       if(data.errcode == 'ok'){
         // 如果是百度系小程序，则直接设置seo等相关信息
@@ -64,10 +75,16 @@ export default function UsedInfo(){
   // 查看更多招工信息
   const seeMoreUsed = () => {
     let pages = Taro.getCurrentPages()
+    let listUrl = `/pages/used/lists/index`
     if (pages.length < 2) {
-      Taro.reLaunch({ url: `/pages/used/lists/index` })
+      Taro.reLaunch({ url: listUrl })
     } else {
-      Taro.navigateBack()
+      let routeUrl = `/${pages[pages.length - 2].route}`
+      if (routeUrl == listUrl) {
+        Taro.navigateBack()
+      } else {
+        Taro.reLaunch({ url: listUrl })
+      }
     }
   }
 

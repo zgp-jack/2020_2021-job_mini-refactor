@@ -493,14 +493,18 @@ export default function DetailInfoPage() {
   }
   // 查看更多招工信息
   const seeMoreRecruit = () => {
-    // 百度搜索会有问题，所有直接返回首页
-    Taro.reLaunch({ url: INDEXPATH })
-    // let pages = Taro.getCurrentPages()
-    // if(pages.length < 2){
-    //   Taro.reLaunch({ url: INDEXPATH})
-    // }else{
-    //   Taro.navigateBack()
-    // }
+    let pages = Taro.getCurrentPages()
+    if(pages.length < 2){
+      Taro.reLaunch({ url: INDEXPATH})
+    }else{
+      let routeUrl = pages[pages.length - 2].route
+      let listUrl = `/${routeUrl}`
+      if (listUrl == INDEXPATH){
+        Taro.navigateBack()
+      }else{
+        Taro.reLaunch({ url: INDEXPATH })
+      }
+    }
   }
 
 
