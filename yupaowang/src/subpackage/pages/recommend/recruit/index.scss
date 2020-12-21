@@ -1,0 +1,142 @@
+@import '../../../../common.scss';
+
+.recruit-lists-container{
+  position: relative;
+  width: 100%;
+  padding-bottom: 20px;
+  .recruit-list-item{
+    position: relative;
+    width: 100%;
+    margin-top: 15px;
+    background-color: white;
+    padding:0 20px;
+    .list-toprecruit-img{
+      position: absolute;
+      width: 70px;
+      height: 70px;
+      left: 0;
+      top: 0;
+      z-index: 2;
+    }
+    .recruit-findend-img{
+      position: absolute;
+      right: 0;
+      width: 100px;
+      height: 45px;
+      top: -5px;
+      z-index: 2;
+    }
+    .recruit-list-header{
+      position: relative;
+      padding:20px 0;
+      line-height: 60px;
+      padding-right: 200px;
+      border-bottom: 1px dashed $bordercolor;
+      .recruit-list-title{
+        position: relative;
+        width: 100%;
+        font-size: 30px;
+      }
+      .recruit-list-settop{
+        position: absolute;
+        right: 0;
+        top: 20px;
+        background-color: #ecf7fe;
+        color:$color;
+        border: 1px solid #6bd0f1;
+        line-height: 60px;
+        display: inline-block;
+        padding: 0 20px;
+        font-size: 28px;
+        border-radius: 5px;
+      }
+    }
+    .recruit-list-body{
+      position: relative;
+      width: 100%;
+      padding-left: 160px;
+      border-bottom: 1px dashed $bordercolor;
+      .recruit-list-user{
+        position: absolute;
+        top: 22px;
+        left: 0;
+        border-radius: 50%;
+        width: 135px;
+        height: 135px;
+        display: block;
+      }
+      .recruit-list-body-content{
+        position: relative;
+        width: 100%;
+        padding: 20px 0;
+        .recruit-body-header{
+          position: relative;
+          .recruit-list-username{
+            position: relative;
+            display: inline-block;
+            font-size: 28px;
+          }
+          .recruit-list-finding{
+            position: relative;
+            display: inline-block;
+            width: 100px;
+            height: 30px;
+            margin-left: 15px;
+            vertical-align: middle;
+          }
+        }
+        .recruit-list-words{
+          position: relative;
+          height: 100px;
+          padding: 10px 0;
+          padding-right: 20px;
+          @include flex(column);
+          align-items: flex-start;
+          .recruit-words-text{
+            line-height: 40px;
+            font-size: 28px;
+            color: #333;
+            @include textrow();
+          }
+        }
+      }
+    }
+    .recruit-list-footer{
+      position: relative;
+      padding:10px 0;
+      .recruit-list-loc{
+        position: absolute;
+        display: block;
+        width: 30px;
+        height: 30px;
+        left: 0;
+        top: 25px;
+      }
+      .recruit-list-loctxt{
+        position: relative;
+        padding-left: 45px;
+        padding-right: 300px;
+        font-size: 28px;
+        line-height: 60px;
+      }
+      .recruit-list-time{
+        position: absolute;
+        display: inline-block;
+        right: 0;
+        top: 10px;
+        line-height: 60px;
+        font-size: 26px;
+        color: rgba(127, 126, 126, 1);
+      }
+    }
+  }
+  .seemore-recommend{
+    background: white;
+    line-height: 100px;
+    margin-top: 20px;
+    color: #0099ff;
+    text-align: center;
+    font-size: 30px;
+    letter-spacing: 1px;
+  }
+}

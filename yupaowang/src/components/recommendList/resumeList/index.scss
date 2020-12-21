@@ -26,7 +26,7 @@
       position: relative;
       padding-left: 120px;
       line-height: 50px;
-
+      min-height: 100px;
       .resume-list-user {
         position: absolute;
         width: 100%;
@@ -208,7 +208,7 @@
   display: block;
   content: '';
   height: 1px;
-  width: 150px;
+  width: 100px;
   background: #E5E5E5;
   top: 40px;
   right: 15%
@@ -218,7 +218,7 @@
   display: block;
   content: '';
   height: 1px;
-  width: 150px;
+  width: 100px;
   background: #E5E5E5;
   top: 40px;
   left: 15%

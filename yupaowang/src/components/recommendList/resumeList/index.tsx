@@ -4,27 +4,31 @@ import { IMGCDNURL } from '../../../config'
 import './index.scss'
 
 interface PROPS {
-  data: any[]
+  data: any[],
+  occupations?:string,
+  areasId?:number,
+  type:number,
 }
 
 // 找活
-export default function ResumeListPage({ data = [] }: PROPS) {
+export default function ResumeListPage({ data = [], occupations, areasId, type }: PROPS) {
   // 用户页面跳转
   const userRouteJump = (url: string) => {
     Taro.navigateTo({
       url: url
     })
   }
-  const handleLast = ()=>{
-    Taro.navigateBack({
-      delta: 1
+  // 用户页面跳转-定向
+  const userRouteRe = (url: string) => {
+    Taro.reLaunch({
+      url: url
     })
   }
   return(
     <View className='resume-list-container'>
       <View className='resumeDetail-recommend'>
         <View className='resumeDetail-recommend-top'>
-          <Text className='resumeDetail-recommend-top-text'>相关推荐</Text></View>
+          <Text className='resumeDetail-recommend-top-text'>附近适合您的工人</Text></View>
       </View>
       {data.map(item => (
         <Block key={item.id}>
@@ -35,12 +39,12 @@ export default function ResumeListPage({ data = [] }: PROPS) {
                 <View className='resume-list-userinfo'>
                   <View className='resume-list-userinfo-detail'>
                     <Text className='resume-userinfo-name'>{item.username}</Text>
-                    <Text className='resume-userinfo-birthday'>{item.birthday}岁</Text>
+                    {item.birthday && <Text className='resume-userinfo-birthday'>{item.birthday}岁</Text>}
                     {item.certificate == 1 && < Image className='resume-userinfo-img' src={`${IMGCDNURL}newresume-infolist-jnz.png?t=1`} />}
                   </View>
                   <Text className='resume-list-type'>{item.type}</Text>
                   <View className='resume-otherinfo'>
-                    <Text className='resume-otherinfo-text'>{item.nation}</Text>
+                    {item.nation && <Text className='resume-otherinfo-text'>{item.nation}</Text>}
                     <Text className='resume-otherinfo-text'>{item.experience}</Text>
                   </View>
                 </View>
@@ -61,7 +65,8 @@ export default function ResumeListPage({ data = [] }: PROPS) {
             </View>
         </Block>
       ))}
-      <View className="seemore-recommend-recruit" onClick={()=>handleLast()}>查看更多找活信息</View>
+        {data.length >= 15 && <View className='seemore-recommend-recruit' onClick={() => userRouteJump(`/subpackage/pages/recommend/resume/index?areasId=${areasId}&occupations=${occupations}&type=${type}`)}>查看更多找活信息</View>}
+        {data.length < 15 && <View className="seemore-recommend-recruit" onClick={()=>userRouteRe(`/pages/index/index?type=resume`)}>查看更多找活信息</View>}
     </View>
   )
 }

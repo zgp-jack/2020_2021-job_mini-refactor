@@ -1,1 +1,229 @@
-(qq.webpackJsonp=qq.webpackJsonp||[]).push([[25],{"221":function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{"value":!0});var S=Object.assign||function(t){for(var e=1;e<arguments.length;e++){var n=arguments[e];for(var o in n)Object.prototype.hasOwnProperty.call(n,o)&&(t[o]=n[o])}return t},_=function(t,e){if(Array.isArray(t))return t;if(Symbol.iterator in Object(t))return function sliceIterator(t,e){var n=[],o=!0,r=!1,a=void 0;try{for(var u,c=t[Symbol.iterator]();!(o=(u=c.next()).done)&&(n.push(u.value),!e||n.length!==e);o=!0);}catch(t){r=!0,a=t}finally{try{!o&&c.return&&c.return()}finally{if(r)throw a}}return n}(t,e);throw new TypeError("Invalid attempt to destructure non-iterable instance")},o=function(t,e,n){return e&&defineProperties(t.prototype,e),n&&defineProperties(t,n),t};function defineProperties(t,e){for(var n=0;n<e.length;n++){var o=e[n];o.enumerable=o.enumerable||!1,o.configurable=!0,"value"in o&&(o.writable=!0),Object.defineProperty(t,o.key,o)}}var E=n(0),r=_interopRequireDefault(E),m=n(3),N=_interopRequireDefault(n(222)),d=_interopRequireDefault(n(28)),W=n(2),v=n(6),b=n(1),I=_interopRequireDefault(n(5));function _interopRequireDefault(t){return t&&t.__esModule?t:{"default":t}}n(223);var a=(function _inherits(t,e){if("function"!=typeof e&&null!==e)throw new TypeError("Super expression must either be null or a function, not "+typeof e);t.prototype=Object.create(e&&e.prototype,{"constructor":{"value":t,"enumerable":!1,"writable":!0,"configurable":!0}}),e&&(Object.setPrototypeOf?Object.setPrototypeOf(t,e):t.__proto__=e)}(WechatNotice,r.default.Component),o(WechatNotice,[{"key":"_constructor","value":function _constructor(t){(function get(t,e,n){null===t&&(t=Function.prototype);var o=Object.getOwnPropertyDescriptor(t,e);if(void 0===o){var r=Object.getPrototypeOf(t);return null===r?void 0:get(r,e,n)}if("value"in o)return o.value;var a=o.get;return void 0!==a?a.call(n):void 0})(WechatNotice.prototype.__proto__||Object.getPrototypeOf(WechatNotice.prototype),"_constructor",this).call(this,t),this.$$refs=new r.default.RefsArray}},{"key":"_createData","value":function _createData(t,e,n){this.__state=t||this.state||{},this.__props=e||this.props||{};var o=this.$prefix,r=(0,E.genCompid)(o+"$compid__10"),a=_(r,2),u=a[0],c=a[1],i=(0,E.useState)({"vertical":!0,"lists":[]}),s=_(i,2),f=s[0],l=s[1],p=(0,m.useDispatch)(),y=(0,m.useSelector)(function(t){return t.WechatNotice});function qa(){(0,v.copyWechatNumber)(y.wechat.number)}function ra(){(0,v.userCallPhone)(y.phone)}(0,E.useEffect)(function(){y.success?l(S({},f,{"lists":y.notice})):(0,W.getWechatNotice)().then(function(t){t[d.default]=d.default;var e={"type":d.default,"data":t};l(S({},f,{"lists":t.notice})),p((0,N.default)(e))})},[]);var h=b.SHOWSERVERPHONE||b.SHOWWEIXINNUMBER||b.SHOWLISTSNOTICE?(0,I.default)({"wechatinfo-container":!0,"wechatinfo-container-notop":!b.SHOWWEIXINNUMBER&&!b.SHOWSERVERPHONE}):null;this.anonymousFunc0=function(){return qa()},this.anonymousFunc1=function(){return qa()},this.anonymousFunc2=function(){return ra()},this.anonymousFunc3=function(){return ra()};var O=b.SHOWLISTSNOTICE?(0,I.default)({"notice-container":!0,"notice-container-notop":!b.SHOWSERVERPHONE&&!b.SHOWWEIXINNUMBER}):null;return(b.SHOWSERVERPHONE||b.SHOWWEIXINNUMBER||b.SHOWLISTSNOTICE)&&b.SHOWLISTSNOTICE&&E.propsManager.set({"data":f},c,u),Object.assign(this.__state,{"anonymousState__temp":h,"anonymousState__temp2":O,"$compid__10":c,"SHOWSERVERPHONE":b.SHOWSERVERPHONE,"SHOWWEIXINNUMBER":b.SHOWWEIXINNUMBER,"SHOWLISTSNOTICE":b.SHOWLISTSNOTICE,"wechatNoticeData":y}),this.__state}},{"key":"anonymousFunc0","value":function anonymousFunc0(){}},{"key":"anonymousFunc1","value":function anonymousFunc1(){}},{"key":"anonymousFunc2","value":function anonymousFunc2(){}},{"key":"anonymousFunc3","value":function anonymousFunc3(){}}]),WechatNotice);function WechatNotice(){!function _classCallCheck(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}(this,WechatNotice);var t=function _possibleConstructorReturn(t,e){if(!t)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!e||"object"!=typeof e&&"function"!=typeof e?t:e}(this,(WechatNotice.__proto__||Object.getPrototypeOf(WechatNotice)).apply(this,arguments));return t.$usedState=["anonymousState__temp","anonymousState__temp2","$compid__10","SHOWSERVERPHONE","SHOWWEIXINNUMBER","SHOWLISTSNOTICE","wechatNoticeData"],t.customComponents=["SwiperNews"],t}a.$$events=["anonymousFunc0","anonymousFunc1","anonymousFunc2","anonymousFunc3"],a.$$componentPath="components/wechat/index",e.default=a,Component(n(0).default.createComponent(a))},"222":function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{"value":!0}),e.default=function changeWechatNotice(t){return{"type":t.type,"data":t.data}}},"223":function(t,e,n){}},[[221,0,1]]]);
+(qq["webpackJsonp"] = qq["webpackJsonp"] || []).push([["components/wechat/index"],{
+
+/***/ "./src/actions/wechat_notice.ts":
+/*!**************************************!*\
+  !*** ./src/actions/wechat_notice.ts ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = changeWechatNotice;
+function changeWechatNotice(action) {
+  return {
+    type: action.type,
+    data: action.data
+  };
+}
+
+/***/ }),
+
+/***/ "./src/components/wechat/index.scss":
+/*!******************************************!*\
+  !*** ./src/components/wechat/index.scss ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
+/***/ "./src/components/wechat/index.tsx":
+/*!*****************************************!*\
+  !*** ./src/components/wechat/index.tsx ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+
+var _taroQq = __webpack_require__(/*! @tarojs/taro-qq */ "./node_modules/@tarojs/taro-qq/index.js");
+
+var _taroQq2 = _interopRequireDefault(_taroQq);
+
+var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/redux/index.js");
+
+var _wechat_notice = __webpack_require__(/*! ../../actions/wechat_notice */ "./src/actions/wechat_notice.ts");
+
+var _wechat_notice2 = _interopRequireDefault(_wechat_notice);
+
+var _wechat_notice3 = __webpack_require__(/*! ../../constants/wechat_notice */ "./src/constants/wechat_notice.ts");
+
+var _wechat_notice4 = _interopRequireDefault(_wechat_notice3);
+
+var _index = __webpack_require__(/*! ../../utils/request/index */ "./src/utils/request/index.ts");
+
+var _index2 = __webpack_require__(/*! ../../utils/helper/index */ "./src/utils/helper/index.ts");
+
+var _index3 = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
+
+var _classnames = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+__webpack_require__(/*! ./index.scss */ "./src/components/wechat/index.scss");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var WechatNotice = function (_Taro$Component) {
+  _inherits(WechatNotice, _Taro$Component);
+
+  function WechatNotice() {
+    _classCallCheck(this, WechatNotice);
+
+    var _this = _possibleConstructorReturn(this, (WechatNotice.__proto__ || Object.getPrototypeOf(WechatNotice)).apply(this, arguments));
+
+    _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "$compid__10", "SHOWSERVERPHONE", "SHOWWEIXINNUMBER", "SHOWLISTSNOTICE", "wechatNoticeData"];
+    _this.customComponents = ["SwiperNews"];
+    return _this;
+  }
+
+  _createClass(WechatNotice, [{
+    key: '_constructor',
+    value: function _constructor(props) {
+      _get(WechatNotice.prototype.__proto__ || Object.getPrototypeOf(WechatNotice.prototype), '_constructor', this).call(this, props);
+      this.$$refs = new _taroQq2.default.RefsArray();
+    }
+  }, {
+    key: '_createData',
+    value: function _createData() {
+      this.__state = arguments[0] || this.state || {};
+      this.__props = arguments[1] || this.props || {};
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
+      ;
+
+      var _genCompid = (0, _taroQq.genCompid)(__prefix + "$compid__10"),
+          _genCompid2 = _slicedToArray(_genCompid, 2),
+          $prevCompid__10 = _genCompid2[0],
+          $compid__10 = _genCompid2[1];
+
+      var _useState = (0, _taroQq.useState)({
+        vertical: true,
+        lists: []
+      }),
+          _useState2 = _slicedToArray(_useState, 2),
+          swiperNews = _useState2[0],
+          setSwiperNews = _useState2[1];
+
+      var dispatch = (0, _redux.useDispatch)();
+      var wechatNoticeData = (0, _redux.useSelector)(function (state) {
+        return state.WechatNotice;
+      });
+      // 获取微信号与公告列表
+      (0, _taroQq.useEffect)(function () {
+        if (wechatNoticeData.success) {
+          setSwiperNews(_extends({}, swiperNews, { lists: wechatNoticeData.notice }));
+          return;
+        }
+        (0, _index.getWechatNotice)().then(function (res) {
+          res[_wechat_notice4.default] = _wechat_notice4.default;
+          var action = {
+            type: _wechat_notice4.default,
+            data: res
+          };
+          setSwiperNews(_extends({}, swiperNews, { lists: res.notice }));
+          dispatch((0, _wechat_notice2.default)(action));
+        });
+      }, []);
+      // 复制微信号
+      var userCopyWechatNumber = function userCopyWechatNumber() {
+        (0, _index2.copyWechatNumber)(wechatNoticeData.wechat.number);
+      };
+      // 用户拨打电话
+      var userCallPhoneAction = function userCallPhoneAction() {
+        (0, _index2.userCallPhone)(wechatNoticeData.phone);
+      };
+      var anonymousState__temp = _index3.SHOWSERVERPHONE || _index3.SHOWWEIXINNUMBER || _index3.SHOWLISTSNOTICE ? (0, _classnames2.default)({
+        'wechatinfo-container': true,
+        'wechatinfo-container-notop': !_index3.SHOWWEIXINNUMBER && !_index3.SHOWSERVERPHONE
+      }) : null;
+      this.anonymousFunc0 = function () {
+        return userCopyWechatNumber();
+      };
+      this.anonymousFunc1 = function () {
+        return userCopyWechatNumber();
+      };
+      this.anonymousFunc2 = function () {
+        return userCallPhoneAction();
+      };
+      this.anonymousFunc3 = function () {
+        return userCallPhoneAction();
+      };
+      var anonymousState__temp2 = _index3.SHOWLISTSNOTICE ? (0, _classnames2.default)({
+        'notice-container': true,
+        'notice-container-notop': !_index3.SHOWSERVERPHONE && !_index3.SHOWWEIXINNUMBER
+      }) : null;
+      (_index3.SHOWSERVERPHONE || _index3.SHOWWEIXINNUMBER || _index3.SHOWLISTSNOTICE) && _index3.SHOWLISTSNOTICE && _taroQq.propsManager.set({
+        "data": swiperNews
+      }, $compid__10, $prevCompid__10);
+      Object.assign(this.__state, {
+        anonymousState__temp: anonymousState__temp,
+        anonymousState__temp2: anonymousState__temp2,
+        $compid__10: $compid__10,
+        SHOWSERVERPHONE: _index3.SHOWSERVERPHONE,
+        SHOWWEIXINNUMBER: _index3.SHOWWEIXINNUMBER,
+        SHOWLISTSNOTICE: _index3.SHOWLISTSNOTICE,
+        wechatNoticeData: wechatNoticeData
+      });
+      return this.__state;
+    }
+  }, {
+    key: 'anonymousFunc0',
+    value: function anonymousFunc0(e) {
+      ;
+    }
+  }, {
+    key: 'anonymousFunc1',
+    value: function anonymousFunc1(e) {
+      ;
+    }
+  }, {
+    key: 'anonymousFunc2',
+    value: function anonymousFunc2(e) {
+      ;
+    }
+  }, {
+    key: 'anonymousFunc3',
+    value: function anonymousFunc3(e) {
+      ;
+    }
+  }]);
+
+  return WechatNotice;
+}(_taroQq2.default.Component);
+
+WechatNotice.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3"];
+WechatNotice.$$componentPath = "components/wechat/index";
+exports.default = WechatNotice;
+
+Component(__webpack_require__(/*! @tarojs/taro-qq */ "./node_modules/@tarojs/taro-qq/index.js").default.createComponent(WechatNotice));
+
+/***/ })
+
+},[["./src/components/wechat/index.tsx","runtime","vendors"]]]);

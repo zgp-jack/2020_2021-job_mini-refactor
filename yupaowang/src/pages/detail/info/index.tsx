@@ -1,6 +1,6 @@
 import Taro, { Config, useState, useRouter, useDidShow, useEffect, useShareAppMessage } from '@tarojs/taro'
 import { View, Text, Image, Icon, Button } from '@tarojs/components'
-import { jobInfoAction, publishComplainAction, jobGetTelAction, recruitListCancelCollectionAction, jobEndStatusAction, jobUpdateTopStatusAction, jobNoUserInfoAction, jobRecommendListAction } from '../../../utils/request/index'
+import { jobInfoAction, publishComplainAction, jobGetTelAction, recruitListCancelCollectionAction, jobEndStatusAction, jobUpdateTopStatusAction, jobNoUserInfoAction, jobRecommendListAction, detailsRecommendAction } from '../../../utils/request/index'
 import WechatNotice from '../../../components/wechat'
 import { IMGCDNURL, SERVERPHONE, AUTHPATH, CODEAUTHPATH, ISCANSHARE, DOWNLOADAPP, SHOWOFFICIALACCOUNT, REPLACEWEIXINTEXT, FILTERWEIXINREG, DOWNLOADAPPPATH, SERIES, QQSERIES ,BAIDUSERIES, INDEXPATH } from '../../../config'
 import { useSelector } from '@tarojs/redux'
@@ -103,10 +103,18 @@ export default function DetailInfoPage() {
   const [editPhone, setEditPhone] = useState<boolean>(true)
   // 获取用户是否登录
   const login = useSelector<any, boolean>(state => state.User['login'])
-  // 相关推荐
+  // 招工相关推荐
   const [recommend, setRecommend] = useState<any[]>([])
   // 判断是否是ios
   const [ios, setIos] = useState<boolean>(false)
+  // 找活相关推荐
+  const [recommendRe, setRecommendRe] = useState<any[]>([])
+  // 更多招工省市
+  const [areasId,setAreasId] = useState<number>(0);
+  // 更多招工工种
+  const [occupations,setOccupations] = useState<string>('');
+  // 更多招工job_ids
+  const [jobIds,setJobIds] = useState<number>(0);
   // 返回刷新页面
   useDidShow(()=>{
     setIos(isIos())
@@ -146,11 +154,51 @@ export default function DetailInfoPage() {
           })
         }
         setIsCollection(res.result.is_collect);
+        // 设置更多招工信息的省/市
+        let area_id : number = res.result.city_id && res.result.city_id != 0 ? res.result.city_id : res.result.province_id;
+        setAreasId(area_id);
+        let occupations : string = res.result.occupations.length ? res.result.occupations.join(','):'';
+        setOccupations(occupations)
+        let jobIds : number = res.result.id 
+        setJobIds(jobIds)
         if (userInfo.userId === res.result.user_id) {
           // 判断是自己发布的招工
           setResCode('own')
         } else {
           setResCode(res.errcode)
+        }
+        if (userInfo.userId === res.result.user_id) {
+          // 加载找活相关推荐数据列表
+          const listParams = {
+            page: 1,
+            type: 1,
+            area_id: res.result.city_id,
+            occupations: [...res.result.occupations].join(','),
+            uuid: '',
+          }
+          detailsRecommendAction(listParams).then(res => {
+            if (res.errcode === 'ok') {
+              setRecommendRe(res.data.list);
+            } else {
+              Msg(res.errmsg)
+            }
+          })
+        } else {
+          // 加载招工相关推荐数据列表
+          let paramsObj = {
+            page: 1,
+            type: 1,
+            area_id: res.result.city_id,
+            job_ids: res.result.id,
+            classify_id: [...res.result.occupations].join(','),
+          }
+          jobRecommendListAction(paramsObj).then(res => {
+            if (res.errcode === 'ok') {
+              setRecommend(res.data.list);
+            } else {
+              Msg(res.errmsg)
+            }
+          })
         }
       })
     }).catch(()=>{
@@ -639,9 +687,19 @@ export default function DetailInfoPage() {
         </View>
       }
       {/* 相关推荐 */}
-      {/* {recommend.length && 
-      <CollectionRecruitList data={recommend} type={1}/>
-      } */}
+      {resCode === 'own' ? 
+        <View>
+          {recommendRe.length && 
+            <CollectionRecruitList data={recommendRe} type={2} areasId={areasId} occupations={occupations} jobIds={jobIds}/>
+          }
+        </View>
+      :
+        <View>
+          {recommend.length && 
+            <CollectionRecruitList data={recommend} type={1} areasId={areasId} occupations={occupations} jobIds={jobIds}/>
+          }
+        </View>
+      }
       {/* 投诉 */}
       {complaintModal && <Report display={complaintModal} textarea={textarea} handleTextarea={handleTextarea} setComplaintModal={setComplaintModal}
         handleSubmit={handleSubmit} />
