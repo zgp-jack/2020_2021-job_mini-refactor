@@ -493,12 +493,14 @@ export default function DetailInfoPage() {
   }
   // 查看更多招工信息
   const seeMoreRecruit = () => {
-    let pages = Taro.getCurrentPages()
-    if(pages.length < 2){
-      Taro.reLaunch({ url: INDEXPATH})
-    }else{
-      Taro.navigateBack()
-    }
+    // 百度搜索会有问题，所有直接返回首页
+    Taro.reLaunch({ url: INDEXPATH })
+    // let pages = Taro.getCurrentPages()
+    // if(pages.length < 2){
+    //   Taro.reLaunch({ url: INDEXPATH})
+    // }else{
+    //   Taro.navigateBack()
+    // }
   }
 
 
