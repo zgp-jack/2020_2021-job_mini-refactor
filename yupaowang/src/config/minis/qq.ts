@@ -20,19 +20,19 @@ var miniConfig = {
   // * textarea能输入的最大字数
   TEXTAREAMAXLENGTH: 500,
   // * 应用内是否存在下载APP引流
-  DOWNLOADAPP: true,
+  DOWNLOADAPP: false,
   // * 是否支持高德地图api
   USEGAODEMAPAPI: true,
   // * 是否显示客服电话
   SHOWSERVERPHONE: true,
   // * 是否显示加工友微信号
-  SHOWWEIXINNUMBER: true,
+  SHOWWEIXINNUMBER: false,
   // * 是否显示列表公告信息
-  SHOWLISTSNOTICE: true,
+  SHOWLISTSNOTICE: false,
   // * 是否显示关注公众号
-  SHOWOFFICIALACCOUNT: true,
+  SHOWOFFICIALACCOUNT: false,
   // * 是否显示邀请好友链接
-  SHOWINVITEUSER: true,
+  SHOWINVITEUSER: false,
   // * 详情是否需要替换微信关键词
   REPLACEWEIXINTEXT: false,
   // ! 百度系小程序  上传图片 不能JSON解析数据
