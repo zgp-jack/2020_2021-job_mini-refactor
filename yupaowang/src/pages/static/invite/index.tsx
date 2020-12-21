@@ -48,7 +48,7 @@ export default function Invite() {
     <View>
       <Auth />
       <View className='invite-container'>
-        {ISCANSHARE &&
+        {ISCANSHARE && 
         <View className='invite-item invite-item-icon'>
           <View className='invite-header'>
             <Image className='invite-img' src={ IMGCDNURL +'invite-way1.png' } />
