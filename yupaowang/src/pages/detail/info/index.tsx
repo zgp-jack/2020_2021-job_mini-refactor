@@ -497,7 +497,13 @@ export default function DetailInfoPage() {
     if(pages.length < 2){
       Taro.reLaunch({ url: INDEXPATH})
     }else{
-      Taro.navigateBack()
+      let routeUrl = pages[pages.length - 2].route
+      let listUrl = `/${routeUrl}`
+      if (listUrl == INDEXPATH){
+        Taro.navigateBack()
+      }else{
+        Taro.reLaunch({ url: INDEXPATH })
+      }
     }
   }
 
