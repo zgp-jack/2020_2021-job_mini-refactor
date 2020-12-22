@@ -1,4 +1,4 @@
-(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["pages/userinfo/phone/index"],{
+(swan["webpackJsonp"] = swan["webpackJsonp"] || []).push([["pages/userinfo/phone/index"],{
 
 /***/ "./src/pages/userinfo/phone/index.scss":
 /*!*********************************************!*\
@@ -31,9 +31,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroSwan2 = _interopRequireDefault(_taroSwan);
 
 var _index = __webpack_require__(/*! ../../../hooks/code/index */ "./src/hooks/code/index.ts");
 
@@ -82,7 +82,7 @@ var UserBandPhone = function (_Taro$Component) {
     key: "_constructor",
     value: function _constructor(props) {
       _get(UserBandPhone.prototype.__proto__ || Object.getPrototypeOf(UserBandPhone.prototype), "_constructor", this).call(this, props);
-      this.$$refs = new _taroTt2.default.RefsArray();
+      this.$$refs = new _taroSwan2.default.RefsArray();
     }
   }, {
     key: "_createData",
@@ -98,7 +98,7 @@ var UserBandPhone = function (_Taro$Component) {
           userGetCode = _useCode.userGetCode,
           text = _useCode.text;
 
-      var _useState = (0, _taroTt.useState)({
+      var _useState = (0, _taroSwan.useState)({
         tel: '',
         code: ''
       }),
@@ -129,7 +129,7 @@ var UserBandPhone = function (_Taro$Component) {
           (0, _index6.default)(res.errmsg);
           if (res.errcode == 'ok') {
             dispatch((0, _member.setMemberTel)(info.tel));
-            _taroTt2.default.navigateBack();
+            _taroSwan2.default.navigateBack();
           }
         }).catch(function () {
           (0, _index6.default)('网络错误，发送失败');
@@ -176,14 +176,14 @@ var UserBandPhone = function (_Taro$Component) {
   }]);
 
   return UserBandPhone;
-}(_taroTt2.default.Component);
+}(_taroSwan2.default.Component);
 
 UserBandPhone.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3"];
 UserBandPhone.$$componentPath = "pages/userinfo/phone/index";
 UserBandPhone.config = { navigationBarTitleText: '修改手机号' };
 exports.default = UserBandPhone;
 
-Page(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(UserBandPhone, true));
+Page(__webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js").default.createComponent(UserBandPhone, true));
 
 /***/ })
 

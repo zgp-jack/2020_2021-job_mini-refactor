@@ -1,4 +1,3 @@
-import { PromptBoxProps } from './../../../components/prompt_box/index';
 import { usePublishData } from '../commonIssue'
 import Taro, { useState, useEffect, useDidShow } from '@tarojs/taro'
 import { isVaildVal, isPhone } from '../../../utils/v'
@@ -100,6 +99,18 @@ export function useFastIssue() {
       }
       setPrompt(promptData)
       setShowModel(true)
+    } else if (response == 'fail' &&  tipContent.length > 0 ) {
+      // 发布成功提示框
+      const promptData = {
+        showClose: false,
+        showTitle: true,
+        showCancel: false,
+        confirmText: '确认',
+        titleText: '温馨提示',
+        content: [{ text: tipContent }]
+      }
+      setPrompt(promptData)
+      setShowModel(true)
     }
   }, [response, tipContent])
   
@@ -146,8 +157,16 @@ export function useFastIssue() {
     if (response == 'publishSuccess'){
       dispatch(changeTabbar("member"))
       Taro.reLaunch({ url: '/pages/published/recruit/index' })
+      setTipContent([])
+      setResponse('')
     }else if (response == 'paid_issue'){
       fastPublish()
+      setTipContent([])
+      setResponse('')
+    }else if (response == 'fail' &&　tipContent.length > 0) {
+      setShowModel(false)
+      setTipContent([])
+      setResponse('')
     }
   }
   // 用户填写发布信息
@@ -305,6 +324,7 @@ export function useFastIssue() {
         // 到达每天的付费发布次数提示
         saveData(res)
       }else {
+        console.log("res",res)
         ShowActionModal({
           msg: res.errmsg
         })

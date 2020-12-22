@@ -1,4 +1,5 @@
 // ? 全局不动配置项 只做导出不做修改
+import {BAIDU_SERIES, WEIXIN_SERIES, ZIJIE_SERIES, QQ_SERIES} from './series'
 
 // ! 根据不同编译脚本打包不同小程序
 // * 当前打包版本
@@ -7,11 +8,11 @@ export const MINICONFIG = require(`./minis/${MINIVERSION}.ts`)
 
 // * 全局请求接口域名
 // * 测试站
-export const DEVREQUESTURL: string = 'https://miniapi.zhaogong.vrtbbs.com/'  
+export const DEVREQUESTURL: string = 'https://miniapi.zhaogong.vrtbbs.com/'
 // * 预发布
 export const PREREQUESTURL: string = 'http://miniapi.kkbbi.com/'
 // * 正式站
-export const PROREQUESTURL: string = 'https://newyupaomini.54xiaoshuo.com/' 
+export const PROREQUESTURL: string = 'https://newyupaomini.54xiaoshuo.com/'
 // * 当前程序使用的请求地址
 export const REQUESTURL: string = DEVREQUESTURL
 // * 默认上传图片
@@ -44,6 +45,10 @@ export const ResumeMemberLabelsMaxNum: number = 3
 export const ProjectListMaxNum: number = 5
 // * 找活项目经验图片最大数量
 export const ProjectImgMaxNum: number = 6
+// * 商户申请 H5 支付时提交的授权域名
+export const QQWECHATPAYURLREFERER: string = 'http://p.54xiaoshuo.com'
+// * 百度小程序seo跳转 最大二手交易信息id
+export const MaxUsedInfoId: number = 48100
 
 // ! 页面内常用路径配置
 // * 首页
@@ -64,26 +69,34 @@ export const AUTHPATH: string = '/pages/userauth/index'
 export const CODEAUTHPATH: string = '/pages/login/index'
 // * 已发布招工列表
 export const PUBLISHEDRECRUIT: string = '/pages/published/recruit/index'
-// * 下载App
-export const DownloadApp: string ='https://android.myapp.com/myapp/detail.htm?apkName=io.dcloud.H576E6CC7&amp;ADTAG=mobile'
+// * 下载APP
+export const DOWNLOADAPPPATH: string = '/subpackage/pages/download/index'
+// * 下载App链接
+export const DownloadApp: string = 'https://android.myapp.com/myapp/detail.htm?apkName=io.dcloud.H576E6CC7&amp;ADTAG=mobile'
 // * 邀请好友
 export const INVITEPATH: string = '/pages/static/invite/index'
 
-
-// ! 所有小程序列表
+// ! 所有小程序公司体系集合
 // 百度
-export const BAIDU: string = 'baidu'
-// 抖音
-export const DOUYIN: string = 'douyin'
-
+export const BAIDUSERIES: string = BAIDU_SERIES
+// 字节
+export const ZIJIESERIES: string = ZIJIE_SERIES
+// 微信
+export const WEIXINSERIES: string = WEIXIN_SERIES
+// QQ
+export const QQSERIES: string = QQ_SERIES
 
 // ! 以下内容为每个小程序独立配置
 // * page-title-global
 export const PAGETITLE: string = MINICONFIG.PAGETITLE
 // * 小程序token
 export const TOKEN: string = MINICONFIG.TOKEN
+// * 小程序公司体系
+export const SERIES: string = MINICONFIG.SERIES
 // * 小程序广告unitid
 export const UNITID: string = MINICONFIG.UNITID
+// * 小程序激励视频广告
+export const VIDEOAD: string = MINICONFIG.VIDEOAD
 // * 小程序邀请key
 export const INVITESOURCE: string = MINICONFIG.INVITESOURCE
 // * 是否使用推送信息
@@ -96,11 +109,20 @@ export const TEXTAREAMAXLENGTH: number = MINICONFIG.TEXTAREAMAXLENGTH
 export const DOWNLOADAPP: boolean = MINICONFIG.DOWNLOADAPP
 // * 是否能够使用高德地区api
 export const USEGAODEMAPAPI: boolean = MINICONFIG.USEGAODEMAPAPI
-// * scroll-view滚动过程中是否保存高度值
-export const SCROLLVIEWSETTOP: boolean = MINICONFIG.SCROLLVIEWSETTOP
 // * 上传图片 是否需要使用JSON解析数据
 export const ISPARSEUPLOADIMG: boolean = MINICONFIG.ISPARSEUPLOADIMG
+// * 是否显示客服电话
+export const SHOWSERVERPHONE: boolean = MINICONFIG.SHOWSERVERPHONE
+// * 是否显示列表公告信息
+export const SHOWLISTSNOTICE: boolean = MINICONFIG.SHOWLISTSNOTICE
 // * 是否显示加工友微信号
 export const SHOWWEIXINNUMBER: boolean = MINICONFIG.SHOWWEIXINNUMBER
 // * 是否显示关注公众号
 export const SHOWOFFICIALACCOUNT: boolean = MINICONFIG.SHOWOFFICIALACCOUNT
+// * 是否显示邀请好友
+export const SHOWINVITEUSER: boolean = MINICONFIG.SHOWINVITEUSER
+// * 是否替换微信类关键词
+export const REPLACEWEIXINTEXT: boolean = MINICONFIG.REPLACEWEIXINTEXT
+
+// 去除微信文本正则
+export const FILTERWEIXINREG: RegExp = /[微信|vx|VX|Vx|vx|v❤]/g

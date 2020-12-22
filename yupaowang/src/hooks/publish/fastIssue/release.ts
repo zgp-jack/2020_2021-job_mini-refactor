@@ -11,6 +11,7 @@ import { SubscribeToNews } from '../../../utils/subscribeToNews'
 import { ShowActionModal } from '../../../utils/msg'
 import { recSerAuthLoction } from '../../../utils/helper'
 import { changeTabbar } from '../../../actions/tabbar'
+import { USEGAODEMAPAPI } from '../../../config'
 
 
 
@@ -29,11 +30,14 @@ export default function useRelease () {
   const [choceClassfies, setChoceClassfies] = useState<RulesClassfies[]>([])
   // 是否展开图片上传
   const [showUpload, setShowUpload] = useState<boolean>(false)
+  // 选择区域id,主要用于百度地图选择区域picker，百度小程序不兼容高德api
+  const [areaId, setAreaId] = useState<string>('')
   // 上传图片数据
   const [image, setImage] = useState<RecruitImageModel[]>([])
   // 获取分发action的dispatch
   const dispatch = useDispatch()
 
+  //初始化区域和工种匹配数据
   useEffect(()=>{
     initUserAreaInfo()
     initWorkType()
@@ -159,8 +163,8 @@ export default function useRelease () {
     let data = {
       token: recruitInfo.token,
       trades: selectedClassifies.join(","),
-      images: showUpload?images:'',
-      area_id: recruitInfo.areaInfo.areaId,
+      images: showUpload ? images: '',
+      area_id: USEGAODEMAPAPI ? recruitInfo.areaInfo.areaId : areaId,
       location: recruitInfo.areaInfo.location,
       ad_name: recruitInfo.areaInfo.title,
       address: recruitInfo.areaInfo.info
@@ -196,7 +200,7 @@ export default function useRelease () {
     image,
     setImage,
     maxImageCount,
-    pulishFindWorker
-    
+    pulishFindWorker,
+    setAreaId
   }
 }

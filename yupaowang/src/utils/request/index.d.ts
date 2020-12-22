@@ -169,7 +169,8 @@ export interface ResumeList {
   show_address: string,
   tags: string[],
   prof_degree: string,
-  time: string
+  time: string,
+  resume_top: number
 }
 
 // 二手列表数据
@@ -332,7 +333,7 @@ export interface GetUsedInfoData {
   title: string,
   user_mobile: string,
   user_name: string,
-  showCateAttr?: string
+  showCateAttr: string
 }
 
 // 用户实名查询
@@ -385,7 +386,7 @@ export interface MemberInfoMember {
 }
 
 export interface MemberInfoNoticeMsg {
-  hasNoticeMsgg: number
+  hasNoticeMsg: number
 }
 
 export interface MemberInfoResumeStatus {
@@ -868,7 +869,7 @@ export interface jobInfoData extends Result {
 export interface jobInfoDataResult {
   address: string
   city_id: number
-  classifyName: []
+  classifyName: string[]
   county_id: number
   detail: string
   download_app: string
@@ -1030,7 +1031,7 @@ export interface resumeDetailInfo {
   nation_id: string
   note: string
   number_people: string
-  occupations: []
+  occupations: string[]
   occupations_id: string
   prof_degree: string
   prof_degree_str: string
@@ -1640,6 +1641,7 @@ export interface filterClassifyResultClassTreeBase {
   id: number,
   pid: number,
   name: string,
+  letter: string,
 }
 
 // 筛选工种数据
@@ -1653,7 +1655,7 @@ export interface filterClassifyResultClassTree extends filterClassifyResultClass
 export interface filterClassifyResultFleamarketTree extends filterClassifyResultClassTreeBase {
   letter: string,
   has_attribute: number,
-  attributes: Pick<filterClassifyResultClassTreeBase, 'id' | 'name'>,
+  attributes: Pick<filterClassifyResultClassTreeBase,'id'|'name'|'letter'>[],
 }
 
 // 找活筛选分类信息数据
@@ -1773,14 +1775,14 @@ export interface TurntableIndexTypePortion {
 }
 
 export interface TurntableDrawData {
-  video?: string,
-  all_video_times?: number,
-  integral?: number,
-  over_video_times?: number,
-  rotate?: number,
-  times?: number,
-  video_times?: number,
-  win_integral?: number,
+  video: string,
+  all_video_times: number,
+  integral: number,
+  over_video_times: number,
+  rotate: number,
+  times: number,
+  video_times: number,
+  win_integral: number,
 }
 
 export interface TurntableDraw extends TurntableIndexTypePortion {
@@ -1846,4 +1848,11 @@ export interface hotAreasTypeData {
   pid: string,
   click?:boolean,
   allName?:string,
+}
+// 百度支付状态检测
+export interface BaiduOrderStatus extends Result{
+  data: {
+    tpOrderId: string,
+    order_status: number
+  }
 }

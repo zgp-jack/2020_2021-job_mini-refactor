@@ -51,7 +51,7 @@
 }
 .detailInfo-userContent-button-end {
   background: #f4f6f9;
-  width:140px;
+  width:150px;
   height:40px;
   line-height: 40px;
   border-radius:3px;
@@ -146,7 +146,7 @@
   line-height: 40px;
   padding-bottom: 10px;
   border-bottom: 1px solid #dcdcdc;
-  @include textrow();
+  // @include textrow();
 }
 .detailInfo-project-content-image-box{
   display: flex;
@@ -331,4 +331,17 @@
   height: 70px;
   line-height: 70px;
   margin: auto 15px;
+}
+.see-recruit-list-btn{
+  position: relative;
+  margin: 20px auto;
+  width: 60%;
+  border-radius: 60px;
+  background-color: $color;
+  color: white;
+  line-height: 80px;
+  text-align: center;
+  font-size: 28px;
+  letter-spacing: 2px;
+  font-weight: bold;
 }

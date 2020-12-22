@@ -63,7 +63,8 @@ export default function CollectionRecruitList({ data = [], onHandlerClick, recru
               <View className='recruit-list-footer'>
                 {/* <Image className='recruit-list-loc' src={IMGCDNURL + 'newlist-jobposi.png'} /> */}
                 <View className='recruit-list-loctxt overwords'>{item.time}</View>
-                <Button size='mini' className='recruit-list-button' onClick={(e) => { e.stopPropagation();onHandlerClick(item.id)}}>取消收藏</Button>
+                <View className='recruit-list-button' onClick={(e) => { e.stopPropagation(); onHandlerClick(item.id) }}>取消收藏</View>
+                {/* <Button size='mini' className='recruit-list-button' onClick={(e) => { e.stopPropagation();onHandlerClick(item.id)}}>取消收藏</Button> */}
               </View>
             </View>
           // )

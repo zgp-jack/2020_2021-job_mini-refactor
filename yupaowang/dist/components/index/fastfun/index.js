@@ -1,4 +1,4 @@
-(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["components/index/fastfun/index"],{
+(swan["webpackJsonp"] = swan["webpackJsonp"] || []).push([["components/index/fastfun/index"],{
 
 /***/ "./src/components/index/fastfun/config.ts":
 /*!************************************************!*\
@@ -19,15 +19,18 @@ var _index = __webpack_require__(/*! ../../../config/index */ "./src/config/inde
 var Config = [{
   url: _index.INVITEPATH,
   img: _index.IMGCDNURL + 'yqhy.png',
-  text: '邀请好友'
+  text: '邀请好友',
+  show: _index.SHOWINVITEUSER
 }, {
   url: '/subpackage/pages/checkauth/index',
   img: _index.IMGCDNURL + 'smcx.png',
-  text: '实名查询'
+  text: '实名查询',
+  show: true
 }, {
   url: '/subpackage/pages/news/index',
   img: _index.IMGCDNURL + 'index-newzjxm.png',
-  text: '鱼泡动态'
+  text: '鱼泡动态',
+  show: true
 }];
 exports.default = Config;
 
@@ -62,9 +65,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroSwan2 = _interopRequireDefault(_taroSwan);
 
 var _config = __webpack_require__(/*! ./config */ "./src/components/index/fastfun/config.ts");
 
@@ -88,7 +91,7 @@ var Fastfun = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (Fastfun.__proto__ || Object.getPrototypeOf(Fastfun)).apply(this, arguments));
 
-    _this.$usedState = ["loopArray13", "Config", "ISWEIXIN"];
+    _this.$usedState = ["loopArray20", "Config", "ISWEIXIN"];
     _this.anonymousFunc0Map = {};
     _this.customComponents = [];
     return _this;
@@ -98,7 +101,7 @@ var Fastfun = function (_Taro$Component) {
     key: '_constructor',
     value: function _constructor(props) {
       _get(Fastfun.prototype.__proto__ || Object.getPrototypeOf(Fastfun.prototype), '_constructor', this).call(this, props);
-      this.$$refs = new _taroTt2.default.RefsArray();
+      this.$$refs = new _taroSwan2.default.RefsArray();
     }
   }, {
     key: '_createData',
@@ -112,30 +115,30 @@ var Fastfun = function (_Taro$Component) {
       ;
       // 用户页面跳转
       var userRouteJump = function userRouteJump(url) {
-        _taroTt2.default.navigateTo({
+        _taroSwan2.default.navigateTo({
           url: url
         });
       };
       this.anonymousFunc1 = function () {
         return userRouteJump("/pages/used/lists/index");
       };
-      var loopArray13 = _config2.default.map(function (item, index) {
+      var loopArray20 = _config2.default.map(function (item, index) {
         item = {
-          $original: (0, _taroTt.internal_get_original)(item)
+          privateOriginal: (0, _taroSwan.internal_get_original)(item)
         };
-        var $loopState__temp2 = index + index;
-        var _$indexKey = "bfzzz" + index;
+        var loopState__temp2 = item.privateOriginal.show ? index + index : null;
+        var _$indexKey = "cezzz" + index;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
-          return userRouteJump(item.$original.url);
+          return userRouteJump(item.privateOriginal.url);
         };
         return {
-          $loopState__temp2: $loopState__temp2,
+          loopState__temp2: loopState__temp2,
           _$indexKey: _$indexKey,
-          $original: item.$original
+          privateOriginal: item.privateOriginal
         };
       });
       Object.assign(this.__state, {
-        loopArray13: loopArray13,
+        loopArray20: loopArray20,
         Config: _config2.default,
         ISWEIXIN: false
       });
@@ -162,13 +165,13 @@ var Fastfun = function (_Taro$Component) {
   }]);
 
   return Fastfun;
-}(_taroTt2.default.Component);
+}(_taroSwan2.default.Component);
 
 Fastfun.$$events = ["anonymousFunc0", "anonymousFunc1"];
 Fastfun.$$componentPath = "components/index/fastfun/index";
 exports.default = Fastfun;
 
-Component(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(Fastfun));
+Component(__webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js").default.createComponent(Fastfun));
 
 /***/ })
 

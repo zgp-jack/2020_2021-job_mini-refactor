@@ -1,6 +1,6 @@
 import Taro, { useEffect, useState, Config } from "@tarojs/taro";
 import { View, Text, Image, Block } from "@tarojs/components";
-import { IMGCDNURL, SERVERPHONE, INVITEPATH } from "../../config";
+import { IMGCDNURL, SERVERPHONE, INVITEPATH, SHOWINVITEUSER, SHOWSERVERPHONE } from "../../config";
 import { userJumpPage } from "../../utils/helper";
 import "./index.scss";
 import Auth from '../../components/auth'
@@ -43,6 +43,7 @@ export default function GetIntegral() {
     <Auth />
     <View className="getintegral-container">
       <View className="getintegral-body">
+        {SHOWINVITEUSER &&
         <View className="getintegral-item">
           <View className="getintegral-item-title">邀请工友获取积分</View>
           <View className="getintegral-item-content">
@@ -54,7 +55,7 @@ export default function GetIntegral() {
           >
             去邀请
           </View>
-        </View>
+        </View>}
         {!ios && (
           <View className="getintegral-item">
             <View className="getintegral-item-title">充值获取积分</View>
@@ -76,7 +77,7 @@ export default function GetIntegral() {
               玩游戏，每天可获1~300分。（推荐）
             </View>
             <View
-              onClick={() => userJumpPage("/pages/turntable/index")}
+              onClick={() => userJumpPage("/subpackage/pages/turntable/index")}
               className={classnames({
                 "getintegral-item-btn": true,
                 "getintegral-list-btn-dis": !turntable.showBtn
@@ -102,11 +103,15 @@ export default function GetIntegral() {
             src={`${IMGCDNURL}integral/new-integral-tips-icon.png`}
           />
         </View>
+        {SHOWSERVERPHONE &&
+        <Block>
         如果有任何疑问，请拨打客服电话：
         <Text className="getintegral-tel" onClick={() => userCallPhone()}>
           {SERVERPHONE}
         </Text>
-        。鱼泡网投入大量的人力物力开发平台、审核信息，免费服务千万工友。因此请大家帮忙多邀请工友注册，感谢您对鱼泡网的支持！
+        。
+        </Block>}
+        鱼泡网投入大量的人力物力开发平台、审核信息，免费服务千万工友。因此请大家帮忙多邀请工友注册，感谢您对鱼泡网的支持！
       </View>
     </View>
     </Block>

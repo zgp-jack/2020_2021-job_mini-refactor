@@ -10,7 +10,6 @@ import { RecruitListItem } from '../../../utils/request/index.d'
 import { UserLocationPromiss, ChildItems, AREACHINA, getCityInfo } from '../../../models/area'
 import { UserListChooseCity, UserLocationCity } from '../../../config/store'
 import { userAuthLoction } from '../../../utils/helper'
-import { SCROLLVIEWSETTOP } from '../../../config'
 import { PUBLISHRECRUIT } from '../../../config'
 import { AreaPickerKey, ClassifyPickerKey, FilterPickerKey } from '../../../config/pages/lists'
 import Msg from '../../../utils/msg'
@@ -38,8 +37,6 @@ export default function Recruit(){
     { id: ClassifyPickerKey, text: '全部分类' },
     { id: FilterPickerKey, text: '最新' }
   ])
-  // * scrollTop 位置 回到顶部
-  const [scrollTop,setScrollTop] = useState<number>(0)
   // * 标记是否是在刷新状态
   const [refresh, setRefresh] = useState<boolean>(false)
   // * 定义列表数组
@@ -97,13 +94,17 @@ export default function Recruit(){
 
   // 请求列表方法
   const getRecruitListAction = ()=> {
+    if (searchData.page == 1) setLists([])
     getRecruitList(searchData).then(res => {
+      Taro.hideNavigationBarLoading()
       if(res.errcode == 'ok'){
         if (res.data) {
           if (!res.data.length) setHasMore(false)
-          Taro.hideNavigationBarLoading()
-          if (searchData.page === 1) { setLists([[...res.data]]); scrollTo(0,0)}
-          else setLists([...lists, [...res.data]])
+          if (searchData.page === 1) {
+            setLists([[...res.data]])
+          }else{
+            setLists([...lists, [...res.data]])
+          }
         } else {
           if (searchData.page === 1) setLists([[]])
           setHasMore(false)
@@ -151,19 +152,12 @@ export default function Recruit(){
     }else{
       setSearchData({ ...searchData, joblisttype: id, page: 1 })
     }
-    goToScrollTop()
-  }
-
-  // scroll-view 回到顶部
-  const goToScrollTop = () => {
-    setHasMore(true)
-    setScrollTop(scrollTop ? 0 : 0.1)
+    // goToScrollTop()
   }
 
   // 输入搜索关键词
   const setSearchValData = () => {
     setSearchData({ ...searchData, keywords: remark, page: 1 })
-    goToScrollTop()
   }
 
   return (
@@ -176,7 +170,6 @@ export default function Recruit(){
         className='recruit-lists-containerbox' 
         scrollY
         refresherEnabled
-        // scrollTop={scrollTop}
         scrollWithAnimation
         refresherTriggered={ refresh }
         onRefresherRefresh={() => pullDownAction()}

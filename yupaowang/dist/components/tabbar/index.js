@@ -1,4 +1,4 @@
-(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["components/tabbar/index"],{
+(swan["webpackJsonp"] = swan["webpackJsonp"] || []).push([["components/tabbar/index"],{
 
 /***/ "./src/components/tabbar/index.scss":
 /*!******************************************!*\
@@ -31,9 +31,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroSwan2 = _interopRequireDefault(_taroSwan);
 
 var _classnames = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
 
@@ -75,7 +75,7 @@ var Tabbar = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (Tabbar.__proto__ || Object.getPrototypeOf(Tabbar)).apply(this, arguments));
 
-    _this.$usedState = ["anonymousState__temp3", "anonymousState__temp4", "anonymousState__temp5", "tabbar", "loopArray34", "memberMsg", "show", "IMGCDNURL", "notredirect"];
+    _this.$usedState = ["anonymousState__temp3", "anonymousState__temp4", "anonymousState__temp5", "tabbar", "loopArray40", "memberMsg", "show", "IMGCDNURL", "notredirect"];
     _this.anonymousFunc0Map = {};
     _this.customComponents = [];
     return _this;
@@ -85,7 +85,7 @@ var Tabbar = function (_Taro$Component) {
     key: "_constructor",
     value: function _constructor(props) {
       _get(Tabbar.prototype.__proto__ || Object.getPrototypeOf(Tabbar.prototype), "_constructor", this).call(this, props);
-      this.$$refs = new _taroTt2.default.RefsArray();
+      this.$$refs = new _taroSwan2.default.RefsArray();
     }
   }, {
     key: "_createData",
@@ -116,14 +116,14 @@ var Tabbar = function (_Taro$Component) {
       var dispatch = (0, _redux.useDispatch)();
       // 是否展示发布
 
-      var _useState = (0, _taroTt.useState)(false),
+      var _useState = (0, _taroSwan.useState)(false),
           _useState2 = _slicedToArray(_useState, 2),
           show = _useState2[0],
           setShow = _useState2[1];
       // 展开发布的动画效果
 
 
-      var _useState3 = (0, _taroTt.useState)(false),
+      var _useState3 = (0, _taroSwan.useState)(false),
           _useState4 = _slicedToArray(_useState3, 2),
           active = _useState4[0],
           setActive = _useState4[1];
@@ -142,7 +142,7 @@ var Tabbar = function (_Taro$Component) {
         }
         if (notredirect) {
           dispatch((0, _tabbar.changeTabbar)(item.id));
-        } else _taroTt2.default.reLaunch({ url: '/pages/index/index?type=' + item.id });
+        } else _taroSwan2.default.reLaunch({ url: '/pages/index/index?type=' + item.id });
       };
       // 点击发布按钮
       var openPublishMenu = function openPublishMenu() {
@@ -155,7 +155,7 @@ var Tabbar = function (_Taro$Component) {
       };
       // 用户点击弹出的发布类型按钮
       var userTapPublishItem = function userTapPublishItem(url) {
-        _taroTt2.default.navigateTo({
+        _taroSwan2.default.navigateTo({
           url: url
         });
       };
@@ -171,7 +171,7 @@ var Tabbar = function (_Taro$Component) {
         });
       };
       // 定时请求未读信息
-      (0, _taroTt.useEffect)(function () {
+      (0, _taroSwan.useEffect)(function () {
         getMemberMsg();
         var timer = setInterval(function () {
           getMemberMsg();
@@ -205,22 +205,22 @@ var Tabbar = function (_Taro$Component) {
       this.anonymousFunc4 = function () {
         return userTapPublishItem(_index3.PUBLISHUSED);
       };
-      var loopArray34 = tabbar.list.map(function (item, __index0) {
+      var loopArray40 = tabbar.list.map(function (item, __index0) {
         item = {
-          $original: (0, _taroTt.internal_get_original)(item)
+          privateOriginal: (0, _taroSwan.internal_get_original)(item)
         };
-        var $loopState__temp2 = (0, _classnames2.default)({
+        var loopState__temp2 = (0, _classnames2.default)({
           'common-footer-tabbar-list': true,
-          'common-footer-tabbar-list-active': item.$original.id === tabbar.key
+          'common-footer-tabbar-list-active': item.privateOriginal.id === tabbar.key
         });
-        var _$indexKey = "dhzzz" + __index0;
+        var _$indexKey = "efzzz" + __index0;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
-          return changeTabbarAction(item.$original);
+          return changeTabbarAction(item.privateOriginal);
         };
         return {
-          $loopState__temp2: $loopState__temp2,
+          loopState__temp2: loopState__temp2,
           _$indexKey: _$indexKey,
-          $original: item.$original
+          privateOriginal: item.privateOriginal
         };
       });
       Object.assign(this.__state, {
@@ -228,7 +228,7 @@ var Tabbar = function (_Taro$Component) {
         anonymousState__temp4: anonymousState__temp4,
         anonymousState__temp5: anonymousState__temp5,
         tabbar: tabbar,
-        loopArray34: loopArray34,
+        loopArray40: loopArray40,
         memberMsg: memberMsg,
         show: show,
         IMGCDNURL: _index3.IMGCDNURL
@@ -271,13 +271,13 @@ var Tabbar = function (_Taro$Component) {
   }]);
 
   return Tabbar;
-}(_taroTt2.default.Component);
+}(_taroSwan2.default.Component);
 
 Tabbar.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4"];
 Tabbar.$$componentPath = "components/tabbar/index";
 exports.default = Tabbar;
 
-Component(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(Tabbar));
+Component(__webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js").default.createComponent(Tabbar));
 
 /***/ })
 

@@ -4,15 +4,16 @@ import { RecruitInfo } from '../../../../pages/recruit/index.d'
 import { useSelector } from '@tarojs/redux';
 import ClassifyPicker, { RulesClassfies } from '../../../../components/classfiy_picker/index'
 import useRelease from '../../../../hooks/publish/fastIssue/release'
-import { IMGCDNURL } from '../../../../config'
+import { IMGCDNURL, USEGAODEMAPAPI } from '../../../../config'
 import UploadImgAction from '../../../../utils/upload'
+import CityPicker from '../../../../components/city_picker/index'
 import './index.scss'
 
 
 
 export default function FastIssue() {
   // 获取发布招工hook数据
-  const { classifyTree, selectText, maxClassifyCount, choceClassfies, selectWorkType, setShowUpload, showUpload, image, setImage, maxImageCount, pulishFindWorker } = useRelease()
+  const { classifyTree, selectText, maxClassifyCount, choceClassfies, selectWorkType, setShowUpload, showUpload, image, setImage, maxImageCount, pulishFindWorker, setAreaId } = useRelease()
 
   // 发布招工redux数据
   const recruitInfo: RecruitInfo = useSelector<any, RecruitInfo>(state => state.RecruitAction)
@@ -80,15 +81,25 @@ export default function FastIssue() {
   function recuritFindWork () {
     pulishFindWorker()
   }
+  //城市选择组件点击确定
+  const selectCity = (data: CityTownPicker) => {
+    setAreaId(data[1].id)
+  }
+
+
   return (
     <View className="issue-area-container">
       <View className="issue-tip">
         <View className="issue-contact-title">信息越完善，招工越容易</View>
       </View>
       <View className="issue-contactbox">
-        <View className="issue-box" onClick={() => showWorkArea()}>
+        <View className="issue-box">
           <Text>招工城市：</Text>
-          <Input placeholder="请选择招工城市"  className="issue-input" value={areaInfo && areaInfo.title}></Input>
+          {USEGAODEMAPAPI?
+            <Input placeholder="请选择招工城市" className="issue-input" onClick={() => showWorkArea()} value={areaInfo && areaInfo.title}></Input>
+            :
+            <CityPicker onCity={selectCity}></CityPicker>
+          }
         </View>
         <View className="issue-box" onClick={() => showWorkType()}>
           <Text>所需工种：</Text>

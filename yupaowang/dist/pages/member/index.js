@@ -1,4 +1,4 @@
-(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["pages/member/index"],{
+(swan["webpackJsonp"] = swan["webpackJsonp"] || []).push([["pages/member/index"],{
 
 /***/ "./src/pages/member/index.scss":
 /*!*************************************!*\
@@ -31,9 +31,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroSwan2 = _interopRequireDefault(_taroSwan);
 
 var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/redux/index.js");
 
@@ -73,7 +73,7 @@ var Member = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (Member.__proto__ || Object.getPrototypeOf(Member)).apply(this, arguments));
 
-    _this.$usedState = ["login", "model", "IMGCDNURL", "jobNumber", "msgNumber", "ios", "PROREQUESTURL", "REQUESTURL", "memberIndex"];
+    _this.$usedState = ["login", "model", "IMGCDNURL", "jobNumber", "msgNumber", "ios", "SHOWINVITEUSER", "PROREQUESTURL", "REQUESTURL", "memberIndex"];
     _this.customComponents = [];
     return _this;
   }
@@ -82,7 +82,7 @@ var Member = function (_Taro$Component) {
     key: "_constructor",
     value: function _constructor(props) {
       _get(Member.prototype.__proto__ || Object.getPrototypeOf(Member.prototype), "_constructor", this).call(this, props);
-      this.$$refs = new _taroTt2.default.RefsArray();
+      this.$$refs = new _taroSwan2.default.RefsArray();
     }
   }, {
     key: "_createData",
@@ -102,7 +102,7 @@ var Member = function (_Taro$Component) {
       });
       // member信息
 
-      var _useState = (0, _taroTt.useState)(),
+      var _useState = (0, _taroSwan.useState)(),
           _useState2 = _slicedToArray(_useState, 2),
           model = _useState2[0],
           setModel = _useState2[1];
@@ -118,7 +118,7 @@ var Member = function (_Taro$Component) {
       });
       // 判断是否是ios
 
-      var _useState3 = (0, _taroTt.useState)(false),
+      var _useState3 = (0, _taroSwan.useState)(false),
           _useState4 = _slicedToArray(_useState3, 2),
           ios = _useState4[0],
           setIos = _useState4[1];
@@ -126,7 +126,7 @@ var Member = function (_Taro$Component) {
 
 
       var userRouteJump = function userRouteJump(url) {
-        _taroTt2.default.navigateTo({
+        _taroSwan2.default.navigateTo({
           url: url
         });
       };
@@ -150,11 +150,16 @@ var Member = function (_Taro$Component) {
             msg: data.errmsg
           });
         });
+        (0, _index.getMemberMsgNumber)((0, _index5.isIos)()).then(function (data) {
+          if (data.errcode == 'ok') {
+            dispatch((0, _msg.setMsg)(data.data));
+          }
+        });
       };
-      (0, _taroTt.useEffect)(function () {
+      (0, _taroSwan.useEffect)(function () {
         setIos((0, _index5.isIos)());
       }, []);
-      (0, _taroTt.useEffect)(function () {
+      (0, _taroSwan.useEffect)(function () {
         //Taro.setNavigationBarTitle({ title: IndexTabbarConfig[MEMBER].navigationBarTitleText })
         if (!login) {
           return;
@@ -163,7 +168,7 @@ var Member = function (_Taro$Component) {
       }, [login, memberIndex]);
       // 清理用户登录信息
       var userClearSession = function userClearSession() {
-        _taroTt2.default.removeStorageSync(_store.UserInfo);
+        _taroSwan2.default.removeStorageSync(_store.UserInfo);
         dispatch((0, _user.loginOut)());
         dispatch((0, _msg.resetMsg)());
         (0, _index4.default)('您已成功退出该账号');
@@ -193,7 +198,7 @@ var Member = function (_Taro$Component) {
         return userRouteJump('/pages/published/used/index');
       };
       this.anonymousFunc8 = function () {
-        return userRouteJump('/pages/information/mymessage/index');
+        return userRouteJump('/subpackage/pages/information/mymessage/index');
       };
       this.anonymousFunc9 = function () {
         return userRouteJump('/pages/getintegral/index');
@@ -214,10 +219,10 @@ var Member = function (_Taro$Component) {
         return userRouteJump('/pages/collection/index');
       };
       this.anonymousFunc15 = function () {
-        return userRouteJump('/pages/feedbacklist/index');
+        return userRouteJump('/subpackage/pages/feedbacklist/index');
       };
       this.anonymousFunc16 = function () {
-        return userRouteJump('/pages/help/index');
+        return userRouteJump('/subpackage/pages/help/index');
       };
       this.anonymousFunc17 = function () {
         return userClearSession();
@@ -229,6 +234,7 @@ var Member = function (_Taro$Component) {
         jobNumber: jobNumber,
         msgNumber: msgNumber,
         ios: ios,
+        SHOWINVITEUSER: _index2.SHOWINVITEUSER,
         PROREQUESTURL: _index2.PROREQUESTURL,
         REQUESTURL: _index2.REQUESTURL
       });
@@ -327,13 +333,13 @@ var Member = function (_Taro$Component) {
   }]);
 
   return Member;
-}(_taroTt2.default.Component);
+}(_taroSwan2.default.Component);
 
 Member.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6", "anonymousFunc7", "anonymousFunc8", "anonymousFunc9", "anonymousFunc10", "anonymousFunc11", "anonymousFunc12", "anonymousFunc13", "anonymousFunc14", "anonymousFunc15", "anonymousFunc16", "anonymousFunc17"];
 Member.$$componentPath = "pages/member/index";
 exports.default = Member;
 
-Component(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(Member));
+Component(__webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js").default.createComponent(Member));
 
 /***/ })
 

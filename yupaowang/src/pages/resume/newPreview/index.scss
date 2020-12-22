@@ -298,16 +298,23 @@ $commonMargin: 44px;
             }
 
             .name {
+              display: flex;
+              justify-items: center;
               font-size: 28px;
               font-weight: bold;
               color: #343434;
             }
-
             .sexage {
               margin-top: 20px;
               font-weight: bold;
               font-size: 28px;
               color: #6C6B6B;
+            }
+            .information-img {
+              width: 120px;
+              height: 30px;
+              margin: auto 0;
+              margin-left: 14px;
             }
           }
 
@@ -410,8 +417,8 @@ $commonMargin: 44px;
               margin-right: 10px;
               margin-bottom: 10px;
               padding: 7px 25px;
-              color: #414141;
-              background-color: #E7E7E7;
+              color: rgba(102, 102, 102, 1);
+              background-color:rgba(247, 247, 247, 1);
             }
 
             .craft-box {
@@ -670,7 +677,6 @@ $commonMargin: 44px;
   .newPreview-btn {
     margin-top: 30px;
     width: 100%;
-
     .newPreview-btn-btn {
       margin: auto;
       width: 500px;

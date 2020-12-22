@@ -1,4 +1,4 @@
-(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["pages/recruit/publish/index"],{
+(swan["webpackJsonp"] = swan["webpackJsonp"] || []).push([["pages/recruit/publish/index"],{
 
 /***/ "./src/hooks/publish/recruit.ts":
 /*!**************************************!*\
@@ -20,9 +20,9 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
 exports.default = usePublishViewInfo;
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroSwan2 = _interopRequireDefault(_taroSwan);
 
 var _index = __webpack_require__(/*! ../../utils/request/index */ "./src/utils/request/index.ts");
 
@@ -56,7 +56,7 @@ function usePublishViewInfo(InitParams) {
   });
   // 视图显示信息
 
-  var _useState = (0, _taroTt.useState)({
+  var _useState = (0, _taroSwan.useState)({
     title: '',
     detail: ''
   }),
@@ -66,70 +66,70 @@ function usePublishViewInfo(InitParams) {
   // 是否展开图片上传
 
 
-  var _useState3 = (0, _taroTt.useState)(false),
+  var _useState3 = (0, _taroSwan.useState)(false),
       _useState4 = _slicedToArray(_useState3, 2),
       showUpload = _useState4[0],
       setShowUpload = _useState4[1];
   // 是否显示工种选择
 
 
-  var _useState5 = (0, _taroTt.useState)(false),
+  var _useState5 = (0, _taroSwan.useState)(false),
       _useState6 = _slicedToArray(_useState5, 2),
       showProfession = _useState6[0],
       setShowProssion = _useState6[1];
   // 招工详情的字数
 
 
-  var _useState7 = (0, _taroTt.useState)(0),
+  var _useState7 = (0, _taroSwan.useState)(0),
       _useState8 = _slicedToArray(_useState7, 2),
       num = _useState8[0],
       setNum = _useState8[1];
   // 备份手机号码
 
 
-  var _useState9 = (0, _taroTt.useState)(''),
+  var _useState9 = (0, _taroSwan.useState)(''),
       _useState10 = _slicedToArray(_useState9, 2),
       phone = _useState10[0],
       setPhone = _useState10[1];
   // 备份当前数据 用于强制修改判断
 
 
-  var _useState11 = (0, _taroTt.useState)({}),
+  var _useState11 = (0, _taroSwan.useState)({}),
       _useState12 = _slicedToArray(_useState11, 2),
       bakModel = _useState12[0],
       setBakModel = _useState12[1];
   // 设置招工 非高德地址，picker索引数组
 
 
-  var _useState13 = (0, _taroTt.useState)([0, 0]),
+  var _useState13 = (0, _taroSwan.useState)([0, 0]),
       _useState14 = _slicedToArray(_useState13, 2),
       areaIndex = _useState14[0],
       setAreaIndex = _useState14[1];
   // picker省份
 
 
-  var _useState15 = (0, _taroTt.useState)([]),
+  var _useState15 = (0, _taroSwan.useState)([]),
       _useState16 = _slicedToArray(_useState15, 2),
       areaProvincePicker = _useState16[0],
       setAreaProvincePicker = _useState16[1];
   // picker 城市
 
 
-  var _useState17 = (0, _taroTt.useState)([]),
+  var _useState17 = (0, _taroSwan.useState)([]),
       _useState18 = _slicedToArray(_useState17, 2),
       areaCityPicker = _useState18[0],
       setAreaCityPicker = _useState18[1];
   // picker 组合数据
 
 
-  var _useState19 = (0, _taroTt.useState)([]),
+  var _useState19 = (0, _taroSwan.useState)([]),
       _useState20 = _slicedToArray(_useState19, 2),
       areaPickerData = _useState20[0],
       setAreaPickerData = _useState20[1];
   // piccker 选择 城市名字
 
 
-  var _useState21 = (0, _taroTt.useState)(''),
+  var _useState21 = (0, _taroSwan.useState)(''),
       _useState22 = _slicedToArray(_useState21, 2),
       areaPickerName = _useState22[0],
       setAreaPickerName = _useState22[1];
@@ -143,7 +143,7 @@ function usePublishViewInfo(InitParams) {
   // 获取dispatch分发action
   var dispatch = (0, _redux.useDispatch)();
   // 初始化招工信息
-  (0, _taroTt.useEffect)(function () {
+  (0, _taroSwan.useEffect)(function () {
     // 判断是否登录，没有登录直接返回
     if (!login) return;
     (0, _index.getPublishRecruitView)(InitParams).then(function (res) {
@@ -193,7 +193,7 @@ function usePublishViewInfo(InitParams) {
         (0, _index4.ShowActionModal)({
           msg: res.errmsg,
           success: function success() {
-            _taroTt2.default.navigateBack();
+            _taroSwan2.default.navigateBack();
           }
         });
       }
@@ -233,7 +233,7 @@ function usePublishViewInfo(InitParams) {
       var area = (0, _area2.getCityInfoById)(data.default_search_name.id);
       dispatch((0, _recruit.setArea)({ name: area.name, ad_name: area.ad_name }));
     } else {
-      var userLoctionCity = _taroTt2.default.getStorageSync(_store.UserLocationCity);
+      var userLoctionCity = _taroSwan2.default.getStorageSync(_store.UserLocationCity);
       if (userLoctionCity) {
         var _area = (0, _area2.getCityInfo)(userLoctionCity, 1);
         dispatch((0, _recruit.setArea)({ name: _area.name, ad_name: _area.ad_name }));
@@ -256,7 +256,7 @@ function usePublishViewInfo(InitParams) {
       }));
     } else {
       // 获取用户最后发布的区域信息
-      var userLastPublishArea = _taroTt2.default.getStorageSync(_store.UserLastPublishArea);
+      var userLastPublishArea = _taroSwan2.default.getStorageSync(_store.UserLastPublishArea);
       if (userLastPublishArea) {
         dispatch((0, _recruit.setAreaInfo)(userLastPublishArea));
       }
@@ -368,7 +368,7 @@ function usePublishViewInfo(InitParams) {
           (0, _index4.ShowActionModal)({
             msg: res.errmsg,
             success: function success() {
-              _taroTt2.default.reLaunch({
+              _taroSwan2.default.reLaunch({
                 url: '/pages/published/recruit/index'
               });
             }
@@ -439,9 +439,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroSwan2 = _interopRequireDefault(_taroSwan);
 
 var _index = __webpack_require__(/*! ../../../hooks/code/index */ "./src/hooks/code/index.ts");
 
@@ -494,7 +494,7 @@ var PublishRecruit = function (_Taro$Component) {
       backgroundTextStyle: "dark"
     };
 
-    _this.$usedState = ["anonymousState__temp", "model", "$compid__35", "$compid__36", "showProfession", "USEGAODEMAPAPI", "areaInfo", "areaIndex", "areaPickerData", "areaPickerName", "phone", "showUpload", "text", "num", "TEXTAREAMAXLENGTH"];
+    _this.$usedState = ["anonymousState__temp", "model", "$compid__43", "$compid__44", "showProfession", "USEGAODEMAPAPI", "areaInfo", "areaIndex", "areaPickerData", "areaPickerName", "phone", "showUpload", "text", "num", "TEXTAREAMAXLENGTH"];
     _this.customComponents = ["Auth", "Profession", "ImageView"];
     return _this;
   }
@@ -503,7 +503,7 @@ var PublishRecruit = function (_Taro$Component) {
     key: "_constructor",
     value: function _constructor(props) {
       _get(PublishRecruit.prototype.__proto__ || Object.getPrototypeOf(PublishRecruit.prototype), "_constructor", this).call(this, props);
-      this.$$refs = new _taroTt2.default.RefsArray();
+      this.$$refs = new _taroSwan2.default.RefsArray();
     }
   }, {
     key: "_createData",
@@ -514,19 +514,19 @@ var PublishRecruit = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__35"),
+      var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__43"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__35 = _genCompid2[0],
-          $compid__35 = _genCompid2[1];
+          $prevCompid__43 = _genCompid2[0],
+          $compid__43 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__36"),
+      var _genCompid3 = (0, _taroSwan.genCompid)(__prefix + "$compid__44"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__36 = _genCompid4[0],
-          $compid__36 = _genCompid4[1];
+          $prevCompid__44 = _genCompid4[0],
+          $compid__44 = _genCompid4[1];
       // 获取路由参数
 
 
-      var router = (0, _taroTt.useRouter)();
+      var router = (0, _taroSwan.useRouter)();
       var id = router.params.id || '';
       var type = 'job';
       var InitParams = { type: type, infoId: id };
@@ -586,7 +586,7 @@ var PublishRecruit = function (_Taro$Component) {
           return;
         }
         var url = "/pages/map/recruit/index?id=" + id;
-        _taroTt2.default.navigateTo({
+        _taroSwan2.default.navigateTo({
           url: url
         });
       };
@@ -708,23 +708,23 @@ var PublishRecruit = function (_Taro$Component) {
       this.anonymousFunc12 = function () {
         return userPublishRecruitAction();
       };
-      showProfession && _taroTt.propsManager.set({
+      showProfession && _taroSwan.propsManager.set({
         "closeProfession": closeProfession,
         "data": model && model.classifyTree,
         "onClickItem": this.anonymousFunc0,
         "num": 3
-      }, $compid__35, $prevCompid__35);
-      showUpload && model && _taroTt.propsManager.set({
+      }, $compid__43, $prevCompid__43);
+      showUpload && model && _taroSwan.propsManager.set({
         "images": model.view_images,
         "max": model.maxImageCount,
         "userUploadImg": userUploadImg,
         "userDelImg": userDelImg
-      }, $compid__36, $prevCompid__36);
+      }, $compid__44, $prevCompid__44);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
         model: model,
-        $compid__35: $compid__35,
-        $compid__36: $compid__36,
+        $compid__43: $compid__43,
+        $compid__44: $compid__44,
         showProfession: showProfession,
         USEGAODEMAPAPI: _index3.USEGAODEMAPAPI,
         areaInfo: areaInfo,
@@ -807,14 +807,14 @@ var PublishRecruit = function (_Taro$Component) {
   }]);
 
   return PublishRecruit;
-}(_taroTt2.default.Component);
+}(_taroSwan2.default.Component);
 
 PublishRecruit.$$events = ["anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6", "anonymousFunc7", "anonymousFunc8", "anonymousFunc9", "anonymousFunc10", "anonymousFunc11", "anonymousFunc12"];
 PublishRecruit.$$componentPath = "pages/recruit/publish/index";
 PublishRecruit.config = { navigationBarTitleText: '发布招工', navigationBarBackgroundColor: '#0099ff', navigationBarTextStyle: 'white', backgroundTextStyle: "dark" };
 exports.default = PublishRecruit;
 
-Page(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(PublishRecruit, true));
+Page(__webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js").default.createComponent(PublishRecruit, true));
 
 /***/ })
 

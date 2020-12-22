@@ -1,4 +1,4 @@
-(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["npm/taro-ui/dist/weapp/components/drawer/index"],{
+(swan["webpackJsonp"] = swan["webpackJsonp"] || []).push([["npm/taro-ui/dist/weapp/components/drawer/index"],{
 
 /***/ "./node_modules/taro-ui/dist/weapp/components/drawer/index.js":
 /*!********************************************************************!*\
@@ -22,9 +22,9 @@ var _get = function get(object, property, receiver) { if (object === null) objec
 
 var _class, _temp2;
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroSwan2 = _interopRequireDefault(_taroSwan);
 
 var _propTypes = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
 
@@ -60,7 +60,7 @@ var AtDrawer = (_temp2 = _class = function (_AtComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AtDrawer.__proto__ || Object.getPrototypeOf(AtDrawer)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "anonymousState__temp3", "loopArray20", "_show", "items", "animShow", "mask", "width", "right", "className", "show", "children"], _this.customComponents = ["AtList", "AtListItem"], _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AtDrawer.__proto__ || Object.getPrototypeOf(AtDrawer)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "anonymousState__temp3", "loopArray26", "_show", "items", "animShow", "mask", "width", "right", "className", "show", "children"], _this.customComponents = ["AtList", "AtListItem"], _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(AtDrawer, [{
@@ -71,7 +71,7 @@ var AtDrawer = (_temp2 = _class = function (_AtComponent) {
         animShow: false,
         _show: props.show
       };
-      this.$$refs = new _taroTt2.default.RefsArray();
+      this.$$refs = new _taroSwan2.default.RefsArray();
     }
   }, {
     key: 'componentDidMount',
@@ -174,35 +174,35 @@ var AtDrawer = (_temp2 = _class = function (_AtComponent) {
       };
 
       var anonymousState__temp = _show ? (0, _classnames2.default)(rootClassName, classObject, this.__props.className) : null;
-      var anonymousState__temp2 = _show ? (0, _taroTt.internal_inline_style)(maskStyle) : null;
-      var anonymousState__temp3 = _show ? (0, _taroTt.internal_inline_style)(listStyle) : null;
-      var loopArray20 = items.length ? items.map(function (name, index) {
+      var anonymousState__temp2 = _show ? (0, _taroSwan.internal_inline_style)(maskStyle) : null;
+      var anonymousState__temp3 = _show ? (0, _taroSwan.internal_inline_style)(listStyle) : null;
+      var loopArray26 = items.length ? items.map(function (name, index) {
         name = {
-          $original: (0, _taroTt.internal_get_original)(name)
+          privateOriginal: (0, _taroSwan.internal_get_original)(name)
         };
-        var $loopState__temp5 = _show ? items.length ? name.$original + "-" + index : null : null;
+        var loopState__temp5 = _show ? items.length ? name.privateOriginal + "-" + index : null : null;
 
-        var _genCompid = (0, _taroTt.genCompid)(__prefix + 'cdzzzzzzzz' + index, true),
+        var _genCompid = (0, _taroSwan.genCompid)(__prefix + 'dbzzzzzzzz' + index, true),
             _genCompid2 = _slicedToArray(_genCompid, 2),
-            $prevCompid__19 = _genCompid2[0],
-            $compid__19 = _genCompid2[1];
+            $prevCompid__28 = _genCompid2[0],
+            $compid__28 = _genCompid2[1];
 
-        _show && items.length && _taroTt.propsManager.set({
+        _show && items.length && _taroSwan.propsManager.set({
           "onClick": _this5.onItemClick.bind(_this5, index),
-          "title": name.$original,
+          "title": name.privateOriginal,
           "arrow": "right"
-        }, $compid__19, $prevCompid__19);
+        }, $compid__28, $prevCompid__28);
         return {
-          $loopState__temp5: $loopState__temp5,
-          $compid__19: $compid__19,
-          $original: name.$original
+          loopState__temp5: loopState__temp5,
+          $compid__28: $compid__28,
+          privateOriginal: name.privateOriginal
         };
       }) : [];
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
         anonymousState__temp2: anonymousState__temp2,
         anonymousState__temp3: anonymousState__temp3,
-        loopArray20: loopArray20,
+        loopArray26: loopArray26,
         items: items
       });
       return this.__state;
@@ -233,7 +233,7 @@ AtDrawer.propTypes = {
 };
 exports.default = AtDrawer;
 
-Component(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(AtDrawer));
+Component(__webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js").default.createComponent(AtDrawer));
 
 /***/ })
 

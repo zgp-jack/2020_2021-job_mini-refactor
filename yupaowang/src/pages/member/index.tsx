@@ -1,14 +1,14 @@
 import Taro, { useState, useEffect } from '@tarojs/taro'
 import { View, Image, Text } from '@tarojs/components'
 import { useSelector, useDispatch } from '@tarojs/redux'
-import { getMemberInfo } from '../../utils/request'
+import { getMemberInfo, getMemberMsgNumber } from '../../utils/request'
 import { MemberInfo } from '../../utils/request/index.d'
-import { IMGCDNURL, AUTHPATH, CODEAUTHPATH, PUBLISHRESUME, PUBLISHEDRECRUIT, INVITEPATH, PROREQUESTURL, REQUESTURL } from '../../config'
+import { IMGCDNURL, AUTHPATH, CODEAUTHPATH, PUBLISHRESUME, PUBLISHEDRECRUIT, INVITEPATH, PROREQUESTURL, REQUESTURL, SHOWINVITEUSER } from '../../config'
 import { setMemberInfo } from '../../actions/member'
 import Msg, { ShowActionModal } from '../../utils/msg'
 import { UserMemberInfo } from '../../reducers/member'
 import { loginOut } from '../../actions/user'
-import { resetMsg } from '../../actions/msg'
+import { resetMsg, setMsg } from '../../actions/msg'
 import { isIos } from '../../utils/v'
 import './index.scss'
 import { UserInfo } from '../../config/store'
@@ -58,6 +58,9 @@ export default function Member({memberIndex = 0}: MemberProps){
       else ShowActionModal({
         msg: data.errmsg
       })
+    })
+    getMemberMsgNumber(isIos()).then(data => {
+      if (data.errcode == 'ok') dispatch(setMsg(data.data))
     })
   }
 
@@ -143,7 +146,7 @@ export default function Member({memberIndex = 0}: MemberProps){
             <Image className='member-list-icon' src={ IMGCDNURL + 'lpy/ucenter/newcenter-used.png'} />
             <Text className='member-list-title'>我的二手交易</Text>
           </View>
-          <View className='member-list-item' onClick={() => userRouteJump('/pages/information/mymessage/index')}>
+          <View className='member-list-item' onClick={() => userRouteJump('/subpackage/pages/information/mymessage/index')}>
             <Image className='member-list-icon' src={ IMGCDNURL + 'lpy/ucenter/newcenter-info.png'} />
             <View className='member-list-title'>
               <Text>我的信息</Text>
@@ -162,11 +165,12 @@ export default function Member({memberIndex = 0}: MemberProps){
             <Text className='member-list-title'>获取积分</Text>
             {!ios && <Text className='member-list-tips'>去充值</Text>}
           </View>
+          {SHOWINVITEUSER &&
           <View className='member-list-item' onClick={() => userRouteJump(INVITEPATH)}>
             <Image className='member-list-icon' src={ IMGCDNURL + 'lpy/ucenter/newcenter-invite.png'} />
             <Text className='member-list-title'>邀请工友</Text>
             <Text className='member-list-tips'>邀请好友得积分</Text>
-          </View>
+          </View>}
           <View className='member-list-item' onClick={() => userRouteJump(`/pages/integral/tabber/index?info=1`)}>
             <Image className='member-list-icon' src={ IMGCDNURL + 'lpy/ucenter/newcenter-expend.png'} />
             <Text className='member-list-title'>积分消耗记录</Text>
@@ -188,19 +192,20 @@ export default function Member({memberIndex = 0}: MemberProps){
           </View>
         </View>
         <View className='member-list-container'>
-          <View className='member-list-item' onClick={() => userRouteJump('/pages/feedbacklist/index')}>
+          <View className='member-list-item' onClick={() => userRouteJump('/subpackage/pages/feedbacklist/index')}>
             <Image className='member-list-icon' src={ IMGCDNURL + 'lpy/ucenter/newcenter-feedback.png'} />
             <View className='member-list-title'>
               <Text>意见反馈</Text>
-              {model && model.member.has_notice_msg.hasNoticeMsgg && <Text className='member-list-dot'></Text>}
+              {model && model.member.has_notice_msg.hasNoticeMsg && <Text className='member-list-dot'></Text>}
             </View>
-            {model && model.member.has_notice_msg.hasNoticeMsgg && <Text className='member-list-tips'>有最新回复</Text>}
+            {model && model.member.has_notice_msg.hasNoticeMsg && <Text className='member-list-tips'>有最新回复</Text>}
           </View>
-          <View className='member-list-item' onClick={() => userRouteJump('/pages/help/index')} >
+          {SHOWINVITEUSER &&
+          <View className='member-list-item' onClick={() => userRouteJump('/subpackage/pages/help/index')} >
             <Image className='member-list-icon' src={ IMGCDNURL + 'lpy/ucenter/newcenter-help.png'} />
             <Text className='member-list-title'>帮助中心</Text>
             <Text className='member-list-tips'>使用教程</Text>
-          </View>
+          </View>}
           {PROREQUESTURL != REQUESTURL &&
           <View className='member-list-item' onClick={() => userClearSession()} >
             <Image className='member-list-icon' src={IMGCDNURL + 'lpy/ucenter/newcenter-set.png'} />

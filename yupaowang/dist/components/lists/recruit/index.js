@@ -1,4 +1,4 @@
-(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["components/lists/recruit/index"],{
+(swan["webpackJsonp"] = swan["webpackJsonp"] || []).push([["components/lists/recruit/index"],{
 
 /***/ "./src/components/lists/recruit/index.scss":
 /*!*************************************************!*\
@@ -33,9 +33,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroSwan2 = _interopRequireDefault(_taroSwan);
 
 var _index = __webpack_require__(/*! ../../../config/index */ "./src/config/index.ts");
 
@@ -57,7 +57,7 @@ var RecruitList = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (RecruitList.__proto__ || Object.getPrototypeOf(RecruitList)).apply(this, arguments));
 
-    _this.$usedState = ["anonymousState__temp", "loopArray15", "$compid__16", "data", "IMGCDNURL", "hasMore", "bottom"];
+    _this.$usedState = ["anonymousState__temp", "loopArray21", "$compid__25", "data", "IMGCDNURL", "hasMore", "bottom"];
     _this.anonymousFunc0Map = {};
     _this.anonymousFunc2Map = {};
     _this.customComponents = ["Nodata"];
@@ -68,7 +68,7 @@ var RecruitList = function (_Taro$Component) {
     key: "_constructor",
     value: function _constructor(props) {
       _get(RecruitList.prototype.__proto__ || Object.getPrototypeOf(RecruitList.prototype), "_constructor", this).call(this, props);
-      this.$$refs = new _taroTt2.default.RefsArray();
+      this.$$refs = new _taroSwan2.default.RefsArray();
     }
   }, {
     key: "_createData",
@@ -81,10 +81,10 @@ var RecruitList = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__16"),
+      var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__25"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__16 = _genCompid2[0],
-          $compid__16 = _genCompid2[1];
+          $prevCompid__25 = _genCompid2[0],
+          $compid__25 = _genCompid2[1];
 
       var _props = this.__props,
           data = _props.data,
@@ -95,46 +95,48 @@ var RecruitList = function (_Taro$Component) {
       // 用户页面跳转
 
       var userRouteJump = function userRouteJump(url) {
-        _taroTt2.default.navigateTo({
+        _taroSwan2.default.navigateTo({
           url: url
         });
       };
-      var anonymousState__temp = (0, _taroTt.internal_inline_style)(bottom ? '' : 'padding-bottom:0');
-      var loopArray15 = data ? data.map(function (item, __index1) {
+      var anonymousState__temp = (0, _taroSwan.internal_inline_style)(bottom ? '' : 'padding-bottom:0');
+      var loopArray21 = data ? data.map(function (item, __index1) {
         item = {
-          $original: (0, _taroTt.internal_get_original)(item)
+          privateOriginal: (0, _taroSwan.internal_get_original)(item)
         };
-        var $anonymousCallee__0 = item.$original ? item.$original.map(function (d, __index0) {
+        var anonymousCallee__2 = item.privateOriginal ? item.privateOriginal.map(function (d, __index0) {
           d = {
-            $original: (0, _taroTt.internal_get_original)(d)
+            privateOriginal: (0, _taroSwan.internal_get_original)(d)
           };
-          var _$indexKey = "bhzzz" + __index1 + "-" + __index0;
+          var _$indexKey = "cfzzz" + __index1 + "-" + __index0;
           _this2.anonymousFunc0Map[_$indexKey] = function () {
-            return userRouteJump("/pages/detail/info/index?id=" + d.$original.id);
+            return userRouteJump("/pages/detail/info/index?id=" + d.privateOriginal.id);
           };
-          var _$indexKey2 = "bizzz" + __index1 + "-" + __index0;
+          var _$indexKey2 = "cgzzz" + __index1 + "-" + __index0;
           _this2.anonymousFunc2Map[_$indexKey2] = function (e) {
             e.stopPropagation();
-            userRouteJump(_index.PUBLISHEDRECRUIT);
+            userRouteJump(PUBLISHEDRECRUIT);
           };
+          var loopState__temp3 = item.privateOriginal ? _index.REPLACEWEIXINTEXT ? d.privateOriginal.detail.replace(_index.FILTERWEIXINREG, '') : d.privateOriginal.detail : null;
           return {
             _$indexKey: _$indexKey,
             _$indexKey2: _$indexKey2,
-            $original: d.$original
+            loopState__temp3: loopState__temp3,
+            privateOriginal: d.privateOriginal
           };
         }) : [];
         return {
-          $anonymousCallee__0: $anonymousCallee__0,
-          $original: item.$original
+          anonymousCallee__2: anonymousCallee__2,
+          privateOriginal: item.privateOriginal
         };
       }) : [];
-      data && data[0] && !data[0].length && _taroTt.propsManager.set({
+      data && data[0] && !data[0].length && _taroSwan.propsManager.set({
         "text": "\u6682\u65E0\u76F8\u5173\u6570\u636E"
-      }, $compid__16, $prevCompid__16);
+      }, $compid__25, $prevCompid__25);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
-        loopArray15: loopArray15,
-        $compid__16: $compid__16,
+        loopArray21: loopArray21,
+        $compid__25: $compid__25,
         data: data,
         IMGCDNURL: _index.IMGCDNURL,
         hasMore: hasMore
@@ -169,13 +171,13 @@ var RecruitList = function (_Taro$Component) {
   }]);
 
   return RecruitList;
-}(_taroTt2.default.Component);
+}(_taroSwan2.default.Component);
 
 RecruitList.$$events = ["anonymousFunc0", "anonymousFunc2"];
 RecruitList.$$componentPath = "components/lists/recruit/index";
 exports.default = RecruitList;
 
-Component(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(RecruitList));
+Component(__webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js").default.createComponent(RecruitList));
 
 /***/ })
 

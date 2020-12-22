@@ -1,7 +1,7 @@
 require("./runtime");
 require("./vendors");
 
-(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["app"],{
+(swan["webpackJsonp"] = swan["webpackJsonp"] || []).push([["app"],{
 
 /***/ "./src/app.scss":
 /*!**********************!*\
@@ -30,9 +30,9 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroSwan2 = _interopRequireDefault(_taroSwan);
 
 var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
@@ -72,13 +72,11 @@ var _App = function (_BaseComponent) {
     var _this = _possibleConstructorReturn(this, (_App.__proto__ || Object.getPrototypeOf(_App)).apply(this, arguments));
 
     _this.config = {
-      pages: ['pages/index/index', 'pages/userauth/index', "pages/recruit/publish/index", "pages/used/lists/index", "pages/map/recruit/index", "pages/map/resume/index", "pages/used/publish/index", "pages/used/info/index", "pages/static/invite/index", 'pages/static/notice/index', "pages/getintegral/index", "pages/integral/source/index", "pages/integral/temp/index", "pages/integral/official/index", "pages/integral/expend/index", "pages/recharge/index", "pages/realname/index", "pages/map/realname/index", "pages/userinfo/info/index", "pages/userinfo/add/index", "pages/userinfo/phone/index", "pages/userinfo/updatePass/index", "pages/published/recruit/index", "pages/published/used/index", "pages/collection/index", "pages/help/index", "pages/feedbacklist/index", "pages/feedback/index", "pages/information/mymessage/index", "pages/information/system/index", 'pages/integral/tabber/index', 'pages/detail/info/index', 'pages/topping/index', 'pages/topping/distruction/index',
-      // 'pages/topping/recruit/index',//置顶找活范围
-      'pages/resume/publish/index', 'pages/resume/add_info/index', 'pages/resume/add_member/index', 'pages/resume/add_skill/index', 'pages/resume/add_project/index', 'pages/resume/projects/index', 'pages/resume/skills/index', 'pages/rank-rules/index', 'pages/turntable/index', 'pages/help/question-details/index', 'pages/resume/detail/index', 'pages/resume/newPreview/index', 'pages/resume/preview/index', 'pages/login/index', 'pages/recruit/jisu_issue/index', 'pages/recruit/fast_issue/issue/index', 'pages/recruit/fast_issue/code/index', 'pages/recruit/fast_issue/release/index', 'pages/newtopping/recRang/index', 'pages/newtopping/recGion/index', 'pages/newtopping/resRang/index', 'pages/newtopping/resGion/index', 'pages/marketing_page/index', 'pages/newcomplaint/index', 'pages/complaint/index' //投诉
+      pages: ['pages/index/index', 'pages/userauth/index', "pages/recruit/publish/index", "pages/used/lists/index", "pages/map/recruit/index", "pages/map/resume/index", "pages/used/publish/index", "pages/used/info/index", "pages/static/invite/index", 'pages/static/notice/index', "pages/getintegral/index", "pages/integral/source/index", "pages/integral/temp/index", "pages/integral/official/index", "pages/integral/expend/index", "pages/recharge/index", "pages/realname/index", "pages/map/realname/index", "pages/userinfo/info/index", "pages/userinfo/add/index", "pages/userinfo/phone/index", "pages/userinfo/updatePass/index", "pages/userinfo/pass/index", "pages/published/recruit/index", "pages/published/used/index", "pages/collection/index", 'pages/integral/tabber/index', 'pages/detail/info/index', 'pages/topping/index', 'pages/resume/publish/index', 'pages/resume/add_info/index', 'pages/resume/add_member/index', 'pages/resume/add_skill/index', 'pages/resume/add_project/index', 'pages/resume/projects/index', 'pages/resume/skills/index', 'pages/resume/detail/index', 'pages/resume/newPreview/index', 'pages/resume/preview/index', 'pages/login/index', 'pages/recruit/jisu_issue/index', 'pages/recruit/fast_issue/issue/index', 'pages/recruit/fast_issue/code/index', 'pages/recruit/fast_issue/release/index', 'pages/newtopping/recRang/index', 'pages/newtopping/recGion/index', 'pages/newtopping/resRang/index', 'pages/newtopping/resGion/index', 'pages/marketing_page/index', 'pages/newcomplaint/index', 'pages/complaint/index' //投诉
       ],
       subPackages: [{
         root: 'subpackage/pages',
-        pages: ['checkauth/index', 'about/index', 'report/index', 'download/index', 'ranking/index', 'course/index', 'anti-fraud/index', 'projects/index', 'skills/index', 'news/index']
+        pages: ['checkauth/index', 'about/index', 'report/index', 'download/index', 'ranking/index', 'course/index', 'anti-fraud/index', 'projects/index', 'skills/index', 'news/index', 'help/index', 'feedbacklist/index', 'feedback/index', 'information/mymessage/index', 'information/system/index', 'turntable/index']
       }],
       window: {
         backgroundTextStyle: 'light',
@@ -92,7 +90,8 @@ var _App = function (_BaseComponent) {
         "scope.userLocation": {
           "desc": "获取您的位置将会为您推荐该地区最新信息"
         }
-      }
+      },
+      "sitemapLocation": 'sitemap.json'
     };
     return _this;
   }
@@ -122,8 +121,8 @@ var _App = function (_BaseComponent) {
 
 exports.default = _App;
 
-App(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createApp(_App));
-_taroTt2.default.initPxTransform({
+App(__webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js").default.createApp(_App));
+_taroSwan2.default.initPxTransform({
   "designWidth": 750
 });
 
@@ -181,7 +180,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-exports.default = msg;
+exports.default = filterClassify;
 
 var _filter_classify = __webpack_require__(/*! ../constants/filter_classify */ "./src/constants/filter_classify.ts");
 
@@ -193,7 +192,7 @@ var DEFAULT_STATE = {
   staffTree: [],
   isSet: false
 };
-function msg() {
+function filterClassify() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : DEFAULT_STATE;
   var action = arguments[1];
 
@@ -298,7 +297,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @Author: zyb
  * @Date: 2020-11-03 14:36:47
  * @LastEditors: jsxin
- * @LastEditTime: 2020-12-08 11:55:13
+ * @LastEditTime: 2020-12-08 17:52:51
  * @Description:
  */
 exports.default = (0, _redux.combineReducers)({
@@ -407,6 +406,8 @@ function msg() {
       return _extends({}, state, action.data);
     case _msg.RESETMSG:
       return _extends({}, state, DEFAULT_STATE);
+    case _msg.SETMEMBERMSG:
+      return _extends({}, state, { messageNumber: action.data });
     default:
       return state;
   }
@@ -572,7 +573,8 @@ var _realname = __webpack_require__(/*! ../constants/realname */ "./src/constant
 
 var DEFAULT_STATE = {
   RealnameArea: '',
-  setRealnameArea: function setRealnameArea() {}
+  setRealnameArea: function setRealnameArea() {},
+  setRealnameAddress: function setRealnameAddress() {}
 };
 function RealnameStore() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : DEFAULT_STATE;
@@ -591,6 +593,8 @@ function RealnameStore() {
     case _realname.SETAREA:
       return _extends({}, state, { RealnameArea: action.data });
       break;
+    case _realname.SETADDRESSFUN:
+      return _extends({}, state, { setRealnameAddress: action.data });
     default:
       return state;
   }
@@ -1045,9 +1049,9 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 exports.default = User;
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroSwan2 = _interopRequireDefault(_taroSwan);
 
 var _store = __webpack_require__(/*! ../config/store */ "./src/config/store.ts");
 
@@ -1055,7 +1059,7 @@ var _user = __webpack_require__(/*! ../constants/user */ "./src/constants/user.t
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var userInfo = _taroTt2.default.getStorageSync(_store.UserInfo);
+var userInfo = _taroSwan2.default.getStorageSync(_store.UserInfo);
 var DEFAULT_STATE = userInfo ? userInfo : {
   userId: 0,
   uuid: '',
@@ -1072,7 +1076,7 @@ function User() {
       return _extends({}, state, action.data);
     case _user.GETUSER:
       if (!state.login) {
-        var _userInfo = _taroTt2.default.getStorageSync(_store.UserInfo);
+        var _userInfo = _taroSwan2.default.getStorageSync(_store.UserInfo);
         if (_userInfo) return _userInfo;
       }
       return state;

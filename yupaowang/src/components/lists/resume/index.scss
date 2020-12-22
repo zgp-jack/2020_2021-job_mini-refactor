@@ -17,6 +17,14 @@
     padding:20px 20px 0;
     background-color: white;
     margin-top: 15px;
+    .list-topresume-img{
+      position: absolute;
+      width: 70px;
+      height: 70px;
+      left: 0;
+      top: 0;
+      z-index: 2;
+    }
     .resume-list-header{
       position: relative;
       padding-left: 120px;
@@ -85,8 +93,8 @@
       .resume-list-words-text{
         position: relative;
         display: inline-block;
-        background-color: rgba(238, 237, 239, 1);
-        color:rgba(42, 42, 42, 1);
+        color: #666;
+        background-color: #f7f7f7;
         padding: 10px;
         font-size: 26px;
         margin-right: 15px;

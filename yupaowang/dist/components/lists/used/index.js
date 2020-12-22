@@ -1,4 +1,4 @@
-(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["components/lists/used/index"],{
+(swan["webpackJsonp"] = swan["webpackJsonp"] || []).push([["components/lists/used/index"],{
 
 /***/ "./src/components/lists/used/index.scss":
 /*!**********************************************!*\
@@ -29,9 +29,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroSwan2 = _interopRequireDefault(_taroSwan);
 
 __webpack_require__(/*! ./index.scss */ "./src/components/lists/used/index.scss");
 
@@ -53,7 +53,7 @@ var UsedList = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (UsedList.__proto__ || Object.getPrototypeOf(UsedList)).apply(this, arguments));
 
-    _this.$usedState = ["anonymousState__temp", "loopArray17", "data", "IMGCDNURL", "hasMore", "ALIYUNCDN", "bottom"];
+    _this.$usedState = ["anonymousState__temp", "loopArray23", "data", "IMGCDNURL", "hasMore", "ALIYUNCDN", "bottom"];
     _this.anonymousFunc0Map = {};
     _this.customComponents = [];
     return _this;
@@ -63,7 +63,7 @@ var UsedList = function (_Taro$Component) {
     key: "_constructor",
     value: function _constructor(props) {
       _get(UsedList.prototype.__proto__ || Object.getPrototypeOf(UsedList.prototype), "_constructor", this).call(this, props);
-      this.$$refs = new _taroTt2.default.RefsArray();
+      this.$$refs = new _taroSwan2.default.RefsArray();
     }
   }, {
     key: "_createData",
@@ -85,36 +85,36 @@ var UsedList = function (_Taro$Component) {
       // 用户查看二手交易详情
 
       var userLookUsedInfo = function userLookUsedInfo(id) {
-        _taroTt2.default.navigateTo({
-          url: '/pages/used/info/index?id=' + id
+        _taroSwan2.default.navigateTo({
+          url: "/pages/used/info/index?id=" + id + "&used=1"
         });
       };
-      var anonymousState__temp = (0, _taroTt.internal_inline_style)(bottom ? '' : 'padding-bottom:0');
-      var loopArray17 = data.length ? data.map(function (item, __index1) {
+      var anonymousState__temp = (0, _taroSwan.internal_inline_style)(bottom ? '' : 'padding-bottom:0');
+      var loopArray23 = data.length ? data.map(function (item, __index1) {
         item = {
-          $original: (0, _taroTt.internal_get_original)(item)
+          privateOriginal: (0, _taroSwan.internal_get_original)(item)
         };
-        var $anonymousCallee__3 = data.length ? item.$original.map(function (d, __index0) {
+        var anonymousCallee__5 = data.length ? item.privateOriginal.map(function (d, __index0) {
           d = {
-            $original: (0, _taroTt.internal_get_original)(d)
+            privateOriginal: (0, _taroSwan.internal_get_original)(d)
           };
-          var _$indexKey = "cazzz" + __index1 + "-" + __index0;
+          var _$indexKey = "cizzz" + __index1 + "-" + __index0;
           _this2.anonymousFunc0Map[_$indexKey] = function () {
-            return userLookUsedInfo(d.$original.id);
+            return userLookUsedInfo(d.privateOriginal.id);
           };
           return {
             _$indexKey: _$indexKey,
-            $original: d.$original
+            privateOriginal: d.privateOriginal
           };
         }) : [];
         return {
-          $anonymousCallee__3: $anonymousCallee__3,
-          $original: item.$original
+          anonymousCallee__5: anonymousCallee__5,
+          privateOriginal: item.privateOriginal
         };
       }) : [];
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
-        loopArray17: loopArray17,
+        loopArray23: loopArray23,
         data: data,
         IMGCDNURL: _index.IMGCDNURL,
         hasMore: hasMore,
@@ -138,13 +138,13 @@ var UsedList = function (_Taro$Component) {
   }]);
 
   return UsedList;
-}(_taroTt2.default.Component);
+}(_taroSwan2.default.Component);
 
 UsedList.$$events = ["anonymousFunc0"];
 UsedList.$$componentPath = "components/lists/used/index";
 exports.default = UsedList;
 
-Component(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(UsedList));
+Component(__webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js").default.createComponent(UsedList));
 
 /***/ })
 

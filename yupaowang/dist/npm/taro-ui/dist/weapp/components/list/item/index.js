@@ -1,4 +1,4 @@
-(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["npm/taro-ui/dist/weapp/components/list/item/index"],{
+(swan["webpackJsonp"] = swan["webpackJsonp"] || []).push([["npm/taro-ui/dist/weapp/components/list/item/index"],{
 
 /***/ "./node_modules/taro-ui/dist/weapp/components/list/item/index.js":
 /*!***********************************************************************!*\
@@ -20,9 +20,9 @@ var _get = function get(object, property, receiver) { if (object === null) objec
 
 var _class, _temp2, _initialiseProps;
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroSwan2 = _interopRequireDefault(_taroSwan);
 
 var _propTypes = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
 
@@ -72,7 +72,7 @@ var AtListItem = (_temp2 = _class = function (_AtComponent) {
     value: function _constructor(props) {
       _get(AtListItem.prototype.__proto__ || Object.getPrototypeOf(AtListItem.prototype), '_constructor', this).call(this, props);
 
-      this.$$refs = new _taroTt2.default.RefsArray();
+      this.$$refs = new _taroSwan2.default.RefsArray();
     }
   }, {
     key: 'handleSwitchClick',
@@ -115,7 +115,7 @@ var AtListItem = (_temp2 = _class = function (_AtComponent) {
       }, this.__props.className);
       var iconClass = (0, _classnames2.default)(iconInfo.prefixClass || 'at-icon', _defineProperty({}, (iconInfo.prefixClass || 'at-icon') + "-" + iconInfo.value, iconInfo.value), iconInfo.className);
 
-      var anonymousState__temp = iconInfo.value ? (0, _taroTt.internal_inline_style)(this.mergeStyle({
+      var anonymousState__temp = iconInfo.value ? (0, _taroSwan.internal_inline_style)(this.mergeStyle({
         color: iconInfo.color || '',
         fontSize: (iconInfo.size || 24) + "px"
       }, iconInfo.customStyle)) : null;
@@ -206,7 +206,7 @@ AtListItem.propTypes = {
 };
 exports.default = AtListItem;
 
-Component(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(AtListItem));
+Component(__webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js").default.createComponent(AtListItem));
 
 /***/ })
 

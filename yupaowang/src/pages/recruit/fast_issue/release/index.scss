@@ -29,13 +29,15 @@ body{
         margin-bottom: 20px;
         font-size: 28px;
         border-radius: 10px;
+        height: 100px;
         text{
           display: block;
           position: relative;
-          line-height: 45px;
+          line-height: 100px;
           font-size: 28px;
           width: 140px;
           font-weight: bold;
+          height: 100px;
         }
         .issue-input{
           position: relative;

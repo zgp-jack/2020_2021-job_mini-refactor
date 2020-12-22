@@ -1,4 +1,4 @@
-(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["pages/used/info/index"],{
+(swan["webpackJsonp"] = swan["webpackJsonp"] || []).push([["pages/used/info/index"],{
 
 /***/ "./src/pages/used/info/index.scss":
 /*!****************************************!*\
@@ -33,15 +33,17 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroSwan2 = _interopRequireDefault(_taroSwan);
 
 var _index = __webpack_require__(/*! ../../../utils/request/index */ "./src/utils/request/index.ts");
 
 var _index2 = __webpack_require__(/*! ../../../utils/helper/index */ "./src/utils/helper/index.ts");
 
 var _index3 = __webpack_require__(/*! ../../../utils/msg/index */ "./src/utils/msg/index.ts");
+
+var _index4 = __webpack_require__(/*! ../../../config/index */ "./src/config/index.ts");
 
 __webpack_require__(/*! ./index.scss */ "./src/pages/used/info/index.scss");
 
@@ -65,7 +67,7 @@ var UsedInfo = function (_Taro$Component) {
       navigationBarTitleText: '二手交易详情'
     };
 
-    _this.$usedState = ["model"];
+    _this.$usedState = ["anonymousState__temp", "model"];
     _this.customComponents = ["WechatNotice"];
     return _this;
   }
@@ -74,7 +76,7 @@ var UsedInfo = function (_Taro$Component) {
     key: "_constructor",
     value: function _constructor(props) {
       _get(UsedInfo.prototype.__proto__ || Object.getPrototypeOf(UsedInfo.prototype), "_constructor", this).call(this, props);
-      this.$$refs = new _taroTt2.default.RefsArray();
+      this.$$refs = new _taroSwan2.default.RefsArray();
     }
   }, {
     key: "_createData",
@@ -84,29 +86,53 @@ var UsedInfo = function (_Taro$Component) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var router = (0, _taroTt.useRouter)();
-      var id = router.params.id;
+      var router = (0, _taroSwan.useRouter)();
+      // id为二手详情id used 因为百度收录问题， 当id>MaxUsedInfoId 时都会带used=1来保证最新资源收录
+      var _router$params = router.params,
+          id = _router$params.id,
+          used = _router$params.used;
 
-      var _useState = (0, _taroTt.useState)(),
+      var _useState = (0, _taroSwan.useState)(),
           _useState2 = _slicedToArray(_useState, 2),
           model = _useState2[0],
           setModel = _useState2[1];
       // 设置用户分享信息
 
 
-      (0, _taroTt.useShareAppMessage)(function () {
-        return _extends({}, (0, _index2.getUserShareMessage)());
+      (0, _taroSwan.useShareAppMessage)(function () {
+        return _extends({}, (0, _index2.getUserShareMessage)(), {
+          path: "/pages/used/info/index?id=" + id + "&more=1"
+        });
       });
       // 初始化二手交易信息
-      (0, _taroTt.useEffect)(function () {
+      (0, _taroSwan.useDidShow)(function () {
+        if (!used || used != '1') {
+          if (parseInt(id) > _index4.MaxUsedInfoId) {
+            _taroSwan2.default.redirectTo({
+              url: "/pages/detail/info/index?id=" + id
+            });
+            return;
+          }
+        }
+        // 获取场景值
         (0, _index.getUsedInfo)(id).then(function (data) {
           if (data.errcode == 'ok') {
+            // 如果是百度系小程序，则直接设置seo等相关信息
+            if (_index4.SERIES == _index4.BAIDUSERIES) {
+              var keywords = data.data.showCateAttr.split('-').reverse().join('');
+              var address = data.data.showAddress.split('-').join('');
+              _taroSwan2.default.setPageInfo({
+                title: data.data.title + "-\u9C7C\u6CE1\u7F51",
+                description: "" + data.data.title + data.data.detail,
+                keywords: keywords + "," + data.data.title + "," + address + keywords
+              });
+            }
             setModel(data.data);
           } else {
             (0, _index3.ShowActionModal)({
               msg: data.errmsg,
               success: function success() {
-                _taroTt2.default.navigateBack();
+                _taroSwan2.default.navigateBack();
               }
             });
           }
@@ -114,11 +140,11 @@ var UsedInfo = function (_Taro$Component) {
           (0, _index3.ShowActionModal)({
             msg: '网络错误，获取失败',
             success: function success() {
-              _taroTt2.default.navigateBack();
+              _taroSwan2.default.navigateBack();
             }
           });
         });
-      }, []);
+      });
       // 用户拨打电话
       var userCallPhone = function userCallPhone() {
         if (!model) {
@@ -127,14 +153,34 @@ var UsedInfo = function (_Taro$Component) {
         if (model.is_end == '2') {
           return;
         }
-        _taroTt2.default.makePhoneCall({
+        _taroSwan2.default.makePhoneCall({
           phoneNumber: model.user_mobile
         });
+      };
+      // 查看更多招工信息
+      var seeMoreUsed = function seeMoreUsed() {
+        var pages = _taroSwan2.default.getCurrentPages();
+        var listUrl = "/pages/used/lists/index";
+        if (pages.length < 2) {
+          _taroSwan2.default.reLaunch({ url: listUrl });
+        } else {
+          var routeUrl = "/" + pages[pages.length - 2].route;
+          if (routeUrl == listUrl) {
+            _taroSwan2.default.navigateBack();
+          } else {
+            _taroSwan2.default.reLaunch({ url: listUrl });
+          }
+        }
       };
       this.anonymousFunc0 = function () {
         return userCallPhone();
       };
+      var anonymousState__temp = model ? _index4.REPLACEWEIXINTEXT ? model.detail.replace(_index4.FILTERWEIXINREG, '') : model.detail : '';
+      this.anonymousFunc1 = function () {
+        return seeMoreUsed();
+      };
       Object.assign(this.__state, {
+        anonymousState__temp: anonymousState__temp,
         model: model
       });
       return this.__state;
@@ -144,17 +190,22 @@ var UsedInfo = function (_Taro$Component) {
     value: function anonymousFunc0(e) {
       ;
     }
+  }, {
+    key: "anonymousFunc1",
+    value: function anonymousFunc1(e) {
+      ;
+    }
   }]);
 
   return UsedInfo;
-}(_taroTt2.default.Component);
+}(_taroSwan2.default.Component);
 
-UsedInfo.$$events = ["anonymousFunc0"];
+UsedInfo.$$events = ["anonymousFunc0", "anonymousFunc1"];
 UsedInfo.$$componentPath = "pages/used/info/index";
 UsedInfo.config = { navigationBarTitleText: '二手交易详情' };
 exports.default = UsedInfo;
 
-Page(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(UsedInfo, true));
+Page(__webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js").default.createComponent(UsedInfo, true));
 
 /***/ })
 

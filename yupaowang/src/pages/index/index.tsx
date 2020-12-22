@@ -6,7 +6,7 @@ import IndexTabbarConfig from '../../config/pages/index'
 import { useSelector, useDispatch } from '@tarojs/redux'
 import { changeTabbar } from '../../actions/tabbar'
 import Home from '../home'
-import { INDEXPATH } from '../../config'
+import { INDEXPATH, SERIES, BAIDUSERIES } from '../../config'
 import { getUserShareMessage } from '../../utils/helper'
 import Recruit from '../recruit/lists'
 import Resume from '../resume/lists'
@@ -20,7 +20,8 @@ export default function Index(){
 
   // 初始化页面参数
   const router: RouterInfo = useRouter()
-  const { type = RECRUIT, refId = '' } = router.params
+  // type 类型(会重置tabbar)，默认招工列表 refId 邀请人id 谁分享出去就是谁 classify 工种参数 area 地区参数 listtype 类型 keywords关键词
+  const { type = RECRUIT, refId = '', classify = '', area = '', listtype = '', keywords = '' } = router.params
   // 获取当前tabbar高亮值
   const tabKey: string = useSelector<any, string>(state=>state.tabbar.key)
   // 获取当前的用户id
@@ -46,10 +47,21 @@ export default function Index(){
 
   // 当页面显示的 时候 触发
   useDidShow(()=>{
+    // 显示的时候重置当前标题
     if(tabKey){
       Taro.setNavigationBarTitle({ title: IndexTabbarConfig[tabKey].navigationBarTitleText })
     }
-    setShowIndex(showIndex+1)
+    // 由于index容纳了home/recruit/resume/member 4个页面，在需要使用当前页面展示的时候监听当前字段
+    setShowIndex(showIndex + 1)
+    console.log(type,classify,area,listtype,keywords)
+    // 设置百度seo相关信息
+    if (SERIES == BAIDUSERIES) {
+      Taro.setPageInfo({
+        title: '鱼泡网-建筑招聘|建筑人才|工地招工|施工队找活|工程信息',
+        description: '鱼泡网每日发布建筑招聘、建筑人才、工地招工、工地招人、找施工队等工程信息，方便建筑工人找活、找项目，为建筑劳务公司寻找优秀的建筑工人、建筑人才、建筑班组、施工队。',
+        keywords: '鱼泡网,建筑招聘,建筑人才,工地招工,施工队找活,工程信息'
+      })
+    }
   })
 
   // 进入页面的时候 ，如果有邀请人，我们将邀请人id存入缓存中， 等待新用户授权时使用

@@ -1,4 +1,4 @@
-(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["components/nodata/index"],{
+(swan["webpackJsonp"] = swan["webpackJsonp"] || []).push([["components/nodata/index"],{
 
 /***/ "./src/components/nodata/index.scss":
 /*!******************************************!*\
@@ -29,9 +29,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroSwan2 = _interopRequireDefault(_taroSwan);
 
 var _index = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
 
@@ -62,7 +62,7 @@ var Nodata = function (_Taro$Component) {
     key: "_constructor",
     value: function _constructor(props) {
       _get(Nodata.prototype.__proto__ || Object.getPrototypeOf(Nodata.prototype), "_constructor", this).call(this, props);
-      this.$$refs = new _taroTt2.default.RefsArray();
+      this.$$refs = new _taroSwan2.default.RefsArray();
     }
   }, {
     key: "_createData",
@@ -84,13 +84,13 @@ var Nodata = function (_Taro$Component) {
   }]);
 
   return Nodata;
-}(_taroTt2.default.Component);
+}(_taroSwan2.default.Component);
 
 Nodata.$$events = [];
 Nodata.$$componentPath = "components/nodata/index";
 exports.default = Nodata;
 
-Component(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(Nodata));
+Component(__webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js").default.createComponent(Nodata));
 
 /***/ })
 

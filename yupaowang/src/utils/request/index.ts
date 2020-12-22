@@ -79,7 +79,7 @@ const getRequestHeaderInfoAction = (): RequestBase => {
   return {
     url: '',
     method: 'GET',
-    header: { ...headers},
+    header: {...headers},
     data: {},
     loading: true,
     title: '数据加载中...',
@@ -90,7 +90,7 @@ const getRequestHeaderInfoAction = (): RequestBase => {
 
 // 全局通用请求方法
 export function doRequestAction(reqData: Request): Promise<any> {
-  let req: RequestBase = { ...getRequestHeaderInfoAction(), ...reqData}
+  let req: RequestBase = {...getRequestHeaderInfoAction(), ...reqData}
   if (req.loading) {
     Taro.showLoading({
       title: req.title
@@ -1217,6 +1217,23 @@ export function userCheckDouyinRecharge(data): Promise<Inter.userCheckDouyinOrde
   })
 }
 
+// 发起qq支付
+export function userQQRecharge(data): Promise<any> {
+  return doRequestAction({
+    url: api.userQQRecharge,
+    method: 'POST',
+    data
+  })
+}
+
+// qq内发起微信支付
+export function userQQWeChatRecharge(data): Promise<any> {
+  return doRequestAction({
+    url: api.userQQWeCharRecharge,
+    method: 'POST',
+    data
+  })
+}
 
 // 用户修改密码
 export function updataPassword(data): Promise<Inter.Result> {
@@ -1228,6 +1245,15 @@ export function updataPassword(data): Promise<Inter.Result> {
   })
 }
 
+// 用户设置密码
+export function userSetPassword(data): Promise<Inter.Result> {
+  return doRequestAction({
+    url: api.userSetPassword,
+    method: 'POST',
+    failToast: true,
+    data
+  })
+}
 
 // 实名查询
 export function queryAction(params): Promise<Inter.userQueryAuthInfoData> {
@@ -1272,7 +1298,7 @@ export function getAdvStatus(params: any): Promise<any> {
   })
 }
 // 大转盘获取抽奖次数
-export function turntableIndex():Promise<Inter.TurntableIndexType>{
+export function turntableIndex(): Promise<Inter.TurntableIndexType> {
   return doRequestAction({
     url: api.turntableIndex,
     method: 'POST',
@@ -1281,15 +1307,16 @@ export function turntableIndex():Promise<Inter.TurntableIndexType>{
 }
 
 // 大转盘抽奖
-export function turntableDraw():Promise<Inter.TurntableDraw>{
+export function turntableDraw(data): Promise<Inter.TurntableDraw> {
   return doRequestAction({
     url: api.turntableDraw,
+    data,
     method: 'POST',
   })
 }
 
 // 大转盘看视频结束后的回调
-export function turntableVideoEnd():Promise<Inter.TurntableVideoEnd>{
+export function turntableVideoEnd(): Promise<Inter.TurntableVideoEnd> {
   return doRequestAction({
     url: api.turntableVideoEnd,
     method: 'POST',
@@ -1297,7 +1324,7 @@ export function turntableVideoEnd():Promise<Inter.TurntableVideoEnd>{
 }
 
 // 获取鱼泡币页面大转盘展示控制
-export function memberTurntable():Promise<Inter.memberTurntableType>{
+export function memberTurntable(): Promise<Inter.memberTurntableType> {
   return doRequestAction({
     url: api.memberTurntable,
     method: 'POST',
@@ -1312,7 +1339,7 @@ export function publishWayRea(): Promise<Inter.publishWay>{
 }
 
 // 获取百度支付tporderid
-export function getBaiduTpOrderId(data): Promise<any>{
+export function getBaiduTpOrderId(data): Promise<any> {
   return doRequestAction({
     url: api.getBaiduTpOrderId,
     method: 'POST',
@@ -1340,5 +1367,14 @@ export function hotAreas(): Promise<Inter.hotAreasType> {
   return doRequestAction({
     url: api.hotAreas,
     method: 'POST',
+  })
+}
+// 校验百度支付是否成功
+export function checkBaiduOrderStatusAction(data): Promise<Inter.BaiduOrderStatus> {
+  return doRequestAction({
+    url: api.checkBaiduTpOrderId,
+    method: 'POST',
+    data,
+    loading: false
   })
 }

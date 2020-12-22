@@ -11,7 +11,7 @@ import {conditionType} from '../../recruit/lists'
 import {AreaPickerKey, ClassifyPickerKey, MemberPickerKey, ResumeFilterPickerKey} from '../../../config/pages/lists'
 import {UserListChooseCity} from '../../../config/store'
 import { getResumeList } from '../../../utils/request'
-import { PUBLISHRESUME, SCROLLVIEWSETTOP } from '../../../config'
+import { PUBLISHRESUME } from '../../../config'
 import './index.scss'
 import Msg from '../../../utils/msg'
 
@@ -36,8 +36,6 @@ export default function ResumeLists() {
   ]
   // 是否还有下一页
   const [hasMore, setHasMore] = useState<boolean>(true)
-  // 滚动条高度
-  const [scrollTop, setScrollTop] = useState<number>(0)
   // 设置顶部筛选条件数据
   const [condition, setCondition] = useState<conditionType[]>(DEFAULT_CONDITION)
   // * 搜索数据 备份
@@ -51,7 +49,7 @@ export default function ResumeLists() {
     page: 1,
     occupations: '',
     keywords: '',
-    sort: 'newest',
+    sort: 'recommend',
     location: '',
     area_id: userListChooseCity ? userListChooseCity.id : '',
     type: '',
@@ -71,7 +69,10 @@ export default function ResumeLists() {
 
   // * 请求列表数据
   useEffect(() => {
+    if (searchData.page === 1) setLists([]);
     getResumeList({...searchData, ...normalField}).then(res => {
+      Taro.hideNavigationBarLoading()
+      // 判断搜索的时候把内容清空回到顶部，再设置值
       if(res.errcode == 'ok'){
         let mydata = res.data
         if (mydata.list && mydata.list.length) {
@@ -79,7 +80,6 @@ export default function ResumeLists() {
           setNormalField({ has_sort_flag, has_time, has_top, last_sort_flag_pos, last_normal_pos, last_time_pos })
         }
         if (mydata.list && !mydata.list.length) setHasMore(false)
-        Taro.hideNavigationBarLoading()
         if (searchData.page === 1) setLists([[...mydata.list]])
         else setLists([...lists, [...mydata.list]])
         if (refresh) setRefresh(false)
@@ -125,34 +125,12 @@ export default function ResumeLists() {
     } else if (type === MemberPickerKey) {
       setSearchData({...searchData, type: id, page: 1})
     }
-    goToScrollTop()
-  }
-
-  // scroll-view 回到顶部
-  const goToScrollTop = () => {
-    setHasMore(true)
-    // ! 如果小程序必须监听滚动值 返回顶部直接为0 ，如果不需要我们就给个近似值 来达到效果
-    if (SCROLLVIEWSETTOP) {
-      setScrollTop(0)
-      return
-    }
-    setScrollTop(scrollTop ? 0 : 0.1)
-  }
-
-  // scroll-view 滚动操作
-  const setScrollTopAction = (e) => {
-    // ! 如果小程序必须监听onScroll滚动值 那么就设置 例如百度小程序
-    if (SCROLLVIEWSETTOP) {
-      let top = e.detail.scrollTop
-      setScrollTop(top)
-    }
   }
 
   // 设置搜索内容
   const setSearchValData = () => {
     setNormalField(normalFieldReset)
     setSearchData({...searchData, keywords: remark, page: 1})
-    goToScrollTop()
   }
   const handleClickToRankRules = () => {
     Taro.navigateTo({url: '/pages/rank-rules/index'})
@@ -167,14 +145,12 @@ export default function ResumeLists() {
       <ScrollView
         className='recruit-lists-containerbox'
         scrollY
-        lowerThreshold={200}
         refresherEnabled
         scrollWithAnimation
-        scrollTop={scrollTop}
         refresherTriggered={refresh}
         onRefresherRefresh={() => pullDownAction()}
+        lowerThreshold={200}
         onScrollToLower={() => getNextPageData()}
-        onScroll={(e) => setScrollTopAction(e)}
       >
         <View style={{height: '8px'}}></View>
         <WechatNotice/>

@@ -1,4 +1,4 @@
-(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["pages/recharge/index"],{
+(swan["webpackJsonp"] = swan["webpackJsonp"] || []).push([["pages/recharge/index"],{
 
 /***/ "./src/pages/recharge/index.scss":
 /*!***************************************!*\
@@ -33,9 +33,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroSwan2 = _interopRequireDefault(_taroSwan);
 
 var _index = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
 
@@ -82,7 +82,7 @@ var Recharge = function (_Taro$Component) {
       backgroundTextStyle: "dark"
     };
 
-    _this.$usedState = ["loopArray55", "lists", "integral", "current", "price"];
+    _this.$usedState = ["loopArray60", "lists", "integral", "current", "price"];
     _this.anonymousFunc0Map = {};
     _this.customComponents = ["AtMessage"];
     return _this;
@@ -92,7 +92,7 @@ var Recharge = function (_Taro$Component) {
     key: "_constructor",
     value: function _constructor(props) {
       _get(Recharge.prototype.__proto__ || Object.getPrototypeOf(Recharge.prototype), "_constructor", this).call(this, props);
-      this.$$refs = new _taroTt2.default.RefsArray();
+      this.$$refs = new _taroSwan2.default.RefsArray();
     }
   }, {
     key: "_createData",
@@ -107,29 +107,36 @@ var Recharge = function (_Taro$Component) {
       var dispatch = (0, _redux.useDispatch)();
       // 积分列表数据与用户当前积分数量
 
-      var _useState = (0, _taroTt.useState)([]),
+      var _useState = (0, _taroSwan.useState)([]),
           _useState2 = _slicedToArray(_useState, 2),
           lists = _useState2[0],
           setLists = _useState2[1];
 
-      var _useState3 = (0, _taroTt.useState)(0),
+      var _useState3 = (0, _taroSwan.useState)(0),
           _useState4 = _slicedToArray(_useState3, 2),
           integral = _useState4[0],
           setIntegral = _useState4[1];
 
-      var _useState5 = (0, _taroTt.useState)(0),
+      var _useState5 = (0, _taroSwan.useState)(0),
           _useState6 = _slicedToArray(_useState5, 2),
           current = _useState6[0],
           setCurrent = _useState6[1];
 
-      var _useState7 = (0, _taroTt.useState)(0),
+      var _useState7 = (0, _taroSwan.useState)(0),
           _useState8 = _slicedToArray(_useState7, 2),
           price = _useState8[0],
           setPrice = _useState8[1];
+      // 判断是是否能用扣扣吊起微信支付
+
+
+      var _useState9 = (0, _taroSwan.useState)(false),
+          _useState10 = _slicedToArray(_useState9, 2),
+          isWxPayment = _useState10[0],
+          setIsWxPayment = _useState10[1];
       // 初始化积分充值选项
 
 
-      (0, _taroTt.useEffect)(function () {
+      (0, _taroSwan.useEffect)(function () {
         (0, _index2.getRechargeList)().then(function (res) {
           if (res.errcode == 'ok') {
             setLists(res.list);
@@ -144,11 +151,17 @@ var Recharge = function (_Taro$Component) {
             (0, _index3.ShowActionModal)({
               msg: res.errmsg,
               success: function success() {
-                _taroTt2.default.navigateBack();
+                _taroSwan2.default.navigateBack();
               }
             });
           }
         });
+        // 判断是是否能用扣扣吊起微信支付
+        var isWxPayment = _taroSwan2.default.canIUse && _taroSwan2.default.canIUse('requestWxPayment');
+        console.error(isWxPayment, '111');
+        if (isWxPayment) {
+          setIsWxPayment(true);
+        }
       }, []);
       // 用户选择充值项
       var userChooseItem = function userChooseItem(i) {
@@ -164,10 +177,34 @@ var Recharge = function (_Taro$Component) {
       // 用户充值
       var userRechargeAction = function userRechargeAction() {
         var rechargeIntegral = lists[current].integral;
-        if (false) {} else if (_index.MINIVERSION == _index.DOUYIN) {
+        if (_index.SERIES == _index.WEIXINSERIES) {
+          weixinProPay(rechargeIntegral);
+          return false;
+        } else if (_index.SERIES == _index.ZIJIESERIES) {
           douyinProPay();
-        } else if (_index.MINIVERSION == _index.BAIDU) {
+        } else if (_index.SERIES == _index.BAIDUSERIES) {
           baiduProPay(rechargeIntegral);
+        } else if (_index.SERIES == _index.QQSERIES) {
+          var itemList = [];
+          if (isWxPayment) {
+            itemList = ['QQ支付', '微信支付'];
+          } else {
+            itemList = ['QQ支付'];
+          }
+          _taroSwan2.default.showActionSheet({
+            itemList: itemList,
+            success: function success(res) {
+              if (res.tapIndex == 0) {
+                handleQQPay(rechargeIntegral);
+              }
+              if (res.tapIndex == 1) {
+                handleQQWeChatPay(rechargeIntegral);
+              }
+            },
+            fail: function fail(res) {
+              (0, _index4.default)('支付失败');
+            }
+          });
         }
       };
       // 检测订单
@@ -215,9 +252,49 @@ var Recharge = function (_Taro$Component) {
           return console.log(err);
         });
       };
+      //qq支付
+      var handleQQPay = function handleQQPay(rechargeIntegral) {
+        //当前选中的充值套餐id
+        var priceType = lists[current].id;
+        (0, _index2.userQQRecharge)({ priceType: priceType }).then(function (res) {
+          var data = res.data;
+          qq.requestPayment({
+            package: "prepay_id=" + data.prepay_id,
+            // bargainor_id: "",
+            success: function success(res) {
+              (0, _index4.default)('支付成功');
+              setIntegral(integral + rechargeIntegral);
+            },
+            fail: function fail(res) {
+              (0, _index4.default)('支付失败');
+            }
+          });
+        });
+      };
+      //qq内调用微信支付
+      var handleQQWeChatPay = function handleQQWeChatPay(rechargeIntegral) {
+        var priceType = lists[current].id;
+        (0, _index2.userQQRecharge)({ priceType: priceType, is_wx: true }).then(function (res) {
+          var _res$data = res.data,
+              mweb_url = _res$data.mweb_url,
+              order_no = _res$data.order_no,
+              referer = _res$data.referer;
+
+          qq.requestWxPayment({
+            url: mweb_url,
+            referer: referer,
+            success: function success(resquest) {
+              checkQqOrderStatusFun(order_no, rechargeIntegral);
+            },
+            fail: function fail(res) {
+              _taroSwan2.default.showModal({ content: '支付失败' + JSON.stringify(res) });
+            }
+          });
+        });
+      };
       // 微信支付
       var weixinProPay = function weixinProPay(rechargeIntegral) {
-        _taroTt2.default.login({
+        _taroSwan2.default.login({
           success: function success(res) {
             (0, _index2.getRechargeOpenid)(res.code).then(function (openidData) {
               var data = {
@@ -225,10 +302,10 @@ var Recharge = function (_Taro$Component) {
                 openid: openidData.openid
               };
               (0, _index2.getRechargeOrder)(data).then(function (orderData) {
-                _taroTt2.default.requestPayment(_extends({}, orderData.payData)).then(function () {
+                _taroSwan2.default.requestPayment(_extends({}, orderData.payData)).then(function () {
                   var afterIntegral = integral + rechargeIntegral;
                   setIntegral(afterIntegral);
-                  _taroTt2.default.showModal({
+                  _taroSwan2.default.showModal({
                     title: '恭喜您',
                     content: "\u60A8\u5DF2\u6210\u529F\u5145\u503C" + rechargeIntegral + "\u4E2A\u79EF\u5206",
                     cancelText: '会员中心',
@@ -236,7 +313,7 @@ var Recharge = function (_Taro$Component) {
                     success: function success(res) {
                       if (res.cancel) {
                         // dispatch(changeTabbar(MEMBER))
-                        _taroTt2.default.reLaunch({ url: '/pages/index/index?type=' + _tabbar.MEMBER });
+                        _taroSwan2.default.reLaunch({ url: '/pages/index/index?type=' + _tabbar.MEMBER });
                       }
                     }
                   });
@@ -255,14 +332,14 @@ var Recharge = function (_Taro$Component) {
       // 百度支付
       var baiduProPay = function baiduProPay(rechargeIntegral) {
         var id = lists[current].id;
+        console.log(id);
         (0, _index2.getBaiduTpOrderId)({ priceType: id }).then(function (res) {
           if (res.errcode == 'ok') {
             swan.requestPolymerPayment({
               orderInfo: _extends({}, res.payData),
               success: function success() {
-                var afterIntegral = integral + rechargeIntegral;
-                setIntegral(afterIntegral);
-                (0, _index3.ShowActionModal)({ msg: '支付成功' });
+                // 校验百度支付是否成功 // 每3秒发起一次 直到成功
+                checkBaiduOrderStatusFun(res.payData.tpOrderId, rechargeIntegral);
               },
               fail: function fail(err) {
                 (0, _index3.ShowActionModal)({ msg: err.errMsg });
@@ -273,29 +350,56 @@ var Recharge = function (_Taro$Component) {
           }
         });
       };
+      var checkQqOrderStatusFun = function checkQqOrderStatusFun(tpOrderId, rechargeIntegral) {
+        (0, _index2.checkBaiduOrderStatusAction)({ tpOrderId: tpOrderId }).then(function (res) {
+          if (res.errcode == 'ok') {
+            if (res.data.order_status == 2) {
+              var afterIntegral = integral + rechargeIntegral;
+              setIntegral(afterIntegral);
+              _taroSwan2.default.showToast({ title: '支付成功', icon: 'none' });
+            } else {
+              _taroSwan2.default.showToast({ title: '支付失败', icon: 'none' });
+            }
+          }
+        });
+      };
+      var checkBaiduOrderStatusFun = function checkBaiduOrderStatusFun(tpOrderId, rechargeIntegral) {
+        var mytimer = setInterval(function () {
+          (0, _index2.checkBaiduOrderStatusAction)({ tpOrderId: tpOrderId }).then(function (res) {
+            if (res.errcode == 'ok') {
+              if (res.data.order_status == 2) {
+                var afterIntegral = integral + rechargeIntegral;
+                setIntegral(afterIntegral);
+                clearInterval(mytimer);
+                (0, _index3.ShowActionModal)({ msg: '支付成功' });
+              }
+            }
+          });
+        }, 1000);
+      };
       this.anonymousFunc1 = function () {
         return userRechargeAction();
       };
-      var loopArray55 = lists.map(function (item, index) {
+      var loopArray60 = lists.map(function (item, index) {
         item = {
-          $original: (0, _taroTt.internal_get_original)(item)
+          privateOriginal: (0, _taroSwan.internal_get_original)(item)
         };
-        var _$indexKey = "ffzzz" + index;
+        var _$indexKey = "gbzzz" + index;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return userChooseItem(index);
         };
-        var $loopState__temp2 = (0, _classnames2.default)({
+        var loopState__temp2 = (0, _classnames2.default)({
           'recharge-list-box': true,
           'recharge-list-box-active': index === current
         });
         return {
           _$indexKey: _$indexKey,
-          $loopState__temp2: $loopState__temp2,
-          $original: item.$original
+          loopState__temp2: loopState__temp2,
+          privateOriginal: item.privateOriginal
         };
       });
       Object.assign(this.__state, {
-        loopArray55: loopArray55,
+        loopArray60: loopArray60,
         lists: lists,
         integral: integral,
         current: current,
@@ -324,14 +428,14 @@ var Recharge = function (_Taro$Component) {
   }]);
 
   return Recharge;
-}(_taroTt2.default.Component);
+}(_taroSwan2.default.Component);
 
 Recharge.$$events = ["anonymousFunc0", "anonymousFunc1"];
 Recharge.$$componentPath = "pages/recharge/index";
 Recharge.config = { navigationBarTitleText: '用户充值积分', navigationBarBackgroundColor: '#0099ff', navigationBarTextStyle: 'white', backgroundTextStyle: "dark" };
 exports.default = Recharge;
 
-Page(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(Recharge, true));
+Page(__webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js").default.createComponent(Recharge, true));
 
 /***/ })
 

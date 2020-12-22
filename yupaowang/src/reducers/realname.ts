@@ -1,8 +1,9 @@
-import { GETREALNAME, SETREALNAME, SETAREA, SETFUN } from '../constants/realname'
+import { GETREALNAME, SETREALNAME, SETAREA, SETFUN, SETADDRESSFUN } from '../constants/realname'
 
 export interface RealnameDefaultStore {
   RealnameArea: string,
-  setRealnameArea: (val: string) => void
+  setRealnameArea: (val: string) => void,
+  setRealnameAddress: (area: string) => void
 }
 
 export interface RealnameAction {
@@ -12,7 +13,8 @@ export interface RealnameAction {
 
 const DEFAULT_STATE: RealnameDefaultStore = {
   RealnameArea: '',
-  setRealnameArea: () => {}
+  setRealnameArea: () => {},
+  setRealnameAddress: () => {}
 }
 
 export default function RealnameStore(state: RealnameDefaultStore = DEFAULT_STATE, action: RealnameAction){
@@ -29,6 +31,8 @@ export default function RealnameStore(state: RealnameDefaultStore = DEFAULT_STAT
     case SETAREA:
       return { ...state, RealnameArea: action.data }
       break
+    case SETADDRESSFUN:
+      return {...state, setRealnameAddress: action.data }
     default: 
       return state
   }

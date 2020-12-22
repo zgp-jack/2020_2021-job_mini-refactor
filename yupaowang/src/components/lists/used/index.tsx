@@ -14,7 +14,7 @@ export default function UsedList({ data = [], bottom = true, hasMore = true }: P
   // 用户查看二手交易详情
   const userLookUsedInfo = (id: string)=> {
     Taro.navigateTo({
-      url: '/pages/used/info/index?id='+id
+      url: `/pages/used/info/index?id=${id}&used=1`
     })
   }
   return (

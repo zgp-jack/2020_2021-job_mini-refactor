@@ -9,7 +9,8 @@ import { BannerNoticeNotice } from '../../utils/request/index.d'
 import SwiperNews from '../../components/swiper/news'
 import { IProps } from '../../components/swiper/index'
 import { copyWechatNumber, userCallPhone } from '../../utils/helper'
-import { SHOWWEIXINNUMBER } from '../../config'
+import { SHOWWEIXINNUMBER, SHOWSERVERPHONE, SHOWLISTSNOTICE } from '../../config'
+import classnames from 'classnames'
 import './index.scss'
 
 export default function WechatNotice(){
@@ -18,7 +19,6 @@ export default function WechatNotice(){
     vertical: true,
     lists: []
   })
-
   const dispatch = useDispatch()
   const wechatNoticeData = useSelector<any, WechatNoticeType>(state => state.WechatNotice)
 
@@ -50,7 +50,13 @@ export default function WechatNotice(){
   }
 
   return (
-    <View className='wechatinfo-container'>
+    <Block>
+    { (SHOWSERVERPHONE || SHOWWEIXINNUMBER || SHOWLISTSNOTICE) && 
+    <View className={classnames({
+      'wechatinfo-container': true,
+      'wechatinfo-container-notop': !SHOWWEIXINNUMBER && !SHOWSERVERPHONE
+    })} >
+      {(SHOWWEIXINNUMBER || SHOWSERVERPHONE) &&
       <View className='wechat-container'>
         {SHOWWEIXINNUMBER &&
         <Block>
@@ -60,16 +66,24 @@ export default function WechatNotice(){
         <Text className='wechat-btn' onClick={() => userCopyWechatNumber()} >复制</Text>
         拉你进招工找活群。
         </Block>}
+        {SHOWSERVERPHONE &&
+        <Block>
         客服电话：
         <Text className='wechat-text' onClick={() => userCallPhoneAction() } >{ wechatNoticeData.phone }</Text>
         <Text className='wechat-btn' onClick={() => userCallPhoneAction() } >呼叫</Text>
-      </View>
-      <View className='notice-container'>
+        </Block>}
+      </View>}
+      {SHOWLISTSNOTICE&&
+      <View className={classnames({
+        'notice-container': true,
+        'notice-container-notop': !SHOWSERVERPHONE && !SHOWWEIXINNUMBER
+      })}>
         <Text className='notice-tips'>鱼泡资讯：</Text>
         <View className='notice-lists'>
           <SwiperNews data={ swiperNews } />
         </View>
-      </View>
-    </View>
+      </View>}
+    </View>}
+    </Block>
   )
 }

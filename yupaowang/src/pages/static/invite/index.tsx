@@ -1,9 +1,10 @@
-import Taro, { Config, useEffect, useState } from '@tarojs/taro'
+import Taro, { Config, useEffect, useState, useShareAppMessage } from '@tarojs/taro'
 import { View, Button, Image, Input } from '@tarojs/components'
 import { IMGCDNURL, ISCANSHARE } from '../../../config'
 import { useSelector } from '@tarojs/redux'
 import { getUserInviteLink } from '../../../utils/request'
 import { ShowActionModal } from '../../../utils/msg'
+import { getUserShareMessage } from '../../../utils/helper'
 import Auth from '../../../components/auth'
 import './index.scss'
 
@@ -21,6 +22,15 @@ export default function Invite() {
       else ShowActionModal({msg: res.errmsg,success:() => Taro.navigateBack()})
     })
   }, [login])
+
+  // 设置用户分享
+  useShareAppMessage(() => {
+    return { 
+      ...getUserShareMessage(),
+      path: '/pages/index/index'
+    }
+  })
+
   // 用户复制邀请链接
   const copyUserInviteLink = ()=> {
     Taro.setClipboardData({
@@ -38,7 +48,7 @@ export default function Invite() {
     <View>
       <Auth />
       <View className='invite-container'>
-        {ISCANSHARE &&
+        {ISCANSHARE && 
         <View className='invite-item invite-item-icon'>
           <View className='invite-header'>
             <Image className='invite-img' src={ IMGCDNURL +'invite-way1.png' } />

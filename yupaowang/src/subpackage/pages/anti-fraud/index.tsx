@@ -1,10 +1,24 @@
-import Taro, { Config } from '@tarojs/taro'
+import Taro, { Config, useDidShow, useState } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
-import { SERVERPHONE } from '../../../config'
+import { SERVERPHONE, BAIDUSERIES, SERIES, SHOWSERVERPHONE } from '../../../config'
+import { useSelector } from '@tarojs/redux'
 import './index.scss'
 
 
 export default function DetailInfoPage() {
+  const phone = useSelector<any, string>(state => state.WechatNotice['phone']);
+  const [tel,setTel] = useState<string>('');
+  useDidShow(()=>{
+    let tel = phone ? phone : SERVERPHONE;
+    setTel(tel);
+    if(SERIES == BAIDUSERIES){
+      Taro.setPageInfo({
+        title: '鱼泡网,建筑招聘,建筑人才,工地招工,施工队找活,工程信息',
+        description: '鱼泡网每日发布建筑招聘、建筑人才、工地招工、工地招人、找施工队等工程信息，方便建筑工人找活、找项目，为建筑劳务公司寻找优秀的建筑工人、建筑人才、建筑班组、施工队。',
+        keywords: '鱼泡网,建筑招聘,建筑人才,工地招工,施工队找活,工程信息'
+      })
+    }
+  })
   return(
     <View className="anti-fraudbox">
       <View className='anti-fraud-item'>
@@ -29,7 +43,9 @@ export default function DetailInfoPage() {
         <View className='anti-fraud-info'>4、在查看招工信息确实无误后，为有效保障您的合法权益，建议您与招工方签订用工协议，明确薪酬、用工时间、工作内容及工地制度等约定条款，并签字盖章。</View>
         <View className='anti-fraud-info'>5、如遇恶意拖欠工人工资情况，请及时报请劳动监察大队处理，利用法律有效保护自身合法权益。</View>
         <View className='anti-fraud-other'>祝广大鱼泡工友顺利找到自己理想的工作和合适的工人。</View>
-        <View className='anti-fraud-other'>如有疑问，敬请拨打鱼泡客服咨询热线： <Text onClick={() => { Taro.makePhoneCall({ phoneNumber: SERVERPHONE }) }}>{SERVERPHONE}</Text></View>
+        {SHOWSERVERPHONE &&
+          <View className='anti-fraud-other'>如有疑问，敬请拨打鱼泡客服咨询热线： <Text onClick={() => { Taro.makePhoneCall({ phoneNumber: tel }) }}>{tel}</Text></View>
+        }
       </View>
 
     </View>

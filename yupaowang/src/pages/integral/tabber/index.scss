@@ -41,10 +41,14 @@
 }
 
 .tabber-content-box-selector {
-  background: #F6F6F6;
-  color: #4F4F4F;
-  padding: 6px 4px 6px 14px;
-  border-radius: 6px;
+  min-width:150px;
+  height:43px;
+  line-height: 43px;
+  text-align: center;
+  background:rgba(246, 246, 246, 1);
+  border-radius:3px;
+  vertical-align: middle;
+  margin: auto 0;
 }
 
 .tabber-content-box-time-text {

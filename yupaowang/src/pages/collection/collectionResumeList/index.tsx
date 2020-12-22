@@ -63,7 +63,8 @@ export default function CollectionResumeList({ data = [], onHandlerClick, bottom
                 <View className='resume-list-content overwords'>{item.resume.introduce}</View>
               <View className='resume-list-footer'>
                   <View className='resume-list-loctxt overwords'>{item.resume.time}</View>
-                <Button size='mini' className='resume-list-button' onClick={(e) => { e.stopPropagation(); onHandlerClick(item.resume_uuid)}}>取消收藏</Button>
+                <View className='resume-list-button' onClick={(e) => { e.stopPropagation(); onHandlerClick(item.resume_uuid) }}>取消收藏</View>
+                {/* <Button size='mini' className='resume-list-button' onClick={(e) => { e.stopPropagation(); onHandlerClick(item.resume_uuid)}}>取消收藏</Button> */}
               </View>
             </View>
           }

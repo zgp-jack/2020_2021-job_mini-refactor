@@ -1,4 +1,4 @@
-(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["pages/userauth/index"],{
+(swan["webpackJsonp"] = swan["webpackJsonp"] || []).push([["pages/userauth/index"],{
 
 /***/ "./src/pages/userauth/index.tsx":
 /*!**************************************!*\
@@ -20,9 +20,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroSwan2 = _interopRequireDefault(_taroSwan);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -47,7 +47,7 @@ var UserAuth = function (_Taro$Component) {
       backgroundTextStyle: "dark"
     };
 
-    _this.$usedState = ["$compid__34"];
+    _this.$usedState = ["$compid__42"];
     _this.customComponents = ["Auth"];
     return _this;
   }
@@ -56,7 +56,7 @@ var UserAuth = function (_Taro$Component) {
     key: '_constructor',
     value: function _constructor(props) {
       _get(UserAuth.prototype.__proto__ || Object.getPrototypeOf(UserAuth.prototype), '_constructor', this).call(this, props);
-      this.$$refs = new _taroTt2.default.RefsArray();
+      this.$$refs = new _taroSwan2.default.RefsArray();
     }
   }, {
     key: '_createData',
@@ -67,30 +67,30 @@ var UserAuth = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__34"),
+      var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__42"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__34 = _genCompid2[0],
-          $compid__34 = _genCompid2[1];
+          $prevCompid__42 = _genCompid2[0],
+          $compid__42 = _genCompid2[1];
 
-      _taroTt.propsManager.set({
+      _taroSwan.propsManager.set({
         "page": true
-      }, $compid__34, $prevCompid__34);
+      }, $compid__42, $prevCompid__42);
       Object.assign(this.__state, {
-        $compid__34: $compid__34
+        $compid__42: $compid__42
       });
       return this.__state;
     }
   }]);
 
   return UserAuth;
-}(_taroTt2.default.Component);
+}(_taroSwan2.default.Component);
 
 UserAuth.$$events = [];
 UserAuth.$$componentPath = "pages/userauth/index";
 UserAuth.config = { navigationBarTitleText: '用户授权', navigationBarBackgroundColor: '#0099ff', navigationBarTextStyle: 'white', backgroundTextStyle: "dark" };
 exports.default = UserAuth;
 
-Page(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(UserAuth, true));
+Page(__webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js").default.createComponent(UserAuth, true));
 
 /***/ })
 

@@ -1,4 +1,4 @@
-(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["vendors"],{
+(swan["webpackJsonp"] = swan["webpackJsonp"] || []).push([["vendors"],{
 
 /***/ "./node_modules/@tarojs/redux/dist/index.js":
 /*!**************************************************!*\
@@ -701,10 +701,10 @@ module.exports.default = module.exports;
 
 /***/ }),
 
-/***/ "./node_modules/@tarojs/taro-tt/dist/index.js":
-/*!****************************************************!*\
-  !*** ./node_modules/@tarojs/taro-tt/dist/index.js ***!
-  \****************************************************/
+/***/ "./node_modules/@tarojs/taro-swan/dist/index.js":
+/*!******************************************************!*\
+  !*** ./node_modules/@tarojs/taro-swan/dist/index.js ***!
+  \******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1009,7 +1009,7 @@ var nextTick = function nextTick(fn) {
   }
 
   fn = typeof fn === 'function' ? (_fn = fn).bind.apply(_fn, [null].concat(args)) : fn;
-  var timerFunc = tt.nextTick ? tt.nextTick : setTimeout;
+  var timerFunc = swan.nextTick ? swan.nextTick : setTimeout;
   timerFunc(fn);
 };
 
@@ -1433,79 +1433,21 @@ function diffObjToPath(to, from) {
 
   return res;
 }
-function queryToJson(str) {
-  var dec = decodeURIComponent;
-  var qp = str.split('&');
-  var ret = {};
-  var name;
-  var val;
-
-  for (var i = 0, l = qp.length, item; i < l; ++i) {
-    item = qp[i];
-
-    if (item.length) {
-      var s = item.indexOf('=');
-
-      if (s < 0) {
-        name = dec(item);
-        val = '';
-      } else {
-        name = dec(item.slice(0, s));
-        val = dec(item.slice(s + 1));
-      }
-
-      if (typeof ret[name] === 'string') {
-        // inline'd type check
-        ret[name] = [ret[name]];
-      }
-
-      if (isArray(ret[name])) {
-        ret[name].push(val);
-      } else {
-        ret[name] = val;
-      }
-    }
-  }
-
-  return ret; // Object
-}
 
 var _loadTime = new Date().getTime().toString();
-
-var _i = 1;
-function getUniqueKey() {
-  return _loadTime + _i++;
-}
-
-function triggerLoopRef(that, dom, handler) {
-  var handlerType = _typeof(handler);
-
-  if (handlerType !== 'function' && handlerType !== 'object') {
-    return console.warn('\u5FAA\u73AF Ref \u53EA\u652F\u6301\u51FD\u6570\u6216 createRef()\uFF0C\u5F53\u524D\u7C7B\u578B\u4E3A\uFF1A'.concat(handlerType));
-  }
-
-  if (handlerType === 'object') {
-    handler.current = dom;
-  } else if (handlerType === 'function') {
-    handler.call(that, dom);
-  }
-}
-
-function handleLoopRef(component, id, type, handler) {
+function getElementById(component, id, type) {
   if (!component) return null;
   var res;
 
   if (type === 'component') {
-    component.selectComponent(id, function (res) {
-      res = res ? res.$component || res : null;
-      res && triggerLoopRef(component.$component, res, handler);
-    });
+    res = component.selectComponent(id);
+    res = res ? res.$component || res : null;
   } else {
-    var query = wx.createSelectorQuery().in(component);
+    var query = swan.createSelectorQuery().in(component);
     res = query.select(id);
-    res && triggerLoopRef(component.$component, res, handler);
   }
 
+  if (res) return res;
   return null;
 }
 var id$1 = 0;
@@ -1620,30 +1562,19 @@ function () {
 var propsManager = new Manager();
 
 var anonymousFnNamePreffix = 'funPrivate';
-var preloadPrivateKey = '__preload_';
-var preloadInitedComponent = '$preloadComponent';
 var PRELOAD_DATA_KEY = 'preload';
 var pageExtraFns = ['onPullDownRefresh', 'onReachBottom', 'onShareAppMessage', 'onPageScroll', 'onTabItemTap'];
 
 function bindProperties(weappComponentConf, ComponentClass, isPage) {
   weappComponentConf.properties = {};
-
-  if (isPage) {
-    weappComponentConf.properties[preloadPrivateKey] = {
-      type: null,
-      value: null
-    };
-  }
-
   weappComponentConf.properties.compid = {
     type: null,
     value: null,
     observer: function observer(newVal, oldVal) {
       var _this = this;
 
-      // 头条基础库1.38.2后，太早 setData $taroCompReady 为 true 时，setData 虽然成功，但 slot 会不显示。
-      // 因此不在 observer 里 initComponent，在组件 attached 时 initComponent 吧。
-      // initComponent.apply(this, [ComponentClass, isPage])
+      initComponent.apply(this, [ComponentClass, isPage]);
+
       if (oldVal && oldVal !== newVal) {
         var extraProps = this.data.extraProps;
         var component = this.$component;
@@ -1718,8 +1649,7 @@ function processEvent(eventHandlerName, obj) {
 
     var dataset = event.currentTarget.dataset || {};
     var bindArgs = {};
-    var eventType = event.type ? event.type.toLocaleLowerCase() : null;
-    if (event.detail && event.detail.__detail) Object.assign(dataset, event.detail.__detail);
+    var eventType = event.type.toLocaleLowerCase();
     Object.keys(dataset).forEach(function (key) {
       var keyLower = key.toLocaleLowerCase();
 
@@ -1737,8 +1667,8 @@ function processEvent(eventHandlerName, obj) {
       }
     }); // 如果是通过triggerEvent触发,并且带有参数
 
-    if (event.detail && event.detail.__arguments && event.detail.__arguments.length > 0) {
-      detailArgs = event.detail.__arguments;
+    if (event.__arguments && event.__arguments.length > 0) {
+      detailArgs = event.__arguments;
     } // 普通的事件（非匿名函数），会直接call
 
 
@@ -1820,66 +1750,12 @@ function filterProps() {
   return newProps;
 }
 function componentTrigger(component, key, args) {
-  args = args || [];
-
-  if (key === 'componentDidMount') {
-    if (component['$$hasLoopRef']) {
-      taro.Current.current = component;
-      taro.Current.index = 0;
-      component._disableEffect = true;
-
-      component._createData(component.state, component.props, true);
-
-      component._disableEffect = false;
-      taro.Current.current = null;
-    }
-
-    if (component['$$refs'] && component['$$refs'].length > 0) {
-      var refs = {};
-      var refComponents = [];
-      component['$$refs'].forEach(function (ref) {
-        refComponents.push(new Promise(function (resolve, reject) {
-          var query = tt.createSelectorQuery().in(component.$scope);
-
-          if (ref.type === 'component') {
-            component.$scope.selectComponent("#".concat(ref.id), function (target) {
-              resolve({
-                target: target ? target.$component || target : null,
-                ref: ref
-              });
-            });
-          } else {
-            resolve({
-              target: query.select("#".concat(ref.id)),
-              ref: ref
-            });
-          }
-        }));
-      });
-      Promise.all(refComponents).then(function (targets) {
-        targets.forEach(function (_ref) {
-          var ref = _ref.ref,
-              target = _ref.target;
-          taro.commitAttachRef(ref, target, component, refs, true);
-          ref.target = target;
-        });
-        component.refs = Object.assign({}, component.refs || {}, refs); // 此处执行componentDidMount
-
-        component[key] && typeof component[key] === 'function' && component[key].apply(component, _toConsumableArray(args));
-      }).catch(function (err) {
-        console.error(err);
-        component[key] && typeof component[key] === 'function' && component[key].apply(component, _toConsumableArray(args));
-      }); // 此处跳过执行componentDidMount，在refComponents完成后再次执行
-
-      return;
-    }
-  }
-
   if (key === 'componentWillUnmount') {
     var compid = component.$scope.data.compid;
     if (compid) propsManager.delete(compid);
   }
 
+  args = args || [];
   component[key] && typeof component[key] === 'function' && component[key].apply(component, _toConsumableArray(args));
 
   if (key === 'componentWillUnmount') {
@@ -1961,31 +1837,18 @@ function createComponent(ComponentClass, isPage) {
     created: function created() {
       var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
       isPage && (hasPageInited = false);
-
-      if (isPage && cacheDataHas(preloadInitedComponent)) {
-        this.$component = cacheDataGet(preloadInitedComponent, true);
-        this.$component.$componentType = 'PAGE';
-      } else {
-        this.$component = new ComponentClass({}, isPage);
-      }
+      this.$component = new ComponentClass({}, isPage);
 
       this.$component._init(this);
 
       this.$component.render = this.$component._createData;
       this.$component.__propTypes = ComponentClass.propTypes;
+      Object.assign(this.$component.$router.params, options);
 
       if (isPage) {
         if (cacheDataHas(PRELOAD_DATA_KEY)) {
           var data = cacheDataGet(PRELOAD_DATA_KEY, true);
           this.$component.$router.preload = data;
-        }
-
-        Object.assign(this.$component.$router.params, options);
-
-        if (cacheDataHas(options[preloadPrivateKey])) {
-          this.$component.$preloadData = cacheDataGet(options[preloadPrivateKey], true);
-        } else {
-          this.$component.$preloadData = {};
         }
 
         this.$component.$router.path = getCurrentPageUrl();
@@ -1996,9 +1859,43 @@ function createComponent(ComponentClass, isPage) {
       initComponent.apply(this, [ComponentClass, isPage]);
     },
     ready: function ready() {
-      if (!this.$component.__mounted) {
-        this.$component.__mounted = true;
-        componentTrigger(this.$component, 'componentDidMount');
+      var _this2 = this;
+
+      var component = this.$component;
+
+      if (component['$$refs'] && component['$$refs'].length > 0) {
+        var refs = {};
+        component['$$refs'].forEach(function (ref) {
+          var target;
+          var query = swan.createSelectorQuery().in(_this2);
+
+          if (ref.type === 'component') {
+            target = _this2.selectComponent("#".concat(ref.id));
+            target = target && target.$component || target;
+          } else {
+            target = query.select("#".concat(ref.id));
+          }
+
+          taro.commitAttachRef(ref, target, component, refs, true);
+          ref.target = target;
+        });
+        component.refs = Object.assign({}, component.refs || {}, refs);
+      }
+
+      if (component['$$hasLoopRef']) {
+        taro.Current.current = component;
+        taro.Current.index = 0;
+        component._disableEffect = true;
+
+        component._createData(component.state, component.props, true);
+
+        component._disableEffect = false;
+        taro.Current.current = null;
+      }
+
+      if (!component.__mounted) {
+        component.__mounted = true;
+        componentTrigger(component, 'componentDidMount');
       }
     },
     detached: function detached() {
@@ -2043,7 +1940,16 @@ function createComponent(ComponentClass, isPage) {
         };
       }
     });
-    globPageRegistPath && cacheDataSet(globPageRegistPath, ComponentClass);
+  } else {
+    weappComponentConf.pageLifetimes = weappComponentConf.pageLifetimes || {};
+
+    weappComponentConf.pageLifetimes['show'] = function () {
+      componentTrigger(this.$component, 'componentDidShow');
+    };
+
+    weappComponentConf.pageLifetimes['hide'] = function () {
+      componentTrigger(this.$component, 'componentDidHide');
+    };
   }
 
   bindProperties(weappComponentConf, ComponentClass, isPage);
@@ -3567,7 +3473,7 @@ function doUpdate(component, prevProps, prevState) {
   }
 
   data['$taroCompReady'] = true;
-  var dataDiff = diffObjToPath(data, component.$scope.data);
+  var dataDiff = taro.getIsUsingDiff() ? diffObjToPath(data, component.$scope.data) : data;
   var __mounted = component.__mounted;
   var snapshot;
 
@@ -3584,22 +3490,21 @@ function doUpdate(component, prevProps, prevState) {
   }
 
   var cb = function cb() {
-    if (component.__mounted) {
+    if (__mounted) {
       taro.invokeEffects(component);
 
       if (component['$$refs'] && component['$$refs'].length > 0) {
         component['$$refs'].forEach(function (ref) {
           // 只有 component 类型能做判断。因为 querySelector 每次调用都一定返回 nodeRefs，无法得知 dom 类型的挂载状态。
           if (ref.type !== 'component') return;
-          component.$scope.selectComponent("#".concat(ref.id), function (target) {
-            target = target ? target.$component || target : null;
-            var prevRef = ref.target;
+          var target = component.$scope.selectComponent("#".concat(ref.id));
+          target = target ? target.$component || target : null;
+          var prevRef = ref.target;
 
-            if (target !== prevRef) {
-              taro.commitAttachRef(ref, target, component, component.refs);
-              ref.target = target;
-            }
-          });
+          if (target !== prevRef) {
+            taro.commitAttachRef(ref, target, component, component.refs);
+            ref.target = target;
+          }
         });
       }
 
@@ -3674,7 +3579,6 @@ function () {
   // 会在componentDidMount后置为true
   // hooks
   function BaseComponent() {
-    var props = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
     var isPage = arguments.length > 1 ? arguments[1] : undefined;
 
     _classCallCheck(this, BaseComponent);
@@ -3701,8 +3605,6 @@ function () {
 
     _defineProperty(this, "$componentType", '');
 
-    _defineProperty(this, "refs", {});
-
     _defineProperty(this, "$router", {
       params: {},
       path: ''
@@ -3719,7 +3621,7 @@ function () {
     _defineProperty(this, "layoutEffects", []);
 
     this.state = {};
-    this.props = props;
+    this.props = {};
     this.$componentType = isPage ? 'PAGE' : 'COMPONENT';
     this.$prefix = genCompPrefix();
     this.isTaroComponent = this.$componentType && this.$router && this._pendingStates;
@@ -3747,7 +3649,7 @@ function () {
       }
 
       if (!this._disable) {
-        enqueueRender(this, callback === taro.internal_force_update);
+        enqueueRender(this, taro.internal_force_update);
       }
     }
   }, {
@@ -3824,17 +3726,10 @@ function () {
       } else {
         // 普通的
         var keyLower = key.toLocaleLowerCase();
-        var payload = {
+        this.$scope.triggerEvent(keyLower, {
           __isCustomEvt: true,
           __arguments: args
-        };
-        var detail = this.$scope.dataset;
-
-        if (Object.keys(detail).length) {
-          payload.__detail = detail;
-        }
-
-        this.$scope.triggerEvent(keyLower, payload);
+        });
       }
     }
   }]);
@@ -3968,7 +3863,7 @@ var RequestQueue = {
       _this.pendingQueue.push(options);
 
       return {
-        v: tt.request(options)
+        v: swan.request(options)
       };
     };
 
@@ -4032,12 +3927,10 @@ function request(options) {
 
 function processApis(taro$$1) {
   var weApis = Object.assign({}, taro.onAndSyncApis, taro.noPromiseApis, taro.otherApis);
-  var preloadPrivateKey = '__preload_';
-  var preloadInitedComponent = '$preloadComponent';
   Object.keys(weApis).forEach(function (key) {
-    if (!(key in tt)) {
+    if (!(key in swan)) {
       taro$$1[key] = function () {
-        console.warn('\u5934\u6761\u5C0F\u7A0B\u5E8F\u6682\u4E0D\u652F\u6301 '.concat(key));
+        console.warn('\u767E\u5EA6\u5C0F\u7A0B\u5E8F\u6682\u4E0D\u652F\u6301 '.concat(key));
       };
 
       return;
@@ -4055,33 +3948,12 @@ function processApis(taro$$1) {
 
         if (typeof options === 'string') {
           if (args.length) {
-            var _tt;
+            var _swan;
 
-            return (_tt = tt)[key].apply(_tt, [options].concat(args));
+            return (_swan = swan)[key].apply(_swan, [options].concat(args));
           }
 
-          return tt[key](options);
-        }
-
-        if (key === 'navigateTo' || key === 'redirectTo') {
-          var url = obj['url'] ? obj['url'].replace(/^\//, '') : '';
-          if (url.indexOf('?') > -1) url = url.split('?')[0];
-          var Component = cacheDataGet(url);
-
-          if (Component) {
-            var component = new Component();
-
-            if (component.componentWillPreload) {
-              var cacheKey = getUniqueKey();
-              var MarkIndex = obj.url.indexOf('?');
-              var hasMark = MarkIndex > -1;
-              var urlQueryStr = hasMark ? obj.url.substring(MarkIndex + 1, obj.url.length) : '';
-              var params = queryToJson(urlQueryStr);
-              obj.url += (hasMark ? '&' : '?') + "".concat(preloadPrivateKey, "=").concat(cacheKey);
-              cacheDataSet(cacheKey, component.componentWillPreload(params));
-              cacheDataSet(preloadInitedComponent, component);
-            }
-          }
+          return swan[key](options);
         }
 
         var p = new Promise(function (resolve, reject) {
@@ -4104,11 +3976,11 @@ function processApis(taro$$1) {
           });
 
           if (args.length) {
-            var _tt2;
+            var _swan2;
 
-            task = (_tt2 = tt)[key].apply(_tt2, [obj].concat(args));
+            task = (_swan2 = swan)[key].apply(_swan2, [obj].concat(args));
           } else {
-            task = tt[key](obj);
+            task = swan[key](obj);
           }
         });
 
@@ -4148,7 +4020,7 @@ function processApis(taro$$1) {
           newArgs.splice(argsLen - 1, 1, lastArg.$scope);
         }
 
-        return tt[key].apply(tt, newArgs);
+        return swan[key].apply(swan, newArgs);
       };
     }
   });
@@ -4174,6 +4046,7 @@ function pxTransform(size) {
 
 function initNativeApi(taro$$1) {
   processApis(taro$$1);
+  taro$$1.requestPayment = taro$$1.requestPolymerPayment;
   taro$$1.request = link.request.bind(link);
   taro$$1.addInterceptor = link.addInterceptor.bind(link);
   taro$$1.cleanInterceptors = link.cleanInterceptors.bind(link);
@@ -4202,7 +4075,7 @@ var Taro = {
   internal_get_original: taro.internal_get_original,
   interceptors: taro.interceptors,
   RefsArray: taro.RefsArray,
-  handleLoopRef: handleLoopRef,
+  handleLoopRef: taro.handleLoopRef(getElementById),
   propsManager: propsManager,
   genCompid: genCompid,
   useEffect: taro.useEffect,
@@ -4226,7 +4099,8 @@ var Taro = {
   useContext: taro.useContext,
   createContext: taro.createContext,
   memo: taro.memo,
-  shallowEqual: shallowEqual
+  shallowEqual: shallowEqual,
+  setIsUsingDiff: taro.setIsUsingDiff
 };
 initNativeApi(Taro);
 
@@ -4237,17 +4111,17 @@ exports.default = Taro;
 
 /***/ }),
 
-/***/ "./node_modules/@tarojs/taro-tt/index.js":
-/*!***********************************************!*\
-  !*** ./node_modules/@tarojs/taro-tt/index.js ***!
-  \***********************************************/
+/***/ "./node_modules/@tarojs/taro-swan/index.js":
+/*!*************************************************!*\
+  !*** ./node_modules/@tarojs/taro-swan/index.js ***!
+  \*************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-module.exports = __webpack_require__(/*! ./dist/index */ "./node_modules/@tarojs/taro-tt/dist/index.js").default;
+module.exports = __webpack_require__(/*! ./dist/index */ "./node_modules/@tarojs/taro-swan/dist/index.js").default;
 module.exports.default = module.exports;
 
 /***/ }),
@@ -11662,9 +11536,9 @@ var _class, _temp;
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroSwan2 = _interopRequireDefault(_taroSwan);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -11708,7 +11582,7 @@ var AtComponent = (_temp = _class = function (_Component) {
   }]);
 
   return AtComponent;
-}(_taroTt.Component), _class.options = {
+}(_taroSwan.Component), _class.options = {
   addGlobalClass: true
 
   /**
@@ -11737,18 +11611,18 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.delayGetScrollOffset = exports.delayGetClientRect = exports.handleTouchScroll = exports.pxTransform = exports.isTest = exports.initTestEnv = exports.getEventDetail = exports.uuid = exports.delayQuerySelector = exports.delay = undefined;
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroSwan2 = _interopRequireDefault(_taroSwan);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var ENV = _taroTt2.default.getEnv();
+var ENV = _taroSwan2.default.getEnv();
 function delay() {
   var delayTime = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 500;
 
   return new Promise(function (resolve) {
-    if ([_taroTt2.default.ENV_TYPE.WEB, _taroTt2.default.ENV_TYPE.SWAN].includes(ENV)) {
+    if ([_taroSwan2.default.ENV_TYPE.WEB, _taroSwan2.default.ENV_TYPE.SWAN].includes(ENV)) {
       setTimeout(function () {
         resolve();
       }, delayTime);
@@ -11760,8 +11634,8 @@ function delay() {
 function delayQuerySelector(self, selectorStr) {
   var delayTime = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 500;
 
-  var $scope = ENV === _taroTt2.default.ENV_TYPE.WEB ? self : self.$scope;
-  var selector = _taroTt2.default.createSelectorQuery().in($scope);
+  var $scope = ENV === _taroSwan2.default.ENV_TYPE.WEB ? self : self.$scope;
+  var selector = _taroSwan2.default.createSelectorQuery().in($scope);
   return new Promise(function (resolve) {
     delay(delayTime).then(function () {
       selector.select(selectorStr).boundingClientRect().exec(function (res) {
@@ -11776,7 +11650,7 @@ function delayGetScrollOffset(_ref) {
 
   return new Promise(function (resolve) {
     delay(delayTime).then(function () {
-      _taroTt2.default.createSelectorQuery().selectViewport().scrollOffset().exec(function (res) {
+      _taroSwan2.default.createSelectorQuery().selectViewport().scrollOffset().exec(function (res) {
         resolve(res);
       });
     });
@@ -11788,8 +11662,8 @@ function delayGetClientRect(_ref2) {
       _ref2$delayTime = _ref2.delayTime,
       delayTime = _ref2$delayTime === undefined ? 500 : _ref2$delayTime;
 
-  var $scope = ENV === _taroTt2.default.ENV_TYPE.WEB || ENV === _taroTt2.default.ENV_TYPE.SWAN ? self : self.$scope;
-  var selector = _taroTt2.default.createSelectorQuery().in($scope);
+  var $scope = ENV === _taroSwan2.default.ENV_TYPE.WEB || ENV === _taroSwan2.default.ENV_TYPE.SWAN ? self : self.$scope;
+  var selector = _taroSwan2.default.createSelectorQuery().in($scope);
   return new Promise(function (resolve) {
     delay(delayTime).then(function () {
       selector.select(selectorStr).boundingClientRect().exec(function (res) {
@@ -11832,7 +11706,7 @@ function uuid() {
 function getEventDetail(event) {
   var detail = void 0;
   switch (ENV) {
-    case _taroTt2.default.ENV_TYPE.WEB:
+    case _taroSwan2.default.ENV_TYPE.WEB:
       detail = {
         pageX: event.pageX,
         pageY: event.pageY,
@@ -11844,7 +11718,7 @@ function getEventDetail(event) {
         y: event.y
       };
       break;
-    case _taroTt2.default.ENV_TYPE.WEAPP:
+    case _taroSwan2.default.ENV_TYPE.WEAPP:
       detail = {
         pageX: event.touches[0].pageX,
         pageY: event.touches[0].pageY,
@@ -11856,7 +11730,7 @@ function getEventDetail(event) {
         y: event.target.y
       };
       break;
-    case _taroTt2.default.ENV_TYPE.ALIPAY:
+    case _taroSwan2.default.ENV_TYPE.ALIPAY:
       detail = {
         pageX: event.target.pageX,
         pageY: event.target.pageY,
@@ -11868,7 +11742,7 @@ function getEventDetail(event) {
         y: event.target.y
       };
       break;
-    case _taroTt2.default.ENV_TYPE.SWAN:
+    case _taroSwan2.default.ENV_TYPE.SWAN:
       detail = {
         pageX: event.changedTouches[0].pageX,
         pageY: event.changedTouches[0].pageY,
@@ -11904,7 +11778,7 @@ function isTest() {
 }
 var scrollTop = 0;
 function handleTouchScroll(flag) {
-  if (ENV !== _taroTt2.default.ENV_TYPE.WEB) {
+  if (ENV !== _taroSwan2.default.ENV_TYPE.WEB) {
     return;
   }
   if (flag) {
@@ -11921,7 +11795,7 @@ function handleTouchScroll(flag) {
 }
 function pxTransform(size) {
   if (!size) return '';
-  return _taroTt2.default.pxTransform(size);
+  return _taroSwan2.default.pxTransform(size);
 }
 exports.delay = delay;
 exports.delayQuerySelector = delayQuerySelector;
@@ -12107,6 +11981,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.setMsg = setMsg;
 exports.getMsg = getMsg;
 exports.resetMsg = resetMsg;
+exports.setMemberMsg = setMemberMsg;
 
 var _msg = __webpack_require__(/*! ../constants/msg */ "./src/constants/msg.ts");
 
@@ -12124,6 +11999,12 @@ function getMsg() {
 function resetMsg() {
   return {
     type: _msg.RESETMSG
+  };
+}
+function setMemberMsg(data) {
+  return {
+    type: _msg.SETMEMBERMSG,
+    data: data
   };
 }
 
@@ -12188,6 +12069,59 @@ function setPublishWay(data) {
 function getPublishWay() {
   return {
     type: _publishWay.GETPUBLISHWAY
+  };
+}
+
+/***/ }),
+
+/***/ "./src/actions/realname.ts":
+/*!*********************************!*\
+  !*** ./src/actions/realname.ts ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.setData = setData;
+exports.getData = getData;
+exports.setArea = setArea;
+exports.setFun = setFun;
+exports.setAddressFun = setAddressFun;
+
+var _realname = __webpack_require__(/*! ../constants/realname */ "./src/constants/realname.ts");
+
+function setData(data) {
+  return {
+    type: _realname.SETREALNAME,
+    data: data
+  };
+}
+function getData() {
+  return {
+    type: _realname.GETREALNAME
+  };
+}
+function setArea(data) {
+  return {
+    type: _realname.SETAREA,
+    data: data
+  };
+}
+function setFun(data) {
+  return {
+    type: _realname.SETFUN,
+    data: data
+  };
+}
+function setAddressFun(data) {
+  return {
+    type: _realname.SETADDRESSFUN,
+    data: data
   };
 }
 
@@ -12259,32 +12193,6 @@ function getToken() {
 function setPhone(data) {
   return {
     type: _recruit.SETPHONE,
-    data: data
-  };
-}
-
-/***/ }),
-
-/***/ "./src/actions/recruit_top.ts":
-/*!************************************!*\
-  !*** ./src/actions/recruit_top.ts ***!
-  \************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = setRecruitTopArea;
-
-var _recruit_top = __webpack_require__(/*! ../constants/recruit_top */ "./src/constants/recruit_top.ts");
-
-function setRecruitTopArea(data) {
-  return {
-    type: _recruit_top.SET_RECRUIT_TOP_AREA,
     data: data
   };
 }
@@ -12528,10 +12436,13 @@ var DEFAULT_PROPS = exports.DEFAULT_PROPS = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-// ? 全局不动配置项 只做导出不做修改
+exports.FILTERWEIXINREG = exports.REPLACEWEIXINTEXT = exports.SHOWINVITEUSER = exports.SHOWOFFICIALACCOUNT = exports.SHOWWEIXINNUMBER = exports.SHOWLISTSNOTICE = exports.SHOWSERVERPHONE = exports.ISPARSEUPLOADIMG = exports.USEGAODEMAPAPI = exports.DOWNLOADAPP = exports.TEXTAREAMAXLENGTH = exports.ISCANSHARE = exports.USESUBSCRIBEMESSAGE = exports.INVITESOURCE = exports.VIDEOAD = exports.UNITID = exports.SERIES = exports.TOKEN = exports.PAGETITLE = exports.QQSERIES = exports.WEIXINSERIES = exports.ZIJIESERIES = exports.BAIDUSERIES = exports.INVITEPATH = exports.DownloadApp = exports.DOWNLOADAPPPATH = exports.PUBLISHEDRECRUIT = exports.CODEAUTHPATH = exports.AUTHPATH = exports.REALNAMEPATH = exports.PUBLISHUSED = exports.PUBLISHRESUME = exports.PUBLISHFAST = exports.PUBLISHRECRUIT = exports.INDEXPATH = exports.MaxUsedInfoId = exports.QQWECHATPAYURLREFERER = exports.ProjectImgMaxNum = exports.ProjectListMaxNum = exports.ResumeMemberLabelsMaxNum = exports.CertificateImgMaxNum = exports.CertificateMaxNum = exports.MemberMsgTimerInterval = exports.UserPublishAreaHistoryMaxNum = exports.MAXCACHECITYNUM = exports.MAPKEY = exports.VERSION = exports.SERVERPHONE = exports.IMGCDNURL = exports.ALIYUNCDNMINIIMG = exports.ALIYUNCDN = exports.UPLOADIMGURL = exports.REQUESTURL = exports.PROREQUESTURL = exports.PREREQUESTURL = exports.DEVREQUESTURL = exports.MINICONFIG = exports.MINIVERSION = undefined;
+
+var _series = __webpack_require__(/*! ./series */ "./src/config/series.ts");
+
 // ! 根据不同编译脚本打包不同小程序
 // * 当前打包版本
-var MINIVERSION = exports.MINIVERSION = "douyin";
+var MINIVERSION = exports.MINIVERSION = "baidu"; // ? 全局不动配置项 只做导出不做修改
 var MINICONFIG = exports.MINICONFIG = __webpack_require__("./src/config/minis sync recursive ^\\.\\/.*\\.ts$")("./" + MINIVERSION + ".ts");
 // * 全局请求接口域名
 // * 测试站
@@ -12572,6 +12483,10 @@ var ResumeMemberLabelsMaxNum = exports.ResumeMemberLabelsMaxNum = 3;
 var ProjectListMaxNum = exports.ProjectListMaxNum = 5;
 // * 找活项目经验图片最大数量
 var ProjectImgMaxNum = exports.ProjectImgMaxNum = 6;
+// * 商户申请 H5 支付时提交的授权域名
+var QQWECHATPAYURLREFERER = exports.QQWECHATPAYURLREFERER = 'http://p.54xiaoshuo.com';
+// * 百度小程序seo跳转 最大二手交易信息id
+var MaxUsedInfoId = exports.MaxUsedInfoId = 48100;
 // ! 页面内常用路径配置
 // * 首页
 var INDEXPATH = exports.INDEXPATH = '/pages/index/index';
@@ -12591,22 +12506,32 @@ var AUTHPATH = exports.AUTHPATH = '/pages/userauth/index';
 var CODEAUTHPATH = exports.CODEAUTHPATH = '/pages/login/index';
 // * 已发布招工列表
 var PUBLISHEDRECRUIT = exports.PUBLISHEDRECRUIT = '/pages/published/recruit/index';
-// * 下载App
+// * 下载APP
+var DOWNLOADAPPPATH = exports.DOWNLOADAPPPATH = '/subpackage/pages/download/index';
+// * 下载App链接
 var DownloadApp = exports.DownloadApp = 'https://android.myapp.com/myapp/detail.htm?apkName=io.dcloud.H576E6CC7&amp;ADTAG=mobile';
 // * 邀请好友
 var INVITEPATH = exports.INVITEPATH = '/pages/static/invite/index';
-// ! 所有小程序列表
+// ! 所有小程序公司体系集合
 // 百度
-var BAIDU = exports.BAIDU = 'baidu';
-// 抖音
-var DOUYIN = exports.DOUYIN = 'douyin';
+var BAIDUSERIES = exports.BAIDUSERIES = _series.BAIDU_SERIES;
+// 字节
+var ZIJIESERIES = exports.ZIJIESERIES = _series.ZIJIE_SERIES;
+// 微信
+var WEIXINSERIES = exports.WEIXINSERIES = _series.WEIXIN_SERIES;
+// QQ
+var QQSERIES = exports.QQSERIES = _series.QQ_SERIES;
 // ! 以下内容为每个小程序独立配置
 // * page-title-global
 var PAGETITLE = exports.PAGETITLE = MINICONFIG.PAGETITLE;
 // * 小程序token
 var TOKEN = exports.TOKEN = MINICONFIG.TOKEN;
+// * 小程序公司体系
+var SERIES = exports.SERIES = MINICONFIG.SERIES;
 // * 小程序广告unitid
 var UNITID = exports.UNITID = MINICONFIG.UNITID;
+// * 小程序激励视频广告
+var VIDEOAD = exports.VIDEOAD = MINICONFIG.VIDEOAD;
 // * 小程序邀请key
 var INVITESOURCE = exports.INVITESOURCE = MINICONFIG.INVITESOURCE;
 // * 是否使用推送信息
@@ -12619,14 +12544,22 @@ var TEXTAREAMAXLENGTH = exports.TEXTAREAMAXLENGTH = MINICONFIG.TEXTAREAMAXLENGTH
 var DOWNLOADAPP = exports.DOWNLOADAPP = MINICONFIG.DOWNLOADAPP;
 // * 是否能够使用高德地区api
 var USEGAODEMAPAPI = exports.USEGAODEMAPAPI = MINICONFIG.USEGAODEMAPAPI;
-// * scroll-view滚动过程中是否保存高度值
-var SCROLLVIEWSETTOP = exports.SCROLLVIEWSETTOP = MINICONFIG.SCROLLVIEWSETTOP;
 // * 上传图片 是否需要使用JSON解析数据
 var ISPARSEUPLOADIMG = exports.ISPARSEUPLOADIMG = MINICONFIG.ISPARSEUPLOADIMG;
+// * 是否显示客服电话
+var SHOWSERVERPHONE = exports.SHOWSERVERPHONE = MINICONFIG.SHOWSERVERPHONE;
+// * 是否显示列表公告信息
+var SHOWLISTSNOTICE = exports.SHOWLISTSNOTICE = MINICONFIG.SHOWLISTSNOTICE;
 // * 是否显示加工友微信号
 var SHOWWEIXINNUMBER = exports.SHOWWEIXINNUMBER = MINICONFIG.SHOWWEIXINNUMBER;
 // * 是否显示关注公众号
 var SHOWOFFICIALACCOUNT = exports.SHOWOFFICIALACCOUNT = MINICONFIG.SHOWOFFICIALACCOUNT;
+// * 是否显示邀请好友
+var SHOWINVITEUSER = exports.SHOWINVITEUSER = MINICONFIG.SHOWINVITEUSER;
+// * 是否替换微信类关键词
+var REPLACEWEIXINTEXT = exports.REPLACEWEIXINTEXT = MINICONFIG.REPLACEWEIXINTEXT;
+// 去除微信文本正则
+var FILTERWEIXINREG = exports.FILTERWEIXINREG = /[微信|vx|VX|Vx|vx|v❤]/g;
 
 /***/ }),
 
@@ -12640,7 +12573,8 @@ var SHOWOFFICIALACCOUNT = exports.SHOWOFFICIALACCOUNT = MINICONFIG.SHOWOFFICIALA
 var map = {
 	"./baidu.ts": "./src/config/minis/baidu.ts",
 	"./douyin.ts": "./src/config/minis/douyin.ts",
-	"./jizhao.ts": "./src/config/minis/jizhao.ts"
+	"./jizhao.ts": "./src/config/minis/jizhao.ts",
+	"./qq.ts": "./src/config/minis/qq.ts"
 };
 
 
@@ -12675,48 +12609,47 @@ webpackContext.id = "./src/config/minis sync recursive ^\\.\\/.*\\.ts$";
 "use strict";
 
 
-// * 每个小程序单独配置  工地急招
-// * page-title-global
-var PAGETITLE = '鱼泡网-';
-// * 小程序token 
-var TOKEN = 'baidu';
-// * 小程序是否能被分享
-var ISCANSHARE = true;
-// * 小程序广告unitid
-var UNITID = 'adunit-80f40e8b4f60c3f6';
-// * 邀请key
-var INVITESOURCE = "712790d9629c6dcea00e3f5bff60132b";
-// * 是否使用推送信息
-var USESUBSCRIBEMESSAGE = false;
-// * textarea能输入的最大字数
-var TEXTAREAMAXLENGTH = 500;
-// * 应用内是否存在下载APP引流
-var DOWNLOADAPP = true;
-// * 是否支持高德地图api
-var USEGAODEMAPAPI = false;
-// * 是否显示加工友微信号
-var SHOWWEIXINNUMBER = true;
-// * 是否显示关注公众号
-var SHOWOFFICIALACCOUNT = true;
-// ! 百度系小程序 列表滚动必须设置值
-var SCROLLVIEWSETTOP = true;
-// ! 百度系小程序  上传图片 不能JSON解析数据
-var ISPARSEUPLOADIMG = false;
-module.exports = {
-  PAGETITLE: PAGETITLE,
-  TOKEN: TOKEN,
-  UNITID: UNITID,
-  INVITESOURCE: INVITESOURCE,
-  USESUBSCRIBEMESSAGE: USESUBSCRIBEMESSAGE,
-  ISCANSHARE: ISCANSHARE,
-  TEXTAREAMAXLENGTH: TEXTAREAMAXLENGTH,
-  DOWNLOADAPP: DOWNLOADAPP,
-  USEGAODEMAPAPI: USEGAODEMAPAPI,
-  SCROLLVIEWSETTOP: SCROLLVIEWSETTOP,
-  ISPARSEUPLOADIMG: ISPARSEUPLOADIMG,
-  SHOWWEIXINNUMBER: SHOWWEIXINNUMBER,
-  SHOWOFFICIALACCOUNT: SHOWOFFICIALACCOUNT
+var _series = __webpack_require__(/*! ../series */ "./src/config/series.ts");
+
+var miniConfig = {
+  // * page-title-global
+  PAGETITLE: '鱼泡网-',
+  // ! 小程序token 
+  TOKEN: 'baidu',
+  // ! 小程序公司体系
+  SERIES: _series.BAIDU_SERIES,
+  // * 小程序是否能被分享
+  ISCANSHARE: true,
+  // * 小程序广告unitid
+  UNITID: '',
+  // * 激励视频
+  VIDEOAD: '',
+  // * 邀请key
+  INVITESOURCE: "",
+  // * 是否使用推送信息
+  USESUBSCRIBEMESSAGE: false,
+  // * textarea能输入的最大字数
+  TEXTAREAMAXLENGTH: 500,
+  // * 应用内是否存在下载APP引流
+  DOWNLOADAPP: false,
+  // * 是否支持高德地图api
+  USEGAODEMAPAPI: false,
+  // * 是否显示客服电话
+  SHOWSERVERPHONE: true,
+  // * 是否显示列表公告信息
+  SHOWLISTSNOTICE: true,
+  // * 是否显示加工友微信号
+  SHOWWEIXINNUMBER: false,
+  // * 是否显示关注公众号
+  SHOWOFFICIALACCOUNT: false,
+  // * 是否显示邀请好友链接
+  SHOWINVITEUSER: true,
+  // * 详情是否需要替换微信关键词
+  REPLACEWEIXINTEXT: true,
+  // ! 百度系小程序  上传图片 不能JSON解析数据
+  ISPARSEUPLOADIMG: false
 };
+module.exports = miniConfig;
 
 /***/ }),
 
@@ -12730,48 +12663,48 @@ module.exports = {
 "use strict";
 
 
+var _series = __webpack_require__(/*! ../series */ "./src/config/series.ts");
+
 // * 每个小程序单独配置  工地急招
-// * page-title-global
-var PAGETITLE = '鱼泡网-';
-// * 小程序token 
-var TOKEN = 'douyin';
-// * 小程序是否能被分享
-var ISCANSHARE = true;
-// * 小程序广告unitid
-var UNITID = 'adunit-80f40e8b4f60c3f6';
-// * 邀请key
-var INVITESOURCE = "712790d9629c6dcea00e3f5bff60132b";
-// * 是否使用推送信息
-var USESUBSCRIBEMESSAGE = false;
-// * textarea能输入的最大字数
-var TEXTAREAMAXLENGTH = 140;
-// * 应用内是否存在下载APP引流
-var DOWNLOADAPP = false;
-// * 是否支持高德地图api
-var USEGAODEMAPAPI = true;
-// * 是否显示加工友微信号
-var SHOWWEIXINNUMBER = false;
-// * 是否显示关注公众号
-var SHOWOFFICIALACCOUNT = false;
-// ! 百度系小程序 列表滚动必须设置值
-var SCROLLVIEWSETTOP = false;
-// ! 百度系小程序  上传图片 JSON解析数据
-var ISPARSEUPLOADIMG = true;
-module.exports = {
-  PAGETITLE: PAGETITLE,
-  TOKEN: TOKEN,
-  UNITID: UNITID,
-  INVITESOURCE: INVITESOURCE,
-  USESUBSCRIBEMESSAGE: USESUBSCRIBEMESSAGE,
-  ISCANSHARE: ISCANSHARE,
-  TEXTAREAMAXLENGTH: TEXTAREAMAXLENGTH,
-  DOWNLOADAPP: DOWNLOADAPP,
-  USEGAODEMAPAPI: USEGAODEMAPAPI,
-  SCROLLVIEWSETTOP: SCROLLVIEWSETTOP,
-  ISPARSEUPLOADIMG: ISPARSEUPLOADIMG,
-  SHOWOFFICIALACCOUNT: SHOWOFFICIALACCOUNT,
-  SHOWWEIXINNUMBER: SHOWWEIXINNUMBER
+var miniConfig = {
+  // * page-title-global
+  PAGETITLE: '鱼泡网-',
+  // ! 小程序token 
+  TOKEN: 'douyin',
+  // ! 小程序公司体系
+  SERIES: _series.ZIJIE_SERIES,
+  // * 小程序是否能被分享
+  ISCANSHARE: true,
+  // * 小程序广告unitid
+  UNITID: '',
+  // * 激励视频
+  VIDEOAD: '',
+  // * 邀请key
+  INVITESOURCE: '',
+  // * 是否使用推送信息
+  USESUBSCRIBEMESSAGE: false,
+  // * textarea能输入的最大字数
+  TEXTAREAMAXLENGTH: 140,
+  // * 应用内是否存在下载APP引流
+  DOWNLOADAPP: false,
+  // * 是否支持高德地图api
+  USEGAODEMAPAPI: true,
+  // * 是否显示客服电话
+  SHOWSERVERPHONE: false,
+  // * 是否显示加工友微信号
+  SHOWWEIXINNUMBER: false,
+  // * 是否显示列表公告信息
+  SHOWLISTSNOTICE: false,
+  // * 是否显示关注公众号
+  SHOWOFFICIALACCOUNT: false,
+  // * 是否显示邀请好友链接
+  SHOWINVITEUSER: false,
+  // * 详情是否需要替换微信关键词
+  REPLACEWEIXINTEXT: false,
+  // ! 百度系小程序  上传图片 不能JSON解析数据
+  ISPARSEUPLOADIMG: true
 };
+module.exports = miniConfig;
 
 /***/ }),
 
@@ -12785,58 +12718,101 @@ module.exports = {
 "use strict";
 
 
-/*
- * @Author: your name
- * @Date: 2020-10-28 11:04:26
- * @LastEditTime: 2020-11-25 14:49:56
- * @LastEditors: jsxin
- * @Description: In User Settings Edit
- * @FilePath: \yupaowang\src\config\minis\jizhao.ts
- */
-// * 每个小程序单独配置  工地急招
-// * page-title-global
-var PAGETITLE = '鱼泡网-';
-// * 小程序token 
-var TOKEN = 'jizhao';
-// * 小程序是否能被分享
-var ISCANSHARE = true;
-// * 小程序广告unitid
-var UNITID = 'adunit-80f40e8b4f60c3f6';
-// * 邀请key
-var INVITESOURCE = "712790d9629c6dcea00e3f5bff60132b";
-// * 是否使用推送信息
-var USESUBSCRIBEMESSAGE = true;
-// * 激励视频
-var VIDEOAD = 'adunit-31b05acadbd2a1d1';
-// * textarea能输入的最大字数
-var TEXTAREAMAXLENGTH = 500;
-// * 应用内是否存在下载APP引流
-var DOWNLOADAPP = true;
-// * 是否支持高德地图api
-var USEGAODEMAPAPI = false;
-// * 是否显示加工友微信号
-var SHOWWEIXINNUMBER = true;
-// * 是否显示关注公众号
-var SHOWOFFICIALACCOUNT = true;
-// ! 百度系小程序 列表滚动必须设置值
-var SCROLLVIEWSETTOP = false;
-// ! 百度系小程序  上传图片 JSON解析数据
-var ISPARSEUPLOADIMG = true;
-module.exports = {
-  PAGETITLE: PAGETITLE,
-  TOKEN: TOKEN,
-  UNITID: UNITID,
-  INVITESOURCE: INVITESOURCE,
-  USESUBSCRIBEMESSAGE: USESUBSCRIBEMESSAGE,
-  VIDEOAD: VIDEOAD,
-  TEXTAREAMAXLENGTH: TEXTAREAMAXLENGTH,
-  DOWNLOADAPP: DOWNLOADAPP,
-  USEGAODEMAPAPI: USEGAODEMAPAPI,
-  SCROLLVIEWSETTOP: SCROLLVIEWSETTOP,
-  ISPARSEUPLOADIMG: ISPARSEUPLOADIMG,
-  SHOWWEIXINNUMBER: SHOWWEIXINNUMBER,
-  SHOWOFFICIALACCOUNT: SHOWOFFICIALACCOUNT
+var _series = __webpack_require__(/*! ../series */ "./src/config/series.ts");
+
+var miniConfig = {
+  // * page-title-global
+  PAGETITLE: '工地急招-',
+  // ! 小程序token 
+  TOKEN: 'jizhao',
+  // ! 小程序公司体系
+  SERIES: _series.WEIXIN_SERIES,
+  // * 小程序是否能被分享
+  ISCANSHARE: true,
+  // * 小程序广告unitid
+  UNITID: 'adunit-80f40e8b4f60c3f6',
+  // * 激励视频
+  VIDEOAD: 'adunit-31b05acadbd2a1d1',
+  // * 邀请key
+  INVITESOURCE: '712790d9629c6dcea00e3f5bff60132b',
+  // * 是否使用推送信息
+  USESUBSCRIBEMESSAGE: true,
+  // * textarea能输入的最大字数
+  TEXTAREAMAXLENGTH: 500,
+  // * 应用内是否存在下载APP引流
+  DOWNLOADAPP: true,
+  // * 是否支持高德地图api
+  USEGAODEMAPAPI: true,
+  // * 是否显示客服电话
+  SHOWSERVERPHONE: true,
+  // * 是否显示加工友微信号
+  SHOWWEIXINNUMBER: true,
+  // * 是否显示列表公告信息
+  SHOWLISTSNOTICE: true,
+  // * 是否显示关注公众号
+  SHOWOFFICIALACCOUNT: true,
+  // * 是否显示邀请好友链接
+  SHOWINVITEUSER: true,
+  // * 详情是否需要替换微信关键词
+  REPLACEWEIXINTEXT: false,
+  // ! 百度系小程序  上传图片 不能JSON解析数据
+  ISPARSEUPLOADIMG: true
 };
+module.exports = miniConfig;
+
+/***/ }),
+
+/***/ "./src/config/minis/qq.ts":
+/*!********************************!*\
+  !*** ./src/config/minis/qq.ts ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _series = __webpack_require__(/*! ../series */ "./src/config/series.ts");
+
+var miniConfig = {
+  // * page-title-global
+  PAGETITLE: '鱼泡网-',
+  // ! 小程序token 
+  TOKEN: 'qq_ypw',
+  // ! 小程序公司体系
+  SERIES: _series.QQ_SERIES,
+  // * 小程序是否能被分享
+  ISCANSHARE: true,
+  // * 小程序广告unitid
+  UNITID: 'adunit-80f40e8b4f60c3f6',
+  // * 激励视频
+  VIDEOAD: 'adunit-31b05acadbd2a1d1',
+  // * 邀请key
+  INVITESOURCE: '712790d9629c6dcea00e3f5bff60132b',
+  // * 是否使用推送信息
+  USESUBSCRIBEMESSAGE: true,
+  // * textarea能输入的最大字数
+  TEXTAREAMAXLENGTH: 500,
+  // * 应用内是否存在下载APP引流
+  DOWNLOADAPP: false,
+  // * 是否支持高德地图api
+  USEGAODEMAPAPI: true,
+  // * 是否显示客服电话
+  SHOWSERVERPHONE: true,
+  // * 是否显示加工友微信号
+  SHOWWEIXINNUMBER: false,
+  // * 是否显示列表公告信息
+  SHOWLISTSNOTICE: false,
+  // * 是否显示关注公众号
+  SHOWOFFICIALACCOUNT: false,
+  // * 是否显示邀请好友链接
+  SHOWINVITEUSER: false,
+  // * 详情是否需要替换微信关键词
+  REPLACEWEIXINTEXT: false,
+  // ! 百度系小程序  上传图片 不能JSON解析数据
+  ISPARSEUPLOADIMG: true
+};
+module.exports = miniConfig;
 
 /***/ }),
 
@@ -12860,6 +12836,30 @@ var ClassifyPickerKey = exports.ClassifyPickerKey = 'classify';
 var FilterPickerKey = exports.FilterPickerKey = 'filter';
 var MemberPickerKey = exports.MemberPickerKey = 'member';
 var ResumeFilterPickerKey = exports.ResumeFilterPickerKey = 'resumefilter';
+
+/***/ }),
+
+/***/ "./src/config/series.ts":
+/*!******************************!*\
+  !*** ./src/config/series.ts ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+// 百度
+var BAIDU_SERIES = exports.BAIDU_SERIES = 'baidu';
+// 字节
+var ZIJIE_SERIES = exports.ZIJIE_SERIES = 'zijie';
+// 微信
+var WEIXIN_SERIES = exports.WEIXIN_SERIES = 'weixin';
+// QQ
+var QQ_SERIES = exports.QQ_SERIES = 'qq';
 
 /***/ }),
 
@@ -12961,6 +12961,7 @@ Object.defineProperty(exports, "__esModule", {
 var GETMSG = exports.GETMSG = 'getMsg';
 var SETMSG = exports.SETMSG = 'setMsg';
 var RESETMSG = exports.RESETMSG = 'resetMsg';
+var SETMEMBERMSG = exports.SETMEMBERMSG = 'setMemberMsg';
 
 /***/ }),
 
@@ -13017,6 +13018,7 @@ var GETREALNAME = exports.GETREALNAME = 'getRealname';
 var SETREALNAME = exports.SETREALNAME = 'setRealname';
 var SETFUN = exports.SETFUN = 'setfun';
 var SETAREA = exports.SETAREA = 'setarea';
+var SETADDRESSFUN = exports.SETADDRESSFUN = 'setAddressFun';
 
 /***/ }),
 
@@ -13235,7 +13237,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
 exports.default = useCode;
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
 
 var _index = __webpack_require__(/*! ../../utils/v/index */ "./src/utils/v/index.ts");
 
@@ -13252,14 +13254,14 @@ var SendTypeHave = exports.SendTypeHave = 'have';
 var SendTypeNo = exports.SendTypeNo = 'no';
 var title = '获取验证码';
 function useCode(type) {
-  var _useState = (0, _taroTt.useState)(false),
+  var _useState = (0, _taroSwan.useState)(false),
       _useState2 = _slicedToArray(_useState, 2),
       disabled = _useState2[0],
       setDisabled = _useState2[1];
 
   var sendType = type === false ? SendTypeNo : SendTypeHave;
 
-  var _useState3 = (0, _taroTt.useState)(title),
+  var _useState3 = (0, _taroSwan.useState)(title),
       _useState4 = _slicedToArray(_useState3, 2),
       text = _useState4[0],
       setText = _useState4[1];
@@ -13324,9 +13326,9 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 exports.default = useJobView;
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroSwan2 = _interopRequireDefault(_taroSwan);
 
 var _index = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
 
@@ -13355,18 +13357,18 @@ function useJobView() {
           var publishMethod = res.add_job_type;
           dispatch((0, _publishWay.setPublishWay)(_extends({}, publishWay, { loginWay: publishMethod, loginAfter: true })));
           var url = publishMethod == "fast_add_job" ? _index.PUBLISHRECRUIT : _index.PUBLISHFAST;
-          _taroTt2.default.navigateTo({
+          _taroSwan2.default.navigateTo({
             url: url
           });
         }).catch(function () {
-          _taroTt2.default.navigateTo({
+          _taroSwan2.default.navigateTo({
             url: _index.PUBLISHFAST
           });
         });
       } else {
         var way = publishWay.loginWay;
         var url = way == "fast_add_job" ? _index.PUBLISHRECRUIT : _index.PUBLISHFAST;
-        _taroTt2.default.navigateTo({
+        _taroSwan2.default.navigateTo({
           url: url
         });
       }
@@ -13377,18 +13379,18 @@ function useJobView() {
           var publishMethod = res.add_job_type;
           dispatch((0, _publishWay.setPublishWay)(_extends({}, publishWay, { logoutWay: publishMethod, loginBefore: true })));
           var url = publishMethod == "fast_add_job" ? _index.PUBLISHRECRUIT : _index.PUBLISHFAST;
-          _taroTt2.default.navigateTo({
+          _taroSwan2.default.navigateTo({
             url: url
           });
         }).catch(function () {
-          _taroTt2.default.navigateTo({
+          _taroSwan2.default.navigateTo({
             url: _index.PUBLISHFAST
           });
         });
       } else {
         var _way = publishWay.logoutWay;
         var _url = _way == "fast_add_job" ? _index.PUBLISHRECRUIT : _index.PUBLISHFAST;
-        _taroTt2.default.navigateTo({
+        _taroSwan2.default.navigateTo({
           url: _url
         });
       }
@@ -13421,9 +13423,9 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
 exports.usePublishData = usePublishData;
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroSwan2 = _interopRequireDefault(_taroSwan);
 
 var _index = __webpack_require__(/*! ../../utils/request/index */ "./src/utils/request/index.ts");
 
@@ -13476,7 +13478,7 @@ function usePublishData(InitParams) {
   });
   // 急速发布招工信息
 
-  var _useState = (0, _taroTt.useState)(initModel),
+  var _useState = (0, _taroSwan.useState)(initModel),
       _useState2 = _slicedToArray(_useState, 2),
       model = _useState2[0],
       setModel = _useState2[1];
@@ -13486,28 +13488,28 @@ function usePublishData(InitParams) {
   var dispatch = (0, _redux.useDispatch)();
   // 是否展开图片上传
 
-  var _useState3 = (0, _taroTt.useState)(false),
+  var _useState3 = (0, _taroSwan.useState)(false),
       _useState4 = _slicedToArray(_useState3, 2),
       showUpload = _useState4[0],
       setShowUpload = _useState4[1];
   // 招工详情的字数
 
 
-  var _useState5 = (0, _taroTt.useState)(0),
+  var _useState5 = (0, _taroSwan.useState)(0),
       _useState6 = _slicedToArray(_useState5, 2),
       num = _useState6[0],
       setNum = _useState6[1];
   // 备份手机号码
 
 
-  var _useState7 = (0, _taroTt.useState)(userPhone),
+  var _useState7 = (0, _taroSwan.useState)(userPhone),
       _useState8 = _slicedToArray(_useState7, 2),
       phone = _useState8[0],
       setPhone = _useState8[1];
   //获取redux中发布招工区域详细数据
 
 
-  (0, _taroTt.useEffect)(function () {
+  (0, _taroSwan.useEffect)(function () {
     // 判断是否登录，没有登录直接返回
     if (!login || login && !InitParams.infoId && reqStatus) return;
     (0, _index.getPublishRecruitView)(InitParams).then(function (res) {
@@ -13571,7 +13573,7 @@ function usePublishData(InitParams) {
         (0, _index2.ShowActionModal)({
           msg: res.errmsg,
           success: function success() {
-            _taroTt2.default.navigateBack();
+            _taroSwan2.default.navigateBack();
           }
         });
       }
@@ -13581,7 +13583,7 @@ function usePublishData(InitParams) {
   function setEnterInfo(name, data) {
     var regx = /1[3-9]\d{9}/g;
     var key = _store.PublishData;
-    var issueData = _taroTt2.default.getStorageSync(key);
+    var issueData = _taroSwan2.default.getStorageSync(key);
     if (name === "phone") {
       if (regx.test(data)) {
         if (issueData) {
@@ -13603,7 +13605,7 @@ function usePublishData(InitParams) {
         issueData[name] = data;
       }
     }
-    _taroTt2.default.setStorageSync(key, issueData);
+    _taroSwan2.default.setStorageSync(key, issueData);
   }
   return {
     model: model,
@@ -13640,9 +13642,9 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
 exports.default = useResume;
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroSwan2 = _interopRequireDefault(_taroSwan);
 
 var _index = __webpack_require__(/*! ../../utils/request/index */ "./src/utils/request/index.ts");
 
@@ -13676,137 +13678,137 @@ function useResume() {
   });
   // 基础信息
 
-  var _useState = (0, _taroTt.useState)(resumeData.info),
+  var _useState = (0, _taroSwan.useState)(resumeData.info),
       _useState2 = _slicedToArray(_useState, 2),
       infoData = _useState2[0],
       setInfoData = _useState2[1];
   // 人员信息
 
 
-  var _useState3 = (0, _taroTt.useState)(resumeData.introducesData),
+  var _useState3 = (0, _taroSwan.useState)(resumeData.introducesData),
       _useState4 = _slicedToArray(_useState3, 2),
       introducesData = _useState4[0],
       setIntroducesData = _useState4[1];
   // 项目
 
 
-  var _useState5 = (0, _taroTt.useState)(resumeData.projectData),
+  var _useState5 = (0, _taroSwan.useState)(resumeData.projectData),
       _useState6 = _slicedToArray(_useState5, 2),
       projectData = _useState6[0],
       setProjectData = _useState6[1];
   // 职业技能
 
 
-  var _useState7 = (0, _taroTt.useState)(resumeData.certificates),
+  var _useState7 = (0, _taroSwan.useState)(resumeData.certificates),
       _useState8 = _slicedToArray(_useState7, 2),
       certificates = _useState8[0],
       setCertificates = _useState8[1];
   //置顶
 
 
-  var _useState9 = (0, _taroTt.useState)(_data.RESUME_TOP_DATA),
+  var _useState9 = (0, _taroSwan.useState)(_data.RESUME_TOP_DATA),
       _useState10 = _slicedToArray(_useState9, 2),
       resume_top = _useState10[0],
       setResume_top = _useState10[1];
   // 人员信息
 
 
-  var _useState11 = (0, _taroTt.useState)(0),
+  var _useState11 = (0, _taroSwan.useState)(0),
       _useState12 = _slicedToArray(_useState11, 2),
       is_introduces = _useState12[0],
       setIs_introduces = _useState12[1];
   // 最大项目长度
 
 
-  var _useState13 = (0, _taroTt.useState)(0),
+  var _useState13 = (0, _taroSwan.useState)(0),
       _useState14 = _slicedToArray(_useState13, 2),
       project_count = _useState14[0],
       setProject_count = _useState14[1];
   // 最大技能长度
 
 
-  var _useState15 = (0, _taroTt.useState)(0),
+  var _useState15 = (0, _taroSwan.useState)(0),
       _useState16 = _slicedToArray(_useState15, 2),
       certificate_count = _useState16[0],
       setCertificate_count = _useState16[1];
   // 显示图标
 
 
-  var _useState17 = (0, _taroTt.useState)(0),
+  var _useState17 = (0, _taroSwan.useState)(0),
       _useState18 = _slicedToArray(_useState17, 2),
       show_tips = _useState18[0],
       setShow_tips = _useState18[1];
   // 工作状态
 
 
-  var _useState19 = (0, _taroTt.useState)([]),
+  var _useState19 = (0, _taroSwan.useState)([]),
       _useState20 = _slicedToArray(_useState19, 2),
       selectData = _useState20[0],
       setSelectData = _useState20[1];
   // 工作状态索引
 
 
-  var _useState21 = (0, _taroTt.useState)(0),
+  var _useState21 = (0, _taroSwan.useState)(0),
       _useState22 = _slicedToArray(_useState21, 2),
       selectDataIndex = _useState22[0],
       setSelectDataIndex = _useState22[1];
   // 工作状态
 
 
-  var _useState23 = (0, _taroTt.useState)(''),
+  var _useState23 = (0, _taroSwan.useState)(''),
       _useState24 = _slicedToArray(_useState23, 2),
       check = _useState24[0],
       setCheck = _useState24[1];
   // 是否修改项目经验
 
 
-  var _useState25 = (0, _taroTt.useState)(''),
+  var _useState25 = (0, _taroSwan.useState)(''),
       _useState26 = _slicedToArray(_useState25, 2),
       isModifyProject = _useState26[0],
       setIsModifyProject = _useState26[1];
   //是否修改技能证书
 
 
-  var _useState27 = (0, _taroTt.useState)(''),
+  var _useState27 = (0, _taroSwan.useState)(''),
       _useState28 = _slicedToArray(_useState27, 2),
       isModifySkill = _useState28[0],
       setIsModifySkill = _useState28[1];
   // 修改项目数量
 
 
-  var _useState29 = (0, _taroTt.useState)(0),
+  var _useState29 = (0, _taroSwan.useState)(0),
       _useState30 = _slicedToArray(_useState29, 2),
       projectNum = _useState30[0],
       setProjectNum = _useState30[1];
   // 修改职业技能数量
 
 
-  var _useState31 = (0, _taroTt.useState)(0),
+  var _useState31 = (0, _taroSwan.useState)(0),
       _useState32 = _slicedToArray(_useState31, 2),
       certificatesNum = _useState32[0],
       setCertificatesNum = _useState32[1];
   // 默认城市
 
 
-  var _useState33 = (0, _taroTt.useState)(0),
+  var _useState33 = (0, _taroSwan.useState)(0),
       _useState34 = _slicedToArray(_useState33, 2),
       defaultTopArea = _useState34[0],
       setDefaultTopArea = _useState34[1];
   // 置顶城市
 
 
-  var _useState35 = (0, _taroTt.useState)(''),
+  var _useState35 = (0, _taroSwan.useState)(''),
       _useState36 = _slicedToArray(_useState35, 2),
       topCity = _useState36[0],
       setTopCity = _useState36[1];
   // 项目列表
 
 
-  (0, _taroTt.useEffect)(function () {
+  (0, _taroSwan.useEffect)(function () {
     initResumeData();
   }, [login]);
   // 当redux数据发生改变后， 将自动更新到页面上
-  (0, _taroTt.useEffect)(function () {
+  (0, _taroSwan.useEffect)(function () {
     if (!resumeData.isSet) return;
     setInfoData(resumeData.info);
     setIntroducesData(resumeData.introducesData);
@@ -13968,7 +13970,7 @@ function useResume() {
       for (var _i4 = 0; _i4 < selectData.length; _i4++) {
         selectdataId.push(selectData[_i4].id);
       }
-      _taroTt2.default.showActionSheet({
+      _taroSwan2.default.showActionSheet({
         itemList: selectdataList,
         success: function success(res) {
           if (selectDataIndex == res.tapIndex) {
@@ -14059,7 +14061,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
 exports.default = useResumeAddInfo;
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
 
 var _index = __webpack_require__(/*! ../../utils/request/index */ "./src/utils/request/index.ts");
 
@@ -14074,21 +14076,21 @@ function useResumeAddInfo() {
   });
   // 保存配置项
 
-  var _useState = (0, _taroTt.useState)(addInfoConfig),
+  var _useState = (0, _taroSwan.useState)(addInfoConfig),
       _useState2 = _slicedToArray(_useState, 2),
       infoConfig = _useState2[0],
       setInfoConfig = _useState2[1];
   // 当前性别的下标
 
 
-  var _useState3 = (0, _taroTt.useState)(0),
+  var _useState3 = (0, _taroSwan.useState)(0),
       _useState4 = _slicedToArray(_useState3, 2),
       genderCurrent = _useState4[0],
       setGenderCurrent = _useState4[1];
   // 当前民族的下标
 
 
-  var _useState5 = (0, _taroTt.useState)(0),
+  var _useState5 = (0, _taroSwan.useState)(0),
       _useState6 = _slicedToArray(_useState5, 2),
       nationCurrent = _useState6[0],
       setNationCurrent = _useState6[1];
@@ -14101,7 +14103,7 @@ function useResumeAddInfo() {
   // 初始化基本信息数据
   //const 
   // 请求配置项数据
-  (0, _taroTt.useEffect)(function () {
+  (0, _taroSwan.useEffect)(function () {
     if (addInfoConfig.isset) return;
     (0, _index.getResumeAddInfoConfig)().then(function (res) {
       var data = _extends({}, res, { isset: true });
@@ -14146,6 +14148,7 @@ var AREAS = [{
   "pid": "0",
   "name": "全国",
   "ad_name": "中国",
+  "letter": "quanguo",
   "has_children": 0,
   "children": []
 }, {
@@ -14153,6 +14156,7 @@ var AREAS = [{
   "pid": "1",
   "name": "北京",
   "ad_name": "北京市",
+  "letter": "beijing",
   "has_children": 0,
   "children": []
 }, {
@@ -14160,1685 +14164,2013 @@ var AREAS = [{
   "pid": "1",
   "name": "安徽",
   "ad_name": "安徽省",
+  "letter": "anhui",
   "has_children": 1,
   "children": [{
     "id": "3",
     "pid": "1",
     "name": "安徽",
-    "ad_name": "安徽省"
+    "ad_name": "安徽省",
+    "letter": "anhui"
   }, {
     "id": "36",
     "pid": "3",
     "name": "安庆",
-    "ad_name": "安庆市"
+    "ad_name": "安庆市",
+    "letter": "anqing"
   }, {
     "id": "37",
     "pid": "3",
     "name": "蚌埠",
-    "ad_name": "蚌埠市"
+    "ad_name": "蚌埠市",
+    "letter": "bengbu"
   }, {
     "id": "39",
     "pid": "3",
     "name": "池州",
-    "ad_name": "池州市"
+    "ad_name": "池州市",
+    "letter": "chizhou"
   }, {
     "id": "40",
     "pid": "3",
     "name": "滁州",
-    "ad_name": "滁州市"
+    "ad_name": "滁州市",
+    "letter": "chuzhou"
   }, {
     "id": "41",
     "pid": "3",
     "name": "阜阳",
-    "ad_name": "阜阳市"
+    "ad_name": "阜阳市",
+    "letter": "fuyang"
   }, {
     "id": "42",
     "pid": "3",
     "name": "淮北",
-    "ad_name": "淮北市"
+    "ad_name": "淮北市",
+    "letter": "huaibei"
   }, {
     "id": "43",
     "pid": "3",
     "name": "淮南",
-    "ad_name": "淮南市"
+    "ad_name": "淮南市",
+    "letter": "huainan"
   }, {
     "id": "44",
     "pid": "3",
     "name": "黄山",
-    "ad_name": "黄山市"
+    "ad_name": "黄山市",
+    "letter": "huangshan"
   }, {
     "id": "45",
     "pid": "3",
     "name": "六安",
-    "ad_name": "六安市"
+    "ad_name": "六安市",
+    "letter": "liuan"
   }, {
     "id": "46",
     "pid": "3",
     "name": "马鞍山",
-    "ad_name": "马鞍山市"
+    "ad_name": "马鞍山市",
+    "letter": "maanshan"
   }, {
     "id": "47",
     "pid": "3",
     "name": "宿州",
-    "ad_name": "宿州市"
+    "ad_name": "宿州市",
+    "letter": "anhuisuzhou"
   }, {
     "id": "48",
     "pid": "3",
     "name": "铜陵",
-    "ad_name": "铜陵市"
+    "ad_name": "铜陵市",
+    "letter": "tongling"
   }, {
     "id": "49",
     "pid": "3",
     "name": "芜湖",
-    "ad_name": "芜湖市"
+    "ad_name": "芜湖市",
+    "letter": "wuhu"
   }, {
     "id": "50",
     "pid": "3",
     "name": "宣城",
-    "ad_name": "宣城市"
+    "ad_name": "宣城市",
+    "letter": "xuancheng"
   }, {
     "id": "51",
     "pid": "3",
     "name": "亳州",
-    "ad_name": "亳州市"
+    "ad_name": "亳州市",
+    "letter": "bozhou"
   }, {
     "id": "3401",
     "pid": "3",
     "name": "合肥",
-    "ad_name": "合肥市"
+    "ad_name": "合肥市",
+    "letter": "hefei"
   }]
 }, {
   "id": "4",
   "pid": "1",
   "name": "福建",
   "ad_name": "福建省",
+  "letter": "fujian",
   "has_children": 1,
   "children": [{
     "id": "4",
     "pid": "1",
     "name": "福建",
-    "ad_name": "福建省"
+    "ad_name": "福建省",
+    "letter": "fujian"
   }, {
     "id": "53",
     "pid": "4",
     "name": "福州",
-    "ad_name": "福州市"
+    "ad_name": "福州市",
+    "letter": "fuzhou"
   }, {
     "id": "54",
     "pid": "4",
     "name": "龙岩",
-    "ad_name": "龙岩市"
+    "ad_name": "龙岩市",
+    "letter": "longyan"
   }, {
     "id": "55",
     "pid": "4",
     "name": "南平",
-    "ad_name": "南平市"
+    "ad_name": "南平市",
+    "letter": "nanping"
   }, {
     "id": "56",
     "pid": "4",
     "name": "宁德",
-    "ad_name": "宁德市"
+    "ad_name": "宁德市",
+    "letter": "ningde"
   }, {
     "id": "57",
     "pid": "4",
     "name": "莆田",
-    "ad_name": "莆田市"
+    "ad_name": "莆田市",
+    "letter": "putian"
   }, {
     "id": "58",
     "pid": "4",
     "name": "泉州",
-    "ad_name": "泉州市"
+    "ad_name": "泉州市",
+    "letter": "quanzhou"
   }, {
     "id": "59",
     "pid": "4",
     "name": "三明",
-    "ad_name": "三明市"
+    "ad_name": "三明市",
+    "letter": "sanming"
   }, {
     "id": "60",
     "pid": "4",
     "name": "厦门",
-    "ad_name": "厦门市"
+    "ad_name": "厦门市",
+    "letter": "xiamen"
   }, {
     "id": "61",
     "pid": "4",
     "name": "漳州",
-    "ad_name": "漳州市"
+    "ad_name": "漳州市",
+    "letter": "zhangzhou"
   }]
 }, {
   "id": "5",
   "pid": "1",
   "name": "甘肃",
   "ad_name": "甘肃省",
+  "letter": "gansu",
   "has_children": 1,
   "children": [{
     "id": "5",
     "pid": "1",
     "name": "甘肃",
-    "ad_name": "甘肃省"
+    "ad_name": "甘肃省",
+    "letter": "gansu"
   }, {
     "id": "62",
     "pid": "5",
     "name": "兰州",
-    "ad_name": "兰州市"
+    "ad_name": "兰州市",
+    "letter": "lanzhou"
   }, {
     "id": "63",
     "pid": "5",
     "name": "白银",
-    "ad_name": "白银市"
+    "ad_name": "白银市",
+    "letter": "baiyin"
   }, {
     "id": "64",
     "pid": "5",
     "name": "定西",
-    "ad_name": "定西市"
+    "ad_name": "定西市",
+    "letter": "dingxi"
   }, {
     "id": "65",
     "pid": "5",
     "name": "甘南",
-    "ad_name": "甘南藏族自治州"
+    "ad_name": "甘南藏族自治州",
+    "letter": "gannan"
   }, {
     "id": "66",
     "pid": "5",
     "name": "嘉峪关",
-    "ad_name": "嘉峪关市"
+    "ad_name": "嘉峪关市",
+    "letter": "jiayuguan"
   }, {
     "id": "67",
     "pid": "5",
     "name": "金昌",
-    "ad_name": "金昌市"
+    "ad_name": "金昌市",
+    "letter": "jinchang"
   }, {
     "id": "68",
     "pid": "5",
     "name": "酒泉",
-    "ad_name": "酒泉市"
+    "ad_name": "酒泉市",
+    "letter": "jiuquan"
   }, {
     "id": "69",
     "pid": "5",
     "name": "临夏",
-    "ad_name": "临夏回族自治州"
+    "ad_name": "临夏回族自治州",
+    "letter": "linxia"
   }, {
     "id": "70",
     "pid": "5",
     "name": "陇南",
-    "ad_name": "陇南市"
+    "ad_name": "陇南市",
+    "letter": "longnan"
   }, {
     "id": "71",
     "pid": "5",
     "name": "平凉",
-    "ad_name": "平凉市"
+    "ad_name": "平凉市",
+    "letter": "pingliang"
   }, {
     "id": "72",
     "pid": "5",
     "name": "庆阳",
-    "ad_name": "庆阳市"
+    "ad_name": "庆阳市",
+    "letter": "qingyang"
   }, {
     "id": "73",
     "pid": "5",
     "name": "天水",
-    "ad_name": "天水市"
+    "ad_name": "天水市",
+    "letter": "tianshui"
   }, {
     "id": "74",
     "pid": "5",
     "name": "武威",
-    "ad_name": "武威市"
+    "ad_name": "武威市",
+    "letter": "wuwei"
   }, {
     "id": "75",
     "pid": "5",
     "name": "张掖",
-    "ad_name": "张掖市"
+    "ad_name": "张掖市",
+    "letter": "zhangye"
   }]
 }, {
   "id": "6",
   "pid": "1",
   "name": "广东",
   "ad_name": "广东省",
+  "letter": "guangdong",
   "has_children": 1,
   "children": [{
     "id": "6",
     "pid": "1",
     "name": "广东",
-    "ad_name": "广东省"
+    "ad_name": "广东省",
+    "letter": "guangdong"
   }, {
     "id": "76",
     "pid": "6",
     "name": "广州",
-    "ad_name": "广州市"
+    "ad_name": "广州市",
+    "letter": "guangzhou"
   }, {
     "id": "77",
     "pid": "6",
     "name": "深圳",
-    "ad_name": "深圳市"
+    "ad_name": "深圳市",
+    "letter": "shenzhen"
   }, {
     "id": "78",
     "pid": "6",
     "name": "潮州",
-    "ad_name": "潮州市"
+    "ad_name": "潮州市",
+    "letter": "chaozhou"
   }, {
     "id": "79",
     "pid": "6",
     "name": "东莞",
-    "ad_name": "东莞市"
+    "ad_name": "东莞市",
+    "letter": "dongguan"
   }, {
     "id": "80",
     "pid": "6",
     "name": "佛山",
-    "ad_name": "佛山市"
+    "ad_name": "佛山市",
+    "letter": "foshan"
   }, {
     "id": "81",
     "pid": "6",
     "name": "河源",
-    "ad_name": "河源市"
+    "ad_name": "河源市",
+    "letter": "heyuan"
   }, {
     "id": "82",
     "pid": "6",
     "name": "惠州",
-    "ad_name": "惠州市"
+    "ad_name": "惠州市",
+    "letter": "huizhou"
   }, {
     "id": "83",
     "pid": "6",
     "name": "江门",
-    "ad_name": "江门市"
+    "ad_name": "江门市",
+    "letter": "jiangmen"
   }, {
     "id": "84",
     "pid": "6",
     "name": "揭阳",
-    "ad_name": "揭阳市"
+    "ad_name": "揭阳市",
+    "letter": "jieyang"
   }, {
     "id": "85",
     "pid": "6",
     "name": "茂名",
-    "ad_name": "茂名市"
+    "ad_name": "茂名市",
+    "letter": "maoming"
   }, {
     "id": "86",
     "pid": "6",
     "name": "梅州",
-    "ad_name": "梅州市"
+    "ad_name": "梅州市",
+    "letter": "meizhou"
   }, {
     "id": "87",
     "pid": "6",
     "name": "清远",
-    "ad_name": "清远市"
+    "ad_name": "清远市",
+    "letter": "qingyuan"
   }, {
     "id": "88",
     "pid": "6",
     "name": "汕头",
-    "ad_name": "汕头市"
+    "ad_name": "汕头市",
+    "letter": "shantou"
   }, {
     "id": "89",
     "pid": "6",
     "name": "汕尾",
-    "ad_name": "汕尾市"
+    "ad_name": "汕尾市",
+    "letter": "shanwei"
   }, {
     "id": "90",
     "pid": "6",
     "name": "韶关",
-    "ad_name": "韶关市"
+    "ad_name": "韶关市",
+    "letter": "shaoguan"
   }, {
     "id": "91",
     "pid": "6",
     "name": "阳江",
-    "ad_name": "阳江市"
+    "ad_name": "阳江市",
+    "letter": "yangjiang"
   }, {
     "id": "92",
     "pid": "6",
     "name": "云浮",
-    "ad_name": "云浮市"
+    "ad_name": "云浮市",
+    "letter": "yunfu"
   }, {
     "id": "93",
     "pid": "6",
     "name": "湛江",
-    "ad_name": "湛江市"
+    "ad_name": "湛江市",
+    "letter": "zhanjiang"
   }, {
     "id": "94",
     "pid": "6",
     "name": "肇庆",
-    "ad_name": "肇庆市"
+    "ad_name": "肇庆市",
+    "letter": "zhaoqing"
   }, {
     "id": "95",
     "pid": "6",
     "name": "中山",
-    "ad_name": "中山市"
+    "ad_name": "中山市",
+    "letter": "zhongshan"
   }, {
     "id": "96",
     "pid": "6",
     "name": "珠海",
-    "ad_name": "珠海市"
+    "ad_name": "珠海市",
+    "letter": "zhuhai"
   }]
 }, {
   "id": "7",
   "pid": "1",
   "name": "广西",
   "ad_name": "广西壮族自治区",
+  "letter": "guangxi",
   "has_children": 1,
   "children": [{
     "id": "7",
     "pid": "1",
     "name": "广西",
-    "ad_name": "广西壮族自治区"
+    "ad_name": "广西壮族自治区",
+    "letter": "guangxi"
   }, {
     "id": "97",
     "pid": "7",
     "name": "南宁",
-    "ad_name": "南宁市"
+    "ad_name": "南宁市",
+    "letter": "nanning"
   }, {
     "id": "98",
     "pid": "7",
     "name": "桂林",
-    "ad_name": "桂林市"
+    "ad_name": "桂林市",
+    "letter": "guilin"
   }, {
     "id": "99",
     "pid": "7",
     "name": "百色",
-    "ad_name": "百色市"
+    "ad_name": "百色市",
+    "letter": "baise"
   }, {
     "id": "100",
     "pid": "7",
     "name": "北海",
-    "ad_name": "北海市"
+    "ad_name": "北海市",
+    "letter": "beihai"
   }, {
     "id": "101",
     "pid": "7",
     "name": "崇左",
-    "ad_name": "崇左市"
+    "ad_name": "崇左市",
+    "letter": "chongzuo"
   }, {
     "id": "102",
     "pid": "7",
     "name": "防城港",
-    "ad_name": "防城港市"
+    "ad_name": "防城港市",
+    "letter": "fangchenggang"
   }, {
     "id": "103",
     "pid": "7",
     "name": "贵港",
-    "ad_name": "贵港市"
+    "ad_name": "贵港市",
+    "letter": "guigang"
   }, {
     "id": "104",
     "pid": "7",
     "name": "河池",
-    "ad_name": "河池市"
+    "ad_name": "河池市",
+    "letter": "hechi"
   }, {
     "id": "105",
     "pid": "7",
     "name": "贺州",
-    "ad_name": "贺州市"
+    "ad_name": "贺州市",
+    "letter": "hezhou"
   }, {
     "id": "106",
     "pid": "7",
     "name": "来宾",
-    "ad_name": "来宾市"
+    "ad_name": "来宾市",
+    "letter": "laibin"
   }, {
     "id": "107",
     "pid": "7",
     "name": "柳州",
-    "ad_name": "柳州市"
+    "ad_name": "柳州市",
+    "letter": "liuzhou"
   }, {
     "id": "108",
     "pid": "7",
     "name": "钦州",
-    "ad_name": "钦州市"
+    "ad_name": "钦州市",
+    "letter": "qinzhou"
   }, {
     "id": "109",
     "pid": "7",
     "name": "梧州",
-    "ad_name": "梧州市"
+    "ad_name": "梧州市",
+    "letter": "wuzhou"
   }, {
     "id": "110",
     "pid": "7",
     "name": "玉林",
-    "ad_name": "玉林市"
+    "ad_name": "玉林市",
+    "letter": "yulin"
   }]
 }, {
   "id": "8",
   "pid": "1",
   "name": "贵州",
   "ad_name": "贵州省",
+  "letter": "guizhou",
   "has_children": 1,
   "children": [{
     "id": "8",
     "pid": "1",
     "name": "贵州",
-    "ad_name": "贵州省"
+    "ad_name": "贵州省",
+    "letter": "guizhou"
   }, {
     "id": "111",
     "pid": "8",
     "name": "贵阳",
-    "ad_name": "贵阳市"
+    "ad_name": "贵阳市",
+    "letter": "guiyang"
   }, {
     "id": "112",
     "pid": "8",
     "name": "安顺",
-    "ad_name": "安顺市"
+    "ad_name": "安顺市",
+    "letter": "anshun"
   }, {
     "id": "113",
     "pid": "8",
     "name": "毕节",
-    "ad_name": "毕节市"
+    "ad_name": "毕节市",
+    "letter": "bijie"
   }, {
     "id": "114",
     "pid": "8",
     "name": "六盘水",
-    "ad_name": "六盘水市"
+    "ad_name": "六盘水市",
+    "letter": "liupanshui"
   }, {
     "id": "115",
     "pid": "8",
     "name": "黔东南",
-    "ad_name": "黔东南苗族侗族自治州"
+    "ad_name": "黔东南苗族侗族自治州",
+    "letter": "qiandongnan"
   }, {
     "id": "116",
     "pid": "8",
     "name": "黔南",
-    "ad_name": "黔南布依族苗族自治州"
+    "ad_name": "黔南布依族苗族自治州",
+    "letter": "qiannan"
   }, {
     "id": "117",
     "pid": "8",
     "name": "黔西南",
-    "ad_name": "黔西南布依族苗族自治州"
+    "ad_name": "黔西南布依族苗族自治州",
+    "letter": "qianxinan"
   }, {
     "id": "118",
     "pid": "8",
     "name": "铜仁",
-    "ad_name": "铜仁市"
+    "ad_name": "铜仁市",
+    "letter": "tongren"
   }, {
     "id": "119",
     "pid": "8",
     "name": "遵义",
-    "ad_name": "遵义市"
+    "ad_name": "遵义市",
+    "letter": "zunyi"
   }]
 }, {
   "id": "9",
   "pid": "1",
   "name": "海南",
   "ad_name": "海南省",
+  "letter": "hainan",
   "has_children": 1,
   "children": [{
     "id": "9",
     "pid": "1",
     "name": "海南",
-    "ad_name": "海南省"
+    "ad_name": "海南省",
+    "letter": "hainan"
   }, {
     "id": "120",
     "pid": "9",
     "name": "海口",
-    "ad_name": "海口市"
+    "ad_name": "海口市",
+    "letter": "haikou"
   }, {
     "id": "121",
     "pid": "9",
     "name": "三亚",
-    "ad_name": "三亚市"
+    "ad_name": "三亚市",
+    "letter": "sanya"
   }, {
     "id": "122",
     "pid": "9",
     "name": "白沙",
-    "ad_name": "白沙黎族自治县"
+    "ad_name": "白沙黎族自治县",
+    "letter": "baisha"
   }, {
     "id": "123",
     "pid": "9",
     "name": "保亭",
-    "ad_name": "保亭黎族苗族自治县"
+    "ad_name": "保亭黎族苗族自治县",
+    "letter": "baoting"
   }, {
     "id": "124",
     "pid": "9",
     "name": "昌江",
-    "ad_name": "昌江"
+    "ad_name": "昌江",
+    "letter": "changjiang"
   }, {
     "id": "125",
     "pid": "9",
     "name": "澄迈县",
-    "ad_name": "澄迈县"
+    "ad_name": "澄迈县",
+    "letter": "chengmai"
   }, {
     "id": "126",
     "pid": "9",
     "name": "定安县",
-    "ad_name": "定安县"
+    "ad_name": "定安县",
+    "letter": "dingan"
   }, {
     "id": "127",
     "pid": "9",
     "name": "东方",
-    "ad_name": "东方市"
+    "ad_name": "东方市",
+    "letter": "dongfang"
   }, {
     "id": "128",
     "pid": "9",
     "name": "乐东",
-    "ad_name": "乐东黎族自治县"
+    "ad_name": "乐东黎族自治县",
+    "letter": "ledong"
   }, {
     "id": "129",
     "pid": "9",
     "name": "临高县",
-    "ad_name": "临高县"
+    "ad_name": "临高县",
+    "letter": "lingao"
   }, {
     "id": "130",
     "pid": "9",
     "name": "陵水",
-    "ad_name": "陵水黎族自治县"
+    "ad_name": "陵水黎族自治县",
+    "letter": "lingshui"
   }, {
     "id": "131",
     "pid": "9",
     "name": "琼海",
-    "ad_name": "琼海市"
+    "ad_name": "琼海市",
+    "letter": "qionghai"
   }, {
     "id": "132",
     "pid": "9",
     "name": "琼中",
-    "ad_name": "琼中黎族苗族自治县"
+    "ad_name": "琼中黎族苗族自治县",
+    "letter": "qiongzhong"
   }, {
     "id": "133",
     "pid": "9",
     "name": "屯昌县",
-    "ad_name": "屯昌县"
+    "ad_name": "屯昌县",
+    "letter": "tunchang"
   }, {
     "id": "134",
     "pid": "9",
     "name": "万宁",
-    "ad_name": "万宁市"
+    "ad_name": "万宁市",
+    "letter": "wanning"
   }, {
     "id": "135",
     "pid": "9",
     "name": "文昌",
-    "ad_name": "文昌市"
+    "ad_name": "文昌市",
+    "letter": "wenchang"
   }, {
     "id": "136",
     "pid": "9",
     "name": "五指山",
-    "ad_name": "五指山市"
+    "ad_name": "五指山市",
+    "letter": "wuzhishan"
   }, {
     "id": "137",
     "pid": "9",
     "name": "儋州",
-    "ad_name": "儋州市"
+    "ad_name": "儋州市",
+    "letter": "danzhou"
   }]
 }, {
   "id": "10",
   "pid": "1",
   "name": "河北",
   "ad_name": "河北省",
+  "letter": "hebei",
   "has_children": 1,
   "children": [{
     "id": "10",
     "pid": "1",
     "name": "河北",
-    "ad_name": "河北省"
+    "ad_name": "河北省",
+    "letter": "hebei"
   }, {
     "id": "138",
     "pid": "10",
     "name": "石家庄",
-    "ad_name": "石家庄市"
+    "ad_name": "石家庄市",
+    "letter": "shijiazhuang"
   }, {
     "id": "139",
     "pid": "10",
     "name": "保定",
-    "ad_name": "保定市"
+    "ad_name": "保定市",
+    "letter": "baoding"
   }, {
     "id": "140",
     "pid": "10",
     "name": "沧州",
-    "ad_name": "沧州市"
+    "ad_name": "沧州市",
+    "letter": "cangzhou"
   }, {
     "id": "141",
     "pid": "10",
     "name": "承德",
-    "ad_name": "承德市"
+    "ad_name": "承德市",
+    "letter": "chengde"
   }, {
     "id": "142",
     "pid": "10",
     "name": "邯郸",
-    "ad_name": "邯郸市"
+    "ad_name": "邯郸市",
+    "letter": "handan"
   }, {
     "id": "143",
     "pid": "10",
     "name": "衡水",
-    "ad_name": "衡水市"
+    "ad_name": "衡水市",
+    "letter": "hengshui"
   }, {
     "id": "144",
     "pid": "10",
     "name": "廊坊",
-    "ad_name": "廊坊市"
+    "ad_name": "廊坊市",
+    "letter": "langfang"
   }, {
     "id": "145",
     "pid": "10",
     "name": "秦皇岛",
-    "ad_name": "秦皇岛市"
+    "ad_name": "秦皇岛市",
+    "letter": "qinhuangdao"
   }, {
     "id": "146",
     "pid": "10",
     "name": "唐山",
-    "ad_name": "唐山市"
+    "ad_name": "唐山市",
+    "letter": "tangshan"
   }, {
     "id": "147",
     "pid": "10",
     "name": "邢台",
-    "ad_name": "邢台市"
+    "ad_name": "邢台市",
+    "letter": "xingtai"
   }, {
     "id": "148",
     "pid": "10",
     "name": "张家口",
-    "ad_name": "张家口市"
+    "ad_name": "张家口市",
+    "letter": "zhangjiakou"
   }]
 }, {
   "id": "11",
   "pid": "1",
   "name": "河南",
   "ad_name": "河南省",
+  "letter": "henan",
   "has_children": 1,
   "children": [{
     "id": "11",
     "pid": "1",
     "name": "河南",
-    "ad_name": "河南省"
+    "ad_name": "河南省",
+    "letter": "henan"
   }, {
     "id": "149",
     "pid": "11",
     "name": "郑州",
-    "ad_name": "郑州市"
+    "ad_name": "郑州市",
+    "letter": "zhengzhou"
   }, {
     "id": "150",
     "pid": "11",
     "name": "洛阳",
-    "ad_name": "洛阳市"
+    "ad_name": "洛阳市",
+    "letter": "luoyang"
   }, {
     "id": "151",
     "pid": "11",
     "name": "开封",
-    "ad_name": "开封市"
+    "ad_name": "开封市",
+    "letter": "kaifeng"
   }, {
     "id": "152",
     "pid": "11",
     "name": "安阳",
-    "ad_name": "安阳市"
+    "ad_name": "安阳市",
+    "letter": "anyang"
   }, {
     "id": "153",
     "pid": "11",
     "name": "鹤壁",
-    "ad_name": "鹤壁市"
+    "ad_name": "鹤壁市",
+    "letter": "hebi"
   }, {
     "id": "154",
     "pid": "11",
     "name": "济源",
-    "ad_name": "济源市"
+    "ad_name": "济源市",
+    "letter": "jiyuan"
   }, {
     "id": "155",
     "pid": "11",
     "name": "焦作",
-    "ad_name": "焦作市"
+    "ad_name": "焦作市",
+    "letter": "jiaozuo"
   }, {
     "id": "156",
     "pid": "11",
     "name": "南阳",
-    "ad_name": "南阳市"
+    "ad_name": "南阳市",
+    "letter": "nanyang"
   }, {
     "id": "157",
     "pid": "11",
     "name": "平顶山",
-    "ad_name": "平顶山市"
+    "ad_name": "平顶山市",
+    "letter": "pingdingshan"
   }, {
     "id": "158",
     "pid": "11",
     "name": "三门峡",
-    "ad_name": "三门峡市"
+    "ad_name": "三门峡市",
+    "letter": "sanmenxia"
   }, {
     "id": "159",
     "pid": "11",
     "name": "商丘",
-    "ad_name": "商丘市"
+    "ad_name": "商丘市",
+    "letter": "shangqiu"
   }, {
     "id": "160",
     "pid": "11",
     "name": "新乡",
-    "ad_name": "新乡市"
+    "ad_name": "新乡市",
+    "letter": "xinxiang"
   }, {
     "id": "161",
     "pid": "11",
     "name": "信阳",
-    "ad_name": "信阳市"
+    "ad_name": "信阳市",
+    "letter": "xinyang"
   }, {
     "id": "162",
     "pid": "11",
     "name": "许昌",
-    "ad_name": "许昌市"
+    "ad_name": "许昌市",
+    "letter": "xuchang"
   }, {
     "id": "163",
     "pid": "11",
     "name": "周口",
-    "ad_name": "周口市"
+    "ad_name": "周口市",
+    "letter": "zhoukou"
   }, {
     "id": "164",
     "pid": "11",
     "name": "驻马店",
-    "ad_name": "驻马店市"
+    "ad_name": "驻马店市",
+    "letter": "zhumadian"
   }, {
     "id": "165",
     "pid": "11",
     "name": "漯河",
-    "ad_name": "漯河市"
+    "ad_name": "漯河市",
+    "letter": "luohe"
   }, {
     "id": "166",
     "pid": "11",
     "name": "濮阳",
-    "ad_name": "濮阳市"
+    "ad_name": "濮阳市",
+    "letter": "puyang"
   }]
 }, {
   "id": "12",
   "pid": "1",
   "name": "黑龙江",
   "ad_name": "黑龙江省",
+  "letter": "heilongjiang",
   "has_children": 1,
   "children": [{
     "id": "12",
     "pid": "1",
     "name": "黑龙江",
-    "ad_name": "黑龙江省"
+    "ad_name": "黑龙江省",
+    "letter": "heilongjiang"
   }, {
     "id": "167",
     "pid": "12",
     "name": "哈尔滨",
-    "ad_name": "哈尔滨市"
+    "ad_name": "哈尔滨市",
+    "letter": "haerbin"
   }, {
     "id": "168",
     "pid": "12",
     "name": "大庆",
-    "ad_name": "大庆市"
+    "ad_name": "大庆市",
+    "letter": "daqing"
   }, {
     "id": "169",
     "pid": "12",
     "name": "大兴安岭",
-    "ad_name": "大兴安岭地区"
+    "ad_name": "大兴安岭地区",
+    "letter": "daxinganling"
   }, {
     "id": "170",
     "pid": "12",
     "name": "鹤岗",
-    "ad_name": "鹤岗市"
+    "ad_name": "鹤岗市",
+    "letter": "hegang"
   }, {
     "id": "171",
     "pid": "12",
     "name": "黑河",
-    "ad_name": "黑河市"
+    "ad_name": "黑河市",
+    "letter": "heihe"
   }, {
     "id": "172",
     "pid": "12",
     "name": "鸡西",
-    "ad_name": "鸡西市"
+    "ad_name": "鸡西市",
+    "letter": "jixi"
   }, {
     "id": "173",
     "pid": "12",
     "name": "佳木斯",
-    "ad_name": "佳木斯市"
+    "ad_name": "佳木斯市",
+    "letter": "jiamusi"
   }, {
     "id": "174",
     "pid": "12",
     "name": "牡丹江",
-    "ad_name": "牡丹江市"
+    "ad_name": "牡丹江市",
+    "letter": "mudanjiang"
   }, {
     "id": "175",
     "pid": "12",
     "name": "七台河",
-    "ad_name": "七台河市"
+    "ad_name": "七台河市",
+    "letter": "qitaihe"
   }, {
     "id": "176",
     "pid": "12",
     "name": "齐齐哈尔",
-    "ad_name": "齐齐哈尔市"
+    "ad_name": "齐齐哈尔市",
+    "letter": "jijihaer"
   }, {
     "id": "177",
     "pid": "12",
     "name": "双鸭山",
-    "ad_name": "双鸭山市"
+    "ad_name": "双鸭山市",
+    "letter": "shuangyashan"
   }, {
     "id": "178",
     "pid": "12",
     "name": "绥化",
-    "ad_name": "绥化市"
+    "ad_name": "绥化市",
+    "letter": "suihua"
   }, {
     "id": "179",
     "pid": "12",
     "name": "伊春",
-    "ad_name": "伊春市"
+    "ad_name": "伊春市",
+    "letter": "yichun"
   }]
 }, {
   "id": "13",
   "pid": "1",
   "name": "湖北",
   "ad_name": "湖北省",
+  "letter": "hubei",
   "has_children": 1,
   "children": [{
     "id": "13",
     "pid": "1",
     "name": "湖北",
-    "ad_name": "湖北省"
+    "ad_name": "湖北省",
+    "letter": "hubei"
   }, {
     "id": "180",
     "pid": "13",
     "name": "武汉",
-    "ad_name": "武汉市"
+    "ad_name": "武汉市",
+    "letter": "wuhan"
   }, {
     "id": "181",
     "pid": "13",
     "name": "仙桃",
-    "ad_name": "仙桃市"
+    "ad_name": "仙桃市",
+    "letter": "xiantao"
   }, {
     "id": "182",
     "pid": "13",
     "name": "鄂州",
-    "ad_name": "鄂州市"
+    "ad_name": "鄂州市",
+    "letter": "ezhou"
   }, {
     "id": "183",
     "pid": "13",
     "name": "黄冈",
-    "ad_name": "黄冈市"
+    "ad_name": "黄冈市",
+    "letter": "huanggang"
   }, {
     "id": "184",
     "pid": "13",
     "name": "黄石",
-    "ad_name": "黄石市"
+    "ad_name": "黄石市",
+    "letter": "huangshi"
   }, {
     "id": "185",
     "pid": "13",
     "name": "荆门",
-    "ad_name": "荆门市"
+    "ad_name": "荆门市",
+    "letter": "jingmen"
   }, {
     "id": "186",
     "pid": "13",
     "name": "荆州",
-    "ad_name": "荆州市"
+    "ad_name": "荆州市",
+    "letter": "jingzhou"
   }, {
     "id": "187",
     "pid": "13",
     "name": "潜江",
-    "ad_name": "潜江市"
+    "ad_name": "潜江市",
+    "letter": "qianjiang"
   }, {
     "id": "188",
     "pid": "13",
     "name": "神农架林区",
-    "ad_name": "神农架林区"
+    "ad_name": "神农架林区",
+    "letter": "shennongjia"
   }, {
     "id": "189",
     "pid": "13",
     "name": "十堰",
-    "ad_name": "十堰市"
+    "ad_name": "十堰市",
+    "letter": "shiyan"
   }, {
     "id": "190",
     "pid": "13",
     "name": "随州",
-    "ad_name": "随州市"
+    "ad_name": "随州市",
+    "letter": "suizhou"
   }, {
     "id": "191",
     "pid": "13",
     "name": "天门",
-    "ad_name": "天门市"
+    "ad_name": "天门市",
+    "letter": "tianmen"
   }, {
     "id": "192",
     "pid": "13",
     "name": "咸宁",
-    "ad_name": "咸宁市"
+    "ad_name": "咸宁市",
+    "letter": "xianning"
   }, {
     "id": "193",
     "pid": "13",
     "name": "襄阳",
-    "ad_name": "襄阳市"
+    "ad_name": "襄阳市",
+    "letter": "xiangfan"
   }, {
     "id": "194",
     "pid": "13",
     "name": "孝感",
-    "ad_name": "孝感市"
+    "ad_name": "孝感市",
+    "letter": "xiaogan"
   }, {
     "id": "195",
     "pid": "13",
     "name": "宜昌",
-    "ad_name": "宜昌市"
+    "ad_name": "宜昌市",
+    "letter": "yichang"
   }, {
     "id": "196",
     "pid": "13",
     "name": "恩施",
-    "ad_name": "恩施"
+    "ad_name": "恩施",
+    "letter": "enshi"
   }]
 }, {
   "id": "14",
   "pid": "1",
   "name": "湖南",
   "ad_name": "湖南省",
+  "letter": "hunan",
   "has_children": 1,
   "children": [{
     "id": "14",
     "pid": "1",
     "name": "湖南",
-    "ad_name": "湖南省"
+    "ad_name": "湖南省",
+    "letter": "hunan"
   }, {
     "id": "197",
     "pid": "14",
     "name": "长沙",
-    "ad_name": "长沙市"
+    "ad_name": "长沙市",
+    "letter": "changsha"
   }, {
     "id": "198",
     "pid": "14",
     "name": "张家界",
-    "ad_name": "张家界市"
+    "ad_name": "张家界市",
+    "letter": "zhangjiajie"
   }, {
     "id": "199",
     "pid": "14",
     "name": "常德",
-    "ad_name": "常德市"
+    "ad_name": "常德市",
+    "letter": "changde"
   }, {
     "id": "200",
     "pid": "14",
     "name": "郴州",
-    "ad_name": "郴州市"
+    "ad_name": "郴州市",
+    "letter": "chenzhou"
   }, {
     "id": "201",
     "pid": "14",
     "name": "衡阳",
-    "ad_name": "衡阳市"
+    "ad_name": "衡阳市",
+    "letter": "hengyang"
   }, {
     "id": "202",
     "pid": "14",
     "name": "怀化",
-    "ad_name": "怀化市"
+    "ad_name": "怀化市",
+    "letter": "huaihua"
   }, {
     "id": "203",
     "pid": "14",
     "name": "娄底",
-    "ad_name": "娄底市"
+    "ad_name": "娄底市",
+    "letter": "loudi"
   }, {
     "id": "204",
     "pid": "14",
     "name": "邵阳",
-    "ad_name": "邵阳市"
+    "ad_name": "邵阳市",
+    "letter": "shaoyang"
   }, {
     "id": "205",
     "pid": "14",
     "name": "湘潭",
-    "ad_name": "湘潭市"
+    "ad_name": "湘潭市",
+    "letter": "xiangtan"
   }, {
     "id": "206",
     "pid": "14",
     "name": "湘西",
-    "ad_name": "湘西土家族苗族自治州"
+    "ad_name": "湘西土家族苗族自治州",
+    "letter": "xiangxi"
   }, {
     "id": "207",
     "pid": "14",
     "name": "益阳",
-    "ad_name": "益阳市"
+    "ad_name": "益阳市",
+    "letter": "yiyang"
   }, {
     "id": "208",
     "pid": "14",
     "name": "永州",
-    "ad_name": "永州市"
+    "ad_name": "永州市",
+    "letter": "yongzhou"
   }, {
     "id": "209",
     "pid": "14",
     "name": "岳阳",
-    "ad_name": "岳阳市"
+    "ad_name": "岳阳市",
+    "letter": "yueyang"
   }, {
     "id": "210",
     "pid": "14",
     "name": "株洲",
-    "ad_name": "株洲市"
+    "ad_name": "株洲市",
+    "letter": "zhuzhou"
   }]
 }, {
   "id": "15",
   "pid": "1",
   "name": "吉林",
   "ad_name": "吉林省",
+  "letter": "jilin",
   "has_children": 1,
   "children": [{
     "id": "15",
     "pid": "1",
     "name": "吉林",
-    "ad_name": "吉林省"
+    "ad_name": "吉林省",
+    "letter": "jilin"
   }, {
     "id": "211",
     "pid": "15",
     "name": "长春",
-    "ad_name": "长春市"
+    "ad_name": "长春市",
+    "letter": "changchun"
   }, {
     "id": "212",
     "pid": "15",
     "name": "吉林",
-    "ad_name": "吉林市"
+    "ad_name": "吉林市",
+    "letter": "jilinshi"
   }, {
     "id": "213",
     "pid": "15",
     "name": "白城",
-    "ad_name": "白城市"
+    "ad_name": "白城市",
+    "letter": "baicheng"
   }, {
     "id": "214",
     "pid": "15",
     "name": "白山",
-    "ad_name": "白山市"
+    "ad_name": "白山市",
+    "letter": "baishan"
   }, {
     "id": "215",
     "pid": "15",
     "name": "辽源",
-    "ad_name": "辽源市"
+    "ad_name": "辽源市",
+    "letter": "liaoyuan"
   }, {
     "id": "216",
     "pid": "15",
     "name": "四平",
-    "ad_name": "四平市"
+    "ad_name": "四平市",
+    "letter": "siping"
   }, {
     "id": "217",
     "pid": "15",
     "name": "松原",
-    "ad_name": "松原市"
+    "ad_name": "松原市",
+    "letter": "songyuan"
   }, {
     "id": "218",
     "pid": "15",
     "name": "通化",
-    "ad_name": "通化市"
+    "ad_name": "通化市",
+    "letter": "tonghua"
   }, {
     "id": "219",
     "pid": "15",
     "name": "延边",
-    "ad_name": "延边朝鲜族自治州"
+    "ad_name": "延边朝鲜族自治州",
+    "letter": "yanbian"
   }]
 }, {
   "id": "16",
   "pid": "1",
   "name": "江苏",
   "ad_name": "江苏省",
+  "letter": "jiangsu",
   "has_children": 1,
   "children": [{
     "id": "16",
     "pid": "1",
     "name": "江苏",
-    "ad_name": "江苏省"
+    "ad_name": "江苏省",
+    "letter": "jiangsu"
   }, {
     "id": "220",
     "pid": "16",
     "name": "南京",
-    "ad_name": "南京市"
+    "ad_name": "南京市",
+    "letter": "nanjing"
   }, {
     "id": "221",
     "pid": "16",
     "name": "苏州",
-    "ad_name": "苏州市"
+    "ad_name": "苏州市",
+    "letter": "suzhou"
   }, {
     "id": "222",
     "pid": "16",
     "name": "无锡",
-    "ad_name": "无锡市"
+    "ad_name": "无锡市",
+    "letter": "wuxi"
   }, {
     "id": "223",
     "pid": "16",
     "name": "常州",
-    "ad_name": "常州市"
+    "ad_name": "常州市",
+    "letter": "changzhou"
   }, {
     "id": "224",
     "pid": "16",
     "name": "淮安",
-    "ad_name": "淮安市"
+    "ad_name": "淮安市",
+    "letter": "huaian"
   }, {
     "id": "225",
     "pid": "16",
     "name": "连云港",
-    "ad_name": "连云港市"
+    "ad_name": "连云港市",
+    "letter": "lianyungang"
   }, {
     "id": "226",
     "pid": "16",
     "name": "南通",
-    "ad_name": "南通市"
+    "ad_name": "南通市",
+    "letter": "nantong"
   }, {
     "id": "227",
     "pid": "16",
     "name": "宿迁",
-    "ad_name": "宿迁市"
+    "ad_name": "宿迁市",
+    "letter": "suqian"
   }, {
     "id": "228",
     "pid": "16",
     "name": "泰州",
-    "ad_name": "泰州市"
+    "ad_name": "泰州市",
+    "letter": "taizhou"
   }, {
     "id": "229",
     "pid": "16",
     "name": "徐州",
-    "ad_name": "徐州市"
+    "ad_name": "徐州市",
+    "letter": "xuzhou"
   }, {
     "id": "230",
     "pid": "16",
     "name": "盐城",
-    "ad_name": "盐城市"
+    "ad_name": "盐城市",
+    "letter": "yancheng"
   }, {
     "id": "231",
     "pid": "16",
     "name": "扬州",
-    "ad_name": "扬州市"
+    "ad_name": "扬州市",
+    "letter": "yangzhou"
   }, {
     "id": "232",
     "pid": "16",
     "name": "镇江",
-    "ad_name": "镇江市"
+    "ad_name": "镇江市",
+    "letter": "zhenjiang"
   }]
 }, {
   "id": "17",
   "pid": "1",
   "name": "江西",
   "ad_name": "江西省",
+  "letter": "jiangxi",
   "has_children": 1,
   "children": [{
     "id": "17",
     "pid": "1",
     "name": "江西",
-    "ad_name": "江西省"
+    "ad_name": "江西省",
+    "letter": "jiangxi"
   }, {
     "id": "233",
     "pid": "17",
     "name": "南昌",
-    "ad_name": "南昌市"
+    "ad_name": "南昌市",
+    "letter": "nanchang"
   }, {
     "id": "234",
     "pid": "17",
     "name": "抚州",
-    "ad_name": "抚州市"
+    "ad_name": "抚州市",
+    "letter": "jiangxifuzhou"
   }, {
     "id": "235",
     "pid": "17",
     "name": "赣州",
-    "ad_name": "赣州市"
+    "ad_name": "赣州市",
+    "letter": "ganzhou"
   }, {
     "id": "236",
     "pid": "17",
     "name": "吉安",
-    "ad_name": "吉安市"
+    "ad_name": "吉安市",
+    "letter": "jian"
   }, {
     "id": "237",
     "pid": "17",
     "name": "景德镇",
-    "ad_name": "景德镇市"
+    "ad_name": "景德镇市",
+    "letter": "jingdezhen"
   }, {
     "id": "238",
     "pid": "17",
     "name": "九江",
-    "ad_name": "九江市"
+    "ad_name": "九江市",
+    "letter": "jiujiang"
   }, {
     "id": "239",
     "pid": "17",
     "name": "萍乡",
-    "ad_name": "萍乡市"
+    "ad_name": "萍乡市",
+    "letter": "pingxiang"
   }, {
     "id": "240",
     "pid": "17",
     "name": "上饶",
-    "ad_name": "上饶市"
+    "ad_name": "上饶市",
+    "letter": "shangrao"
   }, {
     "id": "241",
     "pid": "17",
     "name": "新余",
-    "ad_name": "新余市"
+    "ad_name": "新余市",
+    "letter": "xinyu"
   }, {
     "id": "242",
     "pid": "17",
     "name": "宜春",
-    "ad_name": "宜春市"
+    "ad_name": "宜春市",
+    "letter": "jxyichun"
   }, {
     "id": "243",
     "pid": "17",
     "name": "鹰潭",
-    "ad_name": "鹰潭市"
+    "ad_name": "鹰潭市",
+    "letter": "yingtan"
   }]
 }, {
   "id": "18",
   "pid": "1",
   "name": "辽宁",
   "ad_name": "辽宁省",
+  "letter": "liaoning",
   "has_children": 1,
   "children": [{
     "id": "18",
     "pid": "1",
     "name": "辽宁",
-    "ad_name": "辽宁省"
+    "ad_name": "辽宁省",
+    "letter": "liaoning"
   }, {
     "id": "244",
     "pid": "18",
     "name": "沈阳",
-    "ad_name": "沈阳市"
+    "ad_name": "沈阳市",
+    "letter": "shenyang"
   }, {
     "id": "245",
     "pid": "18",
     "name": "大连",
-    "ad_name": "大连市"
+    "ad_name": "大连市",
+    "letter": "dalian"
   }, {
     "id": "246",
     "pid": "18",
     "name": "鞍山",
-    "ad_name": "鞍山市"
+    "ad_name": "鞍山市",
+    "letter": "anshan"
   }, {
     "id": "247",
     "pid": "18",
     "name": "本溪",
-    "ad_name": "本溪市"
+    "ad_name": "本溪市",
+    "letter": "benxi"
   }, {
     "id": "248",
     "pid": "18",
     "name": "朝阳",
-    "ad_name": "朝阳市"
+    "ad_name": "朝阳市",
+    "letter": "chaoyang"
   }, {
     "id": "249",
     "pid": "18",
     "name": "丹东",
-    "ad_name": "丹东市"
+    "ad_name": "丹东市",
+    "letter": "dandong"
   }, {
     "id": "250",
     "pid": "18",
     "name": "抚顺",
-    "ad_name": "抚顺市"
+    "ad_name": "抚顺市",
+    "letter": "fushun"
   }, {
     "id": "251",
     "pid": "18",
     "name": "阜新",
-    "ad_name": "阜新市"
+    "ad_name": "阜新市",
+    "letter": "fuxin"
   }, {
     "id": "252",
     "pid": "18",
     "name": "葫芦岛",
-    "ad_name": "葫芦岛市"
+    "ad_name": "葫芦岛市",
+    "letter": "huludao"
   }, {
     "id": "253",
     "pid": "18",
     "name": "锦州",
-    "ad_name": "锦州市"
+    "ad_name": "锦州市",
+    "letter": "jinzhou"
   }, {
     "id": "254",
     "pid": "18",
     "name": "辽阳",
-    "ad_name": "辽阳市"
+    "ad_name": "辽阳市",
+    "letter": "liaoyang"
   }, {
     "id": "255",
     "pid": "18",
     "name": "盘锦",
-    "ad_name": "盘锦市"
+    "ad_name": "盘锦市",
+    "letter": "panjin"
   }, {
     "id": "256",
     "pid": "18",
     "name": "铁岭",
-    "ad_name": "铁岭市"
+    "ad_name": "铁岭市",
+    "letter": "tieling"
   }, {
     "id": "257",
     "pid": "18",
     "name": "营口",
-    "ad_name": "营口市"
+    "ad_name": "营口市",
+    "letter": "yingkou"
   }]
 }, {
   "id": "19",
   "pid": "1",
   "name": "内蒙古",
   "ad_name": "内蒙古自治区",
+  "letter": "neimenggu",
   "has_children": 1,
   "children": [{
     "id": "19",
     "pid": "1",
     "name": "内蒙古",
-    "ad_name": "内蒙古自治区"
+    "ad_name": "内蒙古自治区",
+    "letter": "neimenggu"
   }, {
     "id": "258",
     "pid": "19",
     "name": "呼和浩特",
-    "ad_name": "呼和浩特市"
+    "ad_name": "呼和浩特市",
+    "letter": "huhehaote"
   }, {
     "id": "259",
     "pid": "19",
     "name": "阿拉善盟",
-    "ad_name": "阿拉善盟"
+    "ad_name": "阿拉善盟",
+    "letter": "alashan"
   }, {
     "id": "260",
     "pid": "19",
     "name": "巴彦淖尔盟",
-    "ad_name": "巴彦淖尔市"
+    "ad_name": "巴彦淖尔市",
+    "letter": "bayannaoer"
   }, {
     "id": "261",
     "pid": "19",
     "name": "包头",
-    "ad_name": "包头市"
+    "ad_name": "包头市",
+    "letter": "baotou"
   }, {
     "id": "262",
     "pid": "19",
     "name": "赤峰",
-    "ad_name": "赤峰市"
+    "ad_name": "赤峰市",
+    "letter": "chifeng"
   }, {
     "id": "263",
     "pid": "19",
     "name": "鄂尔多斯",
-    "ad_name": "鄂尔多斯市"
+    "ad_name": "鄂尔多斯市",
+    "letter": "eerduosi"
   }, {
     "id": "264",
     "pid": "19",
     "name": "呼伦贝尔",
-    "ad_name": "呼伦贝尔市"
+    "ad_name": "呼伦贝尔市",
+    "letter": "hulunbeier"
   }, {
     "id": "265",
     "pid": "19",
     "name": "通辽",
-    "ad_name": "通辽市"
+    "ad_name": "通辽市",
+    "letter": "tongliao"
   }, {
     "id": "266",
     "pid": "19",
     "name": "乌海",
-    "ad_name": "乌海市"
+    "ad_name": "乌海市",
+    "letter": "wuhai"
   }, {
     "id": "267",
     "pid": "19",
     "name": "乌兰察布市",
-    "ad_name": "乌兰察布市"
+    "ad_name": "乌兰察布市",
+    "letter": "wulanchabu"
   }, {
     "id": "268",
     "pid": "19",
     "name": "锡林郭勒盟",
-    "ad_name": "锡林郭勒盟"
+    "ad_name": "锡林郭勒盟",
+    "letter": "xilingele"
   }, {
     "id": "269",
     "pid": "19",
     "name": "兴安盟",
-    "ad_name": "兴安盟"
+    "ad_name": "兴安盟",
+    "letter": "xingan"
   }]
 }, {
   "id": "20",
   "pid": "1",
   "name": "宁夏",
   "ad_name": "宁夏回族自治区",
+  "letter": "ningxia",
   "has_children": 1,
   "children": [{
     "id": "20",
     "pid": "1",
     "name": "宁夏",
-    "ad_name": "宁夏回族自治区"
+    "ad_name": "宁夏回族自治区",
+    "letter": "ningxia"
   }, {
     "id": "270",
     "pid": "20",
     "name": "银川",
-    "ad_name": "银川市"
+    "ad_name": "银川市",
+    "letter": "yinchuan"
   }, {
     "id": "271",
     "pid": "20",
     "name": "固原",
-    "ad_name": "固原市"
+    "ad_name": "固原市",
+    "letter": "guyuan"
   }, {
     "id": "272",
     "pid": "20",
     "name": "石嘴山",
-    "ad_name": "石嘴山市"
+    "ad_name": "石嘴山市",
+    "letter": "shizuishan"
   }, {
     "id": "273",
     "pid": "20",
     "name": "吴忠",
-    "ad_name": "吴忠市"
+    "ad_name": "吴忠市",
+    "letter": "wuzhong"
   }, {
     "id": "274",
     "pid": "20",
     "name": "中卫",
-    "ad_name": "中卫市"
+    "ad_name": "中卫市",
+    "letter": "zhongwei"
   }]
 }, {
   "id": "21",
   "pid": "1",
   "name": "青海",
   "ad_name": "青海省",
+  "letter": "qinghai",
   "has_children": 1,
   "children": [{
     "id": "21",
     "pid": "1",
     "name": "青海",
-    "ad_name": "青海省"
+    "ad_name": "青海省",
+    "letter": "qinghai"
   }, {
     "id": "275",
     "pid": "21",
     "name": "西宁",
-    "ad_name": "西宁市"
+    "ad_name": "西宁市",
+    "letter": "xining"
   }, {
     "id": "276",
     "pid": "21",
     "name": "果洛",
-    "ad_name": "果洛藏族自治州"
+    "ad_name": "果洛藏族自治州",
+    "letter": "guoluo"
   }, {
     "id": "277",
     "pid": "21",
     "name": "海北",
-    "ad_name": "海北藏族自治州"
+    "ad_name": "海北藏族自治州",
+    "letter": "haibei"
   }, {
     "id": "278",
     "pid": "21",
     "name": "海东",
-    "ad_name": "海东市"
+    "ad_name": "海东市",
+    "letter": "haidong"
   }, {
     "id": "279",
     "pid": "21",
-    "name": "海南",
-    "ad_name": "海南藏族自治州"
+    "name": "海南州",
+    "ad_name": "海南藏族自治州",
+    "letter": "hainanzhou"
   }, {
     "id": "280",
     "pid": "21",
     "name": "海西",
-    "ad_name": "海西蒙古族藏族自治州"
+    "ad_name": "海西蒙古族藏族自治州",
+    "letter": "haixi"
   }, {
     "id": "281",
     "pid": "21",
     "name": "黄南",
-    "ad_name": "黄南藏族自治州"
+    "ad_name": "黄南藏族自治州",
+    "letter": "huangnan"
   }, {
     "id": "282",
     "pid": "21",
     "name": "玉树",
-    "ad_name": "玉树"
+    "ad_name": "玉树",
+    "letter": "yushu"
   }]
 }, {
   "id": "22",
   "pid": "1",
   "name": "山东",
   "ad_name": "山东省",
+  "letter": "shandong",
   "has_children": 1,
   "children": [{
     "id": "22",
     "pid": "1",
     "name": "山东",
-    "ad_name": "山东省"
+    "ad_name": "山东省",
+    "letter": "shandong"
   }, {
     "id": "283",
     "pid": "22",
     "name": "济南",
-    "ad_name": "济南市"
+    "ad_name": "济南市",
+    "letter": "jinan"
   }, {
     "id": "284",
     "pid": "22",
     "name": "青岛",
-    "ad_name": "青岛市"
+    "ad_name": "青岛市",
+    "letter": "qingdao"
   }, {
     "id": "285",
     "pid": "22",
     "name": "滨州",
-    "ad_name": "滨州市"
+    "ad_name": "滨州市",
+    "letter": "binzhou"
   }, {
     "id": "286",
     "pid": "22",
     "name": "德州",
-    "ad_name": "德州市"
+    "ad_name": "德州市",
+    "letter": "dezhou"
   }, {
     "id": "287",
     "pid": "22",
     "name": "东营",
-    "ad_name": "东营市"
+    "ad_name": "东营市",
+    "letter": "dongying"
   }, {
     "id": "288",
     "pid": "22",
     "name": "菏泽",
-    "ad_name": "菏泽市"
+    "ad_name": "菏泽市",
+    "letter": "heze"
   }, {
     "id": "289",
     "pid": "22",
     "name": "济宁",
-    "ad_name": "济宁市"
+    "ad_name": "济宁市",
+    "letter": "jining"
   }, {
     "id": "291",
     "pid": "22",
     "name": "聊城",
-    "ad_name": "聊城市"
+    "ad_name": "聊城市",
+    "letter": "liaocheng"
   }, {
     "id": "292",
     "pid": "22",
     "name": "临沂",
-    "ad_name": "临沂市"
+    "ad_name": "临沂市",
+    "letter": "linyi"
   }, {
     "id": "293",
     "pid": "22",
     "name": "日照",
-    "ad_name": "日照市"
+    "ad_name": "日照市",
+    "letter": "rizhao"
   }, {
     "id": "294",
     "pid": "22",
     "name": "泰安",
-    "ad_name": "泰安市"
+    "ad_name": "泰安市",
+    "letter": "taian"
   }, {
     "id": "295",
     "pid": "22",
     "name": "威海",
-    "ad_name": "威海市"
+    "ad_name": "威海市",
+    "letter": "weihai"
   }, {
     "id": "296",
     "pid": "22",
     "name": "潍坊",
-    "ad_name": "潍坊市"
+    "ad_name": "潍坊市",
+    "letter": "weifang"
   }, {
     "id": "297",
     "pid": "22",
     "name": "烟台",
-    "ad_name": "烟台市"
+    "ad_name": "烟台市",
+    "letter": "yantai"
   }, {
     "id": "298",
     "pid": "22",
     "name": "枣庄",
-    "ad_name": "枣庄市"
+    "ad_name": "枣庄市",
+    "letter": "zaozhuang"
   }, {
     "id": "299",
     "pid": "22",
     "name": "淄博",
-    "ad_name": "淄博市"
+    "ad_name": "淄博市",
+    "letter": "zibo"
   }]
 }, {
   "id": "23",
   "pid": "1",
   "name": "山西",
   "ad_name": "山西省",
+  "letter": "shanxi",
   "has_children": 1,
   "children": [{
     "id": "23",
     "pid": "1",
     "name": "山西",
-    "ad_name": "山西省"
+    "ad_name": "山西省",
+    "letter": "shanxi"
   }, {
     "id": "300",
     "pid": "23",
     "name": "太原",
-    "ad_name": "太原市"
+    "ad_name": "太原市",
+    "letter": "taiyuan"
   }, {
     "id": "301",
     "pid": "23",
     "name": "长治",
-    "ad_name": "长治市"
+    "ad_name": "长治市",
+    "letter": "changzhi"
   }, {
     "id": "302",
     "pid": "23",
     "name": "大同",
-    "ad_name": "大同市"
+    "ad_name": "大同市",
+    "letter": "datong"
   }, {
     "id": "303",
     "pid": "23",
     "name": "晋城",
-    "ad_name": "晋城市"
+    "ad_name": "晋城市",
+    "letter": "jincheng"
   }, {
     "id": "304",
     "pid": "23",
     "name": "晋中",
-    "ad_name": "晋中市"
+    "ad_name": "晋中市",
+    "letter": "jinzhong"
   }, {
     "id": "305",
     "pid": "23",
     "name": "临汾",
-    "ad_name": "临汾市"
+    "ad_name": "临汾市",
+    "letter": "linfen"
   }, {
     "id": "306",
     "pid": "23",
     "name": "吕梁",
-    "ad_name": "吕梁市"
+    "ad_name": "吕梁市",
+    "letter": "lvliang"
   }, {
     "id": "307",
     "pid": "23",
     "name": "朔州",
-    "ad_name": "朔州市"
+    "ad_name": "朔州市",
+    "letter": "shuozhou"
   }, {
     "id": "308",
     "pid": "23",
     "name": "忻州",
-    "ad_name": "忻州市"
+    "ad_name": "忻州市",
+    "letter": "xinzhou"
   }, {
     "id": "309",
     "pid": "23",
     "name": "阳泉",
-    "ad_name": "阳泉市"
+    "ad_name": "阳泉市",
+    "letter": "yangquan"
   }, {
     "id": "310",
     "pid": "23",
     "name": "运城",
-    "ad_name": "运城市"
+    "ad_name": "运城市",
+    "letter": "yuncheng"
   }]
 }, {
   "id": "24",
   "pid": "1",
   "name": "陕西",
   "ad_name": "陕西省",
+  "letter": "sx",
   "has_children": 1,
   "children": [{
     "id": "24",
     "pid": "1",
     "name": "陕西",
-    "ad_name": "陕西省"
+    "ad_name": "陕西省",
+    "letter": "sx"
   }, {
     "id": "311",
     "pid": "24",
     "name": "西安",
-    "ad_name": "西安市"
+    "ad_name": "西安市",
+    "letter": "xian"
   }, {
     "id": "312",
     "pid": "24",
     "name": "安康",
-    "ad_name": "安康市"
+    "ad_name": "安康市",
+    "letter": "ankang"
   }, {
     "id": "313",
     "pid": "24",
     "name": "宝鸡",
-    "ad_name": "宝鸡市"
+    "ad_name": "宝鸡市",
+    "letter": "baoji"
   }, {
     "id": "314",
     "pid": "24",
     "name": "汉中",
-    "ad_name": "汉中市"
+    "ad_name": "汉中市",
+    "letter": "hanzhong"
   }, {
     "id": "315",
     "pid": "24",
     "name": "商洛",
-    "ad_name": "商洛市"
+    "ad_name": "商洛市",
+    "letter": "shangluo"
   }, {
     "id": "316",
     "pid": "24",
     "name": "铜川",
-    "ad_name": "铜川市"
+    "ad_name": "铜川市",
+    "letter": "tongchuan"
   }, {
     "id": "317",
     "pid": "24",
     "name": "渭南",
-    "ad_name": "渭南市"
+    "ad_name": "渭南市",
+    "letter": "weinan"
   }, {
     "id": "318",
     "pid": "24",
     "name": "咸阳",
-    "ad_name": "咸阳市"
+    "ad_name": "咸阳市",
+    "letter": "xianyang"
   }, {
     "id": "319",
     "pid": "24",
     "name": "延安",
-    "ad_name": "延安市"
+    "ad_name": "延安市",
+    "letter": "yanan"
   }, {
     "id": "320",
     "pid": "24",
     "name": "榆林",
-    "ad_name": "榆林市"
+    "ad_name": "榆林市",
+    "letter": "shanxiyulin"
   }]
 }, {
   "id": "25",
   "pid": "1",
   "name": "上海",
   "ad_name": "上海市",
+  "letter": "shanghai",
   "has_children": 0,
   "children": []
 }, {
@@ -15846,123 +16178,147 @@ var AREAS = [{
   "pid": "1",
   "name": "四川",
   "ad_name": "四川省",
+  "letter": "sichuan",
   "has_children": 1,
   "children": [{
     "id": "26",
     "pid": "1",
     "name": "四川",
-    "ad_name": "四川省"
+    "ad_name": "四川省",
+    "letter": "sichuan"
   }, {
     "id": "322",
     "pid": "26",
     "name": "成都",
-    "ad_name": "成都市"
+    "ad_name": "成都市",
+    "letter": "chengdu"
   }, {
     "id": "323",
     "pid": "26",
     "name": "绵阳",
-    "ad_name": "绵阳市"
+    "ad_name": "绵阳市",
+    "letter": "mianyang"
   }, {
     "id": "324",
     "pid": "26",
     "name": "阿坝",
-    "ad_name": "阿坝藏族羌族自治州"
+    "ad_name": "阿坝藏族羌族自治州",
+    "letter": "aba"
   }, {
     "id": "325",
     "pid": "26",
     "name": "巴中",
-    "ad_name": "巴中市"
+    "ad_name": "巴中市",
+    "letter": "bazhong"
   }, {
     "id": "326",
     "pid": "26",
     "name": "达州",
-    "ad_name": "达州市"
+    "ad_name": "达州市",
+    "letter": "dazhou"
   }, {
     "id": "327",
     "pid": "26",
     "name": "德阳",
-    "ad_name": "德阳市"
+    "ad_name": "德阳市",
+    "letter": "deyang"
   }, {
     "id": "328",
     "pid": "26",
     "name": "甘孜",
-    "ad_name": "甘孜藏族自治州"
+    "ad_name": "甘孜藏族自治州",
+    "letter": "ganzi"
   }, {
     "id": "329",
     "pid": "26",
     "name": "广安",
-    "ad_name": "广安市"
+    "ad_name": "广安市",
+    "letter": "guangan"
   }, {
     "id": "330",
     "pid": "26",
     "name": "广元",
-    "ad_name": "广元市"
+    "ad_name": "广元市",
+    "letter": "guangyuan"
   }, {
     "id": "331",
     "pid": "26",
     "name": "乐山",
-    "ad_name": "乐山市"
+    "ad_name": "乐山市",
+    "letter": "leshan"
   }, {
     "id": "332",
     "pid": "26",
     "name": "凉山",
-    "ad_name": "凉山彝族自治州"
+    "ad_name": "凉山彝族自治州",
+    "letter": "liangshan"
   }, {
     "id": "333",
     "pid": "26",
     "name": "眉山",
-    "ad_name": "眉山市"
+    "ad_name": "眉山市",
+    "letter": "meishan"
   }, {
     "id": "334",
     "pid": "26",
     "name": "南充",
-    "ad_name": "南充市"
+    "ad_name": "南充市",
+    "letter": "nanchong"
   }, {
     "id": "335",
     "pid": "26",
     "name": "内江",
-    "ad_name": "内江市"
+    "ad_name": "内江市",
+    "letter": "neijiang"
   }, {
     "id": "336",
     "pid": "26",
     "name": "攀枝花",
-    "ad_name": "攀枝花市"
+    "ad_name": "攀枝花市",
+    "letter": "panzhihua"
   }, {
     "id": "337",
     "pid": "26",
     "name": "遂宁",
-    "ad_name": "遂宁市"
+    "ad_name": "遂宁市",
+    "letter": "suining"
   }, {
     "id": "338",
     "pid": "26",
     "name": "雅安",
-    "ad_name": "雅安市"
+    "ad_name": "雅安市",
+    "letter": "yaan"
   }, {
     "id": "339",
     "pid": "26",
     "name": "宜宾",
-    "ad_name": "宜宾市"
+    "ad_name": "宜宾市",
+    "letter": "yibin"
   }, {
     "id": "340",
     "pid": "26",
     "name": "资阳",
-    "ad_name": "资阳市"
+    "ad_name": "资阳市",
+    "letter": "ziyang"
   }, {
     "id": "341",
     "pid": "26",
     "name": "自贡",
-    "ad_name": "自贡市"
+    "ad_name": "自贡市",
+    "letter": "zigong"
   }, {
     "id": "342",
     "pid": "26",
     "name": "泸州",
-    "ad_name": "泸州市"
+    "ad_name": "泸州市",
+    "letter": "luzhou"
   }]
 }, {
   "id": "27",
   "pid": "1",
   "name": "天津",
   "ad_name": "天津市",
+  "letter": "tianjin",
   "has_children": 0,
   "children": []
 }, {
@@ -15970,314 +16326,375 @@ var AREAS = [{
   "pid": "1",
   "name": "西藏",
   "ad_name": "西藏自治区",
+  "letter": "xizang",
   "has_children": 1,
   "children": [{
     "id": "28",
     "pid": "1",
     "name": "西藏",
-    "ad_name": "西藏自治区"
+    "ad_name": "西藏自治区",
+    "letter": "xizang"
   }, {
     "id": "344",
     "pid": "28",
     "name": "拉萨",
-    "ad_name": "拉萨市"
+    "ad_name": "拉萨市",
+    "letter": "lasa"
   }, {
     "id": "345",
     "pid": "28",
     "name": "阿里",
-    "ad_name": "阿里地区"
+    "ad_name": "阿里地区",
+    "letter": "ali"
   }, {
     "id": "346",
     "pid": "28",
     "name": "昌都",
-    "ad_name": "昌都市"
+    "ad_name": "昌都市",
+    "letter": "changdu"
   }, {
     "id": "347",
     "pid": "28",
     "name": "林芝",
-    "ad_name": "林芝市"
+    "ad_name": "林芝市",
+    "letter": "linzhi"
   }, {
     "id": "348",
     "pid": "28",
     "name": "那曲",
-    "ad_name": "那曲市"
+    "ad_name": "那曲市",
+    "letter": "naqu"
   }, {
     "id": "349",
     "pid": "28",
     "name": "日喀则",
-    "ad_name": "日喀则市"
+    "ad_name": "日喀则市",
+    "letter": "rikeze"
   }, {
     "id": "350",
     "pid": "28",
     "name": "山南",
-    "ad_name": "山南市"
+    "ad_name": "山南市",
+    "letter": "shannan"
   }]
 }, {
   "id": "29",
   "pid": "1",
   "name": "新疆",
   "ad_name": "新疆维吾尔自治区",
+  "letter": "xinjiang",
   "has_children": 1,
   "children": [{
     "id": "29",
     "pid": "1",
     "name": "新疆",
-    "ad_name": "新疆维吾尔自治区"
+    "ad_name": "新疆维吾尔自治区",
+    "letter": "xinjiang"
   }, {
     "id": "351",
     "pid": "29",
     "name": "乌鲁木齐",
-    "ad_name": "乌鲁木齐市"
+    "ad_name": "乌鲁木齐市",
+    "letter": "wulumuqi"
   }, {
     "id": "352",
     "pid": "29",
     "name": "阿克苏",
-    "ad_name": "阿克苏地区"
+    "ad_name": "阿克苏地区",
+    "letter": "akesu"
   }, {
     "id": "353",
     "pid": "29",
     "name": "阿拉尔",
-    "ad_name": "阿拉尔市"
+    "ad_name": "阿拉尔市",
+    "letter": "alaer"
   }, {
     "id": "354",
     "pid": "29",
     "name": "巴音郭楞",
-    "ad_name": "巴音郭楞蒙古自治州"
+    "ad_name": "巴音郭楞蒙古自治州",
+    "letter": "bayingeleng"
   }, {
     "id": "355",
     "pid": "29",
     "name": "博尔塔拉",
-    "ad_name": "博尔塔拉蒙古自治州"
+    "ad_name": "博尔塔拉蒙古自治州",
+    "letter": "boerdala"
   }, {
     "id": "356",
     "pid": "29",
     "name": "昌吉",
-    "ad_name": "昌吉回族自治州"
+    "ad_name": "昌吉回族自治州",
+    "letter": "changji"
   }, {
     "id": "357",
     "pid": "29",
     "name": "哈密",
-    "ad_name": "哈密市"
+    "ad_name": "哈密市",
+    "letter": "hami"
   }, {
     "id": "358",
     "pid": "29",
     "name": "和田",
-    "ad_name": "和田地区"
+    "ad_name": "和田地区",
+    "letter": "hetian"
   }, {
     "id": "359",
     "pid": "29",
     "name": "喀什",
-    "ad_name": "喀什地区"
+    "ad_name": "喀什地区",
+    "letter": "kashi"
   }, {
     "id": "360",
     "pid": "29",
     "name": "克拉玛依",
-    "ad_name": "克拉玛依市"
+    "ad_name": "克拉玛依市",
+    "letter": "kalamayi"
   }, {
     "id": "361",
     "pid": "29",
     "name": "克孜勒苏",
-    "ad_name": "克孜勒苏柯尔克孜自治州"
+    "ad_name": "克孜勒苏柯尔克孜自治州",
+    "letter": "kezilesu"
   }, {
     "id": "362",
     "pid": "29",
     "name": "石河子",
-    "ad_name": "石河子市"
+    "ad_name": "石河子市",
+    "letter": "shihezi"
   }, {
     "id": "363",
     "pid": "29",
     "name": "图木舒克",
-    "ad_name": "图木舒克市"
+    "ad_name": "图木舒克市",
+    "letter": "tumushuke"
   }, {
     "id": "364",
     "pid": "29",
     "name": "吐鲁番",
-    "ad_name": "吐鲁番市"
+    "ad_name": "吐鲁番市",
+    "letter": "tulufan"
   }, {
     "id": "365",
     "pid": "29",
     "name": "五家渠",
-    "ad_name": "五家渠市"
+    "ad_name": "五家渠市",
+    "letter": "wujiaqu"
   }, {
     "id": "366",
     "pid": "29",
     "name": "伊犁",
-    "ad_name": "伊犁哈萨克自治州"
+    "ad_name": "伊犁哈萨克自治州",
+    "letter": "yili"
   }, {
     "id": "6156",
     "pid": "29",
     "name": "塔城地区",
-    "ad_name": "塔城地区"
+    "ad_name": "塔城地区",
+    "letter": "tachengdiqu"
   }, {
     "id": "6157",
     "pid": "29",
     "name": "阿勒泰地区",
-    "ad_name": "阿勒泰地区"
+    "ad_name": "阿勒泰地区",
+    "letter": "aertai"
   }]
 }, {
   "id": "30",
   "pid": "1",
   "name": "云南",
   "ad_name": "云南省",
+  "letter": "yunnan",
   "has_children": 1,
   "children": [{
     "id": "30",
     "pid": "1",
     "name": "云南",
-    "ad_name": "云南省"
+    "ad_name": "云南省",
+    "letter": "yunnan"
   }, {
     "id": "367",
     "pid": "30",
     "name": "昆明",
-    "ad_name": "昆明市"
+    "ad_name": "昆明市",
+    "letter": "kunming"
   }, {
     "id": "368",
     "pid": "30",
     "name": "怒江",
-    "ad_name": "怒江"
+    "ad_name": "怒江",
+    "letter": "nujiang"
   }, {
     "id": "369",
     "pid": "30",
     "name": "普洱",
-    "ad_name": "普洱市"
+    "ad_name": "普洱市",
+    "letter": "puer"
   }, {
     "id": "370",
     "pid": "30",
     "name": "丽江",
-    "ad_name": "丽江市"
+    "ad_name": "丽江市",
+    "letter": "lijiang"
   }, {
     "id": "371",
     "pid": "30",
     "name": "保山",
-    "ad_name": "保山市"
+    "ad_name": "保山市",
+    "letter": "baoshan"
   }, {
     "id": "372",
     "pid": "30",
     "name": "楚雄",
-    "ad_name": "楚雄彝族自治州"
+    "ad_name": "楚雄彝族自治州",
+    "letter": "chuxiong"
   }, {
     "id": "373",
     "pid": "30",
     "name": "大理",
-    "ad_name": "大理白族自治州"
+    "ad_name": "大理白族自治州",
+    "letter": "dali"
   }, {
     "id": "374",
     "pid": "30",
     "name": "德宏",
-    "ad_name": "德宏傣族景颇族自治州"
+    "ad_name": "德宏傣族景颇族自治州",
+    "letter": "dehong"
   }, {
     "id": "375",
     "pid": "30",
     "name": "迪庆",
-    "ad_name": "迪庆藏族自治州"
+    "ad_name": "迪庆藏族自治州",
+    "letter": "diqing"
   }, {
     "id": "376",
     "pid": "30",
     "name": "红河",
-    "ad_name": "红河哈尼族彝族自治州"
+    "ad_name": "红河哈尼族彝族自治州",
+    "letter": "honghe"
   }, {
     "id": "377",
     "pid": "30",
     "name": "临沧",
-    "ad_name": "临沧市"
+    "ad_name": "临沧市",
+    "letter": "lincang"
   }, {
     "id": "378",
     "pid": "30",
     "name": "曲靖",
-    "ad_name": "曲靖市"
+    "ad_name": "曲靖市",
+    "letter": "qujing"
   }, {
     "id": "379",
     "pid": "30",
     "name": "文山",
-    "ad_name": "文山壮族苗族自治州"
+    "ad_name": "文山壮族苗族自治州",
+    "letter": "wenshan"
   }, {
     "id": "380",
     "pid": "30",
     "name": "西双版纳",
-    "ad_name": "西双版纳傣族自治州"
+    "ad_name": "西双版纳傣族自治州",
+    "letter": "xishuangbanna"
   }, {
     "id": "381",
     "pid": "30",
     "name": "玉溪",
-    "ad_name": "玉溪市"
+    "ad_name": "玉溪市",
+    "letter": "yuxi"
   }, {
     "id": "382",
     "pid": "30",
     "name": "昭通",
-    "ad_name": "昭通市"
+    "ad_name": "昭通市",
+    "letter": "zhaotong"
   }]
 }, {
   "id": "31",
   "pid": "1",
   "name": "浙江",
   "ad_name": "浙江省",
+  "letter": "zhejiang",
   "has_children": 1,
   "children": [{
     "id": "31",
     "pid": "1",
     "name": "浙江",
-    "ad_name": "浙江省"
+    "ad_name": "浙江省",
+    "letter": "zhejiang"
   }, {
     "id": "383",
     "pid": "31",
     "name": "杭州",
-    "ad_name": "杭州市"
+    "ad_name": "杭州市",
+    "letter": "hangzhou"
   }, {
     "id": "384",
     "pid": "31",
     "name": "湖州",
-    "ad_name": "湖州市"
+    "ad_name": "湖州市",
+    "letter": "huzhou"
   }, {
     "id": "385",
     "pid": "31",
     "name": "嘉兴",
-    "ad_name": "嘉兴市"
+    "ad_name": "嘉兴市",
+    "letter": "jiaxing"
   }, {
     "id": "386",
     "pid": "31",
     "name": "金华",
-    "ad_name": "金华市"
+    "ad_name": "金华市",
+    "letter": "jinhua"
   }, {
     "id": "387",
     "pid": "31",
     "name": "丽水",
-    "ad_name": "丽水市"
+    "ad_name": "丽水市",
+    "letter": "lishui"
   }, {
     "id": "388",
     "pid": "31",
     "name": "宁波",
-    "ad_name": "宁波市"
+    "ad_name": "宁波市",
+    "letter": "ningbo"
   }, {
     "id": "389",
     "pid": "31",
     "name": "绍兴",
-    "ad_name": "绍兴市"
+    "ad_name": "绍兴市",
+    "letter": "shaoxing"
   }, {
     "id": "390",
     "pid": "31",
     "name": "台州",
-    "ad_name": "台州市"
+    "ad_name": "台州市",
+    "letter": "zhejiangtaizhou"
   }, {
     "id": "391",
     "pid": "31",
     "name": "温州",
-    "ad_name": "温州市"
+    "ad_name": "温州市",
+    "letter": "wenzhou"
   }, {
     "id": "392",
     "pid": "31",
     "name": "舟山",
-    "ad_name": "舟山市"
+    "ad_name": "舟山市",
+    "letter": "zhoushan"
   }, {
     "id": "393",
     "pid": "31",
     "name": "衢州",
-    "ad_name": "衢州市"
+    "ad_name": "衢州市",
+    "letter": "quzhou"
   }]
 }, {
   "id": "32",
   "pid": "1",
   "name": "重庆",
   "ad_name": "重庆市",
+  "letter": "chongqing",
   "has_children": 0,
   "children": []
 }];
@@ -16311,7 +16728,8 @@ function getCityInfo(data) {
                 id: item.id,
                 pid: item.pid,
                 ad_name: item.ad_name,
-                name: item.name
+                name: item.name,
+                letter: item.letter
               };
               flag = true;
               return province;
@@ -16604,8 +17022,8 @@ var RESUME_TOP_DATA = exports.RESUME_TOP_DATA = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.getQuestionDetailsFeedBank = exports.getQuestionDetails = exports.getAdvStatusConfig = exports.hotAreas = exports.getNotRemind = exports.getFreeIssueConfig = exports.getBaiduTpOrderId = exports.publishModel = exports.fastPublisView = exports.FastRcruitUrl = exports.memberTurntable = exports.turntableVideoEnd = exports.turntableDraw = exports.turntableIndex = exports.getRankRulesList = exports.checkCodeUrl = exports.getResumeAddInfoConfig = exports.realnameQueryUrl = exports.userCheckDouyinRecharge = exports.userDouyinRecharge = exports.userTelCodeLogin = exports.userAccountUrl = undefined;
-exports.leavingMessageUrl = exports.resumesComplainUrl = exports.resumesUpdateTopResumeUrl = exports.resumesDoTopV2Url = exports.resumesTopConfigV2Url = exports.resumesEditImgUrl = exports.resumesChangeTopStatusUrl = exports.resumesDoTopUrl = exports.resumesTopConfigUrl = exports.resumesTopAreasUrl = exports.resumesDelProjectUrl = exports.resumesEditEndUrl = exports.resumesIntroduceUrl = exports.resumesGetDataUrl = exports.checkAdcodeUrl = exports.addResumeUrl = exports.resumesProjectUrl = exports.resumesCertificateUrl = exports.delCertificateUrl = exports.jobRecommendListUrl = exports.resumeListUrl = exports.resumeCollectUrl = exports.resumeSupportUrl = exports.resumesGetTelUrl = exports.recommendListUrl = exports.resumeDetailUrl = exports.jobUpdateTopStatusUrl = exports.jobChangeTopAreasUrl = exports.jobGetTopAreasUrl = exports.jobDoTopUrl = exports.jobTopHotAreasUrl = exports.jobTopConfigUrl = exports.jobEndStatusUrl = exports.jobGetTelUrl = exports.jobNoUserInfoUrl = exports.jobInfoUrl = exports.publishComplainUrl = exports.integralUseInfoUrl = exports.integralExpendListsUrl = exports.integralExpendConfigUrl = exports.integralSourceListsUrl = exports.integralSourceConfigUrl = exports.messagesTypeUrl = exports.userMessagesUrl = exports.resumesAddClickLog = exports.resumesSortUrl = exports.newsInfoUrl = exports.newsTypesUrl = exports.newListUrl = exports.helpUrl = exports.feedbackSubmissionUrl = exports.feedbackUrl = exports.requestActionUrl = exports.ResumeCancelCollection = exports.recruitCancelCollection = exports.getCollectionResumeList = exports.getCollectionRecruitList = exports.userUpdateUserInfo = exports.userChangeUsedStatus = exports.userGetPublishedUsedList = exports.userChangeRecruitStatus = exports.userGetPublishedRecruitList = exports.updataPassword = exports.userChangePhone = exports.userUpdateName = exports.userChangeAvatar = exports.postUserAddInfo = exports.getIdcardAuthInfo = exports.postUserAuthInfo = exports.getUserAuthInfo = exports.getMemberMsgNumber = exports.getMemberInfo = exports.CheckMineAuthInfo = exports.CheckAuth = exports.GetUsedInfo = exports.GetUserLoginPhoneCode = exports.GetUserPhoneCode = exports.PublishUsedInfo = exports.GetUsedInfoModel = exports.GetRechargeOrder = exports.GetRechargeOpenid = exports.GetRechargeList = exports.GetUserInviteLink = exports.CheckAdcodeValid = exports.GetAllAreas = exports.FastIssueInfo = exports.FastPublisInfo = exports.PublishRecruitInfo = exports.GetPublisRecruitView = exports.GetIntegralList = exports.GetTabbarMsg = exports.GetListFilterData = exports.GetWechatNotice = exports.GetFleamarketlist = exports.GetResumelist = exports.GetRecruitlist = exports.GetAllListItem = exports.GetBannerNotice = exports.GetUserInfo = exports.GetUserSessionKey = undefined;
+exports.checkBaiduTpOrderId = exports.getQuestionDetailsFeedBank = exports.getQuestionDetails = exports.getAdvStatusConfig = exports.hotAreas = exports.getNotRemind = exports.getFreeIssueConfig = exports.getBaiduTpOrderId = exports.publishModel = exports.fastPublisView = exports.FastRcruitUrl = exports.memberTurntable = exports.turntableVideoEnd = exports.turntableDraw = exports.turntableIndex = exports.getRankRulesList = exports.checkCodeUrl = exports.getResumeAddInfoConfig = exports.realnameQueryUrl = exports.userCheckDouyinRecharge = exports.userQQWeCharRecharge = exports.userQQRecharge = exports.userDouyinRecharge = exports.userTelCodeLogin = exports.userAccountUrl = exports.leavingMessageUrl = undefined;
+exports.resumesComplainUrl = exports.resumesUpdateTopResumeUrl = exports.resumesDoTopV2Url = exports.resumesTopConfigV2Url = exports.resumesEditImgUrl = exports.resumesChangeTopStatusUrl = exports.resumesDoTopUrl = exports.resumesTopConfigUrl = exports.resumesTopAreasUrl = exports.resumesDelProjectUrl = exports.resumesEditEndUrl = exports.resumesIntroduceUrl = exports.resumesGetDataUrl = exports.checkAdcodeUrl = exports.addResumeUrl = exports.resumesProjectUrl = exports.resumesCertificateUrl = exports.delCertificateUrl = exports.jobRecommendListUrl = exports.resumeListUrl = exports.resumeCollectUrl = exports.resumeSupportUrl = exports.resumesGetTelUrl = exports.recommendListUrl = exports.resumeDetailUrl = exports.jobUpdateTopStatusUrl = exports.jobChangeTopAreasUrl = exports.jobGetTopAreasUrl = exports.jobDoTopUrl = exports.jobTopHotAreasUrl = exports.jobTopConfigUrl = exports.jobEndStatusUrl = exports.jobGetTelUrl = exports.jobNoUserInfoUrl = exports.jobInfoUrl = exports.publishComplainUrl = exports.integralUseInfoUrl = exports.integralExpendListsUrl = exports.integralExpendConfigUrl = exports.integralSourceListsUrl = exports.integralSourceConfigUrl = exports.messagesTypeUrl = exports.userMessagesUrl = exports.resumesAddClickLog = exports.resumesSortUrl = exports.newsInfoUrl = exports.newsTypesUrl = exports.newListUrl = exports.helpUrl = exports.feedbackSubmissionUrl = exports.feedbackUrl = exports.requestActionUrl = exports.ResumeCancelCollection = exports.recruitCancelCollection = exports.getCollectionResumeList = exports.getCollectionRecruitList = exports.userUpdateUserInfo = exports.userChangeUsedStatus = exports.userGetPublishedUsedList = exports.userChangeRecruitStatus = exports.userGetPublishedRecruitList = exports.userSetPassword = exports.updataPassword = exports.userChangePhone = exports.userUpdateName = exports.userChangeAvatar = exports.postUserAddInfo = exports.getIdcardAuthInfo = exports.postUserAuthInfo = exports.getUserAuthInfo = exports.getMemberMsgNumber = exports.getMemberInfo = exports.CheckMineAuthInfo = exports.CheckAuth = exports.GetUsedInfo = exports.GetUserLoginPhoneCode = exports.GetUserPhoneCode = exports.PublishUsedInfo = exports.GetUsedInfoModel = exports.GetRechargeOrder = exports.GetRechargeOpenid = exports.GetRechargeList = exports.GetUserInviteLink = exports.CheckAdcodeValid = exports.GetAllAreas = exports.FastIssueInfo = exports.FastPublisInfo = exports.PublishRecruitInfo = exports.GetPublisRecruitView = exports.GetIntegralList = exports.GetTabbarMsg = exports.GetListFilterData = exports.GetWechatNotice = exports.GetFleamarketlist = exports.GetResumelist = exports.GetRecruitlist = exports.GetAllListItem = exports.GetBannerNotice = exports.GetUserInfo = exports.GetUserSessionKey = undefined;
 
 var _index = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
 
@@ -16683,8 +17101,10 @@ var userChangeAvatar = exports.userChangeAvatar = _index.REQUESTURL + 'user/upda
 var userUpdateName = exports.userUpdateName = _index.REQUESTURL + 'user/update-username/';
 // 用户更换手机
 var userChangePhone = exports.userChangePhone = _index.REQUESTURL + 'user/update-tel/';
-//修改电话号码
+//修改密码
 var updataPassword = exports.updataPassword = _index.REQUESTURL + 'user/update-pwd/';
+//设置密码
+var userSetPassword = exports.userSetPassword = _index.REQUESTURL + 'user/set-pwd/';
 // 用户获取已发布招工列表
 var userGetPublishedRecruitList = exports.userGetPublishedRecruitList = _index.REQUESTURL + 'job/issue-lists/';
 // 用户改变招工状态
@@ -16815,6 +17235,10 @@ var userAccountUrl = exports.userAccountUrl = _index.REQUESTURL + 'baidu-auth/lo
 var userTelCodeLogin = exports.userTelCodeLogin = _index.REQUESTURL + 'baidu-auth/code-login/';
 // 抖音用户充值
 var userDouyinRecharge = exports.userDouyinRecharge = _index.REQUESTURL + 'pay/bytedance-order/';
+//qq用户充值
+var userQQRecharge = exports.userQQRecharge = _index.REQUESTURL + 'pay/qq-order/';
+//qq用户使用微信支付
+var userQQWeCharRecharge = exports.userQQWeCharRecharge = _index.REQUESTURL + 'pay/qq-order-wx/';
 // 都要用户充值订单检测
 var userCheckDouyinRecharge = exports.userCheckDouyinRecharge = _index.REQUESTURL + '/pay/byte-check/';
 // 实名查询
@@ -16853,6 +17277,8 @@ var getAdvStatusConfig = exports.getAdvStatusConfig = _index.REQUESTURL + '/memb
 var getQuestionDetails = exports.getQuestionDetails = _index.REQUESTURL + 'others/feedback-detail/';
 //帮助中心问题详情是否解决问题
 var getQuestionDetailsFeedBank = exports.getQuestionDetailsFeedBank = _index.REQUESTURL + 'others/feedback-effective/';
+// 校验百度支付是否成功
+var checkBaiduTpOrderId = exports.checkBaiduTpOrderId = _index.REQUESTURL + 'pay/query-order-status/';
 
 /***/ }),
 
@@ -16880,10 +17306,15 @@ exports.getPointNumber = getPointNumber;
 exports.getSystemInfo = getSystemInfo;
 exports.recSerAuthLoction = recSerAuthLoction;
 exports.userCancelAuth = userCancelAuth;
+exports.getLocation = getLocation;
+exports.setClipboardData = setClipboardData;
+exports.copyWechatNumber = copyWechatNumber;
+exports.userCallPhone = userCallPhone;
+exports.getUserShareMessage = getUserShareMessage;
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroSwan2 = _interopRequireDefault(_taroSwan);
 
 var _index = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
 
@@ -16892,6 +17323,12 @@ var _amapWx = __webpack_require__(/*! ../source/amap-wx */ "./src/utils/source/a
 var _amapWx2 = _interopRequireDefault(_amapWx);
 
 var _store = __webpack_require__(/*! ../../config/store */ "./src/config/store.ts");
+
+var _index2 = __webpack_require__(/*! ../request/index */ "./src/utils/request/index.ts");
+
+var _index3 = __webpack_require__(/*! ../msg/index */ "./src/utils/msg/index.ts");
+
+var _index4 = _interopRequireDefault(_index3);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -16906,7 +17343,7 @@ function objDeepCopy(source) {
 // 获取用户定位
 function userAuthLoction() {
   return new Promise(function (resolve, reject) {
-    var loc = _taroTt2.default.getStorageSync(_store.UserLocationCity);
+    var loc = _taroSwan2.default.getStorageSync(_store.UserLocationCity);
     if (loc) resolve(loc);
     var GDMAP = new _amapWx2.default.AMapWX({ key: _index.MAPKEY });
     GDMAP.getRegeo({
@@ -16919,7 +17356,7 @@ function userAuthLoction() {
           adcode: data[0].regeocodeData.addressComponent.adcode,
           citycode: data[0].regeocodeData.addressComponent.citycode
         };
-        _taroTt2.default.setStorageSync(_store.UserLocationCity, gpsLocation); //定位信息
+        _taroSwan2.default.setStorageSync(_store.UserLocationCity, gpsLocation); //定位信息
         resolve(gpsLocation);
       },
       fail: function fail() {
@@ -16945,7 +17382,7 @@ function getAmapPoiList(val) {
 }
 // 页面跳转
 function userJumpPage(url) {
-  _taroTt2.default.navigateTo({ url: url });
+  _taroSwan2.default.navigateTo({ url: url });
 }
 // 数字四舍五入并向下取2位小数
 function getPointNumber(p, n) {
@@ -16953,7 +17390,7 @@ function getPointNumber(p, n) {
 }
 // 获取设备系统
 function getSystemInfo() {
-  var system = _taroTt2.default.getSystemInfoSync();
+  var system = _taroSwan2.default.getSystemInfoSync();
   return system.platform;
 }
 // 找活基础页面获取定位
@@ -16972,12 +17409,92 @@ function recSerAuthLoction() {
 }
 // 用户取消授权
 function userCancelAuth() {
-  _taroTt2.default.navigateBack();
+  _taroSwan2.default.navigateBack();
 }
-//调用播放广告公告函数
-// export const handleAdvConfig = (callback, flag) => {
-//
-// }
+// 用户获取定位
+function getLocation() {
+  (0, _index4.default)('位置获取中...');
+  return new Promise(function (resolve, reject) {
+    var myAmapFun = new _amapWx2.default.AMapWX({
+      key: _index.MAPKEY
+    }); //key注册高德地图开发者
+    myAmapFun.getRegeo({
+      type: 'gcj02',
+      success: function success(data) {
+        var mydata = data[0].regeocodeData.addressComponent;
+        var params = {
+          adcode: mydata.adcode
+        };
+        (0, _index2.checkAdcodeAction)(params).then(function (res) {
+          if (res.errcode == 'ok') {
+            var province = res.province;
+            // let city: string = mydata.city
+            // city = typeof city === 'string' ? city : province
+            var gpsLocation = {
+              province: province,
+              city: res.city,
+              adcode: mydata.adcode,
+              citycode: mydata.citycode,
+              address: data[0].name,
+              oadcode: mydata.adcode,
+              longitude: data[0].longitude + "",
+              latitude: data[0].latitude + "",
+              wardenryid: res.city,
+              regionone: ''
+            };
+            resolve(gpsLocation);
+          } else {
+            (0, _index4.default)('定位失败,请重新定位');
+            reject();
+          }
+        }).catch(function (err) {
+          (0, _index4.default)('定位失败,请重新定位');
+          reject(err);
+        });
+      },
+      fail: function fail(err) {
+        (0, _index4.default)('定位失败,请重新定位');
+        reject(err);
+      }
+    });
+  });
+}
+// 复制内容到粘贴板
+function setClipboardData(val) {
+  var msg = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '内容已成功复制到粘贴板';
+
+  _taroSwan2.default.setClipboardData({
+    data: val,
+    success: function success() {
+      _taroSwan2.default.hideToast();
+      (0, _index3.ShowActionModal)({
+        msg: msg
+      });
+    }
+  });
+}
+// 复制微信号到粘贴板
+function copyWechatNumber(val) {
+  var msg = "\u5FAE\u4FE1\u53F7:" + val + "\u5DF2\u590D\u5236\u5230\u7C98\u8D34\u677F\uFF0C\u53BB\u5FAE\u4FE1-\u6DFB\u52A0\u670B\u53CB-\u641C\u7D22\u6846\u7C98\u8D34";
+  setClipboardData(val, msg);
+}
+// 用户拨打电话
+function userCallPhone(val) {
+  _taroSwan2.default.makePhoneCall({
+    phoneNumber: val
+  });
+}
+// 用户统一分享内容
+function getUserShareMessage() {
+  var title = '全国建筑工地招工平台';
+  if (_index.SERIES == _index.ZIJIESERIES) {
+    title = '鱼泡网-建筑装修找活平台';
+  }
+  return {
+    title: title,
+    imageUrl: _index.IMGCDNURL + "minishare.png"
+  };
+}
 
 /***/ }),
 
@@ -17001,16 +17518,16 @@ exports.warnMsg = warnMsg;
 exports.successMsg = successMsg;
 exports.showModalTip = showModalTip;
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroSwan2 = _interopRequireDefault(_taroSwan);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Msg(msg) {
   var duration = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 3000;
 
-  _taroTt2.default.showToast({
+  _taroSwan2.default.showToast({
     title: msg,
     icon: 'none',
     duration: duration
@@ -17028,7 +17545,7 @@ function ShowActionModal(data) {
       _data$confirmColor = data.confirmColor,
       confirmColor = _data$confirmColor === undefined ? '' : _data$confirmColor;
 
-  _taroTt2.default.showModal({
+  _taroSwan2.default.showModal({
     title: title,
     content: typeof data === 'string' ? data : msg,
     showCancel: showCancel,
@@ -17042,7 +17559,7 @@ function ShowActionModal(data) {
 function errMsg() {
   var msg = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
 
-  _taroTt2.default.atMessage({
+  _taroSwan2.default.atMessage({
     'message': msg,
     'type': 'error'
   });
@@ -17050,7 +17567,7 @@ function errMsg() {
 function warnMsg() {
   var msg = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
 
-  _taroTt2.default.atMessage({
+  _taroSwan2.default.atMessage({
     'message': msg,
     'type': 'warning'
   });
@@ -17058,7 +17575,7 @@ function warnMsg() {
 function successMsg() {
   var msg = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
 
-  _taroTt2.default.atMessage({
+  _taroSwan2.default.atMessage({
     'message': msg,
     'type': 'success'
   });
@@ -17069,7 +17586,7 @@ function showModalTip(obj) {
       _obj$showCancel = obj.showCancel,
       showCancel = _obj$showCancel === undefined ? false : _obj$showCancel;
 
-  _taroTt2.default.showModal({
+  _taroSwan2.default.showModal({
     title: title,
     content: obj.tips,
     showCancel: showCancel,
@@ -17206,7 +17723,10 @@ exports.userAccountLogin = userAccountLogin;
 exports.userTelCodeLogin = userTelCodeLogin;
 exports.userDouyinRecharge = userDouyinRecharge;
 exports.userCheckDouyinRecharge = userCheckDouyinRecharge;
+exports.userQQRecharge = userQQRecharge;
+exports.userQQWeChatRecharge = userQQWeChatRecharge;
 exports.updataPassword = updataPassword;
+exports.userSetPassword = userSetPassword;
 exports.queryAction = queryAction;
 exports.getResumeAddInfoConfig = getResumeAddInfoConfig;
 exports.checkCode = checkCode;
@@ -17221,10 +17741,11 @@ exports.getBaiduTpOrderId = getBaiduTpOrderId;
 exports.getFreeIssueConfig = getFreeIssueConfig;
 exports.getNotRemind = getNotRemind;
 exports.hotAreas = hotAreas;
+exports.checkBaiduOrderStatusAction = checkBaiduOrderStatusAction;
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroSwan2 = _interopRequireDefault(_taroSwan);
 
 var _index = __webpack_require__(/*! ../api/index */ "./src/utils/api/index.ts");
 
@@ -17253,7 +17774,7 @@ function requestShowToast(show) {
 // 获取header请求头信息
 function getRequestHeaderInfo() {
   // 获取用户信息
-  var userInfo = _taroTt2.default.getStorageSync(_store.UserInfo);
+  var userInfo = _taroSwan2.default.getStorageSync(_store.UserInfo);
   var requestHeader = userInfo.login ? {
     'content-type': 'application/x-www-form-urlencoded',
     mid: userInfo.userId,
@@ -17285,20 +17806,20 @@ var getRequestHeaderInfoAction = function getRequestHeaderInfoAction() {
 function doRequestAction(reqData) {
   var req = _extends({}, getRequestHeaderInfoAction(), reqData);
   if (req.loading) {
-    _taroTt2.default.showLoading({
+    _taroSwan2.default.showLoading({
       title: req.title
     });
   }
   var data = _extends({}, req.data, { wechat_token: _index2.TOKEN });
   // 获取用户信息
-  var userInfo = _taroTt2.default.getStorageSync(_store.UserInfo);
+  var userInfo = _taroSwan2.default.getStorageSync(_store.UserInfo);
   if (req.method === 'POST' && userInfo.login && req.user) {
     data.userId = userInfo.userId;
     data.token = userInfo.token;
     data.tokenTime = userInfo.tokenTime;
   }
   return new Promise(function (resolve, reject) {
-    _taroTt2.default.request({
+    _taroSwan2.default.request({
       url: /^http(s?):\/\//.test(req.url) ? req.url : req.url,
       method: req.method,
       header: req.header,
@@ -17318,7 +17839,7 @@ function doRequestAction(reqData) {
       },
       complete: function complete() {
         if (req.loading) {
-          _taroTt2.default.hideLoading();
+          _taroSwan2.default.hideLoading();
         }
       }
     });
@@ -18092,7 +18613,7 @@ function resumesCertificateAction(data) {
 // 新增项目
 function resumesProjectAction(data) {
   // 获取用户信息
-  var userInfo = _taroTt2.default.getStorageSync(_store.UserInfo);
+  var userInfo = _taroSwan2.default.getStorageSync(_store.UserInfo);
   return doRequestAction({
     url: api.resumesProjectUrl,
     header: {
@@ -18146,7 +18667,7 @@ function resumesIntroduceAction(data) {
 // 找活名片修改状态
 function resumesEditEndAction(data) {
   // 获取用户信息
-  var userInfo = _taroTt2.default.getStorageSync(_store.UserInfo);
+  var userInfo = _taroSwan2.default.getStorageSync(_store.UserInfo);
   return doRequestAction({
     url: api.resumesEditEndUrl,
     method: 'POST',
@@ -18297,10 +18818,35 @@ function userCheckDouyinRecharge(data) {
     data: data
   });
 }
+// 发起qq支付
+function userQQRecharge(data) {
+  return doRequestAction({
+    url: api.userQQRecharge,
+    method: 'POST',
+    data: data
+  });
+}
+// qq内发起微信支付
+function userQQWeChatRecharge(data) {
+  return doRequestAction({
+    url: api.userQQWeCharRecharge,
+    method: 'POST',
+    data: data
+  });
+}
 // 用户修改密码
 function updataPassword(data) {
   return doRequestAction({
     url: api.updataPassword,
+    method: 'POST',
+    failToast: true,
+    data: data
+  });
+}
+// 用户设置密码
+function userSetPassword(data) {
+  return doRequestAction({
+    url: api.userSetPassword,
     method: 'POST',
     failToast: true,
     data: data
@@ -18355,9 +18901,10 @@ function turntableIndex() {
   });
 }
 // 大转盘抽奖
-function turntableDraw() {
+function turntableDraw(data) {
   return doRequestAction({
     url: api.turntableDraw,
+    data: data,
     method: 'POST'
   });
 }
@@ -18409,6 +18956,15 @@ function hotAreas() {
   return doRequestAction({
     url: api.hotAreas,
     method: 'POST'
+  });
+}
+// 校验百度支付是否成功
+function checkBaiduOrderStatusAction(data) {
+  return doRequestAction({
+    url: api.checkBaiduTpOrderId,
+    method: 'POST',
+    data: data,
+    loading: false
   });
 }
 
@@ -18550,9 +19106,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.SubscribeToNews = SubscribeToNews;
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroSwan2 = _interopRequireDefault(_taroSwan);
 
 var _store = __webpack_require__(/*! ../../config/store */ "./src/config/store.ts");
 
@@ -18572,9 +19128,9 @@ function SubscribeToNews(type, callback) {
     callback();
     return;
   }
-  var userInfo = _taroTt2.default.getStorageSync(_store.UserInfo);
-  if (_taroTt2.default.canIUse('requestSubscribeMessage') === true) {
-    _taroTt2.default.requestSubscribeMessage({
+  var userInfo = _taroSwan2.default.getStorageSync(_store.UserInfo);
+  if (_taroSwan2.default.canIUse('requestSubscribeMessage') === true) {
+    _taroSwan2.default.requestSubscribeMessage({
       tmplIds: [_temp_ids2.default[type].id],
       success: function success(res) {
         callback();
@@ -18658,9 +19214,9 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = UploadImgAction;
 exports.CameraAndAlbum = CameraAndAlbum;
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroSwan2 = _interopRequireDefault(_taroSwan);
 
 var _store = __webpack_require__(/*! ../../config/store */ "./src/config/store.ts");
 
@@ -18672,11 +19228,18 @@ function UploadImgAction() {
   var url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _index.UPLOADIMGURL;
 
   var uploadUrl = url || _index.UPLOADIMGURL;
+  // 判断qq小程序无法调用摄像头
+  var sourceType = void 0;
+  if (_index.SERIES == _index.QQSERIES) {
+    sourceType = ['album'];
+  } else {
+    sourceType = ['album', 'camera'];
+  }
   return new Promise(function (resolve) {
-    _taroTt2.default.chooseImage({
+    _taroSwan2.default.chooseImage({
       count: 1,
       sizeType: ['compressed'],
-      sourceType: ['album', 'camera'],
+      sourceType: sourceType,
       success: function success(res) {
         AppUploadImg(resolve, res, uploadUrl);
       }
@@ -18687,11 +19250,11 @@ function CameraAndAlbum() {
   var url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _index.UPLOADIMGURL;
 
   return new Promise(function (resolve) {
-    _taroTt2.default.showActionSheet({
+    _taroSwan2.default.showActionSheet({
       itemList: ['拍照', '从相册中选择']
     }).then(function (res) {
       var index = res.tapIndex;
-      _taroTt2.default.chooseImage({
+      _taroSwan2.default.chooseImage({
         count: 1,
         sizeType: ['compressed'],
         sourceType: index === 0 ? ['camera'] : ['album'],
@@ -18705,9 +19268,9 @@ function CameraAndAlbum() {
 function AppUploadImg(resolve, res) {
   var url = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : _index.UPLOADIMGURL;
 
-  var userInfo = _taroTt2.default.getStorageSync(_store.UserInfo);
-  _taroTt2.default.showLoading({ title: '图片上传中' });
-  _taroTt2.default.uploadFile({
+  var userInfo = _taroSwan2.default.getStorageSync(_store.UserInfo);
+  _taroSwan2.default.showLoading({ title: '图片上传中' });
+  _taroSwan2.default.uploadFile({
     url: url,
     filePath: res.tempFilePaths[0],
     header: {
@@ -18717,7 +19280,7 @@ function AppUploadImg(resolve, res) {
     success: function success(response) {
       // 百度小程序出来之后是一个纯json 但是其他端就不是， 解决百度冲突
       var mydata = _index.ISPARSEUPLOADIMG ? JSON.parse(response.data) : response.data;
-      _taroTt2.default.showToast({
+      _taroSwan2.default.showToast({
         title: mydata.errmsg,
         icon: "none",
         duration: 2000
@@ -18728,14 +19291,14 @@ function AppUploadImg(resolve, res) {
     },
 
     fail: function fail() {
-      _taroTt2.default.showToast({
+      _taroSwan2.default.showToast({
         title: "网络错误，上传失败！",
         icon: "none",
         duration: 2000
       });
     },
     complete: function complete() {
-      _taroTt2.default.hideLoading();
+      _taroSwan2.default.hideLoading();
     }
   });
 }
@@ -18770,9 +19333,9 @@ exports.isRequireLen = isRequireLen;
 exports.isChinese = isChinese;
 exports.allChinese = allChinese;
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroSwan2 = _interopRequireDefault(_taroSwan);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -18849,7 +19412,7 @@ function isType(data, type) {
 }
 // 检测是否是ios客户端
 function isIos() {
-  var system = _taroTt2.default.getSystemInfoSync();
+  var system = _taroSwan2.default.getSystemInfoSync();
   return system.platform === 'ios';
 }
 //验证必填项且长度

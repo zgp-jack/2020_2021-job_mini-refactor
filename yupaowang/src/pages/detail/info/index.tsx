@@ -2,10 +2,10 @@ import Taro, { Config, useState, useRouter, useDidShow, useEffect, useShareAppMe
 import { View, Text, Image, Icon, Button } from '@tarojs/components'
 import { jobInfoAction, publishComplainAction, jobGetTelAction, recruitListCancelCollectionAction, jobEndStatusAction, jobUpdateTopStatusAction, jobNoUserInfoAction, jobRecommendListAction } from '../../../utils/request/index'
 import WechatNotice from '../../../components/wechat'
-import { IMGCDNURL, SERVERPHONE, AUTHPATH, CODEAUTHPATH, ISCANSHARE, DOWNLOADAPP, SHOWOFFICIALACCOUNT } from '../../../config'
+import { IMGCDNURL, SERVERPHONE, AUTHPATH, CODEAUTHPATH, ISCANSHARE, DOWNLOADAPP, SHOWOFFICIALACCOUNT, REPLACEWEIXINTEXT, FILTERWEIXINREG, DOWNLOADAPPPATH, SERIES, QQSERIES ,BAIDUSERIES, INDEXPATH } from '../../../config'
 import { useSelector } from '@tarojs/redux'
-import { isVaildVal } from '../../../utils/v'
-import Report from '../../../components/report'
+import { isVaildVal, isIos } from '../../../utils/v'
+import  Report  from '../../../components/report'
 import { getUserShareMessage } from '../../../utils/helper'
 import Msg, { ShowActionModal, showModalTip } from '../../../utils/msg'
 import { SubscribeToNews } from '../../../utils/subscribeToNews';
@@ -25,7 +25,7 @@ interface DataType {
   time: string,
   image: string,
   user_name: string,
-  classifyName: [],
+  classifyName: string[],
   detail: string,
   show_full_address: string,
   location: string,
@@ -105,9 +105,12 @@ export default function DetailInfoPage() {
   const login = useSelector<any, boolean>(state => state.User['login'])
   // 相关推荐
   const [recommend, setRecommend] = useState<any[]>([])
+  // 判断是否是ios
+  const [ios, setIos] = useState<boolean>(false)
   // 返回刷新页面
-  useDidShow(() => {
-    if (refresh) {
+  useDidShow(()=>{
+    setIos(isIos())
+    if(refresh){
       setRefresh(false)
       return
     }
@@ -133,6 +136,15 @@ export default function DetailInfoPage() {
         Taro.setNavigationBarTitle({
           title: res.result.title
         })
+        if (SERIES == BAIDUSERIES){
+          let keywords = res.result.classifyName[0]
+          let split_keywords: string = keywords.split('/').map(item => `招${item}师傅`).join(',')
+          Taro.setPageInfo({
+            title: res.result.title,
+            description: res.result.title + res.result.detail,
+            keywords: `${res.result.show_full_address}招${keywords}师傅,${split_keywords},工地招工,找工人,建筑工地`
+          })
+        }
         setIsCollection(res.result.is_collect);
         if (userInfo.userId === res.result.user_id) {
           // 判断是自己发布的招工
@@ -141,16 +153,13 @@ export default function DetailInfoPage() {
           setResCode(res.errcode)
         }
       })
-      // let paramsObj = {
-      //   page:1,
-      //   type:1,
-      //   area_id: res.result.city_id,
-      //   job_ids: res.result.id,
-      //   classify_id:[res.result.occupations].join(','),
-      // }
-      // jobRecommendListAction(paramsObj).then(res=>{
-      //   setRecommend(res.data.list);
-      // })
+    }).catch(()=>{
+      ShowActionModal({
+        msg: '网络异常，请重新进入',
+        success: () => {
+          Taro.navigateBack()
+        }
+      })
     })
   }
   // 地图
@@ -321,7 +330,7 @@ export default function DetailInfoPage() {
 
   // 设置分享信息
   useShareAppMessage(() => {
-    let path = `/pages/detail/index/index?id=${id}`
+    let path = `/pages/detail/info/index?id=${id}`
     let userInfo = Taro.getStorageSync(UserInfo)
     return {
       ...getUserShareMessage(),
@@ -485,7 +494,24 @@ export default function DetailInfoPage() {
     }
     userRouteJump(`/pages/newtopping/recRang/index?defaultTopArea=${data.area_id}&job_id=${data.id}`)
   }
-  return (
+  // 查看更多招工信息
+  const seeMoreRecruit = () => {
+    let pages = Taro.getCurrentPages()
+    if(pages.length < 2){
+      Taro.reLaunch({ url: INDEXPATH})
+    }else{
+      let routeUrl = pages[pages.length - 2].route
+      let listUrl = `/${routeUrl}`
+      if (listUrl == INDEXPATH){
+        Taro.navigateBack()
+      }else{
+        Taro.reLaunch({ url: INDEXPATH })
+      }
+    }
+  }
+
+
+  return(
     <View className='detailInfo'>
       <WechatNotice />
       <View className='detailInfo-head'>
@@ -538,24 +564,28 @@ export default function DetailInfoPage() {
             <View key={i + i} className='detailInfo-project-content-classifyName'>{v}</View>
           ))}
         </View>
-        <View className='detailInfo-project-content-detail'>{data.detail}</View>
-        {data.view_images.length &&
+        <View className='detailInfo-project-content-detail'>{REPLACEWEIXINTEXT ? data.detail.replace(FILTERWEIXINREG, '') : data.detail}</View>
+        {data.view_images.length && 
           <View className='detailInfo-project-content-image-box'>
             {data.view_images.map((v, i) => (
               <Image src={v} key={i + i} className='detailInfo-project-content-image' onClick={() => handleImage(v)} />
             ))}
           </View>
         }
-        <View className='detailInfo-project-content-address'>项目地址:
-        {data.location ? <View className='detailInfo-project-content-address-color'>{data.show_full_address}</View> : <Text className='detailInfo-project-content-address-color'>{data.show_full_address}</Text>}
-          {data.location && <View className='detailInfo-project-content-map' onClick={handleMap}>查看地图</View>
-          }
+        <View className='detailInfo-project-content-address'>项目地址: 
+        {data.location ? <View className='detailInfo-project-content-address-color'>{data.show_full_address}</View> : <Text className='detailInfo-project-content-address-color'>{ data.show_full_address }</Text> }
+          {data.location && (SERIES == QQSERIES && !ios) && <View className='detailInfo-project-content-map' onClick={handleMap}>查看地图</View>
+        }
         </View>
       </View>
       {DOWNLOADAPP &&
-        <View className='detailInfo-Image-box'>
-          <Image src={`${IMGCDNURL}download.png`} className='detailInfo-Image' onClick={() => userRouteJump('/subpackage/pages/download/index')} />
-        </View>}
+      <View className='detailInfo-Image-box'>
+        <Image src={`${IMGCDNURL}download.png`} className='detailInfo-Image' onClick={() => userRouteJump(DOWNLOADAPPPATH)}/>
+      </View>}
+
+      {/* 返回首页 */}
+      <View className='see-recruit-list-btn' onClick={()=>seeMoreRecruit()}>查看更多招工信息</View>  
+
       {/* 判断是否是自己发布的招工 停止招工状态 
         判断是否查看完成电话 
       */}

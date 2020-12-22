@@ -1,4 +1,4 @@
-(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["components/profession/index"],{
+(swan["webpackJsonp"] = swan["webpackJsonp"] || []).push([["components/profession/index"],{
 
 /***/ "./src/components/profession/index.scss":
 /*!**********************************************!*\
@@ -29,9 +29,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroSwan2 = _interopRequireDefault(_taroSwan);
 
 var _classnames = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
 
@@ -55,7 +55,7 @@ var Profession = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (Profession.__proto__ || Object.getPrototypeOf(Profession)).apply(this, arguments));
 
-    _this.$usedState = ["loopArray36", "data", "title", "footerTitle", "closeProfession", "onClickItem"];
+    _this.$usedState = ["loopArray42", "data", "title", "footerTitle", "closeProfession", "onClickItem"];
     _this.anonymousFunc0Map = {};
     _this.customComponents = [];
     return _this;
@@ -65,7 +65,7 @@ var Profession = function (_Taro$Component) {
     key: '_constructor',
     value: function _constructor(props) {
       _get(Profession.prototype.__proto__ || Object.getPrototypeOf(Profession.prototype), '_constructor', this).call(this, props);
-      this.$$refs = new _taroTt2.default.RefsArray();
+      this.$$refs = new _taroSwan2.default.RefsArray();
     }
   }, {
     key: '_createData',
@@ -89,37 +89,37 @@ var Profession = function (_Taro$Component) {
       this.anonymousFunc1 = function () {
         return closeProfession();
       };
-      var loopArray36 = data ? data.map(function (item, i) {
+      var loopArray42 = data ? data.map(function (item, i) {
         item = {
-          $original: (0, _taroTt.internal_get_original)(item)
+          privateOriginal: (0, _taroSwan.internal_get_original)(item)
         };
-        var $anonymousCallee__5 = data ? item.$original.children.map(function (d, k) {
+        var anonymousCallee__7 = data ? item.privateOriginal.children.map(function (d, k) {
           d = {
-            $original: (0, _taroTt.internal_get_original)(d)
+            privateOriginal: (0, _taroSwan.internal_get_original)(d)
           };
-          var _$indexKey = 'dizzz' + i + '-' + k;
+          var _$indexKey = 'egzzz' + i + '-' + k;
           _this2.anonymousFunc0Map[_$indexKey] = function () {
-            return _this2.__props.onClickItem(i, k, d.$original.id, d.$original.name);
+            return _this2.__props.onClickItem(i, k, d.privateOriginal.id, d.privateOriginal.name);
           };
-          var $loopState__temp2 = data ? (0, _classnames2.default)({
+          var loopState__temp2 = data ? (0, _classnames2.default)({
             'at-icon': true,
             'at-icon-check': true,
             'icon-checked': true,
-            'icon-checked-active': d.$original.is_check
+            'icon-checked-active': d.privateOriginal.is_check
           }) : null;
           return {
             _$indexKey: _$indexKey,
-            $loopState__temp2: $loopState__temp2,
-            $original: d.$original
+            loopState__temp2: loopState__temp2,
+            privateOriginal: d.privateOriginal
           };
         }) : [];
         return {
-          $anonymousCallee__5: $anonymousCallee__5,
-          $original: item.$original
+          anonymousCallee__7: anonymousCallee__7,
+          privateOriginal: item.privateOriginal
         };
       }) : [];
       Object.assign(this.__state, {
-        loopArray36: loopArray36,
+        loopArray42: loopArray42,
         data: data,
         title: title,
         footerTitle: footerTitle
@@ -147,7 +147,7 @@ var Profession = function (_Taro$Component) {
   }]);
 
   return Profession;
-}(_taroTt2.default.Component);
+}(_taroSwan2.default.Component);
 
 Profession.$$events = ["anonymousFunc0", "anonymousFunc1"];
 Profession.$$componentPath = "components/profession/index";
@@ -156,7 +156,7 @@ Profession.options = {
 };
 exports.default = Profession;
 
-Component(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(Profession));
+Component(__webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js").default.createComponent(Profession));
 
 /***/ })
 

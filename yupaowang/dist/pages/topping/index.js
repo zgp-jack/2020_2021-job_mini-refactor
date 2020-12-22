@@ -1,4 +1,30 @@
-(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["pages/topping/index"],{
+(swan["webpackJsonp"] = swan["webpackJsonp"] || []).push([["pages/topping/index"],{
+
+/***/ "./src/actions/recruit_top.ts":
+/*!************************************!*\
+  !*** ./src/actions/recruit_top.ts ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = setRecruitTopArea;
+
+var _recruit_top = __webpack_require__(/*! ../constants/recruit_top */ "./src/constants/recruit_top.ts");
+
+function setRecruitTopArea(data) {
+  return {
+    type: _recruit_top.SET_RECRUIT_TOP_AREA,
+    data: data
+  };
+}
+
+/***/ }),
 
 /***/ "./src/pages/topping/index.scss":
 /*!**************************************!*\
@@ -34,9 +60,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroSwan2 = _interopRequireDefault(_taroSwan);
 
 var _index = __webpack_require__(/*! ../../utils/request/index */ "./src/utils/request/index.ts");
 
@@ -66,7 +92,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var contextItem = exports.contextItem = (0, _taroTt.createContext)({});
+var contextItem = exports.contextItem = (0, _taroSwan.createContext)({});
 
 var Topping = function (_Taro$Component) {
   _inherits(Topping, _Taro$Component);
@@ -93,7 +119,7 @@ var Topping = function (_Taro$Component) {
     key: "_constructor",
     value: function _constructor(props) {
       _get(Topping.prototype.__proto__ || Object.getPrototypeOf(Topping.prototype), "_constructor", this).call(this, props);
-      this.$$refs = new _taroTt2.default.RefsArray();
+      this.$$refs = new _taroSwan2.default.RefsArray();
     }
   }, {
     key: "_createData",
@@ -109,7 +135,7 @@ var Topping = function (_Taro$Component) {
       var AreParams = (0, _redux.useSelector)(function (store) {
         return store.recruitTop['AreParams'];
       });
-      var router = (0, _taroTt.useRouter)();
+      var router = (0, _taroSwan.useRouter)();
       var _router$params = router.params,
           id = _router$params.id,
           type = _router$params.type,
@@ -119,9 +145,9 @@ var Topping = function (_Taro$Component) {
           endTimeStr = _router$params.endTimeStr;
       // 获取userInfo
 
-      var userInfo = _taroTt2.default.getStorageSync(_store.UserInfo);
+      var userInfo = _taroSwan2.default.getStorageSync(_store.UserInfo);
 
-      var _useState = (0, _taroTt.useState)({
+      var _useState = (0, _taroSwan.useState)({
         top_rules: []
       }),
           _useState2 = _slicedToArray(_useState, 2),
@@ -130,42 +156,42 @@ var Topping = function (_Taro$Component) {
       // 积分
 
 
-      var _useState3 = (0, _taroTt.useState)(0),
+      var _useState3 = (0, _taroSwan.useState)(0),
           _useState4 = _slicedToArray(_useState3, 2),
           num = _useState4[0],
           setNum = _useState4[1];
       // 天
 
 
-      var _useState5 = (0, _taroTt.useState)(0),
+      var _useState5 = (0, _taroSwan.useState)(0),
           _useState6 = _slicedToArray(_useState5, 2),
           paramsDay = _useState6[0],
           setParamsDay = _useState6[1];
       //置顶天数
 
 
-      var _useState7 = (0, _taroTt.useState)('请选择置顶天数'),
+      var _useState7 = (0, _taroSwan.useState)('请选择置顶天数'),
           _useState8 = _slicedToArray(_useState7, 2),
           day = _useState8[0],
           setDay = _useState8[1];
       // 修改置顶天数
 
 
-      var _useState9 = (0, _taroTt.useState)('延长'),
+      var _useState9 = (0, _taroSwan.useState)('延长'),
           _useState10 = _slicedToArray(_useState9, 2),
           editData = _useState10[0],
           seteditDay = _useState10[1];
       // 下拉框总参数
 
 
-      var _useState11 = (0, _taroTt.useState)([]),
+      var _useState11 = (0, _taroSwan.useState)([]),
           _useState12 = _slicedToArray(_useState11, 2),
           list = _useState12[0],
           setList = _useState12[1];
       // 最大省市
 
 
-      var _useState13 = (0, _taroTt.useState)({
+      var _useState13 = (0, _taroSwan.useState)({
         max_city: 0,
         max_province: 0
       }),
@@ -173,7 +199,7 @@ var Topping = function (_Taro$Component) {
           city = _useState14[0],
           setCity = _useState14[1];
 
-      var _useState15 = (0, _taroTt.useState)({
+      var _useState15 = (0, _taroSwan.useState)({
         city: [],
         province: [],
         whole: []
@@ -182,61 +208,61 @@ var Topping = function (_Taro$Component) {
           params = _useState16[0],
           setParams = _useState16[1];
 
-      var _useState17 = (0, _taroTt.useState)([]),
+      var _useState17 = (0, _taroSwan.useState)([]),
           _useState18 = _slicedToArray(_useState17, 2),
           province = _useState18[0],
           setProvince = _useState18[1];
       // 到期时间
 
 
-      var _useState19 = (0, _taroTt.useState)(''),
+      var _useState19 = (0, _taroSwan.useState)(''),
           _useState20 = _slicedToArray(_useState19, 2),
           endTime = _useState20[0],
           setEndTime = _useState20[1];
       // 到期时间时间戳
 
 
-      var _useState21 = (0, _taroTt.useState)(0),
+      var _useState21 = (0, _taroSwan.useState)(0),
           _useState22 = _slicedToArray(_useState21, 2),
           end = _useState22[0],
           setEnd = _useState22[1];
       // 显示最新到期时间
 
 
-      var _useState23 = (0, _taroTt.useState)(false),
+      var _useState23 = (0, _taroSwan.useState)(false),
           _useState24 = _slicedToArray(_useState23, 2),
           displayTime = _useState24[0],
           setdisplayTime = _useState24[1];
       // 最新时间
 
 
-      var _useState25 = (0, _taroTt.useState)(''),
+      var _useState25 = (0, _taroSwan.useState)(''),
           _useState26 = _slicedToArray(_useState25, 2),
           newTime = _useState26[0],
           setNewTime = _useState26[1];
       // 修改时最大积分
 
 
-      var _useState27 = (0, _taroTt.useState)(0),
+      var _useState27 = (0, _taroSwan.useState)(0),
           _useState28 = _slicedToArray(_useState27, 2),
           maxNum = _useState28[0],
           setMaxNum = _useState28[1];
       // 找活省份最大的长度
 
 
-      var _useState29 = (0, _taroTt.useState)(0),
+      var _useState29 = (0, _taroSwan.useState)(0),
           _useState30 = _slicedToArray(_useState29, 2),
           provinceNum = _useState30[0],
           setProvinceNum = _useState30[1];
       // 找活天数
 
 
-      var _useState31 = (0, _taroTt.useState)('1'),
+      var _useState31 = (0, _taroSwan.useState)('1'),
           _useState32 = _slicedToArray(_useState31, 2),
           recDay = _useState32[0],
           setRecDay = _useState32[1];
 
-      var _useState33 = (0, _taroTt.useState)({
+      var _useState33 = (0, _taroSwan.useState)({
         max_number: 0,
         province_integral: 0,
         max_top_days: 0,
@@ -249,12 +275,12 @@ var Topping = function (_Taro$Component) {
       // 当redux更新后 ，立即更新视图区域
 
 
-      (0, _taroTt.useEffect)(function () {
+      (0, _taroSwan.useEffect)(function () {
         setParams(_extends({}, AreParams));
         calcPrice(AreParams.city, AreParams.province, AreParams.whole);
       }, [AreParams]);
       // 修改超过最大就显示消耗积分
-      (0, _taroTt.useEffect)(function () {
+      (0, _taroSwan.useEffect)(function () {
         if (type) {
           if (!rec) {
             var val = {
@@ -269,7 +295,7 @@ var Topping = function (_Taro$Component) {
                 setEnd(res.data.end_time);
                 setMaxNum(res.data.max_price);
               } else {
-                _taroTt2.default.showModal({
+                _taroSwan2.default.showModal({
                   title: '温馨提示',
                   content: res.errmsg,
                   showCancel: false
@@ -280,7 +306,7 @@ var Topping = function (_Taro$Component) {
         }
         // 找活
         if (rec) {
-          _taroTt2.default.setNavigationBarTitle({
+          _taroSwan2.default.setNavigationBarTitle({
             title: '找活置顶'
           });
           var _params = {
@@ -326,7 +352,7 @@ var Topping = function (_Taro$Component) {
                 max_province: res.data.max_province, max_city: res.data.max_city
               });
             } else {
-              _taroTt2.default.showModal({
+              _taroSwan2.default.showModal({
                 title: '温馨提示',
                 content: res.errmsg,
                 showCancel: false
@@ -345,7 +371,7 @@ var Topping = function (_Taro$Component) {
               }
               setList(array);
             } else {
-              _taroTt2.default.showModal({
+              _taroSwan2.default.showModal({
                 title: '温馨提示',
                 content: res.errmsg,
                 showCancel: false
@@ -431,7 +457,7 @@ var Topping = function (_Taro$Component) {
       };
       // 用户页面跳转
       var userRouteJump = function userRouteJump(url) {
-        _taroTt2.default.navigateTo({
+        _taroSwan2.default.navigateTo({
           url: url
         });
       };
@@ -447,7 +473,7 @@ var Topping = function (_Taro$Component) {
           return v.id;
         });
         if (!province_ids.length && !city_ids.length && !country_ids.length) {
-          _taroTt2.default.showModal({
+          _taroSwan2.default.showModal({
             title: '温馨提示',
             content: '请选择您的置顶城市',
             showCancel: false
@@ -478,25 +504,25 @@ var Topping = function (_Taro$Component) {
           if (rec) {
             (0, _index.resumesUpdateTopResumeAction)(editDetail).then(function (res) {
               if (res.errcode === 'ok') {
-                _taroTt2.default.showModal({
+                _taroSwan2.default.showModal({
                   title: '温馨提示',
                   content: res.errmsg,
                   showCancel: false,
                   success: function success() {
-                    _taroTt2.default.navigateBack({
+                    _taroSwan2.default.navigateBack({
                       delta: 1
                     });
                   }
                 });
                 return;
               } else if (res.errcode === 'get_integral') {
-                _taroTt2.default.showModal({
+                _taroSwan2.default.showModal({
                   title: '温馨提示',
                   content: res.errmsg,
                   showCancel: true,
                   success: function success(res) {
                     if (res.confirm == true) {
-                      _taroTt2.default.navigateTo({
+                      _taroSwan2.default.navigateTo({
                         // 前往积分页面
                         url: "/pages/getintegral/index"
                       });
@@ -505,19 +531,19 @@ var Topping = function (_Taro$Component) {
                 });
                 return;
               } else if (res.errcode === 'auth_forbid') {
-                _taroTt2.default.showModal({
+                _taroSwan2.default.showModal({
                   title: '温馨提示',
                   content: res.errmsg,
                   cancelText: '取消',
                   confirmText: '去实名',
                   success: function success(res) {
                     if (res.cancel) {
-                      _taroTt2.default.navigateBack({
+                      _taroSwan2.default.navigateBack({
                         delta: 1
                       });
                     } else if (res.confirm) {
                       var backtwo = "backtwo";
-                      _taroTt2.default.redirectTo({
+                      _taroSwan2.default.redirectTo({
                         url: "/pages/realname/index?backtwo=backtwo"
                       });
                     }
@@ -525,7 +551,7 @@ var Topping = function (_Taro$Component) {
                 });
                 return;
               } else if (res.errcode == "member_forbid") {
-                _taroTt2.default.showModal({
+                _taroSwan2.default.showModal({
                   title: '温馨提示',
                   content: "mydata.errmsg",
                   cancelText: "取消",
@@ -533,7 +559,7 @@ var Topping = function (_Taro$Component) {
                   success: function success(res) {
                     if (res.confirm) {
                       var tel = _index2.SERVERPHONE;
-                      _taroTt2.default.makePhoneCall({
+                      _taroSwan2.default.makePhoneCall({
                         phoneNumber: tel
                       });
                     }
@@ -541,7 +567,7 @@ var Topping = function (_Taro$Component) {
                 });
                 return;
               } else {
-                _taroTt2.default.showToast({
+                _taroSwan2.default.showToast({
                   title: res.errmsg,
                   icon: "none",
                   duration: 1500
@@ -551,25 +577,25 @@ var Topping = function (_Taro$Component) {
           } else {
             (0, _index.jobChangeTopAreasAction)(editDetail).then(function (res) {
               if (res.errcode === 'ok') {
-                _taroTt2.default.showModal({
+                _taroSwan2.default.showModal({
                   title: '温馨提示',
                   content: res.errmsg,
                   showCancel: false,
                   success: function success() {
-                    _taroTt2.default.navigateBack({
+                    _taroSwan2.default.navigateBack({
                       delta: 1
                     });
                   }
                 });
                 return;
               } else if (res.errcode === 'get_integral') {
-                _taroTt2.default.showModal({
+                _taroSwan2.default.showModal({
                   title: '温馨提示',
                   content: res.errmsg,
                   showCancel: true,
                   success: function success(res) {
                     if (res.confirm == true) {
-                      _taroTt2.default.navigateTo({
+                      _taroSwan2.default.navigateTo({
                         // 前往积分页面
                         url: "/pages/getintegral/index"
                       });
@@ -578,19 +604,19 @@ var Topping = function (_Taro$Component) {
                 });
                 return;
               } else if (res.errcode === 'auth_forbid') {
-                _taroTt2.default.showModal({
+                _taroSwan2.default.showModal({
                   title: '温馨提示',
                   content: res.errmsg,
                   cancelText: '取消',
                   confirmText: '去实名',
                   success: function success(res) {
                     if (res.cancel) {
-                      _taroTt2.default.navigateBack({
+                      _taroSwan2.default.navigateBack({
                         delta: 1
                       });
                     } else if (res.confirm) {
                       var backtwo = "backtwo";
-                      _taroTt2.default.redirectTo({
+                      _taroSwan2.default.redirectTo({
                         url: "/pages/realname/index?backtwo=backtwo"
                       });
                     }
@@ -598,7 +624,7 @@ var Topping = function (_Taro$Component) {
                 });
                 return;
               } else if (res.errcode == "member_forbid") {
-                _taroTt2.default.showModal({
+                _taroSwan2.default.showModal({
                   title: '温馨提示',
                   content: "mydata.errmsg",
                   cancelText: "取消",
@@ -606,7 +632,7 @@ var Topping = function (_Taro$Component) {
                   success: function success(res) {
                     if (res.confirm) {
                       var tel = _index2.SERVERPHONE;
-                      _taroTt2.default.makePhoneCall({
+                      _taroSwan2.default.makePhoneCall({
                         phoneNumber: tel
                       });
                     }
@@ -614,7 +640,7 @@ var Topping = function (_Taro$Component) {
                 });
                 return;
               } else {
-                _taroTt2.default.showToast({
+                _taroSwan2.default.showToast({
                   title: res.errmsg,
                   icon: "none",
                   duration: 1500
@@ -624,7 +650,7 @@ var Topping = function (_Taro$Component) {
           }
         } else {
           if (!province_ids || !city_ids) {
-            _taroTt2.default.showModal({
+            _taroSwan2.default.showModal({
               title: '温馨提示',
               content: '请设置置顶城市',
               showCancel: false
@@ -632,7 +658,7 @@ var Topping = function (_Taro$Component) {
             return;
           }
           if (paramsDay === 0) {
-            _taroTt2.default.showModal({
+            _taroSwan2.default.showModal({
               title: '温馨提示',
               content: '请设置置顶天数',
               showCancel: false
@@ -642,12 +668,12 @@ var Topping = function (_Taro$Component) {
           if (rec) {
             (0, _index.resumesDoTopV2Action)(detail).then(function (res) {
               if (res.errcode === 'ok') {
-                _taroTt2.default.showModal({
+                _taroSwan2.default.showModal({
                   title: '温馨提示',
                   content: res.errmsg,
                   showCancel: false,
                   success: function success() {
-                    _taroTt2.default.navigateBack({
+                    _taroSwan2.default.navigateBack({
                       delta: 1
                     });
                   }
@@ -657,12 +683,12 @@ var Topping = function (_Taro$Component) {
           } else {
             (0, _index.jobDoTopAction)(detail).then(function (res) {
               if (res.errcode === 'ok') {
-                _taroTt2.default.showModal({
+                _taroSwan2.default.showModal({
                   title: '温馨提示',
                   content: res.errmsg,
                   showCancel: false,
                   success: function success() {
-                    _taroTt2.default.navigateBack({
+                    _taroSwan2.default.navigateBack({
                       delta: 1
                     });
                   }
@@ -904,7 +930,7 @@ var Topping = function (_Taro$Component) {
       var handleRecDay = function handleRecDay(e) {
         var reg = /^\d{0,2}$/;
         if (!reg.test(e.detail.value)) {
-          _taroTt2.default.showModal({
+          _taroSwan2.default.showModal({
             title: '温馨提示',
             content: '只能输入整数，请重新输入',
             showCancel: false,
@@ -949,7 +975,7 @@ var Topping = function (_Taro$Component) {
         });
         var provinces = [].concat(_toConsumableArray(province_ids), _toConsumableArray(city_ids), _toConsumableArray(country_ids));
         if (!province_ids.length && !city_ids.length && !country_ids.length) {
-          _taroTt2.default.showModal({
+          _taroSwan2.default.showModal({
             title: '温馨提示',
             content: '请选择您的置顶城市',
             showCancel: false
@@ -957,7 +983,7 @@ var Topping = function (_Taro$Component) {
           return;
         }
         if (!parseInt(recDay) || parseInt(recDay) == 0) {
-          _taroTt2.default.showModal({
+          _taroSwan2.default.showModal({
             title: '温馨提示',
             content: '输入的置顶天数不能为0或者为空',
             showCancel: false
@@ -984,23 +1010,23 @@ var Topping = function (_Taro$Component) {
         if (!type) {
           (0, _index.resumesDoTopAction)(details).then(function (res) {
             if (res.errcode === 'ok') {
-              _taroTt2.default.showModal({
+              _taroSwan2.default.showModal({
                 title: '温馨提示',
                 content: res.errmsg,
                 showCancel: false,
                 success: function success() {
-                  _taroTt2.default.navigateBack({
+                  _taroSwan2.default.navigateBack({
                     delta: 1
                   });
                 }
               });
             } else if (res.errcode === 'resume_null') {
-              _taroTt2.default.showModal({
+              _taroSwan2.default.showModal({
                 title: '温馨提示',
                 content: res.errmsg,
                 // showCancel: false,
                 success: function success() {
-                  _taroTt2.default.navigateTo({
+                  _taroSwan2.default.navigateTo({
                     url: "pages/resume/newJobs/index"
                   });
                 }
@@ -1008,23 +1034,23 @@ var Topping = function (_Taro$Component) {
               return;
               //获取积分
             } else if (res.errcode === 'get_integral') {
-              _taroTt2.default.showModal({
+              _taroSwan2.default.showModal({
                 title: '温馨提示',
                 content: res.errmsg,
                 success: function success() {
-                  _taroTt2.default.navigateTo({
+                  _taroSwan2.default.navigateTo({
                     url: "/pages/getintegral/index"
                   });
                 }
               });
               return;
             } else {
-              _taroTt2.default.showModal({
+              _taroSwan2.default.showModal({
                 title: '温馨提示',
                 content: res.errmsg,
                 showCancel: false,
                 success: function success() {
-                  _taroTt2.default.navigateBack({
+                  _taroSwan2.default.navigateBack({
                     delta: 1
                   });
                 }
@@ -1047,68 +1073,68 @@ var Topping = function (_Taro$Component) {
       };
       this.anonymousFunc11 = handleTopping;
       this.anonymousFunc12 = function () {
-        _taroTt2.default.makePhoneCall({ phoneNumber: _index2.SERVERPHONE });
+        _taroSwan2.default.makePhoneCall({ phoneNumber: _index2.SERVERPHONE });
       };
       var loopArray82 = province ? province.map(function (v, __index0) {
         v = {
-          $original: (0, _taroTt.internal_get_original)(v)
+          privateOriginal: (0, _taroSwan.internal_get_original)(v)
         };
-        var _$indexKey = "iizzz" + __index0;
+        var _$indexKey = "ifzzz" + __index0;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
-          return handleDel(v.$original);
+          return handleDel(v.privateOriginal);
         };
         return {
           _$indexKey: _$indexKey,
-          $original: v.$original
+          privateOriginal: v.privateOriginal
         };
       }) : [];
       var loopArray83 = params ? params.city.map(function (v, __index1) {
         v = {
-          $original: (0, _taroTt.internal_get_original)(v)
+          privateOriginal: (0, _taroSwan.internal_get_original)(v)
         };
-        var _$indexKey2 = "ijzzz" + __index1;
+        var _$indexKey2 = "igzzz" + __index1;
         _this2.anonymousFunc1Map[_$indexKey2] = function () {
-          return handleDel(v.$original);
+          return handleDel(v.privateOriginal);
         };
         return {
           _$indexKey2: _$indexKey2,
-          $original: v.$original
+          privateOriginal: v.privateOriginal
         };
       }) : [];
       var loopArray84 = params ? params.province.map(function (v, __index2) {
         v = {
-          $original: (0, _taroTt.internal_get_original)(v)
+          privateOriginal: (0, _taroSwan.internal_get_original)(v)
         };
-        var _$indexKey3 = "jazzz" + __index2;
+        var _$indexKey3 = "ihzzz" + __index2;
         _this2.anonymousFunc2Map[_$indexKey3] = function () {
-          return handleDel(v.$original);
+          return handleDel(v.privateOriginal);
         };
         return {
           _$indexKey3: _$indexKey3,
-          $original: v.$original
+          privateOriginal: v.privateOriginal
         };
       }) : [];
       var loopArray85 = params ? params.whole.map(function (v, __index3) {
         v = {
-          $original: (0, _taroTt.internal_get_original)(v)
+          privateOriginal: (0, _taroSwan.internal_get_original)(v)
         };
-        var _$indexKey4 = "jbzzz" + __index3;
+        var _$indexKey4 = "iizzz" + __index3;
         _this2.anonymousFunc3Map[_$indexKey4] = function () {
-          return handleDel(v.$original);
+          return handleDel(v.privateOriginal);
         };
         return {
           _$indexKey4: _$indexKey4,
-          $original: v.$original
+          privateOriginal: v.privateOriginal
         };
       }) : [];
       var loopArray86 = data.top_rules.map(function (v, i) {
         v = {
-          $original: (0, _taroTt.internal_get_original)(v)
+          privateOriginal: (0, _taroSwan.internal_get_original)(v)
         };
-        var $loopState__temp2 = i + i;
+        var loopState__temp2 = i + i;
         return {
-          $loopState__temp2: $loopState__temp2,
-          $original: v.$original
+          loopState__temp2: loopState__temp2,
+          privateOriginal: v.privateOriginal
         };
       });
       Object.assign(this.__state, {
@@ -1235,14 +1261,14 @@ var Topping = function (_Taro$Component) {
   }]);
 
   return Topping;
-}(_taroTt2.default.Component);
+}(_taroSwan2.default.Component);
 
 Topping.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6", "anonymousFunc7", "anonymousFunc8", "anonymousFunc9", "anonymousFunc10", "anonymousFunc11", "anonymousFunc12"];
 Topping.$$componentPath = "pages/topping/index";
 Topping.config = { navigationBarTitleText: '招工置顶' };
 exports.default = Topping;
 
-Page(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(Topping, true));
+Page(__webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js").default.createComponent(Topping, true));
 
 /***/ })
 

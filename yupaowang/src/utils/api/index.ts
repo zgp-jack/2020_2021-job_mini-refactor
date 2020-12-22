@@ -74,8 +74,10 @@ export const userChangeAvatar: string = REQUESTURL + 'user/update-header/'
 export const userUpdateName: string = REQUESTURL + 'user/update-username/'
 // 用户更换手机
 export const userChangePhone: string = REQUESTURL + 'user/update-tel/'
-//修改电话号码
+//修改密码
 export const updataPassword: string = REQUESTURL + 'user/update-pwd/'
+//设置密码
+export const userSetPassword: string = REQUESTURL + 'user/set-pwd/'
 // 用户获取已发布招工列表
 export const userGetPublishedRecruitList: string = REQUESTURL + 'job/issue-lists/'
 // 用户改变招工状态
@@ -206,6 +208,10 @@ export const userAccountUrl: string = REQUESTURL + 'baidu-auth/login/'
 export const userTelCodeLogin: string = REQUESTURL + 'baidu-auth/code-login/'
 // 抖音用户充值
 export const userDouyinRecharge: string = REQUESTURL + 'pay/bytedance-order/'
+//qq用户充值
+export const userQQRecharge: string = REQUESTURL + 'pay/qq-order/'
+//qq用户使用微信支付
+export const userQQWeCharRecharge: string = REQUESTURL + 'pay/qq-order-wx/'
 // 都要用户充值订单检测
 export const userCheckDouyinRecharge: string = REQUESTURL + '/pay/byte-check/'
 // 实名查询
@@ -244,3 +250,5 @@ export const getAdvStatusConfig: string = REQUESTURL + '/member/get-adv-status/'
 export const getQuestionDetails: string = REQUESTURL + 'others/feedback-detail/'
 //帮助中心问题详情是否解决问题
 export const getQuestionDetailsFeedBank: string = REQUESTURL + 'others/feedback-effective/'
+// 校验百度支付是否成功
+export const checkBaiduTpOrderId: string = REQUESTURL + 'pay/query-order-status/'

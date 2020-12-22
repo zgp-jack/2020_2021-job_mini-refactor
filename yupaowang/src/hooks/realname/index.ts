@@ -2,7 +2,6 @@ import Taro, { useState, useEffect} from '@tarojs/taro'
 import { UserAuthInfoData, UserAuthInfoMemberExtData } from '../../utils/request/index.d'
 import { PostUserAuthInfo } from '../index.d'
 import { getUserAuthInfo, postUserAuthInfo } from '../../utils/request'
-import { useSelector } from '@tarojs/redux'
 import Msg, { ShowActionModal } from '../../utils/msg'
 import { CameraAndAlbum } from '../../utils/upload'
 import * as Hooks from '../../hooks/index.d'
@@ -11,10 +10,18 @@ import { getIdcardAuthInfo } from '../../utils/api'
 import { ALIYUNCDNMINIIMG, USEGAODEMAPAPI } from '../../config'
 import { getLongAreaAdname } from '../../models/area'
 import { SubscribeToNews } from '../../utils/subscribeToNews'
+import { useDispatch, useSelector } from '@tarojs/redux'
+import { setData } from '../../actions/realname'
 
 interface SexTypeArr {
   id: string,
   name: string
+}
+
+export interface Injected {
+  RealnameArea: string,
+  setRealnameArea: (city: string) => void,
+  setRealnameAddress: (area: string) => void
 }
 
 const cardInfoFailImg: string = ALIYUNCDNMINIIMG + 'lpy/auth/upload-fail-tips.png'
@@ -22,6 +29,7 @@ const cardInfoFailImg: string = ALIYUNCDNMINIIMG + 'lpy/auth/upload-fail-tips.pn
 const sexArray: SexTypeArr[] = [{ id: '1', name: '男' }, { id: '2', name: '女' }]
 
 export default function useRealname(){
+  const dispatch = useDispatch()
   // 性别下标
   const [sexCurrent, setSexCurrent] = useState<number>(0)
   // 性别名称
@@ -91,6 +99,17 @@ export default function useRealname(){
         // 设置地图显示的名称
         let area: string = getLongAreaAdname(modelData.address)
         setRealnameArea(area)
+
+        const value: Injected = {
+          // 地图左上角的名字
+          RealnameArea: area,
+          // 修改地图左上角的名字
+          setRealnameArea: (city: string) => setRealnameArea(city),
+          // 设置详细地址的方法
+          setRealnameAddress: (area: string) => {}
+        }
+        dispatch(setData(value))
+
         // 是否展示电话号
         if (initData.member && initData.member.check_degree == '2') setCheckDegree(true)
         // 性别下标

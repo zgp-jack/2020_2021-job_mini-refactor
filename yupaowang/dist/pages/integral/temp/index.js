@@ -1,4 +1,4 @@
-(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["pages/integral/temp/index"],{
+(swan["webpackJsonp"] = swan["webpackJsonp"] || []).push([["pages/integral/temp/index"],{
 
 /***/ "./src/pages/integral/temp/index.scss":
 /*!********************************************!*\
@@ -33,9 +33,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroSwan2 = _interopRequireDefault(_taroSwan);
 
 var _index = __webpack_require__(/*! ../../../utils/request/index */ "./src/utils/request/index.ts");
 
@@ -72,7 +72,7 @@ var Temp = function (_Taro$Component) {
     key: "_constructor",
     value: function _constructor(props) {
       _get(Temp.prototype.__proto__ || Object.getPrototypeOf(Temp.prototype), "_constructor", this).call(this, props);
-      this.$$refs = new _taroTt2.default.RefsArray();
+      this.$$refs = new _taroSwan2.default.RefsArray();
     }
   }, {
     key: "_createData",
@@ -86,7 +86,7 @@ var Temp = function (_Taro$Component) {
       var initType = 'temp';
       // 定义请求参数
 
-      var _useState = (0, _taroTt.useState)({
+      var _useState = (0, _taroSwan.useState)({
         type: initType,
         page: 1
       }),
@@ -96,7 +96,7 @@ var Temp = function (_Taro$Component) {
       // 定义列表接收容器
 
 
-      var _useState3 = (0, _taroTt.useState)({
+      var _useState3 = (0, _taroSwan.useState)({
         lists: [],
         hasmore: true
       }),
@@ -106,7 +106,7 @@ var Temp = function (_Taro$Component) {
       // 获取列表数据
 
 
-      (0, _taroTt.useEffect)(function () {
+      (0, _taroSwan.useEffect)(function () {
         if (!lists.hasmore) {
           return;
         }
@@ -139,14 +139,14 @@ var Temp = function (_Taro$Component) {
   }]);
 
   return Temp;
-}(_taroTt2.default.Component);
+}(_taroSwan2.default.Component);
 
 Temp.$$events = [];
 Temp.$$componentPath = "pages/integral/temp/index";
 Temp.config = { navigationBarTitleText: '临时积分记录' };
 exports.default = Temp;
 
-Page(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(Temp, true));
+Page(__webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js").default.createComponent(Temp, true));
 
 /***/ })
 

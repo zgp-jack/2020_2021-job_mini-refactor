@@ -21,6 +21,7 @@ export default function FastIssue() {
         showClose={prompt.showClose}
         showTitle={prompt.showTitle}
         cancelText={prompt.cancelText}
+        showCancel={prompt.showCancel}
         confirmText={prompt.confirmText}
         titleText={prompt.titleText}
         content={prompt.content}

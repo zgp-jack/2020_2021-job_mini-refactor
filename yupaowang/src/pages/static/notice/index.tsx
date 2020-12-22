@@ -47,5 +47,5 @@ export default function Notice() {
   )
 }
 Notice.config = {
-  navigationBarTitleText: '咨讯详情',
+  navigationBarTitleText: '资讯详情',
 } as Config

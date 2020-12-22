@@ -1,50 +1,4 @@
-(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["pages/realname/index"],{
-
-/***/ "./src/actions/realname.ts":
-/*!*********************************!*\
-  !*** ./src/actions/realname.ts ***!
-  \*********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.setData = setData;
-exports.getData = getData;
-exports.setArea = setArea;
-exports.setFun = setFun;
-
-var _realname = __webpack_require__(/*! ../constants/realname */ "./src/constants/realname.ts");
-
-function setData(data) {
-  return {
-    type: _realname.SETREALNAME,
-    data: data
-  };
-}
-function getData() {
-  return {
-    type: _realname.GETREALNAME
-  };
-}
-function setArea(data) {
-  return {
-    type: _realname.SETAREA,
-    data: data
-  };
-}
-function setFun(data) {
-  return {
-    type: _realname.SETFUN,
-    data: data
-  };
-}
-
-/***/ }),
+(swan["webpackJsonp"] = swan["webpackJsonp"] || []).push([["pages/realname/index"],{
 
 /***/ "./src/hooks/realname/index.ts":
 /*!*************************************!*\
@@ -66,13 +20,11 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
 exports.default = useRealname;
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroSwan2 = _interopRequireDefault(_taroSwan);
 
 var _index = __webpack_require__(/*! ../../utils/request/index */ "./src/utils/request/index.ts");
-
-var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/redux/index.js");
 
 var _index2 = __webpack_require__(/*! ../../utils/msg/index */ "./src/utils/msg/index.ts");
 
@@ -90,42 +42,48 @@ var _area = __webpack_require__(/*! ../../models/area */ "./src/models/area.ts")
 
 var _index8 = __webpack_require__(/*! ../../utils/subscribeToNews/index */ "./src/utils/subscribeToNews/index.ts");
 
+var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/redux/index.js");
+
+var _realname = __webpack_require__(/*! ../../actions/realname */ "./src/actions/realname.ts");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var cardInfoFailImg = _index7.ALIYUNCDNMINIIMG + 'lpy/auth/upload-fail-tips.png';
 // 声明性别选项与下标
 var sexArray = [{ id: '1', name: '男' }, { id: '2', name: '女' }];
 function useRealname() {
+  var dispatch = (0, _redux.useDispatch)();
   // 性别下标
-  var _useState = (0, _taroTt.useState)(0),
+
+  var _useState = (0, _taroSwan.useState)(0),
       _useState2 = _slicedToArray(_useState, 2),
       sexCurrent = _useState2[0],
       setSexCurrent = _useState2[1];
   // 性别名称
 
 
-  var _useState3 = (0, _taroTt.useState)(''),
+  var _useState3 = (0, _taroSwan.useState)(''),
       _useState4 = _slicedToArray(_useState3, 2),
       sexName = _useState4[0],
       setSexName = _useState4[1];
   // 民族下标
 
 
-  var _useState5 = (0, _taroTt.useState)(0),
+  var _useState5 = (0, _taroSwan.useState)(0),
       _useState6 = _slicedToArray(_useState5, 2),
       nationCurrent = _useState6[0],
       setNationCurrent = _useState6[1];
   // 初始化返回模型
 
 
-  var _useState7 = (0, _taroTt.useState)({}),
+  var _useState7 = (0, _taroSwan.useState)({}),
       _useState8 = _slicedToArray(_useState7, 2),
       initModel = _useState8[0],
       setInitModel = _useState8[1];
   // 保存数据提交模型
 
 
-  var _useState9 = (0, _taroTt.useState)({
+  var _useState9 = (0, _taroSwan.useState)({
     username: '',
     age: '',
     nation_id: '',
@@ -150,31 +108,31 @@ function useRealname() {
   });
   // 是否显示表单
 
-  var _useState11 = (0, _taroTt.useState)(false),
+  var _useState11 = (0, _taroSwan.useState)(false),
       _useState12 = _slicedToArray(_useState11, 2),
       showForm = _useState12[0],
       setShowForm = _useState12[1];
   // 展示电话号码选项
 
 
-  var _useState13 = (0, _taroTt.useState)(false),
+  var _useState13 = (0, _taroSwan.useState)(false),
       _useState14 = _slicedToArray(_useState13, 2),
       checkDegree = _useState14[0],
       setCheckDegree = _useState14[1];
   // 声明父组件传值地区名字
 
 
-  var _useState15 = (0, _taroTt.useState)(''),
+  var _useState15 = (0, _taroSwan.useState)(''),
       _useState16 = _slicedToArray(_useState15, 2),
       RealnameArea = _useState16[0],
-      setRealnameArea = _useState16[1];
+      _setRealnameArea = _useState16[1];
 
-  (0, _taroTt.useEffect)(function () {
+  (0, _taroSwan.useEffect)(function () {
     if (!login) return;
     (0, _index.getUserAuthInfo)().then(function (data) {
       if (data.errcode == 'ok') {
         if (data.authData.member && data.authData.member.is_check === '0') {
-          _taroTt2.default.showModal({
+          _taroSwan2.default.showModal({
             title: '审核失败',
             content: data.authData.memberExt.idcard_check_failure_reason,
             showCancel: false
@@ -208,7 +166,18 @@ function useRealname() {
         };
         // 设置地图显示的名称
         var area = (0, _area.getLongAreaAdname)(modelData.address);
-        setRealnameArea(area);
+        _setRealnameArea(area);
+        var value = {
+          // 地图左上角的名字
+          RealnameArea: area,
+          // 修改地图左上角的名字
+          setRealnameArea: function setRealnameArea(city) {
+            return _setRealnameArea(city);
+          },
+          // 设置详细地址的方法
+          setRealnameAddress: function setRealnameAddress(area) {}
+        };
+        dispatch((0, _realname.setData)(value));
         // 是否展示电话号
         if (initData.member && initData.member.check_degree == '2') setCheckDegree(true);
         // 性别下标
@@ -227,7 +196,7 @@ function useRealname() {
         (0, _index2.ShowActionModal)({
           msg: data.errmsg,
           success: function success() {
-            _taroTt2.default.navigateBack();
+            _taroSwan2.default.navigateBack();
           }
         });
       }
@@ -311,7 +280,7 @@ function useRealname() {
         (0, _index2.ShowActionModal)({
           msg: res.errmsg,
           success: function success() {
-            _taroTt2.default.navigateBack();
+            _taroSwan2.default.navigateBack();
           }
         });
       });
@@ -425,7 +394,7 @@ function useRealname() {
     setInitModel: setInitModel,
     checkDegree: checkDegree,
     RealnameArea: RealnameArea,
-    setRealnameArea: setRealnameArea
+    setRealnameArea: _setRealnameArea
   };
 }
 
@@ -462,9 +431,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroSwan2 = _interopRequireDefault(_taroSwan);
 
 var _index = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
 
@@ -478,13 +447,13 @@ var _index5 = _interopRequireDefault(_index4);
 
 var _index6 = __webpack_require__(/*! ../../utils/v/index */ "./src/utils/v/index.ts");
 
-var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/redux/index.js");
-
-var _realname = __webpack_require__(/*! ../../actions/realname */ "./src/actions/realname.ts");
-
 var _index7 = __webpack_require__(/*! ../../utils/msg/index */ "./src/utils/msg/index.ts");
 
 var _index8 = _interopRequireDefault(_index7);
+
+var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/redux/index.js");
+
+var _realname = __webpack_require__(/*! ../../actions/realname */ "./src/actions/realname.ts");
 
 __webpack_require__(/*! ./index.scss */ "./src/pages/realname/index.scss");
 
@@ -517,7 +486,7 @@ var RealName = function (_Taro$Component) {
     key: "_constructor",
     value: function _constructor(props) {
       _get(RealName.prototype.__proto__ || Object.getPrototypeOf(RealName.prototype), "_constructor", this).call(this, props);
-      this.$$refs = new _taroTt2.default.RefsArray();
+      this.$$refs = new _taroSwan2.default.RefsArray();
     }
   }, {
     key: "_createData",
@@ -527,6 +496,7 @@ var RealName = function (_Taro$Component) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
+      var dispatch = (0, _redux.useDispatch)();
       // 使用 实名hook 与 获取短信验证码hook
 
       var _useRealname = (0, _index3.default)(),
@@ -544,21 +514,18 @@ var RealName = function (_Taro$Component) {
           model = _useRealname.model,
           setModel = _useRealname.setModel,
           userPostAuthInfo = _useRealname.userPostAuthInfo,
-          RealnameArea = _useRealname.RealnameArea,
-          _setRealnameArea = _useRealname.setRealnameArea;
+          RealnameArea = _useRealname.RealnameArea;
 
       var _useCode = (0, _index5.default)(),
           text = _useCode.text,
           userGetCode = _useCode.userGetCode;
+      // 地图跳转之后，地图页设置详细地址
 
-      var value = {
-        RealnameArea: RealnameArea,
-        setRealnameArea: function setRealnameArea(city) {
-          return _setRealnameArea(city);
-        }
+
+      var setRealnameAddress = function setRealnameAddress(area) {
+        setModel(_extends({}, model, { address: area }));
       };
-      var dispatch = (0, _redux.useDispatch)();
-      dispatch((0, _realname.setData)(value));
+      dispatch((0, _realname.setAddressFun)(setRealnameAddress));
       // 初始化生日选择时间
       var date = new Date();
       var year = date.getFullYear();
@@ -576,13 +543,14 @@ var RealName = function (_Taro$Component) {
           setModel(_extends({}, model, { gender: id }));
         }
       };
-      (0, _taroTt.useDidShow)(function () {
-        if (RealnameArea) {
-          var modelItem = JSON.parse(JSON.stringify(model));
-          modelItem.address = RealnameArea;
-          setModel(modelItem);
-        }
-      });
+      // 如果状态机的地址发生了改变就代表用户选择了地址
+      // useDidShow(()=>{
+      //   if (realnameData.RealnameArea){
+      //     const modelItem = JSON.parse(JSON.stringify(model));
+      //     modelItem.address = RealnameArea;
+      //     setModel(modelItem);
+      //   }
+      // })
       // 用户填写信息
       var userEnterFormInfo = function userEnterFormInfo(title, e) {
         var modelInfo = JSON.parse(JSON.stringify(model));
@@ -633,7 +601,7 @@ var RealName = function (_Taro$Component) {
         if (!RealnameArea) {
           return;
         }
-        _taroTt2.default.navigateTo({
+        _taroSwan2.default.navigateTo({
           url: "/pages/map/realname/index"
         });
       };
@@ -767,14 +735,14 @@ var RealName = function (_Taro$Component) {
   }]);
 
   return RealName;
-}(_taroTt2.default.Component);
+}(_taroSwan2.default.Component);
 
 RealName.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6", "anonymousFunc7", "anonymousFunc8", "anonymousFunc9", "anonymousFunc10", "anonymousFunc11", "anonymousFunc12"];
 RealName.$$componentPath = "pages/realname/index";
 RealName.config = { navigationBarTitleText: '鱼泡网-实名认证' };
 exports.default = RealName;
 
-Page(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(RealName, true));
+Page(__webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js").default.createComponent(RealName, true));
 
 /***/ })
 

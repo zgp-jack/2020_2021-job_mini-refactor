@@ -1,6 +1,6 @@
 import Taro, { useEffect, useState, useDidShow, Config } from '@tarojs/taro'
 import { View, Text, Input, Block } from '@tarojs/components'
-import { SERVERPHONE, REALNAMEPATH } from '../../../config/index'
+import { SERVERPHONE, REALNAMEPATH, SHOWSERVERPHONE } from '../../../config'
 import { isPhone } from '../../../utils/v'
 import { getUserIsAuth, checkMineAuthInfo } from '../../../utils/request'
 import { CheckUserAuthMember } from '../../../utils/request/index.d'
@@ -8,6 +8,7 @@ import { useSelector } from '@tarojs/redux'
 import Auth from '../../../components/auth'
 import './index.scss'
 import Msg, { ShowActionModal } from '../../../utils/msg'
+import { userJumpPage } from '../../../utils/helper'
 
 export default function CheckAuth(){
 
@@ -137,7 +138,11 @@ export default function CheckAuth(){
         <View className='checkauth-item'>2.要求他同你微信视频聊天，视频里约定好条款，录下来，作为证据。</View>
         <View className='checkauth-item'>3.多问问对方建筑的专业问题，看看他专业与否，一上来就问工地地址，不问清楚工资 图纸等，就说能马上过来的，百分百是骗子。a</View>
         <View className='checkauth-item'>4.一定不要轻易的告诉对方，工地的详细地址。</View>
+        {SHOWSERVERPHONE ? 
         <View className='checkauth-item'>5.如果你发现同你联系的人，有任何问题，都可联系我们客服投诉（电话：<Text className='checkauth-item-tel' onClick={() => userCallPhone()}>{ SERVERPHONE }</Text>），确定后，我们将他加入骗子数据库，防止他接着骗人。 </View>
+        :
+        <View className='checkauth-item'>5.如果你发现同你联系的人，有任何问题，都可以 <Text className='checkauth-item-tel' onClick={() => userJumpPage('/subpackage/pages/feedbacklist/index')}>给我们留言</Text> ，确定后，我们将他加入骗子数据库，防止他接着骗人。 </View>
+        }
       </View>
     </View>
     </Block>

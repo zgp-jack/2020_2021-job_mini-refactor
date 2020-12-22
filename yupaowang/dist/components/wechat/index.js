@@ -1,4 +1,4 @@
-(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["components/wechat/index"],{
+(swan["webpackJsonp"] = swan["webpackJsonp"] || []).push([["components/wechat/index"],{
 
 /***/ "./src/actions/wechat_notice.ts":
 /*!**************************************!*\
@@ -56,9 +56,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroSwan2 = _interopRequireDefault(_taroSwan);
 
 var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/redux/index.js");
 
@@ -75,6 +75,10 @@ var _index = __webpack_require__(/*! ../../utils/request/index */ "./src/utils/r
 var _index2 = __webpack_require__(/*! ../../utils/helper/index */ "./src/utils/helper/index.ts");
 
 var _index3 = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
+
+var _classnames = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+
+var _classnames2 = _interopRequireDefault(_classnames);
 
 __webpack_require__(/*! ./index.scss */ "./src/components/wechat/index.scss");
 
@@ -94,7 +98,7 @@ var WechatNotice = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (WechatNotice.__proto__ || Object.getPrototypeOf(WechatNotice)).apply(this, arguments));
 
-    _this.$usedState = ["$compid__26", "SHOWWEIXINNUMBER", "wechatNoticeData"];
+    _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "$compid__10", "SHOWSERVERPHONE", "SHOWWEIXINNUMBER", "SHOWLISTSNOTICE", "wechatNoticeData"];
     _this.customComponents = ["SwiperNews"];
     return _this;
   }
@@ -103,7 +107,7 @@ var WechatNotice = function (_Taro$Component) {
     key: '_constructor',
     value: function _constructor(props) {
       _get(WechatNotice.prototype.__proto__ || Object.getPrototypeOf(WechatNotice.prototype), '_constructor', this).call(this, props);
-      this.$$refs = new _taroTt2.default.RefsArray();
+      this.$$refs = new _taroSwan2.default.RefsArray();
     }
   }, {
     key: '_createData',
@@ -114,12 +118,12 @@ var WechatNotice = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__26"),
+      var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__10"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__26 = _genCompid2[0],
-          $compid__26 = _genCompid2[1];
+          $prevCompid__10 = _genCompid2[0],
+          $compid__10 = _genCompid2[1];
 
-      var _useState = (0, _taroTt.useState)({
+      var _useState = (0, _taroSwan.useState)({
         vertical: true,
         lists: []
       }),
@@ -132,7 +136,7 @@ var WechatNotice = function (_Taro$Component) {
         return state.WechatNotice;
       });
       // 获取微信号与公告列表
-      (0, _taroTt.useEffect)(function () {
+      (0, _taroSwan.useEffect)(function () {
         if (wechatNoticeData.success) {
           setSwiperNews(_extends({}, swiperNews, { lists: wechatNoticeData.notice }));
           return;
@@ -155,6 +159,10 @@ var WechatNotice = function (_Taro$Component) {
       var userCallPhoneAction = function userCallPhoneAction() {
         (0, _index2.userCallPhone)(wechatNoticeData.phone);
       };
+      var anonymousState__temp = _index3.SHOWSERVERPHONE || _index3.SHOWWEIXINNUMBER || _index3.SHOWLISTSNOTICE ? (0, _classnames2.default)({
+        'wechatinfo-container': true,
+        'wechatinfo-container-notop': !_index3.SHOWWEIXINNUMBER && !_index3.SHOWSERVERPHONE
+      }) : null;
       this.anonymousFunc0 = function () {
         return userCopyWechatNumber();
       };
@@ -167,12 +175,20 @@ var WechatNotice = function (_Taro$Component) {
       this.anonymousFunc3 = function () {
         return userCallPhoneAction();
       };
-      _taroTt.propsManager.set({
+      var anonymousState__temp2 = _index3.SHOWLISTSNOTICE ? (0, _classnames2.default)({
+        'notice-container': true,
+        'notice-container-notop': !_index3.SHOWSERVERPHONE && !_index3.SHOWWEIXINNUMBER
+      }) : null;
+      (_index3.SHOWSERVERPHONE || _index3.SHOWWEIXINNUMBER || _index3.SHOWLISTSNOTICE) && _index3.SHOWLISTSNOTICE && _taroSwan.propsManager.set({
         "data": swiperNews
-      }, $compid__26, $prevCompid__26);
+      }, $compid__10, $prevCompid__10);
       Object.assign(this.__state, {
-        $compid__26: $compid__26,
+        anonymousState__temp: anonymousState__temp,
+        anonymousState__temp2: anonymousState__temp2,
+        $compid__10: $compid__10,
+        SHOWSERVERPHONE: _index3.SHOWSERVERPHONE,
         SHOWWEIXINNUMBER: _index3.SHOWWEIXINNUMBER,
+        SHOWLISTSNOTICE: _index3.SHOWLISTSNOTICE,
         wechatNoticeData: wechatNoticeData
       });
       return this.__state;
@@ -200,13 +216,13 @@ var WechatNotice = function (_Taro$Component) {
   }]);
 
   return WechatNotice;
-}(_taroTt2.default.Component);
+}(_taroSwan2.default.Component);
 
 WechatNotice.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3"];
 WechatNotice.$$componentPath = "components/wechat/index";
 exports.default = WechatNotice;
 
-Component(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(WechatNotice));
+Component(__webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js").default.createComponent(WechatNotice));
 
 /***/ })
 

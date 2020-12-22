@@ -1,9 +1,12 @@
 import Taro from '@tarojs/taro'
-import {MAPKEY} from '../../config'
+import { IMGCDNURL, MAPKEY, SERIES, ZIJIESERIES } from '../../config'
 import AMapWX from '../../utils/source/amap-wx'
-import {UserLocationPromiss} from '../../models/area'
-import {UserLocationCity} from '../../config/store'
-import {InputPoiList, InputPoiListTips} from './index.d'
+import { UserLocationPromiss } from '../../models/area'
+import { UserLocationCity } from '../../config/store'
+import { InputPoiList, InputPoiListTips } from './index.d'
+import { checkAdcodeAction } from '../request'
+import { LocationDataType  } from '../..//pages/resume/add_info/index.d';
+import Msg, { ShowActionModal } from '../msg';
 
 // 对象拷贝
 export function objDeepCopy(source: any): any {
@@ -96,7 +99,89 @@ export function userCancelAuth(): void {
   Taro.navigateBack()
 }
 
-//调用播放广告公告函数
-// export const handleAdvConfig = (callback, flag) => {
-//
-// }
+// 用户获取定位
+export function getLocation(): Promise<LocationDataType>{
+  Msg('位置获取中...');
+  return new Promise(function (resolve, reject) {
+    const myAmapFun = new AMapWX.AMapWX({
+      key: MAPKEY,
+    }); //key注册高德地图开发者
+    myAmapFun.getRegeo({
+      type: 'gcj02',
+      success:(data) => {
+        let mydata = data[0].regeocodeData.addressComponent
+        let params = {
+          adcode: mydata.adcode
+        }
+        checkAdcodeAction(params).then(res => {
+          if (res.errcode == 'ok') {
+            let province: string = res.province;
+            // let city: string = mydata.city
+            // city = typeof city === 'string' ? city : province
+            let gpsLocation: LocationDataType = {
+              province: province,
+              city: res.city,
+              adcode: mydata.adcode,
+              citycode: mydata.citycode,
+              address:data[0].name,
+              oadcode: mydata.adcode,
+              longitude: data[0].longitude + "",
+              latitude: data[0].latitude + "",
+              wardenryid: res.city,
+              regionone:''
+            }
+            resolve(gpsLocation);
+          } else {
+            Msg('定位失败,请重新定位')
+            reject();
+          }
+        }).catch((err) => {
+          Msg('定位失败,请重新定位')
+          reject(err);
+        })
+      },
+      fail: (err) => {
+        Msg('定位失败,请重新定位')
+        reject(err)
+      }
+    })
+  })
+}
+
+// 复制内容到粘贴板
+export function setClipboardData(val: string, msg: string = '内容已成功复制到粘贴板') {
+  Taro.setClipboardData({
+    data: val,
+    success: () => {
+      Taro.hideToast()
+      ShowActionModal({
+        msg: msg
+      })
+    }
+  })
+}
+
+// 复制微信号到粘贴板
+export function copyWechatNumber(val: string) {
+  let msg: string = `微信号:${val}已复制到粘贴板，去微信-添加朋友-搜索框粘贴`
+  setClipboardData(val, msg)
+}
+
+// 用户拨打电话
+export function userCallPhone(val: string) {
+  Taro.makePhoneCall({
+    phoneNumber: val
+  })
+}
+
+// 用户统一分享内容
+export function getUserShareMessage(){
+  let title: string = '全国建筑工地招工平台'
+  if(SERIES == ZIJIESERIES){
+    title = '鱼泡网-建筑装修找活平台'
+  }
+  return {
+    title,
+    imageUrl: `${IMGCDNURL}minishare.png`
+  }
+}

@@ -1,27 +1,16 @@
-import Taro, {Config, useState, useEffect, useReachBottom, useRouter,useDidShow} from '@tarojs/taro'
-import {View, Text, Picker, Image} from '@tarojs/components'
-import {
-  integralSourceConfigAction,
-  integralSourceListsAction,
-  integralExpendListsAction,
-  integralExpendConfigAction,
-  integralUseInfoAction,
-  publishComplainAction
-} from '../../../utils/request/index'
-import {getSystemInfo} from '../../../utils/helper/index'
-import {IMGCDNURL} from '../../../config'
+import Taro, { Config, useState, useEffect, useReachBottom, useRouter } from '@tarojs/taro'
+import { View, Text, Picker, Image, Block } from '@tarojs/components'
+import { integralSourceConfigAction, integralSourceListsAction, integralExpendListsAction, integralExpendConfigAction, integralUseInfoAction, publishComplainAction } from '../../../utils/request/index'
+import { getSystemInfo } from '../../../utils/helper/index'
 import Nodata from '../../../components/nodata'
-import {
-  integralSourceListsDataSum,
-  integralSourceListsDataLists,
-  integralUseInfoData,
-  integralSourceConfigDataType
-} from '../../../utils/request/index.d'
-import {SubscribeToNews} from '../../../utils/subscribeToNews';
-import Report from '../../../components/report';
-import {isVaildVal} from '../../../utils/v'
-import Msg, { showModalTip} from '../../../utils/msg'
-import { IsReport }from '../../../config/store';
+import { integralSourceListsDataSum, integralSourceListsDataLists, integralUseInfoData, integralSourceConfigDataType  } from '../../../utils/request/index.d'
+import { SERIES, QQSERIES, IMGCDNURL } from '../../../config'
+import { SubscribeToNews } from '../../../utils/subscribeToNews';
+import  Report  from '../../../components/report';
+import { isVaildVal, isIos } from '../../../utils/v'
+import { useSelector } from '@tarojs/redux'
+import Msg, { showModalTip } from '../../../utils/msg'
+import Auth from '../../../components/auth'
 import './index.scss'
 
 interface ParamsType {
@@ -52,6 +41,8 @@ interface SearchType {
 
 // 只用temp和source
 export default function Tabber() {
+  // 检测用户是否登录
+  const login: boolean = useSelector<any, boolean>(store => store.User['login'])
   const router: Taro.RouterInfo = useRouter()
   const {info, office} = router.params;
   // 切换
@@ -139,7 +130,10 @@ export default function Tabber() {
   const [modelType, setModelType] = useState<string>('')
   // 是否显示投诉哦
   const [showIsReport, setShowIsReport] = useState<number>(0);
-  useEffect(() => {
+  // 判断是否是ios
+  const [ios, setIos] = useState<boolean>(false)
+  useEffect(()=>{
+    setIos(isIos())
     let navigationBarTitleText = initInfo === '0' ? '鱼泡网-积分来源记录' : '鱼泡网-积分消耗记录'
     Taro.setNavigationBarTitle({title: navigationBarTitleText})
     // 获取现在时间
@@ -211,13 +205,7 @@ export default function Tabber() {
         integralExpendLists();
       }
     }
-  }, [params])
-  useDidShow(()=>{
-    const isReport = Taro.getStorageSync(IsReport);
-    if (isReport||isReport == 0){
-      setShowIsReport(+isReport);
-    }
-  })
+  }, [params, login])
   // 积分消耗
   const integralExpendConfig = () => {
     integralExpendConfigAction().then(res => {
@@ -555,17 +543,16 @@ export default function Tabber() {
 
       <View className='tabber-content-box'>
         <View className='tabber-content-box-time'>
-          <Picker mode='date' fields='month' value={time} start={start} end={end} onChange={(e) => handleClckTime(e)}>
+        {SERIES == QQSERIES  && !ios?
+          <Picker mode='date' fields='month' value={time} onChange={(e)=>handleClckTime(e)}>
             <Text className='tabber-content-box-time-text'>{showTime}</Text>
             <Image className='tabber-content-box-time-img' src={`${IMGCDNURL}lpy/integral/select2.png`}/>
+          </Picker>:
+          <Picker mode='date' fields='month' value={time} start={start} end={end} onChange={(e) => handleClckTime(e)}>
+            <Text className='tabber-content-box-time-text'>{showTime}</Text>
+            <Image className='tabber-content-box-time-img' src={`${IMGCDNURL}lpy/integral/select2.png`} />
           </Picker>
-          <View className='tabber-content-box-numBox'>
-            <View>获取积分：<Text
-              className='tabber-content-box-num-color'>{num.get}</Text></View>
-            <View
-              className='tabber-content-box-numBox-num'>消耗积分：<Text
-              className='tabber-content-box-num-color'>{num.expend}</Text></View>
-          </View>
+          }
         </View>
         <View className='tabber-content-box-selector'>
           <Picker mode='selector' range={initInfo === '0' ? sourceList : consumeList} value={startType}

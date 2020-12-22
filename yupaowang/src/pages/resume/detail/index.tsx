@@ -1,16 +1,17 @@
 import Taro, { Config, useState, useRouter, useShareAppMessage, useDidShow, useEffect } from '@tarojs/taro'
-import { View, Text, Image, Button } from '@tarojs/components'
+import { View, Text, Image, Button, Ad } from '@tarojs/components'
 import { resumeDetailAction, recommendListAction, resumesGetTelAcrion, resumeSupportAction, resumeCollectAction, resumesComplainAction } from '../../../utils/request/index'
-import { IMGCDNURL, ISCANSHARE } from '../../../config'
+import { IMGCDNURL, ISCANSHARE, FILTERWEIXINREG, REPLACEWEIXINTEXT, SERIES, QQSERIES, BAIDUSERIES, INDEXPATH } from '../../../config'
 import Msg, { ShowActionModal, showModalTip } from '../../../utils/msg'
 import { DataType, ListType, Injected } from './index.d'
 // import CollectionRecruitList  from '../../../components/recommendList/index'
-import { isVaildVal } from '../../../utils/v'
+import { isVaildVal, isIos } from '../../../utils/v'
 import { getUserShareMessage } from '../../../utils/helper'
 import Report from '../../../components/report';
 import { useSelector, useDispatch } from '@tarojs/redux'
 import Auth from '../../../components/auth'
 import classnames from 'classnames'
+import { User } from '../../../reducers/user'
 import { resumeDetailCertificatesRedux, resumeDetailProjectRedux } from '../../../utils/request/index.d';
 import { SubscribeToNews } from '../../../utils/subscribeToNews';
 import { setSubpackcertificate, setSubpackProject} from '../../../actions/resume_list';
@@ -21,9 +22,12 @@ export default function ResumeDetail() {
   const dispatch = useDispatch()
   // 获取用户是否登录
   const login = useSelector<any, boolean>(state => state.User['login'])
+  const user = useSelector<any, User>(state => state.User)
   const router: Taro.RouterInfo = useRouter()
   //获取uuid和location,location需要修改，用一个共同的，最外层使用的
   let { uuid, location } = router.params;
+  // 判断是否是ios
+  const [ios, setIos] = useState<boolean>(false)
   //总数据
   const [data, setDate] = useState<DataType>({
     certificates:[],
@@ -45,6 +49,7 @@ export default function ResumeDetail() {
       is_end:'',
       certificate_show:0,
       uuid:'',
+      user_uuid: '',
       gender:'',
       tags: [],
       distance:'',
@@ -66,7 +71,7 @@ export default function ResumeDetail() {
   //   item:[]
   // })
   const [examine, setExamine] = useState<boolean>(true)
-  // 查看电话
+  // 是否查看过电话
   const [onoff, seOnoff] = useState<boolean>(false);
   // 手机号码
   const [phone,setPhone ] = useState<string>('')
@@ -97,16 +102,28 @@ export default function ResumeDetail() {
 
   const getDataList = ()=>{
     const params = {
+      userId: user ? user.userId : '',
       location:location,
       resume_uuid: uuid
     }
     resumeDetailAction(params).then(res=>{
       if(res.errcode === 'ok'){
+        // 如果是百度系小程序，则直接设置seo等相关信息
+        if (SERIES == BAIDUSERIES) {
+          let keywords = res.info.occupations[0]
+          let split_keywords: string = keywords.split('/').map(item => `找${item}工作`).join(',')
+          Taro.setPageInfo({
+            title: `${res.info.username}在${res.info.address}找${keywords}工作`,
+            description: `${res.info.introduce}, ${res.info.address}找${res.info.occupations}工作`  ,
+            keywords: `${split_keywords},鱼泡网,建筑招聘,建筑人才,工地招工,工人找活,施工队找活,工程信息,找工人,建筑工地`
+          })
+        }
         // 技能证书
         let mylists = [...res.certificates]
         let data: resumeDetailCertificatesRedux[] = [];
         for(let i=0;i<mylists.length;i++){
-          let item = { ...mylists[i], images: mylists[i].images.split(',') }
+          let images = mylists[i].images ? mylists[i].images.split(','):[];
+          let item = { ...mylists[i], images: images }
           data.push(item)
         }
         dispatch(setSubpackcertificate([...data]));
@@ -115,7 +132,8 @@ export default function ResumeDetail() {
         let projectData: resumeDetailProjectRedux[] = [];
         // 职业技能
         for (let i = 0; i < projectArr.length; i++) {
-          let item = { ...projectArr[i], images: projectArr[i].images.split(',') }
+          let images = projectArr[i].images ? projectArr[i].images.split(','):[];
+          let item = { ...projectArr[i], images: images }
           projectData.push(item)
         }
         dispatch(setSubpackProject([...projectData]));
@@ -153,6 +171,7 @@ export default function ResumeDetail() {
     })
   }
   useDidShow(() => {
+    setIos(isIos())
     getDataList();
   })
   useEffect(() => {
@@ -305,7 +324,11 @@ export default function ResumeDetail() {
   }
 
   const handleMap = ()=>{
-    let locArr = data.info.location.split(",");
+    
+    Taro.getSetting().then(res=>{
+      console.error(res,1111);
+    })
+    let locArr = data.info.location? data.info.location.split(","):[];
     Taro.openLocation({
       latitude: parseFloat(locArr[1]),
       longitude: parseFloat(locArr[0]),
@@ -314,6 +337,23 @@ export default function ResumeDetail() {
       scale: 18
     })
   }
+
+  // 查看更多招工信息
+  const seeMoreResume = () => {
+    let pages = Taro.getCurrentPages()
+    if (pages.length < 2) {
+      Taro.reLaunch({ url: `${INDEXPATH}?type=resume` })
+    } else {
+      let routeUrl = pages[pages.length - 2].route
+      let listUrl = `/${routeUrl}`
+      if (listUrl == INDEXPATH) {
+        Taro.navigateBack()
+      } else {
+        Taro.reLaunch({ url: `${INDEXPATH}?type=resume` })
+      }
+    }
+  }
+
   return(
     <View>
       {isAuth && <Auth />}
@@ -437,7 +477,7 @@ export default function ResumeDetail() {
               'workotextone-noaddress': !data.info.distance
             })}>{data.info.address}</Text>
             {/* 地图 */}
-            {data.info.distance && 
+            {data.info.distance && (SERIES == QQSERIES && !ios) &&
             <View onClick={handleMap} className='map-distance-info'>
               <Image className='workotextone-address-img' src={`${IMGCDNURL}lpy/biaoqian.png`}/>
               {data.info.distance}
@@ -472,7 +512,7 @@ export default function ResumeDetail() {
         </View>
       </View>
       <View className='resumeDetail-introduce'>
-        {data.info.introduce||'暂未填写'}
+          {data.info.introduce ? (REPLACEWEIXINTEXT ? data.info.introduce.replace(FILTERWEIXINREG, '') : data.info.introduce) : '暂未填写'}
       </View>
       {/* 项目经验 */}
       {data.project.length &&
@@ -601,6 +641,7 @@ export default function ResumeDetail() {
         <View className="seemore-recommend-recruit">查看更多找活信息</View>
       </View> */}
       {/* 底部 */}
+      {(!login || user.uuid != data.info.user_uuid) &&
       <View className='resumeDetail-footer'>
         <View className='resumeDetail-footer-box' onClick={resumeSupport}>
           <Image className="bossimg" src={praise === 0 ? `${IMGCDNURL}newresume-footer-star.png` : `${IMGCDNURL}newresume-footer-star-active.png`} />
@@ -617,6 +658,7 @@ export default function ResumeDetail() {
           <View>收藏</View>
         </View>
       </View>
+      }
       {/* 弹框 */}
         {shownewtips && 
         <View className="newdetail-fixedshadow">
@@ -645,6 +687,21 @@ export default function ResumeDetail() {
         {complaintModal && <Report display={complaintModal} textarea={textarea} handleTextarea={handleTextarea} setComplaintModal={setComplaintModal} 
           handleSubmit={handleSubmit}/>
         }
+        {/* 百度广告 */}
+        {SERIES == BAIDUSERIES && 
+        <View>
+          {/* <Ad
+            unitId='adunit-f43849b0be35aeae'
+            ad-intervals={60}
+            onLoad={() => console.log('ad onLoad')}
+            onError={() => console.log('ad onError')}
+            // onClose={() => console.log('ad onClose')}
+          /> */}
+          {/* <ad appid="a288ea78" apid="7294000" class="ad" type="feed" ></ad> */}
+        </View>
+        }
+      {/* 返回首页 */}
+      <View className='see-recruit-list-btn' onClick={() => seeMoreResume()}>查看更多找活信息</View> 
     </View>
     </View>
   )

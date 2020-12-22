@@ -7,8 +7,12 @@ import './app.scss'
 
 const store = configStore()
 
+interface AppConfig extends Config {
+  sitemapLocation: string
+}
+
 class App extends Component {
-  config: Config = {
+  config: AppConfig = {
     pages: [
       'pages/index/index', //首页
       'pages/userauth/index', //用户授权
@@ -32,19 +36,13 @@ class App extends Component {
       "pages/userinfo/add/index", // 用户完善资料
       "pages/userinfo/phone/index", // 用户更换手机
       "pages/userinfo/updatePass/index",//修改密码
+      "pages/userinfo/pass/index",//设置密码
       "pages/published/recruit/index", // 已发布招工列表
       "pages/published/used/index", // 已发布二手交易
       "pages/collection/index", //收藏
-      "pages/help/index", //帮助中心
-      "pages/feedbacklist/index", //意见反馈列表
-      "pages/feedback/index", //意见反馈
-      "pages/information/mymessage/index", //我的信息
-      "pages/information/system/index", //我的信息详情
       'pages/integral/tabber/index', //积分来源顶部
       'pages/detail/info/index', //招工详情
       'pages/topping/index', //置顶
-      'pages/topping/distruction/index',//置顶选择范围
-      // 'pages/topping/recruit/index',//置顶找活范围
       'pages/resume/publish/index', //发布找活
       'pages/resume/add_info/index', //新增基本资料
       'pages/resume/add_member/index', //新增人员信息
@@ -52,10 +50,6 @@ class App extends Component {
       'pages/resume/add_project/index', //新增项目经验
       'pages/resume/projects/index', //项目经验列表
       'pages/resume/skills/index', //技能证书列表
-      'pages/rank-rules/index', //排名规则
-      'pages/turntable/index',// 大转盘
-      'pages/help/question-details/index', //帮助中心问题详情
-
       'pages/resume/detail/index', // 找活详情
       'pages/resume/newPreview/index', // 预览
       'pages/resume/preview/index', // 预览
@@ -86,6 +80,12 @@ class App extends Component {
           'projects/index', //更多项目经验
           'skills/index',//更多技能证书
           'news/index', //鱼泡动态
+          'help/index', //帮助中心
+          'feedbacklist/index', //意见反馈列表
+          'feedback/index', //意见反馈
+          'information/mymessage/index', //我的信息
+          'information/system/index', //我的信息详情
+          'turntable/index',// 大转盘
         ]
       },
     ],
@@ -109,7 +109,8 @@ class App extends Component {
       "scope.userLocation": {
         "desc": "获取您的位置将会为您推荐该地区最新信息"
       }
-    }
+    },
+    "sitemapLocation": 'sitemap.json'
   }
 
   componentDidMount() {

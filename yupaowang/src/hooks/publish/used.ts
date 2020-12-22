@@ -54,6 +54,8 @@ export default function useUsedInfo(id: string){
   const [cIndex, setCIndex] = useState<number>(0)
   // picker 市级索引
   const [areaCity, setAreaCity] = useState<CityAreaPicker[]>([])
+  // 详情字数统计
+  const [num, setNum] = useState<number>(0)
 
   useEffect(()=>{
     if (!login) return
@@ -69,6 +71,7 @@ export default function useUsedInfo(id: string){
         // 正常获取到内容
         areaTree = data.areaTree
         setInitModel(data)
+        setNum(data.model.detail ? data.model.detail.length : 0)
         initPublishModelInfo(data)
         initAreaPicker(data)
       } else if (data.errcode == 'to_auth') {
@@ -265,7 +268,9 @@ export default function useUsedInfo(id: string){
     thisCurrentAreaCity,
     userTel,
     vaildPublishModelInfo,
-    initUsedPublishViewInfo
+    initUsedPublishViewInfo,
+    num,
+    setNum
   }
   
 }

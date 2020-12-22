@@ -1,0 +1,67 @@
+@import '../../common.scss';
+.invite-container {
+    position: relative;
+    width: 100%;
+    .invite-item-icon::before,
+    .invite-item-icon::after {
+        position: absolute;
+        width: 8px;
+        content: '';
+        height: 30px;
+        background-color: $color;
+        border-radius: 10px;
+        top: -2px;
+    }
+    .invite-item-icon::before {
+        left: 50px;
+    }
+    .invite-item-icon::after {
+        right: 50px;
+    }
+    .invite-item {
+        position: relative;
+        width: 100%;
+        padding: 20px;
+        border-radius: 10px;
+        .invite-header {
+            background-color: white;
+            padding: 20px;
+            @include shadow();
+            .invite-img {
+                position: absolute;
+                display: block;
+                width: 110px;
+                height: 110px;
+                left: 40px;
+                top: 50px;
+            }
+            .invite-text {
+                position: relative;
+                padding-left: 140px;
+                font-size: 28px;
+                line-height: 50px;
+            }
+            .invite-input {
+                position: relative;
+                margin-top: $margin;
+                border-radius: 5px;
+                border: 1px solid #dcdcdc;
+                font-size: 28px;
+                color: #333;
+                height: 70px;
+            }
+        }
+        .invite-btn {
+            background-color: $color;
+            border-radius: 5px;
+            color: white;
+            text-align: center;
+            line-height: 85px;
+            font-size: 30px;
+            letter-spacing: 5px;
+            font-weight: bold;
+            width: 80%;
+            margin: 30px auto 0;
+        }
+    }
+}

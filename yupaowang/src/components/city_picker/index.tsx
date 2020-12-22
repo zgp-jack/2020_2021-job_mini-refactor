@@ -1,7 +1,7 @@
 import Taro, { useEffect, useState } from '@tarojs/taro'
 import { View, Picker,Input } from '@tarojs/components'
 import AREAS from '../../models/area'
-import './index.css'
+import './index.scss'
 
 export interface CityTownPicker {
   id: string,
@@ -14,6 +14,7 @@ export default function CityPicker({onCity}) {
   const [cityPickerData, setCityPickerData] = useState<CityTownPicker[][]>([])
   //选中的城市数据
   const [selectCity, setSelectCity] = useState <CityTownPicker[]>([])
+  
   let selectCityIndex = [0,0]
   // cityi是选中的省的index
   const initCityData = (cityi: number) => {
@@ -77,7 +78,7 @@ export default function CityPicker({onCity}) {
         onChange={(e) => { onChange(e) }}
         onColumnChange={(e) => { onColumnChange(e) }}
       >
-        <Input className='city-picker-input' value={selectCity[0].name ? selectCity[0].name + '-' +selectCity[1].name:''} type='text' disabled placeholder='请选择招工城市'/>
+        <View className={selectCity.length > 0 ? 'data-picker-input' : 'nodata-picker-input'}>{ selectCity.length > 0 ? (selectCity[0].name ? selectCity[0].name + '-' + selectCity[1].name : '') :'请选择招工城市' }</View>
       </Picker>
     </View>
   )

@@ -8,7 +8,7 @@ import { NationsType, OccupationType } from './index.d';
 import { addResumeAction, checkAdcodeAction, } from '../../../utils/request/index'; 
 import { UserLastPublishRecruitArea } from '../../../pages/recruit/index.d'
 import Profession from '../../../components/profession'
-import { TEXTAREAMAXLENGTH, USEGAODEMAPAPI } from '../../../config'
+import { TEXTAREAMAXLENGTH, USEGAODEMAPAPI,SERIES, QQSERIES } from '../../../config'
 import useCode from '../../../hooks/code'
 import { getCityAreaPicker, getAreaCurrentArr, SimpleChildItems, getCityInfoById, AREABEIJING} from '../../../models/area'
 import Msg,{ ShowActionModal } from '../../../utils/msg';
@@ -195,6 +195,16 @@ export default function AddResumeInfo(){
   }
   // 提交
   const handelSubmit =()=>{
+    //小于60大于18
+    if (inputVal.birthday && SERIES == QQSERIES) {
+      const startTime:number = new Date(startDatePicker).getTime() ||0;
+      const oldTime:number = new Date(endDatePicker).getTime() ||0;
+      const newTime:number = new Date(inputVal.birthday).getTime() ||0;
+      if (newTime > oldTime || newTime < startTime){
+        ShowActionModal({ msg: '请选择年龄不小于18岁' })
+        return
+      }
+    }
     if (!inputVal.username || inputVal.username.length < 2 || inputVal.username.length > 5 || !allChinese(inputVal.username)){
       ShowActionModal({ msg: '请输入2~5字纯中文姓名'})
       return
@@ -213,6 +223,7 @@ export default function AddResumeInfo(){
       ShowActionModal({ msg: '请填写真实自我介绍，15-500字，必须含有汉字' })
       return
     }
+    
     let params = {
       code: inputVal.code ? inputVal.code:'',
       username: inputVal.username,

@@ -16,6 +16,7 @@
     background-color: white;
     border-radius: 30px;
     overflow: initial;
+    min-height: 370px;
     .prompt-title{
       position: relative;
       font-size: 35px;
@@ -53,6 +54,8 @@
       border-bottom-right-radius: 30px;   
       border-bottom-left-radius: 30px;
       overflow: hidden;
+      width: 100%;
+      bottom: 0px;
       .prompt-btn{
         font-size: 35px;
         flex: 1;
@@ -60,7 +63,7 @@
         color: #888;
         background: white;
         border-radius: 0;
-        line-height: 100px;
+        line-height: 110px;
         font-weight: 600;
         &::after{  
           border: 0;

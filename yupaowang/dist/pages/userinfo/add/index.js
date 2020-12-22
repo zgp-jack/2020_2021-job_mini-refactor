@@ -1,4 +1,4 @@
-(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["pages/userinfo/add/index"],{
+(swan["webpackJsonp"] = swan["webpackJsonp"] || []).push([["pages/userinfo/add/index"],{
 
 /***/ "./src/pages/userinfo/add/index.scss":
 /*!*******************************************!*\
@@ -31,9 +31,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroSwan2 = _interopRequireDefault(_taroSwan);
 
 var _index = __webpack_require__(/*! ../../../hooks/code/index */ "./src/hooks/code/index.ts");
 
@@ -82,7 +82,7 @@ var UserInfoAdd = function (_Taro$Component) {
     key: "_constructor",
     value: function _constructor(props) {
       _get(UserInfoAdd.prototype.__proto__ || Object.getPrototypeOf(UserInfoAdd.prototype), "_constructor", this).call(this, props);
-      this.$$refs = new _taroTt2.default.RefsArray();
+      this.$$refs = new _taroSwan2.default.RefsArray();
     }
   }, {
     key: "_createData",
@@ -99,14 +99,14 @@ var UserInfoAdd = function (_Taro$Component) {
       // 是否隐藏密码
 
 
-      var _useState = (0, _taroTt.useState)(true),
+      var _useState = (0, _taroSwan.useState)(true),
           _useState2 = _slicedToArray(_useState, 2),
           disPass = _useState2[0],
           setDisPass = _useState2[1];
       // 声明提交数据
 
 
-      var _useState3 = (0, _taroTt.useState)({
+      var _useState3 = (0, _taroSwan.useState)({
         username: '',
         pwd: '',
         tel: '',
@@ -146,7 +146,7 @@ var UserInfoAdd = function (_Taro$Component) {
         (0, _index3.postUserAddInfo)(userInfo).then(function (res) {
           (0, _index6.default)(res.errmsg);
           if (res.errcode == 'ok') {
-            _taroTt2.default.navigateBack();
+            _taroSwan2.default.navigateBack();
           }
         });
       };
@@ -221,14 +221,14 @@ var UserInfoAdd = function (_Taro$Component) {
   }]);
 
   return UserInfoAdd;
-}(_taroTt2.default.Component);
+}(_taroSwan2.default.Component);
 
 UserInfoAdd.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6"];
 UserInfoAdd.$$componentPath = "pages/userinfo/add/index";
 UserInfoAdd.config = { navigationBarTitleText: '完善资料' };
 exports.default = UserInfoAdd;
 
-Page(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(UserInfoAdd, true));
+Page(__webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js").default.createComponent(UserInfoAdd, true));
 
 /***/ })
 

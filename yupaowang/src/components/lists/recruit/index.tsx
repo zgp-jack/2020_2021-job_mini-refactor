@@ -1,6 +1,6 @@
 import Taro from '@tarojs/taro'
 import { View, Text, Image, Block } from '@tarojs/components'
-import { IMGCDNURL, PUBLISHEDRECRUIT } from '../../../config'
+import { IMGCDNURL, FILTERWEIXINREG, REPLACEWEIXINTEXT } from '../../../config'
 import Nodata from '../../../components/nodata'
 import './index.scss'
 import { RecruitListItem } from '../../../utils/request/index.d'
@@ -38,7 +38,7 @@ export default function RecruitList({ data, bottom = true, hasMore = false }: PR
                     {d.is_end !== 2 && <Image className='recruit-list-finding' src={IMGCDNURL + 'newlist-jobfinding.png'} />}
                   </View>
                   <View className='recruit-list-words'>
-                    <View className='recruit-words-text'>{ d.detail }</View>
+                    <View className='recruit-words-text'>{REPLACEWEIXINTEXT ? d.detail.replace(FILTERWEIXINREG,''):d.detail }</View>
                   </View>
                 </View>
               </View>

@@ -20,4 +20,5 @@ declare const process: {
 declare const MINI: string
 declare const ISWEIXIN: boolean
 declare const tt: any
+declare const qq: any
 declare const swan: any

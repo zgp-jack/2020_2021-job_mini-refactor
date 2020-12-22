@@ -1,26 +1,48 @@
-import Taro, { useEffect, useRouter, RouterInfo, useState, Config, useShareAppMessage } from '@tarojs/taro'
+import Taro, { useEffect, useRouter, RouterInfo, useState, Config, useShareAppMessage, useDidShow } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
 import WechatNotice from '../../../components/wechat'
 import { getUsedInfo } from '../../../utils/request'
 import { getUserShareMessage } from '../../../utils/helper'
 import { ShowActionModal } from '../../../utils/msg'
+import { REPLACEWEIXINTEXT, FILTERWEIXINREG, SERIES, BAIDUSERIES, MaxUsedInfoId } from '../../../config'
 import { GetUsedInfoData } from '../../../utils/request/index.d'
 import './index.scss'
 
 export default function UsedInfo(){
   const router: RouterInfo = useRouter()
-  const id: string = router.params.id
+  // id为二手详情id used 因为百度收录问题， 当id>MaxUsedInfoId 时都会带used=1来保证最新资源收录
+  const { id, used  } = router.params
   const [model, setModel] = useState<GetUsedInfoData>()
   // 设置用户分享信息
   useShareAppMessage(()=>{
     return {
-      ...getUserShareMessage()
+      ...getUserShareMessage(),
+      path: `/pages/used/info/index?id=${id}&more=1`
     }
   })
   // 初始化二手交易信息
-  useEffect(()=>{
+  useDidShow(()=>{
+    if (!used || (used != '1')){
+      if (parseInt(id) > MaxUsedInfoId){
+        Taro.redirectTo({
+          url:  `/pages/detail/info/index?id=${id}`
+        })
+        return
+      }
+    }
+    // 获取场景值
     getUsedInfo(id).then((data)=>{
       if(data.errcode == 'ok'){
+        // 如果是百度系小程序，则直接设置seo等相关信息
+        if (SERIES == BAIDUSERIES) {
+          let keywords = data.data.showCateAttr.split('-').reverse().join('')
+          let address = data.data.showAddress.split('-').join('')
+          Taro.setPageInfo({
+            title: `${data.data.title}-鱼泡网`,
+            description: `${data.data.title}${data.data.detail}`,
+            keywords: `${keywords},${data.data.title},${address}${keywords}`
+          })
+        }
         setModel(data.data)
       }else{
         ShowActionModal({
@@ -38,7 +60,7 @@ export default function UsedInfo(){
         }
       })
     })
-  },[])
+  })
 
   // 用户拨打电话
   const userCallPhone = ()=> {
@@ -47,6 +69,23 @@ export default function UsedInfo(){
     Taro.makePhoneCall({
       phoneNumber: model.user_mobile
     })
+  }
+
+
+  // 查看更多招工信息
+  const seeMoreUsed = () => {
+    let pages = Taro.getCurrentPages()
+    let listUrl = `/pages/used/lists/index`
+    if (pages.length < 2) {
+      Taro.reLaunch({ url: listUrl })
+    } else {
+      let routeUrl = `/${pages[pages.length - 2].route}`
+      if (routeUrl == listUrl) {
+        Taro.navigateBack()
+      } else {
+        Taro.reLaunch({ url: listUrl })
+      }
+    }
   }
 
   return (
@@ -90,9 +129,11 @@ export default function UsedInfo(){
           <View className='usedinfo-item-title'>要求/备注</View>
         </View>
         <View className='usedinfo-item usedinfo-full-item clearfix'>
-          <View className='usedinfo-item-title'>{ model&&model.detail }</View>
+          <View className='usedinfo-item-title'>{model ? (REPLACEWEIXINTEXT ? model.detail.replace(FILTERWEIXINREG,'') : model.detail) : '' }</View>
         </View>
       </View>
+      {/* 返回首页 */}
+      <View className='see-recruit-list-btn' onClick={() => seeMoreUsed()}>查看更多二手交易信息</View> 
     </View>
   )
 }

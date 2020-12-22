@@ -1,4 +1,4 @@
-(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["pages/collection/collectionResumeList/index"],{
+(swan["webpackJsonp"] = swan["webpackJsonp"] || []).push([["pages/collection/collectionResumeList/index"],{
 
 /***/ "./src/pages/collection/collectionResumeList/index.scss":
 /*!**************************************************************!*\
@@ -33,9 +33,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroSwan2 = _interopRequireDefault(_taroSwan);
 
 var _index = __webpack_require__(/*! ../../../config/index */ "./src/config/index.ts");
 
@@ -57,7 +57,7 @@ var CollectionResumeList = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (CollectionResumeList.__proto__ || Object.getPrototypeOf(CollectionResumeList)).apply(this, arguments));
 
-    _this.$usedState = ["anonymousState__temp", "loopArray65", "$compid__55", "$compid__56", "data", "IMGCDNURL", "recruitNoMoreData", "modalContent", "bottom", "onHandlerClick"];
+    _this.$usedState = ["anonymousState__temp", "loopArray70", "$compid__63", "$compid__64", "data", "IMGCDNURL", "recruitNoMoreData", "modalContent", "bottom", "onHandlerClick"];
     _this.anonymousFunc0Map = {};
     _this.anonymousFunc1Map = {};
     _this.customComponents = ["Nodata", "AtModal", "AtModalHeader", "AtModalContent", "AtModalAction"];
@@ -68,7 +68,7 @@ var CollectionResumeList = function (_Taro$Component) {
     key: "_constructor",
     value: function _constructor(props) {
       _get(CollectionResumeList.prototype.__proto__ || Object.getPrototypeOf(CollectionResumeList.prototype), "_constructor", this).call(this, props);
-      this.$$refs = new _taroTt2.default.RefsArray();
+      this.$$refs = new _taroSwan2.default.RefsArray();
     }
   }, {
     key: "_createData",
@@ -81,15 +81,15 @@ var CollectionResumeList = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__55"),
+      var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__63"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__55 = _genCompid2[0],
-          $compid__55 = _genCompid2[1];
+          $prevCompid__63 = _genCompid2[0],
+          $compid__63 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__56"),
+      var _genCompid3 = (0, _taroSwan.genCompid)(__prefix + "$compid__64"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__56 = _genCompid4[0],
-          $compid__56 = _genCompid4[1];
+          $prevCompid__64 = _genCompid4[0],
+          $compid__64 = _genCompid4[1];
 
       var _props = this.__props,
           _props$data = _props.data,
@@ -100,14 +100,14 @@ var CollectionResumeList = function (_Taro$Component) {
           recruitNoMoreData = _props.recruitNoMoreData;
       // 定义弹窗
 
-      var _useState = (0, _taroTt.useState)(false),
+      var _useState = (0, _taroSwan.useState)(false),
           _useState2 = _slicedToArray(_useState, 2),
           isOpened = _useState2[0],
           setIsOpened = _useState2[1];
       // 弹窗内容
 
 
-      var _useState3 = (0, _taroTt.useState)(''),
+      var _useState3 = (0, _taroSwan.useState)(''),
           _useState4 = _slicedToArray(_useState3, 2),
           modalContent = _useState4[0],
           setModalContent = _useState4[1];
@@ -117,7 +117,7 @@ var CollectionResumeList = function (_Taro$Component) {
       var onHandleClick = function onHandleClick(type, uuid) {
         // 1 审核中 2 通过 0 失败
         if (type == '2') {
-          _taroTt2.default.navigateTo({
+          _taroSwan2.default.navigateTo({
             url: "/pages/resume/detail/index?uuid=" + uuid
           });
         } else if (type == '0') {
@@ -128,40 +128,40 @@ var CollectionResumeList = function (_Taro$Component) {
           setModalContent('该信息正在人工审核中，请稍后再试');
         }
       };
-      var anonymousState__temp = (0, _taroTt.internal_inline_style)(bottom ? '' : 'padding-bottom:0');
+      var anonymousState__temp = (0, _taroSwan.internal_inline_style)(bottom ? '' : 'padding-bottom:0');
       this.anonymousFunc2 = function () {
         setIsOpened(false);
       };
-      var loopArray65 = data ? data.map(function (item, __index0) {
+      var loopArray70 = data ? data.map(function (item, __index0) {
         item = {
-          $original: (0, _taroTt.internal_get_original)(item)
+          privateOriginal: (0, _taroSwan.internal_get_original)(item)
         };
-        var _$indexKey = "hezzz" + __index0;
+        var _$indexKey = "iazzz" + __index0;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
-          return onHandleClick(item.$original.resume.check, item.$original.resume_uuid);
+          return onHandleClick(item.privateOriginal.resume.check, item.privateOriginal.resume_uuid);
         };
-        var _$indexKey2 = "hfzzz" + __index0;
+        var _$indexKey2 = "ibzzz" + __index0;
         _this2.anonymousFunc1Map[_$indexKey2] = function (e) {
           e.stopPropagation();
-          _this2.__props.onHandlerClick(item.$original.resume_uuid);
+          _this2.__props.onHandlerClick(item.privateOriginal.resume_uuid);
         };
         return {
           _$indexKey: _$indexKey,
           _$indexKey2: _$indexKey2,
-          $original: item.$original
+          privateOriginal: item.privateOriginal
         };
       }) : [];
-      !data.length && _taroTt.propsManager.set({
+      !data.length && _taroSwan.propsManager.set({
         "text": "\u6CA1\u6709\u627E\u5230\u76F8\u5173\u7684\u6570\u636E"
-      }, $compid__55, $prevCompid__55);
-      _taroTt.propsManager.set({
+      }, $compid__63, $prevCompid__63);
+      _taroSwan.propsManager.set({
         "isOpened": isOpened
-      }, $compid__56, $prevCompid__56);
+      }, $compid__64, $prevCompid__64);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
-        loopArray65: loopArray65,
-        $compid__55: $compid__55,
-        $compid__56: $compid__56,
+        loopArray70: loopArray70,
+        $compid__63: $compid__63,
+        $compid__64: $compid__64,
         data: data,
         IMGCDNURL: _index.IMGCDNURL,
         recruitNoMoreData: recruitNoMoreData,
@@ -202,13 +202,13 @@ var CollectionResumeList = function (_Taro$Component) {
   }]);
 
   return CollectionResumeList;
-}(_taroTt2.default.Component);
+}(_taroSwan2.default.Component);
 
 CollectionResumeList.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2"];
 CollectionResumeList.$$componentPath = "pages/collection/collectionResumeList/index";
 exports.default = CollectionResumeList;
 
-Component(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(CollectionResumeList));
+Component(__webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js").default.createComponent(CollectionResumeList));
 
 /***/ })
 

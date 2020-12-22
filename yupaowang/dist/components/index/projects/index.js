@@ -1,4 +1,4 @@
-(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["components/index/projects/index"],{
+(swan["webpackJsonp"] = swan["webpackJsonp"] || []).push([["components/index/projects/index"],{
 
 /***/ "./src/components/index/projects/config.ts":
 /*!*************************************************!*\
@@ -130,9 +130,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroSwan2 = _interopRequireDefault(_taroSwan);
 
 var _config = __webpack_require__(/*! ./config */ "./src/components/index/projects/config.ts");
 
@@ -156,7 +156,7 @@ var Projects = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (Projects.__proto__ || Object.getPrototypeOf(Projects)).apply(this, arguments));
 
-    _this.$usedState = ["loopArray12", "FastBarConfig"];
+    _this.$usedState = ["loopArray19", "FastBarConfig"];
     _this.anonymousFunc0Map = {};
     _this.customComponents = [];
     return _this;
@@ -166,7 +166,7 @@ var Projects = function (_Taro$Component) {
     key: '_constructor',
     value: function _constructor(props) {
       _get(Projects.prototype.__proto__ || Object.getPrototypeOf(Projects.prototype), '_constructor', this).call(this, props);
-      this.$$refs = new _taroTt2.default.RefsArray();
+      this.$$refs = new _taroSwan2.default.RefsArray();
     }
   }, {
     key: '_createData',
@@ -181,31 +181,31 @@ var Projects = function (_Taro$Component) {
       var FastbarAction = function FastbarAction(item) {
         if (item.target === 'miniProgram') {
           // * 如果是小程序就跳转其他小程序
-          _taroTt2.default.navigateToMiniProgram({ appId: item.appid, fail: function fail(err) {
+          _taroSwan2.default.navigateToMiniProgram({ appId: item.appid, fail: function fail(err) {
               return console.log(err);
             } });
         } else if (item.isout) {
           // * 不在TabBar组件中就跳转其他页面
-          _taroTt2.default.navigateTo({ url: item.url });
+          _taroSwan2.default.navigateTo({ url: item.url });
         }
       };
-      var loopArray12 = _config2.default.map(function (item, index) {
+      var loopArray19 = _config2.default.map(function (item, index) {
         item = {
-          $original: (0, _taroTt.internal_get_original)(item)
+          privateOriginal: (0, _taroSwan.internal_get_original)(item)
         };
-        var $loopState__temp2 = index + item.$original.appid;
-        var _$indexKey = "bezzz" + index;
+        var loopState__temp2 = index + item.privateOriginal.appid;
+        var _$indexKey = "cdzzz" + index;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
-          return FastbarAction(item.$original);
+          return FastbarAction(item.privateOriginal);
         };
         return {
-          $loopState__temp2: $loopState__temp2,
+          loopState__temp2: loopState__temp2,
           _$indexKey: _$indexKey,
-          $original: item.$original
+          privateOriginal: item.privateOriginal
         };
       });
       Object.assign(this.__state, {
-        loopArray12: loopArray12,
+        loopArray19: loopArray19,
         FastBarConfig: _config2.default
       });
       return this.__state;
@@ -226,13 +226,13 @@ var Projects = function (_Taro$Component) {
   }]);
 
   return Projects;
-}(_taroTt2.default.Component);
+}(_taroSwan2.default.Component);
 
 Projects.$$events = ["anonymousFunc0"];
 Projects.$$componentPath = "components/index/projects/index";
 exports.default = Projects;
 
-Component(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(Projects));
+Component(__webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js").default.createComponent(Projects));
 
 /***/ })
 

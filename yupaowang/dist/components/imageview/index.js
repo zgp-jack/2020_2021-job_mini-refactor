@@ -1,4 +1,4 @@
-(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["components/imageview/index"],{
+(swan["webpackJsonp"] = swan["webpackJsonp"] || []).push([["components/imageview/index"],{
 
 /***/ "./src/components/imageview/index.scss":
 /*!*********************************************!*\
@@ -31,9 +31,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroSwan2 = _interopRequireDefault(_taroSwan);
 
 __webpack_require__(/*! ./index.scss */ "./src/components/imageview/index.scss");
 
@@ -53,7 +53,7 @@ var ImageView = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (ImageView.__proto__ || Object.getPrototypeOf(ImageView)).apply(this, arguments));
 
-    _this.$usedState = ["loopArray37", "images", "bool", "max", "userUploadImg", "userDelImg"];
+    _this.$usedState = ["loopArray14", "images", "bool", "max", "userUploadImg", "userDelImg"];
     _this.anonymousFunc0Map = {};
     _this.anonymousFunc1Map = {};
     _this.customComponents = [];
@@ -64,7 +64,7 @@ var ImageView = function (_Taro$Component) {
     key: "_constructor",
     value: function _constructor(props) {
       _get(ImageView.prototype.__proto__ || Object.getPrototypeOf(ImageView.prototype), "_constructor", this).call(this, props);
-      this.$$refs = new _taroTt2.default.RefsArray();
+      this.$$refs = new _taroSwan2.default.RefsArray();
     }
   }, {
     key: "_createData",
@@ -86,29 +86,29 @@ var ImageView = function (_Taro$Component) {
       this.anonymousFunc2 = function () {
         return userUploadImg && userUploadImg(-1);
       };
-      var loopArray37 = images ? images.map(function (item, index) {
+      var loopArray14 = images ? images.map(function (item, index) {
         item = {
-          $original: (0, _taroTt.internal_get_original)(item)
+          privateOriginal: (0, _taroSwan.internal_get_original)(item)
         };
-        var $loopState__temp2 = images ? index + 'a' : null;
-        var _$indexKey = "djzzz" + index;
+        var loopState__temp2 = images ? index + 'a' : null;
+        var _$indexKey = "bjzzz" + index;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return userUploadImg && userUploadImg(index);
         };
-        var _$indexKey2 = "eazzz" + index;
+        var _$indexKey2 = "cazzz" + index;
         _this2.anonymousFunc1Map[_$indexKey2] = function (e) {
           e.stopPropagation();
           userDelImg && userDelImg(index);
         };
         return {
-          $loopState__temp2: $loopState__temp2,
+          loopState__temp2: loopState__temp2,
           _$indexKey: _$indexKey,
           _$indexKey2: _$indexKey2,
-          $original: item.$original
+          privateOriginal: item.privateOriginal
         };
       }) : [];
       Object.assign(this.__state, {
-        loopArray37: loopArray37,
+        loopArray14: loopArray14,
         images: images,
         bool: bool,
         max: max
@@ -148,7 +148,7 @@ var ImageView = function (_Taro$Component) {
   }]);
 
   return ImageView;
-}(_taroTt2.default.Component);
+}(_taroSwan2.default.Component);
 
 ImageView.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2"];
 ImageView.$$componentPath = "components/imageview/index";
@@ -157,7 +157,7 @@ ImageView.options = {
 };
 exports.default = ImageView;
 
-Component(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(ImageView));
+Component(__webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js").default.createComponent(ImageView));
 
 /***/ })
 

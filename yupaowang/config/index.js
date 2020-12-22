@@ -1,10 +1,17 @@
+const projects = require('../project.config')
+
 const webpack = require('webpack-bundle-analyzer')
 // * 非微信小程序标识集合
 const unweixinmins = ["baidu", "douyin"]
+// * 引入自己的打包文件 json匹配操作插件
+const initProjectBuild = require('../build')
 // * 当前编译小程序集合
 const miniflag = JSON.stringify(process.argv[2])
 const reminiflag = miniflag.replace(/\"/g, "")
-const ISWEIXIN = unweixinmins.find(item => item == reminiflag) ? false : true
+const ISWEIXIN = projects[reminiflag].type === 'config'
+
+// 根据标识去初始化自己的项目配置
+initProjectBuild(reminiflag)
 
 const config = {
   projectName: '鱼泡网',
@@ -35,6 +42,12 @@ const config = {
     MINI: miniflag,
     ISWEIXIN: ISWEIXIN
   },
+  // copy: {
+  //   patterns: [
+  //     { from: 'src/sitemap/sitemap.json', to: 'dist/sitemap.json' }
+  //   ],
+  //   options: {}
+  // },
   mini: {
     postcss: {
       pxtransform: {

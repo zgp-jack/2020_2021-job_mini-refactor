@@ -1,4 +1,4 @@
-(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["pages/resume/preview/index"],{
+(swan["webpackJsonp"] = swan["webpackJsonp"] || []).push([["pages/resume/preview/index"],{
 
 /***/ "./src/pages/resume/preview/index.scss":
 /*!*********************************************!*\
@@ -33,9 +33,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroSwan2 = _interopRequireDefault(_taroSwan);
 
 var _index = __webpack_require__(/*! ../../../utils/request/index */ "./src/utils/request/index.ts");
 
@@ -65,7 +65,7 @@ var Preview = function (_Taro$Component) {
       navigationBarTitleText: '找活名片'
     };
 
-    _this.$usedState = ["data", "loopArray107", "loopArray108", "loopArray109", "loopArray110", "IMGCDNURL", "checkpan", "checkone", "headerimg", "age", "sex", "project", "skillbooksone", "ISCANSHARE", "telephone"];
+    _this.$usedState = ["data", "loopArray99", "loopArray100", "loopArray101", "loopArray102", "IMGCDNURL", "checkpan", "checkone", "headerimg", "age", "sex", "project", "skillbooksone", "ISCANSHARE", "telephone"];
     _this.anonymousFunc0Map = {};
     _this.anonymousFunc2Map = {};
     _this.customComponents = [];
@@ -76,7 +76,7 @@ var Preview = function (_Taro$Component) {
     key: "_constructor",
     value: function _constructor(props) {
       _get(Preview.prototype.__proto__ || Object.getPrototypeOf(Preview.prototype), "_constructor", this).call(this, props);
-      this.$$refs = new _taroTt2.default.RefsArray();
+      this.$$refs = new _taroSwan2.default.RefsArray();
     }
   }, {
     key: "_createData",
@@ -90,70 +90,70 @@ var Preview = function (_Taro$Component) {
       ;
       // uuid 
 
-      var _useState = (0, _taroTt.useState)(''),
+      var _useState = (0, _taroSwan.useState)(''),
           _useState2 = _slicedToArray(_useState, 2),
           uuid = _useState2[0],
           setUuid = _useState2[1];
       // 左上角图片
 
 
-      var _useState3 = (0, _taroTt.useState)(false),
+      var _useState3 = (0, _taroSwan.useState)(false),
           _useState4 = _slicedToArray(_useState3, 2),
           checkpan = _useState4[0],
           setCheckpan = _useState4[1];
       // 图片审核中
 
 
-      var _useState5 = (0, _taroTt.useState)(false),
+      var _useState5 = (0, _taroSwan.useState)(false),
           _useState6 = _slicedToArray(_useState5, 2),
           checkone = _useState6[0],
           setCheckone = _useState6[1];
       // 头像
 
 
-      var _useState7 = (0, _taroTt.useState)(''),
+      var _useState7 = (0, _taroSwan.useState)(''),
           _useState8 = _slicedToArray(_useState7, 2),
           headerimg = _useState8[0],
           setHeaderimg = _useState8[1];
       // 性别
 
 
-      var _useState9 = (0, _taroTt.useState)('未填写'),
+      var _useState9 = (0, _taroSwan.useState)('未填写'),
           _useState10 = _slicedToArray(_useState9, 2),
           sex = _useState10[0],
           setSex = _useState10[1];
       // 年龄
 
 
-      var _useState11 = (0, _taroTt.useState)(''),
+      var _useState11 = (0, _taroSwan.useState)(''),
           _useState12 = _slicedToArray(_useState11, 2),
           age = _useState12[0],
           setAge = _useState12[1];
       // 电话
 
 
-      var _useState13 = (0, _taroTt.useState)('未填写'),
+      var _useState13 = (0, _taroSwan.useState)('未填写'),
           _useState14 = _slicedToArray(_useState13, 2),
           telephone = _useState14[0],
           settelephone = _useState14[1];
       // 项目
 
 
-      var _useState15 = (0, _taroTt.useState)([]),
+      var _useState15 = (0, _taroSwan.useState)([]),
           _useState16 = _slicedToArray(_useState15, 2),
           project = _useState16[0],
           setProject = _useState16[1];
       // 技能
 
 
-      var _useState17 = (0, _taroTt.useState)([]),
+      var _useState17 = (0, _taroSwan.useState)([]),
           _useState18 = _slicedToArray(_useState17, 2),
           skillbooksone = _useState18[0],
           setSkillbooksone = _useState18[1];
       // 总数据
 
 
-      var _useState19 = (0, _taroTt.useState)({
+      var _useState19 = (0, _taroSwan.useState)({
         info: {
           username: '未填写',
           authentication: '',
@@ -181,7 +181,7 @@ var Preview = function (_Taro$Component) {
           data = _useState20[0],
           setData = _useState20[1];
 
-      (0, _taroTt.useEffect)(function () {
+      (0, _taroSwan.useEffect)(function () {
         (0, _index.resumeListAction)().then(function (res) {
           if (res.errcode === 200) {
             var date = new Date();
@@ -220,7 +220,7 @@ var Preview = function (_Taro$Component) {
               }
             }
           } else {
-            _taroTt2.default.showModal({
+            _taroSwan2.default.showModal({
               title: '温馨提示',
               content: res.errmsg,
               showCancel: false
@@ -230,100 +230,100 @@ var Preview = function (_Taro$Component) {
         });
       }, []);
       // 设置分享
-      (0, _taroTt.useShareAppMessage)(function () {
+      (0, _taroSwan.useShareAppMessage)(function () {
         return _extends({}, (0, _index2.getUserShareMessage)(), {
           path: "/pages/resume/detail?uuid=" + uuid
         });
       });
       // 点击图片
       var handleImg = function handleImg(e) {
-        _taroTt2.default.previewImage({
+        _taroSwan2.default.previewImage({
           current: e,
           urls: [e]
         });
       };
       this.anonymousFunc1 = function () {
-        return _taroTt2.default.navigateTo({ url: "/pages/resume/projectList/index?preview=1" });
+        return _taroSwan2.default.navigateTo({ url: "/pages/resume/projectList/index?preview=1" });
       };
       this.anonymousFunc4 = function () {
-        return _taroTt2.default.navigateTo({ url: "/pages/resume/skillList/index?preview=1" });
+        return _taroSwan2.default.navigateTo({ url: "/pages/resume/skillList/index?preview=1" });
       };
-      var loopArray107 = data.info.miniInfoOccupations.length ? data.info.miniInfoOccupations.map(function (v, i) {
+      var loopArray99 = data.info.miniInfoOccupations.length ? data.info.miniInfoOccupations.map(function (v, i) {
         v = {
-          $original: (0, _taroTt.internal_get_original)(v)
+          privateOriginal: (0, _taroSwan.internal_get_original)(v)
         };
-        var $loopState__temp2 = data.info.miniInfoOccupations.length ? i + i : null;
+        var loopState__temp2 = data.info.miniInfoOccupations.length ? i + i : null;
         return {
-          $loopState__temp2: $loopState__temp2,
-          $original: v.$original
+          loopState__temp2: loopState__temp2,
+          privateOriginal: v.privateOriginal
         };
       }) : [];
-      var loopArray108 = data.introduces.tags.length ? data.introduces.tags.map(function (v, i) {
+      var loopArray100 = data.introduces.tags.length ? data.introduces.tags.map(function (v, i) {
         v = {
-          $original: (0, _taroTt.internal_get_original)(v)
+          privateOriginal: (0, _taroSwan.internal_get_original)(v)
         };
-        var $loopState__temp4 = data.introduces.tags.length ? i + i : null;
+        var loopState__temp4 = data.introduces.tags.length ? i + i : null;
         return {
-          $loopState__temp4: $loopState__temp4,
-          $original: v.$original
+          loopState__temp4: loopState__temp4,
+          privateOriginal: v.privateOriginal
         };
       }) : [];
-      var loopArray109 = data.project.length ? project.map(function (item, i) {
+      var loopArray101 = data.project.length ? project.map(function (item, i) {
         item = {
-          $original: (0, _taroTt.internal_get_original)(item)
+          privateOriginal: (0, _taroSwan.internal_get_original)(item)
         };
-        var $loopState__temp6 = data.project.length ? i + i : null;
-        var $anonymousCallee__13 = data.project.length ? item.$original.image.map(function (v, i) {
+        var loopState__temp6 = data.project.length ? i + i : null;
+        var anonymousCallee__11 = data.project.length ? item.privateOriginal.image.map(function (v, i) {
           v = {
-            $original: (0, _taroTt.internal_get_original)(v)
+            privateOriginal: (0, _taroSwan.internal_get_original)(v)
           };
-          var $loopState__temp8 = data.project.length ? i + i : null;
-          var _$indexKey = "baizz" + i + "-" + i;
+          var loopState__temp8 = data.project.length ? i + i : null;
+          var _$indexKey = "jizzz" + i + "-" + i;
           _this2.anonymousFunc0Map[_$indexKey] = function () {
-            return handleImg(v.$original);
+            return handleImg(v.privateOriginal);
           };
           return {
-            $loopState__temp8: $loopState__temp8,
+            loopState__temp8: loopState__temp8,
             _$indexKey: _$indexKey,
-            $original: v.$original
+            privateOriginal: v.privateOriginal
           };
         }) : [];
         return {
-          $loopState__temp6: $loopState__temp6,
-          $anonymousCallee__13: $anonymousCallee__13,
-          $original: item.$original
+          loopState__temp6: loopState__temp6,
+          anonymousCallee__11: anonymousCallee__11,
+          privateOriginal: item.privateOriginal
         };
       }) : [];
-      var loopArray110 = data.certificates.length ? skillbooksone.map(function (item, __index3) {
+      var loopArray102 = data.certificates.length ? skillbooksone.map(function (item, __index3) {
         item = {
-          $original: (0, _taroTt.internal_get_original)(item)
+          privateOriginal: (0, _taroSwan.internal_get_original)(item)
         };
-        var $anonymousCallee__14 = data.certificates.length ? item.$original.image.map(function (v, i) {
+        var anonymousCallee__12 = data.certificates.length ? item.privateOriginal.image.map(function (v, i) {
           v = {
-            $original: (0, _taroTt.internal_get_original)(v)
+            privateOriginal: (0, _taroSwan.internal_get_original)(v)
           };
-          var $loopState__temp10 = data.certificates.length ? i + i : null;
-          var _$indexKey2 = "bajzz" + __index3 + "-" + i;
+          var loopState__temp10 = data.certificates.length ? i + i : null;
+          var _$indexKey2 = "jjzzz" + __index3 + "-" + i;
           _this2.anonymousFunc2Map[_$indexKey2] = function () {
-            return handleImg(v.$original);
+            return handleImg(v.privateOriginal);
           };
           return {
-            $loopState__temp10: $loopState__temp10,
+            loopState__temp10: loopState__temp10,
             _$indexKey2: _$indexKey2,
-            $original: v.$original
+            privateOriginal: v.privateOriginal
           };
         }) : [];
         return {
-          $anonymousCallee__14: $anonymousCallee__14,
-          $original: item.$original
+          anonymousCallee__12: anonymousCallee__12,
+          privateOriginal: item.privateOriginal
         };
       }) : [];
       Object.assign(this.__state, {
         data: data,
-        loopArray107: loopArray107,
-        loopArray108: loopArray108,
-        loopArray109: loopArray109,
-        loopArray110: loopArray110,
+        loopArray99: loopArray99,
+        loopArray100: loopArray100,
+        loopArray101: loopArray101,
+        loopArray102: loopArray102,
         IMGCDNURL: _index3.IMGCDNURL,
         checkpan: checkpan,
         checkone: checkone,
@@ -376,14 +376,14 @@ var Preview = function (_Taro$Component) {
   }]);
 
   return Preview;
-}(_taroTt2.default.Component);
+}(_taroSwan2.default.Component);
 
 Preview.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc4"];
 Preview.$$componentPath = "pages/resume/preview/index";
 Preview.config = { navigationBarTitleText: '找活名片' };
 exports.default = Preview;
 
-Page(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(Preview, true));
+Page(__webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js").default.createComponent(Preview, true));
 
 /***/ })
 

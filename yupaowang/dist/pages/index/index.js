@@ -1,4 +1,4 @@
-(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["pages/index/index"],{
+(swan["webpackJsonp"] = swan["webpackJsonp"] || []).push([["pages/index/index"],{
 
 /***/ "./src/config/pages/index.ts":
 /*!***********************************!*\
@@ -18,19 +18,21 @@ var _IndexTabbarConfig;
 
 var _tabbar = __webpack_require__(/*! ../../constants/tabbar */ "./src/constants/tabbar.ts");
 
+var _index = __webpack_require__(/*! ../index */ "./src/config/index.ts");
+
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 var IndexTabbarConfig = (_IndexTabbarConfig = {}, _defineProperty(_IndexTabbarConfig, _tabbar.HOME, {
-  navigationBarTitleText: '首页',
+  navigationBarTitleText: _index.PAGETITLE + '\u5EFA\u7B51\u62DB\u8058|\u5EFA\u7B51\u4EBA\u624D|\u5DE5\u5730\u62DB\u5DE5|\u65BD\u5DE5\u961F\u627E\u6D3B|\u5DE5\u7A0B\u4FE1\u606F',
   enablePullDownRefresh: true
 }), _defineProperty(_IndexTabbarConfig, _tabbar.RECRUIT, {
-  navigationBarTitleText: '招工',
+  navigationBarTitleText: '建筑招工平台|建筑工程承包|工地招聘建筑施工队|招聘建筑工人|招聘建筑工程队信息-鱼泡网',
   enablePullDownRefresh: true
 }), _defineProperty(_IndexTabbarConfig, _tabbar.RESUME, {
-  navigationBarTitleText: '找活',
+  navigationBarTitleText: '建筑人才|建筑工人|工程队伍|建筑普工|施工队伍|建筑班组|建筑队|工人找活|工人简历库-鱼泡网',
   enablePullDownRefresh: true
 }), _defineProperty(_IndexTabbarConfig, _tabbar.MEMBER, {
-  navigationBarTitleText: '会员',
+  navigationBarTitleText: '会员中心-鱼泡网',
   enablePullDownRefresh: true,
   navigationBarBackgroundColor: '#2179f6'
 }), _IndexTabbarConfig);
@@ -71,9 +73,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroSwan2 = _interopRequireDefault(_taroSwan);
 
 var _tabbar = __webpack_require__(/*! ../../constants/tabbar */ "./src/constants/tabbar.ts");
 
@@ -117,7 +119,7 @@ var Index = function (_Taro$Component) {
       backgroundTextStyle: "dark"
     };
 
-    _this.$usedState = ["$compid__7", "$compid__8", "$compid__9", "tabKey", "HOME", "RECRUIT", "RESUME", "MEMBER"];
+    _this.$usedState = ["$compid__16", "$compid__17", "$compid__18", "tabKey", "HOME", "RECRUIT", "RESUME", "MEMBER"];
     _this.customComponents = ["Home", "Recruit", "Resume", "Member", "Tabbar"];
     return _this;
   }
@@ -126,7 +128,7 @@ var Index = function (_Taro$Component) {
     key: '_constructor',
     value: function _constructor(props) {
       _get(Index.prototype.__proto__ || Object.getPrototypeOf(Index.prototype), '_constructor', this).call(this, props);
-      this.$$refs = new _taroTt2.default.RefsArray();
+      this.$$refs = new _taroSwan2.default.RefsArray();
     }
   }, {
     key: '_createData',
@@ -137,29 +139,38 @@ var Index = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__7"),
+      var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__16"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__7 = _genCompid2[0],
-          $compid__7 = _genCompid2[1];
+          $prevCompid__16 = _genCompid2[0],
+          $compid__16 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroTt.genCompid)(__prefix + "$compid__8"),
+      var _genCompid3 = (0, _taroSwan.genCompid)(__prefix + "$compid__17"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__8 = _genCompid4[0],
-          $compid__8 = _genCompid4[1];
+          $prevCompid__17 = _genCompid4[0],
+          $compid__17 = _genCompid4[1];
 
-      var _genCompid5 = (0, _taroTt.genCompid)(__prefix + "$compid__9"),
+      var _genCompid5 = (0, _taroSwan.genCompid)(__prefix + "$compid__18"),
           _genCompid6 = _slicedToArray(_genCompid5, 2),
-          $prevCompid__9 = _genCompid6[0],
-          $compid__9 = _genCompid6[1];
+          $prevCompid__18 = _genCompid6[0],
+          $compid__18 = _genCompid6[1];
 
       var dispatch = (0, _redux.useDispatch)();
       // 初始化页面参数
-      var router = (0, _taroTt.useRouter)();
+      var router = (0, _taroSwan.useRouter)();
+      // type 类型(会重置tabbar)，默认招工列表 refId 邀请人id 谁分享出去就是谁 classify 工种参数 area 地区参数 listtype 类型 keywords关键词
       var _router$params = router.params,
           _router$params$type = _router$params.type,
           type = _router$params$type === undefined ? _tabbar.RECRUIT : _router$params$type,
           _router$params$refId = _router$params.refId,
-          refId = _router$params$refId === undefined ? '' : _router$params$refId;
+          refId = _router$params$refId === undefined ? '' : _router$params$refId,
+          _router$params$classi = _router$params.classify,
+          classify = _router$params$classi === undefined ? '' : _router$params$classi,
+          _router$params$area = _router$params.area,
+          area = _router$params$area === undefined ? '' : _router$params$area,
+          _router$params$listty = _router$params.listtype,
+          listtype = _router$params$listty === undefined ? '' : _router$params$listty,
+          _router$params$keywor = _router$params.keywords,
+          keywords = _router$params$keywor === undefined ? '' : _router$params$keywor;
       // 获取当前tabbar高亮值
 
       var tabKey = (0, _redux.useSelector)(function (state) {
@@ -171,45 +182,56 @@ var Index = function (_Taro$Component) {
       });
       // 标记是否触发下拉刷新
 
-      var _useState = (0, _taroTt.useState)(0),
+      var _useState = (0, _taroSwan.useState)(0),
           _useState2 = _slicedToArray(_useState, 2),
           pulldown = _useState2[0],
           setPulldown = _useState2[1];
       // 会员中心是当前页面的一个组件 所以没有判断页面显示的功能 这里传值给会员中心促使改变刷新数据
 
 
-      var _useState3 = (0, _taroTt.useState)(0),
+      var _useState3 = (0, _taroSwan.useState)(0),
           _useState4 = _slicedToArray(_useState3, 2),
           showIndex = _useState4[0],
           setShowIndex = _useState4[1];
       // 监听页面下拉刷新
 
 
-      (0, _taroTt.usePullDownRefresh)(function () {
+      (0, _taroSwan.usePullDownRefresh)(function () {
         setPulldown(pulldown + 1);
       });
       // 设置当前页面分享
-      (0, _taroTt.useShareAppMessage)(function () {
+      (0, _taroSwan.useShareAppMessage)(function () {
         var path = _index3.INDEXPATH + "?type=" + tabKey;
         return _extends({}, (0, _index4.getUserShareMessage)(), {
           path: userId ? path + "&refId=" + userId : path
         });
       });
       // 当页面显示的 时候 触发
-      (0, _taroTt.useDidShow)(function () {
+      (0, _taroSwan.useDidShow)(function () {
+        // 显示的时候重置当前标题
         if (tabKey) {
-          _taroTt2.default.setNavigationBarTitle({ title: _index2.default[tabKey].navigationBarTitleText });
+          _taroSwan2.default.setNavigationBarTitle({ title: _index2.default[tabKey].navigationBarTitleText });
         }
+        // 由于index容纳了home/recruit/resume/member 4个页面，在需要使用当前页面展示的时候监听当前字段
         setShowIndex(showIndex + 1);
+        console.log(type, classify, area, listtype, keywords);
+        // 设置百度seo相关信息
+        if (_index3.SERIES == _index3.BAIDUSERIES) {
+          _taroSwan2.default.setPageInfo({
+            title: '鱼泡网-建筑招聘|建筑人才|工地招工|施工队找活|工程信息',
+            description: '鱼泡网每日发布建筑招聘、建筑人才、工地招工、工地招人、找施工队等工程信息，方便建筑工人找活、找项目，为建筑劳务公司寻找优秀的建筑工人、建筑人才、建筑班组、施工队。',
+            keywords: '鱼泡网,建筑招聘,建筑人才,工地招工,施工队找活,工程信息'
+          });
+        }
       });
       // 进入页面的时候 ，如果有邀请人，我们将邀请人id存入缓存中， 等待新用户授权时使用
-      (0, _taroTt.useEffect)(function () {
+      (0, _taroSwan.useEffect)(function () {
         if (refId) {
-          _taroTt2.default.setStorageSync(_store.REFID, refId);
+          _taroSwan2.default.setStorageSync(_store.REFID, refId);
         }
       }, [refId]);
       // 初始化底部显示页面
-      (0, _taroTt.useEffect)(function () {
+      (0, _taroSwan.useEffect)(function () {
         if ((0, _tabbar.typeInTabbar)(type)) {
           dispatch((0, _tabbar2.changeTabbar)(type));
         } else {
@@ -217,30 +239,30 @@ var Index = function (_Taro$Component) {
         }
       }, [type]);
       // 初始化页面配置信息
-      (0, _taroTt.useEffect)(function () {
+      (0, _taroSwan.useEffect)(function () {
         if (!tabKey) {
           return;
         }
         var data = _index2.default[tabKey];
-        _taroTt2.default.setNavigationBarTitle({ title: data.navigationBarTitleText });
-        _taroTt2.default.setNavigationBarColor({
+        _taroSwan2.default.setNavigationBarTitle({ title: data.navigationBarTitleText });
+        _taroSwan2.default.setNavigationBarColor({
           backgroundColor: data.navigationBarBackgroundColor || '#0099ff',
           frontColor: '#ffffff'
         });
       }, [tabKey]);
-      tabKey === _tabbar.HOME && _taroTt.propsManager.set({
+      tabKey === _tabbar.HOME && _taroSwan.propsManager.set({
         "homeIndex": showIndex
-      }, $compid__7, $prevCompid__7);
-      tabKey === _tabbar.MEMBER && _taroTt.propsManager.set({
+      }, $compid__16, $prevCompid__16);
+      tabKey === _tabbar.MEMBER && _taroSwan.propsManager.set({
         "memberIndex": showIndex
-      }, $compid__8, $prevCompid__8);
-      _taroTt.propsManager.set({
+      }, $compid__17, $prevCompid__17);
+      _taroSwan.propsManager.set({
         "notredirect": true
-      }, $compid__9, $prevCompid__9);
+      }, $compid__18, $prevCompid__18);
       Object.assign(this.__state, {
-        $compid__7: $compid__7,
-        $compid__8: $compid__8,
-        $compid__9: $compid__9,
+        $compid__16: $compid__16,
+        $compid__17: $compid__17,
+        $compid__18: $compid__18,
         tabKey: tabKey,
         HOME: _tabbar.HOME,
         RECRUIT: _tabbar.RECRUIT,
@@ -252,14 +274,14 @@ var Index = function (_Taro$Component) {
   }]);
 
   return Index;
-}(_taroTt2.default.Component);
+}(_taroSwan2.default.Component);
 
 Index.$$events = [];
 Index.$$componentPath = "pages/index/index";
 Index.config = { navigationBarTitleText: '', enablePullDownRefresh: false, navigationBarBackgroundColor: '#0099ff', navigationBarTextStyle: 'white', backgroundTextStyle: "dark" };
 exports.default = Index;
 
-Page(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(Index, true));
+Page(__webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js").default.createComponent(Index, true));
 
 /***/ })
 

@@ -1,4 +1,4 @@
-(tt["webpackJsonp"] = tt["webpackJsonp"] || []).push([["components/lists/resume/index"],{
+(swan["webpackJsonp"] = swan["webpackJsonp"] || []).push([["components/lists/resume/index"],{
 
 /***/ "./src/components/lists/resume/index.scss":
 /*!************************************************!*\
@@ -31,9 +31,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-var _taroTt = __webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js");
+var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
 
-var _taroTt2 = _interopRequireDefault(_taroTt);
+var _taroSwan2 = _interopRequireDefault(_taroSwan);
 
 var _index = __webpack_require__(/*! ../../../config/index */ "./src/config/index.ts");
 
@@ -57,7 +57,7 @@ var ResumeList = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (ResumeList.__proto__ || Object.getPrototypeOf(ResumeList)).apply(this, arguments));
 
-    _this.$usedState = ["anonymousState__temp", "loopArray16", "$compid__17", "data", "IMGCDNURL", "hasMore", "bottom"];
+    _this.$usedState = ["anonymousState__temp", "loopArray22", "$compid__26", "data", "IMGCDNURL", "hasMore", "bottom"];
     _this.anonymousFunc0Map = {};
     _this.customComponents = ["Nodata"];
     return _this;
@@ -67,7 +67,7 @@ var ResumeList = function (_Taro$Component) {
     key: "_constructor",
     value: function _constructor(props) {
       _get(ResumeList.prototype.__proto__ || Object.getPrototypeOf(ResumeList.prototype), "_constructor", this).call(this, props);
-      this.$$refs = new _taroTt2.default.RefsArray();
+      this.$$refs = new _taroSwan2.default.RefsArray();
     }
   }, {
     key: "_createData",
@@ -80,10 +80,10 @@ var ResumeList = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroTt.genCompid)(__prefix + "$compid__17"),
+      var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__26"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__17 = _genCompid2[0],
-          $compid__17 = _genCompid2[1];
+          $prevCompid__26 = _genCompid2[0],
+          $compid__26 = _genCompid2[1];
 
       var _props = this.__props,
           data = _props.data,
@@ -94,55 +94,57 @@ var ResumeList = function (_Taro$Component) {
       // 用户页面跳转
 
       var userRouteJump = function userRouteJump(uuid) {
-        var location = _taroTt2.default.getStorageSync(_store.UserLocation);
+        var location = _taroSwan2.default.getStorageSync(_store.UserLocation);
         location = location ? location = location.split(',').reverse() : '';
-        _taroTt2.default.navigateTo({
+        _taroSwan2.default.navigateTo({
           url: "/pages/resume/detail/index?uuid=" + uuid + "&location=" + location
         });
       };
-      var anonymousState__temp = (0, _taroTt.internal_inline_style)(bottom ? '' : 'padding-bottom:0');
-      var loopArray16 = data ? data.map(function (item, di) {
+      var anonymousState__temp = (0, _taroSwan.internal_inline_style)(bottom ? '' : 'padding-bottom:0');
+      var loopArray22 = data ? data.map(function (item, di) {
         item = {
-          $original: (0, _taroTt.internal_get_original)(item)
+          privateOriginal: (0, _taroSwan.internal_get_original)(item)
         };
-        var $loopState__temp3 = data ? di + "-" + di : null;
-        var $anonymousCallee__2 = item.$original ? item.$original.map(function (d, __index0) {
+        var loopState__temp3 = data ? di + "-" + di : null;
+        var anonymousCallee__4 = item.privateOriginal ? item.privateOriginal.map(function (d, __index0) {
           d = {
-            $original: (0, _taroTt.internal_get_original)(d)
+            privateOriginal: (0, _taroSwan.internal_get_original)(d)
           };
-          var _$indexKey = "bjzzz" + di + "-" + __index0;
+          var _$indexKey = "chzzz" + di + "-" + __index0;
           _this2.anonymousFunc0Map[_$indexKey] = function () {
-            return userRouteJump(d.$original.uuid);
+            return userRouteJump(d.privateOriginal.uuid);
           };
-          var $anonymousCallee__1 = item.$original ? d.$original.occupations.map(function (i, ii) {
+          var loopState__temp7 = item.privateOriginal ? _index.REPLACEWEIXINTEXT ? d.privateOriginal.introduce.replace(_index.FILTERWEIXINREG, '') : d.privateOriginal.introduce : null;
+          var anonymousCallee__3 = item.privateOriginal ? d.privateOriginal.occupations.map(function (i, ii) {
             i = {
-              $original: (0, _taroTt.internal_get_original)(i)
+              privateOriginal: (0, _taroSwan.internal_get_original)(i)
             };
-            var $loopState__temp5 = item.$original ? d.$original.id + "-" + ii : null;
+            var loopState__temp5 = item.privateOriginal ? d.privateOriginal.id + "-" + ii : null;
             return {
-              $loopState__temp5: $loopState__temp5,
-              $original: i.$original
+              loopState__temp5: loopState__temp5,
+              privateOriginal: i.privateOriginal
             };
           }) : [];
           return {
             _$indexKey: _$indexKey,
-            $anonymousCallee__1: $anonymousCallee__1,
-            $original: d.$original
+            loopState__temp7: loopState__temp7,
+            anonymousCallee__3: anonymousCallee__3,
+            privateOriginal: d.privateOriginal
           };
         }) : [];
         return {
-          $loopState__temp3: $loopState__temp3,
-          $anonymousCallee__2: $anonymousCallee__2,
-          $original: item.$original
+          loopState__temp3: loopState__temp3,
+          anonymousCallee__4: anonymousCallee__4,
+          privateOriginal: item.privateOriginal
         };
       }) : [];
-      data && data[0] && !data[0].length && _taroTt.propsManager.set({
+      data && data[0] && !data[0].length && _taroSwan.propsManager.set({
         "text": "\u6682\u65E0\u76F8\u5173\u6570\u636E"
-      }, $compid__17, $prevCompid__17);
+      }, $compid__26, $prevCompid__26);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
-        loopArray16: loopArray16,
-        $compid__17: $compid__17,
+        loopArray22: loopArray22,
+        $compid__26: $compid__26,
         data: data,
         IMGCDNURL: _index.IMGCDNURL,
         hasMore: hasMore
@@ -165,13 +167,13 @@ var ResumeList = function (_Taro$Component) {
   }]);
 
   return ResumeList;
-}(_taroTt2.default.Component);
+}(_taroSwan2.default.Component);
 
 ResumeList.$$events = ["anonymousFunc0"];
 ResumeList.$$componentPath = "components/lists/resume/index";
 exports.default = ResumeList;
 
-Component(__webpack_require__(/*! @tarojs/taro-tt */ "./node_modules/@tarojs/taro-tt/index.js").default.createComponent(ResumeList));
+Component(__webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js").default.createComponent(ResumeList));
 
 /***/ })
 
