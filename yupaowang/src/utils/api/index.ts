@@ -232,3 +232,6 @@ export const memberTurntable: string = REQUESTURL + 'member/turntable/'
 export const getBaiduTpOrderId: string = REQUESTURL + 'pay/baidu-order/'
 // 校验百度支付是否成功
 export const checkBaiduTpOrderId: string = REQUESTURL + 'pay/query-order-status/'
+// 获取热门城市
+export const hotAreas = REQUESTURL + 'resumes/hot-areas/';
+

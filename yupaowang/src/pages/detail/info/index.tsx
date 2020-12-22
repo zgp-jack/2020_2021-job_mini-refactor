@@ -49,7 +49,7 @@ interface DataType {
 }
 export default function DetailInfoPage() {
   const router: Taro.RouterInfo = useRouter()
-  let { id = '', refId = '' } = router.params;
+  let { id = '', refId = '',type } = router.params;
   // 获取userInfo
   let userInfo: User = Taro.getStorageSync(UserInfo)
   const [data, setData] = useState<DataType>({
@@ -537,7 +537,7 @@ export default function DetailInfoPage() {
         return false
       }
     }
-    userRouteJump(`/pages/topping/index?id=${data.id}`)
+    userRouteJump(`/pages/newtopping/recRang/index?defaultTopArea=${data.area_id}&job_id=${data.id}`)
   }
   // 查看更多招工信息
   const seeMoreRecruit = () => {
@@ -551,8 +551,8 @@ export default function DetailInfoPage() {
 
 
   return(
-    <View className='detailInfo'>
-      <WechatNotice />
+    <View className={type ? 'detailInfoList' :'detailInfo'}>
+      <WechatNotice type={1}/>
       <View className='detailInfo-head'>
         <View className='detailInfo-head-titleBox'>
           <View className='detailInfo-head-titleBox-title'>{data.title}</View>
@@ -623,7 +623,7 @@ export default function DetailInfoPage() {
       </View>}
 
       {/* 返回首页 */}
-      <View className='see-recruit-list-btn' onClick={()=>seeMoreRecruit()}>查看更多招工信息</View>  
+      {/* <View className='see-recruit-list-btn' onClick={()=>seeMoreRecruit()}>查看更多招工信息</View>   */}
 
       {/* 判断是否是自己发布的招工 停止招工状态 
         判断是否查看完成电话 
@@ -645,7 +645,7 @@ export default function DetailInfoPage() {
             <View className='detailInfo-edit-list'>修改</View>
             <View className={stopHiring || (data.is_end === 2) ? 'detailInfo-edit-list-none' : 'detailInfo-edit-list'}>修改</View>
                 <View className={stopHiring || (data.is_end === 1) ? 'detailInfo-edit-list' : 'detailInfo-edit-list-none'} onClick={handleStatus}>停止招工</View>
-              {data.has_top && data.top_info.is_top == '1' ? <View className='detailInfo-edit-list-edit' onClick={() => userRouteJump(`/pages/topping/index?id=${data.id}&type=1`)}>修改置顶</View> : (stopHiring || (data.is_end === 2) ? <View className='detailInfo-edit-list' onClick={handleStatus}>重新招工</View> : <View className='detailInfo-edit-list' onClick={() => handleTopping(data)
+                {data.has_top && data.top_info.is_top == '1' ? <View className='detailInfo-edit-list-edit' onClick={() => userRouteJump(`/pages/newtopping/recRang/index?job_id=${data.id}`)}>修改置顶</View> : (stopHiring || (data.is_end === 2) ? <View className='detailInfo-edit-list' onClick={handleStatus}>重新招工</View> : <View className='detailInfo-edit-list' onClick={() => handleTopping(data)
                 }>我要置顶</View>)}
           </View>
           </View> : 
@@ -690,13 +690,13 @@ export default function DetailInfoPage() {
       {resCode === 'own' ? 
         <View>
           {recommendRe.length && 
-            <CollectionRecruitList data={recommendRe} type={2} areasId={areasId} occupations={occupations} jobIds={jobIds}/>
+            <CollectionRecruitList data={recommendRe} type={2} areasId={areasId} occupations={occupations} jobIds={jobIds} detailList={true}/>
           }
         </View>
       :
         <View>
           {recommend.length && 
-            <CollectionRecruitList data={recommend} type={1} areasId={areasId} occupations={occupations} jobIds={jobIds}/>
+            <CollectionRecruitList data={recommend} type={1} areasId={areasId} occupations={occupations} jobIds={jobIds} detailList={true}/>
           }
         </View>
       }

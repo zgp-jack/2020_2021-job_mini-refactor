@@ -8,10 +8,11 @@ interface PROPS {
   occupations?:string,
   areasId?:number,
   type:number,
+  detailList?:boolean
 }
 
 // 找活
-export default function ResumeListPage({ data = [], occupations, areasId, type }: PROPS) {
+export default function ResumeListPage({ data = [], occupations, areasId, type, detailList }: PROPS) {
   // 用户页面跳转
   const userRouteJump = (url: string) => {
     Taro.navigateTo({
@@ -25,7 +26,7 @@ export default function ResumeListPage({ data = [], occupations, areasId, type }
     })
   }
   return(
-    <View className='resume-list-container'>
+    <View className={detailList ? 'resume-list-container' : 'resume-list-container pl150'}>
       <View className='resumeDetail-recommend'>
         <View className='resumeDetail-recommend-top'>
           <Text className='resumeDetail-recommend-top-text'>附近适合您的工人</Text></View>

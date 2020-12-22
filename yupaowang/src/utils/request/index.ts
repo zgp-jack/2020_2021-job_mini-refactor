@@ -835,7 +835,7 @@ export function recommendListAction(obj): Promise<Inter.recommendList> {
 }
 
 // 找活详情里推荐列表
-export function detailsRecommendAction(obj): Promise<Inter.detailsRecommendList> {
+export function detailsRecommendAction(obj): Promise<Inter.detailsRecommendListType> {
   return doRequestAction({
     url: api.detailsRecommendListUrl,
     method: 'POST',
@@ -1037,11 +1037,12 @@ export function resumesTopAreasAction(): Promise<Inter.resumesTopAreas> {
 }
 
 // 找活置顶内容
-export function resumesTopConfigAction(): Promise<Inter.resumesTopConfig> {
+export function resumesTopConfigAction(data): Promise<Inter.resumesTopConfig> {
   return doRequestAction({
     url: api.resumesTopConfigUrl,
     method: 'POST',
     failToast: true,
+    data,
   })
 }
 
@@ -1276,5 +1277,12 @@ export function checkBaiduOrderStatusAction(data): Promise<Inter.BaiduOrderStatu
     method: 'POST',
     data,
     loading: false
+  })
+}
+// 获取热门城市
+export function hotAreas(): Promise<Inter.hotAreasType> {
+  return doRequestAction({
+    url: api.hotAreas,
+    method: 'POST',
   })
 }

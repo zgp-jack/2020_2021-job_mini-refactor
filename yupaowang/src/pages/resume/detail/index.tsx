@@ -704,7 +704,7 @@ export default function ResumeDetail() {
         </View>
         }
       {/* 返回首页 */}
-      <View className='see-recruit-list-btn' onClick={() => seeMoreResume()}>查看更多找活信息</View> 
+      {/* <View className='see-recruit-list-btn' onClick={() => seeMoreResume()}>查看更多找活信息</View>  */}
     </View>
     </View>
   )

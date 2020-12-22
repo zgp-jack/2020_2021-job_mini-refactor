@@ -116,7 +116,7 @@ export default function UsedInfo(){
         </View>
       </View>
       {/* 返回首页 */}
-      <View className='see-recruit-list-btn' onClick={() => seeMoreUsed()}>查看更多二手交易信息</View> 
+      {/* <View className='see-recruit-list-btn' onClick={() => seeMoreUsed()}>查看更多二手交易信息</View>  */}
     </View>
   )
 }

@@ -12,9 +12,10 @@ interface PROPS {
   areasId?:number,
   type:number,
   jobIds:number,
+  detailList?:boolean
 }
 // 招工
-export default function RecruitListPage({ data = [], occupations, areasId, type, jobIds }:PROPS) {
+export default function RecruitListPage({ data = [], occupations, areasId, type, jobIds, detailList }:PROPS) {
   // 用户页面跳转
   const userRouteJump = (url: string) => {
     Taro.navigateTo({

@@ -22,3 +22,5 @@ export const SearchList: string = 'searchList'
 export const UserLocation: string = 'userLocation'
 // 找活名片info信息
 export const Introinfo: string = 'introinfo'
+// 搜索历史
+export const HistoryInfo: string = 'historyInfo'
