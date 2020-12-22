@@ -128,6 +128,7 @@ export default function DetailInfoPage() {
     // 用户没有认证
     let result = login ? jobInfoAction(params) : jobNoUserInfoAction(params)
     result.then(res => {
+      console.log('then')
       detailGetTelAction(res,()=>{
         setRefresh(false)
         setData(res.result);
@@ -137,7 +138,7 @@ export default function DetailInfoPage() {
           title: res.result.title
         })
         if (SERIES == BAIDUSERIES){
-          let keywords = res.result.classifyName[0]
+          let keywords = res.result.classifyName[0] || ''
           let split_keywords: string = keywords.split('/').map(item => `招${item}师傅`).join(',')
           Taro.setPageInfo({
             title: res.result.title,
@@ -153,7 +154,8 @@ export default function DetailInfoPage() {
           setResCode(res.errcode)
         }
       })
-    }).catch(()=>{
+    }).catch(() => {
+      console.log('catch')
       ShowActionModal({
         msg: '网络异常，请重新进入',
         success: () => {
@@ -228,6 +230,7 @@ export default function DetailInfoPage() {
 
   // 处理获取电话号码的不同状态码
   const detailGetTelAction = (res,callback) => {
+    console.log(res.errcode)
     if (res.errcode == 'ok' || res.errcode == 'end' || res.errcode == 'ajax') {
       callback&&callback()
     } else if (res.errcode == 'end') {
