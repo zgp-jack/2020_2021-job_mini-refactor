@@ -1,6 +1,6 @@
 import Taro, { Config, useState, useRouter, useDidShow, useEffect, useShareAppMessage } from '@tarojs/taro'
 import { View, Text, Image, Icon, Button } from '@tarojs/components'
-import { jobInfoAction, publishComplainAction, jobGetTelAction, recruitListCancelCollectionAction, jobEndStatusAction, jobUpdateTopStatusAction, jobNoUserInfoAction, jobRecommendListAction, detailsRecommendAction } from '../../../utils/request/index'
+import { jobInfoAction, publishComplainAction, jobGetTelAction, recruitListCancelCollectionAction, jobEndStatusAction, jobUpdateTopStatusAction, jobNoUserInfoAction, jobDetailsListAction, detailsRecommendAction } from '../../../utils/request/index'
 import WechatNotice from '../../../components/wechat'
 import { IMGCDNURL, SERVERPHONE, AUTHPATH, CODEAUTHPATH, ISCANSHARE, DOWNLOADAPP, SHOWOFFICIALACCOUNT, REPLACEWEIXINTEXT, FILTERWEIXINREG, DOWNLOADAPPPATH, SERIES, QQSERIES ,BAIDUSERIES, INDEXPATH } from '../../../config'
 import { useSelector } from '@tarojs/redux'
@@ -136,6 +136,7 @@ export default function DetailInfoPage() {
     // 用户没有认证
     let result = login ? jobInfoAction(params) : jobNoUserInfoAction(params)
     result.then(res => {
+      console.log('then')
       detailGetTelAction(res,()=>{
         setRefresh(false)
         setData(res.result);
@@ -145,7 +146,7 @@ export default function DetailInfoPage() {
           title: res.result.title
         })
         if (SERIES == BAIDUSERIES){
-          let keywords = res.result.classifyName[0]
+          let keywords = res.result.classifyName[0] || ''
           let split_keywords: string = keywords.split('/').map(item => `招${item}师傅`).join(',')
           Taro.setPageInfo({
             title: res.result.title,
@@ -167,24 +168,24 @@ export default function DetailInfoPage() {
         } else {
           setResCode(res.errcode)
         }
-        if (userInfo.userId === res.result.user_id) {
-          // 加载找活相关推荐数据列表
-          const listParams = {
-            page: 1,
-            type: 1,
-            area_id: res.result.city_id,
-            occupations: [...res.result.occupations].join(','),
-            uuid: '',
-          }
-          detailsRecommendAction(listParams).then(res => {
-            if (res.errcode === 'ok') {
-              setRecommendRe(res.data.list);
-            } else {
-              Msg(res.errmsg)
-            }
-          })
-        } else {
-          // 加载招工相关推荐数据列表
+        // if (userInfo.userId === res.result.user_id) {
+        //   // 加载找活相关推荐数据列表
+        //   const listParams = {
+        //     page: 1,
+        //     type: 1,
+        //     area_id: res.result.city_id,
+        //     occupations: [...res.result.occupations].join(','),
+        //     uuid: '',
+        //   }
+        //   detailsRecommendAction(listParams).then(res => {
+        //     if (res.errcode === 'ok') {
+        //       setRecommendRe(res.data.list);
+        //     } else {
+        //       Msg(res.errmsg)
+        //     }
+        //   })
+        // } else {
+        //   // 加载招工相关推荐数据列表
           let paramsObj = {
             page: 1,
             type: 1,
@@ -192,16 +193,17 @@ export default function DetailInfoPage() {
             job_ids: res.result.id,
             classify_id: [...res.result.occupations].join(','),
           }
-          jobRecommendListAction(paramsObj).then(res => {
+        jobDetailsListAction(paramsObj).then(res => {
             if (res.errcode === 'ok') {
               setRecommend(res.data.list);
             } else {
               Msg(res.errmsg)
             }
           })
-        }
+        // }
       })
-    }).catch(()=>{
+    }).catch(() => {
+      console.log('catch')
       ShowActionModal({
         msg: '网络异常，请重新进入',
         success: () => {
@@ -276,6 +278,7 @@ export default function DetailInfoPage() {
 
   // 处理获取电话号码的不同状态码
   const detailGetTelAction = (res,callback) => {
+    console.log(res.errcode)
     if (res.errcode == 'ok' || res.errcode == 'end' || res.errcode == 'ajax') {
       callback&&callback()
     } else if (res.errcode == 'end') {
@@ -545,7 +548,13 @@ export default function DetailInfoPage() {
     if(pages.length < 2){
       Taro.reLaunch({ url: INDEXPATH})
     }else{
-      Taro.navigateBack()
+      let routeUrl = pages[pages.length - 2].route
+      let listUrl = `/${routeUrl}`
+      if (listUrl == INDEXPATH){
+        Taro.navigateBack()
+      }else{
+        Taro.reLaunch({ url: INDEXPATH })
+      }
     }
   }
 
@@ -687,13 +696,14 @@ export default function DetailInfoPage() {
         </View>
       }
       {/* 相关推荐 */}
-      {resCode === 'own' ? 
-        <View>
-          {recommendRe.length && 
-            <CollectionRecruitList data={recommendRe} type={2} areasId={areasId} occupations={occupations} jobIds={jobIds} detailList={true}/>
-          }
-        </View>
-      :
+      {
+      // resCode === 'own' &&
+      //   <View>
+      //     {recommendRe.length && 
+      //       <CollectionRecruitList data={recommendRe} type={2} areasId={areasId} occupations={occupations} jobIds={jobIds} detailList={true}/>
+      //     }
+      //   </View>
+      // :
         <View>
           {recommend.length && 
             <CollectionRecruitList data={recommend} type={1} areasId={areasId} occupations={occupations} jobIds={jobIds} detailList={true}/>

@@ -716,7 +716,7 @@ export function jobInfoAction(params: object): Promise<Inter.jobInfoData> {
   return doRequestAction({
     url: api.jobInfoUrl,
     method: 'POST',
-    failToast: true,
+    // failToast: true,
     data: params
   })
 }
@@ -726,7 +726,7 @@ export function jobNoUserInfoAction(params: object): Promise<Inter.jobInfoData> 
   return doRequestAction({
     url: api.jobNoUserInfoUrl,
     method: 'POST',
-    failToast: true,
+    // failToast: true,
     data: params
   })
 }

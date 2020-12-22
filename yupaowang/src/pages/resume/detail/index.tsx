@@ -354,9 +354,15 @@ export default function ResumeDetail() {
   const seeMoreResume = () => {
     let pages = Taro.getCurrentPages()
     if (pages.length < 2) {
-      Taro.reLaunch({ url: `${INDEXPATH}?type=resume`  })
+      Taro.reLaunch({ url: `${INDEXPATH}?type=resume` })
     } else {
-      Taro.navigateBack()
+      let routeUrl = pages[pages.length - 2].route
+      let listUrl = `/${routeUrl}`
+      if (listUrl == INDEXPATH) {
+        Taro.navigateBack()
+      } else {
+        Taro.reLaunch({ url: `${INDEXPATH}?type=resume` })
+      }
     }
   }
 

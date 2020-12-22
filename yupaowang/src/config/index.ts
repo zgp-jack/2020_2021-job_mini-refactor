@@ -45,8 +45,11 @@ export const ResumeMemberLabelsMaxNum: number = 3
 export const ProjectListMaxNum: number = 5
 // * 找活项目经验图片最大数量
 export const ProjectImgMaxNum: number = 6
-//商户申请 H5 支付时提交的授权域名
+// * 商户申请 H5 支付时提交的授权域名
 export const QQWECHATPAYURLREFERER: string = 'http://p.54xiaoshuo.com'
+// * 百度小程序seo跳转 最大二手交易信息id
+export const MaxUsedInfoId: number = 48100
+
 // ! 页面内常用路径配置
 // * 首页
 export const INDEXPATH: string = '/pages/index/index'

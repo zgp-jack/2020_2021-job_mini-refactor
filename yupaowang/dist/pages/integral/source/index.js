@@ -1,1 +1,140 @@
-(swan.webpackJsonp=swan.webpackJsonp||[]).push([[53],{"151":function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{"value":!0});var f=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var r=arguments[t];for(var o in r)Object.prototype.hasOwnProperty.call(r,o)&&(e[o]=r[o])}return e},p=function(e,t){if(Array.isArray(e))return e;if(Symbol.iterator in Object(e))return function sliceIterator(e,t){var r=[],o=!0,n=!1,a=void 0;try{for(var i,s=e[Symbol.iterator]();!(o=(i=s.next()).done)&&(r.push(i.value),!t||r.length!==t);o=!0);}catch(e){n=!0,a=e}finally{try{!o&&s.return&&s.return()}finally{if(n)throw a}}return r}(e,t);throw new TypeError("Invalid attempt to destructure non-iterable instance")},o=function(e,t,r){return t&&defineProperties(e.prototype,t),r&&defineProperties(e,r),e};function defineProperties(e,t){for(var r=0;r<t.length;r++){var o=t[r];o.enumerable=o.enumerable||!1,o.configurable=!0,"value"in o&&(o.writable=!0),Object.defineProperty(e,o.key,o)}}var y=r(0),n=function _interopRequireDefault(e){return e&&e.__esModule?e:{"default":e}}(y),h=r(2);function _toConsumableArray(e){if(Array.isArray(e)){for(var t=0,r=Array(e.length);t<e.length;t++)r[t]=e[t];return r}return Array.from(e)}r(23);var a=(function _inherits(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{"constructor":{"value":e,"enumerable":!1,"writable":!0,"configurable":!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}(Source,n.default.Component),o(Source,[{"key":"_constructor","value":function _constructor(e){(function get(e,t,r){null===e&&(e=Function.prototype);var o=Object.getOwnPropertyDescriptor(e,t);if(void 0===o){var n=Object.getPrototypeOf(e);return null===n?void 0:get(n,t,r)}if("value"in o)return o.value;var a=o.get;return void 0!==a?a.call(r):void 0})(Source.prototype.__proto__||Object.getPrototypeOf(Source.prototype),"_constructor",this).call(this,e),this.$$refs=new n.default.RefsArray}},{"key":"_createData","value":function _createData(e,t,r){this.__state=e||this.state||{},this.__props=t||this.props||{},this.$prefix;var o=(0,y.useState)({"type":"source","page":1}),n=p(o,2),a=n[0],i=n[1],s=(0,y.useState)({"lists":[],"hasmore":!0}),u=p(s,2),c=u[0],l=u[1];return(0,y.useEffect)(function(){c.hasmore&&(0,h.getIntegralList)(a).then(function(e){var t=e.list.length;t?1===a.page?t<e.pageSize?l({"hasmore":!1,"lists":e.list}):l(f({},c,{"lists":e.list})):l(f({},c,{"lists":[].concat(_toConsumableArray(c.lists),_toConsumableArray(e.list))})):l(f({},c,{"hasmore":!1}))})},[a]),(0,y.useReachBottom)(function(){i(f({},a,{"page":a.page+1}))}),(0,y.usePullDownRefresh)(function(){i(f({},a,{"page":1}))}),Object.assign(this.__state,{}),this.__state}}]),Source);function Source(){!function _classCallCheck(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,Source);var e=function _possibleConstructorReturn(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}(this,(Source.__proto__||Object.getPrototypeOf(Source)).apply(this,arguments));return e.$usedState=[],e.customComponents=[],e}a.$$events=[],a.$$componentPath="pages/integral/source/index",t.default=a,Page(r(0).default.createComponent(a,!0))}},[[151,0,1]]]);
+(swan["webpackJsonp"] = swan["webpackJsonp"] || []).push([["pages/integral/source/index"],{
+
+/***/ "./src/pages/integral/source/index.tsx":
+/*!*********************************************!*\
+  !*** ./src/pages/integral/source/index.tsx ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+
+var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
+
+var _taroSwan2 = _interopRequireDefault(_taroSwan);
+
+var _index = __webpack_require__(/*! ../../../utils/request/index */ "./src/utils/request/index.ts");
+
+__webpack_require__(/*! ../index.scss */ "./src/pages/integral/index.scss");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Source = function (_Taro$Component) {
+  _inherits(Source, _Taro$Component);
+
+  function Source() {
+    _classCallCheck(this, Source);
+
+    var _this = _possibleConstructorReturn(this, (Source.__proto__ || Object.getPrototypeOf(Source)).apply(this, arguments));
+
+    _this.$usedState = [];
+    _this.customComponents = [];
+    return _this;
+  }
+
+  _createClass(Source, [{
+    key: "_constructor",
+    value: function _constructor(props) {
+      _get(Source.prototype.__proto__ || Object.getPrototypeOf(Source.prototype), "_constructor", this).call(this, props);
+      this.$$refs = new _taroSwan2.default.RefsArray();
+    }
+  }, {
+    key: "_createData",
+    value: function _createData() {
+      this.__state = arguments[0] || this.state || {};
+      this.__props = arguments[1] || this.props || {};
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
+      ;
+      // 初始化页面信息-积分来源记录
+      var initType = 'source';
+      // 定义请求参数
+
+      var _useState = (0, _taroSwan.useState)({
+        type: initType,
+        page: 1
+      }),
+          _useState2 = _slicedToArray(_useState, 2),
+          data = _useState2[0],
+          setData = _useState2[1];
+      // 定义列表接收容器
+
+
+      var _useState3 = (0, _taroSwan.useState)({
+        lists: [],
+        hasmore: true
+      }),
+          _useState4 = _slicedToArray(_useState3, 2),
+          lists = _useState4[0],
+          setLists = _useState4[1];
+      // 获取列表数据
+
+
+      (0, _taroSwan.useEffect)(function () {
+        if (!lists.hasmore) {
+          return;
+        }
+        (0, _index.getIntegralList)(data).then(function (res) {
+          var len = res.list.length;
+          if (len) {
+            if (data.page === 1) {
+              if (len < res.pageSize) {
+                setLists({ hasmore: false, lists: res.list });
+              } else setLists(_extends({}, lists, { lists: res.list }));
+            } else {
+              setLists(_extends({}, lists, { lists: [].concat(_toConsumableArray(lists.lists), _toConsumableArray(res.list)) }));
+            }
+          } else setLists(_extends({}, lists, { hasmore: false }));
+        });
+      }, [data]);
+      // 上拉加载下一页
+      (0, _taroSwan.useReachBottom)(function () {
+        setData(_extends({}, data, { page: data.page + 1 }));
+      });
+      // 下拉刷新当前列表
+      (0, _taroSwan.usePullDownRefresh)(function () {
+        setData(_extends({}, data, { page: 1 }));
+      });
+      Object.assign(this.__state, {});
+      return this.__state;
+    }
+  }]);
+
+  return Source;
+}(_taroSwan2.default.Component);
+
+Source.$$events = [];
+Source.$$componentPath = "pages/integral/source/index";
+// Source.config = {
+//   navigationBarTitleText: '积分来源记录',
+//   enablePullDownRefresh: true
+// } as Config
+
+exports.default = Source;
+
+Page(__webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js").default.createComponent(Source, true));
+
+/***/ })
+
+},[["./src/pages/integral/source/index.tsx","runtime","vendors"]]]);
