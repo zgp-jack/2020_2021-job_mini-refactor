@@ -1,1 +1,180 @@
-(qq.webpackJsonp=qq.webpackJsonp||[]).push([[15],{"243":function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{"value":!0});var d=function(e,t){if(Array.isArray(e))return e;if(Symbol.iterator in Object(e))return function sliceIterator(e,t){var n=[],o=!0,r=!1,i=void 0;try{for(var a,u=e[Symbol.iterator]();!(o=(a=u.next()).done)&&(n.push(a.value),!t||n.length!==t);o=!0);}catch(e){r=!0,i=e}finally{try{!o&&u.return&&u.return()}finally{if(r)throw i}}return n}(e,t);throw new TypeError("Invalid attempt to destructure non-iterable instance")},o=function(e,t,n){return t&&defineProperties(e.prototype,t),n&&defineProperties(e,n),e};function defineProperties(e,t){for(var n=0;n<t.length;n++){var o=t[n];o.enumerable=o.enumerable||!1,o.configurable=!0,"value"in o&&(o.writable=!0),Object.defineProperty(e,o.key,o)}}var h=n(0),v=function _interopRequireDefault(e){return e&&e.__esModule?e:{"default":e}}(h),$=n(1);n(244);var b=n(7);var r=(function _inherits(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{"constructor":{"value":e,"enumerable":!1,"writable":!0,"configurable":!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}(ResumeList,v.default.Component),o(ResumeList,[{"key":"_constructor","value":function _constructor(e){(function get(e,t,n){null===e&&(e=Function.prototype);var o=Object.getOwnPropertyDescriptor(e,t);if(void 0===o){var r=Object.getPrototypeOf(e);return null===r?void 0:get(r,t,n)}if("value"in o)return o.value;var i=o.get;return void 0!==i?i.call(n):void 0})(ResumeList.prototype.__proto__||Object.getPrototypeOf(ResumeList.prototype),"_constructor",this).call(this,e),this.$$refs=new v.default.RefsArray}},{"key":"_createData","value":function _createData(e,t,n){var i=this;this.__state=e||this.state||{},this.__props=t||this.props||{};var o=this.$prefix,r=(0,h.genCompid)(o+"$compid__26"),a=d(r,2),u=a[0],s=a[1],l=this.__props,c=l.data,p=l.bottom,f=void 0===p||p,_=l.hasMore,y=void 0===_||_,m=(0,h.internal_inline_style)(f?"":"padding-bottom:0"),g=c?c.map(function(o,r){return o={"$original":(0,h.internal_get_original)(o)},{"$loopState__temp3":c?r+"-"+r:null,"$anonymousCallee__4":o.$original?o.$original.map(function(n,e){n={"$original":(0,h.internal_get_original)(n)};var t="cgzzz"+r+"-"+e;return i.anonymousFunc0Map[t]=function(){return function userRouteJump(e){var t=v.default.getStorageSync(b.UserLocation);t=t?t=t.split(",").reverse():"",v.default.navigateTo({"url":"/pages/resume/detail/index?uuid="+e+"&location="+t})}(n.$original.uuid)},{"_$indexKey":t,"$loopState__temp7":o.$original?$.REPLACEWEIXINTEXT?n.$original.introduce.replace($.FILTERWEIXINREG,""):n.$original.introduce:null,"$anonymousCallee__3":o.$original?n.$original.occupations.map(function(e,t){return e={"$original":(0,h.internal_get_original)(e)},{"$loopState__temp5":o.$original?n.$original.id+"-"+t:null,"$original":e.$original}}):[],"$original":n.$original}}):[],"$original":o.$original}}):[];return c&&c[0]&&!c[0].length&&h.propsManager.set({"text":"暂无相关数据"},s,u),Object.assign(this.__state,{"anonymousState__temp":m,"loopArray22":g,"$compid__26":s,"data":c,"IMGCDNURL":$.IMGCDNURL,"hasMore":y}),this.__state}},{"key":"anonymousFunc0","value":function anonymousFunc0(e){for(var t,n=arguments.length,o=Array(1<n?n-1:0),r=1;r<n;r++)o[r-1]=arguments[r];return this.anonymousFunc0Map[e]&&(t=this.anonymousFunc0Map)[e].apply(t,o)}}]),ResumeList);function ResumeList(){!function _classCallCheck(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,ResumeList);var e=function _possibleConstructorReturn(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}(this,(ResumeList.__proto__||Object.getPrototypeOf(ResumeList)).apply(this,arguments));return e.$usedState=["anonymousState__temp","loopArray22","$compid__26","data","IMGCDNURL","hasMore","bottom"],e.anonymousFunc0Map={},e.customComponents=["Nodata"],e}r.$$events=["anonymousFunc0"],r.$$componentPath="components/lists/resume/index",t.default=r,Component(n(0).default.createComponent(r))},"244":function(e,t,n){}},[[243,0,1]]]);
+(swan["webpackJsonp"] = swan["webpackJsonp"] || []).push([["components/lists/resume/index"],{
+
+/***/ "./src/components/lists/resume/index.scss":
+/*!************************************************!*\
+  !*** ./src/components/lists/resume/index.scss ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
+/***/ "./src/components/lists/resume/index.tsx":
+/*!***********************************************!*\
+  !*** ./src/components/lists/resume/index.tsx ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+
+var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
+
+var _taroSwan2 = _interopRequireDefault(_taroSwan);
+
+var _index = __webpack_require__(/*! ../../../config/index */ "./src/config/index.ts");
+
+__webpack_require__(/*! ./index.scss */ "./src/components/lists/resume/index.scss");
+
+var _store = __webpack_require__(/*! ../../../config/store */ "./src/config/store.ts");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var ResumeList = function (_Taro$Component) {
+  _inherits(ResumeList, _Taro$Component);
+
+  function ResumeList() {
+    _classCallCheck(this, ResumeList);
+
+    var _this = _possibleConstructorReturn(this, (ResumeList.__proto__ || Object.getPrototypeOf(ResumeList)).apply(this, arguments));
+
+    _this.$usedState = ["anonymousState__temp", "loopArray22", "$compid__26", "data", "IMGCDNURL", "hasMore", "bottom"];
+    _this.anonymousFunc0Map = {};
+    _this.customComponents = ["Nodata"];
+    return _this;
+  }
+
+  _createClass(ResumeList, [{
+    key: "_constructor",
+    value: function _constructor(props) {
+      _get(ResumeList.prototype.__proto__ || Object.getPrototypeOf(ResumeList.prototype), "_constructor", this).call(this, props);
+      this.$$refs = new _taroSwan2.default.RefsArray();
+    }
+  }, {
+    key: "_createData",
+    value: function _createData() {
+      var _this2 = this;
+
+      this.__state = arguments[0] || this.state || {};
+      this.__props = arguments[1] || this.props || {};
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
+      ;
+
+      var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__26"),
+          _genCompid2 = _slicedToArray(_genCompid, 2),
+          $prevCompid__26 = _genCompid2[0],
+          $compid__26 = _genCompid2[1];
+
+      var _props = this.__props,
+          data = _props.data,
+          _props$bottom = _props.bottom,
+          bottom = _props$bottom === undefined ? true : _props$bottom,
+          _props$hasMore = _props.hasMore,
+          hasMore = _props$hasMore === undefined ? true : _props$hasMore;
+      // 用户页面跳转
+
+      var userRouteJump = function userRouteJump(uuid) {
+        var location = _taroSwan2.default.getStorageSync(_store.UserLocation);
+        location = location ? location = location.split(',').reverse() : '';
+        _taroSwan2.default.navigateTo({
+          url: "/pages/resume/detail/index?uuid=" + uuid + "&location=" + location
+        });
+      };
+      var anonymousState__temp = (0, _taroSwan.internal_inline_style)(bottom ? '' : 'padding-bottom:0');
+      var loopArray22 = data ? data.map(function (item, di) {
+        item = {
+          privateOriginal: (0, _taroSwan.internal_get_original)(item)
+        };
+        var loopState__temp3 = data ? di + "-" + di : null;
+        var anonymousCallee__4 = item.privateOriginal ? item.privateOriginal.map(function (d, __index0) {
+          d = {
+            privateOriginal: (0, _taroSwan.internal_get_original)(d)
+          };
+          var _$indexKey = "cgzzz" + di + "-" + __index0;
+          _this2.anonymousFunc0Map[_$indexKey] = function () {
+            return userRouteJump(d.privateOriginal.uuid);
+          };
+          var loopState__temp7 = item.privateOriginal ? _index.REPLACEWEIXINTEXT ? d.privateOriginal.introduce.replace(_index.FILTERWEIXINREG, '') : d.privateOriginal.introduce : null;
+          var anonymousCallee__3 = item.privateOriginal ? d.privateOriginal.occupations.map(function (i, ii) {
+            i = {
+              privateOriginal: (0, _taroSwan.internal_get_original)(i)
+            };
+            var loopState__temp5 = item.privateOriginal ? d.privateOriginal.id + "-" + ii : null;
+            return {
+              loopState__temp5: loopState__temp5,
+              privateOriginal: i.privateOriginal
+            };
+          }) : [];
+          return {
+            _$indexKey: _$indexKey,
+            loopState__temp7: loopState__temp7,
+            anonymousCallee__3: anonymousCallee__3,
+            privateOriginal: d.privateOriginal
+          };
+        }) : [];
+        return {
+          loopState__temp3: loopState__temp3,
+          anonymousCallee__4: anonymousCallee__4,
+          privateOriginal: item.privateOriginal
+        };
+      }) : [];
+      data && data[0] && !data[0].length && _taroSwan.propsManager.set({
+        "text": "\u6682\u65E0\u76F8\u5173\u6570\u636E"
+      }, $compid__26, $prevCompid__26);
+      Object.assign(this.__state, {
+        anonymousState__temp: anonymousState__temp,
+        loopArray22: loopArray22,
+        $compid__26: $compid__26,
+        data: data,
+        IMGCDNURL: _index.IMGCDNURL,
+        hasMore: hasMore
+      });
+      return this.__state;
+    }
+  }, {
+    key: "anonymousFunc0",
+    value: function anonymousFunc0(_$indexKey) {
+      var _anonymousFunc0Map;
+
+      ;
+
+      for (var _len = arguments.length, e = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+        e[_key - 1] = arguments[_key];
+      }
+
+      return this.anonymousFunc0Map[_$indexKey] && (_anonymousFunc0Map = this.anonymousFunc0Map)[_$indexKey].apply(_anonymousFunc0Map, e);
+    }
+  }]);
+
+  return ResumeList;
+}(_taroSwan2.default.Component);
+
+ResumeList.$$events = ["anonymousFunc0"];
+ResumeList.$$componentPath = "components/lists/resume/index";
+exports.default = ResumeList;
+
+Component(__webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js").default.createComponent(ResumeList));
+
+/***/ })
+
+},[["./src/components/lists/resume/index.tsx","runtime","vendors"]]]);
