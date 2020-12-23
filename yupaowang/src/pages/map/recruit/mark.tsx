@@ -1,8 +1,6 @@
 import Taro, { useEffect, useState } from '@tarojs/taro'
 import { View } from '@tarojs/components'
-import MapComponent from '../index'
 import { Areas } from '../../../config/store'
-import { context } from '../../recruit/publish'
 import { getAllAreas } from '../../../utils/request'
 import { AllAreasDataItem } from '../../../utils/request/index.d'
 import './index.scss'

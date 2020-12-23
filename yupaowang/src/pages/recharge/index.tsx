@@ -1,4 +1,4 @@
-import Taro, {useEffect, useState, Config, useDidHide} from '@tarojs/taro'
+import Taro, {useEffect, useState, Config} from '@tarojs/taro'
 import {View, Text} from '@tarojs/components'
 import {
   SERVERPHONE,
@@ -7,8 +7,6 @@ import {
   WEIXINSERIES,
   QQSERIES,
   SERIES,
-  REQUESTURL,
-  QQWECHATPAYURLREFERER
 } from '../../config'
 import {
   getRechargeList,
@@ -17,7 +15,7 @@ import {
   userDouyinRecharge,
   userCheckDouyinRecharge,
   getBaiduTpOrderId,
-  checkBaiduOrderStatusAction, userQQRecharge, userQQWeChatRecharge
+  checkBaiduOrderStatusAction, userQQRecharge
 } from '../../utils/request'
 import {GetRechargeListType} from '../../utils/request/index.d'
 import Msg, {ShowActionModal, errMsg} from '../../utils/msg'
@@ -40,7 +38,6 @@ interface QqSeriesRes extends Taro.General.CallbackResult{
 
 export default function Recharge() {
 
-  const dispatch = useDispatch()
   // 积分列表数据与用户当前积分数量
   const [lists, setLists] = useState<GetRechargeListType[]>([])
   const [integral, setIntegral] = useState<number>(0)

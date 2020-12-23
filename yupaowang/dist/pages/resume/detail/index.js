@@ -121,7 +121,7 @@ var ResumeDetail = function (_Taro$Component) {
       backgroundTextStyle: "dark"
     };
 
-    _this.$usedState = ["anonymousState__temp3", "anonymousState__temp4", "data", "loopArray93", "loopArray95", "loopArray96", "$compid__77", "isAuth", "IMGCDNURL", "examine", "onoff", "SERIES", "QQSERIES", "ios", "login", "user", "praise", "ISCANSHARE", "collect", "shownewtips", "complaintModal", "BAIDUSERIES", "age", "phone"];
+    _this.$usedState = ["anonymousState__temp3", "anonymousState__temp4", "data", "loopArray92", "loopArray94", "loopArray95", "$compid__75", "isAuth", "IMGCDNURL", "examine", "onoff", "SERIES", "QQSERIES", "ios", "login", "user", "praise", "ISCANSHARE", "collect", "shownewtips", "complaintModal", "BAIDUSERIES", "age", "phone"];
     _this.anonymousFunc4Map = {};
     _this.anonymousFunc6Map = {};
     _this.customComponents = ["Auth", "Report"];
@@ -145,10 +145,10 @@ var ResumeDetail = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__77"),
+      var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__75"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__77 = _genCompid2[0],
-          $compid__77 = _genCompid2[1];
+          $prevCompid__75 = _genCompid2[0],
+          $compid__75 = _genCompid2[1];
       // 获取dispatch分发action
 
 
@@ -586,7 +586,7 @@ var ResumeDetail = function (_Taro$Component) {
       this.anonymousFunc12 = function () {
         return seeMoreResume();
       };
-      var loopArray93 = data.info.occupations.length ? data.info.occupations.map(function (v, i) {
+      var loopArray92 = data.info.occupations.length ? data.info.occupations.map(function (v, i) {
         v = {
           privateOriginal: (0, _taroSwan.internal_get_original)(v)
         };
@@ -596,7 +596,7 @@ var ResumeDetail = function (_Taro$Component) {
           privateOriginal: v.privateOriginal
         };
       }) : [];
-      var loopArray95 = data.project.length ? data.project[0].image.map(function (v, i) {
+      var loopArray94 = data.project.length ? data.project[0].image.map(function (v, i) {
         v = {
           privateOriginal: (0, _taroSwan.internal_get_original)(v)
         };
@@ -611,7 +611,7 @@ var ResumeDetail = function (_Taro$Component) {
           privateOriginal: v.privateOriginal
         };
       }) : [];
-      var loopArray96 = data.certificates.length ? data.certificates[0].image.map(function (val, i) {
+      var loopArray95 = data.certificates.length ? data.certificates[0].image.map(function (val, i) {
         val = {
           privateOriginal: (0, _taroSwan.internal_get_original)(val)
         };
@@ -632,15 +632,15 @@ var ResumeDetail = function (_Taro$Component) {
         "handleTextarea": handleTextarea,
         "setComplaintModal": setComplaintModal,
         "handleSubmit": handleSubmit
-      }, $compid__77, $prevCompid__77);
+      }, $compid__75, $prevCompid__75);
       Object.assign(this.__state, {
         anonymousState__temp3: anonymousState__temp3,
         anonymousState__temp4: anonymousState__temp4,
         data: data,
-        loopArray93: loopArray93,
+        loopArray92: loopArray92,
+        loopArray94: loopArray94,
         loopArray95: loopArray95,
-        loopArray96: loopArray96,
-        $compid__77: $compid__77,
+        $compid__75: $compid__75,
         isAuth: isAuth,
         IMGCDNURL: _index2.IMGCDNURL,
         examine: examine,

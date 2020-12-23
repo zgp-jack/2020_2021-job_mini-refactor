@@ -1,4 +1,4 @@
-import Taro,{ useState,useDidShow, useEffect } from '@tarojs/taro'
+import Taro,{ useState, useEffect } from '@tarojs/taro'
 import { resumeListAction, resumesEditEndAction } from '../../utils/request'
 import { resIntroduceObj, resInfoObj, resProjectArr, resCertificatesArr, resume_topObj, resTop_statusArr } from '../../utils/request/index.d';
 import { RESUME_TOP_DATA, INFODATA_DATA, INTRODUCERS_DATA } from '../../pages/resume/publish/data';

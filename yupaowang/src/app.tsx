@@ -16,7 +16,6 @@ class App extends Component {
     pages: [
       'pages/index/index', //首页
       'pages/userauth/index', //用户授权
-      "pages/recruit/publish/index", //发布招工
       "pages/used/lists/index", //二手交易列表
       "pages/map/recruit/index", //发布招工地图
       "pages/map/resume/index", //发布找活地图

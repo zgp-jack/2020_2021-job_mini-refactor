@@ -5,9 +5,8 @@
  * @LastEditTime: 2020-11-17 14:01:25
  * @Description: 
  */
-import Taro, { useState, useEffect } from '@tarojs/taro'
+import { useState, useEffect } from '@tarojs/taro'
 import { getResumeAddInfoConfig } from '../../utils/request'
-import { ResumeAddInfoConfig } from '../../utils/request/index.d'
 import { useDispatch, useSelector }  from '@tarojs/redux'
 import { setResumeInfoConfig } from '../../actions/resume_addinfo'
 import { DEFAUTL_STATE_TYPE } from '../../reducers/resume_addinfo' 

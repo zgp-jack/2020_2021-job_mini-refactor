@@ -1,5 +1,5 @@
-import Taro, { useState, useEffect, useRouter, Config } from '@tarojs/taro'
-import { View, Text, Form, Textarea, Input, Picker } from '@tarojs/components'
+import Taro, { useState, useRouter, Config } from '@tarojs/taro'
+import { View, Text, Form, Input, Picker } from '@tarojs/components'
 import { RecruitImageModel } from '../../recruit/index.d'
 import UploadImgAction from '../../../utils/upload'
 import { resumesCertificateAction, delCertificateAction } from '../../../utils/request'

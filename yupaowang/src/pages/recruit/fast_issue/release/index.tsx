@@ -6,7 +6,7 @@ import ClassifyPicker, { RulesClassfies } from '../../../../components/classfiy_
 import useRelease from '../../../../hooks/publish/fastIssue/release'
 import { IMGCDNURL, USEGAODEMAPAPI } from '../../../../config'
 import UploadImgAction from '../../../../utils/upload'
-import CityPicker from '../../../../components/city_picker/index'
+import CityPicker, { CityTownPicker } from '../../../../components/city_picker/index'
 import './index.scss'
 
 
@@ -98,7 +98,7 @@ export default function FastIssue() {
           {USEGAODEMAPAPI?
             <Input placeholder="请选择招工城市" className="issue-input" onClick={() => showWorkArea()} value={areaInfo && areaInfo.title}></Input>
             :
-            <CityPicker onCity={selectCity}></CityPicker>
+            <CityPicker onCity={selectCity} modle={{}}></CityPicker>
           }
         </View>
         <View className="issue-box" onClick={() => showWorkType()}>

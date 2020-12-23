@@ -1,5 +1,5 @@
 import Taro, {useState, useEffect, Config} from '@tarojs/taro'
-import {View, ScrollView, Image} from '@tarojs/components'
+import { View, ScrollView } from '@tarojs/components'
 import Search from '../../../components/search'
 import ResumeCondition from '../../../components/condition/resume'
 import WechatNotice from '../../../components/wechat'

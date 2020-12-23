@@ -1,4 +1,4 @@
-import Taro, { useEffect, useState, Config, useContext } from '@tarojs/taro'
+import Taro, { useEffect, useState, Config } from '@tarojs/taro'
 import { View, Text, Image, Input } from '@tarojs/components'
 import { getAllAreas, checkAdcodeValid } from '../../../utils/request'
 import { AllAreasDataItem } from '../../../utils/request/index.d'

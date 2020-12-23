@@ -71,7 +71,7 @@ var Fleamarket = function (_Taro$Component) {
       backgroundTextStyle: "dark"
     };
 
-    _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "anonymousState__temp3", "$compid__45", "$compid__46", "$compid__47", "refresh", "listScrollTop"];
+    _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "anonymousState__temp3", "$compid__43", "$compid__44", "$compid__45", "refresh", "listScrollTop"];
     _this.customComponents = ["Search", "UsedCondition", "WechatNotice", "UsedList", "Tabbar"];
     return _this;
   }
@@ -91,20 +91,20 @@ var Fleamarket = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__45"),
+      var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__43"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__45 = _genCompid2[0],
-          $compid__45 = _genCompid2[1];
+          $prevCompid__43 = _genCompid2[0],
+          $compid__43 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroSwan.genCompid)(__prefix + "$compid__46"),
+      var _genCompid3 = (0, _taroSwan.genCompid)(__prefix + "$compid__44"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__46 = _genCompid4[0],
-          $compid__46 = _genCompid4[1];
+          $prevCompid__44 = _genCompid4[0],
+          $compid__44 = _genCompid4[1];
 
-      var _genCompid5 = (0, _taroSwan.genCompid)(__prefix + "$compid__47"),
+      var _genCompid5 = (0, _taroSwan.genCompid)(__prefix + "$compid__45"),
           _genCompid6 = _slicedToArray(_genCompid5, 2),
-          $prevCompid__47 = _genCompid6[0],
-          $compid__47 = _genCompid6[1];
+          $prevCompid__45 = _genCompid6[0],
+          $compid__45 = _genCompid6[1];
 
       var router = (0, _taroSwan.useRouter)();
       // 是否已是最后一页
@@ -234,21 +234,21 @@ var Fleamarket = function (_Taro$Component) {
         "value": "",
         "setRemark": anonymousState__temp,
         "setSearchData": anonymousState__temp2
-      }, $compid__45, $prevCompid__45);
+      }, $compid__43, $prevCompid__43);
       _taroSwan.propsManager.set({
         "setSearchData": searchChange
-      }, $compid__46, $prevCompid__46);
+      }, $compid__44, $prevCompid__44);
       _taroSwan.propsManager.set({
         "data": lists,
         "hasMore": hasMore
-      }, $compid__47, $prevCompid__47);
+      }, $compid__45, $prevCompid__45);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
         anonymousState__temp2: anonymousState__temp2,
         anonymousState__temp3: anonymousState__temp3,
+        $compid__43: $compid__43,
+        $compid__44: $compid__44,
         $compid__45: $compid__45,
-        $compid__46: $compid__46,
-        $compid__47: $compid__47,
         refresh: refresh,
         listScrollTop: listScrollTop
       });

@@ -6,7 +6,7 @@ import {IMGCDNURL} from "../../config";
 import useState = Taro.useState;
 import UploadImgAction from "../../utils/upload";
 import {isVaildVal} from "../../utils/v";
-import Msg, {SubPopup} from "../../utils/msg";
+import Msg from "../../utils/msg";
 import {publishComplainAction} from "../../utils/request";
 import useRouter = Taro.useRouter;
 

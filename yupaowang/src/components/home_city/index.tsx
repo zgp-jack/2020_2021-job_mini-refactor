@@ -1,5 +1,5 @@
 import Taro, { useState, useEffect, memo } from '@tarojs/taro'
-import { View, Block, ScrollView } from '@tarojs/components'
+import { View, ScrollView } from '@tarojs/components'
 import { AtDrawer } from 'taro-ui'
 import classnames from 'classnames'
 import { UserListChooseCity } from '../../config/store'

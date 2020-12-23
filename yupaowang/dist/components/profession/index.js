@@ -55,7 +55,7 @@ var Profession = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (Profession.__proto__ || Object.getPrototypeOf(Profession)).apply(this, arguments));
 
-    _this.$usedState = ["loopArray42", "data", "title", "footerTitle", "closeProfession", "onClickItem"];
+    _this.$usedState = ["loopArray88", "data", "title", "footerTitle", "closeProfession", "onClickItem"];
     _this.anonymousFunc0Map = {};
     _this.customComponents = [];
     return _this;
@@ -89,15 +89,15 @@ var Profession = function (_Taro$Component) {
       this.anonymousFunc1 = function () {
         return closeProfession();
       };
-      var loopArray42 = data ? data.map(function (item, i) {
+      var loopArray88 = data ? data.map(function (item, i) {
         item = {
           privateOriginal: (0, _taroSwan.internal_get_original)(item)
         };
-        var anonymousCallee__7 = data ? item.privateOriginal.children.map(function (d, k) {
+        var anonymousCallee__9 = data ? item.privateOriginal.children.map(function (d, k) {
           d = {
             privateOriginal: (0, _taroSwan.internal_get_original)(d)
           };
-          var _$indexKey = 'egzzz' + i + '-' + k;
+          var _$indexKey = 'iizzz' + i + '-' + k;
           _this2.anonymousFunc0Map[_$indexKey] = function () {
             return _this2.__props.onClickItem(i, k, d.privateOriginal.id, d.privateOriginal.name);
           };
@@ -114,12 +114,12 @@ var Profession = function (_Taro$Component) {
           };
         }) : [];
         return {
-          anonymousCallee__7: anonymousCallee__7,
+          anonymousCallee__9: anonymousCallee__9,
           privateOriginal: item.privateOriginal
         };
       }) : [];
       Object.assign(this.__state, {
-        loopArray42: loopArray42,
+        loopArray88: loopArray88,
         data: data,
         title: title,
         footerTitle: footerTitle

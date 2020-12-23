@@ -10,9 +10,6 @@ import Tabbar from '../../../components/tabbar'
 import { SERIES, BAIDUSERIES } from '../../../config'
 import { UserListChooseCity } from '../../../config/store'
 import { ChildItems } from '../../../models/area'
-import { getUsedListSeoInfo } from '../../../utils/seo'
-import { useSelector } from '@tarojs/redux'
-import { filterClassifyDataResultReduce } from '../../../reducers/filter_classify'
 import './index.scss'
 
 export interface SearchType {

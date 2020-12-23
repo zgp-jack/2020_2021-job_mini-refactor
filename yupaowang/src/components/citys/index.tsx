@@ -8,7 +8,6 @@ import { objDeepCopy } from '../../utils/helper'
 import { useDispatch } from '@tarojs/redux'
 import { setArea } from '../../actions/recruit'//获取发布招工信息action
 import './index.scss'
-import { AreaData } from 'src/pages/recruit'
 
 export interface IPROPS {
   data: AllAreasDataItem[][],

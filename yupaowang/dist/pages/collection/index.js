@@ -102,7 +102,7 @@ var Collection = function (_Taro$Component) {
       backgroundTextStyle: "dark"
     };
 
-    _this.$usedState = ["loopArray68", "$compid__56", "$compid__57", "tab", "current"];
+    _this.$usedState = ["loopArray66", "$compid__54", "$compid__55", "tab", "current"];
     _this.anonymousFunc0Map = {};
     _this.customComponents = ["Auth", "RecruitList", "ResumeList"];
     return _this;
@@ -125,15 +125,15 @@ var Collection = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__56"),
+      var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__54"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__56 = _genCompid2[0],
-          $compid__56 = _genCompid2[1];
+          $prevCompid__54 = _genCompid2[0],
+          $compid__54 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroSwan.genCompid)(__prefix + "$compid__57"),
+      var _genCompid3 = (0, _taroSwan.genCompid)(__prefix + "$compid__55"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__57 = _genCompid4[0],
-          $compid__57 = _genCompid4[1];
+          $prevCompid__55 = _genCompid4[0],
+          $compid__55 = _genCompid4[1];
       // 默认table
 
 
@@ -166,11 +166,11 @@ var Collection = function (_Taro$Component) {
       (0, _taroSwan.usePullDownRefresh)(function () {
         setInitPage(initPage + 1);
       });
-      var loopArray68 = _config2.default.map(function (item, __index0) {
+      var loopArray66 = _config2.default.map(function (item, __index0) {
         item = {
           privateOriginal: (0, _taroSwan.internal_get_original)(item)
         };
-        var _$indexKey = "hhzzz" + __index0;
+        var _$indexKey = "hgzzz" + __index0;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return handleTable(item.privateOriginal.id);
         };
@@ -191,15 +191,15 @@ var Collection = function (_Taro$Component) {
       current === 1 && _taroSwan.propsManager.set({
         "bottom": bottom,
         "initPage": initPage
-      }, $compid__56, $prevCompid__56);
+      }, $compid__54, $prevCompid__54);
       !(current === 1) && _taroSwan.propsManager.set({
         "bottom": bottom,
         "initPage": initPage
-      }, $compid__57, $prevCompid__57);
+      }, $compid__55, $prevCompid__55);
       Object.assign(this.__state, {
-        loopArray68: loopArray68,
-        $compid__56: $compid__56,
-        $compid__57: $compid__57,
+        loopArray66: loopArray66,
+        $compid__54: $compid__54,
+        $compid__55: $compid__55,
         tab: _config2.default,
         current: current
       });

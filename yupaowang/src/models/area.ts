@@ -1,4 +1,3 @@
-import { Areas } from 'src/config/store'
 
 const AREAS: ParentItems[] = [{
   "id": "1",

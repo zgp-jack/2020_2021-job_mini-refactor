@@ -3,7 +3,6 @@ import { View, Text, Image, Button } from '@tarojs/components'
 import { resumeListAction } from '../../../utils/request/index'
 import { getUserShareMessage } from '../../../utils/helper'
 import { IMGCDNURL, ISCANSHARE} from '../../../config'
-import { DataType } from './index.d'
 import './index.scss'
 
 export default function Preview() {

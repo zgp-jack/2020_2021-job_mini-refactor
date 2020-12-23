@@ -1,7 +1,5 @@
 import Taro, { useEffect, useState, createContext, Config,useRouter } from '@tarojs/taro'
 import { View, Text, Image, Input } from '@tarojs/components'
-// import { context }  from '../../../subpackage/pages/basics';
-// import { context } from '../../recruit/publish'
 import { getAllAreas, checkAdcodeAction } from '../../../utils/request'
 import { AllAreasDataItem } from '../../../utils/request/index.d'
 import { IMGCDNURL, UserPublishAreaHistoryMaxNum } from '../../../config'
@@ -11,9 +9,8 @@ import { UserLocationPromiss, getCityInfo, ChildItems } from '../../../models/ar
 import { getAmapPoiList } from '../../../utils/helper'
 import { InputPoiListTips } from '../../../utils/helper/index.d'
 import Msg, { ShowActionModal } from '../../../utils/msg'
-import { AreaData } from '../../../pages/recruit/index.d'
-import { useSelector, useDispatch } from '@tarojs/redux'
-import { setAreaInfo, setArea, setPositionStaus } from '../../../actions/recruit'//获取发布招工信息action
+import { useDispatch } from '@tarojs/redux'
+import { setAreaInfo } from '../../../actions/recruit'//获取发布招工信息action
 import './index.scss'
 
 

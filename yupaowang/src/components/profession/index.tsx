@@ -1,8 +1,7 @@
 import Taro from '@tarojs/taro'
-import { View, Text, ScrollView } from '@tarojs/components'
+import { View, ScrollView } from '@tarojs/components'
 import { ProfessionRecruitData } from './index.d'
 import classnames from 'classnames'
-import { AtIcon } from 'taro-ui'
 
 import './index.scss'
 

@@ -45,8 +45,6 @@ var _index3 = __webpack_require__(/*! ../../utils/msg/index */ "./src/utils/msg/
 
 var _index4 = _interopRequireDefault(_index3);
 
-var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/redux/index.js");
-
 var _classnames = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
 
 var _classnames2 = _interopRequireDefault(_classnames);
@@ -82,7 +80,7 @@ var Recharge = function (_Taro$Component) {
       backgroundTextStyle: "dark"
     };
 
-    _this.$usedState = ["loopArray60", "lists", "integral", "current", "price"];
+    _this.$usedState = ["loopArray58", "lists", "integral", "current", "price"];
     _this.anonymousFunc0Map = {};
     _this.customComponents = ["AtMessage"];
     return _this;
@@ -104,7 +102,6 @@ var Recharge = function (_Taro$Component) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
-      var dispatch = (0, _redux.useDispatch)();
       // 积分列表数据与用户当前积分数量
 
       var _useState = (0, _taroSwan.useState)([]),
@@ -380,11 +377,11 @@ var Recharge = function (_Taro$Component) {
       this.anonymousFunc1 = function () {
         return userRechargeAction();
       };
-      var loopArray60 = lists.map(function (item, index) {
+      var loopArray58 = lists.map(function (item, index) {
         item = {
           privateOriginal: (0, _taroSwan.internal_get_original)(item)
         };
-        var _$indexKey = "gbzzz" + index;
+        var _$indexKey = "gazzz" + index;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return userChooseItem(index);
         };
@@ -399,7 +396,7 @@ var Recharge = function (_Taro$Component) {
         };
       });
       Object.assign(this.__state, {
-        loopArray60: loopArray60,
+        loopArray58: loopArray58,
         lists: lists,
         integral: integral,
         current: current,

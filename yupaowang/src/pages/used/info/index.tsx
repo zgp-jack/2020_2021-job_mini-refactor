@@ -1,4 +1,4 @@
-import Taro, { useEffect, useRouter, RouterInfo, useState, Config, useShareAppMessage, useDidShow } from '@tarojs/taro'
+import Taro, { useRouter, RouterInfo, useState, Config, useShareAppMessage, useDidShow } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
 import WechatNotice from '../../../components/wechat'
 import { getUsedInfo } from '../../../utils/request'

@@ -115,7 +115,7 @@ var RecruitList = function (_Taro$Component) {
           var _$indexKey2 = "cgzzz" + __index1 + "-" + __index0;
           _this2.anonymousFunc2Map[_$indexKey2] = function (e) {
             e.stopPropagation();
-            userRouteJump(PUBLISHEDRECRUIT);
+            userRouteJump(_index.PUBLISHEDRECRUIT);
           };
           var loopState__temp3 = item.privateOriginal ? _index.REPLACEWEIXINTEXT ? d.privateOriginal.detail.replace(_index.FILTERWEIXINREG, '') : d.privateOriginal.detail : null;
           return {

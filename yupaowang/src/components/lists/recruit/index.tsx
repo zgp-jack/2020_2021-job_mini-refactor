@@ -1,6 +1,6 @@
 import Taro from '@tarojs/taro'
 import { View, Text, Image, Block } from '@tarojs/components'
-import { IMGCDNURL, FILTERWEIXINREG, REPLACEWEIXINTEXT } from '../../../config'
+import { IMGCDNURL, FILTERWEIXINREG, REPLACEWEIXINTEXT, PUBLISHEDRECRUIT } from '../../../config'
 import Nodata from '../../../components/nodata'
 import './index.scss'
 import { RecruitListItem } from '../../../utils/request/index.d'

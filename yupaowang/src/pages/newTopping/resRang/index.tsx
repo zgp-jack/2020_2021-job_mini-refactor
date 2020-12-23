@@ -1,10 +1,10 @@
-import Taro, { Config, useEffect, useState, createContext, useRouter } from '@tarojs/taro'
-import { View, Picker, Text, Image, Input } from '@tarojs/components'
+import Taro, { Config, useEffect, useState, useRouter } from '@tarojs/taro'
+import { View, Picker, Text, Image } from '@tarojs/components'
 import { IMGCDNURL, SERVERPHONE } from '../../../config'
 import { resumesTopConfigAction } from '../../../utils/request/index';
 import { userCallPhone, getMyDate } from '../../../utils/helper/index';
 import { useDispatch, useSelector } from '@tarojs/redux'
-import { resume_topObj, resume_topObj_arrStr } from '../../../utils/request/index.d'
+import { resume_topObj_arrStr } from '../../../utils/request/index.d'
 import { useResumeType } from '../../../reducers/resume_top';
 import { setClickResumeTop } from '../../../actions/resume_top';
 import { resumesUpdateTopResumeAction, resumesDoTopV2Action } from '../../../utils/request';

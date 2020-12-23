@@ -1,4 +1,4 @@
-import Taro, { Config, useState, useEffect, useReachBottom, usePullDownRefresh } from '@tarojs/taro'
+import Taro, { Config, useState, useEffect } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
 import { getIntegralList } from '../../../utils/request'
 import { IntegralData, IntegralListConfig } from '../config'

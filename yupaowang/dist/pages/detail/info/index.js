@@ -77,7 +77,7 @@ var DetailInfoPage = function (_Taro$Component) {
       navigationBarTitleText: ''
     };
 
-    _this.$usedState = ["anonymousState__temp3", "data", "loopArray80", "loopArray81", "$compid__67", "resCode", "editPhone", "SHOWOFFICIALACCOUNT", "SERIES", "QQSERIES", "ios", "DOWNLOADAPP", "IMGCDNURL", "isCollection", "ISCANSHARE", "complaintModal", "phone"];
+    _this.$usedState = ["anonymousState__temp3", "data", "loopArray78", "loopArray79", "$compid__65", "resCode", "editPhone", "SHOWOFFICIALACCOUNT", "SERIES", "QQSERIES", "ios", "DOWNLOADAPP", "IMGCDNURL", "isCollection", "ISCANSHARE", "complaintModal", "phone"];
     _this.anonymousFunc5Map = {};
     _this.customComponents = ["WechatNotice", "Report"];
     return _this;
@@ -100,10 +100,10 @@ var DetailInfoPage = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__67"),
+      var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__65"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__67 = _genCompid2[0],
-          $compid__67 = _genCompid2[1];
+          $prevCompid__65 = _genCompid2[0],
+          $compid__65 = _genCompid2[1];
 
       var router = (0, _taroSwan.useRouter)();
       var _router$params = router.params,
@@ -673,7 +673,7 @@ var DetailInfoPage = function (_Taro$Component) {
       this.anonymousFunc12 = function () {
         _taroSwan2.default.makePhoneCall({ phoneNumber: phone });
       };
-      var loopArray80 = data.classifyName.map(function (v, i) {
+      var loopArray78 = data.classifyName.map(function (v, i) {
         v = {
           privateOriginal: (0, _taroSwan.internal_get_original)(v)
         };
@@ -683,12 +683,12 @@ var DetailInfoPage = function (_Taro$Component) {
           privateOriginal: v.privateOriginal
         };
       });
-      var loopArray81 = data.view_images.length ? data.view_images.map(function (v, i) {
+      var loopArray79 = data.view_images.length ? data.view_images.map(function (v, i) {
         v = {
           privateOriginal: (0, _taroSwan.internal_get_original)(v)
         };
         var loopState__temp5 = data.view_images.length ? i + i : null;
-        var _$indexKey = "iezzz" + i;
+        var _$indexKey = "idzzz" + i;
         _this2.anonymousFunc5Map[_$indexKey] = function () {
           return handleImage(v.privateOriginal);
         };
@@ -704,13 +704,13 @@ var DetailInfoPage = function (_Taro$Component) {
         "handleTextarea": handleTextarea,
         "setComplaintModal": setComplaintModal,
         "handleSubmit": handleSubmit
-      }, $compid__67, $prevCompid__67);
+      }, $compid__65, $prevCompid__65);
       Object.assign(this.__state, {
         anonymousState__temp3: anonymousState__temp3,
         data: data,
-        loopArray80: loopArray80,
-        loopArray81: loopArray81,
-        $compid__67: $compid__67,
+        loopArray78: loopArray78,
+        loopArray79: loopArray79,
+        $compid__65: $compid__65,
         resCode: resCode,
         editPhone: editPhone,
         SHOWOFFICIALACCOUNT: _index2.SHOWOFFICIALACCOUNT,

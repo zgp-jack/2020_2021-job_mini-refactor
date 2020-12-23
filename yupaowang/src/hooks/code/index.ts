@@ -1,6 +1,6 @@
 import { useState } from '@tarojs/taro'
 import { isPhone } from '../../utils/v'
-import Msg, { ShowActionModal } from '../../utils/msg'
+import Msg from '../../utils/msg'
 import { getUserPhoneCode } from '../../utils/request'
 import { UserGetCodeData } from '../index.d'
 

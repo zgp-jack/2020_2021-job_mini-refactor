@@ -1,4 +1,3 @@
-import { DataType } from './../../pages/resume/preview/index.d';
 import Taro from '@tarojs/taro'
 import * as api from '../api'
 import {TOKEN, VERSION} from '../../config'
@@ -12,7 +11,7 @@ import {AuthData} from '../../components/auth'
 import {FilterData} from '../../pages/home'
 import {User} from '../../reducers/user'
 import {IntegralData} from '../../pages/integral/config'
-import {InitRecruitView} from '../../pages/recruit/publish'
+import {InitRecruitView} from '../../pages/recruit/jisu_issue/index'
 import {UserInfo} from '../../config/store'
 import {CreateOrder} from '../../pages/recharge'
 import {UsedPublishModel} from '../../pages/used/index.d'

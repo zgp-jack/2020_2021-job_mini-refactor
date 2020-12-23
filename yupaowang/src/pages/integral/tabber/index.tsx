@@ -1,5 +1,5 @@
 import Taro, { Config, useState, useEffect, useReachBottom, useRouter } from '@tarojs/taro'
-import { View, Text, Picker, Image, Block } from '@tarojs/components'
+import { View, Text, Picker, Image } from '@tarojs/components'
 import { integralSourceConfigAction, integralSourceListsAction, integralExpendListsAction, integralExpendConfigAction, integralUseInfoAction, publishComplainAction } from '../../../utils/request/index'
 import { getSystemInfo } from '../../../utils/helper/index'
 import Nodata from '../../../components/nodata'
@@ -10,7 +10,6 @@ import  Report  from '../../../components/report';
 import { isVaildVal, isIos } from '../../../utils/v'
 import { useSelector } from '@tarojs/redux'
 import Msg, { showModalTip } from '../../../utils/msg'
-import Auth from '../../../components/auth'
 import './index.scss'
 
 interface ParamsType {

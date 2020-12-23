@@ -4,7 +4,6 @@ import { IMGCDNURL, SERVERPHONE, INVITEPATH, SHOWINVITEUSER, SHOWSERVERPHONE } f
 import { userJumpPage } from "../../utils/helper";
 import "./index.scss";
 import Auth from '../../components/auth'
-import { memberTurntable } from "../../../src/utils/request";
 import classnames from "classnames";
 
 interface TurntableType {

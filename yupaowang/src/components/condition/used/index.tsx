@@ -8,7 +8,7 @@ import { filterClassifyDataResultReduce } from "../../../reducers/filter_classif
 import { setFilter } from "../../../actions/filter_classify";
 import AREAS, { ChildItems } from "../../../models/area";
 import classnames from "classnames";
-import { AreaPickerKey, ClassifyPickerKey, FilterPickerKey } from "../../../config/pages/lists";
+import { AreaPickerKey, ClassifyPickerKey } from "../../../config/pages/lists";
 import { useDispatch, useSelector } from "@tarojs/redux";
 import { UserListChooseCity } from "../../../config/store";
 import "./index.scss";
@@ -273,7 +273,7 @@ function UsedCondition({ setSearchData }: ConditionProps) {
               scrollY
               scrollTop={areaScrollTop}
             >
-              {childAreaList.map((item, i) => (
+              {childAreaList.map((item, _) => (
                 <View
                   className={classnames({
                     "drawer-list-item overwords": true,

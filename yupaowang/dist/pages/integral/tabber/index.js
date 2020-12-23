@@ -77,7 +77,7 @@ var Tabber = function (_Taro$Component) {
       navigationBarTitleText: ''
     };
 
-    _this.$usedState = ["data", "modalData", "loopArray71", "loopArray72", "$compid__65", "$compid__66", "title", "tabBar", "initInfo", "SERIES", "QQSERIES", "ios", "time", "IMGCDNURL", "start", "end", "sourceList", "consumeList", "startType", "modal", "modelType", "showIsReport", "complaintModal", "showTime"];
+    _this.$usedState = ["data", "modalData", "loopArray69", "loopArray70", "$compid__63", "$compid__64", "title", "tabBar", "initInfo", "SERIES", "QQSERIES", "ios", "time", "IMGCDNURL", "start", "end", "sourceList", "consumeList", "startType", "modal", "modelType", "showIsReport", "complaintModal", "showTime"];
     _this.anonymousFunc1Map = {};
     _this.anonymousFunc5Map = {};
     _this.customComponents = ["Nodata", "Report"];
@@ -101,15 +101,15 @@ var Tabber = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__65"),
+      var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__63"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__65 = _genCompid2[0],
-          $compid__65 = _genCompid2[1];
+          $prevCompid__63 = _genCompid2[0],
+          $compid__63 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroSwan.genCompid)(__prefix + "$compid__66"),
+      var _genCompid3 = (0, _taroSwan.genCompid)(__prefix + "$compid__64"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__66 = _genCompid4[0],
-          $compid__66 = _genCompid4[1];
+          $prevCompid__64 = _genCompid4[0],
+          $compid__64 = _genCompid4[1];
       // 检测用户是否登录
 
 
@@ -780,12 +780,12 @@ var Tabber = function (_Taro$Component) {
       this.anonymousFunc9 = function () {
         _taroSwan2.default.makePhoneCall({ phoneNumber: modalData.user_mobile });
       };
-      var loopArray71 = tabBar.map(function (item, i) {
+      var loopArray69 = tabBar.map(function (item, i) {
         item = {
           privateOriginal: (0, _taroSwan.internal_get_original)(item)
         };
         var loopState__temp2 = "i" + i;
-        var _$indexKey = "iczzz" + i;
+        var _$indexKey = "ibzzz" + i;
         _this2.anonymousFunc1Map[_$indexKey] = function () {
           return handleJump(item.privateOriginal.type);
         };
@@ -795,12 +795,12 @@ var Tabber = function (_Taro$Component) {
           privateOriginal: item.privateOriginal
         };
       });
-      var loopArray72 = data.lists.map(function (item, index) {
+      var loopArray70 = data.lists.map(function (item, index) {
         item = {
           privateOriginal: (0, _taroSwan.internal_get_original)(item)
         };
         var loopState__temp4 = "i" + index;
-        var _$indexKey2 = "idzzz" + index;
+        var _$indexKey2 = "iczzz" + index;
         _this2.anonymousFunc5Map[_$indexKey2] = function () {
           return handleModal(item.privateOriginal.id, item.privateOriginal.time);
         };
@@ -827,21 +827,21 @@ var Tabber = function (_Taro$Component) {
       );
       !data.lists.length && _taroSwan.propsManager.set({
         "text": initInfo === '0' ? '暂无积分来源记录' : '暂无积分消耗记录'
-      }, $compid__65, $prevCompid__65);
+      }, $compid__63, $prevCompid__63);
       complaintModal && _taroSwan.propsManager.set({
         "display": complaintModal,
         "textarea": textarea,
         "handleTextarea": handleTextarea,
         "setComplaintModal": setComplaintModal,
         "handleSubmit": handleSubmit
-      }, $compid__66, $prevCompid__66);
+      }, $compid__64, $prevCompid__64);
       Object.assign(this.__state, {
         data: data,
         modalData: modalData,
-        loopArray71: loopArray71,
-        loopArray72: loopArray72,
-        $compid__65: $compid__65,
-        $compid__66: $compid__66,
+        loopArray69: loopArray69,
+        loopArray70: loopArray70,
+        $compid__63: $compid__63,
+        $compid__64: $compid__64,
         title: title,
         tabBar: tabBar,
         initInfo: initInfo,

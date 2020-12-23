@@ -1,4 +1,4 @@
-import Taro, { Config, useEffect, useState, createContext, useRouter } from '@tarojs/taro'
+import Taro, { Config } from '@tarojs/taro'
 import { View } from '@tarojs/components';
 
 export default function RecTopping() {

@@ -4,8 +4,8 @@ import useResumeAddInfo from '../../../hooks/resume_addinfo'
 import { useDispatch, useSelector } from '@tarojs/redux'
 import { resInfoObj } from '../../../utils/request/index.d';
 import { ProfessionRecruitData } from '../../../components/profession/index.d'
-import { NationsType, OccupationType } from './index.d';
-import { addResumeAction, checkAdcodeAction, } from '../../../utils/request/index'; 
+import { NationsType } from './index.d';
+import { addResumeAction, } from '../../../utils/request/index'; 
 import { UserLastPublishRecruitArea } from '../../../pages/recruit/index.d'
 import Profession from '../../../components/profession'
 import { TEXTAREAMAXLENGTH, USEGAODEMAPAPI,SERIES, QQSERIES } from '../../../config'
@@ -17,7 +17,7 @@ import { getLocation } from '../../../utils/helper';
 import { location } from './data';
 import { UserListChooseCity  } from '../../../config/store';
 import { LocationDataTypeAsGaode } from './index.d';
-import { setAreaInfo, setArea } from '../../../actions/recruit'//获取发布招工信息action
+import { setAreaInfo } from '../../../actions/recruit'//获取发布招工信息action
 import './index.scss'
 
 let first = false;
