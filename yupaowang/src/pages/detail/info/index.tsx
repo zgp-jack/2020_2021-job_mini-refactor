@@ -565,7 +565,7 @@ export default function DetailInfoPage() {
 
 
   return(
-    <View className={type ? 'detailInfoList' :'detailInfo'}>
+    <View className='detailInfo'>
       <WechatNotice type={1}/>
       <View className='detailInfo-head'>
         <View className='detailInfo-head-titleBox'>
