@@ -133,10 +133,12 @@ export default function PublishedRecruit(){
     })
   }
   // 取消置顶 jobUpdateTopStatusAction
-  const handlCancel = (id:string, index: number)=>{
+  const handlCancel = (item, index: number)=>{
+    let data = item.top_data; //置顶数据
+    let toping = data.is_top // 是否置顶状态
     const params = {
-      infoId: id,
-      status:0,
+      infoId: item.id,
+      status: toping == '1' ? '1' : "0"
     }
     jobUpdateTopStatusAction(params).then(res=>{
       detailUserSetTopAction(res, index)
@@ -213,7 +215,7 @@ export default function PublishedRecruit(){
       }
       const params = {
         infoId: item.id,
-        status: toping == '0' ? '1' : "0"
+        status: toping == '1' ? '1' : "0"
       }
       jobUpdateTopStatusAction(params).then(res => {
         detailUserSetTopAction(res, index)
@@ -283,7 +285,7 @@ export default function PublishedRecruit(){
                 {item.is_end != '2' && 
                   <View>
                       {item.top && item.top_data && item.top_data.is_top == '1' ?
-                          <View className='user-published-footer-item' onClick={()=>handlCancel(item.id, index)}>取消置顶</View> :
+                          <View className='user-published-footer-item' onClick={()=>handlCancel(item, index)}>取消置顶</View> :
                           <View className='user-published-footer-item' onClick={()=>handleTopping(item, index)}>我要置顶</View>
                       }
                   </View>

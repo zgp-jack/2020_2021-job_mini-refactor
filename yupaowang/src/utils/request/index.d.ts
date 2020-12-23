@@ -1046,7 +1046,9 @@ export interface recommendListDataList{
   introduce:string,
   show_address:string,
   prof_degree:string,
-  occupations:[]
+  occupations:[],
+  uuid:string,
+  location:string
 }
 // 查看完整电话
 export interface resumesGetTel{
@@ -1079,6 +1081,8 @@ export interface jobRecommendListDataList{
   user_name:string,
   show_address:string,
   time:string,
+  top:number,
+  is_end:number
 }
 
 //完善找活

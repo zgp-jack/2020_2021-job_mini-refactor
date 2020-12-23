@@ -16,55 +16,54 @@ export interface ItmeType {
 export default function ResumeListPage( ) {
   const router: Taro.RouterInfo = useRouter()
   let { areasId,occupations,type  } = router.params;
-  console.log(areasId,"areasId")
-   // * 标记是否是在刷新状态
-   const [refresh, setRefresh] = useState<boolean>(false)
-   // 设置初始页面
-   const [initPage, setPage] = useState<PageType>({
-      page: 1,
-      area_id: areasId,
-      classify_id:occupations,
-   })
-   // 后台返回的列表类型，用作于下一次请求时触发
-   const [types,setTypes] =useState<string>(type);
-   // 定义数据
-   const [lists, setLists] = useState<ItmeType>({
-     item: [],
-   })
-   // 是否能上拉加载更多
-   const [isDown, setIsDown] = useState<boolean>(true);
-   // 判断是否登陆
-   useEffect(() => {
-    recommendDataAction();
-   }, [initPage])
-   // 进来时获取数据
-   const recommendDataAction = ()=>{
-    recommendListAction({...initPage, type: types}).then(res => {
-       Taro.hideNavigationBarLoading()
-       Taro.stopPullDownRefresh();
-       setTypes(res.data.type)
-       if (initPage.page === 1) {
-         setLists({ item: [...res.data.list] })
-       } else {
-         setLists({ item: [...lists.item, ...res.data.list] })
-       }
-       if (refresh) setRefresh(false)
-       if (!res.data.list.length) {
-         setIsDown(false)
-       }
-     })
-   } 
-   // 上拉加载更多
-   useReachBottom(()=>{
-     if (!isDown) return;
-     Taro.showNavigationBarLoading()
-     setPage({...initPage,page:initPage.page + 1})
-   })
-   // 下拉刷新
-   usePullDownRefresh(() => {
-     setIsDown(true);
-     setPage({...initPage, page: 1})
-   })
+  // * 标记是否是在刷新状态
+  const [refresh, setRefresh] = useState<boolean>(false)
+  // 设置初始页面
+  const [initPage, setPage] = useState<PageType>({
+    page: 1,
+    area_id: areasId,
+    classify_id:occupations,
+  })
+  // 后台返回的列表类型，用作于下一次请求时触发
+  const [types,setTypes] =useState<string>(type);
+  // 定义数据
+  const [lists, setLists] = useState<ItmeType>({
+    item: [],
+  })
+  // 是否能上拉加载更多
+  const [isDown, setIsDown] = useState<boolean>(true);
+  // 判断是否登陆
+  useEffect(() => {
+  recommendDataAction();
+  }, [initPage])
+  // 进来时获取数据
+  const recommendDataAction = ()=>{
+  recommendListAction({...initPage, type: types}).then(res => {
+      Taro.hideNavigationBarLoading()
+      Taro.stopPullDownRefresh();
+      setTypes(res.data.type ? res.data.type.toString():'')
+      if (initPage.page === 1) {
+        setLists({ item: [...res.data.list] })
+      } else {
+        setLists({ item: [...lists.item, ...res.data.list] })
+      }
+      if (refresh) setRefresh(false)
+      if (!res.data.list.length) {
+        setIsDown(false)
+      }
+    })
+  } 
+  // 上拉加载更多
+  useReachBottom(()=>{
+    if (!isDown) return;
+    Taro.showNavigationBarLoading()
+    setPage({...initPage,page:initPage.page + 1})
+  })
+  // 下拉刷新
+  usePullDownRefresh(() => {
+    setIsDown(true);
+    setPage({...initPage, page: 1})
+  })
 
 
   // 用户页面跳转
@@ -81,7 +80,7 @@ export default function ResumeListPage( ) {
   }
   return(
     <View className='resume-list-container'>
-         {lists.item && lists.item.map((item)=>(
+      {lists.item && lists.item.map((item)=>(
         <Block key={item.id}>
           {/* uuid, location */}
           <View className='resume-list-item' key={item.id} onClick={() => userRouteJump(`/pages/resume/detail/index?uuid=${item.uuid}&location=${item.location}`)}>
