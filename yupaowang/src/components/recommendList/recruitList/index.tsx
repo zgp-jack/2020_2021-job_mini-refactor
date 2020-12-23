@@ -9,19 +9,29 @@ interface PROPS {
   data:any[],
   occupations?:string,
   city?:string
+  areasId?:number,
+  type:number,
+  jobIds:number,
+  detailList?:boolean
 }
 // 招工
-export default function RecruitListPage({ data = [], occupations='', city=''}:PROPS) {
+export default function RecruitListPage({ data = [], occupations, areasId, type, jobIds, detailList }:PROPS) {
   // 用户页面跳转
   const userRouteJump = (url: string) => {
     Taro.navigateTo({
       url: url
     })
   }
+  // 用户页面跳转-定向
+  const userRouteRe = (url: string) => {
+    Taro.reLaunch({
+      url: url
+    })
+  }
   return(
     <View>
       <View className='header'>
-        <Text className='header-text'>相关推荐</Text>
+        <Text className='header-text'>附近适合您的工作</Text>
       </View>
       {!data.length && <Nodata/>}
       {data.map((v:any)=>(
@@ -45,7 +55,8 @@ export default function RecruitListPage({ data = [], occupations='', city=''}:PR
           </View>
         </View>
       ))}
-      <View className='recruitListBox-last' onClick={() => userRouteJump(`/pages/resume/recList/index?city=${city}&occupations=${occupations}`)}>查看更多招工信息</View>
+      {data.length >= 15 && <View className='recruitListBox-last' onClick={() => userRouteJump(`/subpackage/pages/recommend/recruit/index?city=${areasId}&occupations=${occupations}&type=${type}&jobIds=${jobIds}`)}>查看更多招工信息</View>}
+      {data.length < 15 && <View className='recruitListBox-last' onClick={() => userRouteRe(`/pages/index/index`)}>查看更多招工信息</View>}
     </View>
   )
 }

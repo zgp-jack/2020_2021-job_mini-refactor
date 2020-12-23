@@ -72,11 +72,18 @@ var _App = function (_BaseComponent) {
     var _this = _possibleConstructorReturn(this, (_App.__proto__ || Object.getPrototypeOf(_App)).apply(this, arguments));
 
     _this.config = {
+<<<<<<< HEAD
       pages: ['pages/index/index', 'pages/userauth/index', "pages/used/lists/index", "pages/map/recruit/index", "pages/map/resume/index", "pages/used/publish/index", "pages/used/info/index", "pages/static/invite/index", 'pages/static/notice/index', "pages/getintegral/index", "pages/integral/source/index", "pages/integral/temp/index", "pages/integral/official/index", "pages/integral/expend/index", "pages/recharge/index", "pages/realname/index", "pages/map/realname/index", "pages/userinfo/info/index", "pages/userinfo/add/index", "pages/userinfo/phone/index", "pages/userinfo/updatePass/index", "pages/userinfo/pass/index", "pages/published/recruit/index", "pages/published/used/index", "pages/collection/index", 'pages/integral/tabber/index', 'pages/detail/info/index', 'pages/topping/index', 'pages/resume/publish/index', 'pages/resume/add_info/index', 'pages/resume/add_member/index', 'pages/resume/add_skill/index', 'pages/resume/add_project/index', 'pages/resume/projects/index', 'pages/resume/skills/index', 'pages/resume/detail/index', 'pages/resume/newPreview/index', 'pages/resume/preview/index', 'pages/login/index', 'pages/recruit/jisu_issue/index', 'pages/recruit/fast_issue/issue/index', 'pages/recruit/fast_issue/code/index', 'pages/recruit/fast_issue/release/index', 'pages/newtopping/recRang/index', 'pages/newtopping/recGion/index', 'pages/newtopping/resRang/index', 'pages/newtopping/resGion/index', 'pages/marketing_page/index', 'pages/newcomplaint/index', 'pages/complaint/index' //投诉
       ],
       subPackages: [{
         root: 'subpackage/pages',
         pages: ['checkauth/index', 'about/index', 'report/index', 'download/index', 'ranking/index', 'course/index', 'anti-fraud/index', 'projects/index', 'skills/index', 'news/index', 'help/index', 'feedbacklist/index', 'feedback/index', 'information/mymessage/index', 'information/system/index', 'turntable/index']
+=======
+      pages: ['pages/index/index', 'pages/userauth/index', "pages/recruit/publish/index", "pages/used/lists/index", "pages/map/recruit/index", "pages/map/resume/index", "pages/used/publish/index", "pages/used/info/index", "pages/static/invite/index", 'pages/static/notice/index', "pages/getintegral/index", "pages/integral/source/index", "pages/integral/temp/index", "pages/integral/official/index", "pages/integral/expend/index", "pages/recharge/index", "pages/realname/index", "pages/map/realname/index", "pages/userinfo/info/index", "pages/userinfo/add/index", "pages/userinfo/phone/index", "pages/userinfo/updatePass/index", "pages/userinfo/pass/index", "pages/published/recruit/index", "pages/published/used/index", "pages/collection/index", 'pages/integral/tabber/index', 'pages/detail/info/index', 'pages/topping/index', 'pages/resume/publish/index', 'pages/resume/add_info/index', 'pages/resume/add_member/index', 'pages/resume/add_skill/index', 'pages/resume/add_project/index', 'pages/resume/projects/index', 'pages/resume/skills/index', 'pages/resume/detail/index', 'pages/resume/newPreview/index', 'pages/resume/preview/index', 'pages/login/index', 'pages/newtopping/recRang/index', 'pages/newtopping/recGion/index', 'pages/newtopping/resRang/index', 'pages/newtopping/resGion/index'],
+      subPackages: [{
+        root: 'subpackage/pages',
+        pages: ['checkauth/index', 'about/index', 'report/index', 'download/index', 'ranking/index', 'course/index', 'anti-fraud/index', 'projects/index', 'skills/index', 'news/index', 'help/index', 'feedbacklist/index', 'feedback/index', 'information/mymessage/index', 'information/system/index', 'turntable/index', 'recommend/recruit/index', 'recommend/resume/index']
+>>>>>>> qq_1.0.1
       }],
       window: {
         backgroundTextStyle: 'light',
@@ -123,7 +130,16 @@ exports.default = _App;
 
 App(__webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js").default.createApp(_App));
 _taroSwan2.default.initPxTransform({
+<<<<<<< HEAD
   "designWidth": 750
+=======
+  "designWidth": 750,
+  "deviceRatio": {
+    "640": 1.17,
+    "750": 1,
+    "828": 0.905
+  }
+>>>>>>> qq_1.0.1
 });
 
 /***/ }),
@@ -642,8 +658,18 @@ var DEFAULT_STATE_RECRUIT = {
   phone: '',
   positionStatus: true
 };
+<<<<<<< HEAD
 function RecruitAction() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : DEFAULT_STATE_RECRUIT;
+=======
+// 定义默认的区域数据
+var DEFAULT_STATE_AREA = {
+  name: _area.AREABEIJING.name,
+  ad_name: _area.AREABEIJING.name
+};
+function MyAreaInfo() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : DEFAULT_STATE_AREAINFO;
+>>>>>>> qq_1.0.1
   var action = arguments[1];
 
   switch (action.type) {

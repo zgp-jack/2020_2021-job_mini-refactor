@@ -62,7 +62,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
+<<<<<<< HEAD
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } //获取发布招工信息action
+=======
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+// import { context }  from '../../../subpackage/pages/basics';
+// import { context } from '../../recruit/publish'
+//获取发布招工信息action
+>>>>>>> qq_1.0.1
 
 
 var PI = Math.PI; // 数学 PI 常亮
@@ -81,7 +88,11 @@ var ResumeMap = function (_Taro$Component) {
       navigationBarTitleText: '地址选择'
     };
 
+<<<<<<< HEAD
     _this.$usedState = ["loopArray51", "loopArray52", "$compid__49", "smAreaText", "showHistory", "histroyList", "lists", "IMGCDNURL", "showCity", "area"];
+=======
+    _this.$usedState = ["loopArray55", "loopArray56", "$compid__51", "smAreaText", "showHistory", "histroyList", "lists", "IMGCDNURL", "showCity", "area"];
+>>>>>>> qq_1.0.1
     _this.anonymousFunc5Map = {};
     _this.anonymousFunc6Map = {};
     _this.customComponents = ["Cities"];
@@ -105,10 +116,17 @@ var ResumeMap = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
+<<<<<<< HEAD
       var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__49"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
           $prevCompid__49 = _genCompid2[0],
           $compid__49 = _genCompid2[1];
+=======
+      var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__51"),
+          _genCompid2 = _slicedToArray(_genCompid, 2),
+          $prevCompid__51 = _genCompid2[0],
+          $compid__51 = _genCompid2[1];
+>>>>>>> qq_1.0.1
 
       var router = (0, _taroSwan.useRouter)();
       var _router$params = router.params,
@@ -278,6 +296,10 @@ var ResumeMap = function (_Taro$Component) {
       };
       // 获取关键词地区列表
       (0, _taroSwan.useEffect)(function () {
+<<<<<<< HEAD
+=======
+        console.error(area, '1111');
+>>>>>>> qq_1.0.1
         (0, _index3.getAmapPoiList)(areaName + smAreaText).then(function (data) {
           var loc = _taroSwan2.default.getStorageSync(_store.UserLocation);
           var lists = data.filter(function (item) {
@@ -389,12 +411,20 @@ var ResumeMap = function (_Taro$Component) {
       this.anonymousFunc4 = function () {
         return userCloseMap();
       };
+<<<<<<< HEAD
       var loopArray51 = showHistory ? histroyList.map(function (item, index) {
+=======
+      var loopArray55 = showHistory ? histroyList.map(function (item, index) {
+>>>>>>> qq_1.0.1
         item = {
           privateOriginal: (0, _taroSwan.internal_get_original)(item)
         };
         var loopState__temp2 = showHistory ? index + index : null;
+<<<<<<< HEAD
         var _$indexKey = "fgzzz" + index;
+=======
+        var _$indexKey = "gazzz" + index;
+>>>>>>> qq_1.0.1
         _this2.anonymousFunc5Map[_$indexKey] = function () {
           return userClickAreaItem(item.privateOriginal);
         };
@@ -404,12 +434,20 @@ var ResumeMap = function (_Taro$Component) {
           privateOriginal: item.privateOriginal
         };
       }) : [];
+<<<<<<< HEAD
       var loopArray52 = lists.map(function (item, index) {
+=======
+      var loopArray56 = lists.map(function (item, index) {
+>>>>>>> qq_1.0.1
         item = {
           privateOriginal: (0, _taroSwan.internal_get_original)(item)
         };
         var loopState__temp4 = index + index;
+<<<<<<< HEAD
         var _$indexKey2 = "fhzzz" + index;
+=======
+        var _$indexKey2 = "gbzzz" + index;
+>>>>>>> qq_1.0.1
         _this2.anonymousFunc6Map[_$indexKey2] = function () {
           return userClickAreaItem(item.privateOriginal);
         };
@@ -425,11 +463,19 @@ var ResumeMap = function (_Taro$Component) {
         "userLoc": userLoc,
         "userChangeCity": userChangeCity,
         "userTapCityBtn": userTapCityBtn
+<<<<<<< HEAD
       }, $compid__49, $prevCompid__49);
       Object.assign(this.__state, {
         loopArray51: loopArray51,
         loopArray52: loopArray52,
         $compid__49: $compid__49,
+=======
+      }, $compid__51, $prevCompid__51);
+      Object.assign(this.__state, {
+        loopArray55: loopArray55,
+        loopArray56: loopArray56,
+        $compid__51: $compid__51,
+>>>>>>> qq_1.0.1
         smAreaText: smAreaText,
         showHistory: showHistory,
         histroyList: histroyList,

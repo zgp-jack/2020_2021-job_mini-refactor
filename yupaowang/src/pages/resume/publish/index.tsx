@@ -534,7 +534,7 @@ export default function ResumePublish(){
 }
 
 ResumePublish.config = {
-  navigationBarTitleText: '发布找活名片',
+  navigationBarTitleText: '我的找活名片',
   enablePullDownRefresh: true,
   navigationBarBackgroundColor: '#0099ff',
   navigationBarTextStyle: 'white',

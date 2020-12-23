@@ -1837,6 +1837,13 @@ export interface freeData {
 export interface freeIssueData extends Result {
   data: freeData
 }
+// 百度支付状态检测
+export interface BaiduOrderStatus extends Result{
+  data: {
+    tpOrderId: string,
+    order_status: number
+  }
+}
 // 热门城市
 export interface hotAreasType extends Result{
   data: hotAreasTypeData[],
@@ -1849,10 +1856,25 @@ export interface hotAreasTypeData {
   click?:boolean,
   allName?:string,
 }
-// 百度支付状态检测
-export interface BaiduOrderStatus extends Result{
+
+// 谁看过我推荐工人
+export interface detailsRecommendListType extends Result {
   data: {
-    tpOrderId: string,
-    order_status: number
+    num: number,
+    list: detailsRecommendListTypeList[]
   }
+}
+
+export interface detailsRecommendListTypeList {
+  id: string,
+  headerimg: string,
+  type: string,
+  username: string,
+  str_gender: string,
+  nation: string,
+  prof_degree: string,
+  occupations_txt: string[],
+  introduce: string,
+  show_address: string,
+  active_time_str: string
 }

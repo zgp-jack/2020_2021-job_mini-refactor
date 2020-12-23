@@ -2562,11 +2562,11 @@ export interface SimpleChildItems {
 
 export interface ChildItems extends SimpleChildItems {
   pid: string,
+  letter: string
   name: string,
   click?:boolean,
   allName?:string,
   ad_name: string,
-  letter: string
 }
 
 export interface ParentItems {

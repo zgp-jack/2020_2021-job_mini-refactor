@@ -51,10 +51,13 @@ var _tabbar = __webpack_require__(/*! ../../actions/tabbar */ "./src/actions/tab
 
 var _index3 = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
 
+<<<<<<< HEAD
 var _index4 = __webpack_require__(/*! ../../hooks/init_job_view/index */ "./src/hooks/init_job_view/index.ts");
 
 var _index5 = _interopRequireDefault(_index4);
 
+=======
+>>>>>>> qq_1.0.1
 __webpack_require__(/*! ./index.scss */ "./src/components/tabbar/index.scss");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -73,7 +76,11 @@ var Tabbar = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (Tabbar.__proto__ || Object.getPrototypeOf(Tabbar)).apply(this, arguments));
 
+<<<<<<< HEAD
     _this.$usedState = ["anonymousState__temp3", "anonymousState__temp4", "anonymousState__temp5", "tabbar", "loopArray40", "memberMsg", "show", "IMGCDNURL", "notredirect"];
+=======
+    _this.$usedState = ["anonymousState__temp3", "anonymousState__temp4", "anonymousState__temp5", "tabbar", "loopArray42", "memberMsg", "show", "IMGCDNURL", "notredirect"];
+>>>>>>> qq_1.0.1
     _this.anonymousFunc0Map = {};
     _this.customComponents = [];
     return _this;
@@ -96,7 +103,10 @@ var Tabbar = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
       var notredirect = this.__props.notredirect;
+<<<<<<< HEAD
       // 发布方式数据
+=======
+>>>>>>> qq_1.0.1
 
       var tabbar = (0, _redux.useSelector)(function (state) {
         return state.tabbar;
@@ -107,10 +117,13 @@ var Tabbar = function (_Taro$Component) {
       var memberMsg = (0, _redux.useSelector)(function (state) {
         return state.msg['messageNumber'];
       });
+<<<<<<< HEAD
 
       var _useJobView = (0, _index5.default)(),
           initJobView = _useJobView.initJobView;
 
+=======
+>>>>>>> qq_1.0.1
       var dispatch = (0, _redux.useDispatch)();
       // 是否展示发布
 
@@ -195,7 +208,11 @@ var Tabbar = function (_Taro$Component) {
         'tabbar-publish-items-active': active
       }) : null;
       this.anonymousFunc2 = function () {
+<<<<<<< HEAD
         return initJobView();
+=======
+        return userTapPublishItem(_index3.PUBLISHRECRUIT);
+>>>>>>> qq_1.0.1
       };
       this.anonymousFunc3 = function () {
         return userTapPublishItem(_index3.PUBLISHRESUME);
@@ -203,7 +220,11 @@ var Tabbar = function (_Taro$Component) {
       this.anonymousFunc4 = function () {
         return userTapPublishItem(_index3.PUBLISHUSED);
       };
+<<<<<<< HEAD
       var loopArray40 = tabbar.list.map(function (item, __index0) {
+=======
+      var loopArray42 = tabbar.list.map(function (item, __index0) {
+>>>>>>> qq_1.0.1
         item = {
           privateOriginal: (0, _taroSwan.internal_get_original)(item)
         };
@@ -211,7 +232,11 @@ var Tabbar = function (_Taro$Component) {
           'common-footer-tabbar-list': true,
           'common-footer-tabbar-list-active': item.privateOriginal.id === tabbar.key
         });
+<<<<<<< HEAD
         var _$indexKey = "efzzz" + __index0;
+=======
+        var _$indexKey = "eizzz" + __index0;
+>>>>>>> qq_1.0.1
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return changeTabbarAction(item.privateOriginal);
         };
@@ -226,7 +251,11 @@ var Tabbar = function (_Taro$Component) {
         anonymousState__temp4: anonymousState__temp4,
         anonymousState__temp5: anonymousState__temp5,
         tabbar: tabbar,
+<<<<<<< HEAD
         loopArray40: loopArray40,
+=======
+        loopArray42: loopArray42,
+>>>>>>> qq_1.0.1
         memberMsg: memberMsg,
         show: show,
         IMGCDNURL: _index3.IMGCDNURL

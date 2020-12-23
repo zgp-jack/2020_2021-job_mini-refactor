@@ -320,7 +320,7 @@ export default function ResRange() {
         Taro.showModal({
           title: '温馨提示',
           content: res.errmsg,
-          confirmColor: '#009CFFFF',
+          confirmColor: 'rgba(0,156,255,1)',
           showCancel:false,
           success: function () {
             Taro.navigateBack({
@@ -332,7 +332,7 @@ export default function ResRange() {
         Taro.showModal({
           title: '温馨提示',
           content: res.errmsg,
-          confirmColor: '#009CFFFF',
+          confirmColor: 'rgba(0,156,255,1)',
           success: function (res) {
             if (res.confirm) {
               Taro.makePhoneCall({
@@ -349,7 +349,7 @@ export default function ResRange() {
         Taro.showModal({
           title: '温馨提示',
           content: res.errmsg,
-          confirmColor: '#009CFFFF',
+          confirmColor: 'rgba(0,156,255,1)',
           success: function (res) {
             if (res.confirm) {
               Taro.navigateTo({
@@ -365,7 +365,7 @@ export default function ResRange() {
         Taro.showModal({
           title: '温馨提示',
           content: res.errmsg,
-          confirmColor: '#009CFFFF',
+          confirmColor: 'rgba(0,156,255,1)',
           success: function (res) {
             if (res.confirm) {
               Taro.navigateTo({

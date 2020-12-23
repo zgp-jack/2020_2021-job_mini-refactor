@@ -1,6 +1,10 @@
 import Taro, { Config, useState, useRouter, useDidShow, useEffect, useShareAppMessage } from '@tarojs/taro'
 import { View, Text, Image, Icon, Button } from '@tarojs/components'
+<<<<<<< HEAD
 import { jobInfoAction, publishComplainAction, jobGetTelAction, recruitListCancelCollectionAction, jobEndStatusAction, jobUpdateTopStatusAction, jobNoUserInfoAction } from '../../../utils/request/index'
+=======
+import { jobInfoAction, publishComplainAction, jobGetTelAction, recruitListCancelCollectionAction, jobEndStatusAction, jobUpdateTopStatusAction, jobNoUserInfoAction, jobDetailsListAction, detailsRecommendAction } from '../../../utils/request/index'
+>>>>>>> qq_1.0.1
 import WechatNotice from '../../../components/wechat'
 import { IMGCDNURL, SERVERPHONE, AUTHPATH, CODEAUTHPATH, ISCANSHARE, DOWNLOADAPP, SHOWOFFICIALACCOUNT, REPLACEWEIXINTEXT, FILTERWEIXINREG, DOWNLOADAPPPATH, SERIES, QQSERIES ,BAIDUSERIES, INDEXPATH } from '../../../config'
 import { useSelector } from '@tarojs/redux'
@@ -48,7 +52,7 @@ interface DataType {
 }
 export default function DetailInfoPage() {
   const router: Taro.RouterInfo = useRouter()
-  let { id = '', refId = '' } = router.params;
+  let { id = '', refId = '',type } = router.params;
   // 获取userInfo
   let userInfo: User = Taro.getStorageSync(UserInfo)
   const [data, setData] = useState<DataType>({
@@ -102,10 +106,18 @@ export default function DetailInfoPage() {
   const [editPhone, setEditPhone] = useState<boolean>(true)
   // 获取用户是否登录
   const login = useSelector<any, boolean>(state => state.User['login'])
-  // 相关推荐
+  // 招工相关推荐
   const [recommend, setRecommend] = useState<any[]>([])
   // 判断是否是ios
   const [ios, setIos] = useState<boolean>(false)
+  // 找活相关推荐
+  const [recommendRe, setRecommendRe] = useState<any[]>([])
+  // 更多招工省市
+  const [areasId,setAreasId] = useState<number>(0);
+  // 更多招工工种
+  const [occupations,setOccupations] = useState<string>('');
+  // 更多招工job_ids
+  const [jobIds,setJobIds] = useState<number>(0);
   // 返回刷新页面
   useDidShow(()=>{
     setIos(isIos())
@@ -127,7 +139,12 @@ export default function DetailInfoPage() {
     // 用户没有认证
     let result = login ? jobInfoAction(params) : jobNoUserInfoAction(params)
     result.then(res => {
+<<<<<<< HEAD
       detailGetTelAction(res, () => {
+=======
+      console.log('then')
+      detailGetTelAction(res,()=>{
+>>>>>>> qq_1.0.1
         setRefresh(false)
         setData(res.result);
         setPhone(res.result.tel_str);
@@ -136,7 +153,7 @@ export default function DetailInfoPage() {
           title: res.result.title
         })
         if (SERIES == BAIDUSERIES){
-          let keywords = res.result.classifyName[0]
+          let keywords = res.result.classifyName[0] || ''
           let split_keywords: string = keywords.split('/').map(item => `招${item}师傅`).join(',')
           Taro.setPageInfo({
             title: res.result.title,
@@ -145,14 +162,55 @@ export default function DetailInfoPage() {
           })
         }
         setIsCollection(res.result.is_collect);
+        // 设置更多招工信息的省/市
+        let area_id : number = res.result.city_id && res.result.city_id != 0 ? res.result.city_id : res.result.province_id;
+        setAreasId(area_id);
+        let occupations : string = res.result.occupations.length ? res.result.occupations.join(','):'';
+        setOccupations(occupations)
+        let jobIds : number = res.result.id 
+        setJobIds(jobIds)
         if (userInfo.userId === res.result.user_id) {
           // 判断是自己发布的招工
           setResCode('own')
         } else {
           setResCode(res.errcode)
         }
+        // if (userInfo.userId === res.result.user_id) {
+        //   // 加载找活相关推荐数据列表
+        //   const listParams = {
+        //     page: 1,
+        //     type: 1,
+        //     area_id: res.result.city_id,
+        //     occupations: [...res.result.occupations].join(','),
+        //     uuid: '',
+        //   }
+        //   detailsRecommendAction(listParams).then(res => {
+        //     if (res.errcode === 'ok') {
+        //       setRecommendRe(res.data.list);
+        //     } else {
+        //       Msg(res.errmsg)
+        //     }
+        //   })
+        // } else {
+        //   // 加载招工相关推荐数据列表
+          let paramsObj = {
+            page: 1,
+            type: 1,
+            area_id: res.result.city_id,
+            job_ids: res.result.id,
+            classify_id: [...res.result.occupations].join(','),
+          }
+        jobDetailsListAction(paramsObj).then(res => {
+            if (res.errcode === 'ok') {
+              setRecommend(res.data.list);
+            } else {
+              Msg(res.errmsg)
+            }
+          })
+        // }
       })
-    }).catch(()=>{
+    }).catch(() => {
+      console.log('catch')
       ShowActionModal({
         msg: '网络异常，请重新进入',
         success: () => {
@@ -226,7 +284,12 @@ export default function DetailInfoPage() {
   }
 
   // 处理获取电话号码的不同状态码
+<<<<<<< HEAD
   const detailGetTelAction = (res, callback) => {
+=======
+  const detailGetTelAction = (res,callback) => {
+    console.log(res.errcode)
+>>>>>>> qq_1.0.1
     if (res.errcode == 'ok' || res.errcode == 'end' || res.errcode == 'ajax') {
       callback && callback()
     } else if (res.errcode == 'end') {
@@ -511,8 +574,8 @@ export default function DetailInfoPage() {
 
 
   return(
-    <View className='detailInfo'>
-      <WechatNotice />
+    <View className={type ? 'detailInfoList' :'detailInfo'}>
+      <WechatNotice type={1}/>
       <View className='detailInfo-head'>
         <View className='detailInfo-head-titleBox'>
           <View className='detailInfo-head-titleBox-title'>{data.title}</View>
@@ -583,7 +646,7 @@ export default function DetailInfoPage() {
       </View>}
 
       {/* 返回首页 */}
-      <View className='see-recruit-list-btn' onClick={()=>seeMoreRecruit()}>查看更多招工信息</View>  
+      {/* <View className='see-recruit-list-btn' onClick={()=>seeMoreRecruit()}>查看更多招工信息</View>   */}
 
       {/* 判断是否是自己发布的招工 停止招工状态 
         判断是否查看完成电话 
@@ -647,9 +710,20 @@ export default function DetailInfoPage() {
         </View>
       }
       {/* 相关推荐 */}
-      {/* {recommend.length && 
-      <CollectionRecruitList data={recommend} type={1}/>
-      } */}
+      {
+      // resCode === 'own' &&
+      //   <View>
+      //     {recommendRe.length && 
+      //       <CollectionRecruitList data={recommendRe} type={2} areasId={areasId} occupations={occupations} jobIds={jobIds} detailList={true}/>
+      //     }
+      //   </View>
+      // :
+        <View>
+          {recommend.length && 
+            <CollectionRecruitList data={recommend} type={1} areasId={areasId} occupations={occupations} jobIds={jobIds} detailList={true}/>
+          }
+        </View>
+      }
       {/* 投诉 */}
       {complaintModal && <Report display={complaintModal} textarea={textarea} handleTextarea={handleTextarea} setComplaintModal={setComplaintModal}
         handleSubmit={handleSubmit} />

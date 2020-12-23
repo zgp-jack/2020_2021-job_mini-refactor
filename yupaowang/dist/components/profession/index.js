@@ -55,7 +55,11 @@ var Profession = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (Profession.__proto__ || Object.getPrototypeOf(Profession)).apply(this, arguments));
 
+<<<<<<< HEAD
     _this.$usedState = ["loopArray88", "data", "title", "footerTitle", "closeProfession", "onClickItem"];
+=======
+    _this.$usedState = ["loopArray44", "data", "title", "footerTitle", "closeProfession", "onClickItem"];
+>>>>>>> qq_1.0.1
     _this.anonymousFunc0Map = {};
     _this.customComponents = [];
     return _this;
@@ -89,6 +93,7 @@ var Profession = function (_Taro$Component) {
       this.anonymousFunc1 = function () {
         return closeProfession();
       };
+<<<<<<< HEAD
       var loopArray88 = data ? data.map(function (item, i) {
         item = {
           privateOriginal: (0, _taroSwan.internal_get_original)(item)
@@ -98,6 +103,17 @@ var Profession = function (_Taro$Component) {
             privateOriginal: (0, _taroSwan.internal_get_original)(d)
           };
           var _$indexKey = 'iizzz' + i + '-' + k;
+=======
+      var loopArray44 = data ? data.map(function (item, i) {
+        item = {
+          privateOriginal: (0, _taroSwan.internal_get_original)(item)
+        };
+        var anonymousCallee__8 = data ? item.privateOriginal.children.map(function (d, k) {
+          d = {
+            privateOriginal: (0, _taroSwan.internal_get_original)(d)
+          };
+          var _$indexKey = 'ejzzz' + i + '-' + k;
+>>>>>>> qq_1.0.1
           _this2.anonymousFunc0Map[_$indexKey] = function () {
             return _this2.__props.onClickItem(i, k, d.privateOriginal.id, d.privateOriginal.name);
           };
@@ -114,12 +130,20 @@ var Profession = function (_Taro$Component) {
           };
         }) : [];
         return {
+<<<<<<< HEAD
           anonymousCallee__9: anonymousCallee__9,
+=======
+          anonymousCallee__8: anonymousCallee__8,
+>>>>>>> qq_1.0.1
           privateOriginal: item.privateOriginal
         };
       }) : [];
       Object.assign(this.__state, {
+<<<<<<< HEAD
         loopArray88: loopArray88,
+=======
+        loopArray44: loopArray44,
+>>>>>>> qq_1.0.1
         data: data,
         title: title,
         footerTitle: footerTitle

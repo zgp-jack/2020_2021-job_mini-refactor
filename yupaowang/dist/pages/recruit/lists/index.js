@@ -75,7 +75,11 @@ var Recruit = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (Recruit.__proto__ || Object.getPrototypeOf(Recruit)).apply(this, arguments));
 
+<<<<<<< HEAD
     _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "anonymousState__temp3", "anonymousState__temp4", "$compid__29", "$compid__30", "$compid__31", "refresh"];
+=======
+    _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "anonymousState__temp3", "$compid__29", "$compid__30", "$compid__31", "refresh"];
+>>>>>>> qq_1.0.1
     _this.customComponents = ["Search", "RecruitCondition", "WechatNotice", "RecruitList"];
     return _this;
   }
@@ -109,11 +113,14 @@ var Recruit = function (_Taro$Component) {
           _genCompid6 = _slicedToArray(_genCompid5, 2),
           $prevCompid__31 = _genCompid6[0],
           $compid__31 = _genCompid6[1];
+<<<<<<< HEAD
       // 发布招工跳转不同模式（急速或者快速）
 
 
       var _useJobView = (0, _index6.default)(),
           initJobView = _useJobView.initJobView;
+=======
+>>>>>>> qq_1.0.1
       // 输入关键词 没搜索 备份
 
 
@@ -261,7 +268,11 @@ var Recruit = function (_Taro$Component) {
       };
       // * 发布招工
       var userPublishRecruit = function userPublishRecruit() {
+<<<<<<< HEAD
         initJobView();
+=======
+        _taroSwan2.default.navigateTo({ url: _index3.PUBLISHRECRUIT });
+>>>>>>> qq_1.0.1
       };
       // * 更新筛选条件
       var setSearchDataAction = function setSearchDataAction(type, id, text) {
@@ -278,7 +289,10 @@ var Recruit = function (_Taro$Component) {
         } else {
           setSearchData(_extends({}, searchData, { joblisttype: id, page: 1 }));
         }
+<<<<<<< HEAD
         // goToScrollTop()
+=======
+>>>>>>> qq_1.0.1
       };
       // 输入搜索关键词
       var setSearchValData = function setSearchValData() {
@@ -299,7 +313,10 @@ var Recruit = function (_Taro$Component) {
       this.anonymousFunc1 = function () {
         return getNextPageData();
       };
+<<<<<<< HEAD
       var anonymousState__temp4 = (0, _taroSwan.internal_inline_style)({ height: '8px' });
+=======
+>>>>>>> qq_1.0.1
       this.anonymousFunc2 = function () {
         return userPublishRecruit();
       };
@@ -321,7 +338,10 @@ var Recruit = function (_Taro$Component) {
         anonymousState__temp: anonymousState__temp,
         anonymousState__temp2: anonymousState__temp2,
         anonymousState__temp3: anonymousState__temp3,
+<<<<<<< HEAD
         anonymousState__temp4: anonymousState__temp4,
+=======
+>>>>>>> qq_1.0.1
         $compid__29: $compid__29,
         $compid__30: $compid__30,
         $compid__31: $compid__31,

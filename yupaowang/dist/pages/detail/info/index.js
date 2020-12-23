@@ -59,6 +59,11 @@ __webpack_require__(/*! ./index.scss */ "./src/pages/detail/info/index.scss");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+<<<<<<< HEAD
+=======
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+>>>>>>> qq_1.0.1
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -77,9 +82,15 @@ var DetailInfoPage = function (_Taro$Component) {
       navigationBarTitleText: ''
     };
 
+<<<<<<< HEAD
     _this.$usedState = ["anonymousState__temp3", "data", "loopArray78", "loopArray79", "$compid__65", "resCode", "editPhone", "SHOWOFFICIALACCOUNT", "SERIES", "QQSERIES", "ios", "DOWNLOADAPP", "IMGCDNURL", "isCollection", "ISCANSHARE", "complaintModal", "phone"];
     _this.anonymousFunc5Map = {};
     _this.customComponents = ["WechatNotice", "Report"];
+=======
+    _this.$usedState = ["anonymousState__temp3", "data", "loopArray113", "loopArray114", "$compid__89", "$compid__90", "$compid__91", "type", "resCode", "editPhone", "SHOWOFFICIALACCOUNT", "SERIES", "QQSERIES", "ios", "DOWNLOADAPP", "IMGCDNURL", "isCollection", "ISCANSHARE", "recommend", "complaintModal", "phone"];
+    _this.anonymousFunc5Map = {};
+    _this.customComponents = ["WechatNotice", "CollectionRecruitList", "Report"];
+>>>>>>> qq_1.0.1
     return _this;
   }
 
@@ -100,17 +111,39 @@ var DetailInfoPage = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
+<<<<<<< HEAD
       var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__65"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
           $prevCompid__65 = _genCompid2[0],
           $compid__65 = _genCompid2[1];
+=======
+      var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__89"),
+          _genCompid2 = _slicedToArray(_genCompid, 2),
+          $prevCompid__89 = _genCompid2[0],
+          $compid__89 = _genCompid2[1];
+
+      var _genCompid3 = (0, _taroSwan.genCompid)(__prefix + "$compid__90"),
+          _genCompid4 = _slicedToArray(_genCompid3, 2),
+          $prevCompid__90 = _genCompid4[0],
+          $compid__90 = _genCompid4[1];
+
+      var _genCompid5 = (0, _taroSwan.genCompid)(__prefix + "$compid__91"),
+          _genCompid6 = _slicedToArray(_genCompid5, 2),
+          $prevCompid__91 = _genCompid6[0],
+          $compid__91 = _genCompid6[1];
+>>>>>>> qq_1.0.1
 
       var router = (0, _taroSwan.useRouter)();
       var _router$params = router.params,
           _router$params$id = _router$params.id,
           id = _router$params$id === undefined ? '' : _router$params$id,
           _router$params$refId = _router$params.refId,
+<<<<<<< HEAD
           refId = _router$params$refId === undefined ? '' : _router$params$refId;
+=======
+          refId = _router$params$refId === undefined ? '' : _router$params$refId,
+          type = _router$params.type;
+>>>>>>> qq_1.0.1
       // 获取userInfo
 
       var userInfo = _taroSwan2.default.getStorageSync(_store.UserInfo);
@@ -228,7 +261,11 @@ var DetailInfoPage = function (_Taro$Component) {
       var login = (0, _redux.useSelector)(function (state) {
         return state.User['login'];
       });
+<<<<<<< HEAD
       // 相关推荐
+=======
+      // 招工相关推荐
+>>>>>>> qq_1.0.1
 
       var _useState25 = (0, _taroSwan.useState)([]),
           _useState26 = _slicedToArray(_useState25, 2),
@@ -241,6 +278,37 @@ var DetailInfoPage = function (_Taro$Component) {
           _useState28 = _slicedToArray(_useState27, 2),
           ios = _useState28[0],
           setIos = _useState28[1];
+<<<<<<< HEAD
+=======
+      // 找活相关推荐
+
+
+      var _useState29 = (0, _taroSwan.useState)([]),
+          _useState30 = _slicedToArray(_useState29, 2),
+          recommendRe = _useState30[0],
+          setRecommendRe = _useState30[1];
+      // 更多招工省市
+
+
+      var _useState31 = (0, _taroSwan.useState)(0),
+          _useState32 = _slicedToArray(_useState31, 2),
+          areasId = _useState32[0],
+          setAreasId = _useState32[1];
+      // 更多招工工种
+
+
+      var _useState33 = (0, _taroSwan.useState)(''),
+          _useState34 = _slicedToArray(_useState33, 2),
+          occupations = _useState34[0],
+          setOccupations = _useState34[1];
+      // 更多招工job_ids
+
+
+      var _useState35 = (0, _taroSwan.useState)(0),
+          _useState36 = _slicedToArray(_useState35, 2),
+          jobIds = _useState36[0],
+          setJobIds = _useState36[1];
+>>>>>>> qq_1.0.1
       // 返回刷新页面
 
 
@@ -264,6 +332,10 @@ var DetailInfoPage = function (_Taro$Component) {
         // 用户没有认证
         var result = login ? (0, _index.jobInfoAction)(params) : (0, _index.jobNoUserInfoAction)(params);
         result.then(function (res) {
+<<<<<<< HEAD
+=======
+          console.log('then');
+>>>>>>> qq_1.0.1
           detailGetTelAction(res, function () {
             setRefresh(false);
             setData(res.result);
@@ -273,7 +345,11 @@ var DetailInfoPage = function (_Taro$Component) {
               title: res.result.title
             });
             if (_index2.SERIES == _index2.BAIDUSERIES) {
+<<<<<<< HEAD
               var keywords = res.result.classifyName[0];
+=======
+              var keywords = res.result.classifyName[0] || '';
+>>>>>>> qq_1.0.1
               var split_keywords = keywords.split('/').map(function (item) {
                 return "\u62DB" + item + "\u5E08\u5085";
               }).join(',');
@@ -284,14 +360,63 @@ var DetailInfoPage = function (_Taro$Component) {
               });
             }
             setIsCollection(res.result.is_collect);
+<<<<<<< HEAD
+=======
+            // 设置更多招工信息的省/市
+            var area_id = res.result.city_id && res.result.city_id != 0 ? res.result.city_id : res.result.province_id;
+            setAreasId(area_id);
+            var occupations = res.result.occupations.length ? res.result.occupations.join(',') : '';
+            setOccupations(occupations);
+            var jobIds = res.result.id;
+            setJobIds(jobIds);
+>>>>>>> qq_1.0.1
             if (userInfo.userId === res.result.user_id) {
               // 判断是自己发布的招工
               setResCode('own');
             } else {
               setResCode(res.errcode);
             }
+<<<<<<< HEAD
           });
         }).catch(function () {
+=======
+            // if (userInfo.userId === res.result.user_id) {
+            //   // 加载找活相关推荐数据列表
+            //   const listParams = {
+            //     page: 1,
+            //     type: 1,
+            //     area_id: res.result.city_id,
+            //     occupations: [...res.result.occupations].join(','),
+            //     uuid: '',
+            //   }
+            //   detailsRecommendAction(listParams).then(res => {
+            //     if (res.errcode === 'ok') {
+            //       setRecommendRe(res.data.list);
+            //     } else {
+            //       Msg(res.errmsg)
+            //     }
+            //   })
+            // } else {
+            //   // 加载招工相关推荐数据列表
+            var paramsObj = {
+              page: 1,
+              type: 1,
+              area_id: res.result.city_id,
+              job_ids: res.result.id,
+              classify_id: [].concat(_toConsumableArray(res.result.occupations)).join(',')
+            };
+            (0, _index.jobDetailsListAction)(paramsObj).then(function (res) {
+              if (res.errcode === 'ok') {
+                setRecommend(res.data.list);
+              } else {
+                (0, _index6.default)(res.errmsg);
+              }
+            });
+            // }
+          });
+        }).catch(function () {
+          console.log('catch');
+>>>>>>> qq_1.0.1
           (0, _index5.ShowActionModal)({
             msg: '网络异常，请重新进入',
             success: function success() {
@@ -364,6 +489,10 @@ var DetailInfoPage = function (_Taro$Component) {
       };
       // 处理获取电话号码的不同状态码
       var detailGetTelAction = function detailGetTelAction(res, callback) {
+<<<<<<< HEAD
+=======
+        console.log(res.errcode);
+>>>>>>> qq_1.0.1
         if (res.errcode == 'ok' || res.errcode == 'end' || res.errcode == 'ajax') {
           callback && callback();
         } else if (res.errcode == 'end') {
@@ -505,9 +634,13 @@ var DetailInfoPage = function (_Taro$Component) {
           } else {
             // 查看电话可以投诉一次
             if (complaintInfo) {
+<<<<<<< HEAD
               // infoId = ${ infoId }& type=job & page=detail
               userRouteJump("/pages/newcomplaint/index?infoId=" + data.id + "&type=job&page=detail");
               // setComplaintModal(true);
+=======
+              setComplaintModal(true);
+>>>>>>> qq_1.0.1
               // 没有看到电话不能投诉
             } else if (data.show_ajax_btn) {
               (0, _index6.default)('请查看完整的手机号码后再操作！');
@@ -519,8 +652,12 @@ var DetailInfoPage = function (_Taro$Component) {
                   showCancel: false
                 });
               } else {
+<<<<<<< HEAD
                 userRouteJump("/pages/newcomplaint/index?infoId=" + data.id + "&type=job&page=detail");
                 // setComplaintModal(true)
+=======
+                setComplaintModal(true);
+>>>>>>> qq_1.0.1
               }
             }
           }
@@ -662,6 +799,7 @@ var DetailInfoPage = function (_Taro$Component) {
       this.anonymousFunc7 = function () {
         return userRouteJump(_index2.DOWNLOADAPPPATH);
       };
+<<<<<<< HEAD
       this.anonymousFunc8 = function () {
         return seeMoreRecruit();
       };
@@ -674,6 +812,17 @@ var DetailInfoPage = function (_Taro$Component) {
         _taroSwan2.default.makePhoneCall({ phoneNumber: phone });
       };
       var loopArray78 = data.classifyName.map(function (v, i) {
+=======
+      this.anonymousFunc8 = collection;
+      this.anonymousFunc9 = footerComplaint;
+      this.anonymousFunc10 = function () {
+        return jobGetTel();
+      };
+      this.anonymousFunc11 = function () {
+        _taroSwan2.default.makePhoneCall({ phoneNumber: phone });
+      };
+      var loopArray113 = data.classifyName.map(function (v, i) {
+>>>>>>> qq_1.0.1
         v = {
           privateOriginal: (0, _taroSwan.internal_get_original)(v)
         };
@@ -683,12 +832,20 @@ var DetailInfoPage = function (_Taro$Component) {
           privateOriginal: v.privateOriginal
         };
       });
+<<<<<<< HEAD
       var loopArray79 = data.view_images.length ? data.view_images.map(function (v, i) {
+=======
+      var loopArray114 = data.view_images.length ? data.view_images.map(function (v, i) {
+>>>>>>> qq_1.0.1
         v = {
           privateOriginal: (0, _taroSwan.internal_get_original)(v)
         };
         var loopState__temp5 = data.view_images.length ? i + i : null;
+<<<<<<< HEAD
         var _$indexKey = "idzzz" + i;
+=======
+        var _$indexKey = "bbgzz" + i;
+>>>>>>> qq_1.0.1
         _this2.anonymousFunc5Map[_$indexKey] = function () {
           return handleImage(v.privateOriginal);
         };
@@ -698,12 +855,27 @@ var DetailInfoPage = function (_Taro$Component) {
           privateOriginal: v.privateOriginal
         };
       }) : [];
+<<<<<<< HEAD
+=======
+      _taroSwan.propsManager.set({
+        "type": 1
+      }, $compid__89, $prevCompid__89);
+      recommend.length && _taroSwan.propsManager.set({
+        "data": recommend,
+        "type": 1,
+        "areasId": areasId,
+        "occupations": occupations,
+        "jobIds": jobIds,
+        "detailList": true
+      }, $compid__90, $prevCompid__90);
+>>>>>>> qq_1.0.1
       complaintModal && _taroSwan.propsManager.set({
         "display": complaintModal,
         "textarea": textarea,
         "handleTextarea": handleTextarea,
         "setComplaintModal": setComplaintModal,
         "handleSubmit": handleSubmit
+<<<<<<< HEAD
       }, $compid__65, $prevCompid__65);
       Object.assign(this.__state, {
         anonymousState__temp3: anonymousState__temp3,
@@ -711,6 +883,18 @@ var DetailInfoPage = function (_Taro$Component) {
         loopArray78: loopArray78,
         loopArray79: loopArray79,
         $compid__65: $compid__65,
+=======
+      }, $compid__91, $prevCompid__91);
+      Object.assign(this.__state, {
+        anonymousState__temp3: anonymousState__temp3,
+        data: data,
+        loopArray113: loopArray113,
+        loopArray114: loopArray114,
+        $compid__89: $compid__89,
+        $compid__90: $compid__90,
+        $compid__91: $compid__91,
+        type: type,
+>>>>>>> qq_1.0.1
         resCode: resCode,
         editPhone: editPhone,
         SHOWOFFICIALACCOUNT: _index2.SHOWOFFICIALACCOUNT,
@@ -721,6 +905,10 @@ var DetailInfoPage = function (_Taro$Component) {
         IMGCDNURL: _index2.IMGCDNURL,
         isCollection: isCollection,
         ISCANSHARE: _index2.ISCANSHARE,
+<<<<<<< HEAD
+=======
+        recommend: recommend,
+>>>>>>> qq_1.0.1
         complaintModal: complaintModal,
         phone: phone
       });
@@ -794,17 +982,24 @@ var DetailInfoPage = function (_Taro$Component) {
     value: function anonymousFunc11(e) {
       ;
     }
+<<<<<<< HEAD
   }, {
     key: "anonymousFunc12",
     value: function anonymousFunc12(e) {
       ;
     }
+=======
+>>>>>>> qq_1.0.1
   }]);
 
   return DetailInfoPage;
 }(_taroSwan2.default.Component);
 
+<<<<<<< HEAD
 DetailInfoPage.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6", "anonymousFunc7", "anonymousFunc8", "anonymousFunc9", "anonymousFunc10", "anonymousFunc11", "anonymousFunc12"];
+=======
+DetailInfoPage.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6", "anonymousFunc7", "anonymousFunc8", "anonymousFunc9", "anonymousFunc10", "anonymousFunc11"];
+>>>>>>> qq_1.0.1
 DetailInfoPage.$$componentPath = "pages/detail/info/index";
 DetailInfoPage.config = { navigationBarTitleText: '' };
 exports.default = DetailInfoPage;

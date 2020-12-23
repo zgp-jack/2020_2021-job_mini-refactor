@@ -11811,6 +11811,93 @@ exports.delayGetScrollOffset = delayGetScrollOffset;
 /***/ }),
 
 /***/ "./node_modules/webpack/buildin/amd-options.js":
+<<<<<<< HEAD
+=======
+/*!****************************************!*\
+  !*** (webpack)/buildin/amd-options.js ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/* WEBPACK VAR INJECTION */(function(__webpack_amd_options__) {/* globals __webpack_amd_options__ */
+module.exports = __webpack_amd_options__;
+
+/* WEBPACK VAR INJECTION */}.call(this, {}))
+
+/***/ }),
+
+/***/ "./node_modules/webpack/buildin/global.js":
+/*!***********************************!*\
+  !*** (webpack)/buildin/global.js ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var g;
+
+// This works in non-strict mode
+g = function () {
+  return this;
+}();
+
+try {
+  // This works if eval is allowed (see CSP)
+  g = g || new Function("return this")();
+} catch (e) {
+  // This works if the window reference is available
+  if ((typeof window === "undefined" ? "undefined" : _typeof(window)) === "object") g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
+
+/***/ }),
+
+/***/ "./node_modules/webpack/buildin/module.js":
+/*!***********************************!*\
+  !*** (webpack)/buildin/module.js ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = function (module) {
+  if (!module.webpackPolyfill) {
+    module.deprecate = function () {};
+    module.paths = [];
+    // module.parent = undefined by default
+    if (!module.children) module.children = [];
+    Object.defineProperty(module, "loaded", {
+      enumerable: true,
+      get: function get() {
+        return module.l;
+      }
+    });
+    Object.defineProperty(module, "id", {
+      enumerable: true,
+      get: function get() {
+        return module.i;
+      }
+    });
+    module.webpackPolyfill = 1;
+  }
+  return module;
+};
+
+/***/ }),
+
+/***/ "./src/actions/filter_classify.ts":
+>>>>>>> qq_1.0.1
 /*!****************************************!*\
   !*** (webpack)/buildin/amd-options.js ***!
   \****************************************/
@@ -11969,6 +12056,7 @@ function setMemberTel(val) {
 /*!****************************!*\
   !*** ./src/actions/msg.ts ***!
   \****************************/
+<<<<<<< HEAD
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -12131,6 +12219,130 @@ function setAddressFun(data) {
 /*!********************************!*\
   !*** ./src/actions/recruit.ts ***!
   \********************************/
+=======
+>>>>>>> qq_1.0.1
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.setMsg = setMsg;
+exports.getMsg = getMsg;
+exports.resetMsg = resetMsg;
+exports.setMemberMsg = setMemberMsg;
+
+var _msg = __webpack_require__(/*! ../constants/msg */ "./src/constants/msg.ts");
+
+function setMsg(data) {
+  return {
+    type: _msg.SETMSG,
+    data: data
+  };
+}
+function getMsg() {
+  return {
+    type: _msg.GETMSG
+  };
+}
+function resetMsg() {
+  return {
+    type: _msg.RESETMSG
+  };
+}
+function setMemberMsg(data) {
+  return {
+    type: _msg.SETMEMBERMSG,
+    data: data
+  };
+}
+
+/***/ }),
+
+/***/ "./src/actions/realname.ts":
+/*!*********************************!*\
+  !*** ./src/actions/realname.ts ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.setData = setData;
+exports.getData = getData;
+exports.setArea = setArea;
+<<<<<<< HEAD
+exports.getArea = getArea;
+exports.setPositionStaus = setPositionStaus;
+exports.setToken = setToken;
+exports.getToken = getToken;
+exports.setPhone = setPhone;
+=======
+exports.setFun = setFun;
+exports.setAddressFun = setAddressFun;
+>>>>>>> qq_1.0.1
+
+var _realname = __webpack_require__(/*! ../constants/realname */ "./src/constants/realname.ts");
+
+function setData(data) {
+  return {
+    type: _realname.SETREALNAME,
+    data: data
+  };
+}
+function getData() {
+  return {
+    type: _realname.GETREALNAME
+  };
+}
+function setArea(data) {
+  return {
+    type: _realname.SETAREA,
+    data: data
+  };
+}
+function setFun(data) {
+  return {
+    type: _realname.SETFUN,
+    data: data
+  };
+}
+function setAddressFun(data) {
+  return {
+    type: _realname.SETADDRESSFUN,
+    data: data
+  };
+}
+<<<<<<< HEAD
+function setToken(data) {
+  return {
+    type: _recruit.SETTOKEN,
+    data: data
+  };
+}
+function getToken() {
+  return {
+    type: _recruit.GETTOKEN
+  };
+}
+function setPhone(data) {
+  return {
+    type: _recruit.SETPHONE,
+=======
+
+/***/ }),
+
+/***/ "./src/actions/recruit.ts":
+/*!********************************!*\
+  !*** ./src/actions/recruit.ts ***!
+  \********************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -12145,9 +12357,6 @@ exports.getAreaInfo = getAreaInfo;
 exports.setArea = setArea;
 exports.getArea = getArea;
 exports.setPositionStaus = setPositionStaus;
-exports.setToken = setToken;
-exports.getToken = getToken;
-exports.setPhone = setPhone;
 
 var _recruit = __webpack_require__(/*! ../constants/recruit */ "./src/constants/recruit.ts");
 
@@ -12176,23 +12385,7 @@ function getArea() {
 function setPositionStaus(data) {
   return {
     type: _recruit.SETPOSITIONSTATUS,
-    data: data
-  };
-}
-function setToken(data) {
-  return {
-    type: _recruit.SETTOKEN,
-    data: data
-  };
-}
-function getToken() {
-  return {
-    type: _recruit.GETTOKEN
-  };
-}
-function setPhone(data) {
-  return {
-    type: _recruit.SETPHONE,
+>>>>>>> qq_1.0.1
     data: data
   };
 }
@@ -12436,7 +12629,11 @@ var DEFAULT_PROPS = exports.DEFAULT_PROPS = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+<<<<<<< HEAD
 exports.FILTERWEIXINREG = exports.REPLACEWEIXINTEXT = exports.SHOWINVITEUSER = exports.SHOWOFFICIALACCOUNT = exports.SHOWWEIXINNUMBER = exports.SHOWLISTSNOTICE = exports.SHOWSERVERPHONE = exports.ISPARSEUPLOADIMG = exports.USEGAODEMAPAPI = exports.DOWNLOADAPP = exports.TEXTAREAMAXLENGTH = exports.ISCANSHARE = exports.USESUBSCRIBEMESSAGE = exports.INVITESOURCE = exports.VIDEOAD = exports.UNITID = exports.SERIES = exports.TOKEN = exports.PAGETITLE = exports.QQSERIES = exports.WEIXINSERIES = exports.ZIJIESERIES = exports.BAIDUSERIES = exports.INVITEPATH = exports.DownloadApp = exports.DOWNLOADAPPPATH = exports.PUBLISHEDRECRUIT = exports.CODEAUTHPATH = exports.AUTHPATH = exports.REALNAMEPATH = exports.PUBLISHUSED = exports.PUBLISHRESUME = exports.PUBLISHFAST = exports.PUBLISHRECRUIT = exports.INDEXPATH = exports.MaxUsedInfoId = exports.QQWECHATPAYURLREFERER = exports.ProjectImgMaxNum = exports.ProjectListMaxNum = exports.ResumeMemberLabelsMaxNum = exports.CertificateImgMaxNum = exports.CertificateMaxNum = exports.MemberMsgTimerInterval = exports.UserPublishAreaHistoryMaxNum = exports.MAXCACHECITYNUM = exports.MAPKEY = exports.VERSION = exports.SERVERPHONE = exports.IMGCDNURL = exports.ALIYUNCDNMINIIMG = exports.ALIYUNCDN = exports.UPLOADIMGURL = exports.REQUESTURL = exports.PROREQUESTURL = exports.PREREQUESTURL = exports.DEVREQUESTURL = exports.MINICONFIG = exports.MINIVERSION = undefined;
+=======
+exports.FILTERWEIXINREG = exports.REPLACEWEIXINTEXT = exports.SHOWINVITEUSER = exports.SHOWOFFICIALACCOUNT = exports.SHOWWEIXINNUMBER = exports.SHOWLISTSNOTICE = exports.SHOWSERVERPHONE = exports.ISPARSEUPLOADIMG = exports.USEGAODEMAPAPI = exports.DOWNLOADAPP = exports.TEXTAREAMAXLENGTH = exports.ISCANSHARE = exports.USESUBSCRIBEMESSAGE = exports.INVITESOURCE = exports.VIDEOAD = exports.UNITID = exports.SERIES = exports.TOKEN = exports.PAGETITLE = exports.QQSERIES = exports.WEIXINSERIES = exports.ZIJIESERIES = exports.BAIDUSERIES = exports.INVITEPATH = exports.DownloadApp = exports.DOWNLOADAPPPATH = exports.PUBLISHEDRECRUIT = exports.CODEAUTHPATH = exports.AUTHPATH = exports.REALNAMEPATH = exports.PUBLISHUSED = exports.PUBLISHRESUME = exports.PUBLISHRECRUIT = exports.INDEXPATH = exports.MaxUsedInfoId = exports.QQWECHATPAYURLREFERER = exports.ProjectImgMaxNum = exports.ProjectListMaxNum = exports.ResumeMemberLabelsMaxNum = exports.CertificateImgMaxNum = exports.CertificateMaxNum = exports.MemberMsgTimerInterval = exports.UserPublishAreaHistoryMaxNum = exports.MAXCACHECITYNUM = exports.MAPKEY = exports.VERSION = exports.SERVERPHONE = exports.IMGCDNURL = exports.ALIYUNCDNMINIIMG = exports.ALIYUNCDN = exports.UPLOADIMGURL = exports.REQUESTURL = exports.PROREQUESTURL = exports.PREREQUESTURL = exports.DEVREQUESTURL = exports.MINICONFIG = exports.MINIVERSION = undefined;
+>>>>>>> qq_1.0.1
 
 var _series = __webpack_require__(/*! ./series */ "./src/config/series.ts");
 
@@ -12962,6 +13159,7 @@ var GETMSG = exports.GETMSG = 'getMsg';
 var SETMSG = exports.SETMSG = 'setMsg';
 var RESETMSG = exports.RESETMSG = 'resetMsg';
 var SETMEMBERMSG = exports.SETMEMBERMSG = 'setMemberMsg';
+<<<<<<< HEAD
 
 /***/ }),
 
@@ -12998,6 +13196,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 var SETPUBLISHWAY = exports.SETPUBLISHWAY = 'setPublishWay';
 var GETPUBLISHWAY = exports.GETPUBLISHWAY = 'getPublishWay';
+=======
+>>>>>>> qq_1.0.1
 
 /***/ }),
 
@@ -13292,9 +13492,27 @@ function useCode(type) {
     setDisabled(true);
     (0, _index4.getUserPhoneCode)(data).then(function (res) {
       if (res.errcode == 'ok') {
+<<<<<<< HEAD
         timer(res.refresh);
       } else {
         setDisabled(false);
+=======
+        (0, _index3.default)(res.errmsg, 2500);
+        var t = res.refresh || 60;
+        setText(t + 's后重新获取');
+        var timer = setInterval(function () {
+          t--;
+          if (t === 0) {
+            setDisabled(false);
+            clearInterval(timer);
+            setText(title);
+            return false;
+          }
+          setText(t + 's后重新获取');
+        }, 1000);
+      } else {
+        (0, _index2.ShowActionModal)({ msg: res.errmsg });
+>>>>>>> qq_1.0.1
       }
     });
   };
@@ -17022,8 +17240,13 @@ var RESUME_TOP_DATA = exports.RESUME_TOP_DATA = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+<<<<<<< HEAD
 exports.checkBaiduTpOrderId = exports.getQuestionDetailsFeedBank = exports.getQuestionDetails = exports.getAdvStatusConfig = exports.hotAreas = exports.getNotRemind = exports.getFreeIssueConfig = exports.getBaiduTpOrderId = exports.publishModel = exports.fastPublisView = exports.FastRcruitUrl = exports.memberTurntable = exports.turntableVideoEnd = exports.turntableDraw = exports.turntableIndex = exports.getRankRulesList = exports.checkCodeUrl = exports.getResumeAddInfoConfig = exports.realnameQueryUrl = exports.userCheckDouyinRecharge = exports.userQQWeCharRecharge = exports.userQQRecharge = exports.userDouyinRecharge = exports.userTelCodeLogin = exports.userAccountUrl = exports.leavingMessageUrl = undefined;
 exports.resumesComplainUrl = exports.resumesUpdateTopResumeUrl = exports.resumesDoTopV2Url = exports.resumesTopConfigV2Url = exports.resumesEditImgUrl = exports.resumesChangeTopStatusUrl = exports.resumesDoTopUrl = exports.resumesTopConfigUrl = exports.resumesTopAreasUrl = exports.resumesDelProjectUrl = exports.resumesEditEndUrl = exports.resumesIntroduceUrl = exports.resumesGetDataUrl = exports.checkAdcodeUrl = exports.addResumeUrl = exports.resumesProjectUrl = exports.resumesCertificateUrl = exports.delCertificateUrl = exports.jobRecommendListUrl = exports.resumeListUrl = exports.resumeCollectUrl = exports.resumeSupportUrl = exports.resumesGetTelUrl = exports.recommendListUrl = exports.resumeDetailUrl = exports.jobUpdateTopStatusUrl = exports.jobChangeTopAreasUrl = exports.jobGetTopAreasUrl = exports.jobDoTopUrl = exports.jobTopHotAreasUrl = exports.jobTopConfigUrl = exports.jobEndStatusUrl = exports.jobGetTelUrl = exports.jobNoUserInfoUrl = exports.jobInfoUrl = exports.publishComplainUrl = exports.integralUseInfoUrl = exports.integralExpendListsUrl = exports.integralExpendConfigUrl = exports.integralSourceListsUrl = exports.integralSourceConfigUrl = exports.messagesTypeUrl = exports.userMessagesUrl = exports.resumesAddClickLog = exports.resumesSortUrl = exports.newsInfoUrl = exports.newsTypesUrl = exports.newListUrl = exports.helpUrl = exports.feedbackSubmissionUrl = exports.feedbackUrl = exports.requestActionUrl = exports.ResumeCancelCollection = exports.recruitCancelCollection = exports.getCollectionResumeList = exports.getCollectionRecruitList = exports.userUpdateUserInfo = exports.userChangeUsedStatus = exports.userGetPublishedUsedList = exports.userChangeRecruitStatus = exports.userGetPublishedRecruitList = exports.userSetPassword = exports.updataPassword = exports.userChangePhone = exports.userUpdateName = exports.userChangeAvatar = exports.postUserAddInfo = exports.getIdcardAuthInfo = exports.postUserAuthInfo = exports.getUserAuthInfo = exports.getMemberMsgNumber = exports.getMemberInfo = exports.CheckMineAuthInfo = exports.CheckAuth = exports.GetUsedInfo = exports.GetUserLoginPhoneCode = exports.GetUserPhoneCode = exports.PublishUsedInfo = exports.GetUsedInfoModel = exports.GetRechargeOrder = exports.GetRechargeOpenid = exports.GetRechargeList = exports.GetUserInviteLink = exports.CheckAdcodeValid = exports.GetAllAreas = exports.FastIssueInfo = exports.FastPublisInfo = exports.PublishRecruitInfo = exports.GetPublisRecruitView = exports.GetIntegralList = exports.GetTabbarMsg = exports.GetListFilterData = exports.GetWechatNotice = exports.GetFleamarketlist = exports.GetResumelist = exports.GetRecruitlist = exports.GetAllListItem = exports.GetBannerNotice = exports.GetUserInfo = exports.GetUserSessionKey = undefined;
+=======
+exports.hotAreas = exports.checkBaiduTpOrderId = exports.getBaiduTpOrderId = exports.memberTurntable = exports.turntableVideoEnd = exports.turntableDraw = exports.turntableIndex = exports.getRankRulesList = exports.getResumeAddInfoConfig = exports.realnameQueryUrl = exports.userCheckDouyinRecharge = exports.userQQWeCharRecharge = exports.userQQRecharge = exports.userDouyinRecharge = exports.userTelCodeLogin = exports.userAccountUrl = exports.leavingMessageUrl = undefined;
+exports.resumesComplainUrl = exports.resumesUpdateTopResumeUrl = exports.resumesDoTopV2Url = exports.resumesTopConfigV2Url = exports.resumesEditImgUrl = exports.resumesChangeTopStatusUrl = exports.resumesDoTopUrl = exports.resumesTopConfigUrl = exports.resumesTopAreasUrl = exports.resumesDelProjectUrl = exports.resumesEditEndUrl = exports.resumesIntroduceUrl = exports.resumesGetDataUrl = exports.checkAdcodeUrl = exports.addResumeUrl = exports.resumesProjectUrl = exports.resumesCertificateUrl = exports.delCertificateUrl = exports.jobRecommendListUrl = exports.jobDetailsUrl = exports.resumeListUrl = exports.resumeCollectUrl = exports.resumeSupportUrl = exports.resumesGetTelUrl = exports.recommendListUrl = exports.detailsRecommendListUrl = exports.resumeDetailUrl = exports.jobUpdateTopStatusUrl = exports.jobChangeTopAreasUrl = exports.jobGetTopAreasUrl = exports.jobDoTopUrl = exports.jobTopHotAreasUrl = exports.jobTopConfigUrl = exports.jobEndStatusUrl = exports.jobGetTelUrl = exports.jobNoUserInfoUrl = exports.jobInfoUrl = exports.publishComplainUrl = exports.integralUseInfoUrl = exports.integralExpendListsUrl = exports.integralExpendConfigUrl = exports.integralSourceListsUrl = exports.integralSourceConfigUrl = exports.messagesTypeUrl = exports.userMessagesUrl = exports.resumesAddClickLog = exports.resumesSortUrl = exports.newsInfoUrl = exports.newsTypesUrl = exports.newListUrl = exports.helpUrl = exports.feedbackSubmissionUrl = exports.feedbackUrl = exports.requestActionUrl = exports.ResumeCancelCollection = exports.recruitCancelCollection = exports.getCollectionResumeList = exports.getCollectionRecruitList = exports.userUpdateUserInfo = exports.userChangeUsedStatus = exports.userGetPublishedUsedList = exports.userChangeRecruitStatus = exports.userGetPublishedRecruitList = exports.userSetPassword = exports.updataPassword = exports.userChangePhone = exports.userUpdateName = exports.userChangeAvatar = exports.postUserAddInfo = exports.getIdcardAuthInfo = exports.postUserAuthInfo = exports.getUserAuthInfo = exports.getMemberMsgNumber = exports.getMemberInfo = exports.CheckMineAuthInfo = exports.CheckAuth = exports.GetUsedInfo = exports.GetUserLoginPhoneCode = exports.GetUserPhoneCode = exports.PublishUsedInfo = exports.GetUsedInfoModel = exports.GetRechargeOrder = exports.GetRechargeOpenid = exports.GetRechargeList = exports.GetUserInviteLink = exports.CheckAdcodeValid = exports.GetAllAreas = exports.PublishRecruitInfo = exports.GetPublisRecruitView = exports.GetIntegralList = exports.GetTabbarMsg = exports.GetListFilterData = exports.GetWechatNotice = exports.GetFleamarketlist = exports.GetResumelist = exports.GetRecruitlist = exports.GetAllListItem = exports.GetBannerNotice = exports.GetUserInfo = exports.GetUserSessionKey = undefined;
+>>>>>>> qq_1.0.1
 
 var _index = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
 
@@ -17179,7 +17402,9 @@ var jobChangeTopAreasUrl = exports.jobChangeTopAreasUrl = _index.REQUESTURL + 'j
 var jobUpdateTopStatusUrl = exports.jobUpdateTopStatusUrl = _index.REQUESTURL + 'job/update-top-status/';
 // 找活名片内容
 var resumeDetailUrl = exports.resumeDetailUrl = _index.REQUESTURL + 'resumes/resume-detail/';
-// 找活名片相关推荐
+// 找活详情相关推荐
+var detailsRecommendListUrl = exports.detailsRecommendListUrl = _index.REQUESTURL + 'resumes/details-recommend-list/';
+// 附近适合您的工人
 var recommendListUrl = exports.recommendListUrl = _index.REQUESTURL + 'resumes/resume-recommend-list/';
 // 找活名片查看完整电话
 var resumesGetTelUrl = exports.resumesGetTelUrl = _index.REQUESTURL + 'resumes/get-tel/';
@@ -17189,7 +17414,9 @@ var resumeSupportUrl = exports.resumeSupportUrl = _index.REQUESTURL + 'resumes/r
 var resumeCollectUrl = exports.resumeCollectUrl = _index.REQUESTURL + 'resumes/resume-collect/';
 // 找活名片完善信息
 var resumeListUrl = exports.resumeListUrl = _index.REQUESTURL + 'resumes/resume-list/';
-// 找活详情推荐
+// 找活名片-推荐适合的工作
+var jobDetailsUrl = exports.jobDetailsUrl = _index.REQUESTURL + 'job/details-recommend-list/';
+// 附近适合您的工作
 var jobRecommendListUrl = exports.jobRecommendListUrl = _index.REQUESTURL + '/job/job-recommend-list/';
 // 删除技能证书
 var delCertificateUrl = exports.delCertificateUrl = _index.REQUESTURL + 'resumes/del-certificate/';
@@ -17257,6 +17484,7 @@ var turntableDraw = exports.turntableDraw = _index.REQUESTURL + 'turntable/draw/
 var turntableVideoEnd = exports.turntableVideoEnd = _index.REQUESTURL + 'turntable/video-end/';
 // 获取鱼泡币页面大转盘展示控制
 var memberTurntable = exports.memberTurntable = _index.REQUESTURL + 'member/turntable/';
+<<<<<<< HEAD
 // 发布招工信息
 var FastRcruitUrl = exports.FastRcruitUrl = _index.REQUESTURL + 'fast-issue/complete/';
 // 初始化极速发布招工
@@ -17269,6 +17497,12 @@ var getBaiduTpOrderId = exports.getBaiduTpOrderId = _index.REQUESTURL + 'pay/bai
 var getFreeIssueConfig = exports.getFreeIssueConfig = _index.REQUESTURL + 'fast-issue/issue-config/';
 // 发布招工第一次免费发布提示框  暂不提醒 请求
 var getNotRemind = exports.getNotRemind = _index.REQUESTURL + '/fast-issue/hide-tips/';
+=======
+// 获取百度tpOrderId
+var getBaiduTpOrderId = exports.getBaiduTpOrderId = _index.REQUESTURL + 'pay/baidu-order/';
+// 校验百度支付是否成功
+var checkBaiduTpOrderId = exports.checkBaiduTpOrderId = _index.REQUESTURL + 'pay/query-order-status/';
+>>>>>>> qq_1.0.1
 // 获取热门城市
 var hotAreas = exports.hotAreas = _index.REQUESTURL + 'resumes/hot-areas/';
 // 播放广告
@@ -17691,6 +17925,7 @@ exports.jobChangeTopAreasAction = jobChangeTopAreasAction;
 exports.jobUpdateTopStatusAction = jobUpdateTopStatusAction;
 exports.resumeDetailAction = resumeDetailAction;
 exports.recommendListAction = recommendListAction;
+exports.detailsRecommendAction = detailsRecommendAction;
 exports.resumesGetTelAcrion = resumesGetTelAcrion;
 exports.resumeSupportAction = resumeSupportAction;
 exports.resumeCollectAction = resumeCollectAction;
@@ -17700,6 +17935,7 @@ exports.publishFindWorker = publishFindWorker;
 exports.fastIssue = fastIssue;
 exports.FastPublisInfo = FastPublisInfo;
 exports.jobRecommendListAction = jobRecommendListAction;
+exports.jobDetailsListAction = jobDetailsListAction;
 exports.delCertificateAction = delCertificateAction;
 exports.resumesCertificateAction = resumesCertificateAction;
 exports.resumesProjectAction = resumesProjectAction;
@@ -17736,10 +17972,15 @@ exports.turntableIndex = turntableIndex;
 exports.turntableDraw = turntableDraw;
 exports.turntableVideoEnd = turntableVideoEnd;
 exports.memberTurntable = memberTurntable;
+<<<<<<< HEAD
 exports.publishWayRea = publishWayRea;
 exports.getBaiduTpOrderId = getBaiduTpOrderId;
 exports.getFreeIssueConfig = getFreeIssueConfig;
 exports.getNotRemind = getNotRemind;
+=======
+exports.getBaiduTpOrderId = getBaiduTpOrderId;
+exports.checkBaiduOrderStatusAction = checkBaiduOrderStatusAction;
+>>>>>>> qq_1.0.1
 exports.hotAreas = hotAreas;
 exports.checkBaiduOrderStatusAction = checkBaiduOrderStatusAction;
 
@@ -18408,7 +18649,7 @@ function jobInfoAction(params) {
   return doRequestAction({
     url: api.jobInfoUrl,
     method: 'POST',
-    failToast: true,
+    // failToast: true,
     data: params
   });
 }
@@ -18417,7 +18658,7 @@ function jobNoUserInfoAction(params) {
   return doRequestAction({
     url: api.jobNoUserInfoUrl,
     method: 'POST',
-    failToast: true,
+    // failToast: true,
     data: params
   });
 }
@@ -18511,6 +18752,15 @@ function recommendListAction(obj) {
     data: obj
   });
 }
+// 找活详情里推荐列表
+function detailsRecommendAction(obj) {
+  return doRequestAction({
+    url: api.detailsRecommendListUrl,
+    method: 'POST',
+    failToast: true,
+    data: obj
+  });
+}
 // 找活详情查看电话
 function resumesGetTelAcrion(obj) {
   return doRequestAction({
@@ -18587,6 +18837,15 @@ function FastPublisInfo(data) {
 function jobRecommendListAction(data) {
   return doRequestAction({
     url: api.jobRecommendListUrl,
+    method: 'POST',
+    failToast: true,
+    data: data
+  });
+}
+// 找活名片-推荐适合的工作
+function jobDetailsListAction(data) {
+  return doRequestAction({
+    url: api.jobDetailsUrl,
     method: 'POST',
     failToast: true,
     data: data
@@ -18922,6 +19181,7 @@ function memberTurntable() {
     method: 'POST'
   });
 }
+<<<<<<< HEAD
 // 发布方式请求
 function publishWayRea() {
   return doRequestAction({
@@ -18929,6 +19189,8 @@ function publishWayRea() {
     method: 'GET'
   });
 }
+=======
+>>>>>>> qq_1.0.1
 // 获取百度支付tporderid
 function getBaiduTpOrderId(data) {
   return doRequestAction({
@@ -18937,6 +19199,7 @@ function getBaiduTpOrderId(data) {
     data: data
   });
 }
+<<<<<<< HEAD
 // 获取免费发布招工信息的配置请求
 function getFreeIssueConfig() {
   return doRequestAction({
@@ -18949,6 +19212,15 @@ function getNotRemind() {
   return doRequestAction({
     url: api.getNotRemind,
     method: 'GET'
+=======
+// 校验百度支付是否成功
+function checkBaiduOrderStatusAction(data) {
+  return doRequestAction({
+    url: api.checkBaiduTpOrderId,
+    method: 'POST',
+    data: data,
+    loading: false
+>>>>>>> qq_1.0.1
   });
 }
 // 获取热门城市

@@ -761,7 +761,7 @@ export function jobInfoAction(params: object): Promise<Inter.jobInfoData> {
   return doRequestAction({
     url: api.jobInfoUrl,
     method: 'POST',
-    failToast: true,
+    // failToast: true,
     data: params
   })
 }
@@ -771,7 +771,7 @@ export function jobNoUserInfoAction(params: object): Promise<Inter.jobInfoData> 
   return doRequestAction({
     url: api.jobNoUserInfoUrl,
     method: 'POST',
-    failToast: true,
+    // failToast: true,
     data: params
   })
 }
@@ -879,6 +879,16 @@ export function recommendListAction(obj): Promise<Inter.recommendList> {
   })
 }
 
+// 找活详情里推荐列表
+export function detailsRecommendAction(obj): Promise<Inter.detailsRecommendListType> {
+  return doRequestAction({
+    url: api.detailsRecommendListUrl,
+    method: 'POST',
+    failToast: true,
+    data: obj
+  })
+}
+
 // 找活详情查看电话
 export function resumesGetTelAcrion(obj): Promise<Inter.resumesGetTel> {
   return doRequestAction({
@@ -960,6 +970,16 @@ export function FastPublisInfo(data): Promise<Inter.Result> {
 export function jobRecommendListAction(data): Promise<Inter.jobRecommendList> {
   return doRequestAction({
     url: api.jobRecommendListUrl,
+    method: 'POST',
+    failToast: true,
+    data,
+  })
+}
+
+// 找活名片-推荐适合的工作
+export function jobDetailsListAction(data): Promise<Inter.jobRecommendList> {
+  return doRequestAction({
+    url: api.jobDetailsUrl,
     method: 'POST',
     failToast: true,
     data,
@@ -1327,13 +1347,6 @@ export function memberTurntable(): Promise<Inter.memberTurntableType> {
   return doRequestAction({
     url: api.memberTurntable,
     method: 'POST',
-  })
-}
-// 发布方式请求
-export function publishWayRea(): Promise<Inter.publishWay>{
-  return doRequestAction({
-    url: api.publishModel,
-    method: 'GET'
   })
 }
 
