@@ -11,14 +11,15 @@ interface PROPS {
   areasId?: number,
   occupations?:string,
   jobIds: number,
-  detailList?:boolean
+  detailList?:boolean,
+  infoUuid?:string,
 }
 // 找活查看更多招工
 // 招工查看找活
 // 招工详情就是招工
 // 找活详情就去就是找活
 
-export default function CollectionRecruitList({ data = [], type, areasId, occupations, jobIds, detailList }: PROPS) {
+export default function CollectionRecruitList({ data = [], type, areasId, occupations, jobIds, detailList, infoUuid }: PROPS) {
   return(
     <View>
     {/* type === 1 招工 */}
@@ -27,7 +28,7 @@ export default function CollectionRecruitList({ data = [], type, areasId, occupa
       }
       {/* type === 2 找活 */}
       {type === 2 && 
-        <View><ResumeListPage data={data} areasId={areasId} occupations={occupations} type={type} detailList={detailList}/></View>
+        <View><ResumeListPage data={data} areasId={areasId} occupations={occupations} type={type} detailList={detailList} infoUuid={infoUuid}/></View>
       }
     </View>
   )

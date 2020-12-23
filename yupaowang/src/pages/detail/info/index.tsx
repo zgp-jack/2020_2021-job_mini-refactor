@@ -115,6 +115,8 @@ export default function DetailInfoPage() {
   const [occupations,setOccupations] = useState<string>('');
   // 更多招工job_ids
   const [jobIds,setJobIds] = useState<number>(0);
+  // 修改置顶
+  const [editTopping,setEditTopping] = useState<number>(0);
   // 返回刷新页面
   useDidShow(()=>{
     setIos(isIos())
@@ -465,15 +467,15 @@ export default function DetailInfoPage() {
   const handleStatus = ()=>{
     jobEndStatusAction(data.id).then(res=>{
       if(res.errcode === 'ok'){
-        // if (stopHiring || (data.is_end === 2)) {
-        //   setAgain(true);
-        // }else{
-          //   setStopHiring(true);
+        if (stopHiring || (data.is_end === 2)) {
+          setAgain(true);
+        }else{
+            setStopHiring(true);
           // setStopHiring se
           Msg(res.errmsg)
           setStopHiring(false);
           setRefresh(true)
-          // }
+          }
       }else{
         Msg(res.errmsg)
       }
@@ -490,13 +492,14 @@ export default function DetailInfoPage() {
         })
         const params = {
           infoId: id,
-          status: data.toping == '0' ? '1' : "0"
+          status: data.toping == '1' ? '1' : "0"
         }
         jobUpdateTopStatusAction(params).then(res => {
           if (res.errcode ==='ok') {
             Msg(res.errmsg)
             setRefresh(true)
             setStopHiring(true);
+            setEditTopping(1)
             // setSearchData({ ...searchData, page: searchData.page })
           } else if (res.errcode === 'auth_forbid'){
             // 去实名
@@ -632,7 +635,57 @@ export default function DetailInfoPage() {
       <View className='detailInfo-Image-box'>
         <Image src={`${IMGCDNURL}download.png`} className='detailInfo-Image' onClick={() => userRouteJump(DOWNLOADAPPPATH)}/>
       </View>}
-
+      {resCode === 'own' ?
+        (data.is_check === 1 || again ?
+          <View className='detailInfo-userfooter'>
+            <View className='detailInfo-userfooter-examine'><Image className='detailInfo-userfooter-examine-image' src={`${IMGCDNURL}published-info.png`} />提示:人工审核中，该信息仅自己可见。</View>
+          </View> :
+          (data.is_check === 2 ?
+            <View className='detailInfo-edit'>
+              <View className='detailInfo-edit-box'>
+                <View className='detailInfo-edit-list' onClick={() => userRouteJump(`/pages/recruit/publish/index?id=${data.id}`)}>修改</View>
+                {/* <View className={stopHiring || (data.is_end === 2) ? 'detailInfo-edit-list-none' : 'detailInfo-edit-list'}>修改</View> */}
+                <View className={stopHiring || (data.is_end === 1) ? 'detailInfo-edit-list' : 'detailInfo-edit-list-none'} onClick={handleStatus}>停止招工</View>
+                {(data.has_top && data.top_info.is_top == '1') || editTopping == 1 ? <View className='detailInfo-edit-list-edit' onClick={() => userRouteJump(`/pages/newtopping/recRang/index?job_id=${data.id}`)}>修改置顶</View> : (stopHiring || (data.is_end === 2) ? <View className='detailInfo-edit-list' onClick={handleStatus}>重新招工</View> : <View className='detailInfo-edit-list' onClick={() => handleTopping(data)
+                }>我要置顶</View>)}
+              </View>
+            </View> :
+            // 失败的时候只有修改
+            <View className='detailInfo-edit'>
+              <View className='detailInfo-edit-box'>
+                <View className='detailInfo-edit-list' onClick={() => userRouteJump(`/pages/recruit/publish/index?id=${data.id}`)}>修改</View>
+              </View>
+            </View>)
+          // 自己发布
+        )
+        :
+        // 他人发布
+        <View className='detailInfo-footer-content'>
+          <View className='detailInfo-footer-content-box'>
+            <View className='detailInfo-footer-content-box-list' onClick={collection}>
+              <View><Image src={isCollection === 1 ? `${IMGCDNURL}job-collect-active.png` : `${IMGCDNURL}job-collect-normal.png`} className='detailInfo-footer-content-box-image' /></View>
+              <View className='detailInfo-footer-content-box-text'>{isCollection === 0 ? '收藏' : '已收藏'}</View>
+            </View>
+            <View className='detailInfo-footer-content-box-list' onClick={footerComplaint}>
+              <View><Image src={`${IMGCDNURL}newjobinfo-complain.png`} className='detailInfo-footer-content-box-image' /></View>
+              <View className='detailInfo-footer-content-box-text'>投诉</View>
+            </View>
+            {ISCANSHARE &&
+              <Button openType='share' className='detailInfo-footer-content-box-list'>
+                <View><Image src={`${IMGCDNURL}newjobinfo-share.png`} className='detailInfo-footer-content-box-image' /></View>
+                <View className='detailInfo-footer-content-box-text'>分享</View>
+              </Button>
+            }
+            <View>
+              {resCode === 'end' ? <Button className='detailInfo-footer-content-box-button'>已招到</Button> : (editPhone ?
+                <Button className='detailInfo-footer-content-box-button' onClick={() => jobGetTel()}>查看完整电话</Button> :
+                <Button className='detailInfo-footer-content-box-button' onClick={() => { Taro.makePhoneCall({ phoneNumber: phone }) }}>拨打电话</Button>)}
+              {
+              }
+            </View>
+          </View>
+        </View>
+      }
       {/* 返回首页 */}
       {/* <View className='see-recruit-list-btn' onClick={()=>seeMoreRecruit()}>查看更多招工信息</View>   */}
 
@@ -670,7 +723,7 @@ export default function DetailInfoPage() {
         )
          */}
         {/* // 他人发布 */}
-      {resCode !== 'own' &&
+      {/* {resCode !== 'own' &&
         <View className='detailInfo-footer-content'>
           <View className='detailInfo-footer-content-box'>
             <View className='detailInfo-footer-content-box-list' onClick={collection}>
@@ -696,7 +749,7 @@ export default function DetailInfoPage() {
             </View>
           </View>
         </View>
-      }
+      } */}
       {/* 相关推荐 */}
       {
       // resCode === 'own' &&

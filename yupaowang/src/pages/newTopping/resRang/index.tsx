@@ -212,15 +212,32 @@ export default function ResRange() {
         city++;
       }
     }
+
     // 获取旧价格
     const oldPrice: number = +maxPrice;
     // 获取价格
-    let newPrice;
+    let newPrice = 0;
     let defultData = obj ? obj : integralData;
-    newPrice = whole > 0 ? defultData.country_integrals : (city * defultData.city_integral + province * defultData.province_integral);
+    // newPrice = whole > 0 ? (+defultData.country_integrals) : ((city * (+defultData.city_integral) ||0) + (province * (+defultData.province_integral) ||0));
+    newPrice = whole > 0 ? defultData.country_integral : (city * defultData.city_integral + province * defultData.province_integral);
+    // if (whole>0){
+    //   console.error(11111)
+    //   newPrice = defultData.country_integral||0;
+    // }else{
+    //   let cityNum = 0, provinceNum=0;
+    //   if (city>0){
+    //     cityNum = city * defultData.city_integral;
+    //   }
+    //   if(province>0){
+    //     provinceNum = province * defultData.province_integral;
+    //   }
+    //   console.error(cityNum, provinceNum,'====')
+    //   newPrice = cityNum + provinceNum;
+    // }
     // 时间差s
     let oldTime = resumeTopData.resumeTopObj.end_time ? +resumeTopData.resumeTopObj.end_time : 0
     let remDay: number = (oldTime - new Date().getTime() / 1000) / 86400;
+    let remDayNum = remDay > 0 ? remDay:0;
     let money;
     if (isTime && !isCity){
       if (oldPrice == newPrice) {
@@ -230,13 +247,13 @@ export default function ResRange() {
       }
     } else if (!isTime && isCity){
       if (newPrice - oldPrice > 0){
-        money = Math.round((newPrice - oldPrice) * remDay);
+        money = Math.round((newPrice - oldPrice) * remDayNum);
       }else{
         money = 0;
       }
     }else{
       if (newPrice - oldPrice > 0) {
-        money = Math.round((newPrice - oldPrice) * remDay) + newPrice * num;
+        money = Math.round((newPrice - oldPrice) * remDayNum) + newPrice * num;
       }else{
         money = oldPrice * num;
       }

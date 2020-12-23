@@ -30,6 +30,8 @@ export default function ResumeDetail() {
   let { uuid, location } = router.params;
   // 判断是否是ios
   const [ios, setIos] = useState<boolean>(false)
+  // uuid
+  const [infoUuid, setInfoUuid] = useState<string>('');
   //总数据
   const [data, setDate] = useState<DataType>({
     certificates:[],
@@ -116,6 +118,8 @@ export default function ResumeDetail() {
     }
     resumeDetailAction(params).then(res=>{
       if(res.errcode === 'ok'){
+        console.error(res.info.uuid,'1111');
+        setInfoUuid(res.info.uuid);
         // 如果是百度系小程序，则直接设置seo等相关信息
         if (SERIES == BAIDUSERIES) {
           let keywords = res.info.occupations[0]
@@ -156,7 +160,8 @@ export default function ResumeDetail() {
           }
         }
         // 设置更多招工信息的省/市
-        let area_id : number = parseInt(res.info.city ? res.info.city : res.info.province);
+        let area_id: number = parseInt(res.info.city && res.info.city !='0'? res.info.city : res.info.province);
+        console.error(area_id,'area_idarea_id')
         setAreasId(area_id);
         let occupations :string = res.info.occupations_id;
         setOccupations(occupations)
@@ -690,7 +695,7 @@ export default function ResumeDetail() {
         }
         {/* 相关推荐 */}
         {recommendRe.length && 
-          <CollectionRecruitList data={recommendRe} type={2} areasId={areasId} occupations={occupations}  jobIds={jobIds}/>
+          <CollectionRecruitList data={recommendRe} type={2} areasId={areasId} occupations={occupations} jobIds={jobIds} infoUuid={infoUuid}/>
         }
         {/* 投诉 */}
         {complaintModal && <Report display={complaintModal} textarea={textarea} handleTextarea={handleTextarea} setComplaintModal={setComplaintModal} 

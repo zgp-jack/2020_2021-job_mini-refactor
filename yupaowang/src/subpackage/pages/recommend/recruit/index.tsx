@@ -108,7 +108,7 @@ export default function RecruitList(){
             </View>
         )
       )}
-      {!isDown && lists.item.length && <View onClick={() => userRouteRe(`/pages/index/index`)} className="seemore-recommend">查看更多</View>}
+      {!isDown && lists.item.length && <View onClick={() => Taro.navigateBack({delta:2})} className="seemore-recommend">查看更多</View>}
     </View>
   )
 }

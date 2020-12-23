@@ -1,13 +1,14 @@
 import Taro, {Config, useEffect, useRouter, useState, usePullDownRefresh, useReachBottom} from '@tarojs/taro'
 import { View, Text, Image, Block } from '@tarojs/components'
-import { IMGCDNURL } from '../../../../config'
-import './index.scss'
 import { recommendListAction } from '../../../../utils/request/index'
 import { recommendListDataList } from '../../../../utils/request/index.d'
+import { UserInfo } from '../../../../config/store';
+import { IMGCDNURL } from '../../../../config'
+import './index.scss'
 export interface PageType {
   page:number,
   area_id: string, 
-  classify_id:string,
+  occupations:string,
 }
 export interface ItmeType {
   item: recommendListDataList[]
@@ -15,17 +16,17 @@ export interface ItmeType {
 // 找活
 export default function ResumeListPage( ) {
   const router: Taro.RouterInfo = useRouter()
-  let { areasId,occupations,type  } = router.params;
+  let { areasId, occupations, type, infoUuid=''  } = router.params;
   // * 标记是否是在刷新状态
   const [refresh, setRefresh] = useState<boolean>(false)
   // 设置初始页面
   const [initPage, setPage] = useState<PageType>({
-    page: 1,
     area_id: areasId,
-    classify_id:occupations,
+    occupations: occupations,
+    page: 1
   })
   // 后台返回的列表类型，用作于下一次请求时触发
-  const [types,setTypes] =useState<string>(type);
+  const [types,setTypes] =useState<number>(1);
   // 定义数据
   const [lists, setLists] = useState<ItmeType>({
     item: [],
@@ -38,10 +39,17 @@ export default function ResumeListPage( ) {
   }, [initPage])
   // 进来时获取数据
   const recommendDataAction = ()=>{
-  recommendListAction({...initPage, type: types}).then(res => {
+    const usetInfo = Taro.getStorageSync(UserInfo);
+    let params = {
+      ...initPage, 
+      type: types,
+      uuid: infoUuid,
+      uid: usetInfo.userId
+    }
+    recommendListAction(params).then(res => {
       Taro.hideNavigationBarLoading()
       Taro.stopPullDownRefresh();
-      setTypes(res.data.type ? res.data.type.toString():'')
+      setTypes(res.data.type)
       if (initPage.page === 1) {
         setLists({ item: [...res.data.list] })
       } else {
@@ -115,7 +123,7 @@ export default function ResumeListPage( ) {
             </View>
         </Block>
       ))}
-      {!isDown && lists.item.length && <View className='seemore-recommend-recruit' onClick={() => userRouteRe(`/pages/index/index?type=resume`)}>查看更多</View>}
+      {!isDown && lists.item.length && <View className='seemore-recommend-recruit' onClick={() => Taro.navigateBack({delta:2})}>查看更多</View>}
     </View>
   )
 }

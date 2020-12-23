@@ -56,7 +56,7 @@ export default function RecruitListPage({ data = [], occupations, areasId, type,
         </View>
       ))}
       {data.length >= 15 && <View className='recruitListBox-last' onClick={() => userRouteJump(`/subpackage/pages/recommend/recruit/index?city=${areasId}&occupations=${occupations}&type=${type}&jobIds=${jobIds}`)}>查看更多招工信息</View>}
-      {data.length < 15 && <View className='recruitListBox-last' onClick={() => userRouteRe(`/pages/index/index`)}>查看更多招工信息</View>}
+      {data.length < 15 && <View className='recruitListBox-last' onClick={()=>Taro.navigateBack()}>查看更多招工信息</View>}
     </View>
   )
 }
