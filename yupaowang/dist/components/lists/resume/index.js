@@ -57,11 +57,7 @@ var ResumeList = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (ResumeList.__proto__ || Object.getPrototypeOf(ResumeList)).apply(this, arguments));
 
-<<<<<<< HEAD
-    _this.$usedState = ["anonymousState__temp", "loopArray22", "$compid__26", "data", "IMGCDNURL", "hasMore", "bottom"];
-=======
     _this.$usedState = ["anonymousState__temp", "loopArray24", "$compid__26", "data", "IMGCDNURL", "hasMore", "bottom"];
->>>>>>> qq_1.0.1
     _this.anonymousFunc0Map = {};
     _this.customComponents = ["Nodata"];
     return _this;
@@ -105,37 +101,21 @@ var ResumeList = function (_Taro$Component) {
         });
       };
       var anonymousState__temp = (0, _taroSwan.internal_inline_style)(bottom ? '' : 'padding-bottom:0');
-<<<<<<< HEAD
-      var loopArray22 = data ? data.map(function (item, di) {
-=======
       var loopArray24 = data ? data.map(function (item, di) {
->>>>>>> qq_1.0.1
         item = {
           privateOriginal: (0, _taroSwan.internal_get_original)(item)
         };
         var loopState__temp3 = data ? di + "-" + di : null;
-<<<<<<< HEAD
-        var anonymousCallee__4 = item.privateOriginal ? item.privateOriginal.map(function (d, __index0) {
-          d = {
-            privateOriginal: (0, _taroSwan.internal_get_original)(d)
-          };
-          var _$indexKey = "chzzz" + di + "-" + __index0;
-=======
         var anonymousCallee__5 = item.privateOriginal ? item.privateOriginal.map(function (d, __index0) {
           d = {
             privateOriginal: (0, _taroSwan.internal_get_original)(d)
           };
           var _$indexKey = "dazzz" + di + "-" + __index0;
->>>>>>> qq_1.0.1
           _this2.anonymousFunc0Map[_$indexKey] = function () {
             return userRouteJump(d.privateOriginal.uuid);
           };
           var loopState__temp7 = item.privateOriginal ? _index.REPLACEWEIXINTEXT ? d.privateOriginal.introduce.replace(_index.FILTERWEIXINREG, '') : d.privateOriginal.introduce : null;
-<<<<<<< HEAD
-          var anonymousCallee__3 = item.privateOriginal ? d.privateOriginal.occupations.map(function (i, ii) {
-=======
           var anonymousCallee__4 = item.privateOriginal ? d.privateOriginal.occupations.map(function (i, ii) {
->>>>>>> qq_1.0.1
             i = {
               privateOriginal: (0, _taroSwan.internal_get_original)(i)
             };
@@ -148,21 +128,13 @@ var ResumeList = function (_Taro$Component) {
           return {
             _$indexKey: _$indexKey,
             loopState__temp7: loopState__temp7,
-<<<<<<< HEAD
-            anonymousCallee__3: anonymousCallee__3,
-=======
             anonymousCallee__4: anonymousCallee__4,
->>>>>>> qq_1.0.1
             privateOriginal: d.privateOriginal
           };
         }) : [];
         return {
           loopState__temp3: loopState__temp3,
-<<<<<<< HEAD
-          anonymousCallee__4: anonymousCallee__4,
-=======
           anonymousCallee__5: anonymousCallee__5,
->>>>>>> qq_1.0.1
           privateOriginal: item.privateOriginal
         };
       }) : [];
@@ -171,11 +143,7 @@ var ResumeList = function (_Taro$Component) {
       }, $compid__26, $prevCompid__26);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
-<<<<<<< HEAD
-        loopArray22: loopArray22,
-=======
         loopArray24: loopArray24,
->>>>>>> qq_1.0.1
         $compid__26: $compid__26,
         data: data,
         IMGCDNURL: _index.IMGCDNURL,

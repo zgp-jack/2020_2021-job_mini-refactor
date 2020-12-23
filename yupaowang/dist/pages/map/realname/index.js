@@ -78,11 +78,7 @@ var RealnameMap = function (_Taro$Component) {
       navigationBarTitleText: '地址选择'
     };
 
-<<<<<<< HEAD
-    _this.$usedState = ["loopArray59", "loopArray60", "$compid__52", "smAreaText", "showHistory", "histroyList", "lists", "IMGCDNURL", "showCity", "area"];
-=======
-    _this.$usedState = ["loopArray63", "loopArray64", "$compid__54", "smAreaText", "showHistory", "histroyList", "lists", "IMGCDNURL", "showCity", "area"];
->>>>>>> qq_1.0.1
+    _this.$usedState = ["loopArray61", "loopArray62", "$compid__52", "smAreaText", "showHistory", "histroyList", "lists", "IMGCDNURL", "showCity", "area"];
     _this.anonymousFunc4Map = {};
     _this.anonymousFunc5Map = {};
     _this.customComponents = ["Cities"];
@@ -106,17 +102,10 @@ var RealnameMap = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-<<<<<<< HEAD
       var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__52"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
           $prevCompid__52 = _genCompid2[0],
           $compid__52 = _genCompid2[1];
-=======
-      var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__54"),
-          _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__54 = _genCompid2[0],
-          $compid__54 = _genCompid2[1];
->>>>>>> qq_1.0.1
 
       var dispatch = (0, _redux.useDispatch)();
       var RealnameAreaRedux = (0, _redux.useSelector)(function (store) {
@@ -349,20 +338,12 @@ var RealnameMap = function (_Taro$Component) {
       this.anonymousFunc3 = function () {
         return userCloseMap();
       };
-<<<<<<< HEAD
-      var loopArray59 = showHistory ? histroyList.map(function (item, index) {
-=======
-      var loopArray63 = showHistory ? histroyList.map(function (item, index) {
->>>>>>> qq_1.0.1
+      var loopArray61 = showHistory ? histroyList.map(function (item, index) {
         item = {
           privateOriginal: (0, _taroSwan.internal_get_original)(item)
         };
         var loopState__temp2 = showHistory ? index + index : null;
-<<<<<<< HEAD
-        var _$indexKey = "gbzzz" + index;
-=======
-        var _$indexKey = "gfzzz" + index;
->>>>>>> qq_1.0.1
+        var _$indexKey = "gezzz" + index;
         _this2.anonymousFunc4Map[_$indexKey] = function () {
           return userClickAreaItem(item.privateOriginal);
         };
@@ -372,20 +353,12 @@ var RealnameMap = function (_Taro$Component) {
           privateOriginal: item.privateOriginal
         };
       }) : [];
-<<<<<<< HEAD
-      var loopArray60 = lists.map(function (item, index) {
-=======
-      var loopArray64 = lists.map(function (item, index) {
->>>>>>> qq_1.0.1
+      var loopArray62 = lists.map(function (item, index) {
         item = {
           privateOriginal: (0, _taroSwan.internal_get_original)(item)
         };
         var loopState__temp4 = index + index;
-<<<<<<< HEAD
-        var _$indexKey2 = "gczzz" + index;
-=======
-        var _$indexKey2 = "ggzzz" + index;
->>>>>>> qq_1.0.1
+        var _$indexKey2 = "gfzzz" + index;
         _this2.anonymousFunc5Map[_$indexKey2] = function () {
           return userClickAreaItem(item.privateOriginal);
         };
@@ -401,19 +374,11 @@ var RealnameMap = function (_Taro$Component) {
         "userLoc": userLoc,
         "userChangeCity": userChangeCity,
         "userTapCityBtn": userTapCityBtn
-<<<<<<< HEAD
       }, $compid__52, $prevCompid__52);
       Object.assign(this.__state, {
-        loopArray59: loopArray59,
-        loopArray60: loopArray60,
+        loopArray61: loopArray61,
+        loopArray62: loopArray62,
         $compid__52: $compid__52,
-=======
-      }, $compid__54, $prevCompid__54);
-      Object.assign(this.__state, {
-        loopArray63: loopArray63,
-        loopArray64: loopArray64,
-        $compid__54: $compid__54,
->>>>>>> qq_1.0.1
         smAreaText: smAreaText,
         showHistory: showHistory,
         histroyList: histroyList,

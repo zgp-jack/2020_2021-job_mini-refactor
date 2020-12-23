@@ -19,7 +19,7 @@ export default function FastIssue() {
   // 手机验证码
   const [code, setCode] = useState<string>('')
   useEffect(()=>{
-    timer()
+    timer(100)
   },[])
   // 发送、获取验证码
   function getCode () {

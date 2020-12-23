@@ -65,6 +65,7 @@ export default function PublishedRecruit(){
     if (type == 'member_first' && lists.length > 0 && reqStatus) {
       let itemIndex: number = lists.findIndex(item => item.id == jobId)
       let item = lists[itemIndex]
+      setReqStatus(false)
       userRouteJump(`/pages/marketing_page/index?defaultTopArea=${item.area_id}&job_id=${item.id}`)
     }
   },[lists])
@@ -73,7 +74,7 @@ export default function PublishedRecruit(){
     if (type == 'day_first'){
       // 发布成功提示框
       const promptData = {
-        showClose: true,
+        showClose: false,
         showTitle: true,
         cancelText: '暂不提醒',
         confirmText: '去增加曝光率',
@@ -119,10 +120,8 @@ export default function PublishedRecruit(){
           Taro.hideNavigationBarLoading()
         }
         setLoading(false)
-        setReqStatus(false)
       }else{
         Msg(res.errmsg)
-        setReqStatus(false)
       }
     })
     .catch(()=>{
@@ -293,7 +292,7 @@ export default function PublishedRecruit(){
       }
     }
     const promptData = {
-      showClose: true,
+      showClose: false,
       showTitle: true,
       cancelText: '不了，谢谢',
       confirmText: '去发布',
@@ -348,6 +347,9 @@ export default function PublishedRecruit(){
       setShowModel(false)
     }
   }
+  const close = () => {
+    setShowModel(false)
+  }
 
   return (
     <Block>
@@ -361,6 +363,7 @@ export default function PublishedRecruit(){
         content={prompt.content}
         cancel={cancel}
         confirm={confirm}
+        close={close}
       /> : ''}
       <View className='user-published-container'>
         <View className='user-published-header'>

@@ -103,11 +103,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-<<<<<<< HEAD
 // import CollectionRecruitList  from '../../../components/recommendList/index'
 
-=======
->>>>>>> qq_1.0.1
 
 var ResumeDetail = function (_Taro$Component) {
   _inherits(ResumeDetail, _Taro$Component);
@@ -124,17 +121,10 @@ var ResumeDetail = function (_Taro$Component) {
       backgroundTextStyle: "dark"
     };
 
-<<<<<<< HEAD
-    _this.$usedState = ["anonymousState__temp3", "anonymousState__temp4", "data", "loopArray92", "loopArray94", "loopArray95", "$compid__75", "isAuth", "IMGCDNURL", "examine", "onoff", "SERIES", "QQSERIES", "ios", "login", "user", "praise", "ISCANSHARE", "collect", "shownewtips", "complaintModal", "BAIDUSERIES", "age", "phone"];
+    _this.$usedState = ["anonymousState__temp3", "anonymousState__temp4", "data", "loopArray94", "loopArray96", "loopArray97", "$compid__77", "$compid__78", "isAuth", "IMGCDNURL", "examine", "onoff", "SERIES", "QQSERIES", "ios", "login", "user", "praise", "ISCANSHARE", "collect", "shownewtips", "recommendRe", "complaintModal", "BAIDUSERIES", "age", "phone"];
     _this.anonymousFunc4Map = {};
     _this.anonymousFunc6Map = {};
     _this.customComponents = ["Auth", "Report"];
-=======
-    _this.$usedState = ["anonymousState__temp3", "anonymousState__temp4", "data", "loopArray89", "loopArray91", "loopArray92", "$compid__80", "$compid__81", "isAuth", "IMGCDNURL", "examine", "onoff", "SERIES", "QQSERIES", "ios", "login", "user", "praise", "ISCANSHARE", "collect", "shownewtips", "recommendRe", "complaintModal", "BAIDUSERIES", "age", "phone"];
-    _this.anonymousFunc4Map = {};
-    _this.anonymousFunc6Map = {};
-    _this.customComponents = ["Auth", "CollectionRecruitList", "Report"];
->>>>>>> qq_1.0.1
     return _this;
   }
 
@@ -155,22 +145,15 @@ var ResumeDetail = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-<<<<<<< HEAD
-      var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__75"),
+      var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__77"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__75 = _genCompid2[0],
-          $compid__75 = _genCompid2[1];
-=======
-      var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__80"),
-          _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__80 = _genCompid2[0],
-          $compid__80 = _genCompid2[1];
+          $prevCompid__77 = _genCompid2[0],
+          $compid__77 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroSwan.genCompid)(__prefix + "$compid__81"),
+      var _genCompid3 = (0, _taroSwan.genCompid)(__prefix + "$compid__78"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__81 = _genCompid4[0],
-          $compid__81 = _genCompid4[1];
->>>>>>> qq_1.0.1
+          $prevCompid__78 = _genCompid4[0],
+          $compid__78 = _genCompid4[1];
       // 获取dispatch分发action
 
 
@@ -183,9 +166,6 @@ var ResumeDetail = function (_Taro$Component) {
         return state.User;
       });
       var router = (0, _taroSwan.useRouter)();
-<<<<<<< HEAD
-      //获取uuid和location,location需要修改，用一个共同的，最外层使用的
-=======
       // 相关推荐
 
       var _useState = (0, _taroSwan.useState)([]),
@@ -195,22 +175,11 @@ var ResumeDetail = function (_Taro$Component) {
       //获取uuid和location,location需要修改，用一个共同的，最外层使用的
 
 
->>>>>>> qq_1.0.1
       var _router$params = router.params,
           uuid = _router$params.uuid,
           location = _router$params.location;
       // 判断是否是ios
 
-<<<<<<< HEAD
-      var _useState = (0, _taroSwan.useState)(false),
-          _useState2 = _slicedToArray(_useState, 2),
-          ios = _useState2[0],
-          setIos = _useState2[1];
-      //总数据
-
-
-      var _useState3 = (0, _taroSwan.useState)({
-=======
       var _useState3 = (0, _taroSwan.useState)(false),
           _useState4 = _slicedToArray(_useState3, 2),
           ios = _useState4[0],
@@ -219,7 +188,6 @@ var ResumeDetail = function (_Taro$Component) {
 
 
       var _useState5 = (0, _taroSwan.useState)({
->>>>>>> qq_1.0.1
         certificates: [],
         info: {
           introduce: '',
@@ -256,56 +224,15 @@ var ResumeDetail = function (_Taro$Component) {
         },
         project: []
       }),
-<<<<<<< HEAD
-          _useState4 = _slicedToArray(_useState3, 2),
-          data = _useState4[0],
-          setDate = _useState4[1];
-=======
           _useState6 = _slicedToArray(_useState5, 2),
           data = _useState6[0],
           setDate = _useState6[1];
->>>>>>> qq_1.0.1
       // 相关推荐
       // const [list,setList ] = useState<ListType>({
       //   item:[]
       // })
 
 
-<<<<<<< HEAD
-      var _useState5 = (0, _taroSwan.useState)(true),
-          _useState6 = _slicedToArray(_useState5, 2),
-          examine = _useState6[0],
-          setExamine = _useState6[1];
-      // 是否查看过电话
-
-
-      var _useState7 = (0, _taroSwan.useState)(false),
-          _useState8 = _slicedToArray(_useState7, 2),
-          onoff = _useState8[0],
-          seOnoff = _useState8[1];
-      // 手机号码
-
-
-      var _useState9 = (0, _taroSwan.useState)(''),
-          _useState10 = _slicedToArray(_useState9, 2),
-          phone = _useState10[0],
-          setPhone = _useState10[1];
-      // 弹框
-
-
-      var _useState11 = (0, _taroSwan.useState)(false),
-          _useState12 = _slicedToArray(_useState11, 2),
-          shownewtips = _useState12[0],
-          setShownewtips = _useState12[1];
-      // 收藏
-
-
-      var _useState13 = (0, _taroSwan.useState)(0),
-          _useState14 = _slicedToArray(_useState13, 2),
-          collect = _useState14[0],
-          setCollect = _useState14[1];
-      // 赞
-=======
       var _useState7 = (0, _taroSwan.useState)(true),
           _useState8 = _slicedToArray(_useState7, 2),
           examine = _useState8[0],
@@ -332,44 +259,10 @@ var ResumeDetail = function (_Taro$Component) {
           shownewtips = _useState14[0],
           setShownewtips = _useState14[1];
       // 收藏
->>>>>>> qq_1.0.1
 
 
       var _useState15 = (0, _taroSwan.useState)(0),
           _useState16 = _slicedToArray(_useState15, 2),
-<<<<<<< HEAD
-          praise = _useState16[0],
-          setPraise = _useState16[1];
-      // 年龄
-
-
-      var _useState17 = (0, _taroSwan.useState)(''),
-          _useState18 = _slicedToArray(_useState17, 2),
-          age = _useState18[0],
-          setAge = _useState18[1];
-      // 投诉
-
-
-      var _useState19 = (0, _taroSwan.useState)(false),
-          _useState20 = _slicedToArray(_useState19, 2),
-          complaintModal = _useState20[0],
-          setComplaintModal = _useState20[1];
-      // 投诉内容
-
-
-      var _useState21 = (0, _taroSwan.useState)(''),
-          _useState22 = _slicedToArray(_useState21, 2),
-          textarea = _useState22[0],
-          setTextarea = _useState22[1];
-      // 是否还可以投诉
-
-
-      var _useState23 = (0, _taroSwan.useState)(false),
-          _useState24 = _slicedToArray(_useState23, 2),
-          iscomplaint = _useState24[0],
-          setIsComplaint = _useState24[1];
-      // 点赞获取电话号码分享收藏需要先登陆
-=======
           collect = _useState16[0],
           setCollect = _useState16[1];
       // 赞
@@ -401,20 +294,10 @@ var ResumeDetail = function (_Taro$Component) {
           textarea = _useState24[0],
           setTextarea = _useState24[1];
       // 是否还可以投诉
->>>>>>> qq_1.0.1
 
 
       var _useState25 = (0, _taroSwan.useState)(false),
           _useState26 = _slicedToArray(_useState25, 2),
-<<<<<<< HEAD
-          isAuth = _useState26[0],
-          setIsAuth = _useState26[1];
-
-      var _useState27 = (0, _taroSwan.useState)(''),
-          _useState28 = _slicedToArray(_useState27, 2),
-          clickType = _useState28[0],
-          setClickType = _useState28[1];
-=======
           iscomplaint = _useState26[0],
           setIsComplaint = _useState26[1];
       // 点赞获取电话号码分享收藏需要先登陆
@@ -450,7 +333,6 @@ var ResumeDetail = function (_Taro$Component) {
           _useState36 = _slicedToArray(_useState35, 2),
           jobIds = _useState36[0],
           setJobIds = _useState36[1];
->>>>>>> qq_1.0.1
       // 设置当前页面的分享内容
 
 
@@ -506,8 +388,6 @@ var ResumeDetail = function (_Taro$Component) {
                 setAge(dateone.getFullYear() - parseInt(res.info.birthday) + "岁");
               }
             }
-<<<<<<< HEAD
-=======
             // 设置更多招工信息的省/市
             var area_id = parseInt(res.info.city ? res.info.city : res.info.province);
             setAreasId(area_id);
@@ -515,7 +395,6 @@ var ResumeDetail = function (_Taro$Component) {
             setOccupations(_occupations);
             var _jobIds = parseInt(res.info.id);
             setJobIds(_jobIds);
->>>>>>> qq_1.0.1
             // Taro.setStorageSync("introinfo", res.info)
             setDate({ certificates: res.certificates, info: res.info, operation: res.operation, project: res.project });
             setPhone(res.info.tel);
@@ -526,18 +405,6 @@ var ResumeDetail = function (_Taro$Component) {
               seOnoff(true);
             }
             // 加载相关推荐数据列表
-<<<<<<< HEAD
-            // const listParams = {
-            //   page: 1,
-            //   type: 1,
-            //   area_id: res.info.city,
-            //   occupations: res.info.occupations_id,
-            //   uuid: res.info.uuid,
-            // }
-            // recommendListAction(listParams).then(res => {
-            //   setList({ item: res.data.list })
-            // })
-=======
             var listParams = {
               page: 1,
               type: 1,
@@ -545,14 +412,13 @@ var ResumeDetail = function (_Taro$Component) {
               occupations: res.info.occupations_id,
               uuid: res.info.uuid
             };
-            (0, _index.detailsRecommendAction)(listParams).then(function (res) {
+            detailsRecommendAction(listParams).then(function (res) {
               if (res.errcode === 'ok') {
                 setRecommend(res.data.list);
               } else {
                 (0, _index4.default)(res.errmsg);
               }
             });
->>>>>>> qq_1.0.1
           }
         });
       };
@@ -692,7 +558,6 @@ var ResumeDetail = function (_Taro$Component) {
             showCancel: false
           });
         } else {
-<<<<<<< HEAD
           userRouteJump("/pages/newcomplaint/index?infoId=" + uuid + "&type=resume&page=detail");
           // setComplaintModal(true)
         }
@@ -703,11 +568,6 @@ var ResumeDetail = function (_Taro$Component) {
           url: url
         });
       };
-=======
-          setComplaintModal(true);
-        }
-      };
->>>>>>> qq_1.0.1
       // 点击方法
       var handleImg = function handleImg(e) {
         _taroSwan2.default.previewImage({
@@ -768,14 +628,7 @@ var ResumeDetail = function (_Taro$Component) {
         setShownewtips(false);
       };
       this.anonymousFunc11 = handleTellPhone;
-<<<<<<< HEAD
-      this.anonymousFunc12 = function () {
-        return seeMoreResume();
-      };
-      var loopArray92 = data.info.occupations.length ? data.info.occupations.map(function (v, i) {
-=======
-      var loopArray89 = data.info.occupations.length ? data.info.occupations.map(function (v, i) {
->>>>>>> qq_1.0.1
+      var loopArray94 = data.info.occupations.length ? data.info.occupations.map(function (v, i) {
         v = {
           privateOriginal: (0, _taroSwan.internal_get_original)(v)
         };
@@ -785,20 +638,12 @@ var ResumeDetail = function (_Taro$Component) {
           privateOriginal: v.privateOriginal
         };
       }) : [];
-<<<<<<< HEAD
-      var loopArray94 = data.project.length ? data.project[0].image.map(function (v, i) {
-=======
-      var loopArray91 = data.project.length ? data.project[0].image.map(function (v, i) {
->>>>>>> qq_1.0.1
+      var loopArray96 = data.project.length ? data.project[0].image.map(function (v, i) {
         v = {
           privateOriginal: (0, _taroSwan.internal_get_original)(v)
         };
         var loopState__temp6 = data.project.length ? i + i : null;
-<<<<<<< HEAD
-        var _$indexKey = "jgzzz" + i;
-=======
         var _$indexKey = "jjzzz" + i;
->>>>>>> qq_1.0.1
         _this2.anonymousFunc4Map[_$indexKey] = function () {
           return handleImg(v.privateOriginal);
         };
@@ -808,20 +653,12 @@ var ResumeDetail = function (_Taro$Component) {
           privateOriginal: v.privateOriginal
         };
       }) : [];
-<<<<<<< HEAD
-      var loopArray95 = data.certificates.length ? data.certificates[0].image.map(function (val, i) {
-=======
-      var loopArray92 = data.certificates.length ? data.certificates[0].image.map(function (val, i) {
->>>>>>> qq_1.0.1
+      var loopArray97 = data.certificates.length ? data.certificates[0].image.map(function (val, i) {
         val = {
           privateOriginal: (0, _taroSwan.internal_get_original)(val)
         };
         var loopState__temp8 = data.certificates.length ? i + i : null;
-<<<<<<< HEAD
-        var _$indexKey2 = "jhzzz" + i;
-=======
         var _$indexKey2 = "baazz" + i;
->>>>>>> qq_1.0.1
         _this2.anonymousFunc6Map[_$indexKey2] = function () {
           return handleImg(val.privateOriginal);
         };
@@ -831,43 +668,29 @@ var ResumeDetail = function (_Taro$Component) {
           privateOriginal: val.privateOriginal
         };
       }) : [];
-<<<<<<< HEAD
-=======
       recommendRe.length && _taroSwan.propsManager.set({
         "data": recommendRe,
         "type": 2,
         "areasId": areasId,
         "occupations": occupations,
         "jobIds": jobIds
-      }, $compid__80, $prevCompid__80);
->>>>>>> qq_1.0.1
+      }, $compid__77, $prevCompid__77);
       complaintModal && _taroSwan.propsManager.set({
         "display": complaintModal,
         "textarea": textarea,
         "handleTextarea": handleTextarea,
         "setComplaintModal": setComplaintModal,
         "handleSubmit": handleSubmit
-<<<<<<< HEAD
-      }, $compid__75, $prevCompid__75);
-=======
-      }, $compid__81, $prevCompid__81);
->>>>>>> qq_1.0.1
+      }, $compid__78, $prevCompid__78);
       Object.assign(this.__state, {
         anonymousState__temp3: anonymousState__temp3,
         anonymousState__temp4: anonymousState__temp4,
         data: data,
-<<<<<<< HEAD
-        loopArray92: loopArray92,
         loopArray94: loopArray94,
-        loopArray95: loopArray95,
-        $compid__75: $compid__75,
-=======
-        loopArray89: loopArray89,
-        loopArray91: loopArray91,
-        loopArray92: loopArray92,
-        $compid__80: $compid__80,
-        $compid__81: $compid__81,
->>>>>>> qq_1.0.1
+        loopArray96: loopArray96,
+        loopArray97: loopArray97,
+        $compid__77: $compid__77,
+        $compid__78: $compid__78,
         isAuth: isAuth,
         IMGCDNURL: _index2.IMGCDNURL,
         examine: examine,
@@ -881,10 +704,7 @@ var ResumeDetail = function (_Taro$Component) {
         ISCANSHARE: _index2.ISCANSHARE,
         collect: collect,
         shownewtips: shownewtips,
-<<<<<<< HEAD
-=======
         recommendRe: recommendRe,
->>>>>>> qq_1.0.1
         complaintModal: complaintModal,
         BAIDUSERIES: _index2.BAIDUSERIES,
         age: age,
@@ -968,24 +788,12 @@ var ResumeDetail = function (_Taro$Component) {
     value: function anonymousFunc11(e) {
       ;
     }
-<<<<<<< HEAD
-  }, {
-    key: "anonymousFunc12",
-    value: function anonymousFunc12(e) {
-      ;
-    }
-=======
->>>>>>> qq_1.0.1
   }]);
 
   return ResumeDetail;
 }(_taroSwan2.default.Component);
 
-<<<<<<< HEAD
-ResumeDetail.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6", "anonymousFunc7", "anonymousFunc8", "anonymousFunc9", "anonymousFunc10", "anonymousFunc11", "anonymousFunc12"];
-=======
 ResumeDetail.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6", "anonymousFunc7", "anonymousFunc8", "anonymousFunc9", "anonymousFunc10", "anonymousFunc11"];
->>>>>>> qq_1.0.1
 ResumeDetail.$$componentPath = "pages/resume/detail/index";
 ResumeDetail.config = { navigationBarTitleText: '找活名片', navigationBarBackgroundColor: '#0099ff', navigationBarTextStyle: 'white', backgroundTextStyle: "dark" };
 exports.default = ResumeDetail;

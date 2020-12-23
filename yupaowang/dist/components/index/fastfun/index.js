@@ -91,11 +91,7 @@ var Fastfun = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (Fastfun.__proto__ || Object.getPrototypeOf(Fastfun)).apply(this, arguments));
 
-<<<<<<< HEAD
-    _this.$usedState = ["loopArray20", "Config", "ISWEIXIN"];
-=======
     _this.$usedState = ["loopArray22", "Config", "ISWEIXIN"];
->>>>>>> qq_1.0.1
     _this.anonymousFunc0Map = {};
     _this.customComponents = [];
     return _this;
@@ -126,20 +122,12 @@ var Fastfun = function (_Taro$Component) {
       this.anonymousFunc1 = function () {
         return userRouteJump("/pages/used/lists/index");
       };
-<<<<<<< HEAD
-      var loopArray20 = _config2.default.map(function (item, index) {
-=======
       var loopArray22 = _config2.default.map(function (item, index) {
->>>>>>> qq_1.0.1
         item = {
           privateOriginal: (0, _taroSwan.internal_get_original)(item)
         };
         var loopState__temp2 = item.privateOriginal.show ? index + index : null;
-<<<<<<< HEAD
-        var _$indexKey = "cezzz" + index;
-=======
         var _$indexKey = "chzzz" + index;
->>>>>>> qq_1.0.1
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return userRouteJump(item.privateOriginal.url);
         };
@@ -150,11 +138,7 @@ var Fastfun = function (_Taro$Component) {
         };
       });
       Object.assign(this.__state, {
-<<<<<<< HEAD
-        loopArray20: loopArray20,
-=======
         loopArray22: loopArray22,
->>>>>>> qq_1.0.1
         Config: _config2.default,
         ISWEIXIN: false
       });

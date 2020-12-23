@@ -90,7 +90,7 @@ export function useFastIssue() {
     } else if (response == 'paid_issue') {
       // 发布成功提示框
       const promptData = {
-        showClose: true,
+        showClose: false,
         showTitle: true,
         cancelText: '不了，谢谢',
         confirmText: '确认发布',
@@ -157,17 +157,16 @@ export function useFastIssue() {
     if (response == 'publishSuccess'){
       dispatch(changeTabbar("member"))
       Taro.reLaunch({ url: '/pages/published/recruit/index' })
-      setTipContent([])
-      setResponse('')
     }else if (response == 'paid_issue'){
       fastPublish()
-      setTipContent([])
-      setResponse('')
     }else if (response == 'fail' &&　tipContent.length > 0) {
       setShowModel(false)
-      setTipContent([])
-      setResponse('')
     }
+    setTipContent([])
+    setResponse('')
+  }
+  const close = () => {
+    setShowModel(false)
   }
   // 用户填写发布信息
   function inputEnter (e: any, key: string) {
@@ -347,6 +346,7 @@ export function useFastIssue() {
     cancel,
     confirm,
     showModel,
-    prompt
+    prompt,
+    close
   }
 }

@@ -53,11 +53,7 @@ var UsedList = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (UsedList.__proto__ || Object.getPrototypeOf(UsedList)).apply(this, arguments));
 
-<<<<<<< HEAD
-    _this.$usedState = ["anonymousState__temp", "loopArray23", "data", "IMGCDNURL", "hasMore", "ALIYUNCDN", "bottom"];
-=======
     _this.$usedState = ["anonymousState__temp", "loopArray25", "data", "IMGCDNURL", "hasMore", "ALIYUNCDN", "bottom"];
->>>>>>> qq_1.0.1
     _this.anonymousFunc0Map = {};
     _this.customComponents = [];
     return _this;
@@ -94,17 +90,6 @@ var UsedList = function (_Taro$Component) {
         });
       };
       var anonymousState__temp = (0, _taroSwan.internal_inline_style)(bottom ? '' : 'padding-bottom:0');
-<<<<<<< HEAD
-      var loopArray23 = data.length ? data.map(function (item, __index1) {
-        item = {
-          privateOriginal: (0, _taroSwan.internal_get_original)(item)
-        };
-        var anonymousCallee__5 = data.length ? item.privateOriginal.map(function (d, __index0) {
-          d = {
-            privateOriginal: (0, _taroSwan.internal_get_original)(d)
-          };
-          var _$indexKey = "cizzz" + __index1 + "-" + __index0;
-=======
       var loopArray25 = data.length ? data.map(function (item, __index1) {
         item = {
           privateOriginal: (0, _taroSwan.internal_get_original)(item)
@@ -114,7 +99,6 @@ var UsedList = function (_Taro$Component) {
             privateOriginal: (0, _taroSwan.internal_get_original)(d)
           };
           var _$indexKey = "dbzzz" + __index1 + "-" + __index0;
->>>>>>> qq_1.0.1
           _this2.anonymousFunc0Map[_$indexKey] = function () {
             return userLookUsedInfo(d.privateOriginal.id);
           };
@@ -124,21 +108,13 @@ var UsedList = function (_Taro$Component) {
           };
         }) : [];
         return {
-<<<<<<< HEAD
-          anonymousCallee__5: anonymousCallee__5,
-=======
           anonymousCallee__6: anonymousCallee__6,
->>>>>>> qq_1.0.1
           privateOriginal: item.privateOriginal
         };
       }) : [];
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
-<<<<<<< HEAD
-        loopArray23: loopArray23,
-=======
         loopArray25: loopArray25,
->>>>>>> qq_1.0.1
         data: data,
         IMGCDNURL: _index.IMGCDNURL,
         hasMore: hasMore,

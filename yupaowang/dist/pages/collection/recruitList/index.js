@@ -61,11 +61,7 @@ var RecruitList = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (RecruitList.__proto__ || Object.getPrototypeOf(RecruitList)).apply(this, arguments));
 
-<<<<<<< HEAD
     _this.$usedState = ["$compid__56", "bottom", "initPage"];
-=======
-    _this.$usedState = ["$compid__57", "bottom", "initPage"];
->>>>>>> qq_1.0.1
     _this.customComponents = ["CollectionRecruitList"];
     return _this;
   }
@@ -85,17 +81,10 @@ var RecruitList = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-<<<<<<< HEAD
       var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__56"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
           $prevCompid__56 = _genCompid2[0],
           $compid__56 = _genCompid2[1];
-=======
-      var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__57"),
-          _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__57 = _genCompid2[0],
-          $compid__57 = _genCompid2[1];
->>>>>>> qq_1.0.1
 
       var _props = this.__props,
           bottom = _props.bottom,
@@ -201,15 +190,9 @@ var RecruitList = function (_Taro$Component) {
         "data": lists,
         "onHandlerClick": this.anonymousFunc0,
         "recruitNoMoreData": recruitNoMoreData
-<<<<<<< HEAD
       }, $compid__56, $prevCompid__56);
       Object.assign(this.__state, {
         $compid__56: $compid__56
-=======
-      }, $compid__57, $prevCompid__57);
-      Object.assign(this.__state, {
-        $compid__57: $compid__57
->>>>>>> qq_1.0.1
       });
       return this.__state;
     }

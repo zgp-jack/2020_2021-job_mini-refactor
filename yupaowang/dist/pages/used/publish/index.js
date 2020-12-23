@@ -428,11 +428,7 @@ var UsedPublish = function (_Taro$Component) {
       navigationBarTitleText: '发布二手交易'
     };
 
-<<<<<<< HEAD
-    _this.$usedState = ["initModel", "loopArray53", "loopArray54", "$compid__50", "$compid__51", "parentCurrent", "model", "classifyName", "areaProvince", "areaCity", "pIndex", "cIndex", "cityName", "userTel", "showDrawer", "text"];
-=======
-    _this.$usedState = ["initModel", "loopArray57", "loopArray58", "$compid__52", "$compid__53", "parentCurrent", "model", "classifyName", "areaProvince", "areaCity", "pIndex", "cIndex", "cityName", "userTel", "showDrawer", "text"];
->>>>>>> qq_1.0.1
+    _this.$usedState = ["initModel", "loopArray55", "loopArray56", "$compid__50", "$compid__51", "parentCurrent", "model", "classifyName", "areaProvince", "areaCity", "pIndex", "cIndex", "cityName", "userTel", "showDrawer", "text"];
     _this.anonymousFunc1Map = {};
     _this.anonymousFunc2Map = {};
     _this.customComponents = ["Auth", "AtDrawer", "WordsTotal"];
@@ -456,7 +452,6 @@ var UsedPublish = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-<<<<<<< HEAD
       var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__50"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
           $prevCompid__50 = _genCompid2[0],
@@ -466,17 +461,6 @@ var UsedPublish = function (_Taro$Component) {
           _genCompid4 = _slicedToArray(_genCompid3, 2),
           $prevCompid__51 = _genCompid4[0],
           $compid__51 = _genCompid4[1];
-=======
-      var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__52"),
-          _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__52 = _genCompid2[0],
-          $compid__52 = _genCompid2[1];
-
-      var _genCompid3 = (0, _taroSwan.genCompid)(__prefix + "$compid__53"),
-          _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__53 = _genCompid4[0],
-          $compid__53 = _genCompid4[1];
->>>>>>> qq_1.0.1
 
       var router = (0, _taroSwan.useRouter)();
       var _router$params$id = router.params.id,
@@ -616,11 +600,7 @@ var UsedPublish = function (_Taro$Component) {
       this.anonymousFunc12 = function () {
         return vaildPublishModelInfo();
       };
-<<<<<<< HEAD
-      var loopArray53 = initModel ? initModel.classifyTree.map(function (item, index) {
-=======
-      var loopArray57 = initModel ? initModel.classifyTree.map(function (item, index) {
->>>>>>> qq_1.0.1
+      var loopArray55 = initModel ? initModel.classifyTree.map(function (item, index) {
         item = {
           privateOriginal: (0, _taroSwan.internal_get_original)(item)
         };
@@ -628,11 +608,7 @@ var UsedPublish = function (_Taro$Component) {
           'drawer-list-item overwords': true,
           'drawer-list-item-active': index === parentCurrent
         }) : null;
-<<<<<<< HEAD
-        var _$indexKey = "fizzz" + index;
-=======
-        var _$indexKey = "gczzz" + index;
->>>>>>> qq_1.0.1
+        var _$indexKey = "gbzzz" + index;
         _this2.anonymousFunc1Map[_$indexKey] = function () {
           return useClickClassifyParentId(index);
         };
@@ -642,11 +618,7 @@ var UsedPublish = function (_Taro$Component) {
           privateOriginal: item.privateOriginal
         };
       }) : [];
-<<<<<<< HEAD
-      var loopArray54 = initModel ? initModel.classifyTree[parentCurrent].attributes.map(function (item, k) {
-=======
-      var loopArray58 = initModel ? initModel.classifyTree[parentCurrent].attributes.map(function (item, k) {
->>>>>>> qq_1.0.1
+      var loopArray56 = initModel ? initModel.classifyTree[parentCurrent].attributes.map(function (item, k) {
         item = {
           privateOriginal: (0, _taroSwan.internal_get_original)(item)
         };
@@ -654,11 +626,7 @@ var UsedPublish = function (_Taro$Component) {
           'drawer-list-item overwords': true,
           'drawer-list-item-active': k == childCurrent && item.privateOriginal.id == model.attribute_id
         }) : null;
-<<<<<<< HEAD
-        var _$indexKey2 = "fjzzz" + k;
-=======
-        var _$indexKey2 = "gdzzz" + k;
->>>>>>> qq_1.0.1
+        var _$indexKey2 = "gczzz" + k;
         _this2.anonymousFunc2Map[_$indexKey2] = function () {
           return useClickClassifyChildId(k);
         };
@@ -671,29 +639,16 @@ var UsedPublish = function (_Taro$Component) {
       _taroSwan.propsManager.set({
         "show": showDrawer,
         "onClose": this.anonymousFunc0
-<<<<<<< HEAD
       }, $compid__50, $prevCompid__50);
       _taroSwan.propsManager.set({
         "num": num
       }, $compid__51, $prevCompid__51);
       Object.assign(this.__state, {
         initModel: initModel,
-        loopArray53: loopArray53,
-        loopArray54: loopArray54,
+        loopArray55: loopArray55,
+        loopArray56: loopArray56,
         $compid__50: $compid__50,
         $compid__51: $compid__51,
-=======
-      }, $compid__52, $prevCompid__52);
-      _taroSwan.propsManager.set({
-        "num": num
-      }, $compid__53, $prevCompid__53);
-      Object.assign(this.__state, {
-        initModel: initModel,
-        loopArray57: loopArray57,
-        loopArray58: loopArray58,
-        $compid__52: $compid__52,
-        $compid__53: $compid__53,
->>>>>>> qq_1.0.1
         parentCurrent: parentCurrent,
         model: model,
         classifyName: classifyName,

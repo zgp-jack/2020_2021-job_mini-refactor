@@ -80,7 +80,7 @@ var Recharge = function (_Taro$Component) {
       backgroundTextStyle: "dark"
     };
 
-    _this.$usedState = ["loopArray58", "lists", "integral", "current", "price"];
+    _this.$usedState = ["loopArray60", "lists", "integral", "current", "price"];
     _this.anonymousFunc0Map = {};
     _this.customComponents = ["AtMessage"];
     return _this;
@@ -377,11 +377,11 @@ var Recharge = function (_Taro$Component) {
       this.anonymousFunc1 = function () {
         return userRechargeAction();
       };
-      var loopArray58 = lists.map(function (item, index) {
+      var loopArray60 = lists.map(function (item, index) {
         item = {
           privateOriginal: (0, _taroSwan.internal_get_original)(item)
         };
-        var _$indexKey = "gazzz" + index;
+        var _$indexKey = "gdzzz" + index;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return userChooseItem(index);
         };
@@ -396,7 +396,7 @@ var Recharge = function (_Taro$Component) {
         };
       });
       Object.assign(this.__state, {
-        loopArray58: loopArray58,
+        loopArray60: loopArray60,
         lists: lists,
         integral: integral,
         current: current,

@@ -1349,7 +1349,13 @@ export function memberTurntable(): Promise<Inter.memberTurntableType> {
     method: 'POST',
   })
 }
-
+// 发布方式请求
+export function publishWayRea(): Promise<Inter.publishWay> {
+  return doRequestAction({
+    url: api.publishModel,
+    method: 'GET'
+  })
+}
 // 获取百度支付tporderid
 export function getBaiduTpOrderId(data): Promise<any> {
   return doRequestAction({

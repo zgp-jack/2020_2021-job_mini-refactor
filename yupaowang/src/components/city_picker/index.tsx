@@ -14,9 +14,15 @@ export default function CityPicker({ onCity, modle}) {
   const [cityPickerData, setCityPickerData] = useState<CityTownPicker[][]>([])
   //选中的城市数据
   const [selectCity, setSelectCity] = useState <CityTownPicker[]>([])
-
+  // 选择城市显示样式
+  const [length, setLength] = useState<number>(0)
   //默认选中
   const [selectCityIndex, setSelectCityIndex] = useState <number[]>([0,0])
+
+
+  useEffect(() => {
+    setLength(selectCity.length)
+  }, [selectCity])
   // cityi是选中的省的index
   const initCityData = (cityi: number) => {
     let copyArr = JSON.parse(JSON.stringify(AREAS))
@@ -54,6 +60,7 @@ export default function CityPicker({ onCity, modle}) {
     cityData[1] = cityPickerData[1][e.detail.value[1]]
     setSelectCity(cityData)
     onCity(cityData)
+    console.log("cityData", cityData)
   }
   //发生改变
   const onColumnChange = (e) => {
@@ -102,7 +109,7 @@ export default function CityPicker({ onCity, modle}) {
         onChange={(e) => { onChange(e) }}
         onColumnChange={(e) => { onColumnChange(e) }}
       >
-        <View className={selectCity.length > 0 ? 'data-picker-input' : 'nodata-picker-input'}>{ selectCity.length > 0 ? (selectCity[0].name ? selectCity[0].name + '-' + selectCity[1].name : '') :'请选择招工城市' }</View>
+        <View className={length == 0 ? "nodata-picker-input" : "data-picker-input"}>{selectCity.length > 0 ? (selectCity[0].id == selectCity[1].id ? selectCity[0].name:(selectCity[0].name ? selectCity[0].name + '-' + selectCity[1].name : '')) : '请选择招工城市'}</View>
       </Picker>
     </View>
   )

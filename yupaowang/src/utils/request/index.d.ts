@@ -1878,3 +1878,7 @@ export interface detailsRecommendListTypeList {
   show_address: string,
   active_time_str: string
 }
+// 添加项目返回值
+export interface ResumesProjectData extends Result {
+  count: number
+}

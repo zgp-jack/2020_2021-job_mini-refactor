@@ -57,11 +57,7 @@ var RecruitList = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (RecruitList.__proto__ || Object.getPrototypeOf(RecruitList)).apply(this, arguments));
 
-<<<<<<< HEAD
-    _this.$usedState = ["anonymousState__temp", "loopArray21", "$compid__25", "data", "IMGCDNURL", "hasMore", "bottom"];
-=======
     _this.$usedState = ["anonymousState__temp", "loopArray23", "$compid__25", "data", "IMGCDNURL", "hasMore", "bottom"];
->>>>>>> qq_1.0.1
     _this.anonymousFunc0Map = {};
     _this.anonymousFunc2Map = {};
     _this.customComponents = ["Nodata"];
@@ -104,21 +100,6 @@ var RecruitList = function (_Taro$Component) {
         });
       };
       var anonymousState__temp = (0, _taroSwan.internal_inline_style)(bottom ? '' : 'padding-bottom:0');
-<<<<<<< HEAD
-      var loopArray21 = data ? data.map(function (item, __index1) {
-        item = {
-          privateOriginal: (0, _taroSwan.internal_get_original)(item)
-        };
-        var anonymousCallee__2 = item.privateOriginal ? item.privateOriginal.map(function (d, __index0) {
-          d = {
-            privateOriginal: (0, _taroSwan.internal_get_original)(d)
-          };
-          var _$indexKey = "cfzzz" + __index1 + "-" + __index0;
-          _this2.anonymousFunc0Map[_$indexKey] = function () {
-            return userRouteJump("/pages/detail/info/index?id=" + d.privateOriginal.id);
-          };
-          var _$indexKey2 = "cgzzz" + __index1 + "-" + __index0;
-=======
       var loopArray23 = data ? data.map(function (item, __index1) {
         item = {
           privateOriginal: (0, _taroSwan.internal_get_original)(item)
@@ -132,7 +113,6 @@ var RecruitList = function (_Taro$Component) {
             return userRouteJump("/pages/detail/info/index?id=" + d.privateOriginal.id);
           };
           var _$indexKey2 = "cjzzz" + __index1 + "-" + __index0;
->>>>>>> qq_1.0.1
           _this2.anonymousFunc2Map[_$indexKey2] = function (e) {
             e.stopPropagation();
             userRouteJump(_index.PUBLISHEDRECRUIT);
@@ -146,11 +126,7 @@ var RecruitList = function (_Taro$Component) {
           };
         }) : [];
         return {
-<<<<<<< HEAD
-          anonymousCallee__2: anonymousCallee__2,
-=======
           anonymousCallee__3: anonymousCallee__3,
->>>>>>> qq_1.0.1
           privateOriginal: item.privateOriginal
         };
       }) : [];
@@ -159,11 +135,7 @@ var RecruitList = function (_Taro$Component) {
       }, $compid__25, $prevCompid__25);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
-<<<<<<< HEAD
-        loopArray21: loopArray21,
-=======
         loopArray23: loopArray23,
->>>>>>> qq_1.0.1
         $compid__25: $compid__25,
         data: data,
         IMGCDNURL: _index.IMGCDNURL,

@@ -176,9 +176,6 @@ var UsedInfo = function (_Taro$Component) {
         return userCallPhone();
       };
       var anonymousState__temp = model ? _index4.REPLACEWEIXINTEXT ? model.detail.replace(_index4.FILTERWEIXINREG, '') : model.detail : '';
-      this.anonymousFunc1 = function () {
-        return seeMoreUsed();
-      };
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
         model: model
@@ -190,17 +187,12 @@ var UsedInfo = function (_Taro$Component) {
     value: function anonymousFunc0(e) {
       ;
     }
-  }, {
-    key: "anonymousFunc1",
-    value: function anonymousFunc1(e) {
-      ;
-    }
   }]);
 
   return UsedInfo;
 }(_taroSwan2.default.Component);
 
-UsedInfo.$$events = ["anonymousFunc0", "anonymousFunc1"];
+UsedInfo.$$events = ["anonymousFunc0"];
 UsedInfo.$$componentPath = "pages/used/info/index";
 UsedInfo.config = { navigationBarTitleText: '二手交易详情' };
 exports.default = UsedInfo;

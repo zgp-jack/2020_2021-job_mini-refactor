@@ -30,8 +30,9 @@ export interface PromptBoxProps{
   cancelColor?: string
   confirmColor?: string
   closeIcon?: string
-  cancel: () => void
-  confirm: () => void
+  cancel?: () => void
+  confirm?: () => void
+  close?: () => void
 }
 
 
@@ -51,7 +52,8 @@ export default function PromptBox ({
   content = [{des:'',color:'',text:[{text:'',color:''}]}],
   closeIcon = `${IMGCDNURL}mini-close-icon.png`,
   cancel,
-  confirm
+  confirm,
+  close
 }: PromptBoxProps){
   return (
     <View className= "prompt-container">
@@ -68,10 +70,10 @@ export default function PromptBox ({
         )):''}
       </View>
         <View className="prompt-footer" >
-          {showCancel ? <Button className="prompt-btn" style={{ color: cancelColor }} onClick={() => cancel()}>{cancelText}</Button> : ''}
-          {showConfirm ? <Button className="prompt-btn" style={{ color: confirmColor }} onClick={() => confirm()}>{confirmText}</Button> : ''}
+          {showCancel ? <Button className="prompt-btn" style={{ color: cancelColor }} onClick={() => cancel && cancel()}>{cancelText}</Button> : ''}
+          {showConfirm ? <Button className="prompt-btn" style={{ color: confirmColor }} onClick={() => confirm &&　confirm()}>{confirmText}</Button> : ''}
         </View>
-        {showClose ? <Image className="prompt-close" src={ closeIcon }> </Image> : ''}
+        {showClose ? <Image className="prompt-close" onClick={() => close &&　close()} src={ closeIcon }> </Image> : ''}
       </View>
     </View>
   )

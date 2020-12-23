@@ -8,7 +8,7 @@ import './index.scss'
 
 export default function FastIssue() {
   // 初始化当前信息
-  const { telPhone, content, inputEnter, fastPublish, showPhoneBox, showModel, prompt, cancel, confirm } = useFastIssue()
+  const { telPhone, content, inputEnter, fastPublish, showPhoneBox, showModel, prompt, cancel, confirm, close } = useFastIssue()
   // 监听输入事件
   const userInput = (e:any, key:string) =>{
     inputEnter(e, key)
@@ -17,17 +17,18 @@ export default function FastIssue() {
   return (
     <Block>
     <Auth />
-      {showModel ? <PromptBox 
-        showClose={prompt.showClose}
-        showTitle={prompt.showTitle}
-        cancelText={prompt.cancelText}
-        showCancel={prompt.showCancel}
-        confirmText={prompt.confirmText}
-        titleText={prompt.titleText}
-        content={prompt.content}
-        cancel={cancel}
-        confirm={confirm}
-      />: ''}
+    {showModel ? <PromptBox 
+      showClose={prompt.showClose}
+      showTitle={prompt.showTitle}
+      cancelText={prompt.cancelText}
+      showCancel={prompt.showCancel}
+      confirmText={prompt.confirmText}
+      titleText={prompt.titleText}
+      content={prompt.content}
+      cancel={cancel}
+      confirm={confirm}
+      close={close}
+    />: ''}
     <View className="issue-container">
       <View className="issue-textarea-box">
         <Textarea

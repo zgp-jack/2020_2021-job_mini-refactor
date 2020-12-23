@@ -77,15 +77,10 @@ var Tabber = function (_Taro$Component) {
       navigationBarTitleText: ''
     };
 
-<<<<<<< HEAD
-    _this.$usedState = ["data", "modalData", "loopArray69", "loopArray70", "$compid__63", "$compid__64", "title", "tabBar", "initInfo", "SERIES", "QQSERIES", "ios", "time", "IMGCDNURL", "start", "end", "sourceList", "consumeList", "startType", "modal", "modelType", "showIsReport", "complaintModal", "showTime"];
+    _this.$usedState = ["data", "modalData", "loopArray71", "loopArray72", "$compid__63", "$compid__64", "title", "tabBar", "initInfo", "SERIES", "QQSERIES", "ios", "time", "IMGCDNURL", "start", "end", "sourceList", "consumeList", "startType", "modal", "modelType", "showIsReport", "complaintModal", "showTime"];
     _this.anonymousFunc1Map = {};
     _this.anonymousFunc5Map = {};
     _this.customComponents = ["Nodata", "Report"];
-=======
-    _this.$usedState = ["data", "modalData", "loopArray73", "$compid__64", "$compid__65", "SERIES", "QQSERIES", "ios", "time", "IMGCDNURL", "start", "end", "initInfo", "sourceList", "consumeList", "startType", "modal", "complaintModal", "showTime", "title", "num"];
-    _this.customComponents = ["Auth", "Nodata", "Report"];
->>>>>>> qq_1.0.1
     return _this;
   }
 
@@ -98,18 +93,14 @@ var Tabber = function (_Taro$Component) {
   }, {
     key: '_createData',
     value: function _createData() {
-<<<<<<< HEAD
       var _this2 = this;
 
-=======
->>>>>>> qq_1.0.1
       this.__state = arguments[0] || this.state || {};
       this.__props = arguments[1] || this.props || {};
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
 
-<<<<<<< HEAD
       var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__63"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
           $prevCompid__63 = _genCompid2[0],
@@ -119,17 +110,6 @@ var Tabber = function (_Taro$Component) {
           _genCompid4 = _slicedToArray(_genCompid3, 2),
           $prevCompid__64 = _genCompid4[0],
           $compid__64 = _genCompid4[1];
-=======
-      var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__64"),
-          _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__64 = _genCompid2[0],
-          $compid__64 = _genCompid2[1];
-
-      var _genCompid3 = (0, _taroSwan.genCompid)(__prefix + "$compid__65"),
-          _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__65 = _genCompid4[0],
-          $compid__65 = _genCompid4[1];
->>>>>>> qq_1.0.1
       // 检测用户是否登录
 
 
@@ -259,11 +239,7 @@ var Tabber = function (_Taro$Component) {
           _useState32 = _slicedToArray(_useState31, 2),
           complaintModal = _useState32[0],
           setComplaintModal = _useState32[1];
-<<<<<<< HEAD
       // 投诉id
-=======
-      // 投诉id 
->>>>>>> qq_1.0.1
 
 
       var _useState33 = (0, _taroSwan.useState)(''),
@@ -358,7 +334,6 @@ var Tabber = function (_Taro$Component) {
           _useState54 = _slicedToArray(_useState53, 2),
           isconsume = _useState54[0],
           setIsconsume = _useState54[1];
-<<<<<<< HEAD
       //顶部tab数据
 
 
@@ -384,28 +359,12 @@ var Tabber = function (_Taro$Component) {
           _useState62 = _slicedToArray(_useState61, 2),
           ios = _useState62[0],
           setIos = _useState62[1];
-=======
-      // 判断是否是ios
-
-
-      var _useState55 = (0, _taroSwan.useState)(false),
-          _useState56 = _slicedToArray(_useState55, 2),
-          ios = _useState56[0],
-          setIos = _useState56[1];
->>>>>>> qq_1.0.1
 
       (0, _taroSwan.useEffect)(function () {
         setIos((0, _index5.isIos)());
         var navigationBarTitleText = initInfo === '0' ? '鱼泡网-积分来源记录' : '鱼泡网-积分消耗记录';
         _taroSwan2.default.setNavigationBarTitle({ title: navigationBarTitleText });
-<<<<<<< HEAD
         // 获取现在时间
-=======
-        // 如果用户没有登录 直接断掉请求
-        if (!login) {
-          return;
-        } // 获取现在时间
->>>>>>> qq_1.0.1
         var newTime = new Date();
         var nowyear = newTime.getFullYear();
         var nowmonth = newTime.getMonth() + 1;
@@ -467,12 +426,6 @@ var Tabber = function (_Taro$Component) {
         }
       }, [initInfo]);
       (0, _taroSwan.useEffect)(function () {
-<<<<<<< HEAD
-=======
-        if (!login) {
-          return;
-        }
->>>>>>> qq_1.0.1
         if (params.flag) {
           if (initInfo === '0') {
             integralSourceLists();
@@ -538,11 +491,7 @@ var Tabber = function (_Taro$Component) {
           setParams(params);
         });
       };
-<<<<<<< HEAD
       // 积分来源列表
-=======
-      // 积分列表
->>>>>>> qq_1.0.1
       var integralSourceLists = function integralSourceLists() {
         (0, _index.integralSourceListsAction)(params).then(function (res) {
           if (!nextPage) {
@@ -554,16 +503,12 @@ var Tabber = function (_Taro$Component) {
               setData({ lists: [].concat(_toConsumableArray(res.data.lists)), next_page: res.data.next_page, stime: res.data.stime, bak: res.data.bak });
               setChangeType(false);
             } else {
-<<<<<<< HEAD
               setData({
                 lists: [].concat(_toConsumableArray(data.lists), _toConsumableArray(res.data.lists)),
                 next_page: res.data.next_page,
                 stime: res.data.stime,
                 bak: res.data.bak
               });
-=======
-              setData({ lists: [].concat(_toConsumableArray(data.lists), _toConsumableArray(res.data.lists)), next_page: res.data.next_page, stime: res.data.stime, bak: res.data.bak });
->>>>>>> qq_1.0.1
             }
           }
         });
@@ -582,16 +527,12 @@ var Tabber = function (_Taro$Component) {
               setData({ lists: [].concat(_toConsumableArray(res.data.lists)), next_page: res.data.next_page, stime: res.data.stime, bak: res.data.bak });
               setChangeType(false);
             } else {
-<<<<<<< HEAD
               setData({
                 lists: [].concat(_toConsumableArray(data.lists), _toConsumableArray(res.data.lists)),
                 next_page: res.data.next_page,
                 stime: res.data.stime,
                 bak: res.data.bak
               });
-=======
-              setData({ lists: [].concat(_toConsumableArray(data.lists), _toConsumableArray(res.data.lists)), next_page: res.data.next_page, stime: res.data.stime, bak: res.data.bak });
->>>>>>> qq_1.0.1
             }
           }
         });
@@ -703,23 +644,15 @@ var Tabber = function (_Taro$Component) {
         setParams(params);
       });
       // 跳转
-<<<<<<< HEAD
       var handleJump = function handleJump(_type) {
         if (_type == initInfo) {
           return;
         }
-=======
-      var handleJump = function handleJump() {
->>>>>>> qq_1.0.1
         setFirst(false);
         setNextPage(false);
         setChangeType(true);
         var type = void 0;
-<<<<<<< HEAD
         if (initInfo == '0') {
-=======
-        if (initInfo === '0') {
->>>>>>> qq_1.0.1
           for (var i = 0; i < initList.length; i++) {
             if (initList[i].name === sourceList[sourceType]) {
               type = initList[i].type;
@@ -732,7 +665,6 @@ var Tabber = function (_Taro$Component) {
             }
           }
         }
-<<<<<<< HEAD
         if (_type == '0') {
           setInitInfo(_type);
           // 存搜索记录
@@ -750,30 +682,10 @@ var Tabber = function (_Taro$Component) {
             sortType: type,
             flag: true,
             listType: sourceType
-=======
-        if (initInfo === '0') {
-          setInitInfo("1");
-          // 存搜索记录
-          setSourceSearch({
-            time: time,
-            sortType: type,
-            flag: true,
-            listType: sourceType
-          });
-        } else if (initInfo === '1') {
-          setInitInfo("0");
-          // 存搜索记录
-          setConsumeSearch({
-            time: time,
-            sortType: type,
-            flag: true,
-            listType: consumeType
->>>>>>> qq_1.0.1
           });
         }
       };
       // 弹窗
-<<<<<<< HEAD
       var handleModal = function handleModal(userId, time) {
         (0, _index.integralUseInfoAction)(userId, time).then(function (res) {
           var errcode = res.errcode,
@@ -802,34 +714,15 @@ var Tabber = function (_Taro$Component) {
           setShowIsReport(showComplain);
           setModalData(info || data);
           setModal(true);
-=======
-      var handleModal = function handleModal(userId) {
-        (0, _index.integralUseInfoAction)(userId).then(function (res) {
-          if (res.errcode === 'deleted') {
-            _taroSwan2.default.showModal({
-              title: '温馨提示',
-              content: res.errmsg,
-              showCancel: false
-            });
-          } else {
-            setModalData(res.info);
-            setModal(true);
-          }
->>>>>>> qq_1.0.1
         });
       };
       // 投诉弹窗
       var handleComplaint = function handleComplaint(id) {
-<<<<<<< HEAD
         _taroSwan2.default.navigateTo({
           url: "/pages/newcomplaint/index?infoId=" + id + "&type=job&page=detai"
         });
         // setComplaintModal(true);
         // setComplaintId(id);
-=======
-        setComplaintModal(true);
-        setComplaintId(id);
->>>>>>> qq_1.0.1
       };
       // 多行输入
       var handleTextarea = function handleTextarea(e) {
@@ -861,7 +754,6 @@ var Tabber = function (_Taro$Component) {
           }
         });
       };
-<<<<<<< HEAD
       var handleBgMove = function handleBgMove(e) {
         e.stopPropagation();
         return !modal;
@@ -888,12 +780,12 @@ var Tabber = function (_Taro$Component) {
       this.anonymousFunc9 = function () {
         _taroSwan2.default.makePhoneCall({ phoneNumber: modalData.user_mobile });
       };
-      var loopArray69 = tabBar.map(function (item, i) {
+      var loopArray71 = tabBar.map(function (item, i) {
         item = {
           privateOriginal: (0, _taroSwan.internal_get_original)(item)
         };
         var loopState__temp2 = "i" + i;
-        var _$indexKey = "ibzzz" + i;
+        var _$indexKey = "iezzz" + i;
         _this2.anonymousFunc1Map[_$indexKey] = function () {
           return handleJump(item.privateOriginal.type);
         };
@@ -903,12 +795,12 @@ var Tabber = function (_Taro$Component) {
           privateOriginal: item.privateOriginal
         };
       });
-      var loopArray70 = data.lists.map(function (item, index) {
+      var loopArray72 = data.lists.map(function (item, index) {
         item = {
           privateOriginal: (0, _taroSwan.internal_get_original)(item)
         };
         var loopState__temp4 = "i" + index;
-        var _$indexKey2 = "iczzz" + index;
+        var _$indexKey2 = "ifzzz" + index;
         _this2.anonymousFunc5Map[_$indexKey2] = function () {
           return handleModal(item.privateOriginal.id, item.privateOriginal.time);
         };
@@ -936,67 +828,23 @@ var Tabber = function (_Taro$Component) {
       !data.lists.length && _taroSwan.propsManager.set({
         "text": initInfo === '0' ? '暂无积分来源记录' : '暂无积分消耗记录'
       }, $compid__63, $prevCompid__63);
-=======
-      this.anonymousFunc0 = function (e) {
-        return handleClckTime(e);
-      };
-      this.anonymousFunc1 = function (e) {
-        return handleClckTime(e);
-      };
-      this.anonymousFunc2 = function (e) {
-        return handleClick(e);
-      };
-      this.anonymousFunc3 = handleJump;
-      this.anonymousFunc4 = function () {
-        setModal(false);
-      };
-      this.anonymousFunc5 = function () {
-        _taroSwan2.default.makePhoneCall({ phoneNumber: modalData.user_mobile });
-      };
-      this.anonymousFunc6 = function () {
-        return handleComplaint(modalData.id);
-      };
-      var loopArray73 = initInfo === '1' && modal && modalData ? modalData.classifyName.map(function (v, i) {
-        v = {
-          privateOriginal: (0, _taroSwan.internal_get_original)(v)
-        };
-        var loopState__temp2 = initInfo === '1' && modal && modalData ? i + i : null;
-        return {
-          loopState__temp2: loopState__temp2,
-          privateOriginal: v.privateOriginal
-        };
-      }) : [];
-      !data.lists.length && _taroSwan.propsManager.set({
-        "text": initInfo === '0' ? '暂无积分来源记录' : '暂无积分消耗记录'
-      }, $compid__64, $prevCompid__64);
->>>>>>> qq_1.0.1
       complaintModal && _taroSwan.propsManager.set({
         "display": complaintModal,
         "textarea": textarea,
         "handleTextarea": handleTextarea,
         "setComplaintModal": setComplaintModal,
         "handleSubmit": handleSubmit
-<<<<<<< HEAD
       }, $compid__64, $prevCompid__64);
       Object.assign(this.__state, {
         data: data,
         modalData: modalData,
-        loopArray69: loopArray69,
-        loopArray70: loopArray70,
+        loopArray71: loopArray71,
+        loopArray72: loopArray72,
         $compid__63: $compid__63,
         $compid__64: $compid__64,
         title: title,
         tabBar: tabBar,
         initInfo: initInfo,
-=======
-      }, $compid__65, $prevCompid__65);
-      Object.assign(this.__state, {
-        data: data,
-        modalData: modalData,
-        loopArray73: loopArray73,
-        $compid__64: $compid__64,
-        $compid__65: $compid__65,
->>>>>>> qq_1.0.1
         SERIES: _index3.SERIES,
         QQSERIES: _index3.QQSERIES,
         ios: ios,
@@ -1004,32 +852,20 @@ var Tabber = function (_Taro$Component) {
         IMGCDNURL: _index3.IMGCDNURL,
         start: start,
         end: end,
-<<<<<<< HEAD
-=======
-        initInfo: initInfo,
->>>>>>> qq_1.0.1
         sourceList: sourceList,
         consumeList: consumeList,
         startType: startType,
         modal: modal,
-<<<<<<< HEAD
         modelType: modelType,
         showIsReport: showIsReport,
         complaintModal: complaintModal,
         showTime: showTime
-=======
-        complaintModal: complaintModal,
-        showTime: showTime,
-        title: title,
-        num: num
->>>>>>> qq_1.0.1
       });
       return this.__state;
     }
   }, {
     key: 'anonymousFunc0',
     value: function anonymousFunc0(e) {
-<<<<<<< HEAD
       e.stopPropagation();
     }
   }, {
@@ -1044,14 +880,6 @@ var Tabber = function (_Taro$Component) {
       }
 
       return this.anonymousFunc1Map[_$indexKey] && (_anonymousFunc1Map = this.anonymousFunc1Map)[_$indexKey].apply(_anonymousFunc1Map, e);
-=======
-      ;
-    }
-  }, {
-    key: 'anonymousFunc1',
-    value: function anonymousFunc1(e) {
-      ;
->>>>>>> qq_1.0.1
     }
   }, {
     key: 'anonymousFunc2',
@@ -1070,7 +898,6 @@ var Tabber = function (_Taro$Component) {
     }
   }, {
     key: 'anonymousFunc5',
-<<<<<<< HEAD
     value: function anonymousFunc5(_$indexKey2) {
       var _anonymousFunc5Map;
 
@@ -1081,17 +908,12 @@ var Tabber = function (_Taro$Component) {
       }
 
       return this.anonymousFunc5Map[_$indexKey2] && (_anonymousFunc5Map = this.anonymousFunc5Map)[_$indexKey2].apply(_anonymousFunc5Map, e);
-=======
-    value: function anonymousFunc5(e) {
-      ;
->>>>>>> qq_1.0.1
     }
   }, {
     key: 'anonymousFunc6',
     value: function anonymousFunc6(e) {
       ;
     }
-<<<<<<< HEAD
   }, {
     key: 'anonymousFunc7',
     value: function anonymousFunc7(e) {
@@ -1107,18 +929,12 @@ var Tabber = function (_Taro$Component) {
     value: function anonymousFunc9(e) {
       ;
     }
-=======
->>>>>>> qq_1.0.1
   }]);
 
   return Tabber;
 }(_taroSwan2.default.Component);
 
-<<<<<<< HEAD
 Tabber.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6", "anonymousFunc7", "anonymousFunc8", "anonymousFunc9"];
-=======
-Tabber.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6"];
->>>>>>> qq_1.0.1
 Tabber.$$componentPath = "pages/integral/tabber/index";
 Tabber.config = { navigationBarTitleText: '' };
 exports.default = Tabber;

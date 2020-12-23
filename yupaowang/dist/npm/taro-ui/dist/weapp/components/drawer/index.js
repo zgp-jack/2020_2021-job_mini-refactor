@@ -60,11 +60,7 @@ var AtDrawer = (_temp2 = _class = function (_AtComponent) {
       args[_key] = arguments[_key];
     }
 
-<<<<<<< HEAD
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AtDrawer.__proto__ || Object.getPrototypeOf(AtDrawer)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "anonymousState__temp3", "loopArray26", "_show", "items", "animShow", "mask", "width", "right", "className", "show", "children"], _this.customComponents = ["AtList", "AtListItem"], _temp), _possibleConstructorReturn(_this, _ret);
-=======
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AtDrawer.__proto__ || Object.getPrototypeOf(AtDrawer)).call.apply(_ref, [this].concat(args))), _this), _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "anonymousState__temp3", "loopArray28", "_show", "items", "animShow", "mask", "width", "right", "className", "show", "children"], _this.customComponents = ["AtList", "AtListItem"], _temp), _possibleConstructorReturn(_this, _ret);
->>>>>>> qq_1.0.1
   }
 
   _createClass(AtDrawer, [{
@@ -180,21 +176,13 @@ var AtDrawer = (_temp2 = _class = function (_AtComponent) {
       var anonymousState__temp = _show ? (0, _classnames2.default)(rootClassName, classObject, this.__props.className) : null;
       var anonymousState__temp2 = _show ? (0, _taroSwan.internal_inline_style)(maskStyle) : null;
       var anonymousState__temp3 = _show ? (0, _taroSwan.internal_inline_style)(listStyle) : null;
-<<<<<<< HEAD
-      var loopArray26 = items.length ? items.map(function (name, index) {
-=======
       var loopArray28 = items.length ? items.map(function (name, index) {
->>>>>>> qq_1.0.1
         name = {
           privateOriginal: (0, _taroSwan.internal_get_original)(name)
         };
         var loopState__temp5 = _show ? items.length ? name.privateOriginal + "-" + index : null : null;
 
-<<<<<<< HEAD
-        var _genCompid = (0, _taroSwan.genCompid)(__prefix + 'dbzzzzzzzz' + index, true),
-=======
         var _genCompid = (0, _taroSwan.genCompid)(__prefix + 'dezzzzzzzz' + index, true),
->>>>>>> qq_1.0.1
             _genCompid2 = _slicedToArray(_genCompid, 2),
             $prevCompid__28 = _genCompid2[0],
             $compid__28 = _genCompid2[1];
@@ -214,11 +202,7 @@ var AtDrawer = (_temp2 = _class = function (_AtComponent) {
         anonymousState__temp: anonymousState__temp,
         anonymousState__temp2: anonymousState__temp2,
         anonymousState__temp3: anonymousState__temp3,
-<<<<<<< HEAD
-        loopArray26: loopArray26,
-=======
         loopArray28: loopArray28,
->>>>>>> qq_1.0.1
         items: items
       });
       return this.__state;
@@ -226,11 +210,7 @@ var AtDrawer = (_temp2 = _class = function (_AtComponent) {
   }]);
 
   return AtDrawer;
-<<<<<<< HEAD
 }(_component2.default), _class.$$events = ["onMaskClick"], _class.$$componentPath = "D:/project/yupao-ts-recode/yupaowang/node_modules/taro-ui/dist/weapp/components/drawer/index", _temp2);
-=======
-}(_component2.default), _class.$$events = ["onMaskClick"], _class.$$componentPath = "Users/zhangyibo/new-yupao-mini/yupao-ts-recode/yupaowang/node_modules/taro-ui/dist/weapp/components/drawer/index", _temp2);
->>>>>>> qq_1.0.1
 
 
 AtDrawer.defaultProps = {

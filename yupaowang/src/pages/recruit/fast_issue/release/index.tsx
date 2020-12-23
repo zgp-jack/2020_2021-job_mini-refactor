@@ -82,7 +82,7 @@ export default function FastIssue() {
     pulishFindWorker()
   }
   //城市选择组件点击确定
-  const selectCity = (data: CityTownPicker) => {
+  const selectCity = (data: CityTownPicker[]) => {
     setAreaId(data[1].id)
   }
 

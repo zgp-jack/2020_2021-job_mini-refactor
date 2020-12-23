@@ -57,11 +57,7 @@ var CollectionRecruitList = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (CollectionRecruitList.__proto__ || Object.getPrototypeOf(CollectionRecruitList)).apply(this, arguments));
 
-<<<<<<< HEAD
-    _this.$usedState = ["anonymousState__temp", "loopArray67", "$compid__57", "$compid__58", "data", "IMGCDNURL", "recruitNoMoreData", "modalContent", "bottom", "onHandlerClick"];
-=======
-    _this.$usedState = ["anonymousState__temp", "loopArray70", "$compid__58", "$compid__59", "data", "IMGCDNURL", "recruitNoMoreData", "modalContent", "bottom", "onHandlerClick"];
->>>>>>> qq_1.0.1
+    _this.$usedState = ["anonymousState__temp", "loopArray69", "$compid__57", "$compid__58", "data", "IMGCDNURL", "recruitNoMoreData", "modalContent", "bottom", "onHandlerClick"];
     _this.anonymousFunc0Map = {};
     _this.anonymousFunc1Map = {};
     _this.customComponents = ["Nodata", "AtModal", "AtModalHeader", "AtModalContent", "AtModalAction"];
@@ -85,7 +81,6 @@ var CollectionRecruitList = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-<<<<<<< HEAD
       var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__57"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
           $prevCompid__57 = _genCompid2[0],
@@ -95,17 +90,6 @@ var CollectionRecruitList = function (_Taro$Component) {
           _genCompid4 = _slicedToArray(_genCompid3, 2),
           $prevCompid__58 = _genCompid4[0],
           $compid__58 = _genCompid4[1];
-=======
-      var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__58"),
-          _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__58 = _genCompid2[0],
-          $compid__58 = _genCompid2[1];
-
-      var _genCompid3 = (0, _taroSwan.genCompid)(__prefix + "$compid__59"),
-          _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__59 = _genCompid4[0],
-          $compid__59 = _genCompid4[1];
->>>>>>> qq_1.0.1
 
       var _props = this.__props,
           _props$data = _props.data,
@@ -148,27 +132,15 @@ var CollectionRecruitList = function (_Taro$Component) {
       this.anonymousFunc2 = function () {
         setIsOpened(false);
       };
-<<<<<<< HEAD
-      var loopArray67 = data ? data.map(function (item, __index0) {
+      var loopArray69 = data ? data.map(function (item, __index0) {
         item = {
           privateOriginal: (0, _taroSwan.internal_get_original)(item)
         };
-        var _$indexKey = "hhzzz" + __index0;
+        var _$indexKey = "iazzz" + __index0;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           onHandleClick(item.privateOriginal.is_check, item.privateOriginal.id);
         };
-        var _$indexKey2 = "hizzz" + __index0;
-=======
-      var loopArray70 = data ? data.map(function (item, __index0) {
-        item = {
-          privateOriginal: (0, _taroSwan.internal_get_original)(item)
-        };
-        var _$indexKey = "ibzzz" + __index0;
-        _this2.anonymousFunc0Map[_$indexKey] = function () {
-          onHandleClick(item.privateOriginal.is_check, item.privateOriginal.id);
-        };
-        var _$indexKey2 = "iczzz" + __index0;
->>>>>>> qq_1.0.1
+        var _$indexKey2 = "ibzzz" + __index0;
         _this2.anonymousFunc1Map[_$indexKey2] = function (e) {
           e.stopPropagation();
           _this2.__props.onHandlerClick(item.privateOriginal.id);
@@ -181,27 +153,15 @@ var CollectionRecruitList = function (_Taro$Component) {
       }) : [];
       !data.length && _taroSwan.propsManager.set({
         "text": "\u6CA1\u6709\u627E\u5230\u76F8\u5173\u7684\u6570\u636E"
-<<<<<<< HEAD
       }, $compid__57, $prevCompid__57);
       _taroSwan.propsManager.set({
         "isOpened": isOpened
       }, $compid__58, $prevCompid__58);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
-        loopArray67: loopArray67,
+        loopArray69: loopArray69,
         $compid__57: $compid__57,
         $compid__58: $compid__58,
-=======
-      }, $compid__58, $prevCompid__58);
-      _taroSwan.propsManager.set({
-        "isOpened": isOpened
-      }, $compid__59, $prevCompid__59);
-      Object.assign(this.__state, {
-        anonymousState__temp: anonymousState__temp,
-        loopArray70: loopArray70,
-        $compid__58: $compid__58,
-        $compid__59: $compid__59,
->>>>>>> qq_1.0.1
         data: data,
         IMGCDNURL: _index.IMGCDNURL,
         recruitNoMoreData: recruitNoMoreData,

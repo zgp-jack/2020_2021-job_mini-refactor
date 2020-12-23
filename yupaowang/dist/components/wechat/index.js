@@ -98,11 +98,7 @@ var WechatNotice = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (WechatNotice.__proto__ || Object.getPrototypeOf(WechatNotice)).apply(this, arguments));
 
-<<<<<<< HEAD
-    _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "$compid__10", "SHOWSERVERPHONE", "SHOWWEIXINNUMBER", "SHOWLISTSNOTICE", "wechatNoticeData"];
-=======
     _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "$compid__10", "type", "SHOWSERVERPHONE", "SHOWWEIXINNUMBER", "SHOWLISTSNOTICE", "wechatNoticeData"];
->>>>>>> qq_1.0.1
     _this.customComponents = ["SwiperNews"];
     return _this;
   }
@@ -127,11 +123,8 @@ var WechatNotice = function (_Taro$Component) {
           $prevCompid__10 = _genCompid2[0],
           $compid__10 = _genCompid2[1];
 
-<<<<<<< HEAD
-=======
       var type = this.__props.type;
 
->>>>>>> qq_1.0.1
       var _useState = (0, _taroSwan.useState)({
         vertical: true,
         lists: []
@@ -195,10 +188,7 @@ var WechatNotice = function (_Taro$Component) {
         anonymousState__temp: anonymousState__temp,
         anonymousState__temp2: anonymousState__temp2,
         $compid__10: $compid__10,
-<<<<<<< HEAD
-=======
         type: type,
->>>>>>> qq_1.0.1
         SHOWSERVERPHONE: _index3.SHOWSERVERPHONE,
         SHOWWEIXINNUMBER: _index3.SHOWWEIXINNUMBER,
         SHOWLISTSNOTICE: _index3.SHOWLISTSNOTICE,
