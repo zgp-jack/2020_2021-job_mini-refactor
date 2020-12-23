@@ -281,8 +281,6 @@ export default function DetailInfoPage() {
     console.log(res.errcode)
     if (res.errcode == 'ok' || res.errcode == 'end' || res.errcode == 'ajax') {
       callback&&callback()
-    } else if (res.errcode == 'end') {
-      Msg(res.errmsg)
     } else if (res.errcode == 'auth_not_pass' || res.errcode == 'to_auth') {
       Taro.showModal({
         title: '温馨提示',
@@ -398,6 +396,10 @@ export default function DetailInfoPage() {
     }
     jobGetTelAction(params).then(res=>{
       detailGetTelAction(res,()=>{
+        if (res.errcode == 'end') {
+          Msg(res.errmsg)
+          return
+        }
         setRefresh(true)
         setPhone(res.tel)
         setComplaintInfo(true);
