@@ -132,7 +132,8 @@ export interface ResumeList {
   tags: string[],
   prof_degree: string,
   time: string,
-  resume_top: number
+  resume_top: number,
+  certificate:number
 }
 
 // 二手列表数据

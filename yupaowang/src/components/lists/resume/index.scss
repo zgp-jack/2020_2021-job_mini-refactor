@@ -42,6 +42,8 @@
       .resume-list-userinfo{
         position: relative;
         .resume-list-userinfo-detail{
+          display: flex;
+          justify-content: space-between;
           .resume-userinfo-name,.resume-userinfo-sex{
             display: inline-block;
             font-size: 30px;
@@ -52,24 +54,44 @@
             color: #FB8732;
             font-size: 30px;
           }
+          .resume-userinfo-Image{
+            width: 110px;
+            height: 30px;
+            margin-left: 12px;
+          }
+          .resume-userinfo-text{
+            background: #ECF7FE;
+            color: #0099ff;
+            border: 1px solid #d8f0ff;
+            border-radius: 3px;
+            font-size: 26px;
+            z-index: 3;
+            line-height: 50px;
+            padding: 10px 16px;
+            box-sizing: border-box;
+          }
         }
       }
-      .resume-otherinfo{
-        position: relative;
-        .resume-otherinfo-text{
-          font-size: 28px;
-          margin-right: 15px;
-          &:nth-last-child(1){
-            margin-right: 0;
+      .resume-otherinfo-flex{
+        display: flex;
+        justify-content: space-between;
+        .resume-otherinfo{
+          position: relative;
+          .resume-otherinfo-text{
+            font-size: 28px;
+            margin-right: 15px;
+            &:nth-last-child(1){
+              margin-right: 0;
+            }
           }
         }
       }
       .resume-list-type{
-        position: absolute;
-        right: 20px;
+        // position: absolute;
+        // right: 20px;
         font-size: 28px;
-        line-height: 50px;
-        bottom:0;
+        // bottom:0;
+        margin-right: 20px;
       }
       .resume-list-tags{
         position: relative;

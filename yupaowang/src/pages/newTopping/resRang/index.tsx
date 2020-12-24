@@ -221,7 +221,6 @@ export default function ResRange() {
     // newPrice = whole > 0 ? (+defultData.country_integrals) : ((city * (+defultData.city_integral) ||0) + (province * (+defultData.province_integral) ||0));
     newPrice = whole > 0 ? defultData.country_integral : (city * defultData.city_integral + province * defultData.province_integral);
     // if (whole>0){
-    //   console.error(11111)
     //   newPrice = defultData.country_integral||0;
     // }else{
     //   let cityNum = 0, provinceNum=0;
@@ -231,7 +230,6 @@ export default function ResRange() {
     //   if(province>0){
     //     provinceNum = province * defultData.province_integral;
     //   }
-    //   console.error(cityNum, provinceNum,'====')
     //   newPrice = cityNum + provinceNum;
     // }
     // 时间差s

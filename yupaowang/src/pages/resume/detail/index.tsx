@@ -118,7 +118,6 @@ export default function ResumeDetail() {
     }
     resumeDetailAction(params).then(res=>{
       if(res.errcode === 'ok'){
-        console.error(res.info.uuid,'1111');
         setInfoUuid(res.info.uuid);
         // 如果是百度系小程序，则直接设置seo等相关信息
         if (SERIES == BAIDUSERIES) {
@@ -161,7 +160,6 @@ export default function ResumeDetail() {
         }
         // 设置更多招工信息的省/市
         let area_id: number = parseInt(res.info.city && res.info.city !='0'? res.info.city : res.info.province);
-        console.error(area_id,'area_idarea_id')
         setAreasId(area_id);
         let occupations :string = res.info.occupations_id;
         setOccupations(occupations)
@@ -374,7 +372,7 @@ export default function ResumeDetail() {
   return(
     <View>
       {isAuth && <Auth />}
-    <View className='resumeDetail'>
+      <View className='resumeDetail' style={recommendRe.length ? '' : { paddingBottom: '50px' }}>
       {/* 顶部 */}
       <View className='resumeDetail-cardcolore'>
         {data.operation.status === 0 && <View className='resumeDetail-header'>注:老板对找活者满意，可以直接与他联系以及点赞或转发</View> }

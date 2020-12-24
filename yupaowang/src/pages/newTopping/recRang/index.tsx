@@ -299,7 +299,7 @@ export default function RecRange() {
   const handleTopping = () => {
     // 市、省、全国
     const data = [...areas];
-    let cityArr: string[] = [], provinceArr: string[] = [], is_country = 0;
+    let cityArr: string[] = [], provinceArr: string[] = [], is_country:number|string='';
     for (let i = 0; i < data.length; i++) {
       if (data[i].pid == '0') {
         is_country = 1;
@@ -318,7 +318,7 @@ export default function RecRange() {
       ShowActionModal({ msg:'网络出错，请稍后重试'});
       return
     }
-    if (cityArr.length == 0 && provinceArr.length == 0 && is_country == 0){
+    if (cityArr.length == 0 && provinceArr.length == 0 && !is_country){
       ShowActionModal({ msg: '请选择您的置顶城市' });
       return
     }
@@ -333,7 +333,7 @@ export default function RecRange() {
       }
     } else {
       params = {
-        day: isTime ? +pickIndex + 1 : 0,
+        // day: isTime ? +pickIndex + 1 : 0,
         is_country,
         time,
         city_ids: cityArr.toString(),

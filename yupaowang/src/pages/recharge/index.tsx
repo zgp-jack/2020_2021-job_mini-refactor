@@ -69,7 +69,6 @@ export default function Recharge() {
     })
     // 判断是是否能用扣扣吊起微信支付
     const isWxPayment = Taro.canIUse && Taro.canIUse('requestWxPayment');
-    console.error(isWxPayment,'111')
     if(isWxPayment){
       setIsWxPayment(true)
     }

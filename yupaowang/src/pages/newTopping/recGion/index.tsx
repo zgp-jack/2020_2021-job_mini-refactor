@@ -45,7 +45,6 @@ export default function RecGion() {
     if(first) return;
     // 第一次进来的时候，滑动到第一个选择的位置
     if (clickData.length>0){
-      console.error(clickData,'clickDataclickData')
       first = true;
       setTimeout(()=>{
         if (clickData[0].pid !== '1') {
@@ -88,7 +87,6 @@ export default function RecGion() {
       }
     }
     setAreasData(data);
-    console.error('eeee')
     first = false;
     for (let i = 0; i < clickResumeTopObj.length; i++) {
       clickResumeTopObj[i].click = true;
@@ -290,7 +288,6 @@ export default function RecGion() {
             return v;
           })
         }
-        console.error(valData,'dsadsbakjdbkjsa')
         hotData = handleHot(valData);
       }
     }
@@ -311,12 +308,9 @@ export default function RecGion() {
         hotData[0].click = false;
       }
       if (hotData[i].id == val.id) {
-        console.error(val);
-        console.error(val.click)
         hotData[i].click = !val.click;
       }
     }
-    console.error(hotData,'1111')
     return hotData;
   }
   // 获取光标
