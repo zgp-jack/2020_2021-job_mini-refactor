@@ -168,7 +168,8 @@ export interface ResumeResult extends Result {
     last_sort_flag_pos?: string,
     last_normal_pos?: string,
     last_time_pos?: string
-  }
+    last_refresh_time_pos:number,
+  },
 }
 
 // 积分记录数据

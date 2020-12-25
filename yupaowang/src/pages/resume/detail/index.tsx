@@ -192,10 +192,10 @@ export default function ResumeDetail() {
       }
     })
   }
-  useDidShow(() => {
-    setIos(isIos())
-    getDataList();
-  })
+  // useDidShow(() => {
+  //   setIos(isIos())
+  //   getDataList();
+  // })
   useEffect(() => {
     if (!login) return;
     // 授权获取内容
@@ -208,6 +208,11 @@ export default function ResumeDetail() {
         handlePhone();
       }
     }
+  }, [login])
+  useEffect(()=>{
+    // if (!login) return;
+    setIos(isIos())
+    getDataList();
   }, [login])
   // 查看电话
   const handlePhone =()=>{
@@ -462,7 +467,7 @@ export default function ResumeDetail() {
             <View className='cardotext-position'>
             {data.info.prof_degree_str && 
               <View className='cardotext'>
-              <Text className='oworkotext'>熟练</Text>
+              <Text className='oworkotext'>熟练度</Text>
               <Text className='workotextone'>{data.info.prof_degree_str}</Text>
             </View>
             }

@@ -110,8 +110,18 @@ export default function PublishedRecruit(){
   }
 
   // 停止招工
-  const userStopRecruit = (id: string,i: number) => {
-    userChangeRecruitStatus(id)
+  const userStopRecruit = (item,i: number) => {
+    let end_status;
+    if (item.is_end == '2'){
+      end_status = 2
+    }else{
+      end_status = 1
+    }
+    let params = {
+      end_status,
+      infoId: item.id,
+    }
+    userChangeRecruitStatus(params)
     .then(res=>{
       Msg(res.errmsg)
       if(res.errcode == 'ok'){
@@ -280,7 +290,7 @@ export default function PublishedRecruit(){
                 {item.is_check != '1' && <View className='user-published-footer-item' onClick={() => userRouteJump(`/pages/recruit/publish/index?id=${item.id}`)}>修改</View>}
                 {item.is_check == '2' &&
                 <Block >
-                  <View className='user-published-footer-item' onClick={() => userStopRecruit(item.id, index)}>{item.is_end == '2'?'重新招工':'停止招工'}</View>
+                  <View className='user-published-footer-item' onClick={() => userStopRecruit(item, index)}>{item.is_end == '2'?'重新招工':'停止招工'}</View>
                 {/* // 置顶按钮 */}
                 {item.is_end != '2' && 
                   <View>

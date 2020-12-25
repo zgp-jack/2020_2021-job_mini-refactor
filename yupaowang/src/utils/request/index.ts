@@ -449,10 +449,10 @@ export function userGetPublishedRecruitLists(data: searchDataType): Promise<Inte
 }
 
 // 用户改变发布招工状态
-export function userChangeRecruitStatus(id: string): Promise<Inter.UserChangePublishedRecruitStatus> {
+export function userChangeRecruitStatus(data): Promise<Inter.UserChangePublishedRecruitStatus> {
   return doRequestAction({
     url: api.userChangeRecruitStatus,
-    data: {infoId: id},
+    data:data,
     method: 'POST'
   })
 }

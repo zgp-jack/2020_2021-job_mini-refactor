@@ -21,5 +21,6 @@ export interface SearchType{
   sort: string,
   location: string,
   area_id: string,
-  type: string
+  type: string,
+  last_refresh_time_pos:number
 }

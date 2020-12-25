@@ -62,7 +62,7 @@ export default function ResumeListPage({ data = [], occupations, areasId, type, 
                   <Image className='resume-list-loc' src={IMGCDNURL + 'lpy/biaoqian.png'} />
                   <View className='resume-list-loctxt overwords'>{item.show_address}</View>
                 </View>
-                <Text className='resume-list-time'>{item.prof_degree}</Text>
+                <Text className='resume-list-time'>{item.time}</Text>
               </View>
             </View>
         </Block>
