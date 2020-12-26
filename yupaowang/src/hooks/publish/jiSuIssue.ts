@@ -37,9 +37,7 @@ export default function fastPublishInit(InitParams: InitRecruitView) {
     if (!areaInfo.location){
       initUserAreaInfo()
     }
-    // if (model.is_check == 0) bakModelInfo(model)
-    // 保存手机号
-    setPhone(model.user_mobile)
+    if (model.is_check == 0) bakModelInfo(model)
     //如果是修改 后台给的选中数据中只有ID 需要匹配name 再把之前选中的工种信息保存
     if (model.classifies.length) {
       let _Classifies: RulesClassfies[] = []

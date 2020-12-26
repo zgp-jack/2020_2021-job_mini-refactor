@@ -1,4 +1,4 @@
-import Taro, { useRouter, RouterInfo, Config } from '@tarojs/taro'
+import Taro, { useRouter, RouterInfo, Config, useState } from '@tarojs/taro'
 import { View, Text, Form, Input, Textarea, Block, Switch } from '@tarojs/components'
 import WordsTotal from '../../../components/wordstotal'
 import useCode from '../../../hooks/code'
@@ -39,7 +39,8 @@ export default function PublishRecruit() {
 
   // 初始化当前信息
   const { model, setModel, showUpload, setShowUpload, showProfession, setShowProssion, userPublishRecruitAction, num, setNum, phone, classMateArr, setclassMateArr } = fastPublishInit(InitParams)
-
+  // 是否根据招工详情匹配，点击过工种选择器后不再匹配
+  const [match, setMatch] = useState<boolean>(true)
   // 使用自定义验证码hook
   const { text, userGetCode } = useCode()
   // const [classMateArr, setclassMateArr] = useState<RulesClassfies[]>([])
@@ -49,6 +50,7 @@ export default function PublishRecruit() {
   }
   // 显示工种选择组件
   const showProfessionAction = () => {
+    setMatch(false)
     setShowProssion(true)
   }
   // 关闭工种选择组件
@@ -102,7 +104,7 @@ export default function PublishRecruit() {
   let _classMateArr: RulesClassfies[] = []
   // 根据招工详情匹配
   const detailMatch = (e: any) => {
-    if (!model) return
+    if (!model || !match) return
     const detail: string = e.detail.value
     if (detail.length < 2) return
     let _model = (model as RecruitWorkInfo)
@@ -169,7 +171,7 @@ export default function PublishRecruit() {
     }
     //保存匹配到的工种
     setclassMateArr(_classMateArr)
-    setModel(state)
+    setModel({ ...state})
   }
 
   //工种选择 确定
@@ -201,7 +203,7 @@ export default function PublishRecruit() {
           <Text className='input-title'>招工详情:</Text>
           <Textarea
             className='textarea-publish'
-            value={model && model.detail || ''}
+            value={ model.detail}
             placeholder={placeholder}
             onInput={(e) => userEnterFrom(e, 'detail')}
             onBlur={(e) => detailMatch(e)}
@@ -210,7 +212,7 @@ export default function PublishRecruit() {
         </View>
         {
           USEGAODEMAPAPI ? 
-             <View className='publish-list-item' onClick={() => userChooseArea()}>
+            <View className='publish-list-item' onClick={() => userChooseArea()}>
               <Text className='pulish-list-title input-title'>招工城市:</Text>
               <Input className='publish-list-input' type='text' disabled placeholder='请选择招工城市' value={areaInfo && areaInfo.title} />
             </View>
@@ -243,11 +245,11 @@ export default function PublishRecruit() {
               className='publish-list-input'
               type='text'
               placeholder='请输入联系电话'
-              value={model && model.user_mobile}
+              value={model.user_mobile}
               onInput={(e) => userEnterFrom(e, 'user_mobile')}
             />
           </View>
-          {model && (phone !== model.user_mobile || model.user_mobile == '') &&
+          {(phone !== model.user_mobile || model.user_mobile == '') &&
             <View className='publish-list-item publish-list-item-code'>
               <Text className='pulish-list-title input-title'>验证码</Text>
               <Input
