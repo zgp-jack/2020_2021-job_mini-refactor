@@ -178,7 +178,7 @@ export default function ResumeDetail() {
         const listParams = {
           page: 1,
           type: 1,
-          area_id: res.info.city,
+          area_id: area_id,
           occupations: res.info.occupations_id,
           uuid: res.info.uuid,
         }

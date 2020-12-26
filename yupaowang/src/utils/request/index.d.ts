@@ -1051,6 +1051,7 @@ export interface recommendListDataList{
   occupations:[],
   uuid:string,
   location:string
+  time:string,
 }
 // 查看完整电话
 export interface resumesGetTel{

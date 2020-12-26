@@ -104,6 +104,7 @@ export default function ResumeListPage( ) {
                   <View className='resume-otherinfo'>
                     {item.nation && <Text className='resume-otherinfo-text'>{item.nation}</Text>}
                     <Text className='resume-otherinfo-text'>{item.experience}</Text>
+                    <Text className='resume-otherinfo-text'>{item.prof_degree}</Text>
                   </View>
                 </View>
               </View>
@@ -118,7 +119,7 @@ export default function ResumeListPage( ) {
                   <Image className='resume-list-loc' src={IMGCDNURL + 'lpy/biaoqian.png'} />
                   <View className='resume-list-loctxt overwords'>{item.show_address}</View>
                 </View>
-                <Text className='resume-list-time'>{item.prof_degree}</Text>
+                <Text className='resume-list-time'>{item.time}</Text>
               </View>
             </View>
         </Block>
