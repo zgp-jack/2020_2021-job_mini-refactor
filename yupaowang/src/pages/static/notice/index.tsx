@@ -16,7 +16,7 @@ export default function Notice() {
   useEffect(()=>{
     newsInfoAction(id).then(res=>{
       // 图片显示有问题，设置他的最大宽度
-      const ImgData:string = res.data.content.replace(/\<img/gi, '<img style="max-width:100%;height:auto"')
+      const ImgData: string = res.data.content.replace(/\<img/gi, '<img style="max-width:100%;height:auto;display:block"')
       res.data.content = ImgData;
       setData({item:res.data})
     })
