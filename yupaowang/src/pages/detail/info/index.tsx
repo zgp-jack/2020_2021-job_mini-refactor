@@ -1,12 +1,9 @@
 import Taro, { Config, useState, useRouter, useDidShow, useEffect, useShareAppMessage } from '@tarojs/taro'
 import { View, Text, Image, Icon, Button } from '@tarojs/components'
-<<<<<<< HEAD
-import { jobInfoAction, publishComplainAction, jobGetTelAction, recruitListCancelCollectionAction, jobEndStatusAction, jobUpdateTopStatusAction, jobNoUserInfoAction } from '../../../utils/request/index'
-=======
 import { jobInfoAction, publishComplainAction, jobGetTelAction, recruitListCancelCollectionAction, jobEndStatusAction, jobUpdateTopStatusAction, jobNoUserInfoAction, jobDetailsListAction, detailsRecommendAction } from '../../../utils/request/index'
->>>>>>> qq_1.0.1
 import WechatNotice from '../../../components/wechat'
 import { IMGCDNURL, SERVERPHONE, AUTHPATH, CODEAUTHPATH, ISCANSHARE, DOWNLOADAPP, SHOWOFFICIALACCOUNT, REPLACEWEIXINTEXT, FILTERWEIXINREG, DOWNLOADAPPPATH, SERIES, QQSERIES ,BAIDUSERIES, INDEXPATH } from '../../../config'
+import CollectionRecruitList from '../../../components/recommendList/index'
 import { useSelector } from '@tarojs/redux'
 import { isVaildVal, isIos } from '../../../utils/v'
 import  Report  from '../../../components/report'
@@ -139,12 +136,7 @@ export default function DetailInfoPage() {
     // 用户没有认证
     let result = login ? jobInfoAction(params) : jobNoUserInfoAction(params)
     result.then(res => {
-<<<<<<< HEAD
       detailGetTelAction(res, () => {
-=======
-      console.log('then')
-      detailGetTelAction(res,()=>{
->>>>>>> qq_1.0.1
         setRefresh(false)
         setData(res.result);
         setPhone(res.result.tel_str);
@@ -284,12 +276,8 @@ export default function DetailInfoPage() {
   }
 
   // 处理获取电话号码的不同状态码
-<<<<<<< HEAD
-  const detailGetTelAction = (res, callback) => {
-=======
   const detailGetTelAction = (res,callback) => {
     console.log(res.errcode)
->>>>>>> qq_1.0.1
     if (res.errcode == 'ok' || res.errcode == 'end' || res.errcode == 'ajax') {
       callback && callback()
     } else if (res.errcode == 'end') {

@@ -170,7 +170,7 @@ var AtModal = (_temp2 = _class = function (_AtComponent) {
   }]);
 
   return AtModal;
-}(_component2.default), _class.$$events = ["handleClickOverlay", "handleCancel", "handleConfirm", "handleTouchMove"], _class.$$componentPath = "D:/project/yupao-ts-recode/yupaowang/node_modules/taro-ui/dist/weapp/components/modal/index", _temp2);
+}(_component2.default), _class.$$events = ["handleClickOverlay", "handleCancel", "handleConfirm", "handleTouchMove"], _class.$$componentPath = "Users/zhangyibo/new-yupao-mini/yupao-ts-recode/yupaowang/node_modules/taro-ui/dist/weapp/components/modal/index", _temp2);
 
 
 AtModal.defaultProps = {

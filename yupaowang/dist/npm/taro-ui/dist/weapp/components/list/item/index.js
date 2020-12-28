@@ -140,7 +140,7 @@ var AtListItem = (_temp2 = _class = function (_AtComponent) {
   }]);
 
   return AtListItem;
-}(_component2.default), _class.$$events = ["handleClick", "handleSwitchClick", "handleSwitchChange"], _class.$$componentPath = "D:/project/yupao-ts-recode/yupaowang/node_modules/taro-ui/dist/weapp/components/list/item/index", _initialiseProps = function _initialiseProps() {
+}(_component2.default), _class.$$events = ["handleClick", "handleSwitchClick", "handleSwitchChange"], _class.$$componentPath = "Users/zhangyibo/new-yupao-mini/yupao-ts-recode/yupaowang/node_modules/taro-ui/dist/weapp/components/list/item/index", _initialiseProps = function _initialiseProps() {
   var _this2 = this;
 
   this.$usedState = ["anonymousState__temp", "rootClass", "thumb", "iconInfo", "iconClass", "note", "extraText", "extraThumb", "isSwitch", "switchColor", "disabled", "switchIsCheck", "arrow", "title", "hasBorder", "className"];

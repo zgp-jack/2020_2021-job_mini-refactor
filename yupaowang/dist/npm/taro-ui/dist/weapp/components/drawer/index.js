@@ -210,7 +210,7 @@ var AtDrawer = (_temp2 = _class = function (_AtComponent) {
   }]);
 
   return AtDrawer;
-}(_component2.default), _class.$$events = ["onMaskClick"], _class.$$componentPath = "D:/project/yupao-ts-recode/yupaowang/node_modules/taro-ui/dist/weapp/components/drawer/index", _temp2);
+}(_component2.default), _class.$$events = ["onMaskClick"], _class.$$componentPath = "Users/zhangyibo/new-yupao-mini/yupao-ts-recode/yupaowang/node_modules/taro-ui/dist/weapp/components/drawer/index", _temp2);
 
 
 AtDrawer.defaultProps = {

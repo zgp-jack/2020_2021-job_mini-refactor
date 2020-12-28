@@ -1,18 +1,10 @@
 import Taro, { Config, useState, useRouter, useShareAppMessage, useDidShow, useEffect } from '@tarojs/taro'
 import { View, Text, Image, Button } from '@tarojs/components'
-<<<<<<< HEAD
-import { resumeDetailAction, resumesGetTelAcrion, resumeSupportAction, resumeCollectAction, resumesComplainAction } from '../../../utils/request/index'
-import { IMGCDNURL, ISCANSHARE, FILTERWEIXINREG, REPLACEWEIXINTEXT, SERIES, QQSERIES, BAIDUSERIES, INDEXPATH } from '../../../config'
-import Msg, { ShowActionModal, showModalTip } from '../../../utils/msg'
-import { DataType } from './index.d'
-// import CollectionRecruitList  from '../../../components/recommendList/index'
-=======
 import { resumeDetailAction, recommendListAction, detailsRecommendAction, resumesGetTelAcrion, resumeSupportAction, resumeCollectAction, resumesComplainAction } from '../../../utils/request/index'
 import { IMGCDNURL, ISCANSHARE, FILTERWEIXINREG, REPLACEWEIXINTEXT, SERIES, BAIDUSERIES, INDEXPATH, QQSERIES } from '../../../config'
 import Msg, { ShowActionModal, showModalTip } from '../../../utils/msg'
 import { DataType, ListType, Injected } from './index.d'
 import CollectionRecruitList  from '../../../components/recommendList/index'
->>>>>>> qq_1.0.1
 import { isVaildVal, isIos } from '../../../utils/v'
 import { getUserShareMessage } from '../../../utils/helper'
 import Report from '../../../components/report';

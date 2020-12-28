@@ -81,7 +81,7 @@ var DetailInfoPage = function (_Taro$Component) {
 
     _this.$usedState = ["anonymousState__temp3", "data", "loopArray80", "loopArray81", "$compid__65", "$compid__66", "$compid__67", "type", "resCode", "editPhone", "SHOWOFFICIALACCOUNT", "SERIES", "QQSERIES", "ios", "DOWNLOADAPP", "IMGCDNURL", "isCollection", "ISCANSHARE", "recommend", "complaintModal", "phone"];
     _this.anonymousFunc5Map = {};
-    _this.customComponents = ["WechatNotice", "Report"];
+    _this.customComponents = ["WechatNotice", "CollectionRecruitList", "Report"];
     return _this;
   }
 
@@ -363,7 +363,7 @@ var DetailInfoPage = function (_Taro$Component) {
               job_ids: res.result.id,
               classify_id: [].concat(_toConsumableArray(res.result.occupations)).join(',')
             };
-            jobDetailsListAction(paramsObj).then(function (res) {
+            (0, _index.jobDetailsListAction)(paramsObj).then(function (res) {
               if (res.errcode === 'ok') {
                 setRecommend(res.data.list);
               } else {
@@ -446,6 +446,7 @@ var DetailInfoPage = function (_Taro$Component) {
       };
       // 处理获取电话号码的不同状态码
       var detailGetTelAction = function detailGetTelAction(res, callback) {
+        console.log(res.errcode);
         if (res.errcode == 'ok' || res.errcode == 'end' || res.errcode == 'ajax') {
           callback && callback();
         } else if (res.errcode == 'end') {

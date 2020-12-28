@@ -103,8 +103,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-// import CollectionRecruitList  from '../../../components/recommendList/index'
-
 
 var ResumeDetail = function (_Taro$Component) {
   _inherits(ResumeDetail, _Taro$Component);
@@ -121,10 +119,10 @@ var ResumeDetail = function (_Taro$Component) {
       backgroundTextStyle: "dark"
     };
 
-    _this.$usedState = ["anonymousState__temp3", "anonymousState__temp4", "data", "loopArray94", "loopArray96", "loopArray97", "$compid__77", "$compid__78", "isAuth", "IMGCDNURL", "examine", "onoff", "SERIES", "QQSERIES", "ios", "login", "user", "praise", "ISCANSHARE", "collect", "shownewtips", "recommendRe", "complaintModal", "BAIDUSERIES", "age", "phone"];
+    _this.$usedState = ["anonymousState__temp3", "anonymousState__temp4", "data", "loopArray96", "loopArray98", "loopArray99", "$compid__79", "$compid__80", "isAuth", "IMGCDNURL", "examine", "onoff", "SERIES", "QQSERIES", "ios", "login", "user", "praise", "ISCANSHARE", "collect", "shownewtips", "recommendRe", "complaintModal", "BAIDUSERIES", "age", "phone"];
     _this.anonymousFunc4Map = {};
     _this.anonymousFunc6Map = {};
-    _this.customComponents = ["Auth", "Report"];
+    _this.customComponents = ["Auth", "CollectionRecruitList", "Report"];
     return _this;
   }
 
@@ -145,15 +143,15 @@ var ResumeDetail = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__77"),
+      var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__79"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__77 = _genCompid2[0],
-          $compid__77 = _genCompid2[1];
+          $prevCompid__79 = _genCompid2[0],
+          $compid__79 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroSwan.genCompid)(__prefix + "$compid__78"),
+      var _genCompid3 = (0, _taroSwan.genCompid)(__prefix + "$compid__80"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__78 = _genCompid4[0],
-          $compid__78 = _genCompid4[1];
+          $prevCompid__80 = _genCompid4[0],
+          $compid__80 = _genCompid4[1];
       // 获取dispatch分发action
 
 
@@ -412,7 +410,7 @@ var ResumeDetail = function (_Taro$Component) {
               occupations: res.info.occupations_id,
               uuid: res.info.uuid
             };
-            detailsRecommendAction(listParams).then(function (res) {
+            (0, _index.detailsRecommendAction)(listParams).then(function (res) {
               if (res.errcode === 'ok') {
                 setRecommend(res.data.list);
               } else {
@@ -628,7 +626,7 @@ var ResumeDetail = function (_Taro$Component) {
         setShownewtips(false);
       };
       this.anonymousFunc11 = handleTellPhone;
-      var loopArray94 = data.info.occupations.length ? data.info.occupations.map(function (v, i) {
+      var loopArray96 = data.info.occupations.length ? data.info.occupations.map(function (v, i) {
         v = {
           privateOriginal: (0, _taroSwan.internal_get_original)(v)
         };
@@ -638,12 +636,12 @@ var ResumeDetail = function (_Taro$Component) {
           privateOriginal: v.privateOriginal
         };
       }) : [];
-      var loopArray96 = data.project.length ? data.project[0].image.map(function (v, i) {
+      var loopArray98 = data.project.length ? data.project[0].image.map(function (v, i) {
         v = {
           privateOriginal: (0, _taroSwan.internal_get_original)(v)
         };
         var loopState__temp6 = data.project.length ? i + i : null;
-        var _$indexKey = "jjzzz" + i;
+        var _$indexKey = "babzz" + i;
         _this2.anonymousFunc4Map[_$indexKey] = function () {
           return handleImg(v.privateOriginal);
         };
@@ -653,12 +651,12 @@ var ResumeDetail = function (_Taro$Component) {
           privateOriginal: v.privateOriginal
         };
       }) : [];
-      var loopArray97 = data.certificates.length ? data.certificates[0].image.map(function (val, i) {
+      var loopArray99 = data.certificates.length ? data.certificates[0].image.map(function (val, i) {
         val = {
           privateOriginal: (0, _taroSwan.internal_get_original)(val)
         };
         var loopState__temp8 = data.certificates.length ? i + i : null;
-        var _$indexKey2 = "baazz" + i;
+        var _$indexKey2 = "baczz" + i;
         _this2.anonymousFunc6Map[_$indexKey2] = function () {
           return handleImg(val.privateOriginal);
         };
@@ -674,23 +672,23 @@ var ResumeDetail = function (_Taro$Component) {
         "areasId": areasId,
         "occupations": occupations,
         "jobIds": jobIds
-      }, $compid__77, $prevCompid__77);
+      }, $compid__79, $prevCompid__79);
       complaintModal && _taroSwan.propsManager.set({
         "display": complaintModal,
         "textarea": textarea,
         "handleTextarea": handleTextarea,
         "setComplaintModal": setComplaintModal,
         "handleSubmit": handleSubmit
-      }, $compid__78, $prevCompid__78);
+      }, $compid__80, $prevCompid__80);
       Object.assign(this.__state, {
         anonymousState__temp3: anonymousState__temp3,
         anonymousState__temp4: anonymousState__temp4,
         data: data,
-        loopArray94: loopArray94,
         loopArray96: loopArray96,
-        loopArray97: loopArray97,
-        $compid__77: $compid__77,
-        $compid__78: $compid__78,
+        loopArray98: loopArray98,
+        loopArray99: loopArray99,
+        $compid__79: $compid__79,
+        $compid__80: $compid__80,
         isAuth: isAuth,
         IMGCDNURL: _index2.IMGCDNURL,
         examine: examine,

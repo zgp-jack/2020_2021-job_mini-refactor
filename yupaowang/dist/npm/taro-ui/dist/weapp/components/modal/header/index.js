@@ -82,7 +82,7 @@ var AtModalHeader = (_temp2 = _class = function (_AtComponent) {
   }]);
 
   return AtModalHeader;
-}(_component2.default), _class.$$events = [], _class.$$componentPath = "D:/project/yupao-ts-recode/yupaowang/node_modules/taro-ui/dist/weapp/components/modal/header/index", _temp2);
+}(_component2.default), _class.$$events = [], _class.$$componentPath = "Users/zhangyibo/new-yupao-mini/yupao-ts-recode/yupaowang/node_modules/taro-ui/dist/weapp/components/modal/header/index", _temp2);
 exports.default = AtModalHeader;
 
 Component(__webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js").default.createComponent(AtModalHeader));
