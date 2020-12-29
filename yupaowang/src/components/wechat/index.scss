@@ -5,6 +5,7 @@
   width: 100%;
   padding:10px 20px 0;
   background-color: white;
+  margin-top: 15px;
   @include shadow();
   &.wechatinfo-container-notop{
     padding-top: 0;

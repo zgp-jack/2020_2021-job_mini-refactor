@@ -185,3 +185,17 @@ export function getUserShareMessage(){
     imageUrl: `${IMGCDNURL}minishare.png`
   }
 }
+
+export const addZero = (num) => {
+  if (parseInt(num) < 10) {
+    num = '0' + num;
+  }
+  return num;
+}
+export const getMyDate = (str) => {
+  var now = new Date(str),
+    y = now.getFullYear(),
+    m = now.getMonth() + 1,
+    d = now.getDate();
+  return y + "-" + (m < 10 ? "0" + m : m) + "-" + (d < 10 ? "0" + d : d) + " " + now.toTimeString().substr(0, 5);
+}

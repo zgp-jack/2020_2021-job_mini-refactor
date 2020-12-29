@@ -32,7 +32,7 @@ const value: Distruction = {
 }
 
 
-export default function RecruitTopRedux(state: Distruction = value, action: ActionType) {
+export default function recruitTop(state: Distruction = value, action: ActionType) {
   switch(action.type){
     case SET_RECRUIT_TOP_AREA:
       return { ...state, AreParams: { ...action.data} }

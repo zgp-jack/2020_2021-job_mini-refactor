@@ -6,6 +6,7 @@ import { setUseResume } from '../../actions/resume_data';
 import { useResumeType } from '../../pages/resume/publish/index.d'
 import { useDispatch, useSelector } from '@tarojs/redux'
 import { setAreaInfo } from '../../actions/recruit';
+import { setResumeTop } from '../../actions/resume_top';
 import Msg, { ShowActionModal} from '../../utils/msg'
 
 export default function useResume(){
@@ -46,6 +47,10 @@ export default function useResume(){
   const [projectNum, setProjectNum] = useState<number>(0);
   // 修改职业技能数量
   const [certificatesNum, setCertificatesNum] = useState<number>(0);
+  // 默认城市
+  const [defaultTopArea, setDefaultTopArea] = useState<number>(0);
+  // 置顶城市
+  const [topCity, setTopCity] = useState<string>('');
   // 项目列表
   useEffect(()=>{
     initResumeData()
@@ -159,6 +164,17 @@ export default function useResume(){
         setSelectData(res.data.status);
         // 工作状态用来选择是正在找工作还是已找到工作
         setCheck(res.data.info.check);
+        // 没有置顶的时候默认置顶城市
+        setDefaultTopArea(res.data.default_top_area);
+        // 置顶中的置顶城市
+        const topCityArr = [...res.data.resume_top.top_provinces_str || [],...res.data.resume_top.top_citys_str||[]];
+        let topCityStr:string[]=[];
+        if (topCityArr.length){
+          for (let i = 0; i < topCityArr.length;i++){
+            topCityStr.push(topCityArr[i].name);
+          }
+        }
+        setTopCity(topCityStr.length ? topCityStr.join(' '):'');
         //人员信息
         let introduces: resIntroduceObj = { ...INTRODUCERS_DATA };
         introduces = { ...introduces, ...res.data.introduces }
@@ -170,6 +186,7 @@ export default function useResume(){
         setCertificates([...res.data.certificates]);
         setResume_top({ ...res.data.resume_top });
         // 存redux
+        dispatch(setResumeTop({...res.data.resume_top}));
         dispatch(setUseResume({
           info: res.data.info,
           introducesData: res.data.introduces,
@@ -261,5 +278,7 @@ export default function useResume(){
     isModifyProject,
     projectNum,
     certificatesNum,
+    defaultTopArea,
+    topCity,
   }
 }

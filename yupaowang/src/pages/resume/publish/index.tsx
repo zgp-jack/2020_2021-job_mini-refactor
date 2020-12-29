@@ -9,11 +9,13 @@ import { useSelector } from '@tarojs/redux'
 import Auth from '../../../components/auth'
 import { getUserShareMessage } from '../../../utils/helper'
 import { ShowActionModal } from '../../../utils/msg';
+import { resumesChangeTopStatusAction } from '../../../utils/request';
+import { UserInfo  } from '../../../config/store';
 import './index.scss'
 
 export default function ResumePublish(){
   const uuid = useSelector<any, string>(state => state.resumeData.resume_uuid)
-  const { infoData, introducesData, projectData, certificates, initResumeData, is_introduces, project_count, certificate_count, show_tips, selectData, selectDataIndex, handleSelectData, isModifyProject, isModifySkill, projectNum, certificatesNum} = useResume()
+  const { infoData, introducesData, projectData, certificates, initResumeData, is_introduces, project_count, certificate_count, show_tips, selectData, selectDataIndex, handleSelectData, isModifyProject, isModifySkill, projectNum, certificatesNum, defaultTopArea, resume_top, topCity} = useResume()
   // 判断是否是第一次进入  第一次不加载数据 因为hooks会帮助你加载
   const [firstJoin, setFirstJoin] = useState<boolean>(true)
 
@@ -65,17 +67,38 @@ export default function ResumePublish(){
     Taro.navigateTo({url: url})
   }
   // 页面跳转
-  const handleJump = (url:string)=>{
+  const handleJump = (url:string,obj?)=>{
     // 如果没有完善资料就跳到完善基础资料
-    if(!uuid){
-      ShowActionModal({ 
-        title: '温馨提示', 
-        msg:'您未完善基础信息填写,请先填写基础信息',
-        success:()=>{
+    if (obj && !uuid) {
+      Taro.showModal({
+        title: '温馨提示',
+        content: '您还没有找活名片，添加找活名片后，审核通过即可进行置顶操作',
+        confirmText: '去添加',
+        confirmColor:'#108EEF',
+        success:(res)=>{
+          if(res.confirm){
+            userRouteJump('/pages/resume/add_info/index')
+          }
+        }
+      })
+      return
+    } else if (!uuid) {
+      ShowActionModal({
+        title: '温馨提示',
+        msg: '您未完善基础信息填写,请先填写基础信息',
+        success: () => {
           userRouteJump('/pages/resume/add_info/index')
         }
       })
-    }else{
+      return;
+    } else{
+      if (obj && obj.is_show_tips != 0) {
+        ShowActionModal({
+          title: '温馨提示',
+          msg: obj.top_tips_string,
+        })
+        return;
+      }
       userRouteJump(url)
     }
   }
@@ -85,6 +108,77 @@ export default function ResumePublish(){
       ...getUserShareMessage()
     }
   })
+  // // 取消置顶
+  // const handleCloseTopp = (()=>{
+  //   resumesChangeTopStatusAction({}).then(res=>{
+  //     if(res.errcode == 'ok'){
+  //       initResumeData();
+  //       ShowActionModal({msg:res.errmsg})
+  //     }else{
+  //       ShowActionModal({ msg: res.errmsg })
+  //     }
+  //   })
+  // })
+  // 继续置顶
+  const handleContinue = ((e)=>{
+    // 如果是置顶到期那么就跟初次置顶一样跳转到对应界面
+    if (e.is_top == 2){
+      handleJump(`/pages/newtopping/resRang/index?defaultTopArea=${defaultTopArea}`, resume_top)
+      // 如果是置顶未到期且继续置顶发送置顶请求
+    }else{
+      if (e.is_show_tips == 1) {
+        Taro.showModal({
+          title: '温馨提示',
+          content: e.top_tips_string,
+          showCancel: false,
+          success() {
+            initResumeData();
+          }
+        })
+        return
+      }
+      // 点击置顶或者修改置顶
+      toppingFn(e);
+    }
+  })
+  // 点击置顶或者修改置顶
+  const toppingFn = (e)=>{
+    // 现在时间
+    let nowtime = new Date().getTime();
+    // 置顶结束时间
+    let endtime = e.endtime * 1000;
+    // 如果现在时间大于项目置顶结束时间提示置顶到期并更新项目
+    if (nowtime - 0 > endtime - 0) {
+      Taro.showModal({
+        title: '温馨提示',
+        content: '您的置顶已过期',
+        showCancel: false,
+        success() {
+          initResumeData();
+        }
+      })
+      return
+    }
+    // 发送修改置顶请求
+    handleCloseTopp()
+  }
+  // 发送修改置顶请求 取消置顶
+  const handleCloseTopp = ()=>{
+     // 没用户信息直接返回
+    let userInfo = Taro.getStorageSync(UserInfo);
+    if (!userInfo) return
+    let params = {
+      uuid,
+    }
+    resumesChangeTopStatusAction(params).then(res => {
+      if (res.errcode == 'ok') {
+        initResumeData();
+        ShowActionModal({ msg: res.errmsg })
+      } else {
+        ShowActionModal({ msg: res.errmsg })
+      }
+    })
+  }
   return (
     <Block>
     <Auth />
@@ -108,14 +202,16 @@ export default function ResumePublish(){
               <View className='progress-viewed'>浏览次数</View>
             </View>
           </View>
-{/*           
-          <View className='progress-footer'>
-            <View>
+            {/* <View onClick={() => handleJump(`/pages/newtopping/range/index?defaultTopArea=${defaultTopArea}`)}>置顶</View>
+            <View onClick={() => handleJump(`/pages/newtopping/range/index`)}>置顶1</View>
+                   */}
+          {/* <View className='progress-footer'> */}
+            {/* <View>
               <Image className='progress-rank-img' src={`${IMGCDNURL}newresume-rank.png`} />
               <View className='progress-text'>我的排名点：{infoData.sort_flag}</View>
             </View>
-            <View className='progress-rank'>马上去提升排名&gt;&gt;</View>
-          </View>
+            <View className='progress-rank'>马上去提升排名&gt;&gt;</View> */}
+          {/* </View> */}
           <View className='progress-place-top'>
             <View className='progress-placed'>
               <View>
@@ -127,20 +223,20 @@ export default function ResumePublish(){
                   {resume_top.has_top != 0 && resume_top.is_top == 1 && <Text>置顶中</Text>}
                 </View>
               </View>
-              {resume_top.has_top == 0 && <View className='progress-blue'> 马上去置顶&gt;&gt;</View>}
+                {resume_top.has_top == 0 && <View className='progress-blue' onClick={() => handleJump(`/pages/newtopping/resRang/index?defaultTopArea=${defaultTopArea}`, resume_top)}> 马上去置顶&gt;&gt;</View>}
               {resume_top.has_top != 0 && <View className='progress-rank'>
-                {resume_top.is_top != 1 && <View>继续置顶</View>}
-                {resume_top.is_top == 1 && <View>取消置顶</View>}
+                  {resume_top.is_top != 1 && <View onClick={()=>handleContinue(resume_top)}>继续置顶</View>}
+                {resume_top.is_top == 1 && <View onClick={handleCloseTopp}>取消置顶</View>}
               </View>}
             </View>
             {resume_top.is_top == 1 && 
             <View className='progress-place-text'>
-              <View className='place-text'>置顶地区：四川省</View>
+                <View className='place-text'>置顶地区：{topCity}</View>
               <View className='place-text'>置顶时间：{resume_top.start_time_str}~{resume_top.end_time_str}</View>
-              <View className='progress-place-btn'>点击修改找活置顶信息&gt;&gt;</View>
+                <View className='progress-place-btn' onClick={() => handleJump(`/pages/newtopping/resRang/index`)}>点击修改找活置顶信息&gt;&gt;</View>
             </View>
             }
-          </View> */}
+          </View>
 
         </View>
         <View className='content-basic-imformation'>
@@ -241,7 +337,7 @@ export default function ResumePublish(){
             <Image className='basic-description-img' src={`${IMGCDNURL}newresume-description.png`} />
             <View className='basic-title'>人员信息</View>
             {
-              infoData.check&& infoData.check != '0' && introducesData.check != '1' && 
+              infoData.check != '0' && introducesData.check !='1' && is_introduces &&
               <View className='change' onClick={() => userRouteJump('/pages/resume/add_member/index')}>编辑</View>
             }
             {
@@ -437,7 +533,7 @@ export default function ResumePublish(){
 }
 
 ResumePublish.config = {
-  navigationBarTitleText: '发布找活名片',
+  navigationBarTitleText: '我的找活名片',
   enablePullDownRefresh: true,
   navigationBarBackgroundColor: '#0099ff',
   navigationBarTextStyle: 'white',

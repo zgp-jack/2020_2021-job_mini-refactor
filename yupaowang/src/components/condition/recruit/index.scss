@@ -4,7 +4,8 @@
   position: relative;
   width: 100%;
   background-color: white;
-  border-bottom: 1px solid $bordercolor;
+  z-index: 100;
+  // border-bottom: 1px solid $bordercolor;
   @include flex();
   .recruit-condition-item{
     position: relative;

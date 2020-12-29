@@ -172,8 +172,8 @@ export default function Recruit(){
         onRefresherRefresh={() => pullDownAction()}
         lowerThreshold={200} 
         onScrollToLower={()=>getNextPageData()}
-      >
-        <View style={{height: '8px'}}></View>
+        >
+        {/* <View style={{height: '8px'}}></View> */}
         <WechatNotice />
         <RecruitList data={lists} hasMore={hasMore} />
       </ScrollView>

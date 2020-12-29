@@ -53,8 +53,9 @@ export default function ResumeLists() {
     location: '',
     area_id: userListChooseCity ? userListChooseCity.id : '',
     type: '',
+    last_refresh_time_pos:0,
   })
-
+  const [last_refresh_time_pos, setLast_refresh_time_pos]= useState<number>(0);
   // 特殊字段默认值
   const normalFieldReset = {
     has_sort_flag: hasSortFlag,
@@ -70,7 +71,7 @@ export default function ResumeLists() {
   // * 请求列表数据
   useEffect(() => {
     if (searchData.page === 1) setLists([]);
-    getResumeList({...searchData, ...normalField}).then(res => {
+    getResumeList({ ...searchData, ...normalField, last_refresh_time_pos}).then(res => {
       Taro.hideNavigationBarLoading()
       // 判断搜索的时候把内容清空回到顶部，再设置值
       if(res.errcode == 'ok'){
@@ -83,6 +84,7 @@ export default function ResumeLists() {
         if (searchData.page === 1) setLists([[...mydata.list]])
         else setLists([...lists, [...mydata.list]])
         if (refresh) setRefresh(false)
+        setLast_refresh_time_pos(res.data.last_refresh_time_pos)
       }else{
         Msg(res.errmsg)
       }
@@ -116,6 +118,8 @@ export default function ResumeLists() {
     recondition[i].text = text
     setCondition(recondition)
     setNormalField(normalFieldReset)
+    setLast_refresh_time_pos(0);
+    setHasMore(true)
     if (type === ClassifyPickerKey) {
       setSearchData({...searchData, occupations: id, page: 1})
     } else if (type === AreaPickerKey) {
@@ -130,6 +134,8 @@ export default function ResumeLists() {
   // 设置搜索内容
   const setSearchValData = () => {
     setNormalField(normalFieldReset)
+    setLast_refresh_time_pos(0);
+    setHasMore(true)
     setSearchData({...searchData, keywords: remark, page: 1})
   }
   const handleClickToRankRules = () => {
@@ -152,7 +158,7 @@ export default function ResumeLists() {
         lowerThreshold={200}
         onScrollToLower={() => getNextPageData()}
       >
-        <View style={{height: '8px'}}></View>
+        {/* <View style={{height: '8px'}}></View> */}
         <WechatNotice/>
         <ResumeList data={lists} hasMore={hasMore} />
       </ScrollView>

@@ -148,7 +148,9 @@ export const jobChangeTopAreasUrl: string = REQUESTURL + 'job/change-top-areas/'
 export const jobUpdateTopStatusUrl: string = REQUESTURL + 'job/update-top-status/'
 // 找活名片内容
 export const resumeDetailUrl: string = REQUESTURL + 'resumes/resume-detail/'
-// 找活名片相关推荐
+// 找活详情相关推荐
+export const detailsRecommendListUrl: string = REQUESTURL + 'resumes/details-recommend-list/'
+// 附近适合您的工人
 export const recommendListUrl: string = REQUESTURL + 'resumes/resume-recommend-list/'
 // 找活名片查看完整电话
 export const resumesGetTelUrl: string = REQUESTURL + 'resumes/get-tel/'
@@ -158,7 +160,9 @@ export const resumeSupportUrl: string = REQUESTURL + 'resumes/resume-support/'
 export const resumeCollectUrl: string = REQUESTURL + 'resumes/resume-collect/'
 // 找活名片完善信息
 export const resumeListUrl: string = REQUESTURL + 'resumes/resume-list/'
-// 找活详情推荐
+// 找活名片-推荐适合的工作
+export const jobDetailsUrl: string = REQUESTURL + 'job/details-recommend-list/'
+// 附近适合您的工作
 export const jobRecommendListUrl: string = REQUESTURL + '/job/job-recommend-list/'
 // 删除技能证书
 export const delCertificateUrl: string = REQUESTURL + 'resumes/del-certificate/'
@@ -228,3 +232,6 @@ export const memberTurntable: string = REQUESTURL + 'member/turntable/'
 export const getBaiduTpOrderId: string = REQUESTURL + 'pay/baidu-order/'
 // 校验百度支付是否成功
 export const checkBaiduTpOrderId: string = REQUESTURL + 'pay/query-order-status/'
+// 获取热门城市
+export const hotAreas = REQUESTURL + 'resumes/hot-areas/';
+

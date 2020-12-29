@@ -449,10 +449,10 @@ export function userGetPublishedRecruitLists(data: searchDataType): Promise<Inte
 }
 
 // 用户改变发布招工状态
-export function userChangeRecruitStatus(id: string): Promise<Inter.UserChangePublishedRecruitStatus> {
+export function userChangeRecruitStatus(data): Promise<Inter.UserChangePublishedRecruitStatus> {
   return doRequestAction({
     url: api.userChangeRecruitStatus,
-    data: {infoId: id},
+    data:data,
     method: 'POST'
   })
 }
@@ -775,6 +775,10 @@ export function jobTopHotAreasAction(): Promise<Inter.jobTopHotAreas> {
 
 // 招工置顶
 export function jobDoTopAction(detail): Promise<Inter.Result> {
+  // 获取用户信息
+  let userInfo: User = Taro.getStorageSync(UserInfo)
+  const mid = userInfo.userId;
+  detail.mid = mid;
   return doRequestAction({
     url: api.jobDoTopUrl,
     method: 'POST',
@@ -796,6 +800,10 @@ export function jobGetTopAreasAction(detail): Promise<Inter.jobGetTopAreas> {
 
 // 更新招工置顶城市
 export function jobChangeTopAreasAction(detail): Promise<Inter.Result> {
+  // 获取用户信息
+  let userInfo: User = Taro.getStorageSync(UserInfo)
+  const mid = userInfo.userId;
+  detail.mid = mid;
   return doRequestAction({
     url: api.jobChangeTopAreasUrl,
     method: 'POST',
@@ -828,6 +836,16 @@ export function resumeDetailAction(obj): Promise<Inter.resumeDetail> {
 export function recommendListAction(obj): Promise<Inter.recommendList> {
   return doRequestAction({
     url: api.recommendListUrl,
+    method: 'POST',
+    failToast: true,
+    data: obj
+  })
+}
+
+// 找活详情里推荐列表
+export function detailsRecommendAction(obj): Promise<Inter.detailsRecommendListType> {
+  return doRequestAction({
+    url: api.detailsRecommendListUrl,
     method: 'POST',
     failToast: true,
     data: obj
@@ -888,6 +906,16 @@ export function publishRecruitInfo(data): Promise<Inter.Result> {
 export function jobRecommendListAction(data): Promise<Inter.jobRecommendList> {
   return doRequestAction({
     url: api.jobRecommendListUrl,
+    method: 'POST',
+    failToast: true,
+    data,
+  })
+}
+
+// 找活名片-推荐适合的工作
+export function jobDetailsListAction(data): Promise<Inter.jobRecommendList> {
+  return doRequestAction({
+    url: api.jobDetailsUrl,
     method: 'POST',
     failToast: true,
     data,
@@ -1017,11 +1045,12 @@ export function resumesTopAreasAction(): Promise<Inter.resumesTopAreas> {
 }
 
 // 找活置顶内容
-export function resumesTopConfigAction(): Promise<Inter.resumesTopConfig> {
+export function resumesTopConfigAction(data): Promise<Inter.resumesTopConfig> {
   return doRequestAction({
     url: api.resumesTopConfigUrl,
     method: 'POST',
     failToast: true,
+    data,
   })
 }
 
@@ -1077,6 +1106,10 @@ export function resumesDoTopV2Action(data): Promise<Inter.Result> {
 
 // 修改找活置顶
 export function resumesUpdateTopResumeAction(data): Promise<Inter.Result> {
+  // 获取用户信息
+  let userInfo: User = Taro.getStorageSync(UserInfo)
+  const mid = userInfo.userId;
+  data.mid = mid;
   return doRequestAction({
     url: api.resumesUpdateTopResumeUrl,
     method: 'POST',
@@ -1256,5 +1289,12 @@ export function checkBaiduOrderStatusAction(data): Promise<Inter.BaiduOrderStatu
     method: 'POST',
     data,
     loading: false
+  })
+}
+// 获取热门城市
+export function hotAreas(): Promise<Inter.hotAreasType> {
+  return doRequestAction({
+    url: api.hotAreas,
+    method: 'POST',
   })
 }

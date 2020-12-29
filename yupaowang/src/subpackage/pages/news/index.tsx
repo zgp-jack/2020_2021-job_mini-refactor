@@ -16,7 +16,7 @@ interface InitPageType {
 }
 export default function InvitePage() {
   const defaultCurrent: string = '-1'
-  let down:boolean = false;
+  let down: boolean = false;
   // 默认table
   const [current, setCurrent] = useState<string>(defaultCurrent)
   // 页数
@@ -66,7 +66,7 @@ export default function InvitePage() {
       }
       Taro.stopPullDownRefresh();
       // 下拉刷新
-      if(down){
+      if (down) {
         Taro.pageScrollTo({
           scrollTop: 0
         })
@@ -85,9 +85,9 @@ export default function InvitePage() {
       setSearchData({ ...searchData, page: searchData.page + 1 })
     }
   })
-  usePullDownRefresh(()=>{
+  usePullDownRefresh(() => {
     down = true
-    setSearchData({ ...searchData, page: 1, newsType:current })
+    setSearchData({ ...searchData, page: 1, newsType: current })
     setTimeout(() => {
       Taro.stopPullDownRefresh()
     }, 500)
