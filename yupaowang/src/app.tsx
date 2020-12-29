@@ -63,7 +63,8 @@ class App extends Component {
       'pages/newtopping/resGion/index',//新找活置顶选择城市
       'pages/marketing_page/index',//用户首次发布招工成功后的营销页
       'pages/newcomplaint/index',//投诉
-      'pages/complaint/index'//投诉
+      'pages/complaint/index',//投诉,
+      'pages/recruit/tips/index' //完成发布
     ],
     subPackages: [
       {

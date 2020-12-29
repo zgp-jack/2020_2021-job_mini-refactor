@@ -79,6 +79,8 @@ export default function CityPicker({ onCity, modle}) {
     if (modle.province_id || modle.city_id){
       for (let i = 0; i < cityPickerData[0].length;i++) {
         if (modle.province_id == cityPickerData[0][i].id){
+          console.error(cityPickerData[0],'111')
+          console.error(i,'iiii');
           initCityData(i)
           let copyArr = JSON.parse(JSON.stringify(AREAS))
           copyArr.splice(0, 1) // 切掉第一项 全国数据

@@ -61,7 +61,7 @@ export interface FastPublishBase{
   detail: string,
   user_mobile: string,
   code: string,
-  classifies: string[],
+  classifies: string[]|string,
 }
 
 // 极速发布数据

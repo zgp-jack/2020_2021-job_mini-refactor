@@ -13540,7 +13540,7 @@ function usePublishData(InitParams) {
           infoId: res.model.id || InitParams.infoId,
           detail: res.model.detail || '',
           classifies: res.selectedClassifies,
-          address: res.model.address || '',
+          address: res.model.address ? res.model.address : res.show_address,
           location: res.model.location || '',
           adcode: '',
           county_id: res.model.county_id || '',
@@ -13557,7 +13557,7 @@ function usePublishData(InitParams) {
         setModel(initIssueModel);
         if (InitParams.infoId) {
           dispatch((0, _recruit.setAreaInfo)({
-            title: res.model.address,
+            title: res.model.address ? res.model.address : res.show_address,
             location: res.model.location,
             info: '',
             adcode: res.model.adcode || ''

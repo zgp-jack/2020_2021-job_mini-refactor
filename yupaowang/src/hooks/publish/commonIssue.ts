@@ -79,7 +79,7 @@ export function usePublishData(InitParams: InitRecruitView){
           infoId: res.model.id || InitParams.infoId,
           detail: res.model.detail || '',
           classifies: res.selectedClassifies,
-          address: res.model.address || '',
+          address: res.model.address ? res.model.address : res.show_address,
           location: res.model.location || '',
           adcode: '',
           county_id: res.model.county_id || '',
@@ -96,7 +96,7 @@ export function usePublishData(InitParams: InitRecruitView){
         setModel(initIssueModel)
         if (InitParams.infoId){
           dispatch(setAreaInfo({
-            title: res.model.address,
+            title: res.model.address ? res.model.address : res.show_address,
             location: res.model.location,
             info: '',
             adcode: res.model.adcode || '',

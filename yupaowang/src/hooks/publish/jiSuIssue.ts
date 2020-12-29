@@ -31,13 +31,15 @@ export default function fastPublishInit(InitParams: InitRecruitView) {
   const dispatch = useDispatch()
   //选中的工种数据
   const [classMateArr, setclassMateArr] = useState<RulesClassfies[]>([])
+  const [isTip, setIsTip ] = useState<boolean>(false);
   // 初始化招工信息
   useEffect(() => {
+    console.error(model,'1111')
     //如果已经有定位信息 不在获取定位
     if (!areaInfo.location){
       initUserAreaInfo()
     }
-    if (model.is_check == 0) bakModelInfo(model)
+    if (model.is_check == 0 && !isTip) bakModelInfo(model)
     //如果是修改 后台给的选中数据中只有ID 需要匹配name 再把之前选中的工种信息保存
     if (model.classifies.length) {
       let _Classifies: RulesClassfies[] = []
@@ -116,6 +118,7 @@ export default function fastPublishInit(InitParams: InitRecruitView) {
       title: '审核失败',
       msg: model.check_fail_msg
     })
+    setIsTip(true)
   }
 
   function getPublishedInfo() {
@@ -140,7 +143,9 @@ export default function fastPublishInit(InitParams: InitRecruitView) {
   }
 
   function userPublishRecruitAction() {
-    let data = getPublishedInfo()
+    let data = getPublishedInfo();
+    console.error(data,'data');
+    console.error(classMateArr,'classMateArr');
     if (!data) return
     if (!isVaildVal(data.detail, 15)) {
       Msg('请正确输入15~500字招工详情!')
@@ -150,11 +155,12 @@ export default function fastPublishInit(InitParams: InitRecruitView) {
       Msg('请选择您的详细地址!')
       return
     }
+    let classifies;
     if (!classMateArr.length) {
       Msg('请选择您的工种!')
       return
     } else {
-      data.classifies = classMateArr.map(item => item.id)
+      classifies = classMateArr.map(item => item.id).toString();
     }
     if (!isPhone(data.user_mobile)) {
       Msg('手机号输入有误!')
@@ -185,15 +191,20 @@ export default function fastPublishInit(InitParams: InitRecruitView) {
       data.address = '@@@@@'
       data.adcode = ''
     }
-    
-    FastPublisInfo(data).then(res => {
+    // 图片处理
+    let image;
+    if (data.images.length) {
+      image = data.images.toString();
+    }
+    FastPublisInfo({ ...data, images: image, classifies:classifies}).then(res => {
       if (res.errcode == 'ok') {
         SubscribeToNews("recruit", () => {
           ShowActionModal({
             msg: res.errmsg,
             success: () => {
+              let url = InitParams.infoId ? '/pages/published/recruit/index' :'/pages/recruit/tips/index';
               Taro.reLaunch({
-                url: '/pages/published/recruit/index'
+                url:url
               })
             }
           })
