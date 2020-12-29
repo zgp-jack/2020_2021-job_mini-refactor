@@ -42,10 +42,12 @@ export default function RecruitListPage({ data = [], occupations, areasId, type,
           </View>
           {/* 中间 */}
           <View className='recruitListBox-content'>
+            <View>
             <Image src={v.image} className='recruitListBox-content-img'/>
+            </View>
             <View className='recruitListBox-content-box'>
               <View className='recruitListBox-content-name'>{v.user_name}</View>
-              <View className='recruitListBox-content-details overwrods'>{v.detail}</View>
+              <View className='recruitListBox-content-details'>{v.detail}</View>
             </View>
           </View>
           {/* 尾部 */}
@@ -56,7 +58,7 @@ export default function RecruitListPage({ data = [], occupations, areasId, type,
         </View>
       ))}
       {data.length >= 15 && <View className='recruitListBox-last' onClick={() => userRouteJump(`/subpackage/pages/recommend/recruit/index?city=${areasId}&occupations=${occupations}&type=${type}&jobIds=${jobIds}`)}>查看更多招工信息</View>}
-      {data.length < 15 && <View className='recruitListBox-last' onClick={() => userRouteRe(`/pages/index/index`)}>查看更多招工信息</View>}
+      {data.length < 15 && <View className='recruitListBox-last' onClick={()=>Taro.navigateBack()}>查看更多招工信息</View>}
     </View>
   )
 }

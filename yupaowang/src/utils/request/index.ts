@@ -468,10 +468,10 @@ export function userGetPublishedRecruitLists(data: searchDataType): Promise<Inte
 }
 
 // 用户改变发布招工状态
-export function userChangeRecruitStatus(id: string): Promise<Inter.UserChangePublishedRecruitStatus> {
+export function userChangeRecruitStatus(data): Promise<Inter.UserChangePublishedRecruitStatus> {
   return doRequestAction({
     url: api.userChangeRecruitStatus,
-    data: {infoId: id},
+    data:data,
     method: 'POST'
   })
 }
@@ -820,6 +820,10 @@ export function jobTopHotAreasAction(): Promise<Inter.jobTopHotAreas> {
 
 // 招工置顶
 export function jobDoTopAction(detail): Promise<Inter.Result> {
+  // 获取用户信息
+  let userInfo: User = Taro.getStorageSync(UserInfo)
+  const mid = userInfo.userId;
+  detail.mid = mid;
   return doRequestAction({
     url: api.jobDoTopUrl,
     method: 'POST',
@@ -841,6 +845,10 @@ export function jobGetTopAreasAction(detail): Promise<Inter.jobGetTopAreas> {
 
 // 更新招工置顶城市
 export function jobChangeTopAreasAction(detail): Promise<Inter.Result> {
+  // 获取用户信息
+  let userInfo: User = Taro.getStorageSync(UserInfo)
+  const mid = userInfo.userId;
+  detail.mid = mid;
   return doRequestAction({
     url: api.jobChangeTopAreasUrl,
     method: 'POST',
@@ -1170,6 +1178,10 @@ export function resumesDoTopV2Action(data): Promise<Inter.Result> {
 
 // 修改找活置顶
 export function resumesUpdateTopResumeAction(data): Promise<Inter.Result> {
+  // 获取用户信息
+  let userInfo: User = Taro.getStorageSync(UserInfo)
+  const mid = userInfo.userId;
+  data.mid = mid;
   return doRequestAction({
     url: api.resumesUpdateTopResumeUrl,
     method: 'POST',

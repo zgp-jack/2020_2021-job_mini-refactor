@@ -119,7 +119,7 @@ var ResumeDetail = function (_Taro$Component) {
       backgroundTextStyle: "dark"
     };
 
-    _this.$usedState = ["anonymousState__temp3", "anonymousState__temp4", "data", "loopArray96", "loopArray98", "loopArray99", "$compid__79", "$compid__80", "isAuth", "IMGCDNURL", "examine", "onoff", "SERIES", "QQSERIES", "ios", "login", "user", "praise", "ISCANSHARE", "collect", "shownewtips", "recommendRe", "complaintModal", "BAIDUSERIES", "age", "phone"];
+    _this.$usedState = ["anonymousState__temp", "anonymousState__temp4", "anonymousState__temp5", "data", "loopArray94", "loopArray96", "loopArray97", "$compid__75", "$compid__76", "isAuth", "IMGCDNURL", "examine", "onoff", "SERIES", "QQSERIES", "ios", "login", "user", "praise", "ISCANSHARE", "collect", "shownewtips", "recommendRe", "complaintModal", "BAIDUSERIES", "age", "phone"];
     _this.anonymousFunc4Map = {};
     _this.anonymousFunc6Map = {};
     _this.customComponents = ["Auth", "CollectionRecruitList", "Report"];
@@ -143,15 +143,15 @@ var ResumeDetail = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__79"),
+      var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__75"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__79 = _genCompid2[0],
-          $compid__79 = _genCompid2[1];
+          $prevCompid__75 = _genCompid2[0],
+          $compid__75 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroSwan.genCompid)(__prefix + "$compid__80"),
+      var _genCompid3 = (0, _taroSwan.genCompid)(__prefix + "$compid__76"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__80 = _genCompid4[0],
-          $compid__80 = _genCompid4[1];
+          $prevCompid__76 = _genCompid4[0],
+          $compid__76 = _genCompid4[1];
       // 获取dispatch分发action
 
 
@@ -182,10 +182,17 @@ var ResumeDetail = function (_Taro$Component) {
           _useState4 = _slicedToArray(_useState3, 2),
           ios = _useState4[0],
           setIos = _useState4[1];
+      // uuid
+
+
+      var _useState5 = (0, _taroSwan.useState)(''),
+          _useState6 = _slicedToArray(_useState5, 2),
+          infoUuid = _useState6[0],
+          setInfoUuid = _useState6[1];
       //总数据
 
 
-      var _useState5 = (0, _taroSwan.useState)({
+      var _useState7 = (0, _taroSwan.useState)({
         certificates: [],
         info: {
           introduce: '',
@@ -222,115 +229,115 @@ var ResumeDetail = function (_Taro$Component) {
         },
         project: []
       }),
-          _useState6 = _slicedToArray(_useState5, 2),
-          data = _useState6[0],
-          setDate = _useState6[1];
+          _useState8 = _slicedToArray(_useState7, 2),
+          data = _useState8[0],
+          setDate = _useState8[1];
       // 相关推荐
       // const [list,setList ] = useState<ListType>({
       //   item:[]
       // })
 
 
-      var _useState7 = (0, _taroSwan.useState)(true),
-          _useState8 = _slicedToArray(_useState7, 2),
-          examine = _useState8[0],
-          setExamine = _useState8[1];
+      var _useState9 = (0, _taroSwan.useState)(true),
+          _useState10 = _slicedToArray(_useState9, 2),
+          examine = _useState10[0],
+          setExamine = _useState10[1];
       // 是否查看过电话
 
 
-      var _useState9 = (0, _taroSwan.useState)(false),
-          _useState10 = _slicedToArray(_useState9, 2),
-          onoff = _useState10[0],
-          seOnoff = _useState10[1];
+      var _useState11 = (0, _taroSwan.useState)(false),
+          _useState12 = _slicedToArray(_useState11, 2),
+          onoff = _useState12[0],
+          seOnoff = _useState12[1];
       // 手机号码
 
 
-      var _useState11 = (0, _taroSwan.useState)(''),
-          _useState12 = _slicedToArray(_useState11, 2),
-          phone = _useState12[0],
-          setPhone = _useState12[1];
+      var _useState13 = (0, _taroSwan.useState)(''),
+          _useState14 = _slicedToArray(_useState13, 2),
+          phone = _useState14[0],
+          setPhone = _useState14[1];
       // 弹框
 
 
-      var _useState13 = (0, _taroSwan.useState)(false),
-          _useState14 = _slicedToArray(_useState13, 2),
-          shownewtips = _useState14[0],
-          setShownewtips = _useState14[1];
-      // 收藏
-
-
-      var _useState15 = (0, _taroSwan.useState)(0),
+      var _useState15 = (0, _taroSwan.useState)(false),
           _useState16 = _slicedToArray(_useState15, 2),
-          collect = _useState16[0],
-          setCollect = _useState16[1];
-      // 赞
+          shownewtips = _useState16[0],
+          setShownewtips = _useState16[1];
+      // 收藏
 
 
       var _useState17 = (0, _taroSwan.useState)(0),
           _useState18 = _slicedToArray(_useState17, 2),
-          praise = _useState18[0],
-          setPraise = _useState18[1];
+          collect = _useState18[0],
+          setCollect = _useState18[1];
+      // 赞
+
+
+      var _useState19 = (0, _taroSwan.useState)(0),
+          _useState20 = _slicedToArray(_useState19, 2),
+          praise = _useState20[0],
+          setPraise = _useState20[1];
       // 年龄
 
 
-      var _useState19 = (0, _taroSwan.useState)(''),
-          _useState20 = _slicedToArray(_useState19, 2),
-          age = _useState20[0],
-          setAge = _useState20[1];
+      var _useState21 = (0, _taroSwan.useState)(''),
+          _useState22 = _slicedToArray(_useState21, 2),
+          age = _useState22[0],
+          setAge = _useState22[1];
       // 投诉
 
 
-      var _useState21 = (0, _taroSwan.useState)(false),
-          _useState22 = _slicedToArray(_useState21, 2),
-          complaintModal = _useState22[0],
-          setComplaintModal = _useState22[1];
+      var _useState23 = (0, _taroSwan.useState)(false),
+          _useState24 = _slicedToArray(_useState23, 2),
+          complaintModal = _useState24[0],
+          setComplaintModal = _useState24[1];
       // 投诉内容
 
 
-      var _useState23 = (0, _taroSwan.useState)(''),
-          _useState24 = _slicedToArray(_useState23, 2),
-          textarea = _useState24[0],
-          setTextarea = _useState24[1];
-      // 是否还可以投诉
-
-
-      var _useState25 = (0, _taroSwan.useState)(false),
+      var _useState25 = (0, _taroSwan.useState)(''),
           _useState26 = _slicedToArray(_useState25, 2),
-          iscomplaint = _useState26[0],
-          setIsComplaint = _useState26[1];
-      // 点赞获取电话号码分享收藏需要先登陆
+          textarea = _useState26[0],
+          setTextarea = _useState26[1];
+      // 是否还可以投诉
 
 
       var _useState27 = (0, _taroSwan.useState)(false),
           _useState28 = _slicedToArray(_useState27, 2),
-          isAuth = _useState28[0],
-          setIsAuth = _useState28[1];
+          iscomplaint = _useState28[0],
+          setIsComplaint = _useState28[1];
+      // 点赞获取电话号码分享收藏需要先登陆
 
-      var _useState29 = (0, _taroSwan.useState)(''),
+
+      var _useState29 = (0, _taroSwan.useState)(false),
           _useState30 = _slicedToArray(_useState29, 2),
-          clickType = _useState30[0],
-          setClickType = _useState30[1];
+          isAuth = _useState30[0],
+          setIsAuth = _useState30[1];
+
+      var _useState31 = (0, _taroSwan.useState)(''),
+          _useState32 = _slicedToArray(_useState31, 2),
+          clickType = _useState32[0],
+          setClickType = _useState32[1];
       // 更多招工省市
 
 
-      var _useState31 = (0, _taroSwan.useState)(0),
-          _useState32 = _slicedToArray(_useState31, 2),
-          areasId = _useState32[0],
-          setAreasId = _useState32[1];
+      var _useState33 = (0, _taroSwan.useState)(0),
+          _useState34 = _slicedToArray(_useState33, 2),
+          areasId = _useState34[0],
+          setAreasId = _useState34[1];
       // 更多招工工种
 
 
-      var _useState33 = (0, _taroSwan.useState)(''),
-          _useState34 = _slicedToArray(_useState33, 2),
-          occupations = _useState34[0],
-          setOccupations = _useState34[1];
+      var _useState35 = (0, _taroSwan.useState)(''),
+          _useState36 = _slicedToArray(_useState35, 2),
+          occupations = _useState36[0],
+          setOccupations = _useState36[1];
       // 更多招工job_ids
 
 
-      var _useState35 = (0, _taroSwan.useState)(0),
-          _useState36 = _slicedToArray(_useState35, 2),
-          jobIds = _useState36[0],
-          setJobIds = _useState36[1];
+      var _useState37 = (0, _taroSwan.useState)(0),
+          _useState38 = _slicedToArray(_useState37, 2),
+          jobIds = _useState38[0],
+          setJobIds = _useState38[1];
       // 设置当前页面的分享内容
 
 
@@ -345,6 +352,7 @@ var ResumeDetail = function (_Taro$Component) {
         };
         (0, _index.resumeDetailAction)(params).then(function (res) {
           if (res.errcode === 'ok') {
+            setInfoUuid(res.info.uuid);
             // 如果是百度系小程序，则直接设置seo等相关信息
             if (_index2.SERIES == _index2.BAIDUSERIES) {
               var keywords = res.info.occupations[0];
@@ -387,7 +395,7 @@ var ResumeDetail = function (_Taro$Component) {
               }
             }
             // 设置更多招工信息的省/市
-            var area_id = parseInt(res.info.city ? res.info.city : res.info.province);
+            var area_id = parseInt(res.info.city && res.info.city != '0' ? res.info.city : res.info.province);
             setAreasId(area_id);
             var _occupations = res.info.occupations_id;
             setOccupations(_occupations);
@@ -406,7 +414,7 @@ var ResumeDetail = function (_Taro$Component) {
             var listParams = {
               page: 1,
               type: 1,
-              area_id: res.info.city,
+              area_id: area_id,
               occupations: res.info.occupations_id,
               uuid: res.info.uuid
             };
@@ -420,10 +428,10 @@ var ResumeDetail = function (_Taro$Component) {
           }
         });
       };
-      (0, _taroSwan.useDidShow)(function () {
-        setIos((0, _index5.isIos)());
-        getDataList();
-      });
+      // useDidShow(() => {
+      //   setIos(isIos())
+      //   getDataList();
+      // })
       (0, _taroSwan.useEffect)(function () {
         if (!login) {
           return;
@@ -437,6 +445,11 @@ var ResumeDetail = function (_Taro$Component) {
             handlePhone();
           }
         }
+      }, [login]);
+      (0, _taroSwan.useEffect)(function () {
+        // if (!login) return;
+        setIos((0, _index5.isIos)());
+        getDataList();
       }, [login]);
       // 查看电话
       var handlePhone = function handlePhone() {
@@ -601,6 +614,7 @@ var ResumeDetail = function (_Taro$Component) {
           }
         }
       };
+      var anonymousState__temp = (0, _taroSwan.internal_inline_style)(recommendRe.length ? '' : { paddingBottom: '50px' });
       this.anonymousFunc0 = handlePhone;
       this.anonymousFunc1 = function () {
         return _taroSwan2.default.makePhoneCall({ phoneNumber: phone });
@@ -608,12 +622,12 @@ var ResumeDetail = function (_Taro$Component) {
       this.anonymousFunc2 = function () {
         return handleComplaint();
       };
-      var anonymousState__temp3 = data.info.address ? (0, _classnames2.default)({
+      var anonymousState__temp4 = data.info.address ? (0, _classnames2.default)({
         'workotextone-address': true,
         'workotextone-noaddress': !data.info.distance
       }) : null;
       this.anonymousFunc3 = handleMap;
-      var anonymousState__temp4 = data.info.introduce ? _index2.REPLACEWEIXINTEXT ? data.info.introduce.replace(_index2.FILTERWEIXINREG, '') : data.info.introduce : '暂未填写';
+      var anonymousState__temp5 = data.info.introduce ? _index2.REPLACEWEIXINTEXT ? data.info.introduce.replace(_index2.FILTERWEIXINREG, '') : data.info.introduce : '暂未填写';
       this.anonymousFunc5 = function () {
         return _taroSwan2.default.navigateTo({ url: '/subpackage/pages/projects/index' });
       };
@@ -626,42 +640,42 @@ var ResumeDetail = function (_Taro$Component) {
         setShownewtips(false);
       };
       this.anonymousFunc11 = handleTellPhone;
-      var loopArray96 = data.info.occupations.length ? data.info.occupations.map(function (v, i) {
+      var loopArray94 = data.info.occupations.length ? data.info.occupations.map(function (v, i) {
         v = {
           privateOriginal: (0, _taroSwan.internal_get_original)(v)
         };
-        var loopState__temp2 = data.info.occupations.length ? i + i : null;
+        var loopState__temp3 = data.info.occupations.length ? i + i : null;
         return {
-          loopState__temp2: loopState__temp2,
+          loopState__temp3: loopState__temp3,
           privateOriginal: v.privateOriginal
         };
       }) : [];
-      var loopArray98 = data.project.length ? data.project[0].image.map(function (v, i) {
+      var loopArray96 = data.project.length ? data.project[0].image.map(function (v, i) {
         v = {
           privateOriginal: (0, _taroSwan.internal_get_original)(v)
         };
-        var loopState__temp6 = data.project.length ? i + i : null;
-        var _$indexKey = "babzz" + i;
+        var loopState__temp7 = data.project.length ? i + i : null;
+        var _$indexKey = "baazz" + i;
         _this2.anonymousFunc4Map[_$indexKey] = function () {
           return handleImg(v.privateOriginal);
         };
         return {
-          loopState__temp6: loopState__temp6,
+          loopState__temp7: loopState__temp7,
           _$indexKey: _$indexKey,
           privateOriginal: v.privateOriginal
         };
       }) : [];
-      var loopArray99 = data.certificates.length ? data.certificates[0].image.map(function (val, i) {
+      var loopArray97 = data.certificates.length ? data.certificates[0].image.map(function (val, i) {
         val = {
           privateOriginal: (0, _taroSwan.internal_get_original)(val)
         };
-        var loopState__temp8 = data.certificates.length ? i + i : null;
-        var _$indexKey2 = "baczz" + i;
+        var loopState__temp9 = data.certificates.length ? i + i : null;
+        var _$indexKey2 = "babzz" + i;
         _this2.anonymousFunc6Map[_$indexKey2] = function () {
           return handleImg(val.privateOriginal);
         };
         return {
-          loopState__temp8: loopState__temp8,
+          loopState__temp9: loopState__temp9,
           _$indexKey2: _$indexKey2,
           privateOriginal: val.privateOriginal
         };
@@ -671,24 +685,26 @@ var ResumeDetail = function (_Taro$Component) {
         "type": 2,
         "areasId": areasId,
         "occupations": occupations,
-        "jobIds": jobIds
-      }, $compid__79, $prevCompid__79);
+        "jobIds": jobIds,
+        "infoUuid": infoUuid
+      }, $compid__75, $prevCompid__75);
       complaintModal && _taroSwan.propsManager.set({
         "display": complaintModal,
         "textarea": textarea,
         "handleTextarea": handleTextarea,
         "setComplaintModal": setComplaintModal,
         "handleSubmit": handleSubmit
-      }, $compid__80, $prevCompid__80);
+      }, $compid__76, $prevCompid__76);
       Object.assign(this.__state, {
-        anonymousState__temp3: anonymousState__temp3,
+        anonymousState__temp: anonymousState__temp,
         anonymousState__temp4: anonymousState__temp4,
+        anonymousState__temp5: anonymousState__temp5,
         data: data,
+        loopArray94: loopArray94,
         loopArray96: loopArray96,
-        loopArray98: loopArray98,
-        loopArray99: loopArray99,
-        $compid__79: $compid__79,
-        $compid__80: $compid__80,
+        loopArray97: loopArray97,
+        $compid__75: $compid__75,
+        $compid__76: $compid__76,
         isAuth: isAuth,
         IMGCDNURL: _index2.IMGCDNURL,
         examine: examine,

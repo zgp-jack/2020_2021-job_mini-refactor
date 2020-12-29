@@ -136,11 +136,11 @@ var CollectionRecruitList = function (_Taro$Component) {
         item = {
           privateOriginal: (0, _taroSwan.internal_get_original)(item)
         };
-        var _$indexKey = "iazzz" + __index0;
+        var _$indexKey = "ibzzz" + __index0;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           onHandleClick(item.privateOriginal.is_check, item.privateOriginal.id);
         };
-        var _$indexKey2 = "ibzzz" + __index0;
+        var _$indexKey2 = "iczzz" + __index0;
         _this2.anonymousFunc1Map[_$indexKey2] = function (e) {
           e.stopPropagation();
           _this2.__props.onHandlerClick(item.privateOriginal.id);

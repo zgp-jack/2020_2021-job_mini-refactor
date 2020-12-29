@@ -30,6 +30,8 @@ export default function ResumeDetail() {
   let { uuid, location } = router.params;
   // 判断是否是ios
   const [ios, setIos] = useState<boolean>(false)
+  // uuid
+  const [infoUuid, setInfoUuid] = useState<string>('');
   //总数据
   const [data, setDate] = useState<DataType>({
     certificates:[],
@@ -116,6 +118,7 @@ export default function ResumeDetail() {
     }
     resumeDetailAction(params).then(res=>{
       if(res.errcode === 'ok'){
+        setInfoUuid(res.info.uuid);
         // 如果是百度系小程序，则直接设置seo等相关信息
         if (SERIES == BAIDUSERIES) {
           let keywords = res.info.occupations[0]
@@ -156,7 +159,7 @@ export default function ResumeDetail() {
           }
         }
         // 设置更多招工信息的省/市
-        let area_id : number = parseInt(res.info.city ? res.info.city : res.info.province);
+        let area_id: number = parseInt(res.info.city && res.info.city !='0'? res.info.city : res.info.province);
         setAreasId(area_id);
         let occupations :string = res.info.occupations_id;
         setOccupations(occupations)
@@ -175,7 +178,7 @@ export default function ResumeDetail() {
         const listParams = {
           page: 1,
           type: 1,
-          area_id: res.info.city,
+          area_id: area_id,
           occupations: res.info.occupations_id,
           uuid: res.info.uuid,
         }
@@ -189,10 +192,10 @@ export default function ResumeDetail() {
       }
     })
   }
-  useDidShow(() => {
-    setIos(isIos())
-    getDataList();
-  })
+  // useDidShow(() => {
+  //   setIos(isIos())
+  //   getDataList();
+  // })
   useEffect(() => {
     if (!login) return;
     // 授权获取内容
@@ -205,6 +208,11 @@ export default function ResumeDetail() {
         handlePhone();
       }
     }
+  }, [login])
+  useEffect(()=>{
+    // if (!login) return;
+    setIos(isIos())
+    getDataList();
   }, [login])
   // 查看电话
   const handlePhone =()=>{
@@ -376,7 +384,7 @@ export default function ResumeDetail() {
   return(
     <View>
       {isAuth && <Auth />}
-    <View className='resumeDetail'>
+      <View className='resumeDetail' style={recommendRe.length ? '' : { paddingBottom: '50px' }}>
       {/* 顶部 */}
       <View className='resumeDetail-cardcolore'>
         {data.operation.status === 0 && <View className='resumeDetail-header'>注:老板对找活者满意，可以直接与他联系以及点赞或转发</View> }
@@ -466,7 +474,7 @@ export default function ResumeDetail() {
             <View className='cardotext-position'>
             {data.info.prof_degree_str && 
               <View className='cardotext'>
-              <Text className='oworkotext'>熟练</Text>
+              <Text className='oworkotext'>熟练度</Text>
               <Text className='workotextone'>{data.info.prof_degree_str}</Text>
             </View>
             }
@@ -697,7 +705,7 @@ export default function ResumeDetail() {
         }
         {/* 相关推荐 */}
         {recommendRe.length && 
-          <CollectionRecruitList data={recommendRe} type={2} areasId={areasId} occupations={occupations}  jobIds={jobIds}/>
+          <CollectionRecruitList data={recommendRe} type={2} areasId={areasId} occupations={occupations} jobIds={jobIds} infoUuid={infoUuid}/>
         }
         {/* 投诉 */}
         {complaintModal && <Report display={complaintModal} textarea={textarea} handleTextarea={handleTextarea} setComplaintModal={setComplaintModal} 

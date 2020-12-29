@@ -394,7 +394,7 @@ var ResumeMap = function (_Taro$Component) {
           privateOriginal: (0, _taroSwan.internal_get_original)(item)
         };
         var loopState__temp2 = showHistory ? index + index : null;
-        var _$indexKey = "fjzzz" + index;
+        var _$indexKey = "gazzz" + index;
         _this2.anonymousFunc5Map[_$indexKey] = function () {
           return userClickAreaItem(item.privateOriginal);
         };
@@ -409,7 +409,7 @@ var ResumeMap = function (_Taro$Component) {
           privateOriginal: (0, _taroSwan.internal_get_original)(item)
         };
         var loopState__temp4 = index + index;
-        var _$indexKey2 = "gazzz" + index;
+        var _$indexKey2 = "gbzzz" + index;
         _this2.anonymousFunc6Map[_$indexKey2] = function () {
           return userClickAreaItem(item.privateOriginal);
         };

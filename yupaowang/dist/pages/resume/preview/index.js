@@ -278,7 +278,7 @@ var Preview = function (_Taro$Component) {
             privateOriginal: (0, _taroSwan.internal_get_original)(v)
           };
           var loopState__temp8 = data.project.length ? i + i : null;
-          var _$indexKey = "badzz" + i + "-" + i;
+          var _$indexKey = "baezz" + i + "-" + i;
           _this2.anonymousFunc0Map[_$indexKey] = function () {
             return handleImg(v.privateOriginal);
           };
@@ -303,7 +303,7 @@ var Preview = function (_Taro$Component) {
             privateOriginal: (0, _taroSwan.internal_get_original)(v)
           };
           var loopState__temp10 = data.certificates.length ? i + i : null;
-          var _$indexKey2 = "baezz" + __index3 + "-" + i;
+          var _$indexKey2 = "bafzz" + __index3 + "-" + i;
           _this2.anonymousFunc2Map[_$indexKey2] = function () {
             return handleImg(v.privateOriginal);
           };

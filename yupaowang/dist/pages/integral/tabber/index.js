@@ -785,7 +785,7 @@ var Tabber = function (_Taro$Component) {
           privateOriginal: (0, _taroSwan.internal_get_original)(item)
         };
         var loopState__temp2 = "i" + i;
-        var _$indexKey = "iezzz" + i;
+        var _$indexKey = "ifzzz" + i;
         _this2.anonymousFunc1Map[_$indexKey] = function () {
           return handleJump(item.privateOriginal.type);
         };
@@ -800,7 +800,7 @@ var Tabber = function (_Taro$Component) {
           privateOriginal: (0, _taroSwan.internal_get_original)(item)
         };
         var loopState__temp4 = "i" + index;
-        var _$indexKey2 = "ifzzz" + index;
+        var _$indexKey2 = "igzzz" + index;
         _this2.anonymousFunc5Map[_$indexKey2] = function () {
           return handleModal(item.privateOriginal.id, item.privateOriginal.time);
         };

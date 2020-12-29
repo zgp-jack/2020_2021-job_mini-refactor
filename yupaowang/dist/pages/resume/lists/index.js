@@ -167,11 +167,17 @@ var ResumeLists = function (_Taro$Component) {
         sort: 'recommend',
         location: '',
         area_id: userListChooseCity ? userListChooseCity.id : '',
-        type: ''
+        type: '',
+        last_refresh_time_pos: 0
       }),
           _useState12 = _slicedToArray(_useState11, 2),
           searchData = _useState12[0],
           setSearchData = _useState12[1];
+
+      var _useState13 = (0, _taroSwan.useState)(0),
+          _useState14 = _slicedToArray(_useState13, 2),
+          last_refresh_time_pos = _useState14[0],
+          setLast_refresh_time_pos = _useState14[1];
       // 特殊字段默认值
 
 
@@ -185,10 +191,10 @@ var ResumeLists = function (_Taro$Component) {
       };
       // 单独处理特殊字段
 
-      var _useState13 = (0, _taroSwan.useState)(normalFieldReset),
-          _useState14 = _slicedToArray(_useState13, 2),
-          normalField = _useState14[0],
-          setNormalField = _useState14[1];
+      var _useState15 = (0, _taroSwan.useState)(normalFieldReset),
+          _useState16 = _slicedToArray(_useState15, 2),
+          normalField = _useState16[0],
+          setNormalField = _useState16[1];
       // * 请求列表数据
 
 
@@ -196,7 +202,7 @@ var ResumeLists = function (_Taro$Component) {
         if (searchData.page === 1) {
           setLists([]);
         }
-        (0, _index.getResumeList)(_extends({}, searchData, normalField)).then(function (res) {
+        (0, _index.getResumeList)(_extends({}, searchData, normalField, { last_refresh_time_pos: last_refresh_time_pos })).then(function (res) {
           _taroSwan2.default.hideNavigationBarLoading();
           // 判断搜索的时候把内容清空回到顶部，再设置值
           if (res.errcode == 'ok') {
@@ -226,6 +232,7 @@ var ResumeLists = function (_Taro$Component) {
             if (refresh) {
               setRefresh(false);
             }
+            setLast_refresh_time_pos(res.data.last_refresh_time_pos);
           } else {
             (0, _index4.default)(res.errmsg);
           }
@@ -260,6 +267,8 @@ var ResumeLists = function (_Taro$Component) {
         recondition[i].text = text;
         setCondition(recondition);
         setNormalField(normalFieldReset);
+        setLast_refresh_time_pos(0);
+        setHasMore(true);
         if (type === _lists.ClassifyPickerKey) {
           setSearchData(_extends({}, searchData, { occupations: id, page: 1 }));
         } else if (type === _lists.AreaPickerKey) {
@@ -273,6 +282,8 @@ var ResumeLists = function (_Taro$Component) {
       // 设置搜索内容
       var setSearchValData = function setSearchValData() {
         setNormalField(normalFieldReset);
+        setLast_refresh_time_pos(0);
+        setHasMore(true);
         setSearchData(_extends({}, searchData, { keywords: remark, page: 1 }));
       };
       var handleClickToRankRules = function handleClickToRankRules() {

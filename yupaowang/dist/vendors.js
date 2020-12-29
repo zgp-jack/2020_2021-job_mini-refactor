@@ -12452,7 +12452,7 @@ var PREREQUESTURL = exports.PREREQUESTURL = 'http://miniapi.kkbbi.com/';
 // * 正式站
 var PROREQUESTURL = exports.PROREQUESTURL = 'https://newyupaomini.54xiaoshuo.com/';
 // * 当前程序使用的请求地址
-var REQUESTURL = exports.REQUESTURL = DEVREQUESTURL;
+var REQUESTURL = exports.REQUESTURL = PROREQUESTURL;
 // * 默认上传图片
 var UPLOADIMGURL = exports.UPLOADIMGURL = PROREQUESTURL + 'index/upload/';
 // * 阿里云CDN域名
@@ -12464,7 +12464,7 @@ var IMGCDNURL = exports.IMGCDNURL = "http://cdn.yupao.com/miniprogram/images/";
 // * 公司默认客服电话
 var SERVERPHONE = exports.SERVERPHONE = '400-838-1888';
 // * 小程序当前版本号
-var VERSION = exports.VERSION = '1.0.5';
+var VERSION = exports.VERSION = '1.0.6';
 // * 高德地区key
 var MAPKEY = exports.MAPKEY = '20f12aae660c04de86f993d3eff590a0';
 // * 最大缓存历史城市数量
@@ -18164,10 +18164,10 @@ function userGetPublishedRecruitLists(data) {
   });
 }
 // 用户改变发布招工状态
-function userChangeRecruitStatus(id) {
+function userChangeRecruitStatus(data) {
   return doRequestAction({
     url: api.userChangeRecruitStatus,
-    data: { infoId: id },
+    data: data,
     method: 'POST'
   });
 }
@@ -18479,6 +18479,10 @@ function jobTopHotAreasAction() {
 }
 // 招工置顶
 function jobDoTopAction(detail) {
+  // 获取用户信息
+  var userInfo = _taroSwan2.default.getStorageSync(_store.UserInfo);
+  var mid = userInfo.userId;
+  detail.mid = mid;
   return doRequestAction({
     url: api.jobDoTopUrl,
     method: 'POST',
@@ -18497,6 +18501,10 @@ function jobGetTopAreasAction(detail) {
 }
 // 更新招工置顶城市
 function jobChangeTopAreasAction(detail) {
+  // 获取用户信息
+  var userInfo = _taroSwan2.default.getStorageSync(_store.UserInfo);
+  var mid = userInfo.userId;
+  detail.mid = mid;
   return doRequestAction({
     url: api.jobChangeTopAreasUrl,
     method: 'POST',
@@ -18797,6 +18805,10 @@ function resumesDoTopV2Action(data) {
 }
 // 修改找活置顶
 function resumesUpdateTopResumeAction(data) {
+  // 获取用户信息
+  var userInfo = _taroSwan2.default.getStorageSync(_store.UserInfo);
+  var mid = userInfo.userId;
+  data.mid = mid;
   return doRequestAction({
     url: api.resumesUpdateTopResumeUrl,
     method: 'POST',

@@ -223,7 +223,7 @@ export default function AddResumeInfo(){
       ShowActionModal({ msg: '请填写真实自我介绍，15-500字，必须含有汉字' })
       return
     }
-    
+    console.log(location,'1111')
     let params = {
       code: inputVal.code ? inputVal.code:'',
       username: inputVal.username,
@@ -337,10 +337,12 @@ export default function AddResumeInfo(){
     let pid: string = areaProvincePicker[e.detail.value[0]].id
     let cid: string = areaPickerData[1][e.detail.value[1]].id
     let name: string = pid === cid ? areaProvincePicker[e.detail.value[0]].name : `${areaProvincePicker[e.detail.value[0]].name}-${areaPickerData[1][e.detail.value[1]].name}`
+    // 判断市
+    const cityId = pid == cid ? '' : cid;
     let mydata = JSON.parse(JSON.stringify(locationData))
     mydata.address = name;
     mydata.province = pid
-    mydata.city = cid
+    mydata.city = cityId
     mydata.latitude = ''
     mydata.longitude = ''
     mydata.adcode = ''

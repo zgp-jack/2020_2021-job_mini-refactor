@@ -136,11 +136,11 @@ var CollectionResumeList = function (_Taro$Component) {
         item = {
           privateOriginal: (0, _taroSwan.internal_get_original)(item)
         };
-        var _$indexKey = "iczzz" + __index0;
+        var _$indexKey = "idzzz" + __index0;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return onHandleClick(item.privateOriginal.resume.check, item.privateOriginal.resume_uuid);
         };
-        var _$indexKey2 = "idzzz" + __index0;
+        var _$indexKey2 = "iezzz" + __index0;
         _this2.anonymousFunc1Map[_$indexKey2] = function (e) {
           e.stopPropagation();
           _this2.__props.onHandlerClick(item.privateOriginal.resume_uuid);

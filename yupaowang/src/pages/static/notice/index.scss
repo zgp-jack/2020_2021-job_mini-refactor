@@ -46,4 +46,8 @@
 }
 .consultationDetails-richText{
   max-width: 100% !important;
+  display:inline-block;
+  img{
+    display: inline-block;
+  }
 }

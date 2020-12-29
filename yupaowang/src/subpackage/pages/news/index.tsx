@@ -1,4 +1,4 @@
-import Taro, { Config, useState, useEffect, useReachBottom } from '@tarojs/taro'
+import Taro, { Config, useState, useEffect, useReachBottom,usePullDownRefresh } from '@tarojs/taro'
 import { View, Text, Image, ScrollView } from '@tarojs/components';
 import classnames from 'classnames'
 import { newsTypesAction, newListAction } from '../../../utils/request/index'
@@ -16,6 +16,7 @@ interface InitPageType {
 }
 export default function InvitePage() {
   const defaultCurrent: string = '-1'
+  let down: boolean = false;
   // 默认table
   const [current, setCurrent] = useState<string>(defaultCurrent)
   // 页数
@@ -32,7 +33,6 @@ export default function InvitePage() {
   // 设置滚动未知
   const [scrollLeft, setScrollLeft] = useState<number>(0)
   const handleTable = (id: string, name: string, index: number) => {
-    console.log(id, name, index)
     setPull(true)
     setNodata(name)
     setScrollLeft(index * 80)
@@ -53,7 +53,7 @@ export default function InvitePage() {
   }, [])
   // 获取新闻列表
   useEffect(() => {
-    console.log(searchData)
+    if (down) return;
     newListAction(searchData).then(res => {
       Taro.hideNavigationBarLoading()
       if (!res.data.length) {
@@ -64,6 +64,14 @@ export default function InvitePage() {
       } else {
         setList([...list, ...res.data])
       }
+      Taro.stopPullDownRefresh();
+      // 下拉刷新
+      if (down) {
+        Taro.pageScrollTo({
+          scrollTop: 0
+        })
+      }
+      down = false;
     })
   }, [searchData])
   // 用户页面跳转
@@ -77,7 +85,13 @@ export default function InvitePage() {
       setSearchData({ ...searchData, page: searchData.page + 1 })
     }
   })
-
+  usePullDownRefresh(() => {
+    down = true
+    setSearchData({ ...searchData, page: 1, newsType: current })
+    setTimeout(() => {
+      Taro.stopPullDownRefresh()
+    }, 500)
+  })
   return (
     <View>
       <ScrollView

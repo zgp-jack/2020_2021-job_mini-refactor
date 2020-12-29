@@ -15,56 +15,56 @@ export interface ItmeType {
 }
 export default function RecruitList(){
   const router: Taro.RouterInfo = useRouter()
-  let { areasId,occupations,type = '',jobIds } = router.params;
+  let { city,occupations,type = '',jobIds } = router.params;
    // * 标记是否是在刷新状态
-   const [refresh, setRefresh] = useState<boolean>(false)
+  const [refresh, setRefresh] = useState<boolean>(false)
    // 设置初始页面
-   const [initPage, setPage] = useState<PageType>({
+  const [initPage, setPage] = useState<PageType>({
       page: 1,
-      area_id: areasId,
+      area_id: city,
       job_ids: jobIds,
       classify_id:occupations,
-   })
+  })
    // 后台返回的列表类型，用作于下一次请求时触发
-   const [types,setTypes] =useState<string>(type);
+  const [types,setTypes] =useState<string>(type);
    // 定义数据
-   const [lists, setLists] = useState<ItmeType>({
-     item: [],
-   })
+  const [lists, setLists] = useState<ItmeType>({
+    item: [],
+  })
    // 是否能上拉加载更多
-   const [isDown, setIsDown] = useState<boolean>(true);
+  const [isDown, setIsDown] = useState<boolean>(true);
    // 判断是否登陆
-   useEffect(() => {
-    jobRecommendDataAction();
-   }, [initPage])
+  useEffect(() => {
+  jobRecommendDataAction();
+  }, [initPage])
    // 进来时获取数据
-   const jobRecommendDataAction = ()=>{
-    jobRecommendListAction({...initPage, type: types}).then(res => {
-       Taro.hideNavigationBarLoading()
-       Taro.stopPullDownRefresh();
-       setTypes(res.data.type)
-       if (initPage.page === 1) {
-         setLists({ item: [...res.data.list] })
-       } else {
-         setLists({ item: [...lists.item, ...res.data.list] })
-       }
-       if (refresh) setRefresh(false)
-       if (!res.data.list.length) {
-         setIsDown(false)
-       }
-     })
-   } 
-   // 上拉加载更多
-   useReachBottom(()=>{
-     if (!isDown) return;
-     Taro.showNavigationBarLoading()
-     setPage({...initPage,page:initPage.page + 1})
-   })
-   // 下拉刷新
-   usePullDownRefresh(() => {
-     setIsDown(true);
-     setPage({...initPage, page: 1})
-   })
+  const jobRecommendDataAction = ()=>{
+  jobRecommendListAction({...initPage, type: types}).then(res => {
+      Taro.hideNavigationBarLoading()
+      Taro.stopPullDownRefresh();
+      setTypes(res.data.type ? res.data.type.toString():'');
+      if (initPage.page === 1) {
+        setLists({ item: [...res.data.list] })
+      } else {
+        setLists({ item: [...lists.item, ...res.data.list] })
+      }
+      if (refresh) setRefresh(false)
+      if (!res.data.list.length) {
+        setIsDown(false)
+      }
+    })
+  } 
+  // 上拉加载更多
+  useReachBottom(()=>{
+    if (!isDown) return;
+    Taro.showNavigationBarLoading()
+    setPage({...initPage,page:initPage.page + 1})
+  })
+  // 下拉刷新
+  usePullDownRefresh(() => {
+    setIsDown(true);
+    setPage({...initPage, page: 1})
+  })
 
   // 用户页面跳转
   const userRouteJump = (url: string) => {
@@ -108,7 +108,7 @@ export default function RecruitList(){
             </View>
         )
       )}
-      {!isDown && lists.item.length && <View onClick={() => userRouteRe(`/pages/index/index`)} className="seemore-recommend">查看更多</View>}
+      {!isDown && lists.item.length && <View onClick={() => Taro.navigateBack({delta:2})} className="seemore-recommend">查看更多</View>}
     </View>
   )
 }

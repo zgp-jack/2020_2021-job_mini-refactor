@@ -14,7 +14,7 @@ export const PREREQUESTURL: string = 'http://miniapi.kkbbi.com/'
 // * 正式站
 export const PROREQUESTURL: string = 'https://newyupaomini.54xiaoshuo.com/'
 // * 当前程序使用的请求地址
-export const REQUESTURL: string = DEVREQUESTURL
+export const REQUESTURL: string = PROREQUESTURL
 // * 默认上传图片
 export const UPLOADIMGURL: string = `${PROREQUESTURL}index/upload/`
 // * 阿里云CDN域名
@@ -26,7 +26,7 @@ export const IMGCDNURL: string = ALIYUNCDN + ALIYUNCDNMINIIMG
 // * 公司默认客服电话
 export const SERVERPHONE: string = '400-838-1888'
 // * 小程序当前版本号
-export const VERSION: string = '1.0.5'
+export const VERSION: string = '1.0.6'
 // * 高德地区key
 export const MAPKEY: string = '20f12aae660c04de86f993d3eff590a0'
 // * 最大缓存历史城市数量

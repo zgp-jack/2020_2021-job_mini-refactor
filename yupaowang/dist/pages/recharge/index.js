@@ -155,7 +155,6 @@ var Recharge = function (_Taro$Component) {
         });
         // 判断是是否能用扣扣吊起微信支付
         var isWxPayment = _taroSwan2.default.canIUse && _taroSwan2.default.canIUse('requestWxPayment');
-        console.error(isWxPayment, '111');
         if (isWxPayment) {
           setIsWxPayment(true);
         }
@@ -381,7 +380,7 @@ var Recharge = function (_Taro$Component) {
         item = {
           privateOriginal: (0, _taroSwan.internal_get_original)(item)
         };
-        var _$indexKey = "gdzzz" + index;
+        var _$indexKey = "gezzz" + index;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return userChooseItem(index);
         };

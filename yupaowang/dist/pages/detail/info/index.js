@@ -59,8 +59,6 @@ __webpack_require__(/*! ./index.scss */ "./src/pages/detail/info/index.scss");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -79,9 +77,9 @@ var DetailInfoPage = function (_Taro$Component) {
       navigationBarTitleText: ''
     };
 
-    _this.$usedState = ["anonymousState__temp3", "data", "loopArray80", "loopArray81", "$compid__65", "$compid__66", "$compid__67", "type", "resCode", "editPhone", "SHOWOFFICIALACCOUNT", "SERIES", "QQSERIES", "ios", "DOWNLOADAPP", "IMGCDNURL", "isCollection", "ISCANSHARE", "recommend", "complaintModal", "phone"];
+    _this.$usedState = ["anonymousState__temp3", "data", "loopArray80", "loopArray81", "$compid__65", "resCode", "editPhone", "SHOWOFFICIALACCOUNT", "SERIES", "QQSERIES", "ios", "DOWNLOADAPP", "IMGCDNURL", "isCollection", "ISCANSHARE", "complaintModal", "phone"];
     _this.anonymousFunc5Map = {};
-    _this.customComponents = ["WechatNotice", "CollectionRecruitList", "Report"];
+    _this.customComponents = ["WechatNotice", "Report"];
     return _this;
   }
 
@@ -107,23 +105,12 @@ var DetailInfoPage = function (_Taro$Component) {
           $prevCompid__65 = _genCompid2[0],
           $compid__65 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroSwan.genCompid)(__prefix + "$compid__66"),
-          _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__66 = _genCompid4[0],
-          $compid__66 = _genCompid4[1];
-
-      var _genCompid5 = (0, _taroSwan.genCompid)(__prefix + "$compid__67"),
-          _genCompid6 = _slicedToArray(_genCompid5, 2),
-          $prevCompid__67 = _genCompid6[0],
-          $compid__67 = _genCompid6[1];
-
       var router = (0, _taroSwan.useRouter)();
       var _router$params = router.params,
           _router$params$id = _router$params.id,
           id = _router$params$id === undefined ? '' : _router$params$id,
           _router$params$refId = _router$params.refId,
-          refId = _router$params$refId === undefined ? '' : _router$params$refId,
-          type = _router$params.type;
+          refId = _router$params$refId === undefined ? '' : _router$params$refId;
       // 获取userInfo
 
       var userInfo = _taroSwan2.default.getStorageSync(_store.UserInfo);
@@ -241,7 +228,7 @@ var DetailInfoPage = function (_Taro$Component) {
       var login = (0, _redux.useSelector)(function (state) {
         return state.User['login'];
       });
-      // 招工相关推荐
+      // 相关推荐
 
       var _useState25 = (0, _taroSwan.useState)([]),
           _useState26 = _slicedToArray(_useState25, 2),
@@ -254,34 +241,6 @@ var DetailInfoPage = function (_Taro$Component) {
           _useState28 = _slicedToArray(_useState27, 2),
           ios = _useState28[0],
           setIos = _useState28[1];
-      // 找活相关推荐
-
-
-      var _useState29 = (0, _taroSwan.useState)([]),
-          _useState30 = _slicedToArray(_useState29, 2),
-          recommendRe = _useState30[0],
-          setRecommendRe = _useState30[1];
-      // 更多招工省市
-
-
-      var _useState31 = (0, _taroSwan.useState)(0),
-          _useState32 = _slicedToArray(_useState31, 2),
-          areasId = _useState32[0],
-          setAreasId = _useState32[1];
-      // 更多招工工种
-
-
-      var _useState33 = (0, _taroSwan.useState)(''),
-          _useState34 = _slicedToArray(_useState33, 2),
-          occupations = _useState34[0],
-          setOccupations = _useState34[1];
-      // 更多招工job_ids
-
-
-      var _useState35 = (0, _taroSwan.useState)(0),
-          _useState36 = _slicedToArray(_useState35, 2),
-          jobIds = _useState36[0],
-          setJobIds = _useState36[1];
       // 返回刷新页面
 
 
@@ -314,7 +273,7 @@ var DetailInfoPage = function (_Taro$Component) {
               title: res.result.title
             });
             if (_index2.SERIES == _index2.BAIDUSERIES) {
-              var keywords = res.result.classifyName[0] || '';
+              var keywords = res.result.classifyName[0];
               var split_keywords = keywords.split('/').map(function (item) {
                 return "\u62DB" + item + "\u5E08\u5085";
               }).join(',');
@@ -325,55 +284,14 @@ var DetailInfoPage = function (_Taro$Component) {
               });
             }
             setIsCollection(res.result.is_collect);
-            // 设置更多招工信息的省/市
-            var area_id = res.result.city_id && res.result.city_id != 0 ? res.result.city_id : res.result.province_id;
-            setAreasId(area_id);
-            var occupations = res.result.occupations.length ? res.result.occupations.join(',') : '';
-            setOccupations(occupations);
-            var jobIds = res.result.id;
-            setJobIds(jobIds);
             if (userInfo.userId === res.result.user_id) {
               // 判断是自己发布的招工
               setResCode('own');
             } else {
               setResCode(res.errcode);
             }
-            // if (userInfo.userId === res.result.user_id) {
-            //   // 加载找活相关推荐数据列表
-            //   const listParams = {
-            //     page: 1,
-            //     type: 1,
-            //     area_id: res.result.city_id,
-            //     occupations: [...res.result.occupations].join(','),
-            //     uuid: '',
-            //   }
-            //   detailsRecommendAction(listParams).then(res => {
-            //     if (res.errcode === 'ok') {
-            //       setRecommendRe(res.data.list);
-            //     } else {
-            //       Msg(res.errmsg)
-            //     }
-            //   })
-            // } else {
-            //   // 加载招工相关推荐数据列表
-            var paramsObj = {
-              page: 1,
-              type: 1,
-              area_id: res.result.city_id,
-              job_ids: res.result.id,
-              classify_id: [].concat(_toConsumableArray(res.result.occupations)).join(',')
-            };
-            (0, _index.jobDetailsListAction)(paramsObj).then(function (res) {
-              if (res.errcode === 'ok') {
-                setRecommend(res.data.list);
-              } else {
-                (0, _index6.default)(res.errmsg);
-              }
-            });
-            // }
           });
         }).catch(function () {
-          console.log('catch');
           (0, _index5.ShowActionModal)({
             msg: '网络异常，请重新进入',
             success: function success() {
@@ -446,7 +364,6 @@ var DetailInfoPage = function (_Taro$Component) {
       };
       // 处理获取电话号码的不同状态码
       var detailGetTelAction = function detailGetTelAction(res, callback) {
-        console.log(res.errcode);
         if (res.errcode == 'ok' || res.errcode == 'end' || res.errcode == 'ajax') {
           callback && callback();
         } else if (res.errcode == 'end') {
@@ -588,9 +505,7 @@ var DetailInfoPage = function (_Taro$Component) {
           } else {
             // 查看电话可以投诉一次
             if (complaintInfo) {
-              // infoId = ${ infoId }& type=job & page=detail
-              userRouteJump("/pages/newcomplaint/index?infoId=" + data.id + "&type=job&page=detail");
-              // setComplaintModal(true);
+              setComplaintModal(true);
               // 没有看到电话不能投诉
             } else if (data.show_ajax_btn) {
               (0, _index6.default)('请查看完整的手机号码后再操作！');
@@ -602,8 +517,7 @@ var DetailInfoPage = function (_Taro$Component) {
                   showCancel: false
                 });
               } else {
-                userRouteJump("/pages/newcomplaint/index?infoId=" + data.id + "&type=job&page=detail");
-                // setComplaintModal(true)
+                setComplaintModal(true);
               }
             }
           }
@@ -710,7 +624,7 @@ var DetailInfoPage = function (_Taro$Component) {
             return false;
           }
         }
-        userRouteJump("/pages/newtopping/recRang/index?defaultTopArea=" + data.area_id + "&job_id=" + data.id);
+        userRouteJump("/pages/topping/index?id=" + data.id);
       };
       // 查看更多招工信息
       var seeMoreRecruit = function seeMoreRecruit() {
@@ -718,13 +632,7 @@ var DetailInfoPage = function (_Taro$Component) {
         if (pages.length < 2) {
           _taroSwan2.default.reLaunch({ url: _index2.INDEXPATH });
         } else {
-          var routeUrl = pages[pages.length - 2].route;
-          var listUrl = "/" + routeUrl;
-          if (listUrl == _index2.INDEXPATH) {
-            _taroSwan2.default.navigateBack();
-          } else {
-            _taroSwan2.default.reLaunch({ url: _index2.INDEXPATH });
-          }
+          _taroSwan2.default.navigateBack();
         }
       };
       this.anonymousFunc0 = function () {
@@ -745,12 +653,15 @@ var DetailInfoPage = function (_Taro$Component) {
       this.anonymousFunc7 = function () {
         return userRouteJump(_index2.DOWNLOADAPPPATH);
       };
-      this.anonymousFunc8 = collection;
-      this.anonymousFunc9 = footerComplaint;
-      this.anonymousFunc10 = function () {
+      this.anonymousFunc8 = function () {
+        return seeMoreRecruit();
+      };
+      this.anonymousFunc9 = collection;
+      this.anonymousFunc10 = footerComplaint;
+      this.anonymousFunc11 = function () {
         return jobGetTel();
       };
-      this.anonymousFunc11 = function () {
+      this.anonymousFunc12 = function () {
         _taroSwan2.default.makePhoneCall({ phoneNumber: phone });
       };
       var loopArray80 = data.classifyName.map(function (v, i) {
@@ -768,7 +679,7 @@ var DetailInfoPage = function (_Taro$Component) {
           privateOriginal: (0, _taroSwan.internal_get_original)(v)
         };
         var loopState__temp5 = data.view_images.length ? i + i : null;
-        var _$indexKey = "igzzz" + i;
+        var _$indexKey = "ihzzz" + i;
         _this2.anonymousFunc5Map[_$indexKey] = function () {
           return handleImage(v.privateOriginal);
         };
@@ -778,33 +689,19 @@ var DetailInfoPage = function (_Taro$Component) {
           privateOriginal: v.privateOriginal
         };
       }) : [];
-      _taroSwan.propsManager.set({
-        "type": 1
-      }, $compid__65, $prevCompid__65);
-      recommend.length && _taroSwan.propsManager.set({
-        "data": recommend,
-        "type": 1,
-        "areasId": areasId,
-        "occupations": occupations,
-        "jobIds": jobIds,
-        "detailList": true
-      }, $compid__66, $prevCompid__66);
       complaintModal && _taroSwan.propsManager.set({
         "display": complaintModal,
         "textarea": textarea,
         "handleTextarea": handleTextarea,
         "setComplaintModal": setComplaintModal,
         "handleSubmit": handleSubmit
-      }, $compid__67, $prevCompid__67);
+      }, $compid__65, $prevCompid__65);
       Object.assign(this.__state, {
         anonymousState__temp3: anonymousState__temp3,
         data: data,
         loopArray80: loopArray80,
         loopArray81: loopArray81,
         $compid__65: $compid__65,
-        $compid__66: $compid__66,
-        $compid__67: $compid__67,
-        type: type,
         resCode: resCode,
         editPhone: editPhone,
         SHOWOFFICIALACCOUNT: _index2.SHOWOFFICIALACCOUNT,
@@ -815,7 +712,6 @@ var DetailInfoPage = function (_Taro$Component) {
         IMGCDNURL: _index2.IMGCDNURL,
         isCollection: isCollection,
         ISCANSHARE: _index2.ISCANSHARE,
-        recommend: recommend,
         complaintModal: complaintModal,
         phone: phone
       });
@@ -889,12 +785,17 @@ var DetailInfoPage = function (_Taro$Component) {
     value: function anonymousFunc11(e) {
       ;
     }
+  }, {
+    key: "anonymousFunc12",
+    value: function anonymousFunc12(e) {
+      ;
+    }
   }]);
 
   return DetailInfoPage;
 }(_taroSwan2.default.Component);
 
-DetailInfoPage.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6", "anonymousFunc7", "anonymousFunc8", "anonymousFunc9", "anonymousFunc10", "anonymousFunc11"];
+DetailInfoPage.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6", "anonymousFunc7", "anonymousFunc8", "anonymousFunc9", "anonymousFunc10", "anonymousFunc11", "anonymousFunc12"];
 DetailInfoPage.$$componentPath = "pages/detail/info/index";
 DetailInfoPage.config = { navigationBarTitleText: '' };
 exports.default = DetailInfoPage;

@@ -343,7 +343,7 @@ var RealnameMap = function (_Taro$Component) {
           privateOriginal: (0, _taroSwan.internal_get_original)(item)
         };
         var loopState__temp2 = showHistory ? index + index : null;
-        var _$indexKey = "gezzz" + index;
+        var _$indexKey = "gfzzz" + index;
         _this2.anonymousFunc4Map[_$indexKey] = function () {
           return userClickAreaItem(item.privateOriginal);
         };
@@ -358,7 +358,7 @@ var RealnameMap = function (_Taro$Component) {
           privateOriginal: (0, _taroSwan.internal_get_original)(item)
         };
         var loopState__temp4 = index + index;
-        var _$indexKey2 = "gfzzz" + index;
+        var _$indexKey2 = "ggzzz" + index;
         _this2.anonymousFunc5Map[_$indexKey2] = function () {
           return userClickAreaItem(item.privateOriginal);
         };

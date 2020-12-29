@@ -138,6 +138,9 @@
       font-size: 28px;
       margin-top: -10px;
       border-bottom: 1px dashed $bordercolor;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap
     }
 
     .resume-list-footer {
@@ -160,7 +163,6 @@
       .resume-list-loctxt {
         color: #555;
         position: relative;
-        padding-right: 300px;
         font-size: 28px;
         line-height: 60px;
       }

@@ -159,8 +159,18 @@ export default function PublishedRecruit(){
   }
 
   // 停止招工
-  const userStopRecruit = (id: string,i: number) => {
-    userChangeRecruitStatus(id)
+  const userStopRecruit = (item,i: number) => {
+    let end_status;
+    if (item.is_end == '2'){
+      end_status = 2
+    }else{
+      end_status = 1
+    }
+    let params = {
+      end_status,
+      infoId: item.id,
+    }
+    userChangeRecruitStatus(params)
     .then(res=>{
       Msg(res.errmsg)
       if(res.errcode == 'ok'){
@@ -182,10 +192,12 @@ export default function PublishedRecruit(){
     })
   }
   // 取消置顶 jobUpdateTopStatusAction
-  const handlCancel = (id:string, index: number)=>{
+  const handlCancel = (item, index: number)=>{
+    let data = item.top_data; //置顶数据
+    let toping = data.is_top // 是否置顶状态
     const params = {
-      infoId: id,
-      status:0,
+      infoId: item.id,
+      status: toping == '1' ? '1' : "0"
     }
     jobUpdateTopStatusAction(params).then(res=>{
       detailUserSetTopAction(res, index)
@@ -262,7 +274,7 @@ export default function PublishedRecruit(){
       }
       const params = {
         infoId: item.id,
-        status: toping == '0' ? '1' : "0"
+        status: toping == '1' ? '1' : "0"
       }
       jobUpdateTopStatusAction(params).then(res => {
         detailUserSetTopAction(res, index)
@@ -417,12 +429,12 @@ export default function PublishedRecruit(){
                 {item.is_check != '1' && <View className='user-published-footer-item' onClick={() => userRouteJump(`/pages/recruit/jisu_issue/index?id=${item.id}`)}>修改</View>}
                 {item.is_check == '2' &&
                 <Block >
-                  <View className='user-published-footer-item' onClick={() => userStopRecruit(item.id, index)}>{item.is_end == '2'?'重新招工':'停止招工'}</View>
+                  <View className='user-published-footer-item' onClick={() => userStopRecruit(item, index)}>{item.is_end == '2'?'重新招工':'停止招工'}</View>
                 {/* // 置顶按钮 */}
                 {item.is_end != '2' && 
                   <View>
                       {item.top && item.top_data && item.top_data.is_top == '1' ?
-                          <View className='user-published-footer-item' onClick={()=>handlCancel(item.id, index)}>取消置顶</View> :
+                          <View className='user-published-footer-item' onClick={()=>handlCancel(item, index)}>取消置顶</View> :
                           <View className='user-published-footer-item' onClick={()=>handleTopping(item, index)}>我要置顶</View>
                       }
                   </View>

@@ -340,8 +340,18 @@ var PublishedRecruit = function (_Taro$Component) {
         setSearchData(_extends({}, searchData, { page: 1 }));
       };
       // 停止招工
-      var userStopRecruit = function userStopRecruit(id, i) {
-        (0, _index.userChangeRecruitStatus)(id).then(function (res) {
+      var userStopRecruit = function userStopRecruit(item, i) {
+        var end_status = void 0;
+        if (item.is_end == '2') {
+          end_status = 2;
+        } else {
+          end_status = 1;
+        }
+        var params = {
+          end_status: end_status,
+          infoId: item.id
+        };
+        (0, _index.userChangeRecruitStatus)(params).then(function (res) {
           (0, _index4.default)(res.errmsg);
           if (res.errcode == 'ok') {
             var bakLists = lists;
@@ -362,10 +372,12 @@ var PublishedRecruit = function (_Taro$Component) {
         });
       };
       // 取消置顶 jobUpdateTopStatusAction
-      var handlCancel = function handlCancel(id, index) {
+      var handlCancel = function handlCancel(item, index) {
+        var data = item.top_data; //置顶数据
+        var toping = data.is_top; // 是否置顶状态
         var params = {
-          infoId: id,
-          status: 0
+          infoId: item.id,
+          status: toping == '1' ? '1' : "0"
         };
         (0, _index.jobUpdateTopStatusAction)(params).then(function (res) {
           detailUserSetTopAction(res, index);
@@ -441,7 +453,7 @@ var PublishedRecruit = function (_Taro$Component) {
           }
           var params = {
             infoId: item.id,
-            status: toping == '0' ? '1' : "0"
+            status: toping == '1' ? '1' : "0"
           };
           (0, _index.jobUpdateTopStatusAction)(params).then(function (res) {
             detailUserSetTopAction(res, index);
@@ -536,7 +548,7 @@ var PublishedRecruit = function (_Taro$Component) {
         item = {
           privateOriginal: (0, _taroSwan.internal_get_original)(item)
         };
-        var _$indexKey = "ggzzz" + __index0;
+        var _$indexKey = "ghzzz" + __index0;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return userChangePublishedItem(item.privateOriginal.id);
         };
@@ -554,31 +566,31 @@ var PublishedRecruit = function (_Taro$Component) {
         item = {
           privateOriginal: (0, _taroSwan.internal_get_original)(item)
         };
-        var _$indexKey2 = "ghzzz" + index;
+        var _$indexKey2 = "gizzz" + index;
         _this2.anonymousFunc3Map[_$indexKey2] = function () {
           return userRouteJump("/pages/detail/info/index?id=" + item.privateOriginal.id + "&type=1");
         };
-        var _$indexKey3 = "gizzz" + index;
+        var _$indexKey3 = "gjzzz" + index;
         _this2.anonymousFunc4Map[_$indexKey3] = function () {
           return userRouteJump("/pages/newtopping/recRang/index?defaultTopArea=" + item.privateOriginal.area_id + "&job_id=" + item.privateOriginal.id + "&subscribe=1");
         };
-        var _$indexKey4 = "gjzzz" + index;
+        var _$indexKey4 = "hazzz" + index;
         _this2.anonymousFunc5Map[_$indexKey4] = function () {
           return userRouteJump("/pages/recruit/jisu_issue/index?id=" + item.privateOriginal.id);
         };
-        var _$indexKey5 = "hazzz" + index;
+        var _$indexKey5 = "hbzzz" + index;
         _this2.anonymousFunc6Map[_$indexKey5] = function () {
-          return userStopRecruit(item.privateOriginal.id, index);
+          return userStopRecruit(item.privateOriginal, index);
         };
-        var _$indexKey6 = "hbzzz" + index;
+        var _$indexKey6 = "hczzz" + index;
         _this2.anonymousFunc7Map[_$indexKey6] = function () {
-          return handlCancel(item.privateOriginal.id, index);
+          return handlCancel(item.privateOriginal, index);
         };
-        var _$indexKey7 = "hczzz" + index;
+        var _$indexKey7 = "hdzzz" + index;
         _this2.anonymousFunc8Map[_$indexKey7] = function () {
           return handleTopping(item.privateOriginal, index);
         };
-        var _$indexKey8 = "hdzzz" + index;
+        var _$indexKey8 = "hezzz" + index;
         _this2.anonymousFunc9Map[_$indexKey8] = function () {
           return userRouteJump("/pages/newtopping/recRang/index?job_id=" + item.privateOriginal.id);
         };

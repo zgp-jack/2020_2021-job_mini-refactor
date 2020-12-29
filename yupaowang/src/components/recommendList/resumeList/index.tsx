@@ -9,10 +9,11 @@ interface PROPS {
   areasId?:number,
   type:number,
   detailList?:boolean
+  infoUuid?:string,
 }
 
 // 找活
-export default function ResumeListPage({ data = [], occupations, areasId, type, detailList }: PROPS) {
+export default function ResumeListPage({ data = [], occupations, areasId, type, detailList, infoUuid }: PROPS) {
   // 用户页面跳转
   const userRouteJump = (url: string) => {
     Taro.navigateTo({
@@ -61,13 +62,13 @@ export default function ResumeListPage({ data = [], occupations, areasId, type, 
                   <Image className='resume-list-loc' src={IMGCDNURL + 'lpy/biaoqian.png'} />
                   <View className='resume-list-loctxt overwords'>{item.show_address}</View>
                 </View>
-                <Text className='resume-list-time'>{item.prof_degree}</Text>
+                <Text className='resume-list-time'>{item.time}</Text>
               </View>
             </View>
         </Block>
       ))}
-        {data.length >= 15 && <View className='seemore-recommend-recruit' onClick={() => userRouteJump(`/subpackage/pages/recommend/resume/index?areasId=${areasId}&occupations=${occupations}&type=${type}`)}>查看更多找活信息</View>}
-        {data.length < 15 && <View className="seemore-recommend-recruit" onClick={()=>userRouteRe(`/pages/index/index?type=resume`)}>查看更多找活信息</View>}
+      {data.length >= 15 && <View className='seemore-recommend-recruit' onClick={() => userRouteJump(`/subpackage/pages/recommend/resume/index?areasId=${areasId}&occupations=${occupations}&type=${type}&infoUuid=${infoUuid}`)}>查看更多找活信息</View>}
+        {data.length < 15 && <View className="seemore-recommend-recruit" onClick={()=>Taro.navigateBack({delta:1})}>查看更多找活信息</View>}
     </View>
   )
 }

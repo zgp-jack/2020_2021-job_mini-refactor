@@ -170,7 +170,8 @@ export interface ResumeList {
   tags: string[],
   prof_degree: string,
   time: string,
-  resume_top: number
+  resume_top: number,
+  certificate:number
 }
 
 // 二手列表数据
@@ -205,7 +206,8 @@ export interface ResumeResult extends Result {
     last_sort_flag_pos?: string,
     last_normal_pos?: string,
     last_time_pos?: string
-  }
+    last_refresh_time_pos:number,
+  },
 }
 
 // 积分记录数据
@@ -1104,6 +1106,29 @@ export interface resumeDetailCertificates {
   user_uuid: string
   uuid: string
 }
+export interface resumeDetailCertificatesItem {
+  admin_last_edit_time: string
+  certificate_time: string
+  check: string
+  current_admin: string
+  fail_case: string
+  id: string
+  image: []
+  last_update_admin: string
+  name: string
+  resume_uuid: string
+  sort_flag: string
+  time: string
+  update_time: string
+  user_uuid: string
+  uuid: string
+}
+export interface resumeDetailCertificates extends resumeDetailCertificatesItem {
+  images: string,
+}
+export interface resumeDetailCertificatesRedux extends resumeDetailCertificatesItem {
+  images: string[]
+}
 // 找活详情列表
 export interface recommendList extends Result {
   data: recommendListData,
@@ -1114,20 +1139,22 @@ export interface recommendListData {
   next_page: number,
   type: number,
 }
-
-export interface recommendListDataList {
-  id: number,
-  headerimg: string,
-  username: string,
-  birthday: number,
-  certificate: number,
-  type: string,
-  nation: string,
-  experience: string,
-  introduce: string,
-  show_address: string,
-  prof_degree: string,
-  occupations: []
+export interface recommendListDataList{
+  id:number,
+  headerimg:string,
+  username:string,
+  birthday:number,
+  certificate:number,
+  type:string,
+  nation:string,
+  experience:string,
+  introduce:string,
+  show_address:string,
+  prof_degree:string,
+  occupations:[],
+  uuid:string,
+  location:string
+  time:string,
 }
 
 // 查看完整电话
@@ -1153,14 +1180,16 @@ export interface jobRecommendListData {
   list: jobRecommendListDataList[],
 }
 
-export interface jobRecommendListDataList {
-  detail: string,
-  id: string,
-  image: string,
-  title: string,
-  user_name: string,
-  show_address: string,
-  time: string,
+export interface jobRecommendListDataList{
+  detail:string,
+  id:string,
+  image:string,
+  title:string,
+  user_name:string,
+  show_address:string,
+  time:string,
+  top:number,
+  is_end:number
 }
 
 //完善找活

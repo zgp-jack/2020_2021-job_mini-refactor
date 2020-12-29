@@ -121,7 +121,6 @@ export default function ResumePublish(){
   // })
   // 继续置顶
   const handleContinue = ((e)=>{
-    console.error(e,'11')
     // 如果是置顶到期那么就跟初次置顶一样跳转到对应界面
     if (e.is_top == 2){
       handleJump(`/pages/newtopping/resRang/index?defaultTopArea=${defaultTopArea}`, resume_top)
@@ -338,7 +337,7 @@ export default function ResumePublish(){
             <Image className='basic-description-img' src={`${IMGCDNURL}newresume-description.png`} />
             <View className='basic-title'>人员信息</View>
             {
-              infoData.check&& infoData.check != '0' && introducesData.check != '1' && 
+              infoData.check != '0' && introducesData.check !='1' && is_introduces &&
               <View className='change' onClick={() => userRouteJump('/pages/resume/add_member/index')}>编辑</View>
             }
             {
