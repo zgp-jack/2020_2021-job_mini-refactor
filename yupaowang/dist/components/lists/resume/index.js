@@ -1,5 +1,206 @@
-<<<<<<< HEAD
-(swan.webpackJsonp=swan.webpackJsonp||[]).push([[15],{"243":function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{"value":!0});var g=function(e,t){if(Array.isArray(e))return e;if(Symbol.iterator in Object(e))return function sliceIterator(e,t){var r=[],n=!0,i=!1,o=void 0;try{for(var a,u=e[Symbol.iterator]();!(n=(a=u.next()).done)&&(r.push(a.value),!t||r.length!==t);n=!0);}catch(e){i=!0,o=e}finally{try{!n&&u.return&&u.return()}finally{if(i)throw o}}return r}(e,t);throw new TypeError("Invalid attempt to destructure non-iterable instance")},n=function(e,t,r){return t&&defineProperties(e.prototype,t),r&&defineProperties(e,r),e};function defineProperties(e,t){for(var r=0;r<t.length;r++){var n=t[r];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}var d=r(0),h=function _interopRequireDefault(e){return e&&e.__esModule?e:{"default":e}}(d),O=r(1);r(244);var b=r(7);var i=(function _inherits(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{"constructor":{"value":e,"enumerable":!1,"writable":!0,"configurable":!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}(ResumeList,h.default.Component),n(ResumeList,[{"key":"_constructor","value":function _constructor(e){(function get(e,t,r){null===e&&(e=Function.prototype);var n=Object.getOwnPropertyDescriptor(e,t);if(void 0===n){var i=Object.getPrototypeOf(e);return null===i?void 0:get(i,t,r)}if("value"in n)return n.value;var o=n.get;return void 0!==o?o.call(r):void 0})(ResumeList.prototype.__proto__||Object.getPrototypeOf(ResumeList.prototype),"_constructor",this).call(this,e),this.$$refs=new h.default.RefsArray}},{"key":"_createData","value":function _createData(e,t,r){var o=this;this.__state=e||this.state||{},this.__props=t||this.props||{};var n=this.$prefix,i=(0,d.genCompid)(n+"$compid__26"),a=g(i,2),u=a[0],s=a[1],l=this.__props,p=l.data,c=l.bottom,f=void 0===c||c,_=l.hasMore,v=void 0===_||_,y=(0,d.internal_inline_style)(f?"":"padding-bottom:0"),m=p?p.map(function(n,i){return n={"privateOriginal":(0,d.internal_get_original)(n)},{"loopState__temp3":p?i+"-"+i:null,"anonymousCallee__4":n.privateOriginal?n.privateOriginal.map(function(r,e){r={"privateOriginal":(0,d.internal_get_original)(r)};var t="cgzzz"+i+"-"+e;return o.anonymousFunc0Map[t]=function(){return function userRouteJump(e){var t=h.default.getStorageSync(b.UserLocation);t=t?t=t.split(",").reverse():"",h.default.navigateTo({"url":"/pages/resume/detail/index?uuid="+e+"&location="+t})}(r.privateOriginal.uuid)},{"_$indexKey":t,"loopState__temp7":n.privateOriginal?O.REPLACEWEIXINTEXT?r.privateOriginal.introduce.replace(O.FILTERWEIXINREG,""):r.privateOriginal.introduce:null,"anonymousCallee__3":n.privateOriginal?r.privateOriginal.occupations.map(function(e,t){return e={"privateOriginal":(0,d.internal_get_original)(e)},{"loopState__temp5":n.privateOriginal?r.privateOriginal.id+"-"+t:null,"privateOriginal":e.privateOriginal}}):[],"privateOriginal":r.privateOriginal}}):[],"privateOriginal":n.privateOriginal}}):[];return p&&p[0]&&!p[0].length&&d.propsManager.set({"text":"暂无相关数据"},s,u),Object.assign(this.__state,{"anonymousState__temp":y,"loopArray22":m,"$compid__26":s,"data":p,"IMGCDNURL":O.IMGCDNURL,"hasMore":v}),this.__state}},{"key":"anonymousFunc0","value":function anonymousFunc0(e){for(var t,r=arguments.length,n=Array(1<r?r-1:0),i=1;i<r;i++)n[i-1]=arguments[i];return this.anonymousFunc0Map[e]&&(t=this.anonymousFunc0Map)[e].apply(t,n)}}]),ResumeList);function ResumeList(){!function _classCallCheck(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,ResumeList);var e=function _possibleConstructorReturn(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}(this,(ResumeList.__proto__||Object.getPrototypeOf(ResumeList)).apply(this,arguments));return e.$usedState=["anonymousState__temp","loopArray22","$compid__26","data","IMGCDNURL","hasMore","bottom"],e.anonymousFunc0Map={},e.customComponents=["Nodata"],e}i.$$events=["anonymousFunc0"],i.$$componentPath="components/lists/resume/index",t.default=i,Component(r(0).default.createComponent(i))},"244":function(e,t,r){}},[[243,0,1]]]);
-=======
-(swan.webpackJsonp=swan.webpackJsonp||[]).push([[16],{"258":function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{"value":!0});var a="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t},d=function(t,e){if(Array.isArray(t))return t;if(Symbol.iterator in Object(t))return function sliceIterator(t,e){var n=[],o=!0,r=!1,a=void 0;try{for(var i,u=t[Symbol.iterator]();!(o=(i=u.next()).done)&&(n.push(i.value),!e||n.length!==e);o=!0);}catch(t){r=!0,a=t}finally{try{!o&&u.return&&u.return()}finally{if(r)throw a}}return n}(t,e);throw new TypeError("Invalid attempt to destructure non-iterable instance")},o=function(t,e,n){return e&&defineProperties(t.prototype,e),n&&defineProperties(t,n),t};function defineProperties(t,e){for(var n=0;n<e.length;n++){var o=e[n];o.enumerable=o.enumerable||!1,o.configurable=!0,"value"in o&&(o.writable=!0),Object.defineProperty(t,o.key,o)}}var g=n(0),h=function _interopRequireDefault(t){return t&&t.__esModule?t:{"default":t}}(g),b=n(1);n(259);var O=n(6);var r=(function _inherits(t,e){if("function"!=typeof e&&null!==e)throw new TypeError("Super expression must either be null or a function, not "+typeof e);t.prototype=Object.create(e&&e.prototype,{"constructor":{"value":t,"enumerable":!1,"writable":!0,"configurable":!0}}),e&&(Object.setPrototypeOf?Object.setPrototypeOf(t,e):t.__proto__=e)}(ResumeList,h.default.Component),o(ResumeList,[{"key":"_constructor","value":function _constructor(t){(function get(t,e,n){null===t&&(t=Function.prototype);var o=Object.getOwnPropertyDescriptor(t,e);if(void 0===o){var r=Object.getPrototypeOf(t);return null===r?void 0:get(r,e,n)}if("value"in o)return o.value;var a=o.get;return void 0!==a?a.call(n):void 0})(ResumeList.prototype.__proto__||Object.getPrototypeOf(ResumeList.prototype),"_constructor",this).call(this,t),this.$$refs=new h.default.RefsArray}},{"key":"_createData","value":function _createData(t,e,n){var i=this;this.__state=t||this.state||{},this.__props=e||this.props||{};var o=this.$prefix,r=(0,g.genCompid)(o+"$compid__26"),a=d(r,2),u=a[0],s=a[1],p=this.__props,l=p.data,c=p.bottom,f=void 0===c||c,y=p.hasMore,m=void 0===y||y,_=(0,g.internal_inline_style)(f?"":"padding-bottom:0"),v=l?l.map(function(r,a){return r={"privateOriginal":(0,g.internal_get_original)(r)},{"loopState__temp3":l?a+"-"+a:null,"anonymousCallee__5":r.privateOriginal?r.privateOriginal.map(function(n,t){n={"privateOriginal":(0,g.internal_get_original)(n)};var e="dazzz"+a+"-"+t;i.anonymousFunc0Map[e]=function(){return function userRouteJump(t){var e=h.default.getStorageSync(O.UserLocation);e=e?e=e.split(",").reverse():"",h.default.navigateTo({"url":"/pages/resume/detail/index?uuid="+t+"&location="+e})}(n.privateOriginal.uuid)};var o="dbzzz"+a+"-"+t;return i.anonymousFunc1Map[o]=function(t){t.stopPropagation(),function handleJump(t){h.default.navigateTo({"url":t})}(b.PUBLISHRESUME)},{"_$indexKey":e,"_$indexKey2":o,"loopState__temp7":r.privateOriginal?b.REPLACEWEIXINTEXT?n.privateOriginal.introduce.replace(b.FILTERWEIXINREG,""):n.privateOriginal.introduce:null,"anonymousCallee__4":r.privateOriginal?n.privateOriginal.occupations.map(function(t,e){return t={"privateOriginal":(0,g.internal_get_original)(t)},{"loopState__temp5":r.privateOriginal?n.privateOriginal.id+"-"+e:null,"privateOriginal":t.privateOriginal}}):[],"privateOriginal":n.privateOriginal}}):[],"privateOriginal":r.privateOriginal}}):[];return l&&l[0]&&!l[0].length&&g.propsManager.set({"text":"暂无相关数据"},s,u),Object.assign(this.__state,{"anonymousState__temp":_,"loopArray24":v,"$compid__26":s,"data":l,"IMGCDNURL":b.IMGCDNURL,"hasMore":m}),this.__state}},{"key":"anonymousFunc0","value":function anonymousFunc0(t){for(var e,n=arguments.length,o=Array(1<n?n-1:0),r=1;r<n;r++)o[r-1]=arguments[r];return this.anonymousFunc0Map[t]&&(e=this.anonymousFunc0Map)[t].apply(e,o)}},{"key":"anonymousFunc1","value":function anonymousFunc1(t){for(var e,n=arguments.length,o=Array(1<n?n-1:0),r=1;r<n;r++)o[r-1]=arguments[r];return"object"===(void 0===o?"undefined":a(o))&&o.stopPropagation&&o.stopPropagation(),this.anonymousFunc1Map[t]&&(e=this.anonymousFunc1Map)[t].apply(e,o)}}]),ResumeList);function ResumeList(){!function _classCallCheck(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}(this,ResumeList);var t=function _possibleConstructorReturn(t,e){if(!t)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!e||"object"!=typeof e&&"function"!=typeof e?t:e}(this,(ResumeList.__proto__||Object.getPrototypeOf(ResumeList)).apply(this,arguments));return t.$usedState=["anonymousState__temp","loopArray24","$compid__26","data","IMGCDNURL","hasMore","bottom"],t.anonymousFunc0Map={},t.anonymousFunc1Map={},t.customComponents=["Nodata"],t}r.$$events=["anonymousFunc0","anonymousFunc1"],r.$$componentPath="components/lists/resume/index",e.default=r,Component(n(0).default.createComponent(r))},"259":function(t,e,n){}},[[258,0,1]]]);
->>>>>>> qq_1.0.1
+(swan["webpackJsonp"] = swan["webpackJsonp"] || []).push([["components/lists/resume/index"],{
+
+/***/ "./src/components/lists/resume/index.scss":
+/*!************************************************!*\
+  !*** ./src/components/lists/resume/index.scss ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
+/***/ "./src/components/lists/resume/index.tsx":
+/*!***********************************************!*\
+  !*** ./src/components/lists/resume/index.tsx ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+
+var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
+
+var _taroSwan2 = _interopRequireDefault(_taroSwan);
+
+var _index = __webpack_require__(/*! ../../../config/index */ "./src/config/index.ts");
+
+__webpack_require__(/*! ./index.scss */ "./src/components/lists/resume/index.scss");
+
+var _store = __webpack_require__(/*! ../../../config/store */ "./src/config/store.ts");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var ResumeList = function (_Taro$Component) {
+  _inherits(ResumeList, _Taro$Component);
+
+  function ResumeList() {
+    _classCallCheck(this, ResumeList);
+
+    var _this = _possibleConstructorReturn(this, (ResumeList.__proto__ || Object.getPrototypeOf(ResumeList)).apply(this, arguments));
+
+    _this.$usedState = ["anonymousState__temp", "loopArray24", "$compid__26", "data", "IMGCDNURL", "hasMore", "bottom"];
+    _this.anonymousFunc0Map = {};
+    _this.anonymousFunc1Map = {};
+    _this.customComponents = ["Nodata"];
+    return _this;
+  }
+
+  _createClass(ResumeList, [{
+    key: "_constructor",
+    value: function _constructor(props) {
+      _get(ResumeList.prototype.__proto__ || Object.getPrototypeOf(ResumeList.prototype), "_constructor", this).call(this, props);
+      this.$$refs = new _taroSwan2.default.RefsArray();
+    }
+  }, {
+    key: "_createData",
+    value: function _createData() {
+      var _this2 = this;
+
+      this.__state = arguments[0] || this.state || {};
+      this.__props = arguments[1] || this.props || {};
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
+      ;
+
+      var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__26"),
+          _genCompid2 = _slicedToArray(_genCompid, 2),
+          $prevCompid__26 = _genCompid2[0],
+          $compid__26 = _genCompid2[1];
+
+      var _props = this.__props,
+          data = _props.data,
+          _props$bottom = _props.bottom,
+          bottom = _props$bottom === undefined ? true : _props$bottom,
+          _props$hasMore = _props.hasMore,
+          hasMore = _props$hasMore === undefined ? true : _props$hasMore;
+      // 用户页面跳转
+
+      var userRouteJump = function userRouteJump(uuid) {
+        var location = _taroSwan2.default.getStorageSync(_store.UserLocation);
+        location = location ? location = location.split(',').reverse() : '';
+        _taroSwan2.default.navigateTo({
+          url: "/pages/resume/detail/index?uuid=" + uuid + "&location=" + location
+        });
+      };
+      var handleJump = function handleJump(url) {
+        _taroSwan2.default.navigateTo({
+          url: url
+        });
+      };
+      var anonymousState__temp = (0, _taroSwan.internal_inline_style)(bottom ? '' : 'padding-bottom:0');
+      var loopArray24 = data ? data.map(function (item, di) {
+        item = {
+          privateOriginal: (0, _taroSwan.internal_get_original)(item)
+        };
+        var loopState__temp3 = data ? di + "-" + di : null;
+        var anonymousCallee__5 = item.privateOriginal ? item.privateOriginal.map(function (d, __index0) {
+          d = {
+            privateOriginal: (0, _taroSwan.internal_get_original)(d)
+          };
+          var _$indexKey = "dazzz" + di + "-" + __index0;
+          _this2.anonymousFunc0Map[_$indexKey] = function () {
+            return userRouteJump(d.privateOriginal.uuid);
+          };
+          var _$indexKey2 = "dbzzz" + di + "-" + __index0;
+          _this2.anonymousFunc1Map[_$indexKey2] = function (e) {
+            e.stopPropagation();
+            handleJump(_index.PUBLISHRESUME);
+          };
+          var loopState__temp7 = item.privateOriginal ? _index.REPLACEWEIXINTEXT ? d.privateOriginal.introduce.replace(_index.FILTERWEIXINREG, '') : d.privateOriginal.introduce : null;
+          var anonymousCallee__4 = item.privateOriginal ? d.privateOriginal.occupations.map(function (i, ii) {
+            i = {
+              privateOriginal: (0, _taroSwan.internal_get_original)(i)
+            };
+            var loopState__temp5 = item.privateOriginal ? d.privateOriginal.id + "-" + ii : null;
+            return {
+              loopState__temp5: loopState__temp5,
+              privateOriginal: i.privateOriginal
+            };
+          }) : [];
+          return {
+            _$indexKey: _$indexKey,
+            _$indexKey2: _$indexKey2,
+            loopState__temp7: loopState__temp7,
+            anonymousCallee__4: anonymousCallee__4,
+            privateOriginal: d.privateOriginal
+          };
+        }) : [];
+        return {
+          loopState__temp3: loopState__temp3,
+          anonymousCallee__5: anonymousCallee__5,
+          privateOriginal: item.privateOriginal
+        };
+      }) : [];
+      data && data[0] && !data[0].length && _taroSwan.propsManager.set({
+        "text": "\u6682\u65E0\u76F8\u5173\u6570\u636E"
+      }, $compid__26, $prevCompid__26);
+      Object.assign(this.__state, {
+        anonymousState__temp: anonymousState__temp,
+        loopArray24: loopArray24,
+        $compid__26: $compid__26,
+        data: data,
+        IMGCDNURL: _index.IMGCDNURL,
+        hasMore: hasMore
+      });
+      return this.__state;
+    }
+  }, {
+    key: "anonymousFunc0",
+    value: function anonymousFunc0(_$indexKey) {
+      var _anonymousFunc0Map;
+
+      ;
+
+      for (var _len = arguments.length, e = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+        e[_key - 1] = arguments[_key];
+      }
+
+      return this.anonymousFunc0Map[_$indexKey] && (_anonymousFunc0Map = this.anonymousFunc0Map)[_$indexKey].apply(_anonymousFunc0Map, e);
+    }
+  }, {
+    key: "anonymousFunc1",
+    value: function anonymousFunc1(_$indexKey2) {
+      var _anonymousFunc1Map;
+
+      for (var _len2 = arguments.length, e = Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
+        e[_key2 - 1] = arguments[_key2];
+      }
+
+      (typeof e === "undefined" ? "undefined" : _typeof(e)) === 'object' && e.stopPropagation && e.stopPropagation();
+      return this.anonymousFunc1Map[_$indexKey2] && (_anonymousFunc1Map = this.anonymousFunc1Map)[_$indexKey2].apply(_anonymousFunc1Map, e);
+    }
+  }]);
+
+  return ResumeList;
+}(_taroSwan2.default.Component);
+
+ResumeList.$$events = ["anonymousFunc0", "anonymousFunc1"];
+ResumeList.$$componentPath = "components/lists/resume/index";
+exports.default = ResumeList;
+
+Component(__webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js").default.createComponent(ResumeList));
+
+/***/ })
+
+},[["./src/components/lists/resume/index.tsx","runtime","vendors"]]]);
