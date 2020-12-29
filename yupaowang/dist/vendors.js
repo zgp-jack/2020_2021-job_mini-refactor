@@ -12452,7 +12452,7 @@ var PREREQUESTURL = exports.PREREQUESTURL = 'http://miniapi.kkbbi.com/';
 // * 正式站
 var PROREQUESTURL = exports.PROREQUESTURL = 'https://newyupaomini.54xiaoshuo.com/';
 // * 当前程序使用的请求地址
-var REQUESTURL = exports.REQUESTURL = PROREQUESTURL;
+var REQUESTURL = exports.REQUESTURL = DEVREQUESTURL;
 // * 默认上传图片
 var UPLOADIMGURL = exports.UPLOADIMGURL = PROREQUESTURL + 'index/upload/';
 // * 阿里云CDN域名

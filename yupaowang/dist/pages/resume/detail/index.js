@@ -119,7 +119,7 @@ var ResumeDetail = function (_Taro$Component) {
       backgroundTextStyle: "dark"
     };
 
-    _this.$usedState = ["anonymousState__temp", "anonymousState__temp4", "anonymousState__temp5", "data", "loopArray127", "loopArray129", "loopArray130", "$compid__96", "$compid__97", "isAuth", "IMGCDNURL", "examine", "onoff", "SERIES", "QQSERIES", "ios", "login", "user", "praise", "ISCANSHARE", "collect", "shownewtips", "recommendRe", "complaintModal", "BAIDUSERIES", "age", "phone"];
+    _this.$usedState = ["anonymousState__temp", "anonymousState__temp4", "anonymousState__temp5", "data", "loopArray96", "loopArray98", "loopArray99", "$compid__79", "$compid__80", "isAuth", "IMGCDNURL", "examine", "onoff", "SERIES", "QQSERIES", "ios", "login", "user", "praise", "ISCANSHARE", "collect", "shownewtips", "recommendRe", "complaintModal", "BAIDUSERIES", "age", "phone"];
     _this.anonymousFunc4Map = {};
     _this.anonymousFunc6Map = {};
     _this.customComponents = ["Auth", "CollectionRecruitList", "Report"];
@@ -143,15 +143,15 @@ var ResumeDetail = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__96"),
+      var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__79"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__96 = _genCompid2[0],
-          $compid__96 = _genCompid2[1];
+          $prevCompid__79 = _genCompid2[0],
+          $compid__79 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroSwan.genCompid)(__prefix + "$compid__97"),
+      var _genCompid3 = (0, _taroSwan.genCompid)(__prefix + "$compid__80"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__97 = _genCompid4[0],
-          $compid__97 = _genCompid4[1];
+          $prevCompid__80 = _genCompid4[0],
+          $compid__80 = _genCompid4[1];
       // 获取dispatch分发action
 
 
@@ -634,7 +634,7 @@ var ResumeDetail = function (_Taro$Component) {
         setShownewtips(false);
       };
       this.anonymousFunc11 = handleTellPhone;
-      var loopArray127 = data.info.occupations.length ? data.info.occupations.map(function (v, i) {
+      var loopArray96 = data.info.occupations.length ? data.info.occupations.map(function (v, i) {
         v = {
           privateOriginal: (0, _taroSwan.internal_get_original)(v)
         };
@@ -644,12 +644,12 @@ var ResumeDetail = function (_Taro$Component) {
           privateOriginal: v.privateOriginal
         };
       }) : [];
-      var loopArray129 = data.project.length ? data.project[0].image.map(function (v, i) {
+      var loopArray98 = data.project.length ? data.project[0].image.map(function (v, i) {
         v = {
           privateOriginal: (0, _taroSwan.internal_get_original)(v)
         };
         var loopState__temp7 = data.project.length ? i + i : null;
-        var _$indexKey = "bcgzz" + i;
+        var _$indexKey = "baczz" + i;
         _this2.anonymousFunc4Map[_$indexKey] = function () {
           return handleImg(v.privateOriginal);
         };
@@ -659,12 +659,12 @@ var ResumeDetail = function (_Taro$Component) {
           privateOriginal: v.privateOriginal
         };
       }) : [];
-      var loopArray130 = data.certificates.length ? data.certificates[0].image.map(function (val, i) {
+      var loopArray99 = data.certificates.length ? data.certificates[0].image.map(function (val, i) {
         val = {
           privateOriginal: (0, _taroSwan.internal_get_original)(val)
         };
         var loopState__temp9 = data.certificates.length ? i + i : null;
-        var _$indexKey2 = "bchzz" + i;
+        var _$indexKey2 = "badzz" + i;
         _this2.anonymousFunc6Map[_$indexKey2] = function () {
           return handleImg(val.privateOriginal);
         };
@@ -681,24 +681,24 @@ var ResumeDetail = function (_Taro$Component) {
         "occupations": occupations,
         "jobIds": jobIds,
         "infoUuid": infoUuid
-      }, $compid__96, $prevCompid__96);
+      }, $compid__79, $prevCompid__79);
       complaintModal && _taroSwan.propsManager.set({
         "display": complaintModal,
         "textarea": textarea,
         "handleTextarea": handleTextarea,
         "setComplaintModal": setComplaintModal,
         "handleSubmit": handleSubmit
-      }, $compid__97, $prevCompid__97);
+      }, $compid__80, $prevCompid__80);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
         anonymousState__temp4: anonymousState__temp4,
         anonymousState__temp5: anonymousState__temp5,
         data: data,
-        loopArray127: loopArray127,
-        loopArray129: loopArray129,
-        loopArray130: loopArray130,
-        $compid__96: $compid__96,
-        $compid__97: $compid__97,
+        loopArray96: loopArray96,
+        loopArray98: loopArray98,
+        loopArray99: loopArray99,
+        $compid__79: $compid__79,
+        $compid__80: $compid__80,
         isAuth: isAuth,
         IMGCDNURL: _index2.IMGCDNURL,
         examine: examine,

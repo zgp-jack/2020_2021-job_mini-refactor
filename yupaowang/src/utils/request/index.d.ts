@@ -1090,23 +1090,26 @@ export interface resumeDetailProjectItem {
 export interface resumeDetailProjectRedux extends resumeDetailProjectItem {
   images: string[]
 }
-export interface resumeDetailProject {
-  check: string
-  city: string
-  city_name: string
-  completion_time: string
-  detail: string
-  fail_case: string
-  id: string
-  image: []
-  project_name: string
-  province: string
-  province_name: string
-  resume_uuid: string
-  start_time: string
-  update_time: string
-  uuid: string
+export interface resumeDetailProject extends resumeDetailProjectItem {
+  images: string
 }
+// export interface resumeDetailProject {
+//   check: string
+//   city: string
+//   city_name: string
+//   completion_time: string
+//   detail: string
+//   fail_case: string
+//   id: string
+//   image: []
+//   project_name: string
+//   province: string
+//   province_name: string
+//   resume_uuid: string
+//   start_time: string
+//   update_time: string
+//   uuid: string
+// }
 
 export interface resumeDetailCertificates {
   admin_last_edit_time: string

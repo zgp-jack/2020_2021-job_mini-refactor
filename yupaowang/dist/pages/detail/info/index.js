@@ -79,7 +79,7 @@ var DetailInfoPage = function (_Taro$Component) {
       navigationBarTitleText: ''
     };
 
-    _this.$usedState = ["anonymousState__temp3", "data", "loopArray125", "loopArray126", "$compid__93", "$compid__94", "$compid__95", "resCode", "editPhone", "SHOWOFFICIALACCOUNT", "SERIES", "QQSERIES", "ios", "DOWNLOADAPP", "IMGCDNURL", "again", "stopHiring", "editTopping", "isCollection", "ISCANSHARE", "recommend", "complaintModal", "phone"];
+    _this.$usedState = ["anonymousState__temp3", "data", "loopArray80", "loopArray81", "$compid__65", "$compid__66", "$compid__67", "resCode", "editPhone", "SHOWOFFICIALACCOUNT", "SERIES", "QQSERIES", "ios", "DOWNLOADAPP", "IMGCDNURL", "again", "stopHiring", "editTopping", "isCollection", "ISCANSHARE", "recommend", "complaintModal", "phone"];
     _this.anonymousFunc5Map = {};
     _this.customComponents = ["WechatNotice", "CollectionRecruitList", "Report"];
     return _this;
@@ -102,20 +102,20 @@ var DetailInfoPage = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__93"),
+      var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__65"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__93 = _genCompid2[0],
-          $compid__93 = _genCompid2[1];
+          $prevCompid__65 = _genCompid2[0],
+          $compid__65 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroSwan.genCompid)(__prefix + "$compid__94"),
+      var _genCompid3 = (0, _taroSwan.genCompid)(__prefix + "$compid__66"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__94 = _genCompid4[0],
-          $compid__94 = _genCompid4[1];
+          $prevCompid__66 = _genCompid4[0],
+          $compid__66 = _genCompid4[1];
 
-      var _genCompid5 = (0, _taroSwan.genCompid)(__prefix + "$compid__95"),
+      var _genCompid5 = (0, _taroSwan.genCompid)(__prefix + "$compid__67"),
           _genCompid6 = _slicedToArray(_genCompid5, 2),
-          $prevCompid__95 = _genCompid6[0],
-          $compid__95 = _genCompid6[1];
+          $prevCompid__67 = _genCompid6[0],
+          $compid__67 = _genCompid6[1];
 
       var router = (0, _taroSwan.useRouter)();
       var _router$params = router.params,
@@ -776,7 +776,7 @@ var DetailInfoPage = function (_Taro$Component) {
       this.anonymousFunc17 = function () {
         _taroSwan2.default.makePhoneCall({ phoneNumber: phone });
       };
-      var loopArray125 = data.classifyName.map(function (v, i) {
+      var loopArray80 = data.classifyName.map(function (v, i) {
         v = {
           privateOriginal: (0, _taroSwan.internal_get_original)(v)
         };
@@ -786,12 +786,12 @@ var DetailInfoPage = function (_Taro$Component) {
           privateOriginal: v.privateOriginal
         };
       });
-      var loopArray126 = data.view_images.length ? data.view_images.map(function (v, i) {
+      var loopArray81 = data.view_images.length ? data.view_images.map(function (v, i) {
         v = {
           privateOriginal: (0, _taroSwan.internal_get_original)(v)
         };
         var loopState__temp5 = data.view_images.length ? i + i : null;
-        var _$indexKey = "bcfzz" + i;
+        var _$indexKey = "ihzzz" + i;
         _this2.anonymousFunc5Map[_$indexKey] = function () {
           return handleImage(v.privateOriginal);
         };
@@ -803,7 +803,7 @@ var DetailInfoPage = function (_Taro$Component) {
       }) : [];
       _taroSwan.propsManager.set({
         "type": 1
-      }, $compid__93, $prevCompid__93);
+      }, $compid__65, $prevCompid__65);
       recommend.length && _taroSwan.propsManager.set({
         "data": recommend,
         "type": 1,
@@ -811,22 +811,22 @@ var DetailInfoPage = function (_Taro$Component) {
         "occupations": occupations,
         "jobIds": jobIds,
         "detailList": true
-      }, $compid__94, $prevCompid__94);
+      }, $compid__66, $prevCompid__66);
       complaintModal && _taroSwan.propsManager.set({
         "display": complaintModal,
         "textarea": textarea,
         "handleTextarea": handleTextarea,
         "setComplaintModal": setComplaintModal,
         "handleSubmit": handleSubmit
-      }, $compid__95, $prevCompid__95);
+      }, $compid__67, $prevCompid__67);
       Object.assign(this.__state, {
         anonymousState__temp3: anonymousState__temp3,
         data: data,
-        loopArray125: loopArray125,
-        loopArray126: loopArray126,
-        $compid__93: $compid__93,
-        $compid__94: $compid__94,
-        $compid__95: $compid__95,
+        loopArray80: loopArray80,
+        loopArray81: loopArray81,
+        $compid__65: $compid__65,
+        $compid__66: $compid__66,
+        $compid__67: $compid__67,
         resCode: resCode,
         editPhone: editPhone,
         SHOWOFFICIALACCOUNT: _index2.SHOWOFFICIALACCOUNT,
