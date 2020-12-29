@@ -59,6 +59,8 @@ __webpack_require__(/*! ./index.scss */ "./src/pages/detail/info/index.scss");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -77,9 +79,9 @@ var DetailInfoPage = function (_Taro$Component) {
       navigationBarTitleText: ''
     };
 
-    _this.$usedState = ["anonymousState__temp3", "data", "loopArray80", "loopArray81", "$compid__65", "resCode", "editPhone", "SHOWOFFICIALACCOUNT", "SERIES", "QQSERIES", "ios", "DOWNLOADAPP", "IMGCDNURL", "isCollection", "ISCANSHARE", "complaintModal", "phone"];
+    _this.$usedState = ["anonymousState__temp3", "data", "loopArray125", "loopArray126", "$compid__93", "$compid__94", "$compid__95", "resCode", "editPhone", "SHOWOFFICIALACCOUNT", "SERIES", "QQSERIES", "ios", "DOWNLOADAPP", "IMGCDNURL", "again", "stopHiring", "editTopping", "isCollection", "ISCANSHARE", "recommend", "complaintModal", "phone"];
     _this.anonymousFunc5Map = {};
-    _this.customComponents = ["WechatNotice", "Report"];
+    _this.customComponents = ["WechatNotice", "CollectionRecruitList", "Report"];
     return _this;
   }
 
@@ -100,17 +102,28 @@ var DetailInfoPage = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__65"),
+      var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__93"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__65 = _genCompid2[0],
-          $compid__65 = _genCompid2[1];
+          $prevCompid__93 = _genCompid2[0],
+          $compid__93 = _genCompid2[1];
+
+      var _genCompid3 = (0, _taroSwan.genCompid)(__prefix + "$compid__94"),
+          _genCompid4 = _slicedToArray(_genCompid3, 2),
+          $prevCompid__94 = _genCompid4[0],
+          $compid__94 = _genCompid4[1];
+
+      var _genCompid5 = (0, _taroSwan.genCompid)(__prefix + "$compid__95"),
+          _genCompid6 = _slicedToArray(_genCompid5, 2),
+          $prevCompid__95 = _genCompid6[0],
+          $compid__95 = _genCompid6[1];
 
       var router = (0, _taroSwan.useRouter)();
       var _router$params = router.params,
           _router$params$id = _router$params.id,
           id = _router$params$id === undefined ? '' : _router$params$id,
           _router$params$refId = _router$params.refId,
-          refId = _router$params$refId === undefined ? '' : _router$params$refId;
+          refId = _router$params$refId === undefined ? '' : _router$params$refId,
+          type = _router$params.type;
       // 获取userInfo
 
       var userInfo = _taroSwan2.default.getStorageSync(_store.UserInfo);
@@ -228,7 +241,7 @@ var DetailInfoPage = function (_Taro$Component) {
       var login = (0, _redux.useSelector)(function (state) {
         return state.User['login'];
       });
-      // 相关推荐
+      // 招工相关推荐
 
       var _useState25 = (0, _taroSwan.useState)([]),
           _useState26 = _slicedToArray(_useState25, 2),
@@ -241,6 +254,41 @@ var DetailInfoPage = function (_Taro$Component) {
           _useState28 = _slicedToArray(_useState27, 2),
           ios = _useState28[0],
           setIos = _useState28[1];
+      // 找活相关推荐
+
+
+      var _useState29 = (0, _taroSwan.useState)([]),
+          _useState30 = _slicedToArray(_useState29, 2),
+          recommendRe = _useState30[0],
+          setRecommendRe = _useState30[1];
+      // 更多招工省市
+
+
+      var _useState31 = (0, _taroSwan.useState)(0),
+          _useState32 = _slicedToArray(_useState31, 2),
+          areasId = _useState32[0],
+          setAreasId = _useState32[1];
+      // 更多招工工种
+
+
+      var _useState33 = (0, _taroSwan.useState)(''),
+          _useState34 = _slicedToArray(_useState33, 2),
+          occupations = _useState34[0],
+          setOccupations = _useState34[1];
+      // 更多招工job_ids
+
+
+      var _useState35 = (0, _taroSwan.useState)(0),
+          _useState36 = _slicedToArray(_useState35, 2),
+          jobIds = _useState36[0],
+          setJobIds = _useState36[1];
+      // 修改置顶
+
+
+      var _useState37 = (0, _taroSwan.useState)(0),
+          _useState38 = _slicedToArray(_useState37, 2),
+          editTopping = _useState38[0],
+          setEditTopping = _useState38[1];
       // 返回刷新页面
 
 
@@ -264,6 +312,7 @@ var DetailInfoPage = function (_Taro$Component) {
         // 用户没有认证
         var result = login ? (0, _index.jobInfoAction)(params) : (0, _index.jobNoUserInfoAction)(params);
         result.then(function (res) {
+          console.log('then');
           detailGetTelAction(res, function () {
             setRefresh(false);
             setData(res.result);
@@ -273,7 +322,7 @@ var DetailInfoPage = function (_Taro$Component) {
               title: res.result.title
             });
             if (_index2.SERIES == _index2.BAIDUSERIES) {
-              var keywords = res.result.classifyName[0];
+              var keywords = res.result.classifyName[0] || '';
               var split_keywords = keywords.split('/').map(function (item) {
                 return "\u62DB" + item + "\u5E08\u5085";
               }).join(',');
@@ -284,14 +333,56 @@ var DetailInfoPage = function (_Taro$Component) {
               });
             }
             setIsCollection(res.result.is_collect);
+            // 设置更多招工信息的省/市
+            var area_id = res.result.city_id && res.result.city_id != 0 ? res.result.city_id : res.result.province_id;
+            console.error(area_id, '111');
+            setAreasId(area_id);
+            var occupations = res.result.occupations.length ? res.result.occupations.join(',') : '';
+            setOccupations(occupations);
+            var jobIds = res.result.id;
+            setJobIds(jobIds);
             if (userInfo.userId === res.result.user_id) {
               // 判断是自己发布的招工
               setResCode('own');
             } else {
               setResCode(res.errcode);
             }
+            // if (userInfo.userId === res.result.user_id) {
+            //   // 加载找活相关推荐数据列表
+            //   const listParams = {
+            //     page: 1,
+            //     type: 1,
+            //     area_id: res.result.city_id,
+            //     occupations: [...res.result.occupations].join(','),
+            //     uuid: '',
+            //   }
+            //   detailsRecommendAction(listParams).then(res => {
+            //     if (res.errcode === 'ok') {
+            //       setRecommendRe(res.data.list);
+            //     } else {
+            //       Msg(res.errmsg)
+            //     }
+            //   })
+            // } else {
+            //   // 加载招工相关推荐数据列表
+            var paramsObj = {
+              page: 1,
+              type: 1,
+              area_id: area_id,
+              job_ids: res.result.id,
+              classify_id: [].concat(_toConsumableArray(res.result.occupations)).join(',')
+            };
+            (0, _index.jobDetailsListAction)(paramsObj).then(function (res) {
+              if (res.errcode === 'ok') {
+                setRecommend(res.data.list);
+              } else {
+                (0, _index6.default)(res.errmsg);
+              }
+            });
+            // }
           });
         }).catch(function () {
+          console.log('catch');
           (0, _index5.ShowActionModal)({
             msg: '网络异常，请重新进入',
             success: function success() {
@@ -364,10 +455,9 @@ var DetailInfoPage = function (_Taro$Component) {
       };
       // 处理获取电话号码的不同状态码
       var detailGetTelAction = function detailGetTelAction(res, callback) {
+        console.log(res.errcode);
         if (res.errcode == 'ok' || res.errcode == 'end' || res.errcode == 'ajax') {
           callback && callback();
-        } else if (res.errcode == 'end') {
-          (0, _index6.default)(res.errmsg);
         } else if (res.errcode == 'auth_not_pass' || res.errcode == 'to_auth') {
           _taroSwan2.default.showModal({
             title: '温馨提示',
@@ -480,6 +570,10 @@ var DetailInfoPage = function (_Taro$Component) {
         };
         (0, _index.jobGetTelAction)(params).then(function (res) {
           detailGetTelAction(res, function () {
+            if (res.errcode == 'end') {
+              (0, _index6.default)(res.errmsg);
+              return;
+            }
             setRefresh(true);
             setPhone(res.tel);
             setComplaintInfo(true);
@@ -547,15 +641,15 @@ var DetailInfoPage = function (_Taro$Component) {
       var handleStatus = function handleStatus() {
         (0, _index.jobEndStatusAction)(data.id).then(function (res) {
           if (res.errcode === 'ok') {
-            // if (stopHiring || (data.is_end === 2)) {
-            //   setAgain(true);
-            // }else{
-            //   setStopHiring(true);
-            // setStopHiring se
-            (0, _index6.default)(res.errmsg);
-            setStopHiring(false);
-            setRefresh(true);
-            // }
+            if (stopHiring || data.is_end === 2) {
+              setAgain(true);
+            } else {
+              setStopHiring(true);
+              // setStopHiring se
+              (0, _index6.default)(res.errmsg);
+              setStopHiring(false);
+              setRefresh(true);
+            }
           } else {
             (0, _index6.default)(res.errmsg);
           }
@@ -572,13 +666,14 @@ var DetailInfoPage = function (_Taro$Component) {
             });
             var params = {
               infoId: id,
-              status: data.toping == '0' ? '1' : "0"
+              status: data.toping == '1' ? '1' : "0"
             };
             (0, _index.jobUpdateTopStatusAction)(params).then(function (res) {
               if (res.errcode === 'ok') {
                 (0, _index6.default)(res.errmsg);
                 setRefresh(true);
                 setStopHiring(true);
+                setEditTopping(1);
                 // setSearchData({ ...searchData, page: searchData.page })
               } else if (res.errcode === 'auth_forbid') {
                 // 去实名
@@ -624,7 +719,7 @@ var DetailInfoPage = function (_Taro$Component) {
             return false;
           }
         }
-        userRouteJump("/pages/topping/index?id=" + data.id);
+        userRouteJump("/pages/newtopping/recRang/index?defaultTopArea=" + data.area_id + "&job_id=" + data.id);
       };
       // 查看更多招工信息
       var seeMoreRecruit = function seeMoreRecruit() {
@@ -632,7 +727,13 @@ var DetailInfoPage = function (_Taro$Component) {
         if (pages.length < 2) {
           _taroSwan2.default.reLaunch({ url: _index2.INDEXPATH });
         } else {
-          _taroSwan2.default.navigateBack();
+          var routeUrl = pages[pages.length - 2].route;
+          var listUrl = "/" + routeUrl;
+          if (listUrl == _index2.INDEXPATH) {
+            _taroSwan2.default.navigateBack();
+          } else {
+            _taroSwan2.default.reLaunch({ url: _index2.INDEXPATH });
+          }
         }
       };
       this.anonymousFunc0 = function () {
@@ -654,17 +755,28 @@ var DetailInfoPage = function (_Taro$Component) {
         return userRouteJump(_index2.DOWNLOADAPPPATH);
       };
       this.anonymousFunc8 = function () {
-        return seeMoreRecruit();
+        return userRouteJump("/pages/recruit/publish/index?id=" + data.id);
       };
-      this.anonymousFunc9 = collection;
-      this.anonymousFunc10 = footerComplaint;
-      this.anonymousFunc11 = function () {
+      this.anonymousFunc9 = handleStatus;
+      this.anonymousFunc10 = function () {
+        return userRouteJump("/pages/newtopping/recRang/index?job_id=" + data.id);
+      };
+      this.anonymousFunc11 = handleStatus;
+      this.anonymousFunc12 = function () {
+        return handleTopping(data);
+      };
+      this.anonymousFunc13 = function () {
+        return userRouteJump("/pages/recruit/publish/index?id=" + data.id);
+      };
+      this.anonymousFunc14 = collection;
+      this.anonymousFunc15 = footerComplaint;
+      this.anonymousFunc16 = function () {
         return jobGetTel();
       };
-      this.anonymousFunc12 = function () {
+      this.anonymousFunc17 = function () {
         _taroSwan2.default.makePhoneCall({ phoneNumber: phone });
       };
-      var loopArray80 = data.classifyName.map(function (v, i) {
+      var loopArray125 = data.classifyName.map(function (v, i) {
         v = {
           privateOriginal: (0, _taroSwan.internal_get_original)(v)
         };
@@ -674,12 +786,12 @@ var DetailInfoPage = function (_Taro$Component) {
           privateOriginal: v.privateOriginal
         };
       });
-      var loopArray81 = data.view_images.length ? data.view_images.map(function (v, i) {
+      var loopArray126 = data.view_images.length ? data.view_images.map(function (v, i) {
         v = {
           privateOriginal: (0, _taroSwan.internal_get_original)(v)
         };
         var loopState__temp5 = data.view_images.length ? i + i : null;
-        var _$indexKey = "ihzzz" + i;
+        var _$indexKey = "bcfzz" + i;
         _this2.anonymousFunc5Map[_$indexKey] = function () {
           return handleImage(v.privateOriginal);
         };
@@ -689,19 +801,32 @@ var DetailInfoPage = function (_Taro$Component) {
           privateOriginal: v.privateOriginal
         };
       }) : [];
+      _taroSwan.propsManager.set({
+        "type": 1
+      }, $compid__93, $prevCompid__93);
+      recommend.length && _taroSwan.propsManager.set({
+        "data": recommend,
+        "type": 1,
+        "areasId": areasId,
+        "occupations": occupations,
+        "jobIds": jobIds,
+        "detailList": true
+      }, $compid__94, $prevCompid__94);
       complaintModal && _taroSwan.propsManager.set({
         "display": complaintModal,
         "textarea": textarea,
         "handleTextarea": handleTextarea,
         "setComplaintModal": setComplaintModal,
         "handleSubmit": handleSubmit
-      }, $compid__65, $prevCompid__65);
+      }, $compid__95, $prevCompid__95);
       Object.assign(this.__state, {
         anonymousState__temp3: anonymousState__temp3,
         data: data,
-        loopArray80: loopArray80,
-        loopArray81: loopArray81,
-        $compid__65: $compid__65,
+        loopArray125: loopArray125,
+        loopArray126: loopArray126,
+        $compid__93: $compid__93,
+        $compid__94: $compid__94,
+        $compid__95: $compid__95,
         resCode: resCode,
         editPhone: editPhone,
         SHOWOFFICIALACCOUNT: _index2.SHOWOFFICIALACCOUNT,
@@ -710,8 +835,12 @@ var DetailInfoPage = function (_Taro$Component) {
         ios: ios,
         DOWNLOADAPP: _index2.DOWNLOADAPP,
         IMGCDNURL: _index2.IMGCDNURL,
+        again: again,
+        stopHiring: stopHiring,
+        editTopping: editTopping,
         isCollection: isCollection,
         ISCANSHARE: _index2.ISCANSHARE,
+        recommend: recommend,
         complaintModal: complaintModal,
         phone: phone
       });
@@ -790,12 +919,37 @@ var DetailInfoPage = function (_Taro$Component) {
     value: function anonymousFunc12(e) {
       ;
     }
+  }, {
+    key: "anonymousFunc13",
+    value: function anonymousFunc13(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc14",
+    value: function anonymousFunc14(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc15",
+    value: function anonymousFunc15(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc16",
+    value: function anonymousFunc16(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc17",
+    value: function anonymousFunc17(e) {
+      ;
+    }
   }]);
 
   return DetailInfoPage;
 }(_taroSwan2.default.Component);
 
-DetailInfoPage.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6", "anonymousFunc7", "anonymousFunc8", "anonymousFunc9", "anonymousFunc10", "anonymousFunc11", "anonymousFunc12"];
+DetailInfoPage.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6", "anonymousFunc7", "anonymousFunc8", "anonymousFunc9", "anonymousFunc10", "anonymousFunc11", "anonymousFunc12", "anonymousFunc13", "anonymousFunc14", "anonymousFunc15", "anonymousFunc16", "anonymousFunc17"];
 DetailInfoPage.$$componentPath = "pages/detail/info/index";
 DetailInfoPage.config = { navigationBarTitleText: '' };
 exports.default = DetailInfoPage;

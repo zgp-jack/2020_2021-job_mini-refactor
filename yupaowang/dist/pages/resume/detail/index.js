@@ -119,7 +119,7 @@ var ResumeDetail = function (_Taro$Component) {
       backgroundTextStyle: "dark"
     };
 
-    _this.$usedState = ["anonymousState__temp", "anonymousState__temp4", "anonymousState__temp5", "data", "loopArray94", "loopArray96", "loopArray97", "$compid__75", "$compid__76", "isAuth", "IMGCDNURL", "examine", "onoff", "SERIES", "QQSERIES", "ios", "login", "user", "praise", "ISCANSHARE", "collect", "shownewtips", "recommendRe", "complaintModal", "BAIDUSERIES", "age", "phone"];
+    _this.$usedState = ["anonymousState__temp", "anonymousState__temp4", "anonymousState__temp5", "data", "loopArray127", "loopArray129", "loopArray130", "$compid__96", "$compid__97", "isAuth", "IMGCDNURL", "examine", "onoff", "SERIES", "QQSERIES", "ios", "login", "user", "praise", "ISCANSHARE", "collect", "shownewtips", "recommendRe", "complaintModal", "BAIDUSERIES", "age", "phone"];
     _this.anonymousFunc4Map = {};
     _this.anonymousFunc6Map = {};
     _this.customComponents = ["Auth", "CollectionRecruitList", "Report"];
@@ -143,15 +143,15 @@ var ResumeDetail = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__75"),
+      var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__96"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__75 = _genCompid2[0],
-          $compid__75 = _genCompid2[1];
+          $prevCompid__96 = _genCompid2[0],
+          $compid__96 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroSwan.genCompid)(__prefix + "$compid__76"),
+      var _genCompid3 = (0, _taroSwan.genCompid)(__prefix + "$compid__97"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__76 = _genCompid4[0],
-          $compid__76 = _genCompid4[1];
+          $prevCompid__97 = _genCompid4[0],
+          $compid__97 = _genCompid4[1];
       // 获取dispatch分发action
 
 
@@ -377,6 +377,7 @@ var ResumeDetail = function (_Taro$Component) {
             // 项目经验
             var projectArr = [].concat(_toConsumableArray(res.project));
             var projectData = [];
+            console.error(projectArr, 'projectArr');
             // 职业技能
             for (var _i = 0; _i < projectArr.length; _i++) {
               var _images = projectArr[_i].images ? projectArr[_i].images.split(',') : [];
@@ -569,15 +570,8 @@ var ResumeDetail = function (_Taro$Component) {
             showCancel: false
           });
         } else {
-          userRouteJump("/pages/newcomplaint/index?infoId=" + uuid + "&type=resume&page=detail");
-          // setComplaintModal(true)
+          setComplaintModal(true);
         }
-      };
-      // 用户页面跳转
-      var userRouteJump = function userRouteJump(url) {
-        _taroSwan2.default.navigateTo({
-          url: url
-        });
       };
       // 点击方法
       var handleImg = function handleImg(e) {
@@ -640,7 +634,7 @@ var ResumeDetail = function (_Taro$Component) {
         setShownewtips(false);
       };
       this.anonymousFunc11 = handleTellPhone;
-      var loopArray94 = data.info.occupations.length ? data.info.occupations.map(function (v, i) {
+      var loopArray127 = data.info.occupations.length ? data.info.occupations.map(function (v, i) {
         v = {
           privateOriginal: (0, _taroSwan.internal_get_original)(v)
         };
@@ -650,12 +644,12 @@ var ResumeDetail = function (_Taro$Component) {
           privateOriginal: v.privateOriginal
         };
       }) : [];
-      var loopArray96 = data.project.length ? data.project[0].image.map(function (v, i) {
+      var loopArray129 = data.project.length ? data.project[0].image.map(function (v, i) {
         v = {
           privateOriginal: (0, _taroSwan.internal_get_original)(v)
         };
         var loopState__temp7 = data.project.length ? i + i : null;
-        var _$indexKey = "baazz" + i;
+        var _$indexKey = "bcgzz" + i;
         _this2.anonymousFunc4Map[_$indexKey] = function () {
           return handleImg(v.privateOriginal);
         };
@@ -665,12 +659,12 @@ var ResumeDetail = function (_Taro$Component) {
           privateOriginal: v.privateOriginal
         };
       }) : [];
-      var loopArray97 = data.certificates.length ? data.certificates[0].image.map(function (val, i) {
+      var loopArray130 = data.certificates.length ? data.certificates[0].image.map(function (val, i) {
         val = {
           privateOriginal: (0, _taroSwan.internal_get_original)(val)
         };
         var loopState__temp9 = data.certificates.length ? i + i : null;
-        var _$indexKey2 = "babzz" + i;
+        var _$indexKey2 = "bchzz" + i;
         _this2.anonymousFunc6Map[_$indexKey2] = function () {
           return handleImg(val.privateOriginal);
         };
@@ -687,24 +681,24 @@ var ResumeDetail = function (_Taro$Component) {
         "occupations": occupations,
         "jobIds": jobIds,
         "infoUuid": infoUuid
-      }, $compid__75, $prevCompid__75);
+      }, $compid__96, $prevCompid__96);
       complaintModal && _taroSwan.propsManager.set({
         "display": complaintModal,
         "textarea": textarea,
         "handleTextarea": handleTextarea,
         "setComplaintModal": setComplaintModal,
         "handleSubmit": handleSubmit
-      }, $compid__76, $prevCompid__76);
+      }, $compid__97, $prevCompid__97);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
         anonymousState__temp4: anonymousState__temp4,
         anonymousState__temp5: anonymousState__temp5,
         data: data,
-        loopArray94: loopArray94,
-        loopArray96: loopArray96,
-        loopArray97: loopArray97,
-        $compid__75: $compid__75,
-        $compid__76: $compid__76,
+        loopArray127: loopArray127,
+        loopArray129: loopArray129,
+        loopArray130: loopArray130,
+        $compid__96: $compid__96,
+        $compid__97: $compid__97,
         isAuth: isAuth,
         IMGCDNURL: _index2.IMGCDNURL,
         examine: examine,
