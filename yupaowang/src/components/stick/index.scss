@@ -1,0 +1,106 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+.stick-box{
+    top: 20%;
+    left: 5%;
+    position: fixed;
+    z-index: 99;
+    height: 476px;
+    width: 90%;
+    border-radius: 25px;
+    background-color: #ffffff;
+    .stick-box-top{
+        color: #ffffff;
+        height: 256px;
+        width: 100%;
+        background: url("http://cdn.yupao.com/miniprogram/images/collect-tipbg.png") no-repeat;
+        background-size: 100% 90%;
+        .stick-top-header{
+            text-align: center;
+            font-size: 36px;
+            text-shadow: 0px 2px 8px rgba(8, 21, 149, 0.5);
+            font-weight: bold;
+            line-height: 63px;
+        }
+        .stick-top-context{
+            margin: 0 auto;
+            width: 452px;
+            height: 102px;
+            text-align: center;
+            font-size: 23px;
+            font-weight: 400;
+            line-height: 40px;
+            text-shadow: 0px 1px 8px rgba(8, 21, 149, 0.5);
+            white-space: normal;
+        }
+    }
+    .stick-box-bottom{
+        padding-top: 15px;
+        height: 258px;
+        width: 100%;
+        .stick-bottom-middle{
+            padding-top: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 0 auto;
+            height: 153px;
+            width: 90%;
+            border: 1px solid #dfe0e1;
+            box-shadow: 0px 6px 8px 0px rgba(212, 213, 214, 0.35);
+            .stick-middle-header{
+                width: 80%;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                font-size: 19px;
+                font-weight: 500;
+                color: #0f0f0f;
+            }
+                .stick-middle-connect-context{
+                    width: 80%;
+                    height: 50px;
+                    font-size: 15px;
+                    font-weight: 400;
+                    color: #6b6b6b;
+                    line-height: 22px;
+                    word-wrap: normal;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    border-bottom: 1px dashed #B0AFAF;
+                    padding-bottom: 10px;
+                }
+            .stick-bottom-context-btn {
+                width: 80%;
+                display: flex;
+                justify-content: space-between;
+                Button{
+                    text-align: center;
+                    line-height: 37px;
+                    width: 124px;
+                    height: 37px;
+                    font-size: 17px;
+                    font-weight: 400;
+                    background: rgba(245, 245, 245, 0);
+                    color: #525252;
+                    border: 1px solid #d2d1d1;
+                    border-radius: 3px;
+                }
+            }
+        }
+        .stick-bottom-btn{
+            width: 232px;
+            height: 68px;
+            border-radius: 34px;
+            background: #2e88f6;
+            color: #ffffff;
+            font-size: 30px;
+            line-height: 68px;
+            position: absolute;
+            bottom: -34px;
+            left: 33%;
+        }
+    }
+}

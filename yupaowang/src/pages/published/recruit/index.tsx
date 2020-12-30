@@ -12,6 +12,7 @@ import Auth from '../../../components/auth'
 import './index.scss'
 import { IMGCDNURL, SERVERPHONE } from '../../../config'
 import Msg from '../../../utils/msg'
+import Stick from '../../../components/stick/index'
 
 export interface searchDataType {
   type: string,
@@ -227,6 +228,7 @@ export default function PublishedRecruit(){
   return (
     <Block>
       <Auth />
+      <Stick />
       <View className='user-published-container'>
         <View className='user-published-header'>
           {HeaderList.map(item => (
@@ -269,7 +271,7 @@ export default function PublishedRecruit(){
                 {item.is_check != '1' && <View className='user-published-footer-item' onClick={() => userRouteJump(`/pages/recruit/publish/index?id=${item.id}`)}>修改</View>}
                 {item.is_check == '2' &&
                 <Block >
-                  <View className='user-published-footer-item' onClick={() => userStopRecruit(item.id, index)}>{item.is_end == '2'?'重新招工':'停止招工'}</View>
+                   <View className='user-published-footer-item' onClick={() => userStopRecruit(item.id, index)}>{item.is_end == '2'?'重新招工':'停止招工'}</View>
                 {/* // 置顶按钮 */}
                 {/* {item.is_end != '2' && 
                   <View>
