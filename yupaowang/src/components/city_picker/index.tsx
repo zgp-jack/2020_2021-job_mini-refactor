@@ -60,7 +60,6 @@ export default function CityPicker({ onCity, modle}) {
     cityData[1] = cityPickerData[1][e.detail.value[1]]
     setSelectCity(cityData)
     onCity(cityData)
-    console.log("cityData", cityData)
   }
   //发生改变
   const onColumnChange = (e) => {
@@ -79,16 +78,19 @@ export default function CityPicker({ onCity, modle}) {
     if (modle.province_id || modle.city_id){
       for (let i = 0; i < cityPickerData[0].length;i++) {
         if (modle.province_id == cityPickerData[0][i].id){
-          console.error(cityPickerData[0],'111')
-          console.error(i,'iiii');
           initCityData(i)
           let copyArr = JSON.parse(JSON.stringify(AREAS))
+          if (modle.province_id && !modle.city_id){
+            let cityData: CityTownPicker[] = []
+            cityData[0] = cityPickerData[0][i]
+            cityData[1] = cityPickerData[0][i]
+            setSelectCity(cityData)
+            onCity(cityData)
+          }
           copyArr.splice(0, 1) // 切掉第一项 全国数据
           for(let n = 0;n<copyArr[i].children.length;n++){
             if (copyArr[i].children[n].id == modle.city_id){
               setSelectCityIndex([i,n])
-
-
               let cityData: CityTownPicker[] = []
               cityData[0] = cityPickerData[0][i]
               cityData[1] = copyArr[i].children[n]

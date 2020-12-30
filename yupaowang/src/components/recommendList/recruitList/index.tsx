@@ -24,7 +24,7 @@ export default function RecruitListPage({ data = [], occupations, areasId, type,
   }
   // 用户页面跳转-定向
   const userRouteRe = (url: string) => {
-    Taro.reLaunch({
+    Taro.redirectTo({
       url: url
     })
   }
@@ -35,7 +35,7 @@ export default function RecruitListPage({ data = [], occupations, areasId, type,
       </View>
       {!data.length && <Nodata/>}
       {data.map((v:any)=>(
-        <View key={v.id} className='recruitListBox' onClick={() => userRouteJump(`/pages/detail/info/index?id=${v.id}`)}>
+        <View key={v.id} className='recruitListBox' onClick={() => userRouteRe(`/pages/detail/info/index?id=${v.id}`)}>
           {/* 标题 */}
           <View className='recruitListBox-title'>
             {v.title}

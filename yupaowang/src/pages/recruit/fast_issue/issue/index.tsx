@@ -16,7 +16,7 @@ export default function FastIssue() {
 
   return (
     <Block>
-    <Auth />
+    {/* <Auth /> */}
     {showModel ? <PromptBox 
       showClose={prompt.showClose}
       showTitle={prompt.showTitle}
