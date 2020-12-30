@@ -25,6 +25,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -55,8 +57,9 @@ var RecruitList = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (RecruitList.__proto__ || Object.getPrototypeOf(RecruitList)).apply(this, arguments));
 
-    _this.$usedState = ["anonymousState__temp", "loopArray21", "$compid__25", "data", "IMGCDNURL", "hasMore", "bottom"];
+    _this.$usedState = ["anonymousState__temp", "loopArray95", "$compid__81", "data", "IMGCDNURL", "hasMore", "bottom"];
     _this.anonymousFunc0Map = {};
+    _this.anonymousFunc2Map = {};
     _this.customComponents = ["Nodata"];
     return _this;
   }
@@ -78,10 +81,10 @@ var RecruitList = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__25"),
+      var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__81"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__25 = _genCompid2[0],
-          $compid__25 = _genCompid2[1];
+          $prevCompid__81 = _genCompid2[0],
+          $compid__81 = _genCompid2[1];
 
       var _props = this.__props,
           data = _props.data,
@@ -97,37 +100,43 @@ var RecruitList = function (_Taro$Component) {
         });
       };
       var anonymousState__temp = (0, _taroSwan.internal_inline_style)(bottom ? '' : 'padding-bottom:0');
-      var loopArray21 = data ? data.map(function (item, __index1) {
+      var loopArray95 = data ? data.map(function (item, __index1) {
         item = {
           privateOriginal: (0, _taroSwan.internal_get_original)(item)
         };
-        var anonymousCallee__2 = item.privateOriginal ? item.privateOriginal.map(function (d, __index0) {
+        var anonymousCallee__12 = item.privateOriginal ? item.privateOriginal.map(function (d, __index0) {
           d = {
             privateOriginal: (0, _taroSwan.internal_get_original)(d)
           };
-          var _$indexKey = "cfzzz" + __index1 + "-" + __index0;
+          var _$indexKey = "jezzz" + __index1 + "-" + __index0;
           _this2.anonymousFunc0Map[_$indexKey] = function () {
             return userRouteJump("/pages/detail/info/index?id=" + d.privateOriginal.id);
+          };
+          var _$indexKey2 = "jfzzz" + __index1 + "-" + __index0;
+          _this2.anonymousFunc2Map[_$indexKey2] = function (e) {
+            e.stopPropagation();
+            userRouteJump("/pages/published/recruit/index?tatol=1");
           };
           var loopState__temp3 = item.privateOriginal ? _index.REPLACEWEIXINTEXT ? d.privateOriginal.detail.replace(_index.FILTERWEIXINREG, '') : d.privateOriginal.detail : null;
           return {
             _$indexKey: _$indexKey,
+            _$indexKey2: _$indexKey2,
             loopState__temp3: loopState__temp3,
             privateOriginal: d.privateOriginal
           };
         }) : [];
         return {
-          anonymousCallee__2: anonymousCallee__2,
+          anonymousCallee__12: anonymousCallee__12,
           privateOriginal: item.privateOriginal
         };
       }) : [];
       data && data[0] && !data[0].length && _taroSwan.propsManager.set({
         "text": "\u6682\u65E0\u76F8\u5173\u6570\u636E"
-      }, $compid__25, $prevCompid__25);
+      }, $compid__81, $prevCompid__81);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
-        loopArray21: loopArray21,
-        $compid__25: $compid__25,
+        loopArray95: loopArray95,
+        $compid__81: $compid__81,
         data: data,
         IMGCDNURL: _index.IMGCDNURL,
         hasMore: hasMore
@@ -147,12 +156,24 @@ var RecruitList = function (_Taro$Component) {
 
       return this.anonymousFunc0Map[_$indexKey] && (_anonymousFunc0Map = this.anonymousFunc0Map)[_$indexKey].apply(_anonymousFunc0Map, e);
     }
+  }, {
+    key: "anonymousFunc2",
+    value: function anonymousFunc2(_$indexKey2) {
+      var _anonymousFunc2Map;
+
+      for (var _len2 = arguments.length, e = Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
+        e[_key2 - 1] = arguments[_key2];
+      }
+
+      (typeof e === "undefined" ? "undefined" : _typeof(e)) === 'object' && e.stopPropagation && e.stopPropagation();
+      return this.anonymousFunc2Map[_$indexKey2] && (_anonymousFunc2Map = this.anonymousFunc2Map)[_$indexKey2].apply(_anonymousFunc2Map, e);
+    }
   }]);
 
   return RecruitList;
 }(_taroSwan2.default.Component);
 
-RecruitList.$$events = ["anonymousFunc0"];
+RecruitList.$$events = ["anonymousFunc0", "anonymousFunc2"];
 RecruitList.$$componentPath = "components/lists/recruit/index";
 exports.default = RecruitList;
 

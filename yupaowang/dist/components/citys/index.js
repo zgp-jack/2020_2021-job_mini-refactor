@@ -266,7 +266,7 @@ var Cities = function (_Taro$Component) {
           privateOriginal: (0, _taroSwan.internal_get_original)(item)
         };
         var loopState__temp2 = 'rec' + item.privateOriginal.id;
-        var _$indexKey = "fdzzz" + __index5;
+        var _$indexKey = "fezzz" + __index5;
         _this2.anonymousFunc5Map[_$indexKey] = function () {
           return userTapCity(item.privateOriginal);
         };
@@ -286,7 +286,7 @@ var Cities = function (_Taro$Component) {
             privateOriginal: (0, _taroSwan.internal_get_original)(d)
           };
           var loopState__temp6 = key + d.privateOriginal.id;
-          var _$indexKey2 = "fezzz" + index + "-" + key;
+          var _$indexKey2 = "ffzzz" + index + "-" + key;
           _this2.anonymousFunc6Map[_$indexKey2] = function () {
             return userTapCity(d.privateOriginal);
           };
@@ -306,7 +306,7 @@ var Cities = function (_Taro$Component) {
         item = {
           privateOriginal: (0, _taroSwan.internal_get_original)(item)
         };
-        var _$indexKey3 = "ffzzz" + __index7;
+        var _$indexKey3 = "fgzzz" + __index7;
         _this2.anonymousFunc7Map[_$indexKey3] = function () {
           return userTapInputCity(item.privateOriginal);
         };

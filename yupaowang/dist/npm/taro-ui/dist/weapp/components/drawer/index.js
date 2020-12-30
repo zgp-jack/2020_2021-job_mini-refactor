@@ -182,7 +182,7 @@ var AtDrawer = (_temp2 = _class = function (_AtComponent) {
         };
         var loopState__temp5 = _show ? items.length ? name.privateOriginal + "-" + index : null : null;
 
-        var _genCompid = (0, _taroSwan.genCompid)(__prefix + 'dazzzzzzzz' + index, true),
+        var _genCompid = (0, _taroSwan.genCompid)(__prefix + 'dbzzzzzzzz' + index, true),
             _genCompid2 = _slicedToArray(_genCompid, 2),
             $prevCompid__28 = _genCompid2[0],
             $compid__28 = _genCompid2[1];

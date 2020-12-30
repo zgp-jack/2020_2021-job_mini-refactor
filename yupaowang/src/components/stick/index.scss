@@ -37,7 +37,6 @@
         }
     }
     .stick-box-bottom{
-        padding-top: 15px;
         height: 258px;
         width: 100%;
         .stick-bottom-middle{
@@ -46,6 +45,7 @@
             flex-wrap: wrap;
             justify-content: center;
             margin: 0 auto;
+            margin-bottom: 10px;
             height: 153px;
             width: 90%;
             border: 1px solid #dfe0e1;

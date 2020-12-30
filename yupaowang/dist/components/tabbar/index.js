@@ -202,7 +202,7 @@ var Tabbar = function (_Taro$Component) {
           'common-footer-tabbar-list': true,
           'common-footer-tabbar-list-active': item.privateOriginal.id === tabbar.key
         });
-        var _$indexKey = "eezzz" + __index0;
+        var _$indexKey = "efzzz" + __index0;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return changeTabbarAction(item.privateOriginal);
         };

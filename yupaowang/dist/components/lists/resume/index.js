@@ -110,7 +110,7 @@ var ResumeList = function (_Taro$Component) {
           d = {
             privateOriginal: (0, _taroSwan.internal_get_original)(d)
           };
-          var _$indexKey = "cgzzz" + di + "-" + __index0;
+          var _$indexKey = "chzzz" + di + "-" + __index0;
           _this2.anonymousFunc0Map[_$indexKey] = function () {
             return userRouteJump(d.privateOriginal.uuid);
           };
