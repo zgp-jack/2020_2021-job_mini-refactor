@@ -1933,3 +1933,19 @@ export interface detailsRecommendListTypeList {
 export interface ResumesProjectData extends Result {
   count: number
 }
+
+
+// 快速发布没登录返回参数
+export interface checkCodeData extends Result {
+  member: checkCodeDataMember
+}
+export interface checkCodeDataMember {
+  model:{
+    uuid:string,
+    id:number,
+    sign:{
+      time:number,
+      token:string
+    }
+  }
+}

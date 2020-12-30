@@ -14,6 +14,7 @@ import CityPicker, { CityTownPicker } from '../../../components/city_picker'
 import { RecruitWorkInfo } from '../../../pages/recruit/index.d'
 import { PublishConfigData } from '../../../pages/recruit/index.d'
 import { USEGAODEMAPAPI } from '../../../config'
+import { AtSwitch } from 'taro-ui'
 // 初始化获取信息类型
 export interface InitRecruitView {
   type: string,
@@ -265,11 +266,11 @@ export default function PublishRecruit() {
         </View>
         <Form>
           <View className='publish-recruit-card'>
-            <View className='publish-upload-header' onClick={() => changeShowUpload()}>
+            <View className='publish-upload-header' >
               <View className='publish-upload-title'>
                 <View className='publish-upload-red'>
                   <Text>上传图片:</Text>
-                  <Switch checked={showUpload} color='#13ce66'></Switch>
+                  <AtSwitch onChange={() => changeShowUpload()} className='publish-upload-red-AtSwitch' checked={showUpload} color='#13ce66'></AtSwitch>
                 </View>
               </View>
               {showUpload && model &&

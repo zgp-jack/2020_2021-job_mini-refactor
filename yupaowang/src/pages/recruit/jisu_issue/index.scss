@@ -163,6 +163,12 @@
           display: flex;
           justify-content: space-between;
           align-items: center;
+          .publish-upload-red-AtSwitch{
+            transform: scale(0.7);
+            border-color: transparent;
+            padding: 0;
+            border: none !important;
+          }
           .publish-upload-wbg{
             position: absolute;
             top: 2px;
@@ -202,12 +208,12 @@
   }
   .publish-recruit-btn{
     position: relative;
-    width: 70%;
-    line-height: 85px;
+    width: 350px;
+    line-height: 86px;
     background-color: $color;
     color: white;
     text-align: center;
-    margin: 30px auto;
+    margin: 50px auto;
     font-size: 30px;
     border-radius: 3px;
   }

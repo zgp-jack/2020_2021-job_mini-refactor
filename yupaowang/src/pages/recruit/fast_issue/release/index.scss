@@ -9,7 +9,7 @@ body{
       align-items: center;
       position: relative;
       text-align: center;
-      font-weight: bold;
+      // font-weight: bold;
       font-size: 30px;
       color: #333;
       line-height: 100px;
@@ -29,14 +29,14 @@ body{
         margin-bottom: 20px;
         font-size: 28px;
         border-radius: 10px;
-        height: 100px;
+        min-height: 100px;
         text{
           display: block;
           position: relative;
           line-height: 100px;
           font-size: 28px;
           width: 140px;
-          font-weight: bold;
+          // font-weight: bold;
           height: 100px;
         }
         .issue-input{
@@ -74,15 +74,20 @@ body{
             position:relative;
             display: flex;
             align-items: center;
+            justify-content: space-between;
             height: 100px;
             font-size: 28px;
             padding: 0px 20px;
-            font-weight: bold;
+            // font-weight: bold;
             .issue-upload-switch{
-              position: absolute;
-              right: 20px;
-              zoom: 0.7;
-              top: 40px;
+              transform: scale(0.7);
+              border-color: transparent;
+              padding: 0;
+              border: none !important;
+              // position: absolute;
+              // right: 20px;
+              // zoom: 0.7;
+              // top: 40px;
             }
           }
           .issue-upload-tips{
@@ -150,7 +155,8 @@ body{
       .issue-code-btn {
         position: relative;
         margin: 50px auto 20px;
-        width: 500px;
+        width: 350px;
+        line-height: 86px;
         background-color: #0099ff;
         color: #fff;
         font-size: 30px;

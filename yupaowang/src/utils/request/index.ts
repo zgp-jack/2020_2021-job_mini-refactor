@@ -1303,7 +1303,7 @@ export function getResumeAddInfoConfig(): Promise<Inter.ResumeAddInfoConfig> {
   })
 }
 // 发布招工，填写验证码后校验验证码
-export function checkCode(data): Promise<Inter.Result>{
+export function checkCode(data): Promise<Inter.checkCodeData>{
   return doRequestAction({
     url: api.checkCodeUrl,
     method: 'POST',

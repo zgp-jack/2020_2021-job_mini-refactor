@@ -17,6 +17,7 @@
     border-radius: 30px;
     overflow: initial;
     min-height: 370px;
+    max-height: 600px;
     .prompt-title{
       position: relative;
       font-size: 35px;
@@ -32,6 +33,7 @@
     .prompt-content{
       padding:0px 50px;
       margin-top: 22px;
+      margin-bottom: 150px;
       .prompt-body{
         position: relative;
         line-height: 50px;

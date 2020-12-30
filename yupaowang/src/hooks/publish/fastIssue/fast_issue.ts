@@ -111,6 +111,19 @@ export function useFastIssue() {
       }
       setPrompt(promptData)
       setShowModel(true)
+    } else if (response == 'integral_lack'){
+      // 发布成功提示框
+      const promptData = {
+        showClose: false,
+        showTitle: true,
+        showCancel: true,
+        confirmText: '获取积分',
+        titleText: '温馨提示',
+        cancelText: '取消',
+        content: [{ text: tipContent }]
+      }
+      setShowModel(true)
+      setPrompt(promptData)
     }
   }, [response, tipContent])
   
@@ -161,6 +174,8 @@ export function useFastIssue() {
       fastPublish()
     }else if (response == 'fail' &&　tipContent.length > 0) {
       setShowModel(false)
+    } else if (response == 'integral_lack' ){
+      Taro.redirectTo({ url: '/pages/getintegral/index' })
     }
     setTipContent([])
     setResponse('')

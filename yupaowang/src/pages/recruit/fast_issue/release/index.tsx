@@ -7,6 +7,7 @@ import useRelease from '../../../../hooks/publish/fastIssue/release'
 import { IMGCDNURL, USEGAODEMAPAPI } from '../../../../config'
 import UploadImgAction from '../../../../utils/upload'
 import CityPicker, { CityTownPicker } from '../../../../components/city_picker/index'
+import { AtSwitch } from 'taro-ui'
 import './index.scss'
 
 
@@ -107,7 +108,7 @@ export default function FastIssue() {
         </View>
         <View className="issue-form-upload">
           <View className="issue-form-header">
-            <View className="issue-form-switch">上传图片： <Switch className="issue-upload-switch" color="#04BE02" onClick={() => switchClick()} checked={showUpload}/></View>
+            <View className="issue-form-switch">上传图片： <AtSwitch className="issue-upload-switch" color="#04BE02" onChange={() => switchClick()} checked={showUpload}/></View>
             <View className="issue-upload-tips">可上传工地现场照片、工程图纸、承包合同等</View>
           </View>
           {showUpload ? <View className="issue-upload-show">

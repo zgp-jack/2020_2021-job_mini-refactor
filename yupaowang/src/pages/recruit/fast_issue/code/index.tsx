@@ -1,17 +1,19 @@
 import Taro, { Config, useEffect, useState } from '@tarojs/taro'
 import { View, Input, Text, Image } from '@tarojs/components'
 import useCode  from '../../../../hooks/code/index'
-import { useSelector } from '@tarojs/redux'
+import { useSelector,useDispatch } from '@tarojs/redux'
 import { RecruitInfo, VaildCodeReq } from '../../../../pages/recruit/index.d'
 import { checkCode } from '../../../../utils/request/index'
+import { setUserInfo } from '../../../../actions/user';
 import Msg from '../../../../utils/msg'
 import { IMGCDNURL } from '../../../../config'
-
+import { UserInfo } from '../../../../config/store'
 import './index.scss'
 
 
 
 export default function FastIssue() {
+  const dispatch = useDispatch()
   // 初始化获取验证码
   const { text, userGetCode, timer } = useCode(true)
   // redux中存入的发布数据
@@ -37,6 +39,19 @@ export default function FastIssue() {
     // 发送验证请求，验证通过跳转到城市工种选择页
     checkCode(params).then(res => {
       if(res.errcode == 'ok'){
+        Taro.redirectTo({
+          url: '/pages/recruit/fast_issue/release/index',
+        })
+      } else if (res.errcode == 'logged'){
+        const userInfo = {
+          userId : res.member.model.id,
+          token : res.member.model.sign.token,
+          tokenTime:res.member.model.sign.time,
+          uuid : res.member.model.uuid,
+          login:true,
+        }
+        Taro.setStorageSync(UserInfo, userInfo)
+        dispatch(setUserInfo(userInfo))
         Taro.redirectTo({
           url: '/pages/recruit/fast_issue/release/index',
         })
