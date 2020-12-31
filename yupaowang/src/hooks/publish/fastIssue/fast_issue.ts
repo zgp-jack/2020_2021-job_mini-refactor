@@ -116,7 +116,7 @@ export function useFastIssue() {
       const promptData = {
         showClose: false,
         showTitle: true,
-        showCancel: true,
+        showCancel: false,
         confirmText: '获取积分',
         titleText: '温馨提示',
         cancelText: '取消',

@@ -50,7 +50,7 @@ export interface RecruitModelInfo extends RecruitBaseInfo {
 export interface FastPublishBase{
   address: string,
   infoId: string,
-  type: string,
+  type?: string,
   user_name: string,
   province_id: number,
   city_id: number | string,

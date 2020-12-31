@@ -224,7 +224,7 @@ export default function PublishRecruit() {
             </View>
         }
         <View className='publish-list-item work-type' onClick={() => showProfessionAction()}>
-          <Text className='pulish-list-title input-title'>所需工种</Text>
+          <Text className='pulish-list-title input-title'>所需工种:</Text>
           {
             classMateArr.length > 0 ?
               <View className='publish-list-input item-work-type'>

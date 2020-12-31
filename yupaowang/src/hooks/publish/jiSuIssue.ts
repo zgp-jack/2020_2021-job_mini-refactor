@@ -127,7 +127,7 @@ export default function fastPublishInit(InitParams: InitRecruitView) {
       address: areaInfo.title,
       detail: model.detail,
       infoId: model.infoId,
-      type: model.type,
+      // type: model.type,
       user_mobile: model.user_mobile,
       code: model.code,
       user_name: model.user_name,

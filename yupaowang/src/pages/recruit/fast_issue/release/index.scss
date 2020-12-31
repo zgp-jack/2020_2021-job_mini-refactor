@@ -30,6 +30,9 @@ body{
         font-size: 28px;
         border-radius: 10px;
         min-height: 100px;
+        .ssue-box-CityPicker{
+          padding-left: 20px;
+        }
         text{
           display: block;
           position: relative;
@@ -77,17 +80,18 @@ body{
             justify-content: space-between;
             height: 100px;
             font-size: 28px;
-            padding: 0px 20px;
+            padding: 0px 0px 0px 20px;
             // font-weight: bold;
             .issue-upload-switch{
-              transform: scale(0.7);
-              border-color: transparent;
-              padding: 0;
-              border: none !important;
+              height: 100px;
+              transform: scale(0.8);
               // position: absolute;
               // right: 20px;
               // zoom: 0.7;
               // top: 40px;
+              .at-switch::after{
+                border: none !important;
+              }
             }
           }
           .issue-upload-tips{
@@ -137,6 +141,7 @@ body{
               image{
                 width: 100%;
                 height: 100%;
+                border-radius: 10px;
               }
               .mini-del{
                 position: absolute;

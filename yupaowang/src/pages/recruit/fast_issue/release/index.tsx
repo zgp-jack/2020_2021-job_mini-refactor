@@ -99,7 +99,7 @@ export default function FastIssue() {
           {USEGAODEMAPAPI?
             <Input placeholder="请选择招工城市" className="issue-input" onClick={() => showWorkArea()} value={areaInfo && areaInfo.title}></Input>
             :
-            <CityPicker onCity={selectCity} modle={{}}></CityPicker>
+            <View className='ssue-box-CityPicker'><CityPicker onCity={selectCity} modle={{}}></CityPicker></View>
           }
         </View>
         <View className="issue-box" onClick={() => showWorkType()}>

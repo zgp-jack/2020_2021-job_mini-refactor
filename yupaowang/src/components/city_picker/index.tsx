@@ -18,10 +18,8 @@ export default function CityPicker({ onCity, modle}) {
   const [length, setLength] = useState<number>(0)
   //默认选中
   const [selectCityIndex, setSelectCityIndex] = useState <number[]>([0,0])
-
-
   useEffect(() => {
-    setLength(selectCity.length)
+    setLength(selectCity.length);
   }, [selectCity])
   // cityi是选中的省的index
   const initCityData = (cityi: number) => {
@@ -70,11 +68,10 @@ export default function CityPicker({ onCity, modle}) {
       initCityData(e.detail.value)
     }
   }
-
+  
 
   useEffect(() => {
     initCityData(0)
-    
     if (modle.province_id || modle.city_id){
       for (let i = 0; i < cityPickerData[0].length;i++) {
         if (modle.province_id == cityPickerData[0][i].id){
@@ -102,7 +99,9 @@ export default function CityPicker({ onCity, modle}) {
       }
     }
   }, [modle.province_id])
-
+  const handleClose = ()=>{
+    initCityData(selectCityIndex[0])
+  }
   return (
     <View>
       <Picker
@@ -112,6 +111,7 @@ export default function CityPicker({ onCity, modle}) {
         value={selectCityIndex}
         onChange={(e) => { onChange(e) }}
         onColumnChange={(e) => { onColumnChange(e) }}
+        onCancel={handleClose}
       >
         <View className={length == 0 ? "nodata-picker-input" : "data-picker-input"}>{selectCity.length > 0 ? (selectCity[0].id == selectCity[1].id ? selectCity[0].name:(selectCity[0].name ? selectCity[0].name + '-' + selectCity[1].name : '')) : '请选择招工城市'}</View>
       </Picker>

@@ -1,5 +1,5 @@
 import { View, Image, Text, Button, Swiper, SwiperItem } from '@tarojs/components'
-import { useEffect, useState, useRouter, RouterInfo } from '@tarojs/taro'
+import { useEffect, useState, useRouter, RouterInfo, Config } from '@tarojs/taro'
 import { IMGCDNURL } from '../../config/index'
 import CITY from '../../models/citys'
 import './index.scss'
@@ -75,6 +75,7 @@ export default function MarketPage(){
     <View>
       <Image className="releasesuccessicon" src={`${IMGCDNURL}publish-recruit-success-marketing.png` }></Image>
       <Text className="tips-text"></Text>
+      <View className='btn-box-title'>增加曝光率，让更多优质工人看到你，联系你。</View>
       <View className="btn-box">
         <Button onClick={() => goRecruitList()}>管理招工信息</Button>
         <Button onClick={() => goTop()}>去增加曝光率</Button>
@@ -105,3 +106,6 @@ export default function MarketPage(){
     </View >
   )
 }
+MarketPage.config = {
+  navigationBarTitleText: '发布成功',
+} as Config

@@ -103,7 +103,7 @@
       }
       .publish-list-input{
         position: relative;
-        padding: $miniPublishInputPadding 0;
+        // padding: $miniPublishInputPadding 0;
         width: 100%;
         line-height: 45px;
         min-height: 80px;
@@ -164,10 +164,7 @@
           justify-content: space-between;
           align-items: center;
           .publish-upload-red-AtSwitch{
-            transform: scale(0.7);
-            border-color: transparent;
-            padding: 0;
-            border: none !important;
+            transform: scale(0.8);
           }
           .publish-upload-wbg{
             position: absolute;
@@ -201,7 +198,7 @@
         font-size: 26px;
         padding: 15px 0;
         color: #999999;
-        border-bottom: 1px solid #dcdcdc;
+        // border-bottom: 1px solid #dcdcdc;
         border-top: 1px solid #dcdcdc;
       }
     }
