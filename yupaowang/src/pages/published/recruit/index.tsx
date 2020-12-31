@@ -24,7 +24,7 @@ export interface searchDataType {
 export default function PublishedRecruit() {
     // 判断提示框(components/stick)是否弹出
     const router: Taro.RouterInfo = useRouter()
-    const { tatol, data, d } = router.params
+    const { tatol } = router.params
     // 当前高亮key
     const [id, setId] = useState<string>(HeaderList[0].id)
     // 是否还有下一页
@@ -231,7 +231,7 @@ export default function PublishedRecruit() {
     return (
         <Block>
             <Auth />
-            <Stick tatol={tatol} data={data} d={d} />
+            <Stick tatol={tatol} />
             <View className='user-published-container'>
                 <View className='user-published-header'>
                     {HeaderList.map(item => (

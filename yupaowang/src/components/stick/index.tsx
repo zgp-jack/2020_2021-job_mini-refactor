@@ -3,12 +3,9 @@ import { View, Button } from '@tarojs/components';
 import './index.scss'
 
 export default function Stick(props) {
-    const { tatol, data, d } = props
+    // 判断显示/隐藏弹出框
+    const { tatol } = props
     const [popup, setPopup] = useState<string>(tatol)
-    // 点击隐藏提示框
-    useEffect(() => {
-        console.log("data" + data, "d" + d);
-    }, [])
     return (
         <View>
             {
