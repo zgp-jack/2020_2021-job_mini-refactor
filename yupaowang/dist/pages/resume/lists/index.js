@@ -37,6 +37,8 @@ var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@ta
 
 var _taroSwan2 = _interopRequireDefault(_taroSwan);
 
+var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/redux/index.js");
+
 var _lists = __webpack_require__(/*! ../../../config/pages/lists */ "./src/config/pages/lists.ts");
 
 var _store = __webpack_require__(/*! ../../../config/store */ "./src/config/store.ts");
@@ -50,6 +52,10 @@ __webpack_require__(/*! ./index.scss */ "./src/pages/resume/lists/index.scss");
 var _index3 = __webpack_require__(/*! ../../../utils/msg/index */ "./src/utils/msg/index.ts");
 
 var _index4 = _interopRequireDefault(_index3);
+
+var _resume = __webpack_require__(/*! ../../../hooks/publish/resume */ "./src/hooks/publish/resume.ts");
+
+var _resume2 = _interopRequireDefault(_resume);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -76,7 +82,7 @@ var ResumeLists = function (_Taro$Component) {
       backgroundTextStyle: "dark"
     };
 
-    _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "anonymousState__temp3", "anonymousState__temp4", "$compid__35", "$compid__36", "$compid__37", "refresh"];
+    _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "anonymousState__temp3", "anonymousState__temp4", "$compid__35", "$compid__36", "$compid__37", "refresh", "infoData", "introducesData", "login"];
     _this.customComponents = ["Search", "ResumeCondition", "WechatNotice", "ResumeList"];
     return _this;
   }
@@ -119,6 +125,14 @@ var ResumeLists = function (_Taro$Component) {
       var lastNormalPos = '0';
       var lastSortFlagPos = '0';
       var lastTimePos = '0';
+
+      var _useResume = (0, _resume2.default)(),
+          infoData = _useResume.infoData,
+          introducesData = _useResume.introducesData;
+
+      var login = (0, _redux.useSelector)(function (store) {
+        return store.User['login'];
+      });
       // * 获取选择城市缓存
       var userListChooseCity = _taroSwan2.default.getStorageSync(_store.UserListChooseCity);
       // * 筛选数据
@@ -319,7 +333,10 @@ var ResumeLists = function (_Taro$Component) {
         $compid__35: $compid__35,
         $compid__36: $compid__36,
         $compid__37: $compid__37,
-        refresh: refresh
+        refresh: refresh,
+        infoData: infoData,
+        introducesData: introducesData,
+        login: login
       });
       return this.__state;
     }

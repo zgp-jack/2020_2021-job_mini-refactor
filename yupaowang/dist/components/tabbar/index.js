@@ -49,6 +49,10 @@ var _msg = __webpack_require__(/*! ../../actions/msg */ "./src/actions/msg.ts");
 
 var _tabbar = __webpack_require__(/*! ../../actions/tabbar */ "./src/actions/tabbar.ts");
 
+var _resume = __webpack_require__(/*! ../../hooks/publish/resume */ "./src/hooks/publish/resume.ts");
+
+var _resume2 = _interopRequireDefault(_resume);
+
 var _index3 = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
 
 __webpack_require__(/*! ./index.scss */ "./src/components/tabbar/index.scss");
@@ -69,7 +73,7 @@ var Tabbar = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (Tabbar.__proto__ || Object.getPrototypeOf(Tabbar)).apply(this, arguments));
 
-    _this.$usedState = ["anonymousState__temp3", "anonymousState__temp4", "anonymousState__temp5", "tabbar", "loopArray40", "memberMsg", "show", "IMGCDNURL", "notredirect"];
+    _this.$usedState = ["anonymousState__temp3", "anonymousState__temp4", "anonymousState__temp5", "tabbar", "loopArray40", "memberMsg", "show", "IMGCDNURL", "infoData", "introducesData", "login", "notredirect"];
     _this.anonymousFunc0Map = {};
     _this.customComponents = [];
     return _this;
@@ -92,6 +96,10 @@ var Tabbar = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
       var notredirect = this.__props.notredirect;
+
+      var _useResume = (0, _resume2.default)(),
+          infoData = _useResume.infoData,
+          introducesData = _useResume.introducesData;
 
       var tabbar = (0, _redux.useSelector)(function (state) {
         return state.tabbar;
@@ -144,6 +152,8 @@ var Tabbar = function (_Taro$Component) {
       };
       // 用户点击弹出的发布类型按钮
       var userTapPublishItem = function userTapPublishItem(url) {
+        console.log("notredirect", notredirect);
+        console.log("tabbar", tabbar);
         _taroSwan2.default.navigateTo({
           url: url
         });
@@ -220,7 +230,10 @@ var Tabbar = function (_Taro$Component) {
         loopArray40: loopArray40,
         memberMsg: memberMsg,
         show: show,
-        IMGCDNURL: _index3.IMGCDNURL
+        IMGCDNURL: _index3.IMGCDNURL,
+        infoData: infoData,
+        introducesData: introducesData,
+        login: login
       });
       return this.__state;
     }
