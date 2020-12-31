@@ -73,7 +73,7 @@ var Tabbar = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (Tabbar.__proto__ || Object.getPrototypeOf(Tabbar)).apply(this, arguments));
 
-    _this.$usedState = ["anonymousState__temp3", "anonymousState__temp4", "anonymousState__temp5", "tabbar", "loopArray40", "memberMsg", "show", "IMGCDNURL", "infoData", "introducesData", "login", "notredirect"];
+    _this.$usedState = ["anonymousState__temp3", "anonymousState__temp4", "anonymousState__temp5", "tabbar", "loopArray40", "memberMsg", "show", "IMGCDNURL", "infoData", "login", "notredirect"];
     _this.anonymousFunc0Map = {};
     _this.customComponents = [];
     return _this;
@@ -232,7 +232,6 @@ var Tabbar = function (_Taro$Component) {
         show: show,
         IMGCDNURL: _index3.IMGCDNURL,
         infoData: infoData,
-        introducesData: introducesData,
         login: login
       });
       return this.__state;

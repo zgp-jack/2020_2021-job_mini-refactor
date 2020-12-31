@@ -121,7 +121,7 @@ export default function Tabbar({ notredirect }: PROPS) {
                         <View className='tabbar-publish-item' onClick={() => userTapPublishItem(PUBLISHRESUME)}>
                             <Image className='tabbar-publih-item-img' src={IMGCDNURL + 'publish-card.png'}></Image>
                             <Text className='tabbar-publih-item-text'>
-                                {((infoData.check == '0' && (introducesData.check == '0')) || !login) ? "发布找活" : "我的找活"}
+                                {(infoData.check && login) ? "我的找活" : "发布找活"}
                             </Text>
                         </View>
                         <View className='tabbar-publish-item' onClick={() => userTapPublishItem(PUBLISHUSED)}>

@@ -82,7 +82,7 @@ var ResumeLists = function (_Taro$Component) {
       backgroundTextStyle: "dark"
     };
 
-    _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "anonymousState__temp3", "anonymousState__temp4", "$compid__35", "$compid__36", "$compid__37", "refresh", "infoData", "introducesData", "login"];
+    _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "anonymousState__temp3", "anonymousState__temp4", "$compid__35", "$compid__36", "$compid__37", "refresh", "infoData", "login"];
     _this.customComponents = ["Search", "ResumeCondition", "WechatNotice", "ResumeList"];
     return _this;
   }
@@ -335,7 +335,6 @@ var ResumeLists = function (_Taro$Component) {
         $compid__37: $compid__37,
         refresh: refresh,
         infoData: infoData,
-        introducesData: introducesData,
         login: login
       });
       return this.__state;

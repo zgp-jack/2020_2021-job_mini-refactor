@@ -167,7 +167,7 @@ export default function ResumeLists() {
         />
       </View> */}
             <View className='publish-list-btn' onClick={() => userRouteJump(PUBLISHRESUME)}>
-                {((infoData.check == '0' && (introducesData.check == '0')) || !login) ? "发布找活" : "我的找活"}
+                {(infoData.check && login) ? "我的找活" : "发布找活"}
             </View>
         </View>
     )
