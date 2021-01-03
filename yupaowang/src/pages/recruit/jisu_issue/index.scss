@@ -2,6 +2,9 @@
 .publish-recruit-container{
   position: relative;
   padding: 20px;
+  .pr20{
+    padding-right: 20px;
+  }
   .publish-list-textarea {
     position: relative;
   }
@@ -36,7 +39,7 @@
       line-height: 104px;
     }
     .publish-list-input {
-      font-size: 28px;
+      font-size: 30px;
       flex: 1;
     }
     &.work-type {
@@ -60,6 +63,7 @@
         top: 26px;
         padding: 8px 12px;
         font-size: 26px;
+        margin-right: 20px;
       }
   }
   .phone-code {
@@ -79,7 +83,7 @@
     border-radius: 10px;
     background-color: white;
     margin-bottom: 15px;
-    @include shadow();
+    // @include shadow();
     .publish-list-item{
       // position: relative;
       // width: 100%;
@@ -109,6 +113,7 @@
         min-height: 80px;
         display: block;
         font-size: 30px;
+        margin-right: 20px;
         .publish-input-list{
           position: relative;
           display: inline-block;

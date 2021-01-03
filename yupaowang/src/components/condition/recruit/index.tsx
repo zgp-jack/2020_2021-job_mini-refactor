@@ -153,7 +153,6 @@ function RecruitCondition({ data, setSearchData }: ConditionProps) {
   useEffect(()=>{
 
   },[areaId])
-
   return (
     <Block>
       <View className='recruit-condition-box'>

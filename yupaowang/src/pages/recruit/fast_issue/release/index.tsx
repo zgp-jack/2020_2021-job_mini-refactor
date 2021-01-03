@@ -124,7 +124,7 @@ export default function FastIssue() {
               {image.length < maxImageCount?
               <View className="issue-upload-item" onClick={()=>userUploadImg()}>
                 <View className="imgitem-box" >
-                  <Image src={`${IMGCDNURL}mini-new-publish-upload-img.png`} ></Image>
+                    <Image src={`${IMGCDNURL}zyb/release_img.png`} ></Image>
                 </View>
               </View>:''}
             </View>

@@ -227,7 +227,7 @@ export default function PublishRecruit() {
           <Text className='pulish-list-title input-title'>所需工种:</Text>
           {
             classMateArr.length > 0 ?
-              <View className='publish-list-input item-work-type'>
+              <View className='publish-list-input pr20'>
                 {classMateArr.map(item => (
                   <Block key={item.id}>
                     <Text className='publish-input-list' >{item.name} </Text>
@@ -252,7 +252,7 @@ export default function PublishRecruit() {
           </View>
           {(phone !== model.user_mobile || model.user_mobile == '') &&
             <View className='publish-list-item publish-list-item-code'>
-              <Text className='pulish-list-title input-title'>验证码</Text>
+              <Text className='pulish-list-title input-title'>验证码:</Text>
               <Input
                 className='publish-list-input'
                 type='text'

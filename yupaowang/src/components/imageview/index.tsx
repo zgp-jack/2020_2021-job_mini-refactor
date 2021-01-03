@@ -2,6 +2,7 @@ import Taro from '@tarojs/taro'
 import { View, Image, Text } from '@tarojs/components'
 import { RecruitImageModel } from '../../pages/recruit/index.d'
 import './index.scss'
+import { IMGCDNURL } from '../../config'
 
 interface PROPS {
   images: RecruitImageModel[],
@@ -23,8 +24,9 @@ export default function ImageView({ images, userUploadImg, max, userDelImg }: PR
               <View 
                 className='uploads-img-del' 
                 onClick={(e) => { e.stopPropagation(); userDelImg&&userDelImg(index)} }>
-                <Text className='at-icon at-icon-trash'></Text>
-              </View>}
+                {/* <Text className='at-icon at-icon-trash'></Text> */}
+              </View>
+            }
           </View>
         </View>
       ))}
@@ -32,10 +34,11 @@ export default function ImageView({ images, userUploadImg, max, userDelImg }: PR
       { max > images.length
         &&
         <View className='uploads-img-item'>
-          <View
+          {/* <View
             className='uploads-img-imgbox uploads-img-imgbox-active'
             onClick={() => userUploadImg&&userUploadImg(-1)}
-          ></View>
+          ></View> */}
+          <Image onClick={() => userUploadImg && userUploadImg(-1)} className='uploads-img-item-img' src={`${IMGCDNURL}zyb/release_img.png`}/>
         </View>
       }
     </View>

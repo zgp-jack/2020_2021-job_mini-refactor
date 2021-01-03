@@ -159,7 +159,6 @@ export default function DetailInfoPage() {
         setIsCollection(res.result.is_collect);
         // 设置更多招工信息的省/市
         let area_id: number = res.result.city_id && res.result.city_id != 0 ? res.result.city_id : res.result.province_id;
-        console.error(area_id, '111')
         setAreasId(area_id);
         let occupations: string = res.result.occupations.length ? res.result.occupations.join(',') : '';
         setOccupations(occupations)
