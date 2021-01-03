@@ -119,7 +119,7 @@ var ResumeDetail = function (_Taro$Component) {
       backgroundTextStyle: "dark"
     };
 
-    _this.$usedState = ["anonymousState__temp", "anonymousState__temp4", "anonymousState__temp5", "data", "loopArray96", "loopArray98", "loopArray99", "$compid__79", "$compid__80", "isAuth", "IMGCDNURL", "examine", "onoff", "SERIES", "QQSERIES", "ios", "login", "user", "praise", "ISCANSHARE", "collect", "shownewtips", "recommendRe", "complaintModal", "BAIDUSERIES", "age", "phone"];
+    _this.$usedState = ["anonymousState__temp", "anonymousState__temp4", "anonymousState__temp5", "data", "loopArray95", "loopArray97", "loopArray98", "$compid__79", "$compid__80", "isAuth", "IMGCDNURL", "examine", "onoff", "SERIES", "QQSERIES", "ios", "login", "user", "praise", "ISCANSHARE", "collect", "shownewtips", "recommendRe", "complaintModal", "BAIDUSERIES", "age", "phone"];
     _this.anonymousFunc4Map = {};
     _this.anonymousFunc6Map = {};
     _this.customComponents = ["Auth", "CollectionRecruitList", "Report"];
@@ -634,7 +634,7 @@ var ResumeDetail = function (_Taro$Component) {
         setShownewtips(false);
       };
       this.anonymousFunc11 = handleTellPhone;
-      var loopArray96 = data.info.occupations.length ? data.info.occupations.map(function (v, i) {
+      var loopArray95 = data.info.occupations.length ? data.info.occupations.map(function (v, i) {
         v = {
           privateOriginal: (0, _taroSwan.internal_get_original)(v)
         };
@@ -644,12 +644,12 @@ var ResumeDetail = function (_Taro$Component) {
           privateOriginal: v.privateOriginal
         };
       }) : [];
-      var loopArray98 = data.project.length ? data.project[0].image.map(function (v, i) {
+      var loopArray97 = data.project.length ? data.project[0].image.map(function (v, i) {
         v = {
           privateOriginal: (0, _taroSwan.internal_get_original)(v)
         };
         var loopState__temp7 = data.project.length ? i + i : null;
-        var _$indexKey = "baczz" + i;
+        var _$indexKey = "jizzz" + i;
         _this2.anonymousFunc4Map[_$indexKey] = function () {
           return handleImg(v.privateOriginal);
         };
@@ -659,12 +659,12 @@ var ResumeDetail = function (_Taro$Component) {
           privateOriginal: v.privateOriginal
         };
       }) : [];
-      var loopArray99 = data.certificates.length ? data.certificates[0].image.map(function (val, i) {
+      var loopArray98 = data.certificates.length ? data.certificates[0].image.map(function (val, i) {
         val = {
           privateOriginal: (0, _taroSwan.internal_get_original)(val)
         };
         var loopState__temp9 = data.certificates.length ? i + i : null;
-        var _$indexKey2 = "badzz" + i;
+        var _$indexKey2 = "jjzzz" + i;
         _this2.anonymousFunc6Map[_$indexKey2] = function () {
           return handleImg(val.privateOriginal);
         };
@@ -694,9 +694,9 @@ var ResumeDetail = function (_Taro$Component) {
         anonymousState__temp4: anonymousState__temp4,
         anonymousState__temp5: anonymousState__temp5,
         data: data,
-        loopArray96: loopArray96,
+        loopArray95: loopArray95,
+        loopArray97: loopArray97,
         loopArray98: loopArray98,
-        loopArray99: loopArray99,
         $compid__79: $compid__79,
         $compid__80: $compid__80,
         isAuth: isAuth,

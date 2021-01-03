@@ -57,7 +57,7 @@ var CollectionResumeList = function (_Taro$Component) {
 
     var _this = _possibleConstructorReturn(this, (CollectionResumeList.__proto__ || Object.getPrototypeOf(CollectionResumeList)).apply(this, arguments));
 
-    _this.$usedState = ["anonymousState__temp", "loopArray70", "$compid__61", "$compid__62", "data", "IMGCDNURL", "recruitNoMoreData", "modalContent", "bottom", "onHandlerClick"];
+    _this.$usedState = ["anonymousState__temp", "loopArray69", "$compid__61", "$compid__62", "data", "IMGCDNURL", "recruitNoMoreData", "modalContent", "bottom", "onHandlerClick"];
     _this.anonymousFunc0Map = {};
     _this.anonymousFunc1Map = {};
     _this.customComponents = ["Nodata", "AtModal", "AtModalHeader", "AtModalContent", "AtModalAction"];
@@ -132,15 +132,15 @@ var CollectionResumeList = function (_Taro$Component) {
       this.anonymousFunc2 = function () {
         setIsOpened(false);
       };
-      var loopArray70 = data ? data.map(function (item, __index0) {
+      var loopArray69 = data ? data.map(function (item, __index0) {
         item = {
           privateOriginal: (0, _taroSwan.internal_get_original)(item)
         };
-        var _$indexKey = "idzzz" + __index0;
+        var _$indexKey = "hjzzz" + __index0;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return onHandleClick(item.privateOriginal.resume.check, item.privateOriginal.resume_uuid);
         };
-        var _$indexKey2 = "iezzz" + __index0;
+        var _$indexKey2 = "iazzz" + __index0;
         _this2.anonymousFunc1Map[_$indexKey2] = function (e) {
           e.stopPropagation();
           _this2.__props.onHandlerClick(item.privateOriginal.resume_uuid);
@@ -159,7 +159,7 @@ var CollectionResumeList = function (_Taro$Component) {
       }, $compid__62, $prevCompid__62);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
-        loopArray70: loopArray70,
+        loopArray69: loopArray69,
         $compid__61: $compid__61,
         $compid__62: $compid__62,
         data: data,

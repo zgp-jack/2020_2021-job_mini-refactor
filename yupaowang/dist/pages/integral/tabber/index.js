@@ -77,7 +77,7 @@ var Tabber = function (_Taro$Component) {
       navigationBarTitleText: ''
     };
 
-    _this.$usedState = ["data", "modalData", "loopArray71", "loopArray72", "$compid__63", "$compid__64", "title", "tabBar", "initInfo", "SERIES", "QQSERIES", "ios", "time", "IMGCDNURL", "start", "end", "sourceList", "consumeList", "startType", "modal", "modelType", "showIsReport", "complaintModal", "showTime"];
+    _this.$usedState = ["data", "modalData", "loopArray70", "loopArray71", "$compid__63", "$compid__64", "title", "tabBar", "initInfo", "SERIES", "QQSERIES", "ios", "time", "IMGCDNURL", "start", "end", "sourceList", "consumeList", "startType", "modal", "modelType", "showIsReport", "complaintModal", "showTime"];
     _this.anonymousFunc1Map = {};
     _this.anonymousFunc5Map = {};
     _this.customComponents = ["Nodata", "Report"];
@@ -780,12 +780,12 @@ var Tabber = function (_Taro$Component) {
       this.anonymousFunc9 = function () {
         _taroSwan2.default.makePhoneCall({ phoneNumber: modalData.user_mobile });
       };
-      var loopArray71 = tabBar.map(function (item, i) {
+      var loopArray70 = tabBar.map(function (item, i) {
         item = {
           privateOriginal: (0, _taroSwan.internal_get_original)(item)
         };
         var loopState__temp2 = "i" + i;
-        var _$indexKey = "ifzzz" + i;
+        var _$indexKey = "ibzzz" + i;
         _this2.anonymousFunc1Map[_$indexKey] = function () {
           return handleJump(item.privateOriginal.type);
         };
@@ -795,12 +795,12 @@ var Tabber = function (_Taro$Component) {
           privateOriginal: item.privateOriginal
         };
       });
-      var loopArray72 = data.lists.map(function (item, index) {
+      var loopArray71 = data.lists.map(function (item, index) {
         item = {
           privateOriginal: (0, _taroSwan.internal_get_original)(item)
         };
         var loopState__temp4 = "i" + index;
-        var _$indexKey2 = "igzzz" + index;
+        var _$indexKey2 = "iczzz" + index;
         _this2.anonymousFunc5Map[_$indexKey2] = function () {
           return handleModal(item.privateOriginal.id, item.privateOriginal.time);
         };
@@ -838,8 +838,8 @@ var Tabber = function (_Taro$Component) {
       Object.assign(this.__state, {
         data: data,
         modalData: modalData,
+        loopArray70: loopArray70,
         loopArray71: loopArray71,
-        loopArray72: loopArray72,
         $compid__63: $compid__63,
         $compid__64: $compid__64,
         title: title,

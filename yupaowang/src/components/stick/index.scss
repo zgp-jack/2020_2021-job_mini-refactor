@@ -1,0 +1,87 @@
+* {
+  padding: 0px;
+  margin: 0px;
+}
+.box{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 99999;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  // align-items: center;
+  padding-top: 20%;
+  .stick-box {
+    // top: 20%;
+    // left: 5%;
+    // position: fixed;
+    // z-index: 99;
+    // height: 476px;
+    width: 90%;
+    // border-radius: 25px;
+    // background-color: #ffffff;
+    position: absolute;
+    position: relative;
+    // width: 80%;
+    border-radius: 10PX;
+    // padding-top: 20px;
+
+    .stick-box-top {
+      color: #ffffff;
+      width: 100%;
+      background: url("http://cdn.yupao.com/miniprogram/images/collect-tipbg.png") no-repeat;
+      background-size: 100% 100%;
+
+      .stick-top-header {
+        padding-top: 40px;
+        text-align: center;
+        font-size: 36px;
+        text-shadow: 0px 2px 8px rgba(8, 21, 149, 0.5);
+        font-weight: bold;
+        line-height: 63px;
+      }
+
+      .stick-top-context {
+        width: 452px;
+        margin: auto;
+        padding: 50px 0px;
+        width: 95%;
+        text-align: center;
+        font-size: 30px;
+        font-weight: 400;
+        // line-height: 40px;
+        text-shadow: 0px 1px 8px rgba(8, 21, 149, 0.5);
+        white-space: normal;
+      }
+    }
+    .stick-box-bottom {
+      width: 100%;
+      text-align: center;
+      background: #FFF;
+      padding: 80px 0px;
+      border-bottom-left-radius: 10PX;
+      border-bottom-right-radius: 10PX;
+      position: relative;
+      .stick-box-bottom-img {
+        width: 600px;
+        height: 200px;
+      }
+      .stick-bottom-btn {
+        width: 232px;
+        height: 68px;
+        border-radius: 34px;
+        background: #2e88f6;
+        color: #ffffff;
+        font-size: 30px;
+        line-height: 68px;
+        position: absolute;
+        bottom: -34px;
+        left: 33%;
+      }
+    }
+  }
+}

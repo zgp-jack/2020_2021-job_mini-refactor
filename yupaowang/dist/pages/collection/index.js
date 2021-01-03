@@ -102,7 +102,7 @@ var Collection = function (_Taro$Component) {
       backgroundTextStyle: "dark"
     };
 
-    _this.$usedState = ["loopArray68", "$compid__54", "$compid__55", "tab", "current"];
+    _this.$usedState = ["loopArray67", "$compid__54", "$compid__55", "tab", "current"];
     _this.anonymousFunc0Map = {};
     _this.customComponents = ["Auth", "RecruitList", "ResumeList"];
     return _this;
@@ -166,11 +166,11 @@ var Collection = function (_Taro$Component) {
       (0, _taroSwan.usePullDownRefresh)(function () {
         setInitPage(initPage + 1);
       });
-      var loopArray68 = _config2.default.map(function (item, __index0) {
+      var loopArray67 = _config2.default.map(function (item, __index0) {
         item = {
           privateOriginal: (0, _taroSwan.internal_get_original)(item)
         };
-        var _$indexKey = "iazzz" + __index0;
+        var _$indexKey = "hgzzz" + __index0;
         _this2.anonymousFunc0Map[_$indexKey] = function () {
           return handleTable(item.privateOriginal.id);
         };
@@ -197,7 +197,7 @@ var Collection = function (_Taro$Component) {
         "initPage": initPage
       }, $compid__55, $prevCompid__55);
       Object.assign(this.__state, {
-        loopArray68: loopArray68,
+        loopArray67: loopArray67,
         $compid__54: $compid__54,
         $compid__55: $compid__55,
         tab: _config2.default,

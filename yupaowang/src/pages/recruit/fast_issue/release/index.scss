@@ -1,6 +1,9 @@
 body{
   background: #f7f6f7 !important;
   .issue-area-container{
+    .at-switch::after {
+      border-color: transparent !important;
+    }
     position: relative;
     .issue-tip{
       display: flex;

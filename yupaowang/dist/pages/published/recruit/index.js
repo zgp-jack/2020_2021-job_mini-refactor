@@ -82,17 +82,13 @@ var _classnames = __webpack_require__(/*! classnames */ "./node_modules/classnam
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
+__webpack_require__(/*! ./index.scss */ "./src/pages/published/recruit/index.scss");
+
 var _index2 = __webpack_require__(/*! ../../../config/index */ "./src/config/index.ts");
 
 var _index3 = __webpack_require__(/*! ../../../utils/msg/index */ "./src/utils/msg/index.ts");
 
 var _index4 = _interopRequireDefault(_index3);
-
-var _index5 = __webpack_require__(/*! ../../../hooks/init_job_view/index */ "./src/hooks/init_job_view/index.ts");
-
-var _index6 = _interopRequireDefault(_index5);
-
-__webpack_require__(/*! ./index.scss */ "./src/pages/published/recruit/index.scss");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -119,16 +115,12 @@ var PublishedRecruit = function (_Taro$Component) {
       backgroundTextStyle: "dark"
     };
 
-    _this.$usedState = ["loopArray63", "loopArray64", "$compid__53", "showModel", "HeaderList", "refresh", "lists", "IMGCDNURL", "more", "searchData"];
+    _this.$usedState = ["loopArray63", "loopArray64", "$compid__53", "HeaderList", "refresh", "lists", "IMGCDNURL", "more", "searchData"];
     _this.anonymousFunc0Map = {};
     _this.anonymousFunc3Map = {};
     _this.anonymousFunc4Map = {};
     _this.anonymousFunc5Map = {};
-    _this.anonymousFunc6Map = {};
-    _this.anonymousFunc7Map = {};
-    _this.anonymousFunc8Map = {};
-    _this.anonymousFunc9Map = {};
-    _this.customComponents = ["Auth", "PromptBox", "Nodata", "Tabbar"];
+    _this.customComponents = ["Auth", "Stick", "Nodata", "Tabbar"];
     return _this;
   }
 
@@ -153,21 +145,11 @@ var PublishedRecruit = function (_Taro$Component) {
           _genCompid2 = _slicedToArray(_genCompid, 2),
           $prevCompid__53 = _genCompid2[0],
           $compid__53 = _genCompid2[1];
-
-      var _useJobView = (0, _index6.default)(),
-          initJobView = _useJobView.initJobView;
-      // 获取路由参数
+      // 判断提示框(components/stick)是否弹出
 
 
       var router = (0, _taroSwan.useRouter)();
-      // 发布招工id
-      var jobId = router.params.id;
-      // 发布招工提示信息类型member_first:用户第一次发布day_first：用户当日第一次发布 
-      // day_last：用户当日最后一条免费发布
-      // ' '：用户未登录或不是上方任何一种情况，不弹窗
-      var type = router.params.type;
-      // 提示文本内容
-      var text = router.params.text;
+      var tatol = router.params.tatol;
       // 当前高亮key
 
       var _useState = (0, _taroSwan.useState)(_config2.default[0].id),
@@ -202,27 +184,6 @@ var PublishedRecruit = function (_Taro$Component) {
           _useState10 = _slicedToArray(_useState9, 2),
           lists = _useState10[0],
           setLists = _useState10[1];
-      // 子组件提示框的显示属性
-
-
-      var _useState11 = (0, _taroSwan.useState)({}),
-          _useState12 = _slicedToArray(_useState11, 2),
-          prompt = _useState12[0],
-          setPrompt = _useState12[1];
-      // 是否展示提示框
-
-
-      var _useState13 = (0, _taroSwan.useState)(false),
-          _useState14 = _slicedToArray(_useState13, 2),
-          showModel = _useState14[0],
-          setShowModel = _useState14[1];
-      // 请求状态
-
-
-      var _useState15 = (0, _taroSwan.useState)(true),
-          _useState16 = _slicedToArray(_useState15, 2),
-          reqStatus = _useState16[0],
-          setReqStatus = _useState16[1];
       // 获取用户信息
 
 
@@ -230,46 +191,18 @@ var PublishedRecruit = function (_Taro$Component) {
         return state.User;
       });
 
-      var _useState17 = (0, _taroSwan.useState)({
+      var _useState11 = (0, _taroSwan.useState)({
         mid: user.userId,
         uuid: user.uuid,
         page: 1,
         type: id
       }),
-          _useState18 = _slicedToArray(_useState17, 2),
-          searchData = _useState18[0],
-          setSearchData = _useState18[1];
-
-      (0, _taroSwan.useEffect)(function () {
-        if (type == 'member_first' && lists.length > 0 && reqStatus) {
-          var itemIndex = lists.findIndex(function (item) {
-            return item.id == jobId;
-          });
-          var item = lists[itemIndex];
-          setReqStatus(false);
-          userRouteJump("/pages/marketing_page/index?defaultTopArea=" + item.area_id + "&job_id=" + item.id);
-        }
-      }, [lists]);
-      // 根据type是否显示弹窗
-      (0, _taroSwan.useEffect)(function () {
-        if (type == 'day_first') {
-          // 发布成功提示框
-          var promptData = {
-            showClose: false,
-            showTitle: true,
-            cancelText: '暂不提醒',
-            confirmText: '去增加曝光率',
-            titleText: '温馨提示',
-            content: [{ des: text }]
-          };
-          setPrompt(promptData);
-          setShowModel(true);
-        } else if (type == 'day_last') {
-          // 发布成功提示框
-          getFreeConfig();
-        }
-      }, []);
+          _useState12 = _slicedToArray(_useState11, 2),
+          searchData = _useState12[0],
+          setSearchData = _useState12[1];
       // 当redux更新后 ， 立即更新用户数据
+
+
       (0, _taroSwan.useEffect)(function () {
         if (!user.login || loading) {
           return;
@@ -321,6 +254,7 @@ var PublishedRecruit = function (_Taro$Component) {
         setSearchData(_extends({}, searchData, { type: key, page: 1 }));
       };
       (0, _taroSwan.useEffect)(function () {
+        console.log(searchData);
         if (!user.login || loading) {
           return;
         }
@@ -340,18 +274,8 @@ var PublishedRecruit = function (_Taro$Component) {
         setSearchData(_extends({}, searchData, { page: 1 }));
       };
       // 停止招工
-      var userStopRecruit = function userStopRecruit(item, i) {
-        var end_status = void 0;
-        if (item.is_end == '2') {
-          end_status = 2;
-        } else {
-          end_status = 1;
-        }
-        var params = {
-          end_status: end_status,
-          infoId: item.id
-        };
-        (0, _index.userChangeRecruitStatus)(params).then(function (res) {
+      var userStopRecruit = function userStopRecruit(id, i) {
+        (0, _index.userChangeRecruitStatus)(id).then(function (res) {
           (0, _index4.default)(res.errmsg);
           if (res.errcode == 'ok') {
             var bakLists = lists;
@@ -372,12 +296,10 @@ var PublishedRecruit = function (_Taro$Component) {
         });
       };
       // 取消置顶 jobUpdateTopStatusAction
-      var handlCancel = function handlCancel(item, index) {
-        var data = item.top_data; //置顶数据
-        var toping = data.is_top; // 是否置顶状态
+      var handlCancel = function handlCancel(id, index) {
         var params = {
-          infoId: item.id,
-          status: toping == '1' ? '1' : "0"
+          infoId: id,
+          status: 0
         };
         (0, _index.jobUpdateTopStatusAction)(params).then(function (res) {
           detailUserSetTopAction(res, index);
@@ -448,95 +370,19 @@ var PublishedRecruit = function (_Taro$Component) {
           var showTime = now > parseInt(endtime) ? true : false; // 置顶是否过期 已过期
           if (showTime) {
             //如果置顶过期
-            userRouteJump("/pages/newtopping/recRang/index?defaultTopArea=" + item.area_id + "&job_id=" + item.id);
+            userRouteJump("/pages/topping/index?id=" + item.id);
             return false;
           }
           var params = {
             infoId: item.id,
-            status: toping == '1' ? '1' : "0"
+            status: toping == '0' ? '1' : "0"
           };
           (0, _index.jobUpdateTopStatusAction)(params).then(function (res) {
             detailUserSetTopAction(res, index);
           });
         } else {
-          userRouteJump("/pages/newtopping/recRang/index?defaultTopArea=" + item.area_id + "&job_id=" + item.id);
+          userRouteJump("/pages/topping/index?id=" + item.id);
         }
-      };
-      // *提示框处理
-      // 处理发布招工请求返回值中data提示框文字显示内容
-      var handleText = function handleText(text, rules) {
-        var texts = [];
-        for (var i = 0; i < rules.length; i++) {
-          if (i === 0) {
-            texts.push({ text: text.substring(i, rules[i].start), color: "#000000" });
-          } else {
-            texts.push({ text: text.substring(rules[i - 1].start + rules[i - 1].length, rules[i].start), color: "#000000" });
-          }
-          texts.push({
-            text: text.substring(rules[i].start, rules[i].start + rules[i].length),
-            color: rules[i].value
-          });
-          if (i === rules.length - 1) {
-            texts.push({ text: text.substring(rules[i].start + rules[i].length), color: "#000000" });
-          }
-        }
-        var promptData = {
-          showClose: false,
-          showTitle: true,
-          cancelText: '不了，谢谢',
-          confirmText: '去发布',
-          titleText: '提示',
-          content: [{ text: texts }]
-        };
-        setPrompt(promptData);
-        setShowModel(true);
-      };
-      // 获取后台配置的免费发布招工条数配置信息
-      var getFreeConfig = function getFreeConfig() {
-        (0, _index.getFreeIssueConfig)().then(function (res) {
-          if (res.errcode == "ok") {
-            if (res.data.type == "paid_issue") {
-              handleText(res.data.tips.text, res.data.tips.rules);
-            }
-          } else if (res.errcode == "fail") {
-            (0, _index4.default)(res.errmsg);
-          }
-        });
-      };
-      // 用户当天第一免费发布弹窗的 暂不提醒 按钮请求
-      var notRemindReq = function notRemindReq() {
-        (0, _index.getNotRemind)();
-      };
-      // 当天免费的最后一条发布招工信息弹窗，点击 去发布 去发布招工
-      var confirm = function confirm() {
-        // 当天第一次免费发布
-        if (type == 'day_first') {
-          if (jobId) {
-            //根据jobId获取对应招工详细信息
-            var itemIndex = lists.findIndex(function (item) {
-              return item.id == jobId;
-            });
-            var item = lists[itemIndex];
-            userRouteJump("/pages/newtopping/recRang/index?defaultTopArea=" + item.area_id + "&job_id=" + item.id);
-          }
-          setShowModel(false);
-        } else if (type == 'day_last') {
-          // 当天最后一次免费发布
-          initJobView();
-          setShowModel(false);
-        }
-      };
-      // 当天免费的最后一条发布招工信息弹窗，点击 不了谢谢 关闭弹窗
-      var cancel = function cancel() {
-        if (type == 'day_first') {
-          notRemindReq();
-          setShowModel(false);
-        } else if (type == 'day_last') {
-          setShowModel(false);
-        }
-      };
-      var close = function close() {
-        setShowModel(false);
       };
       this.anonymousFunc1 = function () {
         return reloadPage();
@@ -568,59 +414,30 @@ var PublishedRecruit = function (_Taro$Component) {
         };
         var _$indexKey2 = "gizzz" + index;
         _this2.anonymousFunc3Map[_$indexKey2] = function () {
-          return userRouteJump("/pages/detail/info/index?id=" + item.privateOriginal.id + "&type=1");
+          return userRouteJump("/pages/detail/info/index?id=" + item.privateOriginal.id);
         };
         var _$indexKey3 = "gjzzz" + index;
         _this2.anonymousFunc4Map[_$indexKey3] = function () {
-          return userRouteJump("/pages/newtopping/recRang/index?defaultTopArea=" + item.privateOriginal.area_id + "&job_id=" + item.privateOriginal.id + "&subscribe=1");
+          return userRouteJump("/pages/recruit/publish/index?id=" + item.privateOriginal.id);
         };
         var _$indexKey4 = "hazzz" + index;
         _this2.anonymousFunc5Map[_$indexKey4] = function () {
-          return userRouteJump("/pages/recruit/jisu_issue/index?id=" + item.privateOriginal.id);
-        };
-        var _$indexKey5 = "hbzzz" + index;
-        _this2.anonymousFunc6Map[_$indexKey5] = function () {
-          return userStopRecruit(item.privateOriginal, index);
-        };
-        var _$indexKey6 = "hczzz" + index;
-        _this2.anonymousFunc7Map[_$indexKey6] = function () {
-          return handlCancel(item.privateOriginal, index);
-        };
-        var _$indexKey7 = "hdzzz" + index;
-        _this2.anonymousFunc8Map[_$indexKey7] = function () {
-          return handleTopping(item.privateOriginal, index);
-        };
-        var _$indexKey8 = "hezzz" + index;
-        _this2.anonymousFunc9Map[_$indexKey8] = function () {
-          return userRouteJump("/pages/newtopping/recRang/index?job_id=" + item.privateOriginal.id);
+          return userStopRecruit(item.privateOriginal.id, index);
         };
         return {
           _$indexKey2: _$indexKey2,
           _$indexKey3: _$indexKey3,
           _$indexKey4: _$indexKey4,
-          _$indexKey5: _$indexKey5,
-          _$indexKey6: _$indexKey6,
-          _$indexKey7: _$indexKey7,
-          _$indexKey8: _$indexKey8,
           privateOriginal: item.privateOriginal
         };
       });
-      showModel && _taroSwan.propsManager.set({
-        "showClose": prompt.showClose,
-        "showTitle": prompt.showTitle,
-        "cancelText": prompt.cancelText,
-        "confirmText": prompt.confirmText,
-        "titleText": prompt.titleText,
-        "content": prompt.content,
-        "cancel": cancel,
-        "confirm": confirm,
-        "close": close
+      _taroSwan.propsManager.set({
+        "tatol": tatol
       }, $compid__53, $prevCompid__53);
       Object.assign(this.__state, {
         loopArray63: loopArray63,
         loopArray64: loopArray64,
         $compid__53: $compid__53,
-        showModel: showModel,
         HeaderList: _config2.default,
         refresh: refresh,
         lists: lists,
@@ -692,64 +509,12 @@ var PublishedRecruit = function (_Taro$Component) {
 
       return this.anonymousFunc5Map[_$indexKey4] && (_anonymousFunc5Map = this.anonymousFunc5Map)[_$indexKey4].apply(_anonymousFunc5Map, e);
     }
-  }, {
-    key: 'anonymousFunc6',
-    value: function anonymousFunc6(_$indexKey5) {
-      var _anonymousFunc6Map;
-
-      ;
-
-      for (var _len5 = arguments.length, e = Array(_len5 > 1 ? _len5 - 1 : 0), _key5 = 1; _key5 < _len5; _key5++) {
-        e[_key5 - 1] = arguments[_key5];
-      }
-
-      return this.anonymousFunc6Map[_$indexKey5] && (_anonymousFunc6Map = this.anonymousFunc6Map)[_$indexKey5].apply(_anonymousFunc6Map, e);
-    }
-  }, {
-    key: 'anonymousFunc7',
-    value: function anonymousFunc7(_$indexKey6) {
-      var _anonymousFunc7Map;
-
-      ;
-
-      for (var _len6 = arguments.length, e = Array(_len6 > 1 ? _len6 - 1 : 0), _key6 = 1; _key6 < _len6; _key6++) {
-        e[_key6 - 1] = arguments[_key6];
-      }
-
-      return this.anonymousFunc7Map[_$indexKey6] && (_anonymousFunc7Map = this.anonymousFunc7Map)[_$indexKey6].apply(_anonymousFunc7Map, e);
-    }
-  }, {
-    key: 'anonymousFunc8',
-    value: function anonymousFunc8(_$indexKey7) {
-      var _anonymousFunc8Map;
-
-      ;
-
-      for (var _len7 = arguments.length, e = Array(_len7 > 1 ? _len7 - 1 : 0), _key7 = 1; _key7 < _len7; _key7++) {
-        e[_key7 - 1] = arguments[_key7];
-      }
-
-      return this.anonymousFunc8Map[_$indexKey7] && (_anonymousFunc8Map = this.anonymousFunc8Map)[_$indexKey7].apply(_anonymousFunc8Map, e);
-    }
-  }, {
-    key: 'anonymousFunc9',
-    value: function anonymousFunc9(_$indexKey8) {
-      var _anonymousFunc9Map;
-
-      ;
-
-      for (var _len8 = arguments.length, e = Array(_len8 > 1 ? _len8 - 1 : 0), _key8 = 1; _key8 < _len8; _key8++) {
-        e[_key8 - 1] = arguments[_key8];
-      }
-
-      return this.anonymousFunc9Map[_$indexKey8] && (_anonymousFunc9Map = this.anonymousFunc9Map)[_$indexKey8].apply(_anonymousFunc9Map, e);
-    }
   }]);
 
   return PublishedRecruit;
 }(_taroSwan2.default.Component);
 
-PublishedRecruit.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6", "anonymousFunc7", "anonymousFunc8", "anonymousFunc9"];
+PublishedRecruit.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5"];
 PublishedRecruit.$$componentPath = "pages/published/recruit/index";
 PublishedRecruit.config = { navigationBarTitleText: '我的招工信息', navigationBarBackgroundColor: '#0099ff', navigationBarTextStyle: 'white', backgroundTextStyle: "dark" };
 exports.default = PublishedRecruit;

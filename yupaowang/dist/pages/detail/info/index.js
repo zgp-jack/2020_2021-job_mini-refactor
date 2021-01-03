@@ -79,7 +79,7 @@ var DetailInfoPage = function (_Taro$Component) {
       navigationBarTitleText: ''
     };
 
-    _this.$usedState = ["anonymousState__temp3", "data", "loopArray80", "loopArray81", "$compid__65", "$compid__66", "$compid__67", "resCode", "editPhone", "SHOWOFFICIALACCOUNT", "SERIES", "QQSERIES", "ios", "DOWNLOADAPP", "IMGCDNURL", "again", "stopHiring", "editTopping", "isCollection", "ISCANSHARE", "recommend", "complaintModal", "phone"];
+    _this.$usedState = ["anonymousState__temp3", "data", "loopArray79", "loopArray80", "$compid__65", "$compid__66", "$compid__67", "resCode", "editPhone", "SHOWOFFICIALACCOUNT", "SERIES", "QQSERIES", "ios", "DOWNLOADAPP", "IMGCDNURL", "again", "stopHiring", "editTopping", "isCollection", "ISCANSHARE", "recommend", "complaintModal", "phone"];
     _this.anonymousFunc5Map = {};
     _this.customComponents = ["WechatNotice", "CollectionRecruitList", "Report"];
     return _this;
@@ -775,7 +775,7 @@ var DetailInfoPage = function (_Taro$Component) {
       this.anonymousFunc17 = function () {
         _taroSwan2.default.makePhoneCall({ phoneNumber: phone });
       };
-      var loopArray80 = data.classifyName.map(function (v, i) {
+      var loopArray79 = data.classifyName.map(function (v, i) {
         v = {
           privateOriginal: (0, _taroSwan.internal_get_original)(v)
         };
@@ -785,12 +785,12 @@ var DetailInfoPage = function (_Taro$Component) {
           privateOriginal: v.privateOriginal
         };
       });
-      var loopArray81 = data.view_images.length ? data.view_images.map(function (v, i) {
+      var loopArray80 = data.view_images.length ? data.view_images.map(function (v, i) {
         v = {
           privateOriginal: (0, _taroSwan.internal_get_original)(v)
         };
         var loopState__temp5 = data.view_images.length ? i + i : null;
-        var _$indexKey = "ihzzz" + i;
+        var _$indexKey = "idzzz" + i;
         _this2.anonymousFunc5Map[_$indexKey] = function () {
           return handleImage(v.privateOriginal);
         };
@@ -821,8 +821,8 @@ var DetailInfoPage = function (_Taro$Component) {
       Object.assign(this.__state, {
         anonymousState__temp3: anonymousState__temp3,
         data: data,
+        loopArray79: loopArray79,
         loopArray80: loopArray80,
-        loopArray81: loopArray81,
         $compid__65: $compid__65,
         $compid__66: $compid__66,
         $compid__67: $compid__67,
