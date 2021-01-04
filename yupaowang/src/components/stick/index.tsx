@@ -23,8 +23,9 @@ export default function Stick(props) {
           </View>
           <View className='stick-box-bottom'>
             <Image className='stick-box-bottom-img' src={`${IMGCDNURL}new-published-settop-tips.png`} />
-            <Button className='stick-bottom-btn' onClick={() => setPopup("0")}>我知道了</Button>
+            {/* <Button className='stick-bottom-btn' onClick={() => setPopup("0")}>我知道了</Button> */}
           </View>
+          <View className='close' onClick={() => setPopup("0")}><Image className='closeImage' src={`${IMGCDNURL}zyb/closeIconImg.png`}/></View>
         </View>
         </View>
       }

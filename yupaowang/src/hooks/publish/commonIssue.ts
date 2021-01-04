@@ -10,10 +10,17 @@ import { setAreaInfo, setArea } from '../../actions/recruit'
 import { getCityInfoById, AREABEIJING } from '../../models/area'
 
 export function usePublishData(InitParams: InitRecruitView){
+  
+  // 获取用户登录
+  const login: boolean = useSelector<any, boolean>(state => state.User['login'])
+  // 获取发布招工基础数据请求状态
+  const reqStatus: boolean = useSelector<any, boolean>(state => state.publishData['reqStatus'])
+  // 获取用户手机号
+  const userPhone: string = useSelector<any, string>(state => state.publishData["user_mobile"])
   // 初始化急速发布招工信息数据
   let initModel: RecruitWorkInfo = {
     title: '',
-    user_mobile: '',
+    user_mobile: userPhone,
     user_name: '',
     province_id: 0,
     city_id: 0,
@@ -30,12 +37,6 @@ export function usePublishData(InitParams: InitRecruitView){
     is_check: 1,
     check_fail_msg: ''
   }
-  // 获取用户登录
-  const login: boolean = useSelector<any, boolean>(state => state.User['login'])
-  // 获取发布招工基础数据请求状态
-  const reqStatus: boolean = useSelector<any, boolean>(state => state.publishData['reqStatus'])
-  // 获取用户手机号
-  const userPhone: string = useSelector<any, string>(state => state.publishData["user_mobile"])
   // 急速发布招工信息
   const [model, setModel] = useState<RecruitWorkInfo>(initModel)
   // 获取dispatch分发action

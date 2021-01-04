@@ -2597,7 +2597,6 @@ export function getCityInfo(data: UserLocationPromiss, current = 0): ChildItems{
   let flag: boolean = false
   if(!current){
     let items: ParentItems[] = AREAS.filter(item => data.province.indexOf(item.name) !== -1)
-    console.error(items[0],'items[0]')
     if (items.length) {
       return items[0]
     } else{

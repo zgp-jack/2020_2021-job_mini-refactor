@@ -83,5 +83,15 @@
         left: 33%;
       }
     }
+    .close{
+      margin: auto;
+      margin-top: 50px;
+      height: 80px;
+      width: 80px;
+      .closeImage{
+        height: 100%;
+        width: 100%;
+      }
+    }
   }
 }

@@ -13352,10 +13352,22 @@ var _area = __webpack_require__(/*! ../../models/area */ "./src/models/area.ts")
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function usePublishData(InitParams) {
+  // 获取用户登录
+  var login = (0, _redux.useSelector)(function (state) {
+    return state.User['login'];
+  });
+  // 获取发布招工基础数据请求状态
+  var reqStatus = (0, _redux.useSelector)(function (state) {
+    return state.publishData['reqStatus'];
+  });
+  // 获取用户手机号
+  var userPhone = (0, _redux.useSelector)(function (state) {
+    return state.publishData["user_mobile"];
+  });
   // 初始化急速发布招工信息数据
   var initModel = {
     title: '',
-    user_mobile: '',
+    user_mobile: userPhone,
     user_name: '',
     province_id: 0,
     city_id: 0,
@@ -13372,18 +13384,6 @@ function usePublishData(InitParams) {
     is_check: 1,
     check_fail_msg: ''
   };
-  // 获取用户登录
-  var login = (0, _redux.useSelector)(function (state) {
-    return state.User['login'];
-  });
-  // 获取发布招工基础数据请求状态
-  var reqStatus = (0, _redux.useSelector)(function (state) {
-    return state.publishData['reqStatus'];
-  });
-  // 获取用户手机号
-  var userPhone = (0, _redux.useSelector)(function (state) {
-    return state.publishData["user_mobile"];
-  });
   // 急速发布招工信息
 
   var _useState = (0, _taroSwan.useState)(initModel),
@@ -16620,7 +16620,6 @@ function getCityInfo(data) {
     var items = AREAS.filter(function (item) {
       return data.province.indexOf(item.name) !== -1;
     });
-    console.error(items[0], 'items[0]');
     if (items.length) {
       return items[0];
     } else {
