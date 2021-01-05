@@ -9,7 +9,7 @@ import { BannerNoticeNotice } from '../../utils/request/index.d'
 import SwiperNews from '../../components/swiper/news'
 import { IProps } from '../../components/swiper/index'
 import { copyWechatNumber, userCallPhone } from '../../utils/helper'
-import { SHOWWEIXINNUMBER, SHOWSERVERPHONE, SHOWLISTSNOTICE } from '../../config'
+import { SHOWWEIXINNUMBER, SHOWSERVERPHONE, SHOWLISTSNOTICE,SERIES, BAIDUSERIES } from '../../config'
 import classnames from 'classnames'
 import './index.scss'
 
@@ -60,6 +60,13 @@ export default function WechatNotice({type}:PROPS){
         'wechatinfo-container': true,
         'wechatinfo-container-notop': !SHOWWEIXINNUMBER && !SHOWSERVERPHONE
       })} >
+        {SERIES === BAIDUSERIES &&
+          <View className='follow-swan'>
+            <Text className='wechat-addgroup'>关注鱼泡网：</Text>
+            每天推送上万条附近招工信息
+            {/* @ts-ignore: 百度小程序关注组件 */}
+            <follow-swan className='follow-swan-btn'></follow-swan>
+          </View>}
         {(SHOWWEIXINNUMBER || SHOWSERVERPHONE) &&
         <View className='wechat-container'>
           {SHOWWEIXINNUMBER &&
@@ -77,6 +84,7 @@ export default function WechatNotice({type}:PROPS){
           <Text className='wechat-btn' onClick={() => userCallPhoneAction() } >呼叫</Text>
           </Block>}
         </View>}
+        
         {SHOWLISTSNOTICE&&
         <View className={classnames({
           'notice-container': true,

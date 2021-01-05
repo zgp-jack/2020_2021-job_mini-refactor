@@ -3,7 +3,7 @@ import { View, Text, Image, Icon, Button } from '@tarojs/components'
 import { jobInfoAction, publishComplainAction, jobGetTelAction, recruitListCancelCollectionAction, jobEndStatusAction, jobUpdateTopStatusAction, jobNoUserInfoAction, jobDetailsListAction, detailsRecommendAction } from '../../../utils/request/index'
 import WechatNotice from '../../../components/wechat'
 import { IMGCDNURL, SERVERPHONE, AUTHPATH, CODEAUTHPATH, ISCANSHARE, DOWNLOADAPP, SHOWOFFICIALACCOUNT, REPLACEWEIXINTEXT, FILTERWEIXINREG, DOWNLOADAPPPATH, SERIES, QQSERIES, BAIDUSERIES, INDEXPATH } from '../../../config'
-import { useSelector } from '@tarojs/redux'
+import { useSelector, useDispatch } from '@tarojs/redux'
 import { isVaildVal, isIos } from '../../../utils/v'
 import Report from '../../../components/report'
 import { getUserShareMessage } from '../../../utils/helper'
@@ -11,6 +11,8 @@ import Msg, { ShowActionModal, showModalTip } from '../../../utils/msg'
 import { SubscribeToNews } from '../../../utils/subscribeToNews';
 import CollectionRecruitList from '../../../components/recommendList/index'
 import { REFID, UserInfo } from '../../../config/store'
+import { RECRUIT } from '../../../constants/tabbar'
+import { changeTabbar } from '../../../actions/tabbar';
 import './index.scss'
 
 interface User {
@@ -48,6 +50,7 @@ interface DataType {
   }
 }
 export default function DetailInfoPage() {
+  const dispatch = useDispatch()
   const router: Taro.RouterInfo = useRouter()
   let { id = '', refId = '', type } = router.params;
   // 获取userInfo
@@ -562,10 +565,17 @@ export default function DetailInfoPage() {
       }
     }
   }
-
+  // 回到首页
+  const handleJump = ()=>{
+    dispatch(changeTabbar(RECRUIT))
+    Taro.reLaunch({
+      url: `${INDEXPATH}?type=${RECRUIT}`
+    })
+  }
 
   return (
     <View className='detailInfo'>
+      <Image src={`${IMGCDNURL}zyb/goHome.png`} className='goHome' onClick={()=>handleJump()}/>
       <WechatNotice type={1} />
       <View className='detailInfo-head'>
         <View className='detailInfo-head-titleBox'>

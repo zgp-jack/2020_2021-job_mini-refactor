@@ -12077,6 +12077,38 @@ function getPublishData() {
 
 /***/ }),
 
+/***/ "./src/actions/publishWay.ts":
+/*!***********************************!*\
+  !*** ./src/actions/publishWay.ts ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.setPublishWay = setPublishWay;
+exports.getPublishWay = getPublishWay;
+
+var _publishWay = __webpack_require__(/*! ../constants/publishWay */ "./src/constants/publishWay.ts");
+
+function setPublishWay(data) {
+  return {
+    type: _publishWay.SETPUBLISHWAY,
+    data: data
+  };
+}
+function getPublishWay() {
+  return {
+    type: _publishWay.GETPUBLISHWAY
+  };
+}
+
+/***/ }),
+
 /***/ "./src/actions/realname.ts":
 /*!*********************************!*\
   !*** ./src/actions/realname.ts ***!
@@ -13306,6 +13338,101 @@ function useCode(type) {
     text: text,
     userGetCode: userGetCode,
     timer: timer
+  };
+}
+
+/***/ }),
+
+/***/ "./src/hooks/init_job_view/index.ts":
+/*!******************************************!*\
+  !*** ./src/hooks/init_job_view/index.ts ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+exports.default = useJobView;
+
+var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
+
+var _taroSwan2 = _interopRequireDefault(_taroSwan);
+
+var _index = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
+
+var _publishWay = __webpack_require__(/*! ../../actions/publishWay */ "./src/actions/publishWay.ts");
+
+var _index2 = __webpack_require__(/*! ../../utils/request/index */ "./src/utils/request/index.ts");
+
+var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/redux/index.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function useJobView() {
+  var publishWay = (0, _redux.useSelector)(function (state) {
+    return state.publishWay;
+  });
+  var login = (0, _redux.useSelector)(function (state) {
+    return state.User['login'];
+  });
+  var dispatch = (0, _redux.useDispatch)();
+  //是否为极速发布与快速发布请求,快速发布与极速发布跳转
+  var initJobView = function initJobView() {
+    if (login) {
+      var flag = JSON.parse(JSON.stringify(publishWay));
+      if (!flag.loginAfter) {
+        (0, _index2.publishWayRea)().then(function (res) {
+          var publishMethod = res.add_job_type;
+          dispatch((0, _publishWay.setPublishWay)(_extends({}, publishWay, { loginWay: publishMethod, loginAfter: true })));
+          var url = publishMethod == "fast_add_job" ? _index.PUBLISHRECRUIT : _index.PUBLISHFAST;
+          _taroSwan2.default.navigateTo({
+            url: url
+          });
+        }).catch(function () {
+          _taroSwan2.default.navigateTo({
+            url: _index.PUBLISHFAST
+          });
+        });
+      } else {
+        var way = publishWay.loginWay;
+        var url = way == "fast_add_job" ? _index.PUBLISHRECRUIT : _index.PUBLISHFAST;
+        _taroSwan2.default.navigateTo({
+          url: url
+        });
+      }
+    } else {
+      var _flag = JSON.parse(JSON.stringify(publishWay));
+      if (!_flag.loginBefore) {
+        (0, _index2.publishWayRea)().then(function (res) {
+          var publishMethod = res.add_job_type;
+          dispatch((0, _publishWay.setPublishWay)(_extends({}, publishWay, { logoutWay: publishMethod, loginBefore: true })));
+          var url = publishMethod == "fast_add_job" ? _index.PUBLISHRECRUIT : _index.PUBLISHFAST;
+          _taroSwan2.default.navigateTo({
+            url: url
+          });
+        }).catch(function () {
+          _taroSwan2.default.navigateTo({
+            url: _index.PUBLISHFAST
+          });
+        });
+      } else {
+        var _way = publishWay.logoutWay;
+        var _url = _way == "fast_add_job" ? _index.PUBLISHRECRUIT : _index.PUBLISHFAST;
+        _taroSwan2.default.navigateTo({
+          url: _url
+        });
+      }
+    }
+  };
+  return {
+    initJobView: initJobView
   };
 }
 

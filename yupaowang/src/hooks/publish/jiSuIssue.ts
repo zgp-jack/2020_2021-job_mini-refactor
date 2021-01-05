@@ -34,7 +34,6 @@ export default function fastPublishInit(InitParams: InitRecruitView) {
   const [isTip, setIsTip ] = useState<boolean>(false);
   // 初始化招工信息
   useEffect(() => {
-    console.error(model,'1111')
     //如果已经有定位信息 不在获取定位
     if (!areaInfo.location){
       initUserAreaInfo()

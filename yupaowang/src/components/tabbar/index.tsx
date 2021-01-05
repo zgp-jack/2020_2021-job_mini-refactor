@@ -9,6 +9,7 @@ import { setMsg } from '../../actions/msg'
 import { changeTabbar } from '../../actions/tabbar'
 import useResume from '../../hooks/publish/resume'
 import { MemberMsgTimerInterval, PUBLISHRECRUIT, PUBLISHRESUME, PUBLISHUSED, IMGCDNURL } from '../../config'
+import useJobView from '../../hooks/init_job_view/index'
 import './index.scss'
 
 interface PROPS {
@@ -21,6 +22,9 @@ export default function Tabbar({ notredirect }: PROPS) {
   const login: boolean = useSelector<any, boolean>(state => state.User['login'])
   const memberMsg: number = useSelector<any, number>(state => state.msg['messageNumber'])
   const dispatch = useDispatch()
+
+  // 发布招工跳转不同模式（急速或者快速）
+  const { initJobView } = useJobView()
   // 是否展示发布
   const [show, setShow] = useState<boolean>(false)
   // 展开发布的动画效果
@@ -114,7 +118,7 @@ export default function Tabbar({ notredirect }: PROPS) {
             'tabbar-publish-items': true,
             'tabbar-publish-items-active': active
           })}>
-            <View className='tabbar-publish-item' onClick={() => userTapPublishItem(PUBLISHRECRUIT)}>
+            <View className='tabbar-publish-item' onClick={() => { initJobView()}}>
               <Image className='tabbar-publih-item-img' src={IMGCDNURL + 'publish-recruit.png'}></Image>
               <Text className='tabbar-publih-item-text'>发布招工</Text>
             </View>

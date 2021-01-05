@@ -119,7 +119,7 @@ var Index = function (_Taro$Component) {
       backgroundTextStyle: "dark"
     };
 
-    _this.$usedState = ["$compid__214", "$compid__215", "$compid__216", "tabKey", "HOME", "RECRUIT", "RESUME", "MEMBER"];
+    _this.$usedState = ["$compid__16", "$compid__17", "$compid__18", "tabKey", "HOME", "RECRUIT", "RESUME", "MEMBER"];
     _this.customComponents = ["Home", "Recruit", "Resume", "Member", "Tabbar"];
     return _this;
   }
@@ -139,20 +139,20 @@ var Index = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__214"),
+      var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__16"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__214 = _genCompid2[0],
-          $compid__214 = _genCompid2[1];
+          $prevCompid__16 = _genCompid2[0],
+          $compid__16 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroSwan.genCompid)(__prefix + "$compid__215"),
+      var _genCompid3 = (0, _taroSwan.genCompid)(__prefix + "$compid__17"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__215 = _genCompid4[0],
-          $compid__215 = _genCompid4[1];
+          $prevCompid__17 = _genCompid4[0],
+          $compid__17 = _genCompid4[1];
 
-      var _genCompid5 = (0, _taroSwan.genCompid)(__prefix + "$compid__216"),
+      var _genCompid5 = (0, _taroSwan.genCompid)(__prefix + "$compid__18"),
           _genCompid6 = _slicedToArray(_genCompid5, 2),
-          $prevCompid__216 = _genCompid6[0],
-          $compid__216 = _genCompid6[1];
+          $prevCompid__18 = _genCompid6[0],
+          $compid__18 = _genCompid6[1];
 
       var dispatch = (0, _redux.useDispatch)();
       // 初始化页面参数
@@ -252,17 +252,17 @@ var Index = function (_Taro$Component) {
       }, [tabKey]);
       tabKey === _tabbar.HOME && _taroSwan.propsManager.set({
         "homeIndex": showIndex
-      }, $compid__214, $prevCompid__214);
+      }, $compid__16, $prevCompid__16);
       tabKey === _tabbar.MEMBER && _taroSwan.propsManager.set({
         "memberIndex": showIndex
-      }, $compid__215, $prevCompid__215);
+      }, $compid__17, $prevCompid__17);
       _taroSwan.propsManager.set({
         "notredirect": true
-      }, $compid__216, $prevCompid__216);
+      }, $compid__18, $prevCompid__18);
       Object.assign(this.__state, {
-        $compid__214: $compid__214,
-        $compid__215: $compid__215,
-        $compid__216: $compid__216,
+        $compid__16: $compid__16,
+        $compid__17: $compid__17,
+        $compid__18: $compid__18,
         tabKey: tabKey,
         HOME: _tabbar.HOME,
         RECRUIT: _tabbar.RECRUIT,

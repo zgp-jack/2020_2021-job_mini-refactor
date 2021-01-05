@@ -19,6 +19,7 @@ import { UserListChooseCity, UserLocation } from '../../config/store'
 import HomeCity from '../../components/home_city'
 import { BannerNoticeBanner, BannerNoticeNotice, RecruitListItem, ResumeList as ResumeListArr, FleamarketList } from '../../utils/request/index.d'
 import { userJumpPage } from '../../utils/helper'
+import useJobView from '../../hooks/init_job_view/index'
 
 export interface FilterData {
   area: string,
@@ -36,7 +37,8 @@ interface HomeProps {
 }
 
 export default function Home({ homeIndex = 0}: HomeProps){
-
+  // 发布招工跳转不同模式（急速或者快速）
+  const { initJobView } = useJobView()
   const dispatch = useDispatch()
 
   const tabbarJump = (id: string) => {
@@ -133,7 +135,7 @@ export default function Home({ homeIndex = 0}: HomeProps){
         {DOWNLOADAPP ? 
           <Image onClick={() => userRouteJump(DOWNLOADAPPPATH)} className='home-header-app' src={ IMGCDNURL + 'loadapp.png' }></Image>
         :
-        <Image onClick={() => userRouteJump(PUBLISHRECRUIT)} className='home-header-app' src={IMGCDNURL + 'header-publish-recruit-icon.png'}></Image>
+          <Image onClick={() => { initJobView()}} className='home-header-app' src={IMGCDNURL + 'header-publish-recruit-icon.png'}></Image>
         }
       </View>
       {/* // ? 轮播图  */}
@@ -179,7 +181,7 @@ export default function Home({ homeIndex = 0}: HomeProps){
       <Image 
         className='fixed-publish-recruit' 
         src={`${IMGCDNURL}fixed-publishrecruit.png`}
-        onClick={()=>userRouteJump(PUBLISHRECRUIT)} 
+        onClick={() => { initJobView() }} 
       />
       {/* // ? 底部信息  */}
       <About />

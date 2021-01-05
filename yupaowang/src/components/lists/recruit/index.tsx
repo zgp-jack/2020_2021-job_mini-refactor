@@ -1,9 +1,12 @@
 import Taro from '@tarojs/taro'
 import { View, Text, Image, Block } from '@tarojs/components'
 import { IMGCDNURL, FILTERWEIXINREG, REPLACEWEIXINTEXT, PUBLISHEDRECRUIT } from '../../../config'
-import Nodata from '../../../components/nodata'
-import './index.scss'
 import { RecruitListItem } from '../../../utils/request/index.d'
+import Nodata from '../../../components/nodata'
+import { useDispatch } from '@tarojs/redux';
+import { changeTabbar } from '../../../actions/tabbar'
+import { MEMBER } from '../../../constants/tabbar'
+import './index.scss'
 
 interface PROPS {
   data: RecruitListItem[][],
@@ -12,11 +15,18 @@ interface PROPS {
 }
 
 export default function RecruitList({ data, bottom = true, hasMore = false }: PROPS) {
+  // 获取分发action的dispatch
+  const dispatch = useDispatch()
   // 用户页面跳转
-  const userRouteJump = (url: string) => {
-    Taro.navigateTo({
-      url: url
-    })
+  const userRouteJump = (url: string, type?:number) => {
+    if(type){
+      dispatch(changeTabbar(MEMBER))
+    }
+    setTimeout(()=>{
+      Taro.navigateTo({
+        url: url
+      })
+    },0)
   }
   return (
     <View className='recruit-lists-container' style={bottom ? '' : 'padding-bottom:0'}>
@@ -28,7 +38,7 @@ export default function RecruitList({ data, bottom = true, hasMore = false }: PR
               {d.is_end == 2 && <Image className='recruit-findend-img' src={IMGCDNURL + 'newlist-jobfindend.png'} />}
               <View className='recruit-list-header'>
                 <View className='recruit-list-title overwords'>{d.title}</View>
-                {d.top && <Text className='recruit-list-settop' onClick={(e) => { e.stopPropagation(); userRouteJump(`${PUBLISHEDRECRUIT}?tatol=1`) }}>我要置顶</Text>}
+                {d.top && <Text className='recruit-list-settop' onClick={(e) => { e.stopPropagation(); userRouteJump(`${PUBLISHEDRECRUIT}?tatol=1`,1) }}>我要置顶</Text>}
               </View>
               <View className='recruit-list-body'>
                 <Image className='recruit-list-user' src={d.image} />

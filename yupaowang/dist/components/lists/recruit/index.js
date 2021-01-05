@@ -39,6 +39,12 @@ var _taroSwan2 = _interopRequireDefault(_taroSwan);
 
 var _index = __webpack_require__(/*! ../../../config/index */ "./src/config/index.ts");
 
+var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/redux/index.js");
+
+var _tabbar = __webpack_require__(/*! ../../../actions/tabbar */ "./src/actions/tabbar.ts");
+
+var _tabbar2 = __webpack_require__(/*! ../../../constants/tabbar */ "./src/constants/tabbar.ts");
+
 __webpack_require__(/*! ./index.scss */ "./src/components/lists/recruit/index.scss");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -92,12 +98,19 @@ var RecruitList = function (_Taro$Component) {
           bottom = _props$bottom === undefined ? true : _props$bottom,
           _props$hasMore = _props.hasMore,
           hasMore = _props$hasMore === undefined ? false : _props$hasMore;
-      // 用户页面跳转
+      // 获取分发action的dispatch
 
-      var userRouteJump = function userRouteJump(url) {
-        _taroSwan2.default.navigateTo({
-          url: url
-        });
+      var dispatch = (0, _redux.useDispatch)();
+      // 用户页面跳转
+      var userRouteJump = function userRouteJump(url, type) {
+        if (type) {
+          dispatch((0, _tabbar.changeTabbar)(_tabbar2.MEMBER));
+        }
+        setTimeout(function () {
+          _taroSwan2.default.navigateTo({
+            url: url
+          });
+        }, 0);
       };
       var anonymousState__temp = (0, _taroSwan.internal_inline_style)(bottom ? '' : 'padding-bottom:0');
       var loopArray23 = data ? data.map(function (item, __index1) {
@@ -115,7 +128,7 @@ var RecruitList = function (_Taro$Component) {
           var _$indexKey2 = "cjzzz" + __index1 + "-" + __index0;
           _this2.anonymousFunc2Map[_$indexKey2] = function (e) {
             e.stopPropagation();
-            userRouteJump(_index.PUBLISHEDRECRUIT + "?tatol=1");
+            userRouteJump(_index.PUBLISHEDRECRUIT + "?tatol=1", 1);
           };
           var loopState__temp3 = item.privateOriginal ? _index.REPLACEWEIXINTEXT ? d.privateOriginal.detail.replace(_index.FILTERWEIXINREG, '') : d.privateOriginal.detail : null;
           return {

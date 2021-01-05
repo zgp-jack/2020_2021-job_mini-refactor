@@ -1,7 +1,8 @@
-import Taro from '@tarojs/taro'
+import Taro, { useEffect, useState} from '@tarojs/taro'
 import { View, Text, Image } from '@tarojs/components'
 import { IMGCDNURL } from '../../../config'
 import Nodata from '../../../components/nodata'
+import { isIos } from '../../../utils/v'
 import './index.scss'
 
 
@@ -16,6 +17,11 @@ interface PROPS {
 }
 // 招工
 export default function RecruitListPage({ data = [], occupations, areasId, type, jobIds, detailList }:PROPS) {
+  // 判断是否是ios
+  const [ios, setIos] = useState<boolean>(false)
+  useEffect(()=>{
+    setIos(isIos())
+  },[])
   // 用户页面跳转
   const userRouteJump = (url: string) => {
     Taro.navigateTo({
@@ -45,7 +51,7 @@ export default function RecruitListPage({ data = [], occupations, areasId, type,
             <View>
             <Image src={v.image} className='recruitListBox-content-img'/>
             </View>
-            <View className='recruitListBox-content-box'>
+            <View className={ios ?'recruitListBox-content-box-ios': 'recruitListBox-content-box'}>
               <View className='recruitListBox-content-name'>{v.user_name}</View>
               <View className='recruitListBox-content-details'>{v.detail}</View>
             </View>

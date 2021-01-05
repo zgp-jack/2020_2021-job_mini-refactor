@@ -60,7 +60,13 @@
 .recruitListBox-content-box{
   flex: 1;
   margin-left: 20px;
-  height: 120px;
+  height: 112px;
+  overflow: hidden;
+}
+.recruitListBox-content-box-ios {
+  flex: 1;
+  margin-left: 20px;
+  height: 112px;
   overflow: hidden;
 }
 .recruitListBox-content-details{

@@ -55,6 +55,10 @@ var _resume2 = _interopRequireDefault(_resume);
 
 var _index3 = __webpack_require__(/*! ../../config/index */ "./src/config/index.ts");
 
+var _index4 = __webpack_require__(/*! ../../hooks/init_job_view/index */ "./src/hooks/init_job_view/index.ts");
+
+var _index5 = _interopRequireDefault(_index4);
+
 __webpack_require__(/*! ./index.scss */ "./src/components/tabbar/index.scss");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -111,7 +115,12 @@ var Tabbar = function (_Taro$Component) {
         return state.msg['messageNumber'];
       });
       var dispatch = (0, _redux.useDispatch)();
+      // 发布招工跳转不同模式（急速或者快速）
+
+      var _useJobView = (0, _index5.default)(),
+          initJobView = _useJobView.initJobView;
       // 是否展示发布
+
 
       var _useState = (0, _taroSwan.useState)(false),
           _useState2 = _slicedToArray(_useState, 2),
@@ -196,7 +205,7 @@ var Tabbar = function (_Taro$Component) {
         'tabbar-publish-items-active': active
       }) : null;
       this.anonymousFunc2 = function () {
-        return userTapPublishItem(_index3.PUBLISHRECRUIT);
+        initJobView();
       };
       this.anonymousFunc3 = function () {
         return userTapPublishItem(_index3.PUBLISHRESUME);

@@ -53,6 +53,10 @@ var _store = __webpack_require__(/*! ../../config/store */ "./src/config/store.t
 
 var _index3 = __webpack_require__(/*! ../../utils/helper/index */ "./src/utils/helper/index.ts");
 
+var _index4 = __webpack_require__(/*! ../../hooks/init_job_view/index */ "./src/hooks/init_job_view/index.ts");
+
+var _index5 = _interopRequireDefault(_index4);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
@@ -123,6 +127,10 @@ var Home = function (_Taro$Component) {
 
       var _props$homeIndex = this.__props.homeIndex,
           homeIndex = _props$homeIndex === undefined ? 0 : _props$homeIndex;
+      // 发布招工跳转不同模式（急速或者快速）
+
+      var _useJobView = (0, _index5.default)(),
+          initJobView = _useJobView.initJobView;
 
       var dispatch = (0, _redux.useDispatch)();
       var tabbarJump = function tabbarJump(id) {
@@ -238,7 +246,7 @@ var Home = function (_Taro$Component) {
         return userRouteJump(_index.DOWNLOADAPPPATH);
       };
       this.anonymousFunc2 = function () {
-        return userRouteJump(_index.PUBLISHRECRUIT);
+        initJobView();
       };
       this.anonymousFunc3 = function () {
         return tabbarJump(_tabbar2.RECRUIT);
@@ -250,7 +258,7 @@ var Home = function (_Taro$Component) {
         return tabbarJump(_tabbar2.USED);
       };
       this.anonymousFunc6 = function () {
-        return userRouteJump(_index.PUBLISHRECRUIT);
+        initJobView();
       };
       var anonymousState__temp = shwoCity ? function (val, id) {
         return setAreaInfo(val, id);

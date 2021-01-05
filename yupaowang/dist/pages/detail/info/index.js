@@ -55,6 +55,10 @@ var _index7 = __webpack_require__(/*! ../../../utils/subscribeToNews/index */ ".
 
 var _store = __webpack_require__(/*! ../../../config/store */ "./src/config/store.ts");
 
+var _tabbar = __webpack_require__(/*! ../../../constants/tabbar */ "./src/constants/tabbar.ts");
+
+var _tabbar2 = __webpack_require__(/*! ../../../actions/tabbar */ "./src/actions/tabbar.ts");
+
 __webpack_require__(/*! ./index.scss */ "./src/pages/detail/info/index.scss");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -79,8 +83,8 @@ var DetailInfoPage = function (_Taro$Component) {
       navigationBarTitleText: ''
     };
 
-    _this.$usedState = ["anonymousState__temp3", "data", "loopArray79", "loopArray80", "$compid__65", "$compid__66", "$compid__67", "resCode", "editPhone", "SHOWOFFICIALACCOUNT", "SERIES", "QQSERIES", "ios", "DOWNLOADAPP", "IMGCDNURL", "again", "stopHiring", "editTopping", "isCollection", "ISCANSHARE", "recommend", "complaintModal", "phone"];
-    _this.anonymousFunc5Map = {};
+    _this.$usedState = ["anonymousState__temp3", "data", "loopArray79", "loopArray80", "$compid__65", "$compid__66", "$compid__67", "IMGCDNURL", "resCode", "editPhone", "SHOWOFFICIALACCOUNT", "SERIES", "QQSERIES", "ios", "DOWNLOADAPP", "again", "stopHiring", "editTopping", "isCollection", "ISCANSHARE", "recommend", "complaintModal", "phone"];
+    _this.anonymousFunc6Map = {};
     _this.customComponents = ["WechatNotice", "CollectionRecruitList", "Report"];
     return _this;
   }
@@ -117,6 +121,7 @@ var DetailInfoPage = function (_Taro$Component) {
           $prevCompid__67 = _genCompid6[0],
           $compid__67 = _genCompid6[1];
 
+      var dispatch = (0, _redux.useDispatch)();
       var router = (0, _taroSwan.useRouter)();
       var _router$params = router.params,
           _router$params$id = _router$params.id,
@@ -735,44 +740,54 @@ var DetailInfoPage = function (_Taro$Component) {
           }
         }
       };
+      // 回到首页
+      var handleJump = function handleJump() {
+        dispatch((0, _tabbar2.changeTabbar)(_tabbar.RECRUIT));
+        _taroSwan2.default.reLaunch({
+          url: _index2.INDEXPATH + "?type=" + _tabbar.RECRUIT
+        });
+      };
       this.anonymousFunc0 = function () {
-        return jobGetTel();
+        return handleJump();
       };
       this.anonymousFunc1 = function () {
+        return jobGetTel();
+      };
+      this.anonymousFunc2 = function () {
         _taroSwan2.default.makePhoneCall({ phoneNumber: phone });
       };
-      this.anonymousFunc2 = footerComplaint;
-      this.anonymousFunc3 = function () {
+      this.anonymousFunc3 = footerComplaint;
+      this.anonymousFunc4 = function () {
         return userRouteJump('/subpackage/pages/anti-fraud/index');
       };
-      this.anonymousFunc4 = function () {
+      this.anonymousFunc5 = function () {
         return userRouteJump("/pages/static/notice/index?id=32");
       };
       var anonymousState__temp3 = _index2.REPLACEWEIXINTEXT ? data.detail.replace(_index2.FILTERWEIXINREG, '') : data.detail;
-      this.anonymousFunc6 = handleMap;
-      this.anonymousFunc7 = function () {
+      this.anonymousFunc7 = handleMap;
+      this.anonymousFunc8 = function () {
         return userRouteJump(_index2.DOWNLOADAPPPATH);
       };
-      this.anonymousFunc8 = function () {
+      this.anonymousFunc9 = function () {
         return userRouteJump("/pages/recruit/publish/index?id=" + data.id);
       };
-      this.anonymousFunc9 = handleStatus;
-      this.anonymousFunc10 = function () {
+      this.anonymousFunc10 = handleStatus;
+      this.anonymousFunc11 = function () {
         return userRouteJump("/pages/newtopping/recRang/index?job_id=" + data.id);
       };
-      this.anonymousFunc11 = handleStatus;
-      this.anonymousFunc12 = function () {
+      this.anonymousFunc12 = handleStatus;
+      this.anonymousFunc13 = function () {
         return handleTopping(data);
       };
-      this.anonymousFunc13 = function () {
+      this.anonymousFunc14 = function () {
         return userRouteJump("/pages/recruit/publish/index?id=" + data.id);
       };
-      this.anonymousFunc14 = collection;
-      this.anonymousFunc15 = footerComplaint;
-      this.anonymousFunc16 = function () {
+      this.anonymousFunc15 = collection;
+      this.anonymousFunc16 = footerComplaint;
+      this.anonymousFunc17 = function () {
         return jobGetTel();
       };
-      this.anonymousFunc17 = function () {
+      this.anonymousFunc18 = function () {
         _taroSwan2.default.makePhoneCall({ phoneNumber: phone });
       };
       var loopArray79 = data.classifyName.map(function (v, i) {
@@ -791,7 +806,7 @@ var DetailInfoPage = function (_Taro$Component) {
         };
         var loopState__temp5 = data.view_images.length ? i + i : null;
         var _$indexKey = "idzzz" + i;
-        _this2.anonymousFunc5Map[_$indexKey] = function () {
+        _this2.anonymousFunc6Map[_$indexKey] = function () {
           return handleImage(v.privateOriginal);
         };
         return {
@@ -826,6 +841,7 @@ var DetailInfoPage = function (_Taro$Component) {
         $compid__65: $compid__65,
         $compid__66: $compid__66,
         $compid__67: $compid__67,
+        IMGCDNURL: _index2.IMGCDNURL,
         resCode: resCode,
         editPhone: editPhone,
         SHOWOFFICIALACCOUNT: _index2.SHOWOFFICIALACCOUNT,
@@ -833,7 +849,6 @@ var DetailInfoPage = function (_Taro$Component) {
         QQSERIES: _index2.QQSERIES,
         ios: ios,
         DOWNLOADAPP: _index2.DOWNLOADAPP,
-        IMGCDNURL: _index2.IMGCDNURL,
         again: again,
         stopHiring: stopHiring,
         editTopping: editTopping,
@@ -872,8 +887,13 @@ var DetailInfoPage = function (_Taro$Component) {
     }
   }, {
     key: "anonymousFunc5",
-    value: function anonymousFunc5(_$indexKey) {
-      var _anonymousFunc5Map;
+    value: function anonymousFunc5(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc6",
+    value: function anonymousFunc6(_$indexKey) {
+      var _anonymousFunc6Map;
 
       ;
 
@@ -881,12 +901,7 @@ var DetailInfoPage = function (_Taro$Component) {
         e[_key - 1] = arguments[_key];
       }
 
-      return this.anonymousFunc5Map[_$indexKey] && (_anonymousFunc5Map = this.anonymousFunc5Map)[_$indexKey].apply(_anonymousFunc5Map, e);
-    }
-  }, {
-    key: "anonymousFunc6",
-    value: function anonymousFunc6(e) {
-      ;
+      return this.anonymousFunc6Map[_$indexKey] && (_anonymousFunc6Map = this.anonymousFunc6Map)[_$indexKey].apply(_anonymousFunc6Map, e);
     }
   }, {
     key: "anonymousFunc7",
@@ -943,12 +958,17 @@ var DetailInfoPage = function (_Taro$Component) {
     value: function anonymousFunc17(e) {
       ;
     }
+  }, {
+    key: "anonymousFunc18",
+    value: function anonymousFunc18(e) {
+      ;
+    }
   }]);
 
   return DetailInfoPage;
 }(_taroSwan2.default.Component);
 
-DetailInfoPage.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6", "anonymousFunc7", "anonymousFunc8", "anonymousFunc9", "anonymousFunc10", "anonymousFunc11", "anonymousFunc12", "anonymousFunc13", "anonymousFunc14", "anonymousFunc15", "anonymousFunc16", "anonymousFunc17"];
+DetailInfoPage.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6", "anonymousFunc7", "anonymousFunc8", "anonymousFunc9", "anonymousFunc10", "anonymousFunc11", "anonymousFunc12", "anonymousFunc13", "anonymousFunc14", "anonymousFunc15", "anonymousFunc16", "anonymousFunc17", "anonymousFunc18"];
 DetailInfoPage.$$componentPath = "pages/detail/info/index";
 DetailInfoPage.config = { navigationBarTitleText: '' };
 exports.default = DetailInfoPage;
