@@ -203,7 +203,6 @@ export default function fastPublishInit(InitParams: InitRecruitView) {
         console.error(areaData[i].id,'111')
         if(data.province_id == (+areaData[i].id)){
           const index = areaData[i].children.findIndex((v) => v.id == (data && data.city_id));
-          Msg((index).toString())
           if(index == -1){
             ShowActionModal({
               title: '温馨提示',
