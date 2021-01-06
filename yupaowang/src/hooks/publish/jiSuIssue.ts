@@ -13,6 +13,7 @@ import { setAreaInfo, setArea } from '../../actions/recruit'//获取发布招工
 import { RulesClassfies } from '../../components/classfiy_picker/index'
 import { usePublishData } from './commonIssue'
 import { ProfessionRecruitData } from '../../components/profession/index.d'
+import AREAS from '../../models/area'
 import { USEGAODEMAPAPI } from '../../config'
 
 
@@ -194,6 +195,24 @@ export default function fastPublishInit(InitParams: InitRecruitView) {
     let image;
     if (data.images.length) {
       image = data.images.toString();
+    }
+    //判断省市是否合理否则出现弹框提示
+    const areaData = [...AREAS];
+    if (data.city_id !== data.province_id){
+      for (let i = 0; i < areaData.length;i++){
+        console.error(areaData[i].id,'111')
+        if(data.province_id == (+areaData[i].id)){
+          const index = areaData[i].children.findIndex((v) => v.id == (data && data.city_id));
+          Msg((index).toString())
+          if(index == -1){
+            ShowActionModal({
+              title: '温馨提示',
+              msg: '请正确选择城市'
+            })
+            return
+          }
+        }
+      }
     }
     FastPublisInfo({ ...data, images: image, classifies:classifies}).then(res => {
       if (res.errcode == 'ok') {

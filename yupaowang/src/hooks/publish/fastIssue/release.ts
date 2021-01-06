@@ -12,6 +12,7 @@ import { ShowActionModal } from '../../../utils/msg'
 import { recSerAuthLoction } from '../../../utils/helper'
 import { changeTabbar } from '../../../actions/tabbar'
 import { USEGAODEMAPAPI } from '../../../config'
+import AREAS from '../../../models/area'
 
 
 
@@ -32,6 +33,8 @@ export default function useRelease () {
   const [showUpload, setShowUpload] = useState<boolean>(false)
   // 选择区域id,主要用于百度地图选择区域picker，百度小程序不兼容高德api
   const [areaId, setAreaId] = useState<string>('')
+  // 选择省区域id, 主要用于百度地图选择区域picker，用于提交时候的判断
+  const [pickerCity, setpickerCity] = useState<string>('');
   // 上传图片数据
   const [image, setImage] = useState<RecruitImageModel[]>([])
   // 获取分发action的dispatch
@@ -160,14 +163,34 @@ export default function useRelease () {
   // 发布招工
   function pulishFindWorker() {
     let images = image.map(item => item.url).join(",")
+    let area = USEGAODEMAPAPI ? recruitInfo.areaInfo.areaId : areaId;
     let data = {
       token: recruitInfo.token,
       trades: selectedClassifies.join(","),
       images: showUpload ? images: '',
-      area_id: USEGAODEMAPAPI ? recruitInfo.areaInfo.areaId : areaId,
+      area_id: area,
       location: recruitInfo.areaInfo.location,
       ad_name: recruitInfo.areaInfo.title,
       address: recruitInfo.areaInfo.info
+    }
+    console.error(areaId,'recruitInforecruitInfo')
+    console.error(data,'111')
+    //判断省市是否合理否则出现弹框提示
+    const areaData = [...AREAS];
+    if (pickerCity != area){
+      for (let i = 0; i < areaData.length; i++) {
+        console.error(areaData[i].id, '111')
+        if (pickerCity == areaData[i].id) {
+          const index = areaData[i].children.findIndex((v) => v.id == (data && area));
+          if (index == -1) {
+            ShowActionModal({
+              title: '温馨提示',
+              msg: '请正确选择城市'
+            })
+            return
+          }
+        }
+      }
     }
     publishFindWorker(data).then(res=>{
       if (res.errcode == 'ok') {
@@ -201,6 +224,7 @@ export default function useRelease () {
     setImage,
     maxImageCount,
     pulishFindWorker,
-    setAreaId
+    setAreaId,
+    setpickerCity,
   }
 }

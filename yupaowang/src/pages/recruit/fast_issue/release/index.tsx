@@ -14,7 +14,7 @@ import './index.scss'
 
 export default function FastIssue() {
   // 获取发布招工hook数据
-  const { classifyTree, selectText, maxClassifyCount, choceClassfies, selectWorkType, setShowUpload, showUpload, image, setImage, maxImageCount, pulishFindWorker, setAreaId } = useRelease()
+  const { classifyTree, selectText, maxClassifyCount, choceClassfies, selectWorkType, setShowUpload, showUpload, image, setImage, maxImageCount, pulishFindWorker, setAreaId, setpickerCity } = useRelease()
 
   // 发布招工redux数据
   const recruitInfo: RecruitInfo = useSelector<any, RecruitInfo>(state => state.RecruitAction)
@@ -85,6 +85,7 @@ export default function FastIssue() {
   //城市选择组件点击确定
   const selectCity = (data: CityTownPicker[]) => {
     setAreaId(data[1].id)
+    setpickerCity(data[0].id);
   }
 
 
