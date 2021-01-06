@@ -187,7 +187,6 @@ export default function PublishRecruit() {
     state.city_id = data[1].id
     setModel(state)
   }
-
   return (
     <Block>
       <Auth />

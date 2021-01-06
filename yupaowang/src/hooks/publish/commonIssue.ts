@@ -97,7 +97,7 @@ export function usePublishData(InitParams: InitRecruitView){
         setModel(initIssueModel)
         if (InitParams.infoId){
           dispatch(setAreaInfo({
-            title: res.model.address ? res.model.address : res.show_address,
+            title: res.model.address!='' ? res.model.address : res.show_address,
             location: res.model.location,
             info: '',
             adcode: res.model.adcode || '',

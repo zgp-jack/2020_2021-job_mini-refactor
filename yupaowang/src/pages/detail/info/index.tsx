@@ -478,6 +478,7 @@ export default function DetailInfoPage() {
           Msg(res.errmsg)
           setStopHiring(false);
           setRefresh(true)
+          getRecruitInfo();
         }
       } else {
         Msg(res.errmsg)
@@ -653,7 +654,7 @@ export default function DetailInfoPage() {
           (data.is_check === 2 ?
             <View className='detailInfo-edit'>
               <View className='detailInfo-edit-box'>
-                <View className='detailInfo-edit-list' onClick={() => userRouteJump(`/pages/recruit/publish/index?id=${data.id}`)}>修改</View>
+                <View className='detailInfo-edit-list' onClick={() => userRouteJump(`/pages/recruit/jisu_issue/index?id=${data.id}`)}>修改</View>
                 {/* <View className={stopHiring || (data.is_end === 2) ? 'detailInfo-edit-list-none' : 'detailInfo-edit-list'}>修改</View> */}
                 <View className={stopHiring || (data.is_end === 1) ? 'detailInfo-edit-list' : 'detailInfo-edit-list-none'} onClick={handleStatus}>停止招工</View>
                 {(data.has_top && data.top_info.is_top == '1') || editTopping == 1 ? <View className='detailInfo-edit-list-edit' onClick={() => userRouteJump(`/pages/newtopping/recRang/index?job_id=${data.id}`)}>修改置顶</View> : (stopHiring || (data.is_end === 2) ? <View className='detailInfo-edit-list' onClick={handleStatus}>重新招工</View> : <View className='detailInfo-edit-list' onClick={() => handleTopping(data)
@@ -663,7 +664,7 @@ export default function DetailInfoPage() {
             // 失败的时候只有修改
             <View className='detailInfo-edit'>
               <View className='detailInfo-edit-box'>
-                <View className='detailInfo-edit-list' onClick={() => userRouteJump(`/pages/recruit/publish/index?id=${data.id}`)}>修改</View>
+                <View className='detailInfo-edit-list' onClick={() => userRouteJump(`/pages/recruit/jisu_issue/index?id=${data.id}`)}>修改</View>
               </View>
             </View>)
           // 自己发布

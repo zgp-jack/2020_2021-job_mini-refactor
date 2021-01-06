@@ -107,7 +107,7 @@ export default function CityPicker({ onCity, modle }) {
         if (modle.province_id == cityPickerData[0][i].id) {
           initCityData(i)
           let copyArr = JSON.parse(JSON.stringify(AREAS))
-          if (modle.province_id && !modle.city_id) {
+          if (modle.province_id && !modle.city_id || (modle.province_id == modle.city_id)) {
             let cityData: CityTownPicker[] = []
             cityData[0] = cityPickerData[0][i]
             cityData[1] = cityPickerData[0][i]

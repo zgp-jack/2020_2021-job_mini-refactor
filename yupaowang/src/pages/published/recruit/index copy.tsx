@@ -10,9 +10,9 @@ import Nodata from '../../../components/nodata'
 import Tabbar from '../../../components/tabbar'
 import Auth from '../../../components/auth'
 import './index.scss'
-import Stick from '../../../components/stick/index'
 import { IMGCDNURL, SERVERPHONE } from '../../../config'
 import Msg from '../../../utils/msg'
+import Stick from '../../../components/stick/index'
 
 export interface searchDataType {
   type: string,
@@ -96,6 +96,7 @@ export default function PublishedRecruit() {
   }
 
   useEffect(() => {
+    console.log(searchData)
     if (!user.login || loading) return
     getPublishedRecruitLists()
   }, [searchData])
@@ -114,18 +115,9 @@ export default function PublishedRecruit() {
   }
 
   // 停止招工
-  const userStopRecruit = (item, i: number) => {
-    let end_status;
-    if (item.is_end == '2') {
-      end_status = 2
-    } else {
-      end_status = 1
-    }
-    let params = {
-      end_status,
-      infoId: item.id,
-    }
-    userChangeRecruitStatus(params)
+  const userStopRecruit = (id: string, i: number) => {
+    console.error(id,'11')
+    userChangeRecruitStatus({infoId:id})
       .then(res => {
         Msg(res.errmsg)
         if (res.errcode == 'ok') {
@@ -147,12 +139,10 @@ export default function PublishedRecruit() {
     })
   }
   // 取消置顶 jobUpdateTopStatusAction
-  const handlCancel = (item, index: number) => {
-    let data = item.top_data; //置顶数据
-    let toping = data.is_top // 是否置顶状态
+  const handlCancel = (id: string, index: number) => {
     const params = {
-      infoId: item.id,
-      status: toping == '1' ? '1' : "0"
+      infoId: id,
+      status: 0,
     }
     jobUpdateTopStatusAction(params).then(res => {
       detailUserSetTopAction(res, index)
@@ -224,18 +214,18 @@ export default function PublishedRecruit() {
       let toping = data.is_top // 是否置顶状态
       let showTime = now > parseInt(endtime) ? true : false; // 置顶是否过期 已过期
       if (showTime) { //如果置顶过期
-        userRouteJump(`/pages/newtopping/recRang/index?defaultTopArea=${item.area_id}&job_id=${item.id}`)
+        userRouteJump(`/pages/topping/index?id=${item.id}`)
         return false
       }
       const params = {
         infoId: item.id,
-        status: toping == '1' ? '1' : "0"
+        status: toping == '0' ? '1' : "0"
       }
       jobUpdateTopStatusAction(params).then(res => {
         detailUserSetTopAction(res, index)
       })
     } else {
-      userRouteJump(`/pages/newtopping/recRang/index?defaultTopArea=${item.area_id}&job_id=${item.id}`)
+      userRouteJump(`/pages/topping/index?id=${item.id}`)
     }
 
   }
@@ -271,51 +261,41 @@ export default function PublishedRecruit() {
               {item.is_check == '1' && <Image className='published-status-img' src={IMGCDNURL + 'published-recruit-checking.png'} />}
               {item.is_check == '0' && <Image className='published-status-img' src={IMGCDNURL + 'published-recruit-nopass.png'} />}
               {item.is_end == '2' && item.is_check == '2' && <Image className='published-status-img' src={IMGCDNURL + 'published-recruit-end.png'} />}
-              <View onClick={() => userRouteJump(`/pages/detail/info/index?id=${item.id}&type=1`)}>
+              <View onClick={() => userRouteJump(`/pages/detail/info/index?id=${item.id}`)}>
                 <View className='user-published-title overwords'>{item.title}</View>
                 <View className='user-published-content'>{item.detail}</View>
               </View>
               <View className='user-published-footer'>
-                {item.is_check == '1' && item.top == '1' &&
-                  <View className='published-ischeking-img-box'>
+                {item.is_check == '1' &&
+                  <View className='published-ischeking'>
                     <Image className='published-checking-img' src={IMGCDNURL + 'published-info.png'} />
-                    提示：人工审核中，该信息仅自己可见。
-                  </View>
-                }
-                {/* {item.is_check == '1' && !(item.top && item.top_data.is_top == '1')&& 
-                <View className='published-ischeking'>
-                  <View className='user-published-footer-item' onClick={() => userRouteJump(`/pages/newtopping/recRang/index?defaultTopArea=${item.area_id}&job_id=${item.id}`)}>预约置顶</View>
+                  提示：人工审核中，该信息仅自己可见。
                 </View>
-                } */}
-                {(item.is_check == '2' || (item.is_check == '1' && item.top == '0')) && item.is_end != '2' && item.is_check == '1' && (item.top && item.top_data.is_top == '1' ? '' : <View>
-                  <View className='published-ischeking-subscribe'>
-                    <View className='user-published-footer-item' onClick={() => userRouteJump(`/pages/newtopping/recRang/index?defaultTopArea=${item.area_id}&job_id=${item.id}&subscribe=1`)}>预约置顶</View>
-                  </View>
-                </View>)}
+                }
                 {item.is_check != '1' && <View className='user-published-footer-item' onClick={() => userRouteJump(`/pages/recruit/jisu_issue/index?id=${item.id}`)}>修改</View>}
                 {item.is_check == '2' &&
                   <Block >
-                    <View className='user-published-footer-item' onClick={() => userStopRecruit(item, index)}>{item.is_end == '2' ? '重新招工' : '停止招工'}</View>
+                    <View className='user-published-footer-item' onClick={() => userStopRecruit(item.id, index)}>{item.is_end == '2' ? '重新招工' : '停止招工'}</View>
                     {/* // 置顶按钮 */}
-                    {item.is_end != '2' &&
-                      <View>
-                        {item.top && item.top_data && item.top_data.is_top == '1' ?
-                          <View className='user-published-footer-item' onClick={() => handlCancel(item, index)}>取消置顶</View> :
-                          <View className='user-published-footer-item' onClick={() => handleTopping(item, index)}>我要置顶</View>
-                        }
-                      </View>
-                    }
+                    {/* {item.is_end != '2' && 
+                  <View>
+                      {item.top && item.top_data && item.top_data.is_top == '1' ?
+                          <View className='user-published-footer-item' onClick={()=>handlCancel(item.id, index)}>取消置顶</View> :
+                          <View className='user-published-footer-item' onClick={()=>handleTopping(item, index)}>我要置顶</View>
+                      }
+                  </View>
+                } */}
                     {/* <View className='user-published-footer-item' onClick={() => userRouteJump(`/pages/topping/index?id=${item.id}&type=1`)}>修改置顶</View> */}
                   </Block>
                 }
               </View>
               {/* // 置顶信息 */}
-              {item.top && item.top_data && item.top_data.is_top == '1' &&
+              {/* {item.top && item.top_data && item.top_data.is_top == '1' &&
                 <View className='published-top-box'>
-                  <View className='published-top-time'>到期时间：<Text className='published-top-time-color'>{item.top_data.time_str}</Text></View>
-                  <View className='published-top-cancel' onClick={() => userRouteJump(`/pages/newtopping/recRang/index?job_id=${item.id}`)}>修改置顶</View>
-                </View>
-              }
+                <View className='published-top-time'>到期时间：2020年04月30日11:31:38</View>
+                <View className='published-top-cancel' onClick={() => userRouteJump(`/pages/topping/index?id=${item.id}&type=1`)}>修改置顶</View>
+              </View>
+              } */}
             </View>
           ))}
           {!more && searchData.page > 1 && <View className='showMore'>没有更多数据了</View>}
