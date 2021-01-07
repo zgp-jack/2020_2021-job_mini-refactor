@@ -1,4 +1,4 @@
-import Taro, { useRouter, RouterInfo, Config, useState } from '@tarojs/taro'
+import Taro, { useRouter, RouterInfo, Config, useState,useEffect } from '@tarojs/taro'
 import { View, Text, Form, Input, Textarea, Block, Switch } from '@tarojs/components'
 import WordsTotal from '../../../components/wordstotal'
 import useCode from '../../../hooks/code'
@@ -45,6 +45,15 @@ export default function PublishRecruit() {
   // 使用自定义验证码hook
   const { text, userGetCode } = useCode()
   // const [classMateArr, setclassMateArr] = useState<RulesClassfies[]>([])
+
+
+  useEffect(()=>{
+    if (id){
+      Taro.setNavigationBarTitle({
+        title:'修改招工'
+      })
+    }
+  },[])
   // 切换图片上传显示隐藏
   const changeShowUpload = () => {
     setShowUpload(!showUpload)

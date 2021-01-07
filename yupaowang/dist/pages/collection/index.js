@@ -102,7 +102,7 @@ var Collection = function (_Taro$Component) {
       backgroundTextStyle: "dark"
     };
 
-    _this.$usedState = ["loopArray67", "$compid__54", "$compid__55", "tab", "current"];
+    _this.$usedState = ["loopArray68", "$compid__56", "$compid__57", "tab", "current"];
     _this.anonymousFunc0Map = {};
     _this.customComponents = ["Auth", "RecruitList", "ResumeList"];
     return _this;
@@ -125,15 +125,15 @@ var Collection = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__54"),
+      var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__56"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__54 = _genCompid2[0],
-          $compid__54 = _genCompid2[1];
+          $prevCompid__56 = _genCompid2[0],
+          $compid__56 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroSwan.genCompid)(__prefix + "$compid__55"),
+      var _genCompid3 = (0, _taroSwan.genCompid)(__prefix + "$compid__57"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__55 = _genCompid4[0],
-          $compid__55 = _genCompid4[1];
+          $prevCompid__57 = _genCompid4[0],
+          $compid__57 = _genCompid4[1];
       // 默认table
 
 
@@ -166,7 +166,7 @@ var Collection = function (_Taro$Component) {
       (0, _taroSwan.usePullDownRefresh)(function () {
         setInitPage(initPage + 1);
       });
-      var loopArray67 = _config2.default.map(function (item, __index0) {
+      var loopArray68 = _config2.default.map(function (item, __index0) {
         item = {
           privateOriginal: (0, _taroSwan.internal_get_original)(item)
         };
@@ -191,15 +191,15 @@ var Collection = function (_Taro$Component) {
       current === 1 && _taroSwan.propsManager.set({
         "bottom": bottom,
         "initPage": initPage
-      }, $compid__54, $prevCompid__54);
+      }, $compid__56, $prevCompid__56);
       !(current === 1) && _taroSwan.propsManager.set({
         "bottom": bottom,
         "initPage": initPage
-      }, $compid__55, $prevCompid__55);
+      }, $compid__57, $prevCompid__57);
       Object.assign(this.__state, {
-        loopArray67: loopArray67,
-        $compid__54: $compid__54,
-        $compid__55: $compid__55,
+        loopArray68: loopArray68,
+        $compid__56: $compid__56,
+        $compid__57: $compid__57,
         tab: _config2.default,
         current: current
       });

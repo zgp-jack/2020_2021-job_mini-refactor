@@ -12,6 +12,7 @@ import { RESUME } from '../../../constants/tabbar'
 import { UserInfo } from '../../../config/store'
 import Msg, { ShowActionModal } from '../../../utils/msg'
 import CheckingTop from '../../../components/checkingTop';
+import { changeTabbar } from '../../../actions/tabbar'
 import './index.scss'
 interface integralDataType {
   city_integral: string,
@@ -459,6 +460,7 @@ export default function RecRange() {
       })
       // 查看工人简历 返回找活列表
     }else{
+      dispatch(changeTabbar(RESUME))
       Taro.navigateTo({
         url: `/pages/index/index?type=${RESUME}`
       })

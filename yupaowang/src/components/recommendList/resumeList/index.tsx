@@ -35,7 +35,7 @@ export default function ResumeListPage({ data = [], occupations, areasId, type, 
       {data.map(item => (
         <Block key={item.id}>
           {/* uuid, location */}
-          <View className='resume-list-item' key={item.id} onClick={() => userRouteRe(`/pages/resume/detail/index?uuid=${item.uuid}&location=${item.location}`)}>
+          <View className='resume-list-item' key={item.id} onClick={() => userRouteRe(`/pages/resume/detail/index?uuid=${item.uuid}&location=${item.location}&type=1`)}>
               <View className='resume-list-header'>
                 <Image className='resume-list-user' src={item.headerimg} />
                 <View className='resume-list-userinfo'>

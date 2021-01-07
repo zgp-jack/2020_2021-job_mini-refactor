@@ -100,7 +100,7 @@ var ResumeList = function (_Taro$Component) {
         var location = _taroSwan2.default.getStorageSync(_store.UserLocation);
         location = location ? location = location.split(',').reverse() : '';
         _taroSwan2.default.navigateTo({
-          url: "/pages/resume/detail/index?uuid=" + uuid + "&location=" + location
+          url: "/pages/resume/detail/index?uuid=" + uuid + "&location=" + location + "&type=1"
         });
       };
       var handleJump = function handleJump(url) {

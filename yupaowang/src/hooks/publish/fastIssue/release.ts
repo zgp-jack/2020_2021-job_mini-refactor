@@ -173,8 +173,6 @@ export default function useRelease () {
       ad_name: recruitInfo.areaInfo.title,
       address: recruitInfo.areaInfo.info
     }
-    console.error(areaId,'recruitInforecruitInfo')
-    console.error(data,'111')
     //判断省市是否合理否则出现弹框提示
     const areaData = [...AREAS];
     if (pickerCity != area){

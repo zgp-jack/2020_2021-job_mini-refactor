@@ -13,6 +13,7 @@ import CollectionRecruitList from '../../../components/recommendList/index'
 import { REFID, UserInfo } from '../../../config/store'
 import { RECRUIT } from '../../../constants/tabbar'
 import { changeTabbar } from '../../../actions/tabbar';
+import NologinBtm from '../../../components/nologin_btm';
 import './index.scss'
 
 interface User {
@@ -576,7 +577,7 @@ export default function DetailInfoPage() {
 
   return (
     <View className='detailInfo'>
-      <Image src={`${IMGCDNURL}zyb/goHome.png`} className='goHome' onClick={()=>handleJump()}/>
+      {/* <Image src={`${IMGCDNURL}zyb/goHome.png`} className='goHome' onClick={()=>handleJump()}/> */}
       <WechatNotice type={1} />
       <View className='detailInfo-head'>
         <View className='detailInfo-head-titleBox'>
@@ -646,6 +647,8 @@ export default function DetailInfoPage() {
         <View className='detailInfo-Image-box'>
           <Image src={`${IMGCDNURL}download.png`} className='detailInfo-Image' onClick={() => userRouteJump(DOWNLOADAPPPATH)} />
         </View>}
+      {type?
+      <View>
       {resCode === 'own' ?
         (data.is_check === 1 || again ?
           <View className='detailInfo-userfooter'>
@@ -696,7 +699,9 @@ export default function DetailInfoPage() {
             </View>
           </View>
         </View>
-      }
+          }</View> : 
+          // 百度搜索进来
+          <NologinBtm text='查看更多招工信息' url={`/pages/index/index?type=${RECRUIT}`} type={`${RECRUIT}`} id={id} path={`/pages/detail/info/index?id=${id}`}/>}
       {/* 返回首页 */}
       {/* <View className='see-recruit-list-btn' onClick={()=>seeMoreRecruit()}>查看更多招工信息</View>   */}
 

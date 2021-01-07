@@ -33,7 +33,7 @@ export default function RecruitList({ data, bottom = true, hasMore = false }: PR
       {data && data.map((item) => (
         <Block>
           {item && item.map((d) => (
-            <View className='recruit-list-item' key={d.id} onClick={() => userRouteJump(`/pages/detail/info/index?id=${d.id}`)}>
+            <View className='recruit-list-item' key={d.id} onClick={() => userRouteJump(`/pages/detail/info/index?id=${d.id}&type=1`)}>
               {d.top && <Image className='list-toprecruit-img' src={IMGCDNURL + 'newlist-jobzd.png'} />}
               {d.is_end == 2 && <Image className='recruit-findend-img' src={IMGCDNURL + 'newlist-jobfindend.png'} />}
               <View className='recruit-list-header'>

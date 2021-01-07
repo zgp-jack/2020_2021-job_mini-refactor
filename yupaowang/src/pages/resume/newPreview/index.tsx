@@ -20,7 +20,7 @@ export default function NewPreview() {
   }
   // 设置当前页面的分享内容
   useShareAppMessage(() => {
-    let path: string = show_tips == '1' ? INDEXPATH : `/pages/resume/detail/index?uuid=${info.uuid}`
+    let path: string = show_tips == '1' ? INDEXPATH : `/pages/resume/detail/index?uuid=${info.uuid}&type=1`
     return {
       ...getUserShareMessage(),
       path: path

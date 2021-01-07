@@ -123,7 +123,7 @@ var RecruitList = function (_Taro$Component) {
           };
           var _$indexKey = "cizzz" + __index1 + "-" + __index0;
           _this2.anonymousFunc0Map[_$indexKey] = function () {
-            return userRouteJump("/pages/detail/info/index?id=" + d.privateOriginal.id);
+            return userRouteJump("/pages/detail/info/index?id=" + d.privateOriginal.id + "&type=1");
           };
           var _$indexKey2 = "cjzzz" + __index1 + "-" + __index0;
           _this2.anonymousFunc2Map[_$indexKey2] = function (e) {

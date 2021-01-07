@@ -106,7 +106,7 @@ var Topping = function (_Taro$Component) {
       navigationBarTitleText: '招工置顶'
     };
 
-    _this.$usedState = ["params", "data", "loopArray83", "loopArray84", "loopArray85", "loopArray86", "loopArray87", "province", "IMGCDNURL", "rec", "basics", "type", "list", "displayTime", "num", "endTime", "editData", "newTime", "day", "SERVERPHONE"];
+    _this.$usedState = ["params", "data", "loopArray84", "loopArray85", "loopArray86", "loopArray87", "loopArray88", "province", "IMGCDNURL", "rec", "basics", "type", "list", "displayTime", "num", "endTime", "editData", "newTime", "day", "SERVERPHONE"];
     _this.anonymousFunc0Map = {};
     _this.anonymousFunc1Map = {};
     _this.anonymousFunc2Map = {};
@@ -1075,7 +1075,7 @@ var Topping = function (_Taro$Component) {
       this.anonymousFunc12 = function () {
         _taroSwan2.default.makePhoneCall({ phoneNumber: _index2.SERVERPHONE });
       };
-      var loopArray83 = province ? province.map(function (v, __index0) {
+      var loopArray84 = province ? province.map(function (v, __index0) {
         v = {
           privateOriginal: (0, _taroSwan.internal_get_original)(v)
         };
@@ -1088,7 +1088,7 @@ var Topping = function (_Taro$Component) {
           privateOriginal: v.privateOriginal
         };
       }) : [];
-      var loopArray84 = params ? params.city.map(function (v, __index1) {
+      var loopArray85 = params ? params.city.map(function (v, __index1) {
         v = {
           privateOriginal: (0, _taroSwan.internal_get_original)(v)
         };
@@ -1101,7 +1101,7 @@ var Topping = function (_Taro$Component) {
           privateOriginal: v.privateOriginal
         };
       }) : [];
-      var loopArray85 = params ? params.province.map(function (v, __index2) {
+      var loopArray86 = params ? params.province.map(function (v, __index2) {
         v = {
           privateOriginal: (0, _taroSwan.internal_get_original)(v)
         };
@@ -1114,7 +1114,7 @@ var Topping = function (_Taro$Component) {
           privateOriginal: v.privateOriginal
         };
       }) : [];
-      var loopArray86 = params ? params.whole.map(function (v, __index3) {
+      var loopArray87 = params ? params.whole.map(function (v, __index3) {
         v = {
           privateOriginal: (0, _taroSwan.internal_get_original)(v)
         };
@@ -1127,7 +1127,7 @@ var Topping = function (_Taro$Component) {
           privateOriginal: v.privateOriginal
         };
       }) : [];
-      var loopArray87 = data.top_rules.map(function (v, i) {
+      var loopArray88 = data.top_rules.map(function (v, i) {
         v = {
           privateOriginal: (0, _taroSwan.internal_get_original)(v)
         };
@@ -1140,11 +1140,11 @@ var Topping = function (_Taro$Component) {
       Object.assign(this.__state, {
         params: params,
         data: data,
-        loopArray83: loopArray83,
         loopArray84: loopArray84,
         loopArray85: loopArray85,
         loopArray86: loopArray86,
         loopArray87: loopArray87,
+        loopArray88: loopArray88,
         province: province,
         IMGCDNURL: _index2.IMGCDNURL,
         rec: rec,

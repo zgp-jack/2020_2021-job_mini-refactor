@@ -19,7 +19,7 @@ export default function ResumeList({ data, bottom = true, hasMore = true }: PROP
     let location = Taro.getStorageSync(UserLocation)
     location = location ? location = location.split(',').reverse() : ''
     Taro.navigateTo({
-      url: `/pages/resume/detail/index?uuid=${uuid}&location=${location}`
+      url: `/pages/resume/detail/index?uuid=${uuid}&location=${location}&type=1`
     })
   }
   const handleJump = (url)=>{

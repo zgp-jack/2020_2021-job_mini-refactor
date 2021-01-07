@@ -4,9 +4,11 @@ import useCode from '../../../hooks/code'
 import { userChangePhone } from '../../../utils/request'
 import { isPhone } from '../../../utils/v'
 import { setMemberTel } from '../../../actions/member'
-import { useDispatch } from '@tarojs/redux'
+import { useDispatch, useSelector } from '@tarojs/redux'
 import './index.scss'
 import Msg from '../../../utils/msg'
+import { setPublishData } from '../../../actions/publish'
+import { PublishConfigData } from '../../../pages/recruit/index.d'
 
 interface BandPhone {
   tel: string,
@@ -19,6 +21,8 @@ export default function UserBandPhone(){
     tel: '',
     code: ''
   })
+  // 获取redux中工种数据
+  const publishData: PublishConfigData = useSelector<any, PublishConfigData>(state => state.publishData)
   // 用户填写表单
   const userEnterForm = (e: any, title: string)=> {
     let { value } = e.detail
@@ -40,6 +44,8 @@ export default function UserBandPhone(){
     .then(res=>{
       Msg(res.errmsg)
       if(res.errcode == 'ok'){
+        // 将数据存到redux中
+        dispatch(setPublishData({ ...publishData, user_mobile: info.tel }))
         dispatch(setMemberTel(info.tel))
         Taro.navigateBack()
       }

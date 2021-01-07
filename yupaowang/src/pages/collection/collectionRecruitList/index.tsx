@@ -24,7 +24,7 @@ export default function CollectionRecruitList({ data = [], onHandlerClick, recru
     // 1 审核中 2 通过 0 失败
     if (type == '2') {
       Taro.navigateTo({
-        url: `/pages/detail/info/index?id=${id}`
+        url: `/pages/detail/info/index?id=${id}&type=1`
       })
     } else if (type == '0') {
       setIsOpened(true)

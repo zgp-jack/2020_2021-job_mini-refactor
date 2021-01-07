@@ -77,7 +77,7 @@ var Tabber = function (_Taro$Component) {
       navigationBarTitleText: ''
     };
 
-    _this.$usedState = ["data", "modalData", "loopArray70", "loopArray71", "$compid__63", "$compid__64", "title", "tabBar", "initInfo", "SERIES", "QQSERIES", "ios", "time", "IMGCDNURL", "start", "end", "sourceList", "consumeList", "startType", "modal", "modelType", "showIsReport", "complaintModal", "showTime"];
+    _this.$usedState = ["data", "modalData", "loopArray71", "loopArray72", "$compid__65", "$compid__66", "title", "tabBar", "initInfo", "SERIES", "QQSERIES", "ios", "time", "IMGCDNURL", "start", "end", "sourceList", "consumeList", "startType", "modal", "modelType", "showIsReport", "complaintModal", "showTime"];
     _this.anonymousFunc1Map = {};
     _this.anonymousFunc5Map = {};
     _this.customComponents = ["Nodata", "Report"];
@@ -101,15 +101,15 @@ var Tabber = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__63"),
+      var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__65"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__63 = _genCompid2[0],
-          $compid__63 = _genCompid2[1];
+          $prevCompid__65 = _genCompid2[0],
+          $compid__65 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroSwan.genCompid)(__prefix + "$compid__64"),
+      var _genCompid3 = (0, _taroSwan.genCompid)(__prefix + "$compid__66"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__64 = _genCompid4[0],
-          $compid__64 = _genCompid4[1];
+          $prevCompid__66 = _genCompid4[0],
+          $compid__66 = _genCompid4[1];
       // 检测用户是否登录
 
 
@@ -693,7 +693,7 @@ var Tabber = function (_Taro$Component) {
               info = res.info,
               data = res.data;
 
-          if (res.errcode === 'deleted' || res.errcode === 'fail') {
+          if (res.errcode === 'deleted') {
             _taroSwan2.default.showModal({
               title: '温馨提示',
               content: errmsg,
@@ -702,6 +702,9 @@ var Tabber = function (_Taro$Component) {
             return;
           } else if (errcode === 'ok') {
             setModelType(info.type);
+            // 产品说不显示
+          } else if (res.errcode === 'fail') {
+            return;
           } else {
             setModelType(errcode);
           }
@@ -780,7 +783,7 @@ var Tabber = function (_Taro$Component) {
       this.anonymousFunc9 = function () {
         _taroSwan2.default.makePhoneCall({ phoneNumber: modalData.user_mobile });
       };
-      var loopArray70 = tabBar.map(function (item, i) {
+      var loopArray71 = tabBar.map(function (item, i) {
         item = {
           privateOriginal: (0, _taroSwan.internal_get_original)(item)
         };
@@ -795,7 +798,7 @@ var Tabber = function (_Taro$Component) {
           privateOriginal: item.privateOriginal
         };
       });
-      var loopArray71 = data.lists.map(function (item, index) {
+      var loopArray72 = data.lists.map(function (item, index) {
         item = {
           privateOriginal: (0, _taroSwan.internal_get_original)(item)
         };
@@ -827,21 +830,21 @@ var Tabber = function (_Taro$Component) {
       );
       !data.lists.length && _taroSwan.propsManager.set({
         "text": initInfo === '0' ? '暂无积分来源记录' : '暂无积分消耗记录'
-      }, $compid__63, $prevCompid__63);
+      }, $compid__65, $prevCompid__65);
       complaintModal && _taroSwan.propsManager.set({
         "display": complaintModal,
         "textarea": textarea,
         "handleTextarea": handleTextarea,
         "setComplaintModal": setComplaintModal,
         "handleSubmit": handleSubmit
-      }, $compid__64, $prevCompid__64);
+      }, $compid__66, $prevCompid__66);
       Object.assign(this.__state, {
         data: data,
         modalData: modalData,
-        loopArray70: loopArray70,
         loopArray71: loopArray71,
-        $compid__63: $compid__63,
-        $compid__64: $compid__64,
+        loopArray72: loopArray72,
+        $compid__65: $compid__65,
+        $compid__66: $compid__66,
         title: title,
         tabBar: tabBar,
         initInfo: initInfo,

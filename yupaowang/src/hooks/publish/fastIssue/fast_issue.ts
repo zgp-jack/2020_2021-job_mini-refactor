@@ -135,6 +135,7 @@ export function useFastIssue() {
   // 页面显示的时候
   useDidShow(() => {
     setResponse('')
+    setShowModel(false)
     // 获取页面栈
     let pages: Taro.Page[] = Taro.getCurrentPages();
     if (pages.length > 1) {

@@ -1,0 +1,55 @@
+@import '../../common.scss';
+.NologinBtm-container{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 120px;
+  background: #fff;
+  display: flex;
+  width: 100%;
+  z-index: 10;
+  text-align: center;
+  .NologinBtm-container-contents{
+    width: 150px;
+    .NologinBtm-container-contents-btn{
+      font-size: 26px;
+      margin-top: 20px;
+    }
+    .NologinBtm-img{
+      margin: 0 auto;
+      display: block;
+      height:40px;
+      width: 40px;
+    }
+    .NologinBtm-container-contents-text{
+      font-size: 26px;
+    }
+  }
+  .NologinBtm-text{
+    flex: 1;
+    text-align: center;
+    margin: auto;
+    display: flex;
+    vertical-align: middle;
+    justify-content: space-around;
+    font-size:26px;
+    .NologinBtm-btn-left{
+      height: 80px;
+      line-height: 80px;
+      width: 250px;
+      background: #3cbefb;
+      color: #fff;
+      text-align: center;
+      border-radius: 50px;
+    }
+    .NologinBtm-btn {
+      height: 80px;
+      line-height: 80px;
+      width: 250px;
+      background: #0084ff;
+      color: #fff;
+      text-align: center;
+      border-radius: 50px;
+    }
+  }
+}

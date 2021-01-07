@@ -81,7 +81,7 @@ export default function RecruitList(){
   return (
     <View className='recruit-lists-container'>
       {lists.item && lists.item.map((item)=>(
-            <View className='recruit-list-item' key={item.id} onClick={() => userRouteJump(`/pages/detail/info/index?id=${item.id}`)}>
+            <View className='recruit-list-item' key={item.id} onClick={() => userRouteJump(`/pages/detail/info/index?id=${item.id}&type=1`)}>
               {item.top && <Image className='list-toprecruit-img' src={IMGCDNURL + 'newlist-jobzitem.png'} />}
               {item.is_end == 2 && <Image className='recruit-findend-img' src={IMGCDNURL + 'newlist-jobfindenitem.png'} /> }
               <View className='recruit-list-header'>

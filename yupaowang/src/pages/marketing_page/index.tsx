@@ -2,13 +2,16 @@ import { View, Image, Text, Button, Swiper, SwiperItem } from '@tarojs/component
 import { useEffect, useState, useRouter, RouterInfo, Config } from '@tarojs/taro'
 import { IMGCDNURL } from '../../config/index'
 import CITY from '../../models/citys'
+import { useDispatch } from '@tarojs/redux'
+import { changeTabbar } from '../../actions/tabbar'
+import { MEMBER } from '../../constants/tabbar'
 import './index.scss'
 
 
 
 // *用户账号第一次发布招工成功后跳转到营销页
 export default function MarketPage(){
-
+  const dispatch = useDispatch()
   // 获取路由参数
   const router: RouterInfo = useRouter()
   // 区域id
@@ -62,9 +65,10 @@ export default function MarketPage(){
   }
   // 点击 管理招工信息 返回到招工信息列表
   const goRecruitList = () => {
-    Taro.navigateBack({
-      delta: 1
+    Taro.reLaunch({
+      url: '/pages/published/recruit/index'
     })
+    dispatch(changeTabbar(MEMBER))
   }
   // 点击增加曝光率去置顶
   const goTop = () => {

@@ -115,7 +115,7 @@ var PublishedRecruit = function (_Taro$Component) {
       backgroundTextStyle: "dark"
     };
 
-    _this.$usedState = ["loopArray63", "loopArray64", "$compid__53", "HeaderList", "refresh", "lists", "IMGCDNURL", "more", "searchData"];
+    _this.$usedState = ["loopArray63", "loopArray64", "$compid__54", "$compid__55", "showModel", "HeaderList", "refresh", "lists", "IMGCDNURL", "more", "searchData"];
     _this.anonymousFunc0Map = {};
     _this.anonymousFunc3Map = {};
     _this.anonymousFunc4Map = {};
@@ -124,7 +124,7 @@ var PublishedRecruit = function (_Taro$Component) {
     _this.anonymousFunc7Map = {};
     _this.anonymousFunc8Map = {};
     _this.anonymousFunc9Map = {};
-    _this.customComponents = ["Auth", "Stick", "Nodata", "Tabbar"];
+    _this.customComponents = ["Auth", "PromptBox", "Stick", "Nodata", "Tabbar"];
     return _this;
   }
 
@@ -145,15 +145,29 @@ var PublishedRecruit = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__53"),
+      var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__54"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__53 = _genCompid2[0],
-          $compid__53 = _genCompid2[1];
+          $prevCompid__54 = _genCompid2[0],
+          $compid__54 = _genCompid2[1];
+
+      var _genCompid3 = (0, _taroSwan.genCompid)(__prefix + "$compid__55"),
+          _genCompid4 = _slicedToArray(_genCompid3, 2),
+          $prevCompid__55 = _genCompid4[0],
+          $compid__55 = _genCompid4[1];
       // 判断提示框(components/stick)是否弹出
 
 
       var router = (0, _taroSwan.useRouter)();
       var tatol = router.params.tatol;
+      // 发布招工id
+
+      var jobId = router.params.id;
+      // 发布招工提示信息类型member_first:用户第一次发布day_first：用户当日第一次发布 
+      // day_last：用户当日最后一条免费发布
+      // ' '：用户未登录或不是上方任何一种情况，不弹窗
+      var type = router.params.type;
+      // 提示文本内容
+      var text = router.params.text;
       // 当前高亮key
 
       var _useState = (0, _taroSwan.useState)(_config2.default[0].id),
@@ -188,6 +202,27 @@ var PublishedRecruit = function (_Taro$Component) {
           _useState10 = _slicedToArray(_useState9, 2),
           lists = _useState10[0],
           setLists = _useState10[1];
+      // 子组件提示框的显示属性
+
+
+      var _useState11 = (0, _taroSwan.useState)({}),
+          _useState12 = _slicedToArray(_useState11, 2),
+          prompt = _useState12[0],
+          setPrompt = _useState12[1];
+      // 是否展示提示框
+
+
+      var _useState13 = (0, _taroSwan.useState)(false),
+          _useState14 = _slicedToArray(_useState13, 2),
+          showModel = _useState14[0],
+          setShowModel = _useState14[1];
+      // 请求状态
+
+
+      var _useState15 = (0, _taroSwan.useState)(true),
+          _useState16 = _slicedToArray(_useState15, 2),
+          reqStatus = _useState16[0],
+          setReqStatus = _useState16[1];
       // 获取用户信息
 
 
@@ -195,18 +230,46 @@ var PublishedRecruit = function (_Taro$Component) {
         return state.User;
       });
 
-      var _useState11 = (0, _taroSwan.useState)({
+      var _useState17 = (0, _taroSwan.useState)({
         mid: user.userId,
         uuid: user.uuid,
         page: 1,
         type: id
       }),
-          _useState12 = _slicedToArray(_useState11, 2),
-          searchData = _useState12[0],
-          setSearchData = _useState12[1];
+          _useState18 = _slicedToArray(_useState17, 2),
+          searchData = _useState18[0],
+          setSearchData = _useState18[1];
+
+      (0, _taroSwan.useEffect)(function () {
+        if (type == 'member_first' && lists.length > 0 && reqStatus) {
+          var itemIndex = lists.findIndex(function (item) {
+            return item.id == jobId;
+          });
+          var item = lists[itemIndex];
+          setReqStatus(false);
+          userRouteJump("/pages/marketing_page/index?defaultTopArea=" + item.area_id + "&job_id=" + item.id);
+        }
+      }, [lists]);
+      // 根据type是否显示弹窗
+      (0, _taroSwan.useEffect)(function () {
+        if (type == 'day_first') {
+          // 发布成功提示框
+          var promptData = {
+            showClose: false,
+            showTitle: true,
+            cancelText: '暂不提醒',
+            confirmText: '去增加曝光率',
+            titleText: '温馨提示',
+            content: [{ des: text }]
+          };
+          setPrompt(promptData);
+          setShowModel(true);
+        } else if (type == 'day_last') {
+          // 发布成功提示框
+          getFreeConfig();
+        }
+      }, []);
       // 当redux更新后 ， 立即更新用户数据
-
-
       (0, _taroSwan.useEffect)(function () {
         if (!user.login || loading) {
           return;
@@ -399,6 +462,63 @@ var PublishedRecruit = function (_Taro$Component) {
           userRouteJump("/pages/newtopping/recRang/index?defaultTopArea=" + item.area_id + "&job_id=" + item.id);
         }
       };
+      // *提示框处理
+      // 处理发布招工请求返回值中data提示框文字显示内容
+      var handleText = function handleText(text, rules) {
+        var texts = [];
+        for (var i = 0; i < rules.length; i++) {
+          if (i === 0) {
+            texts.push({ text: text.substring(i, rules[i].start), color: "#000000" });
+          } else {
+            texts.push({ text: text.substring(rules[i - 1].start + rules[i - 1].length, rules[i].start), color: "#000000" });
+          }
+          texts.push({
+            text: text.substring(rules[i].start, rules[i].start + rules[i].length),
+            color: rules[i].value
+          });
+          if (i === rules.length - 1) {
+            texts.push({ text: text.substring(rules[i].start + rules[i].length), color: "#000000" });
+          }
+        }
+        var promptData = {
+          showClose: false,
+          showTitle: true,
+          cancelText: '不了，谢谢',
+          confirmText: '去发布',
+          titleText: '提示',
+          content: [{ text: texts }]
+        };
+        setPrompt(promptData);
+        setShowModel(true);
+      };
+      // 获取后台配置的免费发布招工条数配置信息
+      var getFreeConfig = function getFreeConfig() {
+        (0, _index.getFreeIssueConfig)().then(function (res) {
+          if (res.errcode == "ok") {
+            if (res.data.type == "paid_issue") {
+              handleText(res.data.tips.text, res.data.tips.rules);
+            }
+          } else if (res.errcode == "fail") {
+            (0, _index4.default)(res.errmsg);
+          }
+        });
+      };
+      // 当天免费的最后一条发布招工信息弹窗，点击 不了谢谢 关闭弹窗
+      var cancel = function cancel() {
+        if (type == 'day_first') {
+          notRemindReq();
+          setShowModel(false);
+        } else if (type == 'day_last') {
+          setShowModel(false);
+        }
+      };
+      // 用户当天第一免费发布弹窗的 暂不提醒 按钮请求
+      var notRemindReq = function notRemindReq() {
+        (0, _index.getNotRemind)();
+      };
+      var close = function close() {
+        setShowModel(false);
+      };
       this.anonymousFunc1 = function () {
         return reloadPage();
       };
@@ -466,13 +586,26 @@ var PublishedRecruit = function (_Taro$Component) {
           privateOriginal: item.privateOriginal
         };
       });
+      showModel && _taroSwan.propsManager.set({
+        "showClose": prompt.showClose,
+        "showTitle": prompt.showTitle,
+        "cancelText": prompt.cancelText,
+        "confirmText": prompt.confirmText,
+        "titleText": prompt.titleText,
+        "content": prompt.content,
+        "cancel": cancel,
+        "confirm": confirm,
+        "close": close
+      }, $compid__54, $prevCompid__54);
       _taroSwan.propsManager.set({
         "tatol": tatol
-      }, $compid__53, $prevCompid__53);
+      }, $compid__55, $prevCompid__55);
       Object.assign(this.__state, {
         loopArray63: loopArray63,
         loopArray64: loopArray64,
-        $compid__53: $compid__53,
+        $compid__54: $compid__54,
+        $compid__55: $compid__55,
+        showModel: showModel,
         HeaderList: _config2.default,
         refresh: refresh,
         lists: lists,

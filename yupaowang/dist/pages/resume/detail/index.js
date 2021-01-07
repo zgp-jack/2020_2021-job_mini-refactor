@@ -92,6 +92,8 @@ var _index7 = __webpack_require__(/*! ../../../utils/subscribeToNews/index */ ".
 
 var _resume_list = __webpack_require__(/*! ../../../actions/resume_list */ "./src/actions/resume_list.ts");
 
+var _tabbar = __webpack_require__(/*! ../../../constants/tabbar */ "./src/constants/tabbar.ts");
+
 __webpack_require__(/*! ./index.scss */ "./src/pages/resume/detail/index.scss");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -119,10 +121,10 @@ var ResumeDetail = function (_Taro$Component) {
       backgroundTextStyle: "dark"
     };
 
-    _this.$usedState = ["anonymousState__temp", "anonymousState__temp4", "anonymousState__temp5", "data", "loopArray95", "loopArray97", "loopArray98", "$compid__79", "$compid__80", "isAuth", "IMGCDNURL", "examine", "onoff", "SERIES", "QQSERIES", "ios", "login", "user", "praise", "ISCANSHARE", "collect", "shownewtips", "recommendRe", "complaintModal", "BAIDUSERIES", "age", "phone"];
+    _this.$usedState = ["anonymousState__temp", "anonymousState__temp4", "anonymousState__temp5", "anonymousState__temp10", "anonymousState__temp11", "anonymousState__temp12", "data", "loopArray96", "loopArray98", "loopArray99", "$compid__82", "$compid__83", "$compid__84", "isAuth", "IMGCDNURL", "examine", "onoff", "SERIES", "QQSERIES", "ios", "type", "praise", "ISCANSHARE", "collect", "uuid", "shownewtips", "recommendRe", "complaintModal", "BAIDUSERIES", "age", "phone"];
     _this.anonymousFunc4Map = {};
     _this.anonymousFunc6Map = {};
-    _this.customComponents = ["Auth", "CollectionRecruitList", "Report"];
+    _this.customComponents = ["Auth", "NologinBtm", "CollectionRecruitList", "Report"];
     return _this;
   }
 
@@ -143,15 +145,20 @@ var ResumeDetail = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__79"),
+      var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__82"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__79 = _genCompid2[0],
-          $compid__79 = _genCompid2[1];
+          $prevCompid__82 = _genCompid2[0],
+          $compid__82 = _genCompid2[1];
 
-      var _genCompid3 = (0, _taroSwan.genCompid)(__prefix + "$compid__80"),
+      var _genCompid3 = (0, _taroSwan.genCompid)(__prefix + "$compid__83"),
           _genCompid4 = _slicedToArray(_genCompid3, 2),
-          $prevCompid__80 = _genCompid4[0],
-          $compid__80 = _genCompid4[1];
+          $prevCompid__83 = _genCompid4[0],
+          $compid__83 = _genCompid4[1];
+
+      var _genCompid5 = (0, _taroSwan.genCompid)(__prefix + "$compid__84"),
+          _genCompid6 = _slicedToArray(_genCompid5, 2),
+          $prevCompid__84 = _genCompid6[0],
+          $compid__84 = _genCompid6[1];
       // 获取dispatch分发action
 
 
@@ -175,7 +182,8 @@ var ResumeDetail = function (_Taro$Component) {
 
       var _router$params = router.params,
           uuid = _router$params.uuid,
-          location = _router$params.location;
+          location = _router$params.location,
+          type = _router$params.type;
       // 判断是否是ios
 
       var _useState3 = (0, _taroSwan.useState)(false),
@@ -630,11 +638,14 @@ var ResumeDetail = function (_Taro$Component) {
       };
       this.anonymousFunc8 = resumeSupport;
       this.anonymousFunc9 = resumeCollect;
+      var anonymousState__temp10 = "/pages/index/index?type=" + _tabbar.RESUME;
+      var anonymousState__temp11 = "" + _tabbar.RESUME;
+      var anonymousState__temp12 = "/pages/resume/detail/index?uuid=" + uuid + "&location=" + location;
       this.anonymousFunc10 = function () {
         setShownewtips(false);
       };
       this.anonymousFunc11 = handleTellPhone;
-      var loopArray95 = data.info.occupations.length ? data.info.occupations.map(function (v, i) {
+      var loopArray96 = data.info.occupations.length ? data.info.occupations.map(function (v, i) {
         v = {
           privateOriginal: (0, _taroSwan.internal_get_original)(v)
         };
@@ -644,7 +655,7 @@ var ResumeDetail = function (_Taro$Component) {
           privateOriginal: v.privateOriginal
         };
       }) : [];
-      var loopArray97 = data.project.length ? data.project[0].image.map(function (v, i) {
+      var loopArray98 = data.project.length ? data.project[0].image.map(function (v, i) {
         v = {
           privateOriginal: (0, _taroSwan.internal_get_original)(v)
         };
@@ -659,7 +670,7 @@ var ResumeDetail = function (_Taro$Component) {
           privateOriginal: v.privateOriginal
         };
       }) : [];
-      var loopArray98 = data.certificates.length ? data.certificates[0].image.map(function (val, i) {
+      var loopArray99 = data.certificates.length ? data.certificates[0].image.map(function (val, i) {
         val = {
           privateOriginal: (0, _taroSwan.internal_get_original)(val)
         };
@@ -674,6 +685,12 @@ var ResumeDetail = function (_Taro$Component) {
           privateOriginal: val.privateOriginal
         };
       }) : [];
+      !type && _taroSwan.propsManager.set({
+        "text": "\u67E5\u770B\u66F4\u591A\u627E\u6D3B\u4FE1\u606F",
+        "url": anonymousState__temp10,
+        "type": anonymousState__temp11,
+        "path": anonymousState__temp12
+      }, $compid__82, $prevCompid__82);
       recommendRe.length && _taroSwan.propsManager.set({
         "data": recommendRe,
         "type": 2,
@@ -681,24 +698,28 @@ var ResumeDetail = function (_Taro$Component) {
         "occupations": occupations,
         "jobIds": jobIds,
         "infoUuid": infoUuid
-      }, $compid__79, $prevCompid__79);
+      }, $compid__83, $prevCompid__83);
       complaintModal && _taroSwan.propsManager.set({
         "display": complaintModal,
         "textarea": textarea,
         "handleTextarea": handleTextarea,
         "setComplaintModal": setComplaintModal,
         "handleSubmit": handleSubmit
-      }, $compid__80, $prevCompid__80);
+      }, $compid__84, $prevCompid__84);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
         anonymousState__temp4: anonymousState__temp4,
         anonymousState__temp5: anonymousState__temp5,
+        anonymousState__temp10: anonymousState__temp10,
+        anonymousState__temp11: anonymousState__temp11,
+        anonymousState__temp12: anonymousState__temp12,
         data: data,
-        loopArray95: loopArray95,
-        loopArray97: loopArray97,
+        loopArray96: loopArray96,
         loopArray98: loopArray98,
-        $compid__79: $compid__79,
-        $compid__80: $compid__80,
+        loopArray99: loopArray99,
+        $compid__82: $compid__82,
+        $compid__83: $compid__83,
+        $compid__84: $compid__84,
         isAuth: isAuth,
         IMGCDNURL: _index2.IMGCDNURL,
         examine: examine,
@@ -706,11 +727,11 @@ var ResumeDetail = function (_Taro$Component) {
         SERIES: _index2.SERIES,
         QQSERIES: _index2.QQSERIES,
         ios: ios,
-        login: login,
-        user: user,
+        type: type,
         praise: praise,
         ISCANSHARE: _index2.ISCANSHARE,
         collect: collect,
+        uuid: uuid,
         shownewtips: shownewtips,
         recommendRe: recommendRe,
         complaintModal: complaintModal,

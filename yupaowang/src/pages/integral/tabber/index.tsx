@@ -456,7 +456,7 @@ export default function Tabber() {
   const handleModal = (userId: string, time: string) => {
     integralUseInfoAction(userId, time).then(res => {
       const {errcode, errmsg, info, data} = res
-      if (res.errcode === 'deleted' || res.errcode === 'fail') {
+      if (res.errcode === 'deleted' ) {
         Taro.showModal({
           title: '温馨提示',
           content: errmsg,
@@ -465,7 +465,10 @@ export default function Tabber() {
         return
       } else if (errcode === 'ok') {
         setModelType(info.type)
-      } else {
+        // 产品说不显示
+      } else if (res.errcode === 'fail'){
+        return
+      }else {
         setModelType(errcode)
       }
       let showComplain;
@@ -641,7 +644,7 @@ export default function Tabber() {
                     <View className='content-right content-gray content-right-work'>
                       {
                         modalData.occupations.map((item, i) => (
-                          <Text>{i === 0 ? item : '、' + item}</Text>
+                          <Text>{(modalData.classifyName.length == 0 && i === 0) ? item : (i == modalData.classifyName.length - 1 ? item : item + '、')}</Text>
                         ))
                       }
                     </View>
@@ -679,7 +682,7 @@ export default function Tabber() {
                     <View className='content-right content-gray content-right-work'>
                       {
                         modalData.classifyName.map((item, i) => (
-                          <Text>{i === 0 ? item : '、' + item}</Text>
+                          <Text>{i === 0 ? item : (i == modalData.classifyName.length-1 ? item:item+'、')}</Text>
                         ))
                       }
                     </View>
@@ -728,7 +731,7 @@ export default function Tabber() {
                     <View className='content-right content-gray content-right-work'>
                       {
                         modalData.occupations.map((item, i) => (
-                          <Text>{i === 0 ? item : '、' + item}</Text>
+                          <Text>{(modalData.classifyName.length == 0 && i === 0) ? item : (i == modalData.classifyName.length - 1 ? item : item + '、')}</Text>
                         ))
                       }
                     </View>
@@ -774,7 +777,7 @@ export default function Tabber() {
                     <View className='content-right content-gray content-right-work'>
                       {
                         modalData.classifyName.map((item, i) => (
-                          <Text>{i === 0 ? item : '、' + item}</Text>
+                          <Text>{(modalData.classifyName.length == 0 && i === 0) ? item : (i == modalData.classifyName.length - 1 ? item : item + '、')}</Text>
                         ))
                       }
                     </View>
@@ -815,7 +818,7 @@ export default function Tabber() {
                     <View className='content-right content-gray content-right-work'>
                       {
                         modalData.classifyName.map((item, i) => (
-                          <Text>{i === 0 ? item : '、' + item}</Text>
+                          <Text>{(modalData.classifyName.length == 0 && i === 0) ? item : (i == modalData.classifyName.length - 1 ? item : item + '、')}</Text>
                         ))
                       }
                     </View>

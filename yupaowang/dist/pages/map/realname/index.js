@@ -78,7 +78,7 @@ var RealnameMap = function (_Taro$Component) {
       navigationBarTitleText: '地址选择'
     };
 
-    _this.$usedState = ["loopArray61", "loopArray62", "$compid__52", "smAreaText", "showHistory", "histroyList", "lists", "IMGCDNURL", "showCity", "area"];
+    _this.$usedState = ["loopArray61", "loopArray62", "$compid__53", "smAreaText", "showHistory", "histroyList", "lists", "IMGCDNURL", "showCity", "area"];
     _this.anonymousFunc4Map = {};
     _this.anonymousFunc5Map = {};
     _this.customComponents = ["Cities"];
@@ -102,10 +102,10 @@ var RealnameMap = function (_Taro$Component) {
       var __prefix = this.$prefix;
       ;
 
-      var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__52"),
+      var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__53"),
           _genCompid2 = _slicedToArray(_genCompid, 2),
-          $prevCompid__52 = _genCompid2[0],
-          $compid__52 = _genCompid2[1];
+          $prevCompid__53 = _genCompid2[0],
+          $compid__53 = _genCompid2[1];
 
       var dispatch = (0, _redux.useDispatch)();
       var RealnameAreaRedux = (0, _redux.useSelector)(function (store) {
@@ -374,11 +374,11 @@ var RealnameMap = function (_Taro$Component) {
         "userLoc": userLoc,
         "userChangeCity": userChangeCity,
         "userTapCityBtn": userTapCityBtn
-      }, $compid__52, $prevCompid__52);
+      }, $compid__53, $prevCompid__53);
       Object.assign(this.__state, {
         loopArray61: loopArray61,
         loopArray62: loopArray62,
-        $compid__52: $compid__52,
+        $compid__53: $compid__53,
         smAreaText: smAreaText,
         showHistory: showHistory,
         histroyList: histroyList,

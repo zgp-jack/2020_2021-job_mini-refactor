@@ -1,4 +1,4 @@
-import Taro, { useRouter, RouterInfo, useState, Config, useShareAppMessage, useDidShow } from '@tarojs/taro'
+import Taro, { useRouter, RouterInfo, useState, Config, useShareAppMessage, useDidShow, login } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
 import WechatNotice from '../../../components/wechat'
 import { getUsedInfo } from '../../../utils/request'
@@ -6,6 +6,7 @@ import { getUserShareMessage } from '../../../utils/helper'
 import { ShowActionModal } from '../../../utils/msg'
 import { REPLACEWEIXINTEXT, FILTERWEIXINREG, SERIES, BAIDUSERIES, MaxUsedInfoId } from '../../../config'
 import { GetUsedInfoData } from '../../../utils/request/index.d'
+import NologinBtm from '../../../components/nologin_btm';
 import './index.scss'
 
 export default function UsedInfo(){
@@ -25,7 +26,7 @@ export default function UsedInfo(){
     if (!used || (used != '1')){
       if (parseInt(id) > MaxUsedInfoId){
         Taro.redirectTo({
-          url:  `/pages/detail/info/index?id=${id}`
+          url:  `/pages/detail/info/index?id=${id}&type=1`
         })
         return
       }
@@ -134,6 +135,7 @@ export default function UsedInfo(){
       </View>
       {/* 返回首页 */}
       {/* <View className='see-recruit-list-btn' onClick={() => seeMoreUsed()}>查看更多二手交易信息</View>  */}
+      <NologinBtm text='查看更多二手交易信息' url={`/pages/used/lists/index`} type='' id={id} path={`pages/used/info/index?id=${id}&used=${used}`}/>
     </View>
   )
 }

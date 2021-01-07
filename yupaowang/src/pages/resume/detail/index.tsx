@@ -15,6 +15,8 @@ import { User } from '../../../reducers/user'
 import { resumeDetailCertificatesRedux, resumeDetailProjectRedux } from '../../../utils/request/index.d';
 import { SubscribeToNews } from '../../../utils/subscribeToNews';
 import { setSubpackcertificate, setSubpackProject } from '../../../actions/resume_list';
+import NologinBtm from '../../../components/nologin_btm';
+import { RESUME } from '../../../constants/tabbar'
 import './index.scss'
 
 export default function ResumeDetail() {
@@ -27,7 +29,7 @@ export default function ResumeDetail() {
   // 相关推荐
   const [recommendRe, setRecommend] = useState<any[]>([])
   //获取uuid和location,location需要修改，用一个共同的，最外层使用的
-  let { uuid, location } = router.params;
+  let { uuid, location, type } = router.params;
   // 判断是否是ios
   const [ios, setIos] = useState<boolean>(false)
   // uuid
@@ -374,7 +376,6 @@ export default function ResumeDetail() {
       }
     }
   }
-
   return (
     <View>
       {isAuth && <Auth />}
@@ -655,7 +656,8 @@ export default function ResumeDetail() {
         <View className="seemore-recommend-recruit">查看更多找活信息</View>
       </View> */}
         {/* 底部 */}
-        {(!login || user.uuid != data.info.user_uuid) &&
+        {/* {(!login || user.uuid != data.info.user_uuid) ? */}
+        {type?
           <View className='resumeDetail-footer'>
             <View className='resumeDetail-footer-box' onClick={resumeSupport}>
               <Image className="bossimg" src={praise === 0 ? `${IMGCDNURL}newresume-footer-star.png` : `${IMGCDNURL}newresume-footer-star-active.png`} />
@@ -671,7 +673,7 @@ export default function ResumeDetail() {
               <Image className="bossimg" src={collect === 0 ? `${IMGCDNURL}newresume-footer-collect.png` : `${IMGCDNURL}newresume-footer-collect-active.png`} />
               <View>收藏</View>
             </View>
-          </View>
+          </View> : <NologinBtm text='查看更多找活信息' url={`/pages/index/index?type=${RESUME}`} type={`${RESUME}`} id={uuid} path={`/pages/resume/detail/index?uuid=${uuid}&location=${location}`}/>
         }
         {/* 弹框 */}
         {shownewtips &&

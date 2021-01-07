@@ -22,7 +22,7 @@ export default function CollectionResumeList({ data = [], onHandlerClick, bottom
     // 1 审核中 2 通过 0 失败
     if (type == '2') {
       Taro.navigateTo({
-        url: `/pages/resume/detail/index?uuid=${uuid}`
+        url: `/pages/resume/detail/index?uuid=${uuid}&type=1`
       })
     } else if (type == '0') {
       setIsOpened(true)

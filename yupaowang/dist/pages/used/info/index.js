@@ -67,8 +67,8 @@ var UsedInfo = function (_Taro$Component) {
       navigationBarTitleText: '二手交易详情'
     };
 
-    _this.$usedState = ["anonymousState__temp", "model"];
-    _this.customComponents = ["WechatNotice"];
+    _this.$usedState = ["anonymousState__temp", "anonymousState__temp2", "$compid__52", "model", "id"];
+    _this.customComponents = ["WechatNotice", "NologinBtm"];
     return _this;
   }
 
@@ -86,6 +86,12 @@ var UsedInfo = function (_Taro$Component) {
       var __isRunloopRef = arguments[2];
       var __prefix = this.$prefix;
       ;
+
+      var _genCompid = (0, _taroSwan.genCompid)(__prefix + "$compid__52"),
+          _genCompid2 = _slicedToArray(_genCompid, 2),
+          $prevCompid__52 = _genCompid2[0],
+          $compid__52 = _genCompid2[1];
+
       var router = (0, _taroSwan.useRouter)();
       // id为二手详情id used 因为百度收录问题， 当id>MaxUsedInfoId 时都会带used=1来保证最新资源收录
       var _router$params = router.params,
@@ -109,7 +115,7 @@ var UsedInfo = function (_Taro$Component) {
         if (!used || used != '1') {
           if (parseInt(id) > _index4.MaxUsedInfoId) {
             _taroSwan2.default.redirectTo({
-              url: "/pages/detail/info/index?id=" + id
+              url: "/pages/detail/info/index?id=" + id + "&type=1"
             });
             return;
           }
@@ -176,9 +182,19 @@ var UsedInfo = function (_Taro$Component) {
         return userCallPhone();
       };
       var anonymousState__temp = model ? _index4.REPLACEWEIXINTEXT ? model.detail.replace(_index4.FILTERWEIXINREG, '') : model.detail : '';
+      var anonymousState__temp2 = "pages/used/info/index?id=" + id + "&used=" + used;
+      _taroSwan.propsManager.set({
+        "text": "\u67E5\u770B\u66F4\u591A\u4E8C\u624B\u4EA4\u6613\u4FE1\u606F",
+        "url": "/pages/used/lists/index",
+        "type": "",
+        "path": anonymousState__temp2
+      }, $compid__52, $prevCompid__52);
       Object.assign(this.__state, {
         anonymousState__temp: anonymousState__temp,
-        model: model
+        anonymousState__temp2: anonymousState__temp2,
+        $compid__52: $compid__52,
+        model: model,
+        id: id
       });
       return this.__state;
     }
