@@ -103,7 +103,7 @@ export const feedbackUrl: string = REQUESTURL + 'leaving-message/list/'
 // 意见反馈提交
 export const feedbackSubmissionUrl: string = REQUESTURL + 'leaving-message/publish/'
 // 帮助中心
-export const helpUrl: string = REQUESTURL + 'others/feedback-tree/'
+export const helpUrl: string = REQUESTURL + 'others/help-feedback/'
 // 新闻列表
 export const newListUrl: string = REQUESTURL + 'news/list/'
 // 新闻类型

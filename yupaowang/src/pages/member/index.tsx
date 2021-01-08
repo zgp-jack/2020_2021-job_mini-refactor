@@ -206,13 +206,13 @@ export default function Member({memberIndex = 0}: MemberProps){
             <Text className='member-list-title'>帮助中心</Text>
             <Text className='member-list-tips'>使用教程</Text>
           </View>}
-          {PROREQUESTURL != REQUESTURL &&
+          {/* {PROREQUESTURL != REQUESTURL &&
           <View className='member-list-item' onClick={() => userClearSession()} >
             <Image className='member-list-icon' src={IMGCDNURL + 'lpy/ucenter/newcenter-set.png'} />
             <Text className='member-list-title'>清理缓存</Text>
             <Text className='member-list-tips'>退出登录</Text>
           </View>
-          }
+          } */}
         </View>
       </View>
     </View>

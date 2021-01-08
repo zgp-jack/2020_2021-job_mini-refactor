@@ -163,6 +163,8 @@ export function useFastIssue() {
       Taro.reLaunch({ url: '/pages/index/index?type=resume' })
     } else if (response == 'paid_issue'){
       setShowModel(false)
+      // 付费发布点击不了谢谢清空存的返回状态
+      setResponse('');
     }
     
   }
@@ -230,6 +232,7 @@ export function useFastIssue() {
   function saveData(res: FastIssue<FastData>){
     setText((res.data as FastData).text as string)
     setRules((res.data as FastData).rules as TextRules[])
+    // setResponse('');
     setResponse(res.errcode)
   }
   // 发布招工详情
@@ -282,6 +285,7 @@ export function useFastIssue() {
       content,
       paid_issue: response == 'paid_issue' ? 1 : 0
     }
+    console.error(response,'response')
     fastIssue(data).then(res => {
       if (res.errcode == 'ok') {
         // 获取请求的手机号验证结果true为验证通过

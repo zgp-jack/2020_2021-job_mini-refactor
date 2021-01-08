@@ -1,3 +1,4 @@
+@import '../../common.scss';
 * {
   padding: 0px;
   margin: 0px;
@@ -67,6 +68,7 @@
       border-bottom-right-radius: 10PX;
       position: relative;
       .stick-box-bottom-img {
+        background: $color;
         width: 600px;
         height: 200px;
       }

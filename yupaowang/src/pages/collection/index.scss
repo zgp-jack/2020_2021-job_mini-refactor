@@ -1,5 +1,4 @@
 @import '../../common.scss';
-
 .collection-tab{
   display: flex;
   width: 100%;
@@ -54,5 +53,9 @@ min-height: 10px !important;
 }
 
 .collection-tab-border {
+  display: flex;
   border-bottom: 2px solid $color;
+}
+.collection-tab-cmontent{
+  display: flex;
 }

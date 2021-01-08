@@ -21,14 +21,22 @@ export default function NologinBtm({ text, type, id, path }: Props) {
   // 跳转相应内容
   const handleClick = (state:Number)=>{
     let url='';
-    if(state == 1){
-      dispatch(changeTabbar(RECRUIT));
-      url = `/pages/index/index?type=${RECRUIT}`
-    }else if(state == 2){
-      dispatch(changeTabbar(RESUME))
-      url = `/pages/index/index?type=${RESUME}`
-    }else{
-      url = 'pages/used/lists/index'
+    if(state == 2){
+      if(type == RESUME){
+        dispatch(changeTabbar(RESUME))
+        url = `/pages/index/index?type=${RESUME}`
+      }else{
+        dispatch(changeTabbar(RECRUIT));
+        url = `/pages/index/index?type=${RECRUIT}`
+      }
+    }else if(state == 1){
+      if (type == RESUME) {
+        dispatch(changeTabbar(RECRUIT));
+        url = `/pages/index/index?type=${RECRUIT}`
+      }else{
+        dispatch(changeTabbar(RESUME))
+        url = `/pages/index/index?type=${RESUME}`
+      }
     }
     Taro.reLaunch({
       url: url
@@ -55,8 +63,8 @@ export default function NologinBtm({ text, type, id, path }: Props) {
         </Button>
       </View>
       <View className='NologinBtm-text'>
-        <View className='NologinBtm-btn-left' onClick={()=>handleClick(1)}>查看更多工人</View>
-        <View className='NologinBtm-btn' onClick={()=>handleClick(2)}>查看更多招工</View>
+        <View className='NologinBtm-btn-left' onClick={() => handleClick(1)}>{type != RESUME ? '查看更多工人' :'查看更多招工'}</View>
+        <View className='NologinBtm-btn' onClick={() => handleClick(2)}>{type == RESUME ? '查看更多工人' : '查看更多招工'}</View>
       </View>
     </View>
   )

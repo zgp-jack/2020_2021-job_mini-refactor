@@ -49,7 +49,7 @@ export default function Mymessage (){
   return (
     <View>
       <Auth />
-      {!data.item.length && <Nodata />}
+      {!data.item.length && login && <Nodata />}
       {data.item.map((item,index)=>(
         <View 
           className='messsage-lists' 

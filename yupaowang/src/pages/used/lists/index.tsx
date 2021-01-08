@@ -128,7 +128,7 @@ export default function Fleamarket() {
           onScrollToLower={() => getNextPageData()}
           scrollTop={listScrollTop}
         >
-          <View style={{ height: '8px' }}></View>
+          {/* <View style={{ height: '8px' }}></View> */}
           <WechatNotice />
           <UsedList data={lists} hasMore={hasMore}/>
         </ScrollView>

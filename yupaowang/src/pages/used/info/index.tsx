@@ -135,7 +135,7 @@ export default function UsedInfo(){
       </View>
       {/* 返回首页 */}
       {/* <View className='see-recruit-list-btn' onClick={() => seeMoreUsed()}>查看更多二手交易信息</View>  */}
-      <NologinBtm text='查看更多二手交易信息' url={`/pages/used/lists/index`} type='' id={id} path={`pages/used/info/index?id=${id}&used=${used}`}/>
+      {/* <NologinBtm text='查看更多二手交易信息' url={`/pages/used/lists/index`} type='' id={id} path={`pages/used/info/index?id=${id}&used=${used}`}/> */}
     </View>
   )
 }

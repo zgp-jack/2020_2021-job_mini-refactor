@@ -177,7 +177,6 @@ export default function useRelease () {
     const areaData = [...AREAS];
     if (pickerCity != area){
       for (let i = 0; i < areaData.length; i++) {
-        console.error(areaData[i].id, '111')
         if (pickerCity == areaData[i].id) {
           const index = areaData[i].children.findIndex((v) => v.id == (data && area));
           if (index == -1) {

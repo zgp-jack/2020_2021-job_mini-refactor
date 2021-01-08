@@ -16,6 +16,7 @@ import { freeIssueRule } from '../../../utils/request/index.d'
 import { textData } from '../../../components/prompt_box/index'
 import PromptBox from '../../../components/prompt_box/index'
 import Msg from '../../../utils/msg'
+import useJobView from '../../../hooks/init_job_view/index'
 
 export interface searchDataType {
   type: string,
@@ -25,6 +26,8 @@ export interface searchDataType {
 }
 
 export default function PublishedRecruit() {
+  // 发布招工跳转不同模式（急速或者快速）
+  const { initJobView } = useJobView()
   // 判断提示框(components/stick)是否弹出
   const router: Taro.RouterInfo = useRouter()
   const { tatol } = router.params;
@@ -338,9 +341,27 @@ export default function PublishedRecruit() {
     getNotRemind()
   }
 
+  // 当天免费的最后一条发布招工信息弹窗，点击 去发布 去发布招工
+  const confirm = () => {
+    // 当天第一次免费发布
+    if (type == 'day_first') {
+      if (jobId) {//根据jobId获取对应招工详细信息
+        let itemIndex: number = lists.findIndex(item => item.id == jobId)
+        let item = lists[itemIndex]
+        userRouteJump(`/pages/newtopping/recRang/index?defaultTopArea=${item.area_id}&job_id=${item.id}`)
+      }
+      setShowModel(false)
+    } else if (type == 'day_last') {
+      // 当天最后一次免费发布
+      initJobView()
+      setShowModel(false)
+    }
+  }
+
   const close = () => {
     setShowModel(false)
   }
+
   return (
     <Block>
       <Auth />

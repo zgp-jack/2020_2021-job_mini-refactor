@@ -584,13 +584,11 @@ export function feedbackSubmissionAction(params: object): Promise<Inter.Result> 
 }
 
 // 帮助中心
-export function helpAction(system: string): Promise<any> {
+export function helpAction(data): Promise<any> {
   return doRequestAction({
     url: api.helpUrl,
     failToast: true,
-    data: {
-      system,
-    }
+    data
   })
 }
 

@@ -1,16 +1,19 @@
 import Taro, { useState, useEffect } from '@tarojs/taro'
-import { View, Button,Image } from '@tarojs/components';
-import './index.scss'
+import { View,Image } from '@tarojs/components';
+import { useSelector } from '@tarojs/redux'
 import { IMGCDNURL } from '../../config';
+import './index.scss'
 
 export default function Stick(props) {
+  // 获取用户是否登录
+  const login = useSelector<any, boolean>(state => state.User['login'])
   // 判断显示/隐藏弹出框
   const { tatol } = props
   const [popup, setPopup] = useState<string>(tatol)
   return (
     <View>
       {
-        popup === "1" &&
+        popup === "1" && login && 
         <View className='box'>
         <View className='stick-box'>
           <View className='stick-box-top'>

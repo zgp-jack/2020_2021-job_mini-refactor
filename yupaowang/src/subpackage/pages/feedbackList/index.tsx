@@ -2,7 +2,7 @@ import Taro, { Config, useState, useEffect, usePullDownRefresh, useReachBottom }
 import { View, Button, Block, Text, Image } from '@tarojs/components'
 import WechatNotice from '../../../components/wechat'
 import Nodata from '../../../components/nodata'
-import { feedbackAction  } from '../../../utils/request'
+import { feedbackAction } from '../../../utils/request'
 import { feedbackListData } from '../../../utils/request/index.d'
 import Auth from '../../../components/auth'
 import { useSelector } from '@tarojs/redux'
@@ -17,9 +17,9 @@ export interface ItmeType {
   item: feedbackListData[],
 }
 // 用户数据
-export interface UserDataType{
-  phone:string,
-  username:string,
+export interface UserDataType {
+  phone: string,
+  username: string,
 }
 export default function FeedbackList() {
   // * 标记是否是在刷新状态
@@ -33,9 +33,9 @@ export default function FeedbackList() {
     item: [],
   })
   // 用户信息
-  const [userData,setUserData] = useState<UserDataType>({
-    phone:'',
-    username:'',
+  const [userData, setUserData] = useState<UserDataType>({
+    phone: '',
+    username: '',
   })
   // 获取用户是否登录
   const login = useSelector<any, boolean>(state => state.User['login'])
@@ -47,7 +47,7 @@ export default function FeedbackList() {
     feedbackDataAction();
   }, [login, initPage])
   // 进来时获取数据
-  const feedbackDataAction = ()=>{
+  const feedbackDataAction = () => {
     feedbackAction(initPage.page).then(res => {
       Taro.hideNavigationBarLoading()
       Taro.stopPullDownRefresh();
@@ -70,12 +70,12 @@ export default function FeedbackList() {
     })
   }
   // 上拉加载更多
-  useReachBottom(()=>{
+  useReachBottom(() => {
     if (!isDown) return;
     Taro.showNavigationBarLoading()
-    setPage({...initPage,page:initPage.page + 1})
+    setPage({ ...initPage, page: initPage.page + 1 })
   })
-  const handleImg = (e:string)=>{
+  const handleImg = (e: string) => {
     Taro.previewImage({
       current: e,
       urls: [e]
@@ -84,49 +84,51 @@ export default function FeedbackList() {
   // 下拉刷新
   usePullDownRefresh(() => {
     setIsDown(true);
-    setPage({page:1})
+    setPage({ page: 1 })
   })
-  return(
+  return (
     <View>
       <Auth />
-      <WechatNotice/>
-      {!lists.item.length && <Nodata text='暂无相关数据反馈' />}
-      <View className='recruit-lists-containerbox'>
-        {lists.item && lists.item.map((item) => (
-          <Block key={item.id}>
-            <View className='feedback-body-content'>
-              <View className='superior'>
-                <View className='superior-text'>
-                  <text>问</text>
-                </View>
-                <View className='superior-content'>
-                  <text>{item.content}</text>
-                </View>
-              </View>
-              <View className='species'>
-                {item.images && item.images.map((v,index) => (
-                  <View className='species-box' key={index+index} onClick={()=>{handleImg(v)}}>
-                    <Image className='species-box-img' src={v} />
+      {login && <View>
+        <WechatNotice />
+        {!lists.item.length && login && <Nodata text='暂无相关数据反馈' />}
+        <View className='recruit-lists-containerbox'>
+          {lists.item && lists.item.map((item) => (
+            <Block key={item.id}>
+              <View className='feedback-body-content'>
+                <View className='superior'>
+                  <View className='superior-text'>
+                    <text>问</text>
                   </View>
-                ))}
-              </View>
-              <View className='species-text'>{item.ask_time}</View>
-              {item.is_answer &&
-                <View className='superior-data'>
-                  <View className='superiordati'>答</View>
-                  <View className='superioredase'>
-                    {item.send_msg && <Text >{item.send_msg}</Text>}
+                  <View className='superior-content'>
+                    <text>{item.content}</text>
                   </View>
                 </View>
-              }
-            </View>
-          </Block>
-        ))}
-        {!isDown && lists.item.length && <View className='feedback-noData'>没有更多数据了</View>}
-      </View>
-      <View className='feedback-bttonBox'>
-        <Button className='feedback-bttonBox-botton' onClick={() => userRouteJump(`/subpackage/pages/feedback/index?username=${userData.username || ''}&phone=${userData.phone || ''}`)}>我要提意见</Button>
-      </View>
+                <View className='species'>
+                  {item.images && item.images.map((v, index) => (
+                    <View className='species-box' key={index + index} onClick={() => { handleImg(v) }}>
+                      <Image className='species-box-img' src={v} />
+                    </View>
+                  ))}
+                </View>
+                <View className='species-text'>{item.ask_time}</View>
+                {item.is_answer &&
+                  <View className='superior-data'>
+                    <View className='superiordati'>答</View>
+                    <View className='superioredase'>
+                      {item.send_msg && <Text >{item.send_msg}</Text>}
+                    </View>
+                  </View>
+                }
+              </View>
+            </Block>
+          ))}
+          {!isDown && lists.item.length && <View className='feedback-noData'>没有更多数据了</View>}
+        </View>
+        <View className='feedback-bttonBox'>
+          <Button className='feedback-bttonBox-botton' onClick={() => userRouteJump(`/subpackage/pages/feedback/index?username=${userData.username || ''}&phone=${userData.phone || ''}`)}>我要提意见</Button>
+        </View>
+      </View>}
     </View>
   )
 }
