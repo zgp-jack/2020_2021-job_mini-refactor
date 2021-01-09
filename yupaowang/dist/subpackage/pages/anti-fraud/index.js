@@ -1,1 +1,131 @@
-(swan.webpackJsonp=swan.webpackJsonp||[]).push([[110],{"109":function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{"value":!0});var s=function(e,t){if(Array.isArray(e))return e;if(Symbol.iterator in Object(e))return function sliceIterator(e,t){var n=[],o=!0,r=!1,a=void 0;try{for(var i,u=e[Symbol.iterator]();!(o=(i=u.next()).done)&&(n.push(i.value),!t||n.length!==t);o=!0);}catch(e){r=!0,a=e}finally{try{!o&&u.return&&u.return()}finally{if(r)throw a}}return n}(e,t);throw new TypeError("Invalid attempt to destructure non-iterable instance")},o=function(e,t,n){return t&&defineProperties(e.prototype,t),n&&defineProperties(e,n),e};function defineProperties(e,t){for(var n=0;n<t.length;n++){var o=t[n];o.enumerable=o.enumerable||!1,o.configurable=!0,"value"in o&&(o.writable=!0),Object.defineProperty(e,o.key,o)}}var c=n(0),l=function _interopRequireDefault(e){return e&&e.__esModule?e:{"default":e}}(c),f=n(1),p=n(3);n(110);var r=(function _inherits(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{"constructor":{"value":e,"enumerable":!1,"writable":!0,"configurable":!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}(DetailInfoPage,l.default.Component),o(DetailInfoPage,[{"key":"_constructor","value":function _constructor(e){(function get(e,t,n){null===e&&(e=Function.prototype);var o=Object.getOwnPropertyDescriptor(e,t);if(void 0===o){var r=Object.getPrototypeOf(e);return null===r?void 0:get(r,t,n)}if("value"in o)return o.value;var a=o.get;return void 0!==a?a.call(n):void 0})(DetailInfoPage.prototype.__proto__||Object.getPrototypeOf(DetailInfoPage.prototype),"_constructor",this).call(this,e),this.$$refs=new l.default.RefsArray}},{"key":"_createData","value":function _createData(e,t,n){this.__state=e||this.state||{},this.__props=t||this.props||{},this.$prefix;var o=(0,p.useSelector)(function(e){return e.WechatNotice.phone}),r=(0,c.useState)(""),a=s(r,2),i=a[0],u=a[1];return(0,c.useDidShow)(function(){var e=o||f.SERVERPHONE;u(e),f.SERIES==f.BAIDUSERIES&&l.default.setPageInfo({"title":"鱼泡网,建筑招聘,建筑人才,工地招工,施工队找活,工程信息","description":"鱼泡网每日发布建筑招聘、建筑人才、工地招工、工地招人、找施工队等工程信息，方便建筑工人找活、找项目，为建筑劳务公司寻找优秀的建筑工人、建筑人才、建筑班组、施工队。","keywords":"鱼泡网,建筑招聘,建筑人才,工地招工,施工队找活,工程信息"})}),this.anonymousFunc0=function(){l.default.makePhoneCall({"phoneNumber":i})},Object.assign(this.__state,{"SHOWSERVERPHONE":f.SHOWSERVERPHONE,"tel":i}),this.__state}},{"key":"anonymousFunc0","value":function anonymousFunc0(){}}]),DetailInfoPage);function DetailInfoPage(){!function _classCallCheck(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,DetailInfoPage);var e=function _possibleConstructorReturn(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}(this,(DetailInfoPage.__proto__||Object.getPrototypeOf(DetailInfoPage)).apply(this,arguments));return e.config={"navigationBarTitleText":"鱼泡网-防骗指南"},e.$usedState=["SHOWSERVERPHONE","tel"],e.customComponents=[],e}r.$$events=["anonymousFunc0"],r.$$componentPath="subpackage/pages/anti-fraud/index",r.config={"navigationBarTitleText":"鱼泡网-防骗指南"},t.default=r,Page(n(0).default.createComponent(r,!0))},"110":function(e,t,n){}},[[109,0,1]]]);
+(swan["webpackJsonp"] = swan["webpackJsonp"] || []).push([["subpackage/pages/anti-fraud/index"],{
+
+/***/ "./src/subpackage/pages/anti-fraud/index.scss":
+/*!****************************************************!*\
+  !*** ./src/subpackage/pages/anti-fraud/index.scss ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
+/***/ "./src/subpackage/pages/anti-fraud/index.tsx":
+/*!***************************************************!*\
+  !*** ./src/subpackage/pages/anti-fraud/index.tsx ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+
+var _taroSwan = __webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js");
+
+var _taroSwan2 = _interopRequireDefault(_taroSwan);
+
+var _index = __webpack_require__(/*! ../../../config/index */ "./src/config/index.ts");
+
+var _redux = __webpack_require__(/*! @tarojs/redux */ "./node_modules/@tarojs/redux/index.js");
+
+__webpack_require__(/*! ./index.scss */ "./src/subpackage/pages/anti-fraud/index.scss");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var DetailInfoPage = function (_Taro$Component) {
+  _inherits(DetailInfoPage, _Taro$Component);
+
+  function DetailInfoPage() {
+    _classCallCheck(this, DetailInfoPage);
+
+    var _this = _possibleConstructorReturn(this, (DetailInfoPage.__proto__ || Object.getPrototypeOf(DetailInfoPage)).apply(this, arguments));
+
+    _this.config = {
+      navigationBarTitleText: '鱼泡网-防骗指南'
+    };
+
+    _this.$usedState = ["SHOWSERVERPHONE", "tel"];
+    _this.customComponents = [];
+    return _this;
+  }
+
+  _createClass(DetailInfoPage, [{
+    key: "_constructor",
+    value: function _constructor(props) {
+      _get(DetailInfoPage.prototype.__proto__ || Object.getPrototypeOf(DetailInfoPage.prototype), "_constructor", this).call(this, props);
+      this.$$refs = new _taroSwan2.default.RefsArray();
+    }
+  }, {
+    key: "_createData",
+    value: function _createData() {
+      this.__state = arguments[0] || this.state || {};
+      this.__props = arguments[1] || this.props || {};
+      var __isRunloopRef = arguments[2];
+      var __prefix = this.$prefix;
+      ;
+      var phone = (0, _redux.useSelector)(function (state) {
+        return state.WechatNotice['phone'];
+      });
+
+      var _useState = (0, _taroSwan.useState)(''),
+          _useState2 = _slicedToArray(_useState, 2),
+          tel = _useState2[0],
+          setTel = _useState2[1];
+
+      (0, _taroSwan.useDidShow)(function () {
+        var tel = phone ? phone : _index.SERVERPHONE;
+        setTel(tel);
+        if (_index.SERIES == _index.BAIDUSERIES) {
+          _taroSwan2.default.setPageInfo({
+            title: '鱼泡网,建筑招聘,建筑人才,工地招工,施工队找活,工程信息',
+            description: '鱼泡网每日发布建筑招聘、建筑人才、工地招工、工地招人、找施工队等工程信息，方便建筑工人找活、找项目，为建筑劳务公司寻找优秀的建筑工人、建筑人才、建筑班组、施工队。',
+            keywords: '鱼泡网,建筑招聘,建筑人才,工地招工,施工队找活,工程信息'
+          });
+        }
+      });
+      this.anonymousFunc0 = function () {
+        _taroSwan2.default.makePhoneCall({ phoneNumber: tel });
+      };
+      Object.assign(this.__state, {
+        SHOWSERVERPHONE: _index.SHOWSERVERPHONE,
+        tel: tel
+      });
+      return this.__state;
+    }
+  }, {
+    key: "anonymousFunc0",
+    value: function anonymousFunc0(e) {
+      ;
+    }
+  }]);
+
+  return DetailInfoPage;
+}(_taroSwan2.default.Component);
+
+DetailInfoPage.$$events = ["anonymousFunc0"];
+DetailInfoPage.$$componentPath = "subpackage/pages/anti-fraud/index";
+DetailInfoPage.config = { navigationBarTitleText: '鱼泡网-防骗指南' };
+exports.default = DetailInfoPage;
+
+Page(__webpack_require__(/*! @tarojs/taro-swan */ "./node_modules/@tarojs/taro-swan/index.js").default.createComponent(DetailInfoPage, true));
+
+/***/ })
+
+},[["./src/subpackage/pages/anti-fraud/index.tsx","runtime","vendors"]]]);
