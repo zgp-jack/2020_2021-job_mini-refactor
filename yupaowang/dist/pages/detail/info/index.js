@@ -83,7 +83,7 @@ var DetailInfoPage = function (_Taro$Component) {
       navigationBarTitleText: ''
     };
 
-    _this.$usedState = ["anonymousState__temp3", "anonymousState__temp6", "anonymousState__temp7", "anonymousState__temp8", "data", "loopArray73", "loopArray74", "$compid__66", "$compid__67", "$compid__68", "$compid__69", "resCode", "editPhone", "SHOWOFFICIALACCOUNT", "SERIES", "QQSERIES", "ios", "DOWNLOADAPP", "IMGCDNURL", "type", "again", "stopHiring", "editTopping", "isCollection", "ISCANSHARE", "id", "recommend", "complaintModal", "phone"];
+    _this.$usedState = ["anonymousState__temp3", "anonymousState__temp6", "anonymousState__temp7", "anonymousState__temp8", "data", "loopArray80", "loopArray81", "$compid__66", "$compid__67", "$compid__68", "$compid__69", "resCode", "editPhone", "SHOWOFFICIALACCOUNT", "SERIES", "QQSERIES", "ios", "DOWNLOADAPP", "IMGCDNURL", "type", "again", "stopHiring", "editTopping", "isCollection", "ISCANSHARE", "id", "recommend", "complaintModal", "phone"];
     _this.anonymousFunc5Map = {};
     _this.customComponents = ["WechatNotice", "NologinBtm", "CollectionRecruitList", "Report"];
     return _this;
@@ -804,7 +804,7 @@ var DetailInfoPage = function (_Taro$Component) {
       this.anonymousFunc21 = function () {
         _taroSwan2.default.makePhoneCall({ phoneNumber: phone });
       };
-      var loopArray73 = data.classifyName.map(function (v, i) {
+      var loopArray80 = data.classifyName.map(function (v, i) {
         v = {
           privateOriginal: (0, _taroSwan.internal_get_original)(v)
         };
@@ -814,12 +814,12 @@ var DetailInfoPage = function (_Taro$Component) {
           privateOriginal: v.privateOriginal
         };
       });
-      var loopArray74 = data.view_images.length ? data.view_images.map(function (v, i) {
+      var loopArray81 = data.view_images.length ? data.view_images.map(function (v, i) {
         v = {
           privateOriginal: (0, _taroSwan.internal_get_original)(v)
         };
         var loopState__temp5 = data.view_images.length ? i + i : null;
-        var _$indexKey = "ifzzz" + i;
+        var _$indexKey = "ihzzz" + i;
         _this2.anonymousFunc5Map[_$indexKey] = function () {
           return handleImage(v.privateOriginal);
         };
@@ -859,8 +859,8 @@ var DetailInfoPage = function (_Taro$Component) {
         anonymousState__temp7: anonymousState__temp7,
         anonymousState__temp8: anonymousState__temp8,
         data: data,
-        loopArray73: loopArray73,
-        loopArray74: loopArray74,
+        loopArray80: loopArray80,
+        loopArray81: loopArray81,
         $compid__66: $compid__66,
         $compid__67: $compid__67,
         $compid__68: $compid__68,
