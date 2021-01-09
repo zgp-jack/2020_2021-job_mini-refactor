@@ -793,9 +793,17 @@ var DetailInfoPage = function (_Taro$Component) {
       this.anonymousFunc17 = function () {
         _taroSwan2.default.makePhoneCall({ phoneNumber: phone });
       };
-      var anonymousState__temp6 = "/pages/index/index?type=" + _tabbar.RECRUIT;
-      var anonymousState__temp7 = "" + _tabbar.RECRUIT;
-      var anonymousState__temp8 = "/pages/detail/info/index?id=" + id;
+      var anonymousState__temp6 = data.is_end === 2 ? "/pages/index/index?type=" + _tabbar.RECRUIT : null;
+      var anonymousState__temp7 = data.is_end === 2 ? "" + _tabbar.RECRUIT : null;
+      var anonymousState__temp8 = data.is_end === 2 ? "/pages/detail/info/index?id=" + id : null;
+      this.anonymousFunc18 = collection;
+      this.anonymousFunc19 = footerComplaint;
+      this.anonymousFunc20 = function () {
+        return jobGetTel();
+      };
+      this.anonymousFunc21 = function () {
+        _taroSwan2.default.makePhoneCall({ phoneNumber: phone });
+      };
       var loopArray80 = data.classifyName.map(function (v, i) {
         v = {
           privateOriginal: (0, _taroSwan.internal_get_original)(v)
@@ -824,7 +832,7 @@ var DetailInfoPage = function (_Taro$Component) {
       _taroSwan.propsManager.set({
         "type": 1
       }, $compid__66, $prevCompid__66);
-      !type && _taroSwan.propsManager.set({
+      !type && data.is_end === 2 && _taroSwan.propsManager.set({
         "text": "\u67E5\u770B\u66F4\u591A\u62DB\u5DE5\u4FE1\u606F",
         "url": anonymousState__temp6,
         "type": anonymousState__temp7,
@@ -976,12 +984,32 @@ var DetailInfoPage = function (_Taro$Component) {
     value: function anonymousFunc17(e) {
       ;
     }
+  }, {
+    key: "anonymousFunc18",
+    value: function anonymousFunc18(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc19",
+    value: function anonymousFunc19(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc20",
+    value: function anonymousFunc20(e) {
+      ;
+    }
+  }, {
+    key: "anonymousFunc21",
+    value: function anonymousFunc21(e) {
+      ;
+    }
   }]);
 
   return DetailInfoPage;
 }(_taroSwan2.default.Component);
 
-DetailInfoPage.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6", "anonymousFunc7", "anonymousFunc8", "anonymousFunc9", "anonymousFunc10", "anonymousFunc11", "anonymousFunc12", "anonymousFunc13", "anonymousFunc14", "anonymousFunc15", "anonymousFunc16", "anonymousFunc17"];
+DetailInfoPage.$$events = ["anonymousFunc0", "anonymousFunc1", "anonymousFunc2", "anonymousFunc3", "anonymousFunc4", "anonymousFunc5", "anonymousFunc6", "anonymousFunc7", "anonymousFunc8", "anonymousFunc9", "anonymousFunc10", "anonymousFunc11", "anonymousFunc12", "anonymousFunc13", "anonymousFunc14", "anonymousFunc15", "anonymousFunc16", "anonymousFunc17", "anonymousFunc18", "anonymousFunc19", "anonymousFunc20", "anonymousFunc21"];
 DetailInfoPage.$$componentPath = "pages/detail/info/index";
 DetailInfoPage.config = { navigationBarTitleText: '' };
 exports.default = DetailInfoPage;

@@ -21,7 +21,7 @@ export default function NologinBtm({ text, type, id, path }: Props) {
   // 跳转相应内容
   const handleClick = (state:Number)=>{
     let url='';
-    if(state == 1){
+    if(state == 2){
       if(type == RESUME){
         dispatch(changeTabbar(RESUME))
         url = `/pages/index/index?type=${RESUME}`
@@ -29,7 +29,7 @@ export default function NologinBtm({ text, type, id, path }: Props) {
         dispatch(changeTabbar(RECRUIT));
         url = `/pages/index/index?type=${RECRUIT}`
       }
-    }else if(state == 2){
+    }else if(state == 1){
       if (type == RESUME) {
         dispatch(changeTabbar(RECRUIT));
         url = `/pages/index/index?type=${RECRUIT}`
